@@ -1,8 +1,13 @@
 {
-  "updated_utc": "2026-10-28 20:49:49 UTC",
+  "updated_utc": "2026-10-28 21:14:00 UTC",
   "active_workers": [
-    {"id":"R12-fitter-invariants","agent_id":"01a18443-ccf4-7a62-92e5-639979825e5c","worktree":"C:/Users/HP/.codex/worktrees/swarm11-fitter-invariants/2026-10-26 - Meta Global AI Developer Hackathon","contract":"dispatch-R12-fitter-invariants.json"}
+    {"id":"R12-covariance-review","agent_id":"01a18455-3d1a-7520-8edd-cd1771678e8d","worktree":"C:/Users/HP/.codex/worktrees/swarm12-covariance-review/2026-10-26 - Meta Global AI Developer Hackathon","deadline":"2026-10-28T21:35:41.128Z","contract":"dispatch-R12-covariance-review.json","state":"Original review noP0-P2; narrow followup of subnormal-floor P3 after parent fix9d240b0, same original window"},
+    {"id":"R13-process-lifecycle","agent_id":"01a18457-247b-7d03-bcbc-f952bf6da32c","worktree":"C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26 - Meta Global AI Developer Hackathon","deadline":"2026-10-28T21:37:45.893Z","contract":"dispatch-R13-process-lifecycle.json"}
   ],
+  "current_recovery":{"id":"S11j","queue":"82/211","candidate":"C:/Users/HP/.codex/worktrees/swarm12-covariance-fix/2026-10-26 - Meta Global AI Developer Hackathon","branch":"run/R12-covariance-fix","source":"9d240b0","parent_window_deadline":"2026-10-28T21:28:46.012Z","parent_minute25_cutoff":"2026-10-28T21:23:46.012Z","tests":"45 fitter/17 lab/84 Node PASS on prior or final scoped sources; final17lab pending, IAB375 fresh reveal running","next":"Read native followup, final parent UI+tests, FF main only, mark S11j DONE then round3/count83/211"},
+  "current_servers":{"canonical3100":"owned baseline remains","recovery3101":{"session_id":57559,"state":"running RK4/covariance candidate9d240b0"},"old_candidate3101":"STOPPED; port now reused by recovery","production3102":"CLOSED"},
+  "current_browser":{"kind":"ChatGPT IAB only","tab_id":"3","url":"http://127.0.0.1:3101/lab","viewport":"375x812 set after recovered tab; attach creation timeouts recovered by inventory, no replacement browser"},
+  "project_binding":{"assigned_id":"91e441f8-e40c-4ec4-bea2-de7fa1582d97","canonical_root_verified":true,"move_tool_returned_assigned_id":true,"fresh_list_threads_project_id":null,"state":"UI association not verified; do not claim bound or change provider/config. R13 prompt corrected."},
   "candidate2_current": {"code":"694df9a","main_ff":"b8f6269","state":"Round2 COMPLETE. Parent Node84/lab17 PASS, IAB375 all four NORMAL traces and no Mystery compute mount; native gate noP0-P2; production build exit0,32asset checks,18HTTP probes; post-rebase19/19. Production API remains disabled. Next R12 covariance audit; do not add scope merely to fill time."},
   "heartbeat_delivery": {"checked_utc":"2026-10-28T20:43:00Z","active":true,"last_run_at":null,"execution_receipts":0,"note":"Correct configuration; actual delivery unverified. Do not claim executed."},
   "objective": "Maximum-speed authorized simulation-only swarm through2026-10-29T04:00:00Z; no early closure",
