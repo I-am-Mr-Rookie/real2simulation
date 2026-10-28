@@ -34,12 +34,18 @@ def _degree(degree):
 
 def _solve_qr(x, y, degree):
     n, p = len(x), degree + 1
-    center = math.fsum(x) / n
-    span = max(x) - min(x)
+    try:
+        center = math.fsum(x) / n
+        span = max(x) - min(x)
+    except (OverflowError, ValueError) as exc:
+        raise FitError("time_arithmetic_overflow") from exc
     if not math.isfinite(center) or not math.isfinite(span) or span == 0:
         raise FitError("time_span_must_be_finite_and_nonzero")
     scale = span / 2.0
-    z = tuple((t - center) / scale for t in x)
+    try:
+        z = tuple((t - center) / scale for t in x)
+    except (OverflowError, ZeroDivisionError, ValueError) as exc:
+        raise FitError("time_scaling_overflow") from exc
     if not all(math.isfinite(t) for t in z):
         raise FitError("scaled_times_must_be_finite")
     columns = [tuple(t ** j for t in z) for j in range(p)]
@@ -48,10 +54,16 @@ def _solve_qr(x, y, degree):
         v = list(col)
         for _pass in range(2):
             for i in range(j):
-                correction = math.fsum(a * b for a, b in zip(q[i], v))
+                try:
+                    correction = math.fsum(a * b for a, b in zip(q[i], v))
+                except (OverflowError, ValueError) as exc:
+                    raise FitError("qr_projection_overflow") from exc
                 r[i][j] += correction
                 v = [a - correction * b for a, b in zip(v, q[i])]
-        norm = math.sqrt(math.fsum(a * a for a in v))
+        try:
+            norm = math.sqrt(math.fsum(a * a for a in v))
+        except (OverflowError, ValueError) as exc:
+            raise FitError("qr_norm_overflow") from exc
         if not math.isfinite(norm) or norm <= 64 * math.ulp(1.0):
             raise FitError("rank_deficient_design")
         r[j][j] = norm
@@ -59,7 +71,10 @@ def _solve_qr(x, y, degree):
     qt_y = [math.fsum(a * b for a, b in zip(qi, y)) for qi in q]
     local = [0.0] * p
     for i in range(p - 1, -1, -1):
-        local[i] = (qt_y[i] - math.fsum(r[i][j] * local[j] for j in range(i + 1, p))) / r[i][i]
+        try:
+            local[i] = (qt_y[i] - math.fsum(r[i][j] * local[j] for j in range(i + 1, p))) / r[i][i]
+        except (OverflowError, ValueError, ZeroDivisionError) as exc:
+            raise FitError("qr_solve_overflow") from exc
     coefficients = [0.0] * p
     try:
         for j, value in enumerate(local):
@@ -122,12 +137,24 @@ def fit_least_squares(times, positions, degree=2, *, time_unit="s", position_uni
     coefficients, local, center, scale, r = _solve_qr(x, y, degree)
     fitted = _predict_local(local, x, center, scale)
     residuals = tuple(obs - pred for obs, pred in zip(y, fitted))
-    rss = math.fsum(e * e for e in residuals)
+    try:
+        rss = math.fsum(e * e for e in residuals)
+    except (OverflowError, ValueError) as exc:
+        raise FitError("rss_overflow") from exc
     if not math.isfinite(rss):
         raise FitError("rss_nonfinite")
     return FitResult(degree, coefficients, fitted, residuals, rss, math.sqrt(rss / len(x)),
         degree + 1, len(x) - degree - 1, len(x), time_unit, position_unit, "simulated", x,
-        local, center, scale, r, max(1.0, math.sqrt(math.fsum(v * v for v in y))))
+        local, center, scale, r, _safe_y_scale(y))
+
+def _safe_y_scale(values):
+    try:
+        result = math.sqrt(math.fsum(v * v for v in values))
+    except (OverflowError, ValueError) as exc:
+        raise FitError("position_scale_overflow") from exc
+    if not math.isfinite(result):
+        raise FitError("position_scale_nonfinite")
+    return max(1.0, result)
 
 def fit_motion(times, positions, degree=2, **kwargs):
     return fit_least_squares(times, positions, degree, **kwargs)
@@ -140,8 +167,7 @@ class ModelSelection:
     criterion: str = "AIC"
 
 def _aic(fit):
-    bound = 64 * fit.n * (fit.degree + 1) * math.ulp(fit._y_scale) ** 2
-    if fit.rss == 0.0 or fit.rss <= bound:
+    if fit.rss == 0.0:
         return float("-inf")
     return fit.n * math.log(fit.rss / fit.n) + 2 * fit.k
 

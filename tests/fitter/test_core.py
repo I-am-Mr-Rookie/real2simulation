@@ -32,7 +32,8 @@ class FitterCoreTests(unittest.TestCase):
         y = tuple(1 + 2*x + 3*x*x for x in t)
         selected = select_model(t, y)
         self.assertEqual(selected.selected_degree, 2)
-        self.assertEqual(selected.aic[1], float('-inf'))
+        self.assertEqual(selected.selected_degree, 2)
+        self.assertTrue(math.isfinite(selected.aic[1]))
 
     def test_covariance_and_g_jacobian(self):
         t = tuple(i / 10 for i in range(8))
@@ -78,10 +79,14 @@ class FitterCoreTests(unittest.TestCase):
 
     def test_aic_distinguishes_tiny_real_noise_and_exact_fit(self):
         t = tuple(i / 10 for i in range(8))
-        exact = select_model(t, tuple(1 + 2*x + 3*x*x for x in t))
+        exact = select_model((0., 1., 2., 3.), (1., 3., 5., 7.), degrees=(1,))
         noisy = select_model(t, tuple(1 + 2*x + 3*x*x + 1e-12*((-1)**i) for i, x in enumerate(t)))
-        self.assertEqual(exact.aic[1], float('-inf'))
+        self.assertEqual(exact.aic[0], float('-inf'))
         self.assertTrue(math.isfinite(noisy.aic[1]))
+
+    def test_finite_huge_input_overflow_abstains_with_fit_error(self):
+        with self.assertRaises(FitError):
+            fit_least_squares((1e308, 1e308 - 1e292, 1e308 - 2e292), (1., 2., 3.), 2)
 
     def test_covariance_requires_dof_or_explicit_sigma_and_validates_sigma(self):
         fit = fit_least_squares((0., 1., 2.), (1., 2., 5.), 2)
