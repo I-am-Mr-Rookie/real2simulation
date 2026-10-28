@@ -2,6 +2,28 @@
 
 Scope: this event folder. Current phase: **building Real2Simulation** (solo, indie track). Nothing submitted.
 
+## Latest owner workflow update — Oct28 scanned instructions
+
+Koushik supplied the four-page Updated_Instructions_10_28_2026 PDF (SHA256
+7244790ebd0db495b705c0bc14bd2185e538dc7312399f352284537c457d3834), read visually.
+Fresh worker contexts, explicit absolute deadline <=30m per run, controller checks
+completion/deadline and serially updates RUNS.md. Workers remain silent except
+mandatory messages and one final report pointer; no fixed worker cap.
+Choose routine reversible best decisions without waiting; record decisions and
+necessary owner inputs under **Reviews for Koushik** in RUNS.md (STATE fallback
+feeds the generated view). Owner may reply there. Missing personal facts are not
+invented; silence is not new authority for actions outside established safety,
+spending, rights, privacy or deployment scope. Existing explicit approvals reused.
+Browser work uses the signed-in **ChatGPT in-app browser only, NOT Chrome**.
+Owner says accounts are signed in; verify only the service needed, no auth changes.
+No scheduled task: existing heartbeat deleted Oct28; orchestrator waits on actual
+workers in this chat. Python dispatcher stays OFF. No automatic rescheduling.
+Specific written Q11 override: agent may accept SAM3.1 terms on owner's behalf;
+owner subsequently completed the access request. Fresh in-app page confirms
+SUBMITTED/AWAITING AUTHORS' REVIEW, not approved weights/runtime. Copy-to-bucket
+wizard is not access approval; no bucket/copied weights/publication performed.
+Other accounts/terms/purchases/publication/AWS/deployment boundaries unchanged.
+
 ## Current owner model/quality override (Oct 28)
 
 **Latest owner override (Oct28): ALL remaining GPT-6.1 Terra work uses existing managed `gpt-6.1-sol`; preserve lane, Owns, effort, dependencies and approval boundaries. No failure prerequisite. Historical completed receipts and Claude/S02c assignments unchanged.**

@@ -1,5 +1,12 @@
 # Real2Simulation — Windows PC Run System
 
+Latest Oct28 owner PDF: fresh contexts/explicit <=30m deadlines, silent workers,
+no fixed cap, in-app browser ONLY (no Chrome). Controller serially records routine
+best decisions and necessary inputs under generated RUNS.md Reviews for Koushik;
+do not wait on routine choices or duplicate approvals. No scheduled task: existing
+heartbeat deleted; orchestrator waits on workers. Dispatcher remains OFF. Missing
+personal facts and unapproved safety/spend/rights actions cannot be guessed.
+
 Owner: Koushik Sadhak Jeet (solo indie). Repository: `C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon`.
 Worktrees: `C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/.worktrees/<RID>`.
 Canonical plan: `C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/08 Real2Simulation/final plan.html`.

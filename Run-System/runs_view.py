@@ -122,9 +122,9 @@ def main():
          "**How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).",
          "Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).", "",
          f"Progress: **{len(done)} / {len(tasks)}** runs done · {len(active)} in progress · {len(blocked)} blocked · "
-         f"{len(owner_ready)} waiting for Koushik · {len(questions)} open questions", "",
-         "## Questions for Koushik", ""]
-    o += questions or ["None open. (Runs ask you inside the run; this list is the fallback from STATE.md.)"]
+         f"{len(owner_ready)} waiting for Koushik · {len(questions)} open reviews", "",
+         "## Reviews for Koushik", ""]
+    o += questions or ["None open. Routine decisions proceed; necessary owner inputs come from STATE.md."]
     o += ["",
          "## Ready now", ""]
     for lane in ("CODEX-1", "CODEX-2", "CLAUDE"):
