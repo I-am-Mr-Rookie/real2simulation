@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 28, 22:16 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 22:20 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **56 / 204** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **57 / 204** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -22,10 +22,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
-
-## In progress
-
-- [~] **S04g2** — Codex · GPT-6.1 Sol, effort medium — Preserve staging destination guards under Python optimization (15 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -76,7 +72,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (8/10)</summary>
+<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (9/10)</summary>
 
 - [x] **S04a** — Codex · GPT-6.1 Sol, effort medium — Define shell interfaces and fixture mount points (30 min)
 - [x] **S04b** — Codex · GPT-6.1 Sol, effort medium — Create Next.js shell and isolated route layout (30 min)
@@ -86,7 +82,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S04f** — Codex · GPT-6.1 Sol, effort medium — Configure dev Postgres, Redis and bucket integration (30 min)
 - [x] **S04g** — Codex · GPT-6.1 Sol, effort medium — Deploy the dev skeleton via Railway (30 min)
 - [x] **S04g1** — Codex · GPT-6.1 Sol, effort medium — Harden dev deployment verifier semantic checks (15 min)
-- [~] **S04g2** — Codex · GPT-6.1 Sol, effort medium — Preserve staging destination guards under Python optimization (15 min) *(in progress)*
+- [x] **S04g2** — Codex · GPT-6.1 Sol, effort medium — Preserve staging destination guards under Python optimization (15 min)
 - [ ] **S04h** — Codex · GPT-6.1 Sol, effort medium — Verify sign-in, guest route and dev health (30 min)
 
 </details>

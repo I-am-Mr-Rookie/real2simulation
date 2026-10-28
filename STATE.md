@@ -26,6 +26,13 @@ allowing overwrite. No user file loss or exploit inferred. Progress56/203; gates
 unchanged. Next routine bounded owned CODEX-2 hardening may repair this local guard;
 no model/provider, deployment, quota, credential, billing or approval change.
 
+S04g2 DONE/FF9e3bf48: explicit runtime staging guards survive optimization and
+exclusive fresh-directory creation prevents accidental overwrite/race. Normal,
+optimized,3.11 and rebased/main staging+verifier14/14 PASS; actual optimized local
+Git staging all3 services/hashes/retry-refusal PASS, no uploads. Source equality
+verified. Progress57/204 (one new real safety leaf, not extra recovery count).
+All physical/deployment/auth/S12 holds and$2.85/$30 unchanged.
+
 Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verified, worker heartbeat unavailable; sign-in configuration/E2E remain owner follow-up. Dispatch remains disabled.**
 
 | Recovery field | Current evidence |

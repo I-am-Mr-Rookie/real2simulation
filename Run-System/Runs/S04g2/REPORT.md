@@ -49,3 +49,14 @@ The global health environment still lacks typing_extensions; no installation or
 unrelated repair. Existing$2.85/$30/gates/S12 remain unchanged. No fixed timer or
 background continuation. Mandatory changed-finding update only; no other narration.
 Final rebase/FF/source audit/timing receipt recorded at canonical closeout below.
+
+## Canonical acceptance
+
+Verified FF9e3bf48; fresh main optimized staging/verifier14/14 PASS and normalized
+source hashes match tested worktree. Source-only diff whitespace check PASS.
+Raw red unittest log contains four trailing-space lines; an all-evidence diff
+check reported those, not a clean result. Raw failure evidence retained verbatim.
+Work stopped16:20:02Z; all local acceptance complete, report/control bookkeeping
+afterward. TIMEBOX checker required before closure. Queue now57/204: two leaf
+closures this session plus one justified new safety-fix leaf; recovery10 remains
+a supporting child, not a fabricated leaf or parent S05b completion.
