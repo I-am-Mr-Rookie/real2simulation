@@ -1,0 +1,21 @@
+Modal UI sanitized AX snippet, observed 2026-10-28T17:09:24Z
+
+Apps page:
+Live Apps 0
+Stopped Apps 6
+Credits $129.99
+
+Credits popover:
+Billing period usage Current spend (Oct 1 - Oct 31, 2026) $0.00 after $0.01 of credits
+Credits $129.99 left
+Workspace usage $0.01 used $155.00
+$154.99 left
+
+Exact app ap-7TvkSZJ4Wk6Ym0t0yZ3lsM, function probe:
+Containers: 0 live
+Calls: 0 running
+Enqueued (GMT+6) Oct 28, 18:41:25
+Started -
+Startup 0ms
+Execution -
+Status Cancelled
