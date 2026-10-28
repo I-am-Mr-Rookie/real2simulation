@@ -1,6 +1,10 @@
 # Real2Simulation — STATE
 
-## CURRENT — owner-authorized bounded inline swarm until Oct29 00:00 Dhaka
+## CURRENT — bounded inline swarm STOPPED at Oct29 00:00 Dhaka
+
+Deadline closure observed18:00:10UTC. No further product work/worker launch;
+final administrative receipt only. Ten accepted contracts,10 new queue leaves,
+68/205 complete;10 worktrees archived, one primary retained. No continuation.
 
 Direct owner exception: use Ponytail and inline agents/swarm, no fresh desktop
 chats required, work until18:00UTC Oct28=00:00BDT Oct29; do not stop early.

@@ -1,5 +1,9 @@
 # Bounded inline swarm — final integration report
 
+Closed at the owner midnight deadline; final clock observed18:00:10UTC.
+All workers closed; no new product work after cutoff, no automatic continuation.
+Final minute waited for the agreed boundary rather than manufacturing more work.
+
 Owner: Koushik. Window observed 2026-10-28T16:57:37Z through hard stop18:00Z
 (Oct29 00:00 Asia/Dhaka). Baseline main bc4591e; main integrates by fast-forward.
 

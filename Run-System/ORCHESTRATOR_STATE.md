@@ -1,6 +1,9 @@
 # Orchestrator recovery checkpoint
 
-## CURRENT — bounded inline swarm final verification, Oct28 17:57UTC
+## CURRENT — bounded inline swarm STOPPED, Oct29 00:00Dhaka
+
+Owner deadline reached; closure clock18:00:10UTC. No active swarm worker or
+automatic continuation. Only this administrative stop receipt follows deadline.
 
 Latest owner exception supersedes historical solo/stop entries below only until
 18:00UTC (Oct29 00:00Dhaka). No new implementation after17:55UTC. Integrated10
