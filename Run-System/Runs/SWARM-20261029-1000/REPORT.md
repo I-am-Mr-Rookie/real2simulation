@@ -84,6 +84,17 @@ Full integration evidence: CANDIDATE-INTEGRATION.md; no physicalgate unlock.
 All round1 workers closed and handles subsequently not_found (no live worker
 claim). App inventory confirms four archived worktrees; R10candidate archive
 queued after integration. UI archive still refused as used by another active task.
-Round2 Codex normal-browser transport worker is active; standalone browser module
-and parent normal-only mount tested, not yet accepted as full product flow.
+Round2 transport completed, parent source/read/report/timebox verification PASS.
+Candidate dfbd662 includes actual IAB375 four normal engine traces, zero Mystery
+compute mounts before/after reveal, fresh Node84/lab17 and targeted native gate
+review noP0-P2. Production bundle check remains active; no queue count yet.
 CONTROLLER.json and exact handouts retain live handles/next actions.
+
+## Scheduler status question20:43UTC
+
+Read native automation card and exact TOML; ACTIVE heartbeat targets this chat
+every5minutes through04:00UTC. Read-only exact-row scheduler DB check reports
+last_run_at null and zero automation_runs; nominal20:07 due has been deferred
+to20:44:20.572. No executed delivery claim. Chat is continuously active; possible
+busy deferral was stated as inference, not diagnosed scheduler failure.
+Prior goal turn supplied fresh verification evidence (progress), not just status.

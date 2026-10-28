@@ -11,13 +11,19 @@ fixed after actual browser caught overflow. Source/evidence FF main3706b1c.
 All synthetic; no new physicalgatepass. Originalbaseline77/205 retained below.
 Report SWARM-20261029-1000; CANDIDATE-INTEGRATION.md has exact checks/limits.
 
-Round2 S10n normal-browser integration is active. Standalone browser child tested
-but not counted as end-to-end acceptance; normal-only DTO transport worker active.
+Round2 S10n normal-browser candidate dfbd662: actual IAB375px computed all four
+normal RK4 traces (201/201/201/1001 points); clientWidth==scrollWidth360 throughout.
+Mystery has no browser compute before/after fitter reveal. Parent Node84/lab17
+PASS; native targeted review noP0-P2 and all child timeboxesPASS. Independent
+full production build/bundle/disabled-production-route check still active.
+No acceptance count yet; code remains isolated pending final integration.
 
 Fresh owner scheduler request: five-minute heartbeat targeting this same chat,
 exact prompt "Go at maximum speed. Keep working until 10 a.m." Created ACTIVE
 maximum-speed-swarm-until-10-a-m; expiry04:00UTC Oct29 verified. This explicitly
 overrides earlier no-schedule for this one heartbeat; dispatcher remains OFF.
+Scheduler check20:43UTC: ACTIVE and correct target/interval; last_run_at null,
+zero execution receipts. Configuration is verified, actual delivery is not.
 
 Fresh direct owner instruction authorizes inline isolated simulation-only S10/S11
 and genuinely unblocked work until2026-10-29T04:00:00Z. Previous01:30 window is
