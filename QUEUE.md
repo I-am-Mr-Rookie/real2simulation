@@ -36,7 +36,6 @@ prerequisite. Lane/slot/ownership/approval checks still apply.
 
 | Run | Retry not before (UTC) | Reason |
 |---|---|---|
-| S05b | 2026-11-04T12:00:00Z | Recovery4 supported browser disabled by Work settings; no identical retry until Q10 genuine surface recovery/fresh trusted receipt is recorded and hold cleared. Not GPU reconsent; stop-work still applies. |
 
 ## Leaf tasks
 

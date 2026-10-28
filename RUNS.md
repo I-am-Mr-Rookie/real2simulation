@@ -1,19 +1,20 @@
 # Runs checklist
 
-Updated Oct 28, 18:32 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 18:34 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **53 / 203** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 1 open questions
+Progress: **53 / 203** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 0 open questions
 
 ## Questions for Koushik
 
-- [ ] Q10 [S05b execution surface; NOT GPU consent] Supported browser says Local browser use is disabled in Work settings. A (recommended) owner enables supported local browser use in Work settings · B provide fresh Modal Usage/Credits/running-resource screenshots · C defer GPU/continue independent build. Existing GPU authority unchanged; no automatic settings change. Async question sent, awaiting answer.
+None open. (Runs ask you inside the run; this list is the fallback from STATE.md.)
 
 ## Ready now
 
 **CODEX-1**
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
 
 **CODEX-2**
@@ -26,10 +27,6 @@ Progress: **53 / 203** runs done · 2 in progress · 0 blocked · 1 waiting for 
 
 - [~] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min) *(in progress)*
 - [~] **R-M2** — Claude Code · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min) *(in progress)*
-
-## Waiting to retry
-
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(retry held until Nov 04, 12:00 UTC / Nov 04, 18:00 Dhaka; Recovery4 supported browser disabled by Work settings; no identical retry until Q10 genuine surface recovery/fresh trusted receipt is recorded and hold cleared. Not GPU reconsent; stop-work still applies.)*
 
 ## Waiting for Koushik
 
@@ -97,7 +94,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 <details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (1/7)</summary>
 
 - [x] **S05a** — Codex · GPT-6.1 Sol, effort medium — Check reconstruction licences and freeze scene artifact contract (30 min)
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(retry held until Nov 04, 12:00 UTC / Nov 04, 18:00 Dhaka; Recovery4 supported browser disabled by Work settings; no identical retry until Q10 genuine surface recovery/fresh trusted receipt is recorded and hold cleared. Not GPU reconsent; stop-work still applies.)*
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [ ] **S05c** — Codex · GPT-6.1 Sol, effort medium — Reconstruct remaining scene clips (30 min)
 - [ ] **S05d** — Codex · GPT-6.1 Sol, effort medium — Fit floor, metric scale and gravity orientation (30 min)
 - [ ] **S05e** — Codex · GPT-6.1 Sol, effort high — Run Gate R and inspect reconstruction failures (30 min)

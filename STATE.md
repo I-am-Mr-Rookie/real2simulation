@@ -65,7 +65,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
 
-- [ ] Q10 [S05b execution surface; NOT GPU consent] Supported browser says Local browser use is disabled in Work settings. A (recommended) owner enables supported local browser use in Work settings · B provide fresh Modal Usage/Credits/running-resource screenshots · C defer GPU/continue independent build. Existing GPU authority unchanged; no automatic settings change. Async question sent, awaiting answer.
+- [x] Q10 [S05b execution surface; NOT GPU consent] Koushik selected A: Enable supported local browser use in Work settings. Selection is not proof a toggle changed. Controller subsequently verified actual supported Chrome extension and authenticated Modal Usage/Credits at12:32-12:34UTC; $130 total/Active$100 grant, rounded$0.00 spend. No setting/billing/policy modified by agent. Genuine supported-surface recovery established; standing GPU authority unchanged. Receipt Runs/ORCH-20261028-SOL/MODAL-PREFLIGHT-1234.md.
 
 - [x] Q9 [S05b execution-surface restoration, NOT GPU consent] Koushik answered **Reconnected Chrome control**, then supplied settings screenshot showing Chrome extension installed/enabled. New external-state receipt permits ONE bounded fresh supported verification/recovery per RECOVERY-3.md; settings screenshot alone is NOT actual debugger/headroom/runtime proof. Prior recovery2 worker closed; no duplicate, ownership override/native fallback/policy change. Historical$0.95 retained; no new jobs yet. Existing standing GPU authority unchanged.
 
