@@ -1,0 +1,146 @@
+test_atomic_replace_failure_preserves_previous_receipt (test_rm02_watchdog.WatchdogTests.test_atomic_replace_failure_preserves_previous_receipt) ... ok
+test_broken_later_evidence_still_runs_independent_stop (test_rm02_watchdog.WatchdogTests.test_broken_later_evidence_still_runs_independent_stop) ... ok
+test_broken_preflight_evidence_never_launches_client (test_rm02_watchdog.WatchdogTests.test_broken_preflight_evidence_never_launches_client) ... ok
+test_client_failure_preserved_after_confirmed_independent_cleanup (test_rm02_watchdog.WatchdogTests.test_client_failure_preserved_after_confirmed_independent_cleanup) ... ok
+test_confirmation_failure_variants_are_incidents (test_rm02_watchdog.WatchdogTests.test_confirmation_failure_variants_are_incidents) ... ok
+test_exhausted_independent_reserve_never_fakes_stop_attempt (test_rm02_watchdog.WatchdogTests.test_exhausted_independent_reserve_never_fakes_stop_attempt) ... ok
+test_hung_child_lost_id_stays_incident_after_kill (test_rm02_watchdog.WatchdogTests.test_hung_child_lost_id_stays_incident_after_kill) ... ok
+test_hung_stop_is_bounded_and_fresh_checks_still_run (test_rm02_watchdog.WatchdogTests.test_hung_stop_is_bounded_and_fresh_checks_still_run) ... ok
+test_invalid_id_cannot_fall_back_to_name_resolution (test_rm02_watchdog.WatchdogTests.test_invalid_id_cannot_fall_back_to_name_resolution) ... ok
+test_missing_app_id_durable_incident_no_name_or_account_guess (test_rm02_watchdog.WatchdogTests.test_missing_app_id_durable_incident_no_name_or_account_guess) ... ok
+test_noncooperative_child_killed_but_not_mistaken_for_remote_stop (test_rm02_watchdog.WatchdogTests.test_noncooperative_child_killed_but_not_mistaken_for_remote_stop) ... ok
+test_nonfinite_or_impossible_budget_rejected (test_rm02_watchdog.WatchdogTests.test_nonfinite_or_impossible_budget_rejected) ... ok
+test_stale_directory_rejected_before_client_launch (test_rm02_watchdog.WatchdogTests.test_stale_directory_rejected_before_client_launch) ... ok
+test_stop_failure_does_not_skip_fresh_verification (test_rm02_watchdog.WatchdogTests.test_stop_failure_does_not_skip_fresh_verification) ... ok
+test_stop_nonzero_can_still_be_independently_confirmed (test_rm02_watchdog.WatchdogTests.test_stop_nonzero_can_still_be_independently_confirmed) ... ok
+test_success_fresh_exact_id_stop_and_independent_verification (test_rm02_watchdog.WatchdogTests.test_success_fresh_exact_id_stop_and_independent_verification) ... ok
+test_acknowledged_stop_without_fresh_confirmation_is_incident (test_rm02_deadline.DeadlineTests.test_acknowledged_stop_without_fresh_confirmation_is_incident) ... ok
+test_already_expired_clock_still_invokes_stop (test_rm02_deadline.DeadlineTests.test_already_expired_clock_still_invokes_stop) ... ok
+test_app_id_published_before_noncooperative_setup_finishes (test_rm02_deadline.DeadlineTests.test_app_id_published_before_noncooperative_setup_finishes) ... ERROR
+test_broken_evidence_write_does_not_skip_stop (test_rm02_deadline.DeadlineTests.test_broken_evidence_write_does_not_skip_stop) ... ok
+test_completed_result_does_not_require_running_snapshot (test_rm02_deadline.DeadlineTests.test_completed_result_does_not_require_running_snapshot) ... ok
+test_context_cleanup_failure_is_incident (test_rm02_deadline.DeadlineTests.test_context_cleanup_failure_is_incident) ... ok
+test_enqueue_timeout_without_call_handle_still_stops_app (test_rm02_deadline.DeadlineTests.test_enqueue_timeout_without_call_handle_still_stops_app) ... ok
+test_impossible_and_nonfinite_budget_never_sets_up (test_rm02_deadline.DeadlineTests.test_impossible_and_nonfinite_budget_never_sets_up) ... ok
+test_late_stop_ack_is_recorded_without_claiming_timely_success (test_rm02_deadline.DeadlineTests.test_late_stop_ack_is_recorded_without_claiming_timely_success) ... ok
+test_real_local_timer_bounds_hanging_get (test_rm02_deadline.DeadlineTests.test_real_local_timer_bounds_hanging_get) ... ERROR
+test_remote_exception_preserved_after_confirmed_cleanup (test_rm02_deadline.DeadlineTests.test_remote_exception_preserved_after_confirmed_cleanup) ... ok
+test_setup_consumes_admission_budget (test_rm02_deadline.DeadlineTests.test_setup_consumes_admission_budget) ... ok
+test_slow_cancellation_overshoot_preserves_timeout_and_stops (test_rm02_deadline.DeadlineTests.test_slow_cancellation_overshoot_preserves_timeout_and_stops) ... ERROR
+test_slow_cleanup_is_bounded_and_remains_incident (test_rm02_deadline.DeadlineTests.test_slow_cleanup_is_bounded_and_remains_incident) ... ok
+test_slow_queue_stops_at_admission_cutoff (test_rm02_deadline.DeadlineTests.test_slow_queue_stops_at_admission_cutoff) ... ok
+test_stop_failure_is_incident_not_success (test_rm02_deadline.DeadlineTests.test_stop_failure_is_incident_not_success) ... ok
+test_stop_invocation_not_recorded_as_rpc_dispatch_without_ack (test_rm02_deadline.DeadlineTests.test_stop_invocation_not_recorded_as_rpc_dispatch_without_ack) ... ok
+test_success_stops_and_confirms_before_return (test_rm02_deadline.DeadlineTests.test_success_stops_and_confirms_before_return) ... ok
+test_unobserved_setup_state_is_incident (test_rm02_deadline.DeadlineTests.test_unobserved_setup_state_is_incident) ... ok
+test_bounded_single_private_invocation (test_modal_rm02.ProbeGuards.test_bounded_single_private_invocation) ... ok
+test_official_torch_binary_version_family (test_modal_rm02.ProbeGuards.test_official_torch_binary_version_family) ... ok
+test_planned_compute_allowance_not_a_billing_or_stop_guarantee (test_modal_rm02.ProbeGuards.test_planned_compute_allowance_not_a_billing_or_stop_guarantee) ... ok
+test_result_egress_boundary (test_modal_rm02.ProbeGuards.test_result_egress_boundary) ... ok
+test_supervised_output_preserves_recovery5_inputs_and_explicit_stop (test_modal_rm02.ProbeGuards.test_supervised_output_preserves_recovery5_inputs_and_explicit_stop) ... ok
+test_no_gpu_bounded_setup_and_installed_imports (test_cpu_import_probe.CpuImportGuards.test_no_gpu_bounded_setup_and_installed_imports) ... ok
+test_recovery5_receipts_do_not_overwrite_history (test_cpu_import_probe.CpuImportGuards.test_recovery5_receipts_do_not_overwrite_history) ... ok
+
+======================================================================
+ERROR: test_app_id_published_before_noncooperative_setup_finishes (test_rm02_deadline.DeadlineTests.test_app_id_published_before_noncooperative_setup_finishes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\unittest\async_case.py", line 90, in _callTestMethod
+    if self._callMaybeAsync(method) is not None:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\unittest\async_case.py", line 112, in _callMaybeAsync
+    return self._asyncioRunner.run(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\asyncio\base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\r-m-review\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 145, in test_app_id_published_before_noncooperative_setup_finishes
+    self.assertEqual(f.records[0]["app_id"], "ap-fake")
+                     ~~~~~~~~~^^^
+IndexError: list index out of range
+
+======================================================================
+ERROR: test_real_local_timer_bounds_hanging_get (test_rm02_deadline.DeadlineTests.test_real_local_timer_bounds_hanging_get)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\asyncio\tasks.py", line 500, in wait_for
+    return fut.result()
+           ^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\r-m-review\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 53, in do_get
+    await asyncio.Event().wait()
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\asyncio\locks.py", line 213, in wait
+    await fut
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\r-m-review\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_deadline.py", line 92, in guarded_probe
+    result = await result_task
+             ^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\r-m-review\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_deadline.py", line 34, in before
+    result = await asyncio.wait_for(operation(), timeout=remaining)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\asyncio\tasks.py", line 502, in wait_for
+    raise exceptions.TimeoutError() from exc
+TimeoutError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\unittest\async_case.py", line 90, in _callTestMethod
+    if self._callMaybeAsync(method) is not None:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\unittest\async_case.py", line 112, in _callMaybeAsync
+    return self._asyncioRunner.run(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\asyncio\base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\r-m-review\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 236, in test_real_local_timer_bounds_hanging_get
+    await guard.guarded_probe(f, f, (), f.records.append, total_seconds=.15)
+  File "C:\Users\HP\.codex\worktrees\r-m-review\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_deadline.py", line 149, in guarded_probe
+    raise ResourceIncident("Remote resource incident; inspect deadline receipt")
+rm02_deadline.ResourceIncident: Remote resource incident; inspect deadline receipt
+
+======================================================================
+ERROR: test_slow_cancellation_overshoot_preserves_timeout_and_stops (test_rm02_deadline.DeadlineTests.test_slow_cancellation_overshoot_preserves_timeout_and_stops)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\r-m-review\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_deadline.py", line 72, in guarded_probe
+    await before(admission_end, enter)
+  File "C:\Users\HP\.codex\worktrees\r-m-review\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_deadline.py", line 36, in before
+    raise TimeoutError("Caller deadline exhausted")
+TimeoutError: Caller deadline exhausted
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\unittest\async_case.py", line 90, in _callTestMethod
+    if self._callMaybeAsync(method) is not None:
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\unittest\async_case.py", line 112, in _callMaybeAsync
+    return self._asyncioRunner.run(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\asyncio\base_events.py", line 654, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\r-m-review\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 132, in test_slow_cancellation_overshoot_preserves_timeout_and_stops
+    await guard.guarded_probe(f, f, (), f.records.append, total_seconds=.1)
+  File "C:\Users\HP\.codex\worktrees\r-m-review\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_deadline.py", line 149, in guarded_probe
+    raise ResourceIncident("Remote resource incident; inspect deadline receipt")
+rm02_deadline.ResourceIncident: Remote resource incident; inspect deadline receipt
+
+----------------------------------------------------------------------
+Ran 42 tests in 15.228s
+
+FAILED (errors=3)

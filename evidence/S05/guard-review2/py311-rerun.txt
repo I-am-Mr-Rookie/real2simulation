@@ -1,0 +1,11 @@
+
+3.11.15 run1 exit=1 FAILED (errors=3) test_app_id_published_before_noncooperative_setup_finishes,test_real_local_timer_bounds_hanging_get,test_slow_cancellation_overshoot_preserves_timeout_and_stops
+3.11.15 run2 exit=1 FAILED (errors=3) test_app_id_published_before_noncooperative_setup_finishes,test_real_local_timer_bounds_hanging_get,test_slow_cancellation_overshoot_preserves_timeout_and_stops
+3.11.15 run3 exit=1 FAILED (errors=3) test_app_id_published_before_noncooperative_setup_finishes,test_real_local_timer_bounds_hanging_get,test_slow_cancellation_overshoot_preserves_timeout_and_stops
+3.11.15 run4 exit=1 FAILED (failures=1, errors=2) test_app_id_published_before_noncooperative_setup_finishes,test_slow_cancellation_overshoot_preserves_timeout_and_stops,test_real_local_timer_bounds_hanging_get
+3.11.15 run5 exit=1 FAILED (errors=3) test_app_id_published_before_noncooperative_setup_finishes,test_real_local_timer_bounds_hanging_get,test_slow_cancellation_overshoot_preserves_timeout_and_stops
+3.14.5 run1 exit=0 OK 
+3.14.5 run2 exit=0 OK 
+3.14.5 run3 exit=0 OK 
+3.14.5 run4 exit=0 OK 
+3.14.5 run5 exit=0 OK 
