@@ -1,0 +1,15 @@
+UTC 2026-10-28T13:04:13.3369158Z
+branch run/S07b-recovery2
+HEAD 48c390300a7fe6a9c4812867abc0688e30558282
+main_now e040d633bf9f1eccea4060f09b94d0f9be17eea1
+tracked_diff PASS (all tracked files unchanged)
+cached_diff PASS
+diff_check PASS
+source_blob PASS Build/measurement/tracking.py 7d876e61133a10bf14918422ea12f62925879306
+source_blob PASS Build/measurement/TRACKING.md d908e88f089a8f5656d0f034def6406448579895
+source_blob PASS tests/measurement/test_tracking.py a685d8fb8bcbb3ce009d235ed5936603fdf5216c
+untracked_allowlist PASS
+evidence_files local-runtime.json, measurement-tests.txt, READINESS.md, tracking-tests.txt
+owned_report EXISTS Run-System/Runs/S07b/recovery2/PLAN.md
+owned_report EXISTS Run-System/Runs/S07b/recovery2/REPORT.md
+Scope: only owned evidence plus explicitly ignored PLAN/REPORT; canonical controls not written; no commit/integration per user.

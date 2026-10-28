@@ -1,0 +1,13 @@
+{
+  "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+  "executable": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+  "modules": {
+    "numpy": true,
+    "torch": false,
+    "sam3": false
+  },
+  "exact_standard_model_cache": "C:\\Users\\HP\\.cache\\huggingface\\hub\\models--facebook--sam3.1",
+  "cache_exists": false,
+  "checkpoint_files": [],
+  "scope": "exact default model cache only; custom paths not searched; no heavy imports"
+}
