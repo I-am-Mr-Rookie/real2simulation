@@ -2,31 +2,33 @@
 
 - **RID/status:** S10ab-swarm / DONE (S10a and S10b leaves only)
 - **Lane:** CODEX-1 medium; synthetic-only owner authorization.
-- **Timebox:** issued `2026-10-28T17:11:15Z`; work stopped `2026-10-28T17:17:30Z`; deadline `2026-10-28T17:41:15Z`. `TIMEBOX.json` is adjacent.
+- **Timebox:** issued `2026-10-28T17:11:15Z`; deadline remains `2026-10-28T17:41:15Z`; rework verified at `2026-10-28T17:22:05Z`. `TIMEBOX.json` is adjacent.
 - **Commit:** `ff7d96c` (product/evidence commit); report/timebox are committed separately below.
 
 ## Changed paths
 
-- `Build/simulator/apparatus.mjs` — portable validated-snapshot boundary and deterministic box placement.
-- `Build/simulator/rk4.mjs` — fixed-step RK4 stepper/integrator with finite, dimension and range guards.
-- `tests/simulator/simulator.test.mjs` — S10a placement/trust-boundary tests and S10b analytic, determinism, immutability, invalid-input tests.
+- `Build/simulator/apparatus.mjs` — consumes only the exact Python `validate_setup` export envelope and places the S08 body against scene bounds/colliders.
+- `Build/simulator/export_validated_setup.py` — calls the existing full `validate_setup(spec, scene, scene_root)` before exporting exact spec+scene JSON.
+- `Build/simulator/rk4.mjs` — fixed-step RK4 with finite/dense state, dimension, callback and positive-dt guards; no arbitrary upper dt cap.
+- `tests/simulator/simulator.test.mjs` — S10a actual-envelope boundary plus S10b convergence/order, determinism, immutability, zero-step and invalid-input tests.
+- `tests/simulator/test_s10_adapter.py` — valid exact export and invalid S08 spec rejection.
 - `evidence/S10/swarm/S10ab-validation.md` — synthetic evidence and explicit limits.
 
 ## Ponytail choices applied
 
 - Reused the repository's plain browser ESM convention; added no dependency, UI, Rapier, contact solver, or config.
-- Kept the apparatus boundary to the smallest schema subset needed by placement and used a private `WeakSet` brand rather than accepting a caller-supplied `validated` flag.
+- Reused the existing Python scene and experiment validators through a single trusted export adapter; JS only consumes the explicit producer/validation envelope and does not claim to replace Python authority.
 - Kept dynamics/state shape caller-owned; no arbitrary defaults or duplicate physics model.
 
 ## Fresh checks
 
 - `node --test tests/simulator/simulator.test.mjs` — **3/3 pass**, exit 0.
-- `$env:PYTHONPATH='tests\\spec'; python -m unittest test_experiment_validation test_setup_validation` — **27/27 pass**, exit 0.
+- `$env:PYTHONPATH='tests\\spec;tests\\simulator'; python -m unittest test_s10_adapter` — **2/2 pass**, exit 0; invalid spec cannot enter export.
 - `python contracts/scene/validate_scene.py test-data/synthetic/scene/room-v1/scene.json` — **PASS**, exit 0; synthetic and not Gate R evidence.
 
 ## Limits / skipped work
 
-No real S09/S07 integration, browser runtime claim, Rapier/contact/default physics, model/media access, deployment, or Gate R/M/P/RS/S12 work. The JS validator is only the portable apparatus-snapshot subset; the Python scene validator remains authoritative for full scene bundles. All fixtures/results are synthetic.
+No real S09/S07 integration, browser runtime claim, Rapier/contact/default physics, model/media access, deployment, or Gate R/M/P/RS/S12 work. JS is not an authority claim; Python `validate_setup` remains authoritative. All fixtures/results are synthetic.
 
 ## Communication compliance
 

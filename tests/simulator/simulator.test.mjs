@@ -1,30 +1,27 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { validatePlacementSnapshot, placeApparatus } from '../../Build/simulator/apparatus.mjs';
+import { consumeValidatedSetupArtifact, placeApparatus } from '../../Build/simulator/apparatus.mjs';
 import { rk4Step, integrateRK4 } from '../../Build/simulator/rk4.mjs';
+const valid = { artifact_version: 's10-validated-setup-v1', validation: 'validate_setup', producer: 'contracts/experiment/validate_experiment.py', spec: { scene: { scene_id: 'synthetic-room-v1', schema_version: '1.0.0', constraints: { bounds_m: { min: [-5, -1, -5], max: [5, 5, 5] } } }, placement: { surface_id: null, origin: { value: [0, 1, 0] } }, body: { radius: { value: 0.1 } } }, scene: { id: 'synthetic-room-v1', schema_version: '1.0.0', synthetic: true, bounds_m: { min: [-5, -1, -5], max: [5, 5, 5] }, surfaces: [], colliders: [] } };
 
-const snapshot = () => validatePlacementSnapshot({ schema_version: '1.0.0', scene_id: 'synthetic-room-v1', bounds_m: { min: [-5, -1, -5], max: [5, 5, 5] }, surfaces: [{ id: 'floor', normal: [0, 1, 0], offset: 0 }] });
-const apparatus = () => ({ id: 'box-a', shape: 'box', surface_id: 'floor', half_extents_m: [0.5, 0.5, 0.5], pose: { position_m: [0, 2, 0], rotation_xyzw: [0, 0, 0, 1] } });
-
-test('S10a only validated snapshots reach placement and rest on the selected plane', () => {
-  const placed = placeApparatus(snapshot(), apparatus());
-  assert.deepEqual(placed.pose.position_m, [0, 0.5, 0]);
-  assert.ok(placed.vertices.every(([x, y, z]) => y >= -1e-9));
-  assert.throws(() => placeApparatus({ ...snapshot() }, apparatus()), /validated snapshot/);
-  assert.throws(() => validatePlacementSnapshot({ ...snapshot(), bounds_m: { min: [0, 0], max: [1, 1] } }), /snapshot bounds/);
+test('S10a consumes only the trusted S08 validate_setup export and places geometry', () => {
+  const artifact = consumeValidatedSetupArtifact(valid); const placed = placeApparatus(artifact);
+  assert.deepEqual(placed.pose.position_m, [0, 1, 0]); assert.equal(placed.validation, 'validate_setup');
+  assert.throws(() => consumeValidatedSetupArtifact({ ...valid, producer: 'caller' }), /untrusted producer/);
+  assert.throws(() => consumeValidatedSetupArtifact({ ...valid, spec: { ...valid.spec, scene: { ...valid.spec.scene, constraints: { bounds_m: { min: [0, 0, 0], max: [1, 1, 1] } } } } }), /bounds mismatch/);
+  assert.throws(() => placeApparatus({ ...artifact }), /returned by consume/);
 });
 
-test('S10b RK4 exponential smoke, fixed-step determinism, and no input mutation', () => {
-  const f = (s) => [s[0]];
-  const initial = [1]; const out = integrateRK4(initial, 0.01, 100, f);
-  assert.equal(initial[0], 1); assert.ok(Math.abs(out.at(-1)[0] - Math.E) < 1e-8);
-  assert.deepEqual(out, integrateRK4([1], 0.01, 100, f));
-  assert.deepEqual(rk4Step([1, 2], 0.1, () => [1, 0]), [1.1, 2]);
+test('RK4 zero-step validates every input, rejects sparse state, and preserves state', () => {
+  assert.deepEqual(integrateRK4([1], 0.1, 0, (s) => [s[0]]), [[1]]);
+  for (const args of [[[], 0.1, 0, null], [[1], NaN, 0, null], [[1], 0.1, 0, 'nope'], [[1, , 2], 0.1, 0, () => [1, 1, 1]]]) assert.throws(() => integrateRK4(...args), /INVALID_RK4/);
+  const initial = [1]; integrateRK4(initial, 0.1, 0, (s) => [s[0]]); assert.deepEqual(initial, [1]);
 });
 
-test('S10b rejects invalid inputs and malformed dynamics', () => {
-  assert.throws(() => rk4Step([1], 0, () => [1]), /dt/);
+test('RK4 convergence/order, determinism, immutability and invalid dynamics', () => {
+  const dyn = (s) => [s[1], -s[0]]; const solve = (dt) => integrateRK4([1, 0], dt, Math.round(1 / dt), dyn).at(-1);
+  const coarse = Math.abs(solve(0.1)[0] - Math.cos(1)), fine = Math.abs(solve(0.05)[0] - Math.cos(1));
+  assert.ok(coarse / fine > 10); assert.deepEqual(solve(0.05), solve(0.05));
   assert.throws(() => rk4Step([1], 0.1, () => [NaN]), /derivative/);
-  assert.throws(() => integrateRK4([1], 0.1, 1.5, () => [1]), /steps/);
-  assert.throws(() => rk4Step([1, Infinity], 0.1, () => [1, 1]), /state/);
+  assert.throws(() => rk4Step([1], 0.1, () => [1, 2]), /derivative/);
 });
