@@ -1,5 +1,30 @@
 # Orchestration resumed — Sol and Ponytail
 
+## Latest — exact SAM access question, independent custody continues (13:10UTC)
+
+- Accepted S07b recovery2 PARTIAL0f762f5:8 exact-owned evidence/report-only files,
+  source unchanged; fresh post-rebase tracking13 PASS and prior worker64 PASS.
+  Concrete Ponytail evidence-only minimum/reuse/checks/skips/risks accepted.
+  Current public SAM3.1 card readable; inspected session logged out with human
+  conditions/info-sharing gate. No claim owner lacks approval, exact weight bytes/
+  revision/hash or compatible installed runtime. Custom caches not exhaustively
+  searched. S05b Python3.11 CPU proof cannot establish SAM Python>=3.12/GPU runtime.
+- Q11 saved canonically and ONE async options question sent: owner personally
+  reviews official HF access/conditions, reports already-approved status/path
+  without secrets, or defers live SAM. No agent login/sharing/terms/download/job,
+  renewed GPU consent or legal-eligibility finding. Actual decision still pending.
+- Recovery2 terminal child closed; independent recovery3 active fresh Sol/medium
+  child01a182a3-b779-7610-819b-899909c683d8 (Poincare), reused clean r-m-review/new
+  run/S07b-recovery3 at788c1d8.15m unpaid approved-ST03 prefix custody only, source
+  read-only. Canonical exact ST03 presence/size5457582 confirmed; original acquisition
+  hash/approval must be checked before decode. Front-half operational split frozen
+  before inspection, native geometry/actual presentation PTS, <=300 prefix JPEGs
+  ignored and no suffix imagery exposed. No new physics/capture-time/gate claim.
+- All integration preserved unrelated RUNS heading bytes. Generated update again
+  uses temporary native generator output and stages only owned delta, leaving
+  user heading unstaged.55/203 accepted leaves; GateM NOT_RUN/S12 locked; full2.85
+  reserve/$30 authority retained. No paid retry/install/access bypass/fanout.
+
 ## Latest — stopped pending GPU accepted; no-paid readiness active (12:56UTC)
 
 - S05b actual report/CPU receipt/hash/stop evidence inspected. GPU RPC remained

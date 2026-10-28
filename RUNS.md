@@ -1,15 +1,15 @@
 # Runs checklist
 
-Updated Oct 28, 18:58 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 19:12 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **55 / 203** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open questions
+Progress: **55 / 203** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 1 open questions
 
 ## Questions for Koushik
 
-None open. (Runs ask you inside the run; this list is the fallback from STATE.md.)
+- [ ] Q11 [S07b exact SAM3.1 access] Current official model card is readable but the inspected browser is logged out; weights require human access/conditions/information-sharing review. This does NOT prove Koushik lacks existing access. A (recommended): personally review https://huggingface.co/facebook/sam3.1 in your existing account and report your terms/access decision; B: already approved, report status/approved local checkpoint path only (no token/secrets); C: defer live SAM and retain offline-tested adapter. No agent login, information sharing, terms acceptance, download or paid run authorized by this question. GPU/footage permission is already answered. Continue independent local prefix-custody preparation within existing scene/tracking approval.
 
 ## Ready now
 

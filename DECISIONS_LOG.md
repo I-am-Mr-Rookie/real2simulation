@@ -628,3 +628,17 @@ Now paid resources stopped, original S07b lane/model Sol/medium gets15m unpaid
 exact-checkpoint/runtime/licence/prefix readiness after supported-browser recovery.
 No source edits, downloads, terms/account/credential changes or media/jobs; this
 is not generic calibration/source searching. Parent gates/S12 unchanged.
+
+## 2026-10-28 — Exact SAM access question; independent approved prefix custody
+
+R-S07b recovery2 readiness accepted PARTIAL0f762f5, not live/physical success.
+Current logged-out HF conditions gate warrants Q11 owner review, not a claim that
+owner lacks approval. No agent login/info sharing/terms/download authorized.
+While Q11 waits, existing S02 ST03 scene/tracking approval supports bounded local
+prefix custody in fresh Sol/medium recovery3. Exact existing canonical source
+presence/size confirmed before dispatch; original acquisition hash before decode.
+Reuse existing split or fixed front-half before visual inspection, native geometry,
+actual presentation PTS and ignored prefix-only JPEGs (<=300), no suffix imagery.
+This is operational custody, not a physical threshold or calibrated-capture claim.
+No model/API/GPU jobs, licence expansion, public upload or S12 unlock. Keep2.85
+reserves/$30 ceiling unchanged; no duplicate access/GPU questions or paid retries.

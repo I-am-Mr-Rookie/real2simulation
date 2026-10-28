@@ -20,7 +20,11 @@ ST03 prefix custody under EXISTING scene/tracking approval, no model/access retr
 Exact contract Runs/S07b/RECOVERY-3.md: registered acquisition paths only, original
 hash before decode, deterministic split before inspection, real presentation PTS,
 native prefix-only JPEGs ignored/no suffix leak, no metrics/physical gate claim.
-Reuse r-m-review/new run/S07b-recovery3; actual child ID recorded after dispatch.
+Reuse r-m-review/new run/S07b-recovery3 at788c1d8; actual child
+01a182a3-b779-7610-819b-899909c683d8 (Poincare), fresh Sol/medium. Controller
+verified canonical ST03 exists5457582 bytes, exact acquisition hash in receipt;
+worker must verify actual bytes before decode. Native720x1366/18.13s metadata
+makes bounded front-half <=300 JPEG plan useful, not a speculative input hunt.
 Source read-only, Owns only new evidence/PLAN/REPORT. No duplicate objective.
 
 S05b CPU proof/stop accepted9b25fcc; GPU allocation cause remains unknown, no paid
