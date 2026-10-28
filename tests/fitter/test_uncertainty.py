@@ -82,6 +82,22 @@ class UncertaintyTests(unittest.TestCase):
         self.assertFalse(jacobian_covariance(exact, position_sigmas=(0.,)*3).valid)
         self.assertTrue(jacobian_covariance(exact, position_sigmas=(.1,)*3).valid)
 
+    def test_clustered_design_abstains_before_losing_covariance_precision(self):
+        fit = fit_least_squares((0., 2.**-46, 1.), (0., 0., 0.))
+        for kwargs in ({"sigma": .125}, {"position_sigmas": (.125,)*3}):
+            result = jacobian_covariance(fit, **kwargs)
+            self.assertFalse(result.valid)
+            self.assertIsNone(result.covariance)
+        self.assertTrue(jacobian_covariance(fit, sigma=0).valid)
+
+    def test_timing_only_stationary_fit_cannot_hide_residual_underflow(self):
+        fit = fit_least_squares((-1., 0., 1.), (1e-165, 0., 1e-165), degree=1)
+        self.assertEqual(fit._local_coefficients[1], 0)
+        self.assertEqual(fit.rss, 0)
+        self.assertTrue(any(v != 0 for v in fit.residuals))
+        self.assertFalse(jacobian_covariance(fit, time_sigmas=(.1,)*3).valid)
+        self.assertTrue(jacobian_covariance(fit, sigma=0).valid)
+
     def test_positive_sigma_underflow_does_not_report_zero_uncertainty(self):
         fit = fit_least_squares((0., 1., 2., 3., 4.), (0.,)*5)
         self.assertEqual(fit.rss, 0)

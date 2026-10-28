@@ -35,6 +35,20 @@ Rank-deficient designs fail; nonfinite/overflowed covariance is unavailable/null
 not spurious precision. Quantity `uncertainty` and covariance `standard_error`
 are **one-standard-deviation uncertainties, never 95% intervals**.
 
+The covariance implementation keeps the existing QR factors and transforms
+`R^-1` to physical coefficient coordinates **before** forming a weighted Gram
+matrix. Declared-noise influence rows reuse the fitted Q columns; it never
+constructs an inverse normal-equation Gram matrix. Every diagonal is checked.
+For positive noise, a scaled-design infinity-norm condition estimate above
+`1/sqrt(binary64 epsilon)` makes covariance unavailable: this conservatively
+retains roughly half the floating-point digits rather than claiming accuracy on
+nearly dependent rows. This is not a changed trajectory/coverage tolerance.
+
+Nonzero residuals whose squares underflow cannot establish zero estimated noise;
+their covariance is unavailable unless representable declared noise supplies it.
+Timing-only declarations at zero fitted velocity do not rescue a lost residual
+floor. Explicit known `sigma=0` remains distinct from an underflowed estimate.
+
 Timing propagation is a first-order small-error approximation around the fitted
 trajectory, not an errors-in-variables refit or bias correction. It does not
 propagate correlated clock-rate errors, common calibration/scale errors, model

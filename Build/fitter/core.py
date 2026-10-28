@@ -84,7 +84,7 @@ def _solve_qr(x, y, degree):
         raise FitError("physical_coefficients_overflow") from exc
     if not all(math.isfinite(v) for v in coefficients):
         raise FitError("physical_coefficients_nonfinite")
-    return tuple(coefficients), tuple(local), center, scale, tuple(tuple(row) for row in r)
+    return tuple(coefficients), tuple(local), center, scale, tuple(tuple(row) for row in r), tuple(q)
 
 def _predict_local(local, times, center, scale):
     result = []
@@ -119,6 +119,7 @@ class FitResult:
     _scale: float = 1.0
     _r: tuple[tuple[float, ...], ...] = ()
     _y_scale: float = 1.0
+    _q: tuple[tuple[float, ...], ...] = ()
     @property
     def k(self):
         return self.rank
@@ -134,7 +135,7 @@ def fit_least_squares(times, positions, degree=2, *, time_unit="s", position_uni
         raise FitError("times_positions_length_mismatch")
     if len(x) <= degree:
         raise FitError("insufficient_observations")
-    coefficients, local, center, scale, r = _solve_qr(x, y, degree)
+    coefficients, local, center, scale, r, q = _solve_qr(x, y, degree)
     fitted = _predict_local(local, x, center, scale)
     residuals = tuple(obs - pred for obs, pred in zip(y, fitted))
     try:
@@ -145,7 +146,7 @@ def fit_least_squares(times, positions, degree=2, *, time_unit="s", position_uni
         raise FitError("rss_nonfinite")
     return FitResult(degree, coefficients, fitted, residuals, rss, math.sqrt(rss / len(x)),
         degree + 1, len(x) - degree - 1, len(x), time_unit, position_unit, "simulated", x,
-        local, center, scale, r, _safe_y_scale(y))
+        local, center, scale, r, _safe_y_scale(y), q)
 
 def _safe_y_scale(values):
     try:
@@ -214,6 +215,8 @@ def _sigma2(fit, sigma):
     if sigma is None:
         if fit.dof <= 0:
             return None
+        if fit.rss == 0 and any(v != 0 for v in fit.residuals):
+            return None
         variance = fit.rss / fit.dof
         return None if fit.rss > 0 and variance == 0 else variance
     value = _number(sigma, "sigma")
@@ -259,12 +262,16 @@ def jacobian_covariance(fit, *, sigma=None, parameter_index=None, times=None,
     scale = fit._scale
     transform = [[0.0] * fit.rank for _ in range(fit.rank)]
     try:
-        gram_inv = tuple(tuple(math.fsum(rinv[i][k] * rinv[j][k] for k in range(fit.rank))
-            for j in range(fit.rank)) for i in range(fit.rank))
+        for j in range(fit.rank):
+            for k in range(j + 1):
+                transform[k][j] = math.comb(j, k) * ((-fit._center) ** (j - k)) / scale ** j
+        # Transform the QR factor before squaring; a Gram inverse loses small variances.
+        factor = tuple(tuple(math.fsum(transform[i][a] * rinv[a][k] for a in range(fit.rank))
+            for k in range(fit.rank)) for i in range(fit.rank))
         if declared:
             noise_model = "independent declared position and first-order timing; residual variance floor; scale fixed"
             influences, variances = [], []
-            for t, sy, st in zip(fit.design_times, *sigmas):
+            for row, (t, sy, st) in enumerate(zip(fit.design_times, *sigmas)):
                 z = (t - fit._center) / scale
                 velocity = math.fsum(j * fit._local_coefficients[j] * z ** (j - 1)
                                      for j in range(1, fit.rank)) / scale
@@ -273,26 +280,29 @@ def jacobian_covariance(fit, *, sigma=None, parameter_index=None, times=None,
                         (variance == 0 and (sy > 0 or (velocity != 0 and st > 0)))):
                     return CovarianceResult(None, None, None, False, noise_model)
                 variances.append(variance)
-                influences.append(tuple(math.fsum(gram_inv[a][j] * z ** j
+                influences.append(tuple(math.fsum(factor[a][j] * fit._q[j][row]
                     for j in range(fit.rank)) for a in range(fit.rank)))
-            local_cov = tuple(tuple(math.fsum(v * w[a] * w[b] for v, w in zip(variances, influences))
-                for b in range(fit.rank)) for a in range(fit.rank))
         else:
-            local_cov = tuple(tuple(sigma2 * v for v in row) for row in gram_inv)
-        for j in range(fit.rank):
-            for k in range(j + 1):
-                transform[k][j] = math.comb(j, k) * ((-fit._center) ** (j - k)) / scale ** j
-        covariance = tuple(tuple(math.fsum(transform[i][a] * local_cov[a][b] * transform[j][b]
-            for a in range(fit.rank) for b in range(fit.rank)) for j in range(fit.rank)) for i in range(fit.rank))
+            influences = tuple(zip(*factor))
+            variances = (sigma2,) * fit.rank
+        if sigma2 is None and fit.dof > 0 and not any(variances):
+            return CovarianceResult(None, None, None, False, noise_model)
+        # Require roughly half the binary64 digits to survive the scaled QR design.
+        condition = max(math.fsum(abs(v) for v in row) for row in fit._r) * max(
+            math.fsum(abs(v) for v in row) for row in rinv)
+        if any(variances) and condition > 1 / math.sqrt(math.ulp(1.0)):
+            return CovarianceResult(None, None, None, False, noise_model)
+        covariance = tuple(tuple(math.fsum(v * w[i] * w[j] for v, w in zip(variances, influences))
+            for j in range(fit.rank)) for i in range(fit.rank))
     except (OverflowError, ZeroDivisionError, ValueError):
         return CovarianceResult(None, None, None, False, noise_model)
     variance = covariance[parameter_index][parameter_index]
-    if (not math.isfinite(variance) or variance < 0
+    if (any(covariance[i][i] < 0 for i in range(fit.rank))
             or not all(math.isfinite(v) for row in covariance for v in row)):
         return CovarianceResult(None, None, None, False, noise_model)
-    # A finite local covariance that transforms to zero has lost scale
-    # information through floating-point underflow; do not report certainty.
-    if variance == 0.0 and local_cov[parameter_index][parameter_index] > 0.0:
+    # Positive noise/influence cannot imply exact certainty after square underflow.
+    if any(covariance[i][i] == 0 and any(v > 0 and w[i] != 0
+            for v, w in zip(variances, influences)) for i in range(fit.rank)):
         return CovarianceResult(None, None, None, False, noise_model)
     return CovarianceResult(covariance, variance, math.sqrt(max(0.0, variance)), True, noise_model)
 
