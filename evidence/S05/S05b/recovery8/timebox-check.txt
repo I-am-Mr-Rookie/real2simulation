@@ -1,0 +1,1 @@
+TIMING PASS; controller must separately verify evidence and any exception

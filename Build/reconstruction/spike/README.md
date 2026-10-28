@@ -55,42 +55,73 @@ Full$2.85 retained reserves pending exact billing. Do not repeat CPU installs,
 ask renewed consent or infer a model-compatibility/capacity diagnosis from waiting;
 controller decides any separately authorized scheduling follow-up. S05c stays locked.
 
-### Recovery7: LOCAL-ONLY caller deadline guard (not remotely verified)
+### Recovery8: LOCAL-ONLY independent process watchdog
 
-`rm02_deadline.py` replaces the unbounded `remote()` wait with one `spawn()` and
-one bounded result retrieval. Its monotonic **1200s total** starts before
-`app.run()` setup. It reserves 90s startup + 900s execution + 60s cleanup before
-admission: setup/enqueue and observation of a running input must finish within
-the first 150s. No observed admission by then means stop, not a scheduler diagnosis.
-A very fast completed result is also accepted; a missed running-input snapshot
-can conservatively reject a healthy job. No call-graph timing assumptions.
+Recovery7's cooperative `asyncio.wait_for` was not a hard deadline: cancellation
+can return late, and its expired clock could skip stop entirely. Recovery8 fixes
+the late stop and adds `rm02_watchdog.py`, a stdlib parent process that imports
+neither Modal nor the runner. **Do not execute it in this local-only run.**
+Direct runner execution now refuses without the parent's per-attempt environment.
+The environment check prevents accidental bypass, not a security/auth boundary.
 
-Queue time, setup, result retrieval, explicit stop, fresh stop verification and
-context exit all consume the same caller budget. A result must arrive by 1140s;
-the remaining 60s reserves up to 20s for stop acknowledgement, verification through
-1190s, 5s for context exit and 5s for timer dispatch/local unwinding. Earlier
-failure/success starts cleanup immediately.
-Stop is attempted even when enqueue fails without returning a call ID. Unknown
-setup state, stop/verification/exit failure is a **resource incident**, not success.
-`deadline.json` distinguishes stop requested, acknowledged and confirmed. Confirmation
-requires refreshed app state `stopped` AND function runners/running inputs/backlog
-all zero. Stopping a client alone never confirms a remote stop.
+The **1200s total** starts in the parent before client imports/setup. The child
+gets at most1140s, reserving60s independently for emergency stop/verification.
+Its inner budget1140 reserves90s startup +900s execution +60s cleanup: setup,
+enqueue and running-input observation must finish in its first90s. Results must
+arrive by1080s. This intentionally conservative admission window can reject a
+healthy slow job; it does not diagnose scheduler capacity. A fast completed
+result remains valid without a running snapshot. One app, one spawn, retries0.
 
-The SDK's asynchronous RPCs must cooperate with asyncio cancellation; this is
-local policy, **not a provider-enforced hard stop or a proven remote guarantee**.
-Event-loop scheduling/cancellation can overrun a timeout; network partitions,
-server lag and process death can leave remote state unknown.
-Do not release reservations or retry after an incident without reconciliation.
-The old 992s execution+startup+idle calculation was not an end-to-end deadline or
-guaranteed billing bound. A 1200s illustrative compute-rate calculation is about
-$0.340464, not current pricing, all-in cost, or proof of resource termination.
-Keep the $0.95 attempt reserve and full historical $2.85 pending actual billing.
+After any late inner overshoot, stop gets a fresh20s attempt within a fresh60s
+cleanup allowance; the parent1140s kill still bounds this allowance independently.
+Inner `worker.json` distinguishes stop attempted/requested, dispatched (unknown
+until acknowledged), acknowledged, and same-client fresh-state confirmation.
+It publishes app ID during setup when observable, before `app.run()` returns.
+Atomic replacement keeps an earlier complete receipt on write/replace failure.
+An unknown/lost ID is an incident; never guess by name or list other apps.
 
-Read-only installed Modal1.6.3 source supports `App.run.aio`, `spawn.aio`,
-`FunctionCall.get.aio(timeout=...)`, `App.stop.aio`, `App.info.aio(refresh=True)`
-and `get_current_stats.aio`. Fake-only regressions do not verify cloud behavior.
-Inputs remain the four hash-checked recovery5 RM02 frames and historical manifest;
-new runtime receipts/results would be isolated under recovery7. No resources,
-dependencies, revisions, retries or licence approvals changed. This local change
-authorizes **no paid run**. Remote stop/runtime NOT_VERIFIED; parent S05b PARTIAL,
-Gate R NOT_RUN, S05c and physical/calibration/S12 holds unchanged.
+After **every** child exit/kill, the parent starts separate fresh CLI processes
+using the same Python/environment and the exact published `ap-` +22 alphanumeric
+ID, as required by installed Modal1.6.3 (otherwise CLI treats it as a name):
+
+```text
+python -m modal app stop <exact-own-app-ID> --yes
+python -m modal app info <exact-own-app-ID> --json
+python -m modal container list --app-id <exact-own-app-ID> --json
+```
+
+These are source/procedure only, **not commands executed during recovery8**.
+Stop has20s; fresh app info15s; exact-app container query15s; remaining10s is
+process-kill/dispatch margin. Each subprocess is killed on its timeout. A failed
+stop never skips the fresh verification. Confirmation requires matching app ID,
+state `stopped`, successful info/container commands and containers exactly `[]`.
+Stop exit0 acknowledges the RPC; already-stopped CLI exits nonzero, so independent
+confirmation can be true without claiming a dispatched/acknowledged stop RPC.
+Child failure stays failure even after independently confirmed cleanup. A child
+`gpu-result.json` alone is never acceptance: require parent exit0 and the matching
+per-attempt independent watchdog receipt as well as the ordinary result checks.
+
+Per-attempt unique directories under `evidence/S05/S05b/recovery8/attempt-*` hold
+atomic `worker.json`/`watchdog.json`, client log and independent CLI stdout/stderr.
+The parent prewrites an incident receipt before launching; broken storage blocks
+admission. Later evidence failure never skips stop and never yields success.
+Missing ID, failed/ambiguous verification or parent death requires operator
+resource-incident reconciliation; no retry/reserve release/success claim. The
+parent is independent of the child event loop, **not** an immortal supervisor or
+provider-enforced remote deadline. OS stalls, parent death, network partitions,
+and delayed provider state can still prevent confirmed shutdown.
+
+Future admission (controller only, not this run): reconcile live budget/headroom
+and no-paid-overage, current licensed/approved input custody, SDK1.6.3/Python3.11
+availability including CLI/auth in that same environment, independent CLI JSON
+semantics and writable receipts, one-job resource limits, enough session time
+for full1200s plus reporting, and a human resource-incident recovery path. Reuse
+the CPU import proof; no reinstall. Local doubles are **not runtime remote-stop
+proof or paid-ready evidence**. Do not blindly run the old direct entry point.
+
+No resource/dependency/revision/retry/rights changes. Four hash-checked recovery5
+RM02 frames and historical manifest unchanged. Illustrative1200s compute remains
+$0.340464, not current pricing/all-in billing or a termination guarantee. Full
+$2.85 retained reserves /$30 authority unchanged; no new paid reservation/attempt.
+Remote stop/runtime NOT_VERIFIED; parent S05b PARTIAL, Gate R NOT_RUN; S05c,
+physical/calibration and S12 holds unchanged.

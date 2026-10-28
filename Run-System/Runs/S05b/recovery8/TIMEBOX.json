@@ -1,0 +1,18 @@
+{
+  "id": "S05b-recovery8",
+  "issued_at": "2026-10-28T14:49:41+00:00",
+  "deadline_at": "2026-10-28T15:19:41+00:00",
+  "implementation_cutoff_at": "2026-10-28T15:14:41+00:00",
+  "deadline_dhaka": "2026-10-28T21:19:41+06:00",
+  "work_stopped_at": "2026-10-28T15:04:11+00:00",
+  "reported_at": "2026-10-28T15:04:25+00:00",
+  "status": "DONE",
+  "scope": "Local source-lane child only; parent S05b PARTIAL; remote stop/runtime NOT_VERIFIED",
+  "thread_id": "01a182fd-0856-7fd2-9cf9-8a060a677995",
+  "project_id": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
+  "canonical_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
+  "requested_lane": "CODEX-1",
+  "requested_model": "gpt-6.1-sol",
+  "requested_effort": "medium",
+  "actual_backend_visibility": "not independently observable"
+}

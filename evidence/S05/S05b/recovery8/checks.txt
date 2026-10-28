@@ -1,0 +1,5 @@
+git diff --check: PASS
+requirements.in and requirements-linux-py311.txt diff vs HEAD: EMPTY/PASS
+No commits/rebase/merge/staging/canonical control changes performed.
+Spike: 42 tests PASS; Scene: 11 tests PASS; see complete logs.
+CLI responses in tests are local doubles; no Modal/runner import or cloud calls.

@@ -82,6 +82,69 @@ class Fake:
 
 
 class DeadlineTests(unittest.IsolatedAsyncioTestCase):
+    async def test_already_expired_clock_still_invokes_stop(self):
+        f = Fake()
+        f.setup_delay = 1500
+        with self.assertRaises(TimeoutError):
+            await f.execute()
+        self.assertEqual(f.stop_calls, 1)
+        final = f.records[-1]
+        self.assertTrue(final["stop_attempted"])
+        self.assertTrue(final["stop_acknowledged"])
+        self.assertTrue(final["remote_stop_confirmed"])
+        self.assertEqual(final["caller_error"], "TimeoutError")
+
+    async def test_stop_invocation_not_recorded_as_rpc_dispatch_without_ack(self):
+        f = Fake()
+        f.stop_failure = True
+        with self.assertRaises(guard.ResourceIncident):
+            await f.execute()
+        self.assertTrue(f.records[-1]["stop_attempted"])
+        self.assertEqual(f.records[-1]["stop_dispatched"], "NOT_VERIFIED")
+
+    async def test_late_stop_ack_is_recorded_without_claiming_timely_success(self):
+        f = Fake()
+        async def late_stop():
+            f.stop_calls += 1
+            f.stopped = True
+            f.now += guard.STOP_SECONDS + 1
+        f.stop = api(late_stop)
+        with self.assertRaises(guard.ResourceIncident):
+            await f.execute()
+        self.assertTrue(f.records[-1]["stop_acknowledged"])
+        self.assertTrue(f.records[-1]["remote_stop_confirmed"])
+        self.assertIn("stop:TimeoutError", f.records[-1]["cleanup_errors"])
+
+    async def test_slow_cancellation_overshoot_preserves_timeout_and_stops(self):
+        f = Fake()
+        async def late_enter():
+            f.app_id = "ap-fake"
+            try:
+                await asyncio.sleep(10)
+            except asyncio.CancelledError:
+                await asyncio.sleep(.08)
+        f.__class__ = type("LateFake", (Fake,), {"__aenter__": lambda self: late_enter()})
+        with (patch.object(guard, "STARTUP_SECONDS", .01),
+              patch.object(guard, "EXECUTION_SECONDS", .01),
+              patch.object(guard, "CLEANUP_SECONDS", .04),
+              patch.object(guard, "EXIT_SECONDS", .01)):
+            with self.assertRaises(TimeoutError):
+                await guard.guarded_probe(f, f, (), f.records.append, total_seconds=.1)
+        self.assertEqual(f.stop_calls, 1)
+        self.assertTrue(f.records[-1]["remote_stop_confirmed"])
+
+    async def test_app_id_published_before_noncooperative_setup_finishes(self):
+        f = Fake()
+        async def slow_enter():
+            f.app_id = "ap-fake"
+            await asyncio.sleep(.08)
+        f.__class__ = type("SlowFake", (Fake,), {"__aenter__": lambda self: slow_enter()})
+        task = asyncio.create_task(f.execute())
+        await asyncio.sleep(.065)
+        self.assertFalse(task.done())
+        self.assertEqual(f.records[0]["app_id"], "ap-fake")
+        await task
+
     async def test_success_stops_and_confirms_before_return(self):
         f = Fake()
         self.assertEqual(await f.execute(), f.result)

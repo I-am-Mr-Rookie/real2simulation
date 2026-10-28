@@ -46,7 +46,7 @@ class ProbeGuards(unittest.TestCase):
         self.assertLess(planned_compute, .95)
         self.assertLessEqual(.95, 1)
 
-    def test_recovery7_output_preserves_recovery5_inputs_and_explicit_stop(self):
+    def test_supervised_output_preserves_recovery5_inputs_and_explicit_stop(self):
         source = Path(__file__).with_name("modal_rm02.py").read_text()
         self.assertIn('ROOT / "evidence/S05/S05b/recovery5"', source)
         self.assertIn('(FRAME_EVIDENCE / frame["path"]).read_bytes()', source)
@@ -54,8 +54,17 @@ class ProbeGuards(unittest.TestCase):
         guard = Path(__file__).with_name("rm02_deadline.py").read_text()
         self.assertIn('finally:', guard)
         self.assertIn('app.stop.aio', guard)
-        self.assertIn('ROOT / "evidence/S05/S05b/recovery7"', source)
-        self.assertIn('"deadline.json"', source)
+        self.assertIn('RM02_WATCHDOG_RECEIPT', source)
+        self.assertIn('atomic_json(', source)
+        self.assertIn('RM02_CHILD_BUDGET', source)
+        self.assertLess(source.index('if not os.environ.get("RM02_WATCHDOG_RECEIPT")'),
+                        source.index('import modal'))
+        self.assertIn('assert len(frames) == 4 and manifest["clip_id"] == "RM02"', source)
+        constants = {n.targets[0].id: ast.literal_eval(n.value) for n in ast.parse(source).body
+                     if isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Name)
+                     and n.targets[0].id in ("CODE_REV", "WEIGHT_REV")}
+        self.assertEqual(constants, {"CODE_REV": "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9",
+                                    "WEIGHT_REV": "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a"})
 
     def test_result_egress_boundary(self):
         tree = ast.parse(Path(__file__).with_name("modal_rm02.py").read_text())

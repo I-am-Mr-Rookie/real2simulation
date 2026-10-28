@@ -5,14 +5,20 @@ import json
 from pathlib import Path
 import time
 import sys
+import os
+
+# Direct execution would bypass the independent process deadline.
+if not os.environ.get("RM02_WATCHDOG_RECEIPT"):
+    raise RuntimeError("Use rm02_watchdog.py only in an authorized runtime continuation")
 
 import modal
 from rm02_deadline import guarded_probe
+from rm02_watchdog import atomic_json
 
 ROOT = Path(__file__).resolve().parents[3]
 INPUT_EVIDENCE = ROOT / "evidence/S05/S05b"
 FRAME_EVIDENCE = ROOT / "evidence/S05/S05b/recovery5"
-EVIDENCE = ROOT / "evidence/S05/S05b/recovery7"
+EVIDENCE = Path(os.environ["RM02_WATCHDOG_RECEIPT"]).resolve().parent
 CODE_REV = "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9"
 WEIGHT_REV = "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a"
 app = modal.App("s05b-recovery5-rm02-private-probe")
@@ -125,11 +131,12 @@ def main():
     started = time.time()
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     def record_guard(state):
-        (EVIDENCE / "deadline.json").write_text(json.dumps(state, indent=2) + "\n")
+        atomic_json(Path(os.environ["RM02_WATCHDOG_RECEIPT"]), state)
 
     with modal.enable_output():
         receipt, data = asyncio.run(guarded_probe(
             app, probe, (frames, requirements, CODE_REV, WEIGHT_REV), record_guard,
+            total_seconds=float(os.environ["RM02_CHILD_BUDGET"]),
         ))
     local = EVIDENCE / "local"
     local.mkdir(parents=True, exist_ok=True)
