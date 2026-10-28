@@ -1,0 +1,22 @@
+{
+  "source_root": "C:\\Users\\HP\\.codex\\worktrees\\swarm12-covariance-fix\\2026-10-26 - Meta Global AI Developer Hackathon",
+  "head": "55a3d2e63dace18539fcd62ff3dbb28c287ab402",
+  "branch": "run/R14-quantizer-fix",
+  "source_sha256_before": {
+    "Build/instruments/synthetic.py": "3f216767bb4d7b16541955d169c699668daf54ef228c1626b37e33fe7c7ba78d",
+    "contracts/fit/quantity.py": "4046eaeda080576458b60f15f954ec185dfbfa08fe1b344b9d762139bc507605",
+    "Build/lab/pipeline.py": "ac8d06c6dd090e477bc9c4bb967bb9673e27ba8d799654e8ebe283bf7c36032f"
+  },
+  "source_sha256_after": {
+    "Build/instruments/synthetic.py": "3f216767bb4d7b16541955d169c699668daf54ef228c1626b37e33fe7c7ba78d",
+    "contracts/fit/quantity.py": "4046eaeda080576458b60f15f954ec185dfbfa08fe1b344b9d762139bc507605",
+    "Build/lab/pipeline.py": "ac8d06c6dd090e477bc9c4bb967bb9673e27ba8d799654e8ebe283bf7c36032f"
+  },
+  "source_unchanged_during_check": true,
+  "audit_tests_sha256": "9f265a5c904970e0d8bae0563036ab8869b1ea9674c618d2263b5f5f0b27fb3b",
+  "tests_run": 22,
+  "failures": 0,
+  "errors": 0,
+  "oracle_observations": 312,
+  "oracle_mismatches": []
+}

@@ -1,0 +1,27 @@
+test_actual_pipeline_preserves_explicit_instrument_metadata (r14_external.R14ActualPipelineCheck.test_actual_pipeline_preserves_explicit_instrument_metadata) ... ok
+test_actual_fitter_binds_units_without_using_diagnostic_error_as_uncertainty (r14_external.R14ContractChecks.test_actual_fitter_binds_units_without_using_diagnostic_error_as_uncertainty) ... ok
+test_established_decimal_resolution_tie_uses_binary64_quotient (r14_external.R14ContractChecks.test_established_decimal_resolution_tie_uses_binary64_quotient) ... ok
+test_every_numeric_parameter_rejects_boolean_nonfinite_and_overflowing_int (r14_external.R14ContractChecks.test_every_numeric_parameter_rejects_boolean_nonfinite_and_overflowing_int) ... ok
+test_exact_oracle_self_check (r14_external.R14ContractChecks.test_exact_oracle_self_check) ... ok
+test_finite_extremes_with_representable_grid (r14_external.R14ContractChecks.test_finite_extremes_with_representable_grid) ... ok
+test_reaction_seed_replay_and_explicit_uncertainty_are_not_conflated (r14_external.R14ContractChecks.test_reaction_seed_replay_and_explicit_uncertainty_are_not_conflated) ... ok
+test_regular_dyadic_values_match_units_error_and_quantity_schema (r14_external.R14ContractChecks.test_regular_dyadic_values_match_units_error_and_quantity_schema) ... ok
+test_signed_coordinates_but_not_negative_time_distance_or_frame (r14_external.R14ContractChecks.test_signed_coordinates_but_not_negative_time_distance_or_frame) ... ok
+test_exact_lattice_point_is_never_moved_one_tick (r14_external.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) ... ok
+test_exact_subnormal_lattice_point_is_preserved (r14_external.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) ... ok
+test_strictly_below_half_is_not_a_tie (r14_external.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) ... ok
+test_constructor_normalizes_and_freezes_source (test_quantity_contract.QuantityContractTests.test_constructor_normalizes_and_freezes_source) ... ok
+test_constructor_rejects_invalid_source_as_value_error (test_quantity_contract.QuantityContractTests.test_constructor_rejects_invalid_source_as_value_error) ... ok
+test_rejects_bad_booleans_nonfinite_and_provenance (test_quantity_contract.QuantityContractTests.test_rejects_bad_booleans_nonfinite_and_provenance) ... ok
+test_rejects_negative_uncertainty_and_missing_unit (test_quantity_contract.QuantityContractTests.test_rejects_negative_uncertainty_and_missing_unit) ... ok
+test_round_trip_preserves_error_separately (test_quantity_contract.QuantityContractTests.test_round_trip_preserves_error_separately) ... ok
+test_camera_ruler_gate_quantize_boundaries_and_negative_rejection (test_synthetic.SyntheticInstrumentTests.test_camera_ruler_gate_quantize_boundaries_and_negative_rejection) ... ok
+test_each_quantized_output_reports_total_observed_minus_true (test_synthetic.SyntheticInstrumentTests.test_each_quantized_output_reports_total_observed_minus_true) ... ok
+test_invalid_sensor_parameters_rejected (test_synthetic.SyntheticInstrumentTests.test_invalid_sensor_parameters_rejected) ... ok
+test_negative_bias_and_overflow_are_explicitly_rejected (test_synthetic.SyntheticInstrumentTests.test_negative_bias_and_overflow_are_explicitly_rejected) ... ok
+test_stopwatch_seed_and_bias_are_replayable (test_synthetic.SyntheticInstrumentTests.test_stopwatch_seed_and_bias_are_replayable) ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 1.392s
+
+OK

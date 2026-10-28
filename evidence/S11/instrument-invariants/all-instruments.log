@@ -1,0 +1,210 @@
+STARTED_AT: 2026-10-28T21:42:57.523205+00:00
+COMMAND: ['C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe', '-m', 'unittest', 'discover', '-s', 'tests/instruments', '-p', 'test_*.py', '-v']
+EXIT: 1
+test_constructor_normalizes_and_freezes_source (test_quantity_contract.QuantityContractTests.test_constructor_normalizes_and_freezes_source) ... ok
+test_constructor_rejects_invalid_source_as_value_error (test_quantity_contract.QuantityContractTests.test_constructor_rejects_invalid_source_as_value_error) ... ok
+test_rejects_bad_booleans_nonfinite_and_provenance (test_quantity_contract.QuantityContractTests.test_rejects_bad_booleans_nonfinite_and_provenance) ... ok
+test_rejects_negative_uncertainty_and_missing_unit (test_quantity_contract.QuantityContractTests.test_rejects_negative_uncertainty_and_missing_unit) ... ok
+test_round_trip_preserves_error_separately (test_quantity_contract.QuantityContractTests.test_round_trip_preserves_error_separately) ... ok
+test_actual_pipeline_preserves_explicit_instrument_metadata (test_r14_invariants.R14ActualPipelineCheck.test_actual_pipeline_preserves_explicit_instrument_metadata) ... ok
+test_actual_fitter_binds_units_without_using_diagnostic_error_as_uncertainty (test_r14_invariants.R14ContractChecks.test_actual_fitter_binds_units_without_using_diagnostic_error_as_uncertainty) ... ok
+test_established_decimal_resolution_tie_uses_binary64_quotient (test_r14_invariants.R14ContractChecks.test_established_decimal_resolution_tie_uses_binary64_quotient) ... ok
+test_every_numeric_parameter_rejects_boolean_nonfinite_and_overflowing_int (test_r14_invariants.R14ContractChecks.test_every_numeric_parameter_rejects_boolean_nonfinite_and_overflowing_int) ... ok
+test_exact_oracle_self_check (test_r14_invariants.R14ContractChecks.test_exact_oracle_self_check) ... ok
+test_finite_extremes_with_representable_grid (test_r14_invariants.R14ContractChecks.test_finite_extremes_with_representable_grid) ... ok
+test_reaction_seed_replay_and_explicit_uncertainty_are_not_conflated (test_r14_invariants.R14ContractChecks.test_reaction_seed_replay_and_explicit_uncertainty_are_not_conflated) ... ok
+test_regular_dyadic_values_match_units_error_and_quantity_schema (test_r14_invariants.R14ContractChecks.test_regular_dyadic_values_match_units_error_and_quantity_schema) ... ok
+test_signed_coordinates_but_not_negative_time_distance_or_frame (test_r14_invariants.R14ContractChecks.test_signed_coordinates_but_not_negative_time_distance_or_frame) ... ok
+test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) ... 
+  test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='light_gate', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0') ... FAIL
+  test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='ruler', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0') ... FAIL
+  test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='stopwatch', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0') ... FAIL
+  test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='camera.time', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0') ... FAIL
+  test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='camera.x', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0') ... FAIL
+  test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='camera.y', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0') ... FAIL
+test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) ... 
+  test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='light_gate', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022') ... FAIL
+  test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='ruler', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022') ... FAIL
+  test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='stopwatch', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022') ... FAIL
+  test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='camera.time', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022') ... FAIL
+  test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='camera.x', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022') ... FAIL
+  test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='camera.y', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022') ... FAIL
+test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) ... 
+  test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='light_gate', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0') ... FAIL
+  test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='ruler', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0') ... FAIL
+  test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='stopwatch', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0') ... FAIL
+  test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='camera.time', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0') ... FAIL
+  test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='camera.x', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0') ... FAIL
+  test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='camera.y', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0') ... FAIL
+test_camera_ruler_gate_quantize_boundaries_and_negative_rejection (test_synthetic.SyntheticInstrumentTests.test_camera_ruler_gate_quantize_boundaries_and_negative_rejection) ... ok
+test_each_quantized_output_reports_total_observed_minus_true (test_synthetic.SyntheticInstrumentTests.test_each_quantized_output_reports_total_observed_minus_true) ... ok
+test_invalid_sensor_parameters_rejected (test_synthetic.SyntheticInstrumentTests.test_invalid_sensor_parameters_rejected) ... ok
+test_negative_bias_and_overflow_are_explicitly_rejected (test_synthetic.SyntheticInstrumentTests.test_negative_bias_and_overflow_are_explicitly_rejected) ... ok
+test_stopwatch_seed_and_bias_are_replayable (test_synthetic.SyntheticInstrumentTests.test_stopwatch_seed_and_bias_are_replayable) ... ok
+
+======================================================================
+FAIL: test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='light_gate', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4503599627370498.0 != 4503599627370497.0
+
+======================================================================
+FAIL: test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='ruler', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4503599627370498.0 != 4503599627370497.0
+
+======================================================================
+FAIL: test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='stopwatch', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4503599627370498.0 != 4503599627370497.0
+
+======================================================================
+FAIL: test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='camera.time', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4503599627370498.0 != 4503599627370497.0
+
+======================================================================
+FAIL: test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='camera.x', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4503599627370498.0 != 4503599627370497.0
+
+======================================================================
+FAIL: test_exact_lattice_point_is_never_moved_one_tick (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_lattice_point_is_never_moved_one_tick) (instrument='camera.y', value_hex='0x1.0000000000001p+52', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: -4503599627370498.0 != -4503599627370497.0
+
+======================================================================
+FAIL: test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='light_gate', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2.2250738585072024e-308 != 2.225073858507202e-308
+
+======================================================================
+FAIL: test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='ruler', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2.2250738585072024e-308 != 2.225073858507202e-308
+
+======================================================================
+FAIL: test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='stopwatch', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2.2250738585072024e-308 != 2.225073858507202e-308
+
+======================================================================
+FAIL: test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='camera.time', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2.2250738585072024e-308 != 2.225073858507202e-308
+
+======================================================================
+FAIL: test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='camera.x', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2.2250738585072024e-308 != 2.225073858507202e-308
+
+======================================================================
+FAIL: test_exact_subnormal_lattice_point_is_preserved (test_r14_invariants.R14FrozenQuantizationRegressions.test_exact_subnormal_lattice_point_is_preserved) (instrument='camera.y', value_hex='0x1.0000000000001p-1022', resolution_hex='0x0.0000000000001p-1022')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: -2.2250738585072024e-308 != -2.225073858507202e-308
+
+======================================================================
+FAIL: test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='light_gate', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1.0 != 0.0
+
+======================================================================
+FAIL: test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='ruler', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1.0 != 0.0
+
+======================================================================
+FAIL: test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='stopwatch', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1.0 != 0.0
+
+======================================================================
+FAIL: test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='camera.time', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1.0 != 0.0
+
+======================================================================
+FAIL: test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='camera.x', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1.0 != 0.0
+
+======================================================================
+FAIL: test_strictly_below_half_is_not_a_tie (test_r14_invariants.R14FrozenQuantizationRegressions.test_strictly_below_half_is_not_a_tie) (instrument='camera.y', value_hex='0x1.fffffffffffffp-2', resolution_hex='0x1.0000000000000p+0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-instruments-audit\2026-10-26 - Meta Global AI Developer Hackathon\tests\instruments\test_r14_invariants.py", line 201, in assert_all_instruments_match
+    self.assertEqual(item["value"], exact_quantize(truth, resolution))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: -1.0 != -0.0
+
+----------------------------------------------------------------------
+Ran 22 tests in 0.877s
+
+FAILED (failures=18)
