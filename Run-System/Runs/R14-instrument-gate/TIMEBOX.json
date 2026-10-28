@@ -1,0 +1,10 @@
+{
+  "id": "R14-instrument-gate",
+  "issued_at": "2026-10-28T21:48:02.000Z",
+  "deadline_at": "2026-10-28T22:18:02.000Z",
+  "implementation_cutoff_at": "2026-10-28T22:13:02.000Z",
+  "deadline_dhaka": "2026-10-29T04:18:02.000+06:00",
+  "work_stopped_at": "2026-10-28T21:55:40Z",
+  "reported_at": "2026-10-28T21:56:56.257Z",
+  "status": "DONE"
+}
