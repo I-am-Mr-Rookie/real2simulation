@@ -1,5 +1,25 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — cleaner1 accepted; targeted hash-dedup follow-up
+
+CLEAN-20261028 terminal separate chat, report/scoped12 files verified, exact cache
+absent/ledger/links/protected-prefix fresh assertions PASS. Originalb3060f9 ->
+rebased6a2a2be/FF. Removed151,880,550 logical bytes/134 files; all non-target
+metadata unchanged in deletion window. Retained structure3.06GB: .worktrees1.28GB,
+.git689MB, canonical inputs625MB, dependencies372MB. No physical freed-block claim.
+
+Owner RUNS reply "All right, do not repeat that mistake again" and uncheckedS02f
+preserved before regeneration in ORCH-20261028-SUCCESSOR/RUNS-owner-replies-1414.md.
+R3 answered, no new generic calibration search. Routine owner-cleanup continuation:
+CLEAN-20261028-2 fresh separate Sol/medium chat, existing project; prepared
+s02g-forensics/run/CLEAN-20261028-2 base6a2a2be, deadline14:40UTC/cutoff14:35UTC.
+Exact contract permits ONLY hash-proven redundant ignored acquisition media FILES
+in two dormant canonical .worktrees/S02c{,1}/test-data roots, retaining canonical
+originals/acquisition hashes and durable restore map. No root/whole-worktree/
+unique-input/history/ST03-prefix deletion; no savings claimed before proof.
+Actual launch ID follows. S07b recovery4 terminal PARTIAL report under acceptance;
+in-app surface recovered and exact metadata observed, no weight bytes/jobs.
+
 ## CURRENT — three separate desktop chats active, same project verified
 
 New owner RUNS reply14:09UTC rejects manual setup handoff: he signed into

@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Oct 28, 20:11 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 20:18 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -11,7 +11,7 @@ Progress: **55 / 203** runs done · 2 in progress · 0 blocked · 1 waiting for 
 
 - [ ] R4 [Routine action, no reply needed] Owner wants agents to operate his signed-in ChatGPT in-app browser, not manual babysitting. Current S07b readiness chat was told to verify the ACTUAL requested surface using installed computer-use/sky when appropriate, not infer unavailability from a different IAB attach failure. Browser work serialized, no second UI worker race; after surface readiness, agent-led existing dev-auth setup follows within no-secret-exposure/account/terms/policy boundaries. Google/OTP/guest not yet verified. No Chrome fallback.
 - [ ] R2 [Routine decision; no reply needed] Both terminal reports accepted/FF integrated;55/203 unchanged. Continue two isolated unpaid Sol/medium prerequisites: local total-deadline guard and accepted SAM exact-identity/direct-retrieval readiness. No GPU/model download/retry,2.85 reservations retained; SAM accepted screenshot is not bytes/runtime proof. Same verified existing project; no schedule/dispatcher.
-- [ ] R3 [Owner-requested cleaner and launch correction] Workers will be fresh SEPARATE desktop chats in the same project, not inline subagents; the two mistaken inline launches were stopped/confirmed shutdown without writes. Owner authorizes their completion messages to this controller. Cleaner measures directory usage and deletes only verified ignored regenerable caches, keeping inputs/ST03 frames/history/secrets/reports/whole and active worktrees. No broad deletion or cosmetic target; exact savings/kept large items in its report.
+- [ ] R5 [Routine cleaner follow-up, no reply needed] About1.25GB is in two dormant acquisition-worktree input copies with totals matching canonical inputs, NOT yet hash-proven duplicates. Fresh cleaner will full-hash exact copies and canonical/acquisition records; delete only ignored byte-identical redundant FILES in .worktrees/S02c/test-data and .worktrees/S02c1/test-data after proving canonical originals survive and writing a restore/redirect map. Unique originals, all other media/ST03 prefix, reports/history/secrets/worktrees protected. No whole-worktree deletion or Git rewrite; skip any uncertainty.
 
 ## Ready now
 
