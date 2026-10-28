@@ -2,6 +2,13 @@
 
 ## Latest — bounded gate review integrated; actual CPU pass (Oct28 12:44UTC)
 
+- Checkpoint1b29a64; heartbeat updated and disk-verified ACTIVE5m/current chat,
+  prompt now follows accepted source/review and active bounded GPU checkpoint.
+  Subsequent unrelated RUNS.md heading changed Questions -> Reviews after commit;
+  origin unverified. Preserved unstaged, not restored/regenerated/claimed ours.
+  Source/review scopes and controlled commits remain isolated; final main has
+  this known unrelated edit, not a falsely claimed completely clean worktree.
+
 - Accepted actual R-M2 report/findings/probes; recovered startup websocket426 is
   not a failed task. CLI final reports44,210 tokens (not billing); existing routed
   Opus5.5/medium header confirmed, backend unverified. One-line final complied.

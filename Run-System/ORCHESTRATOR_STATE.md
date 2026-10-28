@@ -31,6 +31,11 @@ source, so no generic hunt despite dependency-only ready display. Python dispatc
 OFF; heartbeat ACTIVE5m; Sol override/Ponytail actual evidence/no quota polling
 unchanged. All older ACTIVE/surface/import pending sections below historical.
 
+Canonical checkpoint1b29a64. After commit an unrelated RUNS.md heading edit
+Questions -> Reviews appeared; origin unverified, preserved UNSTAGED. Do not
+overwrite it by routine generation or include it in worker integration. Shared
+control updates remain serialized; heartbeat current prompt ACTIVE5m verified.
+
 ## CURRENT — restored preflight; S05b recovery5/R-M2 ACTIVE (Oct28 12:35UTC)
 
 Owner Q10 selected A; actual normal supported cua Chrome discovery/authenticated
