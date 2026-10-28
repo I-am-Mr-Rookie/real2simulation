@@ -1,0 +1,11 @@
+{
+  "id": "R10-gate-rereview",
+  "issued_at": "2026-10-28T20:18:20.379Z",
+  "deadline_at": "2026-10-28T20:48:20.379Z",
+  "implementation_cutoff_at": "2026-10-28T20:43:20.379Z",
+  "deadline_dhaka": "2026-10-29T02:48:20.379+06:00",
+  "work_stopped_at": "2026-10-28T20:23:36.334Z",
+  "reported_at": "2026-10-28T20:23:36.334Z",
+  "status": "DONE",
+  "stop_scope": "All three acceptance decisions verified with fresh evidence; no unresolved defect, so verified-DONE early finish per WORKER_TIMEBOX_POLICY. Commit follows."
+}

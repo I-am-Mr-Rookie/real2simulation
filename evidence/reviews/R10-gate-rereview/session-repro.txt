@@ -1,0 +1,5 @@
+{"name":"real async ENOENT x6","codes":["lab_request_failed","lab_request_failed","lab_request_failed","lab_request_failed","lab_request_failed","lab_request_failed"],"activeAfter":0,"sessions":0}
+{"name":"mystery start redacted","status":"ok","leaksPrivate":false}
+{"name":"real abort during fit","result":"lab_request_failed","cached":false,"activeAfter":0}
+{"name":"real TTL expiry during fit","result":"session_expired_during_fit","cached":false}
+{"name":"real mystery fit","status":"ok","model":"independent_position_time_first_order","revealEqualsFit":true,"revealU":0.000092997666021445,"activeAfter":0}

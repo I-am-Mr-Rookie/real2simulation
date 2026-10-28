@@ -1,0 +1,10 @@
+{"name":"P2-1 audit repro double overflow","ok":false,"error":"INVALID_CONTACTS: floor center must remain finite"}
+{"name":"P2-1 float32-only overflow (center -3.5e38)","ok":false,"error":"INVALID_CONTACTS: floor center must remain finite in Rapier float32"}
+{"name":"P2-2 audit repro penetration y=0.05","ok":false,"error":"INVALID_CONTACTS: initial state penetrates floor; first-touch time is unknown"}
+{"name":"P2-2 penetration by 1 ulp","ok":false,"error":"INVALID_CONTACTS: initial state penetrates floor; first-touch time is unknown"}
+{"name":"exact touch y=r","ok":true,"n":1,"firstContact":{"t":0,"bracket":[0,0]}}
+{"name":"just above by EPSILON","ok":true,"n":1,"firstContact":null}
+{"name":"far-from-origin above by 1e-5 at floorY=1000 (float32 ulp ~6e-5)","ok":true,"n":1,"firstContact":null}
+{"name":"analytic","dt":0.005,"t":0.625,"analytic":0.6223823880068597,"err":0.0026176119931402564,"within":true}
+{"name":"analytic","dt":0.0025,"t":0.6225,"analytic":0.6223823880068597,"err":0.00011761199314030968,"within":true}
+{"name":"analytic","dt":0.001,"t":0.623,"analytic":0.6223823880068597,"err":0.0006176119931402546,"within":true}

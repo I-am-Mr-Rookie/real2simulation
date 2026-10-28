@@ -1,0 +1,104 @@
+{
+ "t_17_0975_scipy": 2.1098155778333156,
+ "t_matches_constant": true,
+ "batches_200": {
+  "fail": 3,
+  "mean": 0.95095,
+  "expected_binomial_fail_p": 0.011472410067484739,
+  "threshold": 0.9,
+  "dof": 17,
+  "multiplier": 2.1098155778333156
+ },
+ "covariance": {
+  "audit_noise_free_sy0.05_st0.01": {
+   "default_model": "independent_position_time_first_order",
+   "api_u": 0.19626533680225156,
+   "ref_u": 0.19626533680225153,
+   "rel_err": 1.414186328969248e-16,
+   "api_g": 9.81,
+   "ref_g": 9.809999999999995,
+   "legacy_api_u": 0.07547223547528772,
+   "legacy_ref_u": 0.07547223547528772,
+   "legacy_rel_err": 0.0,
+   "one_sigma_label": "standard uncertainty (one sigma), not a 95% interval"
+  },
+  "noisy_heteroscedastic": {
+   "default_model": "independent_position_time_first_order",
+   "api_u": 0.07097857685265568,
+   "ref_u": 0.0709785768526557,
+   "rel_err": 1.955207954735882e-16,
+   "api_g": 9.770680486102345,
+   "ref_g": 9.770680486102343,
+   "legacy_api_u": 0.045283341285172626,
+   "legacy_ref_u": 0.045283341285172626,
+   "legacy_rel_err": 0.0,
+   "one_sigma_label": "standard uncertainty (one sigma), not a 95% interval"
+  },
+  "residual_floor_dominates": {
+   "default_model": "independent_position_time_first_order",
+   "api_u": 0.06584015248132105,
+   "ref_u": 0.06584015248132129,
+   "rel_err": 3.5832601207868775e-15,
+   "api_g": 9.818273921891702,
+   "ref_g": 9.818273921891697,
+   "legacy_api_u": 0.06584015248132105,
+   "legacy_ref_u": 0.06584015248132127,
+   "legacy_rel_err": 3.372480113681768e-15,
+   "one_sigma_label": "standard uncertainty (one sigma), not a 95% interval"
+  }
+ },
+ "edges": {
+  "zero_dof_zero_sigma": {
+   "status": "ok",
+   "cov": "unavailable",
+   "g": null,
+   "err": null
+  },
+  "zero_dof_declared_sigma": {
+   "status": "ok",
+   "cov": "available",
+   "g": 0.09797958971132711,
+   "err": null
+  },
+  "zero_dof_legacy_zero_sigma": {
+   "status": "ok",
+   "cov": "unavailable",
+   "g": null,
+   "err": null
+  },
+  "underflow_sigma_1e-200": {
+   "status": "ok",
+   "cov": "available",
+   "g": 2.2498178553905547e-15,
+   "err": null
+  },
+  "overflow_sigma_1e200": {
+   "status": "ok",
+   "cov": "unavailable",
+   "g": null,
+   "err": null
+  },
+  "overflow_time_sigma_1e200": {
+   "status": "ok",
+   "cov": "unavailable",
+   "g": null,
+   "err": null
+  },
+  "rank_deficient_same_time": {
+   "status": "error",
+   "cov": null,
+   "g": null,
+   "err": {
+    "code": "time_span_must_be_finite_and_nonzero"
+   }
+  },
+  "unknown_model": {
+   "status": "error",
+   "cov": null,
+   "g": null,
+   "err": {
+    "code": "unsupported_uncertainty_model"
+   }
+  }
+ }
+}
