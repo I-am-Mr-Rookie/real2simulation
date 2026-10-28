@@ -42,6 +42,9 @@ test('rejects invalid explicit physics and geometry', async () => {
   await assert.rejects(() => contactAwareTrajectory({ trajectory: falling(), geometry, physics }), /gravity/);
   const sparse = structuredClone(falling()); delete sparse.samples[1];
   await assert.rejects(() => contactAwareTrajectory({ trajectory: sparse, geometry, physics, gravity: 9.81 }), /dense/);
+  await assert.rejects(() => contactAwareTrajectory({ trajectory: { ...falling(), source: 'measured' }, geometry, physics, gravity: 9.81 }), /source labels/);
+  const badClock = structuredClone(falling()); badClock.samples[2].time_s += 0.001;
+  await assert.rejects(() => contactAwareTrajectory({ trajectory: badClock, geometry, physics, gravity: 9.81 }), /step\/time/);
 });
 
 test('returned contact output is deeply immutable', async () => {
@@ -50,6 +53,10 @@ test('returned contact output is deeply immutable', async () => {
   assert.ok(Object.isFrozen(out.geometry));
   assert.ok(Object.isFrozen(out.samples));
   assert.ok(Object.isFrozen(out.samples.at(-1).contacts));
+  assert.ok(Object.isFrozen(out.samples[0].position_m));
+  assert.ok(Object.isFrozen(out.samples[0].velocity_m_s));
+  assert.ok(Object.isFrozen(out.samples.at(-1).contacts[0].normal_m));
+  assert.notStrictEqual(out.samples[0].position_m, falling(0.02).samples[0].position_m);
   assert.throws(() => { out.geometry.floorHalfExtents[0] = 99; }, /read only|Cannot assign/i);
   assert.throws(() => { out.samples[0].contacts.push({}); }, /read only|Cannot add property|is not extensible/i);
 });

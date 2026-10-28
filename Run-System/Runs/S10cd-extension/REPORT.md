@@ -18,6 +18,7 @@
 - Rapier receives each exact RK4 sample pose with solver velocity zero and gravity scale zero; it cannot free-evolve a disconnected trajectory.
 - Output stops at the first actual manifold contact, so no post-floor fictitious samples are returned.
 - Contact timing is tested at `dt=0.005`, `0.01`, and `0.02` against analytic impact within one sample. Sparse/empty samples and invalid state reject; output is deeply immutable.
+- Final P2 boundary: requires `source: simulated` and `inputProvenance: synthetic`; validates dense exact `step === index` and `time_s === index * dt`; clones/freezes sample vectors and contact normals for generic caller inputs.
 
 ## Parent callback / signature
 
@@ -31,7 +32,7 @@ For an existing accepted RK4 output: `contactAwareTrajectory({ trajectory, geome
 
 - `npm ci --ignore-scripts --no-audit --no-fund` in `Build/simulator` — PASS; Rapier 0.21.0 installed.
 - `node --test tests/simulator/contacts.test.mjs` — 5/5 PASS.
-- `node --test tests/simulator/*.test.mjs` — 14/14 PASS.
+- `node --test tests/simulator/*.test.mjs` — 21/21 PASS.
 - Official Rapier JS guidance checked: async `init()`, explicit `World`, colliders/body, `world.step()`.
 
 ## Limits / skipped
