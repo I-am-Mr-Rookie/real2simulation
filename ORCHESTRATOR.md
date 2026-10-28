@@ -19,6 +19,16 @@ You stand in for Koushik's manual orchestration for the rest of the build. You d
   - `claude -p --model claude-haiku-5-5 "Complete run S19a"`
 - **Settings.** All models are available, and you may change session settings so that each run gets its row's model and effort. Never use max effort, GPT-5.6 Luna, or GPT-6 Astra (Astra needs Koushik's written approval after Sol at xhigh fails the same gate twice).
 
+## Current owner model/quality override — Oct28
+
+**Latest owner override (Oct28): ALL remaining GPT-6.1 Terra work uses existing managed `gpt-6.1-sol`; preserve lane, Owns, effort, dependencies and approval boundaries. No failure prerequisite. Historical completed receipts and Claude/S02c assignments unchanged.**
+
+Every coding/review worker must read and APPLY installed Ponytail full/default
+(`C:/Users/HP/.codex/plugins/cache/workspace-directory/ponytail/5.3.2/skills/ponytail/SKILL.md`).
+REPORT.md must show concrete reuse/smallest-complete-change choices, fresh
+checks, skipped work and risks. Naming/discovery alone does not pass acceptance.
+Include this gate in dispatch contracts and acceptance, without expanding Owns.
+
 ## Scheduling
 
 - **GPU authorization correction (Koushik, Oct28):** useful dependency-ready Modal

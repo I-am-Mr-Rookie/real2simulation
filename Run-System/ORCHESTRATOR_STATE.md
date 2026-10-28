@@ -1,5 +1,25 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — orchestration resumed, Sol/Ponytail override (Oct28 11:54UTC)
+
+Koushik appointed chat01a1824d-a0b9-7712-bc3c-abd750d37250 orchestrator;
+this supersedes the prior takeover stop below. All remaining Terra work now
+uses managed gpt-6.1-sol, preserving lane/Owns/effort/dependencies/approvals.
+13 pending browser/capture rows reassigned; completed source receipts retained.
+Coding/review workers must APPLY installed Ponytail full/default and report
+actual choices/checks/skips/risks. Controller alone owns shared controls/merges.
+Starting clean main58f1d2c; no other active controller/worker in compact inventory.
+
+Preparing isolated S05b recovery4 (Sol/medium) and R-M (Opus5.5/medium).
+S05b: corrected actual CPU/import retest before any bounded GPU; keep$1.90
+existing reserves, verify fresh headroom/no-overage and stop. No new consent gate.
+R-M: independent read-only other-vendor review, then S07f honest fallback.
+No generic source hunt, invented calibration or S12 unlock. No GPU/model/gate
+success yet claimed. Python dispatcher remains OFF; no quota polling.
+Historical stopped sections below are not current scheduling authority.
+
+Current controller report: Run-System/Runs/ORCH-20261028-SOL/REPORT.md.
+
 ## FINAL HANDOFF — controller STOPPED, owner takes over (~08:43UTC Oct28)
 
 Latest owner stop-after-batch honored. All children terminal/closed; no active

@@ -4,6 +4,8 @@ Generated 2026-10-27 Asia/Dhaka from handoff v2, final plan.html SHA256 `0EAEBF9
 
 ## Execution lock and scheduling
 
+**Latest owner override (Oct28): ALL remaining GPT-6.1 Terra work uses existing managed `gpt-6.1-sol`; preserve lane, Owns, effort, dependencies and approval boundaries. No failure prerequisite. Historical completed receipts and Claude/S02c assignments unchanged.**
+
 **S03 done (Oct 27). Koushik starts each run with `Complete run <ID>` or `Complete the next run` (see START.md and RUN_SYSTEM.md → Manual run protocol); a TODO row alone is not authorization.** Statuses: TODO, IN PROGRESS, PARTIAL, BLOCKED, DONE. RUNS.md is the generated checklist view of this table. Oct 27: S01a and S01c marked DONE from the owner checklist and DECISIONS_LOG.md; S06a, S07a and S13a now depend on S01a and S01c instead of all of S01, so the spikes no longer wait for sign-in testing (S01b).
 
 - Fixed ownership lanes: CODEX-1, CODEX-2, CLAUDE; KOUSHIK is the human approval lane, not an agent. Manual concurrency follows PARALLELISM_POLICY.md: no fixed count, isolated independent same-lane shards allowed. Model reassignment still needs owner authority.
@@ -18,7 +20,7 @@ Generated 2026-10-27 Asia/Dhaka from handoff v2, final plan.html SHA256 `0EAEBF9
 - Source `Owns` paths below are proposed future paths, not existing product directories. Cross-lane write sets are disjoint. Within a lane, serial tasks may reuse paths. Shared manifest/lockfile changes go through CODEX-2 in a separate serialized integration run.
 - Control-file updates and branch integration are serialized by the current control maintainer, never concurrent edits from all lanes. Read-only cross-vendor reviewers own only review evidence; implementation defects return to the source lane.
 - After **every** run, update STATE, task status, decision/cost ledgers and a sanitized `Runs/<RID>/REPORT.md`; no report/product directories are created by S03.
-- Models below are **plan routing labels, not verified availability or a claim this chat uses them**. Missing model/provider: stop that dispatch and log; no silent provider or credential change. Sol medium; high for gates; xhigh only escalation; never max. Terra high is browser/screen work only. Optional GPT-6 Luna high may assist mechanical metadata/fixtures only under the original lane with a deterministic check; never facts/design or terminal-heavy work. No planned Astra; at most one written-approved run after two same-gate Sol-xhigh failures. No GPT-5.6 Luna.
+- Models below are **plan routing labels, not verified availability or a claim this chat uses them**. Missing model/provider: stop that dispatch and log; no silent provider or credential change. Sol medium; high for gates; xhigh only escalation; never max. Sol high now owns the former Terra browser/screen work. Optional GPT-6 Luna high may assist mechanical metadata/fixtures only under the original lane with a deterministic check; never facts/design or terminal-heavy work. No planned Astra; at most one written-approved run after two same-gate Sol-xhigh failures. No GPT-5.6 Luna.
 - Gate code must receive other-vendor review. Reviews are explicit overhead and never transfer source ownership. If 15m is insufficient, split and account against remaining buffer.
 - No product live or external action today; a minimal coding-subscription CLI smoke task is allowed solely for S03 verification. Future live work must satisfy API_BUDGET and owner gates first. Fixtures must be visibly synthetic, never represented as gate/E4 proof.
 
@@ -197,28 +199,28 @@ genuinely new rights-cleared source. Lane/slot/ownership/approval checks still a
 | S21e | CODEX-2 | GPT-6.1 Sol / medium | S21 | 30 | Write BENCHMARK.md and app About data | S21d | BENCHMARK.md; Build/benchmark/; Build/web/src/about/; evidence/S21/ | All claims trace to recorded measurements; no extrapolation. | TODO |
 | S21f | CODEX-2 | GPT-6.1 Sol / medium | S21 | 30 | Cross-check pitch-facing benchmark numbers | S21e | BENCHMARK.md; Build/benchmark/; Build/web/src/about/; evidence/S21/ | App/video inputs match BENCHMARK.md; missing data explicitly unavailable. | TODO |
 | S22a | CLAUDE | Opus 5.5 / medium | S22 | 30 | Prepare approved judging-candidate QA checklist | S15, S16, S17, S19, S20 | evidence/qa/claude/ | Opus records Gate D protocol; written candidate-deploy approval required before judging traffic. | TODO |
-| S22b | CODEX-2 | GPT-6.1 Terra / high | S22 | 30 | Capture logged-out guest library walkthrough | S22a | evidence/qa/browser/ | Terra drives browser only; guest can open and run a demo. | TODO |
-| S22c | CODEX-2 | GPT-6.1 Terra / high | S22 | 30 | Capture fresh-account full flow run 1 | S22b | evidence/qa/browser/ | Terra records duration and errors without creating accounts or accepting terms without approval. | TODO |
-| S22d | CODEX-2 | GPT-6.1 Terra / high | S22 | 30 | Capture fresh-account full flow run 2 | S22c | evidence/qa/browser/ | Second independent flow duration and outcome recorded. | TODO |
-| S22e | CODEX-2 | GPT-6.1 Terra / high | S22 | 30 | Capture fresh-account full flow run 3 | S22d | evidence/qa/browser/ | Third independent flow duration and outcome recorded. | TODO |
+| S22b | CODEX-2 | GPT-6.1 Sol / high | S22 | 30 | Capture logged-out guest library walkthrough | S22a | evidence/qa/browser/ | Sol drives browser only; guest can open and run a demo. | TODO |
+| S22c | CODEX-2 | GPT-6.1 Sol / high | S22 | 30 | Capture fresh-account full flow run 1 | S22b | evidence/qa/browser/ | Sol records duration and errors without creating accounts or accepting terms without approval. | TODO |
+| S22d | CODEX-2 | GPT-6.1 Sol / high | S22 | 30 | Capture fresh-account full flow run 2 | S22c | evidence/qa/browser/ | Second independent flow duration and outcome recorded. | TODO |
+| S22e | CODEX-2 | GPT-6.1 Sol / high | S22 | 30 | Capture fresh-account full flow run 3 | S22d | evidence/qa/browser/ | Third independent flow duration and outcome recorded. | TODO |
 | S22f | CLAUDE | Opus 5.5 / medium | S22 | 30 | Judge Gate D evidence and prioritize defects | S22e | evidence/qa/claude/ | Opus evaluates 3 consecutive <5min runs plus guest success; no claiming from screenshots alone. | TODO |
-| S22g | CODEX-2 | GPT-6.1 Terra / high | S22 | 30 | Capture 375px and auth-boundary QA | S22f | evidence/qa/browser/ | Terra captures browser evidence; source changes go to original owners. | TODO |
-| S22h | CODEX-2 | GPT-6.1 Terra / high | S22 | 30 | Capture retry, spend-cap and report QA | S22g | evidence/qa/browser/ | Terra checks observable outcomes; no terminal/product coding. | TODO |
-| S22i | CODEX-2 | GPT-6.1 Terra / high | S22 | 30 | Recheck approved candidate after owner-lane fixes | S22h | evidence/qa/browser/ | Terra re-runs broken flows; fixes are separate scoped owner-lane tasks. | TODO |
+| S22g | CODEX-2 | GPT-6.1 Sol / high | S22 | 30 | Capture 375px and auth-boundary QA | S22f | evidence/qa/browser/ | Sol captures browser evidence; source changes go to original owners. | TODO |
+| S22h | CODEX-2 | GPT-6.1 Sol / high | S22 | 30 | Capture retry, spend-cap and report QA | S22g | evidence/qa/browser/ | Sol checks observable outcomes; no terminal/product coding. | TODO |
+| S22i | CODEX-2 | GPT-6.1 Sol / high | S22 | 30 | Recheck approved candidate after owner-lane fixes | S22h | evidence/qa/browser/ | Sol re-runs broken flows; fixes are separate scoped owner-lane tasks. | TODO |
 | S22j | CLAUDE | Opus 5.5 / medium | S22 | 30 | Record final Gate D decision and freeze recommendation | S22i | evidence/qa/claude/ | Opus records pass or library-only fallback with upload limits; cross-vendor review required. | TODO |
 | S23a | KOUSHIK | Human only | S23 | 10 | Authorize frozen judging promotion | S22 | evidence/owner/S23/ | Koushik approves judging deployment in writing; candidate approval does not imply public-release permission. | TODO |
 | S23b | CODEX-2 | GPT-6.1 Sol / medium | S23 | 20 | Promote frozen revision to judging | S23a | infra/railway/judging/; evidence/S23/ | Sol deploys approved immutable SHA; records returned revision. | TODO |
 | S23c | CODEX-2 | GPT-6.1 Sol / medium | S23 | 30 | Verify deployed revision and smoke flow | S23b | infra/railway/judging/; evidence/S23/ | Version endpoint equals frozen SHA; repeat S22 smoke; rollback only to known passing revision. | TODO |
 | S24a | CLAUDE | Opus 5.5 / medium | S24 | 30 | Write evidence-backed three-minute script | S21, S23 | media/script/ | Opus leads with measurement/Real2Sim; every claim links benchmark or actual run. | TODO |
 | S24b | CLAUDE | Opus 5.5 / medium | S24 | 30 | Review script, captions and footage credits | S24a | media/script/ | Opus names Meta models and event-only work; includes uncertainty and honest misses. | TODO |
-| S24c | CODEX-2 | GPT-6.1 Terra / high | S24 | 30 | Capture room rebuild and interview | S24b | media/capture/; media/edit/ | Terra screen capture only; no staged results or personal files. | TODO |
-| S24d | CODEX-2 | GPT-6.1 Terra / high | S24 | 30 | Capture held-out prediction and reveal | S24c | media/capture/; media/edit/ | Terra records real prediction compared with unseen frames. | TODO |
-| S24e | CODEX-2 | GPT-6.1 Terra / high | S24 | 30 | Capture Apollo result and Mystery-g | S24d | media/capture/; media/edit/ | Only claim measured Moon g if real; simulated Mystery-g labelled. | TODO |
-| S24f | CODEX-2 | GPT-6.1 Terra / high | S24 | 30 | Capture benchmark and Meta model evidence | S24e | media/capture/; media/edit/ | Visible values match BENCHMARK.md or recorded run. | TODO |
+| S24c | CODEX-2 | GPT-6.1 Sol / high | S24 | 30 | Capture room rebuild and interview | S24b | media/capture/; media/edit/ | Sol screen capture only; no staged results or personal files. | TODO |
+| S24d | CODEX-2 | GPT-6.1 Sol / high | S24 | 30 | Capture held-out prediction and reveal | S24c | media/capture/; media/edit/ | Sol records real prediction compared with unseen frames. | TODO |
+| S24e | CODEX-2 | GPT-6.1 Sol / high | S24 | 30 | Capture Apollo result and Mystery-g | S24d | media/capture/; media/edit/ | Only claim measured Moon g if real; simulated Mystery-g labelled. | TODO |
+| S24f | CODEX-2 | GPT-6.1 Sol / high | S24 | 30 | Capture benchmark and Meta model evidence | S24e | media/capture/; media/edit/ | Visible values match BENCHMARK.md or recorded run. | TODO |
 | S24g | KOUSHIK | Human only | S24 | 30 | Record optional voice-over part 1 | S24f | media/narration/ | Koushik reads script; captions-only fallback if unavailable. | TODO |
 | S24h | KOUSHIK | Human only | S24 | 30 | Record optional voice-over part 2 | S24g | media/narration/ | Koushik completes optional narration; no agent impersonation. | TODO |
-| S24i | CODEX-2 | GPT-6.1 Terra / high | S24 | 30 | Cut video and align captions | S24h | media/capture/; media/edit/ | Terra edits via UI; final duration <=3:00; credits and labels retained. | TODO |
-| S24j | CODEX-2 | GPT-6.1 Terra / high | S24 | 30 | Check playback and approval-gated public video link | S24i | media/capture/; media/edit/ | Public upload requires written go-ahead; verify playback and all on-screen numbers. | TODO |
+| S24i | CODEX-2 | GPT-6.1 Sol / high | S24 | 30 | Cut video and align captions | S24h | media/capture/; media/edit/ | Sol edits via UI; final duration <=3:00; credits and labels retained. | TODO |
+| S24j | CODEX-2 | GPT-6.1 Sol / high | S24 | 30 | Check playback and approval-gated public video link | S24i | media/capture/; media/edit/ | Public upload requires written go-ahead; verify playback and all on-screen numbers. | TODO |
 | S25a | CODEX-2 | GPT-6.1 Sol / medium | S25 | 30 | Write setup, architecture and Meta usage README | S21, S23 | README.md; ATTRIBUTION.md; evidence/release/ | README distinguishes measured results from estimates; no credentials or personal files. | TODO |
 | S25b | CODEX-2 | GPT-6.1 Sol / medium | S25 | 30 | Write footage attribution and public-package checklist | S25a | README.md; ATTRIBUTION.md; evidence/release/ | Every asset has rights; README links actual live URL and video or marks pending. | TODO |
 | S25c | CODEX-2 | GPT-6.1 Sol / medium | S25 | 30 | Scan tracked files and full Git history | S25b | README.md; ATTRIBUTION.md; evidence/release/ | Secret scan clean; if anything leaks stop publication and request rotation/remediation approval. | TODO |
@@ -228,7 +230,7 @@ genuinely new rights-cleared source. Lane/slot/ownership/approval checks still a
 | S26b | KOUSHIK | Human only | S26 | 30 | Verify entry and contributor listing | S26a | evidence/submission/ | Submission confirmation visible; solo Koushik listed; preserve timestamp evidence. | TODO |
 | S26c | KOUSHIK | Human only | S26 | 30 | Post demo on X and submit the post link | S26b | evidence/submission/ | Koushik posts and registers URL for prize; verify links and shutdown GPU/warm-container checklist. | TODO |
 | R-R | CLAUDE | Opus 5.5 / medium | S05 | 15 | Cross-vendor review: Gate R implementation and failure thresholds | S05e | evidence/reviews/R-R/ | Read-only source review; record findings and evidence. Unresolved gate defects block parent completion and return to original owner, never silently edit another lane. | TODO |
-| R-M | CLAUDE | Opus 5.5 / medium | S07 | 15 | Cross-vendor review: Gate M fitting, timebase and uncertainty | S07e | evidence/reviews/R-M/ | Read-only source review; record findings and evidence. Unresolved gate defects block parent completion and return to original owner, never silently edit another lane. | TODO |
+| R-M | CLAUDE | Opus 5.5 / medium | S07 | 15 | Cross-vendor review: Gate M fitting, timebase and uncertainty | S07e | evidence/reviews/R-M/ | Read-only source review; record findings and evidence. Unresolved gate defects block parent completion and return to original owner, never silently edit another lane. | IN PROGRESS |
 | R-P | CLAUDE | Opus 5.5 / medium | S10 | 15 | Cross-vendor review: Gate P analytic comparison and replay | S10i | evidence/reviews/R-P/ | Read-only source review; record findings and evidence. Unresolved gate defects block parent completion and return to original owner, never silently edit another lane. | TODO |
 | R-RS | CLAUDE | Opus 5.5 / medium | S12 | 15 | Cross-vendor review: Gate RS held-out boundary and error normalization | S12e | evidence/reviews/R-RS/ | Read-only source review; record findings and evidence. Unresolved gate defects block parent completion and return to original owner, never silently edit another lane. | TODO |
 | R-A | CLAUDE | Opus 5.5 / medium | S14 | 15 | Cross-vendor review: Gate A tool-number enforcement | S14g | evidence/reviews/R-A/ | Read-only source review; record findings and evidence. Unresolved gate defects block parent completion and return to original owner, never silently edit another lane. | TODO |
@@ -260,7 +262,7 @@ Parent steps are summaries, not runnable >30m tasks. Required evidence levels ar
 
 ### S02 — Build the licensed public clip set
 
-- Source owner: CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) + Koushik (10-minute approval)
+- Source owner: CODEX-2 · GPT-6.1 Sol (high, browsing and computer use only) + Koushik (10-minute approval)
 - Source timebox: 120m; priority: critical; source dependencies: none.
 - Leaf tasks: S02a, S02b, S02c, S02c1 (NASA support), S02c2 (room support), S02d, S02e. S02c workers explicitly apply Ponytail; see S02C_PARALLEL.md. Shard research completion is not parent clip acceptance.
 - Required evidence: E1.
@@ -489,7 +491,7 @@ Parent steps are summaries, not runnable >30m tasks. Required evidence levels ar
 
 ### S22 — End-to-end QA on the judging environment; Gate D
 
-- Source owner: CLAUDE · Opus 5.5 (medium) + CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) (Playwright runs)
+- Source owner: CLAUDE · Opus 5.5 (medium) + CODEX-2 · GPT-6.1 Sol (high, browsing and computer use only) (Playwright runs)
 - Source timebox: 300m; priority: critical; source dependencies: S15, S16, S17, S19, S20.
 - Leaf tasks: S22a, S22b, S22c, S22d, S22e, S22f, S22g, S22h, S22i, S22j.
 - Required evidence: E4.
@@ -511,7 +513,7 @@ Parent steps are summaries, not runnable >30m tasks. Required evidence levels ar
 
 ### S24 — Three-minute demo video
 
-- Source owner: CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) (capture, edit) + CLAUDE · Opus 5.5 (medium) (script) + Koushik (voice-over)
+- Source owner: CODEX-2 · GPT-6.1 Sol (high, browsing and computer use only) (capture, edit) + CLAUDE · Opus 5.5 (medium) (script) + Koushik (voice-over)
 - Source timebox: 300m; priority: critical; source dependencies: S21, S23.
 - Leaf tasks: S24a, S24b, S24c, S24d, S24e, S24f, S24g, S24h, S24i, S24j.
 - Required evidence: E4.

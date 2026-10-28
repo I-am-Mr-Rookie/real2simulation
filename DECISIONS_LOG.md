@@ -568,3 +568,15 @@ input scope without per-job approval. First RM02 probe <=$1 conservative reserve
 Verify actual headroom/no-paid-overage, bounded jobs and resource stop; no credits
 re-redemption, purchases, terms/accounts, billing/policy changes, AWS or public use.
 See evidence/owner/S05/GPU-AUTHORIZATION.md; no new GPU/physical success claimed.
+
+## 2026-10-28 — Orchestration resumed; remaining Terra work uses Sol
+
+Koushik reappointed the orchestrator and directed ALL remaining GPT-6.1 Terra
+work to existing managed gpt-6.1-sol. Supersedes prior takeover stop and
+failure-only backup gate. 13 pending rows changed; lane/Owns/effort/dependencies
+and approval boundaries unchanged. Completed source rows/reports remain historical.
+Legacy dispatcher Terra label resolves to Sol; optional dispatcher remains OFF.
+No provider/credential/global-policy, Claude/S02c, spend/rights/deployment/publication
+change. Additional owner request: coding/review workers must read/APPLY Ponytail
+full/default with concrete minimal-change/reuse choices, fresh checks, skipped
+work/risks in REPORT; controller accepts evidence, not skill-name compliance.

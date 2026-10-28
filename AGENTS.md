@@ -2,6 +2,15 @@
 
 Scope: this event folder. Current phase: **building Real2Simulation** (solo, indie track). Nothing submitted.
 
+## Current owner model/quality override (Oct 28)
+
+**Latest owner override (Oct28): ALL remaining GPT-6.1 Terra work uses existing managed `gpt-6.1-sol`; preserve lane, Owns, effort, dependencies and approval boundaries. No failure prerequisite. Historical completed receipts and Claude/S02c assignments unchanged.**
+Koushik reappointed the orchestrator; this supersedes the prior takeover stop.
+Every coding/review worker must read and APPLY installed Ponytail full/default
+(`C:/Users/HP/.codex/plugins/cache/workspace-directory/ponytail/5.3.2/skills/ponytail/SKILL.md`).
+REPORT.md must show concrete reuse/smallest-complete-change choices, fresh
+checks, skipped work and risks. Naming/discovery alone does not pass acceptance.
+
 ## Manual parallelism — latest owner override (Oct 28)
 
 There is no fixed agent/slot cap. Run as many useful, dependency-ready independent
@@ -77,7 +86,7 @@ Read QUEUE.md, STATE.md, DECISIONS_LOG.md, API_BUDGET.md and JUDGE_RUBRIC.md bef
 Koushik is the scheduler: he works from RUNS.md. Run-System/dispatcher.py is an optional unattended scheduler with its own stricter rules. Muse is NOT part of this build. Ignore VM, SSH, OpenCodex, T3 relay and Muse instructions in the archived process reference. Use local Windows paths from STATE. See Run-System/RUN_SYSTEM.md and RUN_PROMPT_TEMPLATE.md. Dispatch one <=30m task in its assigned lane/model with objective, Owns paths, dependencies, 1–3 acceptance checks, budget and required evidence. No reassignment; no automatic model/provider/credential or permission-policy changes. Read real reports before marking DONE. Batch human questions once daily; approvals remain explicit.
 
 - CODEX-1: GPT-6.1 Sol medium, high for gate code, xhigh escalation.
-- CODEX-2: Sol medium for coding; Terra high only browser/screen tasks S02/S22/S24.
+- CODEX-2: Sol medium for coding; Sol high for browser/screen tasks S02/S22/S24.
 - CLAUDE: Opus 5.5 medium viewer/judgment/script/reviews; Sonnet 5.5 high workspace; Haiku 5.5 high report/PWA.
 - Optional Luna high mechanical subagent stays inside original lane and uses deterministic checks. No GPT-5.6 Luna. Astra unplanned; max one run only after two Sol-xhigh failures on same gate plus written owner approval.
 - Other-vendor gate reviews required. Manual concurrency follows PARALLELISM_POLICY.md, not a fixed lane/agent cap; serialize genuinely heavy local work. **OpenCodex manages coding-subscription usage/quota (Koushik, Oct 28).** Agents and orchestrators must not poll coding quota or pause runs at usage percentages; the old 85%/5h rule is superseded. Dispatch ready runs in their assigned lane/model through the existing managed route. On an actual capacity/rate-limit error, record it and rely on managed recovery; no retry churn, bypass, lane swap, provider/credential/policy changes, resets or purchases. Meta/API spend limits and AWS approval gates remain unchanged.

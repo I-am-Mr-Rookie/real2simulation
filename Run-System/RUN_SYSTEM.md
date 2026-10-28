@@ -132,6 +132,13 @@ results with `--accept`. Do not mix the two protocols on the same run.
 
 ## Fixed lanes and routing
 
+**Latest owner override (Oct28): ALL remaining GPT-6.1 Terra work uses existing managed `gpt-6.1-sol`; preserve lane, Owns, effort, dependencies and approval boundaries. No failure prerequisite. Historical completed receipts and Claude/S02c assignments unchanged.**
+
+Every coding/review worker must read and APPLY installed Ponytail full/default
+(`C:/Users/HP/.codex/plugins/cache/workspace-directory/ponytail/5.3.2/skills/ponytail/SKILL.md`).
+REPORT.md must show concrete reuse/smallest-complete-change choices, fresh
+checks, skipped work and risks. Naming/discovery alone does not pass acceptance.
+
 **Latest manual parallelism override (Koushik, Oct28):** no fixed agent/slot cap.
 See PARALLELISM_POLICY.md. Independent same-lane shards are allowed with isolated
 Owns and one integrator; serialize shared controls/merges and heavy local builds
@@ -166,7 +173,7 @@ one integrator. Shards do not edit canonical controls or auto-merge.**
 |---|---|---|
 | CODEX-1 coding | gpt-6.1-sol | medium; high gate code, xhigh escalation |
 | CODEX-2 coding | gpt-6.1-sol | medium |
-| CODEX-2 browsing/screens only | gpt-6.1-terra | high |
+| CODEX-2 browsing/screens only | gpt-6.1-sol | high |
 | CLAUDE viewer, judgment, script, cross-vendor review | claude-opus-5-5 | medium |
 | CLAUDE workspace UI | claude-sonnet-5-5 | high |
 | CLAUDE PWA/report | claude-haiku-5-5 | high |

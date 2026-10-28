@@ -5,6 +5,10 @@ This is a preflight/report requirement, not permission to expand a task or bypas
 
 ## Every fresh run
 
+**Owner quality gate (Oct28):** all coding/review workers read and APPLY Ponytail
+full/default. Report concrete reuse/minimal complete changes, fresh checks,
+skipped work and risks. Discovery/name-only compliance is not accepted.
+
 1. Read the task, Owns paths, acceptance checks and relevant project instructions.
 2. Review the available skill and MCP/plugin inventory; Koushik's examples are not
    exhaustive. Filter tool metadata to the task instead of dumping full catalogs or

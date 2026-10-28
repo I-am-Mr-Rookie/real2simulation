@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 28, 14:45 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 17:55 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **52 / 202** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open questions
+Progress: **52 / 202** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open questions
 
 ## Questions for Koushik
 
@@ -21,7 +21,11 @@ None open. (Runs ask you inside the run; this list is the fallback from STATE.md
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 
 **CLAUDE**
-- [ ] **R-M** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
+- Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **R-M** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -125,7 +129,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S07d** — Codex · GPT-6.1 Sol, effort medium — Detect slow-motion and propagate measurement uncertainty (30 min)
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)
 - [ ] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min)
-- [ ] **R-M** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
+- [~] **R-M** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min) *(in progress)*
 
 </details>
 
@@ -314,14 +318,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 <details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (0/11)</summary>
 
 - [ ] **S22a** — Claude Code · Opus 5.5, effort medium — Prepare approved judging-candidate QA checklist (30 min)
-- [ ] **S22b** — Codex · GPT-6.1 Terra, effort high — Capture logged-out guest library walkthrough (30 min)
-- [ ] **S22c** — Codex · GPT-6.1 Terra, effort high — Capture fresh-account full flow run 1 (30 min)
-- [ ] **S22d** — Codex · GPT-6.1 Terra, effort high — Capture fresh-account full flow run 2 (30 min)
-- [ ] **S22e** — Codex · GPT-6.1 Terra, effort high — Capture fresh-account full flow run 3 (30 min)
+- [ ] **S22b** — Codex · GPT-6.1 Sol, effort high — Capture logged-out guest library walkthrough (30 min)
+- [ ] **S22c** — Codex · GPT-6.1 Sol, effort high — Capture fresh-account full flow run 1 (30 min)
+- [ ] **S22d** — Codex · GPT-6.1 Sol, effort high — Capture fresh-account full flow run 2 (30 min)
+- [ ] **S22e** — Codex · GPT-6.1 Sol, effort high — Capture fresh-account full flow run 3 (30 min)
 - [ ] **S22f** — Claude Code · Opus 5.5, effort medium — Judge Gate D evidence and prioritize defects (30 min)
-- [ ] **S22g** — Codex · GPT-6.1 Terra, effort high — Capture 375px and auth-boundary QA (30 min)
-- [ ] **S22h** — Codex · GPT-6.1 Terra, effort high — Capture retry, spend-cap and report QA (30 min)
-- [ ] **S22i** — Codex · GPT-6.1 Terra, effort high — Recheck approved candidate after owner-lane fixes (30 min)
+- [ ] **S22g** — Codex · GPT-6.1 Sol, effort high — Capture 375px and auth-boundary QA (30 min)
+- [ ] **S22h** — Codex · GPT-6.1 Sol, effort high — Capture retry, spend-cap and report QA (30 min)
+- [ ] **S22i** — Codex · GPT-6.1 Sol, effort high — Recheck approved candidate after owner-lane fixes (30 min)
 - [ ] **S22j** — Claude Code · Opus 5.5, effort medium — Record final Gate D decision and freeze recommendation (30 min)
 - [ ] **R-D** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate D protocol and Claude verdict evidence (15 min)
 
@@ -339,14 +343,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 - [ ] **S24a** — Claude Code · Opus 5.5, effort medium — Write evidence-backed three-minute script (30 min)
 - [ ] **S24b** — Claude Code · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
-- [ ] **S24c** — Codex · GPT-6.1 Terra, effort high — Capture room rebuild and interview (30 min)
-- [ ] **S24d** — Codex · GPT-6.1 Terra, effort high — Capture held-out prediction and reveal (30 min)
-- [ ] **S24e** — Codex · GPT-6.1 Terra, effort high — Capture Apollo result and Mystery-g (30 min)
-- [ ] **S24f** — Codex · GPT-6.1 Terra, effort high — Capture benchmark and Meta model evidence (30 min)
+- [ ] **S24c** — Codex · GPT-6.1 Sol, effort high — Capture room rebuild and interview (30 min)
+- [ ] **S24d** — Codex · GPT-6.1 Sol, effort high — Capture held-out prediction and reveal (30 min)
+- [ ] **S24e** — Codex · GPT-6.1 Sol, effort high — Capture Apollo result and Mystery-g (30 min)
+- [ ] **S24f** — Codex · GPT-6.1 Sol, effort high — Capture benchmark and Meta model evidence (30 min)
 - [ ] **S24g** — Record optional voice-over part 1 (30 min)
 - [ ] **S24h** — Record optional voice-over part 2 (30 min)
-- [ ] **S24i** — Codex · GPT-6.1 Terra, effort high — Cut video and align captions (30 min)
-- [ ] **S24j** — Codex · GPT-6.1 Terra, effort high — Check playback and approval-gated public video link (30 min)
+- [ ] **S24i** — Codex · GPT-6.1 Sol, effort high — Cut video and align captions (30 min)
+- [ ] **S24j** — Codex · GPT-6.1 Sol, effort high — Check playback and approval-gated public video link (30 min)
 
 </details>
 
