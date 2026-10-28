@@ -1,0 +1,120 @@
+................F.EEEEEE
+======================================================================
+ERROR: test_stop_failure_does_not_skip_fresh_verification (test_rm02_watchdog.WatchdogTests.test_stop_failure_does_not_skip_fresh_verification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 249, in test_stop_failure_does_not_skip_fresh_verification
+    self.assertEqual(self.receipt()["info_returncode"], 0)
+                     ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+KeyError: 'info_returncode'
+
+======================================================================
+ERROR: test_stop_nonzero_can_still_be_independently_confirmed (test_rm02_watchdog.WatchdogTests.test_stop_nonzero_can_still_be_independently_confirmed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 253, in test_stop_nonzero_can_still_be_independently_confirmed
+    state = self.run_guard(cli="already_stopped")
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 89, in run_guard
+    return watchdog.supervise([sys.executable, str(self.child), child, app_id], self.directory,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              total_seconds=3.5, reserve_seconds=3,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              cli=[sys.executable, str(self.cli), cli])
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_watchdog.py", line 184, in supervise
+    raise ResourceIncident("Independent stop unconfirmed; inspect " + str(receipt_path))
+rm02_deadline.ResourceIncident: Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmp1nzhp9se\attempt\watchdog.json
+
+======================================================================
+ERROR: test_success_fresh_exact_id_stop_and_independent_verification (test_rm02_watchdog.WatchdogTests.test_success_fresh_exact_id_stop_and_independent_verification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 97, in test_success_fresh_exact_id_stop_and_independent_verification
+    state = self.run_guard()
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 89, in run_guard
+    return watchdog.supervise([sys.executable, str(self.child), child, app_id], self.directory,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              total_seconds=3.5, reserve_seconds=3,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              cli=[sys.executable, str(self.cli), cli])
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_watchdog.py", line 184, in supervise
+    raise ResourceIncident("Independent stop unconfirmed; inspect " + str(receipt_path))
+rm02_deadline.ResourceIncident: Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmpp2pd1xb9\attempt\watchdog.json
+
+======================================================================
+ERROR: test_transient_state_and_containers_are_polled_on_exact_same_app (test_rm02_watchdog.WatchdogTests.test_transient_state_and_containers_are_polled_on_exact_same_app) (mode='transition')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 125, in test_transient_state_and_containers_are_polled_on_exact_same_app
+    state = self.run_guard(cli=mode)
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 89, in run_guard
+    return watchdog.supervise([sys.executable, str(self.child), child, app_id], self.directory,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              total_seconds=3.5, reserve_seconds=3,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              cli=[sys.executable, str(self.cli), cli])
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_watchdog.py", line 188, in supervise
+    raise RuntimeError("Client failed; independent stop confirmed; inspect " + str(receipt_path))
+RuntimeError: Client failed; independent stop confirmed; inspect C:\Users\HP\AppData\Local\Temp\tmptnxetlkq\transition\watchdog.json
+
+======================================================================
+ERROR: test_transient_state_and_containers_are_polled_on_exact_same_app (test_rm02_watchdog.WatchdogTests.test_transient_state_and_containers_are_polled_on_exact_same_app) (mode='containers_transition')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 125, in test_transient_state_and_containers_are_polled_on_exact_same_app
+    state = self.run_guard(cli=mode)
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 89, in run_guard
+    return watchdog.supervise([sys.executable, str(self.child), child, app_id], self.directory,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              total_seconds=3.5, reserve_seconds=3,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              cli=[sys.executable, str(self.cli), cli])
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_watchdog.py", line 184, in supervise
+    raise ResourceIncident("Independent stop unconfirmed; inspect " + str(receipt_path))
+rm02_deadline.ResourceIncident: Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmptnxetlkq\containers_transition\watchdog.json
+
+======================================================================
+ERROR: test_valid_preflight_failure_is_distinguished_without_stop_claim (test_rm02_watchdog.WatchdogTests.test_valid_preflight_failure_is_distinguished_without_stop_claim)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\shutil.py", line 701, in _rmtree_unsafe
+    os.unlink(fullname)
+    ~~~~~~~~~^^^^^^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\HP\\AppData\\Local\\Temp\\tmpeulr60a7\\attempt\\client.log'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\tempfile.py", line 975, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\tempfile.py", line 955, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\shutil.py", line 705, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\tempfile.py", line 930, in onexc
+    _os.unlink(path)
+    ~~~~~~~~~~^^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\HP\\AppData\\Local\\Temp\\tmpeulr60a7\\attempt\\client.log'
+
+======================================================================
+FAIL: test_persistent_running_state_exhausts_original_reserve_as_incident (test_rm02_watchdog.WatchdogTests.test_persistent_running_state_exhausts_original_reserve_as_incident)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 138, in test_persistent_running_state_exhausts_original_reserve_as_incident
+    self.assertGreaterEqual(state["verification_attempts"], 2)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 not greater than or equal to 2
+
+----------------------------------------------------------------------
+Ran 23 tests in 38.874s
+
+FAILED (failures=1, errors=6)

@@ -18,9 +18,25 @@ path = pathlib.Path(os.environ["RM02_WATCHDOG_RECEIPT"])
 path.with_name("child-clock.json").write_text(json.dumps({
     "deadline": float(os.environ["RM02_CHILD_DEADLINE"]), "observed": time.monotonic()}))
 if mode == "preflight_fail":
+    pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text(json.dumps({
+        "version": 1, "token": os.environ["RM02_PHASE_TOKEN"],
+        "pid": os.getpid(), "phase": "preflight_failed",
+        "remote_creation_started": False}))
+    sys.exit(9)
+if mode == "phase_bad":
+    pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text("not-json")
+    sys.exit(9)
+if mode == "phase_replaced":
+    pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text(json.dumps({
+        "version": 1, "token": "replaced", "pid": os.getpid(),
+        "phase": "preflight_failed", "remote_creation_started": False}))
     sys.exit(9)
 if mode not in ("lost", "hang_lost"):
     path.write_text(json.dumps({"app_id": sys.argv[2]}))
+    pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text(json.dumps({
+        "version": 1, "token": os.environ["RM02_PHASE_TOKEN"],
+        "pid": os.getpid(), "phase": "preflight_validated",
+        "remote_creation_started": False}))
 if mode == "result_hang":
     path.with_name("gpu-result.json").write_text('{"synthetic": true}')
 if mode in ("hang", "hang_lost", "result_hang"):
@@ -69,9 +85,10 @@ class WatchdogTests(unittest.TestCase):
         self.cli.write_text(CLI)
         self.directory = self.root / "attempt"
 
-    def run_guard(self, child="ok", cli="ok", app_id=APP_ID):
+    def run_guard(self, child="ok", cli="ok", app_id=APP_ID,
+                  total_seconds=3.5, reserve_seconds=3):
         return watchdog.supervise([sys.executable, str(self.child), child, app_id], self.directory,
-                                  total_seconds=3.5, reserve_seconds=3,
+                                  total_seconds=total_seconds, reserve_seconds=reserve_seconds,
                                   cli=[sys.executable, str(self.cli), cli])
 
     def receipt(self):
@@ -141,14 +158,27 @@ class WatchdogTests(unittest.TestCase):
         self.assertTrue(self.receipt()["watchdog_fired"])
         self.assertTrue(self.receipt()["independent_stop_confirmed"])
 
-    def test_preflight_failure_without_id_remains_unknown_not_shutdown_success(self):
-        with self.assertRaises(watchdog.ResourceIncident):
-            self.run_guard(child="preflight_fail")
+    def test_valid_preflight_failure_is_distinguished_without_stop_claim(self):
+        with self.assertRaisesRegex(RuntimeError, "Preflight validation failed"):
+            self.run_guard(child="preflight_fail", total_seconds=5, reserve_seconds=3)
         state = self.receipt()
         self.assertEqual(state["child_returncode"], 9)
-        self.assertTrue(state["resource_incident"])
+        self.assertTrue(state["preflight_validation_failed"])
+        self.assertTrue(state["no_remote_creation_confirmed"])
+        self.assertFalse(state["resource_incident"])
+        self.assertFalse(state["independent_stop_confirmed"])
         self.assertFalse(state["stop_attempted"])
         self.assertFalse((self.root / "calls.jsonl").exists())
+
+    def test_malformed_or_replaced_phase_receipt_remains_unknown(self):
+        for mode in ("lost", "phase_bad", "phase_replaced"):
+            with self.subTest(mode=mode):
+                self.directory = self.root / mode
+                with self.assertRaises(watchdog.ResourceIncident):
+                    self.run_guard(child=mode)
+                state = self.receipt()
+                self.assertTrue(state["resource_incident"])
+                self.assertFalse(state["independent_stop_confirmed"])
 
     def test_missing_app_id_durable_incident_no_name_or_account_guess(self):
         with self.assertRaises(watchdog.ResourceIncident):

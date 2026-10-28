@@ -1,0 +1,11 @@
+{"allocated_gpu": "synthetic GPU"}
+{"allocated_gpu": "synthetic GPU"}
+{"allocated_gpu": "synthetic GPU"}
+{"allocated_gpu": "synthetic GPU"}
+{"allocated_gpu": "synthetic GPU"}
+{"allocated_gpu": "synthetic GPU"}
+.........
+----------------------------------------------------------------------
+Ran 9 tests in 0.460s
+
+OK

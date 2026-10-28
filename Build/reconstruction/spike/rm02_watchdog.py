@@ -30,13 +30,17 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=False)  # Never trust a previous run's ID.
     worker_path = directory / "worker.json"
+    phase_path = directory / "lifecycle-phase.json"
+    phase_token = uuid.uuid4().hex
     receipt_path = directory / "watchdog.json"
     state = {"total_budget_s": total_seconds, "independent_reserve_s": reserve_seconds,
              "child_deadline_monotonic": deadline - reserve_seconds,
              "watchdog_fired": False, "stop_attempted": False,
              "stop_process_started": False, "stop_dispatched": "NOT_VERIFIED",
              "stop_acknowledged": False, "independent_stop_confirmed": False,
-             "resource_incident": True, "errors": []}
+             "resource_incident": True, "preflight_validation_failed": False,
+             "no_remote_creation_confirmed": False, "phase_token": phase_token,
+             "phase_receipt": "NOT_VERIFIED", "errors": []}
     atomic_json(receipt_path, state)  # Storage must work before any setup can start.
 
     def emit():
@@ -46,9 +50,12 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
             state["errors"].append("evidence:" + type(exc).__name__)
 
     env = dict(os.environ, RM02_WATCHDOG_RECEIPT=str(worker_path.resolve()),
+               RM02_PHASE_RECEIPT=str(phase_path.resolve()),
+               RM02_PHASE_TOKEN=phase_token,
                RM02_CHILD_BUDGET=str(total_seconds - reserve_seconds),
                RM02_CHILD_DEADLINE=str(deadline - reserve_seconds))
     child = None
+    preflight_validation_failure = False
     try:
         with (directory / "client.log").open("wb") as log:
             child = subprocess.Popen(command, env=env, stdout=log, stderr=subprocess.STDOUT)
@@ -71,6 +78,34 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
             except (OSError, subprocess.TimeoutExpired) as exc:
                 state["errors"].append("child:kill_not_confirmed:" + type(exc).__name__)
         # Independent fresh processes, not the blocked event loop/client connection.
+        preflight_failed = False
+        phase_invalid = False
+        try:
+            phase = json.loads(phase_path.read_text(encoding="utf-8"))
+            if (phase.get("version") != 1 or phase.get("token") != phase_token
+                    or phase.get("pid") != child.pid
+                    or phase.get("phase") not in ("preflight_failed", "preflight_validated")
+                    or phase.get("remote_creation_started") is not False):
+                raise ValueError("Invalid lifecycle phase receipt")
+            if phase["phase"] == "preflight_failed":
+                preflight_failed = True
+                state["phase_receipt"] = "VALID_PREFLIGHT_FAILED"
+                state["preflight_validation_failed"] = True
+                state["no_remote_creation_confirmed"] = True
+                state["resource_incident"] = False
+            else:
+                state["phase_receipt"] = "VALID_PREFLIGHT_VALIDATED"
+        except (OSError, ValueError, AttributeError, TypeError, json.JSONDecodeError) as exc:
+            if isinstance(exc, OSError) and not phase_path.exists():
+                state["phase_receipt"] = "NOT_VERIFIED"
+            else:
+                phase_invalid = True
+                state["errors"].append("phase:unknown_remote_state:" + type(exc).__name__)
+                state["phase_receipt"] = "INVALID_OR_MISSING"
+        if preflight_failed:
+            state["elapsed_s"] = time.monotonic() - started
+            emit()
+            preflight_validation_failure = True
         try:
             worker = json.loads(worker_path.read_text(encoding="utf-8"))
             app_id = worker["app_id"]
@@ -134,8 +169,17 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
             except (OSError, subprocess.SubprocessError, TimeoutError, ValueError, AttributeError) as exc:
                 state["errors"].append("verification:" + type(exc).__name__)
         state["resource_incident"] = not state["independent_stop_confirmed"]
+        if phase_invalid:
+            state["independent_stop_confirmed"] = False
+            state["resource_incident"] = True
         state["elapsed_s"] = time.monotonic() - started
         emit()
+    if preflight_validation_failure:
+        state["resource_incident"] = False
+        state["independent_stop_confirmed"] = False
+        state["errors"] = []
+        emit()
+        raise RuntimeError("Preflight validation failed; no remote creation admitted; inspect " + str(receipt_path))
     if state["resource_incident"]:
         raise ResourceIncident("Independent stop unconfirmed; inspect " + str(receipt_path))
     if state["errors"]:

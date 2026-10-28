@@ -155,11 +155,13 @@ unreceived remote results remain outside this local preservation guarantee.
 Independent review and actual provider/environment/budget checks are still needed
 before paid execution; this repair does not release that hold.
 
-**F4 retained fail-closed limit:** failure before app-ID publication cannot be
-distinguished from a lost create response by the watchdog. Both remain
-`app_id:unknown_remote_state`, resource incident, no guessed ID or broad listing,
-and require operator reconciliation. No preflight-no-remote-success claim is
-inferred from a missing receipt. Runner phase receipts are outside this Owns set.
+**F4 lifecycle receipt guard:** the child writes an atomic, per-attempt,
+token-and-PID-bound phase receipt. A valid `preflight_failed` receipt records
+`no_remote_creation_confirmed` without claiming a remote stop; missing,
+malformed, stale/replaced, or post-validation receipts remain
+`app_id:unknown_remote_state`, resource incident, no guessed ID or broad listing.
+Any app-creation boundary still requires the existing independent stop and exact
+ID verification.
 
 Local synthetic tests cover transient states, bounded persistent state, Unicode,
 late-result rejection and preflight failure. Remote stop/lifecycle timing, real

@@ -124,20 +124,32 @@ def main():
     # Modal's status output includes Unicode even when Windows pipes use cp1252.
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
-    manifest = json.loads((INPUT_EVIDENCE / "input.json").read_text())
-    frames = []
-    for frame in manifest["sample"]["frames"]:
-        data = (FRAME_EVIDENCE / frame["path"]).read_bytes()
-        if len(data) != frame["bytes"]:
-            raise ValueError("Local frame byte size mismatch")
-        if hashlib.sha256(data).hexdigest() != frame["sha256"]:
-            raise ValueError("Local frame SHA256 mismatch")
-        frames.append((data, frame["sha256"]))
-    if len(frames) != 4 or manifest["clip_id"] != "RM02":
-        raise ValueError("Exactly four approved RM02 frames required")
-    requirements = Path(__file__).with_name("requirements-linux-py311.txt").read_text()
-    if CODE_REV not in requirements or "numpy==2.2.6" not in requirements:
-        raise ValueError("Pinned reconstruction runtime requirements mismatch")
+    phase_path = Path(os.environ["RM02_PHASE_RECEIPT"]) if os.environ.get("RM02_PHASE_RECEIPT") else None
+    phase_token = os.environ.get("RM02_PHASE_TOKEN")
+    def phase(name, remote_creation_started):
+        if phase_path is not None and phase_token:
+            atomic_json(phase_path, {"version": 1, "token": phase_token,
+                                     "pid": os.getpid(), "phase": name,
+                                     "remote_creation_started": remote_creation_started})
+    try:
+        manifest = json.loads((INPUT_EVIDENCE / "input.json").read_text())
+        frames = []
+        for frame in manifest["sample"]["frames"]:
+            data = (FRAME_EVIDENCE / frame["path"]).read_bytes()
+            if len(data) != frame["bytes"]:
+                raise ValueError("Local frame byte size mismatch")
+            if hashlib.sha256(data).hexdigest() != frame["sha256"]:
+                raise ValueError("Local frame SHA256 mismatch")
+            frames.append((data, frame["sha256"]))
+        if len(frames) != 4 or manifest["clip_id"] != "RM02":
+            raise ValueError("Exactly four approved RM02 frames required")
+        requirements = Path(__file__).with_name("requirements-linux-py311.txt").read_text()
+        if CODE_REV not in requirements or "numpy==2.2.6" not in requirements:
+            raise ValueError("Pinned reconstruction runtime requirements mismatch")
+    except Exception:
+        phase("preflight_failed", False)
+        raise
+    phase("preflight_validated", False)
     started = time.time()
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     def record_guard(state):
