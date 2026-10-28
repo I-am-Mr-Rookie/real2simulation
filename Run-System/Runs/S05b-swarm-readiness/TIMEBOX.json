@@ -1,0 +1,9 @@
+{
+  "id": "S05b-swarm-readiness",
+  "issued_at": "2026-10-28T17:05:40+00:00",
+  "deadline_at": "2026-10-28T17:35:40+00:00",
+  "work_stopped_at": "2026-10-28T17:10:03.8698570Z",
+  "reported_at": "2026-10-28T17:10:03.8698570Z",
+  "status": "DONE",
+  "controller_exception": null
+}

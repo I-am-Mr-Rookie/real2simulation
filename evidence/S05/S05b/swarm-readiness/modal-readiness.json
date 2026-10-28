@@ -1,0 +1,19 @@
+{
+  "observed_at_utc": "2026-10-28T17:09:24.1442269Z",
+  "surface": "signed-in ChatGPT in-app browser",
+  "workspace": "koushiksadhakjeet/main",
+  "live_apps": 0,
+  "stopped_apps": 6,
+  "credits_badge": ".99",
+  "current_period_spend": ".00 after .01 of credits",
+  "workspace_usage": ".01 used; .99 left",
+  "exact_app": "ap-7TvkSZJ4Wk6Ym0t0yZ3lsM",
+  "exact_function": "probe",
+  "call": {"enqueued_gmt_plus_6":"2026-10-28 18:41:25", "started":null, "startup_ms":0, "execution":null, "status":"Cancelled"},
+  "containers_live": 0,
+  "calls_running": 0,
+  "cause": "UNKNOWN; UI exposes pre-start cancellation but not causal queue/allocation details",
+  "no_overage_proof": false,
+  "gpu_capacity_proven": false,
+  "paid_job_launched": false
+}
