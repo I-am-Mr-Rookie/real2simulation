@@ -1,0 +1,53 @@
+[
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "C:\\Users\\HP\\.codex\\worktrees\\swarm14-model-selection\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\S11\\model-selection-invariants\\audit.py"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.55,
+    "evidence": "audit.json"
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/fitter",
+      "-p",
+      "test_r14_model_selection.py",
+      "-v"
+    ],
+    "exit_code": 1,
+    "elapsed_seconds": 0.567,
+    "evidence": "r14-tests.txt"
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/fitter",
+      "-p",
+      "test_api.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.807,
+    "evidence": "api-baseline-tests.txt"
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-c",
+      "import sys,unittest;sys.path.insert(0,'tests/fitter');import test_core; names=['test_quadratic_recovery_and_residuals', 'test_rank_and_input_rejection', 'test_aic_selects_quadratic_and_perfect_fit_is_finite_handled', 'test_invalid_scalars_degrees_and_empty_models_are_readable', 'test_aic_distinguishes_tiny_real_noise_and_exact_fit', 'test_finite_huge_input_overflow_abstains_with_fit_error']; suite=unittest.TestSuite(test_core.FitterCoreTests(n) for n in names); result=unittest.TextTestRunner(verbosity=2).run(suite);sys.exit(not result.wasSuccessful())"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 1.542,
+    "evidence": "core-selection-baseline-tests.txt"
+  }
+]

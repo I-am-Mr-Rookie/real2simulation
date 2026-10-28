@@ -1,0 +1,18 @@
+R14 final verification, 2026-10-28 UTC
+
+PASS strict JSON, four cases, exact underflow counterexample, all product/test hashes, frozen oracle.
+Assertions verified exact source SHA256 recorded in audit.json, expected degree2 versus actual degree1,
+both actual RSS/RMSE zero versus positive representable expected RMSE, false exact-zero statuses,
+and exact Fraction linear relation for the separate precision hazard.
+
+PASS git diff --exit-code 74c886f -- Build/fitter contracts/fit tests/fitter/test_api.py tests/fitter/test_core.py tests/fitter/test_invariants.py tests/fitter/test_uncertainty.py
+PASS test source SHA256 37BD5CE0597FDF88FD989D3402BB467BF04F0B7BA0CD95C1A0F479606E506CBC
+PASS baseline API 9/9, selected existing model/residual core 6/6.
+RED frozen R14 tests: 14 methods; 11 pass; 3 failing methods / 4 failure events.
+No expectedFailure, skips, altered expected oracle, product edits or control writes.
+
+git diff --cached --check: one raw unittest progress-line trailing space in r14-tests.txt:8.
+Raw evidence intentionally preserved; authored files checked separately before commit.
+PASS authored source/docs staged and unstaged whitespace checks.
+PASS python Run-System/worker_timebox.py check Run-System/Runs/R14-model-selection/TIMEBOX.json:
+TIMING PASS; controller must separately verify evidence and any exception
