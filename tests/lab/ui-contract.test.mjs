@@ -65,6 +65,10 @@ test('the chart uses all observations, not the downsampled table', () => {
   assert.ok(Math.max(...rows.map((row) => row.position_m)) < 0.001, 'table samples alone alias this oscillation');
 });
 
+test('browser engine is mounted only for an explicit normal-mode DTO', () => {
+  assert.match(source, /session\.mode === 'normal' && session\.browserSimulation && <BrowserSimulation payload=\{session\.browserSimulation\}/);
+});
+
 test('labels describe the bridge ordinate and unsupported fits honestly', () => {
   assert.match(source, /one standard uncertainty \(1σ\), not a 95% interval/);
   assert.match(source, /Downward vertical displacement from start/);

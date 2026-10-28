@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { parseFitReveal, plotPoints, sampleRows } from './fit-contract.mjs';
+import BrowserSimulation from './BrowserSimulation.jsx';
 
 const TEMPLATES = [
   ['free_fall', 'Free fall', 'Ballistic drop'],
@@ -97,6 +98,7 @@ export default function LabClient() {
       <div className="plot-wrap"><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label={`Simulated downward vertical displacement from start over time in ${session.units?.time || 's'} and ${session.units?.position || 'm'}`}><polyline points={plot.points} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time ({session.units?.time || 's'})</text><text x="28" y="18">downward displacement ({session.units?.position || 'm'})</text></svg></div>
       <div className="table-wrap"><table><caption>Sampled observations</caption><thead><tr><th scope="col">Time (s)</th><th scope="col">Downward displacement (m)</th></tr></thead><tbody>{rows.map((row, index) => <tr key={`${row.time_s}-${index}`}><td>{row.time_s.toFixed(2)}</td><td>{row.position_m.toFixed(3)}</td></tr>)}</tbody></table></div>
       {fit && <div className="reveal"><p className="eyebrow">Reveal</p><h2>{fit.value.toFixed(3)} ± {fit.uncertainty.toPrecision(3)} {fit.unit}</h2><p>Gravity · source: {fit.source}</p><p>Uncertainty is one standard uncertainty (1σ), not a 95% interval.</p><p>Uncertainty model: {fit.model}. {fit.assumptions.join(' ')}</p></div>}
+      {session.mode === 'normal' && session.browserSimulation && <BrowserSimulation payload={session.browserSimulation} />}
       <p className="limitations"><strong>Limits:</strong> {session.limitations?.join(' ') || 'Synthetic observations only; no camera calibration or physical uncertainty.'}</p>
     </div>}
   </section>;
