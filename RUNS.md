@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 28, 23:45 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 23:49 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **63 / 205** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **68 / 205** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -17,7 +17,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
 - [ ] **S10c** — Codex · GPT-6.1 Sol, effort medium — Integrate Rapier contacts (30 min)
-- …and 1 more ready in this lane
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
@@ -178,16 +177,16 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S11</b> — Virtual instruments and the fitter service (3/8)</summary>
+<details><summary><b>S11</b> — Virtual instruments and the fitter service (8/8)</summary>
 
 - [x] **S11a** — Codex · GPT-6.1 Sol, effort medium — Define instrument and fitter API contracts (30 min)
 - [x] **S11b** — Codex · GPT-6.1 Sol, effort medium — Model stopwatch reaction error (30 min)
 - [x] **S11c** — Codex · GPT-6.1 Sol, effort medium — Model camera, ruler and light-gate error (30 min)
-- [ ] **S11d** — Codex · GPT-6.1 Sol, effort medium — Implement least-squares fitter (30 min)
-- [ ] **S11e** — Codex · GPT-6.1 Sol, effort medium — Add AIC model selection and residuals (30 min)
-- [ ] **S11f** — Codex · GPT-6.1 Sol, effort medium — Add Jacobian uncertainty (30 min)
-- [ ] **S11g** — Codex · GPT-6.1 Sol, effort medium — Run hundred-seed coverage regression (30 min)
-- [ ] **S11h** — Codex · GPT-6.1 Sol, effort medium — Finalize tool-only numeric API and evidence (30 min)
+- [x] **S11d** — Codex · GPT-6.1 Sol, effort medium — Implement least-squares fitter (30 min)
+- [x] **S11e** — Codex · GPT-6.1 Sol, effort medium — Add AIC model selection and residuals (30 min)
+- [x] **S11f** — Codex · GPT-6.1 Sol, effort medium — Add Jacobian uncertainty (30 min)
+- [x] **S11g** — Codex · GPT-6.1 Sol, effort medium — Run hundred-seed coverage regression (30 min)
+- [x] **S11h** — Codex · GPT-6.1 Sol, effort medium — Finalize tool-only numeric API and evidence (30 min)
 
 </details>
 

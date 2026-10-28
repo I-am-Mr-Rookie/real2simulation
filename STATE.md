@@ -39,6 +39,14 @@ before midnight. Owner immediately corrected; resumed17:42UTC, same deadline
 18:00UTC, no new authority/schedule/clock reset. Previous answer's6 worker count
 was current then, not queue count; now7 integrated contracts,5 queue leaves.
 
+17:49UTC: corrected S11h/API+physical-basis covariance acceptedFF0e3b84c,
+independent final review noP1/P2 for covariance/API, controller19 normal+19
+optimized+10instruments PASS. S11d/e/f/g/h accepted simulation-only, now68/205
+(10 new queue leaves this session). Fixed-seed coverage95/100 reported as
+conditional Gaussian-iid synthetic coverage, NOT real calibrated coverage.
+S11 whole product/real integration not certified; S12 locked by S07/S10.
+Nine worker contracts now merged including API; trajectory/review pending.
+
 ## Latest direct owner instruction — solo work until 23:00 BDT Oct28
 
 Fresh direct owner authorization: apply Ponytail, work alone, complete useful
