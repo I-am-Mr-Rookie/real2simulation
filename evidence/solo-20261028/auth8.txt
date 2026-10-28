@@ -1,0 +1,16 @@
+✔ missing configuration or invalid ID denies before identity/data access (2.3092ms)
+✔ unverified/missing identity cannot trigger a private metadata lookup (0.5492ms)
+✔ only exact owner, scene ID and private access match is authorized (3.7506ms)
+✔ missing repository and identity/lookup failures deny without leaking errors (0.8459ms)
+✔ missing and partial configuration disables Clerk without exposing values (6.2816ms)
+✔ blank, malformed, mismatched and unsafe configuration fails closed (1.6661ms)
+✔ configured result exposes only the public key, never secret or custom OAuth credentials (0.5619ms)
+✔ accepts unpadded Clerk publishable keys (1.92ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 186.3118

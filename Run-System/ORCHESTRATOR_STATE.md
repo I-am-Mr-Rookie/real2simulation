@@ -1,13 +1,18 @@
 # Orchestrator recovery checkpoint
 
-## CURRENT — direct solo worker until Oct28 22:30BDT
+## CURRENT — solo work complete; STOPPED before Oct28 22:30BDT
 
-Owner directly authorized this existing chat alone to complete ready runs serially
-until16:30Z; no fanout, schedule, dispatcher or automatic continuation. Local child
-S05b-recovery10 DONE/FF c43e500; rebased spike60/60 PASS on3.14+3.11; fresh main
-runner7/scene11 PASS, normalized source hashes and Git diff match. F3 locally
-repaired, NOT independently reviewed or paid-ready; F4/physical/S12 holds retained.
-Parent S05b PARTIAL;55/203/$2.85/$30 unchanged. See run report and TIMEBOX receipt.
+Direct sole-worker instruction honored. Product work stopped16:24:21Z, no active
+workers, fanout, schedule, dispatcher or automatic continuation. Three runs DONE:
+S05b-recovery10 local child/FF c43e500, F-CODEX-2-2/FF2aea37b and staging safety
+S04g2/FF9e3bf48. Progress57/204, not parent S05b/S07b or any physical gate success.
+Final canonical spike60+optimized staging14+scene11+auth8=93 targeted PASS;3 timing
+receipts PASS. Health suite import unavailable (typing_extensions), not claimed.
+F3 repaired locally, NOT independently reviewed/paid-ready; F4/physical/S12 holds
+and$2.85/$30 retained. No paid/runtime attempt fits remaining20m safety window.
+Native archive refused clean primary checkout; retained without shell bypass.
+Run-System/Runs/SOLO-20261028/REPORT.md is the session receipt. Fresh owner scope
+needed for further work; no new per-job consent gate invented within old authority.
 
 ## Earlier — OWNER TAKEOVER; current run complete, orchestration STOPPED
 
