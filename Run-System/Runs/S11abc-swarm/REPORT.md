@@ -5,9 +5,8 @@
   are not independently observable. OpenCodex-managed; not polled.
 - **UTC:** issued 2026-10-28T17:11:19Z; stopped/reported 2026-10-28T17:16:40Z;
   before the 17:41:19Z deadline after all scoped leaves and checks completed.
-- **Commit:** `1a5311a92a28b19d835e8c6b14338cb6abe8904f` on
-  `run/S11abc-swarm` (includes earlier implementation and receipt commits);
-  worktree clean after commit.
+- **Implementation commit:** `1a5311a92a28b19d835e8c6b14338cb6abe8904f` on
+  `run/S11abc-swarm`; report receipt refresh is the following commit.
 
 ## Changes
 
