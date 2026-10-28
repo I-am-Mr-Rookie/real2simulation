@@ -254,6 +254,12 @@ Earlier receipts are retained under ignored Run-System/Runs; paths in chronologi
 
 ## Standing GPU execution authorization — owner correction Oct28
 
+**Latest recovery4:** supported local browser use disabled in Work settings;
+no new CPU/GPU/build/inference/upload job or reservation. Historical$1.90 retained
+pending exact billing; current global resources/headroom not refreshed. Corrected
+installed imports untested. Q10 concerns execution visibility, NOT GPU/credit
+approval. No identical retry until genuinely changed state.
+
 Run useful ready Modal GPU work before the monthly$30 allocation resets Nov1;
 do not defer everything or ask per-job permission within existing$30 authority,
 approved licensed inputs and established safeguards. Prior Q8 approval waiting

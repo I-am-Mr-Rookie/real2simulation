@@ -1,19 +1,20 @@
 # Runs checklist
 
-Updated Oct 28, 17:58 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 18:06 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **52 / 202** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 0 open questions
+Progress: **53 / 202** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 1 open questions
 
 ## Questions for Koushik
 
-None open. (Runs ask you inside the run; this list is the fallback from STATE.md.)
+- [ ] Q10 [S05b execution surface; NOT GPU consent] Supported browser says Local browser use is disabled in Work settings. A (recommended) owner enables supported local browser use in Work settings · B provide fresh Modal Usage/Credits/running-resource screenshots · C defer GPU/continue independent build. Existing GPU authority unchanged; no automatic settings change. Async question sent, awaiting answer.
 
 ## Ready now
 
 **CODEX-1**
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
 
 **CODEX-2**
@@ -24,8 +25,7 @@ None open. (Runs ask you inside the run; this list is the fallback from STATE.md
 
 ## In progress
 
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(in progress)*
-- [~] **R-M** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min) *(in progress)*
+- [~] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -93,7 +93,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 <details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (1/7)</summary>
 
 - [x] **S05a** — Codex · GPT-6.1 Sol, effort medium — Check reconstruction licences and freeze scene artifact contract (30 min)
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(in progress)*
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [ ] **S05c** — Codex · GPT-6.1 Sol, effort medium — Reconstruct remaining scene clips (30 min)
 - [ ] **S05d** — Codex · GPT-6.1 Sol, effort medium — Fit floor, metric scale and gravity orientation (30 min)
 - [ ] **S05e** — Codex · GPT-6.1 Sol, effort high — Run Gate R and inspect reconstruction failures (30 min)
@@ -116,7 +116,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (8/12)</summary>
+<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (9/12)</summary>
 
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [x] **S02g** — Codex · GPT-6.1 Sol, effort high — Verify original FF01/FF02 calibration sources (30 min)
@@ -128,8 +128,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S07c** — Codex · GPT-6.1 Sol, effort medium — Implement deterministic free-fall fit (30 min)
 - [x] **S07d** — Codex · GPT-6.1 Sol, effort medium — Detect slow-motion and propagate measurement uncertainty (30 min)
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)
-- [ ] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min)
-- [~] **R-M** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min) *(in progress)*
+- [~] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min) *(in progress)*
+- [x] **R-M** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
 
 </details>
 
