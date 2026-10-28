@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 02:20 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 02:33 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **78 / 210** runs done · 4 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **81 / 210** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -25,10 +25,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **S10k** — Codex · GPT-6.1 Sol, effort high — Harden lab session cancellation and stale reveal boundaries (30 min) *(in progress)*
-- [~] **S10m** — Codex · GPT-6.1 Sol, effort high — Reject nonrepresentable contact geometry and initial penetration (30 min) *(in progress)*
 - [~] **S10n** — Codex · GPT-6.1 Sol, effort high — Run validated normal-mode synthetic trials in the real browser (30 min) *(in progress)*
-- [~] **S11i** — Codex · GPT-6.1 Sol, effort high — Correct finite-sample coverage and declared uncertainty overconfidence (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -167,7 +164,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S10</b> — Builder and in-browser simulator; Gate P (12/15)</summary>
+<details><summary><b>S10</b> — Builder and in-browser simulator; Gate P (14/15)</summary>
 
 - [x] **S10a** — Codex · GPT-6.1 Sol, effort medium — Build validated-spec apparatus placement (30 min)
 - [x] **S10b** — Codex · GPT-6.1 Sol, effort medium — Implement fixed-step RK4 core (30 min)
@@ -179,15 +176,15 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S10h** — Codex · GPT-6.1 Sol, effort medium — Run four-template Gate P regression (30 min)
 - [x] **S10i** — Codex · GPT-6.1 Sol, effort high — Resolve contact jitter with RK4-only fallback if needed (30 min)
 - [x] **S10j** — Codex · GPT-6.1 Sol, effort high — Checkpoint Gate P and review packet (30 min)
-- [~] **S10k** — Codex · GPT-6.1 Sol, effort high — Harden lab session cancellation and stale reveal boundaries (30 min) *(in progress)*
+- [x] **S10k** — Codex · GPT-6.1 Sol, effort high — Harden lab session cancellation and stale reveal boundaries (30 min)
 - [x] **S10l** — Codex · GPT-6.1 Sol, effort medium — Preserve complete plotted traces and honest mobile lab labels (30 min)
-- [~] **S10m** — Codex · GPT-6.1 Sol, effort high — Reject nonrepresentable contact geometry and initial penetration (30 min) *(in progress)*
+- [x] **S10m** — Codex · GPT-6.1 Sol, effort high — Reject nonrepresentable contact geometry and initial penetration (30 min)
 - [~] **S10n** — Codex · GPT-6.1 Sol, effort high — Run validated normal-mode synthetic trials in the real browser (30 min) *(in progress)*
 - [x] **R-P** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate P analytic comparison and replay (15 min)
 
 </details>
 
-<details><summary><b>S11</b> — Virtual instruments and the fitter service (8/9)</summary>
+<details><summary><b>S11</b> — Virtual instruments and the fitter service (9/9)</summary>
 
 - [x] **S11a** — Codex · GPT-6.1 Sol, effort medium — Define instrument and fitter API contracts (30 min)
 - [x] **S11b** — Codex · GPT-6.1 Sol, effort medium — Model stopwatch reaction error (30 min)
@@ -197,7 +194,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S11f** — Codex · GPT-6.1 Sol, effort medium — Add Jacobian uncertainty (30 min)
 - [x] **S11g** — Codex · GPT-6.1 Sol, effort medium — Run hundred-seed coverage regression (30 min)
 - [x] **S11h** — Codex · GPT-6.1 Sol, effort medium — Finalize tool-only numeric API and evidence (30 min)
-- [~] **S11i** — Codex · GPT-6.1 Sol, effort high — Correct finite-sample coverage and declared uncertainty overconfidence (30 min) *(in progress)*
+- [x] **S11i** — Codex · GPT-6.1 Sol, effort high — Correct finite-sample coverage and declared uncertainty overconfidence (30 min)
 
 </details>
 

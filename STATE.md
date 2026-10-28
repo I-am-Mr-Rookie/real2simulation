@@ -2,16 +2,17 @@
 
 ## CURRENT — owner one-time inline swarm through Oct29 10:00 Dhaka
 
-Morning recovery S10l accepted: source/report/timebox, fresh8UItests, actualIAB375px
-Pendulum1001plotpoints/9tablerows/scrollWidth360, correctdisabledfit/labels.
-Queue78/209, round1stillactive. Contact/fittergatefindings and serviceabortfix
-await independent targeted acceptance; no newphysicalgatepass. Evidence/runreport
-SWARM-20261029-1000. Historical77/205 baseline retained below.
+Round1 COMPLETE: four recovery leaves S10k/l/m and S11i accepted; queue81/210.
+Verified source/report/timebox, nativeClaude targeted re-review noP0-P2,
+post-rebaseNode66/fitter29/lab11, analytic/replay15/15 unchanged0.005, independent
+covariance/critical-value reference. Actual IAB375px Run->Fit->reveal uses new
+first-order uncertainty; clientWidth360==scrollWidth360. Long metadata wrapping
+fixed after actual browser caught overflow. Source/evidence FF main3706b1c.
+All synthetic; no new physicalgatepass. Originalbaseline77/205 retained below.
+Report SWARM-20261029-1000; CANDIDATE-INTEGRATION.md has exact checks/limits.
 
-S10n normal-browser integration started as independent approved S10 scope; queue
-denominator210, DONE78 unchanged. Browser child alone is not end-to-end acceptance.
-R10 candidate72b1cbf freshNode66/fitter29/lab11 and numericalreference pass;
-one combined narrow nativeClaude re-review is active, not a reviewpass claim.
+Round2 S10n normal-browser integration is active. Standalone browser child tested
+but not counted as end-to-end acceptance; normal-only DTO transport worker active.
 
 Fresh owner scheduler request: five-minute heartbeat targeting this same chat,
 exact prompt "Go at maximum speed. Keep working until 10 a.m." Created ACTIVE
@@ -20,8 +21,9 @@ overrides earlier no-schedule for this one heartbeat; dispatcher remains OFF.
 
 Fresh direct owner instruction authorizes inline isolated simulation-only S10/S11
 and genuinely unblocked work until2026-10-29T04:00:00Z. Previous01:30 window is
-closed; new baseline77/205 atmain f82ed85. No automatic continuation/schedule or
-dispatcher. Full30m worker contracts;03:59:30UTC owner-stop for crossing windows.
+closed; new baseline77/205 atmain f82ed85. Only the freshly requested heartbeat is
+authorized; dispatcher remainsOFF. Full30m worker contracts;03:59:30UTC owner-stop
+for crossing windows.
 Native Claude only for required cross-vendor gate review/targeted re-review;
 owner explicitly says not to use Claude extensively. Codex handles coding,
 fixes/testing/routine review. Claude Code prohibited. PhysicalGateM/S12/realscenes,

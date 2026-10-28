@@ -3,8 +3,9 @@
 Fresh direct owner instruction: inline Ponytail swarm, simulation-only S10/S11
 and genuinely unblocked work through 2026-10-29T04:00:00Z (10:00 Dhaka).
 This one-time exception supersedes the earlier takeover/desktop-chat restriction
-for this window only. No scheduler, dispatcher, automatic continuation or Claude
-Code. Native Codex Claude reviews only. Baseline main f82ed85: 77/205 DONE.
+for this window only. Only the later explicitly requested heartbeat is authorized;
+no dispatcher or Claude Code. Native Codex Claude gate reviews only. Baseline
+main f82ed85:77/205 DONE.
 
 ## Boundaries
 
@@ -69,3 +70,20 @@ response claim. Module-only child completion will not count as end-to-end succes
 UI worktree archive attempts are currently refused by app: another active task
 uses checkout even after worker close and parent attachment move. Preserve it;
 do not claim archived or forcibly remove an app-owned active checkout.
+
+## Round1 COMPLETED
+
+Four recovery leaves S10k/l/m and S11i accepted; baseline77/205 ->81/210 now
+including five concrete recovery leaves in denominator (S10n still inprogress).
+Source/evidence fast-forwarded to main3706b1c. NoP0-P2 in native combined targeted
+re-review; parent independently checked reports/TIMEBOXs/source and post-rebase
+Node66, fitter29, lab11, independent numerical reference, analytic/replay15/15
+unchanged0.005. ActualIAB375px fit+oneSE/newmodel: clientWidth360==scrollWidth360.
+Full integration evidence: CANDIDATE-INTEGRATION.md; no physicalgate unlock.
+
+All round1 workers closed and handles subsequently not_found (no live worker
+claim). App inventory confirms four archived worktrees; R10candidate archive
+queued after integration. UI archive still refused as used by another active task.
+Round2 Codex normal-browser transport worker is active; standalone browser module
+and parent normal-only mount tested, not yet accepted as full product flow.
+CONTROLLER.json and exact handouts retain live handles/next actions.
