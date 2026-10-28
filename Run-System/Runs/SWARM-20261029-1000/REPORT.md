@@ -58,3 +58,14 @@ scrollWidth360, disabledunsupportedfit/Mystery, honest displacement/status label
 Screenshot visually inspected; evidence/S10/ui-hardening/IAB-VERIFICATION.md.
 Other three recovery leaves still pending gate-fix/review acceptance. No completed
 round yet; queue78/209 after this one independently accepted recovery leaf.
+
+## Next independent S10 slice
+
+Approved plan explicitly calls for in-browser simulation; existing /lab computes
+Python->Node server-side only. Codex R11-browser-engine adds a normal-only browser
+adapter/component reusing exact accepted RK4 engines. Parent will wire validated
+synthetic normal DTO; Mystery remains server-private. No new physical/contact
+response claim. Module-only child completion will not count as end-to-end success.
+UI worktree archive attempts are currently refused by app: another active task
+uses checkout even after worker close and parent attachment move. Preserve it;
+do not claim archived or forcibly remove an app-owned active checkout.
