@@ -3,11 +3,13 @@
 - **Status:** DONE (review repair; local child implementation only; no parent product/gate pass)
 - **Lane/model:** CODEX-1 / GPT-6.1 Sol medium; exact delegated runtime details
   are not independently observable. OpenCodex-managed; not polled.
-- **UTC:** issued 2026-10-28T17:11:19Z; stopped/reported 2026-10-28T17:16:40Z;
-  before the 17:41:19Z deadline after all scoped leaves and checks completed.
+- **UTC:** issued 2026-10-28T17:11:19Z; initial implementation stopped/reported
+  2026-10-28T17:16:40Z; acceptance correction stopped/reported
+  2026-10-28T17:35:53Z, before the 17:41:19Z deadline. Initial history is
+  preserved; this receipt reflects the final correction window.
 - **Implementation commit:** `1a5311a92a28b19d835e8c6b14338cb6abe8904f` on
   `run/S11abc-swarm`; report receipt refresh is the following commit.
-- **Final acceptance-fix commit:** `f261e91dcef7d1fa74652847e433352e94b55057`.
+- **Final acceptance-fix commit:** `f261e91dcef7d1fa74652847e433352e94b55057`; final receipt update follows.
 
 ## Changes
 
