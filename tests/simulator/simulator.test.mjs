@@ -27,4 +27,8 @@ test('RK4 convergence/order, determinism, immutability and invalid dynamics', ()
   assert.ok(coarse / fine > 10); assert.deepEqual(solve(0.05), solve(0.05));
   assert.throws(() => rk4Step([1], 0.1, () => [NaN]), /derivative/);
   assert.throws(() => rk4Step([1], 0.1, () => [1, 2]), /derivative/);
+  const seen = []; assert.throws(() => rk4Step([Number.MAX_VALUE], 2, (s) => { seen.push(s[0]); return [s[0]]; }), /intermediate state/);
+  assert.deepEqual(seen, [Number.MAX_VALUE]);
+  const sparseExtra = []; sparseExtra.length = 1; sparseExtra.note = 1;
+  assert.throws(() => rk4Step(sparseExtra, 0.1, () => [1]), /state/);
 });

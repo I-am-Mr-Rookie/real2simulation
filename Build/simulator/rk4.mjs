@@ -1,13 +1,13 @@
 // S10b: deterministic fixed-step classical RK4. Dynamics own the state shape and units.
 const bad = (m) => { throw new RangeError(`INVALID_RK4: ${m}`); };
-const validVector = (v) => Array.isArray(v) && v.length > 0 && Object.keys(v).length === v.length && v.every((x) => typeof x === 'number' && Number.isFinite(x));
+const validVector = (v) => Array.isArray(v) && Number.isSafeInteger(v.length) && v.length > 0 && Array.from({ length: v.length }, (_, i) => Object.prototype.hasOwnProperty.call(v, i)).every(Boolean) && v.every((x) => typeof x === 'number' && Number.isFinite(x));
 const same = (a, b) => a.length === b.length;
 
 export function rk4Step(state, dt, dynamics) {
   if (!validVector(state)) bad('state must be a finite non-empty vector');
   if (typeof dt !== 'number' || !Number.isFinite(dt) || dt <= 0) bad('dt must be finite and positive');
   if (typeof dynamics !== 'function') bad('dynamics must be a function');
-  const deriv = (s) => { const d = dynamics([...s]); if (!validVector(d) || !same(d, s)) bad('dynamics returned invalid derivative'); return d; };
+  const deriv = (s) => { if (!validVector(s)) bad('intermediate state is not finite and dense'); const d = dynamics([...s]); if (!validVector(d) || !same(d, s)) bad('dynamics returned invalid derivative'); return d; };
   const k1 = deriv(state);
   const mid = (k) => state.map((x, i) => x + dt * k[i] / 2);
   const k2 = deriv(mid(k1)); const k3 = deriv(mid(k2)); const k4 = deriv(state.map((x, i) => x + dt * k3[i]));
