@@ -27,4 +27,3 @@ None blocking. For S07f: choose coverage rule (k / interval) and residual-consis
 
 ## Communication
 Silent workflow followed; no other-chat messages, no fanout. Next: controller accepts, routes F1/F2/F5 fixes to S07f or a fix run.
-

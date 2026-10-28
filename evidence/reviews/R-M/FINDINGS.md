@@ -26,4 +26,3 @@ Scope: Build/measurement/{inputs,free_fall,uncertainty,gate_m}.py at HEAD 090d55
 
 - inputs.py:33: negative PTS (valid in some containers after edit lists) is a hard ValueError, not an abstention; acceptable fail-closed.
 - Approval/evidence strings and `metric_authorized` booleans are declarations; authentication remains with trusted caller (documented, not a defect).
-

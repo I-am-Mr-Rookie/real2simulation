@@ -78,4 +78,3 @@ out['V1_timing_jacobian'] = dict(analytic_norm=uj.timestamp_standard_m_s2, fd_no
 off = record(pts0=1e6, ratio=0.25)
 out['V2_offset_slowmo_g'] = fit_free_fall(off).g_m_s2
 print(json.dumps(out, indent=1, default=str))
-
