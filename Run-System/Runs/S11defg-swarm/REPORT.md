@@ -59,6 +59,12 @@ raises `FitError`, and AIC returns `-inf` only for exact `rss == 0.0`; the
 reviewer's alternating-`1e-15` nonzero-RSS repro now returns finite AIC.
 Fresh fitter suite: **11 tests PASS**; both reviewer repros pass.
 
+Final post-integration verification at `2026-10-28T17:38:14Z`, after rebase
+onto current `main` (`31deadc`): no `PYTHONPATH`, peer copy, or external
+contract worktree. `python -m unittest discover -s tests/fitter` => **11/11
+PASS**; normal `Build.fitter` and contract imports pass; `git diff --check`
+passes. Frozen rebased head: `bf68e35`.
+
 Ponytail full/default applied: minimal existing seam, no new dependency,
 smallest owned change, fresh targeted checks, explicit skipped external work,
 and risks/limitations recorded. OpenCodex-managed usage not polled.
