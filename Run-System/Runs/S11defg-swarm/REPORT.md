@@ -53,6 +53,12 @@ inputs, unsupported degrees/units, empty models and nonfinite predictions;
 made AIC roundoff handling scale-aware; computed covariance from QR R inverse;
 and made unavailable gravity uncertainty abstain instead of becoming zero.
 
+Independent R-SIM-swarm findings from reviewed head `bc6a7ac` were then fixed
+in `9700c3c`: finite huge-time/position arithmetic now catches overflow and
+raises `FitError`, and AIC returns `-inf` only for exact `rss == 0.0`; the
+reviewer's alternating-`1e-15` nonzero-RSS repro now returns finite AIC.
+Fresh fitter suite: **11 tests PASS**; both reviewer repros pass.
+
 Ponytail full/default applied: minimal existing seam, no new dependency,
 smallest owned change, fresh targeted checks, explicit skipped external work,
 and risks/limitations recorded. OpenCodex-managed usage not polled.
