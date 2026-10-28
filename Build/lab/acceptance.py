@@ -230,11 +230,28 @@ def _run_case(authored):
                     raise ValueError('trajectory step/time contract mismatch')
             reference_fn = getattr(module, f"analytic_{authored['template']}")
             oracle_limit = artifact['spec']['simulation']['duration']['value']
-            reference_times = [sample['time_s'] for sample in samples]
-            endpoint_clamps = sum(time > oracle_limit and math.isclose(
-                time, oracle_limit, rel_tol=0, abs_tol=1e-12)
-                                  for time in reference_times)
-            reference_times = [min(time, oracle_limit) for time in reference_times]
+            reference_times = []
+            endpoint_clamps = []
+            for index, sample in enumerate(samples):
+                time = sample['time_s']
+                if time > oracle_limit:
+                    ulp_tolerance = 4 * max(math.ulp(time), math.ulp(oracle_limit))
+                    if (not math.isclose(time, oracle_limit, rel_tol=0,
+                                         abs_tol=1e-12) or
+                            time - oracle_limit > ulp_tolerance):
+                        raise ValueError(
+                            f'sample {index} exceeds oracle horizon by more than '
+                            f'representational ULP tolerance: {time - oracle_limit}')
+                    endpoint_clamps.append({
+                        'sample_index': index,
+                        'observed_time_s': time,
+                        'oracle_limit_s': oracle_limit,
+                        'absolute_overrun_s': time - oracle_limit,
+                        'ulp_tolerance_s': ulp_tolerance,
+                        'reason': 'representational fixed-step endpoint rounding',
+                    })
+                    time = oracle_limit
+                reference_times.append(time)
             reference = reference_fn(
                 artifact['spec'], artifact['scene'], folder,
                 times=reference_times)
@@ -280,6 +297,7 @@ const run = async () => {
     const { freeFallTrajectory, projectileTrajectory } = await import('./Build/simulator/trajectories.mjs');
     const { contactAwareTrajectory } = await import('./Build/simulator/contacts.mjs');
     const rows = [];
+    const expectedContactTime = Math.sqrt(2 * (2 - 0.1) / 9.81);
     for (const template of ['free_fall', 'projectile']) {
       for (const dt of [0.02, 0.01, 0.005]) {
         const trajectory = (template === 'projectile' ? projectileTrajectory : freeFallTrajectory)({
@@ -296,6 +314,8 @@ const run = async () => {
           const hit = output.samples.find((sample) => sample.contact) ?? null;
           rows.push({ template, dt_s: dt, status: hit ? 'contact_observed' : 'no_contact',
             contact_step: hit?.step ?? null, contact_time_s: hit?.time_s ?? null,
+            expected_contact_time_s: expectedContactTime,
+            contact_time_error_s: hit ? hit.time_s - expectedContactTime : null,
             rebound_claim: false, samples: output.samples.length,
             contact_semantics: output.contactSemantics });
         } catch (error) { rows.push({ template, dt_s: dt, status: 'rejected', reason: String(error) }); }
@@ -312,9 +332,35 @@ await run();
         process = subprocess.run(['node', '--input-type=module', '-e', script],
                                  text=True, capture_output=True, encoding='utf-8',
                                  timeout=30, cwd=ROOT, check=True)
-        return json.loads(process.stdout)
+        result = json.loads(process.stdout)
+        rows = result.get('rows', [])
+        measured = [row for row in rows if row.get('status') == 'contact_observed']
+        by_template = {}
+        for row in measured:
+            by_template.setdefault(row['template'], []).append(row)
+        result['assessment'] = {
+            'contact_jitter_observed': any(
+                max(row['contact_time_s'] for row in group) -
+                min(row['contact_time_s'] for row in group) > 0
+                for group in by_template.values()),
+            'max_contact_time_spread_s': max((
+                max(row['contact_time_s'] for row in group) -
+                min(row['contact_time_s'] for row in group)
+                for group in by_template.values()), default=0.0),
+            'max_abs_contact_time_error_s': max((
+                abs(row['contact_time_error_s']) for row in measured), default=0.0),
+            'fallback_observed': any(row.get('status') != 'contact_observed'
+                                     for row in rows),
+            'fallback_applied': False,
+            'fallback_reason': 'not triggered by this dt sweep',
+        }
+        return result
     except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as error:
-        return {'status': 'unavailable', 'reason': str(error), 'rows': []}
+        return {'status': 'unavailable', 'reason': str(error), 'rows': [],
+                'assessment': {'contact_jitter_observed': False,
+                               'fallback_observed': False,
+                               'fallback_applied': False,
+                               'fallback_reason': 'runtime unavailable'}}
 
 
 def _ui_readiness():

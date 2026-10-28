@@ -18,7 +18,7 @@
       "relative_error": 7.922080705786024e-15,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-free-fall-v1",
       "deterministic": true,
       "replay": {
@@ -46,7 +46,7 @@
       "relative_error": 2.8317359351282158e-14,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-free-fall-v1",
       "deterministic": true,
       "replay": {
@@ -74,7 +74,7 @@
       "relative_error": 3.3951774453368367e-13,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-free-fall-v1",
       "deterministic": true,
       "replay": {
@@ -102,7 +102,16 @@
       "relative_error": 4.9757894661071454e-15,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 1,
+      "oracle_endpoint_clamps": [
+        {
+          "sample_index": 350,
+          "observed_time_s": 0.35000000000000003,
+          "oracle_limit_s": 0.35,
+          "absolute_overrun_s": 5.551115123125783e-17,
+          "ulp_tolerance_s": 2.220446049250313e-16,
+          "reason": "representational fixed-step endpoint rounding"
+        }
+      ],
       "reference": "analytic-free-fall-v1",
       "deterministic": true,
       "replay": {
@@ -130,7 +139,7 @@
       "relative_error": 5.561909207513163e-15,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-projectile-v1",
       "deterministic": true,
       "replay": {
@@ -158,7 +167,7 @@
       "relative_error": 1.980520176446507e-15,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-projectile-v1",
       "deterministic": true,
       "replay": {
@@ -186,7 +195,16 @@
       "relative_error": 1.0211348682342259e-13,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 1,
+      "oracle_endpoint_clamps": [
+        {
+          "sample_index": 300,
+          "observed_time_s": 0.030000000000000002,
+          "oracle_limit_s": 0.03,
+          "absolute_overrun_s": 3.469446951953614e-18,
+          "ulp_tolerance_s": 1.3877787807814457e-17,
+          "reason": "representational fixed-step endpoint rounding"
+        }
+      ],
       "reference": "analytic-projectile-v1",
       "deterministic": true,
       "replay": {
@@ -214,7 +232,7 @@
       "relative_error": 3.0006027692571796e-15,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-projectile-v1",
       "deterministic": true,
       "replay": {
@@ -242,7 +260,7 @@
       "relative_error": 1.2641598273373034e-15,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-ramp-v1",
       "deterministic": true,
       "replay": {
@@ -270,7 +288,7 @@
       "relative_error": 1.7016368859637336e-15,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-ramp-v1",
       "deterministic": true,
       "replay": {
@@ -298,7 +316,7 @@
       "relative_error": 2.0890706977146314e-15,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-ramp-v1",
       "deterministic": true,
       "replay": {
@@ -326,7 +344,7 @@
       "relative_error": 0.00010467087880428101,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-pendulum-small-angle-v1",
       "deterministic": true,
       "replay": {
@@ -354,7 +372,7 @@
       "relative_error": 0.004407323623582317,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-pendulum-small-angle-v1",
       "deterministic": true,
       "replay": {
@@ -382,7 +400,7 @@
       "relative_error": 0.00047576269895382,
       "within_half_percent": true,
       "scale_policy": "dimensional_characteristic_scale",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-pendulum-small-angle-v1",
       "deterministic": true,
       "replay": {
@@ -410,7 +428,7 @@
       "relative_error": 0.0,
       "within_half_percent": true,
       "scale_policy": "zero_answer_guard",
-      "oracle_endpoint_clamps": 0,
+      "oracle_endpoint_clamps": [],
       "reference": "analytic-pendulum-small-angle-v1",
       "deterministic": true,
       "replay": {
@@ -432,9 +450,89 @@
   },
   "passed": true,
   "contact_diagnostic": {
-    "status": "unavailable",
-    "reason": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@dimforge/rapier3d-compat' imported from C:\\Users\\HP\\.codex\\worktrees\\swarm3-gate-p\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\simulator\\contacts.mjs",
-    "rows": []
+    "status": "measured",
+    "rows": [
+      {
+        "template": "free_fall",
+        "dt_s": 0.02,
+        "status": "contact_observed",
+        "contact_step": 31,
+        "contact_time_s": 0.62,
+        "expected_contact_time_s": 0.6223823880068597,
+        "contact_time_error_s": -0.002382388006859748,
+        "rebound_claim": false,
+        "samples": 32,
+        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
+      },
+      {
+        "template": "free_fall",
+        "dt_s": 0.01,
+        "status": "contact_observed",
+        "contact_step": 62,
+        "contact_time_s": 0.62,
+        "expected_contact_time_s": 0.6223823880068597,
+        "contact_time_error_s": -0.002382388006859748,
+        "rebound_claim": false,
+        "samples": 63,
+        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
+      },
+      {
+        "template": "free_fall",
+        "dt_s": 0.005,
+        "status": "contact_observed",
+        "contact_step": 124,
+        "contact_time_s": 0.62,
+        "expected_contact_time_s": 0.6223823880068597,
+        "contact_time_error_s": -0.002382388006859748,
+        "rebound_claim": false,
+        "samples": 125,
+        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
+      },
+      {
+        "template": "projectile",
+        "dt_s": 0.02,
+        "status": "contact_observed",
+        "contact_step": 31,
+        "contact_time_s": 0.62,
+        "expected_contact_time_s": 0.6223823880068597,
+        "contact_time_error_s": -0.002382388006859748,
+        "rebound_claim": false,
+        "samples": 32,
+        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
+      },
+      {
+        "template": "projectile",
+        "dt_s": 0.01,
+        "status": "contact_observed",
+        "contact_step": 62,
+        "contact_time_s": 0.62,
+        "expected_contact_time_s": 0.6223823880068597,
+        "contact_time_error_s": -0.002382388006859748,
+        "rebound_claim": false,
+        "samples": 63,
+        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
+      },
+      {
+        "template": "projectile",
+        "dt_s": 0.005,
+        "status": "contact_observed",
+        "contact_step": 124,
+        "contact_time_s": 0.62,
+        "expected_contact_time_s": 0.6223823880068597,
+        "contact_time_error_s": -0.002382388006859748,
+        "rebound_claim": false,
+        "samples": 125,
+        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
+      }
+    ],
+    "assessment": {
+      "contact_jitter_observed": false,
+      "max_contact_time_spread_s": 0.0,
+      "max_abs_contact_time_error_s": 0.002382388006859748,
+      "fallback_observed": false,
+      "fallback_applied": false,
+      "fallback_reason": "not triggered by this dt sweep"
+    }
   },
   "fallback_policy": {
     "allowed": true,
