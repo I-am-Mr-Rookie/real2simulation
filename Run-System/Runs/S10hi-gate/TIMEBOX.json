@@ -1,0 +1,9 @@
+{
+  "id": "S10hi-gate",
+  "issued_at": "2026-10-28T18:34:51Z",
+  "deadline_at": "2026-10-28T19:04:51Z",
+  "work_stopped_at": "2026-10-28T18:51:20Z",
+  "reported_at": "2026-10-28T18:51:25Z",
+  "status": "DONE",
+  "controller_exception": null
+}
