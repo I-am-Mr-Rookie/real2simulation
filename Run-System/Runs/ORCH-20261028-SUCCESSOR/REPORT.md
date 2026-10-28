@@ -52,3 +52,11 @@ Current deadlines guard14:25UTC, SAM-readiness14:22UTC; exact contracts updated.
 Owner requested cleanup of observed>2GB directory: isolated cleaner measures first,
 deletes only validated ignored regenerable caches inside canonical root, protects
 history/inputs/ST03/resources/reports/secrets/worktrees. No claimed savings yet.
+
+Fresh separate desktop chats created, each with exact requested Sol/medium and
+explicit same existing projectId. Fresh list_threads confirms each project
+association/status active; compact wait confirms actual in-progress turns:
+guard01a182d4-596a-7460-854f-195ad12f6c74, SAM-readiness01a182d4-ec30-7093-8161-
+6787dddb1ca4, cleaner01a182d5-98d4-76d1-832d-0343a6375fd1. Prepared isolated
+worktree paths required explicitly despite canonical initial app cwd. Controller
+waits on actual chats with cursors, not automation/subagent loops. Results pending.

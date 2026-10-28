@@ -1,5 +1,24 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — three separate desktop chats active, same project verified
+
+App create_thread launches with explicit existing Meta AI Hackathon projectId,
+gpt-6.1-sol/medium, local environment; subsequent list_threads confirms ALL three
+are active and project91e441f8-e40c-4ec4-bea2-de7fa1582d97. Initial app cwd canonical;
+each prompt/contract explicitly requires its prepared isolated worktree for writes.
+- S05b — total-deadline guard:01a182d4-596a-7460-854f-195ad12f6c74,
+  local, deadline14:25UTC/cutoff14:20UTC, s05b-recovery4/run/S05b-recovery7.
+- S07b — SAM3.1 accepted-access readiness:01a182d4-ec30-7093-8161-6787dddb1ca4,
+  local, deadline14:22UTC, s07b-tracking/run/S07b-recovery4.
+- Cleaner — measured safe directory cleanup:01a182d5-98d4-76d1-832d-0343a6375fd1,
+  local, deadline14:25UTC/delete-cutoff14:20UTC, s02g-forensics/run/CLEAN-20261028.
+Compact wait snapshot confirms three real in-progress turns. Controller stores
+per-chat cursors and waits bounded on these actual chats; no scheduled task.
+Owner explicitly authorized their completion callback messages. Inline mistaken
+agents are already SHUTDOWN, not substitutes or active duplicates. Cleaner may
+delete only validated ignored generated artifacts; no bytes saved claimed yet.
+55/203 product deliverables; no physical/runtime/S12 change,2.85/$30 retained.
+
 ## CURRENT — owner corrects launch surface; separate desktop chats only
 
 Direct owner correction14:01UTC: fresh SEPARATE desktop chats, not inline agents;
