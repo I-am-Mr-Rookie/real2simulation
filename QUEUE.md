@@ -5,9 +5,10 @@ Generated 2026-10-27 Asia/Dhaka from handoff v2, final plan.html SHA256 `0EAEBF9
 ## Execution lock and scheduling
 
 **Bounded Oct28 swarm exception:** direct owner authorizes inline agents until
-18:00UTC Oct28 (Oct29 00:00Dhaka), plus simulation-only S10/S11 against synthetic
+18:30UTC Oct28 (Oct29 00:30Dhaka, direct owner extension), plus simulation-only S10/S11 against synthetic
 fixtures despite unfinished physical S07/S09. Evidence:
 Run-System/Runs/SWARM-20261028-2400/OWNER-SIMULATION-EXCEPTION.md.
+Extension/owner-stop receipt: Run-System/Runs/SWARM-20261029-0030/OWNER-EXTENSION.md.
 S10a/b and S11a/b/c are accepted local simulation leaves; this changes no physical
 step/gate, S10c contacts, real-scene integration or S12 eligibility. Preserve
 original dependencies as integration requirements, not silently deleted gates.
