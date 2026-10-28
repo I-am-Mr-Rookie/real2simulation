@@ -1,6 +1,7 @@
 # Real2Simulation — Windows PC Run System
 
-Owner precedence: read ../OWNER_INSTRUCTIONS_2026-10-28.md and its original PDF.
+Owner precedence: read ../OWNER_INSTRUCTIONS_2026-10-28.md, the complete saved
+instructions; latest owner reply says not to repeatedly reread the original PDF.
 The filename and all pages are instructions; nonconflicting older instructions
 continue. Ingest owner replies from RUNS.md into STATE.md before regeneration.
 Every new session, including workers and orchestrators, belongs to Meta AI
@@ -44,7 +45,10 @@ He runs no commands and does no Git work himself. That message is his authorizat
 Sometimes he hands orchestration to one trusted agent instead; that agent follows `ORCHESTRATOR.md`
 and starts every run the same way, in a fresh session.
 
-Every run is a fresh session with its own context window. Everything a run needs is on disk:
+Every run is a fresh session with its own context window. Latest owner correction:
+each worker is a SEPARATE desktop chat in the same existing project, not an inline
+subagent; concise completion callback to the sole controller is authorized by
+Koushik. Everything a run needs is on disk:
 AGENTS.md, this file, STATE.md, its QUEUE.md row, DECISIONS_LOG.md, API_BUDGET.md and
 the step contract in QUEUE.md. Nobody pastes long prompts and nobody needs `/compact`.
 

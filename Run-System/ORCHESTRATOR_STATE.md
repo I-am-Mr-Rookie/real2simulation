@@ -1,5 +1,26 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — owner corrects launch surface; separate desktop chats only
+
+Direct owner correction14:01UTC: fresh SEPARATE desktop chats, not inline agents;
+workers contact controller with messages (explicit callback authorization).
+Controller mistake: launched Carver01a182cf-d996-7ed2-8098-fb124a093784 and
+Beauvoir01a182cf-dc0c-7911-bc0c-df32bccb97a8 as inline agents. Both interrupted/
+closed immediately; both shutdown notifications observed, both owned worktrees
+still clean/no report or source writes. They are TERMINAL, not duplicate workers.
+Now use app create_thread with explicit existing project91e441f8-e40c-4ec4-bea2-
+de7fa1582d97, exact Sol/medium settings, prepared worktrees; actual IDs follow.
+Updated deadlines recovery7 14:25UTC/cutoff14:20, recovery4 14:22UTC.
+
+Owner additionally authorizes measured cleaner/delete unnecessary files.
+CLEAN-20261028 fresh CODEX-2 Sol/medium separate chat, prepared s02g-forensics/
+run/CLEAN-20261028 basef8cac76, deadline14:25UTC/delete cutoff14:20UTC. Exact
+contract restricts deletion to validated ignored generated caches within canonical
+root; unique inputs, secrets, evidence, Git/history, whole/active worktrees and
+retained ST03 resources protected. No target quota or broad cleanup. Report-owned
+paths isolated, controller serial integration. This maintenance is separate from
+203 product deliverables. No paid action/schedule/dispatcher or gate change.
+
 ## CURRENT — sole successor accepted both reports; unpaid prerequisites claimed
 
 Successor01a182c4-9378-7da0-9fbc-99a5a379380c verified via list_threads in

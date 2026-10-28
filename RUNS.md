@@ -1,16 +1,17 @@
 # Runs checklist
 
-Updated Oct 28, 20:00 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 20:05 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **55 / 203** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 2 open reviews
+Progress: **55 / 203** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 3 open reviews
 
 ## Reviews for Koushik
 
 - [ ] Q13 [S01b prerequisite; secure owner setup] Open [Clerk dashboard](https://dashboard.clerk.com), choose existing Real2Simulation / Development / API keys. Privately copy the development publishable and secret keys directly into [Railway project](https://railway.com/project/b07b0d66-2001-4ccc-915d-7d226744d189): select dev environment, web service49f2938d-1566-480d-94e3-c9f7fefe24c2, Variables. Set NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY and CLERK_SECRET_KEY (server-only); rebuild/redeploy DEV so the public key is present at build time. Do not paste keys/codes here. Then open [sign-in](https://web-dev-cd80.up.railway.app/sign-in), test Google, sign out, test email OTP, and [guest library](https://web-dev-cd80.up.railway.app/library) signed out. Reply configured / Google PASS or FAIL / OTP PASS or FAIL / guest PASS or FAIL. Saved app/source IDs and auth README support these steps; current dashboard UI/deployment not independently checked. No production/custom OAuth/account creation.
 - [ ] R2 [Routine decision; no reply needed] Both terminal reports accepted/FF integrated;55/203 unchanged. Continue two isolated unpaid Sol/medium prerequisites: local total-deadline guard and accepted SAM exact-identity/direct-retrieval readiness. No GPU/model download/retry,2.85 reservations retained; SAM accepted screenshot is not bytes/runtime proof. Same verified existing project; no schedule/dispatcher.
+- [ ] R3 [Owner-requested cleaner and launch correction] Workers will be fresh SEPARATE desktop chats in the same project, not inline subagents; the two mistaken inline launches were stopped/confirmed shutdown without writes. Owner authorizes their completion messages to this controller. Cleaner measures directory usage and deletes only verified ignored regenerable caches, keeping inputs/ST03 frames/history/secrets/reports/whole and active worktrees. No broad deletion or cosmetic target; exact savings/kept large items in its report.
 
 ## Ready now
 

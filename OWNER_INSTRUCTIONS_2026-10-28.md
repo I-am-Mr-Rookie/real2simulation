@@ -61,6 +61,14 @@ Revisit original pages only to resolve a genuine ambiguity or an owner request.
 
 ## Other still-current owner instructions
 
+- Latest direct owner correction: launch workers in fresh SEPARATE desktop chats,
+  not inline subagents in this chat. Same existing project remains mandatory.
+  Owner explicitly says they will contact the controller with messages; scoped
+  completion/report-pointer callback to this controller is authorized.
+- Owner additionally requests a cleaner worker to inspect directory size and
+  delete unnecessary files. Preserve unique inputs/evidence/history/secrets and
+  active work; delete only verified disposable, recoverable generated artifacts.
+
 - Latest direct message: EVERY new session, orchestrator or worker, belongs to
   the existing **Meta AI Hackathon** project, ID
   `91e441f8-e40c-4ec4-bea2-de7fa1582d97`, at this canonical event root.

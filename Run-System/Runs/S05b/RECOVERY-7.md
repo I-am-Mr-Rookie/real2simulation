@@ -1,11 +1,13 @@
 # S05b recovery7 — local-only total-deadline/admission guard
 
 Complete run S05b. Fresh managed gpt-6.1-sol / medium, CODEX-1. Absolute deadline
-2026-10-28 14:20:00 UTC (20:20 Dhaka); no new implementation after14:15UTC.
+2026-10-28 14:25:00 UTC (20:25 Dhaka); no new implementation after14:20UTC.
 Canonical root C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon.
 Same parent Meta AI Hackathon project91e441f8-e40c-4ec4-bea2-de7fa1582d97;
-delegated fresh context inherits verified parent association, not a separately
-claimed sidebar membership. Use ONLY prepared s05b-recovery4 worktree,
+Launch in a fresh SEPARATE desktop chat with explicit existing projectId;
+no inline subagent. Koushik explicitly authorizes final status/report callback
+via send_message_to_thread to controller01a182c4-9378-7da0-9fbc-99a5a379380c.
+Use ONLY prepared s05b-recovery4 worktree,
 run/S05b-recovery7, base8fca36f. Read canonical current instructions/contracts;
 use saved OWNER_INSTRUCTIONS, do not reread original scan. APPLY Ponytail full/default.
 

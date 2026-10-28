@@ -1,11 +1,13 @@
 # S07b recovery4 — accepted-access exact identity/direct-retrieval readiness
 
 Complete run S07b. Fresh managed gpt-6.1-sol / medium, CODEX-1. Absolute deadline
-2026-10-28 14:15:00 UTC (20:15 Dhaka), maximum remaining19m; finish early.
+2026-10-28 14:22:00 UTC (20:22 Dhaka), maximum remaining20m; finish early.
 Canonical root C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon.
 Same parent Meta AI Hackathon project91e441f8-e40c-4ec4-bea2-de7fa1582d97;
-delegated fresh context inherits verified parent association, not a separately
-claimed sidebar membership. Use ONLY prepared s07b-tracking worktree,
+Launch in a fresh SEPARATE desktop chat with explicit existing projectId;
+no inline subagent. Koushik explicitly authorizes final status/report callback
+via send_message_to_thread to controller01a182c4-9378-7da0-9fbc-99a5a379380c.
+Use ONLY prepared s07b-tracking worktree,
 run/S07b-recovery4, base8fca36f. Read canonical current instructions/contracts;
 saved OWNER_INSTRUCTIONS replaces repeated scan reads. APPLY Ponytail full/default.
 

@@ -41,3 +41,14 @@ NOT_RUN, S12 locked. Retain2.85/$30, no new reservations/jobs/bytes/CPU reinstal
 No schedule or dispatcher, no quota poll/provider/credential/policy change,
 publication, remote push or deployment. Mandatory brief updates/skill announcement
 only; optional progress/duplicate chat reports omitted. Current work continues.
+
+## Launch correction / owner-requested cleaner
+
+Owner explicitly corrected my inline-agent launches; I interrupted/closed both,
+observed both SHUTDOWN notifications and clean owned worktrees/no reports. No
+work accepted or active duplicate retained. Relaunch only separate desktop chats
+with explicit same existing projectId; owner authorizes completion callbacks.
+Current deadlines guard14:25UTC, SAM-readiness14:22UTC; exact contracts updated.
+Owner requested cleanup of observed>2GB directory: isolated cleaner measures first,
+deletes only validated ignored regenerable caches inside canonical root, protects
+history/inputs/ST03/resources/reports/secrets/worktrees. No claimed savings yet.

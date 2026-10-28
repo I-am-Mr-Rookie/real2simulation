@@ -33,8 +33,10 @@ You stand in for Koushik's manual orchestration for the rest of the build. You d
 - **Skill/plugin gate (Koushik, Oct 27).** Follow `Run-System/SKILLS_AND_PLUGINS.md`. Each run must read and apply relevant installed instructions and report concrete use or a justified limitation. Relay this requirement to already-active runs. Missing evidence is corrected in the owning lane; do not falsely certify earlier runs or invoke unrelated plugins for appearances.
 - **Desktop sessions (Koushik, Oct 27).** Prefer fresh Codex desktop chats with the row's model/effort. Claude models already exposed through OpenCodex may run in these chats without changing their CLAUDE lane; the host app is not the model vendor. Verify the existing exact routed ID before launch; do not rewrite providers, credentials, or global settings. Use another fresh-session mechanism only when the desktop route is unavailable, and record that limitation.
 - **Start fresh sessions with whatever this setup offers:** the app's new thread or session feature, subagents that run in their own context, or headless CLI runs. Examples:
-  - `codex exec -m gpt-6.1-sol -c model_reasoning_effort="medium" --sandbox workspace-write "Complete run S05a"`
-  - `claude -p --model claude-haiku-5-5 "Complete run S19a"`
+  - Latest direct owner correction supersedes alternatives: use app create_thread
+    for fresh SEPARATE desktop chats in existing Meta AI Hackathon project,
+    not inline subagents. Owner explicitly authorizes their concise completion
+    message back to controller01a182c4-9378-7da0-9fbc-99a5a379380c.
 - **Settings.** All models are available, and you may change session settings so that each run gets its row's model and effort. Never use max effort, GPT-5.6 Luna, or GPT-6 Astra (Astra needs Koushik's written approval after Sol at xhigh fails the same gate twice).
 
 ## Current owner model/quality override — Oct28

@@ -35,6 +35,13 @@ Other accounts/terms/purchases/publication/AWS/deployment boundaries unchanged.
 
 ## One project for every new session — Oct28 owner instruction
 
+Latest direct owner correction (Oct28): workers must be fresh, separate desktop
+chats in this project, NOT inline subagents in the controller chat. Use app
+create_thread with this existing project. Koushik explicitly authorizes those
+workers to contact this controller with completion/report-pointer messages;
+otherwise keep communication quiet. Controller waits on actual separate chats.
+Stopped inline agents are historical mistakes, not live workers to resume.
+
 Every new orchestrator AND worker session belongs to the SAME **Meta AI Hackathon**
 project, ID `91e441f8-e40c-4ec4-bea2-de7fa1582d97`, canonical event root above.
 Use that existing project for new desktop chats; never create a duplicate project
