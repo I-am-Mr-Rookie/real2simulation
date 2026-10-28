@@ -1,0 +1,21 @@
+[
+  {
+    "case": "below",
+    "dt_s": 0.0015963771420352522,
+    "dt_times_frequency": 0.049999999999999996,
+    "validation": "accepted"
+  },
+  {
+    "case": "boundary",
+    "dt_s": 0.0015963771420352524,
+    "dt_times_frequency": 0.05,
+    "validation": "accepted"
+  },
+  {
+    "case": "above",
+    "dt_s": 0.0015963771420352527,
+    "dt_times_frequency": 0.05000000000000001,
+    "error": "$.simulation.time_step: time_step under-resolves pendulum frequency",
+    "validation": "rejected"
+  }
+]

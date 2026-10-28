@@ -1,0 +1,1080 @@
+{
+  "threshold": 0.005,
+  "cases": [
+    {
+      "name": "control-free-fall-fast-downward",
+      "template": "free_fall",
+      "validated": "validate_setup",
+      "oracle": "analytic-free-fall-v1",
+      "status": "returned",
+      "samples": 61,
+      "endpoint": {
+        "step": 60,
+        "time_s": 0.003,
+        "position_m": [
+          0,
+          1.699955855,
+          0
+        ],
+        "velocity_m_s": [
+          0,
+          -100.02942999999988,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "position": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            0,
+            1.699955855,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 0.003
+        },
+        "vertical_velocity": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": -100.02943
+        }
+      }
+    },
+    {
+      "name": "control-free-fall-min-normal-gravity",
+      "template": "free_fall",
+      "validated": "validate_setup",
+      "oracle": "analytic-free-fall-v1",
+      "status": "returned",
+      "samples": 201,
+      "endpoint": {
+        "step": 200,
+        "time_s": 0.2,
+        "position_m": [
+          0,
+          2,
+          0
+        ],
+        "velocity_m_s": [
+          0,
+          -4.450147717013913e-309,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "position": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            0,
+            2,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 0.2
+        },
+        "vertical_velocity": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": -4.4501477170144e-309
+        }
+      }
+    },
+    {
+      "name": "control-free-fall-through-apex",
+      "template": "free_fall",
+      "validated": "validate_setup",
+      "oracle": "analytic-free-fall-v1",
+      "status": "returned",
+      "samples": 601,
+      "endpoint": {
+        "step": 600,
+        "time_s": 0.3,
+        "position_m": [
+          0,
+          2.0000000000000058,
+          0
+        ],
+        "velocity_m_s": [
+          0,
+          -2.9999999999999605,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "position": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            0,
+            2,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 0.3
+        },
+        "vertical_velocity": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": -3
+        }
+      }
+    },
+    {
+      "name": "control-pendulum-frequency-step-boundary",
+      "template": "pendulum",
+      "validated": "validate_setup",
+      "oracle": "analytic-pendulum-small-angle-v1",
+      "status": "returned",
+      "samples": 33,
+      "endpoint": {
+        "step": 32,
+        "time_s": 0.05108406854512808,
+        "angle_rad": -0.00014598477618732995,
+        "angular_velocity_rad_s": -0.15653766990965226,
+        "position_m": [
+          -0.0000014598477566880286,
+          1.9900000001065579,
+          0
+        ],
+        "velocity_m_s": [
+          -0.0015653766824162171,
+          2.2852116625477695e-7,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "angle": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "rad",
+          "value": -0.0001459976115064441
+        },
+        "angular_velocity": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "rad/s",
+          "value": -0.15653782190954094
+        },
+        "position": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            -0.000001459976109877802,
+            1.9900000001065765,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 0.05108406854512808
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            -0.0015653782024121542,
+            2.2854148028023574e-7,
+            0
+          ]
+        }
+      },
+      "worst": {
+        "relative_error": 0.000002567063822574853,
+        "time_s": 0.05108406854512808,
+        "observed_position_m": [
+          -0.0000014598477566880286,
+          1.9900000001065579,
+          0
+        ],
+        "expected_position_m": [
+          -0.000001459976109877802,
+          1.9900000001065765,
+          0
+        ]
+      }
+    },
+    {
+      "name": "control-pendulum-negative-phase",
+      "template": "pendulum",
+      "validated": "validate_setup",
+      "oracle": "analytic-pendulum-small-angle-v1",
+      "status": "returned",
+      "samples": 2001,
+      "endpoint": {
+        "step": 2000,
+        "time_s": 2,
+        "angle_rad": 0.022024658936461678,
+        "angular_velocity_rad_s": 0.038571791991592025,
+        "position_m": [
+          0.06606863501648658,
+          1.0007275989888718,
+          0
+        ],
+        "velocity_m_s": [
+          0.11568731117792402,
+          0.002548385647024333,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "angle": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "rad",
+          "value": 0.022031054813160932
+        },
+        "angular_velocity": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "rad/s",
+          "value": 0.038573327790878104
+        },
+        "position": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            0.06608781799159943,
+            1.000728021617061,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 2
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            0.11569190115616057,
+            0.0025492270663738563,
+            0
+          ]
+        }
+      },
+      "worst": {
+        "relative_error": 0.00011235125767244962,
+        "time_s": 2,
+        "observed_position_m": [
+          0.06606863501648658,
+          1.0007275989888718,
+          0
+        ],
+        "expected_position_m": [
+          0.06608781799159943,
+          1.000728021617061,
+          0
+        ]
+      }
+    },
+    {
+      "name": "control-projectile-fast-horizontal",
+      "template": "projectile",
+      "validated": "validate_setup",
+      "oracle": "analytic-projectile-v1",
+      "status": "returned",
+      "samples": 401,
+      "endpoint": {
+        "step": 400,
+        "time_s": 0.2,
+        "position_m": [
+          1.9999999999999793,
+          1.8038000000000005,
+          0
+        ],
+        "velocity_m_s": [
+          10,
+          -1.9619999999999922,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "position": {
+          "source": {
+            "evidence": "analytic-projectile-v1:experiment/extension-projectile",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            2,
+            1.8037999999999998,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-projectile-v1:experiment/extension-projectile",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 0.2
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-projectile-v1:experiment/extension-projectile",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            10,
+            -1.9620000000000002,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "name": "control-projectile-low-gravity",
+      "template": "projectile",
+      "validated": "validate_setup",
+      "oracle": "analytic-projectile-v1",
+      "status": "returned",
+      "samples": 1001,
+      "endpoint": {
+        "step": 1000,
+        "time_s": 1,
+        "position_m": [
+          0.10000000000000184,
+          1.9995,
+          0
+        ],
+        "velocity_m_s": [
+          0.1,
+          -0.0010000000000000152,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "position": {
+          "source": {
+            "evidence": "analytic-projectile-v1:experiment/extension-projectile",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            0.1,
+            1.9995,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-projectile-v1:experiment/extension-projectile",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 1
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-projectile-v1:experiment/extension-projectile",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            0.1,
+            -0.001,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "name": "control-ramp-friction-above-one",
+      "template": "ramp",
+      "validated": "validate_setup",
+      "oracle": "analytic-ramp-v1",
+      "status": "returned",
+      "samples": 201,
+      "endpoint": {
+        "step": 200,
+        "time_s": 0.1,
+        "distance_m": 0.021020893906641348,
+        "speed_m_s": 0.4204178781328275,
+        "position_m": [
+          0.005623064496668286,
+          1.9797451456114694,
+          0
+        ],
+        "velocity_m_s": [
+          0.11246128993336588,
+          -0.4050970877706138,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "distance": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": 0.021020893906641303
+        },
+        "position": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            0.005623064496668274,
+            1.9797451456114694,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 0.1
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            0.11246128993336547,
+            -0.4050970877706124,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "name": "control-ramp-shallow",
+      "template": "ramp",
+      "validated": "validate_setup",
+      "oracle": "analytic-ramp-v1",
+      "status": "returned",
+      "samples": 201,
+      "endpoint": {
+        "step": 200,
+        "time_s": 0.2,
+        "distance_m": 1.962000000000004e-9,
+        "speed_m_s": 1.9620000000000082e-8,
+        "position_m": [
+          1.962000000000004e-9,
+          2,
+          0
+        ],
+        "velocity_m_s": [
+          1.9620000000000082e-8,
+          -1.9620000000000083e-16,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "distance": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": 1.9620000000000005e-9
+        },
+        "position": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            1.9620000000000005e-9,
+            2,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 0.2
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            1.9620000000000003e-8,
+            -1.9620000000000004e-16,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "name": "control-ramp-steep",
+      "template": "ramp",
+      "validated": "validate_setup",
+      "oracle": "analytic-ramp-v1",
+      "status": "returned",
+      "samples": 101,
+      "endpoint": {
+        "step": 100,
+        "time_s": 0.1,
+        "distance_m": 0.04904999999999998,
+        "speed_m_s": 0.9809999999999991,
+        "position_m": [
+          4.905000000224466e-10,
+          1.95095,
+          0
+        ],
+        "velocity_m_s": [
+          9.810000000448926e-9,
+          -0.9809999999999991,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "distance": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": 0.04905000000000001
+        },
+        "position": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            4.905000000224468e-10,
+            1.95095,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 0.1
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            9.810000000448936e-9,
+            -0.9810000000000001,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "name": "free-fall-large-finite-gravity",
+      "template": "free_fall",
+      "validated": "validate_setup",
+      "oracle": "analytic-free-fall-v1",
+      "status": "rejected",
+      "error": "INVALID_RK4: state became non-finite",
+      "oracleEndpoint": {
+        "position": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            0,
+            -1.208728924759e-311,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 6.953355807835e-310
+        },
+        "vertical_velocity": {
+          "source": {
+            "evidence": "analytic-free-fall-v1:experiment/extension-free_fall",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": -0.03476677903917502
+        }
+      }
+    },
+    {
+      "name": "pendulum-amplitude-boundary",
+      "template": "pendulum",
+      "validated": "validate_setup",
+      "oracle": "analytic-pendulum-small-angle-v1",
+      "status": "returned",
+      "samples": 4001,
+      "endpoint": {
+        "step": 4000,
+        "time_s": 4,
+        "angle_rad": 0.09989503060547326,
+        "angular_velocity_rad_s": 0.014335247509024509,
+        "position_m": [
+          0.09972897111222821,
+          1.004985360750458,
+          0
+        ],
+        "velocity_m_s": [
+          0.014263781128744917,
+          0.0014296394847141468,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "angle": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "rad",
+          "value": 0.09992779803588686
+        },
+        "angular_velocity": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "rad/s",
+          "value": 0.011899962724615737
+        },
+        "position": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            0.09976157513163478,
+            1.0049886291467542,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 4
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            0.011840598223722429,
+            0.0011871590254154062,
+            0
+          ]
+        }
+      },
+      "worst": {
+        "relative_error": 0.006887339488113734,
+        "time_s": 3.531,
+        "observed_position_m": [
+          0.005691139062496376,
+          1.000016194663048,
+          0
+        ],
+        "expected_position_m": [
+          0.006379860466847602,
+          1.0000203515168802,
+          0
+        ]
+      }
+    },
+    {
+      "name": "pendulum-amplitude-boundary-half-step",
+      "template": "pendulum",
+      "validated": "validate_setup",
+      "oracle": "analytic-pendulum-small-angle-v1",
+      "status": "returned",
+      "samples": 8001,
+      "endpoint": {
+        "step": 8000,
+        "time_s": 4,
+        "angle_rad": 0.09989503060551862,
+        "angular_velocity_rad_s": 0.014335247506093801,
+        "position_m": [
+          0.09972897111227334,
+          1.0049853607504624,
+          0
+        ],
+        "velocity_m_s": [
+          0.014263781125828757,
+          0.0014296394844225172,
+          0
+        ]
+      },
+      "oracleEndpoint": {
+        "angle": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "rad",
+          "value": 0.09992779803588686
+        },
+        "angular_velocity": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "rad/s",
+          "value": 0.011899962724615737
+        },
+        "position": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            0.09976157513163478,
+            1.0049886291467542,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 4
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-pendulum-small-angle-v1:experiment/extension-pendulum",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            0.011840598223722429,
+            0.0011871590254154062,
+            0
+          ]
+        }
+      },
+      "worst": {
+        "relative_error": 0.006887339479846007,
+        "time_s": 3.531,
+        "observed_position_m": [
+          0.005691139063323135,
+          1.0000161946630526,
+          0
+        ],
+        "expected_position_m": [
+          0.006379860466847602,
+          1.0000203515168802,
+          0
+        ]
+      }
+    },
+    {
+      "name": "projectile-large-finite-gravity",
+      "template": "projectile",
+      "validated": "validate_setup",
+      "oracle": "analytic-projectile-v1",
+      "status": "rejected",
+      "error": "INVALID_RK4: state became non-finite",
+      "oracleEndpoint": {
+        "position": {
+          "source": {
+            "evidence": "analytic-projectile-v1:experiment/extension-projectile",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            6.953355807835e-310,
+            -1.208728924759e-311,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-projectile-v1:experiment/extension-projectile",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 6.953355807835e-310
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-projectile-v1:experiment/extension-projectile",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            1,
+            -0.03476677903917502,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "name": "ramp-large-finite-gravity",
+      "template": "ramp",
+      "validated": "validate_setup",
+      "oracle": "analytic-ramp-v1",
+      "status": "rejected",
+      "error": "INVALID_RK4: state became non-finite",
+      "oracleEndpoint": {
+        "distance": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": 1.191141592533e-311
+        },
+        "position": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            2.024549332723e-312,
+            -1.1738101607395e-311,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 6.953355807835e-310
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            0.005823229498606168,
+            -0.033762407481488274,
+            0
+          ]
+        }
+      }
+    },
+    {
+      "name": "ramp-positive-near-friction-boundary",
+      "template": "ramp",
+      "validated": "validate_setup",
+      "oracle": "analytic-ramp-v1",
+      "status": "rejected",
+      "error": "INVALID_EXTENDED_TEMPLATE: ramp acceleration must be positive; S08 does not support coasting, stalling, or static-friction stick/slip",
+      "oracleEndpoint": {
+        "distance": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": 3.597122599785508e-18
+        },
+        "position": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": [
+            2.7512311171504134e-18,
+            -2.31733000194425e-18,
+            0
+          ]
+        },
+        "time": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "s",
+          "value": 0.2
+        },
+        "velocity": {
+          "source": {
+            "evidence": "analytic-ramp-v1:experiment/extension-ramp",
+            "label": "simulated"
+          },
+          "uncertainty": null,
+          "unit": "m/s",
+          "value": [
+            2.7512311171504136e-17,
+            -2.3173300019442503e-17,
+            0
+          ]
+        }
+      }
+    }
+  ],
+  "scalarRK4": {
+    "input": {
+      "state": [
+        0
+      ],
+      "dt": 8.691694759794e-311,
+      "derivative": 5e+307
+    },
+    "independent_expected": 0.004345847379896878,
+    "error": "INVALID_RK4: state became non-finite"
+  },
+  "pendulumPeriod": {
+    "derivation": "nonlinear energy integral; composite Simpson, 8192 panels",
+    "linearPeriod_s": 2.006066680710647,
+    "nonlinearPeriod_s": 2.00732119117531
+  }
+}

@@ -1,0 +1,31 @@
+Audit work stopped: 2026-10-28T21:44:34.1034088+00:00; subsequent actions are administrative receipt/commit checks.
+TIMING PASS; controller must separately verify evidence and any exception
+Owned staged paths PASS
+Run-System/Runs/R14-simulator-audit/PLAN.md
+Run-System/Runs/R14-simulator-audit/REPORT.md
+Run-System/Runs/R14-simulator-audit/TIMEBOX.json
+evidence/S10/numerical-invariants/fixture-verification.json
+evidence/S10/numerical-invariants/frequency-boundary.json
+evidence/S10/numerical-invariants/generate-cases.py
+evidence/S10/numerical-invariants/invariants-red.tap
+evidence/S10/numerical-invariants/observe.mjs
+evidence/S10/numerical-invariants/observed.json
+evidence/S10/numerical-invariants/precision-reference.json
+evidence/S10/numerical-invariants/source-lines.txt
+evidence/S10/numerical-invariants/validated-cases.json
+tests/simulator/r14-invariants.test.mjs
+Product Build/contracts diff EMPTY
+ Run-System/Runs/R14-simulator-audit/PLAN.md        |   12 +
+ Run-System/Runs/R14-simulator-audit/REPORT.md      |   85 +
+ Run-System/Runs/R14-simulator-audit/TIMEBOX.json   |   10 +
+ .../numerical-invariants/fixture-verification.json |    4 +
+ .../numerical-invariants/frequency-boundary.json   |   21 +
+ .../S10/numerical-invariants/generate-cases.py     |  139 +
+ .../S10/numerical-invariants/invariants-red.tap    |  207 +
+ evidence/S10/numerical-invariants/observe.mjs      |   48 +
+ evidence/S10/numerical-invariants/observed.json    | 1080 +++
+ .../numerical-invariants/precision-reference.json  |    7 +
+ evidence/S10/numerical-invariants/source-lines.txt |   15 +
+ .../S10/numerical-invariants/validated-cases.json  | 7273 ++++++++++++++++++++
+ tests/simulator/r14-invariants.test.mjs            |  115 +
+ 13 files changed, 9016 insertions(+)

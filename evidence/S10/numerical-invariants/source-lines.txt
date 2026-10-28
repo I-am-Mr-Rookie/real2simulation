@@ -1,0 +1,15 @@
+Build/simulator/extended-templates.mjs:70:  const downhill = spec.gravity * Math.sin(spec.inclineAngle);
+Build/simulator/extended-templates.mjs:71:  const normal = spec.gravity * Math.cos(spec.inclineAngle);
+Build/simulator/extended-templates.mjs:72:  const accelerationValue = downhill - spec.frictionCoefficient * normal;
+Build/simulator/extended-templates.mjs:73:  if (!(accelerationValue > 0)) fail('ramp acceleration must be positive; S08 does not support coasting, stalling, or static-friction stick/slip');
+Build/simulator/extended-templates.mjs:75:    return [state[1], accelerationValue];
+Build/simulator/extended-templates.mjs:84:  const acceleration = (state) => [state[1], -(spec.gravity / spec.length) * Math.sin(state[0])];
+Build/simulator/extended-templates.mjs:87:  const amplitude = Math.hypot(spec.initialAngle, spec.initialAngularVelocity / omega);
+Build/simulator/extended-templates.mjs:88:  const analyticComparison = amplitude <= 0.1 ? { model: 'small-angle-linearized', valid_for_amplitude_rad: 0.1, inputs: { length_m: spec.length, gravity_m_s2: spec.gravity, initial_angle_rad: spec.initialAngle, initial_angular_velocity_rad_s: spec.initialAngularVelocity, angular_frequency_rad_s: omega } } : { model: 'nonlinear-only', inputs: { length_m: spec.length, gravity_m_s2: spec.gravity, initial_angle_rad: spec.initialAngle, initial_angular_velocity_rad_s: spec.initialAngularVelocity } };
+Build/templates/ramp.py:11:    a = spec['environment']['gravity']['value'] * (
+Build/simulator/rk4.mjs:14:  const next = state.map((x, i) => x + dt * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]) / 6);
+contracts/experiment/validate_experiment.py:203:    require(math.isfinite(steps) and steps <= 100_000, '$.simulation', 'maximum 100000 steps exceeded')
+contracts/experiment/validate_experiment.py:241:            require(dt * math.sqrt(g / length) <= 0.05, '$.simulation.time_step',
+Build/templates/pendulum.py:16:    if amplitude > .1:
+Build/templates/pendulum.py:80:        phase = w*t
+Build/templates/pendulum.py:84:        theta = theta0*c + (omega0/w)*s

@@ -1,0 +1,207 @@
+TAP version 13
+# Subtest: R14 valid-domain control: control-free-fall-fast-downward
+ok 1 - R14 valid-domain control: control-free-fall-fast-downward
+  ---
+  duration_ms: 9.9779
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-free-fall-min-normal-gravity
+ok 2 - R14 valid-domain control: control-free-fall-min-normal-gravity
+  ---
+  duration_ms: 8.6989
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-free-fall-through-apex
+ok 3 - R14 valid-domain control: control-free-fall-through-apex
+  ---
+  duration_ms: 20.6379
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-pendulum-frequency-step-boundary
+ok 4 - R14 valid-domain control: control-pendulum-frequency-step-boundary
+  ---
+  duration_ms: 4.1321
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-pendulum-negative-phase
+ok 5 - R14 valid-domain control: control-pendulum-negative-phase
+  ---
+  duration_ms: 59.3078
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-projectile-fast-horizontal
+ok 6 - R14 valid-domain control: control-projectile-fast-horizontal
+  ---
+  duration_ms: 16.5638
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-projectile-low-gravity
+ok 7 - R14 valid-domain control: control-projectile-low-gravity
+  ---
+  duration_ms: 35.4107
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-ramp-friction-above-one
+ok 8 - R14 valid-domain control: control-ramp-friction-above-one
+  ---
+  duration_ms: 12.5448
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-ramp-shallow
+ok 9 - R14 valid-domain control: control-ramp-shallow
+  ---
+  duration_ms: 8.4523
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-ramp-steep
+ok 10 - R14 valid-domain control: control-ramp-steep
+  ---
+  duration_ms: 7.7571
+  type: 'test'
+  ...
+# Subtest: R14 regression: accepted amplitude 0.1 pendulum stays within unchanged 0.005 analytic tolerance over 4 s
+not ok 11 - R14 regression: accepted amplitude 0.1 pendulum stays within unchanged 0.005 analytic tolerance over 4 s
+  ---
+  duration_ms: 106.3577
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\simulator\\r14-invariants.test.mjs:75:1'
+  failureType: 'testCodeFailure'
+  error: '{"relativeError":0.006887339488113734,"time_s":3.531}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:81:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: R14 diagnosis: halving pendulum step converges without repairing the model discrepancy
+ok 12 - R14 diagnosis: halving pendulum step converges without repairing the model discrepancy
+  ---
+  duration_ms: 263.0486
+  type: 'test'
+  ...
+# Subtest: R14 regression: actual S08 positive near-friction ramp must not be rejected as stalled
+not ok 13 - R14 regression: actual S08 positive near-friction ramp must not be rejected as stalled
+  ---
+  duration_ms: 1.0453
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\simulator\\r14-invariants.test.mjs:92:1'
+  failureType: 'testCodeFailure'
+  error: 'INVALID_EXTENDED_TEMPLATE: ramp acceleration must be positive; S08 does not support coasting, stalling, or static-friction stick/slip'
+  code: 'ERR_TEST_FAILURE'
+  name: 'TypeError'
+  stack: |-
+    fail (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/extended-templates.mjs:4:35)
+    rampTrajectory (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/extended-templates.mjs:73:33)
+    extendedTrajectoryFromValidatedArtifact (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/extended-templates.mjs:105:37)
+    run (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:10:5)
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:95:15)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+  ...
+# Subtest: R14 regression: finite RK4 weighted increment must not overflow before multiplication by tiny dt
+not ok 14 - R14 regression: finite RK4 weighted increment must not overflow before multiplication by tiny dt
+  ---
+  duration_ms: 0.7337
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\simulator\\r14-invariants.test.mjs:99:1'
+  failureType: 'testCodeFailure'
+  error: 'INVALID_RK4: state became non-finite'
+  code: 'ERR_TEST_FAILURE'
+  name: 'RangeError'
+  stack: |-
+    bad (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/rk4.mjs:2:28)
+    rk4Step (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/rk4.mjs:15:27)
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:103:22)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: R14 regression: validated finite analytic trajectory remains executable: free-fall-large-finite-gravity
+not ok 15 - R14 regression: validated finite analytic trajectory remains executable: free-fall-large-finite-gravity
+  ---
+  duration_ms: 1.6367
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\simulator\\r14-invariants.test.mjs:108:3'
+  failureType: 'testCodeFailure'
+  error: 'INVALID_RK4: state became non-finite'
+  code: 'ERR_TEST_FAILURE'
+  name: 'RangeError'
+  stack: |-
+    bad (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/rk4.mjs:2:28)
+    rk4Step (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/rk4.mjs:15:27)
+    run (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/trajectories.mjs:41:13)
+    freeFallTrajectory (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/trajectories.mjs:96:10)
+    trajectoryFromValidatedArtifact (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/trajectories.mjs:85:66)
+    run (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:11:5)
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:111:17)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+  ...
+# Subtest: R14 regression: validated finite analytic trajectory remains executable: projectile-large-finite-gravity
+not ok 16 - R14 regression: validated finite analytic trajectory remains executable: projectile-large-finite-gravity
+  ---
+  duration_ms: 1.1196
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\simulator\\r14-invariants.test.mjs:108:3'
+  failureType: 'testCodeFailure'
+  error: 'INVALID_RK4: state became non-finite'
+  code: 'ERR_TEST_FAILURE'
+  name: 'RangeError'
+  stack: |-
+    bad (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/rk4.mjs:2:28)
+    rk4Step (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/rk4.mjs:15:27)
+    run (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/trajectories.mjs:41:13)
+    projectileTrajectory (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/trajectories.mjs:100:10)
+    trajectoryFromValidatedArtifact (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/trajectories.mjs:85:66)
+    run (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:11:5)
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:111:17)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+  ...
+# Subtest: R14 regression: validated finite analytic trajectory remains executable: ramp-large-finite-gravity
+not ok 17 - R14 regression: validated finite analytic trajectory remains executable: ramp-large-finite-gravity
+  ---
+  duration_ms: 1.3654
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\simulator\\r14-invariants.test.mjs:108:3'
+  failureType: 'testCodeFailure'
+  error: 'INVALID_RK4: state became non-finite'
+  code: 'ERR_TEST_FAILURE'
+  name: 'RangeError'
+  stack: |-
+    bad (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/rk4.mjs:2:28)
+    rk4Step (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/rk4.mjs:15:27)
+    samplesFor (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/extended-templates.mjs:58:13)
+    rampTrajectory (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/extended-templates.mjs:77:15)
+    extendedTrajectoryFromValidatedArtifact (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/extended-templates.mjs:105:37)
+    run (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:10:5)
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:111:17)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 11
+# fail 6
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 772.8739
