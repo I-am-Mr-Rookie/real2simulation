@@ -1,6 +1,24 @@
 # Orchestrator recovery checkpoint
 
-## CURRENT — credential worker stopped at original deadline; review2 only active
+## CURRENT — complete review accepted; concrete local recovery9 active
+
+R-S05guard2 accepted ac1ad81 DONE for complete review only, timing PASS.
+Controller independently reproduced transient-stop incident after one info call
+and target3.11 deadline suite3 errors/19 tests;6 worker-timebox tests PASS.
+Review evidence copied into canonical custody; doc-location discrepancy recorded
+in its ACCEPTANCE.md. No paid readiness or parent gate completion.
+
+Only active chat01a1831c-0155-7a73-b280-9c79423a8810, S05b-recovery9,
+managed Sol/medium, same project verified. Prepared s05b-recovery4/run/S05b-recovery9.
+Issued15:23:32Z; full30m deadline15:53:32Z=21:53:32Dhaka; cutoff15:48:32Z,
+all in actual saved handout. Owns local guard/tests/minimal result ignore and own
+evidence/report only. No live CLI/RPC/Modal import/jobs. F1/F2 concrete fixes,
+F3-F6 dispositions required. No incomplete early terminal accepted.
+Credential worker stopped, Q15 exact human action-time question pending; no
+automatic restart. Protected r-m-review prefix/s02g-forensics scratch unchanged.
+55/203/gates/S12/2.85 reservations/$30 unchanged. No dispatcher/schedule.
+
+## Earlier — credential worker stopped at original deadline; review2 active
 
 S07b-auth-provision terminal PARTIAL: stop15:12:32Z, report15:13:21Z; last active
 preflight14:53:10, explicit controller WAITING through original deadline, not fake
@@ -16,7 +34,7 @@ Only active chat now review2 01a1830e-3131-7203-aa2d-886c7acec4d2, full deadline
 checks; results not yet accepted. No paid/live runtime claims from local mocks.
 55/203/gates/S12/2.85 reserves/$30 unchanged; no dispatcher/scheduled task.
 
-## CURRENT — recovery8 child DONE accepted; complete independent review active
+## Earlier — recovery8 child DONE accepted; complete independent review active
 
 Source recovery8 separate chat completed ALL local child criteria, workstop15:04:11Z/
 report15:04:25Z, original deadline15:19:41Z. Early verified DONE permitted; parent

@@ -1,0 +1,13 @@
+{
+  "id": "S05b-recovery9",
+  "threadId": "01a1831c-0155-7a73-b280-9c79423a8810",
+  "hostId": "local",
+  "issued_at": "2026-10-28T15:23:32+00:00",
+  "deadline_at": "2026-10-28T15:53:32+00:00",
+  "implementation_cutoff_at": "2026-10-28T15:48:32+00:00",
+  "deadline_dhaka": "2026-10-28T21:53:32+06:00",
+  "model": "gpt-6.1-sol",
+  "effort": "medium",
+  "projectId": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
+  "prompt": "Complete run S05b-recovery9. Fresh SEPARATE desktop chat in existing Meta AI Hackathon project 91e441f8-e40c-4ec4-bea2-de7fa1582d97, existing managed gpt-6.1-sol / medium, CODEX-1. Read C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/Run-System/Runs/S05b-recovery9/CONTRACT.md FIRST and current canonical AGENTS/OWNER_INSTRUCTIONS/WORKER_TIMEBOX_POLICY. APPLY installed Ponytail full/default.\nISSUED 2026-10-28T15:23:32+00:00. HARD DEADLINE 2026-10-28T15:53:32+00:00 = 2026-10-28T21:53:32+06:00 Asia/Dhaka, full30 minutes from individual issue. Minute25 implementation cutoff 2026-10-28T15:48:32+00:00. Deadline explicitly IN THIS HANDOUT.\nUse ONLY prepared C:/Users/HP/.codex/worktrees/s05b-recovery4/2026-10-26 - Meta Global AI Developer Hackathon branch run/S05b-recovery9 for owned files, INCLUDING run PLAN/REPORT/TIMEBOX. No canonical writes/commits/rebases/merges/control edits/fanout.\nSmallest complete fixes for direct review F1 transient stop verification and F2 target3.11 timing-test errors, with focused local regressions and BOTH runtime full spike suites under parent caps. No Modal imports/realCLI/RPC/network/install/paid jobs. F5 UTF8/F6 narrow result ignore within Owns; explicitly disposition F3/F4 as documented limits or NONTERMINAL scope blocker, no silent expansion or parent paid-ready claim. ALL four acceptance criteria in contract.\nUse FULL available window for unfinished acceptance criteria. NO terminal PARTIAL/BLOCKED before original deadline without controller-approved safety/owner stop. Send NONTERMINAL BLOCKER and keep useful authorized checks/recovery or controller-approved waiting, no fake work, polling/spend padding or scope bypass. Fully verified ALL-criteria child DONE may finish early; parent remains PARTIAL. Minute25 start no new implementation, verify/repair current work/finalize; stop actions by deadline and report actual times honestly.\nKoushik authorizes necessary blocker coordination and ONE final status/absolute report pointer to controller 01a182c4-9378-7da0-9fbc-99a5a379380c. Otherwise silent except mandatory runtime/skill/safety. Save/check TIMEBOX.json; quota OpenCodex-managed not polled; $2.85/$30 unchanged."
+}
