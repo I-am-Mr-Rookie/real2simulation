@@ -19,6 +19,8 @@ physical calibration, Gate M/S12 or deployment acceptance.
 - Assigned worktree: `C:/Users/HP/.codex/worktrees/swarm14-instruments-audit/2026-10-26 - Meta Global AI Developer Hackathon`.
   Initial status clean; base `74c886f9b2cc1322dde152f5be5813f813904bc6`;
   branch `run/R14-instruments-audit`. Parent main never changed.
+- Evidence/test commit: `a78eb0227e854bd4091d178a1836ba0a55af20f5`;
+  a subsequent receipt-only correction records raw transcript whitespace accurately.
 - Parent project/canonical root and exact Owns/original timebox are in PLAN.md.
   Same inherited project ID `91e441f8-e40c-4ec4-bea2-de7fa1582d97`; parent visible-UI
   corroboration was supplied, but child UI association was not independently
@@ -64,7 +66,7 @@ not duplicated here.
 | `python -m unittest discover -s tests/lab -p test_pipeline.py -v` | 4/4 pass, real S08->Node->instruments->fitter, including CLI/two ballistic templates. `pipeline-unittest.log`. |
 | `python -m unittest discover -s tests/lab -p test_session_bridge.py -v` | 10/10 pass, actual local bridge observation/fitter path. `session-bridge-unittest.log`. |
 | `python evidence/S11/instrument-invariants/verify_candidate.py '<controller worktree>'` | **22/22 pass**, all312 frozen+sweep observations match; source SHA256 unchanged before/after. `candidate-unittest.log`, `candidate-verification.json`. |
-| AST parse of the3 new Python files; `git diff --check`; product diff vs baseline | PASS; product source unchanged in audit worktree. |
+| AST parse of the3 new Python files; authored-file whitespace check; product diff vs baseline | PASS; product source unchanged. Full diff check flags6 trailing spaces emitted by unittest in the two intentionally failing raw logs; preserved verbatim, not an authored-code failure. |
 | `python Run-System/worker_timebox.py check Run-System/Runs/R14-instruments-audit/TIMEBOX.json` | TIMING PASS; full original1800-second window preserved, verified DONE early. |
 
 Candidate check loaded the unchanged audit test file externally against
