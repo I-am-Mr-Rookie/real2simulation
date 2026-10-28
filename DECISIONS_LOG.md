@@ -580,3 +580,13 @@ No provider/credential/global-policy, Claude/S02c, spend/rights/deployment/publi
 change. Additional owner request: coding/review workers must read/APPLY Ponytail
 full/default with concrete minimal-change/reuse choices, fresh checks, skipped
 work/risks in REPORT; controller accepts evidence, not skill-name compliance.
+## 2026-10-28 — Review response prioritized; supported-browser hold
+
+Controller routine/reversible decision: accept completed R-M read-only review
+with explicit findings, not physical gate acceptance; source-lane S07f adjudicates
+verified boundaries and honest fallback before other-vendor follow-up. Do not
+blindly add suggested statistical thresholds, normalize provenance IDs or move
+GateRS held-out criteria into GateM. No calibration/coverage/fitter success inferred.
+S05b recovery4 fresh supported policy failure held until genuine changed surface
+or trusted billing receipt; Q10 asks technical recovery, not renewed GPU consent.
+Existing$30 authority/$1.90 retained reserves, rights/spending/safety unchanged.
