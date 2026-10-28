@@ -1,5 +1,26 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — recovery8 child DONE accepted; complete independent review active
+
+Source recovery8 separate chat completed ALL local child criteria, workstop15:04:11Z/
+report15:04:25Z, original deadline15:19:41Z. Early verified DONE permitted; parent
+remains PARTIAL. Controller timing check PASS, fresh spike42/scene11 PASS, source
+diff identical before/after rebase;2e0ffd5 -> e46f23c/verified FF16 owned files.
+Independent process watchdog/reserved exact-ID stop+info+containers paths are
+implemented/tested LOCALLY ONLY; real remote stop/runtime/headroom NOT_VERIFIED.
+
+R-S05guard2 fresh separate CLAUDE Opus5.5/medium chat01a1830e-3131-7203-aa2d-
+886c7acec4d2, list_threads verifies same project/active. Prepared r-m-review/
+run/R-S05guard2 ate46f23c, protected271 JPEGs untouched. Actual saved handout
+issued15:08:26Z, full30m deadline15:38:26Z=21:38:26Dhaka, cutoff15:33:26Z.
+ALL4 direct-source/local review criteria; absent SDK importability not accepted
+as missing installed source-text access. No early incomplete terminal.
+
+Only other active worker is Q14 credential setup waiting for mandatory actual
+Create confirmation, deadline15:12:32Z unchanged, no token creation/reveal claimed.
+Clean3 complete accepted; preserve scratch custody in s02g-forensics and prefix
+custody in r-m-review, NEVER archive either.55/203/gates/S12/2.85 reserves unchanged.
+
 ## CURRENT — CLEAN3 fully DONE accepted under strict rule; two workers remain
 
 CLEAN3 separate chat01a182fd-aaed-7222-b51b-fbe5a23bdbbb terminal DONE at14:58:42Z,
