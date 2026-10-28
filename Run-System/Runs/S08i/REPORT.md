@@ -45,3 +45,5 @@ all physical gates and S12 unchanged. No owner question. Silent apart from
 mandatory initial/skill/changed-finding updates; all evidence/report on disk.
 Installed-dependency HTTP/render tests and actual simulator/runtime remain
 unverified. Rebased/main integration recorded below before canonical acceptance.
+
+Integrated verified FF758027c; rebased/main spec93/93 PASS. Node31 pass/1 import failure (missing installed three). Final verification stop/report 2026-10-28T16:41:51.668666+00:00. Timing check PASS.

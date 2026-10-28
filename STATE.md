@@ -20,6 +20,14 @@ Broader spec91/scene11/spike60/shell7/staging14/Run-System31 PASS; health15 pass
 no live SAM/checkpoint/job/spend/physical evidence. Next bounded local CODEX-1
 work addresses already-reproduced analytic numeric validation defects, not gates.
 
+S08i DONE, verified FF758027c: signed giant sample times now readable ValueError;
+shared free-fall/projectile stop-plane numeric guard preserves one-ULP controls.
+Spec93 normal/optimized/rebased/main PASS, scene11/measurement65 PASS. Viewer
+node sweep31 pass/1 import failure missing installed three in isolated checkout;
+not hidden or counted as browser proof. Progress58/205, gates/budget unchanged.
+Next S05b-recovery11 fixes optimization-removable probe trust-boundary asserts;
+newly source-confirmed local safeguard, no live/paid operation or review bypass.
+
 ## Latest direct owner instruction â€” solo work completed before 22:30 BDT Oct28
 
 Koushik: "You are the lonely worker. Complete as many runs as you can until 10:30 pm (BDT)".
