@@ -98,3 +98,23 @@ last_run_at null and zero automation_runs; nominal20:07 due has been deferred
 to20:44:20.572. No executed delivery claim. Chat is continuously active; possible
 busy deferral was stated as inference, not diagnosed scheduler failure.
 Prior goal turn supplied fresh verification evidence (progress), not just status.
+
+## Round2 COMPLETED —20:49UTC
+
+S10n accepted and fast-forwarded to main b8f6269; queue82/210, two completed
+rounds. Parent actual375px computation all four engines, Mystery separation,
+Node84/lab17, native targeted gate noP0-P2, independent full production build,
+32asset checks/18HTTP probes; rebased product source unchanged and targeted19/19.
+Full precise scope/evidence/limits: ROUND2-INTEGRATION.md. Production API403
+is intentional, not a deployed runnable lab. Physical/spend/publish holds intact.
+
+R12-fitter-invariants Codex high is the sole active worker, deadline21:16:38.309Z,
+minute25 cutoff21:11:38.309Z. Numerical invariants audit is not another completed
+queue item unless a concrete recovery is needed and accepted. Three generated
+ready items S02f/S05b/S07b remain outside this session's locked real-scene/GPU
+scope; no silent unlock or speculative new product features.
+
+Bundle/review/transport workers closed; bundle archive repeatedly refused as
+active app attachment even after parent attachment move. Preserve snapshots,
+no force deletion; transport/review archive requests queued. Candidate2 dev3101
+still serves current accepted source, canonical dev3100 also remains owned.

@@ -1,17 +1,16 @@
 {
-  "updated_utc": "2026-10-28 20:46:00 UTC",
+  "updated_utc": "2026-10-28 20:49:49 UTC",
   "active_workers": [
-    {"id":"R11-bundle-check","agent_id":"01a1843d-e4d0-7650-b1b1-4895cc653c31","worktree":"C:/Users/HP/.codex/worktrees/swarm11-bundle/2026-10-26 - Meta Global AI Developer Hackathon","deadline":"2026-10-28T21:10:11.204Z","contract":"dispatch-R11-bundle-check.json"},
     {"id":"R12-fitter-invariants","agent_id":"01a18443-ccf4-7a62-92e5-639979825e5c","worktree":"C:/Users/HP/.codex/worktrees/swarm11-fitter-invariants/2026-10-26 - Meta Global AI Developer Hackathon","contract":"dispatch-R12-fitter-invariants.json"}
   ],
-  "candidate2_current": {"code":"694df9a","evidence_head":"dfbd662","state":"Parent Node84/lab17 PASS, actual IAB375 all four NORMAL engine traces and no Mystery compute mount before/after reveal; native targeted review noP0-P2. Await independent full bundle check; rebase on main779d3e6 then FF only after final evidence."},
+  "candidate2_current": {"code":"694df9a","main_ff":"b8f6269","state":"Round2 COMPLETE. Parent Node84/lab17 PASS, IAB375 all four NORMAL traces and no Mystery compute mount; native gate noP0-P2; production build exit0,32asset checks,18HTTP probes; post-rebase19/19. Production API remains disabled. Next R12 covariance audit; do not add scope merely to fill time."},
   "heartbeat_delivery": {"checked_utc":"2026-10-28T20:43:00Z","active":true,"last_run_at":null,"execution_receipts":0,"note":"Correct configuration; actual delivery unverified. Do not claim executed."},
   "objective": "Maximum-speed authorized simulation-only swarm through2026-10-29T04:00:00Z; no early closure",
   "completed_rounds": 2,
   "queue_done": 82,
   "queue_total": 210,
   "canonical_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
-  "main_verified_source": "3706b1c",
+  "main_verified_source": "b8f6269",
   "completed_worker_transport": {
     "id": "R11-browser-transport",
     "wt": "C:/Users/HP/.codex/worktrees/swarm10-browser-transport/2026-10-26 - Meta Global AI Developer Hackathon",
