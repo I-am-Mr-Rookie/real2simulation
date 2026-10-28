@@ -10,32 +10,29 @@ gate signoff and not a parent product/gate result.
 - S11 instruments: `ef570b63ca12c6bd34bb54ca66aadbe7ae179eef`
 - S11 fitter: `bc6a7ac197a71ea30842e571b4c3124048881eef`
 
-## Findings
+## Findings and re-review status
 
 ### P1 — public fitter leaks `OverflowError` for finite huge inputs
 
-File: `Build/fitter/core.py:59` and `:125` in fitter head `bc6a7ac`.
+File: `Build/fitter/core.py:59` and `:125` in the previously reviewed fitter
+head `bc6a7ac`; the peer currently has uncommitted corrective edits.
 
-Repro: `python evidence/reviews/R-SIM-swarm/repro_fitter_findings.py <fitter-root>`.
-`fit_least_squares((1e308, 1e308-1e292, 1e308-2e292), (1,2,3), 2)` raises
-raw `OverflowError: intermediate overflow in fsum`, not the documented
-`FitError` boundary. A second family with finite positions around `1e154`
-also leaks from RSS/QR arithmetic. The input guards reject non-finite values,
-but do not make finite arithmetic overflow fail closed. Catch relevant
-`OverflowError`/non-finite intermediate paths and raise `FitError` with a
-stable reason; add a regression test.
+The active corrective edits now make the primary repro raise `FitError`
+(`time_arithmetic_overflow`) and add a regression test. A second family with
+finite positions around `1e154` also fails closed as `FitError`. **P1 is fixed
+in the active working tree, but no final commit SHA exists yet.**
 
 ### P2 — AIC still labels non-zero residual as exact
 
 File: `Build/fitter/core.py:142-146` in fitter head `bc6a7ac`.
 
-The repro creates a quadratic with alternating `1e-15` perturbation. It yields
-`rss=1.232595164407831e-29` but `_aic` returns `-inf`, because any RSS below
-`64*n*(degree+1)*ulp(y_scale)^2` is treated as exact. This is an arbitrary
-absolute machine-epsilon cutoff and makes honest AIC/near-perfect-fit status
-depend on output magnitude and rounding. Reserve `-inf` for `rss == 0.0`
-(or expose an explicit, documented numerical-status field); add a regression
-that requires finite AIC for non-zero RSS.
+The active edit removes the arbitrary epsilon cutoff, so the `1e-15` repro now
+has finite AIC. However, the existing exact-fit tests fail: ordinary exact
+quadratic data has a small floating residual (`rss > 0`) and now returns finite
+AIC instead of the expected `-inf`. **P2 is not accepted:** preserve honest
+nonzero-RSS behavior while revising exact-fit handling/tests so the full suite
+passes (prefer a numerically justified exactness status, not the removed
+absolute cutoff). No final commit SHA exists yet.
 
 ## Clean areas and fresh checks
 
@@ -45,8 +42,11 @@ that requires finite AIC for non-zero RSS.
 - Instruments `python -m unittest discover -s tests/instruments`: **9/9 pass**.
   Reviewed separate total error vs supplied bias/uncertainty, seeded replay,
   boolean/non-finite/overflow guards, and simulated provenance.
-- Fitter `python -m unittest discover -s tests/fitter`: **10/10 pass**, but the
-  two independent repros above are outside the existing suite.
+- Fitter with compatibility `PYTHONPATH=<fitter>;<instruments>`: **11 tests,
+  9 pass, 2 fail** in the active uncommitted correction: both exact-fit AIC
+  assertions fail after removing the cutoff. The quantity-contract test passes
+  with the instruments root present. The independent repro shows P1 now
+  `FitError` and P2 finite AIC for nonzero RSS.
 - Compatibility setup: for instrument/fitter checks, `PYTHONPATH` was set to
   the corresponding peer roots (fitter first, instruments second); no deps or
   external APIs were added.
