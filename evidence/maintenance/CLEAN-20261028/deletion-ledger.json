@@ -1,0 +1,268 @@
+{
+  "target": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\web\\.next",
+  "reason": "Ignored Next.js generated build/cache; tracked package.json build script regenerates it",
+  "regenerate": "cd Build/web; npm run build (not run)",
+  "utc_validated": "2026-10-28T14:11:01.9080908Z",
+  "files_before": 134,
+  "directories_before": 63,
+  "bytes_before": 151880550.0,
+  "contained": true,
+  "reparse_free": true,
+  "protected_parent_absent": true,
+  "tracked_descendants": 0,
+  "ignored": true,
+  "ignore_rule": [
+    ".gitignore:26:.next/\tBuild/web/.next"
+  ],
+  "process_check": [
+    {
+      "pid": 13472,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 4416,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 15740,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 32944,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 27488,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 29400,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 11804,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 24872,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 23872,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 33192,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 17896,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 27684,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 20448,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 31664,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 29488,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 17816,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 29080,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 7044,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 28016,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 15476,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 34832,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 35792,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 7096,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 19428,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 14216,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 25376,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 27620,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    },
+    {
+      "pid": 35260,
+      "name": "node.exe",
+      "command_available": true,
+      "known_tool_host": true,
+      "target_reference": false,
+      "build_server": false
+    }
+  ],
+  "outside_before": {
+    "files": 22748,
+    "logical_bytes": 3060089740,
+    "metadata_sha256": "4AE0F6569927B23B031BBE818F3DDB690B34E22327B4EC895018DF77733D2935"
+  },
+  "head_before": "14c8ed68e07702faacfeb6aac2442dc2db007f68",
+  "status_before": [
+    " M RUNS.md",
+    "?? Updated_Instructions_10_28_2026_anything_else_that_this_PDF_doesn't.pdf"
+  ],
+  "outcome": "DELETED",
+  "utc_deleted": "2026-10-28T14:11:02.0903577Z",
+  "target_absent": true,
+  "outside_after": {
+    "files": 22748,
+    "logical_bytes": 3060089740,
+    "metadata_sha256": "4AE0F6569927B23B031BBE818F3DDB690B34E22327B4EC895018DF77733D2935"
+  },
+  "status_after": [
+    " M RUNS.md",
+    "?? Updated_Instructions_10_28_2026_anything_else_that_this_PDF_doesn't.pdf"
+  ],
+  "head_after": "14c8ed68e07702faacfeb6aac2442dc2db007f68",
+  "outside_metadata_unchanged": true,
+  "git_status_unchanged": true
+}

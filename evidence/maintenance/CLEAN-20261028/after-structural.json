@@ -1,0 +1,172 @@
+[
+  {
+    "path": ".git\\objects",
+    "bytes": 687389653,
+    "files": 294
+  },
+  {
+    "path": ".worktrees\\S02c1\\test-data",
+    "bytes": 624701445,
+    "files": 22
+  },
+  {
+    "path": ".worktrees\\S02c\\test-data",
+    "bytes": 624701445,
+    "files": 22
+  },
+  {
+    "path": ".worktrees\\S02c1\\evidence",
+    "bytes": 14099298,
+    "files": 168
+  },
+  {
+    "path": ".worktrees\\S02c\\evidence",
+    "bytes": 12951228,
+    "files": 160
+  },
+  {
+    "path": ".worktrees\\verification",
+    "bytes": 3137087,
+    "files": 4326
+  },
+  {
+    "path": ".git\\worktrees",
+    "bytes": 1875986,
+    "files": 300
+  },
+  {
+    "path": ".worktrees\\S02c",
+    "bytes": 1680994,
+    "files": 210
+  },
+  {
+    "path": ".worktrees\\S02c1",
+    "bytes": 1145766,
+    "files": 202
+  },
+  {
+    "path": ".worktrees\\DRY-C1-B-f96592eb",
+    "bytes": 287828,
+    "files": 27
+  },
+  {
+    "path": ".worktrees\\DRY-C2-A-d5f40ffb",
+    "bytes": 287804,
+    "files": 27
+  },
+  {
+    "path": ".worktrees\\DRY-C1-A-962c953f",
+    "bytes": 287804,
+    "files": 27
+  },
+  {
+    "path": ".worktrees\\DRY-CL-A-566b5727",
+    "bytes": 287799,
+    "files": 27
+  },
+  {
+    "path": ".git\\logs",
+    "bytes": 183015,
+    "files": 86
+  },
+  {
+    "path": ".worktrees\\DRY-C1-A-baf6e432",
+    "bytes": 145733,
+    "files": 19
+  },
+  {
+    "path": ".worktrees\\DRY-C2-A-98527021",
+    "bytes": 145221,
+    "files": 19
+  },
+  {
+    "path": ".worktrees\\DRY-C1-B-133aef85",
+    "bytes": 145221,
+    "files": 19
+  },
+  {
+    "path": ".worktrees\\DRY-CL-A-4d6b9042",
+    "bytes": 145221,
+    "files": 19
+  },
+  {
+    "path": ".worktrees\\DRY-C1-A-3d78eb8b",
+    "bytes": 145221,
+    "files": 19
+  },
+  {
+    "path": ".worktrees\\DRY-C1-A-8f6dd347",
+    "bytes": 145183,
+    "files": 18
+  },
+  {
+    "path": ".git\\index",
+    "bytes": 114275,
+    "files": 1
+  },
+  {
+    "path": ".git\\snapshot-index-7b9953a70c434b7999a4f73c9416ef08",
+    "bytes": 99277,
+    "files": 1
+  },
+  {
+    "path": ".worktrees\\migration",
+    "bytes": 78883,
+    "files": 4
+  },
+  {
+    "path": ".worktrees\\tests",
+    "bytes": 69272,
+    "files": 210
+  },
+  {
+    "path": ".git\\hooks",
+    "bytes": 26788,
+    "files": 14
+  },
+  {
+    "path": ".git\\info",
+    "bytes": 13431,
+    "files": 2
+  },
+  {
+    "path": ".git\\packed-refs",
+    "bytes": 12716,
+    "files": 1
+  },
+  {
+    "path": ".git\\refs",
+    "bytes": 697,
+    "files": 17
+  },
+  {
+    "path": ".git\\config",
+    "bytes": 348,
+    "files": 1
+  },
+  {
+    "path": ".git\\FETCH_HEAD",
+    "bytes": 109,
+    "files": 1
+  },
+  {
+    "path": ".git\\description",
+    "bytes": 73,
+    "files": 1
+  },
+  {
+    "path": ".git\\COMMIT_EDITMSG",
+    "bytes": 67,
+    "files": 1
+  },
+  {
+    "path": ".git\\ORIG_HEAD",
+    "bytes": 41,
+    "files": 1
+  },
+  {
+    "path": ".git\\HEAD",
+    "bytes": 21,
+    "files": 1
+  }
+]

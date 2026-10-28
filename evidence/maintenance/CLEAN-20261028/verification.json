@@ -1,0 +1,18 @@
+{
+  "utc": "2026-10-28T14:11:15.9026548Z",
+  "before_bytes": 3211941601,
+  "after_bytes": 3060089740,
+  "net_reduction": 151851861,
+  "attributable_deleted_bytes": 151880550.0,
+  "deleted_files": 134,
+  "git_status_unchanged": true,
+  "outside_metadata_unchanged": true,
+  "deleted_utc": "2026-10-28T14:11:02.0903577Z",
+  "head": "14c8ed68e07702faacfeb6aac2442dc2db007f68",
+  "status": [
+    " M RUNS.md",
+    "?? Updated_Instructions_10_28_2026_anything_else_that_this_PDF_doesn't.pdf"
+  ],
+  "after_errors": 0,
+  "reparse_skipped": 0
+}

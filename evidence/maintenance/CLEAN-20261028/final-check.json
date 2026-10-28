@@ -1,0 +1,8 @@
+{
+  "utc": "2026-10-28T14:12:59.0370123Z",
+  "report_exists": true,
+  "evidence_links_pass": 6,
+  "ledger_pass": true,
+  "target_still_absent": true,
+  "worktree_branch": "run/CLEAN-20261028"
+}

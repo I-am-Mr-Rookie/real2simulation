@@ -1,0 +1,257 @@
+{
+  "utc": "2026-10-28T14:11:15.7808136Z",
+  "root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon",
+  "logical_bytes": 3060089740,
+  "files": 22748,
+  "reparse_entries_skipped": 0,
+  "enumeration_errors": 0,
+  "top_level": [
+    {
+      "name": ".worktrees",
+      "bytes": 1284588453,
+      "files": 5545
+    },
+    {
+      "name": ".git",
+      "bytes": 689716497,
+      "files": 722
+    },
+    {
+      "name": "test-data",
+      "bytes": 624701445,
+      "files": 22
+    },
+    {
+      "name": "Build",
+      "bytes": 371898413,
+      "files": 14122
+    },
+    {
+      "name": "evidence",
+      "bytes": 76863878,
+      "files": 623
+    },
+    {
+      "name": "Run-System",
+      "bytes": 5064179,
+      "files": 1570
+    },
+    {
+      "name": "archive",
+      "bytes": 3896206,
+      "files": 55
+    },
+    {
+      "name": "Updated_Instructions_10_28_2026_anything_else_that_this_PDF_doesn't.pdf",
+      "bytes": 1224619,
+      "files": 1
+    },
+    {
+      "name": "Build Notes.pdf",
+      "bytes": 953609,
+      "files": 1
+    },
+    {
+      "name": "tests",
+      "bytes": 301157,
+      "files": 32
+    },
+    {
+      "name": "08 Real2Simulation",
+      "bytes": 170998,
+      "files": 3
+    },
+    {
+      "name": "contracts",
+      "bytes": 116689,
+      "files": 13
+    },
+    {
+      "name": "Hackathon Credit Terms.pdf",
+      "bytes": 93092,
+      "files": 1
+    },
+    {
+      "name": "QUEUE.md",
+      "bytes": 77964,
+      "files": 1
+    },
+    {
+      "name": "modal.fillout.com_t_qMXCmRGseUus_code=FWQ-TM6-WWS.png",
+      "bytes": 63503,
+      "files": 1
+    },
+    {
+      "name": "DECISIONS_LOG.md",
+      "bytes": 57505,
+      "files": 1
+    },
+    {
+      "name": "infra",
+      "bytes": 37961,
+      "files": 12
+    },
+    {
+      "name": "01 Research",
+      "bytes": 37637,
+      "files": 4
+    },
+    {
+      "name": "07 Project Reselection",
+      "bytes": 31276,
+      "files": 1
+    },
+    {
+      "name": "RUNS.md",
+      "bytes": 28689,
+      "files": 1
+    },
+    {
+      "name": "API_BUDGET.md",
+      "bytes": 28631,
+      "files": 1
+    },
+    {
+      "name": "prompt for GPT-6 Astra Pro.md",
+      "bytes": 25213,
+      "files": 1
+    },
+    {
+      "name": "STATE.md",
+      "bytes": 22417,
+      "files": 1
+    },
+    {
+      "name": "clips.csv",
+      "bytes": 20682,
+      "files": 1
+    },
+    {
+      "name": "AGENTS.md",
+      "bytes": 19786,
+      "files": 1
+    },
+    {
+      "name": "Event Rules and Participant Guide.md",
+      "bytes": 13207,
+      "files": 1
+    },
+    {
+      "name": "ORCHESTRATOR.md",
+      "bytes": 11262,
+      "files": 1
+    },
+    {
+      "name": "tasks for the owner.md",
+      "bytes": 6458,
+      "files": 1
+    },
+    {
+      "name": "OWNER_INSTRUCTIONS_2026-10-28.md",
+      "bytes": 5616,
+      "files": 1
+    },
+    {
+      "name": "GitHub Backup.md",
+      "bytes": 3905,
+      "files": 1
+    },
+    {
+      "name": "README.md",
+      "bytes": 3894,
+      "files": 1
+    },
+    {
+      "name": "JUDGE_RUBRIC.md",
+      "bytes": 1489,
+      "files": 1
+    },
+    {
+      "name": ".gitignore",
+      "bytes": 1014,
+      "files": 1
+    },
+    {
+      "name": ".env",
+      "bytes": 847,
+      "files": 1
+    },
+    {
+      "name": "START.md",
+      "bytes": 830,
+      "files": 1
+    },
+    {
+      "name": "CLAUDE.md",
+      "bytes": 432,
+      "files": 1
+    },
+    {
+      "name": ".env.example",
+      "bytes": 287,
+      "files": 1
+    }
+  ],
+  "generated": [
+    {
+      "path": "Build\\web\\node_modules",
+      "bytes": 371556939,
+      "files": 14035
+    },
+    {
+      "path": "tests\\spec\\__pycache__",
+      "bytes": 114738,
+      "files": 8
+    },
+    {
+      "path": "Build\\api\\health\\__pycache__",
+      "bytes": 35529,
+      "files": 4
+    },
+    {
+      "path": "contracts\\scene\\__pycache__",
+      "bytes": 28429,
+      "files": 2
+    },
+    {
+      "path": "Build\\templates\\__pycache__",
+      "bytes": 27926,
+      "files": 4
+    },
+    {
+      "path": "contracts\\experiment\\__pycache__",
+      "bytes": 24524,
+      "files": 1
+    },
+    {
+      "path": "infra\\railway\\dev\\__pycache__",
+      "bytes": 11810,
+      "files": 1
+    },
+    {
+      "path": "tests\\measurement\\__pycache__",
+      "bytes": 9222,
+      "files": 1
+    },
+    {
+      "path": "Build\\measurement\\__pycache__",
+      "bytes": 8844,
+      "files": 1
+    },
+    {
+      "path": "Build\\web\\src\\shell\\__pycache__",
+      "bytes": 7446,
+      "files": 1
+    },
+    {
+      "path": "Build\\reconstruction\\spike\\__pycache__",
+      "bytes": 5414,
+      "files": 1
+    },
+    {
+      "path": "Build\\worker\\health\\__pycache__",
+      "bytes": 2412,
+      "files": 1
+    }
+  ]
+}
