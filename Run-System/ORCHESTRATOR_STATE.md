@@ -18,13 +18,20 @@ paid jobs, source edits, media transfer or terms/account/credential changes.
 Genuine supported browser recovery permits bounded normal official-page access,
 not access bypass or generic source hunt. Reuse clean r-m-review on controller
 prepared run/S07b-recovery2; exact contract Runs/S07b/RECOVERY-2.md. Actual child
-ID to be recorded after dispatch. Owns only new recovery2 evidence/PLAN/REPORT.
+ID01a18296-33d3-71c2-8c59-afc72d11da94 (Russell), dispatched fresh managed
+gpt-6.1-sol/medium at base48c3903. Owns only recovery2 evidence/PLAN/REPORT.
 
 Source/review accepted S07f/R-M2,55/203 deliverables, physical holds/S12 lock
 unchanged. Unrelated canonical RUNS heading Questions -> Reviews preserved; use
 generator temporary output and retain this unstaged edit, never stage/overwrite
 it incidentally. No active paid resource remains in final evidence; no quota poll.
 Python dispatcher OFF, heartbeat ACTIVE5m. Older ACTIVE sections historical.
+
+RUNS regenerated to controller temporary output via existing generator; only its
+generated delta staged, Questions -> Reviews user edit remains unstaged/intact.
+First temporary-output read used Windows default encoding, detected as oversized
+diff/JSON parse failure BEFORE any write/index action; corrected UTF-8 read then
+verified unstaged diff is exactly original heading only. No user edit included.
 
 ## CURRENT — S07f/R-M2 accepted; S05b ONE GPU active (Oct28 12:44UTC)
 

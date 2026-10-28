@@ -617,3 +617,14 @@ Recovery5 independently verified actual CPU imports and stopped CPU before ONE
 bounded GPU. Retain new$.95 plus old1.90=$2.85,30 authority unchanged, retries0.
 GPU outcome/stop/exact billing await controller acceptance; no second paid attempt
 or redundant owner consent. Serialize S07b heavy runtime behind current probe.
+
+## 2026-10-28 — Pending GPU stopped; bounded unpaid S07b readiness
+
+Accept S05b recovery5 PARTIAL with real CPU imports and safe final stop, not GPU
+success. Scheduling cause unknown; no model/capacity blame or identical paid retry.
+Retain2.85 reserves; future continuation needs actual scheduler evidence and a
+total queue+execution stop bound. Existing useful-GPU authority remains answered.
+Now paid resources stopped, original S07b lane/model Sol/medium gets15m unpaid
+exact-checkpoint/runtime/licence/prefix readiness after supported-browser recovery.
+No source edits, downloads, terms/account/credential changes or media/jobs; this
+is not generic calibration/source searching. Parent gates/S12 unchanged.

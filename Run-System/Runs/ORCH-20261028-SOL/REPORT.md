@@ -1,5 +1,32 @@
 # Orchestration resumed — Sol and Ponytail
 
+## Latest — stopped pending GPU accepted; no-paid readiness active (12:56UTC)
+
+- S05b actual report/CPU receipt/hash/stop evidence inspected. GPU RPC remained
+  pending with no observed container/device/startup/inference/output; manual stop
+  and final both apps stopped/tasks0/containers[] verified. Cause unknown, not
+  model incompatibility or proven capacity error. Client RemoteError followed
+  deliberate stop; no startup/turn error mistaken for a product outcome.
+- Accepted PARTIAL source09825b8/receipt9b25fcc after scoped rebase/FF and fresh
+  spike7/scene11 PASS. Four approved raw inputs ignored, manifest/lock unchanged.
+  Verified canonical unrelated RUNS bytes unchanged across FF. Actual CPU import
+  proof reused; no reinstall/GPU retry, GateR NOT_RUN/S05c remains locked.
+- Queue wait is outside function timeout: worker's manual timebox stop was needed
+  before992s worst-case execution no longer fit. No automated total queue deadline
+  claimed. Full$2.85 retained against$30 authority; exact charges unknown. No reserve
+  release, expanded spend, repeated GPU/credit consent or fabricated metrics.
+- S05b terminal child closed. Useful independent S07b original-lane Sol/medium
+  recovery2 now active: child01a18296-33d3-71c2-8c59-afc72d11da94 (Russell), reused
+  clean r-m-review/new run/S07b-recovery2 at48c3903. Bounded15m exact official
+  checkpoint/access/licence/runtime/prefix readiness after observed browser
+  restoration, NOT generic calibration hunt. No source edits/downloads/terms/
+  jobs/media transfer; concrete Ponytail/checks/skips/risks/report gate retained.
+- Generated RUNS to temporary output using existing generator, preserved unrelated
+  heading in worktree and staged only canonical generator delta by exact blob.
+  Initial locale-default read produced oversized diff and JSON parse stop before
+  edits; corrected explicit UTF-8, verified remaining unstaged heading-only edit.
+  No user change staged/overwritten. Queue55/203; dispatcher OFF/no quota polling.
+
 ## Latest — bounded gate review integrated; actual CPU pass (Oct28 12:44UTC)
 
 - Checkpoint1b29a64; heartbeat updated and disk-verified ACTIVE5m/current chat,
