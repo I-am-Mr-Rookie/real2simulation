@@ -59,17 +59,17 @@ linear case; final suite is green.
   instruments roots; its current API suite is **5/5 pass**. Strict units/source,
   JSON finite-output checks, explicit non-propagation assumptions, covariance
   status/units, and degenerate-input errors produced no new actionable bug.
-- Trajectory final head `2205e5810729b20412b54fb4d8d9ca1dcd5aef3b` passed
-  `node --test tests/simulator/trajectories.test.mjs` **6/6**. **New P2:**
-  `consumeValidatedTrajectoryArtifact` clones but does not freeze the trusted
-  artifact (lines 69-70). After validation, callers can mutate
-  `trusted.spec.environment.gravity.value` or parameter values and
-  `trajectoryFromValidatedArtifact` consumes the mutation. Repro: consume the
-  existing fixture, set `trusted.spec.environment.gravity.value = 1`, then
-  call `trajectoryFromValidatedArtifact(trusted)`. Apply the existing
-  recursive `freezeDeep` to the consumed artifact (or immutable projection),
-  and add a mutation regression. This is a local contract issue only, not a
-  physical/vendor-gate finding.
+- Trajectory final head `faf63fd949eb6b49f46767b53b78d093e93d8834` passed
+  `node --test tests/simulator/trajectories.test.mjs` **6/6**. The prior
+  nested-artifact mutation finding is fixed: the consumed clone is now
+  recursively frozen. **New P1:** `consumeValidatedTrajectoryArtifact` accepts
+  any finite duration/time-step ratio whose floor is safe, while
+  `trajectoryFromValidatedArtifact` silently floors non-integral ratios (lines
+  64-68 and 94-97). A valid-looking S08 artifact with duration `1.5` and
+  time_step `1` is accepted and emits one step, truncating the requested
+  horizon. Require an integer ratio, allowing only a documented sub-ULP
+  near-integer tolerance; add a fractional-horizon regression. This is a
+  synthetic contract defect, not physical/vendor-gate evidence.
 - Compatibility setup: for instrument/fitter checks, `PYTHONPATH` was set to
   the corresponding peer roots (fitter first, instruments second); no deps or
   external APIs were added.
