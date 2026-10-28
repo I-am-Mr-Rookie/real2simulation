@@ -1,0 +1,9 @@
+{
+  "name": "real2simulation-simulator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@dimforge/rapier3d-compat": "0.21.0"
+  }
+}

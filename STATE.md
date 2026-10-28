@@ -1,6 +1,16 @@
 # Real2Simulation — STATE
 
-## CURRENT — bounded inline swarm STOPPED at Oct29 00:00 Dhaka
+## CURRENT — owner extended bounded inline swarm to Oct29 00:30 Dhaka
+
+Fresh direct owner goal: "Keep going at maximum speed. Time increased up to
+12:30 am." Observed18:00:51UTC Oct28. Extend same swarm/simulation-only authority
+to18:30UTC; no reset of prior receipts or relaxation of physical/budget gates.
+New child workers receive full30m contracts; controller explicitly authorizes
+owner-stop exception at18:29:30UTC, receipt
+Run-System/Runs/SWARM-20261029-0030/OWNER-EXTENSION.md. No new implementation
+after18:25UTC; integrate/check/record and stop by18:30UTC.
+
+## Previous bounded window — STOPPED at Oct29 00:00 Dhaka
 
 Deadline closure observed18:00:10UTC. No further product work/worker launch;
 final administrative receipt only. Ten accepted contracts,10 new queue leaves,
