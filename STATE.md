@@ -1,6 +1,17 @@
 # Real2Simulation — STATE
 
-## CURRENT — extension STOPPED at Oct29 00:30 Dhaka
+## CURRENT — fresh owner goal extends maximum-speed swarm to Oct29 01:30 Dhaka
+
+Fresh app goal observed during closing call18:30UTC: "Keep going at maximum
+speed. Time increased up to 1:30 am." Verified active via get_goal18:30:52UTC.
+The concurrent goal update was briefly markedcomplete by an in-flight closure
+call intended for the prior12:30goal; current active1:30goal is verified restored.
+No newbudget/provider/policy approval inferred. Extend same inline/simulation-only
+authority to19:30UTC Oct28. Keep physical Gate M/S12 and required vendor holds.
+No schedule/dispatcher. First new full30m workers finish around19:05UTC;
+unfinished final tasks stop19:29:30 with explicit owner-stop receipt.
+
+## Previous00:30 closure
 
 Owner deadline reached18:30UTC; all four extension workers closed,0 active runs,
 72/205 complete. No further implementation/worker/schedule/automatic continuation.
