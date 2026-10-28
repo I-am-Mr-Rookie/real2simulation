@@ -34,6 +34,12 @@ optimized, target3.11 optimized and rebased PASS, main acceptance recorded in lo
 Actual model/provider/remote shutdown not verified; parent PARTIAL58/205 unchanged.
 Independent review/live-admission holds and$2.85/$30 retained. F4 remains incident.
 
+S07b-recovery6 child DONE/FF0a2cba9: isolated Linux/Python3.12 dependency-only
+candidate, NumPy1.26/Torch2.8/vision0.23.47 packages hash-locked; all8 upstream
+base constraints checked; offline exact repeat and newline-normalized main repeat
+PASS. No target environment/SAM install/import/checkpoint/GPU; optional kernels
+and runtime readiness unverified. Parent PARTIAL58/205 unchanged. No paid spend.
+
 ## Latest direct owner instruction — solo work completed before 22:30 BDT Oct28
 
 Koushik: "You are the lonely worker. Complete as many runs as you can until 10:30 pm (BDT)".

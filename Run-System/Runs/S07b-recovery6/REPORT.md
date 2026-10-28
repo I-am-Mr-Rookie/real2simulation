@@ -42,3 +42,5 @@ admission/stop/headroom holds, historical$2.85/$30 and GateM/S12 unchanged.
 No new leaf counted for this recovery. No schedule, dispatcher, remote push or
 delegation. Silent except higher-priority required updates earlier this session.
 Integration/timing audit recorded below before canonical acceptance.
+
+Integration verified FF0a2cba9; fresh main offline resolution matches (normalized newlines for Windows checkout); Git source equality PASS. Stop/report 2026-10-28T16:52:21.698115+00:00. Timing checker PASS.
