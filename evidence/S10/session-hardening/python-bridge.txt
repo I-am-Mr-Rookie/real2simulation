@@ -1,0 +1,9 @@
+test_all_templates_use_actual_s08_factories (test_session_bridge.BridgeTests.test_all_templates_use_actual_s08_factories) ... ok
+test_ballistic_fit_uses_actual_s11_and_errors_are_clean (test_session_bridge.BridgeTests.test_ballistic_fit_uses_actual_s11_and_errors_are_clean) ... ok
+test_mystery_seed_changes_private_gravity_and_actual_fit (test_session_bridge.BridgeTests.test_mystery_seed_changes_private_gravity_and_actual_fit) ... ok
+test_subprocess_protocol_rejects_bad_action_without_traceback (test_session_bridge.BridgeTests.test_subprocess_protocol_rejects_bad_action_without_traceback) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 4.820s
+
+OK

@@ -1,0 +1,46 @@
+(node:33796) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/.codex/worktrees/swarm10-lab-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/app/api/lab/route.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\HP\.codex\worktrees\swarm10-lab-contract\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ normal start/fit uses the actual bridge and fitter (6320.9386ms)
+✔ mystery redacts pre-fit and reveals only through matching fit (4124.5263ms)
+✔ pre-abort does not spawn and expired reads do not evict live sessions (9784.4313ms)
+✔ allowlists, expiry and bounded session errors are clean (2184.8301ms)
+✔ aborting an active bridge settles and releases its capacity (1897.0103ms)
+✔ loopback route accepts the UI contract and rejects nonlocal hosts (10385.086ms)
+✔ production route remains disabled (1.7987ms)
+✔ cold concurrent fits reuse one bridge and pre-aborted cached reads fail (3359.9547ms)
+✔ evicted in-flight sessions never publish a fit or reveal (6702.7774ms)
+✔ abort cannot become success when bridge closes with code zero (5.4257ms)
+✔ stdin failure retains bridge capacity until close, including the four-process cap (4.7723ms)
+✔ synchronous spawn failures do not consume capacity or expose internal errors (3.921ms)
+✔ expired during trusted handoff hashing cannot reveal or cache a fit (6.0963ms)
+✔ evicted during trusted handoff hashing cannot reveal or cache a fit (4.102ms)
+✔ aborted during trusted handoff hashing cannot reveal or cache a fit (4.6372ms)
+✔ abort during start hashing does not insert a session (3.2616ms)
+✔ a failed active Mystery-g fit can retry without consuming its reveal (3161.8468ms)
+✔ timeout cannot become success and capacity is retained until close (3.4446ms)
+✔ invalid JSON bridge output returns a bounded error envelope (1.6738ms)
+✔ null bridge output returns a bounded error envelope (2.0699ms)
+✔ unexpected shape bridge output returns a bounded error envelope (1.3948ms)
+✔ oversized output bridge output returns a bounded error envelope (4.5231ms)
+✔ asynchronous spawn error retains its slot until close and never returns success (2.2041ms)
+✔ a real capacity insertion evicts the oldest in-flight session without revealing it (8.6023ms)
+✔ expiry while a bridge is running rejects the fit and permits no reveal (2.1836ms)
+✔ lab UI keeps the user flow and trust labels visible in source (1.9279ms)
+✔ lab layout collapses before the narrow mobile viewport (0.3413ms)
+✔ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (3.8177ms)
+✔ plot helper uses actual finite time and position domains (1.3459ms)
+✔ allowlisted public projection cannot leak arbitrary observation metadata (28.391ms)
+✔ actual Python S11 response binds to same observations and preserves source (607.7018ms)
+✔ version, mutation, and cross-session binding are enforced (433.8821ms)
+✔ same seed is byte-identical and immutable (219.6915ms)
+✔ changed seed/params distinguish; hostile inputs fail (5.7709ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58710.7854

@@ -1,0 +1,190 @@
+(node:15156) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/.codex/worktrees/swarm10-lab-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/app/api/lab/route.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\HP\.codex\worktrees\swarm10-lab-contract\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ expired during trusted handoff hashing cannot reveal or cache a fit (33.1406ms)
+✖ evicted during trusted handoff hashing cannot reveal or cache a fit (6.7594ms)
+✖ aborted during trusted handoff hashing cannot reveal or cache a fit (13.4885ms)
+✖ abort during start hashing does not insert a session (7.5742ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 328.331
+
+✖ failing tests:
+
+test at tests\lab\session-service.test.mjs:166:3
+✖ expired during trusted handoff hashing cannot reveal or cache a fit (33.1406ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   fit: {
+  +     covariance: {
+  +       status: 'available'
+  +     },
+  +     gravity: {
+  +       source: {
+  +         evidence: 'controlled test fixture',
+  +         label: 'simulated'
+  +       },
+  +       uncertainty: 0.01,
+  +       unit: 'm/s^2',
+  +       value: 9.81
+  +     },
+  +     status: 'ok',
+  +     uncertainty: {
+  +       model: 'iid_fixed_clock_scale'
+  +     }
+  -   error: {
+  -     code: 'session_expired_during_fit'
+      },
+  +   reveal: {},
+  +   sessionId: 'hash-expired',
+  +   status: 'ok'
+  -   status: 'error'
+    }
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-lab-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/session-service.test.mjs:184:12)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { status: 'ok', sessionId: 'hash-expired', fit: { status: 'ok', gravity: [Object], covariance: [Object], uncertainty: [Object] }, reveal: {} },
+    expected: { status: 'error', error: { code: 'session_expired_during_fit' } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\lab\session-service.test.mjs:166:3
+✖ evicted during trusted handoff hashing cannot reveal or cache a fit (6.7594ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   fit: {
+  +     covariance: {
+  +       status: 'available'
+  +     },
+  +     gravity: {
+  +       source: {
+  +         evidence: 'controlled test fixture',
+  +         label: 'simulated'
+  +       },
+  +       uncertainty: 0.01,
+  +       unit: 'm/s^2',
+  +       value: 9.81
+  +     },
+  +     status: 'ok',
+  +     uncertainty: {
+  +       model: 'iid_fixed_clock_scale'
+  +     }
+  -   error: {
+  -     code: 'session_not_found_or_expired'
+      },
+  +   reveal: {},
+  +   sessionId: 'hash-evicted',
+  +   status: 'ok'
+  -   status: 'error'
+    }
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-lab-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/session-service.test.mjs:184:12)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { status: 'ok', sessionId: 'hash-evicted', fit: { status: 'ok', gravity: [Object], covariance: [Object], uncertainty: [Object] }, reveal: {} },
+    expected: { status: 'error', error: { code: 'session_not_found_or_expired' } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\lab\session-service.test.mjs:166:3
+✖ aborted during trusted handoff hashing cannot reveal or cache a fit (13.4885ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   fit: {
+  +     covariance: {
+  +       status: 'available'
+  +     },
+  +     gravity: {
+  +       source: {
+  +         evidence: 'controlled test fixture',
+  +         label: 'simulated'
+  +       },
+  +       uncertainty: 0.01,
+  +       unit: 'm/s^2',
+  +       value: 9.81
+  +     },
+  +     status: 'ok',
+  +     uncertainty: {
+  +       model: 'iid_fixed_clock_scale'
+  +     }
+  -   error: {
+  -     code: 'lab_request_failed'
+      },
+  +   reveal: {},
+  +   sessionId: 'hash-aborted',
+  +   status: 'ok'
+  -   status: 'error'
+    }
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-lab-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/session-service.test.mjs:184:12)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { status: 'ok', sessionId: 'hash-aborted', fit: { status: 'ok', gravity: [Object], covariance: [Object], uncertainty: [Object] }, reveal: {} },
+    expected: { status: 'error', error: { code: 'lab_request_failed' } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\lab\session-service.test.mjs:189:1
+✖ abort during start hashing does not insert a session (7.5742ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+    {
+  +   limitations: undefined,
+  +   mode: 'normal',
+  +   observationHash: 'f1390eb468cfe579a365b27eb575e5e05865a114132d3d386f8837e3bfe638ee',
+  +   observations: [
+  +     {
+  +       position_m: 0,
+  +       time_s: 0
+  +     },
+  +     {
+  +       position_m: 4.905,
+  +       time_s: 1
+  +     }
+  +   ],
+  +   sessionId: 'db83f38d-5215-4077-9742-16d221d95371',
+  +   source: 'simulated',
+  +   status: 'ok',
+  +   template: 'free_fall',
+  +   units: {
+  +     position: 'm',
+  +     time: 's'
+  -   error: {
+  -     code: 'lab_request_failed'
+      },
+  -   status: 'error'
+    }
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-lab-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/session-service.test.mjs:195:10)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { status: 'ok', sessionId: 'db83f38d-5215-4077-9742-16d221d95371', template: 'free_fall', mode: 'normal', observations: [ [Object], [Object] ], observationHash: 'f1390eb468cfe579a365b27eb575e5e05865a114132d3d386f8837e3bfe638ee', source: 'simulated', units: { time: 's', position: 'm' }, limitations: undefined },
+    expected: { status: 'error', error: { code: 'lab_request_failed' } },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

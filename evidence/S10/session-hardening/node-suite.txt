@@ -1,0 +1,110 @@
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@dimforge/rapier3d-compat' imported from C:\Users\HP\.codex\worktrees\swarm10-lab-contract\2026-10-26 - Meta Global AI Developer Hackathon\Build\simulator\contacts.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.18.0
+✖ tests\lab\contact-integration.test.mjs (277.8088ms)
+(node:10264) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/.codex/worktrees/swarm10-lab-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/app/api/lab/route.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\HP\.codex\worktrees\swarm10-lab-contract\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ normal start/fit uses the actual bridge and fitter (5600.0071ms)
+✔ mystery redacts pre-fit and reveals only through matching fit (2544.212ms)
+✔ pre-abort does not spawn and expired reads do not evict live sessions (1558.5603ms)
+✔ allowlists, expiry and bounded session errors are clean (1293.9421ms)
+✔ aborting an active bridge settles and releases its capacity (1582.6123ms)
+✔ loopback route accepts the UI contract and rejects nonlocal hosts (3122.1283ms)
+✔ production route remains disabled (1.7986ms)
+✔ cold concurrent fits reuse one bridge and pre-aborted cached reads fail (1913.8462ms)
+✔ evicted in-flight sessions never publish a fit or reveal (1929.6371ms)
+✔ abort cannot become success when bridge closes with code zero (12.4218ms)
+✔ stdin failure retains bridge capacity until close, including the four-process cap (26.0255ms)
+✔ synchronous spawn failures do not consume capacity or expose internal errors (9.9621ms)
+✔ expired during trusted handoff hashing cannot reveal or cache a fit (49.7079ms)
+✔ evicted during trusted handoff hashing cannot reveal or cache a fit (6.8209ms)
+✔ aborted during trusted handoff hashing cannot reveal or cache a fit (17.8382ms)
+✔ abort during start hashing does not insert a session (21.8632ms)
+✔ a failed active Mystery-g fit can retry without consuming its reveal (2676.9037ms)
+✔ timeout cannot become success and capacity is retained until close (3.2937ms)
+✔ invalid JSON bridge output returns a bounded error envelope (1.7998ms)
+✔ null bridge output returns a bounded error envelope (2.5031ms)
+✔ unexpected shape bridge output returns a bounded error envelope (2.4085ms)
+✔ oversized output bridge output returns a bounded error envelope (5.3554ms)
+✔ asynchronous spawn error retains its slot until close and never returns success (1.733ms)
+✔ lab UI keeps the user flow and trust labels visible in source (3.013ms)
+✔ lab layout collapses before the narrow mobile viewport (0.3459ms)
+✔ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (2.0635ms)
+✔ plot helper uses actual finite time and position domains (0.8121ms)
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@dimforge/rapier3d-compat' imported from C:\Users\HP\.codex\worktrees\swarm10-lab-contract\2026-10-26 - Meta Global AI Developer Hackathon\Build\simulator\contacts.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.18.0
+✖ tests\simulator\contacts.test.mjs (218.8711ms)
+✔ ramp uses signed fixed-step dynamics and exposes analytic comparison inputs (28.5101ms)
+✔ ramp stops at the first endpoint crossing and rejects unsupported stall/coast regimes (18.6038ms)
+✔ pendulum matches the small-angle analytic comparison and maps geometry (38.2631ms)
+✔ nonlinear pendulum converges and conserves energy (192.6869ms)
+✔ zero horizon is one immutable sample; inputs remain unchanged and deterministic (3.4184ms)
+✔ rejects sparse, nonfinite, overflow, and hidden-default inputs (1.1319ms)
+✔ consumes actual Python validate_setup export for both extended templates (2810.3086ms)
+✔ allowlisted public projection cannot leak arbitrary observation metadata (65.3151ms)
+✔ actual Python S11 response binds to same observations and preserves source (427.0226ms)
+✔ version, mutation, and cross-session binding are enforced (246.4678ms)
+✔ same seed is byte-identical and immutable (45.8699ms)
+✔ changed seed/params distinguish; hostile inputs fail (8.4361ms)
+✔ S10a consumes only the trusted S08 validate_setup export and places geometry (5.9407ms)
+✔ RK4 zero-step validates every input, rejects sparse state, and preserves state (0.9304ms)
+✔ RK4 convergence/order, determinism, immutability and invalid dynamics (5.8189ms)
+✔ free fall uses fixed-step RK4 and matches the authoritative analytic reference (14.4988ms)
+✔ projectile preserves horizontal motion and reports a sampled stop-plane bracket (2.6744ms)
+✔ rejects missing provenance and hidden numeric defaults (3.0156ms)
+✔ is deterministic, finite, and does not mutate caller inputs (25.9066ms)
+✔ reports an already-crossed plane without advancing the integrator (0.5433ms)
+✔ accepts only the validated S08 transport and maps explicit template quantities (1250.5873ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 48
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22785.8042
+
+✖ failing tests:
+
+test at tests\lab\contact-integration.test.mjs:1:1
+✖ tests\lab\contact-integration.test.mjs (277.8088ms)
+  'test failed'
+
+test at tests\simulator\contacts.test.mjs:1:1
+✖ tests\simulator\contacts.test.mjs (218.8711ms)
+  'test failed'
