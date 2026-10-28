@@ -1,0 +1,4 @@
+node --check Build/web/src/lab/browser-simulator.mjs: PASS
+node --check tests/lab/browser-simulator.test.mjs: PASS
+JSX parse: PASS; see component-check.txt
+git diff --cached --check: PASS after normalizing two whitespace-only initial-log lines

@@ -1,0 +1,22 @@
+[
+  {
+    "template": "free_fall",
+    "samples": 201,
+    "producer": "regression_case -> export(validate_setup) -> Build/lab/simulate.mjs"
+  },
+  {
+    "template": "projectile",
+    "samples": 201,
+    "producer": "regression_case -> export(validate_setup) -> Build/lab/simulate.mjs"
+  },
+  {
+    "template": "ramp",
+    "samples": 201,
+    "producer": "regression_case -> export(validate_setup) -> Build/lab/simulate.mjs"
+  },
+  {
+    "template": "pendulum",
+    "samples": 1001,
+    "producer": "regression_case -> export(validate_setup) -> Build/lab/simulate.mjs"
+  }
+]

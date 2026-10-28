@@ -1,0 +1,6 @@
+Fresh JSX parse PASS (existing Next Babel parser)
+free_fall: click computation, full actual trace, sampled table, stale DTO reset PASS
+projectile: click computation, full actual trace, sampled table, stale DTO reset PASS
+ramp: click computation, full actual trace, sampled table, stale DTO reset PASS
+pendulum: click computation, full actual trace, sampled table, stale DTO reset PASS
+Mystery rejection and generic rendered error PASS; no animation or frame lifecycle exists

@@ -1,0 +1,117 @@
+✔ free_fall: browser wrapper exactly preserves current engine and server trace (211.958ms)
+✔ projectile: browser wrapper exactly preserves current engine and server trace (155.1747ms)
+✖ ramp: browser wrapper exactly preserves current engine and server trace (172.729ms)
+✔ pendulum: browser wrapper exactly preserves current engine and server trace (255.8781ms)
+✔ rejects Mystery and absent/bad modes before reading any artifact (1.4273ms)
+✔ bounds work before touching scene/engine, even if an early event would shorten the run (1.8039ms)
+✔ 2000 samples includes the initial point; one more is rejected without truncation (58.692ms)
+✔ bad horizons are rejected, not coerced, floored, or silently downsampled (4.4448ms)
+✔ actual existing artifact consumers reject malformed envelopes and non-synthetic scenes (9.9747ms)
+✔ browser entry dependency graph uses only the existing browser-compatible RK4 modules (4.4835ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1063.9119
+
+✖ failing tests:
+
+test at tests\lab\browser-simulator.test.mjs:15:3
+✖ ramp: browser wrapper exactly preserves current engine and server trace (172.729ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  ... Skipped lines
+
+    {
+      analyticComparison: {
+        inputs: {
+          friction_coefficient: 0.1,
+          gravity_m_s2: 9.81,
+  ...
+            0,
+  +         -0,
+            0,
+  -         0
+          ]
+        },
+        {
+          distance_m: 0.000001921128020246388,
+          position_m: [
+
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-browser-sim/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/browser-simulator.test.mjs:27:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1325:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+      at Test.postRun (node:internal/test_runner/test:1465:19)
+      at Test.run (node:internal/test_runner/test:1390:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: {
+      kind: 'ramp',
+      source: 'simulated',
+      inputProvenance: 'synthetic',
+      integrator: 'rk4-fixed-step',
+      dt_s: 0.001,
+      requestedSteps: 200,
+      units: { time: 's', distance: 'm', speed: 'm/s', position: 'm', velocity: 'm/s', acceleration: 'm/s^2', angle: 'rad' },
+      analyticComparison: { model: 'constant-positive-acceleration-until-length', inputs: [Object] },
+      stop: { reached: false, crossing: null },
+      samples: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 101 more items
+      ]
+    },
+    expected: {
+      kind: 'ramp',
+      source: 'simulated',
+      inputProvenance: 'synthetic',
+      integrator: 'rk4-fixed-step',
+      dt_s: 0.001,
+      requestedSteps: 200,
+      units: { time: 's', distance: 'm', speed: 'm/s', position: 'm', velocity: 'm/s', acceleration: 'm/s^2', angle: 'rad' },
+      analyticComparison: { model: 'constant-positive-acceleration-until-length', inputs: [Object] },
+      stop: { reached: false, crossing: null },
+      samples: [
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object], [Object], [Object],
+        [Object], [Object], [Object], [Object],
+        ... 101 more items
+      ]
+    },
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

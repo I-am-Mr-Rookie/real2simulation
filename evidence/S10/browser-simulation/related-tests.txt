@@ -1,0 +1,31 @@
+✔ free_fall: browser wrapper exactly preserves current engine and server trace (652.5217ms)
+✔ projectile: browser wrapper exactly preserves current engine and server trace (559.8646ms)
+✔ ramp: browser wrapper exactly preserves current engine and server trace (500.7576ms)
+✔ pendulum: browser wrapper exactly preserves current engine and server trace (607.9465ms)
+✔ rejects Mystery and absent/bad modes before reading any artifact (4.1647ms)
+✔ bounds work before touching scene/engine, even if an early event would shorten the run (2.6545ms)
+✔ 2000 samples includes the initial point; one more is rejected without truncation (63.7141ms)
+✔ bad horizons are rejected, not coerced, floored, or silently downsampled (14.0113ms)
+✔ actual existing artifact consumers reject malformed envelopes and non-synthetic scenes (21.375ms)
+✔ browser entry dependency graph uses only the existing browser-compatible RK4 modules (2.7725ms)
+✔ ramp uses signed fixed-step dynamics and exposes analytic comparison inputs (22.2229ms)
+✔ ramp stops at the first endpoint crossing and rejects unsupported stall/coast regimes (41.4766ms)
+✔ pendulum matches the small-angle analytic comparison and maps geometry (32.1539ms)
+✔ nonlinear pendulum converges and conserves energy (162.602ms)
+✔ zero horizon is one immutable sample; inputs remain unchanged and deterministic (0.9695ms)
+✔ rejects sparse, nonfinite, overflow, and hidden-default inputs (1.2333ms)
+✔ consumes actual Python validate_setup export for both extended templates (2744.4602ms)
+✔ free fall uses fixed-step RK4 and matches the authoritative analytic reference (10.7383ms)
+✔ projectile preserves horizontal motion and reports a sampled stop-plane bracket (2.2143ms)
+✔ rejects missing provenance and hidden numeric defaults (1.728ms)
+✔ is deterministic, finite, and does not mutate caller inputs (26.3616ms)
+✔ reports an already-crossed plane without advancing the integrator (0.6595ms)
+✔ accepts only the validated S08 transport and maps explicit template quantities (1495.4607ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3774.2836
