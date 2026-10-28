@@ -116,6 +116,14 @@ class FreeFallTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.make()
 
+    def test_signed_huge_sample_times_are_readable_value_errors(self):
+        spec = self.make()
+        before = copy.deepcopy(spec)
+        for value in (10**1000, -(10**1000)):
+            with self.subTest(sign=value > 0), self.assertRaisesRegex(ValueError, r'\$\.times\[0\]'):
+                self.api.analytic_free_fall(spec, self.scene, BUNDLE, times=[value])
+        self.assertEqual(spec, before)
+
     def test_provenance_units_and_no_fake_uncertainty(self):
         a = self.api.analytic_free_fall(self.make(), self.scene, BUNDLE, times=[0])
         self.assertEqual(a['input_sources']['gravity'], self.spec['environment']['gravity']['source'])

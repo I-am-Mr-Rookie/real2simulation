@@ -235,3 +235,12 @@ source preservation and nonmutation. These are synthetic offline contract and
 closed-form reference checks, **not** measured accuracy, a working integrator,
 real-scene suitability or Gate P acceptance. Oracle-specific approximation
 domains still apply; schema validity alone is never execution approval.
+
+## Numeric representability (S08i)
+
+Free-fall drop height and projectile launch height must produce a stop-plane Y
+strictly below the world-space origin. Positive heights that round back to the
+origin are rejected with a parameter-specific error; no arbitrary minimum height
+is imposed. This is a numeric representation guard, not a calibration threshold.
+Free-fall sample times reject out-of-range signed large integers before float
+conversion, matching sibling oracles' readable `ValueError` boundary.

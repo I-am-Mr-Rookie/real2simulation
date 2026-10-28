@@ -1,0 +1,40 @@
+test_authority_and_collision_rechecked (test_free_fall.FreeFallTests.test_authority_and_collision_rechecked) ... ok
+test_factory_validates_and_deep_copies (test_free_fall.FreeFallTests.test_factory_validates_and_deep_copies) ... ok
+test_input_rejections (test_free_fall.FreeFallTests.test_input_rejections) ... ok
+test_provenance_units_and_no_fake_uncertainty (test_free_fall.FreeFallTests.test_provenance_units_and_no_fake_uncertainty) ... ok
+test_rest_drop_exact_case_and_determinism (test_free_fall.FreeFallTests.test_rest_drop_exact_case_and_determinism) ... ok
+test_short_duration_does_not_fake_impact_sample (test_free_fall.FreeFallTests.test_short_duration_does_not_fake_impact_sample) ... ok
+test_signed_huge_sample_times_are_readable_value_errors (test_free_fall.FreeFallTests.test_signed_huge_sample_times_are_readable_value_errors) ... 
+  test_signed_huge_sample_times_are_readable_value_errors (test_free_fall.FreeFallTests.test_signed_huge_sample_times_are_readable_value_errors) (sign=True) ... ERROR
+  test_signed_huge_sample_times_are_readable_value_errors (test_free_fall.FreeFallTests.test_signed_huge_sample_times_are_readable_value_errors) (sign=False) ... ERROR
+test_signed_velocity_and_upward_apex (test_free_fall.FreeFallTests.test_signed_velocity_and_upward_apex) ... ok
+test_stable_downward_root (test_free_fall.FreeFallTests.test_stable_downward_root) ... ok
+
+======================================================================
+ERROR: test_signed_huge_sample_times_are_readable_value_errors (test_free_fall.FreeFallTests.test_signed_huge_sample_times_are_readable_value_errors) (sign=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\spec\test_free_fall.py", line 124, in test_signed_huge_sample_times_are_readable_value_errors
+    self.api.analytic_free_fall(spec, self.scene, BUNDLE, times=[value])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\templates\free_fall.py", line 76, in analytic_free_fall
+    or not math.isfinite(t) or not 0 <= t <= limit):
+           ~~~~~~~~~~~~~^^^
+OverflowError: int too large to convert to float
+
+======================================================================
+ERROR: test_signed_huge_sample_times_are_readable_value_errors (test_free_fall.FreeFallTests.test_signed_huge_sample_times_are_readable_value_errors) (sign=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\spec\test_free_fall.py", line 124, in test_signed_huge_sample_times_are_readable_value_errors
+    self.api.analytic_free_fall(spec, self.scene, BUNDLE, times=[value])
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\templates\free_fall.py", line 76, in analytic_free_fall
+    or not math.isfinite(t) or not 0 <= t <= limit):
+           ~~~~~~~~~~~~~^^^
+OverflowError: int too large to convert to float
+
+----------------------------------------------------------------------
+Ran 9 tests in 3.209s
+
+FAILED (errors=2)

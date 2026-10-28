@@ -128,6 +128,21 @@ class SetupValidationTests(unittest.TestCase):
         for invalid in (None, [], {}, {'assets': []}):
             self.reject(setup()[0], invalid, 'scene')
 
+    def test_stop_plane_displacement_must_survive_world_coordinate_rounding(self):
+        for template in ('free_fall', 'projectile'):
+            for origin_y in (2.0, 4.0):
+                spec, scene = setup(template)
+                field = 'drop_height' if template == 'free_fall' else 'launch_height'
+                spec['placement']['origin']['value'][1] = origin_y
+                spec['parameters'][field]['value'] = math.ulp(origin_y) / 8
+                before = copy.deepcopy((spec, scene))
+                with self.subTest(template=template, origin=origin_y):
+                    self.reject(spec, scene, field)
+                    self.assertEqual((spec, scene), before)
+                spec['parameters'][field]['value'] = math.ulp(origin_y)
+                self.assertIs(self.check(spec, scene), spec)
+                self.assertLess(origin_y - spec['parameters'][field]['value'], origin_y)
+
     def test_rejection_preserves_inputs(self):
         spec, scene = setup()
         spec['placement']['origin']['value'][0] = 100

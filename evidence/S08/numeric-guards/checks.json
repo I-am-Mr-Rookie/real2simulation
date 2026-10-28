@@ -1,0 +1,28 @@
+[
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "contracts/scene",
+      "-v"
+    ],
+    "exit": 0,
+    "elapsed_s": 3.8052177999634296
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/measurement",
+      "-v"
+    ],
+    "exit": 0,
+    "elapsed_s": 0.5122428999748081
+  }
+]

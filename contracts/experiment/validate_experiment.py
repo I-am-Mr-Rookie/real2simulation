@@ -210,7 +210,10 @@ def validate_setup(spec, scene, scene_root):
     kind = spec['template']
     try:
         if kind in ('free_fall', 'projectile'):
-            height = p['drop_height' if kind == 'free_fall' else 'launch_height']
+            height_field = 'drop_height' if kind == 'free_fall' else 'launch_height'
+            height = p[height_field]
+            require(origin[1] - height < origin[1], f'$.parameters.{height_field}',
+                    'stop-plane displacement is not representable at the world origin')
             vy = p['initial_vertical_velocity'] if kind == 'free_fall' else 0
             speed_y = math.sqrt(vy * vy + 2 * g * height)
             # Stable positive root even for strongly negative initial velocity.

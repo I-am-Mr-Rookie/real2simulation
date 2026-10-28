@@ -1,0 +1,71 @@
+test_all_colliders_checked_not_only_requested_ids (test_setup_validation.SetupValidationTests.test_all_colliders_checked_not_only_requested_ids) ... ok
+test_boundary_body_touch_and_clearance (test_setup_validation.SetupValidationTests.test_boundary_body_touch_and_clearance) ... ok
+test_bundle_integrity_is_checked (test_setup_validation.SetupValidationTests.test_bundle_integrity_is_checked) ... ok
+test_contact_and_tiny_numeric_domains_fail_closed (test_setup_validation.SetupValidationTests.test_contact_and_tiny_numeric_domains_fail_closed) ... ok
+test_four_templates_unchanged (test_setup_validation.SetupValidationTests.test_four_templates_unchanged) ... ok
+test_negative_fixture_table (test_setup_validation.SetupValidationTests.test_negative_fixture_table) ... ok
+test_numeric_validation_cannot_be_bypassed (test_setup_validation.SetupValidationTests.test_numeric_validation_cannot_be_bypassed) ... ok
+test_rejection_preserves_inputs (test_setup_validation.SetupValidationTests.test_rejection_preserves_inputs) ... ok
+test_scene_authority_mismatch_and_malformed_inputs (test_setup_validation.SetupValidationTests.test_scene_authority_mismatch_and_malformed_inputs) ... ok
+test_selected_surface_never_exempts_collider (test_setup_validation.SetupValidationTests.test_selected_surface_never_exempts_collider) ... ok
+test_separated_collider_and_estimated_scale_are_accepted (test_setup_validation.SetupValidationTests.test_separated_collider_and_estimated_scale_are_accepted) ... ok
+test_stability_scales_with_radius_and_pendulum_frequency (test_setup_validation.SetupValidationTests.test_stability_scales_with_radius_and_pendulum_frequency) ... ok
+test_stop_plane_displacement_must_survive_world_coordinate_rounding (test_setup_validation.SetupValidationTests.test_stop_plane_displacement_must_survive_world_coordinate_rounding) ... 
+  test_stop_plane_displacement_must_survive_world_coordinate_rounding (test_setup_validation.SetupValidationTests.test_stop_plane_displacement_must_survive_world_coordinate_rounding) (template='free_fall', origin=2.0) ... FAIL
+  test_stop_plane_displacement_must_survive_world_coordinate_rounding (test_setup_validation.SetupValidationTests.test_stop_plane_displacement_must_survive_world_coordinate_rounding) (template='free_fall', origin=4.0) ... FAIL
+  test_stop_plane_displacement_must_survive_world_coordinate_rounding (test_setup_validation.SetupValidationTests.test_stop_plane_displacement_must_survive_world_coordinate_rounding) (template='projectile', origin=2.0) ... FAIL
+  test_stop_plane_displacement_must_survive_world_coordinate_rounding (test_setup_validation.SetupValidationTests.test_stop_plane_displacement_must_survive_world_coordinate_rounding) (template='projectile', origin=4.0) ... FAIL
+test_swept_envelope_includes_ballistic_apex (test_setup_validation.SetupValidationTests.test_swept_envelope_includes_ballistic_apex) ... ok
+
+======================================================================
+FAIL: test_stop_plane_displacement_must_survive_world_coordinate_rounding (test_setup_validation.SetupValidationTests.test_stop_plane_displacement_must_survive_world_coordinate_rounding) (template='free_fall', origin=2.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\spec\test_setup_validation.py", line 140, in test_stop_plane_displacement_must_survive_world_coordinate_rounding
+    self.reject(spec, scene, field)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\spec\test_setup_validation.py", line 31, in reject
+    with self.assertRaises(validator.ExperimentValidationError) as caught:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ExperimentValidationError not raised
+
+======================================================================
+FAIL: test_stop_plane_displacement_must_survive_world_coordinate_rounding (test_setup_validation.SetupValidationTests.test_stop_plane_displacement_must_survive_world_coordinate_rounding) (template='free_fall', origin=4.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\spec\test_setup_validation.py", line 140, in test_stop_plane_displacement_must_survive_world_coordinate_rounding
+    self.reject(spec, scene, field)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\spec\test_setup_validation.py", line 31, in reject
+    with self.assertRaises(validator.ExperimentValidationError) as caught:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ExperimentValidationError not raised
+
+======================================================================
+FAIL: test_stop_plane_displacement_must_survive_world_coordinate_rounding (test_setup_validation.SetupValidationTests.test_stop_plane_displacement_must_survive_world_coordinate_rounding) (template='projectile', origin=2.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\spec\test_setup_validation.py", line 140, in test_stop_plane_displacement_must_survive_world_coordinate_rounding
+    self.reject(spec, scene, field)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\spec\test_setup_validation.py", line 31, in reject
+    with self.assertRaises(validator.ExperimentValidationError) as caught:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ExperimentValidationError not raised
+
+======================================================================
+FAIL: test_stop_plane_displacement_must_survive_world_coordinate_rounding (test_setup_validation.SetupValidationTests.test_stop_plane_displacement_must_survive_world_coordinate_rounding) (template='projectile', origin=4.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\spec\test_setup_validation.py", line 140, in test_stop_plane_displacement_must_survive_world_coordinate_rounding
+    self.reject(spec, scene, field)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\spec\test_setup_validation.py", line 31, in reject
+    with self.assertRaises(validator.ExperimentValidationError) as caught:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ExperimentValidationError not raised
+
+----------------------------------------------------------------------
+Ran 14 tests in 4.072s
+
+FAILED (failures=4)

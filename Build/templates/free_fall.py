@@ -73,7 +73,7 @@ def analytic_free_fall(spec, scene, scene_root, *, times=()):
     samples = []
     for i, t in enumerate(times):
         if (isinstance(t, bool) or not isinstance(t, (int, float))
-                or not math.isfinite(t) or not 0 <= t <= limit):
+                or not 0 <= t <= limit or not math.isfinite(t)):
             raise ValueError(f'$.times[{i}]: finite seconds in [0, {limit}] required')
         # Anchor the endpoint to its exact stop-plane definition.
         y = origin[1] - h if t == impact else origin[1] + t * (v - 0.5 * g * t)

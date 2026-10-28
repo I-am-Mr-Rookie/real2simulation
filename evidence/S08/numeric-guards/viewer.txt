@@ -1,0 +1,66 @@
+✔ loads the fixture bundle over transport, fetches only manifest + render asset, safe fetch options (106.3304ms)
+✔ adapter end-to-end with the loader: loading -> ready; loader codes pass through (18.6372ms)
+✔ splat bundle: loads, decodes centres/colours/scales/quaternions, renders as points (17.2332ms)
+✔ decodeSplats rejects bad records (4.4669ms)
+✔ loader rejects unsafe or inconsistent manifests before fetching assets (28.7656ms)
+✔ loader enforces transport integrity: status, JSON, size caps, length and sha (17.9379ms)
+✔ abort during fetch rejects with AbortError and adapter stays silent (16.9097ms)
+✔ desktop budget caps DPR at 2 and keeps full detail (4.7277ms)
+✔ 375 px phone gets reduced detail and DPR capped at 1.5 (0.3705ms)
+✔ tier boundaries: width 767 reduced, 768 full; memory <4 GiB or <4 cores reduced (0.5984ms)
+✔ invalid or missing device facts fall back deterministically (DPR 1, unknown facts ignored) (0.8396ms)
+✔ same device -> identical frozen budget (0.666ms)
+✔ probeDevice uses the narrower of layout viewport and screen (phone page without meta viewport reports 980) (0.8841ms)
+✔ decimatePoints keeps every ceil(n/max)-th point, colours aligned (0.8356ms)
+✔ decimatePoints returns the original arrays when within budget and rejects bad caps (2.242ms)
+✔ fixture geometry is aligned: collider faces touch surfaces, points lie on faces, labels in bounds (785.0093ms)
+✔ misalignment is reported: offset, rotation footprint, bad quaternion, label outside bounds, missing surface (760.7252ms)
+✔ collider edges: 12 segments per box, each an axis edge between corners (792.398ms)
+✔ camera path: validation, lerp/slerp sampling, clamping (439.549ms)
+✔ ndcToScreen maps the viewport and clips outside/behind (0.528ms)
+node:internal/modules/esm/resolve:271
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\node_modules\three\build\three.module.js' imported from C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\tests\viewer\three-renderer.test.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at node:internal/modules/esm/loader:632:32
+    at TracingChannel.tracePromise (node:diagnostics_channel:362:14) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///C:/Users/HP/.codex/worktrees/solo-sam-integrity/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/node_modules/three/build/three.module.js'
+}
+
+Node.js v24.18.0
+✖ tests\viewer\three-renderer.test.mjs (210.1479ms)
+✔ fixture scene is the S04a mount, marked synthetic, not Gate R evidence (12.6808ms)
+✔ scene model decodes PLY points and carries synthetic banner, physics disabled (678.8164ms)
+✔ scene model rejects mismatches and tampered bytes (864.9214ms)
+✔ mount: loading -> ready, idempotent dispose, no callbacks after dispose (7.6596ms)
+✔ shell abort after ready disposes the renderer once (6.0295ms)
+✔ mount rejects invalid requests before loading (4.6731ms)
+✔ mystery mode is unavailable until S10 redacted payload exists (3.3082ms)
+✔ abort during load rejects, never renders, stays silent (3.9988ms)
+✔ already-aborted signal rejects immediately (3.2658ms)
+✔ abort while renderer is being created disposes the partial renderer (4.2761ms)
+✔ load and renderer failures report error state with plain codes (6.0854ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 31
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2972.6051
+
+✖ failing tests:
+
+test at tests\viewer\three-renderer.test.mjs:1:1
+✖ tests\viewer\three-renderer.test.mjs (210.1479ms)
+  'test failed'
