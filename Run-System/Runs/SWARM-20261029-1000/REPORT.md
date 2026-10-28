@@ -121,3 +121,29 @@ stopped redundant candidate dev3101 through owned exec63695; parent socket
 probe confirms3101/3102 CLOSED and3100 LISTENING. IAB inventory has no temporary
 tabs after turn cleanup; viewport override reset. Canonical3100 remains available
 for later required UI checks. Waiting only on actual R12 worker, not idle padding.
+
+## Round3 COMPLETED —21:20UTC
+
+S11j accepted:83/211, three completed rounds. Frozen exact-Fraction audit
+identified two real P2 covariance defects. Parent fixed factor propagation/
+underflow/precision abstention, then fixed the review's actionable subnormal
+floor P3; native narrow follow-up noP0-P2. Final45 fitter/17 lab, Node84 plus
+parent actual Windows tree1 PASS; default coverage96/100 unchanged contract.
+Actual IAB375px normal + Mystery fitter flow and no-overflow/private mounts
+verified. Product9d240b0; rebased source8eca149 unchanged for Build/contracts/
+fitter tests. Details R12-covariance-fix/REPORT.md and review FOLLOWUP.md.
+
+R13 completed as validation only, no extra queue/round inflation: actual service
+OS taskkill path, four occupied/fifth refused, abort+replacement, all five trees
+dead, zero fallback cleanup. Parent read source/report/timebox and reran new
+real OS test. Controlled fixtures are not actual simulation/universal OS proof.
+
+All worker handles closed; review and audit archive requests queued. App refuses
+some completed checkouts as active attachments; no forced cleanup. Project UI
+association discrepancy is recorded in STATE: assigned project/root in contracts
+are not independent membership evidence. Native move API success could not be
+corroborated by fresh list_threads (still null), so no binding claim.
+
+This goal turn made verified source/test/UI/integration progress. Full owner
+window still runs through04:00UTC; do not mark goal complete early, expand locked
+scope or invent product work just to fill time.

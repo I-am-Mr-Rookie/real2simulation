@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 03:02 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 03:21 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **82 / 211** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **83 / 211** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -22,10 +22,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
-
-## In progress
-
-- [~] **S11j** — Codex · GPT-6.1 Sol, effort high — Stabilize full covariance and reject lost residual variance (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -184,7 +180,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S11</b> — Virtual instruments and the fitter service (9/10)</summary>
+<details><summary><b>S11</b> — Virtual instruments and the fitter service (10/10)</summary>
 
 - [x] **S11a** — Codex · GPT-6.1 Sol, effort medium — Define instrument and fitter API contracts (30 min)
 - [x] **S11b** — Codex · GPT-6.1 Sol, effort medium — Model stopwatch reaction error (30 min)
@@ -195,7 +191,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S11g** — Codex · GPT-6.1 Sol, effort medium — Run hundred-seed coverage regression (30 min)
 - [x] **S11h** — Codex · GPT-6.1 Sol, effort medium — Finalize tool-only numeric API and evidence (30 min)
 - [x] **S11i** — Codex · GPT-6.1 Sol, effort high — Correct finite-sample coverage and declared uncertainty overconfidence (30 min)
-- [~] **S11j** — Codex · GPT-6.1 Sol, effort high — Stabilize full covariance and reject lost residual variance (30 min) *(in progress)*
+- [x] **S11j** — Codex · GPT-6.1 Sol, effort high — Stabilize full covariance and reject lost residual variance (30 min)
 
 </details>
 

@@ -2,14 +2,22 @@
 
 ## CURRENT — owner one-time inline swarm through Oct29 10:00 Dhaka
 
-OPEN recovery S11j: independent R12 audit found two P2 numerical edges: clustered
-full-rank design can return invalid full covariance as valid, and residual-square
-underflow can masquerade as exact zero uncertainty. Historical accepted default
-coverage/trajectory evidence is not erased; the affected covariance edge path is
-not accepted pending fix + targeted re-review. Queue82/211, two completed rounds.
-Controller fixes only core/docs/two targeted regressions in isolated
-swarm12-covariance-fix, exact independent audit tests kept unchanged. No gate or
-physical scope relaxed. R12 audit is DONE as bounded investigation, not a fix.
+Round3 COMPLETE: S11j accepted; queue83/211, three completed rounds. Independent
+exact-rational audit exposed two P2 covariance edges; both fixed. Additional
+actionable subnormal-floor P3 fixed, native narrow re-review confirms noP0-P2.
+Final45 fitter/17 lab PASS, Node84 +parent real Windows process-tree test1 PASS.
+Coverage96/100 with unchanged Student-t95%/90-of100 contract. Actual IAB375px
+normal/Mystery final fitter flow: clientWidth360==scrollWidth360; honest labels,
+no Mystery compute/reveal leak. Reviewed product9d240b0, rebased source8eca149
+unchanged for Build/contracts/fitter tests. Reports/timeboxes checked. No holds
+relaxed; conservative unavailable is not a claimed physical/calibrated success.
+
+R13 sidecar independently verified actual Windows taskkill abort on controlled
+Python->Node trees, capacity replacement and no success/cleanup masking. All
+workers closed; archive requests queued or refused by active app attachment,
+never force-deleted. UI project association remains unverified: native move tool
+returns assigned ID but fresh list_threads projectId remains null. Canonical
+root and assigned contract project ID verified; no unsupported binding claim.
 
 Round1 COMPLETE: four recovery leaves S10k/l/m and S11i accepted; queue81/210.
 Verified source/report/timebox, nativeClaude targeted re-review noP0-P2,

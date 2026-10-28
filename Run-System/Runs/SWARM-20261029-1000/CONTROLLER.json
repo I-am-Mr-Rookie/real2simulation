@@ -1,69 +1,69 @@
 {
-  "updated_utc": "2026-10-28 21:14:00 UTC",
-  "active_workers": [
-    {"id":"R12-covariance-review","agent_id":"01a18455-3d1a-7520-8edd-cd1771678e8d","worktree":"C:/Users/HP/.codex/worktrees/swarm12-covariance-review/2026-10-26 - Meta Global AI Developer Hackathon","deadline":"2026-10-28T21:35:41.128Z","contract":"dispatch-R12-covariance-review.json","state":"Original review noP0-P2; narrow followup of subnormal-floor P3 after parent fix9d240b0, same original window"},
-    {"id":"R13-process-lifecycle","agent_id":"01a18457-247b-7d03-bcbc-f952bf6da32c","worktree":"C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26 - Meta Global AI Developer Hackathon","deadline":"2026-10-28T21:37:45.893Z","contract":"dispatch-R13-process-lifecycle.json"}
-  ],
-  "current_recovery":{"id":"S11j","queue":"82/211","candidate":"C:/Users/HP/.codex/worktrees/swarm12-covariance-fix/2026-10-26 - Meta Global AI Developer Hackathon","branch":"run/R12-covariance-fix","source":"9d240b0","parent_window_deadline":"2026-10-28T21:28:46.012Z","parent_minute25_cutoff":"2026-10-28T21:23:46.012Z","tests":"45 fitter/17 lab/84 Node PASS on prior or final scoped sources; final17lab pending, IAB375 fresh reveal running","next":"Read native followup, final parent UI+tests, FF main only, mark S11j DONE then round3/count83/211"},
-  "current_servers":{"canonical3100":"owned baseline remains","recovery3101":{"session_id":57559,"state":"running RK4/covariance candidate9d240b0"},"old_candidate3101":"STOPPED; port now reused by recovery","production3102":"CLOSED"},
-  "current_browser":{"kind":"ChatGPT IAB only","tab_id":"3","url":"http://127.0.0.1:3101/lab","viewport":"375x812 set after recovered tab; attach creation timeouts recovered by inventory, no replacement browser"},
-  "project_binding":{"assigned_id":"91e441f8-e40c-4ec4-bea2-de7fa1582d97","canonical_root_verified":true,"move_tool_returned_assigned_id":true,"fresh_list_threads_project_id":null,"state":"UI association not verified; do not claim bound or change provider/config. R13 prompt corrected."},
-  "candidate2_current": {"code":"694df9a","main_ff":"b8f6269","state":"Round2 COMPLETE. Parent Node84/lab17 PASS, IAB375 all four NORMAL traces and no Mystery compute mount; native gate noP0-P2; production build exit0,32asset checks,18HTTP probes; post-rebase19/19. Production API remains disabled. Next R12 covariance audit; do not add scope merely to fill time."},
-  "heartbeat_delivery": {"checked_utc":"2026-10-28T20:43:00Z","active":true,"last_run_at":null,"execution_receipts":0,"note":"Correct configuration; actual delivery unverified. Do not claim executed."},
-  "objective": "Maximum-speed authorized simulation-only swarm through2026-10-29T04:00:00Z; no early closure",
-  "completed_rounds": 2,
-  "queue_done": 82,
-  "queue_total": 210,
+  "updated_utc": "2026-10-28T21:21:04.153Z",
+  "objective": "Maximum-speed authorized simulation-only swarm through 2026-10-29T04:00:00Z; no early closure",
   "canonical_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
-  "main_verified_source": "b8f6269",
-  "completed_worker_transport": {
-    "id": "R11-browser-transport",
-    "wt": "C:/Users/HP/.codex/worktrees/swarm10-browser-transport/2026-10-26 - Meta Global AI Developer Hackathon",
-    "prompt": "Complete R11-browser-transport CODEX1 SolHIGH (private/public DTO boundary). Work C:/Users/HP/.codex/worktrees/swarm10-browser-transport/2026-10-26 - Meta Global AI Developer Hackathon, branchrun/R11-browser-transport fromcurrent72b1cbf candidate. Canonical C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon, parentproject91e441f8-e40c-4ec4-bea2-de7fa1582d97. ReadcanonicalAGENTS/STATE/QUEUE/WORKER_TIMEBOX_POLICY and APPLY PonytailFULL C:/Users/HP/.codex/.tmp/marketplaces/ponytail/skills/ponytail/SKILL.md. OwnerinlineSwarmexception simS10/S11until04:00UTCOct29; keep physicalM/S12/realscene/paidGPU/deploy/publish/accounts/terms/credentialsLOCKED. NativeClaudeonlyrequiredtargetedgatereview; NEVERClaudeCode.\nACTUAL UTCissue2026-10-28T20:19:40.032Z; FULL30mdeadline2026-10-28T20:49:40.032Z; Dhaka2026-10-29T02:49:40.032+06:00; minute25cutoff2026-10-28T20:44:40.032Z. Usefulfullwindowforunfinishedcriteria/noearlyPARTIAL/BLOCKEDwithoutcontrollerexception; fullyverifiednarrowDONEcanfinishearly. No newimplementationminute25; truthfulTIMEBOX/REPORT ownrun.\nConcrete approvedS10goal: actualIN-BROWSERnormalmodeRK4. ExistingCodex childmodule alreadyDONE at C:/Users/HP/.codex/worktrees/swarm10-browser-sim/2026-10-26 - Meta Global AI Developer Hackathon/Build/web/src/lab/browser-simulator.mjs and BrowserSimulation.jsx; it accepts EXACT {mode:'normal',validatedSetup:artifact} with <=2000points, actualfourengines; Mysteryrejectedbeforeartifactaccess. ParentownschildintegrationandLabClientmount/IAB375px. YourOwnsONLY Build/lab/session-bridge.py; Build/lab/session-service.mjs; tests/lab/test_session_bridge.py; tests/lab/session-service.test.mjs; evidence/S10/browser-transport/; Run-System/Runs/R11-browser-transport/. No APIroute/UI/fitter/simulator/config/controls edits.\nImplement smallesttrustedNORMAL-only DTO fromactualPythonS08validatedexport alreadycreatedin_start, thenserverpublicresponse e.g browserSimulation:{mode:'normal',validatedSetup:artifact}. DO NOT exposeMysteryartifact/g/seed/setup, includingnested/errors/exception/normaltoMysterytransition. Bridge itselfshouldnotreturnnewpublicDTOwhenmysterytrue; serviceaddsonlywhen!request.mystery withexplicitnormalsyntheticexportchecks/trustedtransport. Existingprivatefieldstaysinternal. Actualmodeluncertaintyfirstorderchangesandabort/TTLfixesalreadyinbase72b1; preserveallguards.\nAcceptancefreshPythonandNodeservice tests actual4normalstartpayloads matchingactualexport, <=2000samplehorizon, clear simulatedsyntheticonly, zeroMysteryDTOatbridge ANDserviceforallballisticseeds, redactederror/stalefitguardtests; no arbitrarytemplateediting/unvalidatedinputfeature. Tests don't claimlabelsauthenticateproducers. No duplicatephysics/fullcontactresponse/newdependency. Preserveboundedbody/process/samplelimits/capacity/cancellation modelcarry. Parentstandalonebrowsermodulecanbereadnotcopiednotmodified.\nCommitONLYOwns, nevermerge/rebase main. Parentfinalnativegatereviewafterintegration; no reviewpassclaim. Report exactcodehead/freshcommands/reuse/skips/risks/costunknown/OpenCodexmanagednotpolled. FinalONElineIDstatusabsoluteREPORT.",
-    "issued": "2026-10-28T20:19:40.032Z",
-    "deadline": "2026-10-28T20:49:40.032Z",
-    "agent_id": "01a1842b-1b8c-7433-bc71-4735b6926f5f",
-    "nickname": "Hilbert"
+  "completed_rounds": 3,
+  "queue_done": 83,
+  "queue_total": 211,
+  "main_verified_source": "8eca149",
+  "product_reviewed_pin": "9d240b0",
+  "candidate": {
+    "worktree": "C:/Users/HP/.codex/worktrees/swarm12-covariance-fix/2026-10-26 - Meta Global AI Developer Hackathon",
+    "branch": "run/R12-covariance-fix",
+    "state": "Round3 accepted, staged control commit then FF main only; Build/contracts/fitter tests identical to reviewed9d240b0"
   },
-  "candidate2": {
-    "worktree": "C:/Users/HP/.codex/worktrees/swarm10-browser-sim/2026-10-26 - Meta Global AI Developer Hackathon",
-    "branch": "run/R11-candidate",
-    "next": "Rebase on latest main, integrate transport after reading report/code/timebox, fresh tests + actual IAB375 normal browser compute all4 and Mystery noDTO. Targeted required gate review only; Codex routine review."
+  "active_workers": [],
+  "next": "Continue only genuinely useful authorized simulation verification; three generated ready items S02f/S05b/S07b are locked by current scope. Resolve UI project binding discrepancy before further dispatch, do not invent filler/new product scope.",
+  "owner_stop": {
+    "deadline": "2026-10-29T04:00:00Z",
+    "crossing_worker_stop_receipt": "2026-10-29T03:59:30Z",
+    "overall_no_new_implementation": "2026-10-29T03:55:00Z"
   },
   "servers": {
-    "canonical": {
-      "port": 3100,
-      "last_verified_pid": 16808
+    "canonical3100": "owned main dev remains",
+    "recovery3101": {
+      "session_id": 57559,
+      "state": "R12 candidate active; stop redundant server after FF"
     },
-    "candidate2": {
-      "port": 3101,
-      "status": "STOPPED via owned exec63695; parent socket probe CLOSED20:50UTC",
-      "session_id": 63695,
-      "last_verified_pid": 34480
-    }
+    "production3102": "CLOSED"
   },
   "browser": {
     "kind": "ChatGPT IAB only",
-    "tabs": [
-      "http://127.0.0.1:3100/lab",
-      "http://127.0.0.1:3101/lab"
-    ],
-    "note": "New tabs start1280; explicitly set375x812 AFTER selecting/creating target; verify document clientWidth==scrollWidth, not just innerWidth."
+    "tab_id": "3",
+    "url": "http://127.0.0.1:3101/lab",
+    "viewport": "375x812; reset/close after final evidence",
+    "proof": "evidence/S11/covariance-recovery/iab-mystery-375.png"
+  },
+  "project_binding": {
+    "assigned_id": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
+    "canonical_root_verified": true,
+    "move_api_returned_assigned_id": true,
+    "fresh_list_threads_projectId": null,
+    "state": "Not verified; no unsupported binding claim. R13 contract corrected. No provider/config workaround."
   },
   "automation": {
     "id": "maximum-speed-swarm-until-10-a-m",
     "target_thread_id": "01a1840d-7310-7991-8cb8-8ec4cfb149a7",
     "until": "2026-10-29T04:00:00Z",
-    "prompt": "Go at maximum speed. Keep working until 10 a.m."
+    "prompt": "Go at maximum speed. Keep working until 10 a.m.",
+    "configuration_verified": true,
+    "last_delivery_audit": "20:43UTC ACTIVE,last_run_at null,zero execution receipts; actual delivery unverified"
   },
   "holds": [
     "PhysicalGateM NOT_MET_INPUT_READINESS",
     "S12",
     "real scenes",
     "paidGPU",
-    "deployment",
+    "deployments",
     "publishing",
     "accounts/terms/credentials"
   ],
-  "cleanup": "Closed all round1 workers; app confirms4 archives, R10candidate archivequeued. UI worktree archive denied Another active task still uses this worktree; do not force-delete. Candidate2 contains own generated untracked iab-propagated-fit-375.png already identical and tracked onmain; account for before rebase."
+  "evidence": {
+    "round1": "CANDIDATE-INTEGRATION.md",
+    "round2": "ROUND2-INTEGRATION.md",
+    "round3": "../R12-covariance-fix/REPORT.md",
+    "native_review": "../R12-covariance-review/FOLLOWUP.md",
+    "real_process": "../R13-process-lifecycle/REPORT.md"
+  },
+  "cleanup": "All worker handles closed; some archive requests queued, UI/bundle checkouts denied active-attachment. Never force-delete; managed snapshots remain recoverable."
 }
