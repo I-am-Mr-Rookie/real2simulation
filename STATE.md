@@ -1,5 +1,25 @@
 # Real2Simulation — STATE
 
+## CURRENT — owner-authorized bounded inline swarm until Oct29 00:00 Dhaka
+
+Direct owner exception: use Ponytail and inline agents/swarm, no fresh desktop
+chats required, work until18:00UTC Oct28=00:00BDT Oct29; do not stop early.
+Prior solo/takeover stop superseded only for this bounded session. Existing
+safety/lane/model/approval/budget/rights/privacy gates unchanged. No schedule,
+dispatcher or automatic continuation. Canonical main baseline bc4591e;58/205.
+Four isolated workers plus independent existing authenticated Claude Opus5.5
+CLI baseline review; exact prompts/deadlines/IDs in
+Run-System/Runs/SWARM-20261028-2400/. Parent serializes controls and integration.
+No RUNS owner replies open at intake. Retain2.85/30; no new paid reservation.
+Parent S05b/S07b PARTIAL, physical gates/S12 unchanged until real evidence.
+
+Fresh direct reply additionally authorizes SIMULATION-ONLY S10/S11 against
+existing synthetic fixtures despite physical S07/S09 holds. Real-scene and
+physical gates stay locked; exact question/reply saved in
+Run-System/Runs/SWARM-20261028-2400/OWNER-SIMULATION-EXCEPTION.md.
+Isolated S10a/b, S11a/b/c and fitter d-g workers dispatched; leaf DONE requires
+real acceptance, numerical sidecars integrate after contract/instrument leaves.
+
 ## Latest direct owner instruction — solo work until 23:00 BDT Oct28
 
 Fresh direct owner authorization: apply Ponytail, work alone, complete useful
