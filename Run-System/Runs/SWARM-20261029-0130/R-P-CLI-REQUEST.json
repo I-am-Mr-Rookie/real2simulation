@@ -1,0 +1,14 @@
+{
+  "issued_at": "2026-10-28T18:37:10+00:00",
+  "deadline_at": "2026-10-28T19:07:10+00:00",
+  "implementation_cutoff_at": "2026-10-28T19:02:10+00:00",
+  "model": "claude-opus-5-5",
+  "effort": "medium",
+  "tools": [
+    "Read",
+    "Glob",
+    "Grep"
+  ],
+  "scope": "read-only preliminary R-P source review",
+  "old_failure": "17:18ECONNREFUSED; this new scoped review gets one normal request, no churn"
+}
