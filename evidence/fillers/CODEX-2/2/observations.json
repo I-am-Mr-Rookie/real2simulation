@@ -1,0 +1,255 @@
+{
+  "observations": [
+    {
+      "name": "cache-expiry-failure-recovery",
+      "times": [
+        0,
+        4.999,
+        5,
+        9.999,
+        10
+      ],
+      "states": [
+        "ok",
+        "ok",
+        "unavailable",
+        "unavailable",
+        "ok"
+      ],
+      "submissions": 3
+    },
+    {
+      "name": "strict-probe-success",
+      "synthetic_type": "int",
+      "result": "unavailable"
+    },
+    {
+      "name": "strict-probe-success",
+      "synthetic_type": "str",
+      "result": "unavailable"
+    },
+    {
+      "name": "strict-probe-success",
+      "synthetic_type": "dict",
+      "result": "unavailable"
+    },
+    {
+      "name": "strict-probe-success",
+      "synthetic_type": "NoneType",
+      "result": "unavailable"
+    },
+    {
+      "name": "strict-probe-success",
+      "synthetic_type": "bool",
+      "result": "ok"
+    },
+    {
+      "name": "strict-probe-success",
+      "synthetic_type": "bool",
+      "result": "unavailable"
+    },
+    {
+      "name": "current-hardened-verifier-baseline",
+      "exit": 0,
+      "checks": 10
+    },
+    {
+      "name": "non-object-json",
+      "synthetic_type": "NoneType",
+      "exit": 1,
+      "failures": 1
+    },
+    {
+      "name": "non-object-json",
+      "synthetic_type": "list",
+      "exit": 1,
+      "failures": 1
+    },
+    {
+      "name": "non-object-json",
+      "synthetic_type": "str",
+      "exit": 1,
+      "failures": 1
+    },
+    {
+      "name": "non-object-json",
+      "synthetic_type": "int",
+      "exit": 1,
+      "failures": 1
+    },
+    {
+      "name": "non-object-json",
+      "synthetic_type": "bool",
+      "exit": 1,
+      "failures": 1
+    },
+    {
+      "name": "transport-exception-isolation",
+      "error_type": "URLError",
+      "failed_checks": 10
+    },
+    {
+      "name": "transport-exception-isolation",
+      "error_type": "TimeoutError",
+      "failed_checks": 10
+    },
+    {
+      "name": "transport-exception-isolation",
+      "error_type": "UnicodeDecodeError",
+      "failed_checks": 10
+    },
+    {
+      "name": "malformed-json",
+      "exit": 1,
+      "failed_service": "api",
+      "error_type": "JSONDecodeError",
+      "checks": 10
+    },
+    {
+      "name": "invalid-utf8",
+      "exit": 1,
+      "failed_service": "api",
+      "error_type": "UnicodeDecodeError",
+      "checks": 10
+    },
+    {
+      "name": "web-missing-title",
+      "exit": 1,
+      "failed_service": "web",
+      "error_type": null,
+      "checks": 10
+    },
+    {
+      "name": "web-wrong-content",
+      "exit": 1,
+      "failed_service": "web",
+      "error_type": null,
+      "checks": 10
+    },
+    {
+      "name": "private-wrong-status",
+      "exit": 1,
+      "failed_service": "web",
+      "error_type": null,
+      "checks": 10
+    }
+  ],
+  "source_hashes_lf_normalized": {
+    "Build/web/src/auth/access.mjs": "cb28d4bc5c4e60ba1ddb359a2d3540fd9a2fd5c69931e948d04ec1ee5acb5858",
+    "Build/web/src/auth/config.mjs": "49727a7a8ee807e753856db97ffb51c9acdf1b6efa8649f18420ca1fc4497e63",
+    "Build/web/src/auth/access.test.mjs": "8590d025f63a13417f986a080eb7d616009dcd2a8d9402b325fb440401216975",
+    "Build/web/src/auth/config.test.mjs": "d796f000910379fdf7c4be833630eae0ee582bcf80ad1bbe58f135d99d694e52",
+    "Build/web/src/auth/server-access.js": "9cb12d9c2eb6ea171052a90865476601dd07897c539798bde50e2184efb55284",
+    "Build/web/src/auth/server-config.js": "78f266a8ff1e2d0ff9d260e4442f3aba5d205665a195dad59db02089ebc0d6db",
+    "Build/api/health/dependencies.py": "56cf918ee6f9b02a557caa747b9748eb6c1ac4f20790af42188fd25bbff6d6d8",
+    "Build/api/health/app.py": "363f29304272f4e5468d1be23c2d7cbbf03c1f65d689140298d91c62d22e501e",
+    "Build/worker/health/app.py": "c748d939aca6ffe896763e0bfc7b28aa19f11f5edb3966d147bc8bb1e9761c57",
+    "Build/api/health/test_dependencies.py": "27f863cd5bc9f3461b1726063ea8b34f30a3f61591fb1e2ae13cb59d69800ed7",
+    "Build/api/health/test_health.py": "114342045af12024b0c2d6728e290bed8c45ed876f86e938b89e4caa8402755c",
+    "infra/railway/dev/verify.py": "92da9ac6e32e3eb4ffc941886ad28010f88279aee8c37ae299e3b10aa6ff6f70",
+    "infra/railway/dev/test_verify.py": "1b3aea87fe532de4aaca6088a7813c86c8d5ceade03f3ff1eaab849857217e6e",
+    "infra/railway/dev/stage.py": "572134f03267bb8fffc7579e65470b1d278b99d946dd0d815ef91f3a84e0eaa2"
+  },
+  "existing_python_tests": {
+    "Build/api/health/test_dependencies.py": [
+      {
+        "name": "test_configured_but_failed_connections_are_unavailable_not_missing",
+        "line": 25
+      },
+      {
+        "name": "test_successful_adapter_checks_enable_api_but_never_worker_heartbeat",
+        "line": 35
+      },
+      {
+        "name": "test_nondev_and_incomplete_configuration_never_connects",
+        "line": 46
+      },
+      {
+        "name": "test_probe_failure_is_sanitized_and_independent",
+        "line": 55
+      },
+      {
+        "name": "test_deadline_and_repeated_requests_do_not_enqueue_duplicate_probes",
+        "line": 65
+      },
+      {
+        "name": "test_liveness_never_invokes_dependency_checks",
+        "line": 81
+      },
+      {
+        "name": "test_postgres_probe_uses_read_only_query_and_bounded_connection",
+        "line": 87
+      },
+      {
+        "name": "test_redis_probe_checks_ping_and_disables_retries",
+        "line": 97
+      },
+      {
+        "name": "test_bucket_probe_head_only_explicit_credentials_timeout_and_cleanup",
+        "line": 110
+      },
+      {
+        "name": "test_invalid_connection_schemes_never_reach_sdk",
+        "line": 130
+      }
+    ],
+    "Build/api/health/test_health.py": [
+      {
+        "name": "test_liveness_is_200_without_downstream_configuration",
+        "line": 25
+      },
+      {
+        "name": "test_readiness_cannot_claim_missing_integrations_are_healthy",
+        "line": 35
+      },
+      {
+        "name": "test_config_presence_cannot_fabricate_dependency_or_worker_success",
+        "line": 50
+      },
+      {
+        "name": "test_version_only_publishes_valid_revision_not_raw_environment",
+        "line": 60
+      },
+      {
+        "name": "test_health_has_no_scene_or_job_api",
+        "line": 71
+      },
+      {
+        "name": "test_both_services_respond_over_real_loopback_http",
+        "line": 77
+      }
+    ],
+    "infra/railway/dev/test_verify.py": [
+      {
+        "name": "test_baseline_including_statusless_version_and_worker_503",
+        "line": 82
+      },
+      {
+        "name": "test_wrong_or_missing_service",
+        "line": 88
+      },
+      {
+        "name": "test_wrong_or_missing_health_status",
+        "line": 100
+      },
+      {
+        "name": "test_wrong_or_missing_revision",
+        "line": 113
+      },
+      {
+        "name": "test_http_codes_remain_exact",
+        "line": 125
+      },
+      {
+        "name": "test_readiness_dependencies_remain_exact",
+        "line": 130
+      },
+      {
+        "name": "test_non_object_json_fails_closed",
+        "line": 154
+      }
+    ]
+  },
+  "live_transport_calls": 0,
+  "product_writes": 0
+}

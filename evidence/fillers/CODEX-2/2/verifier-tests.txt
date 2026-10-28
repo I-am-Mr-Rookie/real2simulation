@@ -1,0 +1,12 @@
+test_baseline_including_statusless_version_and_worker_503 (test_verify.VerifyTests.test_baseline_including_statusless_version_and_worker_503) ... ok
+test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) ... ok
+test_non_object_json_fails_closed (test_verify.VerifyTests.test_non_object_json_fails_closed) ... ok
+test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) ... ok
+test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) ... ok
+test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) ... ok
+test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.282s
+
+OK

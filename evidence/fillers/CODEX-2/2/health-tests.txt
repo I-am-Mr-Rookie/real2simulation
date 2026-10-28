@@ -1,0 +1,48 @@
+test_health (unittest.loader._FailedTest.test_health) ... ERROR
+
+======================================================================
+ERROR: test_health (unittest.loader._FailedTest.test_health)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_health
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\api\health\test_health.py", line 14, in <module>
+    from fastapi.testclient import TestClient
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\fastapi\__init__.py", line 7, in <module>
+    from .applications import FastAPI as FastAPI
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\fastapi\applications.py", line 17, in <module>
+    from fastapi import routing
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\fastapi\routing.py", line 27, in <module>
+    from fastapi import params, temp_pydantic_v1_params
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\fastapi\params.py", line 6, in <module>
+    from fastapi.openapi.models import Example
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\fastapi\openapi\models.py", line 4, in <module>
+    from fastapi._compat import (
+    ...<6 lines>...
+    )
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\fastapi\_compat\__init__.py", line 1, in <module>
+    from .main import BaseConfig as BaseConfig
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\fastapi\_compat\main.py", line 12, in <module>
+    from fastapi._compat import may_v1
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\fastapi\_compat\may_v1.py", line 4, in <module>
+    from fastapi.types import ModelNameMap
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\fastapi\types.py", line 5, in <module>
+    from pydantic import BaseModel
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\pydantic\__init__.py", line 5, in <module>
+    from ._migration import getattr_migration
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\pydantic\_migration.py", line 4, in <module>
+    from pydantic.warnings import PydanticDeprecatedSince20
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\pydantic\warnings.py", line 5, in <module>
+    from .version import version_short
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\pydantic\version.py", line 7, in <module>
+    from pydantic_core import __version__ as __pydantic_core_version__
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\pydantic_core\__init__.py", line 6, in <module>
+    from typing_extensions import Sentinel
+ModuleNotFoundError: No module named 'typing_extensions'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

@@ -1,0 +1,12 @@
+[
+  {
+    "optimize": 0,
+    "existing_target_blocked": true,
+    "synthetic_existing_file_overwritten": false
+  },
+  {
+    "optimize": 1,
+    "existing_target_blocked": false,
+    "synthetic_existing_file_overwritten": true
+  }
+]
