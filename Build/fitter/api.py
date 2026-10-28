@@ -102,7 +102,17 @@ def fit_observations(request: Mapping[str, Any]) -> dict[str, Any]:
     if type(degree) is not int or degree not in (1, 2):
         raise ApiInputError("degree_must_be_integer_1_or_2")
     fit = fit_motion(times, positions, degree)
-    result: dict[str, Any] = {"status": "ok", "fit": _fit_json(fit)}
+    result: dict[str, Any] = {
+        "status": "ok",
+        "fit": _fit_json(fit),
+        "uncertainty": {
+            "model": uncertainty_model,
+            "assumptions": [
+                "iid residual noise", "clock fixed", "scale fixed",
+                "input quantity uncertainty not propagated",
+            ],
+        },
+    }
     if degree == 2:
         covariance = jacobian_covariance(fit, parameter_index=2)
         result["covariance"] = {
@@ -111,6 +121,9 @@ def fit_observations(request: Mapping[str, Any]) -> dict[str, Any]:
             "standard_error": covariance.standard_error,
             "status": "available" if covariance.valid else "unavailable",
             "parameter": "quadratic_position_coefficient",
+            "variance_unit": "m^2/s^4",
+            "standard_error_unit": "m/s^2",
+            "gravity_scale_factor": 2.0,
             "assumptions": ["iid residual noise", "clock fixed", "scale fixed", "input quantity uncertainty not propagated"],
             "source": {"label": "simulated", "evidence": "S11 covariance from fitted residuals"},
         }

@@ -1,1 +1,10 @@
-{"rid":"S11h-swarm","issued_at":"2026-10-28T17:30:14Z","deadline":"2026-10-28T18:00:14Z","minute25":"2026-10-28T17:55:14Z","stopped_at":"2026-10-28T17:35:00Z","reported_at":"2026-10-28T17:35:00Z","status":"DONE","controller_exception":"Direct owner hard stop18:00Z, controller safe stop17:59:30Z"}
+{
+  "rid": "S11h-swarm",
+  "issued_at": "2026-10-28T17:30:14Z",
+  "deadline": "2026-10-28T18:00:14Z",
+  "minute25": "2026-10-28T17:55:14Z",
+  "stopped_at": "2026-10-28T17:35:00Z",
+  "reported_at": "2026-10-28T17:35:00Z",
+  "status": "PARTIAL_PENDING_INTEGRATION",
+  "controller_exception": "Direct owner hard stop18:00Z, controller safe stop17:59:30Z"
+}

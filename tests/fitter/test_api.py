@@ -24,6 +24,8 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(out["status"], "ok"), out
         self.assertEqual(out["gravity"]["source"]["label"], "simulated")
         self.assertEqual(out["covariance"]["status"], "available")
+        self.assertEqual(out["covariance"]["variance_unit"], "m^2/s^4")
+        self.assertEqual(out["covariance"]["standard_error_unit"], "m/s^2")
         self.assertIn("input quantity uncertainty not propagated", out["covariance"]["assumptions"])
         json.dumps(out, allow_nan=False)
 
@@ -47,6 +49,12 @@ class ApiTests(unittest.TestCase):
         data = {"times": [q(0, "s"), q(1, "s"), q(2, "s")], "positions": [q(0, "m"), q(1, "m"), q(4, "m")]}
         self.assertEqual(handle({**data, "select_model": "yes"})["status"], "error")
         self.assertEqual(handle({**data, "uncertainty_model": "weighted"})["status"], "error")
+
+    def test_degree_one_also_reports_uncertainty_assumptions(self):
+        data = {"times": [q(0, "s"), q(1, "s"), q(2, "s")], "positions": [q(0, "m"), q(1, "m"), q(2, "m")]}
+        out = handle({**data, "degree": 1})
+        self.assertEqual(out["status"], "ok")
+        self.assertIn("input quantity uncertainty not propagated", out["uncertainty"]["assumptions"])
 
 
 if __name__ == "__main__":
