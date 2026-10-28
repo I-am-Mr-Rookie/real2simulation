@@ -19,7 +19,7 @@ test at tests\lab\ui-contract.test.mjs:22:1
 ✖ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (8.3968ms)
   AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
   + actual - expected
-  
+
   + {
   +   assumptions: [
   +     'ideal'
@@ -32,7 +32,7 @@ test at tests\lab\ui-contract.test.mjs:22:1
   +   value: 9.7
   + }
   - null
-  
+
       at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-ui/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-contract.test.mjs:34:10)
       at Test.runInAsyncScope (node:async_hooks:227:14)
       at Test.run (node:internal/test_runner/test:1325:25)
@@ -51,7 +51,7 @@ test at tests\lab\ui-contract.test.mjs:22:1
 test at tests\lab\ui-contract.test.mjs:38:1
 ✖ the chart uses all observations, not the downsampled table (4.2369ms)
   AssertionError [ERR_ASSERTION]: The input did not match the regular expression /plotPoints\(session\?\.observations\)/. Input:
-  
+
   "'use client';\r\n" +
     '\r\n' +
     "import { useEffect, useRef, useState } from 'react';\r\n" +
@@ -162,7 +162,7 @@ test at tests\lab\ui-contract.test.mjs:38:1
     '}\r\n' +
     '\r\n' +
     'export { BALLISTIC, sampleRows };\r\n'
-  
+
       at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-ui/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-contract.test.mjs:39:10)
       at Test.runInAsyncScope (node:async_hooks:227:14)
       at Test.run (node:internal/test_runner/test:1325:25)
@@ -181,7 +181,7 @@ test at tests\lab\ui-contract.test.mjs:38:1
 test at tests\lab\ui-contract.test.mjs:50:1
 ✖ labels describe the bridge ordinate and unsupported fits honestly (2.9875ms)
   AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Downward vertical displacement from start/. Input:
-  
+
   "'use client';\r\n" +
     '\r\n' +
     "import { useEffect, useRef, useState } from 'react';\r\n" +
@@ -292,7 +292,7 @@ test at tests\lab\ui-contract.test.mjs:50:1
     '}\r\n' +
     '\r\n' +
     'export { BALLISTIC, sampleRows };\r\n'
-  
+
       at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-ui/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-contract.test.mjs:51:10)
       at Test.runInAsyncScope (node:async_hooks:227:14)
       at Test.run (node:internal/test_runner/test:1325:25)

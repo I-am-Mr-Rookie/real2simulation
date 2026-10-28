@@ -1,0 +1,11 @@
+{
+  "id": "R10-lab-ui",
+  "issued_at": "2026-10-28T19:55:20.136Z",
+  "deadline_at": "2026-10-28T20:25:20.136Z",
+  "implementation_cutoff_at": "2026-10-28T20:20:20.136Z",
+  "deadline_dhaka": "2026-10-29T02:25:20.136+06:00",
+  "work_stopped_at": "2026-10-28T20:02:28Z",
+  "reported_at": "2026-10-28T20:03:01Z",
+  "status": "DONE",
+  "note": "Verified owned UI contract complete early. Parent owns browser/mobile acceptance. UTC dispatch/deadline authoritative; handout Dhaka deadline is inconsistent."
+}
