@@ -1,0 +1,72 @@
+[
+  {
+    "name": "measurement",
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/measurement",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 1.631
+  },
+  {
+    "name": "spec",
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/spec",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 47.594
+  },
+  {
+    "name": "spike",
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Build/reconstruction/spike",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 32.879
+  },
+  {
+    "name": "scene",
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "contracts/scene",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 3.61
+  },
+  {
+    "name": "viewer",
+    "command": [
+      "node",
+      "--test",
+      "tests\\viewer\\artifact-loader.test.mjs",
+      "tests\\viewer\\render-budget.test.mjs",
+      "tests\\viewer\\scene-overlays.test.mjs",
+      "tests\\viewer\\three-renderer.test.mjs",
+      "tests\\viewer\\viewer.test.mjs"
+    ],
+    "returncode": 0,
+    "elapsed_s": 3.872
+  }
+]

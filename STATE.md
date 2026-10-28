@@ -40,6 +40,16 @@ base constraints checked; offline exact repeat and newline-normalized main repea
 PASS. No target environment/SAM install/import/checkpoint/GPU; optional kernels
 and runtime readiness unverified. Parent PARTIAL58/205 unchanged. No paid spend.
 
+Bounded solo session COMPLETE: product stop16:55:11UTC=22:55:11BDT, before
+22:58BDT/23:00 owner limits. Four scoped runs (one new queue leaf, three recovery
+children),58/205;0 active. Fresh canonical273 targeted tests PASS (231 Python +42
+Node). Health missing-psycopg error retained; earlier isolated missing-three issue
+superseded only by main42/42 local Node pass, not browser/live evidence. Four
+timing receipts/source/Unicode checks PASS. No live GPU/SAM/physics/new reservation
+or automatic continuation. Full receipt: Run-System/Runs/SOLO-20261028-2300/REPORT.md.
+New primary worktree archive refused; retained clean/recoverable, no bypass.
+Fresh owner instruction needed next; actual stop in evidence/solo-20261028-2300/audit.json.
+
 ## Latest direct owner instruction — solo work completed before 22:30 BDT Oct28
 
 Koushik: "You are the lonely worker. Complete as many runs as you can until 10:30 pm (BDT)".
@@ -88,7 +98,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 | Recovery field | Current evidence |
 |---|---|
 | GPU scheduling priority | Koushik validates ~20 GPU-hours needed, ~15h current Modal allocation, reset on/after Nov1. Start S06p readiness now; useful eligible GPU work Oct28–31 takes priority, remainder after actual reset. API_BUDGET.md is authoritative; no dummy jobs, approval/dependency bypass or expanded spend. |
-| Authorized scope | Latest direct solo instruction honored; product work stopped Oct28 22:24:21BDT before22:30 cutoff. Three runs complete, no active worker or automatic next run. No delegation, dispatcher/schedule, remote or paid expansion. |
+| Authorized scope | Latest bounded solo session completed22:55:11BDT, before22:58/23:00 cutoff. Four scoped runs (one new leaf/three recovery children),0 active; no automatic next run/delegation/dispatcher/schedule/remote/paid expansion. See SOLO-20261028-2300 receipt. |
 | Manual concurrency | No fixed cap; useful independent isolated Owns only, one canonical control maintainer. Serialize controls/merges/heavy builds; no quota polling/duplicate objectives. |
 | Session project | EVERY new worker and orchestrator uses existing Meta AI Hackathon project91e441f8-e40c-4ec4-bea2-de7fa1582d97, same canonical event root. Verify/record supported association; no duplicate project or projectless launches. |
 | Calibration recovery latest | S02f recovery2 PARTIAL: two new NASA families audited,0 qualified additions. S02i recovery2 forensic inventory DONE, NOT metric qualification; RP01 clock/plane HOLD0 eligible trials. Fresh source/hash/mapping checks accepted. S02h/S02g/S07r prior forensics retained; no new metric/source approval or GateM pass. No generic source hunt redispatch. |

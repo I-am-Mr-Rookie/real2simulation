@@ -1,0 +1,24 @@
+{
+  "timebox_checks": {
+    "S07b-recovery5": "TIMING PASS; controller must separately verify evidence and any exception",
+    "S08i": "TIMING PASS; controller must separately verify evidence and any exception",
+    "S05b-recovery11": "TIMING PASS; controller must separately verify evidence and any exception",
+    "S07b-recovery6": "TIMING PASS; controller must separately verify evidence and any exception"
+  },
+  "main_sha": "333980a04ccd54713ddbae08070cb37872358fbd",
+  "source_sha256": {
+    "Build/measurement/tracking.py": "68f3244f518e7ac106e8161e6cbe31017592299d62fd7839f84ba1f6c4254cd2",
+    "Build/templates/free_fall.py": "ecb2434690add8efb7129099eb8a7dc0f5ed7928ba90c2cf94c9d488972951b7",
+    "contracts/experiment/validate_experiment.py": "c87e082757ab387078fccc98ada95c1b097e52da3160f1dabc23a0f1754fcabe",
+    "Build/reconstruction/spike/modal_rm02.py": "6ed46fb2645bc12f128a8a6ff133b15bb3bab86519efd998567f966712f556b0"
+  },
+  "utc": "2026-10-28T16:53:11.869820+00:00",
+  "state_unicode": "PASS",
+  "removable_safety_assertions": 0,
+  "product_work_stopped_at": "2026-10-28T16:55:11.894954+00:00",
+  "python_tests_pass": 231,
+  "node_tests_pass": 42,
+  "total_targeted_tests_pass": 273,
+  "live_runtime": "NOT_RUN",
+  "automatic_continuation": false
+}
