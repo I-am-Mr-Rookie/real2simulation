@@ -1,5 +1,13 @@
 # Real2Simulation — Windows PC Run System
 
+Owner precedence: read ../OWNER_INSTRUCTIONS_2026-10-28.md and its original PDF.
+The filename and all pages are instructions; nonconflicting older instructions
+continue. Ingest owner replies from RUNS.md into STATE.md before regeneration.
+Every new session, including workers and orchestrators, belongs to Meta AI
+Hackathon project `91e441f8-e40c-4ec4-bea2-de7fa1582d97`. Verify/record the
+same parent project and canonical root on every supported launch; no projectless
+or duplicate project. Isolated managed worktrees do not change project ownership.
+
 Latest Oct28 owner PDF: fresh contexts/explicit <=30m deadlines, silent workers,
 no fixed cap, in-app browser ONLY (no Chrome). Controller serially records routine
 best decisions and necessary inputs under generated RUNS.md Reviews for Koushik;

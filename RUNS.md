@@ -1,31 +1,28 @@
 # Runs checklist
 
-Updated Oct 28, 19:17 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 19:46 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **55 / 203** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 1 open questions
+Progress: **55 / 203** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 2 open reviews
 
-## Questions for Koushik
+## Reviews for Koushik
 
-- [ ] Q11 [S07b exact SAM3.1 access] Current official model card is readable but the inspected browser is logged out; weights require human access/conditions/information-sharing review. This does NOT prove Koushik lacks existing access. A (recommended): personally review https://huggingface.co/facebook/sam3.1 in your existing account and report your terms/access decision; B: already approved, report status/approved local checkpoint path only (no token/secrets); C: defer live SAM and retain offline-tested adapter. No agent login, information sharing, terms acceptance, download or paid run authorized by this question. GPU/footage permission is already answered. Continue independent local prefix-custody preparation within existing scene/tracking approval.
+- [ ] R1 [Routine decision; no response needed] Oct28 PDF filename AND all four pages are saved as instructions; only conflicting older instructions are overridden. Existing nonconflicting rules continue. EVERY new worker/orchestrator uses the same existing Meta AI Hackathon project. New handoff: Run-System/ORCHESTRATOR_HANDOFF_2026-10-28.md. SAM3 access ACCEPTED evidence saved; both workers finished PARTIAL, not active; controller acceptance/integration remains. No scheduled task, dispatcher OFF. Ready list is dependency-only, not permission to bypass recorded readiness/budget/rights holds.
+- [ ] Q12 [S01b: how to check sign-in] Your RUNS.md reply was "How to check that? what is the link? what I have to do?" In the in-app browser open [dev sign-in](https://web-dev-cd80.up.railway.app/sign-in): try Google, sign out, then try email OTP; never send codes/keys. Also open the [guest library](https://web-dev-cd80.up.railway.app/library) while signed out. Reply here with Google PASS/FAIL, OTP PASS/FAIL and guest PASS/FAIL. If "Sign-in unavailable" appears, report it; Clerk dev configuration remains the prerequisite (Q4), not another approval request. URLs/routes are from saved deployment/source receipts; current browser availability/E2E was not checked in this handoff.
 
 ## Ready now
 
 **CODEX-1**
-- Nothing ready yet: check dependencies and retry holds below.
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
+- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
-
-## In progress
-
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(in progress)*
-- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -93,7 +90,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 <details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (1/7)</summary>
 
 - [x] **S05a** — Codex · GPT-6.1 Sol, effort medium — Check reconstruction licences and freeze scene artifact contract (30 min)
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(in progress)*
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [ ] **S05c** — Codex · GPT-6.1 Sol, effort medium — Reconstruct remaining scene clips (30 min)
 - [ ] **S05d** — Codex · GPT-6.1 Sol, effort medium — Fit floor, metric scale and gravity orientation (30 min)
 - [ ] **S05e** — Codex · GPT-6.1 Sol, effort high — Run Gate R and inspect reconstruction failures (30 min)
@@ -124,7 +121,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S02i** — Codex · GPT-6.1 Sol, effort high — Audit RP01 side-view metric trajectory segments (30 min)
 - [x] **S07r** — Codex · GPT-6.1 Sol, effort high — Reconcile input readiness and approved small-sample fallback (20 min)
 - [x] **S07a** — Codex · GPT-6.1 Sol, effort medium — Define scale, timestamps and held-out tracking inputs (30 min)
-- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(in progress)*
+- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
 - [x] **S07c** — Codex · GPT-6.1 Sol, effort medium — Implement deterministic free-fall fit (30 min)
 - [x] **S07d** — Codex · GPT-6.1 Sol, effort medium — Detect slow-motion and propagate measurement uncertainty (30 min)
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)

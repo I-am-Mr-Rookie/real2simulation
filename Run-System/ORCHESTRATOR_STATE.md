@@ -1,5 +1,41 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — owner-requested fresh-chat handoff; accepted SAM3 access
+
+Read Run-System/ORCHESTRATOR_HANDOFF_2026-10-28.md first. The old controller
+stops dispatching after saving/verifying this transfer. Koushik explicitly
+requests a NEW orchestration chat, in the existing **Meta AI Hackathon** project
+91e441f8-e40c-4ec4-bea2-de7fa1582d97. EVERY future worker/orchestrator session
+must use that same project. Do not create duplicate/projectless sessions.
+
+Entire Oct28 PDF AND its filename are instructions; only conflicting previous
+instructions are superseded. OWNER_INSTRUCTIONS_2026-10-28.md records all4 pages,
+preserving the unchanged original. No Chrome, no scheduled tasks; heartbeat
+DELETED13:20:43UTC, Python dispatcher OFF. Keep all nonconflicting earlier rules.
+Owner's RUNS.md replies migrated into STATE.md before regeneration.
+
+Latest owner-supplied screenshot shows SAM3 Gating Group Collection ACCEPTED,
+superseding the older awaiting-review page. Byte-identical ignored local proof
+saved; evidence/owner/S07/SAM31-ACCESS.md records hash/provenance/limits.
+Q11 answered; no repeated terms/access question. Weights/config/Modal
+authentication/runtime remain unverified, no download/bucket/job in this transfer.
+
+At fresh compact status check13:40UTC both workers completed PARTIAL; both now
+CLOSED, no active worker from this controller. Acceptance/integration PENDING:
+- S07b recovery3: r-m-review/run/S07b-recovery3, worker31d0b10, prefix custody
+  receipts and ignored271 JPEGs retained. Only dirty tracked file is the
+  controller-generated self-check.json timestamp: preserve it as fresh controller
+  evidence before any exact-file restoration. NEVER archive this media worktree.
+- S05b diagnostic6: s05b-recovery4/run/S05b-diagnostic6 at127212a, owned evidence
+  still uncommitted, real REPORT exists. One unpaid log read found stops only;
+  allocation cause UNKNOWN. Do not launch another identical paid retry.
+
+QUEUE S05b/S07b PARTIAL, not IN PROGRESS or DONE.55/203 accepted deliverables;
+physical GateM NOT_RUN/NOT_MET_INPUT_READINESS, no S12 unlock. Retain2.85 reserves
+under existing30 authority, no release/expansion/CPU reinstall. Successor verifies
+reports/scoped tests before serial commits/rebase/FF. Older CURRENT sections below
+are HISTORICAL and must not resurrect active workers, heartbeat or pending Q11.
+
 ## CURRENT — two disjoint unpaid prerequisites (Oct28 13:16UTC)
 
 S07b recovery3 remains active child01a182a3-b779-7610-819b-899909c683d8 (Poincare),

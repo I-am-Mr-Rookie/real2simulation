@@ -1,0 +1,24 @@
+test_at_deadline_bounded_retry_eligible_not_recovery (test_runs_view.RetryHoldTests.test_at_deadline_bounded_retry_eligible_not_recovery) ... ok
+test_done_task_not_reintroduced_by_hold (test_runs_view.RetryHoldTests.test_done_task_not_reintroduced_by_hold) ... ok
+test_expired_hold_does_not_override_dependency (test_runs_view.RetryHoldTests.test_expired_hold_does_not_override_dependency) ... ok
+test_malformed_or_timezone_naive_deadline_fails_closed (test_runs_view.RetryHoldTests.test_malformed_or_timezone_naive_deadline_fails_closed) ... ok
+test_one_second_before_deadline_still_waits (test_runs_view.RetryHoldTests.test_one_second_before_deadline_still_waits) ... ok
+test_partial_without_hold_keeps_existing_resume_behavior (test_runs_view.RetryHoldTests.test_partial_without_hold_keeps_existing_resume_behavior) ... ok
+test_rate_limited_partial_is_waiting_not_ready (test_runs_view.RetryHoldTests.test_rate_limited_partial_is_waiting_not_ready) ... ok
+test_unknown_task_hold_fails_closed (test_runs_view.RetryHoldTests.test_unknown_task_hold_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.081s
+
+OK
+RUNS.md: 1/2 done, 1 ready, 0 for Koushik
+RUNS.md: 2/2 done, 0 ready, 0 for Koushik
+RUNS.md: 0/2 done, 1 ready, 0 for Koushik
+RUNS.md: 1/2 done, 0 ready, 0 for Koushik
+RUNS.md: 1/2 done, 1 ready, 0 for Koushik
+RUNS.md: 1/2 done, 0 ready, 0 for Koushik
+PASS: 203 leaves/55 accepted/0 active; S05b/S07b PARTIAL; no unfinished Terra
+PASS: owner replies preserved, Q11 answered, current Reviews/links rendered
+PASS: same project ID in all startup instructions; PDF and accepted screenshot hashes match
+PASS: tracked changes are controls/docs/generated view only; no product/source changes
+PASS: git diff --check

@@ -5,6 +5,16 @@ Koushik uses this when he is busy. He opens the agent he trusts most and says:
 
 ## Your role
 
+Read OWNER_INSTRUCTIONS_2026-10-28.md: the complete Oct28 PDF and its filename are
+instructions; only conflicting older instructions are superseded. Preserve all
+others. Before regenerating RUNS.md, ingest owner replies into STATE.md first.
+For this owner-requested fresh-chat transfer, start from
+Run-System/ORCHESTRATOR_HANDOFF_2026-10-28.md and the newest checkpoint.
+All new orchestrator/worker sessions use the existing Meta AI Hackathon project
+`91e441f8-e40c-4ec4-bea2-de7fa1582d97`; no projectless or duplicate-project launch.
+Delegated/CLI sessions inherit and record the same parent project/root; verify
+the actual supported association rather than inventing UI membership.
+
 **Latest owner workflow (Oct28 PDF):** use only in-app browser (not Chrome),
 fresh <=30m workers with explicit deadlines, silent execution and no fixed cap.
 Choose routine reversible decisions and record them in RUNS.md **Reviews for

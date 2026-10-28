@@ -1,5 +1,14 @@
 # Orchestration resumed — Sol and Ponytail
 
+## CURRENT — fresh same-project controller transfer
+
+Owner-requested successor starts from Run-System/ORCHESTRATOR_HANDOFF_2026-10-28.md.
+All4 PDF pages/filename and nonconflicting prior rules retained; every new session
+uses Meta AI Hackathon. Accepted SAM3 screenshot saved, Q11 answered, both unpaid
+workers closed PARTIAL/acceptance pending. RUNS regenerated with0 active workers;
+owner replies preserved in STATE. Existing view tests8/8 PASS, no product change.
+Detailed transfer receipt at end of this report; older status sections historical.
+
 ## Latest — independent stopped-app diagnosis dispatched (13:16UTC)
 
 - S07b local custody child remains active, Q11 pending unchanged; no repeat owner
@@ -222,3 +231,23 @@
   acceptance pending; controller will read real reports, enforce Ponytail quality
   evidence and serialize verified FF integration. S07b heavy runtime continuation
   waits behind S05b, not another generic unchanged-prerequisite research retry.
+## Fresh same-project handoff receipt
+
+Older launch/status sections above are historical. Read
+Run-System/ORCHESTRATOR_HANDOFF_2026-10-28.md and the latest canonical checkpoint.
+Entire PDF/filename and all nonconflicting prior instructions retained in
+OWNER_INSTRUCTIONS_2026-10-28.md; source hash rechecked and4 pages reread visually.
+ALL new workers/orchestrators use Meta AI Hackathon project91e441f8-e40c-4ec4-bea2-de7fa1582d97.
+Owner SAM3 ACCEPTED screenshot copied/hash-matched/visually inspected;
+evidence/owner/S07/SAM31-ACCESS.md. No current API/weights/runtime pass claimed.
+Both unpaid workers confirmed completed PARTIAL and closed; their acceptance/
+integration is explicitly pending. No new product work/paid calls/credentials,
+source changes, provider/global policy changes, publication or deployments.
+RUNS owner replies preserved in STATE before regeneration; stale active rows
+changed to PARTIAL, Q11 answered, S01b links/how-to recorded. Heartbeat DELETED,
+dispatcher OFF; retained2.85 reserves/$30 authority, physical gates unchanged.
+Ponytail: reused existing view generator/state parser and project creation tool,
+minimal control/docs edits, no new dependency/framework or fabricated worker
+acceptance. Fresh handoff verification is recorded in handoff-verification.txt.
+Skipped live auth/model/physical tests because no relevant source changed.
+Mandatory brief tool/skill/finding updates only; no optional worker chatter.

@@ -4,8 +4,13 @@ Scope: this event folder. Current phase: **building Real2Simulation** (solo, ind
 
 ## Latest owner workflow update — Oct28 scanned instructions
 
-Koushik supplied the four-page Updated_Instructions_10_28_2026 PDF (SHA256
+Koushik supplied the four-page `Updated_Instructions_10_28_2026_anything_else_that_this_PDF_doesn't.pdf` (SHA256
 7244790ebd0db495b705c0bc14bd2185e538dc7312399f352284537c457d3834), read visually.
+The filename AND all four pages are owner instructions. They override conflicting
+older instructions only; every nonconflicting previous instruction continues.
+Read [OWNER_INSTRUCTIONS_2026-10-28.md](OWNER_INSTRUCTIONS_2026-10-28.md) and the
+original PDF. Before regenerating RUNS.md, preserve owner replies in STATE.md;
+the generated view must not erase unrecorded owner decisions or requests.
 Fresh worker contexts, explicit absolute deadline <=30m per run, controller checks
 completion/deadline and serially updates RUNS.md. Workers remain silent except
 mandatory messages and one final report pointer; no fixed worker cap.
@@ -19,10 +24,22 @@ Owner says accounts are signed in; verify only the service needed, no auth chang
 No scheduled task: existing heartbeat deleted Oct28; orchestrator waits on actual
 workers in this chat. Python dispatcher stays OFF. No automatic rescheduling.
 Specific written Q11 override: agent may accept SAM3.1 terms on owner's behalf;
-owner subsequently completed the access request. Fresh in-app page confirms
-SUBMITTED/AWAITING AUTHORS' REVIEW, not approved weights/runtime. Copy-to-bucket
-wizard is not access approval; no bucket/copied weights/publication performed.
+owner subsequently completed the access request. His latest supplied screenshot
+shows SAM3 Gating Group Collection ACCEPTED, superseding the earlier pending page.
+Receipt: evidence/owner/S07/SAM31-ACCESS.md. Approved group access is not verified
+checkpoint bytes/config, Modal authentication, runtime or physical success.
+Copy-to-bucket wizard alone was not access proof; no bucket/copy was performed.
 Other accounts/terms/purchases/publication/AWS/deployment boundaries unchanged.
+
+## One project for every new session — Oct28 owner instruction
+
+Every new orchestrator AND worker session belongs to the SAME **Meta AI Hackathon**
+project, ID `91e441f8-e40c-4ec4-bea2-de7fa1582d97`, canonical event root above.
+Use that existing project for new desktop chats; never create a duplicate project
+or projectless worker. Delegated/CLI workers must inherit and record that same
+parent project/root in their contracts. Verify the launcher's association rather
+than claiming an unsupported project binding. Isolated worktrees are still allowed;
+they do not change project ownership. This applies to every model and continuation.
 
 ## Current owner model/quality override (Oct 28)
 

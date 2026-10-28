@@ -1,5 +1,28 @@
 # Real2Simulation — Decisions and preflight delta
 
+## 2026-10-28 — Full PDF precedence, accepted SAM3 access, fresh same-project controller
+
+Koushik confirms the complete Oct28 PDF AND filename are instructions; they
+override conflicts only, and all nonconflicting previous rules continue.
+Normalized4-page reading in OWNER_INSTRUCTIONS_2026-10-28.md, unchanged original
+retained. Existing36e6269 had already applied the workflow; current transfer
+makes precedence explicit and ingests both owner RUNS replies before regeneration.
+
+Latest owner screenshot shows SAM3 gating-group ACCEPTED; saved byte-identically
+locally with hashed receipt evidence/owner/S07/SAM31-ACCESS.md. Supersedes earlier
+pending request, not proof of weights/config/Modal authentication/runtime.
+No download/bucket/job/authentication change. Q11 answered; owner S01b how-to is
+in Reviews for Koushik, with saved dev links and explicit unverified E2E limit.
+
+Owner explicitly requests a new orchestrator chat. All new sessions, workers
+AND orchestrators, must use existing Meta AI Hackathon project
+91e441f8-e40c-4ec4-bea2-de7fa1582d97. Old controller stops dispatching after
+verified on-disk handoff. Both unpaid workers completed PARTIAL and closed;
+acceptance/integration remains for successor, not falsely marked DONE.
+No scheduled tasks (heartbeat deleted), dispatcher OFF;30 authority/2.85
+reserves and physical/rights/deployment boundaries unchanged. Older stop-after-
+batch sections are historical, not a new stop instruction.
+
 ## 2026-10-28 — Finish batch, pause monitor, owner takeover
 
 Latest owner requests finishing current batch then STOP. S05b recovery3 and
