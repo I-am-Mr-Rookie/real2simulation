@@ -1,0 +1,103 @@
+test_exact_reference_obeys_interpolation_and_normal_equations (test_invariants.FitterInvariantTests.test_exact_reference_obeys_interpolation_and_normal_equations) ... ok
+test_first_order_timing_sandwich_and_fit_differential_agree_on_exact_motion (test_invariants.FitterInvariantTests.test_first_order_timing_sandwich_and_fit_differential_agree_on_exact_motion) ... ok
+test_huge_time_origin_that_erases_spacing_is_not_an_invariance_claim (test_invariants.FitterInvariantTests.test_huge_time_origin_that_erases_spacing_is_not_an_invariance_claim) ... ok
+test_known_sigma_override_is_not_the_residual_floor (test_invariants.FitterInvariantTests.test_known_sigma_override_is_not_the_residual_floor) ... ok
+test_minimal_declared_noise_covariance_respects_known_intercept_variance (test_invariants.FitterInvariantTests.test_minimal_declared_noise_covariance_respects_known_intercept_variance) ... FAIL
+test_minimal_known_noise_covariance_cannot_have_negative_diagonal (test_invariants.FitterInvariantTests.test_minimal_known_noise_covariance_cannot_have_negative_diagonal) ... FAIL
+test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) ...
+  test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=28) ... FAIL
+  test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=36) ... FAIL
+  test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=40) ... FAIL
+test_position_origin_shift_preserves_declared_covariance (test_invariants.FitterInvariantTests.test_position_origin_shift_preserves_declared_covariance) ... ok
+test_residual_square_underflow_is_unavailable_not_known_zero_noise (test_invariants.FitterInvariantTests.test_residual_square_underflow_is_unavailable_not_known_zero_noise) ...
+  test_residual_square_underflow_is_unavailable_not_known_zero_noise (test_invariants.FitterInvariantTests.test_residual_square_underflow_is_unavailable_not_known_zero_noise) (options={}) ... FAIL
+  test_residual_square_underflow_is_unavailable_not_known_zero_noise (test_invariants.FitterInvariantTests.test_residual_square_underflow_is_unavailable_not_known_zero_noise) (options={'position_sigmas': (0.0, 0.0, 0.0, 0.0)}) ... FAIL
+test_row_permutations_preserve_full_covariance_with_paired_sigmas (test_invariants.FitterInvariantTests.test_row_permutations_preserve_full_covariance_with_paired_sigmas) ... ok
+test_scaled_physical_problems_still_use_seconds_and_metres (test_invariants.FitterInvariantTests.test_scaled_physical_problems_still_use_seconds_and_metres) ... ok
+test_time_origin_shift_checks_new_declared_covariance_not_only_coefficients (test_invariants.FitterInvariantTests.test_time_origin_shift_checks_new_declared_covariance_not_only_coefficients) ... ok
+test_truly_rank_deficient_design_is_rejected (test_invariants.FitterInvariantTests.test_truly_rank_deficient_design_is_rejected) ... ok
+
+======================================================================
+FAIL: test_minimal_declared_noise_covariance_respects_known_intercept_variance (test_invariants.FitterInvariantTests.test_minimal_declared_noise_covariance_respects_known_intercept_variance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 220, in test_minimal_declared_noise_covariance_respects_known_intercept_variance
+    self.assertTrue(math.isclose(result.covariance[0][0], .125**2, rel_tol=.001),
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                    (result.covariance[0][0], .125**2))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: False is not true : (0.0234375, 0.015625)
+
+======================================================================
+FAIL: test_minimal_known_noise_covariance_cannot_have_negative_diagonal (test_invariants.FitterInvariantTests.test_minimal_known_noise_covariance_cannot_have_negative_diagonal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 208, in test_minimal_known_noise_covariance_cannot_have_negative_diagonal
+    self.assertGreaterEqual(min(result.covariance[i][i] for i in range(3)), 0)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: -0.00390625 not greater than or equal to 0
+
+======================================================================
+FAIL: test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=28)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 195, in test_nearly_rank_deficient_full_rank_data_against_exact_reference
+    self.assert_matrix_close(result.covariance, expected, rtol=.001)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 76, in assert_matrix_close
+    self.assertLessEqual(abs(actual[i][j] - float(value)), tolerance,
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         (i, j, actual[i][j], float(value), tolerance))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.0013020833527358864 not less than or equal to 1.3020833352735888e-05 : (0, 0, 0.01171875, 0.013020833352735886, 1.3020833352735888e-05)
+
+======================================================================
+FAIL: test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=36)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 195, in test_nearly_rank_deficient_full_rank_data_against_exact_reference
+    self.assert_matrix_close(result.covariance, expected, rtol=.001)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 76, in assert_matrix_close
+    self.assertLessEqual(abs(actual[i][j] - float(value)), tolerance,
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         (i, j, actual[i][j], float(value), tolerance))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 32.01302083333341 not less than or equal to 1.3020833333409125e-05 : (0, 0, -32.0, 0.013020833333409124, 1.3020833333409125e-05)
+
+======================================================================
+FAIL: test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=40)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 195, in test_nearly_rank_deficient_full_rank_data_against_exact_reference
+    self.assert_matrix_close(result.covariance, expected, rtol=.001)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 76, in assert_matrix_close
+    self.assertLessEqual(abs(actual[i][j] - float(value)), tolerance,
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         (i, j, actual[i][j], float(value), tolerance))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 28671.986979166668 not less than or equal to 1.302083333333807e-05 : (0, 0, 28672.0, 0.01302083333333807, 1.302083333333807e-05)
+
+======================================================================
+FAIL: test_residual_square_underflow_is_unavailable_not_known_zero_noise (test_invariants.FitterInvariantTests.test_residual_square_underflow_is_unavailable_not_known_zero_noise) (options={})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 241, in test_residual_square_underflow_is_unavailable_not_known_zero_noise
+    self.assertFalse(result.valid)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_residual_square_underflow_is_unavailable_not_known_zero_noise (test_invariants.FitterInvariantTests.test_residual_square_underflow_is_unavailable_not_known_zero_noise) (options={'position_sigmas': (0.0, 0.0, 0.0, 0.0)})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 241, in test_residual_square_underflow_is_unavailable_not_known_zero_noise
+    self.assertFalse(result.valid)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.048s
+
+FAILED (failures=7)

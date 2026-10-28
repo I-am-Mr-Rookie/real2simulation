@@ -1,0 +1,57 @@
+test_known_sigma_override_is_not_the_residual_floor (test_invariants.FitterInvariantTests.test_known_sigma_override_is_not_the_residual_floor) ... ok
+test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) ...
+  test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=28) ... FAIL
+  test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=36) ... FAIL
+  test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=40) ... FAIL
+test_position_origin_shift_preserves_declared_covariance (test_invariants.FitterInvariantTests.test_position_origin_shift_preserves_declared_covariance) ... ok
+test_row_permutations_preserve_full_covariance_with_paired_sigmas (test_invariants.FitterInvariantTests.test_row_permutations_preserve_full_covariance_with_paired_sigmas) ... ok
+test_scaled_physical_problems_still_use_seconds_and_metres (test_invariants.FitterInvariantTests.test_scaled_physical_problems_still_use_seconds_and_metres) ... ok
+test_time_origin_shift_checks_new_declared_covariance_not_only_coefficients (test_invariants.FitterInvariantTests.test_time_origin_shift_checks_new_declared_covariance_not_only_coefficients) ... ok
+test_truly_rank_deficient_design_is_rejected (test_invariants.FitterInvariantTests.test_truly_rank_deficient_design_is_rejected) ... ok
+
+======================================================================
+FAIL: test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=28)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 145, in test_nearly_rank_deficient_full_rank_data_against_exact_reference
+    self.assert_matrix_close(result.covariance, expected, rtol=.001)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 62, in assert_matrix_close
+    self.assertLessEqual(abs(actual[i][j] - float(value)), tolerance,
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         (i, j, actual[i][j], float(value), tolerance))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.0013020833527358864 not less than or equal to 1.3020833352735888e-05 : (0, 0, 0.01171875, 0.013020833352735886, 1.3020833352735888e-05)
+
+======================================================================
+FAIL: test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=36)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 145, in test_nearly_rank_deficient_full_rank_data_against_exact_reference
+    self.assert_matrix_close(result.covariance, expected, rtol=.001)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 62, in assert_matrix_close
+    self.assertLessEqual(abs(actual[i][j] - float(value)), tolerance,
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         (i, j, actual[i][j], float(value), tolerance))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 32.01302083333341 not less than or equal to 1.3020833333409125e-05 : (0, 0, -32.0, 0.013020833333409124, 1.3020833333409125e-05)
+
+======================================================================
+FAIL: test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) (exponent=40)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 145, in test_nearly_rank_deficient_full_rank_data_against_exact_reference
+    self.assert_matrix_close(result.covariance, expected, rtol=.001)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm11-fitter-invariants\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_invariants.py", line 62, in assert_matrix_close
+    self.assertLessEqual(abs(actual[i][j] - float(value)), tolerance,
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         (i, j, actual[i][j], float(value), tolerance))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 28671.986979166668 not less than or equal to 1.302083333333807e-05 : (0, 0, 28672.0, 0.01302083333333807, 1.302083333333807e-05)
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.127s
+
+FAILED (failures=3)

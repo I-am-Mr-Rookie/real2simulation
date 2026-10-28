@@ -1,0 +1,20 @@
+{
+  "id": "R12-fitter-invariants",
+  "issued_at": "2026-10-28T20:46:38.309Z",
+  "deadline_at": "2026-10-28T21:16:38.309Z",
+  "implementation_cutoff_at": "2026-10-28T21:11:38.309Z",
+  "deadline_dhaka": "2026-10-29T03:16:38.309+06:00",
+  "first_observed_execution_at": "2026-10-28T20:46:47.4163940Z",
+  "work_stopped_at": "2026-10-28T20:59:25.1053625Z",
+  "reported_at": "2026-10-28T21:00:26.0495564Z",
+  "status": "DONE",
+  "outcome_scope": "bounded independent audit; two product defects remain open",
+  "acceptance_clarification": "ACCEPTANCE.md; direct parent permits verified audit DONE without owning core fixes",
+  "parent_project_id_as_assigned": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
+  "parent_ui_project_binding_verified": false,
+  "assigned_lane": "CODEX1",
+  "assigned_managed_model": "gpt-6.1-sol",
+  "assigned_effort": "HIGH",
+  "coding_quota": "OpenCodex-managed; not polled",
+  "cost": "unknown"
+}

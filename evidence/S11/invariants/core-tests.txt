@@ -1,0 +1,18 @@
+test_aic_distinguishes_tiny_real_noise_and_exact_fit (test_core.FitterCoreTests.test_aic_distinguishes_tiny_real_noise_and_exact_fit) ... ok
+test_aic_selects_quadratic_and_perfect_fit_is_finite_handled (test_core.FitterCoreTests.test_aic_selects_quadratic_and_perfect_fit_is_finite_handled) ... ok
+test_covariance_and_g_jacobian (test_core.FitterCoreTests.test_covariance_and_g_jacobian) ... ok
+test_covariance_requires_dof_or_explicit_sigma_and_validates_sigma (test_core.FitterCoreTests.test_covariance_requires_dof_or_explicit_sigma_and_validates_sigma) ... ok
+test_covariance_tiny_scale_abstains_on_underflow (test_core.FitterCoreTests.test_covariance_tiny_scale_abstains_on_underflow) ... ok
+test_covariance_uses_physical_basis_for_shifted_times (test_core.FitterCoreTests.test_covariance_uses_physical_basis_for_shifted_times) ... ok
+test_finite_huge_input_overflow_abstains_with_fit_error (test_core.FitterCoreTests.test_finite_huge_input_overflow_abstains_with_fit_error) ... ok
+test_invalid_scalars_degrees_and_empty_models_are_readable (test_core.FitterCoreTests.test_invalid_scalars_degrees_and_empty_models_are_readable) ... ok
+test_large_time_origin_uses_scaled_prediction (test_core.FitterCoreTests.test_large_time_origin_uses_scaled_prediction) ... ok
+test_quadratic_recovery_and_residuals (test_core.FitterCoreTests.test_quadratic_recovery_and_residuals) ... ok
+test_quantity_uses_shared_instrument_contract (test_core.FitterCoreTests.test_quantity_uses_shared_instrument_contract) ... ok
+test_rank_and_input_rejection (test_core.FitterCoreTests.test_rank_and_input_rejection) ... ok
+test_seeded_coverage_is_observed_not_tuned (test_core.FitterCoreTests.test_seeded_coverage_is_observed_not_tuned) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.073s
+
+OK
