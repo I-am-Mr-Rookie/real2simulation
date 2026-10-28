@@ -1,0 +1,91 @@
+{
+  "run": "S02g-swarm3",
+  "checked_utc": "2026-10-28T18:55:30Z",
+  "scope": "new primary-source discovery only; no media fetched",
+  "result": "ZERO_APPROVAL_READY_EARTH_CANDIDATES",
+  "candidates": [
+    {
+      "rank": 1,
+      "id": "COMMONS_FALLING_BALL_JPG",
+      "primary_page": "https://commons.wikimedia.org/wiki/File:Falling_ball.jpg",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "rights_evidence": "Commons says CC BY-SA 3.0 and the uploader is the copyright holder.",
+      "trajectory_evidence": "Description says an initially stationary object falls freely under gravity.",
+      "scale_evidence": "Description says one unit is about 12 mm.",
+      "timebase_evidence": "Description says the image spans half a second and was captured with a stroboscopic flash at 20 flashes per second.",
+      "fit_points": "Multiple stroboscopic positions are visible, but they are not a video frame sequence.",
+      "missing_inputs": ["actual video or frame sequence", "capture-frame provenance for each position", "uncertainty for the 12 mm unit and image geometry"],
+      "disposition": "REJECT_STATIC_COMPOSITE"
+    },
+    {
+      "rank": 2,
+      "id": "COMMONS_ANNIE_OAKLEY_1894",
+      "primary_page": "https://commons.wikimedia.org/wiki/File:Annie_Oakley_shooting_glass_balls,_1894.ogv",
+      "license_url": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "rights_evidence": "Commons marks the work public domain and identifies Library of Congress digital ID edmp.4030.",
+      "trajectory_evidence": "Primary page describes an exhibition of rifle shooting at glass balls; this is projectile motion, not a drop.",
+      "scale_evidence": "No in-frame ruler, known-size witness, or camera geometry is stated.",
+      "timebase_evidence": "Notes state duration 0:21 at 30 fps.",
+      "fit_points": "No source-backed metric points; no metric fit is possible from the page metadata.",
+      "missing_inputs": ["known-size in-frame scale", "uncut-frame/cadence receipt", "fixed-camera geometry and usable release-to-impact segment"],
+      "disposition": "HOLD_TIMEBASE_ONLY"
+    },
+    {
+      "rank": 3,
+      "id": "COMMONS_IMPAKTECHolot_2025",
+      "primary_page": "https://commons.wikimedia.org/wiki/File:Impaktecholot_(Pilotversuch).webm",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights_evidence": "Commons identifies own work by Rhetos and CC BY-SA 4.0.",
+      "trajectory_evidence": "Page caption says measuring height with a falling object and its sound at impact.",
+      "scale_evidence": "No in-frame ruler or known-size image-plane reference is stated; sound/height is not an image-plane scale.",
+      "timebase_evidence": "Description says filmed with a DJI Osmo Action 4 at 240 fps.",
+      "fit_points": "Video metadata gives duration and dimensions only; no source receipt ties three image points to physical time and distance.",
+      "missing_inputs": ["visible metric witness", "native capture/frame mapping", "camera-fixed Earth-frame proof", "uncut segment provenance"],
+      "disposition": "HOLD_TIMEBASE_ONLY"
+    },
+    {
+      "rank": 4,
+      "id": "COMMONS_GALTON_BOX_2016",
+      "primary_page": "https://commons.wikimedia.org/wiki/File:Galton_box.webm",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights_evidence": "Commons states CC BY-SA 4.0 and VRT permission confirmed; source is Matemateca IME/USP.",
+      "trajectory_evidence": "Page calls it a Galton box presenting a normal distribution; balls collide/roll through an apparatus, not a free-fall segment.",
+      "scale_evidence": "No metric ruler or known-size witness is stated.",
+      "timebase_evidence": "Page exposes a 15 s WebM duration but no capture fps or frame-timebase receipt.",
+      "fit_points": "No source-backed free-fall points or metric mapping.",
+      "missing_inputs": ["Earth free-fall/projectile segment", "metric in-frame scale", "capture fps/frame mapping"],
+      "disposition": "REJECT_WRONG_PHYSICS_AND_METADATA"
+    },
+    {
+      "rank": 5,
+      "id": "COMMONS_FALLING_SPHERE_VISCOMETER_GIF",
+      "primary_page": "https://commons.wikimedia.org/wiki/File:Falling_Sphere_Viscometer.gif",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "rights_evidence": "Commons states CC BY-SA 3.0 and own work by David Julian.",
+      "trajectory_evidence": "Description says a sphere falls through a fluid in a graduated cylinder; this is not free fall in air.",
+      "scale_evidence": "Graduated-cylinder marks are visible by description, but metric units/geometry are not stated.",
+      "timebase_evidence": "Commons identifies an animated GIF with 21 frames over 4.7 s; this is playback metadata, not a native capture clock.",
+      "fit_points": "No physical frame-timebase or metric-unit receipt supports a g fit.",
+      "missing_inputs": ["air free-fall trajectory", "metric ruler units and camera geometry", "native capture cadence"],
+      "disposition": "REJECT_FLUID_ANIMATION"
+    },
+    {
+      "rank": 6,
+      "id": "COMMONS_WATERDROPS_YELLOW_2022",
+      "primary_page": "https://commons.wikimedia.org/wiki/File:Slow_motion_video_of_waterdrops_falling_into_yellow_coloured_water.webm",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "rights_evidence": "Commons states own work by Pittigrilli and CC BY-SA 4.0.",
+      "trajectory_evidence": "Page describes water drops falling into yellow water and tags the file slow motion; no Earth-g free-fall segment is documented.",
+      "scale_evidence": "No ruler, known-size witness, or metric image-plane reference is stated.",
+      "timebase_evidence": "Page gives 27 s duration and WebM metadata but no native capture fps; the slow-motion label makes playback/capture cadence unsafe to infer.",
+      "fit_points": "No source-backed scale/time points for three-position fitting.",
+      "missing_inputs": ["native fps/timebase", "metric witness", "uncut Earth-frame trajectory provenance"],
+      "disposition": "REJECT_SLOW_MOTION_NO_SCALE"
+    }
+  ],
+  "manifest_duplicate_skips": [
+    {"name": "Slow motion video of cup falling on floor.webm", "reason": "already present as FF04 in read-only clips.csv; not genuinely new"},
+    {"name": "Gymnastikball-Flummi.webm", "reason": "already present as BN02 in read-only clips.csv; not genuinely new"}
+  ],
+  "owner_review_pending": true
+}
