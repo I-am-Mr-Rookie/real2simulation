@@ -7,12 +7,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 import subprocess
 
 from Build.fitter.api import handle
 from Build.instruments.synthetic import light_gate_observation, ruler_observation
 from Build.simulator.export_validated_setup import export
+from contracts.fit.quantity import validate_quantity
 
 ROOT = Path(__file__).resolve().parents[2]
 INSTRUMENT_FIELDS = frozenset((
@@ -43,6 +45,26 @@ def run_lab(spec_path: Path, scene_path: Path, *, instruments: dict) -> dict:
     if process.returncode:
         raise ValueError('synthetic simulator rejected the validated transport')
     trajectory = json.loads(process.stdout)
+    expected_kind = 'free-fall' if spec['template'] == 'free_fall' else 'projectile'
+    if (not isinstance(trajectory, dict) or trajectory.get('kind') != expected_kind
+            or trajectory.get('source') != 'simulated' or trajectory.get('inputProvenance') != 'synthetic'
+            or trajectory.get('integrator') != 'rk4-fixed-step'
+            or trajectory.get('dt_s') != spec['simulation']['time_step']['value']):
+        raise ValueError('simulator returned an incompatible trajectory contract')
+    samples = trajectory.get('samples')
+    if not isinstance(samples, list) or not samples or len(samples) > 1_000_001:
+        raise ValueError('simulator returned invalid samples')
+    for index, sample in enumerate(samples):
+        if not isinstance(sample, dict) or sample.get('step') != index:
+            raise ValueError('simulator returned invalid sample ordering')
+        for field in ('position_m', 'velocity_m_s'):
+            vector = sample.get(field)
+            if (not isinstance(vector, list) or len(vector) != 3
+                    or any(type(x) not in (int, float) or not math.isfinite(x) for x in vector)):
+                raise ValueError('simulator returned invalid vector state')
+        time = sample.get('time_s')
+        if type(time) not in (int, float) or not math.isfinite(time) or time != index * trajectory['dt_s']:
+            raise ValueError('simulator returned invalid sample time')
     origin_y = trajectory['samples'][0]['position_m'][1]
     times, positions = [], []
     for sample in trajectory['samples']:
@@ -56,10 +78,15 @@ def run_lab(spec_path: Path, scene_path: Path, *, instruments: dict) -> dict:
             uncertainty_m=instruments['distance_uncertainty_m'], bias_m=instruments['distance_bias_m'],
         ))
     fit = handle({'times': times, 'positions': positions, 'degree': 2, 'select_model': True})
+    if fit['status'] == 'ok' and fit.get('gravity') is not None:
+        gravity = validate_quantity(fit['gravity'])
+        if gravity['unit'] != 'm/s^2':
+            raise ValueError('fitter returned an incompatible gravity unit')
     return {
         'source': 'simulated', 'inputProvenance': 'synthetic',
         'scope': 'internal offline ballistic lab; not a public Mystery-g payload',
         'template': spec['template'], 'trajectory': trajectory,
+        'instrument_model': 'deterministic quantization/bias; no stochastic stream or seed dependence',
         'observations': {'times': times, 'positions': positions, 'coordinate': 'downward displacement'},
         'fit': fit,
         'limits': ['clock and scale fixed in fitter', 'input instrument uncertainty not propagated',

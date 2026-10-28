@@ -7,6 +7,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / 'tests/spec'))
@@ -63,6 +64,15 @@ class PipelineTests(unittest.TestCase):
             spec.write_text(json.dumps(data), encoding='utf-8')
             with self.assertRaises(ValueError):
                 run_lab(spec, scene, instruments=INSTRUMENTS)
+
+    def test_cross_process_contract_is_checked(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            spec, scene = self.write_setup(Path(tmp))
+            with patch('Build.lab.pipeline.subprocess.run') as execute:
+                execute.return_value.returncode = 0
+                execute.return_value.stdout = '{}'
+                with self.assertRaisesRegex(ValueError, 'incompatible trajectory'):
+                    run_lab(spec, scene, instruments=INSTRUMENTS)
 
 
 if __name__ == '__main__':
