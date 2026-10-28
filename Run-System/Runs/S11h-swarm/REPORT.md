@@ -21,3 +21,8 @@ Parent must integrate after corrected fitter and instrument/quantity commits, th
 
 Added top-level uncertainty assumptions for degree-1 and degree-2 responses, explicit covariance units (m^2/s^4 variance and m/s^2 standard error), and gravity scale factor 2.0. Fresh integrated checkout tests remain pending the corrected core/contract revision; no peer snapshots were copied or deleted in this follow-up. 
 
+
+## Canonical-main integration follow-up
+
+Rebased onto canonical main at 31deadc after verified contract/instruments fast-forward; no peer files copied. python -m py_compile Build/fitter/api.py tests/fitter/test_api.py passes. Full own checkout test is intentionally pending the corrected final Build/fitter/core.py; current collection fails with ModuleNotFoundError: Build.fitter.core, so no DONE claim is made. 
+
