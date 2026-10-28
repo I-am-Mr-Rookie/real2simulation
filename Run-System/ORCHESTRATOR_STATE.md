@@ -1,5 +1,28 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — two disjoint unpaid prerequisites (Oct28 13:16UTC)
+
+S07b recovery3 remains active child01a182a3-b779-7610-819b-899909c683d8 (Poincare),
+Sol/medium15m, r-m-review/run/S07b-recovery3 base788c1d8. Approved local ST03 prefix
+custody only; no source/model/paid work. Q11 already asked once, still pending;
+do not repeat access question or infer approval. Actual new custody REPORT pending.
+
+Claim independent S05b diagnostic6: fresh Sol/medium15m, exact accepted stopped
+app scheduling telemetry/documented queue semantics only, NO job/paid work/source
+edits. Reuse clean s05b-recovery4/new run/S05b-diagnostic6; exact contract
+Runs/S05b/DIAGNOSTIC-6.md. Actual child ID follows dispatch. Not another GPU attempt
+or replacement of a failed turn; recovery5 terminal already accepted/closed.
+Keep source read-only; Owns only diagnostic6 evidence/PLAN/REPORT, disjoint from
+S07b. Cause UNKNOWN until actual evidence, no capacity/model blame from stopped
+app alone. No actual current outcome claimed from launch.
+
+Controller-only merges/controls; two lightweight sessions need no fixed slot
+cap or heavy-runtime conflict. Keep2.85 reserves/$30 authority, no paid retries/
+CPU reinstall, repeated consent, quota poll or policy changes.55/203 accepted
+deliverables, physical gates NOT_RUN/S12 locked. Preserve unrelated RUNS heading
+unstaged while regenerating owned delta only. Python dispatcher OFF, heartbeat
+ACTIVE5m. Older CURRENT sections historical; no new owner question sent here.
+
 ## CURRENT — S07b access evidence accepted; Q11/custody continuation (13:10UTC)
 
 S07b recovery2 accepted PARTIAL0f762f5,8 evidence/report-only files, no source
