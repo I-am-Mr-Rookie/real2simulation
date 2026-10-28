@@ -1,0 +1,6 @@
+{
+  "utc": "2026-10-28T14:54:22.2529116Z",
+  "processes": 472,
+  "matches": [],
+  "limitation": "Sanitized command-line scan plus exclusive file probes, not exhaustive kernel/cwd audit; controller no-live-assignment receipt also required."
+}

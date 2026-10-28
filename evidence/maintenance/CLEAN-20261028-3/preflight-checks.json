@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "checks": [
+    "containment positive/sibling/traversal",
+    "no reparse/embedded/submodules",
+    "ordinary unlocked registration",
+    "clean index/retained exact branch",
+    "all reachable objects local",
+    "44 fresh full hashes",
+    "9 ignored byte copies/hash/ignore",
+    "exclusive read handles all candidate files",
+    "zero process command matches",
+    "271 protected JPEG metadata"
+  ],
+  "utc": "2026-10-28T14:54:32.7678930Z"
+}

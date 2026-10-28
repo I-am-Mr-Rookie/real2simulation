@@ -1,0 +1,37 @@
+{
+  "utc": "2026-10-28T14:58:31.4533130Z",
+  "status": "PASS",
+  "removed_paths_absent_unregistered": 2,
+  "unrelated_registrations_unchanged": true,
+  "retained_branch_objects": [
+    {
+      "branch": "refs/heads/run/S02c",
+      "head": "95b1ff3fbaef7fb7c8f1cb74e30c606bc31d59f9",
+      "reachable_objects": 2077,
+      "missing": 0
+    },
+    {
+      "branch": "refs/heads/run/S02c1",
+      "head": "94a36f8f13a10743418a6e390e686515c369b6b5",
+      "reachable_objects": 2122,
+      "missing": 0
+    }
+  ],
+  "canonical_hashes_pass": 44,
+  "acquisition_manifest_hash": "PASS",
+  "ignored_hashes_pass": 9,
+  "ignored_preserved_bytes": 542671.0,
+  "protected_prefix_files": 271,
+  "protected_prefix_bytes": 49873994.0,
+  "protected_prefix_metadata": "UNCHANGED",
+  "canonical_head_index_status_unchanged": true,
+  "removed_checkout_files": 784.0,
+  "removed_checkout_logical_bytes": 1279280176.0,
+  "root_before_files": 23028.0,
+  "root_after_files": 22230.0,
+  "root_before_bytes": 3061765015.0,
+  "root_after_bytes": 1782383741.0,
+  "root_measured_logical_delta": 1279381274.0,
+  "physical_allocation": "Not measured; metadata logical bytes only; root delta includes Git admin removal and possible concurrent controller growth.",
+  "self_checks": "PASS: scripts parse, prohibited primitive scan, preflight containment rejection tests, all acceptance assertions"
+}

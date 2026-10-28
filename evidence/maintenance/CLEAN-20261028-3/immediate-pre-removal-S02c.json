@@ -1,0 +1,10 @@
+{
+  "exclusive_probes": "PASS",
+  "command": "git worktree remove -- exact-path; no force",
+  "hashes": "PASS",
+  "path": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c",
+  "files": 392,
+  "utc": "2026-10-28T14:55:29.5867372Z",
+  "head": "95b1ff3fbaef7fb7c8f1cb74e30c606bc31d59f9",
+  "status": "clean"
+}

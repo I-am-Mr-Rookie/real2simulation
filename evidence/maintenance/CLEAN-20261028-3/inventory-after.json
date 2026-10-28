@@ -1,0 +1,192 @@
+{
+  "utc": "2026-10-28T14:58:31.1502906Z",
+  "files": 22230.0,
+  "logical_bytes": 1782383741.0,
+  "top_level": [
+    {
+      "name": ".env",
+      "files": 1,
+      "bytes": 847
+    },
+    {
+      "name": ".env.example",
+      "files": 1,
+      "bytes": 287
+    },
+    {
+      "name": ".git",
+      "files": 926,
+      "bytes": 690556613
+    },
+    {
+      "name": ".gitignore",
+      "files": 1,
+      "bytes": 1014
+    },
+    {
+      "name": ".worktrees",
+      "files": 4761,
+      "bytes": 5308277
+    },
+    {
+      "name": "01 Research",
+      "files": 4,
+      "bytes": 37637
+    },
+    {
+      "name": "07 Project Reselection",
+      "files": 1,
+      "bytes": 31276
+    },
+    {
+      "name": "08 Real2Simulation",
+      "files": 3,
+      "bytes": 170998
+    },
+    {
+      "name": "AGENTS.md",
+      "files": 1,
+      "bytes": 20589
+    },
+    {
+      "name": "API_BUDGET.md",
+      "files": 1,
+      "bytes": 28631
+    },
+    {
+      "name": "archive",
+      "files": 55,
+      "bytes": 3896206
+    },
+    {
+      "name": "Build",
+      "files": 14124,
+      "bytes": 371915927
+    },
+    {
+      "name": "Build Notes.pdf",
+      "files": 1,
+      "bytes": 953609
+    },
+    {
+      "name": "CLAUDE.md",
+      "files": 1,
+      "bytes": 432
+    },
+    {
+      "name": "clips.csv",
+      "files": 1,
+      "bytes": 20682
+    },
+    {
+      "name": "contracts",
+      "files": 13,
+      "bytes": 116689
+    },
+    {
+      "name": "DECISIONS_LOG.md",
+      "files": 1,
+      "bytes": 58488
+    },
+    {
+      "name": "Event Rules and Participant Guide.md",
+      "files": 1,
+      "bytes": 13207
+    },
+    {
+      "name": "evidence",
+      "files": 657,
+      "bytes": 77440452
+    },
+    {
+      "name": "GitHub Backup.md",
+      "files": 1,
+      "bytes": 3905
+    },
+    {
+      "name": "Hackathon Credit Terms.pdf",
+      "files": 1,
+      "bytes": 93092
+    },
+    {
+      "name": "infra",
+      "files": 12,
+      "bytes": 37961
+    },
+    {
+      "name": "JUDGE_RUBRIC.md",
+      "files": 1,
+      "bytes": 1489
+    },
+    {
+      "name": "modal.fillout.com_t_qMXCmRGseUus_code=FWQ-TM6-WWS.png",
+      "files": 1,
+      "bytes": 63503
+    },
+    {
+      "name": "ORCHESTRATOR.md",
+      "files": 1,
+      "bytes": 11923
+    },
+    {
+      "name": "OWNER_INSTRUCTIONS_2026-10-28.md",
+      "files": 1,
+      "bytes": 6885
+    },
+    {
+      "name": "prompt for GPT-6 Astra Pro.md",
+      "files": 1,
+      "bytes": 25213
+    },
+    {
+      "name": "QUEUE.md",
+      "files": 1,
+      "bytes": 77956
+    },
+    {
+      "name": "README.md",
+      "files": 1,
+      "bytes": 3894
+    },
+    {
+      "name": "Run-System",
+      "files": 1596,
+      "bytes": 5195816
+    },
+    {
+      "name": "RUNS.md",
+      "files": 1,
+      "bytes": 29673
+    },
+    {
+      "name": "START.md",
+      "files": 1,
+      "bytes": 830
+    },
+    {
+      "name": "STATE.md",
+      "files": 1,
+      "bytes": 26061
+    },
+    {
+      "name": "tasks for the owner.md",
+      "files": 1,
+      "bytes": 6458
+    },
+    {
+      "name": "test-data",
+      "files": 22,
+      "bytes": 624701445
+    },
+    {
+      "name": "tests",
+      "files": 32,
+      "bytes": 301157
+    },
+    {
+      "name": "Updated_Instructions_10_28_2026_anything_else_that_this_PDF_doesn't.pdf",
+      "files": 1,
+      "bytes": 1224619
+    }
+  ]
+}
