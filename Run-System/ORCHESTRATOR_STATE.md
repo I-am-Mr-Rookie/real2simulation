@@ -1,6 +1,19 @@
 # Orchestrator recovery checkpoint
 
-## CURRENT — complete review accepted; concrete local recovery9 active
+## CURRENT — local review fixes accepted; no active workers
+
+Recovery9 accepted9009ecd: controller independently ran47 spike PASS under both
+default3.14 and target3.11, plus11 scene PASS, bounded parent processes. Source
+unchanged across rebase; timing PASS. Verified child DONE early allowed; parent
+S05b PARTIAL, paid-admission HOLD for F3 startup/late-result preservation.
+F4 unknown-ID remains conservative incident. No paid/runtime/remote-stop proof.
+Five latest actual prompts audited full1800s and explicit UTC/Dhaka deadline,
+issue/cutoff; timing policy6 regressions PASS. No early incomplete accepted.
+All worker chats terminal. Q15 exact human action-time confirmation pending,
+no automatic same-blocker restart; no active monitoring/dispatcher/schedule.
+No reserve release,55/203/gates/S12/$2.85/$30 unchanged. Protected custody retained.
+
+## Earlier — complete review accepted; concrete local recovery9 active
 
 R-S05guard2 accepted ac1ad81 DONE for complete review only, timing PASS.
 Controller independently reproduced transient-stop incident after one info call
