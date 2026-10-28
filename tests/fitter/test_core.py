@@ -43,6 +43,24 @@ class FitterCoreTests(unittest.TestCase):
         self.assertTrue(cov.valid)
         self.assertGreater(cov.standard_error, 0)
         self.assertEqual(cov.noise_model, "Gaussian iid residuals; clock and scale held fixed")
+        self.assertEqual(cov.covariance[2][2], cov.variance)
+        with self.assertRaises(FitError):
+            jacobian_covariance(fit, times=tuple(x + 1 for x in t))
+
+    def test_covariance_uses_physical_basis_for_shifted_times(self):
+        t = (10.0, 10.5, 11.0, 11.5, 12.0, 12.5)
+        fit = fit_least_squares(t, tuple(3 + 2*x + 4.905*x*x for x in t), 2)
+        cov = jacobian_covariance(fit, sigma=0.5)
+        self.assertTrue(cov.valid)
+        self.assertEqual(cov.covariance[2][2], cov.variance)
+        self.assertGreater(cov.covariance[0][0], 0)
+
+    def test_covariance_tiny_scale_abstains_on_underflow(self):
+        t = tuple(i * 1e-80 for i in range(6))
+        fit = fit_least_squares(t, tuple(1 + 2*x + 4.905*x*x for x in t), 2)
+        cov = jacobian_covariance(fit, sigma=1.0)
+        self.assertFalse(cov.valid)
+        self.assertIsNone(cov.covariance)
 
     def test_quantity_uses_shared_instrument_contract(self):
         t = tuple(i / 10 for i in range(8))

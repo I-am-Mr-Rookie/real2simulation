@@ -56,6 +56,14 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(out["status"], "ok")
         self.assertIn("input quantity uncertainty not propagated", out["uncertainty"]["assumptions"])
 
+    def test_unavailable_covariance_is_null_and_honest(self):
+        data = {"times": [q(0, "s"), q(1, "s"), q(2, "s")], "positions": [q(0, "m"), q(1, "m"), q(4, "m")]}
+        out = handle({**data, "degree": 2})
+        self.assertEqual(out["status"], "ok")
+        self.assertFalse(out["covariance"]["valid"])
+        self.assertIsNone(out["gravity"])
+        self.assertEqual(out["covariance"]["status"], "unavailable")
+
 
 if __name__ == "__main__":
     unittest.main()

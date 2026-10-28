@@ -227,6 +227,10 @@ def jacobian_covariance(fit, *, sigma=None, parameter_index=None, times=None):
         parameter_index = fit.degree
     if type(parameter_index) is not int or not 0 <= parameter_index <= fit.degree:
         raise FitError("parameter_index_out_of_range")
+    if times is not None:
+        supplied_times = _finite(times, "times")
+        if supplied_times != fit.design_times:
+            raise FitError("covariance_times_must_match_fit_design")
     sigma2 = _sigma2(fit, sigma)
     if sigma2 is None:
         return CovarianceResult(None, None, None, False)
@@ -236,11 +240,6 @@ def jacobian_covariance(fit, *, sigma=None, parameter_index=None, times=None):
     local_cov = tuple(tuple(sigma2 * math.fsum(rinv[i][k] * rinv[j][k] for k in range(fit.rank))
         for j in range(fit.rank)) for i in range(fit.rank))
     scale = fit._scale
-    if parameter_index == fit.degree:
-        variance = local_cov[parameter_index][parameter_index] / scale ** (2 * parameter_index)
-        if not math.isfinite(variance):
-            return CovarianceResult(None, None, None, False)
-        return CovarianceResult(local_cov, variance, math.sqrt(max(0.0, variance)), True)
     transform = [[0.0] * fit.rank for _ in range(fit.rank)]
     try:
         for j in range(fit.rank):
@@ -251,7 +250,12 @@ def jacobian_covariance(fit, *, sigma=None, parameter_index=None, times=None):
     except (OverflowError, ZeroDivisionError):
         return CovarianceResult(None, None, None, False)
     variance = covariance[parameter_index][parameter_index]
-    if not math.isfinite(variance) or not all(math.isfinite(v) for row in covariance for v in row):
+    if (not math.isfinite(variance) or variance < 0
+            or not all(math.isfinite(v) for row in covariance for v in row)):
+        return CovarianceResult(None, None, None, False)
+    # A finite local covariance that transforms to zero has lost scale
+    # information through floating-point underflow; do not report certainty.
+    if variance == 0.0 and local_cov[parameter_index][parameter_index] > 0.0:
         return CovarianceResult(None, None, None, False)
     return CovarianceResult(covariance, variance, math.sqrt(max(0.0, variance)), True)
 
