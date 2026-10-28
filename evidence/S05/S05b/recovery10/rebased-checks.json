@@ -1,0 +1,42 @@
+[
+  {
+    "version": "Python 3.14.5",
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-E",
+      "-s",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Build/reconstruction/spike",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 30.579381100134924,
+    "log": "rebased-Python-3.14.5.txt"
+  },
+  {
+    "version": "Python 3.11.15",
+    "command": [
+      "C:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\python.exe",
+      "-E",
+      "-s",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Build/reconstruction/spike",
+      "-p",
+      "test_*.py",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 39.546789299929515,
+    "log": "rebased-Python-3.11.15.txt"
+  }
+]
