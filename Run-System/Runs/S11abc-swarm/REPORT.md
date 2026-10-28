@@ -7,6 +7,7 @@
   before the 17:41:19Z deadline after all scoped leaves and checks completed.
 - **Implementation commit:** `1a5311a92a28b19d835e8c6b14338cb6abe8904f` on
   `run/S11abc-swarm`; report receipt refresh is the following commit.
+- **Final acceptance-fix commit:** `f261e91dcef7d1fa74652847e433352e94b55057`.
 
 ## Changes
 
@@ -14,6 +15,9 @@
   `contracts/fit/CONTRACT.md`: shared strict number/unit/uncertainty/provenance
   contract. `source` is exact `{label, evidence}`; uncertainty is explicitly
   standard uncertainty, and `error` is total signed `observed - true`.
+  Allowed units are exactly `s`, `m`, `px`, `m/s`, and `m/s^2`; arbitrary units
+  such as `bananas` reject at the boundary. Invalid constructor sources now
+  raise `ValueError` rather than leaking `TypeError`.
   Huge integers, nonfinite values, unknown fields, and mutable-source leakage
   are rejected/fixed.
 - `Build/instruments/synthetic.py` and `Build/instruments/__init__.py`:
@@ -26,7 +30,7 @@
 
 ## Verification
 
-- `python -m unittest discover -s tests/instruments -v` — **9/9 PASS**.
+- `python -m unittest discover -s tests/instruments -v` — **10/10 PASS**.
 - `python -m compileall -q Build/instruments contracts/fit` — **PASS**.
 - `git diff --check` — **PASS**.
 - `python Run-System/worker_timebox.py check Run-System/Runs/S11abc-swarm/TIMEBOX.json`

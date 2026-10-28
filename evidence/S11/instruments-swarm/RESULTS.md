@@ -24,7 +24,7 @@ standard uncertainty, immutable normalized source, and total signed error.
 
 ```text
 python -m unittest discover -s tests/instruments -v
-Ran 9 tests ... OK
+Ran 10 tests ... OK
 python -m compileall -q Build/instruments contracts/fit
 git diff --check
 ```
