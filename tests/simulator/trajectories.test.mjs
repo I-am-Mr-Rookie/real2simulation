@@ -70,7 +70,7 @@ test('accepts only the validated S08 transport and maps explicit template quanti
     placement: { origin: { value: [0, 2, 0] } },
     parameters: { launch_height: { value: 2 }, horizontal_speed: { value: 3 } },
     simulation: { duration: { value: 1 }, time_step: { value: 0.01 } },
-  }, scene: { id: 'room', schema_version: '1.0.0' } };
+  }, scene: { id: 'room', schema_version: '1.0.0', synthetic: true } };
   const trusted = consumeValidatedTrajectoryArtifact(artifact);
   const out = trajectoryFromValidatedArtifact(trusted);
   assert.equal(out.kind, 'projectile'); assert.equal(out.requestedSteps, 100); assert.equal(out.samples.length, 65);

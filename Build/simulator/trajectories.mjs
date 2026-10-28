@@ -56,7 +56,7 @@ function run(input, stopPlaneY) {
 export function consumeValidatedTrajectoryArtifact(raw) {
   if (!raw || raw.artifact_version !== 's10-validated-setup-v1' || raw.validation !== 'validate_setup' || raw.producer !== 'contracts/experiment/validate_experiment.py') fail('untrusted validated artifact');
   const spec = raw.spec, scene = raw.scene;
-  if (!spec || !scene || scene.schema_version !== '1.0.0' || spec.scene?.scene_id !== scene.id || spec.scene?.schema_version !== scene.schema_version) fail('S08 scene mismatch');
+  if (!spec || !scene || scene.schema_version !== '1.0.0' || scene.synthetic !== true || spec.scene?.scene_id !== scene.id || spec.scene?.schema_version !== scene.schema_version) fail('S08 synthetic scene mismatch');
   if (!['free_fall', 'projectile'].includes(spec.template)) fail('trajectory template must be free_fall or projectile');
   const gravity = spec.environment?.gravity, direction = spec.environment?.gravity_direction;
   const origin = spec.placement?.origin, parameters = spec.parameters, simulation = spec.simulation;
