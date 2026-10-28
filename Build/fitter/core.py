@@ -76,6 +76,8 @@ class FitResult:
 
 
 def fit_least_squares(times, positions, degree=2, *, time_unit="s", position_unit="m"):
+    if time_unit != "s" or position_unit != "m":
+        raise FitError("only_seconds_and_metres_are_supported")
     x, y = _finite(times, "times"), _finite(positions, "positions")
     if len(x) != len(y):
         raise FitError("times_positions_length_mismatch")

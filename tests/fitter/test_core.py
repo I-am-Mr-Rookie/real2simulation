@@ -24,6 +24,8 @@ class FitterCoreTests(unittest.TestCase):
             fit_least_squares((0., 1.), (0., 1.), 2)
         with self.assertRaises(FitError):
             fit_least_squares((0., math.nan), (0., 1.), 1)
+        with self.assertRaises(FitError):
+            fit_least_squares((0., 1., 2.), (0., 1., 4.), 2, time_unit="frames")
 
     def test_aic_selects_quadratic_and_perfect_fit_is_finite_handled(self):
         t = tuple(i / 10 for i in range(8))
