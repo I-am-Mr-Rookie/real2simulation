@@ -1,5 +1,21 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — credential worker stopped at original deadline; review2 only active
+
+S07b-auth-provision terminal PARTIAL: stop15:12:32Z, report15:13:21Z; last active
+preflight14:53:10, explicit controller WAITING through original deadline, not fake
+30m hands-on work. No human action-time confirmation arrived; NO token/secret/
+orphan/creation/reveal/download/job/spend. Timing script PASS; fresh controller
+local links/no-secret-pattern/scope checks PASS; b26cdf3 ->1f8315e/verified FF5
+owned evidence/report/timing files. Parent S07b PARTIAL. Q14 already approved,
+only mandatory actual Create confirmation pending (Q15/async UI). Do not restart
+same blocked objective without actual changed human input or broaden authority.
+
+Only active chat now review2 01a1830e-3131-7203-aa2d-886c7acec4d2, full deadline
+15:38:26Z. It is exercising actual target-Python3.11 as well as default3.14 local
+checks; results not yet accepted. No paid/live runtime claims from local mocks.
+55/203/gates/S12/2.85 reserves/$30 unchanged; no dispatcher/scheduled task.
+
 ## CURRENT — recovery8 child DONE accepted; complete independent review active
 
 Source recovery8 separate chat completed ALL local child criteria, workstop15:04:11Z/
