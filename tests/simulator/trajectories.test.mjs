@@ -41,6 +41,8 @@ test('rejects missing provenance and hidden numeric defaults', () => {
   assert.throws(() => freeFallTrajectory({ ...base, dt: undefined }), /dt/);
   assert.throws(() => freeFallTrajectory({ ...base, steps: 1.5 }), /steps/);
   assert.throws(() => freeFallTrajectory({ ...base, dt: Number.MAX_VALUE, steps: 2 }), /multiplied/);
+  const sparse = [0, 0, 0]; delete sparse[1];
+  assert.throws(() => freeFallTrajectory({ ...base, initialPosition: sparse }), /3-vectors/);
 });
 
 test('is deterministic, finite, and does not mutate caller inputs', () => {
