@@ -1,8 +1,8 @@
 {
   "id": "R-SIM-swarm",
-  "issued_at": "2026-10-28T23:23:55+06:00",
-  "implementation_cutoff_at": "2026-10-28T23:48:55+06:00",
-  "deadline_at": "2026-10-28T23:53:55+06:00",
+  "issued_at": "2026-10-28T17:23:55+00:00",
+  "implementation_cutoff_at": "2026-10-28T17:48:55+00:00",
+  "deadline_at": "2026-10-28T17:53:55+00:00",
   "deadline_dhaka": "2026-10-28T23:53:55+06:00",
   "work_stopped_at": "2026-10-28T17:51:00+00:00",
   "reported_at": "2026-10-28T17:51:00+00:00",

@@ -49,3 +49,5 @@ Core covariance correction `cdaf1bd5d750ce88f1824255925b0f493c46804a` passed fre
 ## Final trajectory closure (17:51Z)
 
 Final trajectory SHA `ff6067901995f7b040a6cef646f62f8c84c2b890` verified with fresh 6/6 tests and direct fractional repro rejection (`0.015 / 0.01` -> integer-horizon error). All previously reported review findings are closed conditionally: covariance/API `cdaf1bd5d750ce88f1824255925b0f493c46804a` 19/19; trajectory `ff60679` 6/6; simulator/instruments earlier fresh checks remain recorded. No physical/vendor gate acceptance.
+
+Controller subsequently reported integrated trajectory rebase/FF `FF7d64d69` with 9-pass evidence. This review's final stop/report remains `2026-10-28T17:51:00Z`; no new scope was opened.
