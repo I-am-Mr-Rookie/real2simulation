@@ -285,7 +285,8 @@ def jacobian_covariance(fit, *, sigma=None, parameter_index=None, times=None,
         else:
             influences = tuple(zip(*factor))
             variances = (sigma2,) * fit.rank
-        if sigma2 is None and fit.dof > 0 and not any(variances):
+        # Lost residual squares are each below one subnormal ulp; declared noise must dominate that bound.
+        if sigma2 is None and fit.dof > 0 and min(variances) <= math.ulp(0.0) * (fit.n / fit.dof):
             return CovarianceResult(None, None, None, False, noise_model)
         # Require roughly half the binary64 digits to survive the scaled QR design.
         condition = max(math.fsum(abs(v) for v in row) for row in fit._r) * max(

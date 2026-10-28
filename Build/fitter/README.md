@@ -45,7 +45,8 @@ retains roughly half the floating-point digits rather than claiming accuracy on
 nearly dependent rows. This is not a changed trajectory/coverage tolerance.
 
 Nonzero residuals whose squares underflow cannot establish zero estimated noise;
-their covariance is unavailable unless representable declared noise supplies it.
+their covariance is unavailable unless declared noise dominates the rounding
+bound (one smallest subnormal per residual, divided by residual dof).
 Timing-only declarations at zero fitted velocity do not rescue a lost residual
 floor. Explicit known `sigma=0` remains distinct from an underflowed estimate.
 

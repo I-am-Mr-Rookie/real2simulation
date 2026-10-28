@@ -82,6 +82,14 @@ class UncertaintyTests(unittest.TestCase):
         self.assertFalse(jacobian_covariance(exact, position_sigmas=(0.,)*3).valid)
         self.assertTrue(jacobian_covariance(exact, position_sigmas=(.1,)*3).valid)
 
+    def test_subnormal_declared_noise_cannot_rescue_an_unknown_residual_floor(self):
+        fit = fit_least_squares((0., 1e-10, 2e-10), (0., 1e-162, 0.), degree=1)
+        self.assertEqual(fit.rss, 0)
+        sigma = math.sqrt(math.ulp(0.0))
+        self.assertFalse(jacobian_covariance(fit, position_sigmas=(sigma,)*3).valid)
+        self.assertTrue(jacobian_covariance(fit, position_sigmas=(.1,)*3).valid)
+        self.assertTrue(jacobian_covariance(fit, sigma=0).valid)
+
     def test_clustered_design_abstains_before_losing_covariance_precision(self):
         fit = fit_least_squares((0., 2.**-46, 1.), (0., 0., 0.))
         for kwargs in ({"sigma": .125}, {"position_sigmas": (.125,)*3}):
