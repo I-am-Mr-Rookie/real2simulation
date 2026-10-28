@@ -35,8 +35,10 @@ were not authorized and are unavailable in this checkout.
 - `python -m py_compile Build/measurement/runtime/preflight.py tests/measurement/test_sam_runtime.py`: PASS.
 - Missing-source preflight: exit 2, `source_ok=false`, `dependency_ok=false`,
   `runtime_ok=false`; actual installed metadata showed NumPy 2.4.6 vs locked
-  1.26.4 and Torch absent. Receipt `evidence/S07/S07b/swarm7/runtime-contract.json`;
-  initial missing-source receipt is preserved unchanged.
+  1.26.4 and Torch absent. This is installed distribution metadata identity only,
+  not a Torch import or runtime check. Receipt
+  `evidence/S07/S07b/swarm7/runtime-contract.json`; initial missing-source
+  receipt is preserved unchanged.
 - `git diff --check`: PASS.
 
 ## Limits / next action
@@ -44,11 +46,14 @@ were not authorized and are unavailable in this checkout.
 The preflight reports `source_ok`, `dependency_ok`, and `runtime_ok` separately;
 `runtime_ok` is hard-coded false in this child. It can report source/dependency
 identity only when a future authorized Linux/Python3.12 checkout
-contains the exact source and packaged BPE bytes. It does not verify installed
-Torch/CUDA/FlashAttention/cc_torch, checkpoint custody, import, VRAM, media
-custody, or physical calibration. Future owner-authorized runtime work should
+contains the exact source and packaged BPE bytes. It does not verify Torch
+imports, CUDA/FlashAttention/cc_torch execution, checkpoint custody, VRAM,
+media custody, or physical calibration. Future owner-authorized runtime work should
 run this preflight before any checkpoint boundary and preserve its JSON output.
 No shared controls were edited; parent serializes integration.
+
+Correction closure: this latest report supersedes the earlier 17:04/17:12
+working receipts; those historical receipt contents remain preserved on disk.
 
 Communication compliance: no coordination messages were sent; this report is
 the required final pointer.

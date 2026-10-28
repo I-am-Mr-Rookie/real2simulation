@@ -46,8 +46,8 @@ environment:
 python Build/measurement/runtime/preflight.py /path/to/sam3 --json
 ```
 
-The command also compares installed distribution **metadata** (via
-`importlib.metadata`, without importing Torch/CUDA/SAM) against every exact
+The command also compares installed distribution **metadata identity only** (via
+`importlib.metadata`; it does not import Torch/CUDA/SAM) against every exact
 distribution in `requirements-linux-py312.txt`. The manifest records upstream
 build-system requirements (`setuptools>=61`,
 `wheel`), optional `flash-attn-3`/`cc_torch` kernels, and the exact builder flags
