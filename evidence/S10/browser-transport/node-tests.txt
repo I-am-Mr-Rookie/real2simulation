@@ -1,0 +1,44 @@
+(node:15156) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/.codex/worktrees/swarm10-browser-transport/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/app/api/lab/route.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\HP\.codex\worktrees\swarm10-browser-transport\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ all four normal DTOs match actual Python validated exports, not authored envelope fixtures (18909.7271ms)
+✔ caller-supplied setups remain outside the fixed request allowlist (1.3916ms)
+✔ normal start/fit uses the actual bridge and fitter (1442.4864ms)
+✔ mystery redacts pre-fit and reveals only through matching fit (1411.8119ms)
+✔ pre-abort does not spawn and expired reads do not evict live sessions (1248.8352ms)
+✔ allowlists, expiry and bounded session errors are clean (1475.9307ms)
+✔ aborting an active bridge settles and releases its capacity (537.0004ms)
+✔ loopback route accepts the UI contract and rejects nonlocal hosts (1406.9221ms)
+✔ production route remains disabled (1.6965ms)
+✔ cold concurrent fits reuse one bridge and pre-aborted cached reads fail (1338.3988ms)
+✔ evicted in-flight sessions never publish a fit or reveal (1381.9015ms)
+✔ normal-to-Mystery starts never carry a previous normal DTO into the new response (3092.2794ms)
+✔ service strips an injected DTO even from actual Mystery replies across ballistic seeds (9234.5626ms)
+✔ normal transport fails closed for missing/mismatched/non-synthetic or unbounded exports (43.1937ms)
+✔ normal transport includes the initial point in its 2000-sample ceiling (7.9063ms)
+✔ Mystery error and exception envelopes never forward nested bridge details (20.7818ms)
+✔ abort cannot become success when bridge closes with code zero (2.3926ms)
+✔ stdin failure retains bridge capacity until close, including the four-process cap (3.0464ms)
+✔ synchronous spawn failures do not consume capacity or expose internal errors (2.867ms)
+✔ expired during trusted handoff hashing cannot reveal or cache a fit (13.1704ms)
+✔ evicted during trusted handoff hashing cannot reveal or cache a fit (6.0186ms)
+✔ aborted during trusted handoff hashing cannot reveal or cache a fit (7.1027ms)
+✔ abort during start hashing does not insert a session (5.4858ms)
+✔ a failed active Mystery-g fit can retry without consuming its reveal (1545.7023ms)
+✔ timeout cannot become success and capacity is retained until close (2.2347ms)
+✔ invalid JSON bridge output returns a bounded error envelope (1.0496ms)
+✔ null bridge output returns a bounded error envelope (1.7803ms)
+✔ unexpected shape bridge output returns a bounded error envelope (1.3835ms)
+✔ oversized output bridge output returns a bounded error envelope (2.9299ms)
+✔ asynchronous spawn error retains its slot until close and never returns success (1.1994ms)
+✔ a real capacity insertion evicts the oldest in-flight session without revealing it (5.1147ms)
+✔ expiry while a bridge is running rejects the fit and permits no reveal (1.8963ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 44096.347

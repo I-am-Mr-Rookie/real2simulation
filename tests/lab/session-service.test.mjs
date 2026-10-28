@@ -9,11 +9,52 @@ import { POST } from '../../Build/web/src/app/api/lab/route.js';
 process.env.NODE_ENV ??= 'test';
 test.beforeEach(() => _sessionTest.sessions.clear());
 
+function actualStart(template, mystery = false, seed) {
+  const code = `import importlib.util,json,sys; from unittest.mock import patch; s=importlib.util.spec_from_file_location('bridge','Build/lab/session-bridge.py'); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); r=json.loads(sys.stdin.read());\nwith patch.object(m.secrets,'randbits',return_value=${seed ?? 42}): print(json.dumps(m.handle(r)))`;
+  const proc = childProcess.spawnSync(process.env.PYTHON || 'python', ['-c', code], {
+    input: JSON.stringify({ action: 'start', template, mystery }), encoding: 'utf8', timeout: 30000,
+    env: { PATH: process.env.PATH || '', SystemRoot: process.env.SystemRoot || '', PYTHONPATH: process.cwd(), PYTHONIOENCODING: 'utf-8' },
+  });
+  assert.equal(proc.status, 0, 'actual Python bridge must complete');
+  const result = JSON.parse(proc.stdout); assert.equal(result.status, 'ok'); return result;
+}
+function assertNoSetup(value) {
+  const text = JSON.stringify(value);
+  for (const key of ['browserSimulation', 'validatedSetup', 'artifact_version', 'private', 'seed', 'setup', 'gravity_m_s2']) {
+    assert.equal(text.includes(`"${key}"`), false, `public response must not contain ${key}`);
+  }
+}
+
+test('all four normal DTOs match actual Python validated exports, not authored envelope fixtures', async () => {
+  for (const template of ['free_fall', 'projectile', 'ramp', 'pendulum']) {
+    const expected = actualStart(template);
+    const start = await handleLab({ action: 'start', template, mystery: false });
+    assert.equal(start.status, 'ok'); assert.equal(start.source, 'simulated');
+    assert.deepEqual(start.browserSimulation, expected.browserSimulation);
+    assert.deepEqual(start.observations, expected.observations);
+    const artifact = start.browserSimulation.validatedSetup;
+    assert.equal(artifact.scene.synthetic, true); assert.equal(artifact.scene.provenance.method, 'synthetic');
+    const sim = artifact.spec.simulation;
+    assert.ok(Math.round(sim.duration.value / sim.time_step.value) + 1 <= 2000);
+    assert.ok(start.observations.length <= 2000);
+    assert.equal('private' in start, false);
+  }
+});
+
+test('caller-supplied setups remain outside the fixed request allowlist', async () => {
+  for (const mystery of [false, true]) for (const key of ['browserSimulation', 'validatedSetup', 'private', 'seed', 'gravity']) {
+    assert.deepEqual(await handleLab({ action: 'start', template: 'free_fall', mystery, [key]: {} }),
+      { status: 'error', error: { code: 'invalid_start_request' } });
+  }
+  assert.equal(_sessionTest.getActiveBridges(), 0); assert.equal(_sessionTest.sessions.size, 0);
+});
+
 test('normal start/fit uses the actual bridge and fitter', async () => {
   const start = await handleLab({ action: 'start', template: 'free_fall', mystery: false });
   assert.equal(start.status, 'ok'); assert.equal(start.mode, 'normal'); assert.ok(start.gravity);
   const fit = await handleLab({ action: 'fit', sessionId: start.sessionId });
   assert.equal(fit.status, 'ok'); assert.equal(fit.sessionId, start.sessionId); assert.equal(fit.fit.status, 'ok'); assert.ok(fit.fit.gravity); assert.ok(Math.abs(fit.reveal.gravity - 9.81) < 0.001);
+  assertNoSetup(fit);
   assert.deepEqual(await Promise.all([handleLab({ action: 'fit', sessionId: start.sessionId }), handleLab({ action: 'fit', sessionId: start.sessionId })]), [fit, fit]);
 });
 
@@ -23,6 +64,7 @@ test('mystery redacts pre-fit and reveals only through matching fit', async () =
   assert.equal(JSON.stringify(start).includes('private'), false); assert.equal(JSON.stringify(start).includes('seed'), false);
   const fit = await handleLab({ action: 'fit', sessionId: start.sessionId });
   assert.equal(fit.status, 'ok'); assert.equal(fit.reveal.source, 'simulated'); assert.ok(fit.reveal.gravity > 0);
+  assertNoSetup(fit);
 });
 
 test('pre-abort does not spawn and expired reads do not evict live sessions', async () => {
@@ -119,7 +161,95 @@ function controlledBridge(t) {
   return children;
 }
 const startRequest = { action: 'start', template: 'free_fall', mystery: false };
-const startReply = { status: 'ok', observations: [{ time_s: 0, position_m: 0 }, { time_s: 1, position_m: 4.905 }] };
+// Actual fixed-action export; controlled events below test transport/lifecycle, not producer authentication.
+const startReply = actualStart('free_fall');
+
+test('normal-to-Mystery starts never carry a previous normal DTO into the new response', async () => {
+  const normal = await handleLab(startRequest); assert.ok(normal.browserSimulation);
+  for (const template of ['free_fall', 'projectile']) {
+    const mystery = await handleLab({ action: 'start', template, mystery: true });
+    assert.equal(mystery.status, 'ok'); assert.equal(mystery.mode, 'mystery-g');
+    assert.equal('gravity' in mystery, false); assertNoSetup(mystery);
+    assert.notEqual(mystery.sessionId, normal.sessionId);
+  }
+});
+
+test('service strips an injected DTO even from actual Mystery replies across ballistic seeds', async (t) => {
+  // The actual bridge must already omit the DTO; the service independently refuses to publish one.
+  const replies = [];
+  for (const template of ['free_fall', 'projectile']) for (const seed of [0, 1, 2**31, 2**32 - 1]) {
+    const reply = actualStart(template, true, seed);
+    assert.equal('browserSimulation' in reply, false);
+    replies.push({ template, reply });
+  }
+  const children = controlledBridge(t);
+  for (const { template, reply } of replies) {
+    const pending = handleLab({ action: 'start', template, mystery: true });
+    children.at(-1).stdout.write(JSON.stringify({ ...reply, browserSimulation: startReply.browserSimulation,
+      gravity: { seed: reply.private.seed, setup: reply.private.setup }, nested: { validatedSetup: startReply.browserSimulation.validatedSetup } }));
+    children.at(-1).emit('close', 0);
+    const result = await pending;
+    assert.equal(result.status, 'ok'); assert.equal('gravity' in result, false); assertNoSetup(result);
+  }
+});
+
+test('normal transport fails closed for missing/mismatched/non-synthetic or unbounded exports', async (t) => {
+  const children = controlledBridge(t);
+  const mutations = [
+    (r) => { delete r.browserSimulation; },
+    (r) => { r.source = 'measured'; },
+    (r) => { r.browserSimulation.mode = 'mystery-g'; },
+    (r) => { r.browserSimulation.private = { seed: 123 }; },
+    (r) => { r.browserSimulation.validatedSetup.artifact_version = 'fake'; },
+    (r) => { r.browserSimulation.validatedSetup.validation = 'unchecked'; },
+    (r) => { r.browserSimulation.validatedSetup.producer = 'untrusted'; },
+    (r) => { r.browserSimulation.validatedSetup.private = { setup: 'do not forward' }; },
+    (r) => { r.browserSimulation.validatedSetup.spec.template = 'projectile'; },
+    (r) => { r.browserSimulation.validatedSetup.scene.synthetic = false; },
+    (r) => { r.browserSimulation.validatedSetup.scene.provenance.method = 'reconstructed'; },
+    (r) => { r.browserSimulation.validatedSetup.spec.scene.scene_id = 'different'; },
+    (r) => { r.browserSimulation.validatedSetup.spec.simulation.seed = 123; },
+    (r) => { r.browserSimulation.validatedSetup.spec.environment.gravity.value = 4; },
+    (r) => { r.browserSimulation.validatedSetup.scene.gravity.magnitude_m_s2 = 4; },
+    (r) => { r.browserSimulation.validatedSetup.spec.environment.gravity.source.label = 'measured'; },
+    (r) => { r.browserSimulation.validatedSetup.spec.simulation.duration.value = 2; },
+    (r) => { r.browserSimulation.validatedSetup.spec.simulation.duration.value = 0.2005; },
+    (r) => { r.browserSimulation.validatedSetup.spec.simulation.time_step.value = 0; },
+    (r) => { r.browserSimulation.validatedSetup.spec.simulation.time_step.value = '0.001'; },
+  ];
+  for (const mutate of mutations) {
+    const reply = structuredClone(startReply); mutate(reply);
+    const pending = handleLab(startRequest);
+    children.at(-1).stdout.write(JSON.stringify(reply)); children.at(-1).emit('close', 0);
+    assert.deepEqual(await pending, { status: 'error', error: { code: 'lab_start_failed' } });
+  }
+  assert.equal(_sessionTest.sessions.size, 0);
+});
+
+test('normal transport includes the initial point in its 2000-sample ceiling', async (t) => {
+  const children = controlledBridge(t), reply = structuredClone(startReply);
+  // Deliberately controlled bridge output exercises the cap, not Python producer authentication.
+  reply.browserSimulation.validatedSetup.spec.simulation.duration.value = 1.999;
+  const pending = handleLab(startRequest);
+  children[0].stdout.write(JSON.stringify(reply)); children[0].emit('close', 0);
+  const result = await pending;
+  assert.equal(result.status, 'ok');
+  const sim = result.browserSimulation.validatedSetup.spec.simulation;
+  assert.equal(Math.round(sim.duration.value / sim.time_step.value) + 1, 2000);
+});
+
+test('Mystery error and exception envelopes never forward nested bridge details', async (t) => {
+  const children = controlledBridge(t);
+  for (const reply of [{ status: 'error', error: { code: 'private seed setup', nested: startReply } },
+    { ...startReply, private: null }]) {
+    const pending = handleLab({ action: 'start', template: 'free_fall', mystery: true });
+    children.at(-1).stdout.write(JSON.stringify(reply)); children.at(-1).emit('close', 0);
+    const result = await pending;
+    assert.equal(result.status, 'error'); assertNoSetup(result);
+    assert.deepEqual(Object.keys(result.error), ['code']);
+    assert.ok(['lab_start_failed', 'lab_request_failed'].includes(result.error.code));
+  }
+});
 
 test('abort cannot become success when bridge closes with code zero', async (t) => {
   const children = controlledBridge(t), controller = new AbortController();

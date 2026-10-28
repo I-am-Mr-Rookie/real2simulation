@@ -15,6 +15,23 @@ const TTL_MS = 10 * 60 * 1000, MAX_SESSIONS = 64, MAX_BODY = 1_000_000, MAX_SAMP
 const templates = new Set(['free_fall', 'projectile', 'ramp', 'pendulum']); const sessions = new Map(); let activeBridges = 0;
 const fail = (code) => ({ status: 'error', error: { code } });
 const cleanObs = (v) => Array.isArray(v) && v.length > 0 && v.length <= MAX_SAMPLES && v.every((x) => x && Object.keys(x).length === 2 && Number.isFinite(x.time_s) && Number.isFinite(x.position_m));
+// Only the fixed local Python bridge produces setups; these labels are checks, not producer authentication.
+// shortcut: normal seed 42/g 9.81 are fixed; revisit only for an approved normal-setup editor.
+function normalBrowserSetup(dto, template) {
+  const artifact = dto?.validatedSetup, spec = artifact?.spec, scene = artifact?.scene;
+  const duration = spec?.simulation?.duration?.value, dt = spec?.simulation?.time_step?.value;
+  const steps = duration / dt, nearest = Math.round(steps);
+  return dto?.mode === 'normal' && Object.keys(dto).length === 2 &&
+    artifact?.artifact_version === 's10-validated-setup-v1' && artifact.validation === 'validate_setup' &&
+    artifact.producer === 'contracts/experiment/validate_experiment.py' && Object.keys(artifact).length === 5 &&
+    spec?.template === template && scene?.synthetic === true && scene.provenance?.method === 'synthetic' &&
+    spec.scene?.scene_id === scene.id && spec.scene?.schema_version === scene.schema_version &&
+    spec.simulation.seed === 42 && spec.environment?.gravity?.source?.label === 'synthetic' &&
+    spec.environment.gravity.value === 9.81 && scene.gravity?.magnitude_m_s2 === 9.81 &&
+    Number.isFinite(duration) && duration >= 0 && Number.isFinite(dt) && dt > 0 &&
+    Number.isSafeInteger(nearest) && nearest >= 0 && nearest < MAX_SAMPLES &&
+    Math.abs(steps - nearest) <= Number.EPSILON * Math.max(1, Math.abs(steps));
+}
 function expireOnly() { const now = Date.now(); for (const [id, s] of sessions) if (s.expiresAt <= now) sessions.delete(id); }
 function insert(s) { expireOnly(); while (sessions.size >= MAX_SESSIONS) sessions.delete(sessions.keys().next().value); sessions.set(s.id, s); }
 function assertCurrent(session, signal) {
@@ -49,10 +66,16 @@ export async function handleLab(request, { signal } = {}) {
       if (Object.keys(request).some((k) => !['action', 'template', 'mystery'].includes(k)) || !templates.has(request.template) || typeof request.mystery !== 'boolean') return fail('invalid_start_request');
       if (request.mystery && !['free_fall', 'projectile'].includes(request.template)) return fail('mystery_supported_for_ballistic_templates_only');
       const result = await bridge({ action: 'start', template: request.template, mystery: request.mystery }, signal); if (result.status !== 'ok' || !cleanObs(result.observations)) return fail('lab_start_failed');
+      if (!request.mystery && (result.source !== 'simulated' || !normalBrowserSetup(result.browserSimulation, request.template))) return fail('lab_start_failed');
       const id = randomUUID(), observationHash = await stableHash(result.observations), session = { id, template: request.template, mystery: request.mystery, observations: result.observations, observationHash, private: result.private, expiresAt: Date.now() + TTL_MS };
       if (request.mystery) session.mysterySession = await createMysteryGSession({ seed: result.private.seed, gravity_m_s2: result.private.gravity_m_s2, privateSetup: result.private.setup, observations: result.observations });
       if (signal?.aborted) return fail('lab_request_failed');
-      insert(session); const response = { status: 'ok', sessionId: id, template: request.template, mode: request.mystery ? 'mystery-g' : 'normal', observations: result.observations, observationHash, source: 'simulated', units: { time: 's', position: 'm' }, limitations: result.limitations }; if (!request.mystery && result.gravity) response.gravity = result.gravity; return response;
+      insert(session); const response = { status: 'ok', sessionId: id, template: request.template, mode: request.mystery ? 'mystery-g' : 'normal', observations: result.observations, observationHash, source: 'simulated', units: { time: 's', position: 'm' }, limitations: result.limitations };
+      if (!request.mystery) {
+        response.browserSimulation = result.browserSimulation;
+        if (result.gravity) response.gravity = result.gravity;
+      }
+      return response;
     }
     if (request.action === 'fit') {
       if (Object.keys(request).some((k) => !['action', 'sessionId'].includes(k)) || typeof request.sessionId !== 'string') return fail('invalid_fit_request');

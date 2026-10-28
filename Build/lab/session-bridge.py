@@ -37,6 +37,13 @@ def _start(template: str, mystery: bool = False) -> dict:
         gravity = 4 + 12 * (seed / 2**32) if mystery else 9.81
         spec_path, scene_path, _ = regression_case(folder, template, gravity=gravity, seed=seed)
         artifact = export(spec_path, scene_path)
+        duration = artifact["spec"]["simulation"]["duration"]["value"]
+        dt = artifact["spec"]["simulation"]["time_step"]["value"]
+        if not _finite(duration) or duration < 0 or not _finite(dt) or dt <= 0:
+            return error("invalid_simulation_horizon")
+        steps = duration / dt
+        if not _finite(steps) or round(steps) >= MAX_SAMPLES or abs(steps - round(steps)) > sys.float_info.epsilon * max(1, abs(steps)):
+            return error("invalid_simulation_horizon")
         encoded = json.dumps(artifact, allow_nan=False)
         child = subprocess.Popen(["node", str(ROOT / "Build/lab/simulate.mjs")], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8", cwd=ROOT, env={"PATH": os.environ.get("PATH", ""), "SystemRoot": os.environ.get("SystemRoot", ""), "PYTHONPATH": os.environ.get("PYTHONPATH", ""), "PYTHONIOENCODING": "utf-8"})
         try:
@@ -70,7 +77,9 @@ def _start(template: str, mystery: bool = False) -> dict:
             "limitations": ["synthetic authored instrument settings", "first-order independent timing/position uncertainty; no correlated clock-rate or scale uncertainty; not calibrated"],
             "private": {"seed": artifact["spec"]["simulation"]["seed"], "gravity_m_s2": artifact["scene"]["gravity"]["magnitude_m_s2"], "setup": {"template": template, "artifact_version": artifact["artifact_version"], "instrument_model": "synthetic light-gate/ruler quantization"}},
         }
-        if template in {"free_fall", "projectile"}:
+        if not mystery:
+            result["browserSimulation"] = {"mode": "normal", "validatedSetup": artifact}
+        if not mystery and template in {"free_fall", "projectile"}:
             result["gravity"] = {"value": result["private"]["gravity_m_s2"], "unit": "m/s^2", "source": "synthetic authored setup"}
         return result
 
