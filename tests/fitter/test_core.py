@@ -56,6 +56,43 @@ class FitterCoreTests(unittest.TestCase):
         self.assertGreaterEqual(result.coverage, .90)
         self.assertEqual(result.provenance, "simulated")
 
+    def test_large_time_origin_uses_scaled_prediction(self):
+        t = tuple(1_000_000_000.0 + i * 0.1 for i in range(12))
+        y = tuple(3.0 + 1.5*(x - 1_000_000_000.0) + 0.5*9.81*(x - 1_000_000_000.0)**2 for x in t)
+        fit = fit_least_squares(t, y, 2)
+        self.assertAlmostEqual(2 * fit.coefficients[2], 9.81, places=7)
+        self.assertLess(abs(fit.predict(t)[-1] - y[-1]), 1e-10)
+
+    def test_invalid_scalars_degrees_and_empty_models_are_readable(self):
+        for bad in (True, "1", 10**10000, float("nan")):
+            with self.assertRaises(FitError):
+                fit_least_squares((0., 1., 2.), (0., bad, 2.), 2)
+        with self.assertRaises(FitError):
+            fit_least_squares((0., 1., 2.), (0., 1., 2.), True)
+        with self.assertRaises(FitError):
+            select_model((0., 1., 2.), (0., 1., 2.), degrees=())
+        with self.assertRaises(FitError):
+            select_model((0., 1., 2.), (0., 1., 2.), degrees=(True,))
+        with self.assertRaises(FitError):
+            fit_least_squares((0., 0., 0.), (1., 2., 3.), 2)
+
+    def test_aic_distinguishes_tiny_real_noise_and_exact_fit(self):
+        t = tuple(i / 10 for i in range(8))
+        exact = select_model(t, tuple(1 + 2*x + 3*x*x for x in t))
+        noisy = select_model(t, tuple(1 + 2*x + 3*x*x + 1e-12*((-1)**i) for i, x in enumerate(t)))
+        self.assertEqual(exact.aic[1], float('-inf'))
+        self.assertTrue(math.isfinite(noisy.aic[1]))
+
+    def test_covariance_requires_dof_or_explicit_sigma_and_validates_sigma(self):
+        fit = fit_least_squares((0., 1., 2.), (1., 2., 5.), 2)
+        self.assertFalse(jacobian_covariance(fit).valid)
+        self.assertTrue(jacobian_covariance(fit, sigma=0).valid)
+        for bad in (True, "0", -1, float("nan")):
+            with self.assertRaises(FitError):
+                jacobian_covariance(fit, sigma=bad)
+        with self.assertRaises(FitError):
+            jacobian_covariance(fit, parameter_index=True)
+
 
 if __name__ == "__main__":
     unittest.main()
