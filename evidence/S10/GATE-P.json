@@ -1,6 +1,7 @@
 {
   "decision": "PASS_SIMULATION_ONLY",
-  "source_commit": "bfe39bf",
+  "source_commit": "72b1cbf",
+  "controller_integration_commit": "4e3bcd4",
   "controller_checkpoint_utc": "2026-10-28T20:29:18Z",
   "numeric_evidence": "evidence/S10/acceptance/acceptance.json",
   "cases": 15,
@@ -13,7 +14,7 @@
   "unsupported_contact_steps": "reject conservatively; no free dragging is exposed by the RK4-only local lab",
   "contact_response_or_rebound_verified": false,
   "cross_vendor_review": "Run-System/Runs/R10-gate-rereview/REPORT.md",
-  "review_commit": "bfe39bf",
+  "review_commit": "981913b",
   "blocking_P1_P2_after_fixes": 0,
   "review_limit": "targeted native review pinned72b1cbf independently exercised all reported defects and tests; later CSS-only wrapping fix separately verified by controller",
   "ui_evidence": "evidence/S10/ui-hardening/iab-propagated-fit-375.png",
