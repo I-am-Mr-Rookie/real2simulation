@@ -1,0 +1,11 @@
+{
+  "id": "R12-covariance-fix",
+  "issued_at": "2026-10-28T20:58:46.012Z",
+  "deadline_at": "2026-10-28T21:28:46.012Z",
+  "implementation_cutoff_at": "2026-10-28T21:23:46.012Z",
+  "deadline_dhaka": "2026-10-29T03:28:46.012+06:00",
+  "work_stopped_at": "2026-10-28T21:19:09.606Z",
+  "reported_at": "2026-10-28T21:19:09.606Z",
+  "status": "DONE",
+  "scope": "controller-owned numerical recovery; integration remains serialized"
+}

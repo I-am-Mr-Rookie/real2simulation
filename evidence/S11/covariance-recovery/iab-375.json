@@ -1,0 +1,25 @@
+{
+  "source": "9d240b0",
+  "normal": {
+    "client": 360,
+    "reveal": "REVEAL\n\n9.810 ± 0.0000737 m/s^2\n\nGravity · source: simulated\n\nUncertainty is one standard uncertainty (1σ), not a 95% interval.\n\nUncertainty model: independent_position_time_first_order. independent observation errors first-order timing linearization at fitted velocity per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2) scale fixed no correlated clock-rate or scale uncertainty no calibration of declared standard uncertainties no errors-in-variables bias correction",
+    "scroll": 360,
+    "status": "Fit complete. This is simulated evidence, not a calibrated measurement.",
+    "width": 375
+  },
+  "mysteryBefore": {
+    "client": 360,
+    "hasBrowser": false,
+    "hasReveal": false,
+    "scroll": 360,
+    "width": 375
+  },
+  "mysteryAfter": {
+    "client": 360,
+    "hasBrowser": false,
+    "reveal": "REVEAL\n\n6.021 ± 0.0000584 m/s^2\n\nGravity · source: simulated\n\nUncertainty is one standard uncertainty (1σ), not a 95% interval.\n\nUncertainty model: independent_position_time_first_order. independent observation errors first-order timing linearization at fitted velocity per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2) scale fixed no correlated clock-rate or scale uncertainty no calibration of declared standard uncertainties no errors-in-variables bias correction",
+    "scroll": 360,
+    "status": "Fit complete. This is simulated evidence, not a calibrated measurement.",
+    "width": 375
+  }
+}

@@ -1,0 +1,1 @@
+{"seeds": 100, "covered": 96, "coverage": 0.96, "interval_z": 2.1098155778333156, "true_value": 9.81, "status": "PASS", "provenance": "simulated", "interval_method": "Student-t residual interval", "degrees_of_freedom": 17, "nominal_coverage": 0.95}
