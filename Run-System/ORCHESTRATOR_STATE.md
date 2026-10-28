@@ -1,5 +1,36 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — S07f/R-M2 accepted; S05b ONE GPU active (Oct28 12:44UTC)
+
+Controller accepted R-M2 bounded independent review; actual report/probe/final
+prove exec17689 terminal, despite initial recovered websocket426 and Git metadata
+denial. No duplicate/retry. Scoped controller review commit rebased/FF6c988a5,
+after verified S07f source41b6b08/reportddee165. Fresh post-rebase64 tests and
+independent probe output match;29 source and6 review-owned files only. Current
+main actual GateM exit1 NOT_MET_INPUT_READINESS/physics NOT_RUN,0 eligible/measured.
+Sixteen normalized sources match reviewed source; historical artifact differs
+only Git-checkout raw EOL hashes. Fresh controller artifact/acceptance receipts
+retained; no physical pass, calibration/fallback implementation or S12 unlock.
+S07f decision DONE; parent S07 still PARTIAL. R-M2 low findings bounded/deferred,
+not blindly converted into source edits or new thresholds. Queue55/203 accepted
+deliverables,5725/6000 planned minutes/275 buffer, not measured capabilities.
+
+ONLY ACTIVE worker: S05b recovery5 child01a18281-495c-7251-9c7e-9d7d8cdbfa83,
+Sol/medium, managed s05b-recovery4/run/S05b-recovery5. Exact RECOVERY-5 contract.
+Fresh actual CPU imports PASS after4/4 approved raw PNG hashes recovered; CPU app
+ap-r3ct5JcmICM3MYJmqfsnPt stopped/tasks0/containers[]. Worker reserved$.95 all-in
+and started ONE bounded L4 GPU ap-7TvkSZJ4Wk6Ym0t0yZ3lsM after CPU pass. Retry0;
+new+historical1.90=2.85 retained,30 authority unchanged. Final GPU outcome/stop/
+exact billing not yet verified. Check actual owned REPORT/evidence/process before
+replacement/integration; no duplicate worker or second paid attempt.
+
+Supported normal browser/authenticated credits restored; Q10 closed, agent did
+not change setting. No renewed GPU/credit consent or redundant child-browser gate.
+Hold heavy S07b runtime behind current probe; S02f has no genuinely new qualified
+source, so no generic hunt despite dependency-only ready display. Python dispatcher
+OFF; heartbeat ACTIVE5m; Sol override/Ponytail actual evidence/no quota polling
+unchanged. All older ACTIVE/surface/import pending sections below historical.
+
 ## CURRENT — restored preflight; S05b recovery5/R-M2 ACTIVE (Oct28 12:35UTC)
 
 Owner Q10 selected A; actual normal supported cua Chrome discovery/authenticated

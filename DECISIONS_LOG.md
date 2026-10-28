@@ -600,3 +600,20 @@ Trusted parent receipt reused by fresh recovery5; no per-worker consent gate.
 Routine reversible decision: extra R-M2 independent follow-up15m before S07f gate
 changes accepted. Current leaf timeboxes sum5725/6000m,275m buffer (not runtime
 or finish estimate). Source233e5e2 frozen for review, no premature gate/S12 unlock.
+
+## 2026-10-28 — Reviewed S07f decision accepted; physical holds unchanged
+
+R-M2 independently bounded-accepted the F1/F2 boundary response and intentional
+F3-F6 limits; controller reproduced64 tests/probes and integrated scoped source
+then review evidence by verified FF. S07f decision and R-M2 review DONE; parent
+S07 remains PARTIAL, actual GateM NOT_MET_INPUT_READINESS/physics NOT_RUN. Lead
+with simulated virtual lab/Mystery-g; calibrated table-plane Measure unavailable,
+not implemented or physically ready. No new thresholds, calibration/source
+approval or S12 unlock. Low future scalar/Unicode identity/presentation limits
+remain documented instead of speculative edits. Controller sequencing mistake
+and corrected checks recorded separately; no false-green evidence or user loss.
+
+Recovery5 independently verified actual CPU imports and stopped CPU before ONE
+bounded GPU. Retain new$.95 plus old1.90=$2.85,30 authority unchanged, retries0.
+GPU outcome/stop/exact billing await controller acceptance; no second paid attempt
+or redundant owner consent. Serialize S07b heavy runtime behind current probe.

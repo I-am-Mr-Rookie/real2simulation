@@ -1,5 +1,34 @@
 # Orchestration resumed — Sol and Ponytail
 
+## Latest — bounded gate review integrated; actual CPU pass (Oct28 12:44UTC)
+
+- Accepted actual R-M2 report/findings/probes; recovered startup websocket426 is
+  not a failed task. CLI final reports44,210 tokens (not billing); existing routed
+  Opus5.5/medium header confirmed, backend unverified. One-line final complied.
+  Scoped Git metadata denial handled by controller commit, no sandbox bypass.
+- S07f fixes/decision accepted after independent other-vendor bounded review,
+  not a physical gate pass. Source41b6b08/reportddee165 then R-M2 evidence6c988a5
+  rebased/FF serially after exact scope and fresh64/64 tests/matching probes.
+  Current gate still0 eligible/measured, physics NOT_RUN; AP15 outside approved
+  use/NOT_TRACKABLE. Calibrated table-plane fallback UNAVAILABLE; simulated lab
+  lead decision logged, no S12 unlock. Current16 normalized source proof matches;
+  historical artifact only raw EOL-hash differences, preserved with fresh receipt.
+- Low future scalar/provenance-Unicode/presentation edge findings adjudicated,
+  no speculative source edits. Ponytail concrete minimal shared-root fix/reuse,
+  regressions and reviewer/check skips/risks accepted, not skill-name compliance.
+- Sequencing exception recorded in S07f controller receipt: our generated RUNS
+  timestamp blocked first source FF; follow-on review test inadvertently ran old
+  source59/failed new-argument probe. No bad merge. Restored only own generated
+  timestamp; correct source/review sequence passed fresh64/probes before FF.
+- Active S05b recovery5 actual CPU installation/imports PASS, CPU stopped/tasks0/
+  containers[].4/4 approved PNG hashes recovered. New$.95 all-in reserved; old1.90
+  retained=2.85, existing30 ceiling unchanged. ONE bounded GPU active after CPU
+  pass, retries0; no result/stop/billing acceptance yet. No duplicate/heavy runtime.
+- Queue55/203 deliverables accepted; one worker active. S07f/R-M2 DONE qualified
+  by independent/controller receipts; parent S07 PARTIAL, physical holds unchanged.
+  No genuinely new calibration source, no generic retry hunt. OpenCodex-managed,
+  not polled; no provider/credential/global-policy/publication/deployment change.
+
 ## Latest — owner Q10 applied, runtime restored, independent review (12:35UTC)
 
 - Recorded exact Q10 A answer, then VERIFIED normal supported Chrome extension

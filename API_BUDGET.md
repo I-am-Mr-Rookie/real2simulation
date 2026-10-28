@@ -1,5 +1,25 @@
 # Real2Simulation — API and compute budget
 
+## CURRENT — recovery5 CPU pass, ONE bounded GPU active — Oct28 12:42UTC
+
+Current worker ledger reserves **new$0.95 all-in**, plus historical$1.90 pending,
+**$2.85 total retained**; at most$27.15 of existing$30 before other debits. Exact
+charges/billed seconds unknown, no reserve released. Authority is NOT the$130
+dashboard balance. Parent authenticated credit receipt12:34 remains on disk.
+Worker preflight observed apps/containers empty, verified all4 approved RM02
+raw-frame hashes, and bounds one CPU then at most one L4 GPU, retries0, no custom
+image build/persistent storage/endpoint/schedule. Pip/setup is inside hard limits;
+compute bound$0.31737128 plus <=$.01 egress and$0.62262872 contingency within$.95.
+
+Actual CPU imports PASS: Torch2.8.0+cu128/vision0.23.0+cu128/audio2.8.0+cu128,
+NumPy2.2.6/MapAnything1.1.4; elapsed115.620071692s is NOT billed time. CPU app
+ap-r3ct5JcmICM3MYJmqfsnPt stopped/tasks0, containers[]. Single GPU app
+ap-7TvkSZJ4Wk6Ym0t0yZ3lsM now active; inference result/stop not yet accepted.
+Follow worker evidence/S05/S05b/recovery5/{RUNTIME-PREFLIGHT.md,job-ledger.json};
+controller will independently reconcile final report/stops before acceptance.
+No account-wide cap, no-overage setting change or physical GateR success claimed.
+Earlier stop/surface/import statements below are historical, superseded here.
+
 ## Latest S05b actual CPU attempt and stop — Oct28 ~08:25UTC
 
 ONE bounded CPU preparation app ap-HXf8zry5uWtJx63efPpSdA ran08:20:46–08:20:58Z,
@@ -254,11 +274,12 @@ Earlier receipts are retained under ignored Run-System/Runs; paths in chronologi
 
 ## Standing GPU execution authorization — owner correction Oct28
 
-**Latest12:34UTC:** controller supported authenticated Usage/Credits restored:
+**Latest parent receipt12:34UTC:** controller supported authenticated Usage/Credits restored:
 130 total/Active100 grant plus monthly30, rounded0.00 spend, no configured cap
 asserted. Historical1.90 retained pending exact billing; authority stays30 and new
 reserve<=1 all-in. Recovery5 checks current resources/bounds/raw input/imports
-before any GPU. No new job/spend yet claimed. Supersedes disabled-surface note.
+before any GPU. Current recovery5 jobs/reservation are recorded at the top;
+this parent receipt predates them. Supersedes disabled-surface note.
 
 **Latest recovery4:** supported local browser use disabled in Work settings;
 no new CPU/GPU/build/inference/upload job or reservation. Historical$1.90 retained
