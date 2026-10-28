@@ -24,3 +24,15 @@ Fitter uncertainty assumes fixed clock/scale and iid residuals; instrument
 uncertainties are carried but not propagated. A fit error is returned honestly.
 Output is internal diagnostic data, **not a Mystery-g public payload**, measured
 physics, real reconstruction, calibration, a deployed product or a gate pass.
+
+Four-template local analytic/replay regression:
+
+```powershell
+python -m Build.lab.regression
+```
+
+This invokes actual S08 factories/oracles and all four Node RK4 engines, repeats
+each trace, and verifies the actual seeded replay record/hashes. The analytic
+threshold is0.5%; a passing authored fixture is not exhaustive Gate P or required
+other-vendor acceptance. Seed binds replay identity; noiseless deterministic
+physics intentionally does not change trajectory merely because seed changes.

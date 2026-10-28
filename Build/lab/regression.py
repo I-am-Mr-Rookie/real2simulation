@@ -85,10 +85,17 @@ def run_regression():
             relative_error = position_error / scale
             if not math.isfinite(relative_error):
                 raise ValueError(f'{template}: non-finite comparison')
+            replay_process = subprocess.run(['node', str(ROOT / 'Build/lab/replay-check.mjs')],
+                                            input=encoded, text=True, capture_output=True,
+                                            encoding='utf-8', timeout=30, cwd=ROOT, check=True)
+            replay = json.loads(replay_process.stdout)
+            if replay['samples'] != len(samples) or not replay['deterministic'] or not replay['seedBound']:
+                raise ValueError(f'{template}: actual seeded replay mismatch')
             results.append(dict(template=template, samples=len(samples), position_error_m=position_error,
                                 characteristic_scale_m=scale, relative_error=relative_error,
                                 within_half_percent=relative_error <= 0.005,
                                 reference=reference['method'], deterministic=True,
+                                replay=replay,
                                 contact_scope='pre-contact analytic motion only'))
     return dict(source='simulated', scope='local synthetic analytic regression, not whole Gate P acceptance',
                 threshold=0.005, passed=all(r['within_half_percent'] for r in results), cases=results,
