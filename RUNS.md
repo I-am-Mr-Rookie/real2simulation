@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 28, 18:07 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 18:32 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **53 / 202** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 1 open questions
+Progress: **53 / 203** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 1 open questions
 
 ## Questions for Koushik
 
@@ -25,6 +25,7 @@ Progress: **53 / 202** runs done · 1 in progress · 0 blocked · 1 waiting for 
 ## In progress
 
 - [~] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min) *(in progress)*
+- [~] **R-M2** — Claude Code · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min) *(in progress)*
 
 ## Waiting to retry
 
@@ -119,7 +120,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (9/12)</summary>
+<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (9/13)</summary>
 
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [x] **S02g** — Codex · GPT-6.1 Sol, effort high — Verify original FF01/FF02 calibration sources (30 min)
@@ -133,6 +134,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)
 - [~] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min) *(in progress)*
 - [x] **R-M** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
+- [~] **R-M2** — Claude Code · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min) *(in progress)*
 
 </details>
 
