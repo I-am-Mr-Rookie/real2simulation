@@ -12,7 +12,7 @@ const canonical = (value, stack = new WeakSet()) => {
     for (let i = 0; i < value.length; i += 1) if (!own(value, i)) fail('sparse array');
     out = `[${value.map((item) => canonical(item, stack)).join(',')}]`;
   } else {
-    if (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) fail('unsupported object');
+    if (Object.getPrototypeOf(value) !== Object.prototype && Object.getPrototypeOf(value) !== null) fail('unsupported object'); if (Reflect.ownKeys(value).some((key) => typeof key !== 'string')) fail('symbol property');
     if (!descriptorSafe(value)) fail('accessor property');
     out = `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${canonical(value[key], stack)}`).join(',')}}`;
   }
@@ -34,4 +34,5 @@ export async function replayRecord(record, runner) {
   const replay = await createReplayRecord({ seed: record.seed, version: record.version, parameters: record.parameters, trace });
   if (replay.traceHash !== record.traceHash || replay.replayHash !== record.replayHash) fail('runner output differs from recorded trace'); return replay;
 }
+
 
