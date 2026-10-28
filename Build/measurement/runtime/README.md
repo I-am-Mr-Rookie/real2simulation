@@ -28,6 +28,25 @@ by this base lock. In particular upstream builder defaults `use_fa3=True` and
 `use_rope_real=True` remain unverified; no kernel-disable flag/patch is inferred.
 No train/dev/notebook extras, flash-attention install or checkpoint retrieval ran.
 
+## Reproducible source/build preflight
+
+`preflight.py` is the executable fail-closed boundary for a future exact runtime.
+Given a checked-out SAM3 source directory it verifies the pinned git revision,
+the immutable source files and packaged BPE asset SHA-256 values, and the stated
+Linux/x86_64 + Python 3.12 minimum. It emits JSON and exits 2 on any mismatch;
+it never imports SAM, downloads source/assets/checkpoints, or changes the
+environment:
+
+```bash
+python Build/measurement/runtime/preflight.py /path/to/sam3 --json
+```
+
+The manifest also records the upstream build-system requirements (`setuptools>=61`,
+`wheel`), optional `flash-attn-3`/`cc_torch` kernels, and the exact builder flags
+used by `tracking.py`. A PASS is source/packaging readiness only; it is not proof
+of Torch/CUDA/kernel availability, checkpoint custody, model import, inference,
+calibration, or physical Gate M.
+
 Resolution obtained small package metadata/source metadata, not model weights;
 it did not install a target environment or download the multi-GB CUDA runtime.
 Actual installation may require source builds and substantial downloads/time.

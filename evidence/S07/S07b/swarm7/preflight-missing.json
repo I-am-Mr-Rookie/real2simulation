@@ -1,0 +1,7 @@
+{
+  "command": "python Build/measurement/runtime/preflight.py C:/this-path-does-not-exist --json",
+  "exit_code": 2,
+  "result": "FAIL_CLOSED",
+  "observed": "No source checkout; git revision and all pinned source/BPE hashes were absent.",
+  "note": "This is executable boundary evidence, not runtime/import/inference evidence."
+}
