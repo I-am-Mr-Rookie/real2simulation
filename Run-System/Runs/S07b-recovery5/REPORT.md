@@ -46,3 +46,5 @@ actual3.5GB checkpoint and GPU performance remain unverified. Independent future
 run must verify those and remaining paid-admission safeguards, not ask redundant
 consent. Silent except mandatory initial/skill/changed-plan messages; no optional
 status repetition or owner question. No automatic continuation beyond owner stop.
+
+Integration: verified FFc556c99; fresh main measurement65/65 PASS. Run-System31/31 PASS. Final local verification stop/report 2026-10-28T16:36:44.660044+00:00. Timing checker PASS.
