@@ -1,0 +1,32 @@
+{
+  "decision": "PASS_SIMULATION_ONLY",
+  "source_commit": "fd10a19",
+  "controller_checkpoint_utc": "2026-10-28T19:26:14Z",
+  "numeric_evidence": "evidence/S10/acceptance/acceptance.json",
+  "cases": 15,
+  "passed": 15,
+  "unchanged_relative_error_limit": 0.005,
+  "maximum_observed_relative_error": 0.004407323623582317,
+  "all_actual_engine_replays_deterministic": true,
+  "contact_semantics": "same-sample geometric sphere-floor touch with analytic-containing before/after bracket; raw Rapier candidate manifolds are not touch truth",
+  "contact_dt_s": [0.005, 0.0025, 0.001],
+  "unsupported_contact_steps": "reject conservatively; no free dragging is exposed by the RK4-only local lab",
+  "contact_response_or_rebound_verified": false,
+  "cross_vendor_review": "evidence/reviews/R-P-native/FINDINGS.md",
+  "review_commit": "c47a871",
+  "blocking_P1_P2_after_fixes": 0,
+  "review_limit": "final fd10a19 confirmation was diff-only; controller separately ran fresh contact tests and regenerated the complete numeric packet",
+  "ui_evidence": "evidence/S10/ui/lab-375.jpg",
+  "ui_flow": "actual in-app browser Run -> quantized observations -> S11 Fit -> private seeded g reveal, 375px",
+  "physical_Gate_M": "NOT_MET_INPUT_READINESS",
+  "physical_measurement": "NOT_RUN",
+  "S12": "LOCKED",
+  "remaining_limits": [
+    "no physical, calibrated, real-scene, production or deployment claim",
+    "caller must provide gravity consistent with the trajectory to the low-level contact adapter",
+    "contact_jitter_observed field means analytic-time containment, with raw spread separately reported",
+    "process-abort capacity test does not independently prove grandchild termination on every platform",
+    "fitter conditions on fixed clock and scale; input instrument uncertainty is not propagated",
+    "next build and Unix process-group path not verified"
+  ]
+}

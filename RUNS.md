@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 01:24 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 01:27 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **74 / 205** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **77 / 205** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -16,7 +16,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CODEX-1**
 - [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
-- [~] **S10i** — Codex · GPT-6.1 Sol, effort high — Resolve contact jitter with RK4-only fallback if needed (30 min) *(partial: resume it)*
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
@@ -161,7 +160,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S10</b> — Builder and in-browser simulator; Gate P (8/11)</summary>
+<details><summary><b>S10</b> — Builder and in-browser simulator; Gate P (11/11)</summary>
 
 - [x] **S10a** — Codex · GPT-6.1 Sol, effort medium — Build validated-spec apparatus placement (30 min)
 - [x] **S10b** — Codex · GPT-6.1 Sol, effort medium — Implement fixed-step RK4 core (30 min)
@@ -171,9 +170,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S10f** — Codex · GPT-6.1 Sol, effort medium — Implement seeded replay (30 min)
 - [x] **S10g** — Codex · GPT-6.1 Sol, effort medium — Hide Mystery-g until fit/reveal (30 min)
 - [x] **S10h** — Codex · GPT-6.1 Sol, effort medium — Run four-template Gate P regression (30 min)
-- [~] **S10i** — Codex · GPT-6.1 Sol, effort high — Resolve contact jitter with RK4-only fallback if needed (30 min) *(partial: resume it)*
-- [ ] **S10j** — Codex · GPT-6.1 Sol, effort high — Checkpoint Gate P and review packet (30 min)
-- [ ] **R-P** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate P analytic comparison and replay (15 min)
+- [x] **S10i** — Codex · GPT-6.1 Sol, effort high — Resolve contact jitter with RK4-only fallback if needed (30 min)
+- [x] **S10j** — Codex · GPT-6.1 Sol, effort high — Checkpoint Gate P and review packet (30 min)
+- [x] **R-P** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate P analytic comparison and replay (15 min)
 
 </details>
 

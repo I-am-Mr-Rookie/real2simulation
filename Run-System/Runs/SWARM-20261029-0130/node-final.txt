@@ -1,0 +1,51 @@
+✔ both ballistic templates reach real contact through the common run adapter (431.1324ms)
+✔ unsupported replay versions cannot produce unreplayable records (1.6733ms)
+(node:34924) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/app/api/lab/route.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ normal start/fit uses the actual bridge and fitter (1956.7731ms)
+✔ mystery redacts pre-fit and reveals only through matching fit (1531.3874ms)
+✔ pre-abort does not spawn and expired reads do not evict live sessions (867.5309ms)
+✔ allowlists, expiry and bounded session errors are clean (571.6567ms)
+✔ aborting an active bridge settles and releases its capacity (329.8773ms)
+✔ loopback route accepts the UI contract and rejects nonlocal hosts (685.282ms)
+✔ production route remains disabled (2.1571ms)
+✔ lab UI keeps the user flow and trust labels visible in source (2.1185ms)
+✔ lab layout collapses before the narrow mobile viewport (0.3293ms)
+✔ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (1.7998ms)
+✔ plot helper uses actual finite time and position domains (0.7852ms)
+✔ real Rapier contact is mapped onto the same RK4 samples (477.4822ms)
+✔ contact timing tracks analytic impact within one sample for supported timesteps (238.6502ms)
+✔ no-contact trajectory remains no-contact and deterministic (2.122ms)
+✔ rejects invalid explicit physics and geometry (138.1288ms)
+✔ returned contact output is deeply immutable (37.3121ms)
+✔ ramp uses signed fixed-step dynamics and exposes analytic comparison inputs (23.104ms)
+✔ ramp stops at the first endpoint crossing and rejects unsupported stall/coast regimes (17.6183ms)
+✔ pendulum matches the small-angle analytic comparison and maps geometry (26.9791ms)
+✔ nonlinear pendulum converges and conserves energy (122.8353ms)
+✔ zero horizon is one immutable sample; inputs remain unchanged and deterministic (0.9799ms)
+✔ rejects sparse, nonfinite, overflow, and hidden-default inputs (1.2824ms)
+✔ consumes actual Python validate_setup export for both extended templates (1609.8154ms)
+✔ allowlisted public projection cannot leak arbitrary observation metadata (19.8658ms)
+✔ actual Python S11 response binds to same observations and preserves source (237.3738ms)
+✔ version, mutation, and cross-session binding are enforced (161.0765ms)
+✔ same seed is byte-identical and immutable (21.3992ms)
+✔ changed seed/params distinguish; hostile inputs fail (4.3917ms)
+✔ S10a consumes only the trusted S08 validate_setup export and places geometry (5.3314ms)
+✔ RK4 zero-step validates every input, rejects sparse state, and preserves state (0.9714ms)
+✔ RK4 convergence/order, determinism, immutability and invalid dynamics (5.5407ms)
+✔ free fall uses fixed-step RK4 and matches the authoritative analytic reference (10.45ms)
+✔ projectile preserves horizontal motion and reports a sampled stop-plane bracket (2.3699ms)
+✔ rejects missing provenance and hidden numeric defaults (1.5117ms)
+✔ is deterministic, finite, and does not mutate caller inputs (11.0587ms)
+✔ reports an already-crossed plane without advancing the integrator (0.5962ms)
+✔ accepts only the validated S08 transport and maps explicit template quantities (711.1009ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 39
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6196.9187

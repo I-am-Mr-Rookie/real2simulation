@@ -1,0 +1,15 @@
+✔ both ballistic templates reach real contact through the common run adapter (274.5415ms)
+✔ unsupported replay versions cannot produce unreplayable records (2.0002ms)
+✔ real Rapier contact is mapped onto the same RK4 samples (385.0412ms)
+✔ contact timing tracks analytic impact within one sample for supported timesteps (335.8786ms)
+✔ no-contact trajectory remains no-contact and deterministic (2.496ms)
+✔ rejects invalid explicit physics and geometry (144.1939ms)
+✔ returned contact output is deeply immutable (99.8559ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2445.7953
