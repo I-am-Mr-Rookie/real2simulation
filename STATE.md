@@ -1,6 +1,6 @@
-# Real2Simulation â€” STATE
+# Real2Simulation — STATE
 
-## Latest direct owner instruction â€” solo work until 23:00 BDT Oct28
+## Latest direct owner instruction — solo work until 23:00 BDT Oct28
 
 Fresh direct owner authorization: apply Ponytail, work alone, complete useful
 runs silently within30 minutes/until23:00BDT. Session observed start16:28:00Z;
@@ -28,7 +28,7 @@ not hidden or counted as browser proof. Progress58/205, gates/budget unchanged.
 Next S05b-recovery11 fixes optimization-removable probe trust-boundary asserts;
 newly source-confirmed local safeguard, no live/paid operation or review bypass.
 
-## Latest direct owner instruction â€” solo work completed before 22:30 BDT Oct28
+## Latest direct owner instruction — solo work completed before 22:30 BDT Oct28
 
 Koushik: "You are the lonely worker. Complete as many runs as you can until 10:30 pm (BDT)".
 This chat alone works serially until2026-10-28T16:30:00Z; no delegated chats,
@@ -75,7 +75,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 | Recovery field | Current evidence |
 |---|---|
-| GPU scheduling priority | Koushik validates ~20 GPU-hours needed, ~15h current Modal allocation, reset on/after Nov1. Start S06p readiness now; useful eligible GPU work Oct28â€“31 takes priority, remainder after actual reset. API_BUDGET.md is authoritative; no dummy jobs, approval/dependency bypass or expanded spend. |
+| GPU scheduling priority | Koushik validates ~20 GPU-hours needed, ~15h current Modal allocation, reset on/after Nov1. Start S06p readiness now; useful eligible GPU work Oct28–31 takes priority, remainder after actual reset. API_BUDGET.md is authoritative; no dummy jobs, approval/dependency bypass or expanded spend. |
 | Authorized scope | Latest direct solo instruction honored; product work stopped Oct28 22:24:21BDT before22:30 cutoff. Three runs complete, no active worker or automatic next run. No delegation, dispatcher/schedule, remote or paid expansion. |
 | Manual concurrency | No fixed cap; useful independent isolated Owns only, one canonical control maintainer. Serialize controls/merges/heavy builds; no quota polling/duplicate objectives. |
 | Session project | EVERY new worker and orchestrator uses existing Meta AI Hackathon project91e441f8-e40c-4ec4-bea2-de7fa1582d97, same canonical event root. Verify/record supported association; no duplicate project or projectless launches. |
@@ -94,7 +94,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 | Active blocker | Q11 answered/accepted access; exact weights/config/authenticated Modal retrieval/runtime unverified. Prefix custody now accepted, not physical calibration. S05b scheduling cause UNKNOWN;2.85 reserves retained. Owner freshly reports Sign-in unavailable/authentication not configured; Q4 setup still prerequisite. |
 | Next action | Solo window closed; no autonomous next run. Future scoped work: independent review of F3 repair and existing live-admission safeguards; SAM exact bytes/retrieval/runtime with isolated Python3.12/NumPy<2, not S05b3.11/NumPy2 reuse. Do not recreate provisioned credentials. F4/physical/S12 holds remain. |
 | Dispatch enabled | NO |
-| Quota halt | NO â€” Koushik superseded manual coding-quota checks and the 85% rule on Oct28. OpenCodex manages allowance; dispatch assigned dependency-ready runs without polling percentages. Record actual runtime/dispatch errors; no bypass, resets, purchases or routing changes. Meta/API/AWS gates unchanged. |
+| Quota halt | NO — Koushik superseded manual coding-quota checks and the 85% rule on Oct28. OpenCodex manages allowance; dispatch assigned dependency-ready runs without polling percentages. Record actual runtime/dispatch errors; no bypass, resets, purchases or routing changes. Meta/API/AWS gates unchanged. |
 | Active lanes | NONE. Current auth-provision2 worker idle/completed, controller orchestration stopped on owner takeover. No inline workers/schedule/dispatcher or active job. |
 | Latest full-window dispatch | Auth-provision2 issued15:37:43UTC, deadline16:07:43UTC=22:07:43Dhaka, minute25 cutoff16:02:43UTC, all IN actual handout, full1800s. Completed verified local provisioning at15:45:04UTC, timing PASS; no incomplete early terminal. |
 | Latest live status | S05b/S07b PARTIAL product parents. Current private provisioning child DONE accepted b9b3a73; no workers active, owner takeover honored. Secret storage UI verified, retrieval/bytes/runtime NOT_VERIFIED. |
@@ -121,7 +121,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 | Muse / VM / relay | Not used |
 | Plan preservation | S08a verified unchanged Git blob from start main f0d6494; blob SHA256 ef101e5efa7c945463fe9f16b0c5f1c66154991fd1464af259507a3eab82706e; Windows file SHA256 4e0c276c7156d15e465eed4b53708821b70e7ee8d6733555a07a2eec65ca60f7 (CRLF; LF-equivalent to blob). Prior recorded hash was stale; plan not edited. |
 
-## S04f recovery checkpoint â€” Oct28 Dhaka
+## S04f recovery checkpoint — Oct28 Dhaka
 
 - S04f DONE, CODEX-2 requested GPT-6.1 Sol medium; actual delegated Codex model/
   effort/tokens/coding cost unavailable. OpenCodex-managed; not polled.
@@ -181,7 +181,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 - [x] Q5 [S06p] Koushik authorized existing signed-in Chrome inspection/normal closure; completed pre-redemption$30/$0 spent check. Owner then supplied submitted-form confirmation AND Modal Credits screenshot: total$130, Active hackathon grant$100 remaining, activatedOct27,2026/expiresOct31,2027, plus monthly$30. Redemption confirmed by dashboard evidence, no new live browser check. Earlier gross cap$42.50/net-spend limitation not rechecked. Runtime/job/no-overage/spend-authorization gates remain; owner20h/15h/monthly-reset baseline and useful pre-reset priority unchanged. Receipt: Run-System/Runs/ORCH-MODAL-CHECK/REPORT.md.
 
-S06p DONE (readiness only), evidence commit bc16962 fast-forwarded to main. [REPORT](evidence/S06/pre-reset/REPORT.md). Fresh artifact/scope checks pass:3 evidence files, no product changes; browser account limitation and local dependency/daemon gaps recorded. Concrete Oct28â€“31/post-observed-reset order and conservative$30/no-overage reconciliation on disk. Account values remain unavailable; S02e/licences/runtime/spend gates block actual jobs. No GPU launches/uploads/inference or expanded authorization. Requested CODEX-1 Sol/medium, actual model/effort/tokens/dollars unobservable; OpenCodex-managed; not polled. ParentS06/runtime gates unchanged. Unrelated active orchestrator/S02c control edits preserved.
+S06p DONE (readiness only), evidence commit bc16962 fast-forwarded to main. [REPORT](evidence/S06/pre-reset/REPORT.md). Fresh artifact/scope checks pass:3 evidence files, no product changes; browser account limitation and local dependency/daemon gaps recorded. Concrete Oct28–31/post-observed-reset order and conservative$30/no-overage reconciliation on disk. Account values remain unavailable; S02e/licences/runtime/spend gates block actual jobs. No GPU launches/uploads/inference or expanded authorization. Requested CODEX-1 Sol/medium, actual model/effort/tokens/dollars unobservable; OpenCodex-managed; not polled. ParentS06/runtime gates unchanged. Unrelated active orchestrator/S02c control edits preserved.
 
 F-CODEX-2-1 DONE (Oct28 Dhaka): read-only checklist, auth8/8 and offline replay exit0; worker503 retained. Reproduced verifier accepts wrong service/status labels; no live deployment defect inferred. Report: evidence/fillers/CODEX-2/1/REPORT.md. No new owner question; existing questions below unchanged. Requested CODEX-2 Sol medium, exact runtime/effort/tokens/cost unavailable; OpenCodex-managed; not polled. New Meta/GPU/inference0 calls; gates still NOT RUN. Initial lifecycle deviation corrected with claim ab35f954, isolated evidence39d23e1, verified FF and serial controls. Managed worktree clean/retained after protected-primary archive refusal. Next: separately authorize CODEX-2 verifier follow-up; existing auth/clip/AWS/publication gates unchanged.
 
@@ -216,14 +216,14 @@ Archive, .env, owner PDFs and .worktrees remain ignored; no .env values were rea
 - No dispatcher lock or active workers left. Product Dispatch enabled remains NO. Existing research/concept references remain untracked rather than staging unrelated material.
 
 
-## F-CODEX-1-1 read-only review â€” Oct28 Dhaka
+## F-CODEX-1-1 read-only review — Oct28 Dhaka
 
 - DONE c7b7787; report evidence/fillers/CODEX-1/1/REPORT.md. Main probe exit0 (8 synthetic observations), spec91/91 and scene11/11 OK at20:46:39UTC. No product/test changes; all event gates still NOT RUN.
 - Findings: free-fall huge-time OverflowError; sub-coordinate-resolution drop loses world-position displacement. Documented oracle-domain/provenance/contact/codec limits separated from bugs; no real physics/simulator/integration claim.
 - Initial unclaimed-main evidence deviation corrected under controller-granted serialized window: claim d94fc4b, isolated run/F-CODEX-1-1, repeated checks, verified FF. No owner question. Requested Sol medium; exact runtime/tokens/coding cost unavailable; OpenCodex-managed; not polled. Meta/inference/GPU calls0.
 - Next: separate authorized owned-code follow-up for checklist items; source/owner blockers and approval fields unchanged.
 
-## F-CODEX-1-2 coverage review â€” Oct28 Dhaka
+## F-CODEX-1-2 coverage review — Oct28 Dhaka
 
 - DONE; merged evidence2ac94ff. Report/checklist/raw receipts: evidence/fillers/CODEX-1/2/REPORT.md. Source-linked test map;17 independent observations;91+11 existing tests pass in isolated, post-rebase and main checks. No product/test edit, physics/gate result, deployment or new owner question.
 - P1/P2 independently reproduced; P3/P4 intentional integration limits. None refuted; downstream effects/performance/codec/guard reachability unverified. Next: separately authorize CODEX-1 regression/fix follow-up. Existing blockers/approvals/deadline mode unchanged.
