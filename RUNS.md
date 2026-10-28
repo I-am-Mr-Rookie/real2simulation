@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 00:24 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 01:24 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
-Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
+All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **72 / 205** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **74 / 205** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -16,7 +16,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CODEX-1**
 - [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
-- [~] **S10g** — Codex · GPT-6.1 Sol, effort medium — Hide Mystery-g until fit/reveal (30 min) *(partial: resume it)*
+- [~] **S10i** — Codex · GPT-6.1 Sol, effort high — Resolve contact jitter with RK4-only fallback if needed (30 min) *(partial: resume it)*
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
@@ -38,8 +38,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **F-CODEX-1-2** — Codex · GPT-6.1 Sol, effort medium — Review owned-module test coverage gaps (15 min)
 - [x] **F-CODEX-2-1** — Codex · GPT-6.1 Sol, effort medium — Document owned-module edge cases (15 min)
 - [x] **F-CODEX-2-2** — Codex · GPT-6.1 Sol, effort medium — Review owned-module test coverage gaps (15 min)
-- [x] **F-CLAUDE-1** — Claude Code · Opus 5.5, effort medium — Document owned-module edge cases (15 min)
-- [x] **F-CLAUDE-2** — Claude Code · Opus 5.5, effort medium — Review owned-module test coverage gaps (15 min)
+- [x] **F-CLAUDE-1** — Codex (native Claude) · Opus 5.5, effort medium — Document owned-module edge cases (15 min)
+- [x] **F-CLAUDE-2** — Codex (native Claude) · Opus 5.5, effort medium — Review owned-module test coverage gaps (15 min)
 
 </details>
 
@@ -96,7 +96,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **S05d** — Codex · GPT-6.1 Sol, effort medium — Fit floor, metric scale and gravity orientation (30 min)
 - [ ] **S05e** — Codex · GPT-6.1 Sol, effort high — Run Gate R and inspect reconstruction failures (30 min)
 - [ ] **S05f** — Codex · GPT-6.1 Sol, effort high — Apply the named fallback and checkpoint Gate R (30 min)
-- [ ] **R-R** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate R implementation and failure thresholds (15 min)
+- [ ] **R-R** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate R implementation and failure thresholds (15 min)
 
 </details>
 
@@ -127,8 +127,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S07d** — Codex · GPT-6.1 Sol, effort medium — Detect slow-motion and propagate measurement uncertainty (30 min)
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)
 - [x] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min)
-- [x] **R-M** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
-- [x] **R-M2** — Claude Code · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min)
+- [x] **R-M** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
+- [x] **R-M2** — Codex (native Claude) · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min)
 
 </details>
 
@@ -148,20 +148,20 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S09</b> — 3D world viewer with a rendering budget (7/10)</summary>
 
-- [x] **S09a** — Claude Code · Opus 5.5, effort medium — Define viewer adapter and synthetic fixture scene (30 min)
-- [x] **S09b** — Claude Code · Opus 5.5, effort medium — Render fixture geometry and orbit camera (30 min)
-- [x] **S09c** — Claude Code · Opus 5.5, effort medium — Load real point-cloud or splat artifacts (30 min)
-- [x] **S09d** — Claude Code · Opus 5.5, effort medium — Add colliders, camera path and scene labels (30 min)
-- [x] **S09e** — Claude Code · Opus 5.5, effort medium — Implement pixel-ratio and detail budgets (30 min)
-- [x] **S09f** — Claude Code · Opus 5.5, effort medium — Pause rendering when idle or hidden (30 min)
-- [x] **S09g** — Claude Code · Opus 5.5, effort medium — Add 375px reduced-detail viewer layout (30 min)
-- [ ] **S09h** — Claude Code · Opus 5.5, effort medium — Integrate three measured scene artifacts (30 min)
-- [ ] **S09i** — Claude Code · Opus 5.5, effort medium — Measure fps and memory on target laptop (30 min)
-- [ ] **S09j** — Claude Code · Opus 5.5, effort medium — Checkpoint viewer evidence and visual fixes (30 min)
+- [x] **S09a** — Codex (native Claude) · Opus 5.5, effort medium — Define viewer adapter and synthetic fixture scene (30 min)
+- [x] **S09b** — Codex (native Claude) · Opus 5.5, effort medium — Render fixture geometry and orbit camera (30 min)
+- [x] **S09c** — Codex (native Claude) · Opus 5.5, effort medium — Load real point-cloud or splat artifacts (30 min)
+- [x] **S09d** — Codex (native Claude) · Opus 5.5, effort medium — Add colliders, camera path and scene labels (30 min)
+- [x] **S09e** — Codex (native Claude) · Opus 5.5, effort medium — Implement pixel-ratio and detail budgets (30 min)
+- [x] **S09f** — Codex (native Claude) · Opus 5.5, effort medium — Pause rendering when idle or hidden (30 min)
+- [x] **S09g** — Codex (native Claude) · Opus 5.5, effort medium — Add 375px reduced-detail viewer layout (30 min)
+- [ ] **S09h** — Codex (native Claude) · Opus 5.5, effort medium — Integrate three measured scene artifacts (30 min)
+- [ ] **S09i** — Codex (native Claude) · Opus 5.5, effort medium — Measure fps and memory on target laptop (30 min)
+- [ ] **S09j** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint viewer evidence and visual fixes (30 min)
 
 </details>
 
-<details><summary><b>S10</b> — Builder and in-browser simulator; Gate P (6/11)</summary>
+<details><summary><b>S10</b> — Builder and in-browser simulator; Gate P (8/11)</summary>
 
 - [x] **S10a** — Codex · GPT-6.1 Sol, effort medium — Build validated-spec apparatus placement (30 min)
 - [x] **S10b** — Codex · GPT-6.1 Sol, effort medium — Implement fixed-step RK4 core (30 min)
@@ -169,11 +169,11 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S10d** — Codex · GPT-6.1 Sol, effort medium — Implement free-fall and projectile runs (30 min)
 - [x] **S10e** — Codex · GPT-6.1 Sol, effort medium — Implement ramp and pendulum runs (30 min)
 - [x] **S10f** — Codex · GPT-6.1 Sol, effort medium — Implement seeded replay (30 min)
-- [~] **S10g** — Codex · GPT-6.1 Sol, effort medium — Hide Mystery-g until fit/reveal (30 min) *(partial: resume it)*
-- [ ] **S10h** — Codex · GPT-6.1 Sol, effort medium — Run four-template Gate P regression (30 min)
-- [ ] **S10i** — Codex · GPT-6.1 Sol, effort high — Resolve contact jitter with RK4-only fallback if needed (30 min)
+- [x] **S10g** — Codex · GPT-6.1 Sol, effort medium — Hide Mystery-g until fit/reveal (30 min)
+- [x] **S10h** — Codex · GPT-6.1 Sol, effort medium — Run four-template Gate P regression (30 min)
+- [~] **S10i** — Codex · GPT-6.1 Sol, effort high — Resolve contact jitter with RK4-only fallback if needed (30 min) *(partial: resume it)*
 - [ ] **S10j** — Codex · GPT-6.1 Sol, effort high — Checkpoint Gate P and review packet (30 min)
-- [ ] **R-P** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate P analytic comparison and replay (15 min)
+- [ ] **R-P** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate P analytic comparison and replay (15 min)
 
 </details>
 
@@ -198,7 +198,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **S12d** — Codex · GPT-6.1 Sol, effort medium — Predict pendulum continuation and overlay contract (30 min)
 - [ ] **S12e** — Codex · GPT-6.1 Sol, effort high — Run Gate RS on public motion clips (30 min)
 - [ ] **S12f** — Codex · GPT-6.1 Sol, effort high — Label outputs and choose honest prediction fallback (30 min)
-- [ ] **R-RS** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate RS held-out boundary and error normalization (15 min)
+- [ ] **R-RS** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate RS held-out boundary and error normalization (15 min)
 
 </details>
 
@@ -225,24 +225,24 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **S14f** — Codex · GPT-6.1 Sol, effort medium — Enforce tool-only numbers in replies (30 min)
 - [ ] **S14g** — Codex · GPT-6.1 Sol, effort high — Run Gate A fixture and thirty-turn suite (30 min)
 - [ ] **S14h** — Codex · GPT-6.1 Sol, effort high — Checkpoint Gate A and template-card fallback (30 min)
-- [ ] **R-A** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate A tool-number enforcement (15 min)
+- [ ] **R-A** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate A tool-number enforcement (15 min)
 
 </details>
 
 <details><summary><b>S15</b> — Workspace UI (0/12)</summary>
 
-- [ ] **S15a** — Claude Code · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
-- [ ] **S15b** — Claude Code · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
-- [ ] **S15c** — Claude Code · Sonnet 5.5, effort high — Build upload status and failure surfaces (30 min)
-- [ ] **S15d** — Claude Code · Sonnet 5.5, effort high — Build interview chips and free-text panel (30 min)
-- [ ] **S15e** — Claude Code · Sonnet 5.5, effort high — Build experiment template controls (30 min)
-- [ ] **S15f** — Claude Code · Sonnet 5.5, effort high — Build run and replay controls (30 min)
-- [ ] **S15g** — Claude Code · Sonnet 5.5, effort high — Build virtual instrument controls (30 min)
-- [ ] **S15h** — Claude Code · Sonnet 5.5, effort high — Build fit table and residual chart (30 min)
-- [ ] **S15i** — Claude Code · Sonnet 5.5, effort high — Build sidebar and report navigation (30 min)
-- [ ] **S15j** — Claude Code · Sonnet 5.5, effort high — Stack workspace at 375px (30 min)
-- [ ] **S15k** — Claude Code · Sonnet 5.5, effort high — Walk full workflow on dev (30 min)
-- [ ] **S15l** — Claude Code · Sonnet 5.5, effort high — Checkpoint workspace accessibility and evidence (30 min)
+- [ ] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
+- [ ] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
+- [ ] **S15c** — Codex (native Claude) · Sonnet 5.5, effort high — Build upload status and failure surfaces (30 min)
+- [ ] **S15d** — Codex (native Claude) · Sonnet 5.5, effort high — Build interview chips and free-text panel (30 min)
+- [ ] **S15e** — Codex (native Claude) · Sonnet 5.5, effort high — Build experiment template controls (30 min)
+- [ ] **S15f** — Codex (native Claude) · Sonnet 5.5, effort high — Build run and replay controls (30 min)
+- [ ] **S15g** — Codex (native Claude) · Sonnet 5.5, effort high — Build virtual instrument controls (30 min)
+- [ ] **S15h** — Codex (native Claude) · Sonnet 5.5, effort high — Build fit table and residual chart (30 min)
+- [ ] **S15i** — Codex (native Claude) · Sonnet 5.5, effort high — Build sidebar and report navigation (30 min)
+- [ ] **S15j** — Codex (native Claude) · Sonnet 5.5, effort high — Stack workspace at 375px (30 min)
+- [ ] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min)
+- [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort high — Checkpoint workspace accessibility and evidence (30 min)
 
 </details>
 
@@ -261,12 +261,12 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S17</b> — Lab report and charts (0/6)</summary>
 
-- [ ] **S17a** — Claude Code · Haiku 5.5, effort high — Define report data contract and numeric assertions (30 min)
-- [ ] **S17b** — Claude Code · Haiku 5.5, effort high — Build deterministic report tables and charts (30 min)
-- [ ] **S17c** — Claude Code · Haiku 5.5, effort high — Build TeX/HTML report rendering (30 min)
-- [ ] **S17d** — Claude Code · Haiku 5.5, effort high — Compile reports for all four templates (30 min)
-- [ ] **S17e** — Claude Code · Haiku 5.5, effort high — Automate numeric report-to-fitter diff (30 min)
-- [ ] **S17f** — Claude Code · Haiku 5.5, effort high — Checkpoint report accessibility and fallback evidence (30 min)
+- [ ] **S17a** — Codex (native Claude) · Haiku 5.5, effort high — Define report data contract and numeric assertions (30 min)
+- [ ] **S17b** — Codex (native Claude) · Haiku 5.5, effort high — Build deterministic report tables and charts (30 min)
+- [ ] **S17c** — Codex (native Claude) · Haiku 5.5, effort high — Build TeX/HTML report rendering (30 min)
+- [ ] **S17d** — Codex (native Claude) · Haiku 5.5, effort high — Compile reports for all four templates (30 min)
+- [ ] **S17e** — Codex (native Claude) · Haiku 5.5, effort high — Automate numeric report-to-fitter diff (30 min)
+- [ ] **S17f** — Codex (native Claude) · Haiku 5.5, effort high — Checkpoint report accessibility and fallback evidence (30 min)
 
 </details>
 
@@ -287,10 +287,10 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S19</b> — Installable PWA and phone layout (0/4)</summary>
 
-- [ ] **S19a** — Claude Code · Haiku 5.5, effort high — Add PWA manifest and icons from owned assets (30 min)
-- [ ] **S19b** — Claude Code · Haiku 5.5, effort high — Add safe service-worker caching (30 min)
-- [ ] **S19c** — Claude Code · Haiku 5.5, effort high — Add install guidance and orientation handling (30 min)
-- [ ] **S19d** — Claude Code · Haiku 5.5, effort high — Verify installability and 375px walkthrough (30 min)
+- [ ] **S19a** — Codex (native Claude) · Haiku 5.5, effort high — Add PWA manifest and icons from owned assets (30 min)
+- [ ] **S19b** — Codex (native Claude) · Haiku 5.5, effort high — Add safe service-worker caching (30 min)
+- [ ] **S19c** — Codex (native Claude) · Haiku 5.5, effort high — Add install guidance and orientation handling (30 min)
+- [ ] **S19d** — Codex (native Claude) · Haiku 5.5, effort high — Verify installability and 375px walkthrough (30 min)
 
 </details>
 
@@ -300,7 +300,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **S20b** — Codex · GPT-6.1 Sol, effort medium — Implement reconstruction cap and library exemption (30 min)
 - [ ] **S20c** — Codex · GPT-6.1 Sol, effort medium — Implement disabled-by-default AWS failover switch (30 min)
 - [ ] **S20d** — Codex · GPT-6.1 Sol, effort high — Run Gate C simulated-cap regression (30 min)
-- [ ] **R-C** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate C cap accounting and library exemption (15 min)
+- [ ] **R-C** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate C cap accounting and library exemption (15 min)
 
 </details>
 
@@ -317,16 +317,16 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (0/11)</summary>
 
-- [ ] **S22a** — Claude Code · Opus 5.5, effort medium — Prepare approved judging-candidate QA checklist (30 min)
+- [ ] **S22a** — Codex (native Claude) · Opus 5.5, effort medium — Prepare approved judging-candidate QA checklist (30 min)
 - [ ] **S22b** — Codex · GPT-6.1 Sol, effort high — Capture logged-out guest library walkthrough (30 min)
 - [ ] **S22c** — Codex · GPT-6.1 Sol, effort high — Capture fresh-account full flow run 1 (30 min)
 - [ ] **S22d** — Codex · GPT-6.1 Sol, effort high — Capture fresh-account full flow run 2 (30 min)
 - [ ] **S22e** — Codex · GPT-6.1 Sol, effort high — Capture fresh-account full flow run 3 (30 min)
-- [ ] **S22f** — Claude Code · Opus 5.5, effort medium — Judge Gate D evidence and prioritize defects (30 min)
+- [ ] **S22f** — Codex (native Claude) · Opus 5.5, effort medium — Judge Gate D evidence and prioritize defects (30 min)
 - [ ] **S22g** — Codex · GPT-6.1 Sol, effort high — Capture 375px and auth-boundary QA (30 min)
 - [ ] **S22h** — Codex · GPT-6.1 Sol, effort high — Capture retry, spend-cap and report QA (30 min)
 - [ ] **S22i** — Codex · GPT-6.1 Sol, effort high — Recheck approved candidate after owner-lane fixes (30 min)
-- [ ] **S22j** — Claude Code · Opus 5.5, effort medium — Record final Gate D decision and freeze recommendation (30 min)
+- [ ] **S22j** — Codex (native Claude) · Opus 5.5, effort medium — Record final Gate D decision and freeze recommendation (30 min)
 - [ ] **R-D** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate D protocol and Claude verdict evidence (15 min)
 
 </details>
@@ -341,8 +341,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S24</b> — Three-minute demo video (0/10)</summary>
 
-- [ ] **S24a** — Claude Code · Opus 5.5, effort medium — Write evidence-backed three-minute script (30 min)
-- [ ] **S24b** — Claude Code · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
+- [ ] **S24a** — Codex (native Claude) · Opus 5.5, effort medium — Write evidence-backed three-minute script (30 min)
+- [ ] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
 - [ ] **S24c** — Codex · GPT-6.1 Sol, effort high — Capture room rebuild and interview (30 min)
 - [ ] **S24d** — Codex · GPT-6.1 Sol, effort high — Capture held-out prediction and reveal (30 min)
 - [ ] **S24e** — Codex · GPT-6.1 Sol, effort high — Capture Apollo result and Mystery-g (30 min)

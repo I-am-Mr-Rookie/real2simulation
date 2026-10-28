@@ -14,7 +14,7 @@ STATE = ROOT / "STATE.md"
 OUT = ROOT / "RUNS.md"
 DHAKA = timezone(timedelta(hours=6))
 STATUSES = {"TODO", "IN PROGRESS", "PARTIAL", "BLOCKED", "DONE"}
-TOOL = {"CODEX-1": "Codex", "CODEX-2": "Codex", "CLAUDE": "Claude Code", "KOUSHIK": "You"}
+TOOL = {"CODEX-1": "Codex", "CODEX-2": "Codex", "CLAUDE": "Codex (native Claude)", "KOUSHIK": "You"}
 BOX = {"DONE": "[x]", "IN PROGRESS": "[~]", "PARTIAL": "[~]", "BLOCKED": "[!]", "TODO": "[ ]"}
 
 
@@ -120,7 +120,7 @@ def main():
     o = ["# Runs checklist", "",
          f"Updated {now} Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.", "",
          "**How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).",
-         "Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).", "",
+         "All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).", "",
          f"Progress: **{len(done)} / {len(tasks)}** runs done · {len(active)} in progress · {len(blocked)} blocked · "
          f"{len(owner_ready)} waiting for Koushik · {len(questions)} open reviews", "",
          "## Reviews for Koushik", ""]

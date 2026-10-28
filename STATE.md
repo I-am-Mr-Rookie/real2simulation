@@ -1,6 +1,29 @@
 # Real2Simulation — STATE
 
+## 19:24 UTC checkpoint — 01:30 owner window still ACTIVE
+
+S10g/h accepted simulation-only: actual IAB /lab Mystery Run -> Fit -> reveal,
+375px no page overflow, private per-session seeded g, actual instruments/S11;
+15/15 four-template analytic/replay cases pass unchanged0.005. 72 ->74/205.
+S10i PARTIAL pending final other-vendor fix verification; S10j/R-P not yetaccepted.
+Native Claude Opus5.5 worked inside Codex; CLI failures no longer route blockers.
+R-P identified speculative early contact, tunneling and fixed-demo mystery;
+controller fd10a19 repairs geometric touch/brackets, conservative displacement
+bounds, finite floor support, and private seeded mystery. Fresh Node39/lab11 PASS,
+contact7 PASS after final bound. Original zero-spread stability claim superseded.
+R-S05guard native review completed; three real unresolved guard defects keep GPU
+admission technically held, not missing owner permission. No new paid job.
+Physical Gate M NOT_MET_INPUT_READINESS, physics NOT_RUN, S12 remains locked.
+Report: Run-System/Runs/SWARM-20261029-0130/INTEGRATION.md; final closure pending.
+
 ## CURRENT — fresh owner goal extends maximum-speed swarm to Oct29 01:30 Dhaka
+
+Owner route correction18:55UTC: "To access Claude models, you will not use
+Claude Code. You will use them inside Codex. They are natively routed inside
+Codex, and you can use them as you like." Stop all Claude Code routing attempts;
+prior CLI ECONNREFUSED is NOT proof the native Codex Claude route is unavailable.
+Use native Codex existing Claude model for assigned vendor review, no provider/
+credential/policy change. Preserve this owner reply before RUNS regeneration.
 
 Fresh app goal observed during closing call18:30UTC: "Keep going at maximum
 speed. Time increased up to 1:30 am." Verified active via get_goal18:30:52UTC.
