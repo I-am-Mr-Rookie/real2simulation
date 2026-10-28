@@ -66,11 +66,16 @@ original18:00Z deadline, no clock reset. Mandatory concise recovery updates were
 the silence-policy exception. No new implementation after17:55Z; remaining time
 used for final verification, evidence integration and recoverable cleanup.
 
-Nine managed worktree archive requests returned queued, not confirmed complete.
-Failed Claude review and the attached trajectory checkout were retained, not
-shell-deleted. All accepted reports/source are on canonical main. The original
+Ten managed worktrees were confirmed archived by fresh attachment inventory.
+The attached-trajectory primary checkout was retained: native archive refused
+with "The task's primary checkout cannot be removed." No shell deletion/bypass.
+All accepted reports/source are tracked on canonical main. The original
 untracked owner PDF remains untouched. Final source changes were complete before
 17:55Z; report/control operations continued to the18:00Z owner stop.
+
+Final baseline-wide diff check reported nonsemantic whitespace warnings in worker
+reports, fitter EOFs and captured stderr. Working-change diff check passed; raw
+evidence was preserved rather than rewritten to suppress historical warnings.
 
 Next owner-authorized work: dependency-ready Rapier contacts; repair the actual
 reconstruction/tracking/calibration and other-vendor review blockers without

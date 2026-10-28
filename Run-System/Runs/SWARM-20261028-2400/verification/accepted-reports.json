@@ -1,0 +1,62 @@
+[
+  {
+    "id": "S02f-swarm3",
+    "report_tracked": true,
+    "report_present": true,
+    "timebox_status": "DONE"
+  },
+  {
+    "id": "S07b-swarm7",
+    "report_tracked": true,
+    "report_present": true,
+    "timebox_status": "DONE"
+  },
+  {
+    "id": "S05b-swarm-readiness",
+    "report_tracked": true,
+    "report_present": true,
+    "timebox_status": "DONE"
+  },
+  {
+    "id": "S05b-swarm12",
+    "report_tracked": true,
+    "report_present": true,
+    "timebox_status": "DONE"
+  },
+  {
+    "id": "S10ab-swarm",
+    "report_tracked": true,
+    "report_present": true,
+    "timebox_status": "DONE"
+  },
+  {
+    "id": "S11abc-swarm",
+    "report_tracked": true,
+    "report_present": true,
+    "timebox_status": "DONE"
+  },
+  {
+    "id": "S11defg-swarm",
+    "report_tracked": true,
+    "report_present": true,
+    "timebox_status": "DONE"
+  },
+  {
+    "id": "S11h-swarm",
+    "report_tracked": true,
+    "report_present": true,
+    "timebox_status": "DONE"
+  },
+  {
+    "id": "S10-template-swarm",
+    "report_tracked": true,
+    "report_present": true,
+    "timebox_status": "DONE"
+  },
+  {
+    "id": "R-SIM-swarm",
+    "report_tracked": true,
+    "report_present": true,
+    "timebox_status": "DONE"
+  }
+]

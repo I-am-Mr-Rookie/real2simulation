@@ -1,0 +1,114 @@
+{
+  "observed_at": "2026-10-28T17:58:48.866187+00:00",
+  "head": "58bfb87e08b1c07ce279fa25b85d83e4bcfb4d6b",
+  "files": [
+    {
+      "path": "Build/fitter/README.md",
+      "sha256": "608e7f0b498dcaf98e117760718bfa169adbf9280b42477b468f74369928ebc0"
+    },
+    {
+      "path": "Build/fitter/__init__.py",
+      "sha256": "e9e30af1d28cd9b870529cb6fc22776adaf1cd211b5b206d8de0eb0e60abda27"
+    },
+    {
+      "path": "Build/fitter/api.py",
+      "sha256": "401bf9983e29d736da4c0c91fb148888212e4472b8e762f07c0c7ff4096ebb7a"
+    },
+    {
+      "path": "Build/fitter/core.py",
+      "sha256": "d269cdc3b9eda9deadfe7cf05f4ca196755f5b74fd90d660266c72c9f08bf2fe"
+    },
+    {
+      "path": "Build/instruments/__init__.py",
+      "sha256": "fec91c39aa79c7d9a082cc8bb5c72339042e0ac4535a61a477e73076e331a39e"
+    },
+    {
+      "path": "Build/instruments/synthetic.py",
+      "sha256": "89536bbc9107417363d63e684912edb28d6b468ce70f5e787d8e24769f698747"
+    },
+    {
+      "path": "Build/measurement/runtime/README.md",
+      "sha256": "d5e6c1cdf2100e30e963c7c37c252e2fcabcbd04a5804e3797e699b21c07e775"
+    },
+    {
+      "path": "Build/measurement/runtime/preflight.py",
+      "sha256": "b76aab49b64e08d982c70f05f950333a3bd51205d5a84245e5865e4510c1d9f7"
+    },
+    {
+      "path": "Build/reconstruction/spike/README.md",
+      "sha256": "998c333358a17f892d2bba7464a588da7281a44f01e79b9384010cf55b81e1f2"
+    },
+    {
+      "path": "Build/reconstruction/spike/modal_rm02.py",
+      "sha256": "17f58ec1b95c9251e67a37ec45497c95d7036c2633116aeb22fd5005419a31ec"
+    },
+    {
+      "path": "Build/reconstruction/spike/rm02_watchdog.py",
+      "sha256": "a844c174cd12701574c83607f6120dd765f4c21c264d8355a7c67f0e54fae220"
+    },
+    {
+      "path": "Build/reconstruction/spike/test_rm02_watchdog.py",
+      "sha256": "091287deef5be4cf7598c05f25d8c981279c370ef4eb8961900cac82f7f639da"
+    },
+    {
+      "path": "Build/simulator/apparatus.mjs",
+      "sha256": "e11050c04584462e409078ef7932e805d5cc715157537416efedc0629feee8c9"
+    },
+    {
+      "path": "Build/simulator/export_validated_setup.py",
+      "sha256": "aab142c252d28685bde64a69e7b9c35bc8c8735926fa3cf89278572de97511c7"
+    },
+    {
+      "path": "Build/simulator/rk4.mjs",
+      "sha256": "95904d5c39939ae45d6a7e5a69719a83846f6d6a304cb39b753aa0031ea5801a"
+    },
+    {
+      "path": "Build/simulator/trajectories.mjs",
+      "sha256": "815a2b806966e7b7952e83520d74e1edcc5120f78fc7c553058f03e12121637c"
+    },
+    {
+      "path": "contracts/fit/CONTRACT.md",
+      "sha256": "54f87392deae66b5108be31d1bf410f1c04f3683f347717b8b834fc752d585a4"
+    },
+    {
+      "path": "contracts/fit/__init__.py",
+      "sha256": "4113ccb9a4f738445f14512af72d1c90570031b5d4326201a8bddd1cf0643349"
+    },
+    {
+      "path": "contracts/fit/quantity.py",
+      "sha256": "4046eaeda080576458b60f15f954ec185dfbfa08fe1b344b9d762139bc507605"
+    },
+    {
+      "path": "tests/fitter/test_api.py",
+      "sha256": "73c48a3aa1e9e9b377cf3e3039fbaa925684b21a1bdcd7ab7cf3ad35e42b0870"
+    },
+    {
+      "path": "tests/fitter/test_core.py",
+      "sha256": "b122e82510b1365474d235d6994b525007eb487a6ff99cdca66ac28501539d3f"
+    },
+    {
+      "path": "tests/instruments/test_quantity_contract.py",
+      "sha256": "e03d7976b52c3e36001962e941d605a8baeb14915d9b9d7077f58c59203e1689"
+    },
+    {
+      "path": "tests/instruments/test_synthetic.py",
+      "sha256": "3d6fced7dee4e0817580694945c00be193c60b0ef27a9c4fed078fbc336747ae"
+    },
+    {
+      "path": "tests/measurement/test_sam_runtime.py",
+      "sha256": "8effc8f92e575fe66fcf02e47217d5b643886de074db96435bed91d9cc1fd5d8"
+    },
+    {
+      "path": "tests/simulator/simulator.test.mjs",
+      "sha256": "b9e128ba0e719d4cbf661b1181780b9d664af5c6ae0276adba67b87126fea29f"
+    },
+    {
+      "path": "tests/simulator/test_s10_adapter.py",
+      "sha256": "aeb92c642de84c7d40c245ce676b37febfcde6c73930bd23cb92562d00cbdbf4"
+    },
+    {
+      "path": "tests/simulator/trajectories.test.mjs",
+      "sha256": "ca5490b2fee40ee3332974869a463061c5c7ea8a3c7f330bee483813730ecd04"
+    }
+  ]
+}
