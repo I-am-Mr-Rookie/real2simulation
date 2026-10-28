@@ -18,6 +18,7 @@
 
 - Reused the repository's plain browser ESM convention; added no dependency, UI, Rapier, contact solver, or config.
 - Reused the existing Python scene and experiment validators through a single trusted export adapter; JS only consumes the explicit producer/validation envelope and does not claim to replace Python authority.
+- Deep-freezes the cloned validated payload before branding; mutation-after-consume is rejected and placement remains unchanged. Producer labels are explicitly TRUSTED TRANSPORT preconditions, not authentication or public-JSON forgery protection.
 - Kept dynamics/state shape caller-owned; no arbitrary defaults or duplicate physics model.
 
 ## Fresh checks

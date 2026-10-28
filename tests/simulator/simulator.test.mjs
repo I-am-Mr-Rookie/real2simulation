@@ -7,9 +7,12 @@ const valid = { artifact_version: 's10-validated-setup-v1', validation: 'validat
 test('S10a consumes only the trusted S08 validate_setup export and places geometry', () => {
   const artifact = consumeValidatedSetupArtifact(valid); const placed = placeApparatus(artifact);
   assert.deepEqual(placed.pose.position_m, [0, 1, 0]); assert.equal(placed.validation, 'validate_setup');
-  assert.throws(() => consumeValidatedSetupArtifact({ ...valid, producer: 'caller' }), /untrusted producer/);
+  assert.throws(() => consumeValidatedSetupArtifact({ ...valid, producer: 'caller' }), /trusted-transport/);
   assert.throws(() => consumeValidatedSetupArtifact({ ...valid, spec: { ...valid.spec, scene: { ...valid.spec.scene, constraints: { bounds_m: { min: [0, 0, 0], max: [1, 1, 1] } } } } }), /bounds mismatch/);
   assert.throws(() => placeApparatus({ ...artifact }), /returned by consume/);
+  assert.ok(Object.isFrozen(artifact.spec.scene.constraints));
+  assert.throws(() => { artifact.spec.scene.constraints.bounds_m.min[0] = -99; }, TypeError);
+  assert.deepEqual(placeApparatus(artifact).pose.position_m, [0, 1, 0]);
 });
 
 test('RK4 zero-step validates every input, rejects sparse state, and preserves state', () => {
