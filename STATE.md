@@ -18,6 +18,14 @@ F3 local absolute clock/atomic pending-before-cleanup repair complete; independe
 review and live provider/budget checks still required before paid admission.
 F4 unknown-ID incident, parent S05b PARTIAL,55/203, all gates/S12/$2.85/$30 unchanged.
 
+F-CODEX-2-2 DONE/FF2aea37b: source-linked coverage review,21 stdlib observations,
+11 pure auth cases, auth8/verifier7 PASS. Missing typing_extensions prevents the
+existing FastAPI health suite import in default3.14; not hidden or counted as pass.
+Confirmed synthetic P2: optimized Python removes stager's existing-target assert,
+allowing overwrite. No user file loss or exploit inferred. Progress56/203; gates
+unchanged. Next routine bounded owned CODEX-2 hardening may repair this local guard;
+no model/provider, deployment, quota, credential, billing or approval change.
+
 Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verified, worker heartbeat unavailable; sign-in configuration/E2E remain owner follow-up. Dispatch remains disabled.**
 
 | Recovery field | Current evidence |

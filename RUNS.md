@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 28, 22:09 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 22:15 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **55 / 203** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **56 / 203** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -23,10 +23,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
 
-## In progress
-
-- [~] **F-CODEX-2-2** — Codex · GPT-6.1 Sol, effort medium — Review owned-module test coverage gaps (15 min) *(in progress)*
-
 ## Waiting for Koushik
 
 - [ ] **S01b** — Verify Google, email OTP and guest access when S04 is available (30 min)
@@ -35,12 +31,12 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
-<details><summary><b>FILLER</b> —  (5/6)</summary>
+<details><summary><b>FILLER</b> —  (6/6)</summary>
 
 - [x] **F-CODEX-1-1** — Codex · GPT-6.1 Sol, effort medium — Document owned-module edge cases (15 min)
 - [x] **F-CODEX-1-2** — Codex · GPT-6.1 Sol, effort medium — Review owned-module test coverage gaps (15 min)
 - [x] **F-CODEX-2-1** — Codex · GPT-6.1 Sol, effort medium — Document owned-module edge cases (15 min)
-- [~] **F-CODEX-2-2** — Codex · GPT-6.1 Sol, effort medium — Review owned-module test coverage gaps (15 min) *(in progress)*
+- [x] **F-CODEX-2-2** — Codex · GPT-6.1 Sol, effort medium — Review owned-module test coverage gaps (15 min)
 - [x] **F-CLAUDE-1** — Claude Code · Opus 5.5, effort medium — Document owned-module edge cases (15 min)
 - [x] **F-CLAUDE-2** — Claude Code · Opus 5.5, effort medium — Review owned-module test coverage gaps (15 min)
 
