@@ -5,7 +5,7 @@ import sys
 
 import modal
 
-app = modal.App("s05b-recovery3-cpu-imports")
+app = modal.App("s05b-recovery5-cpu-imports")
 
 
 @app.function(
@@ -49,7 +49,8 @@ if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
     root = Path(__file__).resolve().parents[3]
-    evidence = root / "evidence/S05/S05b/recovery3"
+    evidence = root / "evidence/S05/S05b/recovery5"
+    evidence.mkdir(parents=True, exist_ok=True)
     lock = Path(__file__).with_name("requirements-linux-py311.txt").read_text()
     try:
         with modal.enable_output(), app.run():

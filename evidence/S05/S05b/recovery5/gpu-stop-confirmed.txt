@@ -1,0 +1,1 @@
+modal app stop --yes ap-7TvkSZJ4Wk6Ym0t0yZ3lsM: exit0; service stopped_at2026-10-28T12:51:08Z, tasks0 (apps-after-gpu.json).

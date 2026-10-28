@@ -1,0 +1,2 @@
+Aborted!
+Are you sure you want to stop App 'ap-7TvkSZJ4Wk6Ym0t0yZ3lsM'? No containers are currently running. [y/N]:

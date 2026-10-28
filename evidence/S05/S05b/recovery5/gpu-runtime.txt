@@ -1,0 +1,28 @@
+✓ Initialized. View run at
+https://modal.com/apps/koushiksadhakjeet/main/ap-7TvkSZJ4Wk6Ym0t0yZ3lsM
+✓ Created objects.
+└── ✓ Created Function probe.
+S05B_APP_ID ap-7TvkSZJ4Wk6Ym0t0yZ3lsM
+Stopping app - user stopped from CLI.
+S05B_GPU_STOP_REQUESTED ap-7TvkSZJ4Wk6Ym0t0yZ3lsM
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s05b-recovery4\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\modal_rm02.py", line 140, in <module>
+    main()
+  File "C:\Users\HP\.codex\worktrees\s05b-recovery4\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\modal_rm02.py", line 128, in main
+    receipt, data = probe.remote(frames, requirements, CODE_REV, WEIGHT_REV)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\uv\cache\archive-v0\fLq5XQNkIwPHWdoT\Lib\site-packages\modal\_object.py", line 49, in wrapped
+    return await method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\uv\cache\archive-v0\fLq5XQNkIwPHWdoT\Lib\site-packages\modal\_functions.py", line 2081, in remote
+    return await self._call_function(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\uv\cache\archive-v0\fLq5XQNkIwPHWdoT\Lib\site-packages\modal\_functions.py", line 2018, in _call_function
+    return await invocation.run_function()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\uv\cache\archive-v0\fLq5XQNkIwPHWdoT\Lib\site-packages\modal\_functions.py", line 498, in run_function
+    return await _process_result(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\uv\cache\archive-v0\fLq5XQNkIwPHWdoT\Lib\site-packages\modal\_utils\function_utils.py", line 574, in _process_result
+    raise RemoteError(result.exception)
+modal.exception.RemoteError

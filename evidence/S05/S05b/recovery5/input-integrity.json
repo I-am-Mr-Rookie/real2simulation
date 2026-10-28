@@ -1,0 +1,35 @@
+{
+  "recovered_verified": 4,
+  "manifest_sha256": "6dc5ada973a7e03e09c56d36f3ac18f29f8221d16a3ccaf30461e120ec417af0",
+  "source_checkout": "C:/Users/HP/.codex/worktrees/s05b/2026-10-26 - Meta Global AI Developer Hackathon/evidence/S05/S05b",
+  "public_uploads": 0,
+  "clip_id": "RM02",
+  "frames": [
+    {
+      "path": "local/RM02-01.png",
+      "source_verified_before_copy": true,
+      "bytes": 104392,
+      "sha256": "4848625e64501a230d9b73df7c4b6fc72239bb10cda057d1d61ceb323c962195"
+    },
+    {
+      "path": "local/RM02-02.png",
+      "source_verified_before_copy": true,
+      "bytes": 105384,
+      "sha256": "51a03d2d7a36ceab3875f0a745ddb7efd4a67fece7ec349d31e7fd9989c4604d"
+    },
+    {
+      "path": "local/RM02-03.png",
+      "source_verified_before_copy": true,
+      "bytes": 105118,
+      "sha256": "488528dbe4ec7404fd0f346437cad0c27c046af0cb797efe0b16a3f6d76f1679"
+    },
+    {
+      "path": "local/RM02-04.png",
+      "source_verified_before_copy": true,
+      "bytes": 104270,
+      "sha256": "c93a1d2381443a2b7148e87569858ba9ad58e563c0f4d73a5a41f5599f19d7a0"
+    }
+  ],
+  "lock_sha256": "be3ea474d87851918d43248340b03b1bdcf24165d8532b16316e55df03f37e7c",
+  "checked_utc": "2026-10-28T12:38:04.5157746Z"
+}

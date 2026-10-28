@@ -8,10 +8,11 @@ import sys
 import modal
 
 ROOT = Path(__file__).resolve().parents[3]
-EVIDENCE = ROOT / "evidence/S05/S05b"
+INPUT_EVIDENCE = ROOT / "evidence/S05/S05b"
+EVIDENCE = ROOT / "evidence/S05/S05b/recovery5"
 CODE_REV = "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9"
 WEIGHT_REV = "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a"
-app = modal.App("s05b-rm02-private-probe")
+app = modal.App("s05b-recovery5-rm02-private-probe")
 
 
 @app.function(
@@ -88,6 +89,7 @@ def probe(frames, requirements, code_rev, weight_rev):
     output = io.BytesIO()
     np.savez_compressed(output, **arrays)
     data = output.getvalue()
+    assert len(data) <= 256 * 1024 * 1024, "Result exceeds reserved egress bound"
     receipt = {
         "clip_id": "RM02", "model": "facebook/map-anything-apache",
         "code_revision": code_rev, "weight_revision": weight_rev,
@@ -107,7 +109,7 @@ def main():
     # Modal's status output includes Unicode even when Windows pipes use cp1252.
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
-    manifest = json.loads((EVIDENCE / "input.json").read_text())
+    manifest = json.loads((INPUT_EVIDENCE / "input.json").read_text())
     frames = []
     for frame in manifest["sample"]["frames"]:
         data = (EVIDENCE / frame["path"]).read_bytes()
@@ -118,10 +120,16 @@ def main():
     requirements = Path(__file__).with_name("requirements-linux-py311.txt").read_text()
     assert CODE_REV in requirements and "numpy==2.2.6" in requirements
     started = time.time()
-    with modal.enable_output():
-        with app.run():
+    EVIDENCE.mkdir(parents=True, exist_ok=True)
+    try:
+        with modal.enable_output(), app.run():
+            (EVIDENCE / "gpu-app.json").write_text(json.dumps({"app_id": app.app_id})+"\n")
             print("S05B_APP_ID", app.app_id, flush=True)
             receipt, data = probe.remote(frames, requirements, CODE_REV, WEIGHT_REV)
+    finally:
+        if app.app_id:
+            app.stop()
+            print("S05B_GPU_STOP_REQUESTED", app.app_id, flush=True)
     local = EVIDENCE / "local"
     (local / "RM02-mapanything.npz").write_bytes(data)
     receipt.update(client_start_unix=started, client_end_unix=time.time())

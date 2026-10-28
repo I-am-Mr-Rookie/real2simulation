@@ -25,6 +25,12 @@ class CpuImportGuards(unittest.TestCase):
         # The locked antlr4 runtime is source-only; setup still has a hard timeout.
         self.assertNotIn("--only-binary=:all:", source)
 
+    def test_recovery5_receipts_do_not_overwrite_history(self):
+        source = Path(__file__).with_name("cpu_import_probe.py").read_text()
+        self.assertIn('"evidence/S05/S05b/recovery5"', source)
+        self.assertNotIn('"evidence/S05/S05b/recovery3"', source)
+        self.assertIn('evidence.mkdir(parents=True, exist_ok=True)', source)
+
 
 if __name__ == "__main__":
     unittest.main()

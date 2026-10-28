@@ -40,3 +40,17 @@ binary family; configuration regression passes, installed imports remain unverif
 Current billing UI verification hit a native browser-URL safety stop; no CPU/GPU
 job launched. Restore a supported verifiable surface in a fresh session, not a
 guard bypass; retain the previous$0.95 reservation until exact reconciliation.
+
+### Latest S05b recovery5 (Oct28)
+
+Trusted controller billing receipt restored the supported prerequisite. Actual
+installed CPU imports now PASS: Torch2.8.0/vision0.23.0/audio2.8.0, NumPy2.2.6,
+MapAnything1.1.4; CPU app stopped. One subsequent L4 RPC remained pending with
+no container/allocation log observed; stopped to preserve the session timebox,
+both apps stopped/tasks0 and containers[]. No inference/output/VRAM/Gate R result.
+See `Run-System/Runs/S05b/recovery5/REPORT.md` and recovery5 evidence. Runners now
+isolate receipts/results into recovery5 (manifest stays historical input.json),
+verify recovered approved frames there, and explicitly stop apps on all outcomes.
+Full$2.85 retained reserves pending exact billing. Do not repeat CPU installs,
+ask renewed consent or infer a model-compatibility/capacity diagnosis from waiting;
+controller decides any separately authorized scheduling follow-up. S05c stays locked.

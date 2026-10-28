@@ -44,6 +44,31 @@ class ProbeGuards(unittest.TestCase):
         self.assertLess(bounded_compute, .95)
         self.assertLessEqual(.95, 1)
 
+    def test_recovery5_output_and_explicit_stop(self):
+        source = Path(__file__).with_name("modal_rm02.py").read_text()
+        self.assertIn('ROOT / "evidence/S05/S05b/recovery5"', source)
+        self.assertIn('INPUT_EVIDENCE / "input.json"', source)
+        self.assertIn('finally:', source)
+        self.assertIn('app.stop()', source)
+        self.assertIn('"gpu-app.json"', source)
+
+    def test_result_egress_boundary(self):
+        tree = ast.parse(Path(__file__).with_name("modal_rm02.py").read_text())
+        probe = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "probe")
+        guard = next(n for n in probe.body if isinstance(n, ast.Assert)
+                     and isinstance(n.test, ast.Compare)
+                     and isinstance(n.test.left, ast.Call)
+                     and isinstance(n.test.left.func, ast.Name)
+                     and n.test.left.func.id == "len"
+                     and isinstance(n.test.left.args[0], ast.Name)
+                     and n.test.left.args[0].id == "data")
+        code = compile(ast.Module(body=[guard], type_ignores=[]), "egress-guard", "exec")
+        # Execute the production guard without allocating a 256MiB test payload.
+        for size in (0, 268435456):
+            exec(code, {"data": range(size)})
+        with self.assertRaises(AssertionError):
+            exec(code, {"data": range(268435457)})
+
 
 if __name__ == "__main__":
     unittest.main()
