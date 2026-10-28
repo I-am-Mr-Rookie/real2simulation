@@ -1,6 +1,19 @@
 # Orchestrator recovery checkpoint
 
-## CURRENT — local review fixes accepted; no active workers
+## CURRENT — genuine Q15 answer received; fresh private-transfer worker active
+
+Koushik directly answered exact pending action-time question: Confirm Create and
+private transfer. Receipt S07b-auth-provision2/CONFIRMATION.md; Q15 answered, no
+same consent re-ask. New independent full30m handout issued15:37:43Z, deadline
+16:07:43Z=22:07:43Dhaka, cutoff16:02:43Z, explicitly in LAUNCH prompt.
+Only active chat01a18328-ffa3-7a32-b7f2-de4202ffb10d, managed Sol/medium,
+same project verified. Prepared s07b-tracking/run/S07b-auth-provision2 at4e24e80.
+Exact prior scope: selected SAM repo read token -> private Modal main Secret,
+blind supported UI transfer only, no values/model/tool/logs/files. No download,
+jobs, unrelated credentials, broader scopes or paid action. Actual provision not
+yet verified. Parent S07b remains unpassed; S05b F3 paid-admission HOLD unchanged.
+
+## Earlier — local review fixes accepted; no active workers
 
 Recovery9 accepted9009ecd: controller independently ran47 spike PASS under both
 default3.14 and target3.11, plus11 scene PASS, bounded parent processes. Source

@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 28, 21:33 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 21:38 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **55 / 203** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 8 open reviews
+Progress: **55 / 203** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 7 open reviews
 
 ## Reviews for Koushik
 
@@ -16,19 +16,21 @@ Progress: **55 / 203** runs done · 0 in progress · 0 blocked · 1 waiting for 
 - [ ] R7 [Strict worker rule implemented] Every new worker gets its own full30-minute UTC/Dhaka deadline IN the handout prompt and minute25 cutoff. No terminal early PARTIAL/BLOCKED without controller-approved safety/owner-stop exception; send nonterminal blockers and continue useful scoped work. Fully verified DONE may finish early. Controller timing checker rejects short-window/early-incomplete/overrun receipts, then separately checks real acceptance evidence. No filler work or expanded authority. Earlier short reports remain historical, not rewritten.
 - [ ] R8 [Routine continuation; no reply needed] CLEAN2 full hashes confirmed44 matching old input copies but all are tracked in their own worktrees, so none deleted. New CLEAN3 will use normal recoverable Git worktree removal ONLY for dormant .worktrees/S02c and S02c1 after preserving branchrefs/objects and every ignored scratch file; canonical originals/restore maps retained. Never remove r-m-review/ST03 prefix/other active worktrees or Git history. Review found late-stop/cooperative-cancellation defects; source-lane recovery8 fixes locally, no paid retry.
 - [ ] R9 [Cleanup completed, no reply needed] CLEAN3 verified DONE/accepted158a85b: normal non-force removal of exactly2 obsolete ordinary checkouts reclaimed1,279,280,176 logical bytes, retaining both branchrefs/all reachable objects/canonical original inputs. Preserved8 scratch JPEGs+1 .pyc (542,671 bytes) privately ignored in s02g-forensics worktree; NEVER archive that checkout until preservation custody resolved. Controller freshly rehashed44 canonical-map entries+9 preserved files, checked both removed paths/ref recovery and271 ST03-prefix presence. Root measured~3.21GB before cleanup1 ->~1.78GB after cleanup3; actual allocated-block savings unmeasured. No source/input/history loss or product-gate change. Timing checker PASS and all child acceptance proven, so early DONE is legitimate under new rule.
-- [ ] Q15 [Mandatory tool confirmation pending, not owner key-handling] Q14 authority is already approved. Installed computer-use confirmation policy separately requires human confirmation AT the Create action for persistent API access. Exact pending async question: create one fine-grained real2simulation-hf-read token with selected facebook/sam3.1 read only, then privately store HF_TOKEN in same-named Modal main Secret without exposing value? No write/inference/billing scope; no expiry control observed. Worker stopped at its original deadline with no token/secret created. Once genuine confirmation arrives, controller can start a fresh full30m completion chat; no automatic rescheduling/repeated generic GPU/access consent or manual owner token copying.
 
 ## Ready now
 
 **CODEX-1**
 - [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
-- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -127,7 +129,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S02i** — Codex · GPT-6.1 Sol, effort high — Audit RP01 side-view metric trajectory segments (30 min)
 - [x] **S07r** — Codex · GPT-6.1 Sol, effort high — Reconcile input readiness and approved small-sample fallback (20 min)
 - [x] **S07a** — Codex · GPT-6.1 Sol, effort medium — Define scale, timestamps and held-out tracking inputs (30 min)
-- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
+- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(in progress)*
 - [x] **S07c** — Codex · GPT-6.1 Sol, effort medium — Implement deterministic free-fall fit (30 min)
 - [x] **S07d** — Codex · GPT-6.1 Sol, effort medium — Detect slow-motion and propagate measurement uncertainty (30 min)
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)
