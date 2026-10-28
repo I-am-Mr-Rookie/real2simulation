@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 28, 17:55 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 17:58 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **52 / 202** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open questions
+Progress: **52 / 202** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 0 open questions
 
 ## Questions for Koushik
 
@@ -14,7 +14,6 @@ None open. (Runs ask you inside the run; this list is the fallback from STATE.md
 ## Ready now
 
 **CODEX-1**
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
 
 **CODEX-2**
@@ -25,6 +24,7 @@ None open. (Runs ask you inside the run; this list is the fallback from STATE.md
 
 ## In progress
 
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(in progress)*
 - [~] **R-M** — Claude Code · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min) *(in progress)*
 
 ## Waiting for Koushik
@@ -93,7 +93,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 <details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (1/7)</summary>
 
 - [x] **S05a** — Codex · GPT-6.1 Sol, effort medium — Check reconstruction licences and freeze scene artifact contract (30 min)
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(in progress)*
 - [ ] **S05c** — Codex · GPT-6.1 Sol, effort medium — Reconstruct remaining scene clips (30 min)
 - [ ] **S05d** — Codex · GPT-6.1 Sol, effort medium — Fit floor, metric scale and gravity orientation (30 min)
 - [ ] **S05e** — Codex · GPT-6.1 Sol, effort high — Run Gate R and inspect reconstruction failures (30 min)

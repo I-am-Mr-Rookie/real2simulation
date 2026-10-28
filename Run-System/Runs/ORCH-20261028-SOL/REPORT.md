@@ -53,6 +53,8 @@
   current chat target verified directly from saved TOML. No duplicate scheduler.
   Silent on unchanged/non-actionable state; meaningful outcomes/input only.
 - Current outcome: orchestration RUNNING, not product/GPU/review DONE. Worker
+  Final generated-view inspection caught S05b's stale PARTIAL claim (CRLF in
+  row-replacement input); corrected explicitly and regenerated before closeout.
   acceptance pending; controller will read real reports, enforce Ponytail quality
   evidence and serialize verified FF integration. S07b heavy runtime continuation
   waits behind S05b, not another generic unchanged-prerequisite research retry.
