@@ -1,0 +1,15 @@
+✔ both ballistic templates reach real contact through the common run adapter (436.1365ms)
+✔ unsupported replay versions cannot produce unreplayable records (1.8344ms)
+✔ allowlisted public projection cannot leak arbitrary observation metadata (69.3683ms)
+✔ actual Python S11 response binds to same observations and preserves source (367.9593ms)
+✔ version, mutation, and cross-session binding are enforced (350.9563ms)
+✔ same seed is byte-identical and immutable (82.1865ms)
+✔ changed seed/params distinguish; hostile inputs fail (4.2402ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2950.9206

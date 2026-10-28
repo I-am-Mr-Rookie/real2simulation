@@ -1,0 +1,79 @@
+[
+  {
+    "name": "lab-final",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/lab",
+      "-v"
+    ],
+    "ended_at": "2026-10-28T18:23:10.109196+00:00",
+    "exit_code": 0,
+    "tail": "test_cli_and_explicit_settings (test_pipeline.PipelineTests.test_cli_and_explicit_settings) ... ok\ntest_cross_process_contract_is_checked (test_pipeline.PipelineTests.test_cross_process_contract_is_checked) ... ok\ntest_invalid_spec_cannot_enter_simulator (test_pipeline.PipelineTests.test_invalid_spec_cannot_enter_simulator) ... ok\ntest_two_ballistic_templates_reach_actual_fitter (test_pipeline.PipelineTests.test_two_ballistic_templates_reach_actual_fitter) ... ok\ntest_actual_four_template_analytic_comparison (test_regression.RegressionTests.test_actual_four_template_analytic_comparison) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 11.259s\n\nOK\n"
+  },
+  {
+    "name": "four-template-regression",
+    "command": [
+      "python",
+      "-m",
+      "Build.lab.regression"
+    ],
+    "ended_at": "2026-10-28T18:23:12.728072+00:00",
+    "exit_code": 0,
+    "tail": "cteristic_scale_m\": 0.05,\n      \"relative_error\": 0.0002664499123010691,\n      \"within_half_percent\": true,\n      \"reference\": \"analytic-pendulum-small-angle-v1\",\n      \"deterministic\": true,\n      \"replay\": {\n        \"replayHash\": \"fd5195cc1223a35bb884b1196263e34a78a05c6c1139251c5df39267885c00ca\",\n        \"traceHash\": \"f60a8a6f873dd07ebf8f9e77eefc6865640d6030c91623623a7d9b053757f173\",\n        \"deterministic\": true,\n        \"seedBound\": true,\n        \"samples\": 1001,\n        \"seedSemantics\": \"seed binds replay identity; deterministic noiseless physics does not randomize by seed\"\n      },\n      \"contact_scope\": \"pre-contact analytic motion only\"\n    }\n  ],\n  \"limits\": [\n    \"single authored input per template; not exhaustive parameter validation\",\n    \"small-angle pendulum oracle differs from nonlinear model\",\n    \"contact-event and other-vendor review remain separate requirements\"\n  ]\n}\n"
+  },
+  {
+    "name": "node-all-final",
+    "command": [
+      "node",
+      "--test",
+      "tests\\simulator\\contacts.test.mjs",
+      "tests\\simulator\\extended-templates.test.mjs",
+      "tests\\simulator\\mystery-g.test.mjs",
+      "tests\\simulator\\replay.test.mjs",
+      "tests\\simulator\\simulator.test.mjs",
+      "tests\\simulator\\trajectories.test.mjs",
+      "tests\\viewer\\artifact-loader.test.mjs",
+      "tests\\viewer\\render-budget.test.mjs",
+      "tests\\viewer\\scene-overlays.test.mjs",
+      "tests\\viewer\\three-renderer.test.mjs",
+      "tests\\viewer\\viewer.test.mjs"
+    ],
+    "ended_at": "2026-10-28T18:23:25.763577+00:00",
+    "exit_code": 0,
+    "tail": "ne is the S04a mount, marked synthetic, not Gate R evidence (98.9118ms)\n\u2714 scene model decodes PLY points and carries synthetic banner, physics disabled (1563.1519ms)\n\u2714 scene model rejects mismatches and tampered bytes (1631.5656ms)\n\u2714 mount: loading -> ready, idempotent dispose, no callbacks after dispose (7.2563ms)\n\u2714 shell abort after ready disposes the renderer once (4.7052ms)\n\u2714 mount rejects invalid requests before loading (7.6198ms)\n\u2714 mystery mode is unavailable until S10 redacted payload exists (3.0237ms)\n\u2714 abort during load rejects, never renders, stays silent (4.8616ms)\n\u2714 already-aborted signal rejects immediately (7.4298ms)\n\u2714 abort while renderer is being created disposes the partial renderer (156.8308ms)\n\u2714 load and renderer failures report error state with plain codes (139.499ms)\n\u2139 tests 68\n\u2139 suites 0\n\u2139 pass 68\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 12919.1296\n"
+  },
+  {
+    "name": "fitter-final",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/fitter",
+      "-q"
+    ],
+    "ended_at": "2026-10-28T18:23:26.427696+00:00",
+    "exit_code": 0,
+    "tail": "----------------------------------------------------------------------\nRan 19 tests in 0.116s\n\nOK\n"
+  },
+  {
+    "name": "instruments-final",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/instruments",
+      "-q"
+    ],
+    "ended_at": "2026-10-28T18:23:27.405697+00:00",
+    "exit_code": 0,
+    "tail": "----------------------------------------------------------------------\nRan 10 tests in 0.007s\n\nOK\n"
+  }
+]

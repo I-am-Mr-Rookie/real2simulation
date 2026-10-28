@@ -1,6 +1,16 @@
 # Orchestrator recovery checkpoint
 
-## CURRENT — bounded inline swarm STOPPED, Oct29 00:00Dhaka
+## CURRENT — owner extended inline swarm to Oct29 00:30Dhaka
+
+Fresh explicit extension supersedes midnight stop below through18:30UTC only.
+Four source/review workers, full30m nominal contracts with explicit owner-stop
+receipt18:29:30UTC; no implementation after18:25UTC. Canonical72/205 after four
+new simulation leavesS10c/d/e/f. S10gPARTIAL actualUIstillunwired, S10h/i/j/R-P
+notaccepted. Actual four-template numeric/replay regression passes; no physical
+or other-vendor gate claim. All paid/deployment/privacy/model boundaries remain.
+Report: Run-System/Runs/SWARM-20261029-0030/REPORT.md. No schedule/continuation.
+
+## Previous midnight closure
 
 Owner deadline reached; closure clock18:00:10UTC. No active swarm worker or
 automatic continuation. Only this administrative stop receipt follows deadline.

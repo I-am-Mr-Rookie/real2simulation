@@ -1,0 +1,89 @@
+{
+  "source": "simulated",
+  "scope": "local synthetic analytic regression, not whole Gate P acceptance",
+  "threshold": 0.005,
+  "passed": true,
+  "cases": [
+    {
+      "template": "free_fall",
+      "samples": 201,
+      "position_error_m": 1.5543122344752192e-15,
+      "characteristic_scale_m": 0.19620000000000015,
+      "relative_error": 7.922080705786024e-15,
+      "within_half_percent": true,
+      "reference": "analytic-free-fall-v1",
+      "deterministic": true,
+      "replay": {
+        "replayHash": "aede065a84d558ee9558d15c872479641c961558b0e07dc095d945e6d9f44398",
+        "traceHash": "e0937438699596a866ba76ea421a9cd7d00c2af9d1adf01cb2c991c7f2b452f2",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 201,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      },
+      "contact_scope": "pre-contact analytic motion only"
+    },
+    {
+      "template": "projectile",
+      "samples": 201,
+      "position_error_m": 1.5582722720639762e-15,
+      "characteristic_scale_m": 0.28016859210125616,
+      "relative_error": 5.561909207513163e-15,
+      "within_half_percent": true,
+      "reference": "analytic-projectile-v1",
+      "deterministic": true,
+      "replay": {
+        "replayHash": "ba22600d9b3dd6e6225c15c5a626a3d9b84cb6bb8c5279d78a93032ef9f0a9a7",
+        "traceHash": "5ed61ad373f366ad191b9125ff896be09a6ca6fbe63b8057b68f11c5faa51f4a",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 201,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      },
+      "contact_scope": "pre-contact analytic motion only"
+    },
+    {
+      "template": "ramp",
+      "samples": 201,
+      "position_error_m": 2.2887833992611187e-16,
+      "characteristic_scale_m": 0.07684512080985553,
+      "relative_error": 2.9784368547281638e-15,
+      "within_half_percent": true,
+      "reference": "analytic-ramp-v1",
+      "deterministic": true,
+      "replay": {
+        "replayHash": "fca3b964a0651bbc7ed03ec5956d52b13938117cbd0c7f01e0ee0098392eb4a4",
+        "traceHash": "ba310b63f72b639e44c698317aa865fe2beb540c163fda49f5a4452879dd0470",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 201,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      },
+      "contact_scope": "pre-contact analytic motion only"
+    },
+    {
+      "template": "pendulum",
+      "samples": 1001,
+      "position_error_m": 1.3322495615053455e-05,
+      "characteristic_scale_m": 0.05,
+      "relative_error": 0.0002664499123010691,
+      "within_half_percent": true,
+      "reference": "analytic-pendulum-small-angle-v1",
+      "deterministic": true,
+      "replay": {
+        "replayHash": "fd5195cc1223a35bb884b1196263e34a78a05c6c1139251c5df39267885c00ca",
+        "traceHash": "f60a8a6f873dd07ebf8f9e77eefc6865640d6030c91623623a7d9b053757f173",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 1001,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      },
+      "contact_scope": "pre-contact analytic motion only"
+    }
+  ],
+  "limits": [
+    "single authored input per template; not exhaustive parameter validation",
+    "small-angle pendulum oracle differs from nonlinear model",
+    "contact-event and other-vendor review remain separate requirements"
+  ]
+}

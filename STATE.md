@@ -10,6 +10,19 @@ owner-stop exception at18:29:30UTC, receipt
 Run-System/Runs/SWARM-20261029-0030/OWNER-EXTENSION.md. No new implementation
 after18:25UTC; integrate/check/record and stop by18:30UTC.
 
+18:24UTC acceptance: S10c/d/e/f DONE simulation-only,68 ->72/205 (four new leaves
+in extension;14 since original58 baseline). Real Rapier0.21 WASM narrow phase is
+driven from the exact fixed-step RK4 state, stopping at first contact; no rebound
+or contact-response engine claim. Ramp/pendulum have real S08 export integration.
+Actual four-template oracle/replay regression passes0.5% threshold, worst case
+pendulum relativeerror0.0002664499 (0.026645%). Seed binds replay identity; no
+fake random physics. Offline CLI runs S08->Node->lightgate/ruler->actual S11 fit.
+S10g PARTIAL: redacted observation DTO and matched trusted fit reveal work, but
+actual viewer/toggle remains unwired. Thus S10h/i/j and R-P not accepted merely
+from the local regression. Physical Gate M/S12 unchanged. No new paid operation.
+Fresh tests: lab5, allNode68, fitter19, instruments10 PASS; last contact/version
+fix7PASS. Required other-vendor review still unavailable, no route retry churn.
+
 ## Previous bounded window — STOPPED at Oct29 00:00 Dhaka
 
 Deadline closure observed18:00:10UTC. No further product work/worker launch;
