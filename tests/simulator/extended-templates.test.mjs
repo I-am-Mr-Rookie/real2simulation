@@ -18,6 +18,15 @@ test('ramp uses signed fixed-step dynamics and exposes analytic comparison input
   assert.equal(out.analyticComparison.inputs.friction_coefficient, 0);
 });
 
+test('ramp stops at the first endpoint crossing and rejects unsupported stall/coast regimes', () => {
+  const out = rampTrajectory({ ...ramp, length: 1, steps: 5000 });
+  assert.equal(out.stop.reached, true);
+  assert.equal(out.stop.crossing, 'sampled_endpoint_bracket');
+  assert.ok(out.samples.at(-1).distance_m < 1);
+  assert.ok(out.stop.bracket.after.distance_m >= 1);
+  assert.throws(() => rampTrajectory({ ...ramp, frictionCoefficient: 1 }), /positive|coasting|stalling/);
+});
+
 test('pendulum matches the small-angle analytic comparison and maps geometry', () => {
   const out = pendulumTrajectory(pendulum), end = out.samples.at(-1), w = Math.sqrt(pendulum.gravity / pendulum.length), t = 1;
   assert.equal(out.analyticComparison.model, 'small-angle-linearized');
@@ -48,6 +57,7 @@ test('rejects sparse, nonfinite, overflow, and hidden-default inputs', () => {
   assert.throws(() => rampTrajectory({ ...ramp, dt: Number.MAX_VALUE, steps: 2 }), /steps/);
   assert.throws(() => rampTrajectory({ ...ramp, source: undefined }), /labels/);
   assert.throws(() => pendulumTrajectory({ ...pendulum, initialAngle: 4 }), /initialAngle/);
+  assert.throws(() => rampTrajectory({ ...ramp, origin: [Number.MAX_VALUE, 0, 0], initialSpeed: Number.MAX_VALUE / 2, steps: 1 }), /position/);
 });
 
 test('consumes actual Python validate_setup export for both extended templates', () => {

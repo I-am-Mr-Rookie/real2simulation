@@ -17,6 +17,10 @@ const freeze = (value) => {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) { Object.values(value).forEach(freeze); Object.freeze(value); }
   return value;
 };
+const finiteVector = (value, label) => {
+  if (!dense(value, 3)) fail(`${label} became non-finite`);
+  return Object.freeze(value);
+};
 const checked = (input, kind) => {
   if (!input || typeof input !== 'object') fail('input is required');
   const required = kind === 'ramp'
@@ -32,42 +36,53 @@ const checked = (input, kind) => {
   return { ...input, origin: [...input.origin] };
 };
 
-function samplesFor(spec, kind, acceleration) {
+function sampleFor(spec, kind, state, step) {
+  const time = step * spec.dt;
+  if (!finite(time)) fail('sample time became non-finite');
+  if (kind === 'ramp') {
+    const [distance, speed] = state;
+    return Object.freeze({ step, time_s: time, distance_m: distance, speed_m_s: speed, position_m: finiteVector([spec.origin[0] + distance * Math.cos(spec.inclineAngle), spec.origin[1] - distance * Math.sin(spec.inclineAngle), spec.origin[2]], 'ramp position'), velocity_m_s: finiteVector([speed * Math.cos(spec.inclineAngle), -speed * Math.sin(spec.inclineAngle), 0], 'ramp velocity') });
+  }
+  const [angle, angularVelocity] = state;
+  return Object.freeze({ step, time_s: time, angle_rad: angle, angular_velocity_rad_s: angularVelocity, position_m: finiteVector([spec.origin[0] + spec.length * Math.sin(angle), spec.origin[1] - spec.length * Math.cos(angle), spec.origin[2]], 'pendulum position'), velocity_m_s: finiteVector([spec.length * Math.cos(angle) * angularVelocity, spec.length * Math.sin(angle) * angularVelocity, 0], 'pendulum velocity') });
+}
+
+function samplesFor(spec, kind, acceleration, endpoint) {
   const state0 = kind === 'ramp' ? [0, spec.initialSpeed] : [spec.initialAngle, spec.initialAngularVelocity];
   let state = [...state0];
   const samples = [];
-  const add = (step) => {
-    const time = step * spec.dt;
-    if (!finite(time)) fail('sample time became non-finite');
-    if (kind === 'ramp') {
-      const [distance, speed] = state;
-      samples.push(Object.freeze({ step, time_s: time, distance_m: distance, speed_m_s: speed, position_m: Object.freeze([spec.origin[0] + distance * Math.cos(spec.inclineAngle), spec.origin[1] - distance * Math.sin(spec.inclineAngle), spec.origin[2]]), velocity_m_s: Object.freeze([speed * Math.cos(spec.inclineAngle), -speed * Math.sin(spec.inclineAngle), 0]) }));
-    } else {
-      const [angle, angularVelocity] = state;
-      samples.push(Object.freeze({ step, time_s: time, angle_rad: angle, angular_velocity_rad_s: angularVelocity, position_m: Object.freeze([spec.origin[0] + spec.length * Math.sin(angle), spec.origin[1] - spec.length * Math.cos(angle), spec.origin[2]]), velocity_m_s: Object.freeze([spec.length * Math.cos(angle) * angularVelocity, spec.length * Math.sin(angle) * angularVelocity, 0]) }));
+  samples.push(sampleFor(spec, kind, state, 0));
+  let stop = { reached: false, bracket: null };
+  for (let step = 1; step <= spec.steps; step += 1) {
+    const previous = state;
+    state = rk4Step(state, spec.dt, acceleration);
+    if (endpoint && state[0] >= endpoint) {
+      stop = { reached: true, bracket: { before: sampleFor(spec, kind, previous, step - 1), after: { step, time_s: step * spec.dt, distance_m: state[0], speed_m_s: state[1] } } };
+      break;
     }
-  };
-  add(0);
-  for (let step = 1; step <= spec.steps; step += 1) { state = rk4Step(state, spec.dt, acceleration); add(step); }
-  return Object.freeze(samples);
+    samples.push(sampleFor(spec, kind, state, step));
+  }
+  return Object.freeze({ samples: Object.freeze(samples), stop });
 }
 
 export function rampTrajectory(input) {
   const spec = checked(input, 'ramp');
   const downhill = spec.gravity * Math.sin(spec.inclineAngle);
   const normal = spec.gravity * Math.cos(spec.inclineAngle);
+  const accelerationValue = downhill - spec.frictionCoefficient * normal;
+  if (!(accelerationValue > 0)) fail('ramp acceleration must be positive; S08 does not support coasting, stalling, or static-friction stick/slip');
   const acceleration = (state) => {
-    const sign = state[1] === 0 ? Math.sign(downhill) : Math.sign(state[1]);
-    return [state[1], downhill - spec.frictionCoefficient * normal * sign];
+    return [state[1], accelerationValue];
   };
-  const samples = samplesFor(spec, 'ramp', acceleration);
-  return freeze({ kind: 'ramp', source: spec.source, inputProvenance: spec.inputProvenance, integrator: 'rk4-fixed-step', dt_s: spec.dt, requestedSteps: spec.steps, units: { time: 's', distance: 'm', speed: 'm/s', position: 'm', velocity: 'm/s', acceleration: 'm/s^2', angle: 'rad' }, analyticComparison: { model: 'constant-signed-acceleration', inputs: { gravity_m_s2: spec.gravity, incline_angle_rad: spec.inclineAngle, friction_coefficient: spec.frictionCoefficient, initial_speed_m_s: spec.initialSpeed } }, samples });
+  const run = samplesFor(spec, 'ramp', acceleration, spec.length);
+  const reached = run.stop.reached;
+  return freeze({ kind: 'ramp', source: spec.source, inputProvenance: spec.inputProvenance, integrator: 'rk4-fixed-step', dt_s: spec.dt, requestedSteps: spec.steps, units: { time: 's', distance: 'm', speed: 'm/s', position: 'm', velocity: 'm/s', acceleration: 'm/s^2', angle: 'rad' }, analyticComparison: { model: 'constant-positive-acceleration-until-length', inputs: { gravity_m_s2: spec.gravity, incline_angle_rad: spec.inclineAngle, friction_coefficient: spec.frictionCoefficient, initial_speed_m_s: spec.initialSpeed } }, stop: reached ? { reached: true, crossing: 'sampled_endpoint_bracket', bracket: run.stop.bracket } : { reached: false, crossing: null }, samples: run.samples });
 }
 
 export function pendulumTrajectory(input) {
   const spec = checked(input, 'pendulum');
   const acceleration = (state) => [state[1], -(spec.gravity / spec.length) * Math.sin(state[0])];
-  const samples = samplesFor(spec, 'pendulum', acceleration);
+  const samples = samplesFor(spec, 'pendulum', acceleration).samples;
   const omega = Math.sqrt(spec.gravity / spec.length);
   const amplitude = Math.hypot(spec.initialAngle, spec.initialAngularVelocity / omega);
   const analyticComparison = amplitude <= 0.1 ? { model: 'small-angle-linearized', valid_for_amplitude_rad: 0.1, inputs: { length_m: spec.length, gravity_m_s2: spec.gravity, initial_angle_rad: spec.initialAngle, initial_angular_velocity_rad_s: spec.initialAngularVelocity, angular_frequency_rad_s: omega } } : { model: 'nonlinear-only', inputs: { length_m: spec.length, gravity_m_s2: spec.gravity, initial_angle_rad: spec.initialAngle, initial_angular_velocity_rad_s: spec.initialAngularVelocity } };
