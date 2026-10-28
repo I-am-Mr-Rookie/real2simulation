@@ -49,3 +49,12 @@ wrong; original UTC issue/full1800s deadlines remained correct and authoritative
 UI worker identified this and recorded correct02:25:20.136 Dhaka. Corrections sent
 to the two active fix workers without resetting/extending their UTC windows.
 Do not claim original handouts were fully conformant.
+
+## Accepted within round1
+
+S10l UI recovery accepted after reading source/report, timingPASS and parentfresh
+helpertests8/8. Actual IAB375x812 Pendulum Run:1001 plottedpoints,9tablerows,
+scrollWidth360, disabledunsupportedfit/Mystery, honest displacement/status labels.
+Screenshot visually inspected; evidence/S10/ui-hardening/IAB-VERIFICATION.md.
+Other three recovery leaves still pending gate-fix/review acceptance. No completed
+round yet; queue78/209 after this one independently accepted recovery leaf.

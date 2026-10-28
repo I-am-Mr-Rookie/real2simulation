@@ -2,6 +2,12 @@
 
 ## CURRENT — owner one-time inline swarm through Oct29 10:00 Dhaka
 
+Morning recovery S10l accepted: source/report/timebox, fresh8UItests, actualIAB375px
+Pendulum1001plotpoints/9tablerows/scrollWidth360, correctdisabledfit/labels.
+Queue78/209, round1stillactive. Contact/fittergatefindings and serviceabortfix
+await independent targeted acceptance; no newphysicalgatepass. Evidence/runreport
+SWARM-20261029-1000. Historical77/205 baseline retained below.
+
 Fresh owner scheduler request: five-minute heartbeat targeting this same chat,
 exact prompt "Go at maximum speed. Keep working until 10 a.m." Created ACTIVE
 maximum-speed-swarm-until-10-a-m; expiry04:00UTC Oct29 verified. This explicitly
