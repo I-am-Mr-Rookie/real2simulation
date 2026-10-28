@@ -22,7 +22,7 @@ const clone = (value) => { const text = canonical(value); try { return structure
 const freezeDeep = (value) => { if (value && typeof value === 'object' && !Object.isFrozen(value)) { Object.values(value).forEach(freezeDeep); Object.freeze(value); } return value; };
 export async function stableHash(value) { const bytes = new TextEncoder().encode(canonical(value)); const digest = await globalThis.crypto.subtle.digest('SHA-256', bytes); return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join(''); }
 export async function createReplayRecord({ seed, version = 's10-replay-v1', parameters, trace }) {
-  if (!Number.isSafeInteger(seed) || seed < 0 || typeof version !== 'string' || !version || !isPlain(parameters) || !Array.isArray(trace) || !trace.length) fail('invalid replay metadata');
+  if (!Number.isSafeInteger(seed) || seed < 0 || version !== 's10-replay-v1' || !isPlain(parameters) || !Array.isArray(trace) || !trace.length) fail('invalid replay metadata');
   const safeParameters = clone(parameters), safeTrace = clone(trace), body = { version, seed, parameters: safeParameters, trace: safeTrace };
   return freezeDeep({ ...body, traceHash: await stableHash(safeTrace), replayHash: await stableHash(body) });
 }
