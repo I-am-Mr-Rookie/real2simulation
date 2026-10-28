@@ -12,6 +12,12 @@ Apply the new instructions where they conflict; continue every nonconflicting
 previous instruction. This normalized operational reading does not replace the
 original. The personal email written on page3 is not duplicated here.
 
+Latest owner RUNS reply, ingested by successor Oct28: "no need to read the 4
+pagge scanned pdf again again, save the instructions from it to the directory
+properly." This file is that complete operational transcription. Read this file
+on startup; retain the unchanged original, but do not repeatedly render/reread it.
+Revisit original pages only to resolve a genuine ambiguity or an owner request.
+
 ## Page1 — run system
 
 - The orchestrator delegates runs (examples S02c and S05a) to workers, each with

@@ -8,8 +8,10 @@ Koushik supplied the four-page `Updated_Instructions_10_28_2026_anything_else_th
 7244790ebd0db495b705c0bc14bd2185e538dc7312399f352284537c457d3834), read visually.
 The filename AND all four pages are owner instructions. They override conflicting
 older instructions only; every nonconflicting previous instruction continues.
-Read [OWNER_INSTRUCTIONS_2026-10-28.md](OWNER_INSTRUCTIONS_2026-10-28.md) and the
-original PDF. Before regenerating RUNS.md, preserve owner replies in STATE.md;
+Read [OWNER_INSTRUCTIONS_2026-10-28.md](OWNER_INSTRUCTIONS_2026-10-28.md), the saved
+complete transcription. Latest RUNS reply: do not repeatedly reread the scanned
+PDF; retain the unchanged original and revisit only an actual ambiguity.
+Before regenerating RUNS.md, preserve owner replies in STATE.md;
 the generated view must not erase unrecorded owner decisions or requests.
 Fresh worker contexts, explicit absolute deadline <=30m per run, controller checks
 completion/deadline and serially updates RUNS.md. Workers remain silent except

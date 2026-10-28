@@ -1,5 +1,25 @@
 # Real2Simulation — Decisions and preflight delta
 
+## 2026-10-28 — successor acceptance and fresh owner RUNS replies
+
+Sole successor verified existing project association; accepted scoped terminal
+S07b custody d58c7c9 (fresh post-rebase custody and64 measurement PASS) and S05b
+diagnostic6 8fca36f (5 files/10 links/source unchanged). No physical acceptance,
+55/203 remains. Ignored271 JPEGs retained in r-m-review, old/new self-checks
+saved separately before exact generated-file restoration.
+
+New RUNS owner replies preserved before regeneration: no repeated4-page scan
+reads (use complete saved OWNER_INSTRUCTIONS); sign-in says unavailable/
+authentication unconfigured; asks configuration link/how. Q12 result retained,
+Q13 secure existing Clerk-development -> exact Railway-dev-web steps supplied,
+no secret handling or claim of configuration/E2E. Original RUNS edits saved.
+
+Routine reversible continuation: two disjoint fresh Sol/medium unpaid scopes,
+S05b local total-deadline/admission guard and S07b accepted exact-checkpoint/
+direct-HF-to-Modal retrieval readiness. No model transfer/job/new reserve,
+CPU reinstall or repeated consent;2.85 reserves/30 authority/gates unchanged.
+No scheduling automation; dispatcher OFF, controller waits on actual workers.
+
 ## 2026-10-28 — Full PDF precedence, accepted SAM3 access, fresh same-project controller
 
 Koushik confirms the complete Oct28 PDF AND filename are instructions; they

@@ -1,0 +1,9 @@
+{
+  "verified_utc": "2026-10-28T13:52:21.865604+00:00",
+  "jpeg_count": 271,
+  "source_hash": "PASS",
+  "prefix_names_hashes_geometry_pts": "PASS",
+  "adapter_context_and_suffix_rejection": "PASS",
+  "heavy_model_imports": false,
+  "os_immutable_or_exclusive_lock": false
+}

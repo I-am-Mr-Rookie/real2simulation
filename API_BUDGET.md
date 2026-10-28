@@ -1,5 +1,14 @@
 # Real2Simulation — API and compute budget
 
+## CURRENT — successor accepts unpaid evidence; no new paid reservation
+
+S07b custody d58c7c9 and S05b diagnostic6 8fca36f accepted by scoped verified FF.
+Fresh controller local custody/hash/tests only; no service/GPU/job/download.
+Retain2.85 historical reservations under unchanged30 authority; exact charges
+unknown. New S05b recovery7 guard and S07b recovery4 identity/readiness contracts
+are LOCAL/READ-ONLY, NO paid work or model bytes. A local guard test is not
+confirmed remote stop or renewed paid readiness. Existing safeguards unchanged.
+
 ## CURRENT — recovery5 stopped, CPU proof accepted — Oct28 12:56UTC
 
 Accepted scoped evidence9b25fcc after fresh rebased spike7/scene11 PASS. Real CPU

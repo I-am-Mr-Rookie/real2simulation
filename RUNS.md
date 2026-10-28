@@ -1,28 +1,32 @@
 # Runs checklist
 
-Updated Oct 28, 19:46 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 20:00 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **55 / 203** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 2 open reviews
+Progress: **55 / 203** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 2 open reviews
 
 ## Reviews for Koushik
 
-- [ ] R1 [Routine decision; no response needed] Oct28 PDF filename AND all four pages are saved as instructions; only conflicting older instructions are overridden. Existing nonconflicting rules continue. EVERY new worker/orchestrator uses the same existing Meta AI Hackathon project. New handoff: Run-System/ORCHESTRATOR_HANDOFF_2026-10-28.md. SAM3 access ACCEPTED evidence saved; both workers finished PARTIAL, not active; controller acceptance/integration remains. No scheduled task, dispatcher OFF. Ready list is dependency-only, not permission to bypass recorded readiness/budget/rights holds.
-- [ ] Q12 [S01b: how to check sign-in] Your RUNS.md reply was "How to check that? what is the link? what I have to do?" In the in-app browser open [dev sign-in](https://web-dev-cd80.up.railway.app/sign-in): try Google, sign out, then try email OTP; never send codes/keys. Also open the [guest library](https://web-dev-cd80.up.railway.app/library) while signed out. Reply here with Google PASS/FAIL, OTP PASS/FAIL and guest PASS/FAIL. If "Sign-in unavailable" appears, report it; Clerk dev configuration remains the prerequisite (Q4), not another approval request. URLs/routes are from saved deployment/source receipts; current browser availability/E2E was not checked in this handoff.
+- [ ] Q13 [S01b prerequisite; secure owner setup] Open [Clerk dashboard](https://dashboard.clerk.com), choose existing Real2Simulation / Development / API keys. Privately copy the development publishable and secret keys directly into [Railway project](https://railway.com/project/b07b0d66-2001-4ccc-915d-7d226744d189): select dev environment, web service49f2938d-1566-480d-94e3-c9f7fefe24c2, Variables. Set NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY and CLERK_SECRET_KEY (server-only); rebuild/redeploy DEV so the public key is present at build time. Do not paste keys/codes here. Then open [sign-in](https://web-dev-cd80.up.railway.app/sign-in), test Google, sign out, test email OTP, and [guest library](https://web-dev-cd80.up.railway.app/library) signed out. Reply configured / Google PASS or FAIL / OTP PASS or FAIL / guest PASS or FAIL. Saved app/source IDs and auth README support these steps; current dashboard UI/deployment not independently checked. No production/custom OAuth/account creation.
+- [ ] R2 [Routine decision; no reply needed] Both terminal reports accepted/FF integrated;55/203 unchanged. Continue two isolated unpaid Sol/medium prerequisites: local total-deadline guard and accepted SAM exact-identity/direct-retrieval readiness. No GPU/model download/retry,2.85 reservations retained; SAM accepted screenshot is not bytes/runtime proof. Same verified existing project; no schedule/dispatcher.
 
 ## Ready now
 
 **CODEX-1**
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
-- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
+- Nothing ready yet: check dependencies and retry holds below.
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(in progress)*
+- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -90,7 +94,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 <details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (1/7)</summary>
 
 - [x] **S05a** — Codex · GPT-6.1 Sol, effort medium — Check reconstruction licences and freeze scene artifact contract (30 min)
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(in progress)*
 - [ ] **S05c** — Codex · GPT-6.1 Sol, effort medium — Reconstruct remaining scene clips (30 min)
 - [ ] **S05d** — Codex · GPT-6.1 Sol, effort medium — Fit floor, metric scale and gravity orientation (30 min)
 - [ ] **S05e** — Codex · GPT-6.1 Sol, effort high — Run Gate R and inspect reconstruction failures (30 min)
@@ -121,7 +125,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S02i** — Codex · GPT-6.1 Sol, effort high — Audit RP01 side-view metric trajectory segments (30 min)
 - [x] **S07r** — Codex · GPT-6.1 Sol, effort high — Reconcile input readiness and approved small-sample fallback (20 min)
 - [x] **S07a** — Codex · GPT-6.1 Sol, effort medium — Define scale, timestamps and held-out tracking inputs (30 min)
-- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
+- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(in progress)*
 - [x] **S07c** — Codex · GPT-6.1 Sol, effort medium — Implement deterministic free-fall fit (30 min)
 - [x] **S07d** — Codex · GPT-6.1 Sol, effort medium — Detect slow-motion and propagate measurement uncertainty (30 min)
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)

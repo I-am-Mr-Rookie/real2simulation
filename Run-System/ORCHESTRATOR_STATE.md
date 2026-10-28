@@ -1,5 +1,38 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — sole successor accepted both reports; unpaid prerequisites claimed
+
+Successor01a182c4-9378-7da0-9fbc-99a5a379380c verified via list_threads in
+existing Meta AI Hackathon project91e441f8-e40c-4ec4-bea2-de7fa1582d97, canonical
+root explicit. Parent relinquished; no active prior worker. Original four PDF
+pages visually inspected during initial bootstrap; new RUNS owner reply then
+ingested: use complete saved OWNER_INSTRUCTIONS, do not repeatedly reread scan.
+Owner sign-in result unconfigured ingested before regeneration; Q13 exact
+secure setup steps/links in Reviews. Owner-edited RUNS saved byte-for-byte.
+
+S07b recovery3 original31d0b10 -> rebasedd58c7c9 -> verified FF. Preserved old
+controller self-check and fresh successor receipt separately; exact generated
+self-check restored only after saving. Fresh post-rebase custody PASS and64
+measurement tests PASS.271 ignored JPEGs/49,873,994 bytes still in r-m-review;
+NEVER archive/delete it.13-file scoped changes only, no live SAM/metric claims.
+S05b diagnostic6 five owned files/10 links/scope/source-read-only PASS, commit
+1f7d6c4 -> rebased8fca36f -> FF. No repeated service read/test/install/job.
+UNKNOWN scheduling cause retained; no reserve release or physical success.
+
+Next claims are independent and unpaid, managed gpt-6.1-sol/medium verified in
+existing opencodex-catalog.json, no route/config changes:
+- S05b recovery7: s05b-recovery4/run/S05b-recovery7 base8fca36f, local-only total
+  deadline/admission guard; deadline14:20UTC, implementation cutoff14:15UTC.
+- S07b recovery4: s07b-tracking/run/S07b-recovery4 base8fca36f, accepted-access
+  exact identity/direct-retrieval readiness; deadline14:15UTC, no bytes/jobs.
+Exact canonical contracts in Runs/S05b/RECOVERY-7.md / S07b/RECOVERY-4.md;
+fresh actual agent IDs follow dispatch. Delegated contexts inherit this verified
+parent project/root; no unsupported separate sidebar membership claim.
+Controller alone commits/rebases/FF/controls; Ponytail concrete use/checks/risks
+required.55/203 accepted, GateM NOT_MET_INPUT_READINESS/physics NOT_RUN, S12 locked.
+Retain2.85/$30; no paid retry/CPU reinstall, renewed consent, schedule or dispatcher.
+Older CURRENT sections below are historical, not active instructions/status.
+
 ## CURRENT — owner-requested fresh-chat handoff; accepted SAM3 access
 
 Read Run-System/ORCHESTRATOR_HANDOFF_2026-10-28.md first. The old controller
