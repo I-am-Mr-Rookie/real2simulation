@@ -1,5 +1,15 @@
 # Real2Simulation — STATE
 
+## Latest direct owner instruction — solo work until 22:30 BDT Oct28
+
+Koushik: "You are the lonely worker. Complete as many runs as you can until 10:30 pm (BDT)".
+This chat alone works serially until2026-10-28T16:30:00Z; no delegated chats,
+dispatcher, schedule or automatic continuation. Prior takeover stop superseded
+only for this bounded direct authorization. First child S05b-recovery10 owns local
+F3 absolute-clock/result-preservation repair and tests; no paid job or remote action.
+Parent remains unpassed; all existing gates/budget/credentials unchanged.
+Owner removed R2 from RUNS; preserved as historical only, not an open review.
+
 Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verified, worker heartbeat unavailable; sign-in configuration/E2E remain owner follow-up. Dispatch remains disabled.**
 
 | Recovery field | Current evidence |
@@ -81,7 +91,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 - R4 [Removed from owner-facing RUNS by owner; historical note, not new approval] [Routine action, no reply needed] Owner wants agents to operate his signed-in ChatGPT in-app browser, not manual babysitting. Current S07b readiness chat was told to verify the ACTUAL requested surface using installed computer-use/sky when appropriate, not infer unavailability from a different IAB attach failure. Browser work serialized, no second UI worker race; after surface readiness, agent-led existing dev-auth setup follows within no-secret-exposure/account/terms/policy boundaries. Google/OTP/guest not yet verified. No Chrome fallback.
 
-- [ ] R2 [Routine decision; no reply needed] Both terminal reports accepted/FF integrated;55/203 unchanged. Continue two isolated unpaid Sol/medium prerequisites: local total-deadline guard and accepted SAM exact-identity/direct-retrieval readiness. No GPU/model download/retry,2.85 reservations retained; SAM accepted screenshot is not bytes/runtime proof. Same verified existing project; no schedule/dispatcher.
+- R2 [Removed from owner-facing RUNS by owner; historical only] Both terminal reports accepted/FF integrated;55/203 unchanged. Prior unpaid prerequisite decision retained, not an open review or new approval.
 
 - [x] R3 [Owner reply preserved] "All right, do not repeat that mistake again." Separate fresh desktop chats only, same project; no inline workers. Initial cleaner DONE/accepted6a2a2be: removed151,880,550 logical bytes (144.84MiB) of verified ignored .next cache, no other files changed during deletion. Directory after about3.06GB logical; no physical-block measurement. Owner unchecked S02f in Ready view; evidence remains PARTIAL, no new generic calibration-hunt authority.
 

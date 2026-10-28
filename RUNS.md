@@ -1,20 +1,19 @@
 # Runs checklist
 
-Updated Oct 28, 21:49 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 21:56 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **55 / 203** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 1 open reviews
+Progress: **55 / 203** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
-- [ ] R2 [Routine decision; no reply needed] Both terminal reports accepted/FF integrated;55/203 unchanged. Continue two isolated unpaid Sol/medium prerequisites: local total-deadline guard and accepted SAM exact-identity/direct-retrieval readiness. No GPU/model download/retry,2.85 reservations retained; SAM accepted screenshot is not bytes/runtime proof. Same verified existing project; no schedule/dispatcher.
+None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## Ready now
 
 **CODEX-1**
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
 
 **CODEX-2**
@@ -22,6 +21,10 @@ Progress: **55 / 203** runs done · 0 in progress · 0 blocked · 1 waiting for 
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -89,7 +92,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 <details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (1/7)</summary>
 
 - [x] **S05a** — Codex · GPT-6.1 Sol, effort medium — Check reconstruction licences and freeze scene artifact contract (30 min)
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
+- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(in progress)*
 - [ ] **S05c** — Codex · GPT-6.1 Sol, effort medium — Reconstruct remaining scene clips (30 min)
 - [ ] **S05d** — Codex · GPT-6.1 Sol, effort medium — Fit floor, metric scale and gravity orientation (30 min)
 - [ ] **S05e** — Codex · GPT-6.1 Sol, effort high — Run Gate R and inspect reconstruction failures (30 min)
