@@ -4,7 +4,7 @@
 - Assigned CODEX1 / managed gpt-6.1-sol HIGH; runtime model identity not independently exposed. OpenCodex-managed; not polled. Costs/tokens unknown.
 - Source: `7708494fed8ae1b3cc23b943b5168e910b58fb9d`; branch `run/R13-process-lifecycle` created from detached HEAD. Actual service SHA256 `6638dd0f88a0b60af0c9d1c32f969abfe461a2a7da138e33130e4e4dc1c0bacc`.
 - Owns ONLY `tests/lab/process-tree.test.mjs`, `evidence/S10/process-lifecycle/`, `Run-System/Runs/R13-process-lifecycle/`. No product/control/config edits, installs, merges, deployments, credentials or shared-server stops.
-- Parent project `91e441f8-e40c-4ec4-bea2-de7fa1582d97`; canonical root `C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon`. Parent says native membership moved/confirmed; not independently re-verified here. One-time inline swarm exception in direct handout.
+- Assigned parent project `91e441f8-e40c-4ec4-bea2-de7fa1582d97`; canonical root `C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon` verified. Administrative correction: native move returned the requested project, but fresh list_threads still reports parent projectId=null without intervening worktree creation. UI association is NOT verified; discrepancy/unsupported projection, not confirmed membership. No membership/provider/config workaround. One-time inline swarm exception in direct handout.
 - Issued `2026-10-28T21:07:45.893Z`; cutoff `2026-10-28T21:32:45.893Z`; deadline `2026-10-28T21:37:45.893Z` / Dhaka `2026-10-29T03:37:45.893+06:00`. Full 30-minute contract; verified bounded DONE may finish early.
 
 ## Checks
