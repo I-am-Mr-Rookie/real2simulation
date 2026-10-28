@@ -1,5 +1,31 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — S05b PARTIAL accepted; S07b readiness claim (Oct28 12:56UTC)
+
+S05b recovery5 terminal child01a18281-495c-7251-9c7e-9d7d8cdbfa83 CLOSED after
+actual final report. Source09825b8/controller receipt9b25fcc rebased/FF, fresh7
+spike+11 scene PASS. Actual CPU imports proven; ONE GPU RPC stayed pending without
+observed allocation/container or startup log, manually stopped12:51:08Z. Both
+apps stopped/tasks0/final containers[]. Client RemoteError followed manual stop,
+not proof of model/capacity failure. No inference/output/VRAM/GateR/S05c unlock.
+Function timeout excludes allocation wait; preserve total queue+execution guard.
+Full2.85 reserves retained pending exact billing;30 authority unchanged. No second
+paid attempt/CPU reinstall or redundant GPU/credit-consent question.
+
+Claim S07b recovery2, fresh Sol/medium, original CODEX-1 lane: bounded15m exact
+official checkpoint/access/licence/runtime/prefix readiness only, NO downloads,
+paid jobs, source edits, media transfer or terms/account/credential changes.
+Genuine supported browser recovery permits bounded normal official-page access,
+not access bypass or generic source hunt. Reuse clean r-m-review on controller
+prepared run/S07b-recovery2; exact contract Runs/S07b/RECOVERY-2.md. Actual child
+ID to be recorded after dispatch. Owns only new recovery2 evidence/PLAN/REPORT.
+
+Source/review accepted S07f/R-M2,55/203 deliverables, physical holds/S12 lock
+unchanged. Unrelated canonical RUNS heading Questions -> Reviews preserved; use
+generator temporary output and retain this unstaged edit, never stage/overwrite
+it incidentally. No active paid resource remains in final evidence; no quota poll.
+Python dispatcher OFF, heartbeat ACTIVE5m. Older ACTIVE sections historical.
+
 ## CURRENT — S07f/R-M2 accepted; S05b ONE GPU active (Oct28 12:44UTC)
 
 Controller accepted R-M2 bounded independent review; actual report/probe/final

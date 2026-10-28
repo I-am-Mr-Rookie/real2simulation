@@ -1,5 +1,22 @@
 # Real2Simulation — API and compute budget
 
+## CURRENT — recovery5 stopped, CPU proof accepted — Oct28 12:56UTC
+
+Accepted scoped evidence9b25fcc after fresh rebased spike7/scene11 PASS. Real CPU
+imports PASS; subsequent single GPU RPC stayed pending with no observed allocation,
+container, device/VRAM/runtime/output. Manually stopped12:51:08Z before remaining
+session could fit full992s bound. Both apps stopped/tasks0; final containers[].
+Cause UNKNOWN, not proven model or capacity failure; app588s lifetime NOT billed
+GPU time. Function/startup limits do not bound queue wait; total queue+execution
+needs an explicit manual/wall-clock guard for any future scoped continuation.
+
+Retain full **$2.85** ($1.90 historical + $.95 new), exact billing unknown, no
+reserve release or second paid attempt. Existing **$30** authority unchanged;
+at most$27.15 before other debits. Reuse actual CPU receipt; no reinstall/retry
+without changed prerequisite. GateR NOT_RUN/S05c locked. Current S07b recovery2
+is read-only checkpoint/runtime/licence readiness: **no service/GPU calls/spend**.
+Older active/import-pending sections below are historical, superseded here.
+
 ## CURRENT — recovery5 CPU pass, ONE bounded GPU active — Oct28 12:42UTC
 
 Current worker ledger reserves **new$0.95 all-in**, plus historical$1.90 pending,
