@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { parseFitReveal, plotPoints } from './fit-contract.mjs';
 
 const TEMPLATES = [
   ['free_fall', 'Free fall', 'Ballistic drop'],
   ['projectile', 'Projectile', 'Ballistic launch'],
-  ['ramp', 'Ramp', 'Rolling motion'],
+  ['ramp', 'Ramp', 'Sliding motion'],
   ['pendulum', 'Pendulum', 'Oscillation'],
 ];
 const BALLISTIC = new Set(['free_fall', 'projectile']);
@@ -20,15 +21,6 @@ function sampleRows(observations) {
   return observations.filter((_, index) => index % step === 0 || index === observations.length - 1).slice(0, 9);
 }
 
-function displayFit(fit) {
-  const gravity = fit?.gravity && typeof fit.gravity === 'object' ? fit.gravity : null;
-  const quantity = fit?.quantity && typeof fit.quantity === 'object' ? fit.quantity : null;
-  const value = typeof fit?.gravity === 'number' ? fit.gravity : (gravity?.value ?? quantity?.value ?? fit?.value ?? fit?.magnitude);
-  const uncertainty = typeof fit?.uncertainty === 'object' ? fit.uncertainty.value : fit?.uncertainty;
-  if (typeof value !== 'number') return null;
-  return { value, uncertainty, unit: gravity?.unit || quantity?.unit || fit?.unit || 'm/s²', source: fit?.source || gravity?.source || 'simulated' };
-}
-
 export default function LabClient() {
   const [template, setTemplate] = useState('free_fall');
   const [mystery, setMystery] = useState(false);
@@ -40,7 +32,7 @@ export default function LabClient() {
   const requestVersion = useRef(0);
 
   const reset = () => { request.current?.abort(); requestVersion.current += 1; setSession(null); setFit(null); setStatus('idle'); setMessage('Choose a template, then run a synthetic trial.'); };
-  const chooseTemplate = (event) => { setTemplate(event.target.value); reset(); };
+  const chooseTemplate = (event) => { const next = event.target.value; setTemplate(next); if (!BALLISTIC.has(next)) setMystery(false); reset(); };
   const chooseMystery = (event) => { setMystery(event.target.checked); reset(); };
 
   useEffect(() => () => request.current?.abort(), []);
@@ -60,7 +52,7 @@ export default function LabClient() {
       if (!response.ok || body?.status !== 'ok') throw new Error(errorMessage(body, 'The synthetic trial could not start.'));
       setSession(body); setStatus('ready'); setMessage('Trial ready. Fit the ballistic model or run another trial.');
     } catch (error) {
-      if (error.name === 'AbortError') return;
+      if (controller.signal.aborted || version !== requestVersion.current || error.name === 'AbortError') return;
       setStatus('error'); setMessage(error.message || 'The synthetic trial could not start.');
     }
   }
@@ -79,17 +71,19 @@ export default function LabClient() {
       if (controller.signal.aborted || version !== requestVersion.current) return;
       if (!response.ok || body?.status !== 'ok') throw new Error(errorMessage(body, 'The fit could not be completed.'));
       if (body.sessionId && body.sessionId !== session.sessionId) throw new Error('The fit belongs to a different trial. Run the trial again.');
-      const revealed = displayFit(body.fit || body.actualS11response || body.reveal || body.gravity);
+      const revealed = parseFitReveal(body, session.sessionId);
       if (!revealed) throw new Error('The fit response did not include a readable reveal.');
       setFit(revealed); setStatus('fitted'); setMessage('Fit complete. This is simulated evidence, not a calibrated measurement.');
     } catch (error) {
-      if (error.name === 'AbortError') return;
+      if (controller.signal.aborted || version !== requestVersion.current || error.name === 'AbortError') return;
       setStatus('error'); setMessage(error.message || 'The fit could not be completed.');
     }
   }
 
   const rows = sampleRows(session?.observations);
   const ballistic = BALLISTIC.has(template);
+  const plot = plotPoints(rows);
+  const templateLabel = TEMPLATES.find(([value]) => value === session?.template)?.[1] || session?.template;
   return <section className="lab" aria-labelledby="lab-title">
     <div className="lab-intro"><p className="eyebrow">Synthetic lab · Mystery-g</p><h1 id="lab-title">Test a motion model</h1>
       <p className="lede">Explore a deterministic, simulated trajectory before connecting a measured video.</p></div>
@@ -104,8 +98,8 @@ export default function LabClient() {
     </form>
     <p className={`lab-status status-${status}`} role="status" aria-live="polite">{message}</p>
     {session && <div className="lab-results" aria-label="Synthetic trial results">
-      <div className="result-heading"><div><p className="eyebrow">Observed trajectory</p><h2>{session.template === 'free_fall' ? 'Free fall' : 'Projectile'} samples</h2></div><span className="badge">Simulated · {session.units?.position || 'm'}</span></div>
-      <div className="plot-wrap"><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label="Sampled simulated position over time"><polyline points={rows.map((row, i) => `${24 + (i * 592 / Math.max(1, rows.length - 1))},${190 - Math.min(160, Math.max(0, Number(row.position_m) || 0) * 22)}`).join(' ')} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time (s)</text><text x="28" y="18">position (m)</text></svg></div>
+      <div className="result-heading"><div><p className="eyebrow">Observed trajectory</p><h2>{templateLabel} samples</h2></div><span className="badge">Simulated · {session.units?.position || 'm'}</span></div>
+      <div className="plot-wrap"><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label={`Sampled simulated position over time in ${session.units?.time || 's'} and ${session.units?.position || 'm'}`}><polyline points={plot.points} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time ({session.units?.time || 's'})</text><text x="28" y="18">position ({session.units?.position || 'm'})</text></svg></div>
       <div className="table-wrap"><table><caption>Sampled observations</caption><thead><tr><th scope="col">Time (s)</th><th scope="col">Position (m)</th></tr></thead><tbody>{rows.map((row, index) => <tr key={`${row.time_s}-${index}`}><td>{Number(row.time_s).toFixed(2)}</td><td>{Number(row.position_m).toFixed(3)}</td></tr>)}</tbody></table></div>
       {fit && <div className="reveal"><p className="eyebrow">Reveal</p><h2>{fit.value.toFixed(3)} ± {typeof fit.uncertainty === 'number' ? fit.uncertainty.toFixed(3) : '—'} {fit.unit}</h2><p>Gravity · source: {fit.source}</p></div>}
       <p className="limitations"><strong>Limits:</strong> {session.limitations?.join(' ') || 'Synthetic observations only; no camera calibration or physical uncertainty.'}</p>
@@ -113,4 +107,4 @@ export default function LabClient() {
   </section>;
 }
 
-export { BALLISTIC, displayFit, sampleRows };
+export { BALLISTIC, sampleRows };

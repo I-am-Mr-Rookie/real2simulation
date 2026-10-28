@@ -1,10 +1,12 @@
-✔ lab UI keeps the user flow and trust labels visible in source (2.4383ms)
-✔ lab layout collapses before the narrow mobile viewport (0.4339ms)
-ℹ tests 2
+✔ lab UI keeps the user flow and trust labels visible in source (2.1386ms)
+✔ lab layout collapses before the narrow mobile viewport (2.1225ms)
+✔ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (2.2554ms)
+✔ plot helper uses actual finite time and position domains (0.8903ms)
+ℹ tests 4
 ℹ suites 0
-ℹ pass 2
+ℹ pass 4
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 288.5298
+ℹ duration_ms 291.0363
