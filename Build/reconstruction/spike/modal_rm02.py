@@ -12,8 +12,9 @@ if not os.environ.get("RM02_WATCHDOG_RECEIPT"):
     raise RuntimeError("Use rm02_watchdog.py only in an authorized runtime continuation")
 
 import modal
-from rm02_deadline import guarded_probe
+from rm02_deadline import guarded_probe, EXIT_SECONDS
 from rm02_watchdog import atomic_json
+from rm02_result import persist_result
 
 ROOT = Path(__file__).resolve().parents[3]
 INPUT_EVIDENCE = ROOT / "evidence/S05/S05b"
@@ -137,12 +138,12 @@ def main():
         receipt, data = asyncio.run(guarded_probe(
             app, probe, (frames, requirements, CODE_REV, WEIGHT_REV), record_guard,
             total_seconds=float(os.environ["RM02_CHILD_BUDGET"]),
+            deadline=float(os.environ["RM02_CHILD_DEADLINE"]) - EXIT_SECONDS,
+            save_result=lambda result: persist_result(EVIDENCE, result),
         ))
-    local = EVIDENCE / "local"
-    local.mkdir(parents=True, exist_ok=True)
-    (local / "RM02-mapanything.npz").write_bytes(data)
-    receipt.update(client_start_unix=started, client_end_unix=time.time())
-    (EVIDENCE / "gpu-result.json").write_text(json.dumps(receipt, indent=2) + "\n")
+    receipt.update(client_start_unix=started, client_end_unix=time.time(),
+                   remote_cleanup_status="CONFIRMED")
+    atomic_json(EVIDENCE / "gpu-result.json", receipt)
 
 
 if __name__ == "__main__":

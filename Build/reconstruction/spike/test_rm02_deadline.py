@@ -82,6 +82,65 @@ class Fake:
 
 
 class DeadlineTests(unittest.IsolatedAsyncioTestCase):
+    async def test_absolute_deadline_consumes_preflight_time(self):
+        f = Fake()
+        f.now = 100
+        f.running = False
+        f.hang = True
+        with self.assertRaises(TimeoutError):
+            await f.execute(deadline=1200)
+        self.assertEqual(f.now, 150)  # Not250: child startup cannot restart the clock.
+        self.assertEqual(f.records[-1]["absolute_deadline_monotonic"], 1200)
+        self.assertEqual(f.records[-1]["remaining_at_start_s"], 1100)
+        self.assertTrue(f.records[-1]["remote_stop_confirmed"])
+
+    async def test_absolute_deadline_cannot_extend_relative_budget(self):
+        f = Fake()
+        f.running = False
+        f.hang = True
+        with self.assertRaises(TimeoutError):
+            await f.execute(deadline=10000)
+        self.assertEqual(f.now, 150)
+        self.assertEqual(f.records[-1]["absolute_deadline_monotonic"], 1200)
+
+    async def test_exhausted_absolute_deadline_never_enters_remote_setup(self):
+        for deadline in (1049, 1050):
+            f = Fake()
+            with self.assertRaises(TimeoutError):
+                await f.execute(deadline=deadline)
+            self.assertIsNone(f.app_id)
+            self.assertEqual(f.spawn_calls, 0)
+
+    async def test_invalid_absolute_deadline_never_enters_remote_setup(self):
+        for deadline in (float("nan"), float("inf"), -1):
+            f = Fake()
+            with self.assertRaises(ValueError):
+                await f.execute(deadline=deadline)
+            self.assertIsNone(f.app_id)
+
+    async def test_result_is_saved_before_stop_and_failed_cleanup_is_not_success(self):
+        f = Fake()
+        saved = []
+        def save(result):
+            self.assertEqual(f.stop_calls, 0)
+            saved.append(result)
+        f.exit_failure = True
+        with self.assertRaises(guard.ResourceIncident):
+            await f.execute(save_result=save)
+        self.assertEqual(saved, [f.result])
+        self.assertTrue(f.records[-1]["result_persisted"])
+        self.assertTrue(f.records[-1]["resource_incident"])
+
+    async def test_persistence_failure_still_stops_and_preserves_original_error(self):
+        f = Fake()
+        def save(result):
+            raise OSError("synthetic disk failure")
+        with self.assertRaisesRegex(OSError, "synthetic disk failure"):
+            await f.execute(save_result=save)
+        self.assertEqual(f.stop_calls, 1)
+        self.assertTrue(f.records[-1]["remote_stop_confirmed"])
+        self.assertNotIn("result_persisted", f.records[-1])
+
     async def test_already_expired_clock_still_invokes_stop(self):
         f = Fake()
         f.setup_delay = 1500

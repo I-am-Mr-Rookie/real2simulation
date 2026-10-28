@@ -1,10 +1,77 @@
 """Offline guard regressions; not model or provider-behavior evidence."""
 import ast
+import asyncio
+from contextlib import nullcontext
+import hashlib
+import json
+import os
 from pathlib import Path
+import sys
+import tempfile
+import time
+from types import SimpleNamespace as NS
 import unittest
+from unittest.mock import patch
+
+from rm02_deadline import ResourceIncident, EXIT_SECONDS
+from rm02_result import persist_result
+from rm02_watchdog import atomic_json
 
 
 class ProbeGuards(unittest.TestCase):
+    def run_main_offline(self, directory, *, cleanup_failure=False):
+        source = Path(__file__).with_name("modal_rm02.py")
+        tree = ast.parse(source.read_text())
+        main = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "main")
+        constants = {n.targets[0].id: ast.literal_eval(n.value) for n in tree.body
+                     if isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Name)
+                     and n.targets[0].id in ("CODE_REV", "WEIGHT_REV")}
+        frames = []
+        for index in range(4):
+            data = bytes([index])
+            name = f"frame-{index}.bin"
+            (directory / name).write_bytes(data)
+            frames.append(dict(path=name, bytes=len(data), sha256=hashlib.sha256(data).hexdigest()))
+        (directory / "input.json").write_text(json.dumps({"clip_id": "RM02", "sample": {"frames": frames}}))
+        data = b"synthetic-runner-output"
+        result = ({"output_bytes": len(data), "output_sha256": hashlib.sha256(data).hexdigest()}, data)
+        async def fake_guard(app, probe, args, record, **kwargs):
+            self.assertEqual(kwargs["deadline"], 1500 - EXIT_SECONDS)
+            self.assertEqual(kwargs["total_seconds"], 1140)
+            self.assertEqual(len(args[0]), 4)
+            kwargs["save_result"](result)
+            record({"synthetic": True})
+            if cleanup_failure:
+                raise ResourceIncident("synthetic cleanup failure")
+            return result
+        namespace = dict(constants, __file__=str(source), sys=NS(
+            stdout=NS(reconfigure=lambda **kw: None), stderr=NS(reconfigure=lambda **kw: None)),
+            INPUT_EVIDENCE=directory, FRAME_EVIDENCE=directory, EVIDENCE=directory,
+            Path=Path, hashlib=hashlib, json=json, time=time, os=os, asyncio=asyncio,
+            modal=NS(enable_output=nullcontext), app=object(), probe=object(),
+            guarded_probe=fake_guard, EXIT_SECONDS=EXIT_SECONDS,
+            atomic_json=atomic_json, persist_result=persist_result)
+        exec(compile(ast.Module(body=[main], type_ignores=[]), str(source), "exec"), namespace)
+        with patch.dict(os.environ, RM02_CHILD_DEADLINE="1500", RM02_CHILD_BUDGET="1140",
+                        RM02_WATCHDOG_RECEIPT=str(directory / "worker.json")):
+            namespace["main"]()
+
+    def test_actual_main_persists_pending_then_confirmed_without_importing_modal(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            self.run_main_offline(directory)
+            self.assertEqual((directory / "local/RM02-mapanything.npz").read_bytes(), b"synthetic-runner-output")
+            self.assertEqual(json.loads((directory / "result-received.json").read_text())["remote_cleanup_status"], "PENDING")
+            self.assertEqual(json.loads((directory / "gpu-result.json").read_text())["remote_cleanup_status"], "CONFIRMED")
+
+    def test_actual_main_preserves_pending_result_but_no_success_after_cleanup_failure(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            directory = Path(temporary)
+            with self.assertRaises(ResourceIncident):
+                self.run_main_offline(directory, cleanup_failure=True)
+            self.assertTrue((directory / "result-received.json").exists())
+            self.assertFalse((directory / "gpu-result.json").exists())
+
     def test_official_torch_binary_version_family(self):
         root = Path(__file__).parent
         for name in ("requirements.in", "requirements-linux-py311.txt"):
@@ -57,6 +124,10 @@ class ProbeGuards(unittest.TestCase):
         self.assertIn('RM02_WATCHDOG_RECEIPT', source)
         self.assertIn('atomic_json(', source)
         self.assertIn('RM02_CHILD_BUDGET', source)
+        self.assertIn('deadline=float(os.environ["RM02_CHILD_DEADLINE"]) - EXIT_SECONDS', source)
+        self.assertIn('save_result=lambda result: persist_result(EVIDENCE, result)', source)
+        self.assertIn('atomic_json(EVIDENCE / "gpu-result.json", receipt)', source)
+        self.assertNotIn('.write_bytes(data)', source[source.index('def main():'):])
         self.assertLess(source.index('if not os.environ.get("RM02_WATCHDOG_RECEIPT")'),
                         source.index('import modal'))
         self.assertIn('assert len(frames) == 4 and manifest["clip_id"] == "RM02"', source)

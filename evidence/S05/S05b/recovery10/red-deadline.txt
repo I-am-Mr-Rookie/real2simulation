@@ -1,0 +1,124 @@
+test_absolute_deadline_consumes_preflight_time (test_rm02_deadline.DeadlineTests.test_absolute_deadline_consumes_preflight_time) ... ERROR
+test_acknowledged_stop_without_fresh_confirmation_is_incident (test_rm02_deadline.DeadlineTests.test_acknowledged_stop_without_fresh_confirmation_is_incident) ... ok
+test_already_expired_clock_still_invokes_stop (test_rm02_deadline.DeadlineTests.test_already_expired_clock_still_invokes_stop) ... ok
+test_app_id_published_before_noncooperative_setup_finishes (test_rm02_deadline.DeadlineTests.test_app_id_published_before_noncooperative_setup_finishes) ... ok
+test_broken_evidence_write_does_not_skip_stop (test_rm02_deadline.DeadlineTests.test_broken_evidence_write_does_not_skip_stop) ... ok
+test_completed_result_does_not_require_running_snapshot (test_rm02_deadline.DeadlineTests.test_completed_result_does_not_require_running_snapshot) ... ok
+test_context_cleanup_failure_is_incident (test_rm02_deadline.DeadlineTests.test_context_cleanup_failure_is_incident) ... ok
+test_enqueue_timeout_without_call_handle_still_stops_app (test_rm02_deadline.DeadlineTests.test_enqueue_timeout_without_call_handle_still_stops_app) ... ok
+test_exhausted_absolute_deadline_never_enters_remote_setup (test_rm02_deadline.DeadlineTests.test_exhausted_absolute_deadline_never_enters_remote_setup) ... ERROR
+test_impossible_and_nonfinite_budget_never_sets_up (test_rm02_deadline.DeadlineTests.test_impossible_and_nonfinite_budget_never_sets_up) ... ok
+test_invalid_absolute_deadline_never_enters_remote_setup (test_rm02_deadline.DeadlineTests.test_invalid_absolute_deadline_never_enters_remote_setup) ... ERROR
+test_late_stop_ack_is_recorded_without_claiming_timely_success (test_rm02_deadline.DeadlineTests.test_late_stop_ack_is_recorded_without_claiming_timely_success) ... ok
+test_persistence_failure_still_stops_and_preserves_original_error (test_rm02_deadline.DeadlineTests.test_persistence_failure_still_stops_and_preserves_original_error) ... ERROR
+test_real_local_timer_bounds_hanging_get (test_rm02_deadline.DeadlineTests.test_real_local_timer_bounds_hanging_get) ... ok
+test_remote_exception_preserved_after_confirmed_cleanup (test_rm02_deadline.DeadlineTests.test_remote_exception_preserved_after_confirmed_cleanup) ... ok
+test_result_is_saved_before_stop_and_failed_cleanup_is_not_success (test_rm02_deadline.DeadlineTests.test_result_is_saved_before_stop_and_failed_cleanup_is_not_success) ... ERROR
+test_setup_consumes_admission_budget (test_rm02_deadline.DeadlineTests.test_setup_consumes_admission_budget) ... ok
+test_slow_cancellation_overshoot_preserves_timeout_and_stops (test_rm02_deadline.DeadlineTests.test_slow_cancellation_overshoot_preserves_timeout_and_stops) ... ok
+test_slow_cleanup_is_bounded_and_remains_incident (test_rm02_deadline.DeadlineTests.test_slow_cleanup_is_bounded_and_remains_incident) ... ok
+test_slow_queue_stops_at_admission_cutoff (test_rm02_deadline.DeadlineTests.test_slow_queue_stops_at_admission_cutoff) ... ok
+test_stop_failure_is_incident_not_success (test_rm02_deadline.DeadlineTests.test_stop_failure_is_incident_not_success) ... ok
+test_stop_invocation_not_recorded_as_rpc_dispatch_without_ack (test_rm02_deadline.DeadlineTests.test_stop_invocation_not_recorded_as_rpc_dispatch_without_ack) ... ok
+test_success_stops_and_confirms_before_return (test_rm02_deadline.DeadlineTests.test_success_stops_and_confirms_before_return) ... ok
+test_unobserved_setup_state_is_incident (test_rm02_deadline.DeadlineTests.test_unobserved_setup_state_is_incident) ... ok
+
+======================================================================
+ERROR: test_absolute_deadline_consumes_preflight_time (test_rm02_deadline.DeadlineTests.test_absolute_deadline_consumes_preflight_time)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 91, in test_absolute_deadline_consumes_preflight_time
+    await f.execute(deadline=1200)
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 80, in execute
+    return await guard.guarded_probe(self, self, (), self.records.append,
+                 ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                    clock=lambda: self.now, sleep=self.sleep, **kwargs)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: guarded_probe() got an unexpected keyword argument 'deadline'
+
+======================================================================
+ERROR: test_exhausted_absolute_deadline_never_enters_remote_setup (test_rm02_deadline.DeadlineTests.test_exhausted_absolute_deadline_never_enters_remote_setup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 99, in test_exhausted_absolute_deadline_never_enters_remote_setup
+    await f.execute(deadline=deadline)
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 80, in execute
+    return await guard.guarded_probe(self, self, (), self.records.append,
+                 ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                    clock=lambda: self.now, sleep=self.sleep, **kwargs)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: guarded_probe() got an unexpected keyword argument 'deadline'
+
+======================================================================
+ERROR: test_invalid_absolute_deadline_never_enters_remote_setup (test_rm02_deadline.DeadlineTests.test_invalid_absolute_deadline_never_enters_remote_setup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 107, in test_invalid_absolute_deadline_never_enters_remote_setup
+    await f.execute(deadline=deadline)
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 80, in execute
+    return await guard.guarded_probe(self, self, (), self.records.append,
+                 ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                    clock=lambda: self.now, sleep=self.sleep, **kwargs)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: guarded_probe() got an unexpected keyword argument 'deadline'
+
+======================================================================
+ERROR: test_persistence_failure_still_stops_and_preserves_original_error (test_rm02_deadline.DeadlineTests.test_persistence_failure_still_stops_and_preserves_original_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 128, in test_persistence_failure_still_stops_and_preserves_original_error
+    await f.execute(save_result=save)
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 80, in execute
+    return await guard.guarded_probe(self, self, (), self.records.append,
+                 ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                    clock=lambda: self.now, sleep=self.sleep, **kwargs)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: guarded_probe() got an unexpected keyword argument 'save_result'
+
+======================================================================
+ERROR: test_result_is_saved_before_stop_and_failed_cleanup_is_not_success (test_rm02_deadline.DeadlineTests.test_result_is_saved_before_stop_and_failed_cleanup_is_not_success)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 118, in test_result_is_saved_before_stop_and_failed_cleanup_is_not_success
+    await f.execute(save_result=save)
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_deadline.py", line 80, in execute
+    return await guard.guarded_probe(self, self, (), self.records.append,
+                 ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                    clock=lambda: self.now, sleep=self.sleep, **kwargs)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: guarded_probe() got an unexpected keyword argument 'save_result'
+
+----------------------------------------------------------------------
+Ran 24 tests in 4.567s
+
+FAILED (errors=5)

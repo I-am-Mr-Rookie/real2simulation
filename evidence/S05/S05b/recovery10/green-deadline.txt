@@ -1,0 +1,29 @@
+test_absolute_deadline_consumes_preflight_time (test_rm02_deadline.DeadlineTests.test_absolute_deadline_consumes_preflight_time) ... ok
+test_acknowledged_stop_without_fresh_confirmation_is_incident (test_rm02_deadline.DeadlineTests.test_acknowledged_stop_without_fresh_confirmation_is_incident) ... ok
+test_already_expired_clock_still_invokes_stop (test_rm02_deadline.DeadlineTests.test_already_expired_clock_still_invokes_stop) ... ok
+test_app_id_published_before_noncooperative_setup_finishes (test_rm02_deadline.DeadlineTests.test_app_id_published_before_noncooperative_setup_finishes) ... ok
+test_broken_evidence_write_does_not_skip_stop (test_rm02_deadline.DeadlineTests.test_broken_evidence_write_does_not_skip_stop) ... ok
+test_completed_result_does_not_require_running_snapshot (test_rm02_deadline.DeadlineTests.test_completed_result_does_not_require_running_snapshot) ... ok
+test_context_cleanup_failure_is_incident (test_rm02_deadline.DeadlineTests.test_context_cleanup_failure_is_incident) ... ok
+test_enqueue_timeout_without_call_handle_still_stops_app (test_rm02_deadline.DeadlineTests.test_enqueue_timeout_without_call_handle_still_stops_app) ... ok
+test_exhausted_absolute_deadline_never_enters_remote_setup (test_rm02_deadline.DeadlineTests.test_exhausted_absolute_deadline_never_enters_remote_setup) ... ok
+test_impossible_and_nonfinite_budget_never_sets_up (test_rm02_deadline.DeadlineTests.test_impossible_and_nonfinite_budget_never_sets_up) ... ok
+test_invalid_absolute_deadline_never_enters_remote_setup (test_rm02_deadline.DeadlineTests.test_invalid_absolute_deadline_never_enters_remote_setup) ... ok
+test_late_stop_ack_is_recorded_without_claiming_timely_success (test_rm02_deadline.DeadlineTests.test_late_stop_ack_is_recorded_without_claiming_timely_success) ... ok
+test_persistence_failure_still_stops_and_preserves_original_error (test_rm02_deadline.DeadlineTests.test_persistence_failure_still_stops_and_preserves_original_error) ... ok
+test_real_local_timer_bounds_hanging_get (test_rm02_deadline.DeadlineTests.test_real_local_timer_bounds_hanging_get) ... ok
+test_remote_exception_preserved_after_confirmed_cleanup (test_rm02_deadline.DeadlineTests.test_remote_exception_preserved_after_confirmed_cleanup) ... ok
+test_result_is_saved_before_stop_and_failed_cleanup_is_not_success (test_rm02_deadline.DeadlineTests.test_result_is_saved_before_stop_and_failed_cleanup_is_not_success) ... ok
+test_setup_consumes_admission_budget (test_rm02_deadline.DeadlineTests.test_setup_consumes_admission_budget) ... ok
+test_slow_cancellation_overshoot_preserves_timeout_and_stops (test_rm02_deadline.DeadlineTests.test_slow_cancellation_overshoot_preserves_timeout_and_stops) ... ok
+test_slow_cleanup_is_bounded_and_remains_incident (test_rm02_deadline.DeadlineTests.test_slow_cleanup_is_bounded_and_remains_incident) ... ok
+test_slow_queue_stops_at_admission_cutoff (test_rm02_deadline.DeadlineTests.test_slow_queue_stops_at_admission_cutoff) ... ok
+test_stop_failure_is_incident_not_success (test_rm02_deadline.DeadlineTests.test_stop_failure_is_incident_not_success) ... ok
+test_stop_invocation_not_recorded_as_rpc_dispatch_without_ack (test_rm02_deadline.DeadlineTests.test_stop_invocation_not_recorded_as_rpc_dispatch_without_ack) ... ok
+test_success_stops_and_confirms_before_return (test_rm02_deadline.DeadlineTests.test_success_stops_and_confirms_before_return) ... ok
+test_unobserved_setup_state_is_incident (test_rm02_deadline.DeadlineTests.test_unobserved_setup_state_is_incident) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 5.051s
+
+OK

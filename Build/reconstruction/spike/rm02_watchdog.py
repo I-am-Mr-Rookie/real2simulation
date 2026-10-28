@@ -32,6 +32,7 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
     worker_path = directory / "worker.json"
     receipt_path = directory / "watchdog.json"
     state = {"total_budget_s": total_seconds, "independent_reserve_s": reserve_seconds,
+             "child_deadline_monotonic": deadline - reserve_seconds,
              "watchdog_fired": False, "stop_attempted": False,
              "stop_process_started": False, "stop_dispatched": "NOT_VERIFIED",
              "stop_acknowledged": False, "independent_stop_confirmed": False,
@@ -45,7 +46,8 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
             state["errors"].append("evidence:" + type(exc).__name__)
 
     env = dict(os.environ, RM02_WATCHDOG_RECEIPT=str(worker_path.resolve()),
-               RM02_CHILD_BUDGET=str(total_seconds - reserve_seconds))
+               RM02_CHILD_BUDGET=str(total_seconds - reserve_seconds),
+               RM02_CHILD_DEADLINE=str(deadline - reserve_seconds))
     child = None
     try:
         with (directory / "client.log").open("wb") as log:

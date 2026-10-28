@@ -17,14 +17,21 @@ class ResourceIncident(RuntimeError):
 
 
 async def guarded_probe(app, probe, args, record, *, total_seconds=TOTAL_SECONDS,
-                        clock=time.monotonic, sleep=asyncio.sleep):
+                        clock=time.monotonic, sleep=asyncio.sleep,
+                        deadline=None, save_result=None):
     # Start before app.run(): image/function setup and queue wait consume this budget.
     started = clock()
     if not math.isfinite(total_seconds) or total_seconds <= (
             STARTUP_SECONDS + EXECUTION_SECONDS + CLEANUP_SECONDS):
         raise ValueError("Budget cannot admit startup, execution and cleanup")
     end = started + total_seconds
+    if deadline is not None:
+        if not math.isfinite(deadline) or deadline <= 0:
+            raise ValueError("Need a finite positive absolute deadline")
+        end = min(end, deadline)
     admission_end = end - STARTUP_SECONDS - EXECUTION_SECONDS - CLEANUP_SECONDS
+    if admission_end <= started:
+        raise TimeoutError("Absolute budget exhausted before remote setup")
     work_end = end - CLEANUP_SECONDS
 
     async def before(deadline, operation):
@@ -42,6 +49,7 @@ async def guarded_probe(app, probe, args, record, *, total_seconds=TOTAL_SECONDS
     call = None
     result_task = None
     receipt = {"total_budget_s": total_seconds, "stop_requested": False,
+               "absolute_deadline_monotonic": end, "remaining_at_start_s": end - started,
                "stop_attempted": False, "stop_dispatched": "NOT_VERIFIED",
                "stop_acknowledged": False, "remote_stop_confirmed": False,
                "admission_observed": False, "resource_incident": False}
@@ -81,9 +89,7 @@ async def guarded_probe(app, probe, args, record, *, total_seconds=TOTAL_SECONDS
         # A missed/late snapshot fails closed, not a claim of scheduler failure.
         while True:
             if result_task.done():
-                result = result_task.result()
-                receipt["result_received"] = True
-                return result
+                break
             stats = await before(admission_end, probe.get_current_stats.aio)
             if stats.num_running_inputs > 0:
                 receipt["admission_observed"] = True
@@ -91,6 +97,12 @@ async def guarded_probe(app, probe, args, record, *, total_seconds=TOTAL_SECONDS
             await before(admission_end, lambda: sleep(1))
         result = await result_task
         receipt["result_received"] = True
+        emit()
+        if save_result is not None:
+            # Preserve received bytes BEFORE cleanup, which can block until parent kill.
+            save_result(result)
+            receipt["result_persisted"] = True
+            emit()
         return result
     except BaseException as exc:
         receipt["caller_error"] = type(exc).__name__

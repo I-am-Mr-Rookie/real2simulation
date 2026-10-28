@@ -15,6 +15,8 @@ CHILD = '''
 import json, os, pathlib, signal, sys, time
 mode = sys.argv[1]
 path = pathlib.Path(os.environ["RM02_WATCHDOG_RECEIPT"])
+path.with_name("child-clock.json").write_text(json.dumps({
+    "deadline": float(os.environ["RM02_CHILD_DEADLINE"]), "observed": time.monotonic()}))
 if mode == "preflight_fail":
     sys.exit(9)
 if mode not in ("lost", "hang_lost"):
@@ -79,6 +81,9 @@ class WatchdogTests(unittest.TestCase):
         state = self.run_guard()
         self.assertTrue(state["independent_stop_confirmed"])
         self.assertTrue(state["stop_acknowledged"])
+        clock = json.loads((self.directory / "child-clock.json").read_text())
+        self.assertGreater(clock["deadline"], clock["observed"])
+        self.assertLess(clock["deadline"] - clock["observed"], .5)
         calls = [json.loads(line) for line in (self.root / "calls.jsonl").read_text().splitlines()]
         self.assertEqual(calls, [["app", "stop", APP_ID, "--yes"],
                                  ["app", "info", APP_ID, "--json"],
@@ -118,7 +123,9 @@ class WatchdogTests(unittest.TestCase):
         self.assertTrue(state["resource_incident"])
         self.assertTrue(state["stop_acknowledged"])
         self.assertFalse(state["independent_stop_confirmed"])
-        self.assertIn("verification:TimeoutError", state["errors"])
+        # Expiry may occur before Popen or during its bounded wait on Windows.
+        self.assertTrue(set(state["errors"]) & {
+            "verification:TimeoutError", "verification:TimeoutExpired"})
         self.assertLess(time.monotonic() - started, 3.5)
 
     def test_cli_json_uses_utf8_even_with_cp1252_parent_environment(self):
@@ -156,6 +163,50 @@ class WatchdogTests(unittest.TestCase):
         self.assertTrue(self.receipt()["resource_incident"])
         self.assertFalse(self.receipt()["independent_stop_confirmed"])
         self.assertFalse((self.root / "calls.jsonl").exists())
+
+    def test_actual_guard_preserves_payload_when_cleanup_blocks_until_parent_kill(self):
+        source = f'''
+import asyncio, hashlib, json, os, pathlib, sys
+sys.path.insert(0, {str(Path(__file__).parent.resolve())!r})
+import rm02_deadline as guard
+from rm02_watchdog import atomic_json
+from rm02_result import persist_result
+from test_rm02_deadline import Fake
+guard.STARTUP_SECONDS = .05
+guard.EXECUTION_SECONDS = .05
+guard.CLEANUP_SECONDS = .1
+guard.STOP_SECONDS = .05
+guard.EXIT_SECONDS = .02
+async def enter(self):
+    self.app_id = {APP_ID!r}
+    return self
+async def blocked_exit(self, *args):
+    while True:
+        pass
+Fake.__aenter__ = enter
+Fake.__aexit__ = blocked_exit
+f = Fake()
+data = b"synthetic-preserved-payload"
+f.result = ({{"output_bytes": len(data), "output_sha256": hashlib.sha256(data).hexdigest()}}, data)
+path = pathlib.Path(os.environ["RM02_WATCHDOG_RECEIPT"])
+asyncio.run(guard.guarded_probe(f, f, (), lambda state: atomic_json(path, state),
+    total_seconds=float(os.environ["RM02_CHILD_BUDGET"]),
+    deadline=float(os.environ["RM02_CHILD_DEADLINE"]) - .02,
+    save_result=lambda result: persist_result(path.parent, result)))
+'''
+        self.child.write_text(source, encoding="utf-8")
+        with self.assertRaisesRegex(RuntimeError, "Client failed"):
+            # Importing the real test fake is slower than the tiny child double.
+            watchdog.supervise([sys.executable, str(self.child)], self.directory,
+                               total_seconds=5, reserve_seconds=3,
+                               cli=[sys.executable, str(self.cli), "ok"])
+        self.assertEqual((self.directory / "local/RM02-mapanything.npz").read_bytes(),
+                         b"synthetic-preserved-payload")
+        pending = json.loads((self.directory / "result-received.json").read_text())
+        self.assertEqual(pending["remote_cleanup_status"], "PENDING")
+        self.assertFalse((self.directory / "gpu-result.json").exists())
+        self.assertTrue(self.receipt()["independent_stop_confirmed"])
+        self.assertTrue(self.receipt()["watchdog_fired"])
 
     def test_invalid_id_cannot_fall_back_to_name_resolution(self):
         with self.assertRaises(watchdog.ResourceIncident):
