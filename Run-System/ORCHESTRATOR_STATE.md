@@ -1,6 +1,22 @@
 # Orchestrator recovery checkpoint
 
-## CURRENT — genuine Q15 answer received; fresh private-transfer worker active
+## CURRENT — OWNER TAKEOVER; current run complete, orchestration STOPPED
+
+Latest direct instruction: I am taking over. Complete just the current run.
+S07b-auth-provision2 DONE accepted b9b3a73, six owned evidence/run files unchanged
+across rebase/verified FF. Current worker idle/completed; no other active workers.
+Saved Modal main real2simulation-hf-read/HF_TOKEN metadata verified from safe
+cropped image/receipt; timing PASS, five owned text files0 credential/email pattern
+matches (limited scan, not universal proof). Selected facebook/sam3.1 read token
+transfer recorded blind; no values/controller credential read or runtime probe.
+Parent S07b PARTIAL; remote retrieval/bytes/runtime NOT_VERIFIED. Do NOT recreate.
+55/203/gates/S12/$2.85/$30 unchanged. S05b F3 paid-admission HOLD remains.
+No new worker/follow-up/job/schedule/automatic continuation. Future work requires
+fresh direct owner instruction. Protected prefix/scratch worktrees retained.
+Owner RUNS removal of routine R4-R9 preserved in current run patch and mirrored
+out of open STATE reviews; no new approval inferred or stale notes regenerated.
+
+## Earlier — genuine Q15 answer received; private-transfer worker active
 
 Koushik directly answered exact pending action-time question: Confirm Create and
 private transfer. Receipt S07b-auth-provision2/CONFIRMATION.md; Q15 answered, no

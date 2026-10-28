@@ -2,6 +2,14 @@
 
 Scope: this event folder. Current phase: **building Real2Simulation** (solo, indie track). Nothing submitted.
 
+## Latest owner takeover — Oct28, after confirmed credential provision
+
+Koushik: "I am taking over. Complete just the current run". Finish only
+S07b-auth-provision2 verification/integration and stop orchestration. That private
+UI provisioning run is now accepted; no new worker, follow-up, job, schedule or
+automatic continuation. Earlier reappointment/continue instructions are superseded
+by this latest takeover. Future work needs a fresh direct owner instruction.
+
 ## Latest owner correction — strict full worker window
 
 Every new worker receives a full30-minute absolute timebox IN ITS HANDOUT PROMPT
