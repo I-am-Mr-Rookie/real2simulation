@@ -2,8 +2,8 @@
 
 - **RID/status:** S10ab-swarm / DONE (S10a and S10b leaves only)
 - **Lane:** CODEX-1 medium; synthetic-only owner authorization.
-- **Timebox:** issued `2026-10-28T17:11:15Z`; deadline remains `2026-10-28T17:41:15Z`; rework verified at `2026-10-28T17:22:05Z`. `TIMEBOX.json` is adjacent.
-- **Commit:** `ff7d96c` (product/evidence commit); report/timebox are committed separately below.
+- **Timebox:** issued `2026-10-28T17:11:15Z`; deadline `2026-10-28T17:41:15Z`; latest source correction stopped `2026-10-28T17:36:13Z`; this report recorded `2026-10-28T17:38:03Z`. `TIMEBOX.json` is adjacent.
+- **Commits:** prior history `ff7d96c`, `148ed9a`, `c89a10e`, `eb24f12`, `e16810e`; latest correction `4d51a83`.
 
 ## Changed paths
 
@@ -26,6 +26,10 @@
 - `node --test tests/simulator/simulator.test.mjs` — **3/3 pass**, exit 0.
 - `$env:PYTHONPATH='tests\\spec;tests\\simulator'; python -m unittest test_s10_adapter` — **2/2 pass**, exit 0; invalid spec cannot enter export.
 - `python contracts/scene/validate_scene.py test-data/synthetic/scene/room-v1/scene.json` — **PASS**, exit 0; synthetic and not Gate R evidence.
+
+## Latest correction preserved
+
+Commit `4d51a83` validates every RK4 intermediate state before calling the user dynamics callback and rejects sparse arrays using explicit index ownership checks, including sparse arrays carrying extra non-index properties. No source features were added after that correction.
 
 ## Limits / skipped work
 
