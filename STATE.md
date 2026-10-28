@@ -1,5 +1,17 @@
 # Real2Simulation — STATE
 
+## CURRENT — owner one-time inline swarm through Oct29 10:00 Dhaka
+
+Fresh direct owner instruction authorizes inline isolated simulation-only S10/S11
+and genuinely unblocked work until2026-10-29T04:00:00Z. Previous01:30 window is
+closed; new baseline77/205 atmain f82ed85. No automatic continuation/schedule or
+dispatcher. Full30m worker contracts;03:59:30UTC owner-stop for crossing windows.
+Native Claude only for required cross-vendor gate review/targeted re-review;
+owner explicitly says not to use Claude extensively. Codex handles coding,
+fixes/testing/routine review. Claude Code prohibited. PhysicalGateM/S12/realscenes,
+paidGPU/deploy/publish/accounts/terms/credentials remain locked. No approvals
+inferred. Report Run-System/Runs/SWARM-20261029-1000/REPORT.md.
+
 ## 19:24 UTC checkpoint — 01:30 owner window still ACTIVE
 
 S10g/h accepted simulation-only: actual IAB /lab Mystery Run -> Fit -> reveal,
