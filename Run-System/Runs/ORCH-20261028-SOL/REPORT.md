@@ -1,5 +1,22 @@
 # Orchestration resumed — Sol and Ponytail
 
+## Latest — independent stopped-app diagnosis dispatched (13:16UTC)
+
+- S07b local custody child remains active, Q11 pending unchanged; no repeat owner
+  message or result claim. Started useful disjoint S05b diagnostic6 fresh Sol/medium
+  child01a182a8-11f0-78d3-a246-164825093712 (Epicurus), clean reused s05b-recovery4/
+  run/S05b-diagnostic6 base127212a.15m source-read-only exact stopped-app telemetry/
+  official queue semantics, not another GPU attempt or failed-turn replacement.
+- Owns only diagnostic6 evidence/PLAN/REPORT. No app/function execution/retry,
+  media/weights/install/download, credentials/provider/settings/policy changes or
+  paid job. Concrete Ponytail evidence/reuse/checks/skips/risks required. Unknown
+  cause must stay unknown without evidence; propose bounded queue+execution next
+  step only, do not launch. Raw import proof and2.85 reserves/$30 retained.
+- Two useful lightweight sessions have disjoint checkouts/Owns, no heavy-resource
+  conflict or fixed concurrency cap. Controller alone writes controls/integrates;
+  generated checklist preserves original unstaged heading. Physical gates/S12
+  unchanged. Existing heartbeat canonical-first prompt remains applicable.
+
 ## Latest — exact SAM access question, independent custody continues (13:10UTC)
 
 - Accepted S07b recovery2 PARTIAL0f762f5:8 exact-owned evidence/report-only files,

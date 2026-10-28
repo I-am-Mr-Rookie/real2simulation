@@ -10,7 +10,8 @@ do not repeat access question or infer approval. Actual new custody REPORT pendi
 Claim independent S05b diagnostic6: fresh Sol/medium15m, exact accepted stopped
 app scheduling telemetry/documented queue semantics only, NO job/paid work/source
 edits. Reuse clean s05b-recovery4/new run/S05b-diagnostic6; exact contract
-Runs/S05b/DIAGNOSTIC-6.md. Actual child ID follows dispatch. Not another GPU attempt
+Runs/S05b/DIAGNOSTIC-6.md. Actual child01a182a8-11f0-78d3-a246-164825093712
+(Epicurus), fresh Sol/medium at127212a. Not another GPU attempt
 or replacement of a failed turn; recovery5 terminal already accepted/closed.
 Keep source read-only; Owns only diagnostic6 evidence/PLAN/REPORT, disjoint from
 S07b. Cause UNKNOWN until actual evidence, no capacity/model blame from stopped
