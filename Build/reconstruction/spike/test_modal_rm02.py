@@ -27,7 +27,8 @@ class ProbeGuards(unittest.TestCase):
                             "min_containers": 0, "max_containers": 1, "buffer_containers": 0,
                             "single_use_containers": True, "include_source": False}.items():
             self.assertEqual(options[name], value, name)
-        self.assertEqual(source.count("probe.remote("), 1)
+        self.assertNotIn("probe.remote(", source)
+        self.assertEqual(source.count("asyncio.run(guarded_probe("), 1)
         self.assertNotIn(".deploy(", source)
         self.assertNotIn("modal.Secret", source)
         self.assertIn('"facebook/map-anything-apache", revision=weight_rev', source)
@@ -38,19 +39,23 @@ class ProbeGuards(unittest.TestCase):
         self.assertIn('"-r", "/tmp/s05b-requirements.txt"', source)
         self.assertLess(source.index('"nvidia-smi"'), source.index('"pip", "install"'))
 
-    def test_resource_reservation_below_one_dollar(self):
-        bounded_compute = (900 + 90 + 2) * (.000222 + 2 * .0000131 + 16 * .00000222)
-        self.assertAlmostEqual(bounded_compute, .28145024)
-        self.assertLess(bounded_compute, .95)
+    def test_planned_compute_allowance_not_a_billing_or_stop_guarantee(self):
+        from rm02_deadline import TOTAL_SECONDS
+        planned_compute = TOTAL_SECONDS * (.000222 + 2 * .0000131 + 16 * .00000222)
+        self.assertAlmostEqual(planned_compute, .340464)
+        self.assertLess(planned_compute, .95)
         self.assertLessEqual(.95, 1)
 
-    def test_recovery5_output_and_explicit_stop(self):
+    def test_recovery7_output_preserves_recovery5_inputs_and_explicit_stop(self):
         source = Path(__file__).with_name("modal_rm02.py").read_text()
         self.assertIn('ROOT / "evidence/S05/S05b/recovery5"', source)
+        self.assertIn('(FRAME_EVIDENCE / frame["path"]).read_bytes()', source)
         self.assertIn('INPUT_EVIDENCE / "input.json"', source)
-        self.assertIn('finally:', source)
-        self.assertIn('app.stop()', source)
-        self.assertIn('"gpu-app.json"', source)
+        guard = Path(__file__).with_name("rm02_deadline.py").read_text()
+        self.assertIn('finally:', guard)
+        self.assertIn('app.stop.aio', guard)
+        self.assertIn('ROOT / "evidence/S05/S05b/recovery7"', source)
+        self.assertIn('"deadline.json"', source)
 
     def test_result_egress_boundary(self):
         tree = ast.parse(Path(__file__).with_name("modal_rm02.py").read_text())

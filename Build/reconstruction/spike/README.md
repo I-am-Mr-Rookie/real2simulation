@@ -54,3 +54,43 @@ verify recovered approved frames there, and explicitly stop apps on all outcomes
 Full$2.85 retained reserves pending exact billing. Do not repeat CPU installs,
 ask renewed consent or infer a model-compatibility/capacity diagnosis from waiting;
 controller decides any separately authorized scheduling follow-up. S05c stays locked.
+
+### Recovery7: LOCAL-ONLY caller deadline guard (not remotely verified)
+
+`rm02_deadline.py` replaces the unbounded `remote()` wait with one `spawn()` and
+one bounded result retrieval. Its monotonic **1200s total** starts before
+`app.run()` setup. It reserves 90s startup + 900s execution + 60s cleanup before
+admission: setup/enqueue and observation of a running input must finish within
+the first 150s. No observed admission by then means stop, not a scheduler diagnosis.
+A very fast completed result is also accepted; a missed running-input snapshot
+can conservatively reject a healthy job. No call-graph timing assumptions.
+
+Queue time, setup, result retrieval, explicit stop, fresh stop verification and
+context exit all consume the same caller budget. A result must arrive by 1140s;
+the remaining 60s reserves up to 20s for stop acknowledgement, verification through
+1190s, 5s for context exit and 5s for timer dispatch/local unwinding. Earlier
+failure/success starts cleanup immediately.
+Stop is attempted even when enqueue fails without returning a call ID. Unknown
+setup state, stop/verification/exit failure is a **resource incident**, not success.
+`deadline.json` distinguishes stop requested, acknowledged and confirmed. Confirmation
+requires refreshed app state `stopped` AND function runners/running inputs/backlog
+all zero. Stopping a client alone never confirms a remote stop.
+
+The SDK's asynchronous RPCs must cooperate with asyncio cancellation; this is
+local policy, **not a provider-enforced hard stop or a proven remote guarantee**.
+Event-loop scheduling/cancellation can overrun a timeout; network partitions,
+server lag and process death can leave remote state unknown.
+Do not release reservations or retry after an incident without reconciliation.
+The old 992s execution+startup+idle calculation was not an end-to-end deadline or
+guaranteed billing bound. A 1200s illustrative compute-rate calculation is about
+$0.340464, not current pricing, all-in cost, or proof of resource termination.
+Keep the $0.95 attempt reserve and full historical $2.85 pending actual billing.
+
+Read-only installed Modal1.6.3 source supports `App.run.aio`, `spawn.aio`,
+`FunctionCall.get.aio(timeout=...)`, `App.stop.aio`, `App.info.aio(refresh=True)`
+and `get_current_stats.aio`. Fake-only regressions do not verify cloud behavior.
+Inputs remain the four hash-checked recovery5 RM02 frames and historical manifest;
+new runtime receipts/results would be isolated under recovery7. No resources,
+dependencies, revisions, retries or licence approvals changed. This local change
+authorizes **no paid run**. Remote stop/runtime NOT_VERIFIED; parent S05b PARTIAL,
+Gate R NOT_RUN, S05c and physical/calibration/S12 holds unchanged.

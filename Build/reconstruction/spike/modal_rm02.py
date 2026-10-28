@@ -1,15 +1,18 @@
 """One authorized private RM02 probe; run locally, never deploy an endpoint."""
 import hashlib
+import asyncio
 import json
 from pathlib import Path
 import time
 import sys
 
 import modal
+from rm02_deadline import guarded_probe
 
 ROOT = Path(__file__).resolve().parents[3]
 INPUT_EVIDENCE = ROOT / "evidence/S05/S05b"
-EVIDENCE = ROOT / "evidence/S05/S05b/recovery5"
+FRAME_EVIDENCE = ROOT / "evidence/S05/S05b/recovery5"
+EVIDENCE = ROOT / "evidence/S05/S05b/recovery7"
 CODE_REV = "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9"
 WEIGHT_REV = "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a"
 app = modal.App("s05b-recovery5-rm02-private-probe")
@@ -112,7 +115,7 @@ def main():
     manifest = json.loads((INPUT_EVIDENCE / "input.json").read_text())
     frames = []
     for frame in manifest["sample"]["frames"]:
-        data = (EVIDENCE / frame["path"]).read_bytes()
+        data = (FRAME_EVIDENCE / frame["path"]).read_bytes()
         assert len(data) == frame["bytes"]
         assert hashlib.sha256(data).hexdigest() == frame["sha256"]
         frames.append((data, frame["sha256"]))
@@ -121,16 +124,15 @@ def main():
     assert CODE_REV in requirements and "numpy==2.2.6" in requirements
     started = time.time()
     EVIDENCE.mkdir(parents=True, exist_ok=True)
-    try:
-        with modal.enable_output(), app.run():
-            (EVIDENCE / "gpu-app.json").write_text(json.dumps({"app_id": app.app_id})+"\n")
-            print("S05B_APP_ID", app.app_id, flush=True)
-            receipt, data = probe.remote(frames, requirements, CODE_REV, WEIGHT_REV)
-    finally:
-        if app.app_id:
-            app.stop()
-            print("S05B_GPU_STOP_REQUESTED", app.app_id, flush=True)
+    def record_guard(state):
+        (EVIDENCE / "deadline.json").write_text(json.dumps(state, indent=2) + "\n")
+
+    with modal.enable_output():
+        receipt, data = asyncio.run(guarded_probe(
+            app, probe, (frames, requirements, CODE_REV, WEIGHT_REV), record_guard,
+        ))
     local = EVIDENCE / "local"
+    local.mkdir(parents=True, exist_ok=True)
     (local / "RM02-mapanything.npz").write_bytes(data)
     receipt.update(client_start_unix=started, client_end_unix=time.time())
     (EVIDENCE / "gpu-result.json").write_text(json.dumps(receipt, indent=2) + "\n")

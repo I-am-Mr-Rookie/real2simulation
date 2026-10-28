@@ -1,0 +1,51 @@
+LOCAL-ONLY verification 2026-10-28T14:15:21.6747927Z
+test_no_gpu_bounded_setup_and_installed_imports (test_cpu_import_probe.CpuImportGuards.test_no_gpu_bounded_setup_and_installed_imports) ... ok
+test_recovery5_receipts_do_not_overwrite_history (test_cpu_import_probe.CpuImportGuards.test_recovery5_receipts_do_not_overwrite_history) ... ok
+test_bounded_single_private_invocation (test_modal_rm02.ProbeGuards.test_bounded_single_private_invocation) ... ok
+test_official_torch_binary_version_family (test_modal_rm02.ProbeGuards.test_official_torch_binary_version_family) ... ok
+test_planned_compute_allowance_not_a_billing_or_stop_guarantee (test_modal_rm02.ProbeGuards.test_planned_compute_allowance_not_a_billing_or_stop_guarantee) ... ok
+test_recovery7_output_preserves_recovery5_inputs_and_explicit_stop (test_modal_rm02.ProbeGuards.test_recovery7_output_preserves_recovery5_inputs_and_explicit_stop) ... ok
+test_result_egress_boundary (test_modal_rm02.ProbeGuards.test_result_egress_boundary) ... ok
+test_acknowledged_stop_without_fresh_confirmation_is_incident (test_rm02_deadline.DeadlineTests.test_acknowledged_stop_without_fresh_confirmation_is_incident) ... ok
+test_broken_evidence_write_does_not_skip_stop (test_rm02_deadline.DeadlineTests.test_broken_evidence_write_does_not_skip_stop) ... ok
+test_completed_result_does_not_require_running_snapshot (test_rm02_deadline.DeadlineTests.test_completed_result_does_not_require_running_snapshot) ... ok
+test_context_cleanup_failure_is_incident (test_rm02_deadline.DeadlineTests.test_context_cleanup_failure_is_incident) ... ok
+test_enqueue_timeout_without_call_handle_still_stops_app (test_rm02_deadline.DeadlineTests.test_enqueue_timeout_without_call_handle_still_stops_app) ... ok
+test_impossible_and_nonfinite_budget_never_sets_up (test_rm02_deadline.DeadlineTests.test_impossible_and_nonfinite_budget_never_sets_up) ... ok
+test_real_local_timer_bounds_hanging_get (test_rm02_deadline.DeadlineTests.test_real_local_timer_bounds_hanging_get) ... ok
+test_remote_exception_preserved_after_confirmed_cleanup (test_rm02_deadline.DeadlineTests.test_remote_exception_preserved_after_confirmed_cleanup) ... ok
+test_setup_consumes_admission_budget (test_rm02_deadline.DeadlineTests.test_setup_consumes_admission_budget) ... ok
+test_slow_cleanup_is_bounded_and_remains_incident (test_rm02_deadline.DeadlineTests.test_slow_cleanup_is_bounded_and_remains_incident) ... ok
+test_slow_queue_stops_at_admission_cutoff (test_rm02_deadline.DeadlineTests.test_slow_queue_stops_at_admission_cutoff) ... ok
+test_stop_failure_is_incident_not_success (test_rm02_deadline.DeadlineTests.test_stop_failure_is_incident_not_success) ... ok
+test_success_stops_and_confirms_before_return (test_rm02_deadline.DeadlineTests.test_success_stops_and_confirms_before_return) ... ok
+test_unobserved_setup_state_is_incident (test_rm02_deadline.DeadlineTests.test_unobserved_setup_state_is_incident) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 6.037s
+
+OK
+test_asset_integrity_and_missing_asset (test_scene.SceneContractTests.test_asset_integrity_and_missing_asset) ... ok
+test_duplicate_ids_fail (test_scene.SceneContractTests.test_duplicate_ids_fail) ... ok
+test_gravity_direction_without_magnitude (test_scene.SceneContractTests.test_gravity_direction_without_magnitude) ... ok
+test_missing_required_field (test_scene.SceneContractTests.test_missing_required_field) ... ok
+test_ply_payload_rejected_even_with_correct_hash (test_scene.SceneContractTests.test_ply_payload_rejected_even_with_correct_hash) ... ok
+test_real_source_and_model_identity (test_scene.SceneContractTests.test_real_source_and_model_identity) ... ok
+test_reject_invalid_fields (test_scene.SceneContractTests.test_reject_invalid_fields) ... ok
+test_strict_json_parser (test_scene.SceneContractTests.test_strict_json_parser) ... ok
+test_unknown_fields_fail (test_scene.SceneContractTests.test_unknown_fields_fail) ... ok
+test_unknown_scale_is_explicit (test_scene.SceneContractTests.test_unknown_scale_is_explicit) ... ok
+test_valid_fixture_and_reduced_content (test_scene.SceneContractTests.test_valid_fixture_and_reduced_content) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 5.449s
+
+OK
+EXIT_CODES spike=0 scene=0 diff=0
+Closeout 2026-10-28T14:17:52Z:
+PASS: unchanged remote probe AST, including all resources/decorator and function body.
+PASS: four owned Python files AST parse without runner imports.
+PASS: PLAN/REPORT exist and all report links resolve.
+PASS: git diff --check; changed tracked/untracked paths are owned source/evidence only.
+Existing ignore rule hides exact PLAN/REPORT paths; controller force-add exact files only.
+No commit/staging/rebase/merge or canonical controls writes performed.
