@@ -15,9 +15,15 @@ relaxed; conservative unavailable is not a claimed physical/calibrated success.
 R13 sidecar independently verified actual Windows taskkill abort on controlled
 Python->Node trees, capacity replacement and no success/cleanup masking. All
 workers closed; archive requests queued or refused by active app attachment,
-never force-deleted. UI project association remains unverified: native move tool
-returns assigned ID but fresh list_threads projectId remains null. Canonical
-root and assigned contract project ID verified; no unsupported binding claim.
+never force-deleted. Parent visible UI accessibility observation corroborates
+Meta AI Hackathon project grouping; list_threads still projects projectId null.
+Canonical root/assigned project ID verified; child UI membership not independently
+verified. No further native Codex UI automation; see project-association receipt.
+
+At21:29UTC two isolated Sol/high bounded audits are live: R14-simulator-audit
+(numerical/analytic/replay invariants) and R14-instruments-audit (observation/
+quantity integrity), original full30m windows through21:59UTC. No product or
+queue completion inferred from dispatch. Controller owns serial integration.
 
 Round1 COMPLETE: four recovery leaves S10k/l/m and S11i accepted; queue81/210.
 Verified source/report/timebox, nativeClaude targeted re-review noP0-P2,

@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-28T21:21:04.153Z",
+  "updated_utc": "2026-10-28T21:30:21.920Z",
   "objective": "Maximum-speed authorized simulation-only swarm through 2026-10-29T04:00:00Z; no early closure",
   "canonical_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
   "completed_rounds": 3,
@@ -10,28 +10,43 @@
   "candidate": {
     "worktree": "C:/Users/HP/.codex/worktrees/swarm12-covariance-fix/2026-10-26 - Meta Global AI Developer Hackathon",
     "branch": "run/R12-covariance-fix",
-    "state": "Round3 accepted, staged control commit then FF main only; Build/contracts/fitter tests identical to reviewed9d240b0"
+    "state": "Round3 fast-forwarded to main74c886f; reviewed product9d240b0 unchanged"
   },
-  "active_workers": [],
-  "next": "Continue only genuinely useful authorized simulation verification; three generated ready items S02f/S05b/S07b are locked by current scope. Resolve UI project binding discrepancy before further dispatch, do not invent filler/new product scope.",
+  "active_workers": [
+    {
+      "id": "R14-simulator-audit",
+      "agent_id": "01a1846a-b230-7ac3-abe3-eb11c782ec15",
+      "issued_at": "2026-10-28T21:29:07.000Z",
+      "deadline_at": "2026-10-28T21:59:07.000Z",
+      "implementation_cutoff_at": "2026-10-28T21:54:07.000Z",
+      "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26 - Meta Global AI Developer Hackathon"
+    },
+    {
+      "id": "R14-instruments-audit",
+      "agent_id": "01a1846a-b71d-7233-a56e-ebfa26860808",
+      "issued_at": "2026-10-28T21:29:08.000Z",
+      "deadline_at": "2026-10-28T21:59:08.000Z",
+      "implementation_cutoff_at": "2026-10-28T21:54:08.000Z",
+      "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-instruments-audit/2026-10-26 - Meta Global AI Developer Hackathon"
+    }
+  ],
+  "next": "Two independent bounded Codex audits of uncovered S10 numerical invariants and S11 instrument observation integrity. Parent audits API contract and serializes controls/integration. Generated ready S02f/S05b/S07b remain outside locked scope.",
   "owner_stop": {
     "deadline": "2026-10-29T04:00:00Z",
     "crossing_worker_stop_receipt": "2026-10-29T03:59:30Z",
     "overall_no_new_implementation": "2026-10-29T03:55:00Z"
   },
   "servers": {
-    "canonical3100": "owned main dev remains",
+    "canonical3100": "LISTENING PID16808 verified21:28UTC; owned main dev",
     "recovery3101": {
       "session_id": 57559,
-      "state": "R12 candidate active; stop redundant server after FF"
+      "state": "STOPPED through owned session afterFF; socket CLOSED verified21:28UTC"
     },
     "production3102": "CLOSED"
   },
   "browser": {
     "kind": "ChatGPT IAB only",
-    "tab_id": "3",
-    "url": "http://127.0.0.1:3101/lab",
-    "viewport": "375x812; reset/close after final evidence",
+    "state": "Temporary tab3 closed and viewport reset after final evidence; no active verification tab",
     "proof": "evidence/S11/covariance-recovery/iab-mystery-375.png"
   },
   "project_binding": {
@@ -39,7 +54,7 @@
     "canonical_root_verified": true,
     "move_api_returned_assigned_id": true,
     "fresh_list_threads_projectId": null,
-    "state": "Not verified; no unsupported binding claim. R13 contract corrected. No provider/config workaround."
+    "state": "Parent visible UI accessibility observation corroborated Meta AI Hackathon grouping; API projection still null. No independent childUI binding claim; inherited project/root recorded."
   },
   "automation": {
     "id": "maximum-speed-swarm-until-10-a-m",
@@ -47,7 +62,8 @@
     "until": "2026-10-29T04:00:00Z",
     "prompt": "Go at maximum speed. Keep working until 10 a.m.",
     "configuration_verified": true,
-    "last_delivery_audit": "20:43UTC ACTIVE,last_run_at null,zero execution receipts; actual delivery unverified"
+    "last_delivery_audit": "21:27UTC ACTIVE correct5min target/prompt, last_run_at null, zero execution receipts; actual delivery unverified",
+    "until_semantics": "Owner work-stop deadline; TOML shows recurring interval without expiry field. At04:00UTC pause via supported API; do not claim scheduler auto-expiry."
   },
   "holds": [
     "PhysicalGateM NOT_MET_INPUT_READINESS",
@@ -65,5 +81,6 @@
     "native_review": "../R12-covariance-review/FOLLOWUP.md",
     "real_process": "../R13-process-lifecycle/REPORT.md"
   },
-  "cleanup": "All worker handles closed; some archive requests queued, UI/bundle checkouts denied active-attachment. Never force-delete; managed snapshots remain recoverable."
+  "cleanup": "R10-R13 handles closed; R14 audits active. Some archive requests queued/denied active-attachment; never force-delete.",
+  "main_fast_forward": "74c886f"
 }

@@ -147,3 +147,21 @@ corroborated by fresh list_threads (still null), so no binding claim.
 This goal turn made verified source/test/UI/integration progress. Full owner
 window still runs through04:00UTC; do not mark goal complete early, expand locked
 scope or invent product work just to fill time.
+
+## R14 preparation — speed correction
+
+Owner explicitly requests maximum-speed army parallelism. Two isolated Sol/high
+audits issued21:29:07/08UTC, deadlines21:59:07/08UTC, minute25cutoffs21:54:07/08.
+Six additional disjoint worktrees are being prepared for replay, model selection,
+Mystery privacy, service request/state boundaries, client contract, and requirement
+reconciliation. Preparation is not a live worker or completion claim. No duplicate
+numeric/covariance/lifecycle build. Parent serializes actual IAB and integration.
+
+Last scheduler audit21:27UTC: ACTIVE, correct5min interval/prompt/chat, but null
+last_run_at and zero execution receipts. Delivery remains unverified; continued
+goal progress is independent of heartbeat. TOML has no end-date field:04:00UTC is
+owner stop, not verified scheduler auto-expiry; pause then through official API.
+Parent project UI corroboration/API discrepancy and readonly skill restriction
+recorded in PROJECT-ASSOCIATION.md. Canonical3100 listeningPID16808; redundant
+3101/production3102 closed by fresh socket probe. Previous goal turn yielded this
+fresh scheduler evidence; this turn dispatches scoped work and corrects controls.
