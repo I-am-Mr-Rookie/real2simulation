@@ -45,10 +45,13 @@ test('allowlists, expiry and bounded session errors are clean', async () => {
 
 test('aborting an active bridge settles and releases its capacity', async () => {
   const controller = new AbortController();
+  const count = _sessionTest.sessions.size;
   const pending = handleLab({ action: 'start', template: 'free_fall', mystery: false }, { signal: controller.signal });
   assert.equal(_sessionTest.getActiveBridges(), 1);
   controller.abort();
-  assert.equal((await pending).status, 'error');
+  assert.equal(controller.signal.aborted, true);
+  assert.deepEqual(await pending, { status: 'error', error: { code: 'lab_request_failed' } });
+  assert.equal(_sessionTest.sessions.size, count);
   assert.equal(_sessionTest.getActiveBridges(), 0);
 });
 
