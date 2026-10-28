@@ -1,0 +1,27 @@
+{
+ "hi_edge": true,
+ "hi_next": false,
+ "hi_edge_err": 0.05000000000000008,
+ "lo_edge_err": 0.05000000000000008,
+ "bool_g_measured": 2,
+ "inf": false,
+ "nan": false,
+ "dict_self_flag": false,
+ "eq_true_obj": false,
+ "zwsp_ids": 3,
+ "nbsp_ids": 2,
+ "nfc_nfd_ids": 3,
+ "cov_truthy_1": false,
+ "blockers_str": false,
+ "four_trials": false,
+ "unmeasured_third": "NOT_MET",
+ "float_subclass": {
+  "status": "NOT_MET_INPUT_READINESS",
+  "physics_evaluation": "NOT_RUN",
+  "measured_count": 0,
+  "gate_passed": false
+ },
+ "nonstr_groups": 0,
+ "nondict": "AttributeError",
+ "generator": "TypeError"
+}
