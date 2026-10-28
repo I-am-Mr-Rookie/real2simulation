@@ -17,6 +17,7 @@ test('lab layout collapses before the narrow mobile viewport', () => {
   assert.match(css, /max-width: 390px/);
   assert.match(css, /overflow-x: auto/);
   assert.match(css, /grid-template-columns: 1fr/);
+  assert.match(css, /\.reveal \{[^}]*overflow-wrap: anywhere/);
 });
 
 test('both request paths retain abort and stale-result guards before state updates', () => {

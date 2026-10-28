@@ -31,7 +31,7 @@ button:disabled { cursor: not-allowed; opacity: .55; }
 table { width: 100%; border-collapse: collapse; font-size: .9rem; }
 caption { text-align: left; font-weight: 700; margin-bottom: .4rem; }
 th, td { padding: .45rem .6rem; border-bottom: 1px solid var(--rule); text-align: left; }
-.reveal { margin-top: 1rem; padding: 1rem; border-left: 4px solid var(--blue); background: #eef6fb; }
+.reveal { margin-top: 1rem; padding: 1rem; border-left: 4px solid var(--blue); background: #eef6fb; overflow-wrap: anywhere; }
 .reveal p { margin: 0; }
 .limitations { margin: 1.2rem 0 0; }
 @media (max-width: 650px) { .template-grid { grid-template-columns: repeat(2, 1fr); } }
