@@ -1,0 +1,1192 @@
+{
+  "utc": "2026-10-28T14:22:49.4889347Z",
+  "acquisition_record": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\clips\\S02c-acquisition.json",
+  "acquisition_record_sha256": "6902f137799919c3750bbd1d07f171041404cb15eec414920982399c8a6d1a8a",
+  "deletion_enabled": false,
+  "deleted_files": 0,
+  "deleted_logical_bytes": 0,
+  "maps": [
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\AP15.m4v",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\AP15.m4v",
+      "relative_path": "test-data/public/AP15.m4v",
+      "bytes": 21279042,
+      "sha256": "687ceb04eb3f88f0900c015727a89b9c8b38f4afc6249ba504b8dbc8c9322cc5",
+      "canonical_sha256": "687ceb04eb3f88f0900c015727a89b9c8b38f4afc6249ba504b8dbc8c9322cc5",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/AP15.m4v"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "687ceb04eb3f88f0900c015727a89b9c8b38f4afc6249ba504b8dbc8c9322cc5"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\BN01.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\BN01.webm",
+      "relative_path": "test-data/public/BN01.webm",
+      "bytes": 75465750,
+      "sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+      "canonical_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/BN01.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\BN02.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\BN02.webm",
+      "relative_path": "test-data/public/BN02.webm",
+      "bytes": 7088670,
+      "sha256": "9240bc3d183e2dddca04dd9c2d4741a0c5b969281f7d80430d29e1488d219aa2",
+      "canonical_sha256": "9240bc3d183e2dddca04dd9c2d4741a0c5b969281f7d80430d29e1488d219aa2",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/BN02.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "9240bc3d183e2dddca04dd9c2d4741a0c5b969281f7d80430d29e1488d219aa2"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\FF01.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\FF01.webm",
+      "relative_path": "test-data/public/FF01.webm",
+      "bytes": 22312361,
+      "sha256": "df46212c259bf4504fb822a182965f4e73771a93e8cd120e83dfd6b00ee1091c",
+      "canonical_sha256": "df46212c259bf4504fb822a182965f4e73771a93e8cd120e83dfd6b00ee1091c",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/FF01.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "df46212c259bf4504fb822a182965f4e73771a93e8cd120e83dfd6b00ee1091c"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\FF02.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\FF02.webm",
+      "relative_path": "test-data/public/FF02.webm",
+      "bytes": 40268504,
+      "sha256": "83e175df3e4cb8ed78bc1be13be5c0fa484a9bdd92cef68babf9b9613af7318b",
+      "canonical_sha256": "83e175df3e4cb8ed78bc1be13be5c0fa484a9bdd92cef68babf9b9613af7318b",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/FF02.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "83e175df3e4cb8ed78bc1be13be5c0fa484a9bdd92cef68babf9b9613af7318b"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\PD01.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PD01.webm",
+      "relative_path": "test-data/public/PD01.webm",
+      "bytes": 31620724,
+      "sha256": "0137aa2d2c5561223305db4796a2fcd9cb62eff084482838aaf1539e0d36edd5",
+      "canonical_sha256": "0137aa2d2c5561223305db4796a2fcd9cb62eff084482838aaf1539e0d36edd5",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PD01.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "0137aa2d2c5561223305db4796a2fcd9cb62eff084482838aaf1539e0d36edd5"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\PD02.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PD02.mp4",
+      "relative_path": "test-data/public/PD02.mp4",
+      "bytes": 7886803,
+      "sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+      "canonical_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PD02.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\PD03.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PD03.mp4",
+      "relative_path": "test-data/public/PD03.mp4",
+      "bytes": 19473372,
+      "sha256": "ae1f5d36576555579d4b80cb17928a44bb28f0511260cbf5a5963d009bce1c08",
+      "canonical_sha256": "ae1f5d36576555579d4b80cb17928a44bb28f0511260cbf5a5963d009bce1c08",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PD03.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "ae1f5d36576555579d4b80cb17928a44bb28f0511260cbf5a5963d009bce1c08"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\PD04.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PD04.webm",
+      "relative_path": "test-data/public/PD04.webm",
+      "bytes": 1759473,
+      "sha256": "b51517e260e620b306a91f8b2dbd1cc8c2fa8d74250cc05e5210cfe7f8f4315a",
+      "canonical_sha256": "b51517e260e620b306a91f8b2dbd1cc8c2fa8d74250cc05e5210cfe7f8f4315a",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PD04.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "b51517e260e620b306a91f8b2dbd1cc8c2fa8d74250cc05e5210cfe7f8f4315a"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\PD06.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PD06.webm",
+      "relative_path": "test-data/public/PD06.webm",
+      "bytes": 8354737,
+      "sha256": "7acc8013f60cd476d82e3acebc63d8846fe6e4db4201e031fd9efa8dc307eed4",
+      "canonical_sha256": "7acc8013f60cd476d82e3acebc63d8846fe6e4db4201e031fd9efa8dc307eed4",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PD06.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "7acc8013f60cd476d82e3acebc63d8846fe6e4db4201e031fd9efa8dc307eed4"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\PJ01.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PJ01.webm",
+      "relative_path": "test-data/public/PJ01.webm",
+      "bytes": 6565513,
+      "sha256": "63527278ddbfd5ada6746ab166425e1a4453d74f1d4be43d2135457e490d8fa6",
+      "canonical_sha256": "63527278ddbfd5ada6746ab166425e1a4453d74f1d4be43d2135457e490d8fa6",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PJ01.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "63527278ddbfd5ada6746ab166425e1a4453d74f1d4be43d2135457e490d8fa6"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\PJ03.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PJ03.webm",
+      "relative_path": "test-data/public/PJ03.webm",
+      "bytes": 23039896,
+      "sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+      "canonical_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PJ03.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\RM02.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\RM02.mp4",
+      "relative_path": "test-data/public/RM02.mp4",
+      "bytes": 12422117,
+      "sha256": "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720",
+      "canonical_sha256": "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/RM02.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\RM04.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\RM04.mp4",
+      "relative_path": "test-data/public/RM04.mp4",
+      "bytes": 25336829,
+      "sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+      "canonical_sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/RM04.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\RM05.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\RM05.mp4",
+      "relative_path": "test-data/public/RM05.mp4",
+      "bytes": 175967822,
+      "sha256": "53b9f050e8e8c62ac698236ed6107fd6c51636ed3fc79ba6b41caefcdf3ffbcf",
+      "canonical_sha256": "53b9f050e8e8c62ac698236ed6107fd6c51636ed3fc79ba6b41caefcdf3ffbcf",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/RM05.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "53b9f050e8e8c62ac698236ed6107fd6c51636ed3fc79ba6b41caefcdf3ffbcf"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\ST03.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\ST03.mp4",
+      "relative_path": "test-data/public/ST03.mp4",
+      "bytes": 5457582,
+      "sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+      "canonical_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/ST03.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\shards\\NASA\\N1.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\shards\\NASA\\N1.mp4",
+      "relative_path": "test-data/public/shards/NASA/N1.mp4",
+      "bytes": 49413365,
+      "sha256": "30ee98a31f2579f19239aa5e24373333e02e9bfce0f87f2674bfc84d21f9a927",
+      "canonical_sha256": "30ee98a31f2579f19239aa5e24373333e02e9bfce0f87f2674bfc84d21f9a927",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/shards/NASA/N1.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "30ee98a31f2579f19239aa5e24373333e02e9bfce0f87f2674bfc84d21f9a927"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\shards\\NASA\\N2.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\shards\\NASA\\N2.mp4",
+      "relative_path": "test-data/public/shards/NASA/N2.mp4",
+      "bytes": 44386565,
+      "sha256": "32475c740460c1ead4ff7117590a8a0022480dba6afdafca6a7d43dc03e85051",
+      "canonical_sha256": "32475c740460c1ead4ff7117590a8a0022480dba6afdafca6a7d43dc03e85051",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/shards/NASA/N2.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "32475c740460c1ead4ff7117590a8a0022480dba6afdafca6a7d43dc03e85051"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\public\\shards\\NASA\\N3.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\shards\\NASA\\N3.mp4",
+      "relative_path": "test-data/public/shards/NASA/N3.mp4",
+      "bytes": 46599811,
+      "sha256": "10ddf155a3733192d1b2fc1e41c10d78854a346515a55388ecf523250aa1b27f",
+      "canonical_sha256": "10ddf155a3733192d1b2fc1e41c10d78854a346515a55388ecf523250aa1b27f",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/shards/NASA/N3.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "10ddf155a3733192d1b2fc1e41c10d78854a346515a55388ecf523250aa1b27f"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\synthetic\\scene\\.gitattributes",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\synthetic\\scene\\.gitattributes",
+      "relative_path": "test-data/synthetic/scene/.gitattributes",
+      "bytes": 33,
+      "sha256": "85c9f9d181892d9ade06f51ebfc2aa93630aad9bf4db2fadb76b45b0b85cdcbf",
+      "canonical_sha256": "85c9f9d181892d9ade06f51ebfc2aa93630aad9bf4db2fadb76b45b0b85cdcbf",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/synthetic/scene/.gitattributes"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [],
+      "acquisition_hash_matches": false,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE",
+        "NO_UNAMBIGUOUS_ACQUISITION_HASH"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\synthetic\\scene\\room-v1\\points.ply",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\synthetic\\scene\\room-v1\\points.ply",
+      "relative_path": "test-data/synthetic/scene/room-v1/points.ply",
+      "bytes": 418,
+      "sha256": "5644bcc95346de0f41fb62d1c7e3189bd15edd7e8e2faa1e97ea88b7e9f68e6f",
+      "canonical_sha256": "5644bcc95346de0f41fb62d1c7e3189bd15edd7e8e2faa1e97ea88b7e9f68e6f",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/synthetic/scene/room-v1/points.ply"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [],
+      "acquisition_hash_matches": false,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE",
+        "NO_UNAMBIGUOUS_ACQUISITION_HASH"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data\\synthetic\\scene\\room-v1\\scene.json",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\synthetic\\scene\\room-v1\\scene.json",
+      "relative_path": "test-data/synthetic/scene/room-v1/scene.json",
+      "bytes": 2058,
+      "sha256": "966870a0a0395effc36db139a021e8260dfe7ece5d38f61328fe09832b1b599a",
+      "canonical_sha256": "966870a0a0395effc36db139a021e8260dfe7ece5d38f61328fe09832b1b599a",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/synthetic/scene/room-v1/scene.json"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [],
+      "acquisition_hash_matches": false,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE",
+        "NO_UNAMBIGUOUS_ACQUISITION_HASH"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\AP15.m4v",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\AP15.m4v",
+      "relative_path": "test-data/public/AP15.m4v",
+      "bytes": 21279042,
+      "sha256": "687ceb04eb3f88f0900c015727a89b9c8b38f4afc6249ba504b8dbc8c9322cc5",
+      "canonical_sha256": "687ceb04eb3f88f0900c015727a89b9c8b38f4afc6249ba504b8dbc8c9322cc5",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/AP15.m4v"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "687ceb04eb3f88f0900c015727a89b9c8b38f4afc6249ba504b8dbc8c9322cc5"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\BN01.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\BN01.webm",
+      "relative_path": "test-data/public/BN01.webm",
+      "bytes": 75465750,
+      "sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+      "canonical_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/BN01.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\BN02.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\BN02.webm",
+      "relative_path": "test-data/public/BN02.webm",
+      "bytes": 7088670,
+      "sha256": "9240bc3d183e2dddca04dd9c2d4741a0c5b969281f7d80430d29e1488d219aa2",
+      "canonical_sha256": "9240bc3d183e2dddca04dd9c2d4741a0c5b969281f7d80430d29e1488d219aa2",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/BN02.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "9240bc3d183e2dddca04dd9c2d4741a0c5b969281f7d80430d29e1488d219aa2"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\FF01.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\FF01.webm",
+      "relative_path": "test-data/public/FF01.webm",
+      "bytes": 22312361,
+      "sha256": "df46212c259bf4504fb822a182965f4e73771a93e8cd120e83dfd6b00ee1091c",
+      "canonical_sha256": "df46212c259bf4504fb822a182965f4e73771a93e8cd120e83dfd6b00ee1091c",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/FF01.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "df46212c259bf4504fb822a182965f4e73771a93e8cd120e83dfd6b00ee1091c"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\FF02.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\FF02.webm",
+      "relative_path": "test-data/public/FF02.webm",
+      "bytes": 40268504,
+      "sha256": "83e175df3e4cb8ed78bc1be13be5c0fa484a9bdd92cef68babf9b9613af7318b",
+      "canonical_sha256": "83e175df3e4cb8ed78bc1be13be5c0fa484a9bdd92cef68babf9b9613af7318b",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/FF02.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "83e175df3e4cb8ed78bc1be13be5c0fa484a9bdd92cef68babf9b9613af7318b"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\PD01.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PD01.webm",
+      "relative_path": "test-data/public/PD01.webm",
+      "bytes": 31620724,
+      "sha256": "0137aa2d2c5561223305db4796a2fcd9cb62eff084482838aaf1539e0d36edd5",
+      "canonical_sha256": "0137aa2d2c5561223305db4796a2fcd9cb62eff084482838aaf1539e0d36edd5",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PD01.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "0137aa2d2c5561223305db4796a2fcd9cb62eff084482838aaf1539e0d36edd5"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\PD02.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PD02.mp4",
+      "relative_path": "test-data/public/PD02.mp4",
+      "bytes": 7886803,
+      "sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+      "canonical_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PD02.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\PD03.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PD03.mp4",
+      "relative_path": "test-data/public/PD03.mp4",
+      "bytes": 19473372,
+      "sha256": "ae1f5d36576555579d4b80cb17928a44bb28f0511260cbf5a5963d009bce1c08",
+      "canonical_sha256": "ae1f5d36576555579d4b80cb17928a44bb28f0511260cbf5a5963d009bce1c08",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PD03.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "ae1f5d36576555579d4b80cb17928a44bb28f0511260cbf5a5963d009bce1c08"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\PD04.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PD04.webm",
+      "relative_path": "test-data/public/PD04.webm",
+      "bytes": 1759473,
+      "sha256": "b51517e260e620b306a91f8b2dbd1cc8c2fa8d74250cc05e5210cfe7f8f4315a",
+      "canonical_sha256": "b51517e260e620b306a91f8b2dbd1cc8c2fa8d74250cc05e5210cfe7f8f4315a",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PD04.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "b51517e260e620b306a91f8b2dbd1cc8c2fa8d74250cc05e5210cfe7f8f4315a"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\PD06.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PD06.webm",
+      "relative_path": "test-data/public/PD06.webm",
+      "bytes": 8354737,
+      "sha256": "7acc8013f60cd476d82e3acebc63d8846fe6e4db4201e031fd9efa8dc307eed4",
+      "canonical_sha256": "7acc8013f60cd476d82e3acebc63d8846fe6e4db4201e031fd9efa8dc307eed4",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PD06.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "7acc8013f60cd476d82e3acebc63d8846fe6e4db4201e031fd9efa8dc307eed4"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\PJ01.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PJ01.webm",
+      "relative_path": "test-data/public/PJ01.webm",
+      "bytes": 6565513,
+      "sha256": "63527278ddbfd5ada6746ab166425e1a4453d74f1d4be43d2135457e490d8fa6",
+      "canonical_sha256": "63527278ddbfd5ada6746ab166425e1a4453d74f1d4be43d2135457e490d8fa6",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PJ01.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "63527278ddbfd5ada6746ab166425e1a4453d74f1d4be43d2135457e490d8fa6"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\PJ03.webm",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\PJ03.webm",
+      "relative_path": "test-data/public/PJ03.webm",
+      "bytes": 23039896,
+      "sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+      "canonical_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/PJ03.webm"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\RM02.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\RM02.mp4",
+      "relative_path": "test-data/public/RM02.mp4",
+      "bytes": 12422117,
+      "sha256": "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720",
+      "canonical_sha256": "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/RM02.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\RM04.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\RM04.mp4",
+      "relative_path": "test-data/public/RM04.mp4",
+      "bytes": 25336829,
+      "sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+      "canonical_sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/RM04.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\RM05.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\RM05.mp4",
+      "relative_path": "test-data/public/RM05.mp4",
+      "bytes": 175967822,
+      "sha256": "53b9f050e8e8c62ac698236ed6107fd6c51636ed3fc79ba6b41caefcdf3ffbcf",
+      "canonical_sha256": "53b9f050e8e8c62ac698236ed6107fd6c51636ed3fc79ba6b41caefcdf3ffbcf",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/RM05.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "53b9f050e8e8c62ac698236ed6107fd6c51636ed3fc79ba6b41caefcdf3ffbcf"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\ST03.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\ST03.mp4",
+      "relative_path": "test-data/public/ST03.mp4",
+      "bytes": 5457582,
+      "sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+      "canonical_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/ST03.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\shards\\NASA\\N1.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\shards\\NASA\\N1.mp4",
+      "relative_path": "test-data/public/shards/NASA/N1.mp4",
+      "bytes": 49413365,
+      "sha256": "30ee98a31f2579f19239aa5e24373333e02e9bfce0f87f2674bfc84d21f9a927",
+      "canonical_sha256": "30ee98a31f2579f19239aa5e24373333e02e9bfce0f87f2674bfc84d21f9a927",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/shards/NASA/N1.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "30ee98a31f2579f19239aa5e24373333e02e9bfce0f87f2674bfc84d21f9a927"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\shards\\NASA\\N2.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\shards\\NASA\\N2.mp4",
+      "relative_path": "test-data/public/shards/NASA/N2.mp4",
+      "bytes": 44386565,
+      "sha256": "32475c740460c1ead4ff7117590a8a0022480dba6afdafca6a7d43dc03e85051",
+      "canonical_sha256": "32475c740460c1ead4ff7117590a8a0022480dba6afdafca6a7d43dc03e85051",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/shards/NASA/N2.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "32475c740460c1ead4ff7117590a8a0022480dba6afdafca6a7d43dc03e85051"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\public\\shards\\NASA\\N3.mp4",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\shards\\NASA\\N3.mp4",
+      "relative_path": "test-data/public/shards/NASA/N3.mp4",
+      "bytes": 46599811,
+      "sha256": "10ddf155a3733192d1b2fc1e41c10d78854a346515a55388ecf523250aa1b27f",
+      "canonical_sha256": "10ddf155a3733192d1b2fc1e41c10d78854a346515a55388ecf523250aa1b27f",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/public/shards/NASA/N3.mp4"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [
+        "10ddf155a3733192d1b2fc1e41c10d78854a346515a55388ecf523250aa1b27f"
+      ],
+      "acquisition_hash_matches": true,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\synthetic\\scene\\.gitattributes",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\synthetic\\scene\\.gitattributes",
+      "relative_path": "test-data/synthetic/scene/.gitattributes",
+      "bytes": 33,
+      "sha256": "85c9f9d181892d9ade06f51ebfc2aa93630aad9bf4db2fadb76b45b0b85cdcbf",
+      "canonical_sha256": "85c9f9d181892d9ade06f51ebfc2aa93630aad9bf4db2fadb76b45b0b85cdcbf",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/synthetic/scene/.gitattributes"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [],
+      "acquisition_hash_matches": false,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE",
+        "NO_UNAMBIGUOUS_ACQUISITION_HASH"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\synthetic\\scene\\room-v1\\points.ply",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\synthetic\\scene\\room-v1\\points.ply",
+      "relative_path": "test-data/synthetic/scene/room-v1/points.ply",
+      "bytes": 418,
+      "sha256": "5644bcc95346de0f41fb62d1c7e3189bd15edd7e8e2faa1e97ea88b7e9f68e6f",
+      "canonical_sha256": "5644bcc95346de0f41fb62d1c7e3189bd15edd7e8e2faa1e97ea88b7e9f68e6f",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/synthetic/scene/room-v1/points.ply"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [],
+      "acquisition_hash_matches": false,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE",
+        "NO_UNAMBIGUOUS_ACQUISITION_HASH"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    },
+    {
+      "candidate": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data\\synthetic\\scene\\room-v1\\scene.json",
+      "allowed_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\S02c1\\test-data",
+      "canonical": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\synthetic\\scene\\room-v1\\scene.json",
+      "relative_path": "test-data/synthetic/scene/room-v1/scene.json",
+      "bytes": 2058,
+      "sha256": "966870a0a0395effc36db139a021e8260dfe7ece5d38f61328fe09832b1b599a",
+      "canonical_sha256": "966870a0a0395effc36db139a021e8260dfe7ece5d38f61328fe09832b1b599a",
+      "identical": true,
+      "tracked_in_source": true,
+      "tracked_index_paths": [
+        "test-data/synthetic/scene/room-v1/scene.json"
+      ],
+      "ignored_in_source": false,
+      "ignore_exit": 1,
+      "ignore_rule": [],
+      "acquisition_sha256": [],
+      "acquisition_hash_matches": false,
+      "decision": "KEEP",
+      "reasons": [
+        "TRACKED_IN_SOURCE_INDEX",
+        "NOT_IGNORED_IN_SOURCE_WORKTREE",
+        "NO_UNAMBIGUOUS_ACQUISITION_HASH"
+      ],
+      "restoration": "No restoration needed: retained. Historical path maps to canonical above. If separately authorized restoration is ever needed, copy canonical bytes to exact candidate path after verifying SHA256 and absence; never overwrite an existing file."
+    }
+  ]
+}

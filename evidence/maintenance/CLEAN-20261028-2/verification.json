@@ -1,0 +1,33 @@
+{
+  "start_utc": "2026-10-28T14:22:32.8966756Z",
+  "end_utc": "2026-10-28T14:22:55.4551273Z",
+  "status": "PARTIAL",
+  "candidates": 44,
+  "candidate_bytes": 1249402890.0,
+  "exact_canonical_matches": 44,
+  "acquisition_matches": 38,
+  "tracked_candidates": 44,
+  "ignored_candidates": 0,
+  "retained_candidates": 44,
+  "deleted_files": 0,
+  "deleted_logical_bytes": 0,
+  "fresh_canonical_and_candidate_hashes": "PASS",
+  "dormant_git_unchanged": true,
+  "canonical_git_unchanged": true,
+  "protected_prefix_count": 271,
+  "protected_prefix_bytes": 49873994.0,
+  "protected_prefix_metadata_unchanged": true,
+  "self_checks": [
+    "positive containment",
+    "sibling-prefix rejection",
+    "parent-escape rejection",
+    "cross-source rejection",
+    "inventory sum",
+    "44 mapped retained candidates",
+    "own-index tracked gate",
+    "fresh full hashes",
+    "protected prefix metadata"
+  ],
+  "physical_allocated_savings": "Not measured; no files deleted",
+  "deletion_cutoff_utc": "2026-10-28T14:35:00Z"
+}

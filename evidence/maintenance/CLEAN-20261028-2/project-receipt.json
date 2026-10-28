@@ -1,0 +1,10 @@
+{
+  "source": "Fresh mcp__codex_app__list_threads read in this session",
+  "worker_thread_id": "01a182e0-d6fe-7113-9885-ac99d14e7f17",
+  "project_id": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
+  "worker_status": "active",
+  "controller_thread_id": "01a182c4-9378-7da0-9fbc-99a5a379380c",
+  "controller_status": "active",
+  "other_active_listed_threads_using_dormant_candidate_roots": 0,
+  "limitation": "Thread snapshot and sanitized process command-line scans do not prove absence of every open handle or cwd; no deletion was attempted."
+}

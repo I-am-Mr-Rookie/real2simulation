@@ -1,0 +1,14 @@
+{
+  "utc": "2026-10-28T14:24:41.2971162Z",
+  "parser": "PASS",
+  "result_map": "PASS",
+  "destructive_command_absent": "PASS",
+  "report_exists": "PASS",
+  "prepared_branch": "run/CLEAN-20261028-2",
+  "prepared_status": [
+    "?? evidence/maintenance/CLEAN-20261028-2/"
+  ],
+  "tracked_diff_empty": true,
+  "checks": "Prior audit verification contains fresh full hashes, own-index statuses and prefix metadata",
+  "communication": "Mandatory skill/runtime update and finding update; single authorized terminal callback follows"
+}

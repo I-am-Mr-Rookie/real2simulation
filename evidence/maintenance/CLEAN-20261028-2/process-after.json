@@ -1,0 +1,6 @@
+{
+  "utc": "2026-10-28T14:22:55.4530128Z",
+  "observed": 375,
+  "exact_candidate_tree_command_matches": [],
+  "limitation": "Command-line scan is not an open-handle/cwd proof; no deletion permitted anyway because every candidate is tracked."
+}
