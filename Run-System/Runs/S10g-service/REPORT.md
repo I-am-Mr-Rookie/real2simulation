@@ -1,0 +1,10 @@
+# S10g-service report
+
+- **Result:** DONE. Model/lane: CODEX-1, Sol high, inherited managed route. Worktree branch `run/S10g-service`; clean base rebased to `f409018d27d777f2516660fc0e8951f7a8b33dce` before final edits.
+- **Files:** `Build/lab/session-service.mjs`, `Build/lab/session-bridge.py`, `Build/web/src/app/api/lab/route.js`, `tests/lab/session-service.test.mjs`, `tests/lab/test_session_bridge.py`, `evidence/S10/service/S10g-service-verification.md`.
+- **Implementation:** Reused actual S08 `Build.lab.regression.regression_case` plus validated export and existing Node simulation; bridge invokes actual S11 `Build.fitter.api.handle` with explicit synthetic instrument uncertainty. Service stores only bounded public observations/hash and private server-side Mystery-g session state; reveal requires the existing trusted handoff and is idempotent after fit. Non-ballistic fit is rejected.
+- **Checks:** `NODE_ENV=development node --test tests/lab/session-service.test.mjs` => 4/4 PASS, including actual normal ballistic start/fit, Mystery-g redaction/reveal, repeat fit, expiry/allowlist errors and loopback route host/origin guard. `python -m unittest tests/lab/test_session_bridge.py` => 3/3 PASS, including all four templates and actual S11 fit. `node --check` service/route PASS. `git diff --check` PASS.
+- **Ponytail applied:** smallest vertical slice first, reused existing engines/contracts, isolated owned paths, no new dependencies, bounded child process/environment, fresh targeted checks, and no shared control edits.
+- **Skipped:** browser UI integration, deployment, physical/calibrated-g claims, public exposure, new dependencies, auth/policy/credential changes, spend and dispatcher/schedule work.
+- **Risks/limits:** synthetic-only evidence; standalone route test emits Node's existing module-type warning because `Build/web/package.json` is unchanged. No model-authored values or private setup/seed/gravity are exposed before fit.
+- **Communication:** one requested nonterminal status callback; no other chat callbacks.
