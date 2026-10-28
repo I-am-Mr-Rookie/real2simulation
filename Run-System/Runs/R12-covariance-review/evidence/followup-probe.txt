@@ -1,0 +1,10 @@
+r 1e-162 r*r 0.0 exact<u/2 True exact<u True
+r 1.1113793747425387e-162 r*r 0.0 exact<u/2 True exact<u True
+r 2.2227587494850775e-162 r*r 5e-324 exact<u/2 False exact<u False
+n,dof 3 1 rss 0.0 exact floor RSS/dof 0.0 bound 1.5e-323
+declared var=5e-324 > bound=False valid=False se=None
+declared var=1.5e-323 > bound=False valid=False se=None
+declared var=2e-323 > bound=True valid=True se=3.143455569405257e-152
+declared var=3e-323 > bound=True valid=True se=3.849931087076416e-152
+declared var=0.010000000000000002 > bound=True valid=True se=707106781.1865475
+FOLLOWUP PROBE PASS
