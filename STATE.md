@@ -11,12 +11,15 @@ fixed after actual browser caught overflow. Source/evidence FF main3706b1c.
 All synthetic; no new physicalgatepass. Originalbaseline77/205 retained below.
 Report SWARM-20261029-1000; CANDIDATE-INTEGRATION.md has exact checks/limits.
 
-Round2 S10n normal-browser candidate dfbd662: actual IAB375px computed all four
-normal RK4 traces (201/201/201/1001 points); clientWidth==scrollWidth360 throughout.
-Mystery has no browser compute before/after fitter reveal. Parent Node84/lab17
-PASS; native targeted review noP0-P2 and all child timeboxesPASS. Independent
-full production build/bundle/disabled-production-route check still active.
-No acceptance count yet; code remains isolated pending final integration.
+Round2 COMPLETE: S10n accepted; queue82/210, two completed rounds. Actual IAB375px
+computed all four normal RK4 traces (201/201/201/1001 points); document
+clientWidth==scrollWidth360 throughout. Mystery has no browser compute before/
+after reveal. Parent Node84/lab17 PASS; native targeted review noP0-P2; all four
+child timeboxesPASS. Isolated full webpack production build exit0,32 emitted
+asset boundary checks and18 local production HTTP probes PASS; production lab
+execution remains intentionally403. Post-rebase product/test diff versus reviewed
+694df9a is empty; fresh targeted19/19. Source/evidence44f49eb; FF integration only.
+R12 Codex fitter covariance invariants audit active; no extra queue count for audit.
 
 Fresh owner scheduler request: five-minute heartbeat targeting this same chat,
 exact prompt "Go at maximum speed. Keep working until 10 a.m." Created ACTIVE
