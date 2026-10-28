@@ -1,0 +1,164 @@
+✔ both ballistic templates reach real contact through the common run adapter (476.5444ms)
+✔ unsupported replay versions cannot produce unreplayable records (1.8436ms)
+(node:23624) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/app/api/lab/route.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\HP\.codex\worktrees\swarm10-s10review\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✖ normal start/fit uses the actual bridge and fitter (2359.8781ms)
+✖ mystery redacts pre-fit and reveals only through matching fit (1696.6013ms)
+✔ pre-abort does not spawn and expired reads do not evict live sessions (1147.7035ms)
+✔ allowlists, expiry and bounded session errors are clean (846.2674ms)
+✔ aborting an active bridge settles and releases its capacity (276.9544ms)
+✔ loopback route accepts the UI contract and rejects nonlocal hosts (675.8583ms)
+✔ production route remains disabled (1.2239ms)
+✖ cold concurrent fits reuse one bridge and pre-aborted cached reads fail (871.2537ms)
+✔ evicted in-flight sessions never publish a fit or reveal (973.2093ms)
+✔ abort cannot become success when bridge closes with code zero (5.4787ms)
+✔ stdin failure retains bridge capacity until close, including the four-process cap (3.0251ms)
+✔ synchronous spawn failures do not consume capacity or expose internal errors (2.381ms)
+✔ expired during trusted handoff hashing cannot reveal or cache a fit (4.9064ms)
+✔ evicted during trusted handoff hashing cannot reveal or cache a fit (2.9274ms)
+✔ aborted during trusted handoff hashing cannot reveal or cache a fit (4.9615ms)
+✔ abort during start hashing does not insert a session (2.4632ms)
+✖ a failed active Mystery-g fit can retry without consuming its reveal (1361.6414ms)
+✔ timeout cannot become success and capacity is retained until close (2.6373ms)
+✔ invalid JSON bridge output returns a bounded error envelope (1.0782ms)
+✔ null bridge output returns a bounded error envelope (1.1007ms)
+✔ unexpected shape bridge output returns a bounded error envelope (0.7153ms)
+✔ oversized output bridge output returns a bounded error envelope (2.4776ms)
+✔ asynchronous spawn error retains its slot until close and never returns success (1.3235ms)
+✔ a real capacity insertion evicts the oldest in-flight session without revealing it (5.6415ms)
+✔ expiry while a bridge is running rejects the fit and permits no reveal (2.1337ms)
+✔ lab UI keeps the user flow and trust labels visible in source (2.3637ms)
+✔ lab layout collapses before the narrow mobile viewport (0.3367ms)
+✔ both request paths retain abort and stale-result guards before state updates (0.7764ms)
+✔ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (2.0902ms)
+✔ the chart uses all observations, not the downsampled table (7.5568ms)
+✔ labels describe the bridge ordinate and unsupported fits honestly (0.4859ms)
+✔ plot helper uses actual finite time and position domains (0.8393ms)
+✔ plot and table ignore nonfinite and malformed observations without coercion (2.186ms)
+✔ real Rapier contact is mapped onto the same RK4 samples (634.4099ms)
+✔ contact timing tracks analytic impact within one sample for supported timesteps (235.0459ms)
+✔ no-contact trajectory remains no-contact and deterministic (2.9026ms)
+✔ rejects invalid explicit physics and geometry (165.9811ms)
+✔ returned contact output is deeply immutable (43.8062ms)
+✔ rejects overflow of the derived floor center from finite operands (1.0132ms)
+✔ rejects initial penetration instead of fabricating a zero-time contact bracket (1.2337ms)
+✔ true initial touch is supported without treating a just-above start as contact (3.7949ms)
+✔ finite JavaScript inputs cannot overflow or collapse positive Rapier float32 inputs (17.1196ms)
+✔ ramp uses signed fixed-step dynamics and exposes analytic comparison inputs (20.0844ms)
+✔ ramp stops at the first endpoint crossing and rejects unsupported stall/coast regimes (18.2013ms)
+✔ pendulum matches the small-angle analytic comparison and maps geometry (30.6225ms)
+✔ nonlinear pendulum converges and conserves energy (124.7071ms)
+✔ zero horizon is one immutable sample; inputs remain unchanged and deterministic (0.9157ms)
+✔ rejects sparse, nonfinite, overflow, and hidden-default inputs (1.2018ms)
+✔ consumes actual Python validate_setup export for both extended templates (1972.44ms)
+✔ allowlisted public projection cannot leak arbitrary observation metadata (23.8808ms)
+✖ actual Python S11 response binds to same observations and preserves source (264.6791ms)
+✔ version, mutation, and cross-session binding are enforced (187.6214ms)
+✔ same seed is byte-identical and immutable (31.1832ms)
+✔ changed seed/params distinguish; hostile inputs fail (5.2457ms)
+✔ S10a consumes only the trusted S08 validate_setup export and places geometry (5.6367ms)
+✔ RK4 zero-step validates every input, rejects sparse state, and preserves state (1.2014ms)
+✔ RK4 convergence/order, determinism, immutability and invalid dynamics (5.8548ms)
+✔ free fall uses fixed-step RK4 and matches the authoritative analytic reference (10.2315ms)
+✔ projectile preserves horizontal motion and reports a sampled stop-plane bracket (2.4551ms)
+✔ rejects missing provenance and hidden numeric defaults (1.4972ms)
+✔ is deterministic, finite, and does not mutate caller inputs (11.995ms)
+✔ reports an already-crossed plane without advancing the integrator (0.7174ms)
+✔ accepts only the validated S08 transport and maps explicit template quantities (936.8934ms)
+ℹ tests 65
+ℹ suites 0
+ℹ pass 60
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10501.625
+
+✖ failing tests:
+
+test at tests\lab\session-service.test.mjs:12:1
+✖ normal start/fit uses the actual bridge and fitter (2359.8781ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'error' !== 'ok'
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/session-service.test.mjs:16:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'error',
+    expected: 'ok',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\lab\session-service.test.mjs:20:1
+✖ mystery redacts pre-fit and reveals only through matching fit (1696.6013ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'error' !== 'ok'
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/session-service.test.mjs:25:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'error',
+    expected: 'ok',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\lab\session-service.test.mjs:78:1
+✖ cold concurrent fits reuse one bridge and pre-aborted cached reads fail (871.2537ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'error' !== 'ok'
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/session-service.test.mjs:88:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'error',
+    expected: 'ok',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\lab\session-service.test.mjs:203:1
+✖ a failed active Mystery-g fit can retry without consuming its reveal (1361.6414ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'error' !== 'ok'
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/session-service.test.mjs:213:10)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'error',
+    expected: 'ok',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\simulator\mystery-g.test.mjs:13:1
+✖ actual Python S11 response binds to same observations and preserves source (264.6791ms)
+  TypeError: INVALID_MYSTERY_G: actual successful S11 fitter response required
+      at fail (file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/mystery-g.mjs:3:35)
+      at createTrustedFitterHandoff (file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/simulator/mystery-g.mjs:12:404)
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/mystery-g.test.mjs:13:600)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1325:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+      at Test.postRun (node:internal/test_runner/test:1465:19)
+      at Test.run (node:internal/test_runner/test:1390:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3)
