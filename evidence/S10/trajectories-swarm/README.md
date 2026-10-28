@@ -4,15 +4,15 @@ This child implements only the pure browser ESM trajectory kernel. It consumes c
 
 ## Fresh check
 
-With the peer RK4 file temporarily present at its eventual integration path:
+Against the accepted main RK4 import:
 
 ```text
 node --test tests/simulator/trajectories.test.mjs
-4 passed, 0 failed
+6 passed, 0 failed
 ```
 
-The tests compare free-fall RK4 output with the S08 closed-form reference, check horizontal projectile motion, explicit `simulated`/`synthetic` labels, finite/range validation, deterministic output, caller immutability, and honest sampled stop-plane crossing metadata.
+The tests compare free-fall RK4 output with the S08 closed-form reference, check horizontal projectile motion, explicit `simulated`/`synthetic` labels, finite/dense validation, deterministic output, deep immutability, honest sampled stop-plane crossing metadata, and the integer-horizon contract.
 
 ## Limits
 
-No S08 schema/validated-artifact adapter was available in this isolated child checkout, so this is numerical-kernel evidence only. Parent integration must wire the validated S08 artifact and peer RK4 commit before calling S10d integrated. No contacts, bounce, real-scene, physical approval, Gate P, Gate M, S12, or production claim follows.
+Fractional duration/time-step horizons are intentionally outside this child’s supported domain unless they are only floating-point representation noise near an integer; no remainder is silently truncated. No contacts, bounce, real-scene, physical approval, Gate P, Gate M, S12, or production claim follows.
