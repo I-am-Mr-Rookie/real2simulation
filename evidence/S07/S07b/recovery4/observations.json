@@ -1,0 +1,50 @@
+{
+  "date_utc": "2026-10-28",
+  "surface": "ChatGPT in-app browser ID2 via supported cua_repl",
+  "owner_access_receipt_reused": "evidence/owner/S07/SAM31-ACCESS.md",
+  "hf_repo": "facebook/sam3.1",
+  "hf_revision_observed": "daa63191845a41281374e725f4c9e51c7a824460",
+  "checkpoint": {
+    "filename": "sam3.1_multiplex.pt",
+    "file_commit": "1f6f2c756fc7fb4b5d4ef2f83a6a2f2e5aeefc4b",
+    "upstream_pointer_size_bytes": 3502755717,
+    "upstream_pointer_sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+    "upstream_xet_hash": "850acf278dd67da448a025b7a74899ca26914e56051cd88e7b168c362dd63f00",
+    "bytes_retrieved": false,
+    "bytes_verified": false
+  },
+  "config": {
+    "filename": "config.json",
+    "file_commit": "c0508563cbfea1c9d02ea53e095e54406bab8e78",
+    "displayed_size": "25.8 kB",
+    "raw_browser_text_characters": 25843,
+    "architectures": ["Sam3VideoModel"],
+    "model_type": "sam3_video",
+    "transformers_version": "5.0.0.dev0",
+    "authoritative_sha256": null,
+    "read_as_small_text_only": true
+  },
+  "software_revision_inspected": "f1647e8d0c1d280991f4d1b7d974c2704537fe66",
+  "software_latest_head_verified": false,
+  "modal": {
+    "authenticated_dashboard_observed": true,
+    "environment": "main",
+    "displayed_credits_usd": 129.99,
+    "live_apps_displayed": 0,
+    "stopped_apps_displayed_settled": 6,
+    "secrets_list_empty_state": "Create your first secret",
+    "secret_values_opened": false,
+    "no_paid_overage_verified": false,
+    "gpu_capacity_verified": false,
+    "container_list_inspected": false
+  },
+  "existing_authenticated_hf_to_modal_path_established": false,
+  "remote_jobs_started": 0,
+  "new_reservation_usd": 0,
+  "existing_reservations_usd_unchanged": 2.85,
+  "model_spend_initiated_usd": 0,
+  "coding_cost_usd": null,
+  "coding_quota": "OpenCodex-managed; not polled",
+  "gate_m_physics": "NOT_RUN",
+  "s12": "locked"
+}

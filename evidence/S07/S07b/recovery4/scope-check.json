@@ -1,0 +1,23 @@
+{
+  "verified_at_utc": "2026-10-28T14:15:19.327312+00:00",
+  "status": "PASS",
+  "branch": "run/S07b-recovery4",
+  "head_unchanged": true,
+  "tracked_changes": [],
+  "owned_new_files_before_check_receipt": [
+    "evidence/S07/S07b/recovery4/IDENTITY.md",
+    "evidence/S07/S07b/recovery4/RETRIEVAL-READINESS.md",
+    "evidence/S07/S07b/recovery4/observations.json",
+    "evidence/S07/S07b/recovery4/tracking-tests.txt"
+  ],
+  "ignored_owned_reports_verified_on_disk": [
+    "Run-System/Runs/S07b/recovery4/PLAN.md",
+    "Run-System/Runs/S07b/recovery4/REPORT.md"
+  ],
+  "local_report_links_valid": true,
+  "json_semantics_checked": true,
+  "git_diff_check": 0,
+  "tracking_tests_passed": 13,
+  "initial_check_error": "expected6 untracked files;2 reports ignored by existing rule; corrected explicit disk verification",
+  "scope": "documentation/metadata/synthetic adapter tests; no model execution"
+}
