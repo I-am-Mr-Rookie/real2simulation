@@ -8,6 +8,7 @@ const integerHorizon = (duration, dt) => {
   const ratio = duration / dt, nearest = Math.round(ratio);
   // Accept only floating-point representation noise; no fractional horizon is silently truncated.
   if (!finite(ratio) || ratio < 0 || Math.abs(ratio - nearest) > Number.EPSILON * Math.max(1, Math.abs(ratio))) fail('S08 duration/time_step must be an integer horizon');
+  if (!Number.isSafeInteger(nearest) || nearest > 1_000_000) fail('S08 fixed-step horizon exceeds safe limit');
   return nearest;
 };
 const freezeDeep = (value) => {
