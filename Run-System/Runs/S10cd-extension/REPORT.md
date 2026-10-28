@@ -2,7 +2,7 @@
 
 - **Status:** DONE
 - **Lane/model:** CODEX-1 / GPT-6.1 Sol medium, managed route; parent project `91e441f8-e40c-4ec4-bea2-de7fa1582d97`.
-- **Timebox:** issued `2026-10-28T18:04:13Z`; nominal deadline `2026-10-28T18:34:13Z`; work stopped `2026-10-28T18:16:20Z`; reported `2026-10-28T18:16:30Z`.
+- **Timebox:** issued `2026-10-28T18:04:13Z`; nominal deadline `2026-10-28T18:34:13Z`; final work stopped `2026-10-28T18:19:00Z`; reported `2026-10-28T18:19:10Z`.
 
 ## Changed paths
 
@@ -36,4 +36,4 @@ For an existing accepted RK4 output: `contactAwareTrajectory({ trajectory, geome
 
 ## Limits / skipped
 
-No trajectory, manifest/lock, parent lab, shared control, deployment, spend, media, physical calibration, Gate P, or S08 real-geometry edits. Rapier detects contacts beside RK4; it does not replace analytic state or claim physical truth. Parent performs offline lab E2E integration. Worked silently.
+No trajectory, manifest/lock, parent lab, shared control, deployment, spend, media, physical calibration, Gate P, or S08 real-geometry edits. Rapier narrow phase is driven by the same returned RK4 sample state and stops at first contact; no Rapier contact response or post-contact samples are emitted. Parent performs offline lab E2E integration. Worked silently.
