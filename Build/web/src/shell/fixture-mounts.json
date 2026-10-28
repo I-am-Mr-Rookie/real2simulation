@@ -1,0 +1,10 @@
+{
+  "contract_version": "1.0.0",
+  "mounts": [{
+    "scene_id": "synthetic-room-v1",
+    "repository_manifest": "test-data/synthetic/scene/room-v1/scene.json",
+    "reserved_route": "/library/synthetic-room-v1",
+    "evidence": "synthetic",
+    "read_only": true
+  }]
+}

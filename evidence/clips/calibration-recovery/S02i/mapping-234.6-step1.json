@@ -1,0 +1,112 @@
+[
+  {
+    "sheet": "frames/native-234.6-step1-01.jpg",
+    "frames": [
+      {
+        "frame_index_0": 5865,
+        "pts_s": 234.604
+      },
+      {
+        "frame_index_0": 5866,
+        "pts_s": 234.644
+      },
+      {
+        "frame_index_0": 5867,
+        "pts_s": 234.684
+      },
+      {
+        "frame_index_0": 5868,
+        "pts_s": 234.724
+      },
+      {
+        "frame_index_0": 5869,
+        "pts_s": 234.764
+      },
+      {
+        "frame_index_0": 5870,
+        "pts_s": 234.804
+      },
+      {
+        "frame_index_0": 5871,
+        "pts_s": 234.844
+      },
+      {
+        "frame_index_0": 5872,
+        "pts_s": 234.884
+      },
+      {
+        "frame_index_0": 5873,
+        "pts_s": 234.924
+      },
+      {
+        "frame_index_0": 5874,
+        "pts_s": 234.964
+      },
+      {
+        "frame_index_0": 5875,
+        "pts_s": 235.004
+      },
+      {
+        "frame_index_0": 5876,
+        "pts_s": 235.044
+      },
+      {
+        "frame_index_0": 5877,
+        "pts_s": 235.084
+      },
+      {
+        "frame_index_0": 5878,
+        "pts_s": 235.124
+      },
+      {
+        "frame_index_0": 5879,
+        "pts_s": 235.164
+      },
+      {
+        "frame_index_0": 5880,
+        "pts_s": 235.204
+      },
+      {
+        "frame_index_0": 5881,
+        "pts_s": 235.244
+      },
+      {
+        "frame_index_0": 5882,
+        "pts_s": 235.284
+      },
+      {
+        "frame_index_0": 5883,
+        "pts_s": 235.324
+      },
+      {
+        "frame_index_0": 5884,
+        "pts_s": 235.364
+      },
+      {
+        "frame_index_0": 5885,
+        "pts_s": 235.404
+      },
+      {
+        "frame_index_0": 5886,
+        "pts_s": 235.444
+      },
+      {
+        "frame_index_0": 5887,
+        "pts_s": 235.484
+      },
+      {
+        "frame_index_0": 5888,
+        "pts_s": 235.524
+      }
+    ]
+  },
+  {
+    "sheet": "frames/native-234.6-step1-02.jpg",
+    "frames": [
+      {
+        "frame_index_0": 5889,
+        "pts_s": 235.564
+      }
+    ]
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "segment": "FF02 delivered PTS 54-64 seconds",
+  "crop": "800x700 at x0,y300",
+  "frames": 250,
+  "adjacent_exact_hash_equal": 0,
+  "interpretation": "Exact decoded-crop equality only, not proof of sensor clock or constant slowmotion factor"
+}

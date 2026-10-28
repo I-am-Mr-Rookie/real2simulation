@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "staged_count": 17,
+  "paths": [
+    "Build/measurement/GATE_M.md",
+    "Build/measurement/gate_m.py",
+    "Run-System/Runs/S07e/PLAN.md",
+    "Run-System/Runs/S07e/REPORT.md",
+    "Run-System/Runs/S07e/green.txt",
+    "Run-System/Runs/S07e/measurement-suite.txt",
+    "Run-System/Runs/S07e/red-line-endings.txt",
+    "Run-System/Runs/S07e/red.txt",
+    "Run-System/Runs/S07e/spec-suite.txt",
+    "Run-System/Runs/S07e/viewer-suite.txt",
+    "evidence/S07/S07e/README.md",
+    "evidence/S07/S07e/actual-gate-m.json",
+    "evidence/S07/S07e/gate-command.txt",
+    "evidence/S07/S07e/reproduction.json",
+    "evidence/S07/S07e/source-integrity.json",
+    "evidence/S07/S07e/verify_sources.py",
+    "tests/measurement/test_gate_m.py"
+  ],
+  "frozen_files_changed": false
+}

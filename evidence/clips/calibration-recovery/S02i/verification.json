@@ -1,0 +1,16 @@
+{
+  "integrity_pass": true,
+  "bytes": 50013019,
+  "sha256": "f2c27c9d821d2c6673f3b080a51aadd1d6890f962c1b180672de17f678cc3265",
+  "delivered_frame_count": 15361,
+  "first_pts_s": 0.004,
+  "last_pts_s": 614.404,
+  "delivered_interval_counts_s": {
+    "0.04": 15360
+  },
+  "mapped_sheet_frames": 690,
+  "full_video_decode_exit": 0,
+  "camera_capture_fps": null,
+  "metric_qualified": false,
+  "scope": "Frame/PTS integrity ONLY; not acquisition timing or metric success"
+}

@@ -1,0 +1,70 @@
+{
+  "checked_utc": "2026-10-28T05:04Z–05:11Z (retrieval interval approximate)",
+  "firecrawl_search": {
+    "id": "01a180e4-8b11-7644-b1b8-7c938eb3ca48",
+    "query": "site:commons.wikimedia.org \"Freier fall\" \"Rhetos\"",
+    "results": 4,
+    "credits": 2,
+    "warning": "Some tool discovery results are unavailable; primary web hits were returned.",
+    "feedback": {
+      "id": "01a180e6-1c65-7195-8039-c90cb2fc2ab9",
+      "rating": "good",
+      "credits_refunded": 1
+    }
+  },
+  "pages": [
+    {
+      "excerpt": "source-0.md",
+      "url": "https://commons.wikimedia.org/wiki/File:Freier_Fall_ohne_Anfangsgeschwindigkeit.webm",
+      "status": 200,
+      "scrape_id": "01a180e5-30f1-738c-8970-0be83b981213",
+      "revised": null,
+      "credits": 1,
+      "concurrency_warning": true,
+      "commons_checksum": "51953ee44654b75724dd3f0c8831281e6a2b6e7d",
+      "revision_url": "https://commons.wikimedia.org/w/index.php?title=File:Freier\\_Fall\\_ohne\\_Anfangsgeschwindigkeit.webm&oldid=1199919438](https://commons.wikimedia.org/w/index.php?title=File:Freier_Fall_ohne_Anfangsgeschwindigkeit.webm&oldid=1199919438"
+    },
+    {
+      "excerpt": "source-1.md",
+      "url": "https://commons.wikimedia.org/wiki/File:Freier_fall_(Staustufe_M%C3%BChlheim_am_Main).webm",
+      "status": 200,
+      "scrape_id": "01a180e5-2f4b-737d-9dcb-f3a389cd086f",
+      "revised": null,
+      "credits": 1,
+      "concurrency_warning": true,
+      "commons_checksum": "3c075f4fc34b8cb9a73dfc1ba8f085f92df8df14"
+    },
+    {
+      "excerpt": "source-2.md",
+      "url": "https://www.rhetos.de/html/lex/freier_fall_(staustufe_muehlheim).htm",
+      "status": 200,
+      "scrape_id": "01a180e5-2dba-757b-a364-1964b05c507b",
+      "revised": "20. September 2026",
+      "credits": 1,
+      "concurrency_warning": false,
+      "commons_checksum": null,
+      "revision_url": null
+    },
+    {
+      "excerpt": "source-3.md",
+      "url": "https://www.rhetos.de/html/lex/freier_fall_ohne_anfangsgeschwindigkeit.htm",
+      "status": 200,
+      "scrape_id": "01a180e5-2efe-744b-ab55-970817dd7e2b",
+      "revised": "20. September 2026",
+      "credits": 1,
+      "concurrency_warning": false,
+      "commons_checksum": null,
+      "revision_url": null
+    }
+  ],
+  "web": {
+    "operations": "2 primary-source search queries, 2 primary URL opens",
+    "sources": [
+      "https://rhetos.de/html/lex/freier_fall_%28staustufe_muehlheim%29.htm",
+      "https://www.rhetos.de/html/lex/freier_fall_(staustufe_muehlheim).htm",
+      "https://commons.wikimedia.org/wiki/File:Freier_fall_(Staustufe_M%C3%BChlheim_am_Main).webm"
+    ],
+    "auth_failures": 0
+  },
+  "limits": "Four targeted live-request pages, not exhaustive site/history coverage. Per-scrape feedback window elapsed; no retry churn or policy changes. Firecrawl dollar cost unknown."
+}

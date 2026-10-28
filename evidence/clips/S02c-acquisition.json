@@ -1,0 +1,569 @@
+{
+  "files": [
+    {
+      "clip_id": "FF01",
+      "local_path": "test-data/public/FF01.webm",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Freier_Fall_ohne_Anfangsgeschwindigkeit.webm",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Freier_Fall_ohne_Anfangsgeschwindigkeit.webm",
+      "licence": "CC-BY-SA-4.0",
+      "sha256": "df46212c259bf4504fb822a182965f4e73771a93e8cd120e83dfd6b00ee1091c",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp8",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "25/1"
+          },
+          {
+            "codec_name": "vorbis",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "98.960000",
+          "size": "22312361"
+        }
+      }
+    },
+    {
+      "clip_id": "FF02",
+      "local_path": "test-data/public/FF02.webm",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Freier_fall_(Staustufe_M%C3%BChlheim_am_Main).webm",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Freier_fall_%28Staustufe_M%C3%BChlheim_am_Main%29.webm",
+      "licence": "CC-BY-SA-4.0",
+      "sha256": "83e175df3e4cb8ed78bc1be13be5c0fa484a9bdd92cef68babf9b9613af7318b",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp8",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "25/1"
+          },
+          {
+            "codec_name": "vorbis",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "167.560000",
+          "size": "40268504"
+        }
+      }
+    },
+    {
+      "clip_id": "AP15",
+      "local_path": "test-data/public/AP15.m4v",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Apollo_15_feather_and_hammer_drop.ogv",
+      "download_url": "https://science.nasa.gov/wp-content/uploads/2023/09/AS15_Ham_feath_drop3-1.m4v",
+      "licence": "PD-USGov-NASA",
+      "sha256": "687ceb04eb3f88f0900c015727a89b9c8b38f4afc6249ba504b8dbc8c9322cc5",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 720,
+            "height": 480,
+            "avg_frame_rate": "2997/100"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "82.816149",
+          "size": "21279042"
+        }
+      }
+    },
+    {
+      "clip_id": "PJ01",
+      "local_path": "test-data/public/PJ01.webm",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Wurfparabel_(Raketenflug).webm",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Wurfparabel_%28Raketenflug%29.webm",
+      "licence": "CC-BY-SA-4.0",
+      "sha256": "63527278ddbfd5ada6746ab166425e1a4453d74f1d4be43d2135457e490d8fa6",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 568,
+            "height": 320,
+            "avg_frame_rate": "30/1"
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "121.188000",
+          "size": "6565513"
+        }
+      }
+    },
+    {
+      "clip_id": "BN01",
+      "local_path": "test-data/public/BN01.webm",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Bouncy_ball_240fps.webm",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Bouncy_ball_240fps.webm",
+      "licence": "CC-BY-SA-4.0",
+      "sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "avg_frame_rate": "240/1"
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "41.443000",
+          "size": "75465750"
+        }
+      },
+      "usability_verified": true,
+      "usability_evidence": "evidence/clips/S02c-primary-r2.md",
+      "usability_scope": "real Earth small-ball floor bounces: file 13.0-15.6 s, all 624 full-rate frames template-tracked at 640 px; floor contacts with shadow meeting at seg f271/f433 viewed frame by frame; post-contact arcs f282-340 and f438-536 parabola RMS 0.5/0.4 px; image-space only, oblique perspective, scale unknown, 240 fps capture claimed not independently verified; not calibrated g, restitution or distribution"
+    },
+    {
+      "clip_id": "PD01",
+      "local_path": "test-data/public/PD01.webm",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Fadenpendelgeschwindigkeit_(2_grad).webm",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Fadenpendelgeschwindigkeit_%282_grad%29.webm",
+      "licence": "CC-BY-SA-4.0",
+      "sha256": "0137aa2d2c5561223305db4796a2fcd9cb62eff084482838aaf1539e0d36edd5",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp8",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "25/1"
+          },
+          {
+            "codec_name": "vorbis",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "132.680000",
+          "size": "31620724"
+        }
+      }
+    },
+    {
+      "clip_id": "RM02",
+      "local_path": "test-data/public/RM02.mp4",
+      "source_url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+      "download_url": "https://www.pexels.com/download/video/6671552/",
+      "licence": "Pexels",
+      "sha256": "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 3840,
+            "height": 2160,
+            "avg_frame_rate": "24/1"
+          }
+        ],
+        "format": {
+          "duration": "17.750000",
+          "size": "12422117"
+        }
+      },
+      "usability_verified": true,
+      "usability_evidence": "evidence/clips/S02c-opus-frame-evidence.md",
+      "usability_scope": "local LK flow all 426 frames at 10-frame baseline: H inlier median 0.45 vs F 0.86 (parallax-consistent); not reconstruction, scale or distribution"
+    },
+    {
+      "clip_id": "BN02",
+      "local_path": "test-data/public/BN02.webm",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Gymnastikball-Flummi.webm",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Gymnastikball-Flummi.webm",
+      "licence": "CC-BY-SA-4.0",
+      "sha256": "9240bc3d183e2dddca04dd9c2d4741a0c5b969281f7d80430d29e1488d219aa2",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "50/1"
+          },
+          {
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "40.588000",
+          "size": "7088670"
+        }
+      }
+    },
+    {
+      "clip_id": "RM04",
+      "local_path": "test-data/public/RM04.mp4",
+      "source_url": "https://www.pexels.com/video/an-empty-classroom-8342689/",
+      "download_url": "https://www.pexels.com/download/video/8342689/",
+      "licence": "Pexels License",
+      "sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 3840,
+            "height": 2160,
+            "avg_frame_rate": "25/1"
+          }
+        ],
+        "format": {
+          "duration": "9.240000",
+          "size": "25336829"
+        }
+      },
+      "usability_verified": true,
+      "usability_evidence": "evidence/clips/S02c-frame-evidence.md",
+      "usability_scope": "local relative room-feature motion probe, not reconstructed scene or distribution"
+    },
+    {
+      "clip_id": "PD02",
+      "local_path": "test-data/public/PD02.mp4",
+      "source_url": "https://www.pexels.com/video/foucault-pendulum-swing-in-grand-hall-35640361/",
+      "download_url": "https://www.pexels.com/download/video/35640361/",
+      "licence": "Pexels License",
+      "sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "14.633333",
+          "size": "7886803"
+        }
+      },
+      "usability_verified": true,
+      "usability_evidence": "evidence/clips/S02c-frame-evidence.md",
+      "usability_scope": "local 2D bob center tracking probe, not calibrated pendulum physics or distribution"
+    },
+    {
+      "clip_id": "PD03",
+      "local_path": "test-data/public/PD03.mp4",
+      "source_url": "https://www.pexels.com/video/a-swinging-pendulum-6613341/",
+      "download_url": "https://www.pexels.com/download/video/6613341/",
+      "licence": "Pexels License",
+      "sha256": "ae1f5d36576555579d4b80cb17928a44bb28f0511260cbf5a5963d009bce1c08",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 2732,
+            "height": 1440,
+            "avg_frame_rate": "30000/1001"
+          }
+        ],
+        "format": {
+          "duration": "59.826433",
+          "size": "19473372"
+        }
+      },
+      "usability_verified": true,
+      "usability_evidence": "evidence/clips/S02c-opus-frame-evidence.md",
+      "usability_scope": "local moving-ball blob centroid on all 1793 decoded frames, 48 inspected crops; not calibrated physics or distribution"
+    },
+    {
+      "clip_id": "PD04",
+      "local_path": "test-data/public/PD04.webm",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Blocked-pendulum-slow-motion.webm",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Blocked-pendulum-slow-motion.webm",
+      "licence": "CC-BY-SA-4.0",
+      "sha256": "b51517e260e620b306a91f8b2dbd1cc8c2fa8d74250cc05e5210cfe7f8f4315a",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "20.000000",
+          "size": "1759473"
+        }
+      },
+      "usability_verified": true,
+      "usability_evidence": "evidence/clips/S02c-opus-frame-evidence.md",
+      "usability_scope": "local 2D bob template tracking on all 600 decoded frames, not calibrated pendulum physics or distribution"
+    },
+    {
+      "clip_id": "PD06",
+      "local_path": "test-data/public/PD06.webm",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Foucault_pendulum_utexas_motion.webm",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Foucault_pendulum_utexas_motion.webm",
+      "licence": "CC-BY-SA-4.0",
+      "sha256": "7acc8013f60cd476d82e3acebc63d8846fe6e4db4201e031fd9efa8dc307eed4",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "29992/1021"
+          }
+        ],
+        "format": {
+          "duration": "9.532000",
+          "size": "8354737"
+        }
+      },
+      "usability_verified": true,
+      "usability_evidence": "evidence/clips/S02c-opus-frame-evidence.md",
+      "usability_scope": "local 2D bob template tracking on all 280 decoded frames, not calibrated pendulum physics or distribution"
+    },
+    {
+      "clip_id": "RM05",
+      "local_path": "test-data/public/RM05.mp4",
+      "source_url": "https://images.nasa.gov/details/Step_Inside_the_Station-4K-Clean",
+      "download_url": "https://images-assets.nasa.gov/video/Step_Inside_the_Station-4K-Clean/Step_Inside_the_Station-4K-Clean~small.mp4",
+      "licence": "PD-USGov-NASA",
+      "sha256": "53b9f050e8e8c62ac698236ed6107fd6c51636ed3fc79ba6b41caefcdf3ffbcf",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 640,
+            "height": 360,
+            "avg_frame_rate": "30/1"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "896.833333",
+          "size": "175967822"
+        }
+      },
+      "usability_verified": true,
+      "usability_evidence": "evidence/clips/S02c-opus-frame-evidence.md",
+      "usability_scope": "local LK flow 60-90 s every decoded frame at 10-frame baseline: fundamental matrix explains, single homography does not (camera translation/parallax evidence); not reconstruction, scale or distribution"
+    },
+    {
+      "clip_id": "PJ03",
+      "local_path": "test-data/public/PJ03.webm",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ballistische_Kurve.webm",
+      "download_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Ballistische_Kurve.webm",
+      "licence": "CC-BY-SA-4.0",
+      "sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "vp8",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "avg_frame_rate": "200/1"
+          }
+        ],
+        "format": {
+          "duration": "73.405000",
+          "size": "23039896"
+        }
+      },
+      "usability_verified": true,
+      "usability_evidence": "evidence/clips/S02c-integration-r1.md",
+      "usability_scope": "real Earth thrown-bag projectile with air drag: local 2D template track, 20 fps resample of file 15-36 s, bag in box frames 0-320 of 420 (release, apex, early descent; 48 crops inspected); final descent/landing lost to burnt-in overlay dots; not vacuum g, scale or distribution"
+    },
+    {
+      "clip_id": "N1",
+      "local_path": "test-data/public/shards/NASA/N1.mp4",
+      "source_url": "https://images.nasa.gov/details/ORION10ftSwingDrop_Documentation",
+      "download_url": "https://images-assets.nasa.gov/video/ORION10ftSwingDrop_Documentation/ORION10ftSwingDrop_Documentation~medium.mp4",
+      "licence": "PD-USGov-NASA",
+      "sha256": "30ee98a31f2579f19239aa5e24373333e02e9bfce0f87f2674bfc84d21f9a927",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          },
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "141.909000",
+          "size": "49413365"
+        }
+      }
+    },
+    {
+      "clip_id": "N2",
+      "local_path": "test-data/public/shards/NASA/N2.mp4",
+      "source_url": "https://images.nasa.gov/details/LRC-2025-V-06242025-RVLT-Gantry-Drop-Test-With-Slate-V0002050",
+      "download_url": "https://images-assets.nasa.gov/video/LRC-2025-V-06242025-RVLT-Gantry-Drop-Test-With-Slate-V0002050/LRC-2025-V-06242025-RVLT-Gantry-Drop-Test-With-Slate-V0002050~medium.mp4",
+      "licence": "PD-USGov-NASA",
+      "sha256": "32475c740460c1ead4ff7117590a8a0022480dba6afdafca6a7d43dc03e85051",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          },
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "146.091000",
+          "size": "44386565"
+        }
+      }
+    },
+    {
+      "clip_id": "N3",
+      "local_path": "test-data/public/shards/NASA/N3.mp4",
+      "source_url": "https://images.nasa.gov/details/2022-H1_V_Lift&CruiseDropTest-5",
+      "download_url": "https://images-assets.nasa.gov/video/2022-H1_V_Lift%26CruiseDropTest-5/2022-H1_V_Lift%26CruiseDropTest-5~medium.mp4",
+      "licence": "PD-USGov-NASA",
+      "sha256": "10ddf155a3733192d1b2fc1e41c10d78854a346515a55388ecf523250aa1b27f",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          },
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 1280,
+            "height": 720,
+            "avg_frame_rate": "30/1"
+          }
+        ],
+        "format": {
+          "duration": "147.477000",
+          "size": "46599811"
+        }
+      }
+    },
+    {
+      "clip_id": "ST03",
+      "local_path": "test-data/public/ST03.mp4",
+      "source_url": "https://www.pexels.com/video/woman-dropping-apple-on-ground-12723966/",
+      "download_url": "https://videos.pexels.com/video-files/12723966/12723966-hd_720_1366_30fps.mp4",
+      "licence": "Pexels License",
+      "sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+      "probe": {
+        "programs": [],
+        "stream_groups": [],
+        "streams": [
+          {
+            "codec_name": "h264",
+            "codec_type": "video",
+            "width": 720,
+            "height": 1366,
+            "avg_frame_rate": "30000/1001"
+          },
+          {
+            "codec_name": "aac",
+            "codec_type": "audio",
+            "avg_frame_rate": "0/0"
+          }
+        ],
+        "format": {
+          "duration": "18.133333",
+          "size": "5457582"
+        }
+      },
+      "usability_verified": true,
+      "usability_evidence": "evidence/clips/S02c-integration-r1.md",
+      "usability_scope": "real Earth apple drop: STOCK-shard HSV/diff track f58-76 (release to pillow contact) matches every inspected full-rate frame; 25p-in-30p repeats confirmed by integrator pixel diff; playback-time image-space only, capture slow-motion factor and scale unknown, never calibrated g or distribution"
+    }
+  ]
+}

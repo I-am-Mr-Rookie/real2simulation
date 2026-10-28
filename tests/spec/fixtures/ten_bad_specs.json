@@ -1,0 +1,12 @@
+[
+  {"name":"unknown contract version","template":"free_fall","path":["schema_version"],"value":"2.0.0","reason":"schema_version"},
+  {"name":"unsupported template","template":"free_fall","path":["template"],"value":"custom","reason":"template"},
+  {"name":"unexpected top-level result","template":"free_fall","path":["result"],"value":42,"reason":"Additional properties"},
+  {"name":"wrong gravity dimension","template":"free_fall","path":["environment","gravity","unit"],"value":"m","reason":"unit"},
+  {"name":"zero body mass","template":"free_fall","path":["body","mass","value"],"value":0,"reason":"mass"},
+  {"name":"negative projectile speed","template":"projectile","path":["parameters","horizontal_speed","value"],"value":-1,"reason":"horizontal_speed"},
+  {"name":"zero ramp length","template":"ramp","path":["parameters","length","value"],"value":0,"reason":"length"},
+  {"name":"negative pendulum length","template":"pendulum","path":["parameters","length","value"],"value":-1,"reason":"length"},
+  {"name":"forged scene identity","template":"free_fall","path":["scene","scene_id"],"value":"another-scene","reason":"scene_id"},
+  {"name":"unsafe integration step","template":"free_fall","path":["simulation","time_step","value"],"value":1,"reason":"time_step"}
+]

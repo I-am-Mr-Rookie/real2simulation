@@ -1,0 +1,18 @@
+{
+  "checked_utc": "2026-10-28T05:16:11.382404+00:00",
+  "json_files_parsed": 7,
+  "local_markdown_links_exist": 20,
+  "source_evidence_checks": "PASS",
+  "images_exist": "PASS",
+  "physical_abstention": "PASS",
+  "canonical_controls_unchanged_in_isolated_branch": "PASS",
+  "diff_whitespace": "PASS",
+  "note": "Precommit evidence checks only; postcommit status read separately. No product gate success.",
+  "final_check_utc": "2026-10-28T05:17:09.352366+00:00",
+  "staged_owned_files": 29,
+  "owned_scope": "PASS",
+  "staged_diff_whitespace": "PASS after trimming generated excerpt EOF blanks",
+  "branch": "run/S02g",
+  "all_json_parse": "PASS",
+  "merge": "NOT PERFORMED"
+}

@@ -1,0 +1,67 @@
+{
+ "shard": "S02c2 STOCK round 2",
+ "generated_utc": "2026-10-27T23:17Z",
+ "licence_ref": "Pexels License https://www.pexels.com/license/ (read round 1, 22:57Z; not re-read this round). Pixabay Content License link seen on each Pixabay page; summary page not opened this round.",
+ "candidates": [
+  {
+   "id": "ST03",
+   "source_url": "https://www.pexels.com/video/woman-dropping-apple-on-ground-12723966/",
+   "creator": "Roman Odintsov",
+   "page_read_utc": "2026-10-27T23:11Z (in-app browser, normal page view, no challenge)",
+   "page_facts": "Licence: Free; Dimensions 2160x4096; Duration 0:18; Date Jul 6 2022; description 'Woman having a peaceful picnic with fruits on a sunny day in the park.'",
+   "download_url": "https://videos.pexels.com/video-files/12723966/12723966-hd_720_1366_30fps.mp4 (rendition URL listed in the page HTML; NOT the 2160x4096 original)",
+   "fetch": "curl GET 2026-10-27T23:11:42Z -> HTTP 200 video/mp4, 5457582 bytes",
+   "local_path": "%TEMP%/s02c2/media/12723966-hd_720_1366_30fps.mp4 (not committed)",
+   "sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+   "bytes": 5457582,
+   "ffprobe": "h264 720x1366, r/avg 30000/1001, 543 frames (counted), 18.117 s, creation_time 2022-07-06T00:47:53Z",
+   "reviewed": "Whole clip at 90 px (ST03-allframes.jpg, 543 frames, row-major 30/row) + 16-frame sheet (s02c_opus_review: 543 frames, PTS monotonic, gap 0.0334 s). Full-rate crops: f54-f113 (ST03-f054-113-crop.jpg, x0-360 y240-1060, 15/row) and f72-f95 landing (ST03-f072-095-landing.jpg, x0-380 y900-1366, 12/row).",
+   "segment": "Release ~f57-58 (t~1.92 s container); free fall f58-f76; contact with pillow behind fruit bowl ~f76-77; small rebound/settle f80-f88 then rest. Only f50-f113 reviewed at full rate; f144-f230 shows the hand at the bowl and an apple low near the hand at f216 (possible second handling/drop), NOT reviewed.",
+   "track": "ST03-track.csv via ST03_track.py (diff vs median f96-110 AND apple-like HSV, x<380). Fit f58-f76: 14 good points, 3 exact-repeat frames dropped, monotonic descent assert passed; y = quadratic, a = 2521.9 px/s^2 (unique frames stepped at 1/25 s), rms 3.64 px; apple width median 61 px. Same points on container 29.97 time incl. repeats: a=2594, rms 8.9 px (worse).",
+   "verdict": "HOLD — real, static-camera, single-object Earth drop with clean continuous descent; NOT counted as usable for a g/timebase fit until the timebase is resolved.",
+   "limitations": [
+    "Timebase: container is 29.97p but every 6th frame is an exact repeat (f59/60, f65/66, f71/72, f77/78, f83/84) = 25p->30p cadence; source capture rate unknown.",
+    "Probable slow motion: with an assumed 7-8.5 cm apple (61 px), a=2522 px/s^2 gives ~3.1-3.5 m/s^2, i.e. ~0.32-0.36 g -> playback ~1.7-1.8x slower than real time if the apple-size assumption holds. Not verified; scale is an assumption, not a measurement.",
+    "Scale: no reference object of known size; apple diameter is assumed.",
+    "Landing on a soft pillow, partly occluded behind pillow edge/bowl f77-79; not a clean bounce/impact for restitution.",
+    "Release by hand: initial velocity not exactly zero; release frame +/-1.",
+    "Pexels rendition re-encode (720x1366), not original; motion blur at bottom of fall (f73, f75 partial blobs excluded).",
+    "Identifiable adult person (depicted-person rights: Pexels licence forbids offensive depiction/implied endorsement); public redistribution of unaltered file unresolved (S02e).",
+    "Vertical (portrait) 9:16 frame."
+   ],
+   "evidence": [
+    "ST03-allframes.jpg",
+    "ST03-f054-113-crop.jpg",
+    "ST03-f072-095-landing.jpg",
+    "ST03-track.csv",
+    "ST03_track.py"
+   ]
+  }
+ ],
+ "rejected_from_page_read_no_download": [
+  {
+   "url": "https://pixabay.com/videos/ball-coming-down-movement-105469/",
+   "creator": "Abdullah7",
+   "reason": "Page tag '3d'; player shows rendered CG ball on grey beams = simulation/render. CDN https://cdn.pixabay.com/video/2022/01/23/105469-670487265_large.mp4 seen, not downloaded."
+  },
+  {
+   "url": "https://pixabay.com/videos/ball-beach-bounce-108869/",
+   "creator": "Nova2000",
+   "reason": "Player shows many animated beach balls on black = 2D/3D animation."
+  },
+  {
+   "url": "https://pixabay.com/videos/glass-ball-falling-ball-drop-ball-212586/",
+   "creator": "Radiopodziemia247",
+   "reason": "Creator bio 'Animacje, grafika 2D/3D oraz montaz'; related media are CG glass spheres; treated as render. Player not played (low confidence on content, high on unsuitability)."
+  },
+  {
+   "url": "https://www.pexels.com/search/videos/dropping%20ball/",
+   "creator": "-",
+   "reason": "One search page view: results dominated by sports (volleyball, basketball, tennis, golf), balloons, 3D animation; no new non-sports drop lead opened."
+  }
+ ],
+ "not_inspected": [
+  "Pexels 8212402 apple into water (slow-motion splash into water; not ground drop)",
+  "Pixabay search pages ball drop/ball falling/bouncing ball"
+ ]
+}

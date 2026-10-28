@@ -1,0 +1,120 @@
+{
+  "calls": [
+    {
+      "key": "ff02source",
+      "operation": "scrape",
+      "source": "https://commons.wikimedia.org/wiki/File:Freier_fall_(Staustufe_M%C3%BChlheim_am_Main).webm",
+      "id": "01a180e0-6149-7339-b217-f2cc141ce10c",
+      "status": 200,
+      "credits": 1,
+      "error": null
+    },
+    {
+      "key": "ff01source",
+      "operation": "scrape",
+      "source": "https://commons.wikimedia.org/wiki/File:Freier_Fall_ohne_Anfangsgeschwindigkeit.webm",
+      "id": "01a180e0-caf2-7388-9335-29eeb553e5ab",
+      "status": 200,
+      "credits": 1,
+      "error": null
+    },
+    {
+      "key": "rhetosFF02",
+      "operation": "scrape",
+      "source": "https://www.rhetos.de/html/lex/freier_fall_(staustufe_muehlheim).htm",
+      "id": "01a180e0-cada-75b5-b794-d1e645e28903",
+      "status": 200,
+      "credits": 1,
+      "error": null
+    },
+    {
+      "key": "alevel",
+      "operation": "scrape",
+      "source": "https://commons.wikimedia.org/wiki/File:A-level_Physics_Core_Practical-_Finding_a_value_for_g_using_a_free_fall_method.webm",
+      "id": "01a180e3-096e-76eb-aad5-b97e31050837",
+      "status": 200,
+      "credits": 1,
+      "error": null
+    },
+    {
+      "key": "freefallCategory",
+      "operation": "scrape",
+      "source": "https://commons.wikimedia.org/wiki/Category:Videos_of_free_fall",
+      "id": "01a180e3-0886-74ca-90d0-d41ef524ad74",
+      "status": 200,
+      "credits": 1,
+      "error": null
+    },
+    {
+      "key": "nustem",
+      "operation": "scrape",
+      "source": "https://nustem.uk/activity/measuring-g/",
+      "id": "01a180e3-47dc-723a-8362-58a9cb3bc7af",
+      "status": 200,
+      "credits": 1,
+      "error": null
+    },
+    {
+      "key": "freefallMain",
+      "operation": "scrape",
+      "source": "https://commons.wikimedia.org/wiki/Category:Free_fall",
+      "id": "01a180e3-855e-74de-9fdd-67c01931f687",
+      "status": 200,
+      "credits": 1,
+      "error": null
+    },
+    {
+      "key": "russian",
+      "operation": "scrape",
+      "source": "https://commons.wikimedia.org/wiki/File:%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5_%D0%BF%D0%B0%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5.webm",
+      "id": "01a180e4-f4ec-74fb-851a-20d7c5e25b30",
+      "status": 200,
+      "credits": 1,
+      "error": null
+    },
+    {
+      "key": "impact",
+      "operation": "scrape",
+      "source": "https://commons.wikimedia.org/wiki/File:Impaktecholot_(Pilotversuch).webm",
+      "id": "01a180e5-b49e-72d8-9028-d83179f7e999",
+      "status": 200,
+      "credits": 1,
+      "error": null
+    },
+    {
+      "key": "search1",
+      "operation": "search",
+      "id": "01a180e0-60d7-748f-811a-1d95f26356b0",
+      "credits": 2,
+      "error": null
+    },
+    {
+      "key": "replacementSearch",
+      "operation": "search",
+      "id": "01a180e2-b2cc-7600-846f-2c233bdb8313",
+      "credits": 2,
+      "error": null
+    },
+    {
+      "key": "ballSearch",
+      "operation": "search",
+      "id": "01a180e4-1b9f-77dc-a3c4-82865c26083d",
+      "credits": 2,
+      "error": null
+    },
+    {
+      "key": "sphereSearch",
+      "operation": "search",
+      "id": "01a180e8-c1cf-7698-b304-8cfb59c8e57b",
+      "credits": 2,
+      "error": null
+    }
+  ],
+  "search_feedback_submissions": 4,
+  "confirmed_refund_receipts_visible": 2,
+  "aggregate_refunds_reconciled": false,
+  "scrape_feedback": "One attempted for impact: 409 FEEDBACK_WINDOW_EXPIRED, retryable false; not retried. Other scrape feedback windows missed.",
+  "coding_quota": "OpenCodex-managed; not polled",
+  "usd_cost": null,
+  "web_search_cost": null
+}

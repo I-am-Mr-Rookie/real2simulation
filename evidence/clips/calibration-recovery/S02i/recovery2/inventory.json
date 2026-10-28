@@ -1,0 +1,24 @@
+{
+  "candidate": "RP01",
+  "capture_family": "NUSTEM_FREEFALL_2016",
+  "scope": "Electronic section 420.004-534.004s overview plus exact targeted inspections; not an exhaustive native-frame audit of the film",
+  "frame_numbering": "zero-based delivered rendition",
+  "physical_capture_clock_verified": false,
+  "metric_projection_verified": false,
+  "metric_qualified_independent_trials": 0,
+  "unique_physical_take_count": null,
+  "full_film_trial_inventory_exhaustive": false,
+  "events": [
+    {"id":"E01","mapping":"mapping-437-step1.json","frames":[10925,11049],"pts_s":[437.004,441.964],"classification":"upper apparatus placement/hand withdrawal; no certified separated falling track","flight_certified":false,"witness":"frames/n11023-440.924-full.png"},
+    {"id":"E02","mapping":"mapping-448-step5.json","frames":[11200,11370],"pts_s":[448.004,454.804],"classification":"manual hinged-base manipulation then push-button demonstration, not a ball fall","flight_certified":false},
+    {"id":"E03","mapping":"mapping-455-step1.json","frames":[11375,11499],"pts_s":[455.004,459.964],"classification":"cut from controls to upper-apparatus hand withdrawal; not automatically a release","flight_certified":false,"witness":"frames/n11441-457.644-full.png"},
+    {"id":"E04","mapping":"mapping-459.8-step1.json","frames":[11495,11674],"pts_s":[459.804,466.964],"classification":"pointing/control manipulation; native apparatus crop does not establish a separated ballistic track; cut to presenter at n11666","flight_certified":false,"witness":"frames/crop-459.8-08.png"},
+    {"id":"E05","mapping":"mapping-468-step5.json","frames":[11700,11845],"pts_s":[468.004,473.804],"classification":"separately edited timer close-up, no continuously advancing frame clock established; no trial-height/endpoints pairing","flight_certified":false},
+    {"id":"E06","mapping":"mapping-502-step5.json","frames":[12550,12870],"pts_s":[502.004,514.804],"classification":"two raised/lowered held-bearing gestures; intervening hold is partly above crop","flight_certified":false},
+    {"id":"E06a","mapping":"mapping-502.4-step1.json","frames":[12560,12599],"pts_s":[502.404,503.964],"classification":"bearing visibly retained between fingers on downward gesture","flight_certified":false},
+    {"id":"E06b","mapping":"mapping-512.4-step1.json","frames":[12810,12849],"pts_s":[512.404,513.964],"classification":"bearing visibly retained between fingers on downward gesture","flight_certified":false},
+    {"id":"E07","mapping":"mapping-519-step5.json","frames":[12975,13220],"pts_s":[519.004,528.804],"classification":"gestural explanation, upper hand partly outside close crop; no certified new flight","flight_certified":false},
+    {"id":"E07a","mapping":"mapping-525-step1.json","frames":[13125,13164],"pts_s":[525.004,526.564],"classification":"closed/pinched hand lowered during explanation; not a visible separated ball trajectory","flight_certified":false}
+  ],
+  "independence_note":"Nested E06a/E06b/E07a are detail witnesses, not additional trials. Edited angles, timer inserts, manual actions and unseen events must not be counted as independent free falls. No exact total physical-trial count inferred."
+}

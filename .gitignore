@@ -1,0 +1,53 @@
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Never stage credentials or private material
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
+secrets/
+test-data/private/
+uploads/
+user-uploads/
+archive/
+# Runtime and generated output
+node_modules/
+.venv/
+__pycache__/
+.pytest_cache/
+.next/
+dist/
+coverage/
+*.log
+.worktrees/
+Runs/*/scratch/
+Run-System/Runs/
+Run-System/__pycache__/
+Run-System/tests/__pycache__/
+
+# Owner/private/context-only material: never stage
+archive/
+.env
+Build Notes.pdf
+Hackathon Credit Terms.pdf
+modal.fillout.com*.png
+.worktrees/
+# Blank template is safe
+!.env.example
+
+# Licensed input videos stay local; original files are in the private backup release.
+# Keep source, clip manifests, attribution and other evidence browsable in normal Git.
+test-data/public/**/*.mp4
+test-data/public/**/*.m4v
+test-data/public/**/*.webm
+test-data/public/**/*.mov
+test-data/public/**/*.mkv
+test-data/public/**/*.avi

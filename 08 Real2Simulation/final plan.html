@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final Plan - Real2Simulation</title>
+<style>
+  :root { --bg:#0f0e0c; --panel:#181612; --line:#332f27; --text:#ece4d4; --muted:#a39a88; --accent:#d4a843; --ok:#5cc7a8; --warn:#e0a640; --bad:#ef6b63; }
+  * { box-sizing:border-box; }
+  body { max-width:1180px; margin:0 auto; padding:28px 20px 64px; background:var(--bg); color:var(--text); font:15px/1.55 "Source Sans 3","Segoe UI",Arial,sans-serif; }
+  h1 { font:700 28px/1.2 Bitter,Georgia,serif; border-bottom:1px solid var(--line); padding-bottom:10px; }
+  h2 { margin-top:38px; color:var(--accent); font:700 21px/1.25 Bitter,Georgia,serif; }
+  h3 { font-size:16px; }
+  .meta,.muted { color:var(--muted); }
+  .band { border-left:4px solid var(--accent); padding:10px 14px; background:var(--panel); margin:12px 0; }
+  .ok { border-left-color:var(--ok); } .warn { border-left-color:var(--warn); } .bad { border-left-color:var(--bad); }
+  .tw { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; margin:12px 0; font-size:14px; }
+  th,td { border:1px solid var(--line); padding:8px; text-align:left; vertical-align:top; }
+  th { background:var(--panel); font:600 12px/1.3 "Source Code Pro",Consolas,monospace; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  td ul { margin:0; padding-left:1.1em; }
+  code,pre { font-family:"Source Code Pro",Consolas,monospace; background:var(--panel); border:1px solid var(--line); border-radius:5px; }
+  code { padding:1px 4px; font-size:12.5px; } pre { padding:14px; overflow:auto; white-space:pre-wrap; font-size:13px; }
+  ul.check { list-style:none; padding-left:0; } ul.check li::before { content:"[ ] "; color:var(--accent); font-family:monospace; }
+  .scores { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+  .score { background:var(--panel); border:1px solid var(--line); padding:12px; font-size:16px; }
+  .st { font:600 11px/1 "Source Code Pro",monospace; padding:3px 6px; border-radius:4px; }
+  .confirmed { color:var(--ok); border:1px solid var(--ok); } .unresolved { color:var(--warn); border:1px solid var(--warn); } .out_of_contract { color:var(--muted); border:1px solid var(--muted); }
+  @media (max-width:700px) { .scores { grid-template-columns:1fr; } body { padding:18px 12px 44px; } }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Source+Code+Pro:wght@400;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<h1>Final Plan - Real2Simulation</h1>
+<p class="meta">Mode: open-ended-build (direction approved by Koushik, Oct 27) | Generated: 2026-10-27 (Asia/Dhaka) | Handoff version: 2 | Plan only: nothing was built, deployed or submitted.</p>
+
+<h2>1. Authority And Frozen Constraints</h2>
+<div class="band warn">
+  <p><strong>Authority order:</strong> Koushik's latest instruction &gt; official organiser rules, rubric and deadline &gt; observable environment evidence &gt; this approved strategy &gt; reports from Muse, agents and reviewers &gt; general practice.</p>
+  <p><strong>Sources:</strong></p><ul><li>Koushik&#x27;s latest instructions in this conversation (Oct 27, 2026): project Real2Simulation, Real2Sim + virtual lab + Mystery-g approved</li><li>Cerebral Valley event Details page (signed in, read Oct 27): Stage-2 rubric, prizes, deadline</li><li>Meta Global AI Developer Hackathon participant guide (pasted by Koushik, Oct 27): rules, anti-projects, sessions, credits</li><li>dev.meta.ai/docs/models (read Oct 27): model lines, IDs and endpoints</li><li>Workspace AGENTS.md files: root and event folder</li><li>Event Rules and Participant Guide.md (cleaned copy of the CV event page and participant guide, Oct 27)</li><li>archive/05 VM Setup/Remote Workspace/Run-System/RUN_SYSTEM.md: lanes, run lifecycle, quota rules (process reused; now run on Koushik&#x27;s PC)</li><li>08 Real2Simulation/Real2Simulation Concept.html, Concept Notes.md and tasks for the owner.md: approved concept, AWS status, owner checklist</li></ul>
+  <p><strong>Target:</strong> Real2Simulation turns a video (a licensed public clip in the demo library, or the user's own upload) into a measurable 3D physics world. Real motion in the clip is measured (g, launch speed, friction, restitution); those values calibrate the simulation; the agent predicts the part of the clip it has not seen, and the app overlays prediction against reality. A virtual lab with realistic instrument error and a Mystery-g mode covers rooms without motion. It also has a demo library, a sidebar agent and lab reports.</p>
+  <p><strong>Frozen constraints:</strong></p><ul><li>New work only: create a fresh repository; the demo shows only features built during the event (Oct 27 to Nov 4). Copy no AttemptLens code.</li><li>The repository must be public at submission; make it public only after Koushik&#x27;s written go-ahead.</li><li>Real use of Meta models is required: Muse Wonder, Muse Spark, SAM 3.1 on the Meta Model API; Muse Spark Open through Baseten (model ID meta-models/muse-spark-open-1026, as the guide requires) for the open-weight bonus.</li><li>Avoid the guide&#x27;s anti-projects: never pitch it as an AI tutor or education chatbot; no sports footage; no medical, political or war content.</li><li>Every number shown is labelled measured or simulated, and every number comes from the fitter or simulator, never from model text.</li><li>No footage without rights: only NASA public domain, Wikimedia Commons (PD, CC0, CC BY, CC BY-SA, with attribution) and Pexels or Pixabay clips, each with its licence recorded in clips.csv. No YouTube downloads; no NC or ND licences. Koushik films nothing.</li><li>Railway dev deployments are approved by Koushik (Oct 27); judging, production and all other deployments need separate written approval. No account creation, credit purchases, legal acceptances, public posts or submissions without Koushik&#x27;s written go-ahead.</li><li>Never print or commit secrets. Public clips live in test-data/public with clips.csv; user uploads are never committed.</li><li>Model routing (coding cost per task, Oct 27): Codex carries about 75% of build time. GPT-6.1 Sol does all Codex coding: medium by default, high for gates, xhigh as the escalation. GPT-6.1 Terra only browses and drives screens (clip sourcing, Playwright QA runs, video capture), because on coding benchmarks it costs about the same per task as Sol and scores lower. GPT-6 Luna at high for mechanical subtasks with deterministic checks. Claude: Opus 5.5 at medium for the 3D viewer, Gate D judgment, the script and cross-vendor review of gate code; Sonnet 5.5 at high for the workspace UI; Haiku 5.5 for PWA and report. GPT-5.6 Luna is not used. GPT-6 Astra: none planned; at most 1 run in the whole build, only with Koushik&#x27;s written go-ahead after Sol xhigh fails a gate twice.</li><li>AWS stays disabled until Koushik confirms that the us-east-2 G and VT quota requests are approved. After approval and before the first GPU session, Koushik creates a $50 EC2 budget alert. us-east-2 only; spot for batch jobs; stop every GPU instance after each session.</li><li>Meta API spend: routine hard stop at $120 of the $150 credit; $30 reserved for the final demo.</li><li>Run System rules apply: tasks of 30 minutes or less, fixed lanes, one run per lane, lanes never take each other&#x27;s tasks without Koushik&#x27;s permission.</li></ul>
+  <p><strong>Non-goals:</strong> native iOS app, fluids or cloth, multiplayer, payments, YouTube downloading, and pitching it as a tutor.</p>
+  <p><strong>Deadline:</strong> 2026-11-05 08:00 Asia/Dhaka (Nov 4, 9:00 PM ET) | <strong>Stop-work:</strong> 2026-11-04 18:00 Asia/Dhaka | <strong>Timezone:</strong> Asia/Dhaka</p>
+</div>
+
+<h2>2. Approved Strategy</h2>
+<div class="band ok">
+  <p><strong>Direction (approved):</strong> Real2Sim as the core, plus the virtual lab and Mystery-g. Name: Real2Simulation.</p>
+  <p><strong>Execution strategy chosen: spikes first, with UI in parallel.</strong> The riskiest unknowns (metric 3D rebuild, real g from video, landing prediction) are probed on days 1-2 while CODEX-2 builds the app shell and Opus builds the viewer against a fixture scene. Compared with the alternatives:</p>
+  <div class="tw"><table>
+    <tr><th>Strategy</th><th>Benefit</th><th>Cost</th><th>Stop condition</th><th>Verdict</th></tr>
+    <tr><td>A. Spikes first, UI in parallel</td><td>Feasibility known by Oct 28; fallbacks chosen early</td><td>UI waits for a real artifact format (fixture bridges it)</td><td>Gate R or M fails: take the named fallback</td><td>Chosen</td></tr>
+    <tr><td>B. App first, reconstruction last</td><td>Visible progress fast</td><td>A failed 3D rebuild is found on day 6, too late to adapt</td><td>None workable</td><td>Rejected</td></tr>
+    <tr><td>C. 2D Measured core first, 3D later</td><td>Safest floor</td><td>Loses the "my room in 3D" demo moment that lifts the ceiling</td><td>Used only as Gate R fallback</td><td>Kept as fallback</td></tr>
+  </table></div>
+  <p><strong>Official score model:</strong> Impact 30% · Meta tooling 25% · Technical depth 20% · Demo 25%, each 0-10. Planning estimate: Impact 7.5, tooling 9, depth 9, demo 9.5 = 87 weighted, minus 7 for risk = about 80. Bonus targets: open-weight models ($10K, via S16), Best Agentic Use-Case ($5K), Most Viral ($20K), Community Vote ($10K). These are estimates, not results.</p>
+  <p><strong>Team and tools:</strong> Koushik (solo; human-only tasks). Run System on Koushik's Windows PC: a local dispatcher script (built in S03) starts each 30-minute run as a fresh headless Codex or Claude Code process (codex exec, claude -p). Muse can reach only the AWS coding VM, not this PC, so it plays no part in the build. Each run is a fresh session started with a short prompt such as &quot;Complete run R12&quot;; the repository (AGENTS.md, STATE.md, QUEUE.md, Run-System/RUN_SYSTEM.md) holds everything a run needs, so no session ever needs /compact. CODEX-1 (GPT-6.1 Sol, medium; high for gates) owns physics, fitting, GPU, agent contracts and gates. CODEX-2 (GPT-6.1 Sol, medium) owns the app skeleton, pipeline glue, library, guardrails, benchmark, deploys and README; GPT-6.1 Terra on this lane only browses and drives screens (clip sourcing, Playwright runs, video capture). CLAUDE: Opus 5.5 medium for the 3D viewer, QA judgment, script and gate-code review; Sonnet 5.5 high for the workspace UI; Haiku 5.5 for PWA and report. GPT-6 Luna (high) takes mechanical subtasks with deterministic checks. GPT-6 Astra: none planned, at most 1 run with Koushik's go-ahead. Routing follows coding cost per task (L31). About 75% of build minutes run on Codex. Hosting: Railway Pro. GPU: Modal ($30) live, AWS ($176 left, quota pending) batch and failover, Kaggle (30 h/week) spikes. Models: Muse Wonder, Muse Spark, SAM 3.1 (Meta API, $150 credit), Muse Spark Open on Baseten (key in .env; Fireworks $80 as fallback), SAM 3D Objects and MapAnything (open weights). Design references: Mobbin.</p>
+</div>
+
+<h2>3. Evidence And Candidate Ledger</h2>
+<div class="tw"><table>
+  <tr><th>ID</th><th>Rule / requirement</th><th>Observable claim</th><th>State</th><th>Evidence</th><th>Priority</th></tr>
+  <tr><td>L01</td><td>Official rubric</td><td>Impact 30, Meta tooling 25, Technical depth 20, Demo 25 (each 0-10)</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Read on the signed-in CV Details page, Oct 27</td><td>Drives every priority</td></tr>
+<tr><td>L02</td><td>Deadline</td><td>Nov 4, 9:00 PM ET = Nov 5, 08:00 Asia/Dhaka</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Participant guide and CV page</td><td>Hard stop</td></tr>
+<tr><td>L03</td><td>Submission rules</td><td>Public repo, 3-minute video, new work only, judges use video, code and live product</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Participant guide (pasted)</td><td>Gates S, D</td></tr>
+<tr><td>L04</td><td>Anti-projects</td><td>Education chatbots, sports analyzers, image analyzers penalised</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Participant guide</td><td>Pitch framing</td></tr>
+<tr><td>L05</td><td>Rules-source acceptance</td><td>Owner accepts available rules sources for preflight; full legal-text review is not established</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Oct 27: Koushik reconfirmed Discord rules, FAQ and announcements (full supplied wording: 01 Research/Discord Rules and FAQ (Oct 27).md) plus Hackathon Credit Terms.pdf as sufficient. The full waiver remains unread</td><td>Preflight before S03; flag later legal-text conflicts</td></tr>
+<tr><td>L05b</td><td>Guide rules</td><td>Public repo, new work only, demo shows only event work, X post link submitted on the platform, all contributors listed</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Event Rules and Participant Guide.md</td><td>Checklist and video script</td></tr>
+<tr><td>L06</td><td>Meta API key and access</td><td>Real2Simulation key in .env; live muse-spark-1.3 access works</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Koushik reports an Oct 27 POST /v1/responses test returned HTTP 200 with pong (44 tokens, minimal reasoning). Not re-run during this reconciliation. Pass api_key explicitly to the OpenAI SDK; do not use muse-spark-1.3-contributor</td><td>S01</td></tr>
+<tr><td>L06b</td><td>Meta credit and billing alert</td><td>$150 credit visible on Billing; Spend Limit notification configured</td><td><span class='st unresolved'>OWNER-REPORTED</span></td><td>Koushik reports all Meta Model API tasks complete, including the billing checklist items; credit and notification details have not been independently verified. Spend Limit is an alert, not a hard cap; enforce the plan's routine $120 stop and $30 demo reserve separately</td><td>S01</td></tr>
+<tr><td>L07</td><td>Railway GPUs</td><td>Railway offers no GPU hosting</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Several 2026 third-party sources agree</td><td>Compute split</td></tr>
+<tr><td>L08</td><td>SAM 3D memory</td><td>SAM 3D Objects needs about 32 GB of VRAM</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Maintainer comment in the repo&#x27;s issue thread</td><td>Kaggle and g5 excluded</td></tr>
+<tr><td>L09</td><td>Spark Open access</td><td>Muse Spark Open is reachable through Baseten (primary) and Fireworks (fallback)</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Baseten key names present in .env (values not read); Fireworks launch post, Oct 20</td><td>S16</td></tr>
+<tr><td>L10</td><td>AWS GPU quota</td><td>8-vCPU G/VT on-demand and spot requests pending in us-east-2</td><td><span class='st unresolved'>UNRESOLVED</span></td><td>Koushik&#x27;s side chat; Muse&#x27;s console check showed 0 quota and no requests at check time (environment blocker)</td><td>AWS disabled until confirmed</td></tr>
+<tr><td>L11</td><td>AWS credits</td><td>$176.27 left, expire 2027-05-25, EC2 eligible</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Muse console check, Oct 27 (3 credit service lists not opened)</td><td>Capacity estimate</td></tr>
+<tr><td>L12</td><td>Run System VM</td><td>rookiebot-agent-vm is needed for the build</td><td><span class='st out_of_contract'>OUT_OF_CONTRACT</span></td><td>Koushik, Oct 27: the Run System runs on his PC; the VM stays stopped and costs nothing</td><td>None</td></tr>
+<tr><td>L13</td><td>MapAnything licence</td><td>Weights may be used in a public hackathon product</td><td><span class='st unresolved'>UNRESOLVED</span></td><td>Not yet read</td><td>S05</td></tr>
+<tr><td>L14</td><td>Gate R feasibility</td><td>Public scene clips give metric scale within 10% of known object sizes</td><td><span class='st unresolved'>UNRESOLVED</span></td><td>No probe yet</td><td>S05</td></tr>
+<tr><td>L15</td><td>Gate M feasibility</td><td>SAM 3.1 tracking of public clips gives g within 5%</td><td><span class='st unresolved'>UNRESOLVED</span></td><td>No probe yet</td><td>S07</td></tr>
+<tr><td>L16</td><td>Gate RS feasibility</td><td>Held-out prediction within 5% of the motion&#x27;s size</td><td><span class='st unresolved'>UNRESOLVED</span></td><td>No probe yet</td><td>S12</td></tr>
+<tr><td>L17</td><td>Kaggle fit</td><td>MapAnything runs on a 16 GB T4</td><td><span class='st unresolved'>UNRESOLVED</span></td><td>Memory not yet measured</td><td>S05; Modal is the fallback</td></tr>
+<tr><td>L18</td><td>SAM 3D for the open-weight bonus</td><td>SAM 3D counts for the open-weight prize</td><td><span class='st out_of_contract'>OUT_OF_CONTRACT</span></td><td>Guide names Muse Glimmer and Spark Open only; plan does not rely on it</td><td>None</td></tr>
+<tr><td>L19</td><td>Apollo 15 footage</td><td>Clip is public domain</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Wikimedia Commons file Apollo_15_feather_and_hammer_drop.ogv tagged PD-USGov-NASA (47 s, 654x480), checked Oct 27</td><td>S02, S18</td></tr>
+<tr><td>L21</td><td>Pexels licence</td><td>Pexels videos can be used and modified without attribution</td><td><span class='st confirmed'>CONFIRMED</span></td><td>pexels.com/license, checked Oct 27 (credit still given in the README)</td><td>S02</td></tr>
+<tr><td>L22</td><td>Public clip ground truth</td><td>Public clips carry enough scale and frame-rate information to measure g</td><td><span class='st unresolved'>UNRESOLVED</span></td><td>Truth is known (g = 9.81 or 1.62) but the scale comes from standard object sizes and the frame rate from file metadata; slow-motion clips may hide their timebase</td><td>S02, S07</td></tr>
+<tr><td>L24</td><td>GPT-6.1 Sol vs Astra</td><td>Sol is near Astra for coding at about a fifth of the price</td><td><span class='st confirmed'>CONFIRMED</span></td><td>OpenAI GPT-6.1 Sol post: matches Astra on DeepSWE at about 1/5 the cost; $2/$10 per M tokens vs Astra $10/$50; Endor Labs Codex run: 77.7% vs 82.1% FuncPass, 34.1% vs 34.6% SecPass, a third faster, zero confirmed cheating</td><td>Routing</td></tr>
+<tr><td>L25</td><td>GPT-6.1 Terra</td><td>Terra is fast and cheap enough for the workhorse lane</td><td><span class='st confirmed'>CONFIRMED</span></td><td>OpenAI GPT-6.1 Terra post (Oct 26): $1/$5 per M tokens, Terminal-Bench 4.0 50.3% at max effort, over 3x faster than Sol and Astra, strong computer use; OpenAI says Sol or Astra for the hardest coding</td><td>Routing</td></tr>
+<tr><td>L26</td><td>Claude strengths</td><td>Opus 5.5 leads on hard agentic coding and visual polish; Sonnet 5.5 is close at half the price</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Anthropic: Opus 5.5 FrontierCode 54.4% (Astra 53.3%), CursorBench 57.8%, top graphics and polish when building a game; Sonnet 5.5 CursorBench 55.5%, Terminal-Bench 70.6%, Vals Vibe Code Bench #1 (92.4%), $2/$10 vs Opus $4/$20</td><td>Routing</td></tr>
+<tr><td>L28</td><td>Measured cost per task</td><td>Price per token misleads; cost per task decides routing</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Artificial Analysis Intelligence Index, cost per task at list prices (read Oct 27): Sol medium 47.8 at $0.21, high 50.2 at $0.32, xhigh 51.0 at $0.39; Astra medium 49.6 at $1.54, max 52.7 at $3.26; Terra high 43.9 at $0.13, xhigh 45.4 at $0.19, max 48.1 at $0.40; Luna high 32.9 at $0.03, max 38.1 at $0.07; Opus 5.5 medium 51.2 at $1.34, max 57.6 at $5.98; Sonnet 5.5 high 46.8 at $0.88, xhigh 51.9 at $2.01, max 56.0 at $5.46. General index, not coding-only; the Coding Agent Index page did not load</td><td>Routing and effort levels</td></tr>
+<tr><td>L29</td><td>GPT-6 Luna vs GPT-5.6 Luna</td><td>GPT-6 Luna replaces GPT-5.6 Luna</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Artificial Analysis: index 38 vs 37, Terminal-Bench 13% vs 12%, $0.07 vs $0.18 per task; GPT-5.6 Luna no longer on the current leaderboard. Luna&#x27;s knowledge-reliability score is near 0, so only tasks with deterministic checks</td><td>Luna subtasks</td></tr>
+<tr><td>L30</td><td>Astra quota</td><td>Astra uses far more Codex allowance than its benchmark gain justifies</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Koushik&#x27;s experience (Oct 27) plus Plus-tier estimate of 5-45 Astra messages per 5 hours vs 15-160 for Sol; Astra medium scores below Sol high at about 5x the cost per task</td><td>Astra limited to 1 approved run</td></tr>
+<tr><td>L31</td><td>Coding cost per task</td><td>On coding work, Sol is the best value; Terra is not cheaper than Sol; Opus earns its price only on visual front-end code</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Vals AI (read Oct 27, API list prices, effort not stated). Terminal-Bench 4.0, 66 tasks: Opus 65.2% $13.20, Sonnet 64.1% $16.51, Astra 59.6% $9.58, Sol 55.1% $1.72, Terra 49.5% $2.04, Haiku 36.4% $3.12, Luna 13.6% $0.35, GPT-5.6 Luna 11.6% $0.73. Vibe Code Bench (web apps): Sonnet 92.4% $31.25, Haiku 90.4% $6.07, Opus 90.3% $57.92, Astra 89.6% $38.51, Sol 88.9% $6.23, Terra 84.0% $6.00, Luna 81.7% $1.35, GPT-5.6 Luna 77.1% $0.73. SWE-bench Multimodal (visual bugs): Opus 70.2% $3.63, Sonnet 58.3% $3.26, Haiku 44.0% $0.70, Sol 43.5% $0.35, Astra 43.3% $1.81, Luna 37.5% $0.03. Cognition FrontierCode 1.1 at medium, native harness: Sol in Codex 50.2% $0.36, Opus in Claude Code 54.6% $0.80</td><td>Lane owners and effort levels</td></tr>
+<tr><td>L27</td><td>Codex quota</td><td>Koushik&#x27;s Codex quota covers about 2,700 Codex minutes in 8 days</td><td><span class='st unresolved'>UNRESOLVED</span></td><td>Plus-tier estimates per 5 hours: Astra 5-45 messages, GPT-6.1 Sol 15-160, Luna 350-3,000; Terra not yet listed; Koushik&#x27;s plan tier not recorded</td><td>Routing; check in S03</td></tr>
+<tr><td>L23</td><td>Owner availability</td><td>Koushik has little build-time availability</td><td><span class='st confirmed'>CONFIRMED</span></td><td>Koushik, Oct 27: Algorithm course presentation video due before Nov 3; semester finals start Nov 5 (Statistics first)</td><td>All owner steps; stop-work moved to Nov 4, 18:00</td></tr>
+<tr><td>L20</td><td>Bangla voice</td><td>Muse Voice Transcribe supports Bangla</td><td><span class='st unresolved'>UNRESOLVED</span></td><td>Not in the docs read</td><td>Optional; not on the critical path</td></tr>
+</table></div>
+<p class="muted">Ledger items: 32 | Confirmed: 19 | Unresolved: 11 | Out of contract: 2. Feasibility claims stay UNRESOLVED until their gate probe runs.</p>
+
+<h2>4. Dependency-Aware Execution Plan</h2>
+<p class="muted">Planned work: 5220 minutes (about 87 hours) inside a 6000-minute budget. By owner: Koushik: 180 min · CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) + Koushik (10-minute approval): 120 min · CODEX-1 · GPT-6.1 Sol (medium; high for gates): 2100 min · CODEX-2 · GPT-6.1 Sol (medium): 1200 min · CLAUDE · Opus 5.5 (medium): 300 min · CLAUDE · Sonnet 5.5 (high): 360 min · CLAUDE · Haiku 5.5 (high): 300 min · CLAUDE · Opus 5.5 (medium) + CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) (Playwright runs): 300 min · Koushik + CODEX-2 · GPT-6.1 Sol (medium): 60 min · CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) (capture, edit) + CLAUDE · Opus 5.5 (medium) (script) + Koushik (voice-over): 300 min. The Run System splits each step into tasks of 30 minutes or less.</p>
+<div class="tw"><table>
+  <tr><th>Step</th><th>Timebox</th><th>Owner</th><th>Dependencies</th><th>Action</th><th>Acceptance evidence</th><th>Fallback</th></tr>
+  <tr><td><strong>S01</strong> - Finish keys and approvals<br><span class='muted'>Oct 27-28 · critical</span></td><td>90 min</td><td>Koushik</td><td>None</td><td>Done Oct 27: every credit form submitted; the Baseten key for Muse Spark Open is in the event .env. Sign-in decided Oct 27: Clerk's built-in options only (Google on Clerk's shared credentials, plus email OTP); no custom Google OAuth client, and production Google is deferred to S22 if time allows. Koushik reports the Meta Model API tasks complete, including billing; the key is in .env and a test succeeded. Billing details have not been independently verified. Railway dev deploys are approved; Modal and Fireworks credentials are populated; Modal token authentication and Fireworks authenticated model listing passed. GPU execution and inference remain untested. Use Clerk and Railway CLIs and the Railway plugin; GitHub CLI and plugin authentication is owner-reported, not independently checked. Checklist: tasks for the owner.md, section 1.</td><td><ul><li>One test call to muse-spark-1.3 succeeds with the new Meta key</li><li>Clerk sign-in works with Google (shared credentials) and email OTP; guests reach /library</li><li>Keys live only in .env or Railway variables and are never printed</li><li>Written go-ahead for Railway dev deploys recorded in DECISIONS_LOG.md</li></ul><span class='muted'>Evidence: E2</span></td><td>If Meta access or credit is unavailable, use Muse Spark Open on Baseten and open-weight SAM 3 on Modal where available; Meta-only steps wait and nothing is faked.</td></tr>
+<tr><td><strong>S02</strong> - Build the licensed public clip set<br><span class='muted'>Oct 28 morning · critical</span></td><td>120 min</td><td>CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) + Koushik (10-minute approval)</td><td>None</td><td>Koushik no longer films anything (decision Oct 27: phone limited to 60 fps, no time before exams). The Terra lane (browsing and computer use) collects at least 10 clips from sources whose licence allows reuse and modification: NASA (public domain, e.g. the Apollo 15 hammer-and-feather drop on Wikimedia Commons), Wikimedia Commons (PD, CC0, CC BY, CC BY-SA), and Pexels or Pixabay (their own licences). Targets: 3 free falls, 2 projectiles or roll-offs, 2 bouncing balls, 1 pendulum, the Apollo 15 drop, 3 indoor scenes. For each clip, clips.csv records the source URL, licence, attribution, frame rate and duration from the file metadata, the known-size reference object in view (ball diameter, A4 sheet, door height, ruler) and its standard size. No YouTube downloads; no NC or ND licences. Koushik approves the list in about 10 minutes.</td><td><ul><li>At least 10 clips plus clips.csv in test-data/public, every row with source, licence and attribution</li><li>Every clip has a frame rate from the file metadata and a known-size reference object, or is marked scene-only</li><li>Koushik&#x27;s approval of the list recorded in DECISIONS_LOG.md</li></ul><span class='muted'>Evidence: E1</span></td><td>If fewer than 3 usable free-fall clips are found, add Wikimedia Commons strobe and slow-motion clips and treat slow-motion timebase detection (S07) as required; if still short, Gate M runs on what exists and reports the sample size.</td></tr>
+<tr><td><strong>S03</strong> - Retarget the Run System to Real2Simulation<br><span class='muted'>Oct 27 evening · critical</span></td><td>60 min</td><td>CODEX-1 · GPT-6.1 Sol (medium; high for gates)</td><td>None</td><td>Make the event folder itself the git repository on Koushik&#x27;s Windows PC (Koushik, Oct 27: one self-explanatory folder, because Codex project memory and AGENTS.md live there; the Run System runs locally, not on the VM). archive/, .env, private data and owner PDFs stay gitignored; private until S25. Adapt the process in archive/05 VM Setup/Remote Workspace/Run-System/RUN_SYSTEM.md to local Windows paths (process only, no AttemptLens code). Write AGENTS.md, a decisions file from this plan, JUDGE_RUBRIC.md equal to the official Stage-2 rubric, STATE.md, and QUEUE.md generated from these steps and split into tasks of 30 minutes or less with fixed lanes. Replace the AttemptLens Merge Gateway budget with a Meta API ledger: routine hard stop $120, reserve $30 for the final demo. Copy no AttemptLens code.</td><td><ul><li>The event folder is the git repository root with the control files; archive/, .env and private data are gitignored; git log shows only new commits</li><li>QUEUE.md tasks are 30 minutes or less, with disjoint Owns paths for parallel tasks</li><li>Run-System dispatcher script starts each run as a fresh session with a short prompt (for example &quot;Complete run R12&quot;), runs one task per lane, at most 2 at once, kills a run at 30 minutes, and logs each run to RUN_LOG.md; one dry run proves it</li><li>API_BUDGET.md tracks the Meta credit with the $120 stop</li></ul><span class='muted'>Evidence: E1</span></td><td>If the dispatcher script is not ready, Koushik starts each lane by hand from its own CLI or T3 Code on the PC with the same QUEUE.md and STATE.md files.</td></tr>
+<tr><td><strong>S04</strong> - App skeleton on Railway with sign-in and guest access<br><span class='muted'>Oct 28 · critical</span></td><td>240 min</td><td>CODEX-2 · GPT-6.1 Sol (medium)</td><td>S01, S03</td><td>Next.js web app with Clerk sign-in (Google), a guest mode that opens library demos without an account, and the empty workspace layout. FastAPI API and worker skeletons with health endpoints. Railway Postgres, Redis and bucket. Deploy the dev environment. Production builds run on Railway.</td><td><ul><li>Dev URL serves the app; Clerk sign-in works with Google (shared credentials) and email OTP; guests reach /library</li><li>A logged-out visitor reaches /library</li><li>API and worker health endpoints return 200 on Railway</li></ul><span class='muted'>Evidence: E4</span></td><td>If Clerk blocks progress for more than 2 hours, ship guest mode plus a single demo account and finish Clerk in S22.</td></tr>
+<tr><td><strong>S05</strong> - Gate R spike: metric 3D scene from public clips<br><span class='muted'>Oct 28 (gate 22:00 Dhaka) · critical</span></td><td>180 min</td><td>CODEX-1 · GPT-6.1 Sol (medium; high for gates)</td><td>S02, S03</td><td>Run MapAnything on Kaggle (T4) and, if needed, Modal on the 3 public indoor scene clips: camera poses, point cloud, floor and table planes, metric scale. Check the scale against each clip&#x27;s known-size reference objects (door height, A4, ball diameter). Check the MapAnything weights licence.</td><td><ul><li>Known-object size within 10% on at least 2 of 3 scene clips (standard sizes, not tape measurements, so the threshold is looser)</li><li>Floor plane found and gravity direction agrees with the A4 plane normal within 5 degrees</li><li>GPU time 4 minutes or less per scene; licence recorded in DECISIONS_LOG.md</li></ul><span class='muted'>Evidence: E2</span></td><td>Fallback 1: one keyframe plus SAM 3D Objects layout plus one question (desk height). Fallback 2: planes and boxes textured with video frames. Log the fallback as a decision; the experiment flow does not change.</td></tr>
+<tr><td><strong>S06</strong> - GPU container on Modal (AWS-ready)<br><span class='muted'>Oct 29 · critical</span></td><td>240 min</td><td>CODEX-1 · GPT-6.1 Sol (medium; high for gates)</td><td>S05, S01</td><td>One container image with MapAnything and SAM 3D Objects as a Modal function on an L40S, with memory snapshots. The same image must run unchanged on EC2 g6e.xlarge in us-east-2 once the AWS quota is approved. Output: a scene artifact (splats or points, meshes, colliders, scale, gravity) in the Railway bucket.</td><td><ul><li>One room clip becomes a scene artifact on Modal in under 5 minutes including cold start</li><li>Cost per scene logged</li><li>The image starts locally or on CPU in a dry-run mode, so the AWS path is ready</li></ul><span class='muted'>Evidence: E2</span></td><td>If SAM 3D Objects fails (memory, install or licence), ship MapAnything output with primitive meshes and drop SAM 3D from the pitch.</td></tr>
+<tr><td><strong>S07</strong> - Gate M spike: measure g from public free-fall clips<br><span class='muted'>Oct 28 (gate 22:00 Dhaka) · critical</span></td><td>180 min</td><td>CODEX-1 · GPT-6.1 Sol (medium; high for gates)</td><td>S01, S02, S03</td><td>SAM 3.1 tracks the falling object in the public free-fall clips; the known-size reference object sets the scale; Savitzky-Golay smoothing and least squares fit give g with uncertainty. The true value is known (9.81 m/s^2 on Earth, 1.62 m/s^2 on the Moon), so every clip is a benchmark. Detect slow-motion timebases: a fitted g near 9.81/k^2 for k = 2, 4 or 8 means a k-times slowed clip, which the app reports instead of a wrong g. Unit tests on synthetic trajectories.</td><td><ul><li>g within 5% of 9.81 m/s^2 on at least 2 of 3 Earth free-fall clips, with a stated uncertainty that covers the error</li><li>Stretch: the Apollo 15 clip gives the Moon&#x27;s g within 15%</li><li>Fitter unit tests pass on synthetic data</li></ul><span class='muted'>Evidence: E2</span></td><td>If Gate M fails, Measure mode is limited to table-plane experiments (homography only) and the pitch leads with the virtual lab and Mystery-g. Log it as a decision.</td></tr>
+<tr><td><strong>S08</strong> - Experiment spec, validator and 4 templates<br><span class='muted'>Oct 29 · critical</span></td><td>240 min</td><td>CODEX-1 · GPT-6.1 Sol (medium; high for gates)</td><td>S03</td><td>JSON Schema for the experiment spec; a validator for units, ranges, geometry fit in the scene, and numerical stability; templates for free fall, projectile off an edge, ramp, and pendulum, each with an analytic solution.</td><td><ul><li>Schema tests pass</li><li>Validator rejects 10 deliberately bad specs, each with a readable reason</li><li>Each template exposes an analytic answer for Gate P</li></ul><span class='muted'>Evidence: E3</span></td><td>Cut to 3 templates (drop the ramp) if the step overruns by 2 hours.</td></tr>
+<tr><td><strong>S09</strong> - 3D world viewer with a rendering budget<br><span class='muted'>Oct 29-30 · critical</span></td><td>300 min</td><td>CLAUDE · Opus 5.5 (medium)</td><td>S04, S05</td><td>React Three Fiber viewer that loads scene artifacts (fixture from S05 first): splats or points, colliders, camera path, labels. Cap the device pixel ratio, lower detail on phones, and stop rendering when idle.</td><td><ul><li>3 scenes load and orbit at 30 fps or more on a mid-range laptop</li><li>At 375 px wide the viewer loads the reduced detail level without horizontal scroll</li></ul><span class='muted'>Evidence: E2</span></td><td>If splats are too heavy, render a decimated point cloud plus textured proxy boxes.</td></tr>
+<tr><td><strong>S10</strong> - Builder and in-browser simulator; Gate P<br><span class='muted'>Oct 30 · critical</span></td><td>300 min</td><td>CODEX-1 · GPT-6.1 Sol (medium; high for gates)</td><td>S08, S09</td><td>Place apparatus from a validated spec onto real surfaces. Rapier (WASM) for contacts; a fixed-step RK4 integrator for the analytic templates; a Mystery-g toggle that hides the world&#x27;s gravity; seeded, deterministic replays.</td><td><ul><li>Gate P: every template matches its analytic answer within 0.5%</li><li>The same seed replays identically</li><li>Mystery-g hides g in the UI and reveals it only after a fit</li></ul><span class='muted'>Evidence: E3</span></td><td>If Rapier contact jitter breaks a template, run that template on RK4 only and disable free dragging for it.</td></tr>
+<tr><td><strong>S11</strong> - Virtual instruments and the fitter service<br><span class='muted'>Oct 30 · critical</span></td><td>240 min</td><td>CODEX-1 · GPT-6.1 Sol (medium; high for gates)</td><td>S07, S08</td><td>Instruments with realistic error: human stopwatch reaction time, camera frame-rate quantisation, ruler resolution, light gates. Worker fitter: least squares, AIC model choice, uncertainty from the Jacobian, residuals.</td><td><ul><li>Coverage test: across 100 seeds, the 95% interval contains the true g in at least 90 runs</li><li>Fitter output is the only source of numbers in later steps (API contract)</li></ul><span class='muted'>Evidence: E3</span></td><td>If the coverage test fails, widen the noise model&#x27;s documented uncertainty and record the miscalibration; never hide it.</td></tr>
+<tr><td><strong>S12</strong> - Real2Sim bridge and prediction; Gate RS<br><span class='muted'>Oct 31 · critical</span></td><td>180 min</td><td>CODEX-1 · GPT-6.1 Sol (medium; high for gates)</td><td>S07, S10, S11</td><td>Write measured values (g, launch speed, friction, restitution) into the scene&#x27;s physics. Held-out prediction: calibrate on the first part of a public clip (the first half of a flight, the first bounce, the first 3 swings), predict the rest with uncertainty, and overlay the prediction on the real frames the model never saw.</td><td><ul><li>Gate RS: across the projectile, bounce and pendulum clips, the median held-out error is 5% or less of the motion&#x27;s size (range, bounce height, or period)</li><li>Every value in the UI is labelled measured or simulated</li></ul><span class='muted'>Evidence: E3</span></td><td>If the error is 5-10%, show it honestly with its uncertainty. Above 10%, demo prediction in the virtual lab only and keep Measure mode for g.</td></tr>
+<tr><td><strong>S13</strong> - Upload and reconstruction job pipeline<br><span class='muted'>Oct 30-31 · critical</span></td><td>240 min</td><td>CODEX-1 · GPT-6.1 Sol (medium; high for gates)</td><td>S04, S06, S01</td><td>Resumable upload to the bucket, ffmpeg keyframes, Redis job queue: Muse Wonder scene understanding, SAM 3.1 keyframe masks, Modal reconstruction, then stage events streamed to the UI.</td><td><ul><li>A fresh upload on the dev URL becomes a viewable scene in under 6 minutes</li><li>Failures at any stage show a readable message and leave the job retryable</li></ul><span class='muted'>Evidence: E4</span></td><td>If Wonder video input is unreliable, send keyframes as images instead of the full video.</td></tr>
+<tr><td><strong>S14</strong> - Scene-understanding and interview agent<br><span class='muted'>Oct 31 · critical</span></td><td>240 min</td><td>CODEX-1 · GPT-6.1 Sol (medium; high for gates)</td><td>S08, S13</td><td>Muse Wonder with structured outputs: scene JSON and candidate experiments; 1-3 questions as chips plus free text; writes the spec; up to 3 validator retries, then asks the user. Muse Spark checks each trial. Hard rule: numbers in agent text must come from tool outputs.</td><td><ul><li>Gate A: 9 of 10 recorded scene fixtures produce a valid spec</li><li>Gate A: an automated check finds no number in agent replies that is absent from tool outputs, across 30 test turns</li></ul><span class='muted'>Evidence: E3</span></td><td>If structured output fails, the agent picks from template cards only and free-text custom experiments are cut.</td></tr>
+<tr><td><strong>S15</strong> - Workspace UI<br><span class='muted'>Oct 31-Nov 1 · critical</span></td><td>360 min</td><td>CLAUDE · Sonnet 5.5 (high)</td><td>S09, S10, S14</td><td>Upload flow with stage progress, interview chips, sidebar chat, instrument strip, data table, fit and residual charts, measured and simulated labels, Mystery-g reveal. Landscape-first layout; use Mobbin references for upload and chat patterns.</td><td><ul><li>A browser walk-through completes upload, interview, run, fit and report on the dev URL</li><li>No horizontal scroll at 375 px; the sidebar stacks under the viewport</li></ul><span class='muted'>Evidence: E4</span></td><td>Under compression, drop the custom chart styling and keep a single data table plus one fit chart.</td></tr>
+<tr><td><strong>S16</strong> - Sidebar agent tools and the open-weight component<br><span class='muted'>Nov 1 · high</span></td><td>240 min</td><td>CODEX-2 · GPT-6.1 Sol (medium)</td><td>S12, S14</td><td>Tools: edit the spec by JSON patch (validated), library search, explain using the run&#x27;s own numbers, Mystery-g reveal. Library search and the spec explainer run on Muse Spark Open through Baseten (model ID meta-models/muse-spark-open-1026; key already in .env), the $10K open-weight bonus component.</td><td><ul><li>Spec patches go through the validator before any rebuild</li><li>Spark Open on Baseten serves library search in the dev environment, with the model ID logged per call</li></ul><span class='muted'>Evidence: E3</span></td><td>If Baseten fails, use Muse Spark Open on Fireworks; if both fail, use Muse Spark on the Meta API and drop the open-weight bonus claim.</td></tr>
+<tr><td><strong>S17</strong> - Lab report and charts<br><span class='muted'>Nov 1 · high</span></td><td>180 min</td><td>CLAUDE · Haiku 5.5 (high)</td><td>S11, S14</td><td>LaTeX report (aim, apparatus, method, data, fit, uncertainty, conclusion) compiled by Tectonic in the worker; charts drawn from data in code; provenance links to trials and frames. Muse Image apparatus illustration only if time allows.</td><td><ul><li>PDF compiles for all 4 templates</li><li>Every number in the PDF equals the fitter output (automated diff)</li></ul><span class='muted'>Evidence: E3</span></td><td>Fall back to an HTML report with print-to-PDF if Tectonic fails on Railway.</td></tr>
+<tr><td><strong>S18</strong> - Demo library with licensed footage<br><span class='muted'>Nov 1 · high</span></td><td>300 min</td><td>CODEX-2 · GPT-6.1 Sol (medium)</td><td>S06, S12, S13</td><td>The library uses the S02 public clip set (Apollo 15 public domain, confirmed Oct 27). CODEX-2 precomputes each scene on Modal, or on AWS spot instances if the quota is approved, and writes metadata: source, licence, attribution.</td><td><ul><li>At least 6 demos open from precomputed artifacts in under 3 seconds</li><li>Every demo has a filled source and licence field; no YouTube downloads</li></ul><span class='muted'>Evidence: E3</span></td><td>Minimum viable library: 4 public clips plus Mystery-g. Drop any clip whose licence is not verified.</td></tr>
+<tr><td><strong>S19</strong> - Installable PWA and phone layout<br><span class='muted'>Nov 2 · medium</span></td><td>120 min</td><td>CLAUDE · Haiku 5.5 (high)</td><td>S15</td><td>Manifest, service worker, landscape lock, install prompts for Android and iOS. Android APK through a Trusted Web Activity only if everything else is done.</td><td><ul><li>The browser reports the app as installable</li><li>The phone layout passes a 375 px walk-through of the library and viewer</li></ul><span class='muted'>Evidence: E2</span></td><td>Cut the APK; keep the PWA.</td></tr>
+<tr><td><strong>S20</strong> - Spend guardrails and GPU failover<br><span class='muted'>Nov 1 · high</span></td><td>120 min</td><td>CODEX-2 · GPT-6.1 Sol (medium)</td><td>S13</td><td>Per-user daily upload quota, a global spend cap that pauses new reconstructions but never the library, cost logged per scene, and a config switch from Modal to AWS that is enabled only after Koushik confirms the AWS quota.</td><td><ul><li>Gate C: per-scene cost appears in logs, and a simulated cap breach pauses uploads while the library still works</li><li>The AWS switch stays off by default</li></ul><span class='muted'>Evidence: E3</span></td><td>If time is short, a manual kill switch in Railway variables replaces the automatic cap.</td></tr>
+<tr><td><strong>S21</strong> - Benchmark numbers for the pitch<br><span class='muted'>Nov 2 · high</span></td><td>180 min</td><td>CODEX-2 · GPT-6.1 Sol (medium)</td><td>S12, S18</td><td>Run the public clip set: median g error against 9.81 m/s^2, held-out prediction error, known-object scale error, time and cost per scene. Write BENCHMARK.md; surface the numbers in the app&#x27;s About page.</td><td><ul><li>BENCHMARK.md reports each metric with sample size and method</li><li>Numbers in the app and video match BENCHMARK.md</li></ul><span class='muted'>Evidence: E3</span></td><td>Report whatever was measured, with its sample size; never extrapolate missing runs.</td></tr>
+<tr><td><strong>S22</strong> - End-to-end QA on the judging environment; Gate D<br><span class='muted'>Nov 2-3 · critical</span></td><td>300 min</td><td>CLAUDE · Opus 5.5 (medium) + CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) (Playwright runs)</td><td>S15, S16, S17, S19, S20</td><td>Run the stress-test loop against JUDGE_RUBRIC.md (the official rubric) on a separate judging environment; fix the top issues inside the run time box; larger fixes become new tasks.</td><td><ul><li>Gate D: a fresh account completes upload to report in under 5 minutes, 3 runs in a row</li><li>A logged-out judge can open and run a library demo</li></ul><span class='muted'>Evidence: E4</span></td><td>If Gate D fails at freeze, the demo video uses the library path and the README states the upload limits honestly.</td></tr>
+<tr><td><strong>S23</strong> - Promote the judging build<br><span class='muted'>Nov 3 before 18:00 · critical</span></td><td>60 min</td><td>Koushik + CODEX-2 · GPT-6.1 Sol (medium)</td><td>S22</td><td>Koushik gives written go-ahead; CODEX-2 deploys the frozen commit to the judging environment and records the deployed revision.</td><td><ul><li>The deployed revision equals the frozen commit SHA</li><li>Judging URL passes the S22 smoke flow once more</li></ul><span class='muted'>Evidence: E4</span></td><td>Roll back to the last revision that passed Gate D.</td></tr>
+<tr><td><strong>S24</strong> - Three-minute demo video<br><span class='muted'>Nov 3-4 · critical</span></td><td>300 min</td><td>CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) (capture, edit) + CLAUDE · Opus 5.5 (medium) (script) + Koushik (voice-over)</td><td>S21, S23</td><td>Script: a public clip becomes a 3D world, the agent&#x27;s interview, a held-out prediction overlaid on the real frames it never saw, the Apollo 15 clip giving the Moon&#x27;s g, Mystery-g, benchmark numbers, Meta models named on screen. Opus writes the script; the Terra lane records the screen with Playwright, cuts the video and builds the captions; Koushik records the voice-over (about 1 hour, Nov 3 or 4), or the video ships with captions only. Edit to 3:00 or less; only features built during the event; clip credits on screen.</td><td><ul><li>Video is 3:00 or shorter and plays from its public link</li><li>Every on-screen number matches BENCHMARK.md or a live run</li></ul><span class='muted'>Evidence: E4</span></td><td>If a prediction misses, show the miss with its uncertainty; do not stage or edit results.</td></tr>
+<tr><td><strong>S25</strong> - README, attribution and public repo<br><span class='muted'>Nov 3-4 · high</span></td><td>120 min</td><td>CODEX-2 · GPT-6.1 Sol (medium)</td><td>S21, S23</td><td>README with the problem, architecture, Meta model usage, benchmark, setup, footage licences and attribution. Koushik authorises making the repo public.</td><td><ul><li>The repo is public after Koushik&#x27;s go-ahead and contains no secrets (secret scan clean)</li><li>README links the live URL and the video</li></ul><span class='muted'>Evidence: E3</span></td><td>If the secret scan finds anything, rotate the key, rewrite history before publishing, and record it.</td></tr>
+<tr><td><strong>S26</strong> - Submit and post<br><span class='muted'>Nov 4, done by 18:00 Dhaka · critical</span></td><td>90 min</td><td>Koushik</td><td>S24, S25</td><td>Submit on Cerebral Valley: repo URL, video, live URL, a judge note (guest library plus a demo account). Post the clip on X for Most Viral. Confirm the submission page shows the entry.</td><td><ul><li>The submission page shows the entry with working links</li><li>Submitted before stop-work (Nov 4, 18:00 Dhaka)</li></ul><span class='muted'>Evidence: E4</span></td><td>If the form errors, retry, then contact organisers on Discord with a timestamped screenshot well before the hard deadline.</td></tr>
+</table></div>
+
+<h2>5. Deadline Modes And Scope Cuts</h2>
+<div class="tw"><table>
+  <tr><th>Mode</th><th>Trigger</th><th>Allowed work</th><th>Work dropped</th><th>Owner</th></tr>
+  <tr><td><strong>Normal</strong></td><td>Now until a trigger below fires</td><td>All steps in dependency order with full gates</td><td>None</td><td>Muse</td></tr>
+<tr><td><strong>Compression</strong></td><td>Any gate more than 12 hours late, or S15 not started by Nov 1 12:00 Dhaka</td><td>Must path only: S01-S15, S18 (minimum 4 demos), S20-S26</td><td>Voice, Muse Image figures, custom experiments from primitives, APK, conical pendulum, chart styling; S16 keeps only the Spark Open search</td><td>Muse, logged as a decision</td></tr>
+<tr><td><strong>Freeze</strong></td><td>Nov 3, 18:00 Dhaka</td><td>Fixes for Gate D failures, benchmark, README, video</td><td>All new features</td><td>Muse</td></tr>
+<tr><td><strong>Submission</strong></td><td>Nov 4, 10:00 Dhaka</td><td>Secret scan, make repo public (go-ahead), final deploy check, submit, post on X and submit the post link</td><td>All implementation</td><td>Koushik</td></tr>
+<tr><td><strong>Hard stop</strong></td><td>Nov 5, 08:00 Dhaka (Nov 4, 9:00 PM ET)</td><td>Nothing; the organiser deadline</td><td>Everything</td><td>Koushik</td></tr>
+</table></div>
+<p><strong>Scope:</strong> Must: S01-S15, S18, S20-S26. Should: S16 (open-weight bonus), S17, S19. Could: voice control, Muse Image figures, custom experiments from primitives, Android APK. Won't: native iOS, fluids or cloth, payments, YouTube downloads, owner-filmed clips.</p>
+<p><strong>Event sessions (Asia/Dhaka):</strong> Agents 102, verifiable agents: Oct 28, 22:00 (relevant to Gate A). Fireworks session on Muse open models: Oct 30, 22:00 (relevant to S16). Office hours (Discord #office-hours, weekdays): 20:00-21:00 until Oct 30, 21:00-22:00 from Nov 2 because US daylight saving ends Nov 1; ask there whether a measurement instrument with lab reports is clear of the education anti-project.</p>
+
+<h2>6. Validation Matrix</h2>
+<p class="muted">Probe commands are the names the Executor will create; none exist yet.</p>
+<div class="tw"><table>
+  <tr><th>Requirement</th><th>Probe</th><th>Expected result</th><th>Evidence level</th><th>Regression set</th></tr>
+  <tr><td>Metric 3D rebuild (Gate R)</td><td><code>python -m r2s.bench.gate_r --clips test-data/public/scenes</code></td><td>Known-object size within 10% on 2 of 3 clips; GPU time 4 min or less</td><td>E2</td><td>Re-run after any GPU image change</td></tr>
+<tr><td>Real g from video (Gate M)</td><td><code>python -m r2s.bench.gate_m --clips test-data/public/falls</code></td><td>g within 5% on 2 of 3 clips, with covering uncertainty</td><td>E2</td><td>Fitter unit tests</td></tr>
+<tr><td>Simulator accuracy (Gate P)</td><td><code>npm test -- sim/analytic</code></td><td>Each template within 0.5% of its analytic answer</td><td>E3</td><td>Every merge to main</td></tr>
+<tr><td>Instrument calibration</td><td><code>pytest worker/tests/test_coverage.py</code></td><td>95% interval covers truth in at least 90 of 100 seeds</td><td>E3</td><td>Every fitter change</td></tr>
+<tr><td>Real2Sim prediction (Gate RS)</td><td><code>python -m r2s.bench.gate_rs --clips test-data/public/predict</code></td><td>Median held-out error 5% or less</td><td>E3</td><td>Benchmark set S21</td></tr>
+<tr><td>Agent honesty (Gate A)</td><td><code>pytest api/tests/test_agent_numbers.py</code></td><td>9 of 10 valid specs; zero numbers absent from tool outputs</td><td>E3</td><td>Every prompt or tool change</td></tr>
+<tr><td>Spend guardrails (Gate C)</td><td><code>pytest api/tests/test_spend_cap.py</code></td><td>Cap pauses uploads; library still served</td><td>E3</td><td>Before each deploy</td></tr>
+<tr><td>Full flow on judging URL (Gate D)</td><td><code>Playwright: e2e/full_flow.spec.ts against the judging URL</code></td><td>Fresh account, upload to report in under 5 min, 3 runs in a row</td><td>E4</td><td>Before promote and after any hotfix</td></tr>
+<tr><td>Deployed revision</td><td><code>curl https://judging-url/api/version</code></td><td>Returns the frozen commit SHA</td><td>E4</td><td>After every deploy</td></tr>
+<tr><td>Submission package (Gate S)</td><td><code>Secret scan, then open repo, video and live URLs logged out</code></td><td>All load; video 3:00 or less; no secrets</td><td>E4</td><td>Final hour before submitting</td></tr>
+</table></div>
+
+<h2>7. Risks, Fallbacks, And Recovery State</h2>
+<div class="tw"><table>
+  <tr><th>Risk</th><th>Trigger</th><th>Response</th><th>Recovery record</th></tr>
+  <tr><td>Meta credit or key arrives late</td><td>No working key by Oct 28 noon</td><td>Fireworks Spark Open for agent development; open SAM 3 on Modal for tracking; Meta-only steps wait</td><td>STATE.md: blocker=meta_key, steps waiting</td></tr>
+<tr><td>3D rebuild is poor</td><td>Gate R fails</td><td>Fallback 1 (keyframe + SAM 3D + one question), then fallback 2 (textured proxies)</td><td>DECISIONS_LOG.md entry with the gate numbers</td></tr>
+<tr><td>Real g measurement fails</td><td>Gate M fails</td><td>Measure mode limited to table-plane experiments; pitch leads with virtual lab and Mystery-g</td><td>Decision log; QUEUE re-prioritised</td></tr>
+<tr><td>Prediction misses badly</td><td>Gate RS above 10%</td><td>Prediction demo in the virtual lab only; Measure mode still reports g</td><td>Decision log; video script updated</td></tr>
+<tr><td>Agent invents numbers</td><td>Gate A finds any untraced number</td><td>Block the reply, return tool numbers only, add the case to tests</td><td>Test case ID in REPORT.md</td></tr>
+<tr><td>Lane quota runs out</td><td>Either lane above 85% of its 5-hour bar</td><td>Only that lane pauses; the other works its own tasks and fillers; the dispatcher reorders, never reassigns</td><td>STATE.md lane state and reset time</td></tr>
+<tr><td>Local PC overloaded</td><td>Less than 2 GB free memory, or builds make the PC unusable</td><td>At most 2 lanes running locally at once; Sol tasks may run in Codex cloud; production builds on Railway; clean worktrees and caches</td><td>RUN_REPORT resources line</td></tr>
+<tr><td>Codex quota runs out</td><td>A Codex 5-hour window is exhausted twice in one day</td><td>Move mechanical work to Luna (about 20x Sol&#x27;s message allowance); CODEX-2 drops to Sol at low for plumbing; CODEX-1 keeps gates; Claude Sonnet at high takes overflow UI work</td><td>STATE.md quota line</td></tr>
+<tr><td>Astra burns the quota</td><td>Any Astra run planned</td><td>Refuse it unless Sol xhigh failed the same gate twice and Koushik approved in writing; at most 1 run in the build</td><td>DECISIONS_LOG.md escalation entry</td></tr>
+<tr><td>Effort creep</td><td>A task runs at max effort, Terra writes code, or Sonnet runs above high</td><td>Drop to the routing table&#x27;s level; switch model instead of raising effort past it</td><td>STATE.md lane and effort per task</td></tr>
+<tr><td>GPU credit or quota shortfall</td><td>Modal under $5 left with AWS still pending</td><td>Pause new uploads; library only; precompute on Kaggle where SAM 3D is not needed</td><td>API_BUDGET.md and STATE.md</td></tr>
+<tr><td>Anti-project label</td><td>Any reviewer reads it as a tutor</td><td>Lead with measurement and Real2Sim; chat appears last in the video</td><td>Pitch checklist in S24</td></tr>
+<tr><td>Footage rights</td><td>A clip has no verified licence</td><td>Drop it</td><td>Library metadata licence field</td></tr>
+<tr><td>Judges cannot get in</td><td>Login wall on the judging URL</td><td>Guest library plus demo account in the judge note</td><td>Gate D logged-out check</td></tr>
+<tr><td>Time-zone mistake</td><td>Any date in ET is not converted</td><td>All plan times in Asia/Dhaka; stop-work 14 hours before the hard deadline</td><td>deadline block in the handoff</td></tr>
+</table></div>
+<div class="band"><p><strong>Last verified state (Oct 27, planning time):</strong> no repository exists yet; AttemptLens material is in archive/; the Run System process will run on Koushik's PC; AWS GPU quota requests are pending; credit forms are submitted; Meta Model API and Baseten keys are in .env, and Meta billing completion is owner-reported but not independently verified; Railway dev deploys are approved; Modal and Fireworks authentication checks passed (GPU execution and inference untested); Koushik films nothing (public clips instead). Next action: S01 remainder, S03, then S02 sourcing for Koushik's approval. Deadline mode: Normal.</p></div>
+
+<h2>8. Submission Checklist</h2>
+<ul class="check">
+<li>Repository public, secret scan clean, README with architecture, Meta model usage, benchmark and footage licences</li>
+<li>Demo video 3:00 or shorter, public link, shows only work built during the event</li>
+<li>Live judging URL loads; logged-out judges can open and run a library demo; demo account in the judge note</li>
+<li>Deployed revision equals the frozen commit SHA</li>
+<li>Muse Spark Open component documented (for the open-weight bonus); remove the claim if S16 fell back</li>
+<li>Benchmark numbers in README, video and app match BENCHMARK.md</li>
+<li>Cerebral Valley form submitted before Nov 4, 18:00 Dhaka; confirmation visible</li>
+<li>Demo posted on X, and the post link submitted through the hackathon platform (Most Viral, engagement counted until Nov 8)</li>
+<li>Everyone who worked on the project is listed on the submission page (solo: Koushik)</li>
+<li>Video states on screen that everything shown was built Oct 27 - Nov 4</li>
+<li>AWS instances stopped; Modal has no warm containers; spend caps on</li>
+</ul>
+
+<h2>9. Executor Handoff</h2>
+<div class="band">
+  <p>Follow official sources before this plan. Reconcile conflicts in the preflight delta. Execute steps by ID, capture the required evidence, update the ledger and STATE.md, and never claim submission readiness from inspection alone.</p>
+</div>
+<pre><code>EXECUTOR INSTRUCTIONS - Real2Simulation (handoff v2)
+
+0. Preflight (before S03): read this file, Event Rules and Participant Guide.md,
+   08 Real2Simulation/Real2Simulation Concept.html, Concept Notes.md, tasks for the owner.md,
+   and archive/05 VM Setup/Remote Workspace/Run-System/RUN_SYSTEM.md (process only: it was
+   written for the AWS VM with Muse as manager. On this PC the S03 dispatcher script replaces
+   Muse; the VM, SSH, OpenCodex, T3 relay and Muse prompt parts do not apply).
+   Read 01 Research/Discord Rules and FAQ (Oct 27).md and Hackathon Credit Terms.pdf.
+   L05 records Koushik's acceptance of those sources as sufficient; the full waiver remains unread.
+   If further legal text becomes available, flag conflicts rather than claiming it was reviewed.
+   Record conflicts with this plan in DECISIONS_LOG.md; official rules win. AttemptLens material in archive/
+   is reference only: copy no code from it.
+1. Koushik approves the S02 clip list (tasks for the owner.md); Modal and Fireworks credentials are present and authentication checks passed. Meta API access is owner-reported working; verify any required service at the relevant gate. Koushik&#x27;s time is limited (exams from Nov 5): batch questions for him once a day.
+2. S03 builds QUEUE.md from the JSON below: split every step into tasks of 30 minutes or less,
+   keep the owner&#x27;s lane and model, and give parallel tasks disjoint Owns paths.
+2a. Runs are short and self-serve. Koushik works from RUNS.md (generated from QUEUE.md by
+   Run-System/runs_view.py): he opens the run&#x27;s agent with its model and effort and says only
+   &quot;Complete run S05a&quot; or &quot;Complete the next run&quot;; the run claims, builds, verifies, merges and
+   records itself (RUN_SYSTEM.md, Manual run protocol). When busy he hands this to one agent
+   via ORCHESTRATOR.md. The optional dispatcher script also sends only a short prompt such as
+   &quot;Complete run R12&quot;. The run reads AGENTS.md, STATE.md, its QUEUE.md row and
+   Run-System/RUN_SYSTEM.md to learn the objective, acceptance checks and how to finish.
+   Each run is a fresh session with its own context window. Questions for Koushik are rare
+   and go into STATE.md, batched once a day.
+3. Order: spikes first (S05, S07 on CODEX-1) while CODEX-2 builds S04, Terra sources S02, and Opus
+   builds S09 against a fixture scene. Do not start S12 before Gate M has a result.
+3a. Model routing (by coding cost per task, ledger L31; general index L28):
+   - CODEX-1, GPT-6.1 Sol: physics, fitting, simulator, GPU, agent contracts, gates. Medium by
+     default; high for gate code; xhigh is the escalation. Never max.
+   - CODEX-2, GPT-6.1 Sol at medium: app skeleton, pipeline glue, library, guardrails, benchmark,
+     deploys, README. Terra on this lane only browses and drives screens: clip sourcing (S02),
+     Playwright QA runs (S22), video capture and cutting (S24). Terra never writes product code:
+     on Terminal-Bench 4.0 it costs more per task than Sol and scores 5.6 points lower.
+   - GPT-6 Luna at high, as a subagent: ffprobe metadata into clips.csv, lint and format fixes,
+     fixture generation, log summaries. Only with a deterministic check; never terminal-heavy work
+     (13.6% on Terminal-Bench 4.0) and never facts or design.
+   - Opus 5.5 at medium: the 3D viewer (S09; Opus leads visual-bug fixing, 70.2% vs Sol 43.5%),
+     Gate D judgment, the script, and review of CODEX-1&#x27;s gate code. Sonnet 5.5 at high: the
+     workspace UI (S15; first on Vibe Code Bench at about half Opus&#x27;s cost). Haiku 5.5 at high:
+     PWA and report (S17, S19; 90.4% on Vibe Code Bench at about 1/5 of Sonnet&#x27;s cost;
+     available in Koushik&#x27;s Claude Code, confirmed Oct 27).
+   - GPT-6 Astra: none planned. At most 1 run in the build, only if Sol xhigh fails the same gate
+     twice and Koushik approves in writing. GPT-5.6 Luna: not used.
+   - Day-1 calibration: S03 logs tokens and quota per task for each lane; re-route on Oct 29
+     if measured cost differs from L31 by more than 2x.
+   Cross-check: every gate&#x27;s code is reviewed by the other vendor (Sol code by Opus, Claude code
+   by Sol). Log the quota left per vendor in STATE.md after every run.
+4. Gates are checkpoints, not hopes. At each gate, write the measured numbers and the decision
+   (pass, fallback 1, fallback 2) to DECISIONS_LOG.md before continuing.
+5. Numbers: every number shown to users, in the report or in the video comes from the fitter or
+   simulator. Gate A enforces this; never weaken that test.
+6. AWS: keep it disabled until Koushik confirms the us-east-2 quota approval. Then: Koushik
+   creates the $50 EC2 budget alert first; us-east-2 only; spot for batch jobs; stop instances
+   after each session.
+7. Never deploy to the judging environment, make the repo public, post, or submit without
+   Koushik&#x27;s written go-ahead. Never print or commit secrets or user uploads.
+8. Recovery record (STATE.md, update after every run): completed step IDs, current branch and
+   last merged SHA, last verified command and its result, gate results so far, active blocker,
+   next action, deadline mode, Meta credit spent.
+9. Deadline modes follow section 5. Stop-work is Nov 4, 18:00 Asia/Dhaka (moved from 22:00 on Oct 27 so Koushik can rest before his Nov 5 exam).
+10. The Executor, not this plan, computes Execution Readiness after the gates run.</code></pre>
+
+<script id="executor-handoff" type="application/json">
+{
+  "handoff_version": 2,
+  "mode": "open-ended-build",
+  "objective": "Build and submit Real2Simulation for the Meta Global AI Developer Hackathon indie track: a web app that turns a video (licensed public clips in the demo, or a user upload) into a measurable 3D physics world, where real-motion measurements calibrate the simulation (Real2Sim), with a virtual lab and Mystery-g, scored against the official Stage-2 rubric.",
+  "authority_sources": [
+    "Koushik's latest instructions in this conversation (Oct 27, 2026): project Real2Simulation, Real2Sim + virtual lab + Mystery-g approved",
+    "Cerebral Valley event Details page (signed in, read Oct 27): Stage-2 rubric, prizes, deadline",
+    "Meta Global AI Developer Hackathon participant guide (pasted by Koushik, Oct 27): rules, anti-projects, sessions, credits",
+    "dev.meta.ai/docs/models (read Oct 27): model lines, IDs and endpoints",
+    "Workspace AGENTS.md files: root and event folder",
+    "Event Rules and Participant Guide.md (cleaned copy of the CV event page and participant guide, Oct 27)",
+    "archive/05 VM Setup/Remote Workspace/Run-System/RUN_SYSTEM.md: lanes, run lifecycle, quota rules (process reused; now run on Koushik's PC)",
+    "08 Real2Simulation/Real2Simulation Concept.html, Concept Notes.md and tasks for the owner.md: approved concept, AWS status, owner checklist"
+  ],
+  "time_budget_minutes": 6000,
+  "deadline": {
+    "hard": "2026-11-05T08:00:00+06:00",
+    "stop_work": "2026-11-04T18:00:00+06:00",
+    "timezone": "Asia/Dhaka"
+  },
+  "constraints": [
+    "New work only: create a fresh repository; the demo shows only features built during the event (Oct 27 to Nov 4). Copy no AttemptLens code.",
+    "The repository must be public at submission; make it public only after Koushik's written go-ahead.",
+    "Real use of Meta models is required: Muse Wonder, Muse Spark, SAM 3.1 on the Meta Model API; Muse Spark Open through Baseten (model ID meta-models/muse-spark-open-1026, as the guide requires) for the open-weight bonus.",
+    "Avoid the guide's anti-projects: never pitch it as an AI tutor or education chatbot; no sports footage; no medical, political or war content.",
+    "Every number shown is labelled measured or simulated, and every number comes from the fitter or simulator, never from model text.",
+    "No footage without rights: only NASA public domain, Wikimedia Commons (PD, CC0, CC BY, CC BY-SA, with attribution) and Pexels or Pixabay clips, each with its licence recorded in clips.csv. No YouTube downloads; no NC or ND licences. Koushik films nothing.",
+    "Railway dev deployments are approved; judging, production and other deploys need separate written go-ahead. No account creation, credit purchases, legal acceptances, public posts or submissions without Koushik's written go-ahead.",
+    "Never print or commit secrets. Public clips live in test-data/public with clips.csv; user uploads are never committed.",
+    "Model routing (coding cost per task, Oct 27): Codex carries about 75% of build time. GPT-6.1 Sol does all Codex coding: medium by default, high for gates, xhigh as the escalation. GPT-6.1 Terra only browses and drives screens (clip sourcing, Playwright QA runs, video capture), because on coding benchmarks it costs about the same per task as Sol and scores lower. GPT-6 Luna at high for mechanical subtasks with deterministic checks. Claude: Opus 5.5 at medium for the 3D viewer, Gate D judgment, the script and cross-vendor review of gate code; Sonnet 5.5 at high for the workspace UI; Haiku 5.5 for PWA and report. GPT-5.6 Luna is not used. GPT-6 Astra: none planned; at most 1 run in the whole build, only with Koushik's written go-ahead after Sol xhigh fails a gate twice.",
+    "AWS stays disabled until Koushik confirms that the us-east-2 G and VT quota requests are approved. After approval and before the first GPU session, Koushik creates a $50 EC2 budget alert. us-east-2 only; spot for batch jobs; stop every GPU instance after each session.",
+    "Meta API spend: routine hard stop at $120 of the $150 credit; $30 reserved for the final demo.",
+    "Run System rules apply: tasks of 30 minutes or less, fixed lanes, one run per lane, lanes never take each other's tasks without Koushik's permission."
+  ],
+  "steps": [
+    {
+      "id": "S01",
+      "title": "Finish keys and approvals",
+      "priority": "critical",
+      "timebox_minutes": 90,
+      "owner": "Koushik",
+      "dependencies": [],
+      "acceptance": [
+        "One test call to muse-spark-1.3 succeeds with the new Meta key",
+        "Clerk sign-in works with Google (shared credentials) and email OTP; guests reach /library",
+        "Keys live only in .env or Railway variables and are never printed",
+        "Written go-ahead for Railway dev deploys recorded in DECISIONS_LOG.md"
+      ],
+      "evidence_required": "E2",
+      "fallback": "If Meta access or credit is unavailable, use Muse Spark Open on Baseten and open-weight SAM 3 on Modal where available; Meta-only steps wait and nothing is faked."
+    },
+    {
+      "id": "S02",
+      "title": "Build the licensed public clip set",
+      "priority": "critical",
+      "timebox_minutes": 120,
+      "owner": "CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) + Koushik (10-minute approval)",
+      "dependencies": [],
+      "acceptance": [
+        "At least 10 clips plus clips.csv in test-data/public, every row with source, licence and attribution",
+        "Every clip has a frame rate from the file metadata and a known-size reference object, or is marked scene-only",
+        "Koushik's approval of the list recorded in DECISIONS_LOG.md"
+      ],
+      "evidence_required": "E1",
+      "fallback": "If fewer than 3 usable free-fall clips are found, add Wikimedia Commons strobe and slow-motion clips and treat slow-motion timebase detection (S07) as required; if still short, Gate M runs on what exists and reports the sample size."
+    },
+    {
+      "id": "S03",
+      "title": "Retarget the Run System to Real2Simulation",
+      "priority": "critical",
+      "timebox_minutes": 60,
+      "owner": "CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+      "dependencies": [],
+      "acceptance": [
+        "The event folder is the git repository root with the control files; archive/, .env and private data are gitignored; git log shows only new commits",
+        "QUEUE.md tasks are 30 minutes or less, with disjoint Owns paths for parallel tasks",
+        "Run-System dispatcher script starts each run as a fresh session with a short prompt (for example \"Complete run R12\"), runs one task per lane, at most 2 at once, kills a run at 30 minutes, and logs each run to RUN_LOG.md; one dry run proves it",
+        "API_BUDGET.md tracks the Meta credit with the $120 stop"
+      ],
+      "evidence_required": "E1",
+      "fallback": "If the dispatcher script is not ready, Koushik starts each lane by hand from its own CLI or T3 Code on the PC with the same QUEUE.md and STATE.md files."
+    },
+    {
+      "id": "S04",
+      "title": "App skeleton on Railway with sign-in and guest access",
+      "priority": "critical",
+      "timebox_minutes": 240,
+      "owner": "CODEX-2 · GPT-6.1 Sol (medium)",
+      "dependencies": [
+        "S01",
+        "S03"
+      ],
+      "acceptance": [
+        "Dev URL serves the app; Clerk sign-in works with Google (shared credentials) and email OTP; guests reach /library",
+        "A logged-out visitor reaches /library",
+        "API and worker health endpoints return 200 on Railway"
+      ],
+      "evidence_required": "E4",
+      "fallback": "If Clerk blocks progress for more than 2 hours, ship guest mode plus a single demo account and finish Clerk in S22."
+    },
+    {
+      "id": "S05",
+      "title": "Gate R spike: metric 3D scene from public clips",
+      "priority": "critical",
+      "timebox_minutes": 180,
+      "owner": "CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+      "dependencies": [
+        "S02",
+        "S03"
+      ],
+      "acceptance": [
+        "Known-object size within 10% on at least 2 of 3 scene clips (standard sizes, not tape measurements, so the threshold is looser)",
+        "Floor plane found and gravity direction agrees with the A4 plane normal within 5 degrees",
+        "GPU time 4 minutes or less per scene; licence recorded in DECISIONS_LOG.md"
+      ],
+      "evidence_required": "E2",
+      "fallback": "Fallback 1: one keyframe plus SAM 3D Objects layout plus one question (desk height). Fallback 2: planes and boxes textured with video frames. Log the fallback as a decision; the experiment flow does not change."
+    },
+    {
+      "id": "S06",
+      "title": "GPU container on Modal (AWS-ready)",
+      "priority": "critical",
+      "timebox_minutes": 240,
+      "owner": "CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+      "dependencies": [
+        "S05",
+        "S01"
+      ],
+      "acceptance": [
+        "One room clip becomes a scene artifact on Modal in under 5 minutes including cold start",
+        "Cost per scene logged",
+        "The image starts locally or on CPU in a dry-run mode, so the AWS path is ready"
+      ],
+      "evidence_required": "E2",
+      "fallback": "If SAM 3D Objects fails (memory, install or licence), ship MapAnything output with primitive meshes and drop SAM 3D from the pitch."
+    },
+    {
+      "id": "S07",
+      "title": "Gate M spike: measure g from public free-fall clips",
+      "priority": "critical",
+      "timebox_minutes": 180,
+      "owner": "CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+      "dependencies": [
+        "S01",
+        "S02",
+        "S03"
+      ],
+      "acceptance": [
+        "g within 5% of 9.81 m/s^2 on at least 2 of 3 Earth free-fall clips, with a stated uncertainty that covers the error",
+        "Stretch: the Apollo 15 clip gives the Moon's g within 15%",
+        "Fitter unit tests pass on synthetic data"
+      ],
+      "evidence_required": "E2",
+      "fallback": "If Gate M fails, Measure mode is limited to table-plane experiments (homography only) and the pitch leads with the virtual lab and Mystery-g. Log it as a decision."
+    },
+    {
+      "id": "S08",
+      "title": "Experiment spec, validator and 4 templates",
+      "priority": "critical",
+      "timebox_minutes": 240,
+      "owner": "CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+      "dependencies": [
+        "S03"
+      ],
+      "acceptance": [
+        "Schema tests pass",
+        "Validator rejects 10 deliberately bad specs, each with a readable reason",
+        "Each template exposes an analytic answer for Gate P"
+      ],
+      "evidence_required": "E3",
+      "fallback": "Cut to 3 templates (drop the ramp) if the step overruns by 2 hours."
+    },
+    {
+      "id": "S09",
+      "title": "3D world viewer with a rendering budget",
+      "priority": "critical",
+      "timebox_minutes": 300,
+      "owner": "CLAUDE · Opus 5.5 (medium)",
+      "dependencies": [
+        "S04",
+        "S05"
+      ],
+      "acceptance": [
+        "3 scenes load and orbit at 30 fps or more on a mid-range laptop",
+        "At 375 px wide the viewer loads the reduced detail level without horizontal scroll"
+      ],
+      "evidence_required": "E2",
+      "fallback": "If splats are too heavy, render a decimated point cloud plus textured proxy boxes."
+    },
+    {
+      "id": "S10",
+      "title": "Builder and in-browser simulator; Gate P",
+      "priority": "critical",
+      "timebox_minutes": 300,
+      "owner": "CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+      "dependencies": [
+        "S08",
+        "S09"
+      ],
+      "acceptance": [
+        "Gate P: every template matches its analytic answer within 0.5%",
+        "The same seed replays identically",
+        "Mystery-g hides g in the UI and reveals it only after a fit"
+      ],
+      "evidence_required": "E3",
+      "fallback": "If Rapier contact jitter breaks a template, run that template on RK4 only and disable free dragging for it."
+    },
+    {
+      "id": "S11",
+      "title": "Virtual instruments and the fitter service",
+      "priority": "critical",
+      "timebox_minutes": 240,
+      "owner": "CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+      "dependencies": [
+        "S07",
+        "S08"
+      ],
+      "acceptance": [
+        "Coverage test: across 100 seeds, the 95% interval contains the true g in at least 90 runs",
+        "Fitter output is the only source of numbers in later steps (API contract)"
+      ],
+      "evidence_required": "E3",
+      "fallback": "If the coverage test fails, widen the noise model's documented uncertainty and record the miscalibration; never hide it."
+    },
+    {
+      "id": "S12",
+      "title": "Real2Sim bridge and prediction; Gate RS",
+      "priority": "critical",
+      "timebox_minutes": 180,
+      "owner": "CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+      "dependencies": [
+        "S07",
+        "S10",
+        "S11"
+      ],
+      "acceptance": [
+        "Gate RS: across the projectile, bounce and pendulum clips, the median held-out error is 5% or less of the motion's size (range, bounce height, or period)",
+        "Every value in the UI is labelled measured or simulated"
+      ],
+      "evidence_required": "E3",
+      "fallback": "If the error is 5-10%, show it honestly with its uncertainty. Above 10%, demo prediction in the virtual lab only and keep Measure mode for g."
+    },
+    {
+      "id": "S13",
+      "title": "Upload and reconstruction job pipeline",
+      "priority": "critical",
+      "timebox_minutes": 240,
+      "owner": "CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+      "dependencies": [
+        "S04",
+        "S06",
+        "S01"
+      ],
+      "acceptance": [
+        "A fresh upload on the dev URL becomes a viewable scene in under 6 minutes",
+        "Failures at any stage show a readable message and leave the job retryable"
+      ],
+      "evidence_required": "E4",
+      "fallback": "If Wonder video input is unreliable, send keyframes as images instead of the full video."
+    },
+    {
+      "id": "S14",
+      "title": "Scene-understanding and interview agent",
+      "priority": "critical",
+      "timebox_minutes": 240,
+      "owner": "CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+      "dependencies": [
+        "S08",
+        "S13"
+      ],
+      "acceptance": [
+        "Gate A: 9 of 10 recorded scene fixtures produce a valid spec",
+        "Gate A: an automated check finds no number in agent replies that is absent from tool outputs, across 30 test turns"
+      ],
+      "evidence_required": "E3",
+      "fallback": "If structured output fails, the agent picks from template cards only and free-text custom experiments are cut."
+    },
+    {
+      "id": "S15",
+      "title": "Workspace UI",
+      "priority": "critical",
+      "timebox_minutes": 360,
+      "owner": "CLAUDE · Sonnet 5.5 (high)",
+      "dependencies": [
+        "S09",
+        "S10",
+        "S14"
+      ],
+      "acceptance": [
+        "A browser walk-through completes upload, interview, run, fit and report on the dev URL",
+        "No horizontal scroll at 375 px; the sidebar stacks under the viewport"
+      ],
+      "evidence_required": "E4",
+      "fallback": "Under compression, drop the custom chart styling and keep a single data table plus one fit chart."
+    },
+    {
+      "id": "S16",
+      "title": "Sidebar agent tools and the open-weight component",
+      "priority": "high",
+      "timebox_minutes": 240,
+      "owner": "CODEX-2 · GPT-6.1 Sol (medium)",
+      "dependencies": [
+        "S12",
+        "S14"
+      ],
+      "acceptance": [
+        "Spec patches go through the validator before any rebuild",
+        "Spark Open on Baseten serves library search in the dev environment, with the model ID logged per call"
+      ],
+      "evidence_required": "E3",
+      "fallback": "If Baseten fails, use Muse Spark Open on Fireworks; if both fail, use Muse Spark on the Meta API and drop the open-weight bonus claim."
+    },
+    {
+      "id": "S17",
+      "title": "Lab report and charts",
+      "priority": "high",
+      "timebox_minutes": 180,
+      "owner": "CLAUDE · Haiku 5.5 (high)",
+      "dependencies": [
+        "S11",
+        "S14"
+      ],
+      "acceptance": [
+        "PDF compiles for all 4 templates",
+        "Every number in the PDF equals the fitter output (automated diff)"
+      ],
+      "evidence_required": "E3",
+      "fallback": "Fall back to an HTML report with print-to-PDF if Tectonic fails on Railway."
+    },
+    {
+      "id": "S18",
+      "title": "Demo library with licensed footage",
+      "priority": "high",
+      "timebox_minutes": 300,
+      "owner": "CODEX-2 · GPT-6.1 Sol (medium)",
+      "dependencies": [
+        "S06",
+        "S12",
+        "S13"
+      ],
+      "acceptance": [
+        "At least 6 demos open from precomputed artifacts in under 3 seconds",
+        "Every demo has a filled source and licence field; no YouTube downloads"
+      ],
+      "evidence_required": "E3",
+      "fallback": "Minimum viable library: 4 public clips plus Mystery-g. Drop any clip whose licence is not verified."
+    },
+    {
+      "id": "S19",
+      "title": "Installable PWA and phone layout",
+      "priority": "medium",
+      "timebox_minutes": 120,
+      "owner": "CLAUDE · Haiku 5.5 (high)",
+      "dependencies": [
+        "S15"
+      ],
+      "acceptance": [
+        "The browser reports the app as installable",
+        "The phone layout passes a 375 px walk-through of the library and viewer"
+      ],
+      "evidence_required": "E2",
+      "fallback": "Cut the APK; keep the PWA."
+    },
+    {
+      "id": "S20",
+      "title": "Spend guardrails and GPU failover",
+      "priority": "high",
+      "timebox_minutes": 120,
+      "owner": "CODEX-2 · GPT-6.1 Sol (medium)",
+      "dependencies": [
+        "S13"
+      ],
+      "acceptance": [
+        "Gate C: per-scene cost appears in logs, and a simulated cap breach pauses uploads while the library still works",
+        "The AWS switch stays off by default"
+      ],
+      "evidence_required": "E3",
+      "fallback": "If time is short, a manual kill switch in Railway variables replaces the automatic cap."
+    },
+    {
+      "id": "S21",
+      "title": "Benchmark numbers for the pitch",
+      "priority": "high",
+      "timebox_minutes": 180,
+      "owner": "CODEX-2 · GPT-6.1 Sol (medium)",
+      "dependencies": [
+        "S12",
+        "S18"
+      ],
+      "acceptance": [
+        "BENCHMARK.md reports each metric with sample size and method",
+        "Numbers in the app and video match BENCHMARK.md"
+      ],
+      "evidence_required": "E3",
+      "fallback": "Report whatever was measured, with its sample size; never extrapolate missing runs."
+    },
+    {
+      "id": "S22",
+      "title": "End-to-end QA on the judging environment; Gate D",
+      "priority": "critical",
+      "timebox_minutes": 300,
+      "owner": "CLAUDE · Opus 5.5 (medium) + CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) (Playwright runs)",
+      "dependencies": [
+        "S15",
+        "S16",
+        "S17",
+        "S19",
+        "S20"
+      ],
+      "acceptance": [
+        "Gate D: a fresh account completes upload to report in under 5 minutes, 3 runs in a row",
+        "A logged-out judge can open and run a library demo"
+      ],
+      "evidence_required": "E4",
+      "fallback": "If Gate D fails at freeze, the demo video uses the library path and the README states the upload limits honestly."
+    },
+    {
+      "id": "S23",
+      "title": "Promote the judging build",
+      "priority": "critical",
+      "timebox_minutes": 60,
+      "owner": "Koushik + CODEX-2 · GPT-6.1 Sol (medium)",
+      "dependencies": [
+        "S22"
+      ],
+      "acceptance": [
+        "The deployed revision equals the frozen commit SHA",
+        "Judging URL passes the S22 smoke flow once more"
+      ],
+      "evidence_required": "E4",
+      "fallback": "Roll back to the last revision that passed Gate D."
+    },
+    {
+      "id": "S24",
+      "title": "Three-minute demo video",
+      "priority": "critical",
+      "timebox_minutes": 300,
+      "owner": "CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) (capture, edit) + CLAUDE · Opus 5.5 (medium) (script) + Koushik (voice-over)",
+      "dependencies": [
+        "S21",
+        "S23"
+      ],
+      "acceptance": [
+        "Video is 3:00 or shorter and plays from its public link",
+        "Every on-screen number matches BENCHMARK.md or a live run"
+      ],
+      "evidence_required": "E4",
+      "fallback": "If a prediction misses, show the miss with its uncertainty; do not stage or edit results."
+    },
+    {
+      "id": "S25",
+      "title": "README, attribution and public repo",
+      "priority": "high",
+      "timebox_minutes": 120,
+      "owner": "CODEX-2 · GPT-6.1 Sol (medium)",
+      "dependencies": [
+        "S21",
+        "S23"
+      ],
+      "acceptance": [
+        "The repo is public after Koushik's go-ahead and contains no secrets (secret scan clean)",
+        "README links the live URL and the video"
+      ],
+      "evidence_required": "E3",
+      "fallback": "If the secret scan finds anything, rotate the key, rewrite history before publishing, and record it."
+    },
+    {
+      "id": "S26",
+      "title": "Submit and post",
+      "priority": "critical",
+      "timebox_minutes": 90,
+      "owner": "Koushik",
+      "dependencies": [
+        "S24",
+        "S25"
+      ],
+      "acceptance": [
+        "The submission page shows the entry with working links",
+        "Submitted before stop-work (Nov 4, 18:00 Dhaka)"
+      ],
+      "evidence_required": "E4",
+      "fallback": "If the form errors, retry, then contact organisers on Discord with a timestamped screenshot well before the hard deadline."
+    }
+  ],
+  "validation_gates": [
+    "Gate R (Oct 28, 22:00 Dhaka): metric scene from public clips, known-object size within 10% on 2 of 3 clips",
+    "Gate M (Oct 28, 22:00 Dhaka): g within 5% of 9.81 m/s^2 on 2 of 3 public free-fall clips, with honest uncertainty",
+    "Gate P (Oct 30): simulator matches the analytic answer within 0.5% for every template",
+    "Gate RS (Oct 31): held-out prediction error 5% or less (median) on the public projectile, bounce and pendulum clips",
+    "Gate A (Oct 31): valid spec on 9 of 10 fixtures and no invented numbers across 30 turns",
+    "Gate C (Nov 1): per-scene cost logged and the spend cap pauses uploads, never the library",
+    "Gate D (Nov 3): fresh account completes the full flow in under 5 minutes, 3 runs in a row; logged-out judge can run a library demo",
+    "Gate S (Nov 4): repo public and secret-free, video 3:00 or less, all links load, submitted before 18:00 Dhaka",
+    "Final: run scripts/validate_plan.py on this file after any edit to the handoff"
+  ],
+  "git_policy": {
+    "commit": "One commit per verified Run System task on run/<RID>, fast-forward to main only with green tests (RUN_SYSTEM.md section 5)",
+    "push": "Private remote allowed after S03; make the repository public only after Koushik's written go-ahead in S25; otherwise follow the latest user instruction"
+  },
+  "score_claims": {
+    "plan_quality": 92,
+    "evidence_coverage": 50,
+    "execution_readiness": null,
+    "submission_ready": false
+  }
+}
+</script>
+
+<h2>10. Scorecard And Claim Boundaries</h2>
+<div class="scores">
+  <div class="score"><strong>Plan Quality</strong><br>92/100</div>
+  <div class="score"><strong>Evidence Coverage</strong><br>50/100</div>
+  <div class="score"><strong>Execution Readiness</strong><br>Not evaluated</div>
+</div>
+<div class="tw"><table>
+  <tr><th>Criterion</th><th>Weight</th><th>Points</th><th>Evidence</th></tr>
+  <tr><td>Official rules, contract, and scoring alignment</td><td>25</td><td>24</td><td>Rubric-weighted priorities, anti-project framing, new-work and public-repo constraints, judge guest access, X-link and contributor-listing items, DST-correct times. L05 confirms Koushik's acceptance of Discord rules plus Credit Terms as sufficient. Residual deduction: the full waiver remains unread; source acceptance is not full legal-text review.</td></tr>
+<tr><td>Feasibility and deadline realism</td><td>20</td><td>18</td><td>About 87 hours of planned work across three lanes (two Codex, one Claude) and Koushik in 8 days, with gates on day 1-2 and a 14-hour stop-work buffer; owner work cut to about 4 hours in total around Koushik&#x27;s coursework and exams. Deduction: Codex quota capacity is unmeasured (L27), Sol now carries about 56 hours, and the Vals and Cognition runs do not state effort settings (L31).</td></tr>
+<tr><td>Prioritization and dependency quality</td><td>15</td><td>14</td><td>Feasibility spikes first; UI builds against fixture scenes in parallel; acyclic dependencies.</td></tr>
+<tr><td>Acceptance evidence and regression design</td><td>15</td><td>13</td><td>Numeric gates, E2-E4 levels, regression set per gate, agent-honesty test, held-out prediction on unseen frames. Deductions: probe commands are planned names, not yet existing scripts; public clips give weaker ground truth (standard object sizes, metadata frame rates) than tape-measured clips (L22).</td></tr>
+<tr><td>Ownership, handoff clarity, and recovery state</td><td>10</td><td>9</td><td>Every step has an owner and lane; recovery fields in STATE.md; decisions logged. Deduction: the dispatcher script is delegated to S03 rather than specified here.</td></tr>
+<tr><td>Risk, fallback, and scope-cut discipline</td><td>10</td><td>9</td><td>Fallback per step, compression trigger with named cuts, honest-failure rules.</td></tr>
+<tr><td>Submission and operational completeness</td><td>5</td><td>5</td><td>Deploy promotion, revision check, secret scan, submission and X post, cost shutdown.</td></tr>
+  <tr><th>Total</th><th>100</th><th>92</th><th>Planning score only</th></tr>
+</table></div>
+<p><strong>Evidence Coverage 50/100 (existing planning estimate, not recalculated):</strong> the rubric, deadline, participant guide, Discord clarifications and owner-reported Meta API success are recorded. L05 confirms the owner's source-acceptance decision, not full legal review: the full waiver remains unread. Meta billing completion is owner-reported but the credit balance and billing alert are not independently verified (L06b), and core feasibility claims (L13-L17) still need executable probes.</p>
+<p class="meta">Score trajectory: 82 → 88 → 91 → 92 → 92 | Iterations: 5/5, stopped early at a plateau: the remaining deductions need external evidence (rules document, lane quota, gate probes), not plan edits | Submission-ready claim: false</p>
+<p class="meta">Iteration 1 (82) gaps: no logged-out judge path, builds planned on the 2-vCPU VM, no fallback for a late Meta key, lanes unbalanced. Iteration 2 (88): added guest mode and judge note, moved builds to Railway, added the Fireworks and open SAM 3 fallback, moved S17 to the CLAUDE lane. Iteration 3 (91): added Gate A's untraced-number test, a dated compression trigger, the STATE.md recovery fields, and AWS kept disabled until quota approval. Iteration 4 (92, Oct 27 revision): full participant guide read (X post link, contributor listing, Baseten model ID, DST), Run System moved to Koushik's PC, Spark Open moved to Baseten, AWS budget moved after quota approval. Iteration 5 (Oct 27 pivot): owner filming replaced by a licensed public clip set (Apollo 15 PD and Pexels licence confirmed), gates re-based on known g and held-out frames, stop-work moved to Nov 4 18:00 for Koushik's exams, owner work cut to about 4 hours. Revision 5b (92, Oct 27 routing): steps re-routed from model research (L24-L27); Codex share of build minutes up from about 63% to 75%. Revision 5c: effort levels set from Artificial Analysis cost per task (L28), GPT-6 Luna added for mechanical subtasks, GPT-5.6 Luna dropped (L29), Astra cut to at most 1 approved run (L30). Revision 5d: coding-specific cost per task (L31) moved all Codex coding to Sol, limited Terra to browsing and screen work, moved the workspace UI to Sonnet and PWA and report to Haiku.</p>
+
+</body>
+</html>

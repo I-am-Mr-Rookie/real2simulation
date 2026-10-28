@@ -1,0 +1,9 @@
+{
+  "source_path": "C:\\Users\\HP\\.codex\\worktrees\\s02i-rp01-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\clips\\calibration-recovery\\S02i\\media\\RP01-480p.webm",
+  "sha256": "f2c27c9d821d2c6673f3b080a51aadd1d6890f962c1b180672de17f678cc3265",
+  "bytes": 50013019,
+  "pts_reference": "C:\\Users\\HP\\.codex\\worktrees\\s02i-rp01-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\clips\\calibration-recovery\\S02i\\pts-480p.csv",
+  "delivered_frames": 15361,
+  "capture_clock_verified": false,
+  "note": "Existing licensed derivative reused read-only; exact delivered PTS only."
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "FF01",
+    "sha1": "51953ee44654b75724dd3f0c8831281e6a2b6e7d",
+    "commons_sha1_match": true,
+    "frame_count": 2474,
+    "first_pts_ms": 0,
+    "last_pts_ms": 98920,
+    "pts_delta_ms_counts": {
+      "40": 2473
+    },
+    "capture_mapping_verified": false
+  },
+  {
+    "id": "FF02",
+    "sha1": "3c075f4fc34b8cb9a73dfc1ba8f085f92df8df14",
+    "commons_sha1_match": true,
+    "frame_count": 4189,
+    "first_pts_ms": 0,
+    "last_pts_ms": 167520,
+    "pts_delta_ms_counts": {
+      "40": 4188
+    },
+    "capture_mapping_verified": false
+  }
+]

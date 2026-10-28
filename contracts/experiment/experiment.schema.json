@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:real2simulation:experiment:1.0.0",
+  "title": "Real2Simulation experiment inputs v1.0.0 (structural contract)",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "experiment_id", "template", "scene", "environment", "body", "placement", "parameters", "simulation"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "experiment_id": {"$ref": "#/$defs/id"},
+    "template": {"enum": ["free_fall", "projectile", "ramp", "pendulum"]},
+    "scene": {"$ref": "#/$defs/scene"},
+    "environment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["gravity", "gravity_direction", "air_resistance"],
+      "properties": {
+        "gravity": {"$ref": "#/$defs/acceleration"},
+        "gravity_direction": {"const": [0, -1, 0]},
+        "air_resistance": {"const": "neglected"}
+      }
+    },
+    "body": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mass", "radius"],
+      "properties": {
+        "mass": {"$ref": "#/$defs/mass"},
+        "radius": {"$ref": "#/$defs/length"}
+      }
+    },
+    "placement": {
+      "type": "object", "additionalProperties": false,
+      "required": ["origin", "surface_id"],
+      "properties": {
+        "origin": {"$ref": "#/$defs/position"},
+        "surface_id": {"oneOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]}
+      }
+    },
+    "parameters": {"type": "object"},
+    "simulation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["duration", "time_step", "seed"],
+      "properties": {
+        "duration": {"$ref": "#/$defs/time"},
+        "time_step": {"$ref": "#/$defs/time"},
+        "seed": {"type": "integer", "minimum": 0, "maximum": 4294967295}
+      }
+    }
+  },
+  "oneOf": [
+    {"properties": {"template": {"const": "free_fall"}, "parameters": {"$ref": "#/$defs/free_fall"}}},
+    {"properties": {"template": {"const": "projectile"}, "parameters": {"$ref": "#/$defs/projectile"}}},
+    {"properties": {"template": {"const": "ramp"}, "parameters": {"$ref": "#/$defs/ramp"}}},
+    {"properties": {"template": {"const": "pendulum"}, "parameters": {"$ref": "#/$defs/pendulum"}}}
+  ],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$"},
+    "vec3": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["label", "evidence"],
+      "properties": {
+        "label": {"enum": ["measured", "simulated", "assumed", "synthetic", "unknown"]},
+        "evidence": {"type": "string", "minLength": 1, "pattern": "\\S"}
+      }
+    },
+    "quantity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["value", "unit", "source", "uncertainty"],
+      "properties": {
+        "value": {"type": ["number", "null"]},
+        "unit": {"enum": ["m", "s", "kg", "m/s", "m/s^2", "rad", "rad/s", "1"]},
+        "source": {"$ref": "#/$defs/source"},
+        "uncertainty": {"type": ["number", "null"]}
+      },
+      "allOf": [{
+        "if": {"properties": {"source": {"properties": {"label": {"const": "unknown"}}}}},
+        "then": {"properties": {"value": {"type": "null"}, "uncertainty": {"type": "null"}}},
+        "else": {"properties": {"value": {"type": "number"}}}
+      }]
+    },
+    "length": {"allOf": [{"$ref": "#/$defs/quantity"}, {"properties": {"unit": {"const": "m"}}}]},
+    "time": {"allOf": [{"$ref": "#/$defs/quantity"}, {"properties": {"unit": {"const": "s"}}}]},
+    "mass": {"allOf": [{"$ref": "#/$defs/quantity"}, {"properties": {"unit": {"const": "kg"}}}]},
+    "speed": {"allOf": [{"$ref": "#/$defs/quantity"}, {"properties": {"unit": {"const": "m/s"}}}]},
+    "acceleration": {"allOf": [{"$ref": "#/$defs/quantity"}, {"properties": {"unit": {"const": "m/s^2"}}}]},
+    "angle": {"allOf": [{"$ref": "#/$defs/quantity"}, {"properties": {"unit": {"const": "rad"}}}]},
+    "angular_speed": {"allOf": [{"$ref": "#/$defs/quantity"}, {"properties": {"unit": {"const": "rad/s"}}}]},
+    "dimensionless": {"allOf": [{"$ref": "#/$defs/quantity"}, {"properties": {"unit": {"const": "1"}}}]},
+    "position": {
+      "type": "object", "additionalProperties": false,
+      "required": ["value", "unit", "source"],
+      "properties": {
+        "value": {"oneOf": [{"$ref": "#/$defs/vec3"}, {"type": "null"}]},
+        "unit": {"const": "m"},
+        "source": {"$ref": "#/$defs/source"}
+      },
+      "allOf": [{
+        "if": {"properties": {"source": {"properties": {"label": {"const": "unknown"}}}}},
+        "then": {"properties": {"value": {"type": "null"}}},
+        "else": {"properties": {"value": {"$ref": "#/$defs/vec3"}}}
+      }]
+    },
+    "scene": {
+      "type": "object", "additionalProperties": false,
+      "required": ["scene_id", "schema_version", "coordinate_system", "scale_status", "constraints"],
+      "properties": {
+        "scene_id": {"$ref": "#/$defs/id"},
+        "schema_version": {"const": "1.0.0"},
+        "coordinate_system": {"const": "right-handed-y-up-metres"},
+        "scale_status": {"enum": ["calibrated", "estimated", "unknown"]},
+        "constraints": {
+          "type": "object", "additionalProperties": false,
+          "required": ["bounds_m", "allowed_surface_ids", "collision_obstacle_ids", "clearance"],
+          "properties": {
+            "bounds_m": {
+              "type": "object", "additionalProperties": false, "required": ["min", "max"],
+              "properties": {"min": {"$ref": "#/$defs/vec3"}, "max": {"$ref": "#/$defs/vec3"}}
+            },
+            "allowed_surface_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+            "collision_obstacle_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+            "clearance": {"$ref": "#/$defs/length"}
+          }
+        }
+      }
+    },
+    "free_fall": {
+      "type": "object", "additionalProperties": false, "required": ["drop_height", "initial_vertical_velocity"],
+      "properties": {"drop_height": {"$ref": "#/$defs/length"}, "initial_vertical_velocity": {"$ref": "#/$defs/speed"}}
+    },
+    "projectile": {
+      "type": "object", "additionalProperties": false, "required": ["launch_height", "horizontal_speed"],
+      "properties": {"launch_height": {"$ref": "#/$defs/length"}, "horizontal_speed": {"$ref": "#/$defs/speed"}}
+    },
+    "ramp": {
+      "type": "object", "additionalProperties": false, "required": ["length", "incline_angle", "friction_coefficient", "initial_speed"],
+      "properties": {
+        "length": {"$ref": "#/$defs/length"}, "incline_angle": {"$ref": "#/$defs/angle"},
+        "friction_coefficient": {"$ref": "#/$defs/dimensionless"}, "initial_speed": {"$ref": "#/$defs/speed"}
+      }
+    },
+    "pendulum": {
+      "type": "object", "additionalProperties": false, "required": ["length", "release_angle", "initial_angular_velocity"],
+      "properties": {
+        "length": {"$ref": "#/$defs/length"}, "release_angle": {"$ref": "#/$defs/angle"},
+        "initial_angular_velocity": {"$ref": "#/$defs/angular_speed"}
+      }
+    }
+  }
+}

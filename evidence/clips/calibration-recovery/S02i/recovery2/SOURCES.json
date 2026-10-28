@@ -1,0 +1,17 @@
+{
+  "checked_date_utc": "2026-10-28",
+  "method": "web open/find/search; text indexing may be cached, not an origin freshness guarantee",
+  "sources": [
+    {"url":"https://nustem.uk/activity/measuring-g/","locator":"Method 2 and Method 4; retrieved text lines 73, 113-120","finding":"Independent apparatus identification; no shot-specific capture cadence or coplanarity receipt. A plumb line establishes vertical alignment, not scale."},
+    {"url":"https://spark.iop.org/collections/acceleration-due-gravity","locator":"Measurement of g using an electronic timer; retrieved text lines 390-428","finding":"General apparatus start/stop and ball-bottom-to-flap procedure; parallax caution. Not a record of RP01's camera or particular trial height."},
+    {"url":"https://commons.wikimedia.org/wiki/File:A-level_Physics_Core_Practical-_Finding_a_value_for_g_using_a_free_fall_method.webm","locator":"description, attribution/licence and media metadata","finding":"NUSTEM CC BY 3.0 source. No independently certified physical acquisition/edit mapping recovered."}
+  ],
+  "targeted_searches": [
+    "site.nustem.uk measuring g camera frame",
+    "Alom Shaha free fall camera frame rate",
+    "Finding a value for g using a free fall method fps",
+    "NUSTEM free fall slow motion",
+    "site.nustem.uk Jonathan Sanderson camera practical"
+  ],
+  "negative_search_limit": "These bounded reads/searches did not resolve timing/plane; they do not prove the facts are unknowable or that no other source exists. No creator contact, login, new media download, or 403/429 bypass."
+}

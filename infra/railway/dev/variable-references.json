@@ -1,0 +1,24 @@
+{
+  "projectId": "b07b0d66-2001-4ccc-915d-7d226744d189",
+  "environmentId": "c5823a28-5118-49d8-b4d6-9851fa8ccc45",
+  "environmentName": "dev",
+  "api": {
+    "R2S_ENVIRONMENT": "development",
+    "DATABASE_URL": "${{Postgres.DATABASE_URL}}",
+    "REDIS_URL": "${{Redis.REDIS_URL}}",
+    "BUCKET_ENDPOINT": "${{real2simulation-dev.ENDPOINT}}",
+    "BUCKET_NAME": "${{real2simulation-dev.BUCKET}}",
+    "BUCKET_REGION": "${{real2simulation-dev.REGION}}",
+    "BUCKET_ACCESS_KEY_ID": "${{real2simulation-dev.ACCESS_KEY_ID}}",
+    "BUCKET_SECRET_ACCESS_KEY": "${{real2simulation-dev.SECRET_ACCESS_KEY}}"
+  },
+  "worker": {
+    "R2S_ENVIRONMENT": "development",
+    "REDIS_URL": "${{Redis.REDIS_URL}}",
+    "BUCKET_ENDPOINT": "${{real2simulation-dev.ENDPOINT}}",
+    "BUCKET_NAME": "${{real2simulation-dev.BUCKET}}",
+    "BUCKET_REGION": "${{real2simulation-dev.REGION}}",
+    "BUCKET_ACCESS_KEY_ID": "${{real2simulation-dev.ACCESS_KEY_ID}}",
+    "BUCKET_SECRET_ACCESS_KEY": "${{real2simulation-dev.SECRET_ACCESS_KEY}}"
+  }
+}

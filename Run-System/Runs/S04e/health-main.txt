@@ -1,0 +1,17 @@
+test_both_services_respond_over_real_loopback_http (Build.api.health.test_health.HealthTests.test_both_services_respond_over_real_loopback_http) ... C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\websockets\legacy\__init__.py:6: DeprecationWarning: websockets.legacy is deprecated; see https://websockets.readthedocs.io/en/stable/howto/upgrade.html for upgrade instructions
+  warnings.warn(  # deprecated in 14.0 - 2024-11-09
+C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\uvicorn\protocols\websockets\websockets_impl.py:16: DeprecationWarning: websockets.server.WebSocketServerProtocol is deprecated
+  from websockets.server import WebSocketServerProtocol
+C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\site-packages\uvicorn\config.py:458: DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead
+  use_asgi_3 = asyncio.iscoroutinefunction(call)
+ok
+test_config_presence_cannot_fabricate_dependency_or_worker_success (Build.api.health.test_health.HealthTests.test_config_presence_cannot_fabricate_dependency_or_worker_success) ... ok
+test_health_has_no_scene_or_job_api (Build.api.health.test_health.HealthTests.test_health_has_no_scene_or_job_api) ... ok
+test_liveness_is_200_without_downstream_configuration (Build.api.health.test_health.HealthTests.test_liveness_is_200_without_downstream_configuration) ... ok
+test_readiness_cannot_claim_missing_integrations_are_healthy (Build.api.health.test_health.HealthTests.test_readiness_cannot_claim_missing_integrations_are_healthy) ... ok
+test_version_only_publishes_valid_revision_not_raw_environment (Build.api.health.test_health.HealthTests.test_version_only_publishes_valid_revision_not_raw_environment) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.934s
+
+OK

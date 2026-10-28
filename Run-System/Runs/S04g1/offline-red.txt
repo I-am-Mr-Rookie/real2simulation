@@ -1,0 +1,328 @@
+test_baseline_including_statusless_version_and_worker_503 (test_verify.VerifyTests.test_baseline_including_statusless_version_and_worker_503) ... C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 503: 'synthetic'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+ok
+test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) ... C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\tempfile.py:484: ResourceWarning: Implicitly cleaning up <HTTPError 404: 'synthetic'>
+  _warnings.warn(self.warn_message, ResourceWarning)
+ok
+test_non_object_json_fails_closed (test_verify.VerifyTests.test_non_object_json_fails_closed) ... ok
+test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) ... ok
+test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) ... 
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/live'), value='WRONG-STATUS') ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/live'), value=None) ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/live'), value='OK') ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/ready'), value='WRONG-STATUS') ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/ready'), value=None) ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/ready'), value='OK') ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/live'), value='WRONG-STATUS') ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/live'), value=None) ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/live'), value='OK') ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/ready'), value='WRONG-STATUS') ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/ready'), value=None) ... FAIL
+  test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/ready'), value='OK') ... FAIL
+test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) ... ok
+test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) ... 
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/live'), value='WRONG-SERVICE') ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/live'), value=None) ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/ready'), value='WRONG-SERVICE') ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/ready'), value=None) ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/api/version'), value='WRONG-SERVICE') ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/api/version'), value=None) ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/health/live'), value='WRONG-SERVICE') ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/health/live'), value=None) ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/health/ready'), value='WRONG-SERVICE') ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/health/ready'), value=None) ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/api/version'), value='WRONG-SERVICE') ... FAIL
+  test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/api/version'), value=None) ... FAIL
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/live'), value='WRONG-STATUS')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/live'), value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/live'), value='OK')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/ready'), value='WRONG-STATUS')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/ready'), value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/ready'), value='OK')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/live'), value='WRONG-STATUS')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/live'), value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/live'), value='OK')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/ready'), value='WRONG-STATUS')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/ready'), value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/ready'), value='OK')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 108, in test_wrong_or_missing_health_status
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/live'), value='WRONG-SERVICE')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/live'), value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/ready'), value='WRONG-SERVICE')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/ready'), value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/api/version'), value='WRONG-SERVICE')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/api/version'), value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/health/live'), value='WRONG-SERVICE')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/health/live'), value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/health/ready'), value='WRONG-SERVICE')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/health/ready'), value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/api/version'), value='WRONG-SERVICE')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+======================================================================
+FAIL: test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('worker', '/api/version'), value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 96, in test_wrong_or_missing_service
+    self.assert_rejected(endpoint, mutate)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s04g1\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_verify.py", line 74, in assert_rejected
+    self.assertEqual(code, 1)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.217s
+
+FAILED (failures=24)

@@ -1,0 +1,217 @@
+[
+  {
+    "sheet": "frames/native-211-step3-01.jpg",
+    "frames": [
+      {
+        "frame_index_0": 5275,
+        "pts_s": 211.004
+      },
+      {
+        "frame_index_0": 5278,
+        "pts_s": 211.124
+      },
+      {
+        "frame_index_0": 5281,
+        "pts_s": 211.244
+      },
+      {
+        "frame_index_0": 5284,
+        "pts_s": 211.364
+      },
+      {
+        "frame_index_0": 5287,
+        "pts_s": 211.484
+      },
+      {
+        "frame_index_0": 5290,
+        "pts_s": 211.604
+      },
+      {
+        "frame_index_0": 5293,
+        "pts_s": 211.724
+      },
+      {
+        "frame_index_0": 5296,
+        "pts_s": 211.844
+      },
+      {
+        "frame_index_0": 5299,
+        "pts_s": 211.964
+      },
+      {
+        "frame_index_0": 5302,
+        "pts_s": 212.084
+      },
+      {
+        "frame_index_0": 5305,
+        "pts_s": 212.204
+      },
+      {
+        "frame_index_0": 5308,
+        "pts_s": 212.324
+      },
+      {
+        "frame_index_0": 5311,
+        "pts_s": 212.444
+      },
+      {
+        "frame_index_0": 5314,
+        "pts_s": 212.564
+      },
+      {
+        "frame_index_0": 5317,
+        "pts_s": 212.684
+      },
+      {
+        "frame_index_0": 5320,
+        "pts_s": 212.804
+      },
+      {
+        "frame_index_0": 5323,
+        "pts_s": 212.924
+      },
+      {
+        "frame_index_0": 5326,
+        "pts_s": 213.044
+      },
+      {
+        "frame_index_0": 5329,
+        "pts_s": 213.164
+      },
+      {
+        "frame_index_0": 5332,
+        "pts_s": 213.284
+      },
+      {
+        "frame_index_0": 5335,
+        "pts_s": 213.404
+      },
+      {
+        "frame_index_0": 5338,
+        "pts_s": 213.524
+      },
+      {
+        "frame_index_0": 5341,
+        "pts_s": 213.644
+      },
+      {
+        "frame_index_0": 5344,
+        "pts_s": 213.764
+      }
+    ]
+  },
+  {
+    "sheet": "frames/native-211-step3-02.jpg",
+    "frames": [
+      {
+        "frame_index_0": 5347,
+        "pts_s": 213.884
+      },
+      {
+        "frame_index_0": 5350,
+        "pts_s": 214.004
+      },
+      {
+        "frame_index_0": 5353,
+        "pts_s": 214.124
+      },
+      {
+        "frame_index_0": 5356,
+        "pts_s": 214.244
+      },
+      {
+        "frame_index_0": 5359,
+        "pts_s": 214.364
+      },
+      {
+        "frame_index_0": 5362,
+        "pts_s": 214.484
+      },
+      {
+        "frame_index_0": 5365,
+        "pts_s": 214.604
+      },
+      {
+        "frame_index_0": 5368,
+        "pts_s": 214.724
+      },
+      {
+        "frame_index_0": 5371,
+        "pts_s": 214.844
+      },
+      {
+        "frame_index_0": 5374,
+        "pts_s": 214.964
+      },
+      {
+        "frame_index_0": 5377,
+        "pts_s": 215.084
+      },
+      {
+        "frame_index_0": 5380,
+        "pts_s": 215.204
+      },
+      {
+        "frame_index_0": 5383,
+        "pts_s": 215.324
+      },
+      {
+        "frame_index_0": 5386,
+        "pts_s": 215.444
+      },
+      {
+        "frame_index_0": 5389,
+        "pts_s": 215.564
+      },
+      {
+        "frame_index_0": 5392,
+        "pts_s": 215.684
+      },
+      {
+        "frame_index_0": 5395,
+        "pts_s": 215.804
+      },
+      {
+        "frame_index_0": 5398,
+        "pts_s": 215.924
+      },
+      {
+        "frame_index_0": 5401,
+        "pts_s": 216.044
+      },
+      {
+        "frame_index_0": 5404,
+        "pts_s": 216.164
+      },
+      {
+        "frame_index_0": 5407,
+        "pts_s": 216.284
+      },
+      {
+        "frame_index_0": 5410,
+        "pts_s": 216.404
+      },
+      {
+        "frame_index_0": 5413,
+        "pts_s": 216.524
+      },
+      {
+        "frame_index_0": 5416,
+        "pts_s": 216.644
+      }
+    ]
+  },
+  {
+    "sheet": "frames/native-211-step3-03.jpg",
+    "frames": [
+      {
+        "frame_index_0": 5419,
+        "pts_s": 216.764
+      },
+      {
+        "frame_index_0": 5422,
+        "pts_s": 216.884
+      }
+    ]
+  }
+]

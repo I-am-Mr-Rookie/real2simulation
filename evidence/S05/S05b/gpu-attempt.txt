@@ -1,0 +1,26 @@
+S05b actual remote attempt excerpt (full log retained gitignored in local/modal-probe.log)
+Full log SHA256: dc1e981fc60767719e9226d7ca95b4fcc04db2d86a8acde4c0ce42969059e6e5
+
+✓ Initialized. View run at
+https://modal.com/apps/koushiksadhakjeet/main/ap-FivSp5aI1fHQKSGQQVYpde
+✓ Created objects.
+└── ✓ Created Function probe.
+S05B_APP_ID ap-FivSp5aI1fHQKSGQQVYpde
+ERROR: Cannot install mapanything, numpy<2 and torchvision==0.23.0 because these package versions have conflicting dependencies.
+
+The conflict is caused by:
+    The user requested numpy<2
+    torchvision 0.23.0 depends on numpy
+    opencv-python-headless 4.10.0.84 depends on numpy>=1.21.2; python_version >= "3.10"
+    opencv-python-headless 4.10.0.84 depends on numpy>=1.23.5; python_version >= "3.11"
+    opencv-python-headless 4.10.0.84 depends on numpy>=1.17.0; python_version >= "3.7"
+    opencv-python-headless 4.10.0.84 depends on numpy>=1.17.3; python_version >= "3.8"
+    opencv-python-headless 4.10.0.84 depends on numpy>=1.19.3; python_version >= "3.9"
+    uniception 0.1.7 depends on numpy
+    rerun-sdk 0.24.1 depends on numpy>=2
+
+To fix this you could try to:
+1. loosen the range of package versions you've specified
+2. remove package versions to allow pip to attempt to solve the dependency conflict
+
+ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts

@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Real2Simulation Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;700&family=Source+Code+Pro:wght@400;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* Light = Mint Transit (mint / spruce / signal amber). Dark = Obsidian Gold (obsidian / gold / bone). */
+:root{
+  --bg:#f5f9f7; --surface:#ffffff; --surface-2:#eaf3ef; --ink:#13231d; --muted:#5a6d66; --line:#d3e1db;
+  --accent:#1d6b54; --accent-soft:#d5ede4; --on-accent:#ffffff;
+  --real:#c47f12; --real-soft:#fbecd2; --sim:#1f9c78; --sim-soft:#d5f0e6;
+  --warn:#b7791f; --danger:#c62f2f; --danger-soft:#fbe2e0;
+  --view-bg:#0f1714; --view-line:#2a3a33; --view-ink:#cfe3da;
+  --shadow:4px 4px 0 var(--ink);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f0e0c; --surface:#181612; --surface-2:#211e18; --ink:#ece4d4; --muted:#a39a88; --line:#332f27;
+    --accent:#d4a843; --accent-soft:#3a3020; --on-accent:#14120e;
+    --real:#e8873a; --real-soft:#3a2416; --sim:#5cc7a8; --sim-soft:#183229;
+    --warn:#e0a640; --danger:#ef6b63; --danger-soft:#3a1d1b;
+    --view-bg:#0a0908; --view-line:#2c2820; --view-ink:#d9cfbc;
+    --shadow:4px 4px 0 #000;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f0e0c; --surface:#181612; --surface-2:#211e18; --ink:#ece4d4; --muted:#a39a88; --line:#332f27;
+  --accent:#d4a843; --accent-soft:#3a3020; --on-accent:#14120e;
+  --real:#e8873a; --real-soft:#3a2416; --sim:#5cc7a8; --sim-soft:#183229;
+  --warn:#e0a640; --danger:#ef6b63; --danger-soft:#3a1d1b;
+  --view-bg:#0a0908; --view-line:#2c2820; --view-ink:#d9cfbc;
+  --shadow:4px 4px 0 #000;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 "Source Sans 3",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Bitter,Georgia,serif;line-height:1.2;margin:0}
+h1{font-size:clamp(34px,6vw,56px);letter-spacing:-.01em}
+h2{font-size:clamp(24px,3.4vw,32px);margin-bottom:.75em}
+h3{font-size:19px;margin-bottom:.4em}
+p{margin:0 0 1em}
+code,.mono{font-family:"Source Code Pro",ui-monospace,monospace;font-size:.88em}
+a{color:var(--accent)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+
+/* header */
+.topbar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:16px;height:52px}
+.brand{font:600 13px/1 "Source Code Pro",monospace;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.brand b{color:var(--accent)}
+.nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font:500 12px/1 "Source Code Pro",monospace;color:var(--muted);text-decoration:none;padding:7px 9px;border-radius:6px;white-space:nowrap}
+.nav a:hover{color:var(--ink);background:var(--surface-2)}
+.theme-btn{font:600 12px/1 "Source Code Pro",monospace;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:7px 10px;cursor:pointer}
+
+.hero{padding:56px 0 28px}
+.eyebrow{font:600 12px/1 "Source Code Pro",monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+.sub{font-size:clamp(18px,2.2vw,22px);color:var(--muted);max-width:760px;margin-top:.75em}
+.status{display:inline-flex;gap:8px;align-items:center;margin-top:20px;font:500 13px/1.3 "Source Code Pro",monospace;color:var(--muted);border:1px dashed var(--line);padding:8px 12px;border-radius:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--warn);flex:none}
+
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:28px 0 8px;overflow:hidden}
+.metric{padding:18px 20px;border-right:1px solid var(--line)}
+.metric:last-child{border-right:0}
+.metric .k{font:600 11px/1 "Source Code Pro",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.metric .v{font:700 28px/1.1 Bitter,serif;margin-top:10px}
+.metric .n{font-size:13px;color:var(--muted);margin-top:4px}
+@media (max-width:820px){.metrics{grid-template-columns:repeat(2,1fr)}.metric:nth-child(2){border-right:0}.metric:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+section{padding:48px 0;border-top:1px solid var(--line)}
+.lede{color:var(--muted);max-width:780px;margin-top:-.4em;margin-bottom:1.6em}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px}
+.card.hard{border:1.5px solid var(--ink);box-shadow:var(--shadow)}
+.tag{display:inline-block;font:600 11px/1 "Source Code Pro",monospace;letter-spacing:.05em;text-transform:uppercase;padding:5px 7px;border-radius:5px;background:var(--surface-2);color:var(--muted)}
+.tag.real{background:var(--real-soft);color:var(--real)}
+.tag.sim{background:var(--sim-soft);color:var(--sim)}
+.tag.acc{background:var(--accent-soft);color:var(--accent)}
+.tag.bad{background:var(--danger-soft);color:var(--danger)}
+ul.clean{margin:0;padding-left:1.1em}
+ul.clean li{margin:.25em 0}
+
+/* callout */
+.callout{border-left:4px solid var(--danger);background:var(--danger-soft);padding:18px 20px;border-radius:0 10px 10px 0;margin-bottom:22px}
+.callout h3{color:var(--danger)}
+.callout p:last-child{margin:0}
+
+/* entry points */
+.entry .num{font:700 13px/1 "Source Code Pro",monospace;color:var(--accent)}
+
+/* stepper */
+.steps{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-bottom:16px}
+@media (max-width:900px){.steps{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:560px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.step{all:unset;cursor:pointer;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 10px;text-align:left;transition:border-color .12s ease-out,transform .12s ease-out}
+.step:hover{border-color:var(--accent)}
+.step:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.step .i{font:600 11px/1 "Source Code Pro",monospace;color:var(--muted)}
+.step .t{font:600 15px/1.25 "Source Sans 3",sans-serif;margin-top:6px;display:block}
+.step[aria-selected="true"]{border:1.5px solid var(--ink);box-shadow:var(--shadow);transform:translate(-2px,-2px)}
+.step[aria-selected="true"] .i{color:var(--accent)}
+.detail{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+@media (max-width:900px){.detail{grid-template-columns:1fr}}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:8px 14px;font-size:15px}
+.kv dt{font:600 11px/1.9 "Source Code Pro",monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.kv dd{margin:0}
+@media (max-width:600px){.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}}
+
+/* modes */
+.mode{display:flex;flex-direction:column;gap:10px}
+.mode.rec{border:1.5px solid var(--ink);box-shadow:var(--shadow)}
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font:500 13px/1.3 "Source Code Pro",monospace}
+.flow span{background:var(--surface-2);padding:5px 8px;border-radius:6px}
+.flow i{font-style:normal;color:var(--muted)}
+
+/* app mock */
+.mock{border:1.5px solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);background:var(--surface)}
+.mock-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:10px 14px;border-bottom:1px solid var(--line);font:500 13px/1 "Source Code Pro",monospace}
+.mock-top .pill{padding:4px 8px;border-radius:20px;background:var(--sim-soft);color:var(--sim)}
+.mock-top .sp{flex:1}
+.mock-body{display:grid;grid-template-columns:190px 1fr 300px;min-height:440px}
+.rail{border-right:1px solid var(--line);padding:12px;font-size:14px}
+.rail .h{font:600 11px/1 "Source Code Pro",monospace;text-transform:uppercase;color:var(--muted);letter-spacing:.06em;margin:10px 0 8px}
+.rail .it{padding:6px 8px;border-radius:6px;margin-bottom:2px}
+.rail .it.on{background:var(--accent-soft);color:var(--accent);font-weight:600}
+.viewport{background:var(--view-bg);position:relative;display:flex;flex-direction:column}
+.viewport svg{flex:1;width:100%;height:auto;display:block}
+.instr{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--view-line);color:var(--view-ink);font:500 12px/1.3 "Source Code Pro",monospace}
+.instr div{padding:9px 10px;border-right:1px solid var(--view-line)}
+.instr div:last-child{border-right:0}
+.instr b{display:block;font-size:15px;color:#fff;margin-top:3px}
+:root[data-theme="dark"] .instr b{color:var(--accent)}
+.side{border-left:1px solid var(--line);padding:12px;display:flex;flex-direction:column;gap:10px;font-size:14px}
+.msg{background:var(--surface-2);border-radius:10px;padding:10px 12px}
+.msg.me{background:var(--accent-soft);align-self:flex-end;max-width:85%}
+.who{font:600 11px/1 "Source Code Pro",monospace;color:var(--muted);margin-bottom:5px;text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:13px;border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:4px 10px}
+.chip.on{border-color:var(--accent);color:var(--accent);font-weight:600}
+.input{margin-top:auto;border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--muted);display:flex;justify-content:space-between}
+@media (max-width:600px){.mock-top .crumb{display:none}}
+@media (max-width:980px){.mock-body{grid-template-columns:1fr}.rail{display:none}.side{border-left:0;border-top:1px solid var(--line)}.instr{grid-template-columns:repeat(2,1fr)}.instr div:nth-child(2){border-right:0}}
+
+/* diagrams */
+.diagram{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;overflow-x:auto}
+.diagram svg{display:block;width:100%;min-width:720px;height:auto}
+svg .box{fill:var(--surface);stroke:var(--ink);stroke-width:1.4}
+svg .box2{fill:var(--surface-2);stroke:var(--line);stroke-width:1}
+svg .boxa{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.4}
+svg .boxs{fill:var(--sim-soft);stroke:var(--sim);stroke-width:1.4}
+svg .boxr{fill:var(--real-soft);stroke:var(--real);stroke-width:1.4}
+svg .boxd{fill:var(--danger-soft);stroke:var(--danger);stroke-width:1.2;stroke-dasharray:4 3}
+svg .t{fill:var(--ink);font:600 14px "Source Sans 3",sans-serif}
+svg .s{fill:var(--muted);font:400 12px "Source Sans 3",sans-serif}
+svg .m{fill:var(--muted);font:500 11px "Source Code Pro",monospace;letter-spacing:.04em}
+svg .ln{stroke:var(--muted);stroke-width:1.4;fill:none}
+svg .lna{stroke:var(--accent);stroke-width:1.6;fill:none}
+svg .lnd{stroke:var(--danger);stroke-width:1.4;fill:none;stroke-dasharray:5 4}
+svg .ah{fill:var(--muted)}
+svg .aha{fill:var(--accent)}
+svg .ahd{fill:var(--danger)}
+
+/* tables */
+table{width:100%;border-collapse:collapse;font-size:15px}
+th{font:600 11px/1.3 "Source Code Pro",monospace;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:left;padding:10px 10px;border-bottom:1.5px solid var(--ink)}
+td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+td.num,th.num{text-align:right;font-family:"Source Code Pro",monospace;white-space:nowrap}
+tr.total td{font-weight:700;border-bottom:1.5px solid var(--ink)}
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px 10px}
+
+/* bars */
+.bars{display:flex;flex-direction:column;gap:10px}
+.bar{display:grid;grid-template-columns:200px 1fr 70px;gap:12px;align-items:center;font-size:14px}
+.bar .track{height:14px;background:var(--surface-2);border-radius:3px;overflow:hidden}
+.bar .fill{height:100%;background:var(--accent);border-radius:3px}
+.bar .fill.sim{background:var(--sim)}
+.bar .fill.real{background:var(--real)}
+.bar .val{font:600 13px "Source Code Pro",monospace;text-align:right}
+@media (max-width:600px){.bar{grid-template-columns:1fr 60px}.bar .track{grid-column:1/-1;order:3}}
+
+/* calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:900px){.calc{grid-template-columns:1fr}}
+.slider{margin-bottom:16px}
+.slider label{display:flex;justify-content:space-between;font-size:15px;margin-bottom:4px}
+.slider label b{font-family:"Source Code Pro",monospace}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.out{font:700 34px/1 Bitter,serif}
+.creditbar{position:relative;height:22px;background:var(--surface-2);border-radius:4px;margin:10px 0 6px;overflow:hidden}
+.creditbar .used{position:absolute;left:0;top:0;bottom:0;background:var(--accent)}
+.creditbar .over{position:absolute;top:0;bottom:0;background:var(--danger)}
+.creditbar .mark{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--ink)}
+.small{font-size:13px;color:var(--muted)}
+
+/* gantt */
+.gantt{display:grid;grid-template-columns:170px repeat(9,1fr);font-size:13px;min-width:820px}
+.gantt .hd{font:600 11px/1.2 "Source Code Pro",monospace;color:var(--muted);padding:6px 4px;border-bottom:1.5px solid var(--ink);text-align:center}
+.gantt .hd:first-child{text-align:left}
+.gantt .lab{padding:8px 4px;border-bottom:1px solid var(--line);font-weight:600}
+.gantt .cell{border-bottom:1px solid var(--line);border-left:1px dashed var(--line);position:relative;min-height:36px}
+.gantt .blk{position:absolute;top:8px;bottom:8px;border-radius:4px;background:var(--accent);color:var(--on-accent);font:600 11px/20px "Source Code Pro",monospace;padding:0 6px;white-space:nowrap;overflow:hidden;z-index:1}
+.gantt .blk.sim{background:var(--sim);color:#fff}
+.gantt .blk.real{background:var(--real);color:#14120e}
+.gantt .blk.gate{background:var(--danger);color:#fff}
+
+/* score */
+.score{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:900px){.score{grid-template-columns:1fr}}
+.qlist{counter-reset:q;list-style:none;padding:0;margin:0}
+.qlist li{counter-increment:q;position:relative;padding:14px 16px 14px 52px;background:var(--surface);border:1px solid var(--line);border-radius:10px;margin-bottom:10px}
+.qlist li::before{content:counter(q);position:absolute;left:16px;top:14px;width:24px;height:24px;border-radius:6px;background:var(--ink);color:var(--bg);font:700 13px/24px "Source Code Pro",monospace;text-align:center}
+.qlist .rec{font-size:14px;color:var(--muted);margin-top:4px}
+footer{padding:40px 0 60px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand"><b>■</b> Real2Simulation</div>
+    <nav class="nav" aria-label="Sections">
+      <a href="#idea">Idea</a><a href="#modes">Modes</a><a href="#journey">Journey</a><a href="#app">App</a><a href="#arch">Architecture</a><a href="#compute">Compute</a><a href="#agent">Agent</a><a href="#library">Library</a><a href="#platforms">Platforms</a><a href="#cost">Cost</a><a href="#plan">Plan</a><a href="#score">Score</a><a href="#questions">Questions</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle colour theme">Theme</button>
+  </div>
+</header>
+
+<main>
+<div class="wrap hero">
+  <div class="eyebrow">Meta Global AI Developer Hackathon · Indie track · Concept</div>
+  <h1>Turn any video into a physics lab you can measure.</h1>
+  <p class="sub">Upload a clip of your room, or pick one from the library. Real2Simulation rebuilds it in 3D, asks what you want to try, builds the experiment, and lets you run it, measure g, and write the lab report. All of it runs in the browser.</p>
+  <div class="status"><span class="dot"></span>Concept, Oct 27 2026. Direction approved (Real2Sim + virtual lab + Mystery-g); nothing built. Every cost is an estimate (±40%).</div>
+  <div class="metrics">
+    <div class="metric"><div class="k">Deadline</div><div class="v">8 days</div><div class="n">Nov 5, 08:00 Dhaka (Nov 4, 9 PM ET)</div></div>
+    <div class="metric"><div class="k">Build cost (API-equivalent)</div><div class="v">≈ $550</div><div class="n">Coding agents; range $330–770</div></div>
+    <div class="metric"><div class="k">Cost per new scene</div><div class="v">≈ $0.55</div><div class="n">Meta API + GPU; library demos cost $0 to view</div></div>
+    <div class="metric"><div class="k">Rubric estimate</div><div class="v">80</div><div class="n">87 before a −7 risk adjustment</div></div>
+  </div>
+</div>
+
+<section id="idea"><div class="wrap">
+  <h2>Three ways in, one world out</h2>
+  <p class="lede">Users don't need to film anything. Every path ends in the same place: a 3D world with an experiment in it, an agent in the sidebar, and real numbers.</p>
+  <div class="grid3">
+    <div class="card entry"><div class="num">01 · UPLOAD</div><h3>Upload a clip</h3><p>Any 10–60 s video: your own, or a licensed public clip. A clip of something moving lets the system measure real physics. (Decided Oct 27: the demo uses licensed public clips, not footage filmed for the project.)</p></div>
+    <div class="card entry"><div class="num">02 · LIBRARY</div><h3>Pick a curated demo</h3><p>Ready-made worlds, e.g. the Apollo 15 hammer-and-feather drop on the Moon. Open one, run it, change it. These are precomputed, so they're instant and free to view.</p></div>
+    <div class="card entry"><div class="num">03 · ASK</div><h3>Describe an idea</h3><p>"I want to see whether a heavier pendulum swings slower." The agent searches the library. If there's a match you open it; if not, it offers to build one from the closest template.</p></div>
+  </div>
+</div></section>
+
+<section id="modes"><div class="wrap">
+  <h2>The decision that makes or breaks it</h2>
+  <div class="callout">
+    <h3>Measuring g in a simulation only returns the g you typed in</h3>
+    <p>If the world is pure simulation, "measure gravity" is circular, and a sharp judge will notice within seconds. The fix is to be explicit about where every number comes from. Three modes do that, and the UI always labels a value as <span class="tag real">measured from reality</span> or <span class="tag sim">simulated</span>.</p>
+  </div>
+  <div class="grid3">
+    <div class="card mode">
+      <span class="tag real">Mode A · Measure</span>
+      <h3>Real motion in, real numbers out</h3>
+      <p>The video shows something moving: a dropped ball, a swinging bag. SAM 3.1 tracks it, the 3D rebuild supplies metres and "down", and a fitter computes g, friction or restitution with uncertainty.</p>
+      <div class="flow"><span>clip</span><i>→</i><span>track</span><i>→</i><span>3D</span><i>→</i><span>fit</span><i>→</i><span>g ± σ</span></div>
+    </div>
+    <div class="card mode rec">
+      <span class="tag acc">Chosen · Real2Sim</span>
+      <h3>Reality calibrates the simulation</h3>
+      <p>Values fitted in Mode A become the physics of the 3D world. The agent watches only the <b>first part</b> of a clip, <b>predicts</b> the rest ("lands 1.42 ± 0.04 m away"), then overlays its prediction on the real frames it never saw. This is the demo moment, and it needs no new filming.</p>
+      <div class="flow"><span>fit</span><i>→</i><span>world</span><i>→</i><span>predict</span><i>→</i><span>reveal</span><i>→</i><span>compare</span></div>
+    </div>
+    <div class="card mode">
+      <span class="tag sim">Mode C · Virtual lab</span>
+      <h3>A static room becomes a lab</h3>
+      <p>No motion needed. Virtual instruments carry realistic error: human stopwatch reaction time, 30/240 fps cameras, ruler resolution. In <b>Mystery-g</b>, the world's gravity is hidden (Earth? Mars? random?) and the user has to measure it. That makes measuring g meaningful again.</p>
+      <div class="flow"><span>room</span><i>→</i><span>apparatus</span><i>→</i><span>noisy trials</span><i>→</i><span>fit</span><i>→</i><span>reveal</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="journey"><div class="wrap">
+  <h2>User journey: from clip to report</h2>
+  <p class="lede">Click a stage to see what the user sees, which model does the work, and what happens when it fails.</p>
+  <div class="steps" role="tablist" id="steps"></div>
+  <div class="card hard detail" id="stepDetail" role="tabpanel" aria-live="polite"></div>
+</div></section>
+
+<section id="app"><div class="wrap">
+  <h2>What the app looks like</h2>
+  <p class="lede">Built for landscape and large screens first. On a phone, the sidebar drops below the viewport. The figures below are illustrative, not measured.</p>
+  <div class="mock" role="img" aria-label="Mock-up of the Real2Simulation workspace: library rail, 3D viewport with a projectile arc off a table, instrument strip, and agent sidebar">
+    <div class="mock-top"><span>■ Real2Simulation</span><span class="small crumb">/ My desk · Projectile off the table</span><span class="sp"></span><span class="pill">Real2Sim</span><span class="small">Report ↓</span></div>
+    <div class="mock-body">
+      <div class="rail">
+        <div class="h">My scenes</div>
+        <div class="it on">My desk</div><div class="it">Hostel corridor</div><div class="it">+ Upload video</div>
+        <div class="h">Library</div>
+        <div class="it">Apollo 15 drop</div><div class="it">Pendulum</div><div class="it">Projectile</div><div class="it">Bouncing ball</div>
+        <div class="h">Experiment</div>
+        <div class="it">Trials (7)</div><div class="it">Fit &amp; residuals</div><div class="it">Lab report</div>
+      </div>
+      <div class="viewport">
+        <svg viewBox="0 0 600 360" aria-hidden="true">
+          <defs><linearGradient id="vg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a24"/><stop offset="1" stop-color="#0a0f0d"/></linearGradient></defs>
+          <rect width="600" height="360" fill="url(#vg)"/>
+          <g stroke="#2f4a40" stroke-width="1">
+            <path d="M0 300 L600 300"/><path d="M0 330 L600 330"/><path d="M40 360 L180 260"/><path d="M160 360 L250 260"/><path d="M280 360 L320 260"/><path d="M400 360 L390 260"/><path d="M520 360 L460 260"/><path d="M0 275 L600 275"/><path d="M0 260 L600 260"/>
+          </g>
+          <!-- table -->
+          <polygon points="70,150 260,150 300,175 110,175" fill="#6b4f33" stroke="#a07c55"/>
+          <rect x="110" y="175" width="190" height="10" fill="#54402a"/>
+          <rect x="118" y="185" width="8" height="85" fill="#54402a"/><rect x="288" y="185" width="8" height="85" fill="#54402a"/><rect x="80" y="160" width="6" height="95" fill="#3f2f1f"/>
+          <!-- A4 sheet -->
+          <polygon points="130,155 175,155 182,166 137,166" fill="#e8e4d8" opacity=".9"/>
+          <!-- predicted path -->
+          <path d="M290 158 Q 360 150 420 290" stroke="#5cc7a8" stroke-width="2.5" fill="none" stroke-dasharray="6 5"/>
+          <!-- real path -->
+          <path d="M290 158 Q 362 152 416 292" stroke="#d4a843" stroke-width="2.5" fill="none"/>
+          <g fill="#d4a843"><circle cx="300" cy="157" r="5"/><circle cx="330" cy="161" r="4"/><circle cx="358" cy="175" r="4"/><circle cx="382" cy="205" r="4"/><circle cx="401" cy="245" r="4"/><circle cx="416" cy="292" r="7"/></g>
+          <ellipse cx="420" cy="294" rx="16" ry="5" fill="none" stroke="#5cc7a8" stroke-width="2"/>
+          <text x="440" y="298" fill="#5cc7a8" font-family="Source Code Pro" font-size="11">predicted 1.42 m</text>
+          <text x="430" y="318" fill="#d4a843" font-family="Source Code Pro" font-size="11">landed 1.40 m</text>
+          <!-- camera frustum -->
+          <g stroke="#cfe3da" stroke-width="1" fill="none" opacity=".7"><path d="M520 70 L470 40 L470 100 Z"/><path d="M470 40 L360 120 M470 100 L360 210"/></g>
+          <text x="478" y="60" fill="#cfe3da" font-family="Source Code Pro" font-size="10" opacity=".8">your phone</text>
+          <text x="16" y="24" fill="#cfe3da" font-family="Source Code Pro" font-size="11" opacity=".8">3D twin · scale from A4 sheet · ↓ = gravity</text>
+        </svg>
+        <div class="instr"><div>Stopwatch<b>0.392 s</b></div><div>Launch speed<b>2.21 m/s</b></div><div>g (fitted)<b>9.79±0.06</b></div><div>Trials<b>7 / 10</b></div></div>
+      </div>
+      <div class="side">
+        <div class="msg"><div class="who">Agent</div>I can see a wooden desk about <b>0.74 m</b> high, an A4 sheet I can use for scale, and a tennis ball. What would you like to try?
+          <div class="chips"><span class="chip on">Roll it off the edge (projectile)</span><span class="chip">Drop from a height (free fall)</span><span class="chip">Ramp to the floor (friction)</span><span class="chip">Hang it (pendulum)</span><span class="chip">Something else…</span></div>
+        </div>
+        <div class="msg me"><div class="who">You</div>Projectile. I want to measure g.</div>
+        <div class="msg"><div class="who">Agent</div>Built. I watched the first half of the flight; I predict it lands <b>1.42 ± 0.04 m</b> from the table leg. Press reveal to compare with the real frames.</div>
+        <div class="input"><span>Ask, or say "make the ramp steeper"…</span><span>🎙</span></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="arch"><div class="wrap">
+  <h2>Architecture</h2>
+  <p class="lede">Railway doesn't offer GPUs, so the heavy 3D reconstruction runs on Modal (with AWS and Kaggle behind it: see <a href="#compute">Compute</a>) and everything else lives on your Railway Pro account. Physics and rendering run in the user's browser (WebGL + WASM), which is still "the web app": nothing is installed.</p>
+  <div class="diagram">
+    <svg viewBox="0 0 1000 570" role="img" aria-label="Architecture diagram">
+      <defs>
+        <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+        <marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="aha"/></marker>
+      </defs>
+      <!-- devices -->
+      <rect x="20" y="150" width="220" height="280" rx="12" class="box"/>
+      <text x="36" y="176" class="m">USER DEVICE</text>
+      <rect x="36" y="190" width="188" height="56" rx="8" class="box2"/><text x="48" y="214" class="t">Desktop browser</text><text x="48" y="234" class="s">Windows · macOS · Linux</text>
+      <rect x="36" y="256" width="188" height="56" rx="8" class="box2"/><text x="48" y="280" class="t">Phone: installed PWA</text><text x="48" y="300" class="s">Android APK wrapper (later)</text>
+      <rect x="36" y="322" width="188" height="92" rx="8" class="boxs"/><text x="48" y="346" class="t">Runs in the browser</text><text x="48" y="366" class="s">React Three Fiber + splats</text><text x="48" y="384" class="s">Rapier (WASM) physics</text><text x="48" y="402" class="s">virtual instruments</text>
+      <!-- clerk -->
+      <rect x="330" y="20" width="340" height="62" rx="10" class="box2"/><text x="346" y="46" class="t">Clerk auth</text><text x="346" y="66" class="s">Google sign-in (GCP OAuth client)</text>
+      <!-- railway -->
+      <rect x="300" y="110" width="400" height="440" rx="14" class="boxa"/>
+      <text x="318" y="136" class="m">RAILWAY PRO · NO GPU</text>
+      <rect x="318" y="150" width="364" height="58" rx="8" class="box"/><text x="332" y="174" class="t">Web app: Next.js</text><text x="332" y="194" class="s">UI, library pages, PWA manifest, Clerk middleware</text>
+      <rect x="318" y="222" width="364" height="58" rx="8" class="box"/><text x="332" y="246" class="t">API: FastAPI</text><text x="332" y="266" class="s">agent tools, experiment-spec validator, job submit</text>
+      <rect x="318" y="294" width="364" height="76" rx="8" class="box"/><text x="332" y="318" class="t">Worker</text><text x="332" y="338" class="s">ffmpeg keyframes · SciPy fitter · uncertainty</text><text x="332" y="356" class="s">LaTeX → PDF (Tectonic) · chart rendering</text>
+      <rect x="318" y="384" width="112" height="56" rx="8" class="box2"/><text x="330" y="408" class="t">Postgres</text><text x="330" y="428" class="s">scenes, trials</text>
+      <rect x="444" y="384" width="112" height="56" rx="8" class="box2"/><text x="456" y="408" class="t">Redis</text><text x="456" y="428" class="s">job queue</text>
+      <rect x="570" y="384" width="112" height="56" rx="8" class="box2"/><text x="582" y="408" class="t">Bucket</text><text x="582" y="428" class="s">videos, splats</text>
+      <text x="318" y="476" class="s">Deploy from GitHub (public repo, as the rules require).</text>
+      <text x="318" y="496" class="s">One environment for judging, one for development.</text>
+      <!-- meta -->
+      <rect x="760" y="110" width="220" height="214" rx="12" class="boxr"/>
+      <text x="776" y="136" class="m">META MODEL API · $150 CREDIT</text>
+      <text x="776" y="164" class="t">Muse Wonder 1.0</text><text x="776" y="182" class="s">video understanding, agent</text>
+      <text x="776" y="208" class="t">Muse Spark 1.3</text><text x="776" y="226" class="s">cheap checks, library search</text>
+      <text x="776" y="252" class="t">SAM 3.1</text><text x="776" y="270" class="s">masks, tracking, scale</text>
+      <text x="776" y="296" class="t">Muse Image · Voice</text><text x="776" y="314" class="s">illustrations · talk to agent</text>
+      <rect x="760" y="340" width="220" height="104" rx="12" class="box"/>
+      <text x="776" y="366" class="m">MODAL GPU · AWS BACKUP</text>
+      <text x="776" y="392" class="t">MapAnything</text><text x="776" y="410" class="s">camera poses + metric 3D</text>
+      <text x="776" y="434" class="t">SAM 3D Objects</text>
+      <rect x="760" y="460" width="220" height="90" rx="12" class="box"/>
+      <text x="776" y="486" class="m">BASETEN · OPEN WEIGHTS</text>
+      <text x="776" y="512" class="t">Muse Spark Open</text><text x="776" y="532" class="s">serverless · $10K bonus path</text>
+      <!-- arrows -->
+      <path d="M240 220 L318 180" class="lna" marker-end="url(#aa)" marker-start="url(#aa)"/>
+      <path d="M500 82 L500 150" class="ln" marker-end="url(#a)" marker-start="url(#a)"/>
+      <path d="M682 250 L760 200" class="ln" marker-end="url(#a)"/>
+      <path d="M682 330 L760 270" class="ln" marker-end="url(#a)"/>
+      <path d="M682 345 L760 390" class="ln" marker-end="url(#a)"/>
+      <path d="M682 260 L760 500" class="ln" marker-end="url(#a)"/>
+      <path d="M240 370 L318 330" class="ln" marker-end="url(#a)"/>
+      <text x="246" y="196" class="m">HTTPS</text>
+      <text x="244" y="408" class="m">3D world</text>
+    </svg>
+  </div>
+  <div class="tablewrap" style="margin-top:20px">
+    <table>
+      <thead><tr><th>Meta model</th><th>Its job here</th><th>Why it matters for judging</th></tr></thead>
+      <tbody>
+        <tr><td><b>Muse Wonder</b></td><td>Watches the uploaded video, lists surfaces, objects and sizes; runs the interview; writes the experiment spec; sidebar agent; lab report</td><td>Long-running agent with tools and video input: Meta's headline capability</td></tr>
+        <tr><td><b>SAM 3.1</b></td><td>Masks named objects for the rebuild; tracks real motion frame by frame; finds the A4 sheet for scale</td><td>Used as a measuring instrument, not a picture filter: the "surprised even us" angle</td></tr>
+        <tr><td><b>SAM 3D Objects</b> <span class="tag">open weights</span></td><td>Turns key objects (ball, desk, books) into posed 3D models</td><td>A 2025 Meta research model shipped inside a product</td></tr>
+        <tr><td><b>MapAnything</b> <span class="tag">open weights</span></td><td>Camera poses and metric point cloud from the video frames</td><td>Meta and CMU's feed-forward reconstruction model. <i>Check the weights licence on day 1.</i></td></tr>
+        <tr><td><b>Muse Spark</b></td><td>Library search ranking, validator explanations, chart captions</td><td>Right-sized model for cheap, high-volume work</td></tr>
+        <tr><td><b>Muse Spark Open</b></td><td>One real component through Baseten (your key is in .env; model ID meta-models/muse-spark-open-1026), e.g. the library search or the spec explainer; Fireworks as fallback</td><td>Eligibility for the $10K Best Build on Open-Weight Models bonus</td></tr>
+        <tr><td><b>Muse Image</b></td><td>Apparatus illustrations, library thumbnails, report cover art</td><td>Creative build. Never used for images that carry numbers</td></tr>
+        <tr><td><b>Voice Transcribe</b></td><td>"Make the ramp steeper", hands-free trial logging</td><td>Natural control while your hands hold the apparatus</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<section id="compute"><div class="wrap">
+  <h2>Compute: where each GPU job runs</h2>
+  <p class="lede">With your credits, the GPU is no longer a blocker. The whole hackathon needs roughly <b>20 GPU-hours</b> (about 150 test scenes, 20 library demos, and judging uploads at 2–3 minutes each); you have about 15 paid GPU-hours on Modal today, about 95 more on AWS once its GPU quota is approved, plus 30 free hours a week on Kaggle. The constraint that matters is memory: <b>SAM 3D Objects needs about 32 GB of VRAM</b> (per its maintainers), so 16 GB and 24 GB cards can't run it.</p>
+  <div class="grid3">
+    <div class="card hard"><span class="tag acc">Live uploads</span><h3>Modal: $30</h3><p>Per-second billing that scales to zero, called straight from the Railway worker. An L40S (48 GB) at about $1.95/h runs MapAnything and SAM 3D Objects together: about 15 GPU-hours, or roughly 300 scenes.</p><p class="small" style="margin:0">Watch: a cold start loads weights for 60–90 s, so use Modal memory snapshots. Never keep a GPU warm all day (≈ $47/day).</p></div>
+    <div class="card"><span class="tag bad">Quota pending</span><h3>AWS: $176 left</h3><p>EC2 g6e.xlarge (L40S GPU, 4 vCPU, 32 GiB RAM) at $1.861/h on demand in us-east-2: about 95 GPU-hours on the remaining credit. All 6 credits expire 2027-05-25 and list EC2 as an eligible service; 3 of them were not opened to check. Region: us-east-2 only. Spot instances for batch jobs (library demos, accuracy tests); on demand only as Modal failover.</p><p class="small" style="margin:0">Status (Oct 27): GPU quota was 0 vCPUs in every region checked. Two 8-vCPU requests are pending in us-east-2: "Running On-Demand G and VT instances" and "All G and VT Spot Instance Requests". Until they are approved, AWS runs nothing. Your two $25/month budgets are already past their thresholds and only alert, never block, so once the quota is approved, create a separate $50 EC2 budget alert before the first session. Stop the instance after every session. A g5 (A10G, 24 GB) is too small for SAM 3D.</p></div>
+    <div class="card"><span class="tag sim">Free experiments</span><h3>Kaggle: 30 h/week</h3><p>T4 ×2 or P100, 16 GB each, 12-hour sessions. Good for the day-1 MapAnything spike, testing the fitter on many clips, and precomputing library scenes that don't need SAM 3D.</p><p class="small" style="margin:0">Watch: it's a notebook, not a server, so it can't handle live uploads. 16 GB is too small for SAM 3D. Keep uploaded footage in private datasets.</p></div>
+  </div>
+  <div class="tablewrap" style="margin-top:20px">
+    <table>
+      <thead><tr><th>Resource</th><th>Runs</th><th>Job in this project</th><th class="num">Capacity</th></tr></thead>
+      <tbody>
+        <tr><td><b>Modal</b> ($30)</td><td>MapAnything + SAM 3D Objects</td><td>Every live upload, during development and judging</td><td class="num">≈ 15 GPU-h</td></tr>
+        <tr><td><b>AWS</b> ($176 left)</td><td>Same container on EC2 g6e, us-east-2</td><td>Spot: library precompute, benchmarks. On demand: failover</td><td class="num">≈ 95 GPU-h · quota pending</td></tr>
+        <tr><td><b>Kaggle</b> (free)</td><td>MapAnything, fitter, SAM-free precompute</td><td>Gate R spike, accuracy benchmarks</td><td class="num">30 h/week</td></tr>
+        <tr><td><b>Baseten</b> (key in .env)</td><td>Muse Spark Open (meta-models/muse-spark-open-1026); Fireworks $80 as fallback</td><td>The open-weight component for the $10K bonus; no GPU to manage</td><td class="num">token-billed</td></tr>
+        <tr><td><b>Meta Model API</b> ($150)</td><td>Wonder, Spark, SAM 3.1, Image, Voice</td><td>Everything else</td><td class="num">see calculator</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small" style="margin-top:10px">Build the GPU job once as a container image that runs unchanged on Modal and on EC2. Failover is then a config switch, not a rewrite. Muse Spark Open runs through Baseten (your key is in .env), with Fireworks as the fallback.</p>
+</div></section>
+
+<section id="agent"><div class="wrap">
+  <h2>The agent proposes, code decides</h2>
+  <p class="lede">The model never edits the 3D world directly. It writes an <b>experiment spec</b> (JSON). Deterministic code validates the spec, builds the world, runs it, and computes every number. This is the winning pattern from the Built-with-Opus galleries, and it keeps a demo from breaking live.</p>
+  <div class="diagram">
+    <svg viewBox="0 0 1000 250" role="img" aria-label="Agent loop: agent proposes a spec, validator checks, builder builds, simulator runs, instruments record, fitter computes, agent explains">
+      <defs>
+        <marker id="b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+        <marker id="bd" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" class="ahd"/></marker>
+      </defs>
+      <rect x="10" y="80" width="130" height="70" rx="10" class="boxr"/><text x="24" y="108" class="t">Agent</text><text x="24" y="128" class="s">writes the spec</text>
+      <rect x="180" y="80" width="130" height="70" rx="10" class="box"/><text x="194" y="108" class="t">Validator</text><text x="194" y="128" class="s">schema, units, fit</text>
+      <rect x="350" y="80" width="130" height="70" rx="10" class="box"/><text x="364" y="108" class="t">Builder</text><text x="364" y="128" class="s">places apparatus</text>
+      <rect x="520" y="80" width="130" height="70" rx="10" class="boxs"/><text x="534" y="108" class="t">Simulator</text><text x="534" y="128" class="s">Rapier / RK4</text>
+      <rect x="690" y="80" width="130" height="70" rx="10" class="boxs"/><text x="704" y="108" class="t">Instruments</text><text x="704" y="128" class="s">with real error</text>
+      <rect x="860" y="80" width="130" height="70" rx="10" class="box"/><text x="874" y="108" class="t">Fitter</text><text x="874" y="128" class="s">g ± σ, AIC</text>
+      <path d="M140 115 L178 115" class="ln" marker-end="url(#b)"/><path d="M310 115 L348 115" class="ln" marker-end="url(#b)"/><path d="M480 115 L518 115" class="ln" marker-end="url(#b)"/><path d="M650 115 L688 115" class="ln" marker-end="url(#b)"/><path d="M820 115 L858 115" class="ln" marker-end="url(#b)"/>
+      <path d="M245 80 C 245 30, 75 30, 75 78" class="lnd" marker-end="url(#bd)"/><text x="100" y="34" class="m" style="fill:var(--danger)">REJECT + REASON (max 3 retries, then ask the user)</text>
+      <path d="M925 150 C 925 225, 75 225, 75 152" class="ln" marker-end="url(#b)"/><text x="330" y="220" class="m">NUMBERS + RESIDUALS → AGENT EXPLAINS, NEVER INVENTS A NUMBER</text>
+    </svg>
+  </div>
+  <div class="grid2" style="margin-top:20px">
+    <div class="card">
+      <h3>Example spec the agent writes</h3>
+<pre class="mono" style="margin:0;white-space:pre-wrap;font-size:13px;line-height:1.5">{
+  "template": "projectile_off_edge",
+  "scene": "my-desk-01",
+  "launch": {"surface": "desk_top", "edge": "front",
+             "speed_mps": [1.5, 3.0]},
+  "gravity": {"source": "fitted", "value": null},
+  "instruments": ["stopwatch_human", "camera_240fps",
+                  "tape_measure_1mm"],
+  "measure": ["g", "launch_speed"],
+  "trials": 10
+}</pre>
+    </div>
+    <div class="card">
+      <h3>What the sidebar agent can do</h3>
+      <ul class="clean">
+        <li><b>Edit the world:</b> "make the ramp 30°", "swap the ball for a steel bearing". It patches the spec, then validates and rebuilds.</li>
+        <li><b>Search the library:</b> "a pendulum where the mass changes". Muse Spark ranks matches; the agent opens one or adapts the nearest template.</li>
+        <li><b>Explain:</b> how the experiment works, why the method measures g, where systematic error comes from. Answers cite the run's own numbers.</li>
+        <li><b>Write:</b> a LaTeX lab report (aim, apparatus, method, data table, fit, uncertainty, conclusion) exported as PDF.</li>
+        <li><b>Draw:</b> charts and flowcharts generated from data in code; Muse Image for apparatus illustrations.</li>
+        <li><b>Custom experiments:</b> anything typed by name is mapped to templates. If none fits, it composes from primitives (bodies, ramps, strings, springs) under an "experimental" badge.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="library"><div class="wrap">
+  <h2>The demo library</h2>
+  <p class="lede">The rules disqualify projects that use data without rights, and YouTube's terms forbid downloading. So the library uses only footage we have the right to use, each item with its source and licence on its page. Launch target: 8 demos, each precomputed so it opens instantly.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Demo</th><th>Measures</th><th>Mode</th><th>Footage source</th></tr></thead>
+      <tbody>
+        <tr><td>Hammer and feather on the Moon (Apollo 15)</td><td>lunar g ≈ 1.62 m/s²</td><td><span class="tag real">Measure</span></td><td>NASA, public domain (confirmed Oct 27: PD-USGov-NASA on Wikimedia Commons)</td></tr>
+        <tr><td>Projectile or ball rolled off a table</td><td>g, launch speed</td><td><span class="tag acc">Real2Sim</span></td><td>Wikimedia Commons or Pexels (licence per clip)</td></tr>
+        <tr><td>Pendulum</td><td>g from period vs length</td><td><span class="tag acc">Real2Sim</span></td><td>Wikimedia Commons or Pexels (licence per clip)</td></tr>
+        <tr><td>Book sliding down a ramp</td><td>friction coefficient μ</td><td><span class="tag real">Measure</span></td><td>Only if a licensed clip is found</td></tr>
+        <tr><td>Bouncing ball</td><td>coefficient of restitution</td><td><span class="tag real">Measure</span></td><td>Wikimedia Commons or Pexels (licence per clip)</td></tr>
+        <tr><td>Mass on a spring</td><td>spring constant k</td><td><span class="tag acc">Real2Sim</span></td><td>Only if a licensed clip is found</td></tr>
+        <tr><td>Conical pendulum</td><td>3D circular motion, g</td><td><span class="tag sim">Virtual</span></td><td>Static room clip</td></tr>
+        <tr><td>Mystery planet</td><td>hidden g (game)</td><td><span class="tag sim">Virtual</span></td><td>Any library room</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small" style="margin-top:10px">Other rights-safe sources: Wikimedia Commons, CC-BY videos (YouTube's Creative Commons filter) with attribution, or written permission from the creator. Never sports footage: sports analyzers are on the guide's anti-project list.</p>
+</div></section>
+
+<section id="platforms"><div class="wrap">
+  <h2>Platforms: big screens first, phones still welcome</h2>
+  <div class="grid3">
+    <div class="card"><span class="tag acc">Primary</span><h3>Desktop browser</h3><p>Windows, macOS, Linux, tablets in landscape. Full workspace: rail, 3D viewport, instruments, sidebar.</p></div>
+    <div class="card"><span class="tag acc">Day 7</span><h3>Installable PWA</h3><p>The same site with a manifest and service worker. "Install app" on Android Chrome and "Add to Home Screen" on iOS Safari give a full-screen, landscape-locked app with no browser bars. Phones mostly upload clips and view worlds.</p></div>
+    <div class="card"><span class="tag">After judging</span><h3>Android APK, iOS app</h3><p>An APK can wrap the PWA (Trusted Web Activity via Bubblewrap) in about an hour; sideloading is free, and Play Store listing costs $25 once. A native iOS app needs a $99/year Apple account: skip it.</p></div>
+  </div>
+  <p class="small" style="margin-top:12px"><b>On jitter:</b> wrapping the site in an app doesn't make WebGL faster. A rendering budget does: cap the device pixel ratio, use fewer splats on phones (level of detail), and stop rendering when nothing moves. That's built into the viewer from day 3.</p>
+</div></section>
+
+<section id="cost"><div class="wrap">
+  <h2>Cost speculation</h2>
+  <p class="lede">Three separate buckets: what the coding agents would cost at API prices, what each user action costs to run, and the real cash you'd pay during the hackathon. All are estimates (±40%) built from published list prices; Muse Image pricing wasn't available, so it's left out.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>1 · Build cost (coding agents, API-equivalent)</h3>
+      <p class="small">Your stack (Opus 5.5, Sonnet 5.5, GPT-6.1 Sol/Terra, Astra at high effort, Run System) at ≈ $2.25 per 30-minute worker run.</p>
+      <div class="tablewrap" style="padding:0;border:0">
+      <table>
+        <thead><tr><th>Work package</th><th class="num">Runs</th><th class="num">≈ $</th></tr></thead>
+        <tbody>
+          <tr><td>Spikes and gates (reconstruction on Modal, SAM tracking)</td><td class="num">25</td><td class="num">56</td></tr>
+          <tr><td>App shell, Clerk, Railway deploy, PWA</td><td class="num">20</td><td class="num">45</td></tr>
+          <tr><td>Spec, validator, builder, physics world, 5 templates</td><td class="num">45</td><td class="num">101</td></tr>
+          <tr><td>Virtual instruments, fitter, real-motion mode</td><td class="num">35</td><td class="num">79</td></tr>
+          <tr><td>Agent: interview, sidebar tools, library search</td><td class="num">30</td><td class="num">68</td></tr>
+          <tr><td>Library pipeline and 8 demos</td><td class="num">15</td><td class="num">34</td></tr>
+          <tr><td>Lab reports and charts</td><td class="num">15</td><td class="num">34</td></tr>
+          <tr><td>Polish, tests, benchmark numbers</td><td class="num">25</td><td class="num">56</td></tr>
+          <tr><td>Planning and review (Thinker, reviewers)</td><td class="num">–</td><td class="num">80</td></tr>
+          <tr class="total"><td>Total</td><td class="num">210</td><td class="num">≈ 553</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p class="small" style="margin-top:8px">Range $330–770. For comparison, Measured was $240–335 and the 3D version $300–430.</p>
+    </div>
+    <div class="card">
+      <h3>2 · Running cost per user action</h3>
+      <div class="bars" id="unitBars"></div>
+      <p class="small" style="margin-top:14px">Assumptions: a 30 s clip sampled at 1–2 fps for Wonder; SAM 3.1 at $2.50 per 1k images and $0.20 per 1k video frames; Wonder at $4 in / $0.20 cached / $20 out per Mtok; Modal A100-40GB at $2.10/h for 2–3 GPU minutes per scene, cold start included.</p>
+    </div>
+  </div>
+
+  <div class="card hard" style="margin-top:20px">
+    <h3>Usage calculator: development + judging period</h3>
+    <div class="calc">
+      <div>
+        <div class="slider"><label for="sScenes">New scenes reconstructed <b id="vScenes"></b></label><input type="range" id="sScenes" min="0" max="500" step="10" value="150"></div>
+        <div class="slider"><label for="sMotion">Real-motion clips measured <b id="vMotion"></b></label><input type="range" id="sMotion" min="0" max="300" step="10" value="60"></div>
+        <div class="slider"><label for="sChat">Sidebar agent turns <b id="vChat"></b></label><input type="range" id="sChat" min="0" max="5000" step="100" value="1000"></div>
+        <div class="slider"><label for="sReports">Lab reports <b id="vReports"></b></label><input type="range" id="sReports" min="0" max="300" step="10" value="50"></div>
+      </div>
+      <div>
+        <div class="small">Meta Model API (vs. the $150 credit)</div>
+        <div class="out" id="oMeta"></div>
+        <div class="creditbar" aria-hidden="true"><div class="used" id="bUsed"></div><div class="over" id="bOver"></div><div class="mark" id="bMark"></div></div>
+        <div class="small" id="oMetaNote"></div>
+        <div class="small" style="margin-top:14px">Modal GPU (vs. your $30 Modal credit; AWS $200 is the backup)</div>
+        <div class="out" id="oGpu"></div>
+        <div class="small" style="margin-top:14px">Railway Pro: $20/month, which includes $20 of usage. Expect <b>$20–40</b> for web, API, worker, Postgres, Redis and the bucket.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tablewrap" style="margin-top:20px">
+    <table>
+      <thead><tr><th>3 · Real cash during the hackathon</th><th class="num">Estimate</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td>Railway Pro</td><td class="num">$20–40</td><td>You already have it</td></tr>
+        <tr><td>Meta Model API beyond the credit</td><td class="num">$0–60</td><td>Use Spark and caching in development; precompute library demos</td></tr>
+        <tr><td>GPU (Modal, AWS, Kaggle)</td><td class="num">$0</td><td>About 20 GPU-hours needed; Modal alone covers 15, AWS adds about 95 once quota is approved</td></tr>
+        <tr><td>Baseten (Muse Spark Open)</td><td class="num">$0</td><td>Partner credit; Fireworks $80 as fallback</td></tr>
+        <tr><td>Clerk</td><td class="num">$0</td><td>Free tier is plenty for judging</td></tr>
+        <tr><td>Domain (optional)</td><td class="num">≈ $12</td><td>A Railway subdomain works too</td></tr>
+        <tr><td>Apple developer account</td><td class="num">$0</td><td>Skipped: PWA instead</td></tr>
+        <tr class="total"><td>Likely total</td><td class="num">$20–110</td><td>On top of your existing coding-agent subscriptions</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small" style="margin-top:10px">Guardrails for judging traffic: library demos are precomputed and cost nothing to open; each account gets a small daily quota of new uploads; a global spend cap pauses new reconstructions, never the library.</p>
+</div></section>
+
+<section id="plan"><div class="wrap">
+  <h2>8-day plan with kill-gates</h2>
+  <p class="lede">The brain dump holds about a month of work. This plan ships the core loop first and treats everything else as optional. Dates are Asia/Dhaka; deploy to Railway on day 1, not on the last day.</p>
+  <div class="diagram">
+    <div class="gantt" id="gantt"></div>
+  </div>
+  <div class="grid2" style="margin-top:20px">
+    <div class="card">
+      <h3>Gates (fail → fallback, never stall)</h3>
+      <ul class="clean">
+        <li><span class="tag bad">Gate R · Oct 28</span> Three public indoor clips rebuilt in under 4 min each, floor plane found, known-object sizes (door, A4, ball) within 10%. <b>Fallback 1:</b> single keyframe with SAM 3D Objects plus "how tall is the desk?". <b>Fallback 2:</b> simple boxes and planes textured with video frames.</li>
+        <li><span class="tag bad">Gate P · Oct 30</span> Simulated experiments match analytic answers within 0.5%; noisy virtual trials recover g inside the stated uncertainty.</li>
+        <li><span class="tag bad">Gate M · Oct 31</span> Real free-fall clip gives g within 3%. If not, Mode A is cut, and the pitch becomes virtual lab plus Mystery-g.</li>
+        <li><span class="tag bad">Gate D · Nov 2</span> A fresh account completes the whole flow on the deployed URL in under 5 minutes.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Scope for 8 days</h3>
+      <p><span class="tag acc">Must</span> upload → understand → 3D → interview → 4 templates (free fall, projectile, ramp, pendulum) → instruments → fit → report; 6–8 library demos; Clerk; Railway; Real2Sim on 2 templates.</p>
+      <p><span class="tag">Should</span> Mystery-g, sidebar edits, library search, charts, PWA, Spark Open component.</p>
+      <p><span class="tag">Could</span> Voice control, Muse Image illustrations, custom experiments from primitives, Android APK.</p>
+      <p style="margin:0"><span class="tag bad">Won't</span> native iOS app, fluids or cloth, multiplayer, YouTube downloading, payments.</p>
+    </div>
+  </div>
+</div></section>
+
+<section id="score"><div class="wrap">
+  <h2>How it scores on the official rubric</h2>
+  <div class="score">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Criterion</th><th class="num">Weight</th><th class="num">Score</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td>Impact</td><td class="num">30%</td><td class="num">7.5</td><td>Any room becomes a lab, for the many students without one. Must not be pitched as a tutor.</td></tr>
+          <tr><td>Use of Meta AI tooling</td><td class="num">25%</td><td class="num">9</td><td>Wonder agent with video input, SAM 3.1 as an instrument, SAM 3D, Spark Open</td></tr>
+          <tr><td>Technical depth</td><td class="num">20%</td><td class="num">9</td><td>Video → metric 3D → validated spec → physics → fitted uncertainty</td></tr>
+          <tr><td>Demo</td><td class="num">25%</td><td class="num">9.5</td><td>"My room in 3D" plus a prediction that comes true</td></tr>
+          <tr><td>Weighted</td><td class="num"></td><td class="num">87</td><td></td></tr>
+          <tr><td>Risk adjustment</td><td class="num"></td><td class="num">−7</td><td>Solo scope, reconstruction quality, education label</td></tr>
+          <tr class="total"><td>Final</td><td class="num"></td><td class="num">80</td><td>Measured 80 · 3D Measured 81</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Honest read</h3>
+      <p>The expected score is about the same as Measured's. What changes is the spread: the ceiling is clearly higher, because "upload my room and get a physics lab" is the kind of demo that wins a top-5 slot and the viral prize. The floor is lower, because there are more parts that can fail.</p>
+      <p>The plan protects the floor with the gates: if the 3D rebuild fails, the product degrades to a stylised world, not to nothing.</p>
+      <h3 style="margin-top:14px">Biggest risks</h3>
+      <ul class="clean">
+        <li><b>Anti-project label:</b> physics Q&amp;A and reports can read as an "AI for Education chatbot". Lead with measurement and Real2Sim; the chat is a feature, not the product.</li>
+        <li><b>Circularity:</b> solved only if every number is labelled measured or simulated.</li>
+        <li><b>Prior art:</b> PhET, Algodoo and Labster are virtual labs, but none builds the lab from your own video or fits reality.</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section id="questions"><div class="wrap">
+  <h2>Questions for you</h2>
+  <ol class="qlist">
+    <li><b>Tell me when the AWS quota requests are approved.</b><div class="rec">Two 8-vCPU requests are pending in us-east-2. Until you confirm, the plan treats AWS as unavailable and runs everything on Modal and Kaggle.</div></li>
+    <li><b>Should the agent and UI speak Bangla?</b><div class="rec">Good for impact in Bangladesh; Muse Voice Transcribe's 25 languages may not include Bangla (unverified). Text-only Bangla is cheap to add.</div></li>
+    <li><b>Test clips: answered Oct 27.</b><div class="rec">No filming. An agent assembles about 10 licensed public clips (NASA, Wikimedia Commons, Pexels, Pixabay) with clips.csv; Koushik approves the list. The known true g (9.81 on Earth, 1.62 on the Moon) is the benchmark.</div></li>
+  </ol>
+</div></section>
+</main>
+
+<footer><div class="wrap">Real2Simulation concept · prepared Oct 27, 2026 for Koushik Sadhak Jeet · Strategy only: no code, accounts, credits, deployments or submissions were touched. Sources: dev.meta.ai model docs, Cerebral Valley event rules page, Modal, Railway and AWS public pricing, Fireworks' Muse Spark Open launch post, the SAM 3D Objects VRAM issue thread, facebookresearch/sam-3d-objects and map-anything repositories.</div></footer>
+
+<script>
+(function(){
+  // theme toggle
+  var root=document.documentElement, btn=document.getElementById('themeBtn');
+  function cur(){var t=root.getAttribute('data-theme');if(t)return t;return matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+  try{var saved=localStorage.getItem('pe-theme');if(saved)root.setAttribute('data-theme',saved);}catch(e){}
+  btn.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';root.setAttribute('data-theme',n);try{localStorage.setItem('pe-theme',n);}catch(e){}});
+
+  // journey stepper
+  var steps=[
+    {t:'Upload',see:'Drag in a 10–60 s clip, pick a library demo, or ask the agent. A progress bar shows each stage below.',model:'None (ffmpeg on the Railway worker)',out:'Resumable upload to the bucket; keyframes at 1–2 fps; audio track kept for trial sync.',fail:'Clip too long or dark → the app explains why and asks for a re-shoot.',tag:'acc'},
+    {t:'Understand',see:'"I see a desk about 0.74 m high, an A4 sheet, and a tennis ball. Nothing moves in this clip."',model:'Muse Wonder (video input) + SAM 3.1 masks on keyframes',out:'Scene JSON: surfaces, objects, approximate sizes, whether there is motion, candidate experiments.',fail:'Low confidence on scale → the agent asks one question ("How tall is the desk?").',tag:'real'},
+    {t:'Rebuild in 3D',see:'The room appears in 3D within a few minutes, with the camera path drawn in.',model:'MapAnything + SAM 3D Objects on Modal GPU',out:'Splats/meshes for looks; fitted planes and boxes as physics colliders; metric scale; gravity direction.',fail:'Fallback 1: single keyframe + SAM 3D layout. Fallback 2: stylised boxes textured with frames. The experiment still works.',tag:'sim'},
+    {t:'Interview',see:'One to three questions as chips plus a free-text box: what experiment, what to measure, which instruments, Earth, Moon or Mystery-g.',model:'Muse Wonder',out:'Confirmed intent: template, target quantities, instruments, mode (Measure, Real2Sim or Virtual).',fail:'Unknown experiment name → closest templates offered, or a custom build under an "experimental" badge.',tag:'real'},
+    {t:'Build',see:'The apparatus appears in your room: a ramp from the desk, a pendulum under the shelf, light gates at the edge.',model:'Muse Wonder writes the spec; code validates and builds',out:'Validated experiment spec (JSON); the 3D world with apparatus snapped onto real surfaces.',fail:'Validator rejects with a reason (e.g. "ramp longer than the desk"); 3 retries, then ask the user.',tag:'acc'},
+    {t:'Run & measure',see:'Press run or drag objects. Instruments fill a data table: stopwatch, light gates, 240 fps virtual camera, tape measure.',model:'None: Rapier (WASM) and an RK4 integrator in the browser',out:'Trial data with realistic instrument error; in Measure mode, real tracked positions from SAM 3.1.',fail:'Unstable physics → fixed time step and an analytic cross-check flag the run.',tag:'sim'},
+    {t:'Analyze',see:'g = 9.79 ± 0.06 m/s², a fit line, residuals, and "your stopwatch timing dominates the error: use the light gates".',model:'SciPy fitter on the worker; Wonder explains; Spark checks each trial',out:'Fitted values with uncertainty, model choice (AIC), residual diagnostics, next-trial suggestion.',fail:'The agent may only quote fitter numbers; anything else is blocked.',tag:'real'},
+    {t:'Report & share',see:'Download the lab report PDF, export charts, or publish the world to the library.',model:'Wonder writes the LaTeX; Tectonic compiles; Muse Image draws the apparatus figure',out:'Aim, apparatus, method, data, analysis, uncertainty, conclusion, with provenance back to frames and trials.',fail:'Publishing needs a "I own or may use this footage" checkbox.',tag:'acc'}
+  ];
+  var bar=document.getElementById('steps'), det=document.getElementById('stepDetail');
+  function show(i){
+    var s=steps[i];
+    [].forEach.call(bar.children,function(b,j){b.setAttribute('aria-selected',j===i?'true':'false');b.tabIndex=j===i?0:-1;});
+    det.innerHTML='<div><span class="tag '+s.tag+'">Stage '+(i+1)+' of 8</span><h3 style="margin-top:10px;font-size:24px">'+s.t+'</h3><p style="font-size:18px">'+s.see+'</p></div>'+
+      '<dl class="kv"><dt>Who does it</dt><dd>'+s.model+'</dd><dt>Output</dt><dd>'+s.out+'</dd><dt>If it fails</dt><dd>'+s.fail+'</dd></dl>';
+  }
+  steps.forEach(function(s,i){
+    var b=document.createElement('button');b.className='step';b.setAttribute('role','tab');b.type='button';
+    b.innerHTML='<span class="i">0'+(i+1)+'</span><span class="t">'+s.t+'</span>';
+    b.addEventListener('click',function(){show(i);});
+    b.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){show((i+1)%8);bar.children[(i+1)%8].focus();}if(e.key==='ArrowLeft'){show((i+7)%8);bar.children[(i+7)%8].focus();}});
+    bar.appendChild(b);
+  });
+  show(0);
+
+  // unit cost bars
+  var units=[
+    ['Wonder watches the clip',0.25,''],['Interview + spec',0.10,''],['SAM 3.1 keyframe masks',0.10,''],['GPU 3D rebuild (Modal)',0.10,'sim'],
+    ['Real-motion clip measured',0.23,'real'],['Lab report',0.20,''],['Sidebar turn (avg.)',0.02,''],['Open a library demo',0,'sim']
+  ];
+  var ub=document.getElementById('unitBars');
+  units.forEach(function(u){
+    var d=document.createElement('div');d.className='bar';
+    d.innerHTML='<span>'+u[0]+'</span><div class="track"><div class="fill '+u[2]+'" style="width:'+(u[1]/0.25*100)+'%"></div></div><span class="val">$'+u[1].toFixed(2)+'</span>';
+    ub.appendChild(d);
+  });
+  var tot=document.createElement('p');tot.className='small';tot.style.marginTop='10px';
+  tot.innerHTML='<b>New scene, end to end: ≈ $0.55</b> (first four rows).';ub.appendChild(tot);
+
+  // calculator
+  var ids=['Scenes','Motion','Chat','Reports'];
+  function fmt(n){return '$'+Math.round(n).toLocaleString();}
+  function calc(){
+    var v={};ids.forEach(function(k){var el=document.getElementById('s'+k);v[k]=+el.value;document.getElementById('v'+k).textContent=(+el.value).toLocaleString();});
+    var meta=v.Scenes*0.45+v.Motion*0.23+v.Chat*0.02+v.Reports*0.20;
+    var gpu=v.Scenes*0.10+10; // +$10 for cold starts and spikes
+    document.getElementById('oMeta').textContent=fmt(meta);
+    var max=Math.max(300,meta*1.1), credit=150;
+    document.getElementById('bUsed').style.width=(Math.min(meta,credit)/max*100)+'%';
+    var o=document.getElementById('bOver');
+    if(meta>credit){o.style.left=(credit/max*100)+'%';o.style.width=((meta-credit)/max*100)+'%';}else{o.style.width='0';}
+    document.getElementById('bMark').style.left=(credit/max*100)+'%';
+    document.getElementById('oMetaNote').textContent=meta<=credit?'Covered by the $150 credit, with '+fmt(credit-meta)+' to spare.':fmt(meta-credit)+' over the credit: switch development calls to Muse Spark and reuse cached scenes.';
+    document.getElementById('oGpu').textContent=fmt(gpu);
+  }
+  ids.forEach(function(k){document.getElementById('s'+k).addEventListener('input',calc);});
+  calc();
+
+  // gantt
+  var days=['Oct 27','Oct 28','Oct 29','Oct 30','Oct 31','Nov 1','Nov 2','Nov 3','Nov 4–5'];
+  var rows=[
+    ['Spikes + Gate R',[[0,2,'gate','Gate R']]],
+    ['App shell, Clerk, deploy',[[0,2,'','skeleton live']]],
+    ['Spec, validator, physics',[[2,4,'sim','4 templates · Gate P']]],
+    ['Instruments + fitter',[[3,5,'sim','fit · Gate M']]],
+    ['Real-motion + Real2Sim',[[4,5,'real','predict']]],
+    ['Agent + sidebar',[[4,6,'','interview, edits']]],
+    ['Library + reports',[[5,6,'','8 demos']]],
+    ['PWA, Spark Open, polish',[[6,7,'','Gate D']]],
+    ['Demo video + submit',[[7,9,'gate','freeze Nov 3, 18:00']]]
+  ];
+  var g=document.getElementById('gantt'), h='<div class="hd">Workstream</div>';
+  days.forEach(function(d){h+='<div class="hd">'+d+'</div>';});
+  rows.forEach(function(r){
+    h+='<div class="lab">'+r[0]+'</div>';
+    for(var i=0;i<9;i++){
+      var blk='';
+      r[1].forEach(function(b){if(b[0]===i){var w=(b[1]-b[0]);blk='<div class="blk '+b[2]+'" style="left:2px;width:calc('+(w*100)+'% + '+((w-1))+'px - 4px)">'+b[3]+'</div>';}});
+      h+='<div class="cell">'+blk+'</div>';
+    }
+  });
+  g.innerHTML=h;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+✔ missing configuration or invalid ID denies before identity/data access (1.7672ms)
+✔ unverified/missing identity cannot trigger a private metadata lookup (0.4605ms)
+✔ only exact owner, scene ID and private access match is authorized (4.727ms)
+✔ missing repository and identity/lookup failures deny without leaking errors (0.5921ms)
+✔ missing and partial configuration disables Clerk without exposing values (5.4544ms)
+✔ blank, malformed, mismatched and unsafe configuration fails closed (2.1135ms)
+✔ configured result exposes only the public key, never secret or custom OAuth credentials (0.6664ms)
+✔ accepts unpadded Clerk publishable keys (3.2133ms)
+✔ loads the fixture bundle over transport, fetches only manifest + render asset, safe fetch options (68.8615ms)
+✔ adapter end-to-end with the loader: loading -> ready; loader codes pass through (10.9877ms)
+✔ splat bundle: loads, decodes centres/colours/scales/quaternions, renders as points (6.0306ms)
+✔ decodeSplats rejects bad records (1.3951ms)
+✔ loader rejects unsafe or inconsistent manifests before fetching assets (15.2991ms)
+✔ loader enforces transport integrity: status, JSON, size caps, length and sha (10.8806ms)
+✔ abort during fetch rejects with AbortError and adapter stays silent (19.1563ms)
+✔ desktop budget caps DPR at 2 and keeps full detail (3.0855ms)
+✔ 375 px phone gets reduced detail and DPR capped at 1.5 (0.3003ms)
+✔ tier boundaries: width 767 reduced, 768 full; memory <4 GiB or <4 cores reduced (0.5345ms)
+✔ invalid or missing device facts fall back deterministically (DPR 1, unknown facts ignored) (0.5843ms)
+✔ same device -> identical frozen budget (0.5521ms)
+✔ probeDevice uses the narrower of layout viewport and screen (phone page without meta viewport reports 980) (0.5644ms)
+✔ decimatePoints keeps every ceil(n/max)-th point, colours aligned (0.8274ms)
+✔ decimatePoints returns the original arrays when within budget and rejects bad caps (0.8559ms)
+✔ fixture geometry is aligned: collider faces touch surfaces, points lie on faces, labels in bounds (617.7994ms)
+✔ misalignment is reported: offset, rotation footprint, bad quaternion, label outside bounds, missing surface (620.6233ms)
+✔ collider edges: 12 segments per box, each an axis edge between corners (447.5627ms)
+✔ camera path: validation, lerp/slerp sampling, clamping (504.2453ms)
+✔ ndcToScreen maps the viewport and clips outside/behind (0.5513ms)
+node:internal/modules/esm/resolve:271
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\Users\HP\.codex\worktrees\s07a\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\node_modules\three\build\three.module.js' imported from C:\Users\HP\.codex\worktrees\s07a\2026-10-26 - Meta Global AI Developer Hackathon\tests\viewer\three-renderer.test.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at node:internal/modules/esm/loader:632:32
+    at TracingChannel.tracePromise (node:diagnostics_channel:362:14) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///C:/Users/HP/.codex/worktrees/s07a/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/node_modules/three/build/three.module.js'
+}
+
+Node.js v24.18.0
+✖ tests\viewer\three-renderer.test.mjs (148.3143ms)
+✔ fixture scene is the S04a mount, marked synthetic, not Gate R evidence (12.702ms)
+✔ scene model decodes PLY points and carries synthetic banner, physics disabled (586.4374ms)
+✔ scene model rejects mismatches and tampered bytes (585.7206ms)
+✔ mount: loading -> ready, idempotent dispose, no callbacks after dispose (3.6628ms)
+✔ shell abort after ready disposes the renderer once (3.3057ms)
+✔ mount rejects invalid requests before loading (3.5652ms)
+✔ mystery mode is unavailable until S10 redacted payload exists (2.6193ms)
+✔ abort during load rejects, never renders, stays silent (2.6363ms)
+✔ already-aborted signal rejects immediately (2.5301ms)
+✔ abort while renderer is being created disposes the partial renderer (2.8661ms)
+✔ load and renderer failures report error state with plain codes (4.3404ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 39
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2501.6685
+
+✖ failing tests:
+
+test at tests\viewer\three-renderer.test.mjs:1:1
+✖ tests\viewer\three-renderer.test.mjs (148.3143ms)
+  'test failed'

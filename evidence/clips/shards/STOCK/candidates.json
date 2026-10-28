@@ -1,0 +1,87 @@
+{
+ "round": 3,
+ "base": "d6eedf5",
+ "note": "Round-1/2 manifests preserved as candidates-round1.json / candidates-round2.json. Page facts read in in-app browser (normal page view, no challenge). Media in %TEMP%/s02c2/media, not committed.",
+ "candidates": [
+  {
+   "id": "ST05",
+   "source_url": "https://www.pexels.com/video/man-holding-a-orange-7117951/",
+   "creator": "Katrin Bolovtsova (KATRIN BOLOVTSOVA)",
+   "page_read_utc": "2026-10-27T23:21Z",
+   "page_facts": "Licence: Free (Pexels License); Dimensions 2160x4096; Duration 0:18; Date Mar 12, 2021; description 'Smiling man with dreadlocks tossing an orange indoors, enjoying the moment.'; related tag 'Slow Motion Video'.",
+   "download_url": "https://videos.pexels.com/video-files/7117951/7117951-sd_338_640_30fps.mp4 (rendition URL in page HTML; file actually decodes as 226x426, URL label mismatch)",
+   "fetch": "curl GET 2026-10-27T23:21:08Z -> HTTP 200 video/mp4, 473531 bytes",
+   "local_path": "%TEMP%/s02c2/media/7117951-sd_338_640_30fps.mp4 (not committed)",
+   "sha256": "e0972b4008eb885682e0228c5e2890e65a25c949614ed88234596a35d8b1c7e0",
+   "bytes": 473531,
+   "ffprobe": "h264 226x426, r/avg 30/1, 533 frames (counted), 17.767 s",
+   "reviewed": "Whole clip at 60 px (TEMP orange-all.jpg, 6 tosses). Full-rate full-frame sheets: f12-f59 (ST05-f012-059.jpg) and f278-f309 (ST05-f278-309.jpg) committed; f100-127, f186-219, f369-400, f468-500 viewed/kept in TEMP. Tracker CSV covers all 533 frames (0 exact repeats).",
+   "segment": "Six hand tosses of the same orange. Free-flight fit segments (chosen from sheets + per-frame second differences ~1.2 px/frame^2, release/catch frames excluded): 22-44, 104-122, 192-214, 282-303, 373-395, 472-492; apices f33, f116, f204, f295, f386, f486.",
+   "track": "ST05-track.csv via ST05_track.py (orange HSV, largest blob, exact-repeat flag). Per-toss quadratic a (px/s^2 at container 30 fps) / rms px: 1105.6/0.23, 1128.2/0.19, 1102.3/0.32, 1159.2/0.16, 1138.1/0.16, 1138.1/0.25; mean 1128.6, sample sd 21.6 (1.9%); self-check (>=8 points, apex inside segment) passed for all six; orange width median 28-31 px.",
+   "verdict": "HOLD - real, static-camera, single-object vertical tosses with clean unoccluded parabolas and six repeat trials consistent to ~2%; NOT a calibrated g clip: probable slow motion (page tag) with unresolved playback factor and assumed scale; abstain while the factor is unknown.",
+   "limitations": [
+    "Timebase: page tags 'Slow Motion Video'; container 30p with no exact repeats. Estimate (not measurement; scale and timing both assumed): orange 6.5-9 cm over 28-31 px -> a ~2.4-3.6 m/s^2 ~0.24-0.37 g; hypothetical slow-playback TIME factor = sqrt(1/fraction) ~1.6-2.0x. (Erratum: earlier '2.7-4x' was the acceleration ratio; the '120->30 fps' remark is withdrawn.)",
+    "Scale: no known-size reference; orange size assumed. Depth motion along camera axis not measured (width drifts 30->27 px).",
+    "Hand release/catch: v0 nonzero (toss); release frame +/-1.",
+    "Low-res rendition (226x426) re-encode, not the 2160x4096 original; tracked blob ~28 px wide.",
+    "Identifiable adult (Pexels: no offensive depiction/implied endorsement); public redistribution unresolved (S02e).",
+    "Portrait 9:16 frame; apex near upper body, still well inside frame.",
+    "Segment endpoints were chosen by the reviewer from sheets and second differences (selection could bias a slightly); repeat consistency is image-space only."
+   ],
+   "possible_use": "Integrator decision: 'unknown timebase / Mystery-g' candidate. While the playback factor is UNKNOWN, g output must abstain; calibration requires resolving both the playback factor and the scale. Six repeated tosses give an image-space repeatability check.",
+   "evidence": [
+    "ST05-f012-059.jpg",
+    "ST05-f278-309.jpg",
+    "ST05-track.csv",
+    "ST05_track.py"
+   ]
+  },
+  {
+   "id": "ST04",
+   "source_url": "https://www.pexels.com/video/dropping-an-egg-on-a-wooden-tray-6287596/",
+   "creator": "Klaus Nielsen",
+   "page_read_utc": "2026-10-27T23:19Z",
+   "page_facts": "Licence: Free; 1920x1080; 0:14; Dec 25, 2020; description 'A cracked egg with yolk and shell on a wooden tray over pebbles.'",
+   "download_url": "https://videos.pexels.com/video-files/6287596/6287596-sd_640_360_25fps.mp4",
+   "fetch": "curl GET 2026-10-27T23:20:17Z -> HTTP 200 video/mp4, 884333 bytes",
+   "sha256": "1e72b6398d5b444f50c2c633be6142f177e9e48bb01b980ce67726fd03efd1e6",
+   "bytes": 884333,
+   "ffprobe": "h264 640x360, 25/1, 341 frames, 13.64 s",
+   "reviewed": "Whole clip at 128 px (TEMP egg-all.jpg) + full-rate f0-f11 (ST04-f000-011.jpg, 6/row).",
+   "verdict": "REJECT - top-down camera: egg falls along the optical axis (image-plane motion is mostly scale change), visible only ~f3-f5 before impact/crack at f6; too few frames, no usable vertical trajectory.",
+   "evidence": [
+    "ST04-f000-011.jpg"
+   ]
+  }
+ ],
+ "rejected_from_page_read_no_download": [
+  {
+   "url": "https://www.pexels.com/search/videos/ball%20bouncing%20floor/",
+   "reason": "One search view: basketball/tennis/volleyball/court footage (sports) plus rolling balls and a cat; no non-sports drop lead."
+  },
+  {
+   "url": "https://www.pexels.com/search/videos/falling%20to%20the%20floor/",
+   "reason": "One search view: people falling, dance, leaves, chips; no single rigid-object drop."
+  },
+  {
+   "url": "https://www.pexels.com/search/videos/dropping%20egg/",
+   "reason": "One search view: only 6287596 (ST04) and 7100101 'easter eggs falling and rolling' (multiple objects, not opened)."
+  },
+  {
+   "url": "https://www.pexels.com/search/videos/tossing%20ball%20in%20the%20air/",
+   "reason": "One search view: mostly volleyball/tennis/baseball/squash (sports); 7117951 orange toss opened (ST05)."
+  },
+  {
+   "url": "https://www.pexels.com/search/videos/bouncy%20ball/",
+   "reason": "One search view: citrus into water, AI/CG renders, ball pits, spinning coins, dogs; no single-object drop."
+  },
+  {
+   "url": "https://pixabay.com/videos/search/dropping%20ball/",
+   "reason": "One search view (2,128+ results, first page links): sports, flags, 3D/cartoon renders, disco balls, flowers; 63040 newton cradle (not fall) and 18684 'tower ball drop abstract' (likely CG) not opened."
+  }
+ ],
+ "not_inspected": [
+  "Pexels 7100101 easter eggs falling and rolling (multi-object)",
+  "Pixabay search pages"
+ ]
+}

@@ -1,0 +1,72 @@
+{
+  "scope": "Source pages only; no local media or measured metadata",
+  "files": [
+    {
+      "clip_id": "FF01",
+      "checked_utc": "2026-10-27T17:32:10.043116+00:00",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Freier_Fall_ohne_Anfangsgeschwindigkeit.webm",
+      "final_url": "https://commons.wikimedia.org/wiki/File:Freier_Fall_ohne_Anfangsgeschwindigkeit.webm",
+      "http_status": 200,
+      "page_sha256": "b5973798dce0d91bc23aea4b1924ac8f0caa6578b898699f12b6f9a7ac1c03dd",
+      "revision_id": "1199919438",
+      "declared_licence": "CC-BY-SA-4.0",
+      "licence_excerpt": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Freier_Fall_ohne_Anfangsgeschwindigkeit.webm"
+    },
+    {
+      "clip_id": "FF02",
+      "checked_utc": "2026-10-27T17:32:10.515193+00:00",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Freier_fall_(Staustufe_M%C3%BChlheim_am_Main).webm",
+      "final_url": "https://commons.wikimedia.org/wiki/File:Freier_fall_(Staustufe_M%C3%BChlheim_am_Main).webm",
+      "http_status": 200,
+      "page_sha256": "b43a36afc9c4f388ea254a1401ed93eccfdabab6a00267e22ddec316e106c41f",
+      "revision_id": "1186981777",
+      "declared_licence": "CC-BY-SA-4.0",
+      "licence_excerpt": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Freier_fall_%28Staustufe_M%C3%BChlheim_am_Main%29.webm"
+    },
+    {
+      "clip_id": "FF03",
+      "checked_utc": "2026-10-27T17:32:11.020359+00:00",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Zeitsymmetrie_(freier_Fall).webm",
+      "final_url": "https://commons.wikimedia.org/wiki/File:Zeitsymmetrie_(freier_Fall).webm",
+      "http_status": 200,
+      "page_sha256": "82212e6a679e392da964dd055e5ca244256b2db3d4ec5f781311de4776a5f000",
+      "revision_id": "1046171790",
+      "declared_licence": "CC-BY-SA-4.0",
+      "licence_excerpt": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Zeitsymmetrie_%28freier_Fall%29.webm"
+    },
+    {
+      "clip_id": "FF04",
+      "checked_utc": "2026-10-27T17:32:11.492888+00:00",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Slow_motion_video_of_cup_falling_on_floor.webm",
+      "final_url": "https://commons.wikimedia.org/wiki/File:Slow_motion_video_of_cup_falling_on_floor.webm",
+      "http_status": 200,
+      "page_sha256": "7e3c1e04a672c82db1165730e535b50dcd8357061c69d689ab9837bcb641b85b",
+      "revision_id": "1246720034",
+      "declared_licence": "CC-BY-SA-4.0",
+      "licence_excerpt": "This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Slow_motion_video_of_cup_falling_on_floor.webm"
+    },
+    {
+      "clip_id": "AP15",
+      "checked_utc": "2026-10-27T17:32:12.100523+00:00",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Apollo_15_feather_and_hammer_drop.ogv",
+      "final_url": "https://commons.wikimedia.org/wiki/File:Apollo_15_feather_and_hammer_drop.ogv",
+      "http_status": 200,
+      "page_sha256": "6f77b05d698520dcaf8d5d7f3c817af2ca08787eaf16dfd23e7edbd379bfc461",
+      "revision_id": "1291303557",
+      "declared_licence": "PD-USGov-NASA",
+      "licence_excerpt": "This file is in the public domain in the United States because it was solely created by NASA",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Apollo_15_feather_and_hammer_drop.ogv"
+    }
+  ],
+  "nasa_original": {
+    "source_url": "https://science.nasa.gov/resource/the-apollo-15-hammer-feather-drop-2/",
+    "http_status": 200,
+    "page_sha256": "080de44966a0d1768c2c764baa1ddb550c75e2ce60c5962a76cdf4c59ecbdddb",
+    "linked_media_url": "https://science.nasa.gov/wp-content/uploads/2023/09/AS15_Ham_feath_drop3-1.m4v",
+    "checked_utc": "2026-10-27T17:32:12.606730+00:00"
+  }
+}

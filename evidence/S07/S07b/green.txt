@@ -1,0 +1,28 @@
+test_bad_numbers_bounds_order_or_leaking_split_rejected (test_inputs.InputTests.test_bad_numbers_bounds_order_or_leaking_split_rejected) ... ok
+test_circular_scale_and_unverified_plane_abstain (test_inputs.InputTests.test_circular_scale_and_unverified_plane_abstain) ... ok
+test_container_rate_alone_cannot_establish_capture_clock (test_inputs.InputTests.test_container_rate_alone_cannot_establish_capture_clock) ... ok
+test_invalid_calibration_uncertainty_rejected (test_inputs.InputTests.test_invalid_calibration_uncertainty_rejected) ... ok
+test_missing_provenance_or_approval_rejected (test_inputs.InputTests.test_missing_provenance_or_approval_rejected) ... ok
+test_non_fall_motion_cannot_count_as_earth_trial (test_inputs.InputTests.test_non_fall_motion_cannot_count_as_earth_trial) ... ok
+test_qualified_synthetic_input_has_disjoint_immutable_prefix_suffix (test_inputs.InputTests.test_qualified_synthetic_input_has_disjoint_immutable_prefix_suffix) ... ok
+test_scene_approval_never_authorizes_metric_fit (test_inputs.InputTests.test_scene_approval_never_authorizes_metric_fit) ... ok
+test_unknown_scale_timebase_and_continuity_abstain (test_inputs.InputTests.test_unknown_scale_timebase_and_continuity_abstain) ... ok
+test_unrepresentable_timestamp_is_validation_error_not_crash (test_inputs.InputTests.test_unrepresentable_timestamp_is_validation_error_not_crash) ... ok
+test_centroid_source_pts_immutable_and_s07a_custody_integration (test_tracking.TrackingTests.test_centroid_source_pts_immutable_and_s07a_custody_integration) ... ok
+test_exact_documented_calls_prefix_only_and_close_on_failure (test_tracking.TrackingTests.test_exact_documented_calls_prefix_only_and_close_on_failure) ... ok
+test_execution_opt_in_and_local_checkpoint_required (test_tracking.TrackingTests.test_execution_opt_in_and_local_checkpoint_required) ... ok
+test_explicit_object_selection_no_largest_or_first_heuristic (test_tracking.TrackingTests.test_explicit_object_selection_no_largest_or_first_heuristic) ... ok
+test_factory_calls_actual_documented_builder_only_when_opted_in (test_tracking.TrackingTests.test_factory_calls_actual_documented_builder_only_when_opted_in) ... ok
+test_full_record_or_bad_provenance_rejected_before_predictor (test_tracking.TrackingTests.test_full_record_or_bad_provenance_rejected_before_predictor) ... ok
+test_local_indices_map_to_irregular_original_segment_not_frame_over_fps (test_tracking.TrackingTests.test_local_indices_map_to_irregular_original_segment_not_frame_over_fps) ... ok
+test_malformed_responses_fail_closed (test_tracking.TrackingTests.test_malformed_responses_fail_closed) ... ok
+test_mapping_cannot_cross_split_or_infer_clock (test_tracking.TrackingTests.test_mapping_cannot_cross_split_or_infer_clock) ... ok
+test_missing_objects_frames_and_empty_masks_are_not_interpolated (test_tracking.TrackingTests.test_missing_objects_frames_and_empty_masks_are_not_interpolated) ... ok
+test_module_exists_without_loading_model_stack (test_tracking.TrackingTests.test_module_exists_without_loading_model_stack) ... ok
+test_remote_paths_rejected_without_filesystem_access (test_tracking.TrackingTests.test_remote_paths_rejected_without_filesystem_access) ... ok
+test_unknown_calibration_preserved_not_filled (test_tracking.TrackingTests.test_unknown_calibration_preserved_not_filled) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.056s
+
+OK

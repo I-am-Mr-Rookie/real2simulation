@@ -1,0 +1,30 @@
+{
+  "clip_id": "RM02",
+  "source_path": "test-data/public/RM02.mp4",
+  "source_sha256": "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720",
+  "source_url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+  "creator": "Andy Barbour",
+  "license": "Pexels",
+  "license_url": "https://www.pexels.com/license/",
+  "approval_ref": "evidence/owner/S02/APPROVAL.md",
+  "approval_scope": "local scene/tracking ONLY; not final/public/raw-media redistribution or third-party upload",
+  "clips_csv_sha256": "a2c99d521b5cbf1f6d4f8163b0067b573a28bd4bce7883a3652e0e11ba0f917d",
+  "source_video": {"codec": "h264", "width": 3840, "height": 2160, "file_fps": "24/1", "frame_count": 426, "duration_s": 17.75},
+  "sample": {
+    "purpose": "bounded first local scene input; not reconstruction output",
+    "width": 518,
+    "height": 292,
+    "timing": "decoded source frame indices; seconds refer only to file playback, not physical capture time",
+    "frames": [
+      {"frame_index": 0, "file_time_s": 0, "path": "local/RM02-01.png", "bytes": 104392, "sha256": "4848625e64501a230d9b73df7c4b6fc72239bb10cda057d1d61ceb323c962195"},
+      {"frame_index": 24, "file_time_s": 1, "path": "local/RM02-02.png", "bytes": 105384, "sha256": "51a03d2d7a36ceab3875f0a745ddb7efd4a67fece7ec349d31e7fd9989c4604d"},
+      {"frame_index": 48, "file_time_s": 2, "path": "local/RM02-03.png", "bytes": 105118, "sha256": "488528dbe4ec7404fd0f346437cad0c27c046af0cb797efe0b16a3f6d76f1679"},
+      {"frame_index": 72, "file_time_s": 3, "path": "local/RM02-04.png", "bytes": 104270, "sha256": "c93a1d2381443a2b7148e87569858ba9ad58e563c0f4d73a5a41f5599f19d7a0"}
+    ]
+  },
+  "physical_scale": "unverified",
+  "capture_timebase": "unverified",
+  "gravity": "unknown",
+  "model_output": null,
+  "gate_R": "NOT RUN"
+}

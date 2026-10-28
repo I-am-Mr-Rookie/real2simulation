@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"query\": \"site:nasa.gov \\\"Airplane Crash Test\\\" \\\"2015\\\"\",\n  \"results\": [\n    {\n      \"date\": \"Feb 1, 2017\",\n      \"position\": 1,\n      \"site_name\": \"ntrs.nasa.gov\",\n      \"snippet\": \"Beacon Layout - Airplane Crash Test 3. 5.2.8 Third Airplane Crash Test Results Summary ... 2015. [19] RTCA DO-204A, “Minimum Operational ...\",\n      \"title\": \"Emergency Locator Transmitter Survivability and Reliability ...\",\n      \"url\": \"https://ntrs.nasa.gov/api/citations/20170002586/downloads/20170002586.pdf?attachment=true\"\n    }\n  ],\n  \"total_results\": 1,\n  \"page\": 0\n}"
+    }
+  ]
+}

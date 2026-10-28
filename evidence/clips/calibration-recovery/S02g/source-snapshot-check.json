@@ -1,0 +1,21 @@
+{
+  "clips.csv": {
+    "s07a_sha256": "a2c99d521b5cbf1f6d4f8163b0067b573a28bd4bce7883a3652e0e11ba0f917d",
+    "current_sha256": "a2c99d521b5cbf1f6d4f8163b0067b573a28bd4bce7883a3652e0e11ba0f917d",
+    "matches": true
+  },
+  "evidence/owner/S02/APPROVAL.md": {
+    "s07a_sha256": "caa5f27093d8bcacd6fcf96cfe43719ef037dd06b86b8c8c2c22da04c4cc74e8",
+    "current_sha256": "caa5f27093d8bcacd6fcf96cfe43719ef037dd06b86b8c8c2c22da04c4cc74e8",
+    "matches": true
+  },
+  "evidence/clips/S02d-metadata-scale-audit.md": {
+    "s07a_sha256": "7fc8038c70e75f6c8c11e1051535cb61b73a0f46b068dd1acbfa03ccb82a26fd",
+    "current_sha256": "7fc8038c70e75f6c8c11e1051535cb61b73a0f46b068dd1acbfa03ccb82a26fd",
+    "matches": true
+  },
+  "s07a_retained_snapshot_sha256": "2bf9e767e37e6914226ae0dc9df43e6ec842bbf15a0a78095266dbe6531fe3fa",
+  "base_sha": "fedd9709b1e105397c581f927fee3a808c445b30",
+  "canonical_head_at_check": "0ffea92610cd56f1a62d128cc5aa6ef02a229332",
+  "checked_utc": "2026-10-28T05:13:41.001724+00:00"
+}

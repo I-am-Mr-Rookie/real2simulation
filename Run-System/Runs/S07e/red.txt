@@ -1,0 +1,21 @@
+test_gate_m (unittest.loader._FailedTest.test_gate_m) ... ERROR
+
+======================================================================
+ERROR: test_gate_m (unittest.loader._FailedTest.test_gate_m)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_gate_m
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s07e-gate-m\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 10, in <module>
+    from Build.measurement.gate_m import evaluate_record, summarize, evaluate_sources
+ModuleNotFoundError: No module named 'Build.measurement.gate_m'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+
+FAILED (errors=1)

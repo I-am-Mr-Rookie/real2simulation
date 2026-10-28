@@ -1,0 +1,26 @@
+test_absolute_scale_clock_uncertainty_and_signed_sensitivities (test_uncertainty.UncertaintyTests.test_absolute_scale_clock_uncertainty_and_signed_sensitivities) ... ok
+test_clock_is_not_delivered_fps_or_unverified_ratio (test_uncertainty.UncertaintyTests.test_clock_is_not_delivered_fps_or_unverified_ratio) ... ok
+test_correlated_calibration_uses_signed_clock_derivative (test_uncertainty.UncertaintyTests.test_correlated_calibration_uses_signed_clock_derivative) ... ok
+test_detection_and_timestamp_jacobians_match_independent_refits (test_uncertainty.UncertaintyTests.test_detection_and_timestamp_jacobians_match_independent_refits) ... FAIL
+test_external_noise_not_residual_rmse_or_three_point_interval (test_uncertainty.UncertaintyTests.test_external_noise_not_residual_rmse_or_three_point_interval) ... ok
+test_hand_derived_equal_spacing_and_short_span_amplification (test_uncertainty.UncertaintyTests.test_hand_derived_equal_spacing_and_short_span_amplification) ... ok
+test_ill_conditioning_and_numeric_boundaries (test_uncertainty.UncertaintyTests.test_ill_conditioning_and_numeric_boundaries) ... ok
+test_permission_scale_and_sign_guards_remain_in_force (test_uncertainty.UncertaintyTests.test_permission_scale_and_sign_guards_remain_in_force) ... ok
+test_precision_units_scaling_and_minimum_four_sample_prefix (test_uncertainty.UncertaintyTests.test_precision_units_scaling_and_minimum_four_sample_prefix) ... ok
+test_rejects_silent_underflow_and_unsupported_schema (test_uncertainty.UncertaintyTests.test_rejects_silent_underflow_and_unsupported_schema) ... ok
+test_suffix_cannot_tune_any_uncertainty_or_noise (test_uncertainty.UncertaintyTests.test_suffix_cannot_tune_any_uncertainty_or_noise) ... ok
+test_unknown_noise_systematics_and_correlation_abstain (test_uncertainty.UncertaintyTests.test_unknown_noise_systematics_and_correlation_abstain) ... ok
+
+======================================================================
+FAIL: test_detection_and_timestamp_jacobians_match_independent_refits (test_uncertainty.UncertaintyTests.test_detection_and_timestamp_jacobians_match_independent_refits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07d-uncertainty\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_uncertainty.py", line 124, in test_detection_and_timestamp_jacobians_match_independent_refits
+    self.assertAlmostEqual(out.timestamp_standard_m_s2, math.hypot(*dt)*.001, places=7)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.022586633609339286 != 0.02255690088397603 within 7 places (2.9732725363256635e-05 difference)
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.028s
+
+FAILED (failures=1)

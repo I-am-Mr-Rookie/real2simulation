@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:real2simulation:scene:1.0.0",
+  "title": "Real2Simulation scene bundle v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "id", "label", "synthetic", "coordinates", "provenance", "scale", "gravity", "bounds_m", "assets", "render", "surfaces", "colliders", "camera_path", "labels"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "id": {"$ref": "#/$defs/id"},
+    "label": {"type": "string", "minLength": 1},
+    "synthetic": {"type": "boolean"},
+    "coordinates": {"const": {"handedness": "right", "up": "+Y", "length_unit": "m", "camera_forward": "-Z", "quaternion_order": "xyzw"}},
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["method", "sources", "models", "evidence"],
+      "properties": {
+        "method": {"enum": ["synthetic", "mapanything-apache", "sam3d-layout", "planes-boxes"]},
+        "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
+        "models": {"type": "array", "items": {"$ref": "#/$defs/model"}},
+        "evidence": {"type": "string", "minLength": 1}
+      }
+    },
+    "scale": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "metres_per_source_unit", "evidence"],
+      "properties": {
+        "status": {"enum": ["calibrated", "estimated", "unknown"]},
+        "metres_per_source_unit": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "evidence": {"type": "string", "minLength": 1}
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "unknown"}}}, "then": {"properties": {"metres_per_source_unit": {"type": "null"}}}, "else": {"properties": {"metres_per_source_unit": {"type": "number", "exclusiveMinimum": 0}}}}]
+    },
+    "gravity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "direction", "magnitude_m_s2", "evidence"],
+      "properties": {
+        "status": {"enum": ["estimated", "assumed", "unknown"]},
+        "direction": {"oneOf": [{"$ref": "#/$defs/vec3"}, {"type": "null"}]},
+        "magnitude_m_s2": {"type": ["number", "null"], "exclusiveMinimum": 0},
+        "evidence": {"type": "string", "minLength": 1}
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "unknown"}}}, "then": {"properties": {"direction": {"type": "null"}, "magnitude_m_s2": {"type": "null"}}}, "else": {"properties": {"direction": {"$ref": "#/$defs/vec3"}}}}]
+    },
+    "bounds_m": {
+      "type": "object", "additionalProperties": false,
+      "required": ["min", "max"],
+      "properties": {"min": {"$ref": "#/$defs/vec3"}, "max": {"$ref": "#/$defs/vec3"}}
+    },
+    "assets": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/asset"}},
+    "render": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "asset_id", "mobile_asset_id", "point_count"],
+      "properties": {
+        "kind": {"enum": ["points", "splats", "mesh"]},
+        "asset_id": {"$ref": "#/$defs/id"},
+        "mobile_asset_id": {"$ref": "#/$defs/id"},
+        "point_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "surfaces": {"type": "array", "items": {"$ref": "#/$defs/surface"}},
+    "colliders": {"type": "array", "items": {"$ref": "#/$defs/collider"}},
+    "camera_path": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/camera"}},
+    "labels": {"type": "array", "items": {"$ref": "#/$defs/label"}}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]{0,63}$"},
+    "vec3": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}},
+    "quat": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}},
+    "pose": {
+      "type": "object", "additionalProperties": false, "required": ["position_m", "rotation_xyzw"],
+      "properties": {"position_m": {"$ref": "#/$defs/vec3"}, "rotation_xyzw": {"$ref": "#/$defs/quat"}}
+    },
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["clip_id", "source_url", "license", "attribution", "approval_evidence"],
+      "properties": {
+        "clip_id": {"$ref": "#/$defs/id"},
+        "source_url": {"type": "string", "pattern": "^https://"},
+        "license": {"enum": ["Public-Domain", "CC0-1.0", "CC-BY-4.0", "CC-BY-SA-4.0", "CC-BY-3.0", "CC-BY-SA-3.0", "CC-BY-2.5", "CC-BY-SA-2.5", "CC-BY-2.0", "CC-BY-SA-2.0", "CC-BY-1.0", "CC-BY-SA-1.0", "Pexels", "Pixabay"]},
+        "attribution": {"type": "string", "minLength": 1},
+        "approval_evidence": {"type": "string", "minLength": 1}
+      }
+    },
+    "model": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "revision", "license", "code_revision"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "code_revision": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "license": {"type": "string", "minLength": 1}
+      }
+    },
+    "asset": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "path", "format", "sha256", "bytes"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "path": {"type": "string", "pattern": "^(?!.*\\.\\.)(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_-]+\\.(ply|glb|splat)$"},
+        "format": {"enum": ["ply-ascii-xyzrgb", "glb", "splat"]},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "surface": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "origin_m", "normal", "extent_m", "role"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "origin_m": {"$ref": "#/$defs/vec3"},
+        "normal": {"$ref": "#/$defs/vec3"},
+        "extent_m": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "number", "exclusiveMinimum": 0}},
+        "role": {"enum": ["floor", "table", "other"]}
+      }
+    },
+    "collider": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "shape", "pose", "half_extents_m", "surface_id"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "shape": {"const": "box"},
+        "pose": {"$ref": "#/$defs/pose"},
+        "half_extents_m": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number", "exclusiveMinimum": 0}},
+        "surface_id": {"oneOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]}
+      }
+    },
+    "camera": {
+      "type": "object", "additionalProperties": false,
+      "required": ["time_s", "pose", "vertical_fov_deg"],
+      "properties": {
+        "time_s": {"type": "number", "minimum": 0},
+        "pose": {"$ref": "#/$defs/pose"},
+        "vertical_fov_deg": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 180}
+      }
+    },
+    "label": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "text", "position_m"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "text": {"type": "string", "minLength": 1}, "position_m": {"$ref": "#/$defs/vec3"}}
+    }
+  }
+}

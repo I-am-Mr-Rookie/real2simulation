@@ -1,0 +1,58 @@
+✓ Initialized. View run at
+https://modal.com/apps/koushiksadhakjeet/main/ap-HXf8zry5uWtJx63efPpSdA
+✓ Created objects.
+└── ✓ Created Function check_imports.
+S05B_CPU_APP ap-HXf8zry5uWtJx63efPpSdA
+Collecting mapanything@ https://github.com/facebookresearch/map-anything/archive/3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9.zip (from -r /tmp/s05b-requirements.txt (line 76))
+  Downloading https://github.com/facebookresearch/map-anything/archive/3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9.zip
+     / 7.5 MB 21.9 MB/s 0:00:00
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting absl-py==2.5.1 (from -r /tmp/s05b-requirements.txt (line 3))
+  Downloading absl_py-2.5.1-py3-none-any.whl.metadata (3.3 kB)
+ERROR: Could not find a version that satisfies the requirement antlr4-python3-runtime==4.9.3 (from versions: 4.11.0, 4.11.1, 4.12.0, 4.13.0, 4.13.1, 4.13.2)
+ERROR: No matching distribution found for antlr4-python3-runtime==4.9.3
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 987, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 189, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 266, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:/Users/HP/.codex/worktrees/s05b-recovery2/2026-10-26 - Meta Global AI Developer Hackathon/Build/reconstruction/spike/cpu_import_probe.py", line 28, in check_imports
+  File "/usr/local/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '-m', 'pip', 'install', '--disable-pip-version-check', '--no-cache-dir', '--only-binary=:all:', '-r', '/tmp/s05b-requirements.txt']' returned non-zero exit status 1.
+Stopping app - uncaught exception raised in remote container: CalledProcessError(1, ['/usr/local/bin/python', '-m', 'pip', 'install', '--disable-pip-version-check', '--no-cache-dir', '--only-binary=:all:', '-r', '/tmp/s05b-requirements.txt']).
+S05B_CPU_STOP_REQUESTED ap-HXf8zry5uWtJx63efPpSdA
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "<frozen runpy>", line 291, in run_path
+  File "<frozen runpy>", line 98, in _run_module_code
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:/Users/HP/.codex/worktrees/s05b-recovery2/2026-10-26 - Meta Global AI Developer Hackathon/Build/reconstruction/spike/cpu_import_probe.py", line 58, in <module>
+    result = check_imports.remote(lock)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\uv\cache\archive-v0\fLq5XQNkIwPHWdoT\Lib\site-packages\modal\_object.py", line 49, in wrapped
+    return await method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\uv\cache\archive-v0\fLq5XQNkIwPHWdoT\Lib\site-packages\modal\_functions.py", line 2081, in remote
+    return await self._call_function(args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\uv\cache\archive-v0\fLq5XQNkIwPHWdoT\Lib\site-packages\modal\_functions.py", line 2018, in _call_function
+    return await invocation.run_function()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\uv\cache\archive-v0\fLq5XQNkIwPHWdoT\Lib\site-packages\modal\_functions.py", line 517, in run_function
+    return await _process_result(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\uv\cache\archive-v0\fLq5XQNkIwPHWdoT\Lib\site-packages\modal\_utils\function_utils.py", line 572, in _process_result
+    raise exc_with_hints(exc)
+  File "<ta-01M60SJ015SQ54NGTM06MW8KRR>:C:/Users/HP/.codex/worktrees/s05b-recovery2/2026-10-26 - Meta Global AI Developer Hackathon/Build/reconstruction/spike/cpu_import_probe.py", line 28, in check_imports
+  File "<ta-01M60SJ015SQ54NGTM06MW8KRR>:/usr/local/lib/python3.11/subprocess.py", line 571, in run
+subprocess.CalledProcessError: Command '['/usr/local/bin/python', '-m', 'pip', 'install', '--disable-pip-version-check', '--no-cache-dir', '--only-binary=:all:', '-r', '/tmp/s05b-requirements.txt']' returned non-zero exit status 1.

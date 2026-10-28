@@ -1,0 +1,54 @@
+[
+  {
+    "path": "Build/api/health/dependencies.py",
+    "sha256": "7bead39e709768f652de403370f61e2640f3086da51ecbbefe05ea6fce2f2bbb"
+  },
+  {
+    "path": "Build/worker/health/app.py",
+    "sha256": "2256e08687bbfb2b98952a5890b6ea0cdfa565e8906c441e8444b914fcd61f46"
+  },
+  {
+    "path": "Build/web/src/auth/server-access.js",
+    "sha256": "0b3d379e418f2e72dde8b49ab39167808807a2bd549f3c3c75bb0afb611fee8b"
+  },
+  {
+    "path": "Build/web/src/auth/access.mjs",
+    "sha256": "aeec55e5134c566463bb0b4f2c84deb6f6233eaed4c8b73b9ad699938ca04acd"
+  },
+  {
+    "path": "Build/web/src/app/(private)/layout.jsx",
+    "sha256": "6cbd8afe0b930d7569169e41358a6bcb6e6c944037b929117b87c4850806f099"
+  },
+  {
+    "path": "infra/railway/dev/verify.py",
+    "sha256": "136ab8f117ba0f5424a1158e740e83a6e57ca0a1540c6a24ae75764e59b781aa"
+  },
+  {
+    "path": "infra/railway/dev/stage.py",
+    "sha256": "77307ebf66f46468730548852657f544cc2f2193595ad8b62dbeae6f92ade7cd"
+  },
+  {
+    "path": "infra/railway/dev/web.Dockerfile",
+    "sha256": "f3054baa4a633f4100a47b3759120bd735dc57c72e356a4b701a1028f4a3266c"
+  },
+  {
+    "path": "infra/railway/dev/api.Dockerfile",
+    "sha256": "a585fd1e6d666177610df0bb583f4ce0b2129d6667268157a7ba1fea24528259"
+  },
+  {
+    "path": "infra/railway/dev/worker.Dockerfile",
+    "sha256": "8a796927d7f8e39f2b95b5ba276122e7f047fbd7008cc60a4ae42b7b296a961b"
+  },
+  {
+    "path": "Build/web/package.json",
+    "sha256": "547df182ef15de5411598a30981f71de90027b8744c356c9eef699fa1547a95d"
+  },
+  {
+    "path": "Build/api/health/requirements.txt",
+    "sha256": "b42c917ab59f15a541763be0cfce5cd0fb05d548928137de922be598f8cc104b"
+  },
+  {
+    "path": "Build/worker/health/requirements.txt",
+    "sha256": "51974a0321e2403b86cbf951adbb68c1effbb00db4e61423342030bea7e6554c"
+  }
+]

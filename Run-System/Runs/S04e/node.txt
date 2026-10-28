@@ -1,0 +1,74 @@
+✔ missing configuration or invalid ID denies before identity/data access (2.1946ms)
+✔ unverified/missing identity cannot trigger a private metadata lookup (0.6788ms)
+✔ only exact owner, scene ID and private access match is authorized (3.7211ms)
+✔ missing repository and identity/lookup failures deny without leaking errors (0.7708ms)
+✔ missing and partial configuration disables Clerk without exposing values (16.3388ms)
+✔ blank, malformed, mismatched and unsafe configuration fails closed (6.7963ms)
+✔ configured result exposes only the public key, never secret or custom OAuth credentials (0.6749ms)
+✔ accepts unpadded Clerk publishable keys (1.8568ms)
+✔ loads the fixture bundle over transport, fetches only manifest + render asset, safe fetch options (108.2081ms)
+✔ adapter end-to-end with the loader: loading -> ready; loader codes pass through (11.6477ms)
+✔ splat bundle: loads, decodes centres/colours/scales/quaternions, renders as points (10.7513ms)
+✔ decodeSplats rejects bad records (1.4295ms)
+✔ loader rejects unsafe or inconsistent manifests before fetching assets (16.7459ms)
+✔ loader enforces transport integrity: status, JSON, size caps, length and sha (16.508ms)
+✔ abort during fetch rejects with AbortError and adapter stays silent (26.9503ms)
+✔ desktop budget caps DPR at 2 and keeps full detail (4.0664ms)
+✔ 375 px phone gets reduced detail and DPR capped at 1.5 (1.7028ms)
+✔ tier boundaries: width 767 reduced, 768 full; memory <4 GiB or <4 cores reduced (0.5371ms)
+✔ invalid or missing device facts fall back deterministically (DPR 1, unknown facts ignored) (0.6134ms)
+✔ same device -> identical frozen budget (0.6153ms)
+✔ probeDevice uses the narrower of layout viewport and screen (phone page without meta viewport reports 980) (0.5859ms)
+✔ decimatePoints keeps every ceil(n/max)-th point, colours aligned (0.8132ms)
+✔ decimatePoints returns the original arrays when within budget and rejects bad caps (0.9098ms)
+✔ fixture geometry is aligned: collider faces touch surfaces, points lie on faces, labels in bounds (739.6166ms)
+✔ misalignment is reported: offset, rotation footprint, bad quaternion, label outside bounds, missing surface (630.2198ms)
+✔ collider edges: 12 segments per box, each an axis edge between corners (465.2851ms)
+✔ camera path: validation, lerp/slerp sampling, clamping (451.2269ms)
+✔ ndcToScreen maps the viewport and clips outside/behind (0.4104ms)
+node:internal/modules/esm/resolve:271
+    throw new ERR_MODULE_NOT_FOUND(
+          ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find module 'C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S04e\Build\web\node_modules\three\build\three.module.js' imported from C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S04e\tests\viewer\three-renderer.test.mjs
+    at finalizeResolution (node:internal/modules/esm/resolve:271:11)
+    at moduleResolve (node:internal/modules/esm/resolve:865:10)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at node:internal/modules/esm/loader:632:32
+    at TracingChannel.tracePromise (node:diagnostics_channel:362:14) {
+  code: 'ERR_MODULE_NOT_FOUND',
+  url: 'file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/.worktrees/S04e/Build/web/node_modules/three/build/three.module.js'
+}
+
+Node.js v24.18.0
+✖ C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S04e\tests\viewer\three-renderer.test.mjs (154.963ms)
+✔ fixture scene is the S04a mount, marked synthetic, not Gate R evidence (13.8587ms)
+✔ scene model decodes PLY points and carries synthetic banner, physics disabled (694.7823ms)
+✔ scene model rejects mismatches and tampered bytes (593.4908ms)
+✔ mount: loading -> ready, idempotent dispose, no callbacks after dispose (4.3074ms)
+✔ shell abort after ready disposes the renderer once (3.4452ms)
+✔ mount rejects invalid requests before loading (3.4035ms)
+✔ mystery mode is unavailable until S10 redacted payload exists (2.3928ms)
+✔ abort during load rejects, never renders, stays silent (3.1534ms)
+✔ already-aborted signal rejects immediately (2.4474ms)
+✔ abort while renderer is being created disposes the partial renderer (2.9716ms)
+✔ load and renderer failures report error state with plain codes (3.8013ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 39
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2778.9263
+
+✖ failing tests:
+
+test at tests\viewer\three-renderer.test.mjs:1:1
+✖ C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S04e\tests\viewer\three-renderer.test.mjs (154.963ms)
+  'test failed'

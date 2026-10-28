@@ -1,0 +1,16 @@
+{
+  "models": {
+    "GPT-6.1 Sol": "gpt-6.1-sol",
+    "GPT-6.1 Terra": "gpt-6.1-terra",
+    "Opus 5.5": "claude-opus-5-5",
+    "Sonnet 5.5": "claude-sonnet-5-5",
+    "Haiku 5.5": "claude-haiku-5-5"
+  },
+  "codex_executable": null,
+  "codex_sandbox": "workspace-write",
+  "codex_workspace_write_approved": true,
+  "claude_executable": null,
+  "model_verification": "Codex IDs/efforts exist in local cache. Claude full IDs are plan-derived and NOT live-verified. Never silently substitute aliases/models or change auth/provider/permission settings.",
+  "repo_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
+  "worktrees_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/.worktrees"
+}

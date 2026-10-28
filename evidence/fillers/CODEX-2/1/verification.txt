@@ -1,0 +1,8 @@
+UTC 2026-10-27T20:43:01.8509935Z Branch run/F-CODEX-2-1 Base ab35f954f8e88265305800c9673c0748c3c53959 Serial control window granted by orchestrator; claim commit ab35f954f8e88265305800c9673c0748c3c53959. Native managed worktree; initial lifecycle deviation corrected, no analysis restart.
+Source hash verification: 13/13 unchanged.
+Reviewed source diff versus initial baseline: exit0.
+Post-rebase auth checks: exit0,8/8. Offline replay: exit0, worker503; semantic verifier false positive reproduced. See receipts.
+Claim committed on main: ab35f954f8e88265305800c9673c0748c3c53959; serial window explicitly granted by orchestrator.
+Evidence committed on run/F-CODEX-2-1: 39d23e1b313875fea83eef247a108c38d8d3f498; git merge --ff-only succeeded on main.
+Post-merge main auth8/8 and offline replay both exit0 at20:43 UTC; no product or other-lane source changes.
+Managed worktree clean; archive tool refused protected primary checkout removal. Retained, no manual cleanup bypass.

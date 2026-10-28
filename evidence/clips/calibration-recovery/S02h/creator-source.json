@@ -1,0 +1,31 @@
+{
+  "url": "https://www.rhetos.de/html/lex/impaktecholot.htm",
+  "metadata": {
+    "revised": "21. September 2026",
+    "keywords": "Mathematik,spekulativ,Philosophie,Physik,Schülerlexikon,Lernlexikon,Fachwortlexikon,online,barrierefrei,werbefrei,Mathe-Lexikon,Physik-Lexikon,Wissen,BilderImpaktecholot",
+    "language": "de",
+    "viewport": "width=device-width,initial-scale=1.0",
+    "title": "Impaktecholot (Höhenmessung)",
+    "author": "Gunter Heim, Inhaber der Mathe-AC Lernwerkstatt Aachen GbR",
+    "description": "Impaktecholot: Rhetos Lexikon der Physik und der spekulativen Philosophie",
+    "favicon": "https://www.rhetos.de/html/favicon.png",
+    "scrapeId": "01a180fa-a8a2-7350-8363-09354653e25d",
+    "sourceURL": "https://www.rhetos.de/html/lex/impaktecholot.htm",
+    "url": "https://www.rhetos.de/html/lex/impaktecholot.htm",
+    "statusCode": 200,
+    "contentType": "text/html",
+    "timezone": "America/New_York",
+    "proxyUsed": "basic",
+    "cacheState": "miss",
+    "indexId": "31583653-db92-4c6f-a24d-1a0af26a43d4",
+    "creditsUsed": 1,
+    "concurrencyLimited": false
+  },
+  "coverage": "Paraphrase receipt, not full article or exhaustive site capture",
+  "claims": {
+    "height": "Nonstretch rope approximately 9 metres, compared with earlier sandbag/stair methods at same site",
+    "timer": "Shotcut timer minimum ~0.03s claimed in article, unlike video's observed .005s increments",
+    "inconsistency": "Intro optical1.340s/sound1.370s; later text optical1.333s/sound1.400s; video optical1.340s/sound1.410s",
+    "geometry": "No calibrated camera/rope pixel correspondences or uncertainty budget supplied"
+  }
+}

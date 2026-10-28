@@ -1,0 +1,32 @@
+{
+    "programs": [
+
+    ],
+    "stream_groups": [
+
+    ],
+    "streams": [
+        {
+            "index": 0,
+            "codec_name": "vp8",
+            "codec_type": "video",
+            "width": 1920,
+            "height": 1080,
+            "r_frame_rate": "24000/1001",
+            "avg_frame_rate": "24000/1001",
+            "time_base": "1/1000"
+        },
+        {
+            "index": 1,
+            "codec_name": "vorbis",
+            "codec_type": "audio",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/1000"
+        }
+    ],
+    "format": {
+        "duration": "229.188000",
+        "size": "21092042"
+    }
+}

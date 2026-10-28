@@ -1,0 +1,13 @@
+{
+  "checked_utc": "2026-10-28T08:14:00.530395+00:00",
+  "status": "PASS",
+  "source_sha256_verified": true,
+  "mapping_files": 10,
+  "mapped_samples": 730,
+  "native_frame_references": 550,
+  "native_unique_frames": 545,
+  "event_entries_including_nested_details": 10,
+  "negative_guard_self_checks": 3,
+  "metric_eligibility_verified": false,
+  "limitation": "Machine checks verify source identity/indexing/images, not visual classification or acquisition clock."
+}

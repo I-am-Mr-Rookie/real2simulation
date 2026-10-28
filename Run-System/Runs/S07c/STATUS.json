@@ -1,0 +1,14 @@
+{
+  "run_id": "S07c",
+  "worker_status": "DONE",
+  "acceptance_status": "PENDING_CONTROLLER_REVIEW",
+  "implementation_commit": "bec238ed217bf722488f9434390e28e8b2b5e525",
+  "branch": "run/S07c",
+  "report": "Run-System/Runs/S07c/REPORT.md",
+  "control_maintainer_thread": "01a1816d-b0a5-76d2-8a22-620ade458881",
+  "merge_status": "UNMERGED",
+  "last_verified_utc": "2026-10-28T07:41:31Z",
+  "checks": {"measurement_passed": 23, "spec_passed": 91, "run_system_passed": 25},
+  "canonical_progress_refresh_required": true,
+  "physical_gate_status": "NOT_RUN"
+}

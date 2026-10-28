@@ -1,0 +1,22 @@
+{
+  "map_code": {
+    "revision": "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9",
+    "gated": null,
+    "license": null
+  },
+  "map_weights": {
+    "revision": "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a",
+    "gated": false,
+    "license": "apache-2.0"
+  },
+  "sam_code": {
+    "revision": "f91db411c50efee93d8db7aeb323885650f6f722",
+    "gated": null,
+    "license": null
+  },
+  "sam_weights": {
+    "revision": "2e73555018d2741ccd486e56c24fac41155a1dc6",
+    "gated": "manual",
+    "license": "other"
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "pages": {
+      "188656927": {
+        "pageid": 188656927,
+        "ns": 6,
+        "title": "File:NASA Drop Test of Orion Spacecraft for Crewed Artemis Missionsg.webm",
+        "imagerepository": "local",
+        "videoinfo": [
+          {
+            "size": 8965877,
+            "width": 1280,
+            "height": 720,
+            "duration": 29.554000000000002,
+            "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/NASA_Drop_Test_of_Orion_Spacecraft_for_Crewed_Artemis_Missionsg.webm?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:NASA_Drop_Test_of_Orion_Spacecraft_for_Crewed_Artemis_Missionsg.webm",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=188656927",
+            "sha1": "8eaa62c1700da52d4e7c7c6727b82e33de295b42",
+            "derivatives": [
+              {
+                "src": "https://upload.wikimedia.org/wikipedia/commons/6/6d/NASA_Drop_Test_of_Orion_Spacecraft_for_Crewed_Artemis_Missionsg.webm?utm_source=commons.wikimedia.org&utm_campaign=api&utm_content=original",
+                "type": "video/webm; codecs=\"vp9, opus\"",
+                "width": 1280,
+                "height": 720,
+                "bandwidth": 2426981
+              },
+              {
+                "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6d/NASA_Drop_Test_of_Orion_Spacecraft_for_Crewed_Artemis_Missionsg.webm/NASA_Drop_Test_of_Orion_Spacecraft_for_Crewed_Artemis_Missionsg.webm.240p.vp9.webm",
+                "type": "video/webm; codecs=\"vp9, opus\"",
+                "transcodekey": "240p.vp9.webm",
+                "width": 426,
+                "height": 240,
+                "bandwidth": 328336
+              },
+              {
+                "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6d/NASA_Drop_Test_of_Orion_Spacecraft_for_Crewed_Artemis_Missionsg.webm/NASA_Drop_Test_of_Orion_Spacecraft_for_Crewed_Artemis_Missionsg.webm.360p.mpeg4.mov",
+                "type": "video/quicktime; codecs=\"mp4v\"",
+                "transcodekey": "360p.mpeg4.mov",
+                "width": 640,
+                "height": 360,
+                "bandwidth": 1663912
+              },
+              {
+                "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/6/6d/NASA_Drop_Test_of_Orion_Spacecraft_for_Crewed_Artemis_Missionsg.webm/NASA_Drop_Test_of_Orion_Spacecraft_for_Crewed_Artemis_Missionsg.webm.480p.vp9.webm",
+                "type": "video/webm; codecs=\"vp9, opus\"",
+                "transcodekey": "480p.vp9.webm",
+                "width": 854,
+                "height": 480,
+                "bandwidth": 1309376
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

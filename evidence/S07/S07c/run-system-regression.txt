@@ -1,0 +1,36 @@
+test_live_dispatch_disabled (test_dispatcher.ProcessTests.test_live_dispatch_disabled) ... ok
+test_owner_questions_only_blockers_and_deduplicated (test_dispatcher.ProcessTests.test_owner_questions_only_blockers_and_deduplicated) ... ok
+test_quota_stops_dispatch_and_marks_halt (test_dispatcher.ProcessTests.test_quota_stops_dispatch_and_marks_halt) ... ok
+test_real_worktrees_offline_two_parallel (test_dispatcher.ProcessTests.test_real_worktrees_offline_two_parallel) ... ok
+test_stop_command_ends_active_harmless_workers (test_dispatcher.ProcessTests.test_stop_command_ends_active_harmless_workers) ... ok
+test_stop_command_persists_pause (test_dispatcher.ProcessTests.test_stop_command_persists_pause) ... ok
+test_timeout_kills_real_child_process_tree (test_dispatcher.ProcessTests.test_timeout_kills_real_child_process_tree) ... ok
+test_cross_lane_paths (test_dispatcher.SchedulerTests.test_cross_lane_paths) ... ok
+test_cycles_and_unknown_deps_rejected (test_dispatcher.SchedulerTests.test_cycles_and_unknown_deps_rejected) ... ok
+test_dependencies_and_human_lane (test_dispatcher.SchedulerTests.test_dependencies_and_human_lane) ... ok
+test_exact_cli_commands_no_bypass_or_resume (test_dispatcher.SchedulerTests.test_exact_cli_commands_no_bypass_or_resume) ... ok
+test_parent_dependency_includes_review (test_dispatcher.SchedulerTests.test_parent_dependency_includes_review) ... ok
+test_prompt_format (test_dispatcher.SchedulerTests.test_prompt_format) ... ok
+test_quota_events_not_quoted_fixture (test_dispatcher.SchedulerTests.test_quota_events_not_quoted_fixture) ... ok
+test_sensitive_actions_need_recorded_approval (test_dispatcher.SchedulerTests.test_sensitive_actions_need_recorded_approval) ... ok
+test_two_max_and_one_per_lane (test_dispatcher.SchedulerTests.test_two_max_and_one_per_lane) ... ok
+test_write_scope_requires_owner_approval_and_rejects_unrestricted (test_dispatcher.SchedulerTests.test_write_scope_requires_owner_approval_and_rejects_unrestricted) ... ok
+test_at_deadline_bounded_retry_eligible_not_recovery (test_runs_view.RetryHoldTests.test_at_deadline_bounded_retry_eligible_not_recovery) ... ok
+test_done_task_not_reintroduced_by_hold (test_runs_view.RetryHoldTests.test_done_task_not_reintroduced_by_hold) ... ok
+test_expired_hold_does_not_override_dependency (test_runs_view.RetryHoldTests.test_expired_hold_does_not_override_dependency) ... ok
+test_malformed_or_timezone_naive_deadline_fails_closed (test_runs_view.RetryHoldTests.test_malformed_or_timezone_naive_deadline_fails_closed) ... ok
+test_one_second_before_deadline_still_waits (test_runs_view.RetryHoldTests.test_one_second_before_deadline_still_waits) ... ok
+test_partial_without_hold_keeps_existing_resume_behavior (test_runs_view.RetryHoldTests.test_partial_without_hold_keeps_existing_resume_behavior) ... ok
+test_rate_limited_partial_is_waiting_not_ready (test_runs_view.RetryHoldTests.test_rate_limited_partial_is_waiting_not_ready) ... ok
+test_unknown_task_hold_fails_closed (test_runs_view.RetryHoldTests.test_unknown_task_hold_fails_closed) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 15.983s
+
+OK
+RUNS.md: 1/2 done, 1 ready, 0 for Koushik
+RUNS.md: 2/2 done, 0 ready, 0 for Koushik
+RUNS.md: 0/2 done, 1 ready, 0 for Koushik
+RUNS.md: 1/2 done, 0 ready, 0 for Koushik
+RUNS.md: 1/2 done, 1 ready, 0 for Koushik
+RUNS.md: 1/2 done, 0 ready, 0 for Koushik

@@ -1,0 +1,217 @@
+[
+  {
+    "sheet": "frames/native-519-step5-01.jpg",
+    "frames": [
+      {
+        "frame_index_0": 12975,
+        "pts_s": 519.004
+      },
+      {
+        "frame_index_0": 12980,
+        "pts_s": 519.204
+      },
+      {
+        "frame_index_0": 12985,
+        "pts_s": 519.404
+      },
+      {
+        "frame_index_0": 12990,
+        "pts_s": 519.604
+      },
+      {
+        "frame_index_0": 12995,
+        "pts_s": 519.804
+      },
+      {
+        "frame_index_0": 13000,
+        "pts_s": 520.004
+      },
+      {
+        "frame_index_0": 13005,
+        "pts_s": 520.204
+      },
+      {
+        "frame_index_0": 13010,
+        "pts_s": 520.404
+      },
+      {
+        "frame_index_0": 13015,
+        "pts_s": 520.604
+      },
+      {
+        "frame_index_0": 13020,
+        "pts_s": 520.804
+      },
+      {
+        "frame_index_0": 13025,
+        "pts_s": 521.004
+      },
+      {
+        "frame_index_0": 13030,
+        "pts_s": 521.204
+      },
+      {
+        "frame_index_0": 13035,
+        "pts_s": 521.404
+      },
+      {
+        "frame_index_0": 13040,
+        "pts_s": 521.604
+      },
+      {
+        "frame_index_0": 13045,
+        "pts_s": 521.804
+      },
+      {
+        "frame_index_0": 13050,
+        "pts_s": 522.004
+      },
+      {
+        "frame_index_0": 13055,
+        "pts_s": 522.204
+      },
+      {
+        "frame_index_0": 13060,
+        "pts_s": 522.404
+      },
+      {
+        "frame_index_0": 13065,
+        "pts_s": 522.604
+      },
+      {
+        "frame_index_0": 13070,
+        "pts_s": 522.804
+      },
+      {
+        "frame_index_0": 13075,
+        "pts_s": 523.004
+      },
+      {
+        "frame_index_0": 13080,
+        "pts_s": 523.204
+      },
+      {
+        "frame_index_0": 13085,
+        "pts_s": 523.404
+      },
+      {
+        "frame_index_0": 13090,
+        "pts_s": 523.604
+      }
+    ]
+  },
+  {
+    "sheet": "frames/native-519-step5-02.jpg",
+    "frames": [
+      {
+        "frame_index_0": 13095,
+        "pts_s": 523.804
+      },
+      {
+        "frame_index_0": 13100,
+        "pts_s": 524.004
+      },
+      {
+        "frame_index_0": 13105,
+        "pts_s": 524.204
+      },
+      {
+        "frame_index_0": 13110,
+        "pts_s": 524.404
+      },
+      {
+        "frame_index_0": 13115,
+        "pts_s": 524.604
+      },
+      {
+        "frame_index_0": 13120,
+        "pts_s": 524.804
+      },
+      {
+        "frame_index_0": 13125,
+        "pts_s": 525.004
+      },
+      {
+        "frame_index_0": 13130,
+        "pts_s": 525.204
+      },
+      {
+        "frame_index_0": 13135,
+        "pts_s": 525.404
+      },
+      {
+        "frame_index_0": 13140,
+        "pts_s": 525.604
+      },
+      {
+        "frame_index_0": 13145,
+        "pts_s": 525.804
+      },
+      {
+        "frame_index_0": 13150,
+        "pts_s": 526.004
+      },
+      {
+        "frame_index_0": 13155,
+        "pts_s": 526.204
+      },
+      {
+        "frame_index_0": 13160,
+        "pts_s": 526.404
+      },
+      {
+        "frame_index_0": 13165,
+        "pts_s": 526.604
+      },
+      {
+        "frame_index_0": 13170,
+        "pts_s": 526.804
+      },
+      {
+        "frame_index_0": 13175,
+        "pts_s": 527.004
+      },
+      {
+        "frame_index_0": 13180,
+        "pts_s": 527.204
+      },
+      {
+        "frame_index_0": 13185,
+        "pts_s": 527.404
+      },
+      {
+        "frame_index_0": 13190,
+        "pts_s": 527.604
+      },
+      {
+        "frame_index_0": 13195,
+        "pts_s": 527.804
+      },
+      {
+        "frame_index_0": 13200,
+        "pts_s": 528.004
+      },
+      {
+        "frame_index_0": 13205,
+        "pts_s": 528.204
+      },
+      {
+        "frame_index_0": 13210,
+        "pts_s": 528.404
+      }
+    ]
+  },
+  {
+    "sheet": "frames/native-519-step5-03.jpg",
+    "frames": [
+      {
+        "frame_index_0": 13215,
+        "pts_s": 528.604
+      },
+      {
+        "frame_index_0": 13220,
+        "pts_s": 528.804
+      }
+    ]
+  }
+]

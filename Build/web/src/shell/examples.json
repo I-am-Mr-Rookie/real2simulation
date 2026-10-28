@@ -1,0 +1,15 @@
+[
+  {
+    "contract_version": "1.0.0", "kind": "viewer", "audience": "guest", "mode": "inspect",
+    "scene": {"scene_id": "synthetic-room-v1", "scene_version": "1.0.0", "access": "public-library", "evidence": "synthetic"}
+  },
+  {
+    "contract_version": "1.0.0", "kind": "job", "job_id": "synthetic-job-v1",
+    "revision": 0, "status": "queued", "result": null, "error": null
+  },
+  {
+    "contract_version": "1.0.0", "kind": "library", "entry_id": "synthetic-room-v1",
+    "label": "SYNTHETIC fixture — not reconstruction or physics evidence",
+    "scene": {"scene_id": "synthetic-room-v1", "scene_version": "1.0.0", "access": "public-library", "evidence": "synthetic"}
+  }
+]

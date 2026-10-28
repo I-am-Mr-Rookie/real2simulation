@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:real2simulation:shell-integration:1.0.0",
+  "title": "Shell integration DTOs, not authorization or execution approval",
+  "oneOf": [{"$ref": "#/$defs/viewer"}, {"$ref": "#/$defs/job"}, {"$ref": "#/$defs/library"}],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,95}$"},
+    "scene": {
+      "type": "object", "additionalProperties": false,
+      "required": ["scene_id", "scene_version", "access", "evidence"],
+      "properties": {
+        "scene_id": {"$ref": "#/$defs/id"},
+        "scene_version": {"const": "1.0.0"},
+        "access": {"enum": ["public-library", "private"]},
+        "evidence": {"enum": ["synthetic", "reconstructed"]}
+      }
+    },
+    "publicScene": {
+      "allOf": [{"$ref": "#/$defs/scene"}, {"properties": {"access": {"const": "public-library"}}}]
+    },
+    "viewer": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contract_version", "kind", "audience", "scene", "mode"],
+      "properties": {
+        "contract_version": {"const": "1.0.0"}, "kind": {"const": "viewer"},
+        "audience": {"enum": ["guest", "signed-in"]},
+        "scene": {"$ref": "#/$defs/scene"},
+        "mode": {"enum": ["inspect", "lab", "mystery"]}
+      },
+      "allOf": [{"if": {"properties": {"audience": {"const": "guest"}}},
+                 "then": {"properties": {"scene": {"$ref": "#/$defs/publicScene"}}}}]
+    },
+    "error": {
+      "type": "object", "additionalProperties": false,
+      "required": ["code", "message"],
+      "properties": {
+        "code": {"enum": ["INVALID_INPUT", "UNAUTHORIZED", "NOT_FOUND", "DEPENDENCY_UNAVAILABLE", "SPEND_PAUSED", "PROCESSING_FAILED"]},
+        "message": {"type": "string", "minLength": 1, "maxLength": 240}
+      }
+    },
+    "job": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contract_version", "kind", "job_id", "revision", "status", "result", "error"],
+      "properties": {
+        "contract_version": {"const": "1.0.0"}, "kind": {"const": "job"},
+        "job_id": {"$ref": "#/$defs/id"},
+        "revision": {"type": "integer", "minimum": 0},
+        "status": {"enum": ["queued", "running", "ready", "failed", "cancelled"]},
+        "result": {"oneOf": [{"$ref": "#/$defs/scene"}, {"type": "null"}]},
+        "error": {"oneOf": [{"$ref": "#/$defs/error"}, {"type": "null"}]}
+      },
+      "allOf": [
+        {"if": {"properties": {"status": {"const": "ready"}}},
+         "then": {"properties": {"result": {"$ref": "#/$defs/scene"}, "error": {"type": "null"}}},
+         "else": {"properties": {"result": {"type": "null"}}}},
+        {"if": {"properties": {"status": {"const": "failed"}}},
+         "then": {"properties": {"error": {"$ref": "#/$defs/error"}}},
+         "else": {"properties": {"error": {"type": "null"}}}}
+      ]
+    },
+    "library": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contract_version", "kind", "entry_id", "label", "scene"],
+      "properties": {
+        "contract_version": {"const": "1.0.0"}, "kind": {"const": "library"},
+        "entry_id": {"$ref": "#/$defs/id"},
+        "label": {"type": "string", "minLength": 1, "maxLength": 160},
+        "scene": {"$ref": "#/$defs/publicScene"}
+      }
+    }
+  }
+}

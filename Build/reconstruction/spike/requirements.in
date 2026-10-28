@@ -1,0 +1,7 @@
+# Minimal S05b runtime; upstream rerun-sdk requires NumPy>=2.
+torch==2.8.0
+torchaudio==2.8.0
+torchvision==0.23.0
+numpy==2.2.6
+timm==1.0.20
+mapanything @ https://github.com/facebookresearch/map-anything/archive/3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9.zip

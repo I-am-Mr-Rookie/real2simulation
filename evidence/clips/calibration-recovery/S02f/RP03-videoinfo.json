@@ -1,0 +1,59 @@
+{
+  "batchcomplete": "",
+  "query": {
+    "normalized": [
+      {
+        "from": "File:Impaktecholot_(Pilotversuch).webm",
+        "to": "File:Impaktecholot (Pilotversuch).webm"
+      }
+    ],
+    "pages": {
+      "164122904": {
+        "pageid": 164122904,
+        "ns": 6,
+        "title": "File:Impaktecholot (Pilotversuch).webm",
+        "imagerepository": "local",
+        "videoinfo": [
+          {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/9/96/Impaktecholot_%28Pilotversuch%29.webm?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+            "descriptionurl": "https://commons.wikimedia.org/wiki/File:Impaktecholot_(Pilotversuch).webm",
+            "descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=164122904",
+            "derivatives": [
+              {
+                "src": "https://upload.wikimedia.org/wikipedia/commons/9/96/Impaktecholot_%28Pilotversuch%29.webm?utm_source=commons.wikimedia.org&utm_campaign=api&utm_content=original",
+                "type": "video/webm; codecs=\"vp9, opus\"",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 4150680
+              },
+              {
+                "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/9/96/Impaktecholot_%28Pilotversuch%29.webm/Impaktecholot_%28Pilotversuch%29.webm.240p.vp9.webm",
+                "type": "video/webm; codecs=\"vp9, opus\"",
+                "transcodekey": "240p.vp9.webm",
+                "width": 426,
+                "height": 240,
+                "bandwidth": 191200
+              },
+              {
+                "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/9/96/Impaktecholot_%28Pilotversuch%29.webm/Impaktecholot_%28Pilotversuch%29.webm.480p.vp9.webm",
+                "type": "video/webm; codecs=\"vp9, opus\"",
+                "transcodekey": "480p.vp9.webm",
+                "width": 854,
+                "height": 480,
+                "bandwidth": 807680
+              },
+              {
+                "src": "https://upload.wikimedia.org/wikipedia/commons/transcoded/9/96/Impaktecholot_%28Pilotversuch%29.webm/Impaktecholot_%28Pilotversuch%29.webm.1080p.vp9.webm",
+                "type": "video/webm; codecs=\"vp9, opus\"",
+                "transcodekey": "1080p.vp9.webm",
+                "width": 1920,
+                "height": 1080,
+                "bandwidth": 3097192
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "{\n  \"query\": \"site:nasa.gov \\\"Crash Test Assesses\\\"\",\n  \"results\": [\n    {\n      \"date\": \"Jul 2, 2015\",\n      \"position\": 1,\n      \"site_name\": \"www.nasa.gov\",\n      \"snippet\": \"NASA's Orion spacecraft website · Feature Story: “Crash Test Assesses Plane Emergency Locator Transmitters” (July 2, 2015) · Feature Story ...\",\n      \"title\": \"NASA Technology is Behind Air, Sea and Land Rescues\",\n      \"url\": \"https://www.nasa.gov/general/nasa-technology-is-behind-air-sea-and-land-rescues/\"\n    },\n    {\n      \"date\": \"Dec 16, 2015\",\n      \"position\": 2,\n      \"site_name\": \"www.nasa.gov\",\n      \"snippet\": \"Crash Test Assesses Plane Emergency Locator Transmitters (read more about the second and third tests in the series as well) Ten-Engine ...\",\n      \"title\": \"NASA Langley's 2015 Year in Review\",\n      \"url\": \"https://www.nasa.gov/centers-and-facilities/langley/nasa-langleys-2015-year-in-review/\"\n    }\n  ],\n  \"total_results\": 2,\n  \"page\": 0\n}"
+    }
+  ]
+}

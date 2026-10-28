@@ -1,0 +1,608 @@
+{
+  "captured_utc": "2026-10-28T06:20:37.892967+00:00",
+  "sources": [
+    {
+      "id": "manifest",
+      "path": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\Run-System\\Runs\\S07r\\DISPATCH.md",
+      "sha256": "dc60e4500a7860f9764d71801ec42a358dfcef470b7c51913bbd7974d4b60701",
+      "excerpts": [
+        {
+          "start": 11,
+          "end": 26,
+          "lines": [
+            "Potential structural bottleneck: approved final plan S02 fallback explicitly",
+            "says, if still fewer than3 usable free falls after Commons strobe/slowmotion",
+            "search, Gate M runs on what exists and reports sample size. QUEUE S07a literal",
+            "acceptance instead requires3 Earth candidates. S07a implementation is retained",
+            "unmerged in C:/Users/HP/.codex/worktrees/s07a/2026-10-26 - Meta Global AI Developer Hackathon.",
+            "Read actual final plan S02/S07, current queue/gates/approval receipts, retained",
+            "S07a contract/tests/audit, S02f/S02g reports at their managed worktrees. New",
+            "RP03/RP01 technical checks run separately; don't duplicate source investigation.",
+            "",
+            "Objective: source-backed reconcile what is genuinely required BEFORE tracking/",
+            "fitting implementation versus only for measured Gate M success. Identify any",
+            "invented full-release/impact or three-qualified-input prerequisite; distinguish",
+            "candidate selection, owner-use approval, calibration, partial-flight fitting,",
+            "sample-size fallback, and actual measured result. Do not silently relax criteria",
+            "or treat absent calibration/sample as a measured Gate M failure/pass. Do not",
+            "unlock S12 or fabricate g/timebase/uncertainty. An explicit abstention is not a"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "plan",
+      "path": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\08 Real2Simulation\\final plan.html",
+      "sha256": "4e0c276c7156d15e465eed4b53708821b70e7ee8d6733555a07a2eec65ca60f7",
+      "excerpts": [
+        {
+          "start": 316,
+          "end": 329,
+          "lines": [
+            "      \"id\": \"S02\",",
+            "      \"title\": \"Build the licensed public clip set\",",
+            "      \"priority\": \"critical\",",
+            "      \"timebox_minutes\": 120,",
+            "      \"owner\": \"CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) + Koushik (10-minute approval)\",",
+            "      \"dependencies\": [],",
+            "      \"acceptance\": [",
+            "        \"At least 10 clips plus clips.csv in test-data/public, every row with source, licence and attribution\",",
+            "        \"Every clip has a frame rate from the file metadata and a known-size reference object, or is marked scene-only\",",
+            "        \"Koushik's approval of the list recorded in DECISIONS_LOG.md\"",
+            "      ],",
+            "      \"evidence_required\": \"E1\",",
+            "      \"fallback\": \"If fewer than 3 usable free-fall clips are found, add Wikimedia Commons strobe and slow-motion clips and treat slow-motion timebase detection (S07) as required; if still short, Gate M runs on what exists and reports the sample size.\"",
+            "    },"
+          ]
+        },
+        {
+          "start": 401,
+          "end": 418,
+          "lines": [
+            "      \"id\": \"S07\",",
+            "      \"title\": \"Gate M spike: measure g from public free-fall clips\",",
+            "      \"priority\": \"critical\",",
+            "      \"timebox_minutes\": 180,",
+            "      \"owner\": \"CODEX-1 · GPT-6.1 Sol (medium; high for gates)\",",
+            "      \"dependencies\": [",
+            "        \"S01\",",
+            "        \"S02\",",
+            "        \"S03\"",
+            "      ],",
+            "      \"acceptance\": [",
+            "        \"g within 5% of 9.81 m/s^2 on at least 2 of 3 Earth free-fall clips, with a stated uncertainty that covers the error\",",
+            "        \"Stretch: the Apollo 15 clip gives the Moon's g within 15%\",",
+            "        \"Fitter unit tests pass on synthetic data\"",
+            "      ],",
+            "      \"evidence_required\": \"E2\",",
+            "      \"fallback\": \"If Gate M fails, Measure mode is limited to table-plane experiments (homography only) and the pitch leads with the virtual lab and Mystery-g. Log it as a decision.\"",
+            "    },"
+          ]
+        },
+        {
+          "start": 224,
+          "end": 226,
+          "lines": [
+            "   and go into STATE.md, batched once a day.",
+            "3. Order: spikes first (S05, S07 on CODEX-1) while CODEX-2 builds S04, Terra sources S02, and Opus",
+            "   builds S09 against a fixture scene. Do not start S12 before Gate M has a result."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "queue",
+      "path": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\QUEUE.md",
+      "sha256": "32ba716763844a49633b41507e1c506dc8f90ac042bcbc913491786aa5e67c4c",
+      "excerpts": [
+        {
+          "start": 15,
+          "end": 17,
+          "lines": [
+            "- S05a is contract/licence-only after S03; S05b and actual reconstruction wait for completed, owner-approved S02. No Gate R result is claimed from contract work.",
+            "- S01/S04 acceptance loop is explicitly split: S04a starts after S01a/S01c, while S01b sign-in verification waits for S04g and S04h waits for S01b. This preserves final step acceptance without a cycle.",
+            "- S12 waits for an actual Gate M result including explicit fallback, never an assumed pass. S22 judging access waits for written candidate-deployment approval; S23 is later promotion of a frozen revision, separately authorized."
+          ]
+        },
+        {
+          "start": 89,
+          "end": 94,
+          "lines": [
+            "| S07a | CODEX-1 | GPT-6.1 Sol / medium | S07 | 30 | Define scale, timestamps and held-out tracking inputs | S01a, S01c, S02, S03 | Build/measurement/; tests/measurement/; evidence/S07/ | Three Earth fall candidates selected; scale and timebase uncertainty documented. | BLOCKED |",
+            "| S07b | CODEX-1 | GPT-6.1 Sol / medium | S07 | 30 | Implement SAM 3.1 tracking adapter | S07a | Build/measurement/; tests/measurement/; evidence/S07/ | Sanitized track output carries frame/time coordinates and provenance. | TODO |",
+            "| S07c | CODEX-1 | GPT-6.1 Sol / medium | S07 | 30 | Implement deterministic free-fall fit | S07b | Build/measurement/; tests/measurement/; evidence/S07/ | Synthetic tracks recover known g; units and residuals tested. | TODO |",
+            "| S07d | CODEX-1 | GPT-6.1 Sol / medium | S07 | 30 | Detect slow-motion and propagate measurement uncertainty | S07c | Build/measurement/; tests/measurement/; evidence/S07/ | Timebase ambiguity is explicit; uncertainty includes scale and timestamps. | TODO |",
+            "| S07e | CODEX-1 | GPT-6.1 Sol / high | S07 | 30 | Run Earth Gate M measurements | S07d | Build/measurement/; tests/measurement/; evidence/S07/ | 2/3 within 5% of 9.81 with uncertainty covering error, or honest failure/sample size. | TODO |",
+            "| S07f | CODEX-1 | GPT-6.1 Sol / high | S07 | 30 | Evaluate Apollo stretch and record Gate M decision | S07e, R-M | Build/measurement/; tests/measurement/; evidence/S07/ | Moon target within 15% if available; table-plane fallback logged if Earth gate fails. | TODO |"
+          ]
+        },
+        {
+          "start": 265,
+          "end": 275,
+          "lines": [
+            "### S02 — Build the licensed public clip set",
+            "",
+            "- Source owner: CODEX-2 · GPT-6.1 Terra (high, browsing and computer use only) + Koushik (10-minute approval)",
+            "- Source timebox: 120m; priority: critical; source dependencies: none.",
+            "- Leaf tasks: S02a, S02b, S02c, S02c1 (NASA support), S02c2 (room support), S02d, S02e. S02c workers explicitly apply Ponytail; see S02C_PARALLEL.md. Shard research completion is not parent clip acceptance.",
+            "- Required evidence: E1.",
+            "- Acceptance: At least 10 clips plus clips.csv in test-data/public, every row with source, licence and attribution",
+            "- Acceptance: Every clip has a frame rate from the file metadata and a known-size reference object, or is marked scene-only",
+            "- Acceptance: Koushik's approval of the list recorded in DECISIONS_LOG.md",
+            "- Fallback: If fewer than 3 usable free-fall clips are found, add Wikimedia Commons strobe and slow-motion clips and treat slow-motion timebase detection (S07) as required; if still short, Gate M runs on what exists and reports the sample size.",
+            "- Status: S02a/S02b DONE. S02c unmerged54460a5: eleven unapproved local candidates, two narrowly checked for local visual tracking/scene-motion feasibility only; require-ten fails2/10. Owner changed S02c to Opus5.5/high, retaining CODEX-2 ownership. Q2 permits provisional licensed local acquisition; Pexels public-repository redistribution and third-party rights remain unresolved. S02d/S02e not started; no calibrated trial or final-use owner approval; parent acceptance not claimed."
+          ]
+        },
+        {
+          "start": 326,
+          "end": 337,
+          "lines": [
+            "### S07 — Gate M spike: measure g from public free-fall clips",
+            "",
+            "- Source owner: CODEX-1 · GPT-6.1 Sol (medium; high for gates)",
+            "- Source timebox: 180m; priority: critical; source dependencies: S01, S02, S03.",
+            "- Leaf tasks: S07a, S07b, S07c, S07d, S07e, S07f.",
+            "- Required evidence: E2.",
+            "- Acceptance: g within 5% of 9.81 m/s^2 on at least 2 of 3 Earth free-fall clips, with a stated uncertainty that covers the error",
+            "- Acceptance: Stretch: the Apollo 15 clip gives the Moon's g within 15%",
+            "- Acceptance: Fitter unit tests pass on synthetic data",
+            "- Fallback: If Gate M fails, Measure mode is limited to table-plane experiments (homography only) and the pitch leads with the virtual lab and Mystery-g. Log it as a decision.",
+            "- Status: NOT STARTED — acceptance not claimed.",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "approval",
+      "path": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\owner\\S02\\APPROVAL.md",
+      "sha256": "caa5f27093d8bcacd6fcf96cfe43719ef037dd06b86b8c8c2c22da04c4cc74e8",
+      "excerpts": [
+        {
+          "start": 3,
+          "end": 21,
+          "lines": [
+            "Direct owner response to Q7:",
+            "> A: Approve scoped local processing; retain all holds (Recommended)",
+            "",
+            "**Approved IDs:** RM02,RM04,RM05,PD02,PD03,PD04,PD06,PJ03,ST03,BN01.",
+            "**Use:** local scene/tracking pipeline work ONLY, under existing source/licence",
+            "restrictions. This is the authoritative scoped approval record; older CSV",
+            "UNAPPROVED_CANDIDATE/owner_approved=NO flags describe prior broad status and",
+            "MUST NOT be interpreted as public/final-use approval or changed broadly.",
+            "",
+            "**Holds retained:** no verified physical scale/capture timebase, calibrated g or",
+            "restitution, physical gate success, full original category coverage, public raw",
+            "media redistribution, other candidate use, GPU execution/spend increase or deploy.",
+            "RM05 is ISS, not an Earth room. AP15 NOT_TRACKABLE and ST05 HOLD remain excluded.",
+            "Fitters requiring verified metric inputs must abstain until qualified inputs exist.",
+            "GPU scheduling priority remains subject to runtime/budget/rights prerequisites.",
+            "",
+            "S02e owner decision is complete; downstream runs may do scoped local pipeline work.",
+            "Source evidence: decision-request.md; clips.csv;",
+            "evidence/clips/S02d-metadata-scale-audit.md."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-audit",
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s07a\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\S07\\S07a-input-audit.md",
+      "sha256": "4d478f6cb47e48c707147b6bd3048457a04df2dea1e5cb95686db57541531b52",
+      "excerpts": [
+        {
+          "start": 3,
+          "end": 8,
+          "lines": [
+            "**PARTIAL. Literal acceptance remains unmet:** \"Three Earth fall candidates",
+            "selected; scale and timebase uncertainty documented.\" The approved local set",
+            "contains **one** Earth-fall candidate (ST03), not three. None has a verified",
+            "independent metric scale AND capture timebase, and metric processing is not",
+            "approved. No g, residual, physical uncertainty interval or Gate M result exists.",
+            ""
+          ]
+        },
+        {
+          "start": 29,
+          "end": 35,
+          "lines": [
+            "",
+            "## Input and uncertainty disposition",
+            "",
+            "[Contract](../../Build/measurement/README.md) and validator require explicit",
+            "source hash, receipt references, scoped approval, coordinates/PTS, immutable",
+            "prefix/suffix split and non-circular scale/capture mapping. Unknown scale or",
+            "capture clock stays null and produces abstention. No arbitrary standard object"
+          ]
+        },
+        {
+          "start": 43,
+          "end": 50,
+          "lines": [
+            "split/track is generated here because the calibration/capture inputs are absent",
+            "and no tracking task was requested. ST03 cannot enter a metric fit under current",
+            "approval even if synthetic contract tests pass.",
+            "",
+            "## Acceptance check (deliberately fails)",
+            "",
+            "From this run worktree, after verifying receipt source hashes against canonical:",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-contract",
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s07a\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\measurement\\README.md",
+      "sha256": "b30526768adfd22accde88b8bd8b23ea956cdd06e0534cec1f976a89e88ed9ae",
+      "excerpts": [
+        {
+          "start": 3,
+          "end": 10,
+          "lines": [
+            "`inputs.validate_input(record)` validates a JSON-compatible object. Malformed",
+            "data raises `ValueError`. Valid scene/tracking input may carry abstention",
+            "`blockers`; an empty list means declared prerequisites are present, **not** that",
+            "rights/calibration were independently verified or Gate M passed. No model,",
+            "tracking, fitting, download, remote call or physical number is produced here.",
+            "This function is not an approval authority: a trusted run must resolve evidence,",
+            "licence and scope before use. Never manufacture `metric_measurement` approval.",
+            "Current S02 approval grants `scene_tracking` only for the ten listed IDs."
+          ]
+        },
+        {
+          "start": 21,
+          "end": 23,
+          "lines": [
+            "| `continuous_segment_evidence` | Reviewed uninterrupted, non-reversed, pre-impact fall segment. Null/empty => abstain. Repeats/edits/occlusions need explicit segment/time mapping before any fit. |",
+            "| `scale` | Null if unknown; otherwise independent in-plane reference with fields below. Unknown is not zero. |",
+            "| `timebase` | Null if unknown; otherwise verified capture-time mapping with fields below. File/container FPS alone cannot fill it. |"
+          ]
+        },
+        {
+          "start": 50,
+          "end": 65,
+          "lines": [
+            "source hash, selected segment, immutable split, calibration evidence and config",
+            "hash **before** any fit. Send only `training` and frozen prefix-derived calibration",
+            "to S07b/S07c. Keep suffix coordinates/frames out of tracking tuning, calibration,",
+            "model prompts and fitting; evaluate predictions once against the withheld suffix.",
+            "Changing the split after viewing errors invalidates that evaluation. This local",
+            "validator cannot enforce external storage custody or prevent a caller from",
+            "reading `held_out`; downstream integration must enforce it. It does not seal a",
+            "dataset or authenticate caller-supplied evidence strings.",
+            "",
+            "S07d must propagate scale, time-ratio, per-frame timestamp/coordinate precision,",
+            "tracking error and covariance/systematic effects; this validator merely preserves",
+            "declared calibration requirements and rejects malformed numbers. Uncertainty in",
+            "g depends on scale and inverse-square capture-time ratio, so playback acceleration",
+            "is not g. Never set uncertainty to an invented value to unlock a fit; if unknown,",
+            "set the whole calibration object null. No uncertainty propagation is implemented",
+            "or claimed in S07a. Zero is allowed only when independently justified in evidence."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-code",
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s07a\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\measurement\\inputs.py",
+      "sha256": "56a668a8df793bf085d5ec6282bf3c0acca3607b8b30cfdd19292af4b3432596",
+      "excerpts": [
+        {
+          "start": 50,
+          "end": 65,
+          "lines": [
+            "    for key in (\"clip_id\", \"licence\", \"provenance\", \"motion\"):",
+            "        if not _text(data.get(key)):",
+            "            raise ValueError(f\"{key} required\")",
+            "    if not isinstance(data.get(\"source_sha256\"), str) or not re.fullmatch(",
+            "        r\"[0-9a-f]{64}\", data[\"source_sha256\"]",
+            "    ):",
+            "        raise ValueError(\"source_sha256 must be lowercase hex\")",
+            "    approval = data.get(\"approval\")",
+            "    if not isinstance(approval, dict) or approval.get(\"scope\") not in (",
+            "        \"scene_tracking\", \"metric_measurement\"",
+            "    ) or not _text(approval.get(\"evidence\")):",
+            "        raise ValueError(\"explicit scoped approval evidence required\")",
+            "    blockers = []",
+            "    if approval[\"scope\"] != \"metric_measurement\":",
+            "        blockers.append(\"metric_use_not_approved\")",
+            "    if data[\"motion\"] != \"earth_free_fall\":"
+          ]
+        },
+        {
+          "start": 78,
+          "end": 84,
+          "lines": [
+            "            raise ValueError(f\"{name} must be null or an object\")",
+            "        if section is not None:",
+            "            for field, positive in fields:",
+            "                if field in section:",
+            "                    _number(section[field], f\"{name}.{field}\", positive=positive)",
+            "    if not (scale and scale.get(\"method\") == \"independent_reference\"",
+            "            and scale.get(\"plane_verified\") is True and _text(scale.get(\"evidence\"))"
+          ]
+        },
+        {
+          "start": 108,
+          "end": 114,
+          "lines": [
+            "        if parsed and (index <= parsed[-1].frame_index or pts <= parsed[-1].pts_s):",
+            "            raise ValueError(\"frame indices and video PTS must strictly increase\")",
+            "        parsed.append(Frame(index, pts, x, y))",
+            "    training = tuple(f for f in parsed if f.frame_index <= split)",
+            "    held_out = tuple(f for f in parsed if f.frame_index > split)",
+            "    if len(training) < 3 or not held_out or training[-1].frame_index != split:",
+            "        raise ValueError(\"split must end a >=3-frame prefix and leave a nonempty suffix\")"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a-tests",
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s07a\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\measurement\\test_inputs.py",
+      "sha256": "0e0f0ca1a6b11f449c7ffd6b056bbbb7caac817c7dc420a187108c424650ef2a",
+      "excerpts": [
+        {
+          "start": 28,
+          "end": 32,
+          "lines": [
+            "        result = validate_input(synthetic_input())",
+            "        self.assertIn(\"metric_use_not_approved\", result.blockers)",
+            "        self.assertFalse(result.metric_eligible)",
+            "",
+            "    def test_qualified_synthetic_input_has_disjoint_immutable_prefix_suffix(self):"
+          ]
+        },
+        {
+          "start": 46,
+          "end": 52,
+          "lines": [
+            "        data.update(scale=None, timebase=None, continuous_segment_evidence=None)",
+            "        self.assertEqual(set(validate_input(data).blockers), {",
+            "            \"metric_use_not_approved\", \"scale_unverified\", \"capture_timebase_unverified\",",
+            "            \"continuous_segment_unverified\"})",
+            "",
+            "    def test_circular_scale_and_unverified_plane_abstain(self):",
+            "        for changes in ({\"method\": \"fall_time\"}, {\"plane_verified\": False}, {\"evidence\": \"\"}):"
+          ]
+        },
+        {
+          "start": 59,
+          "end": 68,
+          "lines": [
+            "        data[\"timebase\"] = {\"file_fps\": \"25/1\"}",
+            "        self.assertIn(\"capture_timebase_unverified\", validate_input(data).blockers)",
+            "",
+            "    def test_non_fall_motion_cannot_count_as_earth_trial(self):",
+            "        for motion in (\"projectile\", \"bounce\", \"pendulum\", \"iss\", \"lunar_free_fall\"):",
+            "            data = synthetic_input()",
+            "            data[\"motion\"] = motion",
+            "            self.assertIn(\"not_earth_free_fall\", validate_input(data).blockers)",
+            "",
+            "    def test_bad_numbers_bounds_order_or_leaking_split_rejected(self):"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f-report",
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s02f-research\\2026-10-26 - Meta Global AI Developer Hackathon\\Run-System\\Runs\\S02f\\REPORT.md",
+      "sha256": "10ebd227f0ce6bd3777e5726fe7b452f867b4883d99d8286a28ce9d23c213eb5",
+      "excerpts": [
+        {
+          "start": 16,
+          "end": 33,
+          "lines": [
+            "**Literal objective remains unmet: 0/3 metric-qualified replacements.**",
+            "Three source/licence-backed media files were provisionally acquired, fully",
+            "decoded and visually audited; that is not three suitable benchmark trials.",
+            "No S07a completion, Gate M, g, fitter run, physical uncertainty, new approval",
+            "or model/GPU processing is claimed.",
+            "",
+            "1. **RP03 strongest HOLD:** new April2025 Rhetos drop. Embedded independent",
+            "   rope-height evidence9.00 m; explicit240 fps capture,200 fps editing and20x",
+            "   replay declarations. Top-down depth-changing geometry is not a valid affine",
+            "   image-plane scale; capture/edit/replay mapping and uncertainty remain",
+            "   unresolved. One drop plus replay is not two trials.",
+            "2. **RP01 HOLD:** NUSTEM metre-rule/g-ball apparatus has independent physical",
+            "   scale/timer potential. Inspected127–128 s release loses the ball below frame",
+            "   before floor contact; camera capture provenance and plane applicability",
+            "   absent. Delivered25 fps is not evidence of actual capture timing.",
+            "3. **RP02 REJECT for metric shortlist:** GetAClass real studio slow-motion",
+            "   falls, no identified dimensional witness or capture clock; dark/small",
+            "   objects, edits and unclear endpoints. No assumed standard object size."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f-research",
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s02f-research\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\clips\\calibration-recovery\\S02f\\RESEARCH.md",
+      "sha256": "d2fabcdb00c90ee9a2144059117cec7fe88f2606a794adf949207a01842020a6",
+      "excerpts": [
+        {
+          "start": 9,
+          "end": 13,
+          "lines": [
+            "| Rank | Candidate | New evidence | Unmet requirement / action |",
+            "|---|---|---|---|",
+            "| 1 | RP03 — [Impaktecholot (Pilotversuch)](https://commons.wikimedia.org/wiki/File:Impaktecholot_(Pilotversuch).webm) | April 18, 2025, Rhetos. Embedded slate explicitly distinguishes a **9.00 m nonstretch-rope measurement** from circular optical/acoustic estimates. Capture slate: DJI Osmo Action 4, **240 fps captured, 200 fps edited**; another slate explicitly labels a **20x replay**. These are source claims, not derived slowdown estimates. | HOLD. Camera looks downward; depth changes greatly through descent, so 9 m endpoint height is **not** an image-plane metres-per-pixel reference. No calibrated projection/reference plane or scale uncertainty. Delivery is 60 fps; mapping from capture to edit to replay/transcode has not been verified. Same single drop repeated, not two trials. Best next technical lead, but not fit-ready. |",
+            "| 2 | RP01 — [A-level Physics Core Practical](https://commons.wikimedia.org/wiki/File:A-level_Physics_Core_Practical-_Finding_a_value_for_g_using_a_free_fall_method.webm) | NUSTEM, 2016. Producer [notes](https://nustem.uk/activity/measuring-g/) identify a metre rule/bracket and independent g-ball release/impact timer, with 0.01 s display resolution. | HOLD. Reviewed g-ball release around 127–128 s is visible, but ball drops below the lower image before floor contact; no certified continuous release-to-impact segment. Ruler coplanarity/projective error and readable ruler endpoints unverified. 25 fps file cadence is not camera provenance. Apparatus timing is not per-frame mapping. Do not turn separate methods/cuts into independent trials. |",
+            "| 3 | RP02 — [Свободное падение](https://commons.wikimedia.org/wiki/File:%D0%A1%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B5_%D0%BF%D0%B0%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5.webm) | GetAClass, 2014; Commons cooperation provenance and CC BY 3.0. Actual HD file inspected: real paired-object studio drops near 65–73 s and 105–114 s, distinct from surrounding drawn animation. | REJECT for metric shortlist. No numbered ruler/known object dimension in reviewed drop views; dark objects, low contrast and undocumented slow motion. 24000/1001 delivered fps does not establish capture rate. Endpoints/independence not certified. Do not infer dimensions from wood, ball, backdrop or studio equipment. |"
+          ]
+        },
+        {
+          "start": 59,
+          "end": 75,
+          "lines": [
+            "   it does describe rope measurement and25 fps Lumix capture. Preliminary",
+            "   summary/pointers retained; **S02g now owns all further FF01/FF02 forensics**.",
+            "   Nothing about current segment applicability or independent trials is proven",
+            "   here. Previously generated FF sheets are ignored and not used as conclusions.",
+            "2. NUSTEM's producer notes and visible ruler might qualify a replacement:",
+            "   apparatus is promising, but inspected framing loses the impact and no actual",
+            "   camera-clock mapping was found. Independent hardware total time alone is not",
+            "   a licence to infer a uniform slow-motion multiplier.",
+            "3. GetAClass's educational experiment might contain a calibrated studio shot:",
+            "   reviewed footage has real falls but no identified dimensional or capture-time",
+            "   witness. Rejected instead of inventing standard object dimensions.",
+            "4. New April2025 Rhetos capture might add a separate, high-rate trial: source",
+            "   supplies concrete capture/edit/rope information, but top-down projective",
+            "   geometry and edit mapping prevent metric qualification.",
+            "",
+            "Firecrawl plus web searches were focused on ruler/size, capture cadence and",
+            "primary allowed-source educational footage. Searches returning stroboscopic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-report",
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s02g-forensics\\2026-10-26 - Meta Global AI Developer Hackathon\\Run-System\\Runs\\S02g\\REPORT.md",
+      "sha256": "dd52d4e7999fb781fa1b471708b59496c500e7b31dac68d59d1031a22f65d2e8",
+      "excerpts": [
+        {
+          "start": 3,
+          "end": 6,
+          "lines": [
+            "**Result:** recovered a previously unestablished **non-circular rope-height",
+            "measurement claim** in FF02's original creator article. Neither FF01 nor FF02",
+            "has demonstrated segment-applicable metric scale **and** capture-time mapping.",
+            "No clip approval, independent qualified-trial count, S07a completion or Gate M."
+          ]
+        },
+        {
+          "start": 27,
+          "end": 38,
+          "lines": [
+            "- FF01 height remains fall-time/gravity-derived. FF02's creator also describes",
+            "  a rope lowered from railing to ground and measured with folding rulers.",
+            "  That is an independent-method **claim**, not yet verified spatial calibration.",
+            "  Stair ruler is in another shot/plane; cyclist height assumed; top-down",
+            "  perspective and release/impact/reference correspondence unresolved.",
+            "- Corrected 20→25fps upload and Lumix25fps testimony verified in primary text.",
+            "  Actual files both deliver25fps/40ms PTS; edits include holds, crossfades and",
+            "  frame-stepping. Delivery clock/editor overlays do not prove capture mapping.",
+            "- FF02 contains three labelled sandbag events plus wood; FF01/FF02 retain one",
+            "  common capture group. No certified duplicate mapping or independent qualified",
+            "  extra trial. Diagnostic SSIM/exact-hash limitations are explicit, not hidden.",
+            "- Commons CC BY-SA4.0 and differing embedded CC BY4.0/Mathe-AC notices retained."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "g-findings",
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s02g-forensics\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\clips\\calibration-recovery\\S02g\\FINDINGS.md",
+      "sha256": "f81dfa29e5d4f9690a7a97b6032421c67a01f7ded93762dae9607df89ff8a2bc",
+      "excerpts": [
+        {
+          "start": 52,
+          "end": 60,
+          "lines": [
+            "",
+            "The camera looks steeply down from the railing; hand, railing, falling bag,",
+            "stairs and ground have different depths. The ruler shot cannot supply a global",
+            "metres/pixel factor. Even a trusted 9m vertical span does not establish the",
+            "projective mapping along this foreshortened motion. Release hand height,",
+            "ground endpoint, camera pose/movement, lens model and reference correspondence",
+            "remain unverified. The rope claim cannot automatically be transferred to FF01.",
+            "",
+            "## Time: corrected claim versus demonstrated mapping"
+          ]
+        },
+        {
+          "start": 103,
+          "end": 116,
+          "lines": [
+            "Multiple events in one capture group may eventually supply distinct repetitions,",
+            "but share the same scale/clock systematic errors. Neither two filenames nor",
+            "three edited labels establish independent qualified trials. No extra trial is",
+            "credited here.",
+            "",
+            "## Rights and next bounded check",
+            "",
+            "Commons declares both originals **CC BY-SA 4.0**, author Rhetos. Their end cards",
+            "instead state CC BY 4.0 and name Mathe-AC Lernwerkstatt Aachen. Preserve both",
+            "notices; retain the existing stricter Commons route, not an inferred relicence.",
+            "See [local derivative notice](LICENSE-NOTICE.md). FF01/FF02 remain absent from",
+            "the scoped owner-approved ten IDs. Forensic inspection is authorized by S02g;",
+            "pipeline/metric/final/public use is not thereby approved.",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "id": "analytic",
+      "path": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\templates\\free_fall.py",
+      "sha256": "f2848294c52dff0f1c52bbd1ec6631637cf99f027e0ff6d1174bc20f8e7856cb",
+      "excerpts": [
+        {
+          "start": 1,
+          "end": 3,
+          "lines": [
+            "\"\"\"Validated free-fall inputs and an independent closed-form Gate P reference.",
+            "",
+            "No integrator, fitter, external calls, default physical numbers or measured claims."
+          ]
+        },
+        {
+          "start": 43,
+          "end": 49,
+          "lines": [
+            "",
+            "def analytic_free_fall(spec, scene, scene_root, *, times=()):",
+            "    \"\"\"Return ideal stop-plane impact plus requested pre-impact samples.",
+            "",
+            "    Positive Y velocity is upward. Samples must lie in [0, min(duration, impact)].",
+            "    Impact metrics describe the full ideal flight, even if duration is shorter.",
+            "    Input uncertainty is NOT propagated; result uncertainty stays null."
+          ]
+        },
+        {
+          "start": 78,
+          "end": 79,
+          "lines": [
+            "        # Anchor the endpoint to its exact stop-plane definition.",
+            "        y = origin[1] - h if t == impact else origin[1] + t * (v - 0.5 * g * t)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "analytic-tests",
+      "path": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\spec\\test_free_fall.py",
+      "sha256": "8574e558ef6544caa7f6096da77c59dcc996393c1ac3f7a4f6c9c55962cbf5f4",
+      "excerpts": [
+        {
+          "start": 61,
+          "end": 68,
+          "lines": [
+            "    def test_signed_velocity_and_upward_apex(self):",
+            "        self.scene['gravity']['magnitude_m_s2'] = 8",
+            "        for v, expected_t, expected_v in [(3, 1, -5), (-3, 0.25, -5)]:",
+            "            with self.subTest(v=v):",
+            "                spec = self.make(gravity=quantity(8, 'm/s^2'),",
+            "                                 initial_vertical_velocity=quantity(v, 'm/s'))",
+            "                a = self.api.analytic_free_fall(spec, self.scene, BUNDLE, times=[0, expected_t])",
+            "                self.assertEqual(a['impact_time']['value'], expected_t)"
+          ]
+        },
+        {
+          "start": 82,
+          "end": 87,
+          "lines": [
+            "    def test_short_duration_does_not_fake_impact_sample(self):",
+            "        spec = self.make(duration=quantity(0.1, 's'))",
+            "        a = self.api.analytic_free_fall(spec, self.scene, BUNDLE, times=[0.1])",
+            "        self.assertGreater(a['impact_time']['value'], 0.1)",
+            "        with self.assertRaisesRegex(ValueError, 'times'):",
+            "            self.api.analytic_free_fall(spec, self.scene, BUNDLE, times=[0.2])"
+          ]
+        }
+      ]
+    }
+  ]
+}

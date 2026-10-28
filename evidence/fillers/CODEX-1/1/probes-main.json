@@ -1,0 +1,82 @@
+{
+  "scope": "synthetic review observations only; not physics/simulator/gate evidence",
+  "records": [
+    {
+      "id": "P1-free_fall",
+      "exception": "OverflowError",
+      "message": "int too large to convert to float"
+    },
+    {
+      "id": "P1-projectile",
+      "exception": "ValueError",
+      "message": "$.times[0]: finite seconds in [0, 0.4515236409857309] required"
+    },
+    {
+      "id": "P1-ramp",
+      "exception": "ValueError",
+      "message": "$.times[0]: finite seconds in [0, 0.7214759302482595] required"
+    },
+    {
+      "id": "P1-pendulum",
+      "exception": "ValueError",
+      "message": "$.times[0]: finite seconds in [0, 1] required"
+    },
+    {
+      "id": "P2",
+      "setup_accepted": true,
+      "requested_height": 1e-20,
+      "impact_time": 4.515236409857309e-11,
+      "origin": [
+        0,
+        2,
+        0
+      ],
+      "impact": [
+        0,
+        2.0,
+        0
+      ],
+      "sample_positions": [
+        [
+          0,
+          2.0,
+          0
+        ],
+        [
+          0,
+          2.0,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "P3-ramp",
+      "setup_accepted": true,
+      "exception": "ValueError",
+      "message": "$.parameters: ramp oracle requires finite positive downhill acceleration; coasting, stalling and static friction are unsupported"
+    },
+    {
+      "id": "P3-pendulum",
+      "setup_accepted": true,
+      "exception": "ValueError",
+      "message": "$.parameters: small-angle oracle requires amplitude <= 0.1 rad; large-angle and rotating pendulums are unsupported"
+    },
+    {
+      "id": "P4",
+      "same_experiment_id": true,
+      "same_evidence": true,
+      "different_impact_times": true,
+      "evidence": "analytic-free-fall-v1:experiment/synthetic-spec"
+    }
+  ],
+  "source_sha256": {
+    "contracts/experiment/validate_experiment.py": "beb47e5f9ccb56d482e70ad4e2f87e64a2adba35f7dc335b5f36fd8c91058ef7",
+    "contracts/experiment/experiment.schema.json": "c78fee59175e1528fd543e3f6f468faec2e37b6aac7063313a9a4848a338c80f",
+    "contracts/scene/validate_scene.py": "386a74a5e0fc457ccfc5d6bc33ec38c0ecdd164355c705f189c1bc4b7f54e6a9",
+    "contracts/scene/scene.schema.json": "f2d72f8d0448cf1d0a21a7c72e8bf84c53933b2cb1c5ae2b0e7c0a026015ea84",
+    "Build/templates/free_fall.py": "f2848294c52dff0f1c52bbd1ec6631637cf99f027e0ff6d1174bc20f8e7856cb",
+    "Build/templates/projectile.py": "639f5e3d53ca057e28d5a343c43825b36c1953367dc9b3c07213965fc5efc35d",
+    "Build/templates/ramp.py": "9908e940647200953bd8b7dc376cf906d5c0eefcb5eac529939f6586e4316d3b",
+    "Build/templates/pendulum.py": "663ac598ebef952461e1f862b285478670eb9bb96b893a1b3dfb166bdb9dc483"
+  }
+}

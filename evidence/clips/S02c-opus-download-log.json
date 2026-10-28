@@ -1,0 +1,98 @@
+[
+ {
+  "clip_id": "PD04",
+  "title": "Blocked-pendulum-slow-motion.webm",
+  "status": 200,
+  "bytes": 1759473,
+  "commons_sha1_match": true,
+  "path": "test-data/public/PD04.webm"
+ },
+ {
+  "clip_id": "FF04",
+  "title": "Slow motion video of cup falling on floor.webm",
+  "status": 200,
+  "bytes": 673822,
+  "commons_sha1_match": true,
+  "path": "test-data/public/FF04.webm"
+ },
+ {
+  "clip_id": "BN03",
+  "error": "HTTP Error 429: Too many requests (f061ab2)"
+ },
+ {
+  "clip_id": "BN03",
+  "title": "Flummiversuch (Gymnastikball-Rücksteighöhe).webm",
+  "status": 200,
+  "bytes": 4432478,
+  "commons_sha1_match": true,
+  "path": "test-data/public/BN03.webm"
+ },
+ {
+  "clip_id": "PD08",
+  "title": "Pendulum in controlled gravity.ogv",
+  "status": 200,
+  "bytes": 4662063,
+  "commons_sha1_match": true,
+  "path": "test-data/public/PD08.ogv"
+ },
+ {
+  "clip_id": "PJ02",
+  "title": "Senkrechter Wurf nach oben (Steigzeit).webm",
+  "status": 200,
+  "bytes": 6043166,
+  "commons_sha1_match": true,
+  "path": "test-data/public/PJ02.webm"
+ },
+ {
+  "clip_id": "PD06",
+  "title": "Foucault pendulum utexas motion.webm",
+  "status": 200,
+  "bytes": 8354737,
+  "commons_sha1_match": true,
+  "path": "test-data/public/PD06.webm"
+ },
+ {
+  "clip_id": "FF03",
+  "title": "Zeitsymmetrie (freier Fall).webm",
+  "status": 200,
+  "bytes": 10919261,
+  "commons_sha1_match": true,
+  "path": "test-data/public/FF03.webm"
+ },
+ {
+  "clip_id": "PJ03",
+  "title": "Ballistische Kurve.webm",
+  "status": 200,
+  "bytes": 23039896,
+  "commons_sha1_match": true,
+  "path": "test-data/public/PJ03.webm"
+ },
+ {
+  "clip_id": "PD07",
+  "title": "Foucault pendulum 1.webm",
+  "status": 200,
+  "bytes": 24976130,
+  "commons_sha1_match": true,
+  "path": "test-data/public/PD07.webm"
+ },
+ {
+  "clip_id": "PD05",
+  "title": "Foucault pendulum in the rotunda in Griffith Observatory in July 2022.webm",
+  "status": 200,
+  "bytes": 37164763,
+  "commons_sha1_match": true,
+  "path": "test-data/public/PD05.webm"
+ },
+ {
+  "clip_id": "PD09",
+  "attempt": 1,
+  "http": 429,
+  "retry_after": "600"
+ },
+ {
+  "clip_id": "PD09",
+  "attempt": 2,
+  "http": 429,
+  "retry_after": "600"
+ }
+]

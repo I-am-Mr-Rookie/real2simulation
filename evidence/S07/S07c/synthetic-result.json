@@ -1,0 +1,22 @@
+{
+  "kind": "synthetic mathematical verification only",
+  "g_m_s2": 9.809999999491543,
+  "initial_y_m": 2.0000000000079603,
+  "initial_velocity_m_s": 1.2000000000228697,
+  "training_rmse_m": 1.2912596983894141e-11,
+  "held_out_rmse_m": 1.7534778267001846e-10,
+  "residual_dof": 3,
+  "quadratic_rank_ratio": 0.0995424572140326,
+  "training_frames": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "held_out_frames": [
+    6,
+    7
+  ]
+}

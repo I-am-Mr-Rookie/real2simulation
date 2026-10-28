@@ -1,0 +1,70 @@
+{
+ "shard": "S02c2",
+ "status": "NO_USABLE_RESULT",
+ "approved": false,
+ "note": "Provisional local acquisition under Q2 only; none approved; media removed from worktree after hashing (moved to %TEMP%/s02c2/media, re-downloadable).",
+ "licence": {
+  "name": "Pexels License",
+  "url": "https://www.pexels.com/license/",
+  "read_utc": "2026-10-27T22:57:03Z",
+  "summary": "free use, attribution not required, modification allowed; no offensive depiction of identifiable people, no selling unaltered copies, no implied endorsement, no redistribution on other stock/wallpaper platforms, no trademark use"
+ },
+ "candidates": [
+  {
+   "id": "ST01",
+   "source_url": "https://www.pexels.com/video/girl-tossing-up-a-red-exercise-ball-7237100/",
+   "creator": "Alena Darmel",
+   "page_read_utc": "2026-10-27T22:56:52Z",
+   "page_facts": "Free licence; 3840x2160; 0:06; description: child in a gym setting plays with a large red yoga ball",
+   "download_url": "https://www.pexels.com/download/video/7237100/",
+   "fetch": "HTTP 200 video/mp4 -> videos.pexels.com 7237100-uhd_3840_2160_25fps.mp4",
+   "sha256": "704327eb8fe0749380c3453edda9c2e8296e9c74447c48df4e9399243c62ded4",
+   "bytes": 19620232,
+   "ffprobe": "h264 3840x2160 25/1 fps, 162 frames, 6.48 s, creation_time 2021-03-23T15:27:58Z",
+   "reviewed": "all 162 decoded frames (ST01-allframes.jpg; s02c_opus_review: 162 frames, PTS monotonic, gap 0.04 s)",
+   "evidence": [
+    "ST01-allframes.jpg",
+    "ST01-sheet.jpg",
+    "ST01-track.csv"
+   ],
+   "verdict": "REJECT",
+   "reason": "Ball held overhead ~f0-45, then leaves through top edge by ~f55 and never re-enters (f55-161 show only the child); no apex, descent or landing in frame. Low-angle camera; identifiable minor; gym/gymnastics context. Not a fall/projectile fit input."
+  },
+  {
+   "id": "ST02",
+   "source_url": "https://www.pexels.com/video/dropping-black-balls-on-white-background-7034149/",
+   "creator": "Tima Miroshnichenko",
+   "page_read_utc": "2026-10-27T22:58:15Z",
+   "page_facts": "Free licence; 3840x2160; 0:09; Mar 4 2021; description: 'Black marbles rolling over a white backdrop in a close-up timelapse' (conflicts with title 'Dropping')",
+   "download_url": "https://www.pexels.com/download/video/7034149/",
+   "fetch": "HTTP 200 video/mp4 -> videos.pexels.com 7034149-uhd_3840_2160_25fps.mp4",
+   "sha256": "366d0991cf2355663489ad5237c602a7f24a4dede1b393eea2e9809967ed5b0d",
+   "bytes": 27293558,
+   "ffprobe": "h264 3840x2160 25/1 fps, 234 frames, 9.36 s",
+   "reviewed": "all 234 frames thumbnail-scale (ST02-allframes.jpg); frames 180-233 at 400 px (ST02-f180-233.jpg)",
+   "evidence": [
+    "ST02-allframes.jpg",
+    "ST02-f180-233.jpg",
+    "ST02-sheet.jpg",
+    "ST02-track.csv"
+   ],
+   "verdict": "REJECT",
+   "reason": "Dozens of overlapping marbles, motion blur, shallow focus; pile disperses upward around f190-210 then several balls stay apparently motionless above the floor line for 20+ frames (consistent with resting on the curved backdrop at depth, or edited/reversed playback; not resolved). Source says timelapse, so capture timebase unknown. No single object trajectory with identity, scale or timebase."
+  }
+ ],
+ "rejected_from_page_read_no_download": [
+  {
+   "url": "https://www.pexels.com/video/slow-motion-footage-of-different-shapes-being-dropped-on-a-clear-container-2469774/",
+   "creator": "Limpheart Motions (profile: Indie Game Developer)",
+   "reason": "Page description 'Vibrant softbody Tetris shapes bounce and stack' - softbody render/simulation, not real footage"
+  },
+  {
+   "url": "https://www.pexels.com/video/a-man-throwing-and-catching-a-ball-8798814/",
+   "creator": "RDNE Stock project",
+   "reason": "Description: playing catch with paddle and ball (pickleball/paddle sport context) - sports, excluded"
+  }
+ ],
+ "access": {
+  "curl ordinary GET of 3 Pexels source pages and Pixabay search": "HTTP 403 'Just a moment...' challenge page (22:56Z); no retry/bypass. Same public pages opened normally in the Codex in-app browser without challenge; Pexels download endpoints returned 200 to curl."
+ }
+}

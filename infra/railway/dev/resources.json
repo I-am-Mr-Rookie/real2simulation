@@ -1,0 +1,141 @@
+{
+  "observed_utc": "2026-10-27 20:16:43 UTC",
+  "buckets": [
+    {
+      "id": "cfe78b35-e711-429b-9875-974f4cc4fa66",
+      "name": "real2simulation-dev",
+      "region": "sin"
+    }
+  ],
+  "environment": {
+    "id": "c5823a28-5118-49d8-b4d6-9851fa8ccc45",
+    "name": "dev",
+    "stagedChanges": null,
+    "unmergedChangesCount": null
+  },
+  "pendingWork": [],
+  "project": {
+    "id": "b07b0d66-2001-4ccc-915d-7d226744d189",
+    "name": "Real2Simulation",
+    "workspaceName": "rookieCoders"
+  },
+  "services": [
+    {
+      "cronSchedule": null,
+      "id": "33692dd8-74ea-4bd1-a95f-fb9a41d9272e",
+      "latestDeployment": {
+        "createdAt": "2026-10-27T20:12:36.292Z",
+        "id": "87bc293e-5f47-4dd8-a697-aa3f03ba1b85",
+        "status": "SUCCESS",
+        "url": null
+      },
+      "name": "Postgres",
+      "numReplicas": 1,
+      "volumes": [
+        {
+          "id": "0d2650de-180f-4290-9269-ccb1e7129869",
+          "mountPath": "/var/lib/postgresql/data",
+          "name": "postgres-volume",
+          "region": "asia-southeast1-eqsg3a",
+          "sizeMB": 50000
+        }
+      ]
+    },
+    {
+      "cronSchedule": null,
+      "id": "eee6243b-85a7-426a-97a0-46db3f6adefb",
+      "latestDeployment": {
+        "createdAt": "2026-10-27T20:12:39.011Z",
+        "id": "b71bfa73-3b7c-4e3a-bb5c-24480a6c0949",
+        "status": "SUCCESS",
+        "url": null
+      },
+      "name": "Redis",
+      "numReplicas": 1,
+      "volumes": [
+        {
+          "id": "203a6b98-e02f-4333-bcc6-cc7fcc6e11e3",
+          "mountPath": "/data",
+          "name": "redis-volume",
+          "region": "asia-southeast1-eqsg3a",
+          "sizeMB": 50000
+        }
+      ]
+    },
+    {
+      "cronSchedule": null,
+      "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
+      "latestDeployment": null,
+      "name": "api",
+      "numReplicas": null,
+      "volumes": []
+    },
+    {
+      "cronSchedule": null,
+      "id": "5b5e6ebc-d4f1-46fb-b6de-6b7ff94b89a7",
+      "latestDeployment": null,
+      "name": "worker",
+      "numReplicas": null,
+      "volumes": []
+    },
+    {
+      "cronSchedule": null,
+      "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
+      "latestDeployment": null,
+      "name": "web",
+      "numReplicas": null,
+      "volumes": []
+    }
+  ],
+  "variable_name_receipts": [
+    {
+      "serviceId": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
+      "variableNames": [
+        "BUCKET_ACCESS_KEY_ID",
+        "BUCKET_ENDPOINT",
+        "BUCKET_NAME",
+        "BUCKET_REGION",
+        "BUCKET_SECRET_ACCESS_KEY",
+        "DATABASE_URL",
+        "R2S_ENVIRONMENT",
+        "RAILWAY_ENVIRONMENT",
+        "RAILWAY_ENVIRONMENT_ID",
+        "RAILWAY_ENVIRONMENT_NAME",
+        "RAILWAY_PRIVATE_DOMAIN",
+        "RAILWAY_PROJECT_ID",
+        "RAILWAY_PROJECT_NAME",
+        "RAILWAY_SERVICE_ID",
+        "RAILWAY_SERVICE_NAME",
+        "REDIS_URL"
+      ],
+      "valuesRedacted": true
+    },
+    {
+      "serviceId": "5b5e6ebc-d4f1-46fb-b6de-6b7ff94b89a7",
+      "variableNames": [
+        "BUCKET_ACCESS_KEY_ID",
+        "BUCKET_ENDPOINT",
+        "BUCKET_NAME",
+        "BUCKET_REGION",
+        "BUCKET_SECRET_ACCESS_KEY",
+        "R2S_ENVIRONMENT",
+        "RAILWAY_ENVIRONMENT",
+        "RAILWAY_ENVIRONMENT_ID",
+        "RAILWAY_ENVIRONMENT_NAME",
+        "RAILWAY_PRIVATE_DOMAIN",
+        "RAILWAY_PROJECT_ID",
+        "RAILWAY_PROJECT_NAME",
+        "RAILWAY_SERVICE_ID",
+        "RAILWAY_SERVICE_NAME",
+        "REDIS_URL"
+      ],
+      "valuesRedacted": true
+    }
+  ],
+  "limitations": [
+    "Provider SUCCESS is not application connectivity.",
+    "Empty api/worker/web services have no deployments or public domains.",
+    "Reference variable resolution and live read-only probes await S04g.",
+    "No secret values retrieved; OAuth withheld all variable values."
+  ]
+}

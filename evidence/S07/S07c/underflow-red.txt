@@ -1,0 +1,28 @@
+test_capture_duration_underflow_or_acceleration_underflow_abstains (test_free_fall.FitterTests.test_capture_duration_underflow_or_acceleration_underflow_abstains) ...
+  test_capture_duration_underflow_or_acceleration_underflow_abstains (test_free_fall.FitterTests.test_capture_duration_underflow_or_acceleration_underflow_abstains) (ratio=1e+200) ... FAIL
+test_evaluation_rejects_mismatched_prefix_or_calibration (test_free_fall.FitterTests.test_evaluation_rejects_mismatched_prefix_or_calibration) ... ok
+test_ill_conditioned_distinct_times_abstain (test_free_fall.FitterTests.test_ill_conditioned_distinct_times_abstain) ... ok
+test_known_g_initial_state_units_and_vfr_capture_conversion (test_free_fall.FitterTests.test_known_g_initial_state_units_and_vfr_capture_conversion) ... ok
+test_malformed_inputs_are_not_silently_repaired (test_free_fall.FitterTests.test_malformed_inputs_are_not_silently_repaired) ... ok
+test_multiple_accelerations_and_time_units_not_an_earth_constant (test_free_fall.FitterTests.test_multiple_accelerations_and_time_units_not_an_earth_constant) ... ok
+test_non_downward_acceleration_abstains (test_free_fall.FitterTests.test_non_downward_acceleration_abstains) ... ok
+test_nonzero_noise_has_honest_residuals_not_an_interval (test_free_fall.FitterTests.test_nonzero_noise_has_honest_residuals_not_an_interval) ... ok
+test_numeric_conversion_overflow_abstains (test_free_fall.FitterTests.test_numeric_conversion_overflow_abstains) ... ok
+test_origin_shift_and_position_offset_do_not_change_gravity (test_free_fall.FitterTests.test_origin_shift_and_position_offset_do_not_change_gravity) ... ok
+test_suffix_coordinates_cannot_change_fit_but_change_evaluation (test_free_fall.FitterTests.test_suffix_coordinates_cannot_change_fit_but_change_evaluation) ... ok
+test_three_training_samples_have_zero_residual_degrees_of_freedom (test_free_fall.FitterTests.test_three_training_samples_have_zero_residual_degrees_of_freedom) ... ok
+test_unknown_calibration_or_scene_only_scope_abstains (test_free_fall.FitterTests.test_unknown_calibration_or_scene_only_scope_abstains) ... ok
+
+======================================================================
+FAIL: test_capture_duration_underflow_or_acceleration_underflow_abstains (test_free_fall.FitterTests.test_capture_duration_underflow_or_acceleration_underflow_abstains) (ratio=1e+200)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07c\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_free_fall.py", line 134, in test_capture_duration_underflow_or_acceleration_underflow_abstains
+    with self.subTest(ratio=ratio), self.assertRaises(self.abstention):
+                                    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: FitAbstention not raised
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.038s
+
+FAILED (failures=1)

@@ -1,0 +1,41 @@
+{
+  "scope": "S02f recovery2; new-source research only, not canonical manifest or approval",
+  "candidates": [
+    {
+      "id": "S02f-R2-N01",
+      "title": "NASA Drop Test Supports Safer Air Taxi Designs",
+      "source": "https://commons.wikimedia.org/wiki/File:NASA_Drop_Test_Supports_Safer_Air_Taxi_Designs_(LRC-2025-V-06242025-RVLT-Gantry-Drop-Test-With-Slate-V0002050).webm",
+      "producer": "NASA Langley Research Center; NASA LaRC_OCIO_Video Services_Bono_Herrera",
+      "licence": "PD-USGov-NASA (source-specific Commons assertion; NASA catalog provenance)",
+      "capture_group": "one 2025 RVLT drop; camera views/replays not independent trials",
+      "scale_lead": "NASA article: approximately 35 ft hoist height; 2010 LandIR paper: 50 x 36 ft coded-target array",
+      "scale_m_per_pixel": null,
+      "scale_projection_verified": false,
+      "physical_capture_fps": null,
+      "capture_to_delivery_mapping_verified": false,
+      "ballistic_interval_verified": false,
+      "metric_qualified": false,
+      "owner_final_use_approved": false,
+      "hold": "Swing/tether release, perspective/depth and 10-degree yaw unresolved; no source-specific capture clock; historic facility dimensions not certified for 2025 view.",
+      "renditions": ["N01-airtaxi-mobile.mp4", "N01-airtaxi-medium.mp4"]
+    },
+    {
+      "id": "S02f-R2-N02",
+      "title": "NASA Drop Test of Orion Spacecraft for Crewed Artemis Missions",
+      "source": "https://commons.wikimedia.org/wiki/File:NASA_Drop_Test_of_Orion_Spacecraft_for_Crewed_Artemis_Missionsg.webm",
+      "producer": "NASA",
+      "licence": "PD-USGov-NASA (source-specific Commons assertion)",
+      "capture_group": "April 6 2021 Orion structural test article, second of four series drops; one acquired view",
+      "scale_lead": "Visible coded targets near basin; no same-view target coordinates/dimensions established",
+      "scale_m_per_pixel": null,
+      "scale_projection_verified": false,
+      "physical_capture_fps": null,
+      "capture_to_delivery_mapping_verified": false,
+      "ballistic_interval_verified": false,
+      "metric_qualified": false,
+      "owner_final_use_approved": false,
+      "hold": "Native-frame descent visible, but support-release boundary, rigid-body orientation, target geometry and physical timebase unverified. 500 sensors is not 500 fps.",
+      "renditions": ["N02-orion-original.webm"]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "checked_utc": "2026-10-28T03:05:30.018176+00:00",
+  "source_root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon",
+  "sources_sha256": {
+    "clips.csv": "a2c99d521b5cbf1f6d4f8163b0067b573a28bd4bce7883a3652e0e11ba0f917d",
+    "evidence/owner/S02/APPROVAL.md": "caa5f27093d8bcacd6fcf96cfe43719ef037dd06b86b8c8c2c22da04c4cc74e8",
+    "evidence/clips/S02d-metadata-scale-audit.md": "7fc8038c70e75f6c8c11e1051535cb61b73a0f46b068dd1acbfa03ccb82a26fd"
+  },
+  "method": "Manifest and existing audit only; raw media not decoded/hashed; local existence checked. Approval IDs transcribed from authoritative receipt; all metric scopes withheld.",
+  "free_fall_rows": [
+    {
+      "clip_id": "FF01",
+      "experiment": "free_fall",
+      "local_path": "test-data/public/FF01.webm",
+      "file_fps": "25/1",
+      "file_duration_s": "98.960000",
+      "scale_reference": "No independently verified reference size",
+      "scale_status": "UNVERIFIED|SCENE_ONLY_UNTIL_SCALE_VERIFIED",
+      "timebase_status": "UNKNOWN_CAPTURE_RATE_AND_EDITS",
+      "suitability": "Conditional trajectory candidate; no metric g claim; possible overlap with FF02",
+      "capture_group": "RHETOS_BRIDGE_2024_10_16",
+      "evidence_path": "evidence/clips/S02a-sourcing.md#ff01",
+      "local_present": true,
+      "local_scene_tracking_approved": false,
+      "metric_approved": false
+    },
+    {
+      "clip_id": "FF02",
+      "experiment": "free_fall",
+      "local_path": "test-data/public/FF02.webm",
+      "file_fps": "25/1",
+      "file_duration_s": "167.560000",
+      "scale_reference": "Source height inferred from fall time; not independent calibration",
+      "scale_status": "CIRCULAR_SCALE_REJECTED|SCENE_ONLY_UNTIL_SCALE_VERIFIED",
+      "timebase_status": "UPLOADER_CORRECTED_CAPTURE_RATE_TO_25_FPS_UNVERIFIED",
+      "suitability": "Conditional trajectory candidate; not an independent trial from FF01 until checked",
+      "capture_group": "RHETOS_BRIDGE_2024_10_16",
+      "evidence_path": "evidence/clips/S02a-sourcing.md#ff02",
+      "local_present": true,
+      "local_scene_tracking_approved": false,
+      "metric_approved": false
+    },
+    {
+      "clip_id": "FF03",
+      "experiment": "free_fall",
+      "local_path": "",
+      "file_fps": "60/1",
+      "file_duration_s": "44.117000",
+      "scale_reference": "Ball diameter not documented",
+      "scale_status": "UNVERIFIED|SCENE_ONLY_UNTIL_SCALE_VERIFIED",
+      "timebase_status": "TIME_REVERSAL_OR_EDIT_RISK",
+      "suitability": "Time-direction stress candidate only pending original-segment review; no g benchmark",
+      "capture_group": "RHETOS_TSYMMETRY_2024_12_06",
+      "evidence_path": "evidence/clips/S02a-sourcing.md#ff03",
+      "local_present": false,
+      "local_scene_tracking_approved": false,
+      "metric_approved": false
+    },
+    {
+      "clip_id": "FF04",
+      "experiment": "free_fall",
+      "local_path": "",
+      "file_fps": "25/1",
+      "file_duration_s": "8.046000",
+      "scale_reference": "Cup dimensions not documented",
+      "scale_status": "UNVERIFIED|SCENE_ONLY_UNTIL_SCALE_VERIFIED",
+      "timebase_status": "SLOW_MOTION_FACTOR_UNKNOWN",
+      "suitability": "Pre-impact tracking or timebase-abstention stress candidate; low resolution; not a calibrated g trial",
+      "capture_group": "PITTIGRILLI_CUP_2022_04_06",
+      "evidence_path": "evidence/clips/S02a-sourcing.md#ff04",
+      "local_present": false,
+      "local_scene_tracking_approved": false,
+      "metric_approved": false
+    },
+    {
+      "clip_id": "ST03",
+      "experiment": "free_fall",
+      "local_path": "test-data/public/ST03.mp4",
+      "file_fps": "30000/1001",
+      "file_duration_s": "18.133333",
+      "scale_reference": "Apple width ~61 px, real size assumed only",
+      "scale_status": "UNVERIFIED|SCENE_ONLY_UNTIL_SCALE_VERIFIED",
+      "timebase_status": "25P_IN_30P_REPEATS_VERIFIED_CAPTURE_SLOWMO_UNKNOWN",
+      "suitability": "Real hand-released apple, static camera, continuous unoccluded fall f58-76 onto pillow; probable slow motion so playback acceleration is not g",
+      "capture_group": "PEXELS_ODINTSOV_APPLE",
+      "evidence_path": "evidence/clips/S02c-integration-r1.md",
+      "local_present": true,
+      "local_scene_tracking_approved": true,
+      "metric_approved": false
+    }
+  ],
+  "nominal_local_fall_count": 3,
+  "scoped_local_fall_ids": [
+    "ST03"
+  ],
+  "metric_selected_ids": [],
+  "literal_three_candidates_met": false,
+  "gate_m": "NOT RUN"
+}

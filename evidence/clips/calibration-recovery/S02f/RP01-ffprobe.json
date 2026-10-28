@@ -1,0 +1,32 @@
+{
+    "programs": [
+
+    ],
+    "stream_groups": [
+
+    ],
+    "streams": [
+        {
+            "index": 0,
+            "codec_name": "vp9",
+            "codec_type": "video",
+            "width": 426,
+            "height": 240,
+            "r_frame_rate": "25/1",
+            "avg_frame_rate": "25/1",
+            "time_base": "1/1000"
+        },
+        {
+            "index": 1,
+            "codec_name": "opus",
+            "codec_type": "audio",
+            "r_frame_rate": "0/0",
+            "avg_frame_rate": "0/0",
+            "time_base": "1/1000"
+        }
+    ],
+    "format": {
+        "duration": "614.519000",
+        "size": "20430216"
+    }
+}

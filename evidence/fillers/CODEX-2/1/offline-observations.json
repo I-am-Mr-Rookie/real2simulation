@@ -1,0 +1,45 @@
+{
+  "missing_railway_environment": {
+    "enabled": true,
+    "states": {
+      "redis": "ok"
+    },
+    "synthetic_probe_calls": 1
+  },
+  "worker_all_dependencies_success": {
+    "http_status": 503,
+    "body": {
+      "service": "worker",
+      "status": "unavailable",
+      "revision": "unknown",
+      "dependencies": {
+        "redis": "ok",
+        "bucket": "ok",
+        "heartbeat": "unavailable"
+      }
+    }
+  },
+  "shared_pool_contention": {
+    "fourth_states": {
+      "bucket": "unavailable"
+    },
+    "started_adapter_calls": 3,
+    "fourth_adapter_started": false,
+    "elapsed_seconds": 0.0158
+  },
+  "verifier_wrong_identity_and_status": {
+    "exit_code": 0,
+    "passing_checks": 10,
+    "total_checks": 10,
+    "synthetic_health_body": {
+      "service": "WRONG-SERVICE",
+      "status": "WRONG-STATUS",
+      "revision": "300cd2096f9e32bcdf3433520b36b67f709df0d5",
+      "dependencies": {
+        "redis": "ok",
+        "bucket": "ok",
+        "postgres": "ok"
+      }
+    }
+  }
+}

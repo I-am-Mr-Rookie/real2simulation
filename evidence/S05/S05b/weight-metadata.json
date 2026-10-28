@@ -1,0 +1,28 @@
+{
+  "source_url": "https://huggingface.co/api/models/facebook/map-anything-apache/revision/00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a?blobs=true",
+  "revision": "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a",
+  "gated": false,
+  "license": "apache-2.0",
+  "files": [
+    {
+      "name": ".gitattributes",
+      "size": 1519,
+      "lfs_sha256": null
+    },
+    {
+      "name": "README.md",
+      "size": 1374,
+      "lfs_sha256": null
+    },
+    {
+      "name": "config.json",
+      "size": 5776,
+      "lfs_sha256": null
+    },
+    {
+      "name": "model.safetensors",
+      "size": 4914062480,
+      "lfs_sha256": "fa06c0fdccefc5048e072c85935d5789b1e36b307f3859033c17f9dcb9fd5201"
+    }
+  ]
+}

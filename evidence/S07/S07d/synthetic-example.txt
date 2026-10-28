@@ -1,0 +1,15 @@
+{
+  "label": "synthetic conditional calculation only",
+  "clock": "slow_motion",
+  "g_m_s2": 9.809999999999999,
+  "standard_uncertainty_m_s2": 1.2592805497095318,
+  "detection_standard_m_s2": 0.08369893608898521,
+  "timestamp_standard_m_s2": 0.022582094108226747,
+  "scale_sensitivity": 980.9999999999999,
+  "clock_sensitivity": -78.47999999999999,
+  "residual_dof": 3,
+  "quadratic_rank_ratio": 0.09954245721487819,
+  "interval": null
+}
+unknown_clock=unknown
+unknown_clock_abstention=capture_timebase_unverified

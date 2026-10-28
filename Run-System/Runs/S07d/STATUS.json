@@ -1,0 +1,11 @@
+{
+  "run": "S07d",
+  "worker_status": "DONE",
+  "integration_status": "UNMERGED_AWAITING_CONTROLLER_ACCEPTANCE",
+  "branch": "run/S07d",
+  "measurement_tests": {"run": 48, "passed": 48},
+  "broader_suite_limitations": ["missing psycopg", "missing worktree-local Three.js dependency"],
+  "physical_gate_m": "NOT_RUN",
+  "owner_questions": [],
+  "canonical_controls_modified": false
+}

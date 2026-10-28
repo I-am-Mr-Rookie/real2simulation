@@ -1,0 +1,12 @@
+# AP15.m4v machine ASR (faster-whisper small, cached local model, CPU int8, offline). Timestamps = file seconds. Machine transcript; not authoritative.
+22.32-24.72 Well, in my left hand, I have a feather.
+25.48-26.86 In my right hand, a hammer.
+26.86-32.98 I guess one of the reasons we got here today was because of a gentleman named Galileo a long time ago
+32.98-37.86 who made a rather significant discovery about falling objects in gravity fields.
+38.64-45.06 And we thought that where would be a better place to confirm his findings than on the moon.
+46.06-48.42 And so we thought we'd try it here for you.
+49.02-53.96 The feather happens to be appropriately a falcon feather for our falcon.
+54.54-59.00 And I'll drop the two of them here, and hopefully they'll hit the ground at the same time.
+61.16-62.02 How about that?
+63.46-67.04 Well, my guess was that Mr. Galileo was correct in his findings.
+(00.00-18.84 and 76.74-77.18: unrelated EVA chatter / "Superb.")

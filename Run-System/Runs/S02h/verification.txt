@@ -1,0 +1,4 @@
+2026-10-28T06:24:32.115733+00:00
+PASS source SHA256; 6496 frame rows; 10 PTS anchors; 4 JSON records; 15 local evidence links
+PASS: endpoint ambiguity, clock ratio, unsigned-difference self-checks
+PASS staged whitespace and Owns scope: 20 files

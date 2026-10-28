@@ -1,0 +1,105 @@
+{
+  "sha256": "e72d5406cd74f02dd76ad310adda42b4f1bdff0ec0953efa45b46069faa5fa7c",
+  "frames": 6496,
+  "first_pts_s": 0.0,
+  "last_pts_s": 108.25,
+  "pts_delta_values_s": [
+    0.016,
+    0.017
+  ],
+  "decode_complete": true,
+  "crop": "x=0..309, y=0..239; grayscale; MAD descriptor 80x60",
+  "exact_adjacent_crop_hash_equal": 4868,
+  "windows": {
+    "10-11": {
+      "frames": 60,
+      "mad_percentiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.011250000447034836
+      ],
+      "mad_over_1": 0
+    },
+    "11-14": {
+      "frames": 180,
+      "mad_percentiles": [
+        0.0,
+        0.0,
+        0.36406250298023224,
+        0.9113020598888397,
+        7.662708282470703
+      ],
+      "mad_over_1": 44
+    },
+    "20-21": {
+      "frames": 60,
+      "mad_percentiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0006250000005820766,
+        1.81291663646698
+      ],
+      "mad_over_1": 3
+    },
+    "22-23": {
+      "frames": 60,
+      "mad_percentiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.01885416591539979,
+        3.341458320617676
+      ],
+      "mad_over_1": 10
+    },
+    "24-25": {
+      "frames": 60,
+      "mad_percentiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.004218749993015081,
+        2.8575000762939453
+      ],
+      "mad_over_1": 10
+    },
+    "30-31": {
+      "frames": 60,
+      "mad_percentiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.011770833283662796,
+        2.544374942779541
+      ],
+      "mad_over_1": 10
+    },
+    "40-41": {
+      "frames": 60,
+      "mad_percentiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.031041666865348816,
+        0.4189583361148834
+      ],
+      "mad_over_1": 0
+    },
+    "50-51": {
+      "frames": 60,
+      "mad_percentiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0234375,
+        0.3608333468437195
+      ],
+      "mad_over_1": 0
+    }
+  },
+  "physical_clock_verified": false,
+  "limitation": "Compression/interpolation/camera motion confound uniqueness; PTS and burned-in timer are editor evidence, not independent sensor timestamps."
+}

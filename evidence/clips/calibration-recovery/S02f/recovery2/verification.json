@@ -1,0 +1,101 @@
+{
+  "verification_utc": "2026-10-28T08:11:13.687782+00:00",
+  "custody_checks": "PASS",
+  "parsed_json_files": 28,
+  "inventory": [
+    {
+      "file": "media/N01-airtaxi-mobile.mp4",
+      "bytes": 6683262,
+      "sha256": "baf9f7bec718d299fd36fb4d07c47d574e79e4eccf8a141f5232977dd2fd9511",
+      "sha1": "4d64bcd3bf13367470310e368be788c0b9180b7c",
+      "decode_exit": 0,
+      "decode_stderr": ""
+    },
+    {
+      "file": "media/N01-airtaxi-medium.mp4",
+      "bytes": 44386565,
+      "sha256": "32475c740460c1ead4ff7117590a8a0022480dba6afdafca6a7d43dc03e85051",
+      "sha1": "8a46038a2b33708da8bfa2cac1316a4ddf724e08",
+      "decode_exit": 0,
+      "decode_stderr": ""
+    },
+    {
+      "file": "media/N02-orion-original.webm",
+      "bytes": 8965877,
+      "sha256": "38ec23fb94975450bdadda0f71ffdad1c0da40f23cf41307d3c7d4c45c8f8484",
+      "sha1": "8eaa62c1700da52d4e7c7c6727b82e33de295b42",
+      "decode_exit": 0,
+      "decode_stderr": ""
+    }
+  ],
+  "inspected_native_windows": [
+    {
+      "rendition": "N01",
+      "zero_based_first": 1000,
+      "zero_based_last": 1047,
+      "frame_count": 48,
+      "first_pts_s": 66.666667,
+      "last_pts_s": 69.8,
+      "physical_time_mapping": null
+    },
+    {
+      "rendition": "N01",
+      "zero_based_first": 1150,
+      "zero_based_last": 1209,
+      "frame_count": 60,
+      "first_pts_s": 76.666667,
+      "last_pts_s": 80.6,
+      "physical_time_mapping": null
+    },
+    {
+      "rendition": "N01",
+      "zero_based_first": 1200,
+      "zero_based_last": 1247,
+      "frame_count": 48,
+      "first_pts_s": 80.0,
+      "last_pts_s": 83.133333,
+      "physical_time_mapping": null
+    },
+    {
+      "rendition": "N01-medium",
+      "zero_based_first": 2398,
+      "zero_based_last": 2445,
+      "frame_count": 48,
+      "first_pts_s": 79.933333,
+      "last_pts_s": 81.5,
+      "physical_time_mapping": null
+    },
+    {
+      "rendition": "N02",
+      "zero_based_first": 560,
+      "zero_based_last": 607,
+      "frame_count": 48,
+      "first_pts_s": 9.343,
+      "last_pts_s": 10.127,
+      "physical_time_mapping": null
+    },
+    {
+      "rendition": "N02",
+      "zero_based_first": 660,
+      "zero_based_last": 755,
+      "frame_count": 96,
+      "first_pts_s": 11.011,
+      "last_pts_s": 12.596,
+      "physical_time_mapping": null
+    },
+    {
+      "rendition": "N02",
+      "zero_based_first": 660,
+      "zero_based_last": 695,
+      "frame_count": 36,
+      "first_pts_s": 11.011,
+      "last_pts_s": 11.595,
+      "physical_time_mapping": null
+    }
+  ],
+  "orion_decoded_frames": 1770,
+  "orion_exact_adjacent_duplicate_frames": 3,
+  "orion_original_api_sha1_and_size": "MATCH",
+  "new_metric_qualified": 0,
+  "physical_acceptance": "FAIL: no qualified additions; no inference from delivered fps"
+}

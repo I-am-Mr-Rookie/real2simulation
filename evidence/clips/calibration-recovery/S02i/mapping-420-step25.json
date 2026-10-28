@@ -1,0 +1,487 @@
+[
+  {
+    "sheet": "frames/native-420-step25-01.jpg",
+    "frames": [
+      {
+        "frame_index_0": 10500,
+        "pts_s": 420.004
+      },
+      {
+        "frame_index_0": 10525,
+        "pts_s": 421.004
+      },
+      {
+        "frame_index_0": 10550,
+        "pts_s": 422.004
+      },
+      {
+        "frame_index_0": 10575,
+        "pts_s": 423.004
+      },
+      {
+        "frame_index_0": 10600,
+        "pts_s": 424.004
+      },
+      {
+        "frame_index_0": 10625,
+        "pts_s": 425.004
+      },
+      {
+        "frame_index_0": 10650,
+        "pts_s": 426.004
+      },
+      {
+        "frame_index_0": 10675,
+        "pts_s": 427.004
+      },
+      {
+        "frame_index_0": 10700,
+        "pts_s": 428.004
+      },
+      {
+        "frame_index_0": 10725,
+        "pts_s": 429.004
+      },
+      {
+        "frame_index_0": 10750,
+        "pts_s": 430.004
+      },
+      {
+        "frame_index_0": 10775,
+        "pts_s": 431.004
+      },
+      {
+        "frame_index_0": 10800,
+        "pts_s": 432.004
+      },
+      {
+        "frame_index_0": 10825,
+        "pts_s": 433.004
+      },
+      {
+        "frame_index_0": 10850,
+        "pts_s": 434.004
+      },
+      {
+        "frame_index_0": 10875,
+        "pts_s": 435.004
+      },
+      {
+        "frame_index_0": 10900,
+        "pts_s": 436.004
+      },
+      {
+        "frame_index_0": 10925,
+        "pts_s": 437.004
+      },
+      {
+        "frame_index_0": 10950,
+        "pts_s": 438.004
+      },
+      {
+        "frame_index_0": 10975,
+        "pts_s": 439.004
+      },
+      {
+        "frame_index_0": 11000,
+        "pts_s": 440.004
+      },
+      {
+        "frame_index_0": 11025,
+        "pts_s": 441.004
+      },
+      {
+        "frame_index_0": 11050,
+        "pts_s": 442.004
+      },
+      {
+        "frame_index_0": 11075,
+        "pts_s": 443.004
+      }
+    ]
+  },
+  {
+    "sheet": "frames/native-420-step25-02.jpg",
+    "frames": [
+      {
+        "frame_index_0": 11100,
+        "pts_s": 444.004
+      },
+      {
+        "frame_index_0": 11125,
+        "pts_s": 445.004
+      },
+      {
+        "frame_index_0": 11150,
+        "pts_s": 446.004
+      },
+      {
+        "frame_index_0": 11175,
+        "pts_s": 447.004
+      },
+      {
+        "frame_index_0": 11200,
+        "pts_s": 448.004
+      },
+      {
+        "frame_index_0": 11225,
+        "pts_s": 449.004
+      },
+      {
+        "frame_index_0": 11250,
+        "pts_s": 450.004
+      },
+      {
+        "frame_index_0": 11275,
+        "pts_s": 451.004
+      },
+      {
+        "frame_index_0": 11300,
+        "pts_s": 452.004
+      },
+      {
+        "frame_index_0": 11325,
+        "pts_s": 453.004
+      },
+      {
+        "frame_index_0": 11350,
+        "pts_s": 454.004
+      },
+      {
+        "frame_index_0": 11375,
+        "pts_s": 455.004
+      },
+      {
+        "frame_index_0": 11400,
+        "pts_s": 456.004
+      },
+      {
+        "frame_index_0": 11425,
+        "pts_s": 457.004
+      },
+      {
+        "frame_index_0": 11450,
+        "pts_s": 458.004
+      },
+      {
+        "frame_index_0": 11475,
+        "pts_s": 459.004
+      },
+      {
+        "frame_index_0": 11500,
+        "pts_s": 460.004
+      },
+      {
+        "frame_index_0": 11525,
+        "pts_s": 461.004
+      },
+      {
+        "frame_index_0": 11550,
+        "pts_s": 462.004
+      },
+      {
+        "frame_index_0": 11575,
+        "pts_s": 463.004
+      },
+      {
+        "frame_index_0": 11600,
+        "pts_s": 464.004
+      },
+      {
+        "frame_index_0": 11625,
+        "pts_s": 465.004
+      },
+      {
+        "frame_index_0": 11650,
+        "pts_s": 466.004
+      },
+      {
+        "frame_index_0": 11675,
+        "pts_s": 467.004
+      }
+    ]
+  },
+  {
+    "sheet": "frames/native-420-step25-03.jpg",
+    "frames": [
+      {
+        "frame_index_0": 11700,
+        "pts_s": 468.004
+      },
+      {
+        "frame_index_0": 11725,
+        "pts_s": 469.004
+      },
+      {
+        "frame_index_0": 11750,
+        "pts_s": 470.004
+      },
+      {
+        "frame_index_0": 11775,
+        "pts_s": 471.004
+      },
+      {
+        "frame_index_0": 11800,
+        "pts_s": 472.004
+      },
+      {
+        "frame_index_0": 11825,
+        "pts_s": 473.004
+      },
+      {
+        "frame_index_0": 11850,
+        "pts_s": 474.004
+      },
+      {
+        "frame_index_0": 11875,
+        "pts_s": 475.004
+      },
+      {
+        "frame_index_0": 11900,
+        "pts_s": 476.004
+      },
+      {
+        "frame_index_0": 11925,
+        "pts_s": 477.004
+      },
+      {
+        "frame_index_0": 11950,
+        "pts_s": 478.004
+      },
+      {
+        "frame_index_0": 11975,
+        "pts_s": 479.004
+      },
+      {
+        "frame_index_0": 12000,
+        "pts_s": 480.004
+      },
+      {
+        "frame_index_0": 12025,
+        "pts_s": 481.004
+      },
+      {
+        "frame_index_0": 12050,
+        "pts_s": 482.004
+      },
+      {
+        "frame_index_0": 12075,
+        "pts_s": 483.004
+      },
+      {
+        "frame_index_0": 12100,
+        "pts_s": 484.004
+      },
+      {
+        "frame_index_0": 12125,
+        "pts_s": 485.004
+      },
+      {
+        "frame_index_0": 12150,
+        "pts_s": 486.004
+      },
+      {
+        "frame_index_0": 12175,
+        "pts_s": 487.004
+      },
+      {
+        "frame_index_0": 12200,
+        "pts_s": 488.004
+      },
+      {
+        "frame_index_0": 12225,
+        "pts_s": 489.004
+      },
+      {
+        "frame_index_0": 12250,
+        "pts_s": 490.004
+      },
+      {
+        "frame_index_0": 12275,
+        "pts_s": 491.004
+      }
+    ]
+  },
+  {
+    "sheet": "frames/native-420-step25-04.jpg",
+    "frames": [
+      {
+        "frame_index_0": 12300,
+        "pts_s": 492.004
+      },
+      {
+        "frame_index_0": 12325,
+        "pts_s": 493.004
+      },
+      {
+        "frame_index_0": 12350,
+        "pts_s": 494.004
+      },
+      {
+        "frame_index_0": 12375,
+        "pts_s": 495.004
+      },
+      {
+        "frame_index_0": 12400,
+        "pts_s": 496.004
+      },
+      {
+        "frame_index_0": 12425,
+        "pts_s": 497.004
+      },
+      {
+        "frame_index_0": 12450,
+        "pts_s": 498.004
+      },
+      {
+        "frame_index_0": 12475,
+        "pts_s": 499.004
+      },
+      {
+        "frame_index_0": 12500,
+        "pts_s": 500.004
+      },
+      {
+        "frame_index_0": 12525,
+        "pts_s": 501.004
+      },
+      {
+        "frame_index_0": 12550,
+        "pts_s": 502.004
+      },
+      {
+        "frame_index_0": 12575,
+        "pts_s": 503.004
+      },
+      {
+        "frame_index_0": 12600,
+        "pts_s": 504.004
+      },
+      {
+        "frame_index_0": 12625,
+        "pts_s": 505.004
+      },
+      {
+        "frame_index_0": 12650,
+        "pts_s": 506.004
+      },
+      {
+        "frame_index_0": 12675,
+        "pts_s": 507.004
+      },
+      {
+        "frame_index_0": 12700,
+        "pts_s": 508.004
+      },
+      {
+        "frame_index_0": 12725,
+        "pts_s": 509.004
+      },
+      {
+        "frame_index_0": 12750,
+        "pts_s": 510.004
+      },
+      {
+        "frame_index_0": 12775,
+        "pts_s": 511.004
+      },
+      {
+        "frame_index_0": 12800,
+        "pts_s": 512.004
+      },
+      {
+        "frame_index_0": 12825,
+        "pts_s": 513.004
+      },
+      {
+        "frame_index_0": 12850,
+        "pts_s": 514.004
+      },
+      {
+        "frame_index_0": 12875,
+        "pts_s": 515.004
+      }
+    ]
+  },
+  {
+    "sheet": "frames/native-420-step25-05.jpg",
+    "frames": [
+      {
+        "frame_index_0": 12900,
+        "pts_s": 516.004
+      },
+      {
+        "frame_index_0": 12925,
+        "pts_s": 517.004
+      },
+      {
+        "frame_index_0": 12950,
+        "pts_s": 518.004
+      },
+      {
+        "frame_index_0": 12975,
+        "pts_s": 519.004
+      },
+      {
+        "frame_index_0": 13000,
+        "pts_s": 520.004
+      },
+      {
+        "frame_index_0": 13025,
+        "pts_s": 521.004
+      },
+      {
+        "frame_index_0": 13050,
+        "pts_s": 522.004
+      },
+      {
+        "frame_index_0": 13075,
+        "pts_s": 523.004
+      },
+      {
+        "frame_index_0": 13100,
+        "pts_s": 524.004
+      },
+      {
+        "frame_index_0": 13125,
+        "pts_s": 525.004
+      },
+      {
+        "frame_index_0": 13150,
+        "pts_s": 526.004
+      },
+      {
+        "frame_index_0": 13175,
+        "pts_s": 527.004
+      },
+      {
+        "frame_index_0": 13200,
+        "pts_s": 528.004
+      },
+      {
+        "frame_index_0": 13225,
+        "pts_s": 529.004
+      },
+      {
+        "frame_index_0": 13250,
+        "pts_s": 530.004
+      },
+      {
+        "frame_index_0": 13275,
+        "pts_s": 531.004
+      },
+      {
+        "frame_index_0": 13300,
+        "pts_s": 532.004
+      },
+      {
+        "frame_index_0": 13325,
+        "pts_s": 533.004
+      },
+      {
+        "frame_index_0": 13350,
+        "pts_s": 534.004
+      }
+    ]
+  }
+]

@@ -1,0 +1,132 @@
+[
+  {
+    "sheet": "frames/native-468-step5-01.jpg",
+    "frames": [
+      {
+        "frame_index_0": 11700,
+        "pts_s": 468.004
+      },
+      {
+        "frame_index_0": 11705,
+        "pts_s": 468.204
+      },
+      {
+        "frame_index_0": 11710,
+        "pts_s": 468.404
+      },
+      {
+        "frame_index_0": 11715,
+        "pts_s": 468.604
+      },
+      {
+        "frame_index_0": 11720,
+        "pts_s": 468.804
+      },
+      {
+        "frame_index_0": 11725,
+        "pts_s": 469.004
+      },
+      {
+        "frame_index_0": 11730,
+        "pts_s": 469.204
+      },
+      {
+        "frame_index_0": 11735,
+        "pts_s": 469.404
+      },
+      {
+        "frame_index_0": 11740,
+        "pts_s": 469.604
+      },
+      {
+        "frame_index_0": 11745,
+        "pts_s": 469.804
+      },
+      {
+        "frame_index_0": 11750,
+        "pts_s": 470.004
+      },
+      {
+        "frame_index_0": 11755,
+        "pts_s": 470.204
+      },
+      {
+        "frame_index_0": 11760,
+        "pts_s": 470.404
+      },
+      {
+        "frame_index_0": 11765,
+        "pts_s": 470.604
+      },
+      {
+        "frame_index_0": 11770,
+        "pts_s": 470.804
+      },
+      {
+        "frame_index_0": 11775,
+        "pts_s": 471.004
+      },
+      {
+        "frame_index_0": 11780,
+        "pts_s": 471.204
+      },
+      {
+        "frame_index_0": 11785,
+        "pts_s": 471.404
+      },
+      {
+        "frame_index_0": 11790,
+        "pts_s": 471.604
+      },
+      {
+        "frame_index_0": 11795,
+        "pts_s": 471.804
+      },
+      {
+        "frame_index_0": 11800,
+        "pts_s": 472.004
+      },
+      {
+        "frame_index_0": 11805,
+        "pts_s": 472.204
+      },
+      {
+        "frame_index_0": 11810,
+        "pts_s": 472.404
+      },
+      {
+        "frame_index_0": 11815,
+        "pts_s": 472.604
+      }
+    ]
+  },
+  {
+    "sheet": "frames/native-468-step5-02.jpg",
+    "frames": [
+      {
+        "frame_index_0": 11820,
+        "pts_s": 472.804
+      },
+      {
+        "frame_index_0": 11825,
+        "pts_s": 473.004
+      },
+      {
+        "frame_index_0": 11830,
+        "pts_s": 473.204
+      },
+      {
+        "frame_index_0": 11835,
+        "pts_s": 473.404
+      },
+      {
+        "frame_index_0": 11840,
+        "pts_s": 473.604
+      },
+      {
+        "frame_index_0": 11845,
+        "pts_s": 473.804
+      }
+    ]
+  }
+]

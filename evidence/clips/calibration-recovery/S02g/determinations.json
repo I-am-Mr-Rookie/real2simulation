@@ -1,0 +1,33 @@
+{
+  "run": "S02g",
+  "research_objective": "DONE",
+  "capture_group": "RHETOS_BRIDGE_2024_10_16",
+  "clips": [
+    {
+      "clip_id": "FF01",
+      "original_scale_calculation": "CIRCULAR_REJECTED",
+      "independent_reference_applicable_to_segment": false,
+      "capture_mapping_verified": false,
+      "distinct_trial_from_FF02_verified": false,
+      "owner_approved": false,
+      "metric_qualified": false
+    },
+    {
+      "clip_id": "FF02",
+      "original_commons_scale_calculation": "CIRCULAR_REJECTED",
+      "new_primary_source_lead": "Creator reports rope lowered from railing to ground, then measured with folding rulers; approximately 9m. Non-circular claim, unverified segment correspondence and uncertainty.",
+      "independent_reference_applicable_to_segment": false,
+      "capture_mapping_verified": false,
+      "visibly_labelled_sandbag_events": 3,
+      "independent_qualified_trials_verified": 0,
+      "owner_approved": false,
+      "metric_qualified": false
+    }
+  ],
+  "metric_values_produced": false,
+  "gate_m": "NOT RUN",
+  "s07a_status_changed": false,
+  "canonical_manifest_or_controls_changed": false,
+  "evidence": "FINDINGS.md",
+  "note": "Unknown physical uncertainty remains unknown, not zero. No clip approval or processing permission is inferred."
+}

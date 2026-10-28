@@ -1,0 +1,57 @@
+[
+  {
+    "name": "map_readme",
+    "url": "https://raw.githubusercontent.com/facebookresearch/map-anything/3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9/README.md",
+    "bytes": 38300,
+    "sha256": "2532f640e6cbf3f62391202da2f4a97e56db47f4702eb8010b1982ae305cce6a",
+    "raw_bytes": 38300,
+    "raw_sha256": "2532f640e6cbf3f62391202da2f4a97e56db47f4702eb8010b1982ae305cce6a",
+    "normalization": "strip trailing spaces/tabs/CR per line; preserve wording",
+    "retrieved_utc": "2026-10-27T17:22:50.397475+00:00"
+  },
+  {
+    "name": "map_license",
+    "url": "https://raw.githubusercontent.com/facebookresearch/map-anything/3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9/LICENSE",
+    "bytes": 11334,
+    "sha256": "a172097153c8dec07f872bf749f4f856351b0690fde58ab2c4f570fc1d354931",
+    "raw_bytes": 11334,
+    "raw_sha256": "a172097153c8dec07f872bf749f4f856351b0690fde58ab2c4f570fc1d354931",
+    "normalization": "strip trailing spaces/tabs/CR per line; preserve wording",
+    "retrieved_utc": "2026-10-27T17:22:50.449845+00:00"
+  },
+  {
+    "name": "map_weights",
+    "url": "https://huggingface.co/facebook/map-anything-apache/raw/00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a/README.md",
+    "bytes": 1374,
+    "sha256": "1481978d474172ee1acac213eddaf3572e54dba369190d898c8578f26097f1d2",
+    "raw_bytes": 1374,
+    "raw_sha256": "1481978d474172ee1acac213eddaf3572e54dba369190d898c8578f26097f1d2",
+    "normalization": "strip trailing spaces/tabs/CR per line; preserve wording",
+    "retrieved_utc": "2026-10-27T17:22:50.863203+00:00"
+  },
+  {
+    "name": "sam_readme",
+    "url": "https://raw.githubusercontent.com/facebookresearch/sam-3d-objects/f91db411c50efee93d8db7aeb323885650f6f722/README.md",
+    "bytes": 6664,
+    "sha256": "8830938ced6184b407df1c5cd019a4662f33b542f023647b28c0b9f5f93d9dc8",
+    "raw_bytes": 6666,
+    "raw_sha256": "f41a81a034139b1b0da318a32da1758710d83f70976b43c16e262b8c5b04cca1",
+    "normalization": "strip trailing spaces/tabs/CR per line; preserve wording",
+    "retrieved_utc": "2026-10-27T17:22:50.926365+00:00"
+  },
+  {
+    "name": "sam_license",
+    "url": "https://raw.githubusercontent.com/facebookresearch/sam-3d-objects/f91db411c50efee93d8db7aeb323885650f6f722/LICENSE",
+    "bytes": 8191,
+    "sha256": "45000ae4936d9555b4958ba37e657ef49f199bba36b0dda03a813533384aa579",
+    "raw_bytes": 8204,
+    "raw_sha256": "b3a5a0e2d973ab80e6610ccf1cffc40756050d0ace3cd4fec879b3ec290b2e9b",
+    "normalization": "strip trailing spaces/tabs/CR per line; preserve wording",
+    "retrieved_utc": "2026-10-27T17:22:50.976889+00:00"
+  },
+  {
+    "name": "map_weight_license",
+    "url": "https://huggingface.co/facebook/map-anything-apache/raw/main/LICENSE",
+    "status": "HTTP 404 during initial S05a review; official model card declares Apache-2.0"
+  }
+]

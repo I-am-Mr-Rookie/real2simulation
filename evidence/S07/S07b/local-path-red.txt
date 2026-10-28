@@ -1,0 +1,81 @@
+test_centroid_source_pts_immutable_and_s07a_custody_integration (test_tracking.TrackingTests.test_centroid_source_pts_immutable_and_s07a_custody_integration) ... ok
+test_exact_documented_calls_prefix_only_and_close_on_failure (test_tracking.TrackingTests.test_exact_documented_calls_prefix_only_and_close_on_failure) ... ok
+test_execution_opt_in_and_local_checkpoint_required (test_tracking.TrackingTests.test_execution_opt_in_and_local_checkpoint_required) ... ok
+test_explicit_object_selection_no_largest_or_first_heuristic (test_tracking.TrackingTests.test_explicit_object_selection_no_largest_or_first_heuristic) ... ok
+test_factory_calls_actual_documented_builder_only_when_opted_in (test_tracking.TrackingTests.test_factory_calls_actual_documented_builder_only_when_opted_in) ... ok
+test_full_record_or_bad_provenance_rejected_before_predictor (test_tracking.TrackingTests.test_full_record_or_bad_provenance_rejected_before_predictor) ... ok
+test_local_indices_map_to_irregular_original_segment_not_frame_over_fps (test_tracking.TrackingTests.test_local_indices_map_to_irregular_original_segment_not_frame_over_fps) ... ok
+test_malformed_responses_fail_closed (test_tracking.TrackingTests.test_malformed_responses_fail_closed) ... ok
+test_mapping_cannot_cross_split_or_infer_clock (test_tracking.TrackingTests.test_mapping_cannot_cross_split_or_infer_clock) ... ok
+test_missing_objects_frames_and_empty_masks_are_not_interpolated (test_tracking.TrackingTests.test_missing_objects_frames_and_empty_masks_are_not_interpolated) ... ok
+test_module_exists_without_loading_model_stack (test_tracking.TrackingTests.test_module_exists_without_loading_model_stack) ... ok
+test_remote_paths_rejected_without_filesystem_access (test_tracking.TrackingTests.test_remote_paths_rejected_without_filesystem_access) ...
+  test_remote_paths_rejected_without_filesystem_access (test_tracking.TrackingTests.test_remote_paths_rejected_without_filesystem_access) (path='https://remote/weights') ... FAIL
+  test_remote_paths_rejected_without_filesystem_access (test_tracking.TrackingTests.test_remote_paths_rejected_without_filesystem_access) (path='\\\\remote\\share\\weights') ... FAIL
+  test_remote_paths_rejected_without_filesystem_access (test_tracking.TrackingTests.test_remote_paths_rejected_without_filesystem_access) (path='//remote/share') ... FAIL
+test_unknown_calibration_preserved_not_filled (test_tracking.TrackingTests.test_unknown_calibration_preserved_not_filled) ... ok
+
+======================================================================
+FAIL: test_remote_paths_rejected_without_filesystem_access (test_tracking.TrackingTests.test_remote_paths_rejected_without_filesystem_access) (path='https://remote/weights')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07b-tracking\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_tracking.py", line 151, in test_remote_paths_rejected_without_filesystem_access
+    self.module.load_local_predictor(path, execute=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s07b-tracking\2026-10-26 - Meta Global AI Developer Hackathon\Build\measurement\tracking.py", line 134, in load_local_predictor
+    if not checkpoint.is_file() or checkpoint.is_symlink():
+           ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+AssertionError: network probe
+
+======================================================================
+FAIL: test_remote_paths_rejected_without_filesystem_access (test_tracking.TrackingTests.test_remote_paths_rejected_without_filesystem_access) (path='\\\\remote\\share\\weights')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07b-tracking\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_tracking.py", line 151, in test_remote_paths_rejected_without_filesystem_access
+    self.module.load_local_predictor(path, execute=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s07b-tracking\2026-10-26 - Meta Global AI Developer Hackathon\Build\measurement\tracking.py", line 134, in load_local_predictor
+    if not checkpoint.is_file() or checkpoint.is_symlink():
+           ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+AssertionError: network probe
+
+======================================================================
+FAIL: test_remote_paths_rejected_without_filesystem_access (test_tracking.TrackingTests.test_remote_paths_rejected_without_filesystem_access) (path='//remote/share')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07b-tracking\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_tracking.py", line 151, in test_remote_paths_rejected_without_filesystem_access
+    self.module.load_local_predictor(path, execute=True)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\s07b-tracking\2026-10-26 - Meta Global AI Developer Hackathon\Build\measurement\tracking.py", line 134, in load_local_predictor
+    if not checkpoint.is_file() or checkpoint.is_symlink():
+           ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1241, in _execute_mock_call
+    raise effect
+AssertionError: network probe
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.179s
+
+FAILED (failures=3)

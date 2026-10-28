@@ -1,0 +1,6 @@
+RP01: SHA256/bytes/probe/decode-receipt MATCH; metric qualification FALSE
+RP02: SHA256/bytes/probe/decode-receipt MATCH; metric qualification FALSE
+RP03: SHA256/bytes/probe/decode-receipt MATCH; metric qualification FALSE
+RP02: local original SHA1 and byte count MATCH live Commons imageinfo
+Integrity/review consistency: PASS
+Literal qualified replacement acceptance: 0/3; FAIL (expected research PARTIAL)

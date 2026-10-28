@@ -1,0 +1,15 @@
+{
+  "byte_identical": true,
+  "runs": [
+    {
+      "exit": 1,
+      "stdout": "Gate M NOT_MET_INPUT_READINESS; eligible=0; measured=0/3",
+      "sha256": "5b070378ae434a647e7fafe2b74f69105e44c43867a4a61876117087394a8e31"
+    },
+    {
+      "exit": 1,
+      "stdout": "Gate M NOT_MET_INPUT_READINESS; eligible=0; measured=0/3",
+      "sha256": "5b070378ae434a647e7fafe2b74f69105e44c43867a4a61876117087394a8e31"
+    }
+  ]
+}

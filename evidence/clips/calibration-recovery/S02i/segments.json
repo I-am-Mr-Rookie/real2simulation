@@ -1,0 +1,139 @@
+{
+  "run": "S02i",
+  "candidate": "RP01",
+  "metric_qualified": false,
+  "scope": "Review-only findings; not clips.csv or owner approval",
+  "capture_group": "NUSTEM_FREEFALL_2016",
+  "delivered_pts_origin_s": 0.004,
+  "delivered_fps": 25,
+  "camera_capture_fps": null,
+  "capture_to_presentation_mapping": null,
+  "metric_scale_m_per_pixel": null,
+  "scale_uncertainty": null,
+  "perspective_uncertainty": null,
+  "physical_time_uncertainty": null,
+  "owner_metric_approval": false,
+  "segments": [
+    {
+      "id": "stopwatch",
+      "window_pts_s": [
+        127.004,
+        128.964
+      ],
+      "window_frames_0": [
+        3175,
+        3224
+      ],
+      "conservative_visible_freeflight_frames_0": [
+        3189,
+        3193
+      ],
+      "conservative_visible_freeflight_pts_s": [
+        127.564,
+        127.724
+      ],
+      "note": "Best partial side-view trajectory; ball strongly motion-blurred, ruler alongside. Partial flight is not automatically disqualifying. Last ball image reaches lower crop at n3194; no impact witnessed. Metric clock/plane unverified.",
+      "evidence": "frames/native-127-step1-01.jpg"
+    },
+    {
+      "id": "gball1",
+      "window_pts_s": [
+        204.404,
+        205.364
+      ],
+      "window_frames_0": [
+        5110,
+        5134
+      ],
+      "note": "Distinct shown release near 204.7s after close-to-wide edit; hand follows/occludes ball. No valid paired floor impact/time display.",
+      "evidence": "frames/native-204.4-step1-01.jpg"
+    },
+    {
+      "id": "gball-hidden",
+      "window_pts_s": [
+        211.004,
+        216.884
+      ],
+      "note": "Raises/rearms then camera cuts to Christina. Not a certified visible new flight, not an additional benchmark.",
+      "evidence": "frames/native-211-step3-01.jpg"
+    },
+    {
+      "id": "gball2",
+      "window_pts_s": [
+        221.004,
+        221.964
+      ],
+      "window_frames_0": [
+        5525,
+        5549
+      ],
+      "note": "Shown release near221.2; hands/ball overlap, floor omitted. Previous close-to-wide edit must not be joined into a metric track.",
+      "evidence": "frames/native-221-step1-01.jpg"
+    },
+    {
+      "id": "gball3",
+      "window_pts_s": [
+        230.204,
+        231.164
+      ],
+      "window_frames_0": [
+        5755,
+        5779
+      ],
+      "note": "Close view release around230.4-230.5; ball leaves crop rapidly. Hand overlap and blur; ruler visible, no per-frame electronic clock.",
+      "evidence": "frames/native-230.2-step1-01.jpg"
+    },
+    {
+      "id": "gball4",
+      "window_pts_s": [
+        234.604,
+        235.564
+      ],
+      "window_frames_0": [
+        5865,
+        5889
+      ],
+      "note": "Shown release around234.8-235; cut at235.044 before a complete endpoint record.",
+      "evidence": "frames/native-234.6-step1-01.jpg"
+    },
+    {
+      "id": "lightgate",
+      "window_pts_s": [
+        323.004,
+        325.964
+      ],
+      "note": "Ball placed/held at upper apparatus then returns to hand; not certified freeflight. Rule lies obliquely on desk, not beside trajectory.",
+      "evidence": "frames/native-323-step2-01.jpg"
+    },
+    {
+      "id": "lightgate-close",
+      "window_pts_s": [
+        352.004,
+        354.964
+      ],
+      "note": "Release-like movement353.8-354 then cut from close to wide354.084; two gate locations not jointly calibrated in close image, numeric logger event not paired.",
+      "evidence": "frames/native-352-step2-02.jpg"
+    },
+    {
+      "id": "lightgate-manual",
+      "window_pts_s": [
+        371.004,
+        373.964
+      ],
+      "note": "Ball visibly held and moved through gate; do not treat downward hand motion as ballistic fall.",
+      "evidence": "frames/native-371-step2-01.jpg"
+    },
+    {
+      "id": "electronic",
+      "window_pts_s": [
+        420.004,
+        534.004
+      ],
+      "sample_step_delivered_frames": 25,
+      "note": "Electromagnet/trapdoor discussion; base switch demo448-455, upper sphere manipulation438-441 and456-458, separately cut stopwatch469-473. No dimensioned side-view reference/continuous running clock paired to a certified trial. Exact tiny-ball free-flight windows not exhaustively annotated.",
+      "evidence": "frames/native-420-step25-01.jpg"
+    }
+  ],
+  "qualified_distinct_trials": 0,
+  "trial_inventory_exhaustive": false
+}

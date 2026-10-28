@@ -1,0 +1,5 @@
+Read-only Railway plugin operation: mcp__codex_apps__railway_get_status
+projectId: b07b0d66-2001-4ccc-915d-7d226744d189
+environmentId: c5823a28-5118-49d8-b4d6-9851fa8ccc45 (dev)
+Result: UNAUTHORIZED — This app connection requires reauthentication. Reconnect the app and try again.
+No retry, credential access, auth mutation or deployment. Independent public dev HTTP verifier passed10/10. Current provider-side deployment status not independently refreshed.

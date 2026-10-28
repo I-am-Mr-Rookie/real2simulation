@@ -1,0 +1,16 @@
+[
+  {"name":"outside origin","target":"spec","path":["placement","origin","value"],"value":[100,2,0],"reason":"bounds"},
+  {"name":"body protrudes","target":"spec","path":["placement","origin","value"],"value":[9.99,2,0],"reason":"bounds"},
+  {"name":"forged bounds","target":"spec","path":["scene","constraints","bounds_m","max"],"value":[100,100,100],"reason":"snapshot"},
+  {"name":"wrong scene","target":"spec","path":["scene","scene_id"],"value":"wrong-room","reason":"scene_id"},
+  {"name":"unknown scale","target":"scene","path":["scale"],"value":{"status":"unknown","metres_per_source_unit":null,"evidence":"synthetic"},"reason":"scale"},
+  {"name":"unresolved surface","target":"spec","path":["scene","constraints","allowed_surface_ids"],"value":["missing"],"reason":"surface"},
+  {"name":"unresolved obstacle","target":"spec","path":["scene","constraints","collision_obstacle_ids"],"value":["missing"],"reason":"obstacle"},
+  {"name":"unknown gravity","target":"scene","path":["gravity"],"value":{"status":"unknown","direction":null,"magnitude_m_s2":null,"evidence":"synthetic"},"reason":"gravity"},
+  {"name":"oversized step","target":"spec","path":["simulation","time_step","value"],"value":1,"reason":"time_step"},
+  {"name":"step count exhaustion","target":"spec","path":["simulation","time_step","value"],"value":1e-12,"reason":"steps"},
+  {"name":"projectile leaves scene","template":"projectile","target":"spec","path":["parameters","horizontal_speed","value"],"value":100,"reason":"bounds"},
+  {"name":"ramp leaves scene","template":"ramp","target":"spec","path":["parameters","length","value"],"value":100,"reason":"bounds"},
+  {"name":"pendulum leaves scene","template":"pendulum","target":"spec","path":["parameters","length","value"],"value":20,"reason":"bounds"},
+  {"name":"overflow velocity","target":"spec","path":["parameters","initial_vertical_velocity","value"],"value":1e308,"reason":"numerical"}
+]

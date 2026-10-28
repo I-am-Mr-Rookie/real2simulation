@@ -1,0 +1,22 @@
+test_absolute_scale_clock_uncertainty_and_signed_sensitivities (test_uncertainty.UncertaintyTests.test_absolute_scale_clock_uncertainty_and_signed_sensitivities) ... ok
+test_clock_is_not_delivered_fps_or_unverified_ratio (test_uncertainty.UncertaintyTests.test_clock_is_not_delivered_fps_or_unverified_ratio) ... ok
+test_correlated_calibration_uses_signed_clock_derivative (test_uncertainty.UncertaintyTests.test_correlated_calibration_uses_signed_clock_derivative) ... ok
+test_detection_and_timestamp_jacobians_match_independent_refits (test_uncertainty.UncertaintyTests.test_detection_and_timestamp_jacobians_match_independent_refits) ... ok
+test_external_noise_not_residual_rmse_or_three_point_interval (test_uncertainty.UncertaintyTests.test_external_noise_not_residual_rmse_or_three_point_interval) ... ok
+test_ill_conditioning_and_numeric_boundaries (test_uncertainty.UncertaintyTests.test_ill_conditioning_and_numeric_boundaries) ... FAIL
+test_suffix_cannot_tune_any_uncertainty_or_noise (test_uncertainty.UncertaintyTests.test_suffix_cannot_tune_any_uncertainty_or_noise) ... ok
+test_unknown_noise_systematics_and_correlation_abstain (test_uncertainty.UncertaintyTests.test_unknown_noise_systematics_and_correlation_abstain) ... ok
+
+======================================================================
+FAIL: test_ill_conditioning_and_numeric_boundaries (test_uncertainty.UncertaintyTests.test_ill_conditioning_and_numeric_boundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07d-uncertainty\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_uncertainty.py", line 138, in test_ill_conditioning_and_numeric_boundaries
+    with self.assertRaises(FitAbstention):
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: FitAbstention not raised
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.065s
+
+FAILED (failures=1)

@@ -1,0 +1,20 @@
+[
+  {
+    "file": "media/RP01-alevel-240p.webm",
+    "bytes": 20430216,
+    "sha256": "af01de83df6bd8e7d99ee617981d75e8981cc004acebb2d5014fd2687068b3aa",
+    "sha1": "b158969af1714394d22ef8588243fcd99ec0a808"
+  },
+  {
+    "file": "media/RP02-getaclass-original.webm",
+    "bytes": 21092042,
+    "sha256": "00c35bff1d0f5069739f10ac245478e16db1258a08f8f43182ae6f4811f78025",
+    "sha1": "d44ae167a983aacc360811f96cca352827c15a2e"
+  },
+  {
+    "file": "media/RP03-impact-240p.webm",
+    "bytes": 2587661,
+    "sha256": "e72d5406cd74f02dd76ad310adda42b4f1bdff0ec0953efa45b46069faa5fa7c",
+    "sha1": "95526e68e32e3d63b3d5b2afb1c5ee5acfeb00a4"
+  }
+]

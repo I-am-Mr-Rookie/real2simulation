@@ -1,0 +1,50 @@
+{
+  "url": "https://www.dji.com/osmo-action-4/specs",
+  "metadata": {
+    "twitter:card": "photo",
+    "og:url": "https://www.dji.com/osmo-action-4/specs",
+    "twitter:description": "Check out the specs of DJI's action camera, Osmo Action 4, to learn more about its features, functions, and configurations. Osmo Action 4 comes equipped with a 1/1.3-inch CMOS to excel in low-light environments. It boasts a powerful 10-bit D-Log M color, 2.5h long operating time, -20° C (-4° F) deep-freeze resistance, 155º ultra-wide FOV, 18m waterproof, 360° HorizonSteady, and more to capture your diverse sports adventures with flair.",
+    "language": "en",
+    "og:description": "Check out the specs of DJI's action camera, Osmo Action 4, to learn more about its features, functions, and configurations. Osmo Action 4 comes equipped with a 1/1.3-inch CMOS to excel in low-light environments. It boasts a powerful 10-bit D-Log M color, 2.5h long operating time, -20° C (-4° F) deep-freeze resistance, 155º ultra-wide FOV, 18m waterproof, 360° HorizonSteady, and more to capture your diverse sports adventures with flair.",
+    "ogDescription": "Check out the specs of DJI's action camera, Osmo Action 4, to learn more about its features, functions, and configurations. Osmo Action 4 comes equipped with a 1/1.3-inch CMOS to excel in low-light environments. It boasts a powerful 10-bit D-Log M color, 2.5h long operating time, -20° C (-4° F) deep-freeze resistance, 155º ultra-wide FOV, 18m waterproof, 360° HorizonSteady, and more to capture your diverse sports adventures with flair.",
+    "twitter:title": "DJI Osmo Action 4 - Specs - DJI",
+    "og:type": "website",
+    "og:title": "DJI Osmo Action 4 - Specs - DJI",
+    "twitter:site": "@DJIGlobal",
+    "og:image": "https://www-cdn.djiits.com/cms/uploads/c58213b847e85616ccfc9c7a5b57f94f@374*374.png",
+    "title": "DJI Osmo Action 4 - Specs - DJI",
+    "image": "https://www-cdn.djiits.com/cms/uploads/c58213b847e85616ccfc9c7a5b57f94f@374*374.png",
+    "fb:pages": "448935811878964",
+    "ogTitle": "DJI Osmo Action 4 - Specs - DJI",
+    "format-detection": "telephone=no",
+    "ogUrl": "https://www.dji.com/osmo-action-4/specs",
+    "google-site-verification": "D3__34OEXGm1NLYpyz4hCiZH7recmXfFxLFSQOa0ck8",
+    "ogSiteName": "DJI Official",
+    "twitter:image": "https://www-cdn.djiits.com/cms/uploads/c58213b847e85616ccfc9c7a5b57f94f@374*374.png",
+    "og:site_name": "DJI Official",
+    "ogImage": "https://www-cdn.djiits.com/cms/uploads/c58213b847e85616ccfc9c7a5b57f94f@374*374.png",
+    "description": "Check out the specs of DJI's action camera, Osmo Action 4, to learn more about its features, functions, and configurations. Osmo Action 4 comes equipped with a 1/1.3-inch CMOS to excel in low-light environments. It boasts a powerful 10-bit D-Log M color, 2.5h long operating time, -20° C (-4° F) deep-freeze resistance, 155º ultra-wide FOV, 18m waterproof, 360° HorizonSteady, and more to capture your diverse sports adventures with flair.",
+    "viewport": "width=device-width,initial-scale=0.5,minimum-scale=0.5",
+    "favicon": "https://www-cdn.djiits.com/dps/d799b11c032df25174fa9273de1347a1@origin.ico",
+    "scrapeId": "01a180fe-158c-75c9-a2b3-fc373e312c56",
+    "sourceURL": "https://www.dji.com/osmo-action-4/specs",
+    "url": "https://www.dji.com/osmo-action-4/specs",
+    "statusCode": 200,
+    "contentType": "text/html;charset=utf-8",
+    "proxyUsed": "basic",
+    "cacheState": "hit",
+    "cachedAt": "2026-10-28T03:26:31.825Z",
+    "creditsUsed": 1,
+    "concurrencyLimited": false
+  },
+  "claims": {
+    "normal_video_1080p_fps": [
+      100,
+      120,
+      200,
+      240
+    ],
+    "slow_motion_1080p": "8x (240fps), 4x (120fps)",
+    "inference": "Both 200 and 240 are supported settings; manufacturer capability does not authenticate this recording."
+  }
+}

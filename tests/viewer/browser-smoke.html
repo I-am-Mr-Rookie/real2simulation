@@ -1,0 +1,101 @@
+<!doctype html>
+<!-- S09b browser smoke (synthetic fixture only). Served from repo root by tests/viewer/browser-smoke.mjs. -->
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S09b smoke</title>
+<script type="importmap">{"imports":{"three":"/Build/web/node_modules/three/build/three.module.js"}}</script>
+<div id="host" style="width:320px;height:240px"></div>
+<div id="host2" style="width:100%;height:300px"></div>
+<pre id="out">PENDING</pre>
+<script type="module">
+import * as THREE from 'three';
+import { createViewerAdapter } from '/Build/web/src/viewer/adapter.mjs';
+import { createThreeRenderer } from '/Build/web/src/viewer/three-renderer.mjs';
+import { SYNTHETIC_FIXTURE } from '/Build/web/src/viewer/fixture.mjs';
+import { renderBudget, probeDevice } from '/Build/web/src/viewer/render-budget.mjs';
+const out = {}; const host = document.getElementById('host');
+const frame = () => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+const lit = (c) => { // count non-background pixels via 2D readback of the WebGL canvas
+  const k = document.createElement('canvas'); k.width = c.width; k.height = c.height;
+  const x = k.getContext('2d'); x.drawImage(c, 0, 0);
+  const d = x.getImageData(0, 0, k.width, k.height).data; let n = 0;
+  for (let i = 0; i < d.length; i += 4) if (d[i] | d[i + 1] | d[i + 2]) n++;
+  return n;
+};
+const green = (c) => { // collider edge colour 0x33ff88 (S09d)
+  const k = document.createElement('canvas'); k.width = c.width; k.height = c.height;
+  const x = k.getContext('2d'); x.drawImage(c, 0, 0);
+  const d = x.getImageData(0, 0, k.width, k.height).data; let n = 0;
+  for (let i = 0; i < d.length; i += 4) if (d[i + 1] > 200 && d[i] < 120 && d[i + 2] > 90 && d[i + 2] < 190) n++;
+  return n;
+};
+try {
+  const base = '/' + SYNTHETIC_FIXTURE.repositoryManifest.replace(/[^/]+$/, '');
+  const manifest = await (await fetch('/' + SYNTHETIC_FIXTURE.repositoryManifest)).json();
+  const assets = {};
+  for (const a of manifest.assets) assets[a.id] = new Uint8Array(await (await fetch(base + a.path)).arrayBuffer());
+  let gl;
+  let handle;
+  const make = createThreeRenderer({ THREE, createGLRenderer: (canvas, b) => (gl = new THREE.WebGLRenderer({ canvas, antialias: b.antialias, preserveDrawingBuffer: true })) });
+  const viewer = createViewerAdapter({ createRenderer: (h, m, s) => (handle = make(h, m, s)) });
+  const states = []; const ac = new AbortController();
+  const h = await viewer.mount(host, SYNTHETIC_FIXTURE.request, { loadScene: async () => ({ manifest, assets }), signal: ac.signal, onState: (s) => states.push(s), onError: (e) => states.push('error:' + e.code) });
+  await frame();
+  const canvas = host.querySelector('canvas');
+  out.states = states; out.webgl2 = gl.capabilities.isWebGL2; out.litBefore = lit(canvas);
+  out.banner = host.querySelector('[data-viewer-banner]')?.textContent ?? null;
+  const before = canvas.toDataURL();
+  const ev = (t, o) => canvas.dispatchEvent(new PointerEvent(t, { bubbles: true, pointerId: 1, ...o }));
+  ev('pointerdown', { clientX: 100, clientY: 100 }); ev('pointermove', { clientX: 170, clientY: 80 }); ev('pointerup', {});
+  await frame();
+  out.orbitChangedPixels = canvas.toDataURL() !== before; out.litAfter = lit(canvas);
+  // S09d overlays: collider edges drawn, labels visible as text inside the canvas, camera path moves them.
+  const cr = canvas.getBoundingClientRect();
+  const labelEl = host.querySelector('[data-viewer-label="fixture-warning"]');
+  const labelBox = () => { const r = labelEl.getBoundingClientRect(); return { x: r.left + r.width / 2 - cr.left, bottom: r.bottom - cr.top, shown: getComputedStyle(labelEl).display !== 'none' }; };
+  out.alignmentIssues = handle.alignment.issues; out.pointsOnFace = handle.alignment.colliders.map((c) => c.pointsOnFace);
+  out.colliderPx = green(canvas);
+  out.labelText = labelEl?.textContent ?? null; out.labelHasChildren = labelEl?.children.length ?? -1;
+  handle.setCameraTime(0); await frame(); const p0 = canvas.toDataURL(); out.label0 = labelBox(); out.screen0 = handle.labelScreen()[0].screen;
+  handle.setCameraTime(1); await frame(); out.label1 = labelBox(); out.screen1 = handle.labelScreen()[0].screen;
+  out.pathChangedPixels = canvas.toDataURL() !== p0;
+  const inside = (b) => b.shown && b.x >= 0 && b.x <= cr.width && b.bottom >= 0 && b.bottom <= cr.height;
+  out.overlaysOk = out.alignmentIssues.length === 0 && out.pointsOnFace.join() === '4,4' && out.colliderPx > 0
+    && out.labelText === 'SYNTHETIC — no accuracy or performance claim' && out.labelHasChildren === 0
+    && inside(out.label0) && inside(out.label1) && Math.abs(out.label0.x - out.screen0[0]) < 1.5 && Math.abs(out.label0.bottom - out.screen0[1]) < 1.5
+    && out.label1.x < out.label0.x - 1 && out.pathChangedPixels;
+  const ctx = gl.getContext();
+  // S09e: real browser applies the per-mount budget derived from its own device facts.
+  out.device = probeDevice(); out.budget = handle.budget; out.glPixelRatio = gl.getPixelRatio(); out.pointCount = handle.pointCount;
+  out.canvasPx = [ctx.drawingBufferWidth, ctx.drawingBufferHeight];
+  out.budgetOk = JSON.stringify(out.budget) === JSON.stringify(renderBudget(out.device)) && out.glPixelRatio === out.budget.pixelRatio
+    && out.pointCount === manifest.render.point_count && out.canvasPx[0] === Math.floor(320 * out.budget.pixelRatio);
+  out.drawCalls = gl.info.render.calls; out.geometries = gl.info.memory.geometries;
+  // S09f: host scrolled out of the viewport -> IntersectionObserver pauses; input draws nothing; back in view -> one redraw.
+  const settle = async () => { for (let i = 0; i < 4; i++) await frame(); };
+  const f0 = gl.info.render.frame;
+  host.style.marginTop = '20000px'; await settle();
+  out.pausedOffscreen = handle.paused; handle.invalidate(); out.pendingWhileOffscreen = handle.pendingFrame; await settle();
+  out.framesWhileOffscreen = gl.info.render.frame - f0;
+  host.style.marginTop = ''; await settle();
+  out.resumed = !handle.paused; out.framesAfterResume = gl.info.render.frame - f0;
+  await settle(); out.idleFrames = gl.info.render.frame - f0 - out.framesAfterResume;
+  out.pauseOk = out.pausedOffscreen === true && out.pendingWhileOffscreen === false && out.framesWhileOffscreen === 0
+    && out.resumed && out.framesAfterResume === 1 && out.idleFrames === 0;
+  ac.abort(); await frame();
+  out.afterDispose = { canvasInDom: !!host.querySelector('canvas'), bannerInDom: !!host.querySelector('[data-viewer-banner]'), labelsInDom: !!host.querySelector('[data-viewer-labels]'), hostPosition: host.style.position, geometries: gl.info.memory.geometries, contextLost: ctx.isContextLost() };
+  // S09g: full-width host (run with SMOKE_DEVICE=375x667@3 for the phone case): no horizontal scroll, canvas fits,
+  // toolbar buttons >= 44 px, inside the viewport, hit-testable, and a real click zooms (pixels change).
+  const host2 = document.getElementById('host2'); const ac2 = new AbortController();
+  await viewer.mount(host2, SYNTHETIC_FIXTURE.request, { loadScene: async () => ({ manifest, assets }), signal: ac2.signal, onState() {}, onError() {} });
+  await frame();
+  const c2 = host2.querySelector('canvas'); const hostW = host2.clientWidth;
+  const btns = [...host2.querySelectorAll('[data-viewer-controls] button')];
+  out.layout = { viewportW: innerWidth, scrollW: document.documentElement.scrollWidth, hostW, canvasCssW: c2.getBoundingClientRect().width,
+    mode: handle.layout, buttons: btns.map((b) => { const r = b.getBoundingClientRect(); return { label: b.getAttribute('aria-label'), w: r.width, h: r.height, left: r.left, right: r.right, hit: document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2) === b }; }) };
+  const z0 = c2.toDataURL(); btns[0].click(); await frame(); out.layout.clickZoomChangedPixels = c2.toDataURL() !== z0;
+  out.layoutOk = out.layout.scrollW <= out.layout.viewportW && out.layout.canvasCssW <= hostW + 0.5 && out.layout.mode === (hostW < 480 ? 'compact' : 'full')
+    && btns.length === 3 && out.layout.buttons.every((b) => b.w >= 44 && b.h >= 44 && b.left >= 0 && b.right <= out.layout.viewportW && b.hit) && out.layout.clickZoomChangedPixels;
+  ac2.abort(); await frame();
+  out.ok = states.join() === 'loading,ready' && out.litBefore > 0 && out.orbitChangedPixels && out.overlaysOk && out.budgetOk && out.pauseOk && out.layoutOk && !out.afterDispose.canvasInDom && !out.afterDispose.bannerInDom && !out.afterDispose.labelsInDom && out.afterDispose.hostPosition === '' && out.afterDispose.geometries === 0 && out.afterDispose.contextLost;
+} catch (e) { out.ok = false; out.error = String(e && e.message || e); }
+document.getElementById('out').textContent = JSON.stringify(out);
+</script>

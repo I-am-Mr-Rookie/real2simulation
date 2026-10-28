@@ -1,0 +1,18 @@
+setUpClass (test_free_fall.FitterTests) ... skipped 'behavior checks await the missing fitter module'
+test_fitter_module_exists (test_free_fall.InstallationTests.test_fitter_module_exists) ... FAIL
+
+======================================================================
+FAIL: test_fitter_module_exists (test_free_fall.InstallationTests.test_fitter_module_exists)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07c\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_free_fall.py", line 152, in test_fitter_module_exists
+    self.assertIsNotNone(importlib.util.find_spec("Build.measurement.free_fall"),
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         "S07c deterministic fitter must be implemented")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: unexpectedly None : S07c deterministic fitter must be implemented
+
+----------------------------------------------------------------------
+Ran 1 test in 0.025s
+
+FAILED (failures=1, skipped=1)

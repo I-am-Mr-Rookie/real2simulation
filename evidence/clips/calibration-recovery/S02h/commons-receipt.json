@@ -1,0 +1,42 @@
+{
+  "url": "https://commons.wikimedia.org/wiki/File:Impaktecholot_(Pilotversuch).webm",
+  "metadata": {
+    "generator": "MediaWiki 1.47.0-wmf.24",
+    "og:image:width": "1200",
+    "title": "File:Impaktecholot (Pilotversuch).webm - Wikimedia Commons",
+    "ogTitle": "File:Impaktecholot (Pilotversuch).webm - Wikimedia Commons",
+    "referrer": [
+      "origin",
+      "origin-when-cross-origin"
+    ],
+    "robots": "max-image-preview:standard",
+    "og:image:height": "675",
+    "og:type": "website",
+    "ogImage": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Impaktecholot_%28Pilotversuch%29.webm/1280px--Impaktecholot_%28Pilotversuch%29.webm.jpg",
+    "language": "en",
+    "og:image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/96/Impaktecholot_%28Pilotversuch%29.webm/1280px--Impaktecholot_%28Pilotversuch%29.webm.jpg",
+    "viewport": "width=1120",
+    "ResourceLoaderDynamicStyles": "",
+    "format-detection": "telephone=no",
+    "og:title": "File:Impaktecholot (Pilotversuch).webm - Wikimedia Commons",
+    "favicon": "https://commons.wikimedia.org/static/favicon/commons.ico",
+    "scrapeId": "01a180fd-fc58-753d-aa2b-545970dbf34d",
+    "sourceURL": "https://commons.wikimedia.org/wiki/File:Impaktecholot_(Pilotversuch).webm",
+    "url": "https://commons.wikimedia.org/wiki/File:Impaktecholot_(Pilotversuch).webm",
+    "statusCode": 200,
+    "contentType": "text/html; charset=UTF-8",
+    "timezone": "Asia/Tokyo",
+    "proxyUsed": "basic",
+    "cacheState": "miss",
+    "indexId": "2b7fb9ba-f61b-490a-b08a-2a0de730ae29",
+    "creditsUsed": 1,
+    "concurrencyLimited": false
+  },
+  "claims": {
+    "creator": "Rhetos",
+    "capture_date": "2025-04-18",
+    "capture_fps_creator_testimony": 240,
+    "licence": "CC BY-SA 4.0",
+    "source": "Own work; edited 108-second WEBM upload, not authenticated native camera original"
+  }
+}
