@@ -88,3 +88,12 @@ No peer edits, merges, control updates, model/checkpoint/media access, paid
 jobs, deployment, publication, credentials, or live/browser/hardware checks.
 Findings are local numeric-contract defects only; they do not establish Gate
 P, Gate M, Gate R/S12, or parent product readiness.
+
+## Final covariance/API/trajectory continuation (17:47Z)
+
+Fresh final-source checks:
+
+- Covariance/API peer final correction `cdaf1bd5d750ce88f1824255925b0f493c46804a`: overlaying the accepted fitter and instrument roots, `python -m unittest discover -s tests/fitter` passed **19/19**. Independent checks confirmed every returned physical covariance diagonal equals `variance`, shifted-time basis is physical, mismatched `times` are rejected, tiny-scale underflow abstains (`valid=False`, no zero certainty), and API unavailable covariance returns `gravity: null`. No new covariance/API P1/P2.
+- Trajectory latest committed head `0bf82ba537c48e0ff1e185d6d2189e66bcab32bd`: `node --test tests/simulator/trajectories.test.mjs` passed **6/6**; recursive artifact freeze is present and sparse/time overflow/initial stop checks pass. **P1 remains open:** ratio `duration=1.5`, `time_step=1` is accepted by `consumeValidatedTrajectoryArtifact`, then `trajectoryFromValidatedArtifact` emits `requestedSteps=1` (verified executable repro), silently truncating the horizon. Require integer or explicitly sub-ULP-near-integer ratio; do not floor arbitrary fractional duration.
+
+No physical/vendor gate acceptance; all evidence remains synthetic/contract-level.
