@@ -41,5 +41,7 @@ Replay current source advanced to `3f16b63` after `7ca8f3c`; canonical hashing a
 
 **Follow-up re-review (18:21Z):** contacts `ff91183` now enforce `simulated/synthetic`, exact sample index/time, and clone/freeze returned vectors; focused contacts 5/5 pass. Replay `d16bf0e` now has the corrected actual-observation binding and focused replay/Mystery-g 5/5 pass. The prior contact/replay findings are closed. Integrated canonical main `65e6080` has the extended Node template source; lab 5/5 and contacts/templates 12/12 pass. No new actionable template defect found after the endpoint/overflow fixes.
 
+**Final re-review (18:22Z):** latest contact source `d02e726` passes 5/5 and latest replay source `7dc12ae` passes 5/5. The canonical main has advanced to `d02e726` plus lab replay regression `a8c27c6`, but `Build/simulator/replay.mjs` is still absent there; therefore the parent-owned four-template seeded replay regression cannot pass on canonical main until the replay files are integrated. This is the only remaining integration blocker, not a defect in the reviewed sibling fixes. No open P1/P2 findings remain in contacts, templates, replay, or the lab source reviewed. R-P, physical Gate P, and whole-product acceptance remain explicitly out of scope/unrun.
+
 ## Ponytail/application
 Used smallest source-only review, reused existing contracts and test seams, isolated owned evidence, avoided dependency/framework expansion, and preserved truthful synthetic-vs-physical boundaries. OpenCodex-managed route was not polled.
