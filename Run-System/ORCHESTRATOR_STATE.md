@@ -1,5 +1,28 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — S07 metadata and S05 local guard accepted; next isolated prerequisites
+
+S07b recovery4 terminal PARTIAL accepted7 files, a1f8bf5 -> rebased36fb353/FF;
+fresh post-rebase tracking13 PASS. ACTUAL signed-in in-app browser recovered,
+HF pointer/config metadata read and Modal129.99 credit/Live Apps0/Secrets none
+in selected main environment. No downloaded bytes/runtime/headroom-cap proof.
+Q11 still answered; Q14 asks only genuine secure HF credential-delivery scope.
+
+S05b recovery7 terminal PARTIAL accepted9 files, rebasedcd42ebc/FF, fresh spike21
+and post-rebase scene11 PASS. Guard1200s/cooperative async tests are LOCAL ONLY,
+not independent hard wallclock/confirmed remote stop. Source admits cancellation
+cooperation; other-vendor review required before any paid admission. Plan-after-
+implementation sequencing deviation preserved in worker REPORT, not rewritten.
+
+Ready independent scopes: R-S05guard fresh CLAUDE Opus5.5/medium review in
+r-m-review/run/R-S05guard (retained271 JPEGs untouched), deadline14:45UTC;
+S01b-agent-preflight fresh CODEX-2 Sol/high, s04g1/run/S01b-agent-preflight,
+deadline14:45UTC/deploy cutoff14:35UTC, only UI worker after S07 terminal.
+Both basecd42ebc, exact canonical contracts. No product-row DONE/extra acceptance
+count, no new paid job/reservation or secret-value/credential changes authorized.
+CLEAN2 separate chat01a182e0-d6fe-7113-9885-ac99d14e7f17 active, deadline14:40UTC.
+Controller waits actual separate chats, same project; no inline agents/schedule.
+
 ## CURRENT — cleaner1 accepted; targeted hash-dedup follow-up
 
 CLEAN-20261028 terminal separate chat, report/scoped12 files verified, exact cache
