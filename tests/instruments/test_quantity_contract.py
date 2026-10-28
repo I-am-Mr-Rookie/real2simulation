@@ -34,9 +34,16 @@ class QuantityContractTests(unittest.TestCase):
                     validate_quantity(dict(self.payload, source=source))
 
     def test_rejects_negative_uncertainty_and_missing_unit(self):
-        for bad in (dict(self.payload, uncertainty=-1), dict(self.payload, unit=None)):
+        for bad in (dict(self.payload, uncertainty=-1), dict(self.payload, unit=None),
+                    dict(self.payload, unit="bananas")):
             with self.assertRaises(ValueError):
                 validate_quantity(bad)
+
+    def test_constructor_rejects_invalid_source_as_value_error(self):
+        for source in (None, [], "bad"):
+            with self.subTest(source=source):
+                with self.assertRaises(ValueError):
+                    Quantity(1, "s", 0, source)
 
     def test_constructor_normalizes_and_freezes_source(self):
         source = {"label": "simulated", "evidence": "fixture"}

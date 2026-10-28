@@ -30,13 +30,14 @@ def _text(value: Any, name: str) -> str:
 
 _FIELDS = frozenset(("value", "unit", "uncertainty", "error", "source"))
 _SOURCE_FIELDS = frozenset(("label", "evidence"))
+_ALLOWED_UNITS = frozenset(("s", "m", "px", "m/s", "m/s^2"))
 
 
 @dataclass(frozen=True)
 class Quantity:
     """A scalar with unit, uncertainty, error semantics, and provenance.
 
-    ``uncertainty`` is the stated interval/standard uncertainty of the value;
+    ``uncertainty`` is a non-negative standard uncertainty in the value's unit;
     ``error`` is an instrument perturbation or known signed offset.  Neither is
     silently inferred or calibrated by this contract.
     """
@@ -48,7 +49,11 @@ class Quantity:
     error: float | None = None
 
     def __post_init__(self) -> None:
-        normalized = validate_quantity(self.to_dict())
+        data = {"value": self.value, "unit": self.unit,
+                "uncertainty": self.uncertainty, "source": self.source}
+        if self.error is not None:
+            data["error"] = self.error
+        normalized = validate_quantity(data)
         object.__setattr__(self, "value", normalized["value"])
         object.__setattr__(self, "unit", normalized["unit"])
         object.__setattr__(self, "uncertainty", normalized["uncertainty"])
@@ -76,6 +81,8 @@ def validate_quantity(data: Mapping[str, Any]) -> dict[str, Any]:
         raise ValueError(f"quantity has unknown fields: {sorted(extra)}")
     value = _finite(data.get("value"), "value")
     unit = _text(data.get("unit"), "unit")
+    if unit not in _ALLOWED_UNITS:
+        raise ValueError(f"unit must be one of {sorted(_ALLOWED_UNITS)}")
     uncertainty = _finite(data.get("uncertainty"), "uncertainty")
     if uncertainty < 0:
         raise ValueError("uncertainty must be non-negative")
