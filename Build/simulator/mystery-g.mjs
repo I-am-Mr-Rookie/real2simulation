@@ -9,7 +9,7 @@ function sample(v) { safeKeys(v, ['time_s','position_m']); if (!finite(v.time_s)
 const handoffs = new WeakMap();
 export async function createTrustedFitterHandoff(result, observations) {
   if (!result || result.status !== 'ok' || !Array.isArray(observations)) fail('actual S11 response and observations required');
-  const gravity=result.gravity; if (!plain(gravity) || gravity.unit !== 'm/s^2' || !finite(gravity.value) || gravity.value <= 0 || !finite(gravity.uncertainty) || gravity.uncertainty < 0 || !plain(gravity.source) || gravity.source.label !== 'simulated' || typeof gravity.source.evidence !== 'string' || result.covariance?.status !== 'available' || result.uncertainty?.model !== 'iid_fixed_clock_scale') fail('actual successful S11 fitter response required');
+  const gravity=result.gravity; if (!plain(gravity) || gravity.unit !== 'm/s^2' || !finite(gravity.value) || gravity.value <= 0 || !finite(gravity.uncertainty) || gravity.uncertainty < 0 || !plain(gravity.source) || gravity.source.label !== 'simulated' || typeof gravity.source.evidence !== 'string' || result.covariance?.status !== 'available' || !['iid_fixed_clock_scale', 'independent_position_time_first_order'].includes(result.uncertainty?.model)) fail('actual successful S11 fitter response required');
   const clean=freeze({ status:'ok', gravity:{ value:gravity.value, unit:'m/s^2', uncertainty:gravity.uncertainty, source:{ label:'simulated', evidence:gravity.source.evidence } } });
   const binding=await stableHash(observations.map(sample)); const handoff=Object.freeze({ result:clean, observationHash:binding }); handoffs.set(handoff, binding); return handoff;
 }

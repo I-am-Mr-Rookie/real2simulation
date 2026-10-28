@@ -20,8 +20,11 @@ All instrument fields are explicit:
 {"time_resolution_s":0.000001,"time_uncertainty_s":0.000001,"time_bias_s":0,"distance_resolution_m":0.000001,"distance_uncertainty_m":0.000001,"distance_bias_m":0}
 ```
 
-Fitter uncertainty assumes fixed clock/scale and iid residuals; instrument
-uncertainties are carried but not propagated. A fit error is returned honestly.
+Fitter uncertainty propagates independent position and first-order timing standard
+uncertainties, with a residual-variance floor. Correlated clock-rate/scale errors,
+errors-in-variables bias correction and calibration remain excluded. Reported
+quantity uncertainty is one standard uncertainty, not a 95% interval. Fit errors
+are returned honestly.
 Output is internal diagnostic data, **not a Mystery-g public payload**, measured
 physics, real reconstruction, calibration, a deployed product or a gate pass.
 

@@ -33,6 +33,8 @@ class BridgeTests(unittest.TestCase):
         start = MODULE.handle({'action': 'start', 'template': 'free_fall'})
         result = MODULE.handle({'action': 'fit', 'observations': start['observations']})
         self.assertEqual(result['status'], 'ok'); self.assertAlmostEqual(result['gravity']['value'], 9.81, places=3)
+        self.assertEqual(result['uncertainty']['model'], 'independent_position_time_first_order')
+        self.assertGreater(result['gravity']['uncertainty'], 0)
         self.assertNotIn('traceback', json.dumps(result).lower())
         self.assertEqual(MODULE.handle({'action': 'fit', 'observations': [{'time_s': 'x', 'position_m': 0}]}), {'status': 'error', 'error': {'code': 'nonfinite_observation'}})
 

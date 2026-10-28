@@ -38,7 +38,8 @@ class PipelineTests(unittest.TestCase):
                 self.assertLess(abs(result['fit']['gravity']['value'] - 9.81) / 9.81, 0.005)
                 self.assertEqual(result['fit']['gravity']['source']['label'], 'simulated')
                 self.assertEqual(len(result['observations']['times']), len(result['trajectory']['samples']))
-                self.assertIn('input instrument uncertainty not propagated', result['limits'])
+                self.assertEqual(result['fit']['uncertainty']['model'], 'independent_position_time_first_order')
+                self.assertIn('no correlated clock-rate or scale uncertainty; not calibrated', result['limits'])
                 self.assertEqual(result, run_lab(spec, scene, instruments=INSTRUMENTS))
                 json.dumps(result, allow_nan=False)
 

@@ -65,6 +65,7 @@ test('the chart uses all observations, not the downsampled table', () => {
 });
 
 test('labels describe the bridge ordinate and unsupported fits honestly', () => {
+  assert.match(source, /one standard uncertainty \(1σ\), not a 95% interval/);
   assert.match(source, /Downward vertical displacement from start/);
   assert.match(source, /not distance along the ramp or pendulum arc/);
   assert.match(source, /Fit is unavailable for this template/);

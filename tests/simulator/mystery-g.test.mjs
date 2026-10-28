@@ -8,6 +8,22 @@ const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const base = { seed: 42, gravity_m_s2: 9.81, privateSetup: { chamber: 'sealed' }, observations: [0, 1, 2, 3].map((time_s) => ({ time_s, position_m: 4.905 * time_s * time_s })) };
 const python = (code) => spawnSync('python', ['-c', code], { encoding: 'utf8', cwd: repoRoot });
 
+test('handoff supports both documented models but rejects unknown uncertainty claims', async () => {
+  const result = { status: 'ok', gravity: { value: 8, unit: 'm/s^2', uncertainty: 0.2,
+    source: { label: 'simulated', evidence: 'synthetic contract fixture' } },
+    covariance: { status: 'available' }, uncertainty: { model: 'independent_position_time_first_order' } };
+  for (const model of ['iid_fixed_clock_scale', 'independent_position_time_first_order']) {
+    result.uncertainty.model = model;
+    const handoff = await createTrustedFitterHandoff(result, base.observations);
+    const session = await createMysteryGSession(base);
+    assert.equal(session.revealFit(handoff).reveal.gravity, result.gravity.value);
+  }
+  for (const model of [undefined, 'unknown', '']) {
+    result.uncertainty.model = model;
+    await assert.rejects(() => createTrustedFitterHandoff(result, base.observations), /actual successful S11/);
+  }
+});
+
 test('allowlisted public projection cannot leak arbitrary observation metadata', async () => { const s = await createMysteryGSession(base); const p = publicMysteryGPayload(s); assert.deepEqual(Object.keys(p.observations[0]).sort(), ['position_m', 'time_s']); assert.doesNotMatch(JSON.stringify(p), /gravity|seed|setup|secret|"g"/); await assert.rejects(() => createMysteryGSession({ ...base, observations: [{ time_s: 0, position_m: 1, g: 9.81 }] })); });
 
 test('actual Python S11 response binds to same observations and preserves source', async () => { const code = "import json; from Build.fitter.api import handle; q=lambda v,u:{'value':v,'unit':u,'uncertainty':0.001,'source':{'label':'simulated','evidence':'x'}}; print(json.dumps(handle({'times':[q(0,'s'),q(1,'s'),q(2,'s'),q(3,'s')],'positions':[q(0,'m'),q(4.905,'m'),q(19.62,'m'),q(44.145,'m')],'degree':2})))"; const out = python(code); assert.equal(out.status, 0, out.stderr); assert.equal(out.stderr, ''); assert.ok(out.stdout.trim(), 'Python fitter returned empty JSON'); const handoff = await createTrustedFitterHandoff(JSON.parse(out.stdout), base.observations); const s = await createMysteryGSession(base); const revealed = s.revealFit(handoff); assert.equal(revealed.reveal.source, 'simulated'); assert.throws(() => s.revealFit(handoff)); });

@@ -89,7 +89,8 @@ def run_lab(spec_path: Path, scene_path: Path, *, instruments: dict) -> dict:
         'instrument_model': 'deterministic quantization/bias; no stochastic stream or seed dependence',
         'observations': {'times': times, 'positions': positions, 'coordinate': 'downward displacement'},
         'fit': fit,
-        'limits': ['clock and scale fixed in fitter', 'input instrument uncertainty not propagated',
+        'limits': ['first-order independent timing/position uncertainty; scale fixed',
+                   'no correlated clock-rate or scale uncertainty; not calibrated',
                    'not calibrated physical evidence', 'sampled stop-plane crossing may overshoot'],
     }
 

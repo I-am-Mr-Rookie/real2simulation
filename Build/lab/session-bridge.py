@@ -67,7 +67,7 @@ def _start(template: str, mystery: bool = False) -> dict:
             "status": "ok", "template": template,
             "observations": observations, "source": "simulated",
             "units": {"time": "s", "position": "m"},
-            "limitations": ["synthetic authored instrument settings", "uncertainty model does not propagate input instrument uncertainty"],
+            "limitations": ["synthetic authored instrument settings", "first-order independent timing/position uncertainty; no correlated clock-rate or scale uncertainty; not calibrated"],
             "private": {"seed": artifact["spec"]["simulation"]["seed"], "gravity_m_s2": artifact["scene"]["gravity"]["magnitude_m_s2"], "setup": {"template": template, "artifact_version": artifact["artifact_version"], "instrument_model": "synthetic light-gate/ruler quantization"}},
         }
         if template in {"free_fall", "projectile"}:
@@ -88,7 +88,7 @@ def _fit(observations: object) -> dict:
         positions.append({"value": sample["position_m"], "unit": "m", "uncertainty": 1e-6, "source": {"label": "simulated", "evidence": "S10 synthetic lab instrument"}})
     from Build.fitter.api import handle
     return handle({"times": times, "positions": positions, "degree": 2, "select_model": True,
-                   "uncertainty_model": "iid_fixed_clock_scale"})
+                   "uncertainty_model": "independent_position_time_first_order"})
 
 
 def handle(request: object) -> dict:
