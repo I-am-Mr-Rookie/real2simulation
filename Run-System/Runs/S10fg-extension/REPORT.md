@@ -7,3 +7,4 @@
 - **Ponytail applied:** reused existing Node/no-dependency style and caller runner boundary; no new package/dependency, UI, template integration, fitter execution, browser test, or model-authored numeric result.
 - **Risk/limit:** this is a contract extension only; actual extended-template integration and real fitter/browser end-to-end remain parent scope. Public observations are intentionally exposed for fitting; reveal labels are metadata, not authentication.
 
+
