@@ -1,5 +1,27 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — CLEAN3 fully DONE accepted under strict rule; two workers remain
+
+CLEAN3 separate chat01a182fd-aaed-7222-b51b-fbe5a23bdbbb terminal DONE at14:58:42Z,
+before15:20:06 deadline ONLY after all assigned criteria verified. Canonical
+worker_timebox check PASS, fresh controller full hashes44 canonical maps+9 ignored
+preservation files PASS, both exact old roots absent, both refs retained, prefix
+271 present. Scoped29 evidence/report files, no backup bytes staged;8a3bbb0 ->
+rebased158a85b/verified FF. No history/branch/ref destruction. Logical checkout
+bytes removed1,279,280,176, measured root1,782,383,741 bytes. Physical allocation
+not measured; initial cleanup1 also removed151,880,550 bytes of cache.
+
+IMPORTANT custody: s02g-forensics worktree now contains ONLY preserved local
+ignored8 JPEGs+1 .pyc (542,671 bytes), full restore map/hash receipts committed.
+NEVER archive/delete this prepared checkout until custody is safely resolved.
+r-m-review still retains271 ignored ST03 prefix JPEGs and remains NEVER archive.
+Old .worktrees/S02c and S02c1 restore through preserved refs/RESTORE.md, not their
+now-absent paths; historical acquisition media can use canonical verified originals.
+
+Active only token setup (deadline15:12:32UTC, mandatory human action-time confirm
+pending, explicitly WAITING/no creation/reveal) and source recovery8
+(deadline15:19:41UTC/cutoff15:14:41UTC). No new cleanups/fanout/paid work.
+
 ## CURRENT — three strict-window separate workers, actual prompt clocks verified
 
 Fresh list_threads verifies all3 active in project91e441f8-e40c-4ec4-bea2-de7fa1582d97:
