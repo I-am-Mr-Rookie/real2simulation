@@ -1,5 +1,17 @@
 # Real2Simulation — STATE
 
+## Latest direct owner instruction — solo work until 23:00 BDT Oct28
+
+Fresh direct owner authorization: apply Ponytail, work alone, complete useful
+runs silently within30 minutes/until23:00BDT. Session observed start16:28:00Z;
+effective hard stop16:58:00Z=22:58BDT (earlier30m limit), implementation cutoff
+16:53:00Z. No delegation, dispatcher, schedule or automatic continuation.
+S07b-recovery5 claims local exact-checkpoint integrity checks and regression tests;
+no download, secret access, model/provider job, paid reservation or remote action.
+Parent remains PARTIAL until actual live evidence exists. Prior stop superseded
+only by this bounded direct authorization; all other safeguards unchanged.
+RUNS owner replies reviewed: none open; previous R2 removal remains preserved.
+
 ## Latest direct owner instruction — solo work completed before 22:30 BDT Oct28
 
 Koushik: "You are the lonely worker. Complete as many runs as you can until 10:30 pm (BDT)".
