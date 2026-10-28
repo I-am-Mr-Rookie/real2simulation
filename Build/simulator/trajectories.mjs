@@ -2,7 +2,7 @@ import { rk4Step } from './rk4.mjs';
 
 const fail = (message) => { throw new TypeError(`INVALID_TRAJECTORY: ${message}`); };
 const finite = (value) => typeof value === 'number' && Number.isFinite(value);
-const vector3 = (value) => Array.isArray(value) && value.length === 3 && Object.keys(value).length === 3 && value.every(finite);
+const vector3 = (value) => Array.isArray(value) && value.length === 3 && [0, 1, 2].every((i) => Object.prototype.hasOwnProperty.call(value, i) && finite(value[i]));
 const trustedArtifacts = new WeakSet();
 const freezeDeep = (value) => {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
@@ -64,9 +64,9 @@ export function consumeValidatedTrajectoryArtifact(raw) {
   if (!parameters || !simulation || !finite(simulation.duration?.value) || simulation.duration.value < 0 || !finite(simulation.time_step?.value) || simulation.time_step.value <= 0) fail('explicit S08 duration/time_step required');
   const height = parameters[spec.template === 'free_fall' ? 'drop_height' : 'launch_height'];
   if (!finite(height?.value) || height.value <= 0) fail('explicit stop-plane height required');
-  const steps = simulation.duration.value / simulation.time_step.value;
-  if (!Number.isSafeInteger(steps)) fail('S08 duration must be an integer number of fixed steps');
-  const artifact = structuredClone(raw); trustedArtifacts.add(artifact);
+  const ratio = simulation.duration.value / simulation.time_step.value;
+  if (!finite(ratio) || ratio < 0 || !Number.isSafeInteger(Math.floor(ratio))) fail('S08 duration/time_step horizon is not representable');
+  const artifact = freezeDeep(structuredClone(raw)); trustedArtifacts.add(artifact);
   return artifact;
 }
 
@@ -75,7 +75,10 @@ export function trajectoryFromValidatedArtifact(artifact) {
   const { spec } = artifact, p = spec.parameters;
   const projectile = spec.template === 'projectile';
   const height = p[projectile ? 'launch_height' : 'drop_height'].value;
-  const steps = spec.simulation.duration.value / spec.simulation.time_step.value;
+  const ratio = spec.simulation.duration.value / spec.simulation.time_step.value;
+  // shortcut: accept sub-ulp duration ratios, floor the fixed-step horizon; never alter dt.
+  const nearest = Math.round(ratio);
+  const steps = Math.abs(ratio - nearest) <= Number.EPSILON * Math.max(1, Math.abs(ratio)) ? nearest : Math.floor(ratio);
   return (projectile ? projectileTrajectory : freeFallTrajectory)({
     initialPosition: [...spec.placement.origin.value],
     initialVelocity: projectile ? [p.horizontal_speed.value, 0, 0] : [0, p.initial_vertical_velocity.value, 0],

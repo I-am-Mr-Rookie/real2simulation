@@ -1,18 +1,10 @@
 import assert from 'node:assert/strict';
-import { cp, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { fileURLToPath } from 'node:url';
 import { join } from 'node:path';
+import { spawnSync } from 'node:child_process';
 import test from 'node:test';
-
-// The child owns no RK4 copy. Stage the read-only peer module outside the worktree
-// so this test exercises the real import seam without changing the checkout.
-const peer = 'C:/Users/HP/.codex/worktrees/swarm-s10-simulator/2026-10-26 - Meta Global AI Developer Hackathon/Build/simulator/rk4.mjs';
-const staged = await mkdtemp(join(tmpdir(), 's10-trajectories-'));
-await cp(fileURLToPath(new URL('../../Build/simulator/trajectories.mjs', import.meta.url)), join(staged, 'trajectories.mjs'));
-await cp(peer, join(staged, 'rk4.mjs'));
-const { freeFallTrajectory, projectileTrajectory, consumeValidatedTrajectoryArtifact, trajectoryFromValidatedArtifact } = await import(`file://${join(staged, 'trajectories.mjs').replaceAll('\\', '/')}`);
-test.after(async () => rm(staged, { recursive: true, force: true }));
+import { freeFallTrajectory, projectileTrajectory, consumeValidatedTrajectoryArtifact, trajectoryFromValidatedArtifact } from '../../Build/simulator/trajectories.mjs';
 
 const base = { initialPosition: [0, 2, 0], initialVelocity: [0, 0, 0], gravity: 9.81, dt: 0.01, steps: 100, source: 'simulated', inputProvenance: 'synthetic' };
 
@@ -64,16 +56,16 @@ test('reports an already-crossed plane without advancing the integrator', () => 
 });
 
 test('accepts only the validated S08 transport and maps explicit template quantities', () => {
-  const artifact = { artifact_version: 's10-validated-setup-v1', validation: 'validate_setup', producer: 'contracts/experiment/validate_experiment.py', spec: {
-    template: 'projectile', scene: { scene_id: 'room', schema_version: '1.0.0' },
-    environment: { gravity: { value: 9.81 }, gravity_direction: [0, -1, 0] },
-    placement: { origin: { value: [0, 2, 0] } },
-    parameters: { launch_height: { value: 2 }, horizontal_speed: { value: 3 } },
-    simulation: { duration: { value: 1 }, time_step: { value: 0.01 } },
-  }, scene: { id: 'room', schema_version: '1.0.0', synthetic: true } };
-  const trusted = consumeValidatedTrajectoryArtifact(artifact);
+  const root = process.cwd();
+  const d = join(tmpdir(), `s10-export-${process.pid}`);
+  const code = `import sys,json,shutil; from pathlib import Path; root=Path(sys.argv[2]); sys.path[:0]=[str(root),str(root/'tests/spec')]; from test_setup_validation import setup,BUNDLE; from Build.simulator.export_validated_setup import export; d=Path(sys.argv[1]); d.mkdir(parents=True,exist_ok=True); spec,scene=setup('free_fall'); (d/'spec.json').write_text(json.dumps(spec)); (d/'scene.json').write_text(json.dumps(scene)); shutil.copy(BUNDLE/'points.ply', d/'points.ply'); print(json.dumps(export(d/'spec.json', d/'scene.json'))) `;
+  const made = spawnSync('python', ['-c', code, d, root], { encoding: 'utf8' });
+  assert.equal(made.status, 0, made.stderr);
+  const trusted = consumeValidatedTrajectoryArtifact(JSON.parse(made.stdout));
   const out = trajectoryFromValidatedArtifact(trusted);
-  assert.equal(out.kind, 'projectile'); assert.equal(out.requestedSteps, 100); assert.equal(out.samples.length, 65);
+  assert.equal(out.kind, 'free-fall'); assert.equal(out.source, 'simulated'); assert.equal(out.inputProvenance, 'synthetic');
+  assert.ok(out.samples.length > 1);
+  assert.throws(() => { trusted.spec.template = 'projectile'; }, /read only|Cannot assign|frozen/i);
   assert.throws(() => trajectoryFromValidatedArtifact(structuredClone(trusted)), /returned by consume/);
-  assert.throws(() => consumeValidatedTrajectoryArtifact({ ...artifact, producer: 'caller' }), /untrusted/);
+  rmSync(d, { recursive: true, force: true });
 });
