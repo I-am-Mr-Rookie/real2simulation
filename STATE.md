@@ -2,6 +2,11 @@
 
 ## CURRENT — owner one-time inline swarm through Oct29 10:00 Dhaka
 
+Fresh owner scheduler request: five-minute heartbeat targeting this same chat,
+exact prompt "Go at maximum speed. Keep working until 10 a.m." Created ACTIVE
+maximum-speed-swarm-until-10-a-m; expiry04:00UTC Oct29 verified. This explicitly
+overrides earlier no-schedule for this one heartbeat; dispatcher remains OFF.
+
 Fresh direct owner instruction authorizes inline isolated simulation-only S10/S11
 and genuinely unblocked work until2026-10-29T04:00:00Z. Previous01:30 window is
 closed; new baseline77/205 atmain f82ed85. No automatic continuation/schedule or

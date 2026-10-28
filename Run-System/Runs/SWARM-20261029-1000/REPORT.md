@@ -26,3 +26,26 @@ Rounds and closure will be recorded here as verified, not predicted.
 Owner follow-up: do not use Claude extensively. Claude is reserved for narrowly
 required cross-vendor gate audits/re-reviews; Codex handles implementation, fixes,
 tests and routine review. No Claude Code or Claude fallback for Codex work.
+
+## Round1 in progress
+
+Native Claude narrow audits found two contact-boundary P2s and two fitter
+uncertainty/coverage P2s. Codex isolated fixes and UI/session hardening are active.
+Fresh parent baseline: Python fitter19/instruments10/lab11 pass; combined Node
+suite FAIL reproduces cancellation returning success after abort. No acceptance
+of new fixes yet. Required targeted gate re-review follows actual fixes.
+
+## Owner scheduler update
+
+Fresh explicit request overrides prior no-schedule instruction for this chat:
+created maximum-speed-swarm-until-10-a-m heartbeat, ACTIVE, every5minutes until
+2026-10-29T04:00:00Z, exact prompt "Go at maximum speed. Keep working until 10 a.m."
+Target verified01a1840d-7310-7991-8cb8-8ec4cfb149a7. No dispatcher enabled.
+
+## Timing correction
+
+Controller handout Dhaka arithmetic for R10-lab-ui/R10-S11-fix/R10-S10-fix was
+wrong; original UTC issue/full1800s deadlines remained correct and authoritative.
+UI worker identified this and recorded correct02:25:20.136 Dhaka. Corrections sent
+to the two active fix workers without resetting/extending their UTC windows.
+Do not claim original handouts were fully conformant.

@@ -1,0 +1,70 @@
+✔ both ballistic templates reach real contact through the common run adapter (576.1579ms)
+✔ unsupported replay versions cannot produce unreplayable records (2.0609ms)
+(node:3292) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/app/api/lab/route.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ normal start/fit uses the actual bridge and fitter (11119.0508ms)
+✔ mystery redacts pre-fit and reveals only through matching fit (3207.8678ms)
+✔ pre-abort does not spawn and expired reads do not evict live sessions (4495.6079ms)
+✔ allowlists, expiry and bounded session errors are clean (1973.3241ms)
+✖ aborting an active bridge settles and releases its capacity (3964.298ms)
+✔ loopback route accepts the UI contract and rejects nonlocal hosts (6516.156ms)
+✔ production route remains disabled (3.8304ms)
+✔ lab UI keeps the user flow and trust labels visible in source (2.8638ms)
+✔ lab layout collapses before the narrow mobile viewport (0.5107ms)
+✔ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (4.6519ms)
+✔ plot helper uses actual finite time and position domains (0.9594ms)
+✔ real Rapier contact is mapped onto the same RK4 samples (751.4091ms)
+✔ contact timing tracks analytic impact within one sample for supported timesteps (329.5871ms)
+✔ no-contact trajectory remains no-contact and deterministic (2.2697ms)
+✔ rejects invalid explicit physics and geometry (178.8443ms)
+✔ returned contact output is deeply immutable (39.187ms)
+✔ ramp uses signed fixed-step dynamics and exposes analytic comparison inputs (80.4102ms)
+✔ ramp stops at the first endpoint crossing and rejects unsupported stall/coast regimes (22.545ms)
+✔ pendulum matches the small-angle analytic comparison and maps geometry (41.259ms)
+✔ nonlinear pendulum converges and conserves energy (200.0481ms)
+✔ zero horizon is one immutable sample; inputs remain unchanged and deterministic (2.5065ms)
+✔ rejects sparse, nonfinite, overflow, and hidden-default inputs (1.8487ms)
+✔ consumes actual Python validate_setup export for both extended templates (3607.264ms)
+✔ allowlisted public projection cannot leak arbitrary observation metadata (321.1479ms)
+✔ actual Python S11 response binds to same observations and preserves source (429.3198ms)
+✔ version, mutation, and cross-session binding are enforced (225.1743ms)
+✔ same seed is byte-identical and immutable (41.0193ms)
+✔ changed seed/params distinguish; hostile inputs fail (43.6229ms)
+✔ S10a consumes only the trusted S08 validate_setup export and places geometry (10.0506ms)
+✔ RK4 zero-step validates every input, rejects sparse state, and preserves state (5.0979ms)
+✔ RK4 convergence/order, determinism, immutability and invalid dynamics (7.4782ms)
+✔ free fall uses fixed-step RK4 and matches the authoritative analytic reference (15.7851ms)
+✔ projectile preserves horizontal motion and reports a sampled stop-plane bracket (21.3602ms)
+✔ rejects missing provenance and hidden numeric defaults (2.8071ms)
+✔ is deterministic, finite, and does not mutate caller inputs (47.7417ms)
+✔ reports an already-crossed plane without advancing the integrator (0.7092ms)
+✔ accepts only the validated S08 transport and maps explicit template quantities (1502.7405ms)
+ℹ tests 39
+ℹ suites 0
+ℹ pass 38
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31661.9254
+
+✖ failing tests:
+
+test at tests\lab\session-service.test.mjs:41:1
+✖ aborting an active bridge settles and releases its capacity (3964.298ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  'ok' !== 'error'
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/session-service.test.mjs:46:10)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'ok',
+    expected: 'error',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
