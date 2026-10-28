@@ -1,0 +1,17 @@
+{
+  "id": "R12-covariance-review",
+  "issued_at": "2026-10-28T21:05:41.128Z",
+  "deadline_at": "2026-10-28T21:35:41.128Z",
+  "implementation_cutoff_at": "2026-10-28T21:30:41.128Z",
+  "deadline_dhaka": "2026-10-29T03:35:41.128+06:00",
+  "first_observed_execution_at": "2026-10-28T21:05:49Z",
+  "work_stopped_at": "2026-10-28T21:08:31.3553973Z",
+  "reported_at": "2026-10-28T21:08:31.3553973Z",
+  "status": "DONE",
+  "outcome_scope": "narrow gate re-review of 7708494; no P0-P2",
+  "parent_project_id_as_assigned": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
+  "parent_ui_project_binding_verified": false,
+  "assigned_managed_model": "anthropic/claude-opus-5-5",
+  "coding_quota": "OpenCodex-managed; not polled",
+  "cost": "unknown"
+}
