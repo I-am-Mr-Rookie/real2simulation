@@ -1,0 +1,34 @@
+[
+  {
+    "suite": "Build\\api\\health",
+    "exit": 1
+  },
+  {
+    "suite": "Build\\reconstruction\\spike",
+    "exit": 0
+  },
+  {
+    "suite": "Build\\web\\src\\shell",
+    "exit": 0
+  },
+  {
+    "suite": "contracts\\scene",
+    "exit": 0
+  },
+  {
+    "suite": "infra\\railway\\dev",
+    "exit": 0
+  },
+  {
+    "suite": "Run-System\\tests",
+    "exit": 0
+  },
+  {
+    "suite": "tests\\measurement",
+    "exit": 0
+  },
+  {
+    "suite": "tests\\spec",
+    "exit": 0
+  }
+]

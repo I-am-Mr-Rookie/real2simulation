@@ -56,6 +56,28 @@ null and cannot pass. Missing uncertainty assumptions abstain without emitting
 partial metric output. Summary threshold regressions with explicit synthetic
 coverage booleans test policy arithmetic only, not establish physical coverage.
 
-R-M must review these boundaries, including the unresolved coverage methodology.
-S07f must explicitly record the authorized fallback decision. This evaluator
-does not enact table-plane fallback, pass parent S07, or unlock S12.
+## S07f review response
+
+`summarize(trials, *, independence_verified=False)` derives qualification and
+mean relative error from finite `g_m_s2`, never a caller's `relative_error`.
+The inclusive 5% boundary is compared in g-space, without an invented tolerance;
+the reported divided error can round just above .05 at the inclusive endpoint.
+
+Distinct raw labels do not prove independence. Only a trusted caller that has
+authenticated the **exact panel's recording provenance** outside the dictionaries
+may pass `independence_verified=True`; otherwise the verified independent count
+is zero. IDs must be nonempty, case-sensitive and without surrounding whitespace.
+Padding is rejected, not normalized; case differences neither prove nor disprove
+physical independence. FF01/FF02 share the documented capture group. No provenance
+authenticator or new metric grant is implemented; the actual-source CLI never
+sets this flag. Synthetic true flags/coverage booleans exercise policy only.
+
+R-M F3's unknown coverage is intentional; F4's suffix RMSE remains a diagnostic,
+not a new Gate M/Gate RS threshold. F5/F6 conditional precision and small-error
+adequacy still require independent evidence (see UNCERTAINTY.md); no residual,
+chi-square, relative-uncertainty or interval multiplier gate was invented.
+
+See `evidence/S07/S07f/ADJUDICATION.md` and `DECISION.md` for source response and
+actual Apollo/fallback decision. Other-vendor follow-up of S07f gate changes is
+required before controller acceptance. This evaluator does not enact calibrated
+table-plane fallback, pass parent S07, or unlock S12.

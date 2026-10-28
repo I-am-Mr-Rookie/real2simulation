@@ -67,16 +67,24 @@ def evaluate_record(data, assumptions, *, metric_authorized=False,
     return out
 
 
-def summarize(trials):
+def summarize(trials, *, independence_verified=False):
     """Summarize a fixed three-trial panel, never choose the best three or divide
     by only successes. Outcome fixtures used by tests are not production grants.
+
+    Trusted caller must authenticate this exact panel's independent recordings
+    OUTSIDE outcome dictionaries. Raw labels cannot prove capture provenance.
+    IDs are case-sensitive and canonical (no surrounding whitespace).
     """
     measured = [t for t in trials if type(t.get('g_m_s2')) in (int, float)
                 and math.isfinite(t['g_m_s2'])]
     groups = [t.get('capture_group') for t in measured]
-    independent = len({g for g in groups if isinstance(g, str) and g.strip()})
-    good = [t for t in measured if type(t.get('relative_error')) in (int, float)
-            and 0 <= t['relative_error'] <= MAX_RELATIVE_ERROR
+    independent = (len({g for g in groups
+                        if isinstance(g, str) and g and g == g.strip()})
+                   if independence_verified is True else 0)
+    # Compare g directly: division can round the inclusive 5% edge above .05.
+    good = [t for t in measured
+            if REFERENCE_G*(1-MAX_RELATIVE_ERROR) <= t['g_m_s2']
+               <= REFERENCE_G*(1+MAX_RELATIVE_ERROR)
             and t.get('uncertainty_covers_reference') is True
             and not t.get('blockers')]
     passed = (len(trials) == REQUIRED_TRIALS and len(measured) == REQUIRED_TRIALS
@@ -94,7 +102,8 @@ def summarize(trials):
                 qualifying_count=len(good), coverage=coverage,
                 mean_g_m_s2=math.fsum(t['g_m_s2']/len(measured) for t in measured)
                 if measured else None,
-                mean_relative_error=math.fsum(t['relative_error']/len(measured)
+                mean_relative_error=math.fsum(abs(t['g_m_s2']-REFERENCE_G)
+                                             /REFERENCE_G/len(measured)
                                              for t in measured)
                 if measured else None)
 
@@ -188,8 +197,8 @@ def evaluate_sources(root):
                     'Current recognized approval has zero metric grants; CLI never fits.',
                     'Future metric receipt/input support requires explicit reviewed integration.',
                     'S07d standard uncertainty alone cannot establish covering uncertainty.',
-                    'R-M other-vendor review and S07f decision remain required.',
-                    'No fallback activated; parent S07 and S12 not unlocked.',
+                    'Other-vendor follow-up of S07f gate changes remains required.',
+                    'No calibrated table-plane fallback activated; parent S07 and S12 not unlocked.',
                 ])
 
 

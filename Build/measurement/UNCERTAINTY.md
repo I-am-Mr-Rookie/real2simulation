@@ -92,6 +92,17 @@ change the result. Caller must enforce real external custody and calibration
 freeze; this function cannot prevent a caller leaking suffix data into supplied
 assumptions or fabricating evidence.
 
+R-M/S07f limitation: tiny declared localization errors alongside large residuals
+do not establish honest uncertainty, and huge calibration errors do not justify
+the required small-error assumption. These inputs can return conditional numbers
+when a caller asserts unsupported evidence/flags; this module does not authenticate
+those assertions. A standard deviation is not a deterministic residual bound, and
+no universal chi-square or relative-linearization cutoff follows from this schema.
+Do not infer or tune one from the synthetic review examples. Known model mismatch,
+unjustified precision or inadequate linearization must not be declared supported.
+Independent assumption review and a validated coverage methodology remain required
+before physical acceptance; even very large standard uncertainty is not coverage.
+
 Synthetic verification: `python -m unittest discover -s tests/measurement -v`.
 No real footage, live model/GPU calls, physical measurements, Gate M pass,
 S07e/S12 unlock, empirical uncertainty calibration or guaranteed coverage claimed.

@@ -54,7 +54,8 @@ class GateMTests(unittest.TestCase):
         self.assertGreater(out['standard_uncertainty_m_s2'], 0)
         self.assertIsNone(out['uncertainty_covers_reference'])
         self.assertIn('coverage_not_established_by_standard_uncertainty', out['blockers'])
-        self.assertFalse(summarize([out]*3)['gate_passed'])
+        panel = [dict(out, capture_group=str(i)) for i in range(3)]
+        self.assertFalse(summarize(panel, independence_verified=True)['gate_passed'])
 
     def test_unknown_uncertainty_does_not_invent_measurement(self):
         out = evaluate_record(record(), {}, metric_authorized=True, custody_verified=True)
@@ -76,19 +77,77 @@ class GateMTests(unittest.TestCase):
                         blockers=[])
         good = outcome(.05)
         second = outcome(.049, group='b')
-        self.assertFalse(summarize([good, second])['gate_passed'])
+        self.assertFalse(summarize([good, second], independence_verified=True)['gate_passed'])
         third = outcome(.2, group='c')
-        self.assertTrue(summarize([good, second, third])['gate_passed'])
-        self.assertFalse(summarize([outcome(math.nextafter(.05, 1)), second, third])['gate_passed'])
-        self.assertFalse(summarize([outcome(.01, None), second, third])['gate_passed'])
-        self.assertFalse(summarize([good, good, third])['gate_passed'])
+        self.assertTrue(summarize([good, second, third], independence_verified=True)['gate_passed'])
+        # Adjacent error floats can map to the SAME g; test the measured boundary.
+        outside = dict(good, g_m_s2=math.nextafter(good['g_m_s2'], math.inf))
+        self.assertFalse(summarize([outside, second, third], independence_verified=True)['gate_passed'])
+        self.assertFalse(summarize([outcome(.01, None), second, third], independence_verified=True)['gate_passed'])
+        self.assertFalse(summarize([good, good, third], independence_verified=True)['gate_passed'])
+
+    def test_summary_recomputes_error_from_g_not_caller_claim(self):
+        panel = [dict(g_m_s2=20., relative_error=0.,
+                      uncertainty_covers_reference=True, capture_group=str(i),
+                      blockers=[]) for i in range(3)]
+        out = summarize(panel, independence_verified=True)
+        self.assertFalse(out['gate_passed'])
+        self.assertEqual(out['qualifying_count'], 0)
+        self.assertAlmostEqual(out['mean_relative_error'], 1.038735983690112)
+
+    def test_summary_does_not_require_or_trust_supplied_error(self):
+        panel = [dict(g_m_s2=9.81, uncertainty_covers_reference=True,
+                      capture_group=str(i), blockers=[]) for i in range(3)]
+        for declared in (None, 'untrusted', math.nan, -1., 99.):
+            with self.subTest(declared=declared):
+                panel[0]['relative_error'] = declared
+                out = summarize(panel, independence_verified=True)
+                self.assertTrue(out['gate_passed'])
+                self.assertEqual(out['mean_relative_error'], 0.)
+
+    def test_lower_g_boundary_is_inclusive_but_adjacent_value_is_not(self):
+        panel = [dict(g_m_s2=9.81*.95, relative_error=0.,
+                      uncertainty_covers_reference=True, capture_group=str(i),
+                      blockers=[]) for i in range(3)]
+        self.assertTrue(summarize(panel, independence_verified=True)['gate_passed'])
+        for trial in panel:
+            trial['g_m_s2'] = math.nextafter(trial['g_m_s2'], -math.inf)
+        self.assertFalse(summarize(panel, independence_verified=True)['gate_passed'])
+
+    def test_raw_labels_do_not_establish_independent_captures(self):
+        panel = [dict(g_m_s2=9.81, relative_error=0.,
+                      uncertainty_covers_reference=True, capture_group=group,
+                      independence_verified=True, blockers=[])
+                 for group in ('A', 'A ', 'a')]
+        out = summarize(panel)
+        self.assertFalse(out['gate_passed'])
+        self.assertEqual(out['independent_measured_count'], 0)
+
+    def test_trusted_panel_verification_is_explicit_and_not_just_truthy(self):
+        panel = [dict(g_m_s2=9.81, uncertainty_covers_reference=True,
+                      capture_group=group, blockers=[])
+                 for group in ('A', 'a', 'B')]
+        for flag in (False, None, 1, 'yes'):
+            with self.subTest(flag=flag):
+                out = summarize(panel, independence_verified=flag)
+                self.assertFalse(out['gate_passed'])
+                self.assertEqual(out['independent_measured_count'], 0)
+        # These synthetic IDs represent externally verified distinct recordings;
+        # case folding would corrupt that identity contract.
+        out = summarize(panel, independence_verified=True)
+        self.assertTrue(out['gate_passed'])
+        self.assertEqual(out['independent_measured_count'], 3)
+        panel[1]['capture_group'] = 'A '
+        out = summarize(panel, independence_verified=True)
+        self.assertFalse(out['gate_passed'])
+        self.assertEqual(out['independent_measured_count'], 2)
 
     def test_cannot_select_best_three_or_count_unknown_independence(self):
         fixture = dict(g_m_s2=9.81, relative_error=0., uncertainty_covers_reference=True,
                        capture_group=None, blockers=[])
-        self.assertFalse(summarize([fixture]*3)['gate_passed'])
+        self.assertFalse(summarize([fixture]*3, independence_verified=True)['gate_passed'])
         known = [dict(fixture, capture_group=str(i)) for i in range(4)]
-        self.assertFalse(summarize(known)['gate_passed'])
+        self.assertFalse(summarize(known, independence_verified=True)['gate_passed'])
 
     def test_actual_sources_are_not_synthetic_success(self):
         root = Path(__file__).resolve().parents[2]

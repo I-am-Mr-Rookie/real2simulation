@@ -1,0 +1,19 @@
+test_actual_sources_are_not_synthetic_success (test_gate_m.GateMTests.test_actual_sources_are_not_synthetic_success) ... ok
+test_approval_receipt_line_endings_not_permission_changes (test_gate_m.GateMTests.test_approval_receipt_line_endings_not_permission_changes) ... ok
+test_approval_string_never_grants_authorization (test_gate_m.GateMTests.test_approval_string_never_grants_authorization) ... ok
+test_cannot_select_best_three_or_count_unknown_independence (test_gate_m.GateMTests.test_cannot_select_best_three_or_count_unknown_independence) ... ok
+test_custody_required_even_with_authorization (test_gate_m.GateMTests.test_custody_required_even_with_authorization) ... ok
+test_empty_is_input_readiness_failure_not_measured_failure (test_gate_m.GateMTests.test_empty_is_input_readiness_failure_not_measured_failure) ... ok
+test_fitter_and_standard_uncertainty_not_coverage (test_gate_m.GateMTests.test_fitter_and_standard_uncertainty_not_coverage) ... ok
+test_fixed_denominator_threshold_and_coverage_boundaries (test_gate_m.GateMTests.test_fixed_denominator_threshold_and_coverage_boundaries) ... ok
+test_lower_g_boundary_is_inclusive_but_adjacent_value_is_not (test_gate_m.GateMTests.test_lower_g_boundary_is_inclusive_but_adjacent_value_is_not) ... ok
+test_malformed_and_nonpositive_motion_do_not_escape (test_gate_m.GateMTests.test_malformed_and_nonpositive_motion_do_not_escape) ... ok
+test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) ... ok
+test_summary_recomputes_error_from_g_not_caller_claim (test_gate_m.GateMTests.test_summary_recomputes_error_from_g_not_caller_claim) ... ok
+test_unknown_scale_clock_and_scene_scope_abstain (test_gate_m.GateMTests.test_unknown_scale_clock_and_scene_scope_abstain) ... ok
+test_unknown_uncertainty_does_not_invent_measurement (test_gate_m.GateMTests.test_unknown_uncertainty_does_not_invent_measurement) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.008s
+
+OK

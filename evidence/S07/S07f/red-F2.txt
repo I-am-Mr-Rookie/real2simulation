@@ -1,0 +1,155 @@
+test_actual_sources_are_not_synthetic_success (test_gate_m.GateMTests.test_actual_sources_are_not_synthetic_success) ... ok
+test_approval_receipt_line_endings_not_permission_changes (test_gate_m.GateMTests.test_approval_receipt_line_endings_not_permission_changes) ... ok
+test_approval_string_never_grants_authorization (test_gate_m.GateMTests.test_approval_string_never_grants_authorization) ... ok
+test_cannot_select_best_three_or_count_unknown_independence (test_gate_m.GateMTests.test_cannot_select_best_three_or_count_unknown_independence) ... ERROR
+test_custody_required_even_with_authorization (test_gate_m.GateMTests.test_custody_required_even_with_authorization) ... ok
+test_empty_is_input_readiness_failure_not_measured_failure (test_gate_m.GateMTests.test_empty_is_input_readiness_failure_not_measured_failure) ... ok
+test_fitter_and_standard_uncertainty_not_coverage (test_gate_m.GateMTests.test_fitter_and_standard_uncertainty_not_coverage) ... ok
+test_fixed_denominator_threshold_and_coverage_boundaries (test_gate_m.GateMTests.test_fixed_denominator_threshold_and_coverage_boundaries) ... ERROR
+test_lower_g_boundary_is_inclusive_but_adjacent_value_is_not (test_gate_m.GateMTests.test_lower_g_boundary_is_inclusive_but_adjacent_value_is_not) ... ERROR
+test_malformed_and_nonpositive_motion_do_not_escape (test_gate_m.GateMTests.test_malformed_and_nonpositive_motion_do_not_escape) ... ok
+test_raw_labels_do_not_establish_independent_captures (test_gate_m.GateMTests.test_raw_labels_do_not_establish_independent_captures) ... FAIL
+test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) ...
+  test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) (declared=None) ... ERROR
+  test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) (declared='untrusted') ... ERROR
+  test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) (declared=nan) ... ERROR
+  test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) (declared=-1.0) ... ERROR
+  test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) (declared=99.0) ... ERROR
+test_summary_recomputes_error_from_g_not_caller_claim (test_gate_m.GateMTests.test_summary_recomputes_error_from_g_not_caller_claim) ... ERROR
+test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy) ...
+  test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy) (flag=False) ... ERROR
+  test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy) (flag=None) ... ERROR
+  test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy) (flag=1) ... ERROR
+  test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy) (flag='yes') ... ERROR
+test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy) ... ERROR
+test_unknown_scale_clock_and_scene_scope_abstain (test_gate_m.GateMTests.test_unknown_scale_clock_and_scene_scope_abstain) ... ok
+test_unknown_uncertainty_does_not_invent_measurement (test_gate_m.GateMTests.test_unknown_uncertainty_does_not_invent_measurement) ... ok
+
+======================================================================
+ERROR: test_cannot_select_best_three_or_count_unknown_independence (test_gate_m.GateMTests.test_cannot_select_best_three_or_count_unknown_independence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 146, in test_cannot_select_best_three_or_count_unknown_independence
+    self.assertFalse(summarize([fixture]*3, independence_verified=True)['gate_passed'])
+                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_fixed_denominator_threshold_and_coverage_boundaries (test_gate_m.GateMTests.test_fixed_denominator_threshold_and_coverage_boundaries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 79, in test_fixed_denominator_threshold_and_coverage_boundaries
+    self.assertFalse(summarize([good, second], independence_verified=True)['gate_passed'])
+                     ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_lower_g_boundary_is_inclusive_but_adjacent_value_is_not (test_gate_m.GateMTests.test_lower_g_boundary_is_inclusive_but_adjacent_value_is_not)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 111, in test_lower_g_boundary_is_inclusive_but_adjacent_value_is_not
+    self.assertTrue(summarize(panel, independence_verified=True)['gate_passed'])
+                    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) (declared=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 103, in test_summary_does_not_require_or_trust_supplied_error
+    out = summarize(panel, independence_verified=True)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) (declared='untrusted')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 103, in test_summary_does_not_require_or_trust_supplied_error
+    out = summarize(panel, independence_verified=True)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) (declared=nan)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 103, in test_summary_does_not_require_or_trust_supplied_error
+    out = summarize(panel, independence_verified=True)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) (declared=-1.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 103, in test_summary_does_not_require_or_trust_supplied_error
+    out = summarize(panel, independence_verified=True)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_summary_does_not_require_or_trust_supplied_error (test_gate_m.GateMTests.test_summary_does_not_require_or_trust_supplied_error) (declared=99.0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 103, in test_summary_does_not_require_or_trust_supplied_error
+    out = summarize(panel, independence_verified=True)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_summary_recomputes_error_from_g_not_caller_claim (test_gate_m.GateMTests.test_summary_recomputes_error_from_g_not_caller_claim)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 92, in test_summary_recomputes_error_from_g_not_caller_claim
+    out = summarize(panel, independence_verified=True)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy) (flag=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 130, in test_trusted_panel_verification_is_explicit_and_not_just_truthy
+    out = summarize(panel, independence_verified=flag)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy) (flag=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 130, in test_trusted_panel_verification_is_explicit_and_not_just_truthy
+    out = summarize(panel, independence_verified=flag)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy) (flag=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 130, in test_trusted_panel_verification_is_explicit_and_not_just_truthy
+    out = summarize(panel, independence_verified=flag)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy) (flag='yes')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 130, in test_trusted_panel_verification_is_explicit_and_not_just_truthy
+    out = summarize(panel, independence_verified=flag)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+ERROR: test_trusted_panel_verification_is_explicit_and_not_just_truthy (test_gate_m.GateMTests.test_trusted_panel_verification_is_explicit_and_not_just_truthy)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 135, in test_trusted_panel_verification_is_explicit_and_not_just_truthy
+    out = summarize(panel, independence_verified=True)
+TypeError: summarize() got an unexpected keyword argument 'independence_verified'
+
+======================================================================
+FAIL: test_raw_labels_do_not_establish_independent_captures (test_gate_m.GateMTests.test_raw_labels_do_not_establish_independent_captures)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\s07f-gate-decision\2026-10-26 - Meta Global AI Developer Hackathon\tests\measurement\test_gate_m.py", line 121, in test_raw_labels_do_not_establish_independent_captures
+    self.assertFalse(out['gate_passed'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.017s
+
+FAILED (failures=1, errors=14)

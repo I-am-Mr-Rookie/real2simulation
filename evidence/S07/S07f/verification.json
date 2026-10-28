@@ -1,0 +1,150 @@
+{
+  "S12_unlocked": false,
+  "actual_source_result_unchanged": true,
+  "apollo": {
+    "clip_id": "AP15",
+    "g_m_s2": null,
+    "owner_metric_approved": false,
+    "physics_evaluation": "NOT_RUN",
+    "relative_error": null,
+    "scale_status": "APPROXIMATE_SOURCE_PRIOR_ONLY|SCENE_ONLY_UNTIL_SCALE_VERIFIED",
+    "source_status": "NOT_TRACKABLE",
+    "timebase_status": "ARCHIVE_TRANSCODE_CADENCE_UNVERIFIED",
+    "uncertainty_covers_reference": null
+  },
+  "f1_with_external_independence_verification": {
+    "coverage": [
+      true,
+      true,
+      true
+    ],
+    "gate_passed": false,
+    "independent_measured_count": 3,
+    "max_relative_error": 0.05,
+    "mean_g_m_s2": 20.0,
+    "mean_relative_error": 1.038735983690112,
+    "measured_count": 3,
+    "physics_evaluation": "EVALUATED",
+    "qualifying_count": 0,
+    "reference_g_m_s2": 9.81,
+    "required_successes": 2,
+    "required_trials": 3,
+    "status": "NOT_MET"
+  },
+  "review_F3_through_F6_and_math_checks_unchanged": true,
+  "source_integrity": {
+    "Build/measurement/UNCERTAINTY.md": {
+      "byte_match": false,
+      "canonical_sha256": "7ee22c9431317493f882c9c6ea91b6b9a88da0e7254d6f1d6d809864782e42cb",
+      "normalized_match": false,
+      "owned_edit": true,
+      "worktree_sha256": "4cc8233a472e91f22652dab901b2a448ae17d2b2bd6fbdb86bba45fbf175d8ad"
+    },
+    "Build/measurement/free_fall.py": {
+      "byte_match": true,
+      "canonical_sha256": "755b504bba55074c9e203d574e6219c1c06e0b63de0532cf54de48ec9dfb83f1",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "755b504bba55074c9e203d574e6219c1c06e0b63de0532cf54de48ec9dfb83f1"
+    },
+    "Build/measurement/gate_m.py": {
+      "byte_match": false,
+      "canonical_sha256": "59247f9ed490218dbf6389730ef02eec7fa5125cce42cdefbf5173da439da40a",
+      "normalized_match": false,
+      "owned_edit": true,
+      "worktree_sha256": "200219af7b47ca2d0e89244ccafb4d8ab87ab1992ea3e15307d5cd10e7e5d6b9"
+    },
+    "Build/measurement/inputs.py": {
+      "byte_match": true,
+      "canonical_sha256": "913e7b2bf81087a25a3abfd19bcce4951c4c9035dac9315a23983190bef9ed3d",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "913e7b2bf81087a25a3abfd19bcce4951c4c9035dac9315a23983190bef9ed3d"
+    },
+    "Build/measurement/tracking.py": {
+      "byte_match": true,
+      "canonical_sha256": "3f174a1ffcd9cdf0b1dd5924dce7261169a3eaf984df2cdf39f151e1d2e79ed3",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "3f174a1ffcd9cdf0b1dd5924dce7261169a3eaf984df2cdf39f151e1d2e79ed3"
+    },
+    "Build/measurement/uncertainty.py": {
+      "byte_match": true,
+      "canonical_sha256": "07fbc6230af3adbf6cadcf75a9cc23715f71571c3771401e641633e7ef17d0ab",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "07fbc6230af3adbf6cadcf75a9cc23715f71571c3771401e641633e7ef17d0ab"
+    },
+    "Run-System/Runs/S02f/REPORT.md": {
+      "byte_match": true,
+      "canonical_sha256": "10ebd227f0ce6bd3777e5726fe7b452f867b4883d99d8286a28ce9d23c213eb5",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "10ebd227f0ce6bd3777e5726fe7b452f867b4883d99d8286a28ce9d23c213eb5"
+    },
+    "Run-System/Runs/S02i/REPORT.md": {
+      "byte_match": true,
+      "canonical_sha256": "a53ccdbd734696ade425a1f4c35f06af87ac8e0e2d3b612b39ea29215dd52b2f",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "a53ccdbd734696ade425a1f4c35f06af87ac8e0e2d3b612b39ea29215dd52b2f"
+    },
+    "clips.csv": {
+      "byte_match": true,
+      "canonical_sha256": "a2c99d521b5cbf1f6d4f8163b0067b573a28bd4bce7883a3652e0e11ba0f917d",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "a2c99d521b5cbf1f6d4f8163b0067b573a28bd4bce7883a3652e0e11ba0f917d"
+    },
+    "evidence/S07/S07a-candidates.json": {
+      "byte_match": true,
+      "canonical_sha256": "2bf9e767e37e6914226ae0dc9df43e6ec842bbf15a0a78095266dbe6531fe3fa",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "2bf9e767e37e6914226ae0dc9df43e6ec842bbf15a0a78095266dbe6531fe3fa"
+    },
+    "evidence/S07/S07a-input-audit.md": {
+      "byte_match": true,
+      "canonical_sha256": "06eda8f6796148c0e76f25184da99a70d258468242ec272ea5f48293377b3629",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "06eda8f6796148c0e76f25184da99a70d258468242ec272ea5f48293377b3629"
+    },
+    "evidence/clips/S02d-metadata-scale-audit.md": {
+      "byte_match": true,
+      "canonical_sha256": "7fc8038c70e75f6c8c11e1051535cb61b73a0f46b068dd1acbfa03ccb82a26fd",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "7fc8038c70e75f6c8c11e1051535cb61b73a0f46b068dd1acbfa03ccb82a26fd"
+    },
+    "evidence/clips/calibration-recovery/S02f/candidates.json": {
+      "byte_match": true,
+      "canonical_sha256": "58254eb8007a815d301edeecebe221aecf0a0d482859f7295b6df2618c6845ca",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "58254eb8007a815d301edeecebe221aecf0a0d482859f7295b6df2618c6845ca"
+    },
+    "evidence/clips/calibration-recovery/S02i/RESEARCH.md": {
+      "byte_match": true,
+      "canonical_sha256": "d8d1912b5228fcb7fb36d76afa5b0edc1d0a4a9a77b360aea2feabbd5a11d584",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "d8d1912b5228fcb7fb36d76afa5b0edc1d0a4a9a77b360aea2feabbd5a11d584"
+    },
+    "evidence/clips/calibration-recovery/S02i/segments.json": {
+      "byte_match": true,
+      "canonical_sha256": "f45dd673cef89eb0b428fd2f7a19ae14dbecc4bbcdc8c8790803f8f9cf6b5987",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "f45dd673cef89eb0b428fd2f7a19ae14dbecc4bbcdc8c8790803f8f9cf6b5987"
+    },
+    "evidence/owner/S02/APPROVAL.md": {
+      "byte_match": false,
+      "canonical_sha256": "caa5f27093d8bcacd6fcf96cfe43719ef037dd06b86b8c8c2c22da04c4cc74e8",
+      "normalized_match": true,
+      "owned_edit": false,
+      "worktree_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8"
+    }
+  },
+  "table_plane_fallback": "UNAVAILABLE"
+}

@@ -1,0 +1,40 @@
+{
+ "F1_inconsistent_trials_pass": [
+  "NOT_MET",
+  false,
+  20.0
+ ],
+ "F2_alias_groups": [
+  0,
+  false
+ ],
+ "F3_evaluate_record": {
+  "capture_group": null,
+  "covers": null,
+  "blockers": [
+   "coverage_not_established_by_standard_uncertainty"
+  ],
+  "g": 9.81
+ },
+ "F3_summary": "NOT_MET",
+ "F4_suffix_shift": {
+  "rel_err": 0.0,
+  "held_out_rmse_m": 1.0
+ },
+ "F4_one_frame_suffix_ok": 1,
+ "F5_declared_vs_residual": {
+  "train_rmse_px": 5.440424090612264,
+  "declared_px": 0.001,
+  "detection_std_m_s2": 0.00027774602993176534,
+  "g": 10.71
+ },
+ "F6_huge_scale_uncertainty": {
+  "u_g": 98.10010039538774,
+  "g": 9.81
+ },
+ "V1_timing_jacobian": {
+  "analytic_norm": 205.22322975387598,
+  "fd_norm": 205.2232278955593
+ },
+ "V2_offset_slowmo_g": 9.8099999990619
+}
