@@ -2,17 +2,14 @@ const finite = (value) => typeof value === 'number' && Number.isFinite(value);
 
 // Keep the reveal strict: this is the one trusted boundary for the known S11 response.
 export function parseFitReveal(body, expectedSessionId) {
-  if (body?.status !== 'ok') return null;
-  const response = body.actualS11response;
-  const fit = response?.fit;
+  const fit = body?.fit;
   const gravity = fit?.gravity;
   const source = gravity?.source;
   const uncertainty = fit?.uncertainty;
-  if (response?.sessionId !== expectedSessionId || !gravity || !finite(gravity.value) ||
-      !finite(gravity.uncertainty) || gravity.uncertainty < 0 || typeof gravity.unit !== 'string' ||
-      !gravity.unit.trim() || source?.label !== 'simulated' || typeof source.evidence !== 'string' ||
-      !source.evidence.trim() || typeof uncertainty?.model !== 'string' || !uncertainty.model.trim() ||
-      uncertainty.assumptions == null) return null;
+  if (body?.sessionId !== expectedSessionId || fit?.status !== 'ok' || !gravity || !finite(gravity.value) ||
+      !finite(gravity.uncertainty) || gravity.uncertainty < 0 || gravity.unit !== 'm/s^2' ||
+      source?.label !== 'simulated' || typeof uncertainty?.model !== 'string' || !uncertainty.model.trim() ||
+      !Array.isArray(uncertainty.assumptions) || uncertainty.assumptions.some((item) => typeof item !== 'string')) return null;
   return { value: gravity.value, uncertainty: gravity.uncertainty, unit: gravity.unit,
     source: source.label, evidence: source.evidence, model: uncertainty.model,
     assumptions: uncertainty.assumptions };

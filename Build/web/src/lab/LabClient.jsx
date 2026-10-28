@@ -12,7 +12,7 @@ const TEMPLATES = [
 const BALLISTIC = new Set(['free_fall', 'projectile']);
 
 function errorMessage(body, fallback) {
-  return body?.error?.message || body?.error?.code || fallback;
+  return body?.fit?.error?.message || body?.fit?.error?.code || body?.error?.message || body?.error?.code || fallback;
 }
 
 function sampleRows(observations) {
@@ -69,7 +69,7 @@ export default function LabClient() {
         body: JSON.stringify({ action: 'fit', sessionId: session.sessionId }), signal: controller.signal });
       const body = await response.json().catch(() => null);
       if (controller.signal.aborted || version !== requestVersion.current) return;
-      if (!response.ok || body?.status !== 'ok') throw new Error(errorMessage(body, 'The fit could not be completed.'));
+      if (!response.ok || body?.fit?.status !== 'ok') throw new Error(errorMessage(body, 'The fit could not be completed.'));
       if (body.sessionId && body.sessionId !== session.sessionId) throw new Error('The fit belongs to a different trial. Run the trial again.');
       const revealed = parseFitReveal(body, session.sessionId);
       if (!revealed) throw new Error('The fit response did not include a readable reveal.');

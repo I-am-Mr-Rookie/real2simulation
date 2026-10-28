@@ -20,15 +20,17 @@ test('lab layout collapses before the narrow mobile viewport', () => {
 });
 
 test('fit contract accepts only the actual S11 quantity and preserves uncertainty metadata', () => {
-  const body = { status: 'ok', actualS11response: { sessionId: 's1', fit: {
-    gravity: { value: 9.7, unit: 'm/s²', uncertainty: 0.2, source: { label: 'simulated', evidence: 'synthetic' } },
+  const body = { sessionId: 's1', fit: { status: 'ok',
+    gravity: { value: 9.7, unit: 'm/s^2', uncertainty: 0.2, source: { label: 'simulated', evidence: 'synthetic' } },
     uncertainty: { model: 'quadratic', assumptions: ['ideal'] },
-  } } };
-  assert.deepEqual(parseFitReveal(body, 's1'), { value: 9.7, uncertainty: 0.2, unit: 'm/s²', source: 'simulated', evidence: 'synthetic', model: 'quadratic', assumptions: ['ideal'] });
-  assert.equal(parseFitReveal({ ...body, status: 'error' }, 's1'), null);
+  } };
+  assert.deepEqual(parseFitReveal(body, 's1'), { value: 9.7, uncertainty: 0.2, unit: 'm/s^2', source: 'simulated', evidence: 'synthetic', model: 'quadratic', assumptions: ['ideal'] });
+  assert.equal(parseFitReveal({ ...body, fit: { ...body.fit, status: 'error' } }, 's1'), null);
   assert.equal(parseFitReveal(body, 'stale'), null);
-  assert.equal(parseFitReveal({ status: 'ok', actualS11response: { sessionId: 's1', fit: { gravity: { value: 9.7, unit: 'm/s²', uncertainty: -1, source: { label: 'simulated', evidence: 'synthetic' } }, uncertainty: { model: 'x', assumptions: [] } } } }, 's1'), null);
-  assert.equal(parseFitReveal({ status: 'ok', actualS11response: { sessionId: 's1', fit: { gravity: { value: 9.7, unit: 'm/s²', uncertainty: 0.2, source: { label: 'truth', evidence: {} } }, uncertainty: { model: 'x', assumptions: [] } } } }, 's1'), null);
+  assert.equal(parseFitReveal({ ...body, fit: { ...body.fit, gravity: { ...body.fit.gravity, uncertainty: -1 } } }, 's1'), null);
+  assert.equal(parseFitReveal({ ...body, fit: { ...body.fit, gravity: { ...body.fit.gravity, unit: 'm/s²' } } }, 's1'), null);
+  assert.equal(parseFitReveal({ ...body, fit: { ...body.fit, uncertainty: { model: 'x', assumptions: ['ok', 1] } } }, 's1'), null);
+  assert.equal(parseFitReveal({ sessionId: 's1', actualS11response: body.fit }, 's1'), null);
 });
 
 test('plot helper uses actual finite time and position domains', () => {
