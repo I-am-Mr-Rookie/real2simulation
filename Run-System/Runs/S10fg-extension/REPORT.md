@@ -5,3 +5,6 @@
 - **Replay hardening:** browser-compatible `globalThis.crypto.subtle` SHA-256; rejects accessors, cycles, symbols, sparse/extra/out-of-range array keys and unsupported values; deep-clones before freezing.
 - **Checks:** replay/Mystery-g tests pass, including actual Python `Build.fitter.api.handle` cross-language response and mutation/cross-session/version cases; previous simulator suite remains passing. `git diff --check` passed.
 - **Skipped:** no template/browser integration; no model-authored success, spend, deployment, or shared-control edits.
+
+- **Latest work stop:** 2026-10-28T18:19:35.323Z UTC (2026-10-29T00:19:35.323+06:00 Dhaka). Replay seed is only recorded/bound metadata; it does not modify deterministic exact physics. Four-template replay integration remains caller/parent integration scope; this boundary is ready for that merge.
+
