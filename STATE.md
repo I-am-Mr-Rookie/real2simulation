@@ -28,6 +28,12 @@ not hidden or counted as browser proof. Progress58/205, gates/budget unchanged.
 Next S05b-recovery11 fixes optimization-removable probe trust-boundary asserts;
 newly source-confirmed local safeguard, no live/paid operation or review bypass.
 
+S05b-recovery11 child DONE/FFe054a31:9 explicit local/remote safety guards survive
+optimization. Red10 rejection cases, added second-device negative; spike62 normal,
+optimized, target3.11 optimized and rebased PASS, main acceptance recorded in log.
+Actual model/provider/remote shutdown not verified; parent PARTIAL58/205 unchanged.
+Independent review/live-admission holds and$2.85/$30 retained. F4 remains incident.
+
 ## Latest direct owner instruction — solo work completed before 22:30 BDT Oct28
 
 Koushik: "You are the lonely worker. Complete as many runs as you can until 10:30 pm (BDT)".

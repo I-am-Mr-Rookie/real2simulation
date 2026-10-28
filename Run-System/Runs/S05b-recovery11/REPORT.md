@@ -50,3 +50,5 @@ Windows bookkeeping temporarily mojibaked STATE Unicode via default-encoding
 read; fresh byte comparison detected it and8e4c3f9 restored9 original sequences
 without dropping owner/session additions. All later text reads/writes explicit UTF8.
 Integration/rebased/main/checker evidence follows before canonical acceptance.
+
+Integration verified FFe054a31; spike62/62 PASS normal/optimized/Python3.11.15 optimized/rebased/main. Final verification stop/report 2026-10-28T16:49:02.033479+00:00. Timing checker PASS.
