@@ -1,0 +1,10 @@
+{
+  "run": "S10fg-extension",
+  "scope": "seeded replay and Mystery-g projection",
+  "status": "local-contract-evidence",
+  "checks": [
+    "node --test tests/simulator/replay.test.mjs tests/simulator/mystery-g.test.mjs",
+    "caller-supplied runner boundary only; no template integration claimed"
+  ],
+  "limitations": ["no real fitter execution or browser integration in this extension"]
+}
