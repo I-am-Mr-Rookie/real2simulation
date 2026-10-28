@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 28, 22:36 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 22:37 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **57 / 204** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **57 / 205** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -22,6 +22,10 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **S08i** — Codex · GPT-6.1 Sol, effort medium — Reject unrepresentable fall displacement and extreme sample times (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -131,7 +135,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S08</b> — Experiment spec, validator and 4 templates (8/8)</summary>
+<details><summary><b>S08</b> — Experiment spec, validator and 4 templates (8/9)</summary>
 
 - [x] **S08a** — Codex · GPT-6.1 Sol, effort medium — Define versioned experiment schema and units (30 min)
 - [x] **S08b** — Codex · GPT-6.1 Sol, effort medium — Validate numeric ranges and dimensional consistency (30 min)
@@ -141,6 +145,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S08f** — Codex · GPT-6.1 Sol, effort medium — Add ramp template and analytic answer (30 min)
 - [x] **S08g** — Codex · GPT-6.1 Sol, effort medium — Add pendulum template and analytic answer (30 min)
 - [x] **S08h** — Codex · GPT-6.1 Sol, effort medium — Run schema and ten-bad-spec regression checks (30 min)
+- [~] **S08i** — Codex · GPT-6.1 Sol, effort medium — Reject unrepresentable fall displacement and extreme sample times (30 min) *(in progress)*
 
 </details>
 
