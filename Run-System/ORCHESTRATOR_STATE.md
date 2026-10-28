@@ -1,5 +1,40 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — restored preflight; S05b recovery5/R-M2 ACTIVE (Oct28 12:35UTC)
+
+Owner Q10 selected A; actual normal supported cua Chrome discovery/authenticated
+Usage/Credits now succeeds. No setting/billing/provider/policy change by agent.
+Trusted receipt Runs/ORCH-20261028-SOL/MODAL-PREFLIGHT-1234.md:130 total,Active100
+grant,monthly30,rounded0.00 spend, NOT exact charge or account-wide cap. Old1.90
+reserves retained; authority remains30, new reserve<=1 all-in. Surface hold cleared
+only after this genuinely changed observed state, not from choice alone.
+
+S05b recovery5 fresh child01a18281-495c-7251-9c7e-9d7d8cdbfa83 (Popper),Sol/medium,
+reused clean managed s05b-recovery4 branch run/S05b-recovery5,base81faef4. Exact
+RECOVERY-5 contract; own new evidence only, historical receipts read-only.
+No redundant child browser/consent requirement. Actual current resources, bounds,
+raw4 approved PNG hashes and installed CPU imports still precede ONE GPU probe;
+no actual job/success yet claimed. No duplicate active S05b worker.
+
+S07f source completed PARTIAL233e5e2 (implementation893dfbe), UNMERGED; controller
+fresh64/64 PASS plus check_evidence.py16 source fingerprints PASS. Actual gate
+outcome unchanged0 eligible/0 measured; AP15 NOT_RUN; calibrated plane unavailable;
+simulated lab/Mystery-g lead documented, no metric fallback implementation/S12
+unlock. Source child terminal (close returned not_found, no active duplicate).
+
+R-M2 fresh required other-vendor follow-up ACTIVE; existing managed
+anthropic/claude-opus-5-5/medium headless exec17689, logs r-m2-cli.txt/final.txt
+under controller report directory. Writes only r-m-review/run/R-M-followup
+evidence/reviews/R-M2 and owned PLAN/REPORT. S07f checkout233e5e2 READ-ONLY.
+Do not rebase/merge source while independent review active. Check actual reports/
+process recovery, no duplicate. Native Git metadata denial can be handled via
+authorized scoped controller commit, not permission/provider changes.
+
+Queue53/203 accepted leaves, not physical gates. New R-M2 follow-up15m explicit
+overhead, routine buffer decision. Current shared controls controller-only;
+heartbeat ACTIVE5m/current chat, dispatcher OFF; OpenCodex-managed/not polled.
+All older ACTIVE/blocked-surface sections below are historical.
+
 ## LATEST — S05b safe stop; R-M accepted; S07f active (Oct28 ~12:10UTC)
 
 Current single source-response worker: S07f child01a18267-aa63-7902-a7bf-0cc41584ccaa

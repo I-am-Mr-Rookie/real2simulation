@@ -1,5 +1,30 @@
 # Orchestration resumed — Sol and Ponytail
 
+## Latest — owner Q10 applied, runtime restored, independent review (12:35UTC)
+
+- Recorded exact Q10 A answer, then VERIFIED normal supported Chrome extension
+  and authenticated Modal Usage/Credits12:32-12:34UTC. No setting changed by agent:
+  native sky/list_apps/unique target worked, but settings navigation never reached
+  browser toggle; support was subsequently already available. No unsafe fallback.
+  Incidental UI usage banner not intentionally polled or used as a quota halt.
+- Fresh trusted MODAL-PREFLIGHT-1234.md proves rendered130 total/Active100 grant,
+  monthly30,rounded0.00 spend. Not exact billing/account-wide cap. Historical1.90
+  retained; authorized30 ceiling unchanged. Q10 closed; surface hold cleared after
+  observed recovery, not answer alone. No controller GPU job/upload/billing action.
+- S05b fresh Sol/medium recovery5 child01a18281-495c-7251-9c7e-9d7d8cdbfa83 uses
+  parent receipt in reused clean managed checkout/new run/S05b-recovery5. Exact
+  contract requires actual resource/bound/raw-frame/import proof, new all-in<=1,
+  retries0/stop before at most one GPU probe. No per-worker browser/consent loop.
+- S07f233e5e2 implementation/evidence inspected; fresh controller measurement64/64
+  and check_evidence.py PASS, actual source result unchanged. UNMERGED pending
+  other-vendor R-M2, not marked DONE. Concrete Ponytail smallest shared-summary
+  change/two boundaries/five regressions/docs/skips/risks inspected, no new deps.
+- Explicit15m R-M2 overhead claimed2dd54ec, Opus5.5/medium fresh managed CLI
+  exec17689, r-m-review/run/R-M-followup. Required source fixes/F3-F6 adjudication
+  review, no product writes; pinned S07f233e5e2 is read-only until reviewer finishes.
+- Exact runtime/tokens/dollars unobservable unless CLI reports; OpenCodex-managed,
+  not polled. Main controls serialization/no provider-policy change maintained.
+
 ## Heartbeat acceptance — Oct28 ~12:10UTC
 
 - S05b recovery4 accepted PARTIALb687302 after owned diff/actual evidence and

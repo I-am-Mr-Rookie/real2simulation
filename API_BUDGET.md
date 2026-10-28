@@ -254,6 +254,12 @@ Earlier receipts are retained under ignored Run-System/Runs; paths in chronologi
 
 ## Standing GPU execution authorization — owner correction Oct28
 
+**Latest12:34UTC:** controller supported authenticated Usage/Credits restored:
+130 total/Active100 grant plus monthly30, rounded0.00 spend, no configured cap
+asserted. Historical1.90 retained pending exact billing; authority stays30 and new
+reserve<=1 all-in. Recovery5 checks current resources/bounds/raw input/imports
+before any GPU. No new job/spend yet claimed. Supersedes disabled-surface note.
+
 **Latest recovery4:** supported local browser use disabled in Work settings;
 no new CPU/GPU/build/inference/upload job or reservation. Historical$1.90 retained
 pending exact billing; current global resources/headroom not refreshed. Corrected
