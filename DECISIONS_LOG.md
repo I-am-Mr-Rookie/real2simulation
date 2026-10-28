@@ -590,3 +590,13 @@ GateRS held-out criteria into GateM. No calibration/coverage/fitter success infe
 S05b recovery4 fresh supported policy failure held until genuine changed surface
 or trusted billing receipt; Q10 asks technical recovery, not renewed GPU consent.
 Existing$30 authority/$1.90 retained reserves, rights/spending/safety unchanged.
+## 2026-10-28 — Q10 supported recovery verified; R-M2 overhead
+
+Koushik selected A: enable supported local browser use in Work settings. Agent
+made no setting change; actual normal Chrome/authenticated Modal Usage/Credits
+subsequently succeeded12:32-12:34UTC. Cleared only the obsolete surface hold,
+retained$30 authority/$1.90 reserves/bounds and all rights/CPU-before-GPU safeguards.
+Trusted parent receipt reused by fresh recovery5; no per-worker consent gate.
+Routine reversible decision: extra R-M2 independent follow-up15m before S07f gate
+changes accepted. Current leaf timeboxes sum5725/6000m,275m buffer (not runtime
+or finish estimate). Source233e5e2 frozen for review, no premature gate/S12 unlock.
