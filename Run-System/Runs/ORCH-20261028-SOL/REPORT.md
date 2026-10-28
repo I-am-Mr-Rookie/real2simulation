@@ -29,6 +29,10 @@
   Gates remain0 eligible/0 measured/physics NOT_RUN, no S12 unlock. Existing
   heartbeat kept ACTIVE/current chat5m with refreshed checkpoint-based prompt;
   dispatcher OFF. No quota poll, provider/credential/global-policy or spend change.
+  Final active-claim/model audit PASS: only S07f IN PROGRESS, no unfinished Terra
+  rows; canonical status clean. Supported archive of completed s05b-recovery4
+  refused because pinned-task/workspace protection; retained intact, no retry or
+  deletion/policy bypass. This is cleanup-only, not a build/GPU blocker.
 
 - Owner authority: Oct28 request to read ORCHESTRATOR.md/be orchestrator and
   replace all GPT6.1 Terra work with Sol; follow-up explicitly requests Ponytail.
