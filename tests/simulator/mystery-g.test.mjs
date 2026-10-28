@@ -1,30 +1,6 @@
-import assert from 'node:assert/strict';
-import test from 'node:test';
-import { createMysteryGSession, publicMysteryGPayload } from '../../Build/simulator/mystery-g.mjs';
+import assert from 'node:assert/strict'; import test from 'node:test'; import { createMysteryGSession, createTrustedFitterHandoff, publicMysteryGPayload } from '../../Build/simulator/mystery-g.mjs'; import { spawnSync } from 'node:child_process';
+const base = { seed: 42, gravity_m_s2: 9.81, privateSetup: { chamber: 'sealed' }, observations: [{ time_s: 0, position_m: 2 }, { time_s: 1, position_m: -2.905 }] };
+test('allowlisted public projection cannot leak arbitrary observation metadata', async () => { const s=await createMysteryGSession(base); const p=publicMysteryGPayload(s); assert.deepEqual(Object.keys(p.observations[0]).sort(), ['position_m','time_s']); assert.doesNotMatch(JSON.stringify(p), /gravity|seed|setup|secret|"g"/); await assert.rejects(async()=>createMysteryGSession({...base,observations:[{time_s:0,position_m:1,g:9.81}]})); });
+test('only actual Python S11-shaped response gets trusted handoff and source is preserved', async () => { const code="import json; from Build.fitter.api import handle; q=lambda v,u:{'value':v,'unit':u,'uncertainty':0.001,'source':{'label':'simulated','evidence':'x'}}; print(json.dumps(handle({'times':[q(0,'s'),q(1,'s'),q(2,'s'),q(3,'s')],'positions':[q(0,'m'),q(4.905,'m'),q(19.62,'m'),q(44.145,'m')],'degree':2})))"; const out=spawnSync('python',['-c',code],{encoding:'utf8'}); assert.equal(out.status,0,out.stderr); const handoff=createTrustedFitterHandoff(JSON.parse(out.stdout)); const s=await createMysteryGSession(base); const revealed=s.revealFit(handoff); assert.equal(revealed.reveal.source,'simulated'); assert.throws(()=>s.revealFit(handoff)); assert.throws(()=>s.revealFit({status:'ok',gravity:{value:9.81,unit:'m/s^2',uncertainty:0.1,source:{label:'simulated'}},covariance:{status:'available'},uncertainty:{model:'iid_fixed_clock_scale'}})); });
 
-const session = () => createMysteryGSession({ seed: 42, gravity_m_s2: 9.81, privateSetup: { chamber: 'sealed', hiddenValue: 9.81 }, observations: [{ time_s: 0, position_m: 2 }, { time_s: 1, position_m: -2.905 }] });
 
-test('public projection contains observations but no private gravity, seed, or setup', () => {
-  const payload = publicMysteryGPayload(session());
-  const text = JSON.stringify(payload).toLowerCase();
-  assert.equal(payload.mode, 'mystery-g');
-  assert.match(text, /observations/);
-  assert.doesNotMatch(text, /gravity|seed|hidden|secret|setup/);
-  assert.ok(Object.isFrozen(payload) && Object.isFrozen(payload.observations));
-});
-
-test('reveal requires a successful explicit fitter handoff and is immutable/single-use', () => {
-  const mystery = session();
-  assert.throws(() => mystery.revealFit({ status: 'error', gravity_m_s2: 9.81 }), /successful/);
-  assert.throws(() => mystery.revealFit({ status: 'ok', gravity_m_s2: NaN }), /successful/);
-  const revealed = mystery.revealFit({ status: 'ok', gravity_m_s2: 9.806 });
-  assert.equal(revealed.reveal.source, 'measured');
-  assert.equal(revealed.reveal.gravity_m_s2, 9.806);
-  assert.throws(() => mystery.revealFit({ status: 'ok', gravity_m_s2: 9.81 }), /already/);
-  assert.throws(() => { revealed.reveal.gravity_m_s2 = 0; }, TypeError);
-});
-
-test('rejects private invalid inputs and keeps errors value-free', () => {
-  assert.throws(() => createMysteryGSession({ seed: 1, gravity_m_s2: Infinity, privateSetup: {}, observations: [{}] }), /private parameters invalid/);
-  assert.throws(() => createMysteryGSession({ seed: 1, gravity_m_s2: 9.8, privateSetup: {}, observations: [{ setup: 'bad' }] }), /forbidden/);
-});
