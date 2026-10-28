@@ -1,6 +1,15 @@
 # Orchestrator recovery checkpoint
 
-## CURRENT — OWNER TAKEOVER; current run complete, orchestration STOPPED
+## CURRENT — direct solo worker until Oct28 22:30BDT
+
+Owner directly authorized this existing chat alone to complete ready runs serially
+until16:30Z; no fanout, schedule, dispatcher or automatic continuation. Local child
+S05b-recovery10 DONE/FF c43e500; rebased spike60/60 PASS on3.14+3.11; fresh main
+runner7/scene11 PASS, normalized source hashes and Git diff match. F3 locally
+repaired, NOT independently reviewed or paid-ready; F4/physical/S12 holds retained.
+Parent S05b PARTIAL;55/203/$2.85/$30 unchanged. See run report and TIMEBOX receipt.
+
+## Earlier — OWNER TAKEOVER; current run complete, orchestration STOPPED
 
 Latest direct instruction: I am taking over. Complete just the current run.
 S07b-auth-provision2 DONE accepted b9b3a73, six owned evidence/run files unchanged

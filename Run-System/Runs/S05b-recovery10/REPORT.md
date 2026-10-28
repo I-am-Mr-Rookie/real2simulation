@@ -1,4 +1,4 @@
-# S05b-recovery10 — local F3 repair
+# S05b-recovery10 — DONE (local F3 repair only)
 
 Local absolute-clock and result-preservation criteria complete; parent S05b stays
 PARTIAL, NOT paid-ready. No reconstruction, live stop or physical result claimed.
@@ -45,6 +45,19 @@ actual-main tests pass in runner suite7/7. Scene11/11 PASS with30s cap. Initial
 failures and superseding results retained, not overwritten. Source SHA256s and
 gate/spend distinctions recorded in audit.json. Final rebased/main60-test checks
 and timing/integration receipt will be recorded below before canonical acceptance.
+
+### Integration / closeout
+
+Rebased complete spike60/60 PASS on BOTH3.14.5 and3.11.15, logs/commands in
+rebased-checks.json (100s parent caps). Verified FF c43e500 into canonical main.
+Initial raw-byte cross-checkout hash comparison rejected two new files because
+main checked them out with CRLF. No test was claimed from that failed command.
+Corrected audit checks normalized contents against the tested worktree plus
+`git diff --quiet c43e500 -- Build/reconstruction/spike` (PASS), then fresh main
+actual runner7/7 and scene11/11 PASS under30s caps. main-source-audit.json records
+exact raw differences and normalized hashes. Product operations stopped16:07:42Z;
+closure/control bookkeeping afterward. TIMEBOX checker must pass before closeout.
+All local child criteria met early; parent progress remains55/203 and PARTIAL.
 
 ## Ponytail / limitations
 

@@ -10,12 +10,20 @@ F3 absolute-clock/result-preservation repair and tests; no paid job or remote ac
 Parent remains unpassed; all existing gates/budget/credentials unchanged.
 Owner removed R2 from RUNS; preserved as historical only, not an open review.
 
+S05b-recovery10 local child DONE, verified FF c43e500. Fresh rebased60/60 spike
+tests PASS on3.14.5 and3.11.15; main runner7/7 and scene11/11 PASS. Cross-checkout
+source equality verified by Git diff and newline-normalized hashes (raw new-file
+hashes initially differed solely from Windows LF/CRLF checkout conversion).
+F3 local absolute clock/atomic pending-before-cleanup repair complete; independent
+review and live provider/budget checks still required before paid admission.
+F4 unknown-ID incident, parent S05b PARTIAL,55/203, all gates/S12/$2.85/$30 unchanged.
+
 Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verified, worker heartbeat unavailable; sign-in configuration/E2E remain owner follow-up. Dispatch remains disabled.**
 
 | Recovery field | Current evidence |
 |---|---|
 | GPU scheduling priority | Koushik validates ~20 GPU-hours needed, ~15h current Modal allocation, reset on/after Nov1. Start S06p readiness now; useful eligible GPU work Oct28–31 takes priority, remainder after actual reset. API_BUDGET.md is authoritative; no dummy jobs, approval/dependency bypass or expanded spend. |
-| Authorized scope | LATEST Oct28 owner takeover: I am taking over. Complete just the current run. S07b-auth-provision2 verified/integrated, then orchestration STOPPED. No new workers/follow-ups/automatic continuation; future work needs fresh direct owner instruction. Prior reappointment superseded. Model/approval/safety boundaries unchanged; dispatcher OFF, no scheduled task. |
+| Authorized scope | Latest direct owner instruction: this chat is sole serial worker until Oct28 22:30BDT/16:30Z. No delegation, dispatcher or schedule; no continuation after stop. Earlier takeover superseded only for this bounded authorization. Existing model/approval/safety boundaries remain. |
 | Manual concurrency | No fixed cap; useful independent isolated Owns only, one canonical control maintainer. Serialize controls/merges/heavy builds; no quota polling/duplicate objectives. |
 | Session project | EVERY new worker and orchestrator uses existing Meta AI Hackathon project91e441f8-e40c-4ec4-bea2-de7fa1582d97, same canonical event root. Verify/record supported association; no duplicate project or projectless launches. |
 | Calibration recovery latest | S02f recovery2 PARTIAL: two new NASA families audited,0 qualified additions. S02i recovery2 forensic inventory DONE, NOT metric qualification; RP01 clock/plane HOLD0 eligible trials. Fresh source/hash/mapping checks accepted. S02h/S02g/S07r prior forensics retained; no new metric/source approval or GateM pass. No generic source hunt redispatch. |

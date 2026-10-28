@@ -1,0 +1,12 @@
+test_actual_main_persists_pending_then_confirmed_without_importing_modal (test_modal_rm02.ProbeGuards.test_actual_main_persists_pending_then_confirmed_without_importing_modal) ... ok
+test_actual_main_preserves_pending_result_but_no_success_after_cleanup_failure (test_modal_rm02.ProbeGuards.test_actual_main_preserves_pending_result_but_no_success_after_cleanup_failure) ... ok
+test_bounded_single_private_invocation (test_modal_rm02.ProbeGuards.test_bounded_single_private_invocation) ... ok
+test_official_torch_binary_version_family (test_modal_rm02.ProbeGuards.test_official_torch_binary_version_family) ... ok
+test_planned_compute_allowance_not_a_billing_or_stop_guarantee (test_modal_rm02.ProbeGuards.test_planned_compute_allowance_not_a_billing_or_stop_guarantee) ... ok
+test_result_egress_boundary (test_modal_rm02.ProbeGuards.test_result_egress_boundary) ... ok
+test_supervised_output_preserves_recovery5_inputs_and_explicit_stop (test_modal_rm02.ProbeGuards.test_supervised_output_preserves_recovery5_inputs_and_explicit_stop) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.044s
+
+OK
