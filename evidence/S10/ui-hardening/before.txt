@@ -1,0 +1,309 @@
+✔ lab UI keeps the user flow and trust labels visible in source (2.1342ms)
+✔ lab layout collapses before the narrow mobile viewport (0.3755ms)
+✖ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (8.3968ms)
+✖ the chart uses all observations, not the downsampled table (4.2369ms)
+✖ labels describe the bridge ordinate and unsupported fits honestly (2.9875ms)
+✔ plot helper uses actual finite time and position domains (1.1191ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 3
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 495.6317
+
+✖ failing tests:
+
+test at tests\lab\ui-contract.test.mjs:22:1
+✖ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (8.3968ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   assumptions: [
+  +     'ideal'
+  +   ],
+  +   evidence: 'synthetic',
+  +   model: 'quadratic',
+  +   source: 'simulated',
+  +   uncertainty: 0.2,
+  +   unit: 'm/s^2',
+  +   value: 9.7
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-ui/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-contract.test.mjs:34:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1325:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+      at Test.postRun (node:internal/test_runner/test:1465:19)
+      at Test.run (node:internal/test_runner/test:1390:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { value: 9.7, uncertainty: 0.2, unit: 'm/s^2', source: 'simulated', evidence: 'synthetic', model: 'quadratic', assumptions: [ 'ideal' ] },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\lab\ui-contract.test.mjs:38:1
+✖ the chart uses all observations, not the downsampled table (4.2369ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /plotPoints\(session\?\.observations\)/. Input:
+  
+  "'use client';\r\n" +
+    '\r\n' +
+    "import { useEffect, useRef, useState } from 'react';\r\n" +
+    "import { parseFitReveal, plotPoints } from './fit-contract.mjs';\r\n" +
+    '\r\n' +
+    'const TEMPLATES = [\r\n' +
+    "  ['free_fall', 'Free fall', 'Ballistic drop'],\r\n" +
+    "  ['projectile', 'Projectile', 'Ballistic launch'],\r\n" +
+    "  ['ramp', 'Ramp', 'Sliding motion'],\r\n" +
+    "  ['pendulum', 'Pendulum', 'Oscillation'],\r\n" +
+    '];\r\n' +
+    "const BALLISTIC = new Set(['free_fall', 'projectile']);\r\n" +
+    '\r\n' +
+    'function errorMessage(body, fallback) {\r\n' +
+    '  return body?.fit?.error?.message || body?.fit?.error?.code || body?.error?.message || body?.error?.code || fallback;\r\n' +
+    '}\r\n' +
+    '\r\n' +
+    'function sampleRows(observations) {\r\n' +
+    '  if (!Array.isArray(observations)) return [];\r\n' +
+    '  const step = Math.max(1, Math.ceil(observations.length / 8));\r\n' +
+    '  return observations.filter((_, index) => index % step === 0 || index === observations.length - 1).slice(0, 9);\r\n' +
+    '}\r\n' +
+    '\r\n' +
+    'export default function LabClient() {\r\n' +
+    "  const [template, setTemplate] = useState('free_fall');\r\n" +
+    '  const [mystery, setMystery] = useState(false);\r\n' +
+    '  const [session, setSession] = useState(null);\r\n' +
+    '  const [fit, setFit] = useState(null);\r\n' +
+    "  const [status, setStatus] = useState('idle');\r\n" +
+    "  const [message, setMessage] = useState('Choose a template, then run a synthetic trial.');\r\n" +
+    '  const request = useRef(null);\r\n' +
+    '  const requestVersion = useRef(0);\r\n' +
+    '\r\n' +
+    "  const reset = () => { request.current?.abort(); requestVersion.current += 1; setSession(null); setFit(null); setStatus('idle'); setMessage('Choose a template, then run a synthetic trial.'); };\r\n" +
+    '  const chooseTemplate = (event) => { const next = event.target.value; setTemplate(next); if (!BALLISTIC.has(next)) setMystery(false); reset(); };\r\n' +
+    '  const chooseMystery = (event) => { setMystery(event.target.checked); reset(); };\r\n' +
+    '\r\n' +
+    '  useEffect(() => () => request.current?.abort(), []);\r\n' +
+    '\r\n' +
+    '  async function run(event) {\r\n' +
+    '    event.preventDefault();\r\n' +
+    '    request.current?.abort();\r\n' +
+    '    const version = ++requestVersion.current;\r\n' +
+    '    const controller = new AbortController();\r\n' +
+    '    request.current = controller;\r\n' +
+    "    setSession(null); setFit(null); setStatus('running'); setMessage('Generating simulated observations…');\r\n" +
+    '    try {\r\n' +
+    "      const response = await fetch('/api/lab', { method: 'POST', headers: { 'content-type': 'application/json' },\r\n" +
+    "        body: JSON.stringify({ action: 'start', template, mystery }), signal: controller.signal });\r\n" +
+    '      const body = await response.json().catch(() => null);\r\n' +
+    '      if (controller.signal.aborted || version !== requestVersion.current) return;\r\n' +
+    "      if (!response.ok || body?.status !== 'ok') throw new Error(errorMessage(body, 'The synthetic trial could not start.'));\r\n" +
+    "      setSession(body); setStatus('ready'); setMessage('Trial ready. Fit the ballistic model or run another trial.');\r\n" +
+    '    } catch (error) {\r\n' +
+    "      if (controller.signal.aborted || version !== requestVersion.current || error.name === 'AbortError') return;\r\n" +
+    "      setStatus('error'); setMessage(error.message || 'The synthetic trial could not start.');\r\n" +
+    '    }\r\n' +
+    '  }\r\n' +
+    '\r\n' +
+    '  async function fitTrial() {\r\n' +
+    '    if (!session?.sessionId || !BALLISTIC.has(template)) return;\r\n' +
+    '    request.current?.abort();\r\n' +
+    '    const version = ++requestVersion.current;\r\n' +
+    '    const controller = new AbortController();\r\n' +
+    '    request.current = controller;\r\n' +
+    "    setStatus('fitting'); setFit(null); setMessage('Fitting the ballistic model…');\r\n" +
+    '    try {\r\n' +
+    "      const response = await fetch('/api/lab', { method: 'POST', headers: { 'content-type': 'application/json' },\r\n" +
+    "        body: JSON.stringify({ action: 'fit', sessionId: session.sessionId }), signal: controller.signal });\r\n" +
+    '      const body = await response.json().catch(() => null);\r\n' +
+    '      if (controller.signal.aborted || version !== requestVersion.current) return;\r\n' +
+    "      if (!response.ok || body?.fit?.status !== 'ok') throw new Error(errorMessage(body, 'The fit could not be completed.'));\r\n" +
+    "      if (body.sessionId && body.sessionId !== session.sessionId) throw new Error('The fit belongs to a different trial. Run the trial again.');\r\n" +
+    '      const revealed = parseFitReveal(body, session.sessionId);\r\n' +
+    "      if (!revealed) throw new Error('The fit response did not include a readable reveal.');\r\n" +
+    "      setFit(revealed); setStatus('fitted'); setMessage('Fit complete. This is simulated evidence, not a calibrated measurement.');\r\n" +
+    '    } catch (error) {\r\n' +
+    "      if (controller.signal.aborted || version !== requestVersion.current || error.name === 'AbortError') return;\r\n" +
+    "      setStatus('error'); setMessage(error.message || 'The fit could not be completed.');\r\n" +
+    '    }\r\n' +
+    '  }\r\n' +
+    '\r\n' +
+    '  const rows = sampleRows(session?.observations);\r\n' +
+    '  const ballistic = BALLISTIC.has(template);\r\n' +
+    '  const plot = plotPoints(rows);\r\n' +
+    '  const templateLabel = TEMPLATES.find(([value]) => value === session?.template)?.[1] || session?.template;\r\n' +
+    '  return <section className="lab" aria-labelledby="lab-title">\r\n' +
+    '    <div className="lab-intro"><p className="eyebrow">Synthetic lab · Mystery-g</p><h1 id="lab-title">Test a motion model</h1>\r\n' +
+    '      <p className="lede">Explore a deterministic, simulated trajectory before connecting a measured video.</p></div>\r\n' +
+    '    <form className="lab-controls" onSubmit={run}>\r\n' +
+    '      <fieldset><legend>Template</legend><div className="template-grid">\r\n' +
+    '        {TEMPLATES.map(([value, label, hint]) => <label className="template-choice" key={value}><input type="radio" name="template" value={value} checked={template === value} onChange={chooseTemplate} /><span><strong>{label}</strong><small>{hint}</small></span></label>)}\r\n' +
+    '      </div></fieldset>\r\n' +
+    '      <label className="mystery-toggle"><input type="checkbox" checked={mystery} onChange={chooseMystery} disabled={!ballistic} /> <span><strong>Mystery-g mode</strong><small>Hide the simulated gravity until reveal</small></span></label>\r\n' +
+    `      <div className="lab-actions"><button type="submit" disabled={status === 'running' || status === 'fitting'}>{status === 'running' ? 'Running…' : 'Run trial'}</button>\r\n` +
+    `        <button type="button" className="secondary" onClick={fitTrial} disabled={!session || !ballistic || status === 'running' || status === 'fitting'}>Fit &amp; reveal</button></div>\r\n` +
+    '      {!ballistic && <p className="field-note">Fit is available only for ballistic templates.</p>}\r\n' +
+    '    </form>\r\n' +
+    '    <p className={`lab-status status-${status}`} role="status" aria-live="polite">{message}</p>\r\n' +
+    '    {session && <div className="lab-results" aria-label="Synthetic trial results">\r\n' +
+    `      <div className="result-heading"><div><p className="eyebrow">Observed trajectory</p><h2>{templateLabel} samples</h2></div><span className="badge">Simulated · {session.units?.position || 'm'}</span></div>\r\n` +
+    '      <div className="plot-wrap"><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label={`Sampled simulated position over time in ${session.units?.time || \'s\'} and ${session.units?.position || \'m\'}`}><polyline points={plot.points} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time ({session.units?.time || \'s\'})</text><text x="28" y="18">position ({session.units?.position || \'m\'})</text></svg></div>\r\n' +
+    '      <div className="table-wrap"><table><caption>Sampled observations</caption><thead><tr><th scope="col">Time (s)</th><th scope="col">Position (m)</th></tr></thead><tbody>{rows.map((row, index) => <tr key={`${row.time_s}-${index}`}><td>{Number(row.time_s).toFixed(2)}</td><td>{Number(row.position_m).toFixed(3)}</td></tr>)}</tbody></table></div>\r\n' +
+    `      {fit && <div className="reveal"><p className="eyebrow">Reveal</p><h2>{fit.value.toFixed(3)} ± {fit.uncertainty.toPrecision(3)} {fit.unit}</h2><p>Gravity · source: {fit.source}</p><p>Uncertainty model: {fit.model}. {fit.assumptions.join(' ')}</p></div>}\r\n` +
+    `      <p className="limitations"><strong>Limits:</strong> {session.limitations?.join(' ') || 'Synthetic observations only; no camera calibration or physical uncertainty.'}</p>\r\n` +
+    '    </div>}\r\n' +
+    '  </section>;\r\n' +
+    '}\r\n' +
+    '\r\n' +
+    'export { BALLISTIC, sampleRows };\r\n'
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-ui/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-contract.test.mjs:39:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1325:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+      at Test.postRun (node:internal/test_runner/test:1465:19)
+      at Test.run (node:internal/test_runner/test:1390:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '\'use client\';\r\n\r\nimport { useEffect, useRef, useState } from \'react\';\r\nimport { parseFitReveal, plotPoints } from \'./fit-contract.mjs\';\r\n\r\nconst TEMPLATES = [\r\n  [\'free_fall\', \'Free fall\', \'Ballistic drop\'],\r\n  [\'projectile\', \'Projectile\', \'Ballistic launch\'],\r\n  [\'ramp\', \'Ramp\', \'Sliding motion\'],\r\n  [\'pendulum\', \'Pendulum\', \'Oscillation\'],\r\n];\r\nconst BALLISTIC = new Set([\'free_fall\', \'projectile\']);\r\n\r\nfunction errorMessage(body, fallback) {\r\n  return body?.fit?.error?.message || body?.fit?.error?.code || body?.error?.message || body?.error?.code || fallback;\r\n}\r\n\r\nfunction sampleRows(observations) {\r\n  if (!Array.isArray(observations)) return [];\r\n  const step = Math.max(1, Math.ceil(observations.length / 8));\r\n  return observations.filter((_, index) => index % step === 0 || index === observations.length - 1).slice(0, 9);\r\n}\r\n\r\nexport default function LabClient() {\r\n  const [template, setTemplate] = useState(\'free_fall\');\r\n  const [mystery, setMystery] = useState(false);\r\n  const [session, setSession] = useState(null);\r\n  const [fit, setFit] = useState(null);\r\n  const [status, setStatus] = useState(\'idle\');\r\n  const [message, setMessage] = useState(\'Choose a template, then run a synthetic trial.\');\r\n  const request = useRef(null);\r\n  const requestVersion = useRef(0);\r\n\r\n  const reset = () => { request.current?.abort(); requestVersion.current += 1; setSession(null); setFit(null); setStatus(\'idle\'); setMessage(\'Choose a template, then run a synthetic trial.\'); };\r\n  const chooseTemplate = (event) => { const next = event.target.value; setTemplate(next); if (!BALLISTIC.has(next)) setMystery(false); reset(); };\r\n  const chooseMystery = (event) => { setMystery(event.target.checked); reset(); };\r\n\r\n  useEffect(() => () => request.current?.abort(), []);\r\n\r\n  async function run(event) {\r\n    event.preventDefault();\r\n    request.current?.abort();\r\n    const version = ++requestVersion.current;\r\n    const controller = new AbortController();\r\n    request.current = controller;\r\n    setSession(null); setFit(null); setStatus(\'running\'); setMessage(\'Generating simulated observations…\');\r\n    try {\r\n      const response = await fetch(\'/api/lab\', { method: \'POST\', headers: { \'content-type\': \'application/json\' },\r\n        body: JSON.stringify({ action: \'start\', template, mystery }), signal: controller.signal });\r\n      const body = await response.json().catch(() => null);\r\n      if (controller.signal.aborted || version !== requestVersion.current) return;\r\n      if (!response.ok || body?.status !== \'ok\') throw new Error(errorMessage(body, \'The synthetic trial could not start.\'));\r\n      setSession(body); setStatus(\'ready\'); setMessage(\'Trial ready. Fit the ballistic model or run another trial.\');\r\n    } catch (error) {\r\n      if (controller.signal.aborted || version !== requestVersion.current || error.name === \'AbortError\') return;\r\n      setStatus(\'error\'); setMessage(error.message || \'The synthetic trial could not start.\');\r\n    }\r\n  }\r\n\r\n  async function fitTrial() {\r\n    if (!session?.sessionId || !BALLISTIC.has(template)) return;\r\n    request.current?.abort();\r\n    const version = ++requestVersion.current;\r\n    const controller = new AbortController();\r\n    request.current = controller;\r\n    setStatus(\'fitting\'); setFit(null); setMessage(\'Fitting the ballistic model…\');\r\n    try {\r\n      const response = await fetch(\'/api/lab\', { method: \'POST\', headers: { \'content-type\': \'application/json\' },\r\n        body: JSON.stringify({ action: \'fit\', sessionId: session.sessionId }), signal: controller.signal });\r\n      const body = await response.json().catch(() => null);\r\n      if (controller.signal.aborted || version !== requestVersion.current) return;\r\n      if (!response.ok || body?.fit?.status !== \'ok\') throw new Error(errorMessage(body, \'The fit could not be completed.\'));\r\n      if (body.sessionId && body.sessionId !== session.sessionId) throw new Error(\'The fit belongs to a different trial. Run the trial again.\');\r\n      const revealed = parseFitReveal(body, session.sessionId);\r\n      if (!revealed) throw new Error(\'The fit response did not include a readable reveal.\');\r\n      setFit(revealed); setStatus(\'fitted\'); setMessage(\'Fit complete. This is simulated evidence, not a calibrated measurement.\');\r\n    } catch (error) {\r\n      if (controller.signal.aborted || version !== requestVersion.current || error.name === \'AbortError\') return;\r\n      setStatus(\'error\'); setMessage(error.message || \'The fit could not be completed.\');\r\n    }\r\n  }\r\n\r\n  const rows = sampleRows(session?.observations);\r\n  const ballistic = BALLISTIC.has(template);\r\n  const plot = plotPoints(rows);\r\n  const templateLabel = TEMPLATES.find(([value]) => value === session?.template)?.[1] || session?.template;\r\n  return <section className="lab" aria-labelledby="lab-title">\r\n    <div className="lab-intro"><p className="eyebrow">Synthetic lab · Mystery-g</p><h1 id="lab-title">Test a motion model</h1>\r\n      <p className="lede">Explore a deterministic, simulated trajectory before connecting a measured video.</p></div>\r\n    <form className="lab-controls" onSubmit={run}>\r\n      <fieldset><legend>Template</legend><div className="template-grid">\r\n        {TEMPLATES.map(([value, label, hint]) => <label className="template-choice" key={value}><input type="radio" name="template" value={value} checked={template === value} onChange={chooseTemplate} /><span><strong>{label}</strong><small>{hint}</small></span></label>)}\r\n      </div></fieldset>\r\n      <label className="mystery-toggle"><input type="checkbox" checked={mystery} onChange={chooseMystery} disabled={!ballistic} /> <span><strong>Mystery-g mode</strong><small>Hide the simulated gravity until reveal</small></span></label>\r\n      <div className="lab-actions"><button type="submit" disabled={status === \'running\' || status === \'fitting\'}>{status === \'running\' ? \'Running…\' : \'Run trial\'}</button>\r\n        <button type="button" className="secondary" onClick={fitTrial} disabled={!session || !ballistic || status === \'running\' || status === \'fitting\'}>Fit &amp; reveal</button></div>\r\n      {!ballistic && <p className="field-note">Fit is available only for ballistic templates.</p>}\r\n    </form>\r\n    <p className={`lab-status status-${status}`} role="status" aria-live="polite">{message}</p>\r\n    {session && <div className="lab-results" aria-label="Synthetic trial results">\r\n      <div className="result-heading"><div><p className="eyebrow">Observed trajectory</p><h2>{templateLabel} samples</h2></div><span className="badge">Simulated · {session.units?.position || \'m\'}</span></div>\r\n      <div className="plot-wrap"><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label={`Sampled simulated position over time in ${session.units?.time || \'s\'} and ${session.units?.position || \'m\'}`}><polyline points={plot.points} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time ({session.units?.time || \'s\'})</text><text x="28" y="18">position ({session.units?.position || \'m\'})</text></svg></div>\r\n      <div className="table-wrap"><table><caption>Sampled observations</caption><thead><tr><th scope="col">Time (s)</th><th scope="col">Position (m)</th></tr></thead><tbody>{rows.map((row, index) => <tr key={`${row.time_s}-${index}`}><td>{Number(row.time_s).toFixed(2)}</td><td>{Number(row.position_m).toFixed(3)}</td></tr>)}</tbody></table></div>\r\n      {fit && <div className="reveal"><p className="eyebrow">Reveal</p><h2>{fit.value.toFixed(3)} ± {fit.uncertainty.toPrecision(3)} {fit.unit}</h2><p>Gravity · source: {fit.source}</p><p>Uncertainty model: {fit.model}. {fit.assumptions.join(\' \')}</p></div>}\r\n      <p className="limitations"><strong>Limits:</strong> {session.limitations?.join(\' \') || \'Synthetic observations only; no camera calibration or physical uncertainty.\'}</p>\r\n    </div>}\r\n  </section>;\r\n}\r\n\r\nexport { BALLISTIC, sampleRows };\r\n',
+    expected: /plotPoints\(session\?\.observations\)/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\lab\ui-contract.test.mjs:50:1
+✖ labels describe the bridge ordinate and unsupported fits honestly (2.9875ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Downward vertical displacement from start/. Input:
+  
+  "'use client';\r\n" +
+    '\r\n' +
+    "import { useEffect, useRef, useState } from 'react';\r\n" +
+    "import { parseFitReveal, plotPoints } from './fit-contract.mjs';\r\n" +
+    '\r\n' +
+    'const TEMPLATES = [\r\n' +
+    "  ['free_fall', 'Free fall', 'Ballistic drop'],\r\n" +
+    "  ['projectile', 'Projectile', 'Ballistic launch'],\r\n" +
+    "  ['ramp', 'Ramp', 'Sliding motion'],\r\n" +
+    "  ['pendulum', 'Pendulum', 'Oscillation'],\r\n" +
+    '];\r\n' +
+    "const BALLISTIC = new Set(['free_fall', 'projectile']);\r\n" +
+    '\r\n' +
+    'function errorMessage(body, fallback) {\r\n' +
+    '  return body?.fit?.error?.message || body?.fit?.error?.code || body?.error?.message || body?.error?.code || fallback;\r\n' +
+    '}\r\n' +
+    '\r\n' +
+    'function sampleRows(observations) {\r\n' +
+    '  if (!Array.isArray(observations)) return [];\r\n' +
+    '  const step = Math.max(1, Math.ceil(observations.length / 8));\r\n' +
+    '  return observations.filter((_, index) => index % step === 0 || index === observations.length - 1).slice(0, 9);\r\n' +
+    '}\r\n' +
+    '\r\n' +
+    'export default function LabClient() {\r\n' +
+    "  const [template, setTemplate] = useState('free_fall');\r\n" +
+    '  const [mystery, setMystery] = useState(false);\r\n' +
+    '  const [session, setSession] = useState(null);\r\n' +
+    '  const [fit, setFit] = useState(null);\r\n' +
+    "  const [status, setStatus] = useState('idle');\r\n" +
+    "  const [message, setMessage] = useState('Choose a template, then run a synthetic trial.');\r\n" +
+    '  const request = useRef(null);\r\n' +
+    '  const requestVersion = useRef(0);\r\n' +
+    '\r\n' +
+    "  const reset = () => { request.current?.abort(); requestVersion.current += 1; setSession(null); setFit(null); setStatus('idle'); setMessage('Choose a template, then run a synthetic trial.'); };\r\n" +
+    '  const chooseTemplate = (event) => { const next = event.target.value; setTemplate(next); if (!BALLISTIC.has(next)) setMystery(false); reset(); };\r\n' +
+    '  const chooseMystery = (event) => { setMystery(event.target.checked); reset(); };\r\n' +
+    '\r\n' +
+    '  useEffect(() => () => request.current?.abort(), []);\r\n' +
+    '\r\n' +
+    '  async function run(event) {\r\n' +
+    '    event.preventDefault();\r\n' +
+    '    request.current?.abort();\r\n' +
+    '    const version = ++requestVersion.current;\r\n' +
+    '    const controller = new AbortController();\r\n' +
+    '    request.current = controller;\r\n' +
+    "    setSession(null); setFit(null); setStatus('running'); setMessage('Generating simulated observations…');\r\n" +
+    '    try {\r\n' +
+    "      const response = await fetch('/api/lab', { method: 'POST', headers: { 'content-type': 'application/json' },\r\n" +
+    "        body: JSON.stringify({ action: 'start', template, mystery }), signal: controller.signal });\r\n" +
+    '      const body = await response.json().catch(() => null);\r\n' +
+    '      if (controller.signal.aborted || version !== requestVersion.current) return;\r\n' +
+    "      if (!response.ok || body?.status !== 'ok') throw new Error(errorMessage(body, 'The synthetic trial could not start.'));\r\n" +
+    "      setSession(body); setStatus('ready'); setMessage('Trial ready. Fit the ballistic model or run another trial.');\r\n" +
+    '    } catch (error) {\r\n' +
+    "      if (controller.signal.aborted || version !== requestVersion.current || error.name === 'AbortError') return;\r\n" +
+    "      setStatus('error'); setMessage(error.message || 'The synthetic trial could not start.');\r\n" +
+    '    }\r\n' +
+    '  }\r\n' +
+    '\r\n' +
+    '  async function fitTrial() {\r\n' +
+    '    if (!session?.sessionId || !BALLISTIC.has(template)) return;\r\n' +
+    '    request.current?.abort();\r\n' +
+    '    const version = ++requestVersion.current;\r\n' +
+    '    const controller = new AbortController();\r\n' +
+    '    request.current = controller;\r\n' +
+    "    setStatus('fitting'); setFit(null); setMessage('Fitting the ballistic model…');\r\n" +
+    '    try {\r\n' +
+    "      const response = await fetch('/api/lab', { method: 'POST', headers: { 'content-type': 'application/json' },\r\n" +
+    "        body: JSON.stringify({ action: 'fit', sessionId: session.sessionId }), signal: controller.signal });\r\n" +
+    '      const body = await response.json().catch(() => null);\r\n' +
+    '      if (controller.signal.aborted || version !== requestVersion.current) return;\r\n' +
+    "      if (!response.ok || body?.fit?.status !== 'ok') throw new Error(errorMessage(body, 'The fit could not be completed.'));\r\n" +
+    "      if (body.sessionId && body.sessionId !== session.sessionId) throw new Error('The fit belongs to a different trial. Run the trial again.');\r\n" +
+    '      const revealed = parseFitReveal(body, session.sessionId);\r\n' +
+    "      if (!revealed) throw new Error('The fit response did not include a readable reveal.');\r\n" +
+    "      setFit(revealed); setStatus('fitted'); setMessage('Fit complete. This is simulated evidence, not a calibrated measurement.');\r\n" +
+    '    } catch (error) {\r\n' +
+    "      if (controller.signal.aborted || version !== requestVersion.current || error.name === 'AbortError') return;\r\n" +
+    "      setStatus('error'); setMessage(error.message || 'The fit could not be completed.');\r\n" +
+    '    }\r\n' +
+    '  }\r\n' +
+    '\r\n' +
+    '  const rows = sampleRows(session?.observations);\r\n' +
+    '  const ballistic = BALLISTIC.has(template);\r\n' +
+    '  const plot = plotPoints(rows);\r\n' +
+    '  const templateLabel = TEMPLATES.find(([value]) => value === session?.template)?.[1] || session?.template;\r\n' +
+    '  return <section className="lab" aria-labelledby="lab-title">\r\n' +
+    '    <div className="lab-intro"><p className="eyebrow">Synthetic lab · Mystery-g</p><h1 id="lab-title">Test a motion model</h1>\r\n' +
+    '      <p className="lede">Explore a deterministic, simulated trajectory before connecting a measured video.</p></div>\r\n' +
+    '    <form className="lab-controls" onSubmit={run}>\r\n' +
+    '      <fieldset><legend>Template</legend><div className="template-grid">\r\n' +
+    '        {TEMPLATES.map(([value, label, hint]) => <label className="template-choice" key={value}><input type="radio" name="template" value={value} checked={template === value} onChange={chooseTemplate} /><span><strong>{label}</strong><small>{hint}</small></span></label>)}\r\n' +
+    '      </div></fieldset>\r\n' +
+    '      <label className="mystery-toggle"><input type="checkbox" checked={mystery} onChange={chooseMystery} disabled={!ballistic} /> <span><strong>Mystery-g mode</strong><small>Hide the simulated gravity until reveal</small></span></label>\r\n' +
+    `      <div className="lab-actions"><button type="submit" disabled={status === 'running' || status === 'fitting'}>{status === 'running' ? 'Running…' : 'Run trial'}</button>\r\n` +
+    `        <button type="button" className="secondary" onClick={fitTrial} disabled={!session || !ballistic || status === 'running' || status === 'fitting'}>Fit &amp; reveal</button></div>\r\n` +
+    '      {!ballistic && <p className="field-note">Fit is available only for ballistic templates.</p>}\r\n' +
+    '    </form>\r\n' +
+    '    <p className={`lab-status status-${status}`} role="status" aria-live="polite">{message}</p>\r\n' +
+    '    {session && <div className="lab-results" aria-label="Synthetic trial results">\r\n' +
+    `      <div className="result-heading"><div><p className="eyebrow">Observed trajectory</p><h2>{templateLabel} samples</h2></div><span className="badge">Simulated · {session.units?.position || 'm'}</span></div>\r\n` +
+    '      <div className="plot-wrap"><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label={`Sampled simulated position over time in ${session.units?.time || \'s\'} and ${session.units?.position || \'m\'}`}><polyline points={plot.points} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time ({session.units?.time || \'s\'})</text><text x="28" y="18">position ({session.units?.position || \'m\'})</text></svg></div>\r\n' +
+    '      <div className="table-wrap"><table><caption>Sampled observations</caption><thead><tr><th scope="col">Time (s)</th><th scope="col">Position (m)</th></tr></thead><tbody>{rows.map((row, index) => <tr key={`${row.time_s}-${index}`}><td>{Number(row.time_s).toFixed(2)}</td><td>{Number(row.position_m).toFixed(3)}</td></tr>)}</tbody></table></div>\r\n' +
+    `      {fit && <div className="reveal"><p className="eyebrow">Reveal</p><h2>{fit.value.toFixed(3)} ± {fit.uncertainty.toPrecision(3)} {fit.unit}</h2><p>Gravity · source: {fit.source}</p><p>Uncertainty model: {fit.model}. {fit.assumptions.join(' ')}</p></div>}\r\n` +
+    `      <p className="limitations"><strong>Limits:</strong> {session.limitations?.join(' ') || 'Synthetic observations only; no camera calibration or physical uncertainty.'}</p>\r\n` +
+    '    </div>}\r\n' +
+    '  </section>;\r\n' +
+    '}\r\n' +
+    '\r\n' +
+    'export { BALLISTIC, sampleRows };\r\n'
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-ui/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-contract.test.mjs:51:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1325:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+      at Test.postRun (node:internal/test_runner/test:1465:19)
+      at Test.run (node:internal/test_runner/test:1390:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '\'use client\';\r\n\r\nimport { useEffect, useRef, useState } from \'react\';\r\nimport { parseFitReveal, plotPoints } from \'./fit-contract.mjs\';\r\n\r\nconst TEMPLATES = [\r\n  [\'free_fall\', \'Free fall\', \'Ballistic drop\'],\r\n  [\'projectile\', \'Projectile\', \'Ballistic launch\'],\r\n  [\'ramp\', \'Ramp\', \'Sliding motion\'],\r\n  [\'pendulum\', \'Pendulum\', \'Oscillation\'],\r\n];\r\nconst BALLISTIC = new Set([\'free_fall\', \'projectile\']);\r\n\r\nfunction errorMessage(body, fallback) {\r\n  return body?.fit?.error?.message || body?.fit?.error?.code || body?.error?.message || body?.error?.code || fallback;\r\n}\r\n\r\nfunction sampleRows(observations) {\r\n  if (!Array.isArray(observations)) return [];\r\n  const step = Math.max(1, Math.ceil(observations.length / 8));\r\n  return observations.filter((_, index) => index % step === 0 || index === observations.length - 1).slice(0, 9);\r\n}\r\n\r\nexport default function LabClient() {\r\n  const [template, setTemplate] = useState(\'free_fall\');\r\n  const [mystery, setMystery] = useState(false);\r\n  const [session, setSession] = useState(null);\r\n  const [fit, setFit] = useState(null);\r\n  const [status, setStatus] = useState(\'idle\');\r\n  const [message, setMessage] = useState(\'Choose a template, then run a synthetic trial.\');\r\n  const request = useRef(null);\r\n  const requestVersion = useRef(0);\r\n\r\n  const reset = () => { request.current?.abort(); requestVersion.current += 1; setSession(null); setFit(null); setStatus(\'idle\'); setMessage(\'Choose a template, then run a synthetic trial.\'); };\r\n  const chooseTemplate = (event) => { const next = event.target.value; setTemplate(next); if (!BALLISTIC.has(next)) setMystery(false); reset(); };\r\n  const chooseMystery = (event) => { setMystery(event.target.checked); reset(); };\r\n\r\n  useEffect(() => () => request.current?.abort(), []);\r\n\r\n  async function run(event) {\r\n    event.preventDefault();\r\n    request.current?.abort();\r\n    const version = ++requestVersion.current;\r\n    const controller = new AbortController();\r\n    request.current = controller;\r\n    setSession(null); setFit(null); setStatus(\'running\'); setMessage(\'Generating simulated observations…\');\r\n    try {\r\n      const response = await fetch(\'/api/lab\', { method: \'POST\', headers: { \'content-type\': \'application/json\' },\r\n        body: JSON.stringify({ action: \'start\', template, mystery }), signal: controller.signal });\r\n      const body = await response.json().catch(() => null);\r\n      if (controller.signal.aborted || version !== requestVersion.current) return;\r\n      if (!response.ok || body?.status !== \'ok\') throw new Error(errorMessage(body, \'The synthetic trial could not start.\'));\r\n      setSession(body); setStatus(\'ready\'); setMessage(\'Trial ready. Fit the ballistic model or run another trial.\');\r\n    } catch (error) {\r\n      if (controller.signal.aborted || version !== requestVersion.current || error.name === \'AbortError\') return;\r\n      setStatus(\'error\'); setMessage(error.message || \'The synthetic trial could not start.\');\r\n    }\r\n  }\r\n\r\n  async function fitTrial() {\r\n    if (!session?.sessionId || !BALLISTIC.has(template)) return;\r\n    request.current?.abort();\r\n    const version = ++requestVersion.current;\r\n    const controller = new AbortController();\r\n    request.current = controller;\r\n    setStatus(\'fitting\'); setFit(null); setMessage(\'Fitting the ballistic model…\');\r\n    try {\r\n      const response = await fetch(\'/api/lab\', { method: \'POST\', headers: { \'content-type\': \'application/json\' },\r\n        body: JSON.stringify({ action: \'fit\', sessionId: session.sessionId }), signal: controller.signal });\r\n      const body = await response.json().catch(() => null);\r\n      if (controller.signal.aborted || version !== requestVersion.current) return;\r\n      if (!response.ok || body?.fit?.status !== \'ok\') throw new Error(errorMessage(body, \'The fit could not be completed.\'));\r\n      if (body.sessionId && body.sessionId !== session.sessionId) throw new Error(\'The fit belongs to a different trial. Run the trial again.\');\r\n      const revealed = parseFitReveal(body, session.sessionId);\r\n      if (!revealed) throw new Error(\'The fit response did not include a readable reveal.\');\r\n      setFit(revealed); setStatus(\'fitted\'); setMessage(\'Fit complete. This is simulated evidence, not a calibrated measurement.\');\r\n    } catch (error) {\r\n      if (controller.signal.aborted || version !== requestVersion.current || error.name === \'AbortError\') return;\r\n      setStatus(\'error\'); setMessage(error.message || \'The fit could not be completed.\');\r\n    }\r\n  }\r\n\r\n  const rows = sampleRows(session?.observations);\r\n  const ballistic = BALLISTIC.has(template);\r\n  const plot = plotPoints(rows);\r\n  const templateLabel = TEMPLATES.find(([value]) => value === session?.template)?.[1] || session?.template;\r\n  return <section className="lab" aria-labelledby="lab-title">\r\n    <div className="lab-intro"><p className="eyebrow">Synthetic lab · Mystery-g</p><h1 id="lab-title">Test a motion model</h1>\r\n      <p className="lede">Explore a deterministic, simulated trajectory before connecting a measured video.</p></div>\r\n    <form className="lab-controls" onSubmit={run}>\r\n      <fieldset><legend>Template</legend><div className="template-grid">\r\n        {TEMPLATES.map(([value, label, hint]) => <label className="template-choice" key={value}><input type="radio" name="template" value={value} checked={template === value} onChange={chooseTemplate} /><span><strong>{label}</strong><small>{hint}</small></span></label>)}\r\n      </div></fieldset>\r\n      <label className="mystery-toggle"><input type="checkbox" checked={mystery} onChange={chooseMystery} disabled={!ballistic} /> <span><strong>Mystery-g mode</strong><small>Hide the simulated gravity until reveal</small></span></label>\r\n      <div className="lab-actions"><button type="submit" disabled={status === \'running\' || status === \'fitting\'}>{status === \'running\' ? \'Running…\' : \'Run trial\'}</button>\r\n        <button type="button" className="secondary" onClick={fitTrial} disabled={!session || !ballistic || status === \'running\' || status === \'fitting\'}>Fit &amp; reveal</button></div>\r\n      {!ballistic && <p className="field-note">Fit is available only for ballistic templates.</p>}\r\n    </form>\r\n    <p className={`lab-status status-${status}`} role="status" aria-live="polite">{message}</p>\r\n    {session && <div className="lab-results" aria-label="Synthetic trial results">\r\n      <div className="result-heading"><div><p className="eyebrow">Observed trajectory</p><h2>{templateLabel} samples</h2></div><span className="badge">Simulated · {session.units?.position || \'m\'}</span></div>\r\n      <div className="plot-wrap"><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label={`Sampled simulated position over time in ${session.units?.time || \'s\'} and ${session.units?.position || \'m\'}`}><polyline points={plot.points} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time ({session.units?.time || \'s\'})</text><text x="28" y="18">position ({session.units?.position || \'m\'})</text></svg></div>\r\n      <div className="table-wrap"><table><caption>Sampled observations</caption><thead><tr><th scope="col">Time (s)</th><th scope="col">Position (m)</th></tr></thead><tbody>{rows.map((row, index) => <tr key={`${row.time_s}-${index}`}><td>{Number(row.time_s).toFixed(2)}</td><td>{Number(row.position_m).toFixed(3)}</td></tr>)}</tbody></table></div>\r\n      {fit && <div className="reveal"><p className="eyebrow">Reveal</p><h2>{fit.value.toFixed(3)} ± {fit.uncertainty.toPrecision(3)} {fit.unit}</h2><p>Gravity · source: {fit.source}</p><p>Uncertainty model: {fit.model}. {fit.assumptions.join(\' \')}</p></div>}\r\n      <p className="limitations"><strong>Limits:</strong> {session.limitations?.join(\' \') || \'Synthetic observations only; no camera calibration or physical uncertainty.\'}</p>\r\n    </div>}\r\n  </section>;\r\n}\r\n\r\nexport { BALLISTIC, sampleRows };\r\n',
+    expected: /Downward vertical displacement from start/,
+    operator: 'match',
+    diff: 'simple'
+  }

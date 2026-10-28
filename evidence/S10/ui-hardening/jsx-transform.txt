@@ -1,0 +1,1 @@
+PASS: Next SWC parsed/transformed LabClient.jsx with existing installed dependency (read-only); no emitted build or server.

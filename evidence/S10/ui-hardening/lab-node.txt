@@ -1,0 +1,52 @@
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@dimforge/rapier3d-compat' imported from C:\Users\HP\.codex\worktrees\swarm10-ui\2026-10-26 - Meta Global AI Developer Hackathon\Build\simulator\contacts.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:859:18)
+    at defaultResolve (node:internal/modules/esm/resolve:992:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+    at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+    at #resolve (node:internal/modules/esm/loader:683:17)
+    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v24.18.0
+✖ tests\lab\contact-integration.test.mjs (380.2032ms)
+(node:9844) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/.codex/worktrees/swarm10-ui/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/app/api/lab/route.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\HP\.codex\worktrees\swarm10-ui\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ normal start/fit uses the actual bridge and fitter (5603.0128ms)
+✔ mystery redacts pre-fit and reveals only through matching fit (4852.0506ms)
+✔ pre-abort does not spawn and expired reads do not evict live sessions (2102.3926ms)
+✔ allowlists, expiry and bounded session errors are clean (2691.1297ms)
+✔ aborting an active bridge settles and releases its capacity (2301.1853ms)
+✔ loopback route accepts the UI contract and rejects nonlocal hosts (1577.988ms)
+✔ production route remains disabled (1.6371ms)
+✔ lab UI keeps the user flow and trust labels visible in source (2.7807ms)
+✔ lab layout collapses before the narrow mobile viewport (0.4425ms)
+✔ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (2.4306ms)
+✔ the chart uses all observations, not the downsampled table (9.7616ms)
+✔ labels describe the bridge ordinate and unsupported fits honestly (3.8291ms)
+✔ plot helper uses actual finite time and position domains (12.474ms)
+✔ plot and table ignore nonfinite and malformed observations without coercion (2.2676ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19493.6019
+
+✖ failing tests:
+
+test at tests\lab\contact-integration.test.mjs:1:1
+✖ tests\lab\contact-integration.test.mjs (380.2032ms)
+  'test failed'

@@ -1,0 +1,16 @@
+✔ lab UI keeps the user flow and trust labels visible in source (2.7296ms)
+✔ lab layout collapses before the narrow mobile viewport (0.381ms)
+✔ both request paths retain abort and stale-result guards before state updates (0.8167ms)
+✔ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (2.3314ms)
+✔ the chart uses all observations, not the downsampled table (11.3312ms)
+✔ labels describe the bridge ordinate and unsupported fits honestly (0.5819ms)
+✔ plot helper uses actual finite time and position domains (1.4357ms)
+✔ plot and table ignore nonfinite and malformed observations without coercion (3.4271ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 239.994

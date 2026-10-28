@@ -6,13 +6,20 @@ export function parseFitReveal(body, expectedSessionId) {
   const gravity = fit?.gravity;
   const source = gravity?.source;
   const uncertainty = fit?.uncertainty;
-  if (body?.sessionId !== expectedSessionId || fit?.status !== 'ok' || !gravity || !finite(gravity.value) ||
+  if (body?.status !== 'ok' || body.sessionId !== expectedSessionId || fit?.status !== 'ok' || !gravity || !finite(gravity.value) ||
       !finite(gravity.uncertainty) || gravity.uncertainty < 0 || gravity.unit !== 'm/s^2' ||
       source?.label !== 'simulated' || typeof uncertainty?.model !== 'string' || !uncertainty.model.trim() ||
       !Array.isArray(uncertainty.assumptions) || uncertainty.assumptions.some((item) => typeof item !== 'string')) return null;
   return { value: gravity.value, uncertainty: gravity.uncertainty, unit: gravity.unit,
     source: source.label, evidence: source.evidence, model: uncertainty.model,
     assumptions: uncertainty.assumptions };
+}
+
+export function sampleRows(observations) {
+  const values = (Array.isArray(observations) ? observations : []).filter((row) =>
+    finite(row?.time_s) && finite(row?.position_m));
+  const step = Math.max(1, Math.ceil(values.length / 8));
+  return values.filter((_, index) => index % step === 0 || index === values.length - 1).slice(0, 9);
 }
 
 export function plotPoints(observations, width = 592, height = 160) {

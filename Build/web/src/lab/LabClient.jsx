@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { parseFitReveal, plotPoints } from './fit-contract.mjs';
+import { parseFitReveal, plotPoints, sampleRows } from './fit-contract.mjs';
 
 const TEMPLATES = [
   ['free_fall', 'Free fall', 'Ballistic drop'],
@@ -13,12 +13,6 @@ const BALLISTIC = new Set(['free_fall', 'projectile']);
 
 function errorMessage(body, fallback) {
   return body?.fit?.error?.message || body?.fit?.error?.code || body?.error?.message || body?.error?.code || fallback;
-}
-
-function sampleRows(observations) {
-  if (!Array.isArray(observations)) return [];
-  const step = Math.max(1, Math.ceil(observations.length / 8));
-  return observations.filter((_, index) => index % step === 0 || index === observations.length - 1).slice(0, 9);
 }
 
 export default function LabClient() {
@@ -50,7 +44,7 @@ export default function LabClient() {
       const body = await response.json().catch(() => null);
       if (controller.signal.aborted || version !== requestVersion.current) return;
       if (!response.ok || body?.status !== 'ok') throw new Error(errorMessage(body, 'The synthetic trial could not start.'));
-      setSession(body); setStatus('ready'); setMessage('Trial ready. Fit the ballistic model or run another trial.');
+      setSession(body); setStatus('ready'); setMessage(ballistic ? 'Trial ready. Fit the ballistic model or run another trial.' : 'Trial ready. Fit is unavailable for this template; explore the simulated observations or run another trial.');
     } catch (error) {
       if (controller.signal.aborted || version !== requestVersion.current || error.name === 'AbortError') return;
       setStatus('error'); setMessage(error.message || 'The synthetic trial could not start.');
@@ -82,7 +76,7 @@ export default function LabClient() {
 
   const rows = sampleRows(session?.observations);
   const ballistic = BALLISTIC.has(template);
-  const plot = plotPoints(rows);
+  const plot = plotPoints(session?.observations);
   const templateLabel = TEMPLATES.find(([value]) => value === session?.template)?.[1] || session?.template;
   return <section className="lab" aria-labelledby="lab-title">
     <div className="lab-intro"><p className="eyebrow">Synthetic lab · Mystery-g</p><h1 id="lab-title">Test a motion model</h1>
@@ -99,8 +93,9 @@ export default function LabClient() {
     <p className={`lab-status status-${status}`} role="status" aria-live="polite">{message}</p>
     {session && <div className="lab-results" aria-label="Synthetic trial results">
       <div className="result-heading"><div><p className="eyebrow">Observed trajectory</p><h2>{templateLabel} samples</h2></div><span className="badge">Simulated · {session.units?.position || 'm'}</span></div>
-      <div className="plot-wrap"><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label={`Sampled simulated position over time in ${session.units?.time || 's'} and ${session.units?.position || 'm'}`}><polyline points={plot.points} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time ({session.units?.time || 's'})</text><text x="28" y="18">position ({session.units?.position || 'm'})</text></svg></div>
-      <div className="table-wrap"><table><caption>Sampled observations</caption><thead><tr><th scope="col">Time (s)</th><th scope="col">Position (m)</th></tr></thead><tbody>{rows.map((row, index) => <tr key={`${row.time_s}-${index}`}><td>{Number(row.time_s).toFixed(2)}</td><td>{Number(row.position_m).toFixed(3)}</td></tr>)}</tbody></table></div>
+      <p className="field-note">Downward vertical displacement from start (positive down), not distance along the ramp or pendulum arc. The chart uses all finite observations; the table is sampled.</p>
+      <div className="plot-wrap"><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label={`Simulated downward vertical displacement from start over time in ${session.units?.time || 's'} and ${session.units?.position || 'm'}`}><polyline points={plot.points} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time ({session.units?.time || 's'})</text><text x="28" y="18">downward displacement ({session.units?.position || 'm'})</text></svg></div>
+      <div className="table-wrap"><table><caption>Sampled observations</caption><thead><tr><th scope="col">Time (s)</th><th scope="col">Downward displacement (m)</th></tr></thead><tbody>{rows.map((row, index) => <tr key={`${row.time_s}-${index}`}><td>{row.time_s.toFixed(2)}</td><td>{row.position_m.toFixed(3)}</td></tr>)}</tbody></table></div>
       {fit && <div className="reveal"><p className="eyebrow">Reveal</p><h2>{fit.value.toFixed(3)} ± {fit.uncertainty.toPrecision(3)} {fit.unit}</h2><p>Gravity · source: {fit.source}</p><p>Uncertainty model: {fit.model}. {fit.assumptions.join(' ')}</p></div>}
       <p className="limitations"><strong>Limits:</strong> {session.limitations?.join(' ') || 'Synthetic observations only; no camera calibration or physical uncertainty.'}</p>
     </div>}

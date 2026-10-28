@@ -1,0 +1,4 @@
+free_fall: 201 plotted / 9 table rows; real bridge/fitter reveal parsed, pre-fit privacy/stale rejection PASS
+projectile: 201 plotted / 9 table rows; real bridge/fitter reveal parsed, pre-fit privacy/stale rejection PASS
+ramp: 201 plotted / 9 table rows; actual unsupported fit cleanly rejected PASS
+pendulum: 1001 plotted / 9 table rows; actual unsupported fit cleanly rejected PASS
