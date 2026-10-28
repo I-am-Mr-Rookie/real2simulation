@@ -1,0 +1,10 @@
+{
+  "scope": "S11d-S11g synthetic virtual-lab fitter",
+  "provenance": "simulated",
+  "coverage": {"seeds": 100, "covered": 95, "fraction": 0.95, "status": "PASS", "seed": 0},
+  "model": "linear/quadratic OLS via re-centred modified Gram-Schmidt QR",
+  "aic": "k=rank; RSS below 1e-24 is treated as perfect fit and returns -Infinity",
+  "uncertainty": "conditional Gaussian IID residuals; clock and scale held fixed; covariance invalid for no dof/rank deficiency",
+  "contract": "gravity_quantity imports contracts.fit.quantity.Quantity; source.label=simulated",
+  "limits": ["not live calibration", "not Gate M/R/S05c/S12 evidence", "coverage is synthetic only"]
+}
