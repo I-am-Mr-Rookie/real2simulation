@@ -1,0 +1,9 @@
+test_no_gpu_bounded_setup_and_installed_imports (test_cpu_import_probe.CpuImportGuards.test_no_gpu_bounded_setup_and_installed_imports) ... ok
+test_bounded_single_private_invocation (test_modal_rm02.ProbeGuards.test_bounded_single_private_invocation) ... ok
+test_official_torch_binary_version_family (test_modal_rm02.ProbeGuards.test_official_torch_binary_version_family) ... ok
+test_resource_reservation_below_one_dollar (test_modal_rm02.ProbeGuards.test_resource_reservation_below_one_dollar) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.009s
+
+OK

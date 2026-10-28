@@ -1,0 +1,43 @@
+{
+  "clip_id": "RM02",
+  "input_manifest_sha256": "6dc5ada973a7e03e09c56d36f3ac18f29f8221d16a3ccaf30461e120ec417af0",
+  "lock_sha256": "be3ea474d87851918d43248340b03b1bdcf24165d8532b16316e55df03f37e7c",
+  "lock_matches_previous_receipt": true,
+  "wheel_only_fix_present": true,
+  "raw_frames_verified_count": 0,
+  "frames": [
+    {
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s05b-recovery4\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\S05\\S05b\\local\\RM02-01.png",
+      "present_in_assigned_checkout": false,
+      "expected_bytes": 104392,
+      "expected_sha256": "4848625e64501a230d9b73df7c4b6fc72239bb10cda057d1d61ceb323c962195",
+      "matches_historical_manifest": true,
+      "fresh_raw_bytes_verified": false
+    },
+    {
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s05b-recovery4\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\S05\\S05b\\local\\RM02-02.png",
+      "present_in_assigned_checkout": false,
+      "expected_bytes": 105384,
+      "expected_sha256": "51a03d2d7a36ceab3875f0a745ddb7efd4a67fece7ec349d31e7fd9989c4604d",
+      "matches_historical_manifest": true,
+      "fresh_raw_bytes_verified": false
+    },
+    {
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s05b-recovery4\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\S05\\S05b\\local\\RM02-03.png",
+      "present_in_assigned_checkout": false,
+      "expected_bytes": 105118,
+      "expected_sha256": "488528dbe4ec7404fd0f346437cad0c27c046af0cb797efe0b16a3f6d76f1679",
+      "matches_historical_manifest": true,
+      "fresh_raw_bytes_verified": false
+    },
+    {
+      "path": "C:\\Users\\HP\\.codex\\worktrees\\s05b-recovery4\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\S05\\S05b\\local\\RM02-04.png",
+      "present_in_assigned_checkout": false,
+      "expected_bytes": 104270,
+      "expected_sha256": "c93a1d2381443a2b7148e87569858ba9ad58e563c0f4d73a5a41f5599f19d7a0",
+      "matches_historical_manifest": true,
+      "fresh_raw_bytes_verified": false
+    }
+  ],
+  "limitation": "Assigned recovery4 checkout has no gitignored frame copies. Only manifest/pin integrity verified; historical four-frame raw hashes are not fresh raw-byte proof. No copy/upload attempted after billing guard failure."
+}

@@ -1,0 +1,1 @@
+PASS synthetic-room-v1 schema=1.0.0 synthetic=True (not Gate R evidence)
