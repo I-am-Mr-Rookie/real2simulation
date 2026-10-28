@@ -54,6 +54,22 @@ linear case; final suite is green.
   `PYTHONPATH=<fitter>;<instruments>`: **11/11 pass**; independent repro shows
   P1 `FitError` and P2 finite AIC for nonzero RSS. The final `_aic` source uses
   `rss == 0.0` only; no unsupported exactness claim is made for nonzero RSS.
+- API final head `e2ba9cc9b46c825fc017802575c915d4753cb36f` (rebased from the
+  supplied `fe235de`/`d22593e`) was loaded with the accepted fitter and
+  instruments roots; its current API suite is **5/5 pass**. Strict units/source,
+  JSON finite-output checks, explicit non-propagation assumptions, covariance
+  status/units, and degenerate-input errors produced no new actionable bug.
+- Trajectory final head `2205e5810729b20412b54fb4d8d9ca1dcd5aef3b` passed
+  `node --test tests/simulator/trajectories.test.mjs` **6/6**. **New P2:**
+  `consumeValidatedTrajectoryArtifact` clones but does not freeze the trusted
+  artifact (lines 69-70). After validation, callers can mutate
+  `trusted.spec.environment.gravity.value` or parameter values and
+  `trajectoryFromValidatedArtifact` consumes the mutation. Repro: consume the
+  existing fixture, set `trusted.spec.environment.gravity.value = 1`, then
+  call `trajectoryFromValidatedArtifact(trusted)`. Apply the existing
+  recursive `freezeDeep` to the consumed artifact (or immutable projection),
+  and add a mutation regression. This is a local contract issue only, not a
+  physical/vendor-gate finding.
 - Compatibility setup: for instrument/fitter checks, `PYTHONPATH` was set to
   the corresponding peer roots (fitter first, instruments second); no deps or
   external APIs were added.
