@@ -8,6 +8,11 @@ Queue78/209, round1stillactive. Contact/fittergatefindings and serviceabortfix
 await independent targeted acceptance; no newphysicalgatepass. Evidence/runreport
 SWARM-20261029-1000. Historical77/205 baseline retained below.
 
+S10n normal-browser integration started as independent approved S10 scope; queue
+denominator210, DONE78 unchanged. Browser child alone is not end-to-end acceptance.
+R10 candidate72b1cbf freshNode66/fitter29/lab11 and numericalreference pass;
+one combined narrow nativeClaude re-review is active, not a reviewpass claim.
+
 Fresh owner scheduler request: five-minute heartbeat targeting this same chat,
 exact prompt "Go at maximum speed. Keep working until 10 a.m." Created ACTIVE
 maximum-speed-swarm-until-10-a-m; expiry04:00UTC Oct29 verified. This explicitly
