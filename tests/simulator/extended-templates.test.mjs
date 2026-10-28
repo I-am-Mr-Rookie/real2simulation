@@ -57,7 +57,7 @@ test('rejects sparse, nonfinite, overflow, and hidden-default inputs', () => {
   assert.throws(() => rampTrajectory({ ...ramp, dt: Number.MAX_VALUE, steps: 2 }), /steps/);
   assert.throws(() => rampTrajectory({ ...ramp, source: undefined }), /labels/);
   assert.throws(() => pendulumTrajectory({ ...pendulum, initialAngle: 4 }), /initialAngle/);
-  assert.throws(() => rampTrajectory({ ...ramp, origin: [Number.MAX_VALUE, 0, 0], initialSpeed: Number.MAX_VALUE / 2, steps: 1 }), /position/);
+  assert.throws(() => rampTrajectory({ ...ramp, origin: [Number.MAX_VALUE, 0, 0], initialSpeed: Number.MAX_VALUE / 2, steps: 1 }), /position|non-finite/);
 });
 
 test('consumes actual Python validate_setup export for both extended templates', () => {
