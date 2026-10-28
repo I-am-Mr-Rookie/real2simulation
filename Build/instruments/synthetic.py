@@ -36,12 +36,14 @@ def _quantity(value: float, unit: str, uncertainty: float, evidence: str, *, err
 
 
 def _quantize(value: float, resolution: float) -> float:
-    """Round to nearest resolution, with half-away-from-zero ties."""
+    """Round the binary64 value/resolution quotient, half-away from zero."""
     _number(value, "quantization value")
     resolution = _resolution(resolution, "quantization resolution")
     try:
         ratio = abs(value) / resolution
-        magnitude = math.floor(ratio + 0.5) * resolution
+        whole = math.floor(ratio)
+        # Adding 0.5 first can cross a tie or move an already integral grid point.
+        magnitude = (whole + (ratio - whole >= 0.5)) * resolution
     except (OverflowError, ValueError) as error:
         raise ValueError("quantization result is not finite") from error
     if not math.isfinite(magnitude):
