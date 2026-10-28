@@ -22,7 +22,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 | Next action | Corrected S05b CPU/import retest before bounded GPU; R-M other-vendor review then S07f explicit fallback. S07b live adapter continuation independent; heavy remote runtime serialized. No generic source redispatch/fabricated metrics. Retain$1.90 reserves pending billing. |
 | Dispatch enabled | NO |
 | Quota halt | NO — Koushik superseded manual coding-quota checks and the 85% rule on Oct28. OpenCodex manages allowance; dispatch assigned dependency-ready runs without polling percentages. Record actual runtime/dispatch errors; no bypass, resets, purchases or routing changes. Meta/API/AWS gates unchanged. |
-| Active lanes | Controller initializing fresh isolated sessions; IDs/paths/runtime in ORCHESTRATOR_STATE.md. Former Terra work now Sol; coding/review workers require concrete Ponytail application/checks. |
+| Active lanes | S05b recovery4 Sol/medium child01a1825e-4576-7181-816d-6071b16e9c64; R-M Opus5.5/medium fresh headless managed route, exec84309. Isolated Owns, canonical controls controller-only. Current5m heartbeat ACTIVE; Python dispatcher OFF. Ponytail actual application/report gate mandatory. |
 | Judging candidate approval | NO |
 | Fresh QA identities ready | NO |
 | Judging promotion approval | NO |

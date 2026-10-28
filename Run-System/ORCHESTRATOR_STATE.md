@@ -10,7 +10,27 @@ Coding/review workers must APPLY installed Ponytail full/default and report
 actual choices/checks/skips/risks. Controller alone owns shared controls/merges.
 Starting clean main58f1d2c; no other active controller/worker in compact inventory.
 
-Preparing isolated S05b recovery4 (Sol/medium) and R-M (Opus5.5/medium).
+ACTIVE isolated S05b recovery4 (Sol/medium) and R-M (Opus5.5/medium).
+Policy/claim commit090d55a. S05b multi_agent_v1 child
+01a1825e-4576-7181-816d-6071b16e9c64 (Aristotle), branch run/S05b-recovery4,
+managed C:/Users/HP/.codex/worktrees/s05b-recovery4/2026-10-26 - Meta Global AI Developer Hackathon.
+R-M fresh headless codex exec, session84309; CLI session
+01a1825e-bdb6-7fe2-aeb5-6c9fee4f4d16, branch run/R-M, managed
+C:/Users/HP/.codex/worktrees/r-m-review/2026-10-26 - Meta Global AI Developer Hackathon.
+Existing routed anthropic/claude-opus-5-5/medium confirmed by local catalog and
+CLI header; runtime vendor identity not independently verified. Claude absent
+from this subagent allowlist; headless fallback used, no provider/policy change.
+These are NOT desktop wait_threads targets. R-M output log/final pointer:
+Run-System/Runs/ORCH-20261028-SOL/r-m-cli.txt and r-m-final.txt.
+Poll native session sparingly/reconcile actual report and worktree before any
+replacement; transient failed turn is not a permanent task outcome.
+
+Existing real2simulation-orchestrator heartbeat resumed ACTIVE every5m, targeted
+to current chat; on-disk target/status verified. Python dispatcher remains OFF.
+Fresh25/25 run-system tests PASS; queue audit: zero unfinished Terra rows;
+legacy route Sol, Ponytail gates present; generated RUNS52/202,2 in progress.
+S07b runtime continuation remains PARTIAL; serialize heavy remote work behind
+S05b rather than launching an unchanged duplicate prerequisite attempt.
 S05b: corrected actual CPU/import retest before any bounded GPU; keep$1.90
 existing reserves, verify fresh headroom/no-overage and stop. No new consent gate.
 R-M: independent read-only other-vendor review, then S07f honest fallback.
