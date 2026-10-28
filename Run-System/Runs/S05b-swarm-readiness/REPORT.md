@@ -2,7 +2,7 @@
 
 ## Identity and timebox
 
-- Issued: 2026-10-28T17:05:40+00:00; deadline: 2026-10-28T17:35:40+00:00; stopped/reported: 2026-10-28T17:10:03.8698570Z.
+- Issued: 2026-10-28T17:05:40+00:00; deadline: 2026-10-28T17:35:40+00:00; stopped/reported: 2026-10-28T17:23:03.7049684Z (final audit correction; original child report timestamp was 2026-10-28T17:10:03.8698570Z and is preserved here as history).
 - Branch: run/S05b-swarm-readiness, starting HEAD bc4591eaf0b9febe8345c69598ae9ebd5326d0df.
 - Requested CODEX-1 gpt-6.1-sol/medium; OpenCodex-managed; not polled. No shared controls, merges, pushes, credentials or paid actions.
 
