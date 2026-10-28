@@ -1,0 +1,12 @@
+# Dependency-only SAM3.1 environment. Install pinned SAM source separately.
+# Linux/Python3.12; not the incompatible S05 Python3.11/NumPy2 environment.
+torch==2.8.0
+torchvision==0.23.0
+numpy==1.26.4
+timm==1.0.20
+tqdm
+ftfy==6.1.1
+regex
+iopath>=0.1.10
+typing_extensions
+huggingface_hub

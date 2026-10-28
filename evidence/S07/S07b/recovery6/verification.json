@@ -1,0 +1,71 @@
+{
+  "upstream_url": "https://raw.githubusercontent.com/facebookresearch/sam3/f1647e8d0c1d280991f4d1b7d974c2704537fe66/pyproject.toml",
+  "upstream_sha256": "255f5d8d1db011459878e3de296a6afc84e03a8dda2bfa756a4de304aaff6366",
+  "direct_checks": [
+    {
+      "upstream": "timm>=1.0.17",
+      "local": "timm==1.0.20",
+      "compatible": true
+    },
+    {
+      "upstream": "numpy<2,>=1.26",
+      "local": "numpy==1.26.4",
+      "compatible": true
+    },
+    {
+      "upstream": "tqdm",
+      "local": "tqdm",
+      "compatible": true
+    },
+    {
+      "upstream": "ftfy==6.1.1",
+      "local": "ftfy==6.1.1",
+      "compatible": true
+    },
+    {
+      "upstream": "regex",
+      "local": "regex",
+      "compatible": true
+    },
+    {
+      "upstream": "iopath>=0.1.10",
+      "local": "iopath>=0.1.10",
+      "compatible": true
+    },
+    {
+      "upstream": "typing_extensions",
+      "local": "typing_extensions",
+      "compatible": true
+    },
+    {
+      "upstream": "huggingface_hub",
+      "local": "huggingface_hub",
+      "compatible": true
+    }
+  ],
+  "lock_sha256": "70d5af03a84f7a14fe9effd516c693e9f589eec5a50fe6ba9b64758d1935f7cd",
+  "lock_bytes": 59947,
+  "offline_repeat_exact": true,
+  "offline_command": [
+    "uv",
+    "pip",
+    "compile",
+    "Build\\measurement\\runtime\\requirements.in",
+    "--python-version",
+    "3.12",
+    "--python-platform",
+    "x86_64-manylinux_2_28",
+    "--no-python-downloads",
+    "--no-config",
+    "--default-index",
+    "https://pypi.org/simple",
+    "--generate-hashes",
+    "--no-header",
+    "--output-file",
+    "evidence\\S07\\S07b\\recovery6\\offline-recompiled.txt",
+    "--offline"
+  ],
+  "runtime_imports": "NOT_RUN",
+  "installed_environment_changed": false,
+  "model_bytes_retrieved": false
+}
