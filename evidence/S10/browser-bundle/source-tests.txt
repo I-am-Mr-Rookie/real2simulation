@@ -1,0 +1,27 @@
+✔ free_fall: browser wrapper exactly preserves current engine and server trace (456.8612ms)
+✔ projectile: browser wrapper exactly preserves current engine and server trace (314.1079ms)
+✔ ramp: browser wrapper exactly preserves current engine and server trace (517.5381ms)
+✔ pendulum: browser wrapper exactly preserves current engine and server trace (690.8012ms)
+✔ rejects Mystery and absent/bad modes before reading any artifact (19.7712ms)
+✔ bounds work before touching scene/engine, even if an early event would shorten the run (2.7955ms)
+✔ 2000 samples includes the initial point; one more is rejected without truncation (77.3541ms)
+✔ bad horizons are rejected, not coerced, floored, or silently downsampled (6.2221ms)
+✔ actual existing artifact consumers reject malformed envelopes and non-synthetic scenes (35.5717ms)
+✔ browser entry dependency graph uses only the existing browser-compatible RK4 modules (24.1916ms)
+✔ lab UI keeps the user flow and trust labels visible in source (2.5182ms)
+✔ lab layout collapses before the narrow mobile viewport (0.5043ms)
+✔ both request paths retain abort and stale-result guards before state updates (0.9423ms)
+✔ fit contract accepts only the actual S11 quantity and preserves uncertainty metadata (2.6103ms)
+✔ the chart uses all observations, not the downsampled table (16.3691ms)
+✔ browser engine is mounted only for an explicit normal-mode DTO (0.4243ms)
+✔ labels describe the bridge ordinate and unsupported fits honestly (4.9481ms)
+✔ plot helper uses actual finite time and position domains (0.8188ms)
+✔ plot and table ignore nonfinite and malformed observations without coercion (2.6227ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2995.3932

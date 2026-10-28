@@ -1,0 +1,6 @@
+30452 "C:\Program Files\nodejs\node.exe" C:\Users\HP\AppData\Roaming\npm/node_modules/npm/bin/npm-cli.js run dev -- --port 3100 --hostname 127.0.0.1
+21476 "node"   "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\node_modules\.bin\\..\next\dist\bin\next" dev --port 3100 --hostname 127.0.0.1
+16808 "C:\Program Files\nodejs\node.exe" "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\node_modules\next\dist\server\lib\start-server.js"
+13640 "C:\Program Files\nodejs\node.exe" C:\Users\HP\AppData\Roaming\npm/node_modules/npm/bin/npm-cli.js run dev -- --webpack --port 3101 --hostname 127.0.0.1
+132 "node"   "C:\Users\HP\.codex\worktrees\swarm10-browser-sim\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\node_modules\.bin\\..\next\dist\bin\next" dev --webpack --port 3101 --hostname 127.0.0.1
+34480 "C:\Program Files\nodejs\node.exe" "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\web\node_modules\next\dist\server\lib\start-server.js"

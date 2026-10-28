@@ -1,0 +1,2 @@
+PASS 32 emitted browser assets; normal RK4/UI present in manifested lab client entry; named app server/private markers absent
+PASS 32 emitted browser JS/map assets; server-only config boundary

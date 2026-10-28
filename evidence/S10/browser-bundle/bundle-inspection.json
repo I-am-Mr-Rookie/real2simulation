@@ -1,0 +1,223 @@
+{
+  "status": "PASS",
+  "assetsScanned": 32,
+  "forbiddenMarkers": [
+    "node:child_process",
+    "child_process",
+    "session-bridge.py",
+    "local_lab_root_not_found",
+    "createMysteryGSession",
+    "createTrustedFitterHandoff",
+    "privateSetup",
+    "randomsecret",
+    "randomSecret",
+    "GOOGLE_CLIENT_SECRET",
+    "sk_test_S04C_SYNTHETIC_SERVER_SENTINEL"
+  ],
+  "requiredMarkerAssets": {
+    "INVALID_BROWSER_SIMULATION": [
+      ".next\\static\\chunks\\app\\(public)\\lab\\page-841a29ce6e3aff23.js"
+    ],
+    "only explicit normal mode is supported": [
+      ".next\\static\\chunks\\app\\(public)\\lab\\page-841a29ce6e3aff23.js"
+    ],
+    "rk4-fixed-step": [
+      ".next\\static\\chunks\\app\\(public)\\lab\\page-841a29ce6e3aff23.js"
+    ],
+    "Compute in browser": [
+      ".next\\static\\chunks\\app\\(public)\\lab\\page-841a29ce6e3aff23.js"
+    ],
+    "NORMAL mode only": [
+      ".next\\static\\chunks\\app\\(public)\\lab\\page-841a29ce6e3aff23.js"
+    ]
+  },
+  "clientManifest": ".next\\server\\app\\(public)\\lab\\page_client-reference-manifest.js",
+  "labClientEntry": "C:\\Users\\HP\\.codex\\worktrees\\swarm11-bundle\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\web\\src\\app\\(public)\\lab\\page.jsx",
+  "labChunkPaths": [
+    "static/chunks/app/(public)/lab/page-841a29ce6e3aff23.js"
+  ],
+  "sourceGraph": [
+    "Build\\web\\src\\lab\\browser-simulator.mjs",
+    "Build\\simulator\\trajectories.mjs",
+    "Build\\simulator\\rk4.mjs",
+    "Build\\simulator\\extended-templates.mjs"
+  ],
+  "sdkNameReferences": [
+    {
+      "file": ".next\\static\\chunks\\224-1a7d12b4610914a7.js",
+      "namesOnly": [
+        "CLERK_SECRET_KEY",
+        "CLERK_MACHINE_SECRET_KEY",
+        "CLERK_ENCRYPTION_KEY"
+      ],
+      "owner": "@clerk/nextjs/dist/esm/server/constants.js"
+    }
+  ],
+  "assets": [
+    {
+      "file": ".next\\static\\6Xk4oxkKO46-_exE_Ujn1\\_buildManifest.js",
+      "bytes": 709,
+      "sha256": "a6c918a9061d3dee1c84c971e93514569b3e54f4bb9acc34ddd415866ae955aa"
+    },
+    {
+      "file": ".next\\static\\6Xk4oxkKO46-_exE_Ujn1\\_ssgManifest.js",
+      "bytes": 80,
+      "sha256": "678f6ce2cb80b1fe72fc67e7412be6e2ab6ada083111b64f7c40d35e3cba5e00"
+    },
+    {
+      "file": ".next\\static\\chunks\\16-993345c5e7ff22b5.js",
+      "bytes": 7647,
+      "sha256": "45707a446096d66ef6e3e58e1c18f7e74b485bddbfe882cb7df51b239e0c7838"
+    },
+    {
+      "file": ".next\\static\\chunks\\224-1a7d12b4610914a7.js",
+      "bytes": 138581,
+      "sha256": "fcde720bda1f391a0f5c76dac6dc17d73411ec286485c516ae9cd4c44342e576"
+    },
+    {
+      "file": ".next\\static\\chunks\\330-6bd222e40935b07f.js",
+      "bytes": 242527,
+      "sha256": "f12ef320ce1634148ae69b13df379c5639b63c7446b49bf072a15b1456879f31"
+    },
+    {
+      "file": ".next\\static\\chunks\\526.8c664d74172f2588.js",
+      "bytes": 753,
+      "sha256": "14a569d38fc81a643c12094116a25941ada51ae47fbb6643b0675ab25da753f5"
+    },
+    {
+      "file": ".next\\static\\chunks\\723.498508da750a8979.js",
+      "bytes": 4753,
+      "sha256": "bb7094ca9f56ac60f0b25080bc76fba4caab068cced07407f7abb33f5bef127f"
+    },
+    {
+      "file": ".next\\static\\chunks\\8a5ebb70-2507876b7f134806.js",
+      "bytes": 203721,
+      "sha256": "3bd1306136e69719dff85d263f2844cd012f2d8deff92ba66b1fea5a9bbadca6"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\(private)\\layout-f210a25aca42108d.js",
+      "bytes": 166,
+      "sha256": "0060c89feb21e571bb27fd26eea117765c399cd23c2b4367ba3fc4d7be0920ec"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\(private)\\workspace\\[sceneId]\\page-f210a25aca42108d.js",
+      "bytes": 166,
+      "sha256": "0060c89feb21e571bb27fd26eea117765c399cd23c2b4367ba3fc4d7be0920ec"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\(public)\\lab\\page-841a29ce6e3aff23.js",
+      "bytes": 21803,
+      "sha256": "33bc048bfc7ae082d8a1705d8279619f04d94cb3b247030f9013165cdd8f406d"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\(public)\\layout-f210a25aca42108d.js",
+      "bytes": 166,
+      "sha256": "0060c89feb21e571bb27fd26eea117765c399cd23c2b4367ba3fc4d7be0920ec"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\(public)\\library\\page-f210a25aca42108d.js",
+      "bytes": 166,
+      "sha256": "0060c89feb21e571bb27fd26eea117765c399cd23c2b4367ba3fc4d7be0920ec"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\(public)\\page-bb49b142da4cc403.js",
+      "bytes": 186,
+      "sha256": "243ad5a1dd1ba1e4ad68f2aa4f8e41ac785fbc4faa14462d5ec66505199521d6"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\(public)\\sign-in\\[[...sign-in]]\\page-6c8a28d1ef8ae0c1.js",
+      "bytes": 503,
+      "sha256": "10a00b138a756ee9577e8ee1c601b72cbd92f60b8a7e32dddd10c460eb897d73"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\(public)\\sign-up\\[[...sign-up]]\\page-6c8a28d1ef8ae0c1.js",
+      "bytes": 503,
+      "sha256": "10a00b138a756ee9577e8ee1c601b72cbd92f60b8a7e32dddd10c460eb897d73"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\api\\lab\\route-f210a25aca42108d.js",
+      "bytes": 166,
+      "sha256": "0060c89feb21e571bb27fd26eea117765c399cd23c2b4367ba3fc4d7be0920ec"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\error-d2e0f0f4200ca3a8.js",
+      "bytes": 634,
+      "sha256": "5bb869591c2c911699ad3fe09a37bf6d02d52dac07868a0c2072cc4bfd8d9cec"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\layout-c5076da2e1a115fc.js",
+      "bytes": 609,
+      "sha256": "2b7459af7d0166a22c41d096d7aa41942f81662fb3a00d74db5e854e19335614"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\not-found-bb49b142da4cc403.js",
+      "bytes": 186,
+      "sha256": "243ad5a1dd1ba1e4ad68f2aa4f8e41ac785fbc4faa14462d5ec66505199521d6"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\_global-error\\page-f210a25aca42108d.js",
+      "bytes": 166,
+      "sha256": "0060c89feb21e571bb27fd26eea117765c399cd23c2b4367ba3fc4d7be0920ec"
+    },
+    {
+      "file": ".next\\static\\chunks\\app\\_not-found\\page-f210a25aca42108d.js",
+      "bytes": 166,
+      "sha256": "0060c89feb21e571bb27fd26eea117765c399cd23c2b4367ba3fc4d7be0920ec"
+    },
+    {
+      "file": ".next\\static\\chunks\\d7a0988a-53405cd2185869c6.js",
+      "bytes": 23940,
+      "sha256": "2ab08e698c17c2184e91e469261739a1de9b2b42806e1df2624b4e8992fc9259"
+    },
+    {
+      "file": ".next\\static\\chunks\\framework-98aafa405f80dee9.js",
+      "bytes": 218916,
+      "sha256": "3abf178b755c10cef0c6e7609f828990045fdd45b7b3a571a77c470a808c41f8"
+    },
+    {
+      "file": ".next\\static\\chunks\\main-app-fa14445e7408c1c6.js",
+      "bytes": 512,
+      "sha256": "9e0261a722a5d08d7525e1c992c1b2e245b6bc4dc07b4d3d69eda231d60e7533"
+    },
+    {
+      "file": ".next\\static\\chunks\\main-bacb24287b1c8cfd.js",
+      "bytes": 131895,
+      "sha256": "937545d29cb64c52573bf2f62b9531e70b584d9a4bbbfbd723ebda3fe0bb583f"
+    },
+    {
+      "file": ".next\\static\\chunks\\next\\dist\\client\\components\\builtin\\app-error-f210a25aca42108d.js",
+      "bytes": 166,
+      "sha256": "0060c89feb21e571bb27fd26eea117765c399cd23c2b4367ba3fc4d7be0920ec"
+    },
+    {
+      "file": ".next\\static\\chunks\\next\\dist\\client\\components\\builtin\\forbidden-f210a25aca42108d.js",
+      "bytes": 166,
+      "sha256": "0060c89feb21e571bb27fd26eea117765c399cd23c2b4367ba3fc4d7be0920ec"
+    },
+    {
+      "file": ".next\\static\\chunks\\next\\dist\\client\\components\\builtin\\global-error-fbf518a98a594d98.js",
+      "bytes": 179,
+      "sha256": "da1ed4f113b04ab8893404c56d9eaabee54dac2963cef3fb35000b37bdf0c27c"
+    },
+    {
+      "file": ".next\\static\\chunks\\next\\dist\\client\\components\\builtin\\unauthorized-f210a25aca42108d.js",
+      "bytes": 166,
+      "sha256": "0060c89feb21e571bb27fd26eea117765c399cd23c2b4367ba3fc4d7be0920ec"
+    },
+    {
+      "file": ".next\\static\\chunks\\polyfills-42372ed130431b0a.js",
+      "bytes": 112594,
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "file": ".next\\static\\chunks\\webpack-d9dfd23ae091ee55.js",
+      "bytes": 3413,
+      "sha256": "86838c25d236b1b480b105bb4b0a41fa94c9392bfc8c6b3878100c09f9424467"
+    }
+  ],
+  "caveats": [
+    "9.81 is allowed authored normal simulation data, not a secret.",
+    "SDK server/constants environment-variable NAMES occur in browser chunks; no values found. This is not a claim that all server-named SDK code is absent.",
+    "Static marker checks are not exhaustive secret detection or proof of runtime browser execution."
+  ]
+}
