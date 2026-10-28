@@ -1,6 +1,6 @@
 # S11abc-swarm REPORT
 
-- **Status:** DONE (local child implementation only; no parent product/gate pass)
+- **Status:** DONE (review repair; local child implementation only; no parent product/gate pass)
 - **Lane/model:** CODEX-1 / GPT-6.1 Sol medium; exact delegated runtime details
   are not independently observable. OpenCodex-managed; not polled.
 - **UTC:** issued 2026-10-28T17:11:19Z; stopped/reported 2026-10-28T17:16:40Z;
@@ -12,7 +12,10 @@
 
 - `contracts/fit/quantity.py`, `contracts/fit/__init__.py`,
   `contracts/fit/CONTRACT.md`: shared strict number/unit/uncertainty/provenance
-  contract. `source.label` must be `simulated`; `error` remains distinct.
+  contract. `source` is exact `{label, evidence}`; uncertainty is explicitly
+  standard uncertainty, and `error` is total signed `observed - true`.
+  Huge integers, nonfinite values, unknown fields, and mutable-source leakage
+  are rejected/fixed.
 - `Build/instruments/synthetic.py` and `Build/instruments/__init__.py`:
   explicit seeded stopwatch, camera, ruler, and light-gate simulation leaves.
 - `tests/instruments/test_quantity_contract.py` and
@@ -23,7 +26,7 @@
 
 ## Verification
 
-- `python -m unittest discover -s tests/instruments -v` — **6/6 PASS**.
+- `python -m unittest discover -s tests/instruments -v` — **9/9 PASS**.
 - `python -m compileall -q Build/instruments contracts/fit` — **PASS**.
 - `git diff --check` — **PASS**.
 - `python Run-System/worker_timebox.py check Run-System/Runs/S11abc-swarm/TIMEBOX.json`

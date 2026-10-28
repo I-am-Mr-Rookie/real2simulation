@@ -10,13 +10,11 @@ import math
 import random
 from typing import Any
 
-from contracts.fit.quantity import validate_quantity
+from contracts.fit.quantity import _finite, validate_quantity
 
 
 def _number(value: Any, name: str, *, nonnegative: bool = False) -> float:
-    if type(value) not in (int, float) or not math.isfinite(value):
-        raise ValueError(f"{name} must be a finite number, not boolean/NaN/infinity")
-    value = float(value)
+    value = _finite(value, name)
     if nonnegative and value < 0:
         raise ValueError(f"{name} must be non-negative")
     return value
@@ -29,9 +27,9 @@ def _resolution(value: Any, name: str) -> float:
     return value
 
 
-def _quantity(value: float, unit: str, uncertainty: float, provenance: str, *, error=None):
+def _quantity(value: float, unit: str, uncertainty: float, evidence: str, *, error=None):
     payload = {"value": value, "unit": unit, "uncertainty": uncertainty,
-               "source": {"label": "simulated", "provenance": provenance}}
+               "source": {"label": "simulated", "evidence": evidence}}
     if error is not None:
         payload["error"] = error
     return validate_quantity(payload)
@@ -39,8 +37,26 @@ def _quantity(value: float, unit: str, uncertainty: float, provenance: str, *, e
 
 def _quantize(value: float, resolution: float) -> float:
     """Round to nearest resolution, with half-away-from-zero ties."""
-    magnitude = math.floor(abs(value) / resolution + 0.5) * resolution
+    _number(value, "quantization value")
+    resolution = _resolution(resolution, "quantization resolution")
+    try:
+        ratio = abs(value) / resolution
+        magnitude = math.floor(ratio + 0.5) * resolution
+    except (OverflowError, ValueError) as error:
+        raise ValueError("quantization result is not finite") from error
+    if not math.isfinite(magnitude):
+        raise ValueError("quantization result is not finite")
     return math.copysign(magnitude, value) if value else 0.0
+
+
+def _sum(*values: float, name: str) -> float:
+    try:
+        result = math.fsum(values)
+    except (OverflowError, ValueError) as error:
+        raise ValueError(f"{name} is not finite") from error
+    if not math.isfinite(result):
+        raise ValueError(f"{name} is not finite")
+    return result
 
 
 def stopwatch_observation(true_seconds: float, *, seed: int, bias_s: float,
@@ -55,8 +71,10 @@ def stopwatch_observation(true_seconds: float, *, seed: int, bias_s: float,
     resolution_s = _resolution(resolution_s, "resolution_s")
     uncertainty_s = _number(uncertainty_s, "uncertainty_s", nonnegative=True)
     noise = random.Random(seed).gauss(0.0, noise_std_s)
-    error = bias_s + noise
-    observed = _quantize(true_seconds + error, resolution_s)
+    error = _sum(bias_s, noise, name="stopwatch perturbation")
+    observed = _quantize(_sum(true_seconds, error, name="stopwatch observation"), resolution_s)
+    if observed < 0:
+        raise ValueError("stopwatch observation cannot be negative")
     return _quantity(observed, "s", uncertainty_s,
                      f"synthetic stopwatch; seed={seed}; resolution_s={resolution_s}",
                      error=observed - true_seconds)
@@ -77,14 +95,19 @@ def camera_observation(frame_index: int, time_s: float, x_px: float, y_px: float
     pixel_uncertainty_px = _number(pixel_uncertainty_px, "pixel_uncertainty_px", nonnegative=True)
     time_bias_s = _number(time_bias_s, "time_bias_s")
     pixel_bias_px = _number(pixel_bias_px, "pixel_bias_px")
-    provenance = f"synthetic camera; frame={frame_index}; resolutions={time_resolution_s},{pixel_resolution_px}"
+    evidence = f"synthetic camera; frame={frame_index}; resolutions={time_resolution_s},{pixel_resolution_px}"
+    observed_time = _quantize(_sum(time_s, time_bias_s, name="camera time"), time_resolution_s)
+    if observed_time < 0:
+        raise ValueError("camera time observation cannot be negative")
+    observed_x = _quantize(_sum(x_px, pixel_bias_px, name="camera x"), pixel_resolution_px)
+    observed_y = _quantize(_sum(y_px, pixel_bias_px, name="camera y"), pixel_resolution_px)
     return {"frame_index": frame_index,
-            "time": _quantity(_quantize(time_s + time_bias_s, time_resolution_s), "s",
-                               time_uncertainty_s, provenance, error=time_bias_s),
-            "x": _quantity(_quantize(x_px + pixel_bias_px, pixel_resolution_px), "px",
-                           pixel_uncertainty_px, provenance, error=pixel_bias_px),
-            "y": _quantity(_quantize(y_px + pixel_bias_px, pixel_resolution_px), "px",
-                           pixel_uncertainty_px, provenance, error=pixel_bias_px)}
+            "time": _quantity(observed_time, "s", time_uncertainty_s, evidence,
+                               error=observed_time - time_s),
+            "x": _quantity(observed_x, "px", pixel_uncertainty_px, evidence,
+                           error=observed_x - x_px),
+            "y": _quantity(observed_y, "px", pixel_uncertainty_px, evidence,
+                           error=observed_y - y_px)}
 
 
 def ruler_observation(true_distance_m: float, *, resolution_m: float,
@@ -93,8 +116,12 @@ def ruler_observation(true_distance_m: float, *, resolution_m: float,
     resolution_m = _resolution(resolution_m, "resolution_m")
     uncertainty_m = _number(uncertainty_m, "uncertainty_m", nonnegative=True)
     bias_m = _number(bias_m, "bias_m")
-    return _quantity(_quantize(true_distance_m + bias_m, resolution_m), "m", uncertainty_m,
-                     f"synthetic ruler; resolution_m={resolution_m}", error=bias_m)
+    observed = _quantize(_sum(true_distance_m, bias_m, name="ruler observation"), resolution_m)
+    if observed < 0:
+        raise ValueError("ruler observation cannot be negative")
+    return _quantity(observed, "m", uncertainty_m,
+                     f"synthetic ruler; resolution_m={resolution_m}",
+                     error=observed - true_distance_m)
 
 
 def light_gate_observation(true_seconds: float, *, resolution_s: float,
@@ -103,5 +130,9 @@ def light_gate_observation(true_seconds: float, *, resolution_s: float,
     resolution_s = _resolution(resolution_s, "resolution_s")
     uncertainty_s = _number(uncertainty_s, "uncertainty_s", nonnegative=True)
     bias_s = _number(bias_s, "bias_s")
-    return _quantity(_quantize(true_seconds + bias_s, resolution_s), "s", uncertainty_s,
-                     f"synthetic light gate; resolution_s={resolution_s}", error=bias_s)
+    observed = _quantize(_sum(true_seconds, bias_s, name="light-gate observation"), resolution_s)
+    if observed < 0:
+        raise ValueError("light-gate observation cannot be negative")
+    return _quantity(observed, "s", uncertainty_s,
+                     f"synthetic light gate; resolution_s={resolution_s}",
+                     error=observed - true_seconds)

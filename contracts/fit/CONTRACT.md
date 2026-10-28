@@ -10,13 +10,16 @@ Import `contracts.fit.quantity.Quantity` or call `validate_quantity(payload)`.
   "error": 0.01,
   "source": {
     "label": "simulated",
-    "provenance": "synthetic fixture: stopwatch seed 7"
+    "evidence": "synthetic fixture: stopwatch seed 7"
   }
 }
 ```
 
 Required fields are `value`, `unit`, non-negative `uncertainty`, and
-`source.label == "simulated"` plus non-empty `source.provenance`. All numeric
-fields reject booleans, NaN, and infinity. `error` is optional and represents a
-signed instrument perturbation; it is not folded into `uncertainty`. No default
-unit, uncertainty, bias, calibration, or physical/real provenance is supplied.
+`source.label == "simulated"` plus non-empty `source.evidence`; unknown fields
+are rejected. `uncertainty` is a non-negative standard uncertainty in the same
+unit as `value` (no interval-vs-standard ambiguity). All numeric fields reject
+booleans, NaN, infinity, and overflowing integers. `error` is optional and is
+the total known signed perturbation (`observed - true`), kept separate from
+standard uncertainty. No default unit, uncertainty, bias, calibration, or
+physical/real provenance is supplied.

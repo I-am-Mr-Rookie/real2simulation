@@ -1,13 +1,17 @@
 # S11abc instruments swarm evidence
 
 Simulation-only local evidence; generated values are not physical measurements.
+Review repair: contract now uses exact `source={label, evidence}` schema,
+standard uncertainty, immutable normalized source, and total signed error.
 
 ## Completed leaves
 
 - **S11a:** strict shared `Quantity` payload and validator in `contracts/fit/`.
   Required units, non-negative uncertainty, and simulated provenance; rejects
   booleans, NaN, infinity, negative uncertainty, and non-simulated provenance.
-  Signed `error` is retained separately from `uncertainty`.
+  Signed `error` is retained separately from standard uncertainty; unknown
+  fields and source fields are rejected. Constructor normalization freezes the
+  source mapping.
 - **S11b:** seeded stopwatch reaction noise with explicit seed, bias, noise
   standard deviation, resolution, and reported uncertainty. Same seed and
   parameters replay identically.
@@ -20,7 +24,7 @@ Simulation-only local evidence; generated values are not physical measurements.
 
 ```text
 python -m unittest discover -s tests/instruments -v
-Ran 6 tests ... OK
+Ran 9 tests ... OK
 python -m compileall -q Build/instruments contracts/fit
 git diff --check
 ```

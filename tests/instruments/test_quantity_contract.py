@@ -11,7 +11,7 @@ class QuantityContractTests(unittest.TestCase):
             "unit": "m/s^2",
             "uncertainty": 0.05,
             "error": -0.01,
-            "source": {"label": "simulated", "provenance": "fixture seed 7"},
+            "source": {"label": "simulated", "evidence": "fixture seed 7"},
         }
 
     def test_round_trip_preserves_error_separately(self):
@@ -20,14 +20,15 @@ class QuantityContractTests(unittest.TestCase):
         self.assertNotEqual(quantity.uncertainty, abs(quantity.error))
 
     def test_rejects_bad_booleans_nonfinite_and_provenance(self):
-        for field, value in (("value", True), ("uncertainty", math.nan),
-                             ("error", math.inf)):
+        for field, value in (("value", True), ("value", 10 ** 1000),
+                             ("uncertainty", math.nan), ("error", math.inf)):
             with self.subTest(field=field):
                 bad = dict(self.payload, **{field: value})
                 with self.assertRaises(ValueError):
                     validate_quantity(bad)
-        for source in ({"label": "measured", "provenance": "x"},
-                       {"label": "simulated", "provenance": ""}):
+        for source in ({"label": "measured", "evidence": "x"},
+                       {"label": "simulated", "evidence": ""},
+                       {"label": "simulated", "evidence": "x", "extra": 1}):
             with self.subTest(source=source):
                 with self.assertRaises(ValueError):
                     validate_quantity(dict(self.payload, source=source))
@@ -36,6 +37,14 @@ class QuantityContractTests(unittest.TestCase):
         for bad in (dict(self.payload, uncertainty=-1), dict(self.payload, unit=None)):
             with self.assertRaises(ValueError):
                 validate_quantity(bad)
+
+    def test_constructor_normalizes_and_freezes_source(self):
+        source = {"label": "simulated", "evidence": "fixture"}
+        quantity = Quantity(1, "s", 0, source)
+        source["evidence"] = "mutated"
+        self.assertEqual(quantity.source["evidence"], "fixture")
+        with self.assertRaises(TypeError):
+            quantity.source["evidence"] = "changed"
 
 
 if __name__ == "__main__":
