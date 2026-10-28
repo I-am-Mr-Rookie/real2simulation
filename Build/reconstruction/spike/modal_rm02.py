@@ -126,11 +126,12 @@ def main():
     sys.stderr.reconfigure(encoding="utf-8")
     phase_path = Path(os.environ["RM02_PHASE_RECEIPT"]) if os.environ.get("RM02_PHASE_RECEIPT") else None
     phase_token = os.environ.get("RM02_PHASE_TOKEN")
-    def phase(name, remote_creation_started):
+    def phase(name, remote_creation_started, history):
         if phase_path is not None and phase_token:
             atomic_json(phase_path, {"version": 1, "token": phase_token,
                                      "pid": os.getpid(), "phase": name,
-                                     "remote_creation_started": remote_creation_started})
+                                     "remote_creation_started": remote_creation_started,
+                                     "history": history})
     try:
         manifest = json.loads((INPUT_EVIDENCE / "input.json").read_text())
         frames = []
@@ -147,14 +148,15 @@ def main():
         if CODE_REV not in requirements or "numpy==2.2.6" not in requirements:
             raise ValueError("Pinned reconstruction runtime requirements mismatch")
     except Exception:
-        phase("preflight_failed", False)
+        phase("preflight_failed", False, ["preflight_failed"])
         raise
-    phase("preflight_validated", False)
+    phase("preflight_validated", False, ["preflight_validated"])
     started = time.time()
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     def record_guard(state):
         atomic_json(Path(os.environ["RM02_WATCHDOG_RECEIPT"]), state)
 
+    phase("remote_creation_started", True, ["preflight_validated", "remote_creation_started"])
     with modal.enable_output():
         receipt, data = asyncio.run(guarded_probe(
             app, probe, (frames, requirements, CODE_REV, WEIGHT_REV), record_guard,

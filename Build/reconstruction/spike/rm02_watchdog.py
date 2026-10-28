@@ -78,23 +78,26 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
             except (OSError, subprocess.TimeoutExpired) as exc:
                 state["errors"].append("child:kill_not_confirmed:" + type(exc).__name__)
         # Independent fresh processes, not the blocked event loop/client connection.
-        preflight_failed = False
+        preflight_candidate = False
         phase_invalid = False
         try:
             phase = json.loads(phase_path.read_text(encoding="utf-8"))
             if (phase.get("version") != 1 or phase.get("token") != phase_token
                     or phase.get("pid") != child.pid
-                    or phase.get("phase") not in ("preflight_failed", "preflight_validated")
-                    or phase.get("remote_creation_started") is not False):
+                    or type(phase.get("remote_creation_started")) is not bool
+                    or phase.get("phase") not in ("preflight_failed", "preflight_validated",
+                                                   "remote_creation_started")
+                    or not isinstance(phase.get("history"), list)):
                 raise ValueError("Invalid lifecycle phase receipt")
-            if phase["phase"] == "preflight_failed":
-                preflight_failed = True
-                state["phase_receipt"] = "VALID_PREFLIGHT_FAILED"
-                state["preflight_validation_failed"] = True
-                state["no_remote_creation_confirmed"] = True
-                state["resource_incident"] = False
-            else:
-                state["phase_receipt"] = "VALID_PREFLIGHT_VALIDATED"
+            expected = {
+                "preflight_failed": (["preflight_failed"], False),
+                "preflight_validated": (["preflight_validated"], False),
+                "remote_creation_started": (["preflight_validated", "remote_creation_started"], True),
+            }[phase["phase"]]
+            if phase["history"] != expected[0] or phase["remote_creation_started"] is not expected[1]:
+                raise ValueError("Invalid lifecycle phase history")
+            state["phase_receipt"] = "VALID_" + phase["phase"].upper()
+            preflight_candidate = phase["phase"] == "preflight_failed"
         except (OSError, ValueError, AttributeError, TypeError, json.JSONDecodeError) as exc:
             if isinstance(exc, OSError) and not phase_path.exists():
                 state["phase_receipt"] = "NOT_VERIFIED"
@@ -102,10 +105,6 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
                 phase_invalid = True
                 state["errors"].append("phase:unknown_remote_state:" + type(exc).__name__)
                 state["phase_receipt"] = "INVALID_OR_MISSING"
-        if preflight_failed:
-            state["elapsed_s"] = time.monotonic() - started
-            emit()
-            preflight_validation_failure = True
         try:
             worker = json.loads(worker_path.read_text(encoding="utf-8"))
             app_id = worker["app_id"]
@@ -113,7 +112,8 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
                 raise ValueError("Missing exact SDK-format own app ID")
             state["app_id"] = app_id
         except (OSError, ValueError, KeyError, TypeError) as exc:
-            state["errors"].append("app_id:unknown_remote_state:" + type(exc).__name__)
+            if not preflight_candidate:
+                state["errors"].append("app_id:unknown_remote_state:" + type(exc).__name__)
         else:
             cli = cli if cli is not None else [sys.executable, "-m", "modal"]
 
@@ -168,7 +168,17 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
                                           - min(2, reserve_seconds / 10))))
             except (OSError, subprocess.SubprocessError, TimeoutError, ValueError, AttributeError) as exc:
                 state["errors"].append("verification:" + type(exc).__name__)
-        state["resource_incident"] = not state["independent_stop_confirmed"]
+        if (preflight_candidate and state.get("child_returncode") != 0
+                and not state["watchdog_fired"] and "app_id" not in state
+                and "function_call_id" not in state and not state["errors"]):
+            state["preflight_validation_failed"] = True
+            state["no_remote_creation_confirmed"] = True
+            state["resource_incident"] = False
+            preflight_validation_failure = True
+        if preflight_validation_failure:
+            state["resource_incident"] = False
+        else:
+            state["resource_incident"] = not state["independent_stop_confirmed"]
         if phase_invalid:
             state["independent_stop_confirmed"] = False
             state["resource_incident"] = True
@@ -177,7 +187,6 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
     if preflight_validation_failure:
         state["resource_incident"] = False
         state["independent_stop_confirmed"] = False
-        state["errors"] = []
         emit()
         raise RuntimeError("Preflight validation failed; no remote creation admitted; inspect " + str(receipt_path))
     if state["resource_incident"]:

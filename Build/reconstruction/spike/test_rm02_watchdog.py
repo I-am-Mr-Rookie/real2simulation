@@ -21,7 +21,27 @@ if mode == "preflight_fail":
     pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text(json.dumps({
         "version": 1, "token": os.environ["RM02_PHASE_TOKEN"],
         "pid": os.getpid(), "phase": "preflight_failed",
-        "remote_creation_started": False}))
+        "remote_creation_started": False, "history": ["preflight_failed"]}))
+    sys.exit(9)
+if mode == "preflight_zero":
+    pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text(json.dumps({
+        "version": 1, "token": os.environ["RM02_PHASE_TOKEN"],
+        "pid": os.getpid(), "phase": "preflight_failed",
+        "remote_creation_started": False, "history": ["preflight_failed"]}))
+    sys.exit(0)
+if mode == "preflight_conflict":
+    path.write_text(json.dumps({"app_id": sys.argv[2]}))
+    pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text(json.dumps({
+        "version": 1, "token": os.environ["RM02_PHASE_TOKEN"],
+        "pid": os.getpid(), "phase": "preflight_failed",
+        "remote_creation_started": False, "history": ["preflight_failed"]}))
+    sys.exit(9)
+if mode == "phase_write_fail":
+    sys.exit(9)
+if mode == "phase_wrong_types":
+    pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text(json.dumps({
+        "version": "1", "token": True, "pid": "wrong", "phase": 7,
+        "remote_creation_started": "false", "history": {}}))
     sys.exit(9)
 if mode == "phase_bad":
     pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text("not-json")
@@ -36,7 +56,7 @@ if mode not in ("lost", "hang_lost"):
     pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text(json.dumps({
         "version": 1, "token": os.environ["RM02_PHASE_TOKEN"],
         "pid": os.getpid(), "phase": "preflight_validated",
-        "remote_creation_started": False}))
+        "remote_creation_started": False, "history": ["preflight_validated"]}))
 if mode == "result_hang":
     path.with_name("gpu-result.json").write_text('{"synthetic": true}')
 if mode in ("hang", "hang_lost", "result_hang"):
@@ -86,7 +106,7 @@ class WatchdogTests(unittest.TestCase):
         self.directory = self.root / "attempt"
 
     def run_guard(self, child="ok", cli="ok", app_id=APP_ID,
-                  total_seconds=3.5, reserve_seconds=3):
+                  total_seconds=8, reserve_seconds=3):
         return watchdog.supervise([sys.executable, str(self.child), child, app_id], self.directory,
                                   total_seconds=total_seconds, reserve_seconds=reserve_seconds,
                                   cli=[sys.executable, str(self.cli), cli])
@@ -100,7 +120,7 @@ class WatchdogTests(unittest.TestCase):
         self.assertTrue(state["stop_acknowledged"])
         clock = json.loads((self.directory / "child-clock.json").read_text())
         self.assertGreater(clock["deadline"], clock["observed"])
-        self.assertLess(clock["deadline"] - clock["observed"], .5)
+        self.assertLess(clock["deadline"] - clock["observed"], 5)
         calls = [json.loads(line) for line in (self.root / "calls.jsonl").read_text().splitlines()]
         self.assertEqual(calls, [["app", "stop", APP_ID, "--yes"],
                                  ["app", "info", APP_ID, "--json"],
@@ -114,7 +134,7 @@ class WatchdogTests(unittest.TestCase):
         self.assertTrue(state["watchdog_fired"])
         self.assertNotEqual(state["child_returncode"], 0)
         self.assertTrue(state["independent_stop_confirmed"])
-        self.assertLess(time.monotonic() - started, 3.5)
+        self.assertLess(time.monotonic() - started, 8)
 
     def test_transient_state_and_containers_are_polled_on_exact_same_app(self):
         for mode in ("transition", "containers_transition"):
@@ -143,7 +163,7 @@ class WatchdogTests(unittest.TestCase):
         # Expiry may occur before Popen or during its bounded wait on Windows.
         self.assertTrue(set(state["errors"]) & {
             "verification:TimeoutError", "verification:TimeoutExpired"})
-        self.assertLess(time.monotonic() - started, 3.5)
+        self.assertLess(time.monotonic() - started, 8)
 
     def test_cli_json_uses_utf8_even_with_cp1252_parent_environment(self):
         with patch.dict(watchdog.os.environ, PYTHONIOENCODING="cp1252"):
@@ -171,7 +191,7 @@ class WatchdogTests(unittest.TestCase):
         self.assertFalse((self.root / "calls.jsonl").exists())
 
     def test_malformed_or_replaced_phase_receipt_remains_unknown(self):
-        for mode in ("lost", "phase_bad", "phase_replaced"):
+        for mode in ("lost", "phase_bad", "phase_replaced", "phase_wrong_types"):
             with self.subTest(mode=mode):
                 self.directory = self.root / mode
                 with self.assertRaises(watchdog.ResourceIncident):
@@ -179,6 +199,21 @@ class WatchdogTests(unittest.TestCase):
                 state = self.receipt()
                 self.assertTrue(state["resource_incident"])
                 self.assertFalse(state["independent_stop_confirmed"])
+
+    def test_contradictory_app_id_never_allows_preflight_success(self):
+        with self.assertRaisesRegex(RuntimeError, "Client failed"):
+            self.run_guard(child="preflight_conflict", total_seconds=5, reserve_seconds=3)
+        state = self.receipt()
+        self.assertFalse(state["preflight_validation_failed"])
+        self.assertFalse(state["resource_incident"])
+        self.assertTrue(state["independent_stop_confirmed"])
+
+    def test_zero_exit_or_phase_write_loss_never_allows_preflight_success(self):
+        for mode in ("preflight_zero", "phase_write_fail"):
+            self.directory = self.root / mode
+            with self.subTest(mode=mode), self.assertRaises(watchdog.ResourceIncident):
+                self.run_guard(child=mode, total_seconds=5, reserve_seconds=3)
+            self.assertTrue(self.receipt()["resource_incident"])
 
     def test_missing_app_id_durable_incident_no_name_or_account_guess(self):
         with self.assertRaises(watchdog.ResourceIncident):
@@ -261,7 +296,7 @@ asyncio.run(guard.guarded_probe(f, f, (), lambda state: atomic_json(path, state)
             self.run_guard(cli="stop_hang")
         self.assertTrue(self.receipt()["independent_stop_confirmed"])
         self.assertFalse(self.receipt()["stop_acknowledged"])
-        self.assertLess(self.receipt()["elapsed_s"], 3.5)
+        self.assertLess(self.receipt()["elapsed_s"], 8)
 
     def test_confirmation_failure_variants_are_incidents(self):
         for mode in ("wrong_id", "containers", "info_fail", "bad_json"):

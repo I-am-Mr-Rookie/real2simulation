@@ -1,0 +1,104 @@
+test_actual_guard_preserves_payload_when_cleanup_blocks_until_parent_kill (test_rm02_watchdog.WatchdogTests.test_actual_guard_preserves_payload_when_cleanup_blocks_until_parent_kill) ... ok
+test_atomic_replace_failure_preserves_previous_receipt (test_rm02_watchdog.WatchdogTests.test_atomic_replace_failure_preserves_previous_receipt) ... ok
+test_broken_later_evidence_still_runs_independent_stop (test_rm02_watchdog.WatchdogTests.test_broken_later_evidence_still_runs_independent_stop) ... ok
+test_broken_preflight_evidence_never_launches_client (test_rm02_watchdog.WatchdogTests.test_broken_preflight_evidence_never_launches_client) ... ok
+test_cli_json_uses_utf8_even_with_cp1252_parent_environment (test_rm02_watchdog.WatchdogTests.test_cli_json_uses_utf8_even_with_cp1252_parent_environment) ... ok
+test_client_failure_preserved_after_confirmed_independent_cleanup (test_rm02_watchdog.WatchdogTests.test_client_failure_preserved_after_confirmed_independent_cleanup) ... ok
+test_confirmation_failure_variants_are_incidents (test_rm02_watchdog.WatchdogTests.test_confirmation_failure_variants_are_incidents) ... ok
+test_contradictory_app_id_never_allows_preflight_success (test_rm02_watchdog.WatchdogTests.test_contradictory_app_id_never_allows_preflight_success) ... ok
+test_exhausted_independent_reserve_never_fakes_stop_attempt (test_rm02_watchdog.WatchdogTests.test_exhausted_independent_reserve_never_fakes_stop_attempt) ... ok
+test_hung_child_lost_id_stays_incident_after_kill (test_rm02_watchdog.WatchdogTests.test_hung_child_lost_id_stays_incident_after_kill) ... ok
+test_hung_stop_is_bounded_and_fresh_checks_still_run (test_rm02_watchdog.WatchdogTests.test_hung_stop_is_bounded_and_fresh_checks_still_run) ... ok
+test_invalid_id_cannot_fall_back_to_name_resolution (test_rm02_watchdog.WatchdogTests.test_invalid_id_cannot_fall_back_to_name_resolution) ... ok
+test_late_result_file_cannot_turn_killed_client_into_success (test_rm02_watchdog.WatchdogTests.test_late_result_file_cannot_turn_killed_client_into_success) ... ok
+test_malformed_or_replaced_phase_receipt_remains_unknown (test_rm02_watchdog.WatchdogTests.test_malformed_or_replaced_phase_receipt_remains_unknown) ... ok
+test_missing_app_id_durable_incident_no_name_or_account_guess (test_rm02_watchdog.WatchdogTests.test_missing_app_id_durable_incident_no_name_or_account_guess) ... ok
+test_noncooperative_child_killed_but_not_mistaken_for_remote_stop (test_rm02_watchdog.WatchdogTests.test_noncooperative_child_killed_but_not_mistaken_for_remote_stop) ... FAIL
+test_nonfinite_or_impossible_budget_rejected (test_rm02_watchdog.WatchdogTests.test_nonfinite_or_impossible_budget_rejected) ... ok
+test_persistent_running_state_exhausts_original_reserve_as_incident (test_rm02_watchdog.WatchdogTests.test_persistent_running_state_exhausts_original_reserve_as_incident) ... FAIL
+test_stale_directory_rejected_before_client_launch (test_rm02_watchdog.WatchdogTests.test_stale_directory_rejected_before_client_launch) ... ok
+test_stop_failure_does_not_skip_fresh_verification (test_rm02_watchdog.WatchdogTests.test_stop_failure_does_not_skip_fresh_verification) ... ok
+test_stop_nonzero_can_still_be_independently_confirmed (test_rm02_watchdog.WatchdogTests.test_stop_nonzero_can_still_be_independently_confirmed) ... ERROR
+test_stop_nonzero_can_still_be_independently_confirmed (test_rm02_watchdog.WatchdogTests.test_stop_nonzero_can_still_be_independently_confirmed) ... ERROR
+test_success_fresh_exact_id_stop_and_independent_verification (test_rm02_watchdog.WatchdogTests.test_success_fresh_exact_id_stop_and_independent_verification) ... FAIL
+test_transient_state_and_containers_are_polled_on_exact_same_app (test_rm02_watchdog.WatchdogTests.test_transient_state_and_containers_are_polled_on_exact_same_app) ... ok
+test_valid_preflight_failure_is_distinguished_without_stop_claim (test_rm02_watchdog.WatchdogTests.test_valid_preflight_failure_is_distinguished_without_stop_claim) ... ok
+test_zero_exit_or_phase_write_loss_never_allows_preflight_success (test_rm02_watchdog.WatchdogTests.test_zero_exit_or_phase_write_loss_never_allows_preflight_success) ... ok
+
+======================================================================
+ERROR: test_stop_nonzero_can_still_be_independently_confirmed (test_rm02_watchdog.WatchdogTests.test_stop_nonzero_can_still_be_independently_confirmed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 289, in test_stop_nonzero_can_still_be_independently_confirmed
+    state = self.run_guard(cli="already_stopped")
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 110, in run_guard
+    return watchdog.supervise([sys.executable, str(self.child), child, app_id], self.directory,
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              total_seconds=total_seconds, reserve_seconds=reserve_seconds,
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                              cli=[sys.executable, str(self.cli), cli])
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_watchdog.py", line 193, in supervise
+    raise ResourceIncident("Independent stop unconfirmed; inspect " + str(receipt_path))
+rm02_deadline.ResourceIncident: Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmpf0zgnqss\attempt\watchdog.json
+
+======================================================================
+ERROR: test_stop_nonzero_can_still_be_independently_confirmed (test_rm02_watchdog.WatchdogTests.test_stop_nonzero_can_still_be_independently_confirmed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\shutil.py", line 701, in _rmtree_unsafe
+    os.unlink(fullname)
+    ~~~~~~~~~^^^^^^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\HP\\AppData\\Local\\Temp\\tmpf0zgnqss\\attempt\\info.stderr'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\tempfile.py", line 975, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\tempfile.py", line 955, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\shutil.py", line 705, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\tempfile.py", line 930, in onexc
+    _os.unlink(path)
+    ~~~~~~~~~~^^^^^^
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\HP\\AppData\\Local\\Temp\\tmpf0zgnqss\\attempt\\info.stderr'
+
+======================================================================
+FAIL: test_noncooperative_child_killed_but_not_mistaken_for_remote_stop (test_rm02_watchdog.WatchdogTests.test_noncooperative_child_killed_but_not_mistaken_for_remote_stop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 137, in test_noncooperative_child_killed_but_not_mistaken_for_remote_stop
+    self.assertLess(time.monotonic() - started, 8)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 5.823211000068113 not less than 3.5
+
+======================================================================
+FAIL: test_persistent_running_state_exhausts_original_reserve_as_incident (test_rm02_watchdog.WatchdogTests.test_persistent_running_state_exhausts_original_reserve_as_incident)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 166, in test_persistent_running_state_exhausts_original_reserve_as_incident
+    self.assertLess(time.monotonic() - started, 8)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 7.718436799943447 not less than 3.5
+
+======================================================================
+FAIL: test_success_fresh_exact_id_stop_and_independent_verification (test_rm02_watchdog.WatchdogTests.test_success_fresh_exact_id_stop_and_independent_verification)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm-s05b-guard\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 123, in test_success_fresh_exact_id_stop_and_independent_verification
+    self.assertLess(clock["deadline"] - clock["observed"], 5)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4.125039099948481 not less than 0.5
+
+----------------------------------------------------------------------
+Ran 25 tests in 86.271s
+
+FAILED (failures=3, errors=2)
