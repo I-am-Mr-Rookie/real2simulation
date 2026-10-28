@@ -1,5 +1,35 @@
 # Orchestration resumed — Sol and Ponytail
 
+## Heartbeat acceptance — Oct28 ~12:10UTC
+
+- S05b recovery4 accepted PARTIALb687302 after owned diff/actual evidence and
+  fresh rebased spike4+scene11 PASS. Supported browser reports disabled in Work
+  settings; no new jobs/uploads/reserves, historical$1.90 retained. Current global
+  resources/billing not verified; raw ignored input frames absent. Child closed.
+  Q10 asks supported-surface recovery/screenshots, NOT GPU consent; async options
+  sent. No identical retry; canonical hold clears on genuine changed prerequisite.
+- R-M task review DONE: controller independently reran repro +59 measurement
+  tests, preserved sandbox-uncommittable owned evidence, final clean diff/FF46a8c75.
+  Actual source issue reproduced (g20/error0 can be caller-declared PASSED), but
+  not a real gate pass. Received-review skill applied: distinguish verified bug,
+  intentional fail-closed behavior, separate GateRS contract and unadopted noise/
+  linearization suggestions. No arbitrary thresholds/normalization accepted.
+- Child sandbox commit denial handled by authorized controller integration,
+  no policy/routing/bypass changes. Actual CLI terminal; unknown native handle
+  confirmed against completed owned REPORT/files, not misreported startup failure.
+  Reviewer multi-line final/compliance mismatch recorded in separate controller
+  acceptance receipt; original evidence preserved. Ponytail concrete use checked.
+- Fresh source response S07f claimed/a0b603d, Sol/high child
+  01a18267-aa63-7902-a7bf-0cc41584ccaa, managed s07f-gate-decision/run/S07f.
+  No source implementation by controller; same instructions require Ponytail,
+  regression proof, actual-source failure unchanged, honest Apollo/fallback and
+  other-vendor gate-change follow-up before acceptance. R-M checkout retained
+  for follow-up. Source/GPU/calibration/production acceptance not inferred.
+- Canonical STATE/QUEUE/RUNS/API_BUDGET updated;53/202 task deliverables accepted.
+  Gates remain0 eligible/0 measured/physics NOT_RUN, no S12 unlock. Existing
+  heartbeat kept ACTIVE/current chat5m with refreshed checkpoint-based prompt;
+  dispatcher OFF. No quota poll, provider/credential/global-policy or spend change.
+
 - Owner authority: Oct28 request to read ORCHESTRATOR.md/be orchestrator and
   replace all GPT6.1 Terra work with Sol; follow-up explicitly requests Ponytail.
   Supersedes prior takeover stop, not any approval/budget/rights boundary.

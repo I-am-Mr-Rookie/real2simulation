@@ -31,10 +31,12 @@ deadline, without changing PARTIAL to DONE/BLOCKED. Expiry permits one bounded
 retry, not a claim that the source recovered. After another rate-limit/access
 failure, record evidence and extend the hold; do not rapidly retry or bypass
 restrictions. The orchestrator may clear a hold early only after recording a
-genuinely new rights-cleared source. Lane/slot/ownership/approval checks still apply.
+genuinely new rights-cleared source or genuine recovery of the blocked execution
+prerequisite. Lane/slot/ownership/approval checks still apply.
 
 | Run | Retry not before (UTC) | Reason |
 |---|---|---|
+| S05b | 2026-11-04T12:00:00Z | Recovery4 supported browser disabled by Work settings; no identical retry until Q10 genuine surface recovery/fresh trusted receipt is recorded and hold cleared. Not GPU reconsent; stop-work still applies. |
 
 ## Leaf tasks
 

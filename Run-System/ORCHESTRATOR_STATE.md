@@ -1,5 +1,39 @@
 # Orchestrator recovery checkpoint
 
+## LATEST — S05b safe stop; R-M accepted; S07f active (Oct28 ~12:10UTC)
+
+Current single source-response worker: S07f child01a18267-aa63-7902-a7bf-0cc41584ccaa
+(Euler), gpt-6.1-sol/high, fresh context; managed
+C:/Users/HP/.codex/worktrees/s07f-gate-decision/2026-10-26 - Meta Global AI Developer Hackathon,
+branch run/S07f, basea0b603d. Exact contract Runs/S07f/DISPATCH.md. No auto-merge
+or canonical writes. Review response/explicit honest fallback, not calibration hunt.
+Gate-code changes require other-vendor follow-up BEFORE acceptance. Keep r-m-review
+checkout for that review; original CLI terminal. native session84309 is CLOSED,
+do not keep polling an unknown handle. No current R-M/S05b worker remains active.
+
+S05b recovery4 accepted PARTIAL evidenceb687302; fresh controller/rebased spike4,
+scene11 PASS. Actual supported discovery: Local browser use is disabled in Work
+settings. No new paid job/upload/reservation/resource; prior$1.90 retained,
+current global resources/billing NOT refreshed. Corrected installed imports and
+actual inference untested; assigned checkout raw ignored PNGs absent0/4. No
+identical redispatch while unchanged. Q10 asks owner-supported surface recovery
+or fresh trusted billing/resource screenshots, NOT renewed GPU/credit approval.
+Async options sent; canonical hold only clears after genuine changed prerequisite.
+
+R-M review DONE after controller commits authorized evidence blocked by child
+Git metadata sandbox, normalizes trailing whitespace, rebases/FF46a8c75. Fresh
+controller repro confirms inconsistent summary can declare PASSED for g20 and
+error0; raw groups/uncertainty examples reproduced. measurement59/59 PASS on
+review checkout and main. Synthetic examples, no actual measured GateM result.
+Six findings are not six automatically accepted fixes: F3 abstention intentional,
+F4 GateRS distinction, assumptions/linearization/group provenance require source
+adjudication. See Runs/R-M/CONTROLLER_ACCEPTANCE.md for details/comms exception.
+
+Main53/202 accepted deliverables, not measured gates;0 eligible/0 measured,
+physics NOT_RUN, S12 locked. Current controls claima0b603d; heartbeat remains
+ACTIVE5m/current chat, prompt refreshed to canonical live checkpoint. Python
+dispatcher OFF; OpenCodex-managed/not polled. Older ACTIVE sections below stale.
+
 ## CURRENT — orchestration resumed, Sol/Ponytail override (Oct28 11:54UTC)
 
 Koushik appointed chat01a1824d-a0b9-7712-bc3c-abd750d37250 orchestrator;
