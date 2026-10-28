@@ -1,0 +1,76 @@
+✖ Windows actual session service abort kills owned Python/Node trees and restores real capacity (1702.2678ms)
+ℹ {
+  "platform": "win32",
+  "node": "v24.18.0",
+  "service": "C:\\Users\\HP\\.codex\\worktrees\\swarm13-process-lifecycle\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\lab\\session-service.mjs",
+  "sourceSha256": "6638dd0f88a0b60af0c9d1c32f969abfe461a2a7da138e33130e4e4dc1c0bacc",
+  "root": "C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-89vW4r",
+  "harnessPid": 25356,
+  "events": [],
+  "trees": [],
+  "cleanup": []
+}
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1840.1196
+
+✖ failing tests:
+
+test at tests\lab\process-tree.test.mjs:159:3
+✖ Windows actual session service abort kills owned Python/Node trees and restores real capacity (1702.2678ms)
+  Error: Command failed: C:\Program Files\nodejs\node.exe C:\Users\HP\.codex\worktrees\swarm13-process-lifecycle\2026-10-26 - Meta Global AI Developer Hackathon\tests\lab\process-tree.test.mjs --process-tree-harness C:\Users\HP\AppData\Local\Temp\real2sim-process-tree-89vW4r C:\Users\HP\.codex\worktrees\swarm13-process-lifecycle\2026-10-26 - Meta Global AI Developer Hackathon\Build\lab\session-service.mjs
+  node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: owned fixture path
+      at assertOwned (file:///C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/process-tree.test.mjs:54:10)
+      at ready (file:///C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/process-tree.test.mjs:108:5)
+      at async harness (file:///C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/process-tree.test.mjs:130:76)
+      at async file:///C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/process-tree.test.mjs:157:3 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+  
+  Node.js v24.18.0
+  
+  
+  node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+  
+  AssertionError [ERR_ASSERTION]: owned fixture path
+      at assertOwned (file:///C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/process-tree.test.mjs:54:10)
+      at ready (file:///C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/process-tree.test.mjs:108:5)
+      at async harness (file:///C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/process-tree.test.mjs:130:76)
+      at async file:///C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/process-tree.test.mjs:157:3 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+  
+  Node.js v24.18.0
+  
+      at genericNodeError (node:internal/errors:985:15)
+      at wrappedFn (node:internal/errors:539:14)
+      at ChildProcess.exithandler (node:child_process:417:12)
+      at ChildProcess.emit (node:events:509:28)
+      at maybeClose (node:internal/child_process:1124:16)
+      at ChildProcess._handle.onexit (node:internal/child_process:306:5) {
+    code: 1,
+    killed: false,
+    signal: null,
+    cmd: 'C:\\Program Files\\nodejs\\node.exe C:\\Users\\HP\\.codex\\worktrees\\swarm13-process-lifecycle\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\process-tree.test.mjs --process-tree-harness C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-89vW4r C:\\Users\\HP\\.codex\\worktrees\\swarm13-process-lifecycle\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\lab\\session-service.mjs'
+  }

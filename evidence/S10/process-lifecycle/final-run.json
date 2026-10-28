@@ -1,0 +1,217 @@
+{
+  "platform": "win32",
+  "node": "v24.18.0",
+  "service": "C:\\Users\\HP\\.codex\\worktrees\\swarm13-process-lifecycle\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\lab\\session-service.mjs",
+  "sourceSha256": "6638dd0f88a0b60af0c9d1c32f969abfe461a2a7da138e33130e4e4dc1c0bacc",
+  "root": "C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa",
+  "harnessPid": 504,
+  "events": [
+    {
+      "action": "four-real-trees-fill-capacity; fifth-rejected",
+      "activeBridges": 4
+    },
+    {
+      "action": "abort",
+      "bridgePid": 12496,
+      "childPid": 6432,
+      "abortedAt": "2026-10-28T21:11:43.985Z",
+      "bothDeadAfterMs": 303,
+      "response": {
+        "status": "error",
+        "error": {
+          "code": "lab_request_failed"
+        }
+      },
+      "activeBridges": 3,
+      "sessions": 0,
+      "serviceKillMethod": "actual Windows stopTree: taskkill /PID bridge-PID /T /F (unmocked)"
+    },
+    {
+      "action": "capacity-recovered-with-real-replacement",
+      "activeBridges": 4
+    },
+    {
+      "action": "abort",
+      "bridgePid": 1820,
+      "childPid": 22848,
+      "abortedAt": "2026-10-28T21:11:46.424Z",
+      "bothDeadAfterMs": 2447,
+      "response": {
+        "status": "error",
+        "error": {
+          "code": "lab_request_failed"
+        }
+      },
+      "activeBridges": 3,
+      "sessions": 0,
+      "serviceKillMethod": "actual Windows stopTree: taskkill /PID bridge-PID /T /F (unmocked)"
+    },
+    {
+      "action": "abort",
+      "bridgePid": 8268,
+      "childPid": 6760,
+      "abortedAt": "2026-10-28T21:11:48.871Z",
+      "bothDeadAfterMs": 1469,
+      "response": {
+        "status": "error",
+        "error": {
+          "code": "lab_request_failed"
+        }
+      },
+      "activeBridges": 2,
+      "sessions": 0,
+      "serviceKillMethod": "actual Windows stopTree: taskkill /PID bridge-PID /T /F (unmocked)"
+    },
+    {
+      "action": "abort",
+      "bridgePid": 4320,
+      "childPid": 10440,
+      "abortedAt": "2026-10-28T21:11:50.34Z",
+      "bothDeadAfterMs": 1955,
+      "response": {
+        "status": "error",
+        "error": {
+          "code": "lab_request_failed"
+        }
+      },
+      "activeBridges": 1,
+      "sessions": 0,
+      "serviceKillMethod": "actual Windows stopTree: taskkill /PID bridge-PID /T /F (unmocked)"
+    },
+    {
+      "action": "abort",
+      "bridgePid": 9976,
+      "childPid": 28352,
+      "abortedAt": "2026-10-28T21:11:52.295Z",
+      "bothDeadAfterMs": 2047,
+      "response": {
+        "status": "error",
+        "error": {
+          "code": "lab_request_failed"
+        }
+      },
+      "activeBridges": 0,
+      "sessions": 0,
+      "serviceKillMethod": "actual Windows stopTree: taskkill /PID bridge-PID /T /F (unmocked)"
+    }
+  ],
+  "trees": [
+    {
+      "pid": 12496,
+      "parentPid": 504,
+      "childPid": 6432,
+      "token": "71ff4c16-fff3-489c-bcbf-94dbdb156fcd",
+      "identities": [
+        {
+          "ProcessId": 12496,
+          "ParentProcessId": 504,
+          "ExecutablePath": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+          "CommandLine": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa\\Build/lab/session-bridge.py",
+          "Created": "2026-10-28T21:11:37.665725Z"
+        },
+        {
+          "ProcessId": 6432,
+          "ParentProcessId": 12496,
+          "ExecutablePath": "C:\\Program Files\\nodejs\\node.exe",
+          "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa\\idle-child.mjs 71ff4c16-fff3-489c-bcbf-94dbdb156fcd C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa",
+          "Created": "2026-10-28T21:11:37.823864Z"
+        }
+      ],
+      "requestIndex": 0
+    },
+    {
+      "pid": 1820,
+      "parentPid": 504,
+      "childPid": 22848,
+      "token": "71ff4c16-fff3-489c-bcbf-94dbdb156fcd",
+      "identities": [
+        {
+          "ProcessId": 1820,
+          "ParentProcessId": 504,
+          "ExecutablePath": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+          "CommandLine": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa\\Build/lab/session-bridge.py",
+          "Created": "2026-10-28T21:11:38.539392Z"
+        },
+        {
+          "ProcessId": 22848,
+          "ParentProcessId": 1820,
+          "ExecutablePath": "C:\\Program Files\\nodejs\\node.exe",
+          "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa\\idle-child.mjs 71ff4c16-fff3-489c-bcbf-94dbdb156fcd C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa",
+          "Created": "2026-10-28T21:11:38.721567Z"
+        }
+      ],
+      "requestIndex": 1
+    },
+    {
+      "pid": 8268,
+      "parentPid": 504,
+      "childPid": 6760,
+      "token": "71ff4c16-fff3-489c-bcbf-94dbdb156fcd",
+      "identities": [
+        {
+          "ProcessId": 8268,
+          "ParentProcessId": 504,
+          "ExecutablePath": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+          "CommandLine": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa\\Build/lab/session-bridge.py",
+          "Created": "2026-10-28T21:11:39.804377Z"
+        },
+        {
+          "ProcessId": 6760,
+          "ParentProcessId": 8268,
+          "ExecutablePath": "C:\\Program Files\\nodejs\\node.exe",
+          "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa\\idle-child.mjs 71ff4c16-fff3-489c-bcbf-94dbdb156fcd C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa",
+          "Created": "2026-10-28T21:11:40.066101Z"
+        }
+      ],
+      "requestIndex": 2
+    },
+    {
+      "pid": 4320,
+      "parentPid": 504,
+      "childPid": 10440,
+      "token": "71ff4c16-fff3-489c-bcbf-94dbdb156fcd",
+      "identities": [
+        {
+          "ProcessId": 4320,
+          "ParentProcessId": 504,
+          "ExecutablePath": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+          "CommandLine": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa\\Build/lab/session-bridge.py",
+          "Created": "2026-10-28T21:11:41.758311Z"
+        },
+        {
+          "ProcessId": 10440,
+          "ParentProcessId": 4320,
+          "ExecutablePath": "C:\\Program Files\\nodejs\\node.exe",
+          "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa\\idle-child.mjs 71ff4c16-fff3-489c-bcbf-94dbdb156fcd C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa",
+          "Created": "2026-10-28T21:11:42.12341Z"
+        }
+      ],
+      "requestIndex": 3
+    },
+    {
+      "pid": 9976,
+      "parentPid": 504,
+      "childPid": 28352,
+      "token": "71ff4c16-fff3-489c-bcbf-94dbdb156fcd",
+      "identities": [
+        {
+          "ProcessId": 9976,
+          "ParentProcessId": 504,
+          "ExecutablePath": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+          "CommandLine": "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa\\Build/lab/session-bridge.py",
+          "Created": "2026-10-28T21:11:44.318967Z"
+        },
+        {
+          "ProcessId": 28352,
+          "ParentProcessId": 9976,
+          "ExecutablePath": "C:\\Program Files\\nodejs\\node.exe",
+          "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa\\idle-child.mjs 71ff4c16-fff3-489c-bcbf-94dbdb156fcd C:\\Users\\HP\\AppData\\Local\\Temp\\real2sim-process-tree-J57uHa",
+          "Created": "2026-10-28T21:11:44.84257Z"
+        }
+      ],
+      "requestIndex": 4
+    }
+  ],
+  "cleanup": [],
+  "status": "PASS"
+}

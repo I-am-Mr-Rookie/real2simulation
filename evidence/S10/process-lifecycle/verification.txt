@@ -1,0 +1,12 @@
+Verified at 2026-10-28T21:14:04.1524578Z
+Source HEAD: 7708494fed8ae1b3cc23b943b5168e910b58fb9d
+Service SHA256: 6638DD0F88A0B60AF0C9D1C32F969ABFE461A2A7DA138E33130E4E4DC1C0BACC
+Production Build/ and existing service tests unchanged versus pinned source.
+All ten exact recorded PIDs absent from fresh Get-CimInstance query: 12496, 1820, 8268, 4320, 9976, 6432, 22848, 6760, 10440, 28352
+Owned temp directory absent: C:\Users\HP\AppData\Local\Temp\real2sim-process-tree-J57uHa
+Fallback cleanup actions in final test: 0
+Node v24.18.0
+Python 3.14.5
+tests/lab/process-tree.test.mjs SHA256 0F7F025FF688B1022C3EFC2F1900D1C13CCC0497CE20A12434D90ECE885E8611
+evidence/S10/process-lifecycle/fixtures/session-bridge.py SHA256 0F68983CA91F590F768E2E1095F91D636ACE5E1087EA0CD0A729658770AB0253
+evidence/S10/process-lifecycle/fixtures/idle-child.mjs SHA256 9A6EDE82D2D0E238EF719D015BA17BD23841DC8C01AE8A715B169946F3686BCC

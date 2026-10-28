@@ -1,0 +1,213 @@
+TAP version 13
+# Subtest: Windows actual session service abort kills owned Python/Node trees and restores real capacity
+ok 1 - Windows actual session service abort kills owned Python/Node trees and restores real capacity
+  ---
+  duration_ms: 17080.7255
+  type: 'test'
+  ...
+# {"platform":"win32","node":"v24.18.0","service":"C:\\\\Users\\\\HP\\\\.codex\\\\worktrees\\\\swarm13-process-lifecycle\\\\2026-10-26 - Meta Global AI Developer Hackathon\\\\Build\\\\lab\\\\session-service.mjs","sourceSha256":"6638dd0f88a0b60af0c9d1c32f969abfe461a2a7da138e33130e4e4dc1c0bacc","root":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa","harnessPid":504,"events":[{"action":"four-real-trees-fill-capacity; fifth-rejected","activeBridges":4},{"action":"abort","bridgePid":12496,"childPid":6432,"abortedAt":"2026-10-28T21:11:43.985Z","bothDeadAfterMs":303,"response":{"status":"error","error":{"code":"lab_request_failed"}},"activeBridges":3,"sessions":0,"serviceKillMethod":"actual Windows stopTree: taskkill /PID bridge-PID /T /F (unmocked)"},{"action":"capacity-recovered-with-real-replacement","activeBridges":4},{"action":"abort","bridgePid":1820,"childPid":22848,"abortedAt":"2026-10-28T21:11:46.424Z","bothDeadAfterMs":2447,"response":{"status":"error","error":{"code":"lab_request_failed"}},"activeBridges":3,"sessions":0,"serviceKillMethod":"actual Windows stopTree: taskkill /PID bridge-PID /T /F (unmocked)"},{"action":"abort","bridgePid":8268,"childPid":6760,"abortedAt":"2026-10-28T21:11:48.871Z","bothDeadAfterMs":1469,"response":{"status":"error","error":{"code":"lab_request_failed"}},"activeBridges":2,"sessions":0,"serviceKillMethod":"actual Windows stopTree: taskkill /PID bridge-PID /T /F (unmocked)"},{"action":"abort","bridgePid":4320,"childPid":10440,"abortedAt":"2026-10-28T21:11:50.340Z","bothDeadAfterMs":1955,"response":{"status":"error","error":{"code":"lab_request_failed"}},"activeBridges":1,"sessions":0,"serviceKillMethod":"actual Windows stopTree: taskkill /PID bridge-PID /T /F (unmocked)"},{"action":"abort","bridgePid":9976,"childPid":28352,"abortedAt":"2026-10-28T21:11:52.295Z","bothDeadAfterMs":2047,"response":{"status":"error","error":{"code":"lab_request_failed"}},"activeBridges":0,"sessions":0,"serviceKillMethod":"actual Windows stopTree: taskkill /PID bridge-PID /T /F (unmocked)"}],"trees":[{"pid":12496,"parentPid":504,"childPid":6432,"token":"71ff4c16-fff3-489c-bcbf-94dbdb156fcd","identities":[{"ProcessId":12496,"ParentProcessId":504,"ExecutablePath":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe","CommandLine":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa\\\\Build/lab/session-bridge.py","Created":"2026-10-28T21:11:37.6657250Z"},{"ProcessId":6432,"ParentProcessId":12496,"ExecutablePath":"C:\\\\Program Files\\\\nodejs\\\\node.exe","CommandLine":"\\"C:\\\\Program Files\\\\nodejs\\\\node.exe\\" C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa\\\\idle-child.mjs 71ff4c16-fff3-489c-bcbf-94dbdb156fcd C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa","Created":"2026-10-28T21:11:37.8238640Z"}],"requestIndex":0},{"pid":1820,"parentPid":504,"childPid":22848,"token":"71ff4c16-fff3-489c-bcbf-94dbdb156fcd","identities":[{"ProcessId":1820,"ParentProcessId":504,"ExecutablePath":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe","CommandLine":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa\\\\Build/lab/session-bridge.py","Created":"2026-10-28T21:11:38.5393920Z"},{"ProcessId":22848,"ParentProcessId":1820,"ExecutablePath":"C:\\\\Program Files\\\\nodejs\\\\node.exe","CommandLine":"\\"C:\\\\Program Files\\\\nodejs\\\\node.exe\\" C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa\\\\idle-child.mjs 71ff4c16-fff3-489c-bcbf-94dbdb156fcd C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa","Created":"2026-10-28T21:11:38.7215670Z"}],"requestIndex":1},{"pid":8268,"parentPid":504,"childPid":6760,"token":"71ff4c16-fff3-489c-bcbf-94dbdb156fcd","identities":[{"ProcessId":8268,"ParentProcessId":504,"ExecutablePath":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe","CommandLine":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa\\\\Build/lab/session-bridge.py","Created":"2026-10-28T21:11:39.8043770Z"},{"ProcessId":6760,"ParentProcessId":8268,"ExecutablePath":"C:\\\\Program Files\\\\nodejs\\\\node.exe","CommandLine":"\\"C:\\\\Program Files\\\\nodejs\\\\node.exe\\" C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa\\\\idle-child.mjs 71ff4c16-fff3-489c-bcbf-94dbdb156fcd C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa","Created":"2026-10-28T21:11:40.0661010Z"}],"requestIndex":2},{"pid":4320,"parentPid":504,"childPid":10440,"token":"71ff4c16-fff3-489c-bcbf-94dbdb156fcd","identities":[{"ProcessId":4320,"ParentProcessId":504,"ExecutablePath":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe","CommandLine":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa\\\\Build/lab/session-bridge.py","Created":"2026-10-28T21:11:41.7583110Z"},{"ProcessId":10440,"ParentProcessId":4320,"ExecutablePath":"C:\\\\Program Files\\\\nodejs\\\\node.exe","CommandLine":"\\"C:\\\\Program Files\\\\nodejs\\\\node.exe\\" C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa\\\\idle-child.mjs 71ff4c16-fff3-489c-bcbf-94dbdb156fcd C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa","Created":"2026-10-28T21:11:42.1234100Z"}],"requestIndex":3},{"pid":9976,"parentPid":504,"childPid":28352,"token":"71ff4c16-fff3-489c-bcbf-94dbdb156fcd","identities":[{"ProcessId":9976,"ParentProcessId":504,"ExecutablePath":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe","CommandLine":"C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa\\\\Build/lab/session-bridge.py","Created":"2026-10-28T21:11:44.3189670Z"},{"ProcessId":28352,"ParentProcessId":9976,"ExecutablePath":"C:\\\\Program Files\\\\nodejs\\\\node.exe","CommandLine":"\\"C:\\\\Program Files\\\\nodejs\\\\node.exe\\" C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa\\\\idle-child.mjs 71ff4c16-fff3-489c-bcbf-94dbdb156fcd C:\\\\Users\\\\HP\\\\AppData\\\\Local\\\\Temp\\\\real2sim-process-tree-J57uHa","Created":"2026-10-28T21:11:44.8425700Z"}],"requestIndex":4}],"cleanup":[],"status":"PASS"}
+# (node:4540) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/.codex/worktrees/swarm13-process-lifecycle/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/app/api/lab/route.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to \\\\?\\C:\\Users\\HP\\.codex\\worktrees\\swarm13-process-lifecycle\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\web\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: all four normal DTOs match actual Python validated exports, not authored envelope fixtures
+ok 2 - all four normal DTOs match actual Python validated exports, not authored envelope fixtures
+  ---
+  duration_ms: 12980.6927
+  type: 'test'
+  ...
+# Subtest: caller-supplied setups remain outside the fixed request allowlist
+ok 3 - caller-supplied setups remain outside the fixed request allowlist
+  ---
+  duration_ms: 2.7427
+  type: 'test'
+  ...
+# Subtest: normal start/fit uses the actual bridge and fitter
+ok 4 - normal start/fit uses the actual bridge and fitter
+  ---
+  duration_ms: 1816.5952
+  type: 'test'
+  ...
+# Subtest: mystery redacts pre-fit and reveals only through matching fit
+ok 5 - mystery redacts pre-fit and reveals only through matching fit
+  ---
+  duration_ms: 1932.7677
+  type: 'test'
+  ...
+# Subtest: pre-abort does not spawn and expired reads do not evict live sessions
+ok 6 - pre-abort does not spawn and expired reads do not evict live sessions
+  ---
+  duration_ms: 1354.1327
+  type: 'test'
+  ...
+# Subtest: allowlists, expiry and bounded session errors are clean
+ok 7 - allowlists, expiry and bounded session errors are clean
+  ---
+  duration_ms: 1131.0998
+  type: 'test'
+  ...
+# Subtest: aborting an active bridge settles and releases its capacity
+ok 8 - aborting an active bridge settles and releases its capacity
+  ---
+  duration_ms: 579.3888
+  type: 'test'
+  ...
+# Subtest: loopback route accepts the UI contract and rejects nonlocal hosts
+ok 9 - loopback route accepts the UI contract and rejects nonlocal hosts
+  ---
+  duration_ms: 1453.4753
+  type: 'test'
+  ...
+# Subtest: production route remains disabled
+ok 10 - production route remains disabled
+  ---
+  duration_ms: 2.3255
+  type: 'test'
+  ...
+# Subtest: cold concurrent fits reuse one bridge and pre-aborted cached reads fail
+ok 11 - cold concurrent fits reuse one bridge and pre-aborted cached reads fail
+  ---
+  duration_ms: 1566.8738
+  type: 'test'
+  ...
+# Subtest: evicted in-flight sessions never publish a fit or reveal
+ok 12 - evicted in-flight sessions never publish a fit or reveal
+  ---
+  duration_ms: 1563.5842
+  type: 'test'
+  ...
+# Subtest: normal-to-Mystery starts never carry a previous normal DTO into the new response
+ok 13 - normal-to-Mystery starts never carry a previous normal DTO into the new response
+  ---
+  duration_ms: 2765.8203
+  type: 'test'
+  ...
+# Subtest: service strips an injected DTO even from actual Mystery replies across ballistic seeds
+ok 14 - service strips an injected DTO even from actual Mystery replies across ballistic seeds
+  ---
+  duration_ms: 8639.0592
+  type: 'test'
+  ...
+# Subtest: normal transport fails closed for missing/mismatched/non-synthetic or unbounded exports
+ok 15 - normal transport fails closed for missing/mismatched/non-synthetic or unbounded exports
+  ---
+  duration_ms: 29.3529
+  type: 'test'
+  ...
+# Subtest: normal transport includes the initial point in its 2000-sample ceiling
+ok 16 - normal transport includes the initial point in its 2000-sample ceiling
+  ---
+  duration_ms: 9.7228
+  type: 'test'
+  ...
+# Subtest: Mystery error and exception envelopes never forward nested bridge details
+ok 17 - Mystery error and exception envelopes never forward nested bridge details
+  ---
+  duration_ms: 15.0258
+  type: 'test'
+  ...
+# Subtest: abort cannot become success when bridge closes with code zero
+ok 18 - abort cannot become success when bridge closes with code zero
+  ---
+  duration_ms: 3.3173
+  type: 'test'
+  ...
+# Subtest: stdin failure retains bridge capacity until close, including the four-process cap
+ok 19 - stdin failure retains bridge capacity until close, including the four-process cap
+  ---
+  duration_ms: 3.7972
+  type: 'test'
+  ...
+# Subtest: synchronous spawn failures do not consume capacity or expose internal errors
+ok 20 - synchronous spawn failures do not consume capacity or expose internal errors
+  ---
+  duration_ms: 4.7896
+  type: 'test'
+  ...
+# Subtest: expired during trusted handoff hashing cannot reveal or cache a fit
+ok 21 - expired during trusted handoff hashing cannot reveal or cache a fit
+  ---
+  duration_ms: 7.3519
+  type: 'test'
+  ...
+# Subtest: evicted during trusted handoff hashing cannot reveal or cache a fit
+ok 22 - evicted during trusted handoff hashing cannot reveal or cache a fit
+  ---
+  duration_ms: 7.5905
+  type: 'test'
+  ...
+# Subtest: aborted during trusted handoff hashing cannot reveal or cache a fit
+ok 23 - aborted during trusted handoff hashing cannot reveal or cache a fit
+  ---
+  duration_ms: 5.3316
+  type: 'test'
+  ...
+# Subtest: abort during start hashing does not insert a session
+ok 24 - abort during start hashing does not insert a session
+  ---
+  duration_ms: 4.9753
+  type: 'test'
+  ...
+# Subtest: a failed active Mystery-g fit can retry without consuming its reveal
+ok 25 - a failed active Mystery-g fit can retry without consuming its reveal
+  ---
+  duration_ms: 1123.8986
+  type: 'test'
+  ...
+# Subtest: timeout cannot become success and capacity is retained until close
+ok 26 - timeout cannot become success and capacity is retained until close
+  ---
+  duration_ms: 3.6178
+  type: 'test'
+  ...
+# Subtest: invalid JSON bridge output returns a bounded error envelope
+ok 27 - invalid JSON bridge output returns a bounded error envelope
+  ---
+  duration_ms: 1.5127
+  type: 'test'
+  ...
+# Subtest: null bridge output returns a bounded error envelope
+ok 28 - null bridge output returns a bounded error envelope
+  ---
+  duration_ms: 1.4172
+  type: 'test'
+  ...
+# Subtest: unexpected shape bridge output returns a bounded error envelope
+ok 29 - unexpected shape bridge output returns a bounded error envelope
+  ---
+  duration_ms: 1.2304
+  type: 'test'
+  ...
+# Subtest: oversized output bridge output returns a bounded error envelope
+ok 30 - oversized output bridge output returns a bounded error envelope
+  ---
+  duration_ms: 4.29
+  type: 'test'
+  ...
+# Subtest: asynchronous spawn error retains its slot until close and never returns success
+ok 31 - asynchronous spawn error retains its slot until close and never returns success
+  ---
+  duration_ms: 1.4836
+  type: 'test'
+  ...
+# Subtest: a real capacity insertion evicts the oldest in-flight session without revealing it
+ok 32 - a real capacity insertion evicts the oldest in-flight session without revealing it
+  ---
+  duration_ms: 11.0214
+  type: 'test'
+  ...
+# Subtest: expiry while a bridge is running rejects the fit and permits no reveal
+ok 33 - expiry while a bridge is running rejects the fit and permits no reveal
+  ---
+  duration_ms: 2.3072
+  type: 'test'
+  ...
+1..33
+# tests 33
+# suites 0
+# pass 33
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 38280.548
