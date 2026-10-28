@@ -1,0 +1,55 @@
+{
+  "rid": "S02f-swarm3",
+  "as_of": "2026-10-28",
+  "qualified_new_candidates": 0,
+  "approval_ready": false,
+  "gate": {
+    "earth_1g_camera_frame": false,
+    "metric_image_scale": false,
+    "physical_capture_clock": false,
+    "allowed_usable_uncut_trajectory": false,
+    "independent_trials": false
+  },
+  "candidates": [
+    {
+      "id": "NASA-CELERE-DROP",
+      "source": "https://www.nasa.gov/glenn/glenn-expertise-space-exploration/physical-sciences-program/education-and-outreach/past-drop-tower-challenges-and-competitions/",
+      "license_status": "NASA media guidance; asset-specific footage rights not evidenced",
+      "metric_scale": "24-30 m tower/rig facts only; no image-plane calibration",
+      "capture_clock": "30 fps stated for challenge data",
+      "trajectory_status": "relative motion in freely falling rig, not Earth-g camera trajectory",
+      "independent_trials": "program describes per-test data; no public raw trial receipt",
+      "disposition": "reject-earth-g"
+    },
+    {
+      "id": "NASA-CWRU-ALB",
+      "source": "https://ntrs.nasa.gov/api/citations/20150019482/downloads/20150019482.pdf?attachment=true",
+      "license_status": "paper source only; footage rights unknown",
+      "metric_scale": "24 m tower, 3 mm beads, 13+/-0.5 degree apparatus facts; no image-plane calibration",
+      "capture_clock": "Sony HDR-CX260V/W, 30 fps stated",
+      "trajectory_status": "capillary motion in near-zero-g rig; video edited before analysis",
+      "independent_trials": "19 successful trials reported in paper",
+      "disposition": "reject-earth-g"
+    },
+    {
+      "id": "UAA-FREE-FALL",
+      "source": "https://www.uaa.alaska.edu/academics/college-of-arts-and-sciences/departments/physics-and-astronomy/demo.cshtml",
+      "license_status": "CC BY-NC-SA, disallowed",
+      "metric_scale": "not stated",
+      "capture_clock": "high-speed camera only; fps not stated",
+      "trajectory_status": "not source-certified as uncut",
+      "independent_trials": "not stated",
+      "disposition": "reject-rights"
+    },
+    {
+      "id": "APOLLO15-HAMMER-FEATHER",
+      "source": "https://science.nasa.gov/resource/the-apollo-15-hammer-feather-drop/",
+      "license_status": "NASA source; asset-specific footage terms not checked",
+      "metric_scale": "approximately 1.6 m release height",
+      "capture_clock": "not stated",
+      "trajectory_status": "Moon, not Earth",
+      "independent_trials": "single public demonstration",
+      "disposition": "reject-wrong-body"
+    }
+  ]
+}
