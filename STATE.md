@@ -20,6 +20,25 @@ Run-System/Runs/SWARM-20261028-2400/OWNER-SIMULATION-EXCEPTION.md.
 Isolated S10a/b, S11a/b/c and fitter d-g workers dispatched; leaf DONE requires
 real acceptance, numerical sidecars integrate after contract/instrument leaves.
 
+17:45UTC acceptance checkpoint:7 worker contracts merged (S02f-swarm3 source
+research, S07b-swarm7 identity metadata, S05b-swarm-readiness, S05b-swarm12 local
+lifecycle, S11abc-swarm, S10ab-swarm, S11defg-swarm numerical implementation).
+Five queue leaves accepted S10a/b,S11a/b/c;63/205. Recovery children do not inflate
+queue totals. Fitter source merged8797fec but NEW covariance-basis/underflow
+defect found after original worker deadline; sole API worker owns narrow repair
+within its existing window. S11d-h final leaf acceptance waits integrated fixes.
+Trajectory child awaiting final review/FF; S10d remains contacts/integration hold.
+Fresh controller S05 spike65 normal+optimized PASS; instruments10+10 PASS;
+S10Node3+Pythonadapter2 PASS; fitter11+11 PASS, not sufficient for covariance
+bug newly found. Required Claude review failedECONNREFUSED; no paid admission.
+Modal read-only:display129.99 credits,0 live apps, prior call prestartCancelled;
+cause unknown, no current GPU/model/physics result or new reservation.
+
+Controller error: final-answering owner's progress question ended active turn
+before midnight. Owner immediately corrected; resumed17:42UTC, same deadline
+18:00UTC, no new authority/schedule/clock reset. Previous answer's6 worker count
+was current then, not queue count; now7 integrated contracts,5 queue leaves.
+
 ## Latest direct owner instruction — solo work until 23:00 BDT Oct28
 
 Fresh direct owner authorization: apply Ponytail, work alone, complete useful

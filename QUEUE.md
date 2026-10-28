@@ -4,6 +4,14 @@ Generated 2026-10-27 Asia/Dhaka from handoff v2, final plan.html SHA256 `0EAEBF9
 
 ## Execution lock and scheduling
 
+**Bounded Oct28 swarm exception:** direct owner authorizes inline agents until
+18:00UTC Oct28 (Oct29 00:00Dhaka), plus simulation-only S10/S11 against synthetic
+fixtures despite unfinished physical S07/S09. Evidence:
+Run-System/Runs/SWARM-20261028-2400/OWNER-SIMULATION-EXCEPTION.md.
+S10a/b and S11a/b/c are accepted local simulation leaves; this changes no physical
+step/gate, S10c contacts, real-scene integration or S12 eligibility. Preserve
+original dependencies as integration requirements, not silently deleted gates.
+
 **Latest owner override (Oct28): ALL remaining GPT-6.1 Terra work uses existing managed `gpt-6.1-sol`; preserve lane, Owns, effort, dependencies and approval boundaries. No failure prerequisite. Historical completed receipts and Claude/S02c assignments unchanged.**
 
 **S03 done (Oct 27). Koushik starts each run with `Complete run <ID>` or `Complete the next run` (see START.md and RUN_SYSTEM.md → Manual run protocol); a TODO row alone is not authorization.** Statuses: TODO, IN PROGRESS, PARTIAL, BLOCKED, DONE. RUNS.md is the generated checklist view of this table. Oct 27: S01a and S01c marked DONE from the owner checklist and DECISIONS_LOG.md; S06a, S07a and S13a now depend on S01a and S01c instead of all of S01, so the spikes no longer wait for sign-in testing (S01b).
@@ -111,8 +119,8 @@ prerequisite. Lane/slot/ownership/approval checks still apply.
 | S09h | CLAUDE | Opus 5.5 / medium | S09 | 30 | Integrate three measured scene artifacts | S09g, S04, S05 | Build/web/src/viewer/; tests/viewer/; evidence/S09/ | Real integration waits for S04 and S05; three artifact loads verified. | TODO |
 | S09i | CLAUDE | Opus 5.5 / medium | S09 | 30 | Measure fps and memory on target laptop | S09h | Build/web/src/viewer/; tests/viewer/; evidence/S09/ | Three scenes orbit >=30fps on identified hardware, or evidence-backed proxy fallback. | TODO |
 | S09j | CLAUDE | Opus 5.5 / medium | S09 | 30 | Checkpoint viewer evidence and visual fixes | S09i | Build/web/src/viewer/; tests/viewer/; evidence/S09/ | Document 375px and performance results; separate fixture from real-scene evidence. | TODO |
-| S10a | CODEX-1 | GPT-6.1 Sol / medium | S10 | 30 | Build validated-spec apparatus placement | S08, S09 | Build/simulator/; tests/simulator/; evidence/S10/ | Only schema-valid apparatus can enter scene geometry. | TODO |
-| S10b | CODEX-1 | GPT-6.1 Sol / medium | S10 | 30 | Implement fixed-step RK4 core | S10a | Build/simulator/; tests/simulator/; evidence/S10/ | Integrator has deterministic step size and analytic smoke tests. | TODO |
+| S10a | CODEX-1 | GPT-6.1 Sol / medium | S10 | 30 | Build validated-spec apparatus placement | S08, S09 | Build/simulator/; tests/simulator/; evidence/S10/ | Only schema-valid apparatus can enter scene geometry. | DONE |
+| S10b | CODEX-1 | GPT-6.1 Sol / medium | S10 | 30 | Implement fixed-step RK4 core | S10a | Build/simulator/; tests/simulator/; evidence/S10/ | Integrator has deterministic step size and analytic smoke tests. | DONE |
 | S10c | CODEX-1 | GPT-6.1 Sol / medium | S10 | 30 | Integrate Rapier contacts | S10b | Build/simulator/; tests/simulator/; evidence/S10/ | Contact state mapped to common simulator output without hidden numeric defaults. | TODO |
 | S10d | CODEX-1 | GPT-6.1 Sol / medium | S10 | 30 | Implement free-fall and projectile runs | S10c | Build/simulator/; tests/simulator/; evidence/S10/ | Both templates output time-series and analytic comparison inputs. | TODO |
 | S10e | CODEX-1 | GPT-6.1 Sol / medium | S10 | 30 | Implement ramp and pendulum runs | S10d | Build/simulator/; tests/simulator/; evidence/S10/ | Both templates output time-series and analytic comparison inputs. | TODO |
@@ -121,9 +129,9 @@ prerequisite. Lane/slot/ownership/approval checks still apply.
 | S10h | CODEX-1 | GPT-6.1 Sol / medium | S10 | 30 | Run four-template Gate P regression | S10g | Build/simulator/; tests/simulator/; evidence/S10/ | All templates within 0.5% of analytic answers; preserve measured errors. | TODO |
 | S10i | CODEX-1 | GPT-6.1 Sol / high | S10 | 30 | Resolve contact jitter with RK4-only fallback if needed | S10h | Build/simulator/; tests/simulator/; evidence/S10/ | Any affected template disables dragging; no weakened tolerance. | TODO |
 | S10j | CODEX-1 | GPT-6.1 Sol / high | S10 | 30 | Checkpoint Gate P and review packet | S10i, R-P | Build/simulator/; tests/simulator/; evidence/S10/ | Record numeric gate decision and deterministic replay evidence. | TODO |
-| S11a | CODEX-1 | GPT-6.1 Sol / medium | S11 | 30 | Define instrument and fitter API contracts | S07, S08 | Build/instruments/; Build/fitter/; contracts/fit/; tests/fitter/ | Numbers carry units, uncertainty, provenance and measured/simulated labels. | TODO |
-| S11b | CODEX-1 | GPT-6.1 Sol / medium | S11 | 30 | Model stopwatch reaction error | S11a | Build/instruments/; Build/fitter/; contracts/fit/; tests/fitter/ | Seeded stopwatch noise is testable and documented. | TODO |
-| S11c | CODEX-1 | GPT-6.1 Sol / medium | S11 | 30 | Model camera, ruler and light-gate error | S11b | Build/instruments/; Build/fitter/; contracts/fit/; tests/fitter/ | Quantization/resolution behavior verified on deterministic fixtures. | TODO |
+| S11a | CODEX-1 | GPT-6.1 Sol / medium | S11 | 30 | Define instrument and fitter API contracts | S07, S08 | Build/instruments/; Build/fitter/; contracts/fit/; tests/fitter/ | Numbers carry units, uncertainty, provenance and measured/simulated labels. | DONE |
+| S11b | CODEX-1 | GPT-6.1 Sol / medium | S11 | 30 | Model stopwatch reaction error | S11a | Build/instruments/; Build/fitter/; contracts/fit/; tests/fitter/ | Seeded stopwatch noise is testable and documented. | DONE |
+| S11c | CODEX-1 | GPT-6.1 Sol / medium | S11 | 30 | Model camera, ruler and light-gate error | S11b | Build/instruments/; Build/fitter/; contracts/fit/; tests/fitter/ | Quantization/resolution behavior verified on deterministic fixtures. | DONE |
 | S11d | CODEX-1 | GPT-6.1 Sol / medium | S11 | 30 | Implement least-squares fitter | S11c | Build/instruments/; Build/fitter/; contracts/fit/; tests/fitter/ | Known synthetic parameters recovered; degenerate fits rejected. | TODO |
 | S11e | CODEX-1 | GPT-6.1 Sol / medium | S11 | 30 | Add AIC model selection and residuals | S11d | Build/instruments/; Build/fitter/; contracts/fit/; tests/fitter/ | Model-choice and residual output verified against controlled inputs. | TODO |
 | S11f | CODEX-1 | GPT-6.1 Sol / medium | S11 | 30 | Add Jacobian uncertainty | S11e | Build/instruments/; Build/fitter/; contracts/fit/; tests/fitter/ | Covariance calculation handles rank deficiency honestly. | TODO |
