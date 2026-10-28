@@ -19,7 +19,7 @@ def _request_mapping(request: Any) -> Mapping[str, Any]:
     return request
 
 
-def _quantities(request: Mapping[str, Any], key: str, unit: str) -> tuple[float, ...]:
+def _quantities(request: Mapping[str, Any], key: str, unit: str) -> tuple[tuple[float, ...], tuple[float, ...]]:
     values = request.get(key)
     if isinstance(values, (str, bytes)) or not values:
         raise ApiInputError(f"{key}_must_be_a_nonempty_sequence")
@@ -27,7 +27,7 @@ def _quantities(request: Mapping[str, Any], key: str, unit: str) -> tuple[float,
         values = tuple(values)
     except TypeError as exc:
         raise ApiInputError(f"{key}_must_be_a_sequence") from exc
-    numbers = []
+    numbers, sigmas = [], []
     for index, value in enumerate(values):
         try:
             item = validate_quantity(value)
@@ -36,7 +36,8 @@ def _quantities(request: Mapping[str, Any], key: str, unit: str) -> tuple[float,
         if item["unit"] != unit:
             raise ApiInputError(f"{key}[{index}]_unit_must_be_{unit}")
         numbers.append(item["value"])
-    return tuple(numbers)
+        sigmas.append(item["uncertainty"])
+    return tuple(numbers), tuple(sigmas)
 
 
 def _finite(value: Any, name: str) -> float:
@@ -91,30 +92,44 @@ def fit_observations(request: Mapping[str, Any]) -> dict[str, Any]:
     select = request.get("select_model", False)
     if type(select) is not bool:
         raise ApiInputError("select_model_must_be_boolean")
-    uncertainty_model = request.get("uncertainty_model", "iid_fixed_clock_scale")
-    if uncertainty_model != "iid_fixed_clock_scale":
-        raise ApiInputError("unsupported_uncertainty_model_input_uncertainty_not_propagated")
-    times = _quantities(request, "times", "s")
-    positions = _quantities(request, "positions", "m")
+    uncertainty_model = request.get("uncertainty_model", "independent_position_time_first_order")
+    if uncertainty_model not in ("iid_fixed_clock_scale", "independent_position_time_first_order"):
+        raise ApiInputError("unsupported_uncertainty_model")
+    times, time_sigmas = _quantities(request, "times", "s")
+    positions, position_sigmas = _quantities(request, "positions", "m")
     if len(times) != len(positions):
         raise ApiInputError("times_positions_length_mismatch")
     degree = request.get("degree", 2)
     if type(degree) is not int or degree not in (1, 2):
         raise ApiInputError("degree_must_be_integer_1_or_2")
     fit = fit_motion(times, positions, degree)
+    legacy = uncertainty_model == "iid_fixed_clock_scale"
+    assumptions = (["iid residual noise", "clock fixed", "scale fixed",
+                    "declared position sigma maximum floors residual sigma",
+                    "input timing uncertainty not propagated"] if legacy else
+                   ["independent observation errors", "first-order timing linearization at fitted velocity",
+                    "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+                    "scale fixed", "no correlated clock-rate or scale uncertainty",
+                    "no calibration of declared standard uncertainties", "no errors-in-variables bias correction"])
     result: dict[str, Any] = {
         "status": "ok",
         "fit": _fit_json(fit),
         "uncertainty": {
             "model": uncertainty_model,
-            "assumptions": [
-                "iid residual noise", "clock fixed", "scale fixed",
-                "input quantity uncertainty not propagated",
-            ],
+            "assumptions": assumptions,
+            "quantity_uncertainty": "standard uncertainty (one sigma), not a 95% interval",
+            "residual_degrees_of_freedom": fit.dof,
+            "residual_variance_floor": fit.rss / fit.dof if fit.dof > 0 else None,
         },
     }
     if degree == 2:
-        covariance = jacobian_covariance(fit, parameter_index=2)
+        if legacy:
+            floor = max(max(position_sigmas), math.sqrt(fit.rss / fit.dof) if fit.dof > 0 else 0.0)
+            covariance = jacobian_covariance(fit, sigma=floor if floor > 0 or fit.dof > 0 else None,
+                                             parameter_index=2)
+        else:
+            covariance = jacobian_covariance(fit, position_sigmas=position_sigmas,
+                                             time_sigmas=time_sigmas, parameter_index=2)
         result["covariance"] = {
             "valid": covariance.valid,
             "variance": covariance.variance,
@@ -124,8 +139,10 @@ def fit_observations(request: Mapping[str, Any]) -> dict[str, Any]:
             "variance_unit": "m^2/s^4",
             "standard_error_unit": "m/s^2",
             "gravity_scale_factor": 2.0,
-            "assumptions": ["iid residual noise", "clock fixed", "scale fixed", "input quantity uncertainty not propagated"],
-            "source": {"label": "simulated", "evidence": "S11 covariance from fitted residuals"},
+            "model": uncertainty_model,
+            "assumptions": assumptions,
+            "interval": None,
+            "source": {"label": "simulated", "evidence": "S11 QR covariance with declared standard-uncertainty floor"},
         }
         if covariance.valid:
             result["gravity"] = _quantity_json(gravity_quantity(fit, covariance))

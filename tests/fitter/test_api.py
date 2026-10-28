@@ -26,7 +26,9 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(out["covariance"]["status"], "available")
         self.assertEqual(out["covariance"]["variance_unit"], "m^2/s^4")
         self.assertEqual(out["covariance"]["standard_error_unit"], "m/s^2")
-        self.assertIn("input quantity uncertainty not propagated", out["covariance"]["assumptions"])
+        self.assertEqual(out["covariance"]["model"], "independent_position_time_first_order")
+        self.assertIn("independent observation errors", out["covariance"]["assumptions"])
+        self.assertIsNone(out["covariance"]["interval"])
         json.dumps(out, allow_nan=False)
 
     def test_invalid_and_degenerate_inputs_are_readable(self):
@@ -54,15 +56,63 @@ class ApiTests(unittest.TestCase):
         data = {"times": [q(0, "s"), q(1, "s"), q(2, "s")], "positions": [q(0, "m"), q(1, "m"), q(2, "m")]}
         out = handle({**data, "degree": 1})
         self.assertEqual(out["status"], "ok")
-        self.assertIn("input quantity uncertainty not propagated", out["uncertainty"]["assumptions"])
+        self.assertIn("independent observation errors", out["uncertainty"]["assumptions"])
 
     def test_unavailable_covariance_is_null_and_honest(self):
         data = {"times": [q(0, "s"), q(1, "s"), q(2, "s")], "positions": [q(0, "m"), q(1, "m"), q(4, "m")]}
+        for item in data["times"] + data["positions"]:
+            item["uncertainty"] = 0
         out = handle({**data, "degree": 2})
         self.assertEqual(out["status"], "ok")
         self.assertFalse(out["covariance"]["valid"])
         self.assertIsNone(out["gravity"])
         self.assertEqual(out["covariance"]["status"], "unavailable")
+
+    def test_declared_uncertainty_floor_and_timing_monotonicity(self):
+        def result(sy, st, model="independent_position_time_first_order"):
+            times = [q(i / 10, "s") for i in range(20)]
+            positions = [q(1 + .4 * (i / 10) + 4.905 * (i / 10)**2, "m") for i in range(20)]
+            for item in times:
+                item["uncertainty"] = st
+            for item in positions:
+                item["uncertainty"] = sy
+            out = handle({"times": times, "positions": positions, "uncertainty_model": model})
+            self.assertEqual(out["status"], "ok", out)
+            return out
+
+        from Build.fitter import fit_least_squares, jacobian_covariance
+        t = tuple(i / 10 for i in range(20))
+        fit = fit_least_squares(t, tuple(1 + .4*x + 4.905*x*x for x in t))
+        floor = 2 * jacobian_covariance(fit, sigma=.05).standard_error
+        fixed = result(.05, 0)
+        timed = result(.05, .01)
+        self.assertAlmostEqual(fixed["gravity"]["uncertainty"], floor, places=12)
+        self.assertGreater(timed["gravity"]["uncertainty"], fixed["gravity"]["uncertainty"])
+        self.assertGreater(result(.1, .01)["gravity"]["uncertainty"], timed["gravity"]["uncertainty"])
+        legacy = result(.05, .01, "iid_fixed_clock_scale")
+        self.assertAlmostEqual(legacy["gravity"]["uncertainty"], floor, places=12)
+        self.assertEqual(legacy["gravity"], result(.05, 10, "iid_fixed_clock_scale")["gravity"])
+        self.assertIn("input timing uncertainty not propagated", legacy["uncertainty"]["assumptions"])
+        self.assertIn("not a 95% interval", timed["uncertainty"]["quantity_uncertainty"])
+
+    def test_known_declared_sigma_supports_zero_residual_dof(self):
+        data = {"times": [q(0, "s"), q(1, "s"), q(2, "s")],
+                "positions": [q(0, "m"), q(1, "m"), q(4, "m")]}
+        for model in ("iid_fixed_clock_scale", "independent_position_time_first_order"):
+            out = handle({**data, "uncertainty_model": model})
+            self.assertTrue(out["covariance"]["valid"], out)
+            self.assertGreater(out["gravity"]["uncertainty"], 0)
+            self.assertIsNone(out["uncertainty"]["residual_variance_floor"])
+
+    def test_large_declared_sigma_is_readable_and_json_safe(self):
+        data = {"times": [q(i, "s") for i in range(5)],
+                "positions": [q(i*i, "m") for i in range(5)]}
+        data["positions"][0]["uncertainty"] = 1e308
+        out = handle(data)
+        self.assertEqual(out["status"], "ok", out)
+        self.assertFalse(out["covariance"]["valid"])
+        self.assertIsNone(out["gravity"])
+        json.dumps(out, allow_nan=False)
 
 
 if __name__ == "__main__":

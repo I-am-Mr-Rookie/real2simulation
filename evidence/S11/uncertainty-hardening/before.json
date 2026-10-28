@@ -1,0 +1,2398 @@
+{
+  "generated_at": "2026-10-28T20:03:13.250678+00:00",
+  "python": "3.14.5",
+  "provenance": "simulated only",
+  "api_request": {
+    "times": [
+      {
+        "value": 0.0,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 0.1,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 0.2,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 0.3,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 0.4,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 0.5,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 0.6,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 0.7,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 0.8,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 0.9,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.0,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.1,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.2,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.3,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.4,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.5,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.6,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.7,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.8,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.9,
+        "unit": "s",
+        "uncertainty": 0.01,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      }
+    ],
+    "positions": [
+      {
+        "value": 1.0,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.08905,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.2762000000000002,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.5614500000000002,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 1.9448000000000003,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 2.42625,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 3.0058,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 3.6834499999999997,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 4.459200000000001,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 5.333050000000001,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 6.305,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 7.375050000000002,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 8.5432,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 9.80945,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 11.1738,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 12.63625,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 14.196800000000003,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 15.85545,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 17.6122,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      },
+      {
+        "value": 19.46705,
+        "unit": "m",
+        "uncertainty": 0.05,
+        "source": {
+          "label": "simulated",
+          "evidence": "S11 uncertainty regression"
+        }
+      }
+    ]
+  },
+  "api_result": {
+    "status": "ok",
+    "fit": {
+      "degree": 2,
+      "coefficients": [
+        0.9999999999999982,
+        0.40000000000000213,
+        4.9049999999999985
+      ],
+      "fitted": [
+        0.9999999999999982,
+        1.089049999999998,
+        1.276199999999999,
+        1.561449999999999,
+        1.9447999999999999,
+        2.426249999999999,
+        3.0057999999999994,
+        3.6834499999999997,
+        4.4592,
+        5.33305,
+        6.305,
+        7.375050000000002,
+        8.543199999999999,
+        9.80945,
+        11.1738,
+        12.63625,
+        14.196800000000001,
+        15.85545,
+        17.6122,
+        19.46705
+      ],
+      "residuals": [
+        1.7763568394002505e-15,
+        1.9984014443252818e-15,
+        1.3322676295501878e-15,
+        1.3322676295501878e-15,
+        4.440892098500626e-16,
+        8.881784197001252e-16,
+        4.440892098500626e-16,
+        0.0,
+        8.881784197001252e-16,
+        8.881784197001252e-16,
+        0.0,
+        0.0,
+        1.7763568394002505e-15,
+        0.0,
+        0.0,
+        0.0,
+        1.7763568394002505e-15,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rss": 1.9770826437101608e-29,
+      "rmse": 9.942541535518373e-16,
+      "rank": 3,
+      "dof": 17,
+      "n": 20,
+      "units": {
+        "time": "s",
+        "position": "m"
+      },
+      "source": {
+        "label": "simulated",
+        "evidence": "S11 offline quantity-to-fit adapter"
+      }
+    },
+    "uncertainty": {
+      "model": "iid_fixed_clock_scale",
+      "assumptions": [
+        "iid residual noise",
+        "clock fixed",
+        "scale fixed",
+        "input quantity uncertainty not propagated"
+      ]
+    },
+    "covariance": {
+      "valid": true,
+      "variance": 6.624457680666108e-31,
+      "standard_error": 8.139077147113245e-16,
+      "status": "available",
+      "parameter": "quadratic_position_coefficient",
+      "variance_unit": "m^2/s^4",
+      "standard_error_unit": "m/s^2",
+      "gravity_scale_factor": 2.0,
+      "assumptions": [
+        "iid residual noise",
+        "clock fixed",
+        "scale fixed",
+        "input quantity uncertainty not propagated"
+      ],
+      "source": {
+        "label": "simulated",
+        "evidence": "S11 covariance from fitted residuals"
+      }
+    },
+    "gravity": {
+      "value": 9.809999999999997,
+      "unit": "m/s^2",
+      "uncertainty": 1.627815429422649e-15,
+      "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+      }
+    }
+  },
+  "legacy_api_result": {
+    "status": "ok",
+    "fit": {
+      "degree": 2,
+      "coefficients": [
+        0.9999999999999982,
+        0.40000000000000213,
+        4.9049999999999985
+      ],
+      "fitted": [
+        0.9999999999999982,
+        1.089049999999998,
+        1.276199999999999,
+        1.561449999999999,
+        1.9447999999999999,
+        2.426249999999999,
+        3.0057999999999994,
+        3.6834499999999997,
+        4.4592,
+        5.33305,
+        6.305,
+        7.375050000000002,
+        8.543199999999999,
+        9.80945,
+        11.1738,
+        12.63625,
+        14.196800000000001,
+        15.85545,
+        17.6122,
+        19.46705
+      ],
+      "residuals": [
+        1.7763568394002505e-15,
+        1.9984014443252818e-15,
+        1.3322676295501878e-15,
+        1.3322676295501878e-15,
+        4.440892098500626e-16,
+        8.881784197001252e-16,
+        4.440892098500626e-16,
+        0.0,
+        8.881784197001252e-16,
+        8.881784197001252e-16,
+        0.0,
+        0.0,
+        1.7763568394002505e-15,
+        0.0,
+        0.0,
+        0.0,
+        1.7763568394002505e-15,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rss": 1.9770826437101608e-29,
+      "rmse": 9.942541535518373e-16,
+      "rank": 3,
+      "dof": 17,
+      "n": 20,
+      "units": {
+        "time": "s",
+        "position": "m"
+      },
+      "source": {
+        "label": "simulated",
+        "evidence": "S11 offline quantity-to-fit adapter"
+      }
+    },
+    "uncertainty": {
+      "model": "iid_fixed_clock_scale",
+      "assumptions": [
+        "iid residual noise",
+        "clock fixed",
+        "scale fixed",
+        "input quantity uncertainty not propagated"
+      ]
+    },
+    "covariance": {
+      "valid": true,
+      "variance": 6.624457680666108e-31,
+      "standard_error": 8.139077147113245e-16,
+      "status": "available",
+      "parameter": "quadratic_position_coefficient",
+      "variance_unit": "m^2/s^4",
+      "standard_error_unit": "m/s^2",
+      "gravity_scale_factor": 2.0,
+      "assumptions": [
+        "iid residual noise",
+        "clock fixed",
+        "scale fixed",
+        "input quantity uncertainty not propagated"
+      ],
+      "source": {
+        "label": "simulated",
+        "evidence": "S11 covariance from fitted residuals"
+      }
+    },
+    "gravity": {
+      "value": 9.809999999999997,
+      "unit": "m/s^2",
+      "uncertainty": 1.627815429422649e-15,
+      "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+      }
+    }
+  },
+  "coverage_batches": [
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 88,
+      "coverage": 0.88,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "FAIL",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 98,
+      "coverage": 0.98,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 98,
+      "coverage": 0.98,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 89,
+      "coverage": 0.89,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "FAIL",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 89,
+      "coverage": 0.89,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "FAIL",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 98,
+      "coverage": 0.98,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 98,
+      "coverage": 0.98,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 87,
+      "coverage": 0.87,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "FAIL",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 99,
+      "coverage": 0.99,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 88,
+      "coverage": 0.88,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "FAIL",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 98,
+      "coverage": 0.98,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 98,
+      "coverage": 0.98,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 88,
+      "coverage": 0.88,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "FAIL",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 99,
+      "coverage": 0.99,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 98,
+      "coverage": 0.98,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 91,
+      "coverage": 0.91,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 90,
+      "coverage": 0.9,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 89,
+      "coverage": 0.89,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "FAIL",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 99,
+      "coverage": 0.99,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 88,
+      "coverage": 0.88,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "FAIL",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 99,
+      "coverage": 0.99,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 93,
+      "coverage": 0.93,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 87,
+      "coverage": 0.87,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "FAIL",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 94,
+      "coverage": 0.94,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 88,
+      "coverage": 0.88,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "FAIL",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 95,
+      "coverage": 0.95,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 96,
+      "coverage": 0.96,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 92,
+      "coverage": 0.92,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    },
+    {
+      "seeds": 100,
+      "covered": 97,
+      "coverage": 0.97,
+      "interval_z": 1.96,
+      "true_value": 9.81,
+      "status": "PASS",
+      "provenance": "simulated"
+    }
+  ],
+  "aggregate_coverage": 0.93645,
+  "failed_batches": [
+    7,
+    22,
+    32,
+    78,
+    92,
+    132,
+    177,
+    181,
+    190,
+    195
+  ]
+}

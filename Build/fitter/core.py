@@ -214,13 +214,22 @@ def _sigma2(fit, sigma):
     if sigma is None:
         if fit.dof <= 0:
             return None
-        return fit.rss / fit.dof
+        variance = fit.rss / fit.dof
+        return None if fit.rss > 0 and variance == 0 else variance
     value = _number(sigma, "sigma")
     if value < 0:
         raise FitError("sigma_must_be_nonnegative")
-    return value * value
+    variance = value * value
+    return None if value > 0 and variance == 0 else variance
 
-def jacobian_covariance(fit, *, sigma=None, parameter_index=None, times=None):
+def jacobian_covariance(fit, *, sigma=None, parameter_index=None, times=None,
+                        position_sigmas=None, time_sigmas=None):
+    """OLS covariance; declared sigmas use an independent first-order sandwich.
+
+    Each observation variance is floored by RSS/dof, not added to it: the
+    residuals already contain instrument noise. ``sigma`` remains an exact
+    homoscedastic override, including zero and fits without residual dof.
+    """
     if not isinstance(fit, FitResult):
         raise FitError("fit_must_be_fit_result")
     if parameter_index is None:
@@ -231,33 +240,61 @@ def jacobian_covariance(fit, *, sigma=None, parameter_index=None, times=None):
         supplied_times = _finite(times, "times")
         if supplied_times != fit.design_times:
             raise FitError("covariance_times_must_match_fit_design")
+    declared = position_sigmas is not None or time_sigmas is not None
+    if declared and sigma is not None:
+        raise FitError("sigma_override_and_declared_sigmas_are_mutually_exclusive")
+    sigmas = []
+    for values, label in ((position_sigmas, "position_sigmas"), (time_sigmas, "time_sigmas")):
+        values = (0.0,) * fit.n if values is None else _finite(values, label)
+        if len(values) != fit.n or any(v < 0 for v in values):
+            raise FitError(f"{label}_must_be_nonnegative_and_match_observations")
+        sigmas.append(values)
     sigma2 = _sigma2(fit, sigma)
-    if sigma2 is None:
+    if sigma2 is None and not (declared and any(v > 0 for values in sigmas for v in values)):
         return CovarianceResult(None, None, None, False)
     rinv = _invert(fit._r)
     if rinv is None:
         return CovarianceResult(None, None, None, False)
-    local_cov = tuple(tuple(sigma2 * math.fsum(rinv[i][k] * rinv[j][k] for k in range(fit.rank))
-        for j in range(fit.rank)) for i in range(fit.rank))
+    noise_model = "Gaussian iid residuals; clock and scale held fixed"
     scale = fit._scale
     transform = [[0.0] * fit.rank for _ in range(fit.rank)]
     try:
+        gram_inv = tuple(tuple(math.fsum(rinv[i][k] * rinv[j][k] for k in range(fit.rank))
+            for j in range(fit.rank)) for i in range(fit.rank))
+        if declared:
+            noise_model = "independent declared position and first-order timing; residual variance floor; scale fixed"
+            influences, variances = [], []
+            for t, sy, st in zip(fit.design_times, *sigmas):
+                z = (t - fit._center) / scale
+                velocity = math.fsum(j * fit._local_coefficients[j] * z ** (j - 1)
+                                     for j in range(1, fit.rank)) / scale
+                variance = max(sigma2 or 0.0, sy * sy + (velocity * st) ** 2)
+                if (not math.isfinite(variance) or
+                        (variance == 0 and (sy > 0 or (velocity != 0 and st > 0)))):
+                    return CovarianceResult(None, None, None, False, noise_model)
+                variances.append(variance)
+                influences.append(tuple(math.fsum(gram_inv[a][j] * z ** j
+                    for j in range(fit.rank)) for a in range(fit.rank)))
+            local_cov = tuple(tuple(math.fsum(v * w[a] * w[b] for v, w in zip(variances, influences))
+                for b in range(fit.rank)) for a in range(fit.rank))
+        else:
+            local_cov = tuple(tuple(sigma2 * v for v in row) for row in gram_inv)
         for j in range(fit.rank):
             for k in range(j + 1):
                 transform[k][j] = math.comb(j, k) * ((-fit._center) ** (j - k)) / scale ** j
         covariance = tuple(tuple(math.fsum(transform[i][a] * local_cov[a][b] * transform[j][b]
             for a in range(fit.rank) for b in range(fit.rank)) for j in range(fit.rank)) for i in range(fit.rank))
-    except (OverflowError, ZeroDivisionError):
-        return CovarianceResult(None, None, None, False)
+    except (OverflowError, ZeroDivisionError, ValueError):
+        return CovarianceResult(None, None, None, False, noise_model)
     variance = covariance[parameter_index][parameter_index]
     if (not math.isfinite(variance) or variance < 0
             or not all(math.isfinite(v) for row in covariance for v in row)):
-        return CovarianceResult(None, None, None, False)
+        return CovarianceResult(None, None, None, False, noise_model)
     # A finite local covariance that transforms to zero has lost scale
     # information through floating-point underflow; do not report certainty.
     if variance == 0.0 and local_cov[parameter_index][parameter_index] > 0.0:
-        return CovarianceResult(None, None, None, False)
-    return CovarianceResult(covariance, variance, math.sqrt(max(0.0, variance)), True)
+        return CovarianceResult(None, None, None, False, noise_model)
+    return CovarianceResult(covariance, variance, math.sqrt(max(0.0, variance)), True, noise_model)
 
 @dataclass(frozen=True)
 class CoverageResult:
@@ -268,10 +305,17 @@ class CoverageResult:
     true_value: float
     status: str
     provenance: str = "simulated"
+    interval_method: str = "Student-t residual interval"
+    degrees_of_freedom: int = 17
+    nominal_coverage: float | None = 0.95
 
-def coverage_regression(*, seeds=100, seed=0, true_g=9.81, noise_sigma=0.02, interval_z=1.96):
+def coverage_regression(*, seeds=100, seed=0, true_g=9.81, noise_sigma=0.02, interval_z=None):
     if type(seeds) is not int or seeds <= 0 or type(seed) is not int:
         raise FitError("seeds_and_seed_must_be_integers")
+    custom_interval = interval_z is not None
+    # Fixed 20-point quadratic design has 17 dof: scipy.special.stdtrit(17, .975).
+    # shortcut: fixed-design quantile; compute from dof if this experiment changes.
+    interval_z = 2.1098155778333156 if interval_z is None else interval_z
     true_g, noise_sigma, interval_z = (_number(true_g, "true_g"), _number(noise_sigma, "noise_sigma"), _number(interval_z, "interval_z"))
     if noise_sigma < 0 or interval_z <= 0:
         raise FitError("noise_sigma_nonnegative_interval_z_positive")
@@ -287,7 +331,12 @@ def coverage_regression(*, seeds=100, seed=0, true_g=9.81, noise_sigma=0.02, int
         if math.isfinite(se) and abs(estimate - true_g) <= interval_z * se:
             covered += 1
     fraction = covered / seeds
-    return CoverageResult(seeds, covered, fraction, interval_z, true_g, "PASS" if fraction >= 0.90 else "FAIL")
+    method = ("custom SE multiplier" if custom_interval else "Student-t residual interval")
+    if noise_sigma == 0:
+        method = "zero-noise numerical diagnostic; no stochastic coverage claim"
+    return CoverageResult(seeds, covered, fraction, interval_z, true_g, "PASS" if fraction >= 0.90 else "FAIL",
+                          interval_method=method, degrees_of_freedom=len(times) - 3,
+                          nominal_coverage=None if custom_interval or noise_sigma == 0 else 0.95)
 
 def gravity_quantity(fit, covariance=None, *, provenance="synthetic virtual-lab fit"):
     if fit.degree != 2:
