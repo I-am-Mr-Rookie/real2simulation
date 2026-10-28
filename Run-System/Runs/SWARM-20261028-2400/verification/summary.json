@@ -1,0 +1,110 @@
+[
+  {
+    "name": "measurement",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/measurement",
+      "-q"
+    ],
+    "started_at": "2026-10-28T17:45:46.080940+00:00",
+    "ended_at": "2026-10-28T17:46:02.205134+00:00",
+    "exit_code": 0,
+    "tail": "----------------------------------------------------------------------\nRan 70 tests in 13.662s\n\nOK (skipped=1)\n"
+  },
+  {
+    "name": "spec",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/spec",
+      "-q"
+    ],
+    "started_at": "2026-10-28T17:46:02.206200+00:00",
+    "ended_at": "2026-10-28T17:46:47.540720+00:00",
+    "exit_code": 0,
+    "tail": "----------------------------------------------------------------------\nRan 93 tests in 44.222s\n\nOK\n"
+  },
+  {
+    "name": "scene",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "contracts/scene",
+      "-q"
+    ],
+    "started_at": "2026-10-28T17:46:47.541908+00:00",
+    "ended_at": "2026-10-28T17:46:54.012024+00:00",
+    "exit_code": 0,
+    "tail": "----------------------------------------------------------------------\nRan 11 tests in 5.669s\n\nOK\n"
+  },
+  {
+    "name": "spike",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Build/reconstruction/spike",
+      "-q"
+    ],
+    "started_at": "2026-10-28T17:46:54.013360+00:00",
+    "ended_at": "2026-10-28T17:48:27.169422+00:00",
+    "exit_code": 0,
+    "tail": "{\"allocated_gpu\": \"synthetic GPU\"}\n{\"allocated_gpu\": \"synthetic GPU\"}\n{\"allocated_gpu\": \"synthetic GPU\"}\n{\"allocated_gpu\": \"synthetic GPU\"}\n{\"allocated_gpu\": \"synthetic GPU\"}\n{\"allocated_gpu\": \"synthetic GPU\"}\n----------------------------------------------------------------------\nRan 65 tests in 92.295s\n\nOK\n"
+  },
+  {
+    "name": "instruments",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/instruments",
+      "-q"
+    ],
+    "started_at": "2026-10-28T17:48:27.170886+00:00",
+    "ended_at": "2026-10-28T17:48:28.248960+00:00",
+    "exit_code": 0,
+    "tail": "----------------------------------------------------------------------\nRan 10 tests in 0.002s\n\nOK\n"
+  },
+  {
+    "name": "fitter",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/fitter",
+      "-q"
+    ],
+    "started_at": "2026-10-28T17:48:28.250639+00:00",
+    "ended_at": "2026-10-28T17:48:29.321057+00:00",
+    "exit_code": 0,
+    "tail": "----------------------------------------------------------------------\nRan 11 tests in 0.091s\n\nOK\n"
+  },
+  {
+    "name": "simulator-node",
+    "command": [
+      "node",
+      "--test",
+      "tests/simulator/simulator.test.mjs"
+    ],
+    "started_at": "2026-10-28T17:48:29.322249+00:00",
+    "ended_at": "2026-10-28T17:48:31.986541+00:00",
+    "exit_code": 0,
+    "tail": "es only the trusted S08 validate_setup export and places geometry (7.6189ms)\n\u2714 RK4 zero-step validates every input, rejects sparse state, and preserves state (1.2066ms)\n\u2714 RK4 convergence/order, determinism, immutability and invalid dynamics (7.5009ms)\n\u2139 tests 3\n\u2139 suites 0\n\u2139 pass 3\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 1861.0705\n"
+  }
+]

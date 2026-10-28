@@ -1,0 +1,52 @@
+[
+  {
+    "id": "S02f-swarm3",
+    "exit_code": 0,
+    "result": "TIMING PASS; controller must separately verify evidence and any exception"
+  },
+  {
+    "id": "S07b-swarm7",
+    "exit_code": 0,
+    "result": "TIMING PASS; controller must separately verify evidence and any exception"
+  },
+  {
+    "id": "S05b-swarm-readiness",
+    "exit_code": 0,
+    "result": "TIMING PASS; controller must separately verify evidence and any exception"
+  },
+  {
+    "id": "S05b-swarm12",
+    "exit_code": 0,
+    "result": "TIMING PASS; controller must separately verify evidence and any exception"
+  },
+  {
+    "id": "S10ab-swarm",
+    "exit_code": 0,
+    "result": "TIMING PASS; controller must separately verify evidence and any exception"
+  },
+  {
+    "id": "S11abc-swarm",
+    "exit_code": 0,
+    "result": "TIMING PASS; controller must separately verify evidence and any exception"
+  },
+  {
+    "id": "S11defg-swarm",
+    "exit_code": 0,
+    "result": "TIMING PASS; controller must separately verify evidence and any exception"
+  },
+  {
+    "id": "S11h-swarm",
+    "exit_code": 0,
+    "result": "TIMING PASS; controller must separately verify evidence and any exception"
+  },
+  {
+    "id": "S10-template-swarm",
+    "exit_code": 0,
+    "result": "TIMING PASS; controller must separately verify evidence and any exception"
+  },
+  {
+    "id": "R-SIM-swarm",
+    "exit_code": 0,
+    "result": "TIMING PASS; controller must separately verify evidence and any exception"
+  }
+]

@@ -1,0 +1,11 @@
+✔ S10a consumes only the trusted S08 validate_setup export and places geometry (7.6189ms)
+✔ RK4 zero-step validates every input, rejects sparse state, and preserves state (1.2066ms)
+✔ RK4 convergence/order, determinism, immutability and invalid dynamics (7.5009ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1861.0705

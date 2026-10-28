@@ -1,0 +1,73 @@
+[
+  {
+    "name": "fitter-final",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/fitter",
+      "-q"
+    ],
+    "ended_at": "2026-10-28T17:55:14.737918+00:00",
+    "exit_code": 0,
+    "tail": "----------------------------------------------------------------------\nRan 19 tests in 0.067s\n\nOK\n"
+  },
+  {
+    "name": "instruments-final",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/instruments",
+      "-q"
+    ],
+    "ended_at": "2026-10-28T17:55:15.106059+00:00",
+    "exit_code": 0,
+    "tail": "----------------------------------------------------------------------\nRan 10 tests in 0.002s\n\nOK\n"
+  },
+  {
+    "name": "simulator-final",
+    "command": [
+      "node",
+      "--test",
+      "tests/simulator"
+    ],
+    "ended_at": "2026-10-28T17:55:15.428213+00:00",
+    "exit_code": 1,
+    "tail": "  at Module._resolveFilename (node:internal/modules/cjs/loader:1517:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1071:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1095:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1122:12)\n    at Module._load (node:internal/modules/cjs/loader:1294:5)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v24.18.0\n\u2716 tests\\simulator (135.9525ms)\n\u2139 tests 1\n\u2139 suites 0\n\u2139 pass 0\n\u2139 fail 1\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 159.7938\n\n\u2716 failing tests:\n\ntest at tests\\simulator:1:1\n\u2716 tests\\simulator (135.9525ms)\n  'test failed'\n"
+  },
+  {
+    "name": "health-final",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Build/api/health",
+      "-q"
+    ],
+    "ended_at": "2026-10-28T17:55:23.833845+00:00",
+    "exit_code": 1,
+    "tail": "line 1494, in __enter__\n    self.target = self.getter()\n                  ~~~~~~~~~~~^^\n  File \"C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\pkgutil.py\", line 458, in resolve_name\n    mod = importlib.import_module(modname)\n  File \"C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\Lib\\importlib\\__init__.py\", line 88, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1406, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1371, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1335, in _find_and_load_unlocked\nModuleNotFoundError: No module named 'psycopg'\n\n----------------------------------------------------------------------\nRan 16 tests in 5.671s\n\nFAILED (errors=1)\n"
+  },
+  {
+    "name": "run-system-final",
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Run-System/tests",
+      "-q"
+    ],
+    "ended_at": "2026-10-28T17:55:49.307861+00:00",
+    "exit_code": 0,
+    "tail": "RUNS.md: 1/2 done, 1 ready, 0 for Koushik\nRUNS.md: 2/2 done, 0 ready, 0 for Koushik\nRUNS.md: 0/2 done, 1 ready, 0 for Koushik\nRUNS.md: 1/2 done, 0 ready, 0 for Koushik\nRUNS.md: 1/2 done, 1 ready, 0 for Koushik\nRUNS.md: 1/2 done, 0 ready, 0 for Koushik\n----------------------------------------------------------------------\nRan 31 tests in 24.881s\n\nOK\n"
+  }
+]

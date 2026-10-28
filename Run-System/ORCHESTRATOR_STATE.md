@@ -1,5 +1,20 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — bounded inline swarm final verification, Oct28 17:57UTC
+
+Latest owner exception supersedes historical solo/stop entries below only until
+18:00UTC (Oct29 00:00Dhaka). No new implementation after17:55UTC. Integrated10
+worker contracts; canonical queue58 ->68/205,10 newly DONE simulation-only leaves
+S10a,b and S11a-h. Recovery children/trajectory/review do not inflate queue count.
+Main review FFdb86cc9 closes reported numeric/trajectory findings conditionally.
+Final timing audit10/10 PASS; fitter19/instruments10/control31 tests PASS;
+plain health16 has one missingpsycopg environment error. Node evidence in report.
+Physical Gate M NOT_MET_INPUT_READINESS, physics NOT_RUN; S05b/S07b PARTIAL and
+S12 locked. Claude existing-route review failedECONNREFUSED; no paid admission.
+No paid job, deployment, schedule/dispatcher, auth/policy changes or quota polling.
+Session receipt: Run-System/Runs/SWARM-20261028-2400/REPORT.md.
+At18:00UTC stop; further work requires fresh owner instruction. No rescheduling.
+
 ## CURRENT — solo work complete; STOPPED before Oct28 22:30BDT
 
 Direct sole-worker instruction honored. Product work stopped16:24:21Z, no active

@@ -45,7 +45,19 @@ optimized+10instruments PASS. S11d/e/f/g/h accepted simulation-only, now68/205
 (10 new queue leaves this session). Fixed-seed coverage95/100 reported as
 conditional Gaussian-iid synthetic coverage, NOT real calibrated coverage.
 S11 whole product/real integration not certified; S12 locked by S07/S10.
-Nine worker contracts now merged including API; trajectory/review pending.
+Eight worker contracts were merged including API at that checkpoint.
+
+17:56UTC final integration: trajectory child FF7d64d69 and independent review
+FFdb86cc9 accepted, bringing this session to10 accepted worker contracts:
+four recovery/readiness children, four S10/S11 implementation bundles, one
+trajectory child and one independent review. Canonical queue stays68/205:
+10 newly DONE leaves (S10a,b and S11a-h), not10 additional parent gates.
+Trajectory integer-horizon truncation and fitter covariance/AIC/overflow findings
+were fixed and re-reviewed. S10c Rapier and S10d full integration remain TODO.
+Final plain-Python health check found missingpsycopg (15/16 otherwise pass);
+no dependency installation or claim that whole-project health is green.
+No new implementation after17:55UTC; final verification/control cleanup until
+the owner deadline18:00UTC. No future automatic continuation is authorized.
 
 ## Latest direct owner instruction — solo work until 23:00 BDT Oct28
 

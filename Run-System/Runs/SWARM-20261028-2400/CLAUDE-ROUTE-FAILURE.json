@@ -1,0 +1,15 @@
+{
+  "id": "R-S05guard-swarm2",
+  "status": "NONTERMINAL_ROUTE_FAILURE",
+  "observed_at": "2026-10-28T17:18:00+00:00",
+  "requested_model": "claude-opus-5-5",
+  "effort": "medium",
+  "normal_authenticated_cli": true,
+  "exit_code": 1,
+  "is_error": true,
+  "error": "API Error: Connection refused / firewall or proxy may be blocking (ECONNREFUSED)",
+  "report_exists": false,
+  "paid_readiness": "HOLD",
+  "policy_or_credentials_changed": false,
+  "retry": "No further retry/churn; remaining source review cannot replace required vendor signoff"
+}
