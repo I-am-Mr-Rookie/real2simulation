@@ -1,0 +1,13 @@
+{
+  "fetched_at": "2026-10-28T17:11:17+00:00",
+  "source_revision_url": "https://github.com/facebookresearch/sam3/tree/f1647e8d0c1d280991f4d1b7d974c2704537fe66",
+  "files": [
+    {"url": "https://raw.githubusercontent.com/facebookresearch/sam3/f1647e8d0c1d280991f4d1b7d974c2704537fe66/pyproject.toml", "bytes": 2770, "sha256": "255f5d8d1db011459878e3de296a6afc84e03a8dda2bfa756a4de304aaff6366"},
+    {"url": "https://raw.githubusercontent.com/facebookresearch/sam3/f1647e8d0c1d280991f4d1b7d974c2704537fe66/README.md", "bytes": 21417, "sha256": "da3dd047d18ef9a4b33557bf6f8187cf166218dc8aef40f2e18a67cc5249a502"},
+    {"url": "https://raw.githubusercontent.com/facebookresearch/sam3/f1647e8d0c1d280991f4d1b7d974c2704537fe66/sam3/model_builder.py", "bytes": 42839, "sha256": "60cef72b1f7e4a2162d1c3f1ad2c0451bbbdc10e3484433a9aa2d016fed6b448"},
+    {"url": "https://raw.githubusercontent.com/facebookresearch/sam3/f1647e8d0c1d280991f4d1b7d974c2704537fe66/sam3/__init__.py", "bytes": 246, "sha256": "ca3821a125f767e6a35188603b51ef2501b1e7c3d1a90546ac567c5d2a80b9fb"},
+    {"url": "https://raw.githubusercontent.com/facebookresearch/sam3/f1647e8d0c1d280991f4d1b7d974c2704537fe66/sam3/assets/bpe_simple_vocab_16e6.txt.gz", "bytes": 1356917, "sha256": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a"}
+  ],
+  "build_manifest": {"url": "https://raw.githubusercontent.com/facebookresearch/sam3/f1647e8d0c1d280991f4d1b7d974c2704537fe66/pyproject.toml", "requires": ["setuptools>=61", "wheel"]},
+  "note": "Fetched public immutable raw bytes with Python urllib; no source checkout, model weights, credentials, or inference were used."
+}

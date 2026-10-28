@@ -3,8 +3,10 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.metadata
 import json
 import platform
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -29,6 +31,8 @@ MANIFEST = {
 
 
 def _sha256(path: Path) -> str:
+    if path.is_symlink() or not path.is_file():
+        return ""
     digest = hashlib.sha256()
     with path.open("rb") as stream:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
@@ -37,6 +41,8 @@ def _sha256(path: Path) -> str:
 
 
 def _source_revision(root: Path) -> str | None:
+    if root.is_symlink() or not root.is_dir():
+        return None
     try:
         return subprocess.run(
             ["git", "-C", str(root), "rev-parse", "HEAD"],
@@ -47,7 +53,8 @@ def _source_revision(root: Path) -> str | None:
 
 
 def preflight(source: Path) -> dict:
-    result = {"source": str(source), "manifest": MANIFEST, "checks": [], "ok": True}
+    result = {"source": str(source), "manifest": MANIFEST, "checks": [],
+              "source_ok": True, "dependency_ok": False, "runtime_ok": False}
     revision = _source_revision(source)
     result["checks"].append({"name": "git_revision", "expected": MANIFEST["revision"],
                               "observed": revision, "ok": revision == MANIFEST["revision"]})
@@ -62,8 +69,33 @@ def preflight(source: Path) -> dict:
     result["checks"].append({"name": "platform", "expected": "Linux x86_64",
                               "observed": f"{platform.system()} {platform.machine()}",
                               "ok": platform.system() == "Linux" and platform.machine().lower() in {"x86_64", "amd64"}})
-    result["ok"] = all(check["ok"] for check in result["checks"])
+    result["source_ok"] = all(check["ok"] for check in result["checks"])
     return result
+
+
+def dependency_preflight(lock: Path) -> dict:
+    """Compare installed distribution metadata to the exact generated lock.
+
+    This deliberately uses importlib.metadata only: it does not import Torch,
+    CUDA, SAM, or execute package code. CUDA/kernel availability stays unknown.
+    """
+    checks = []
+    pattern = re.compile(r"^([A-Za-z0-9_.-]+)==([^ \\\n]+)")
+    if not lock.is_file() or lock.is_symlink():
+        return {"lock": str(lock), "checks": [], "dependency_ok": False}
+    for line in lock.read_text(encoding="utf-8").splitlines():
+        match = pattern.match(line.strip())
+        if not match:
+            continue
+        name, expected = match.groups()
+        try:
+            observed = importlib.metadata.version(name)
+        except importlib.metadata.PackageNotFoundError:
+            observed = None
+        checks.append({"name": name, "expected": expected, "observed": observed,
+                       "ok": observed == expected})
+    return {"lock": str(lock), "checks": checks,
+            "dependency_ok": bool(checks) and all(item["ok"] for item in checks)}
 
 
 def main() -> int:
@@ -71,9 +103,13 @@ def main() -> int:
     parser.add_argument("source", type=Path, help="checked-out SAM3 source directory")
     parser.add_argument("--json", action="store_true", help="emit machine-readable result")
     args = parser.parse_args()
-    result = preflight(args.source.resolve())
+    result = preflight(args.source.absolute())
+    lock = Path(__file__).with_name("requirements-linux-py312.txt")
+    result.update(dependency_preflight(lock))
+    result["runtime_ok"] = False  # CUDA/SAM import and checkpoint remain intentionally unverified.
+    result["ok"] = result["source_ok"] and result["dependency_ok"]
     print(json.dumps(result, indent=2, sort_keys=True) if args.json else
-          ("PASS" if result["ok"] else "FAIL") + f" source={args.source.resolve()}")
+          f"source_ok={result['source_ok']} dependency_ok={result['dependency_ok']} runtime_ok=false")
     return 0 if result["ok"] else 2
 
 

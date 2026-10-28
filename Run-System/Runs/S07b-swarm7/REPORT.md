@@ -11,7 +11,11 @@ target environment, import SAM, run inference, spend money, or establish Gate M.
 - Its manifest records upstream `setuptools>=61`/`wheel` build inputs, optional
   `flash-attn-3` and `cc_torch` kernels, CUDA >=12.6/Torch >=2.7 requirements,
   and the exact builder flags used by the existing adapter.
-- Added focused real subprocess tests and the missing-source execution receipt.
+- Added focused real subprocess tests covering a positive source fixture, every
+  pinned key file's changed/missing state, wrong/ancestor git revisions, missing
+  dependencies, and an unsafe source symlink (skipped only where Windows denied
+  symlink creation). Added immutable URL/time/byte/hash provenance for every new
+  hardcoded source/BPE hash.
 - Updated runtime README with the reproducible command and explicit boundary.
 
 ## Ponytail full/default applied
@@ -24,16 +28,22 @@ were not authorized and are unavailable in this checkout.
 
 ## Fresh checks
 
-- `python -m unittest tests/measurement/test_sam_runtime.py -v`: 2 PASS.
-- `python -m unittest discover -s tests/measurement -p 'test_*.py' -q`: 67 PASS.
+- `python -m unittest tests/measurement/test_sam_runtime.py -v`: 4 PASS, 1
+  skipped (Windows symlink privilege).
+- `python -m unittest discover -s tests/measurement -p 'test_*.py' -q`: 70 PASS,
+  1 skipped.
 - `python -m py_compile Build/measurement/runtime/preflight.py tests/measurement/test_sam_runtime.py`: PASS.
-- Missing-source preflight: exit 2, JSON `ok=false`, no import/download; receipt
-  `evidence/S07/S07b/swarm7/preflight-missing.json`.
+- Missing-source preflight: exit 2, `source_ok=false`, `dependency_ok=false`,
+  `runtime_ok=false`; actual installed metadata showed NumPy 2.4.6 vs locked
+  1.26.4 and Torch absent. Receipt `evidence/S07/S07b/swarm7/runtime-contract.json`;
+  initial missing-source receipt is preserved unchanged.
 - `git diff --check`: PASS.
 
 ## Limits / next action
 
-The preflight can PASS only when a future authorized Linux/Python3.12 checkout
+The preflight reports `source_ok`, `dependency_ok`, and `runtime_ok` separately;
+`runtime_ok` is hard-coded false in this child. It can report source/dependency
+identity only when a future authorized Linux/Python3.12 checkout
 contains the exact source and packaged BPE bytes. It does not verify installed
 Torch/CUDA/FlashAttention/cc_torch, checkpoint custody, import, VRAM, media
 custody, or physical calibration. Future owner-authorized runtime work should

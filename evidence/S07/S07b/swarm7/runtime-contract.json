@@ -1,0 +1,323 @@
+{
+  "checks": [
+    {
+      "expected": "4.15.1",
+      "name": "anyio",
+      "observed": "4.13.0",
+      "ok": false
+    },
+    {
+      "expected": "8.5.0",
+      "name": "click",
+      "observed": "8.1.8",
+      "ok": false
+    },
+    {
+      "expected": "4.2.4",
+      "name": "filelock",
+      "observed": "3.29.1",
+      "ok": false
+    },
+    {
+      "expected": "2026.9.0",
+      "name": "fsspec",
+      "observed": "2026.4.0",
+      "ok": false
+    },
+    {
+      "expected": "6.1.1",
+      "name": "ftfy",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "0.16.0",
+      "name": "h11",
+      "observed": "0.16.0",
+      "ok": true
+    },
+    {
+      "expected": "1.7.1",
+      "name": "hf-xet",
+      "observed": "1.5.0",
+      "ok": false
+    },
+    {
+      "expected": "2.16.0",
+      "name": "httpcore2",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "2.16.0",
+      "name": "httpx2",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "2.3.0",
+      "name": "huggingface-hub",
+      "observed": "1.16.1",
+      "ok": false
+    },
+    {
+      "expected": "3.20",
+      "name": "idna",
+      "observed": "3.16",
+      "ok": false
+    },
+    {
+      "expected": "0.1.10",
+      "name": "iopath",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "3.1.6",
+      "name": "jinja2",
+      "observed": "3.1.6",
+      "ok": true
+    },
+    {
+      "expected": "3.0.4",
+      "name": "markupsafe",
+      "observed": "3.0.3",
+      "ok": false
+    },
+    {
+      "expected": "1.3.0",
+      "name": "mpmath",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "3.7",
+      "name": "networkx",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "1.26.4",
+      "name": "numpy",
+      "observed": "2.4.6",
+      "ok": false
+    },
+    {
+      "expected": "12.8.4.1",
+      "name": "nvidia-cublas-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "12.8.90",
+      "name": "nvidia-cuda-cupti-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "12.8.93",
+      "name": "nvidia-cuda-nvrtc-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "12.8.90",
+      "name": "nvidia-cuda-runtime-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "9.10.2.21",
+      "name": "nvidia-cudnn-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "11.3.3.83",
+      "name": "nvidia-cufft-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "1.13.1.3",
+      "name": "nvidia-cufile-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "10.3.9.90",
+      "name": "nvidia-curand-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "11.7.3.90",
+      "name": "nvidia-cusolver-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "12.5.8.93",
+      "name": "nvidia-cusparse-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "0.7.1",
+      "name": "nvidia-cusparselt-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "2.27.3",
+      "name": "nvidia-nccl-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "12.8.93",
+      "name": "nvidia-nvjitlink-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "12.8.90",
+      "name": "nvidia-nvtx-cu12",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "26.3",
+      "name": "packaging",
+      "observed": "26.2",
+      "ok": false
+    },
+    {
+      "expected": "13.0.0",
+      "name": "pillow",
+      "observed": "12.2.0",
+      "ok": false
+    },
+    {
+      "expected": "4.4.2",
+      "name": "portalocker",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "6.0.3",
+      "name": "pyyaml",
+      "observed": "6.0.3",
+      "ok": true
+    },
+    {
+      "expected": "2026.9.29",
+      "name": "regex",
+      "observed": "2026.5.9",
+      "ok": false
+    },
+    {
+      "expected": "0.8.0",
+      "name": "safetensors",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "84.2.1",
+      "name": "setuptools",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "1.14.0",
+      "name": "sympy",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "1.0.20",
+      "name": "timm",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "2.8.0",
+      "name": "torch",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "0.23.0",
+      "name": "torchvision",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "4.70.1",
+      "name": "tqdm",
+      "observed": "4.67.3",
+      "ok": false
+    },
+    {
+      "expected": "3.4.0",
+      "name": "triton",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "0.10.5",
+      "name": "truststore",
+      "observed": null,
+      "ok": false
+    },
+    {
+      "expected": "4.16.0",
+      "name": "typing-extensions",
+      "observed": "4.15.0",
+      "ok": false
+    },
+    {
+      "expected": "0.9.4",
+      "name": "wcwidth",
+      "observed": "0.7.0",
+      "ok": false
+    }
+  ],
+  "dependency_ok": false,
+  "lock": "C:\\Users\\HP\\.codex\\worktrees\\swarm-s07b-runtime\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\measurement\\runtime\\requirements-linux-py312.txt",
+  "manifest": {
+    "build_system": [
+      "setuptools>=61",
+      "wheel"
+    ],
+    "builder": {
+      "async_loading_frames": false,
+      "compile": false,
+      "use_fa3": true,
+      "use_rope_real": true,
+      "warm_up": false
+    },
+    "files": {
+      "README.md": "da3dd047d18ef9a4b33557bf6f8187cf166218dc8aef40f2e18a67cc5249a502",
+      "pyproject.toml": "255f5d8d1db011459878e3de296a6afc84e03a8dda2bfa756a4de304aaff6366",
+      "sam3/__init__.py": "ca3821a125f767e6a35188603b51ef2501b1e7c3d1a90546ac567c5d2a80b9fb",
+      "sam3/assets/bpe_simple_vocab_16e6.txt.gz": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
+      "sam3/model_builder.py": "60cef72b1f7e4a2162d1c3f1ad2c0451bbbdc10e3484433a9aa2d016fed6b448"
+    },
+    "optional_kernels": [
+      "flash-attn-3",
+      "cc_torch"
+    ],
+    "repository": "https://github.com/facebookresearch/sam3",
+    "requirements": {
+      "cuda": ">=12.6",
+      "python": ">=3.12",
+      "torch": ">=2.7"
+    },
+    "revision": "f1647e8d0c1d280991f4d1b7d974c2704537fe66"
+  },
+  "ok": false,
+  "runtime_ok": false,
+  "source": "C:\\this-path-does-not-exist",
+  "source_ok": false
+}

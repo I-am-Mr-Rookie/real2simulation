@@ -30,7 +30,12 @@ No train/dev/notebook extras, flash-attention install or checkpoint retrieval ra
 
 ## Reproducible source/build preflight
 
-`preflight.py` is the executable fail-closed boundary for a future exact runtime.
+`preflight.py` is the executable fail-closed boundary for a future exact source
+and dependency environment. It reports three deliberately separate states:
+`source_ok`, `dependency_ok`, and `runtime_ok`. `runtime_ok` is always false in
+this child: CUDA, optional kernels, SAM import, checkpoint custody and inference
+were not run. A successful source/dependency check must not be read as runtime
+readiness.
 Given a checked-out SAM3 source directory it verifies the pinned git revision,
 the immutable source files and packaged BPE asset SHA-256 values, and the stated
 Linux/x86_64 + Python 3.12 minimum. It emits JSON and exits 2 on any mismatch;
@@ -41,11 +46,17 @@ environment:
 python Build/measurement/runtime/preflight.py /path/to/sam3 --json
 ```
 
-The manifest also records the upstream build-system requirements (`setuptools>=61`,
+The command also compares installed distribution **metadata** (via
+`importlib.metadata`, without importing Torch/CUDA/SAM) against every exact
+distribution in `requirements-linux-py312.txt`. The manifest records upstream
+build-system requirements (`setuptools>=61`,
 `wheel`), optional `flash-attn-3`/`cc_torch` kernels, and the exact builder flags
 used by `tracking.py`. A PASS is source/packaging readiness only; it is not proof
 of Torch/CUDA/kernel availability, checkpoint custody, model import, inference,
 calibration, or physical Gate M.
+
+Hash URLs, fetch time, byte counts, and the upstream build manifest are preserved
+in `evidence/S07/S07b/swarm7/upstream-hash-provenance.json`.
 
 Resolution obtained small package metadata/source metadata, not model weights;
 it did not install a target environment or download the multi-GB CUDA runtime.
