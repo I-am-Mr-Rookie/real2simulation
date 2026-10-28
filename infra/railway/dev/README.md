@@ -38,6 +38,14 @@ credentials are supplied by existing Railway references, never the uploaded cont
 No web secret was fetched/copied/configured. Run `python infra/railway/dev/verify.py`
 for this pinned deployment's read-only ten-endpoint acceptance checks.
 
+Staging safety validations run in normal AND optimized Python: invalid service,
+missing committed sources/Dockerfile, forbidden source paths and existing output
+directories fail before writes. The destination is claimed exclusively after
+validation, so a competing creator is not overwritten. Partial output after a
+later Git/storage failure is retained for inspection; choose another fresh path,
+never merge it into an existing context. `python -m unittest discover -s
+infra/railway/dev -p test_stage.py -v` uses only synthetic Git blobs/temporary paths.
+
 ## S04f historical provisioning record
 
 Private project Real2Simulation, only environment dev. IDs, provider statuses and

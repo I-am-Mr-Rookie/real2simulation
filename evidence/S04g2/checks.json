@@ -1,0 +1,70 @@
+{
+  "checks": [
+    {
+      "label": "default",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-E",
+        "-s",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "infra/railway/dev",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "parent_cap_s": 30
+    },
+    {
+      "label": "optimized",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-O",
+        "-E",
+        "-s",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "infra/railway/dev",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "parent_cap_s": 30
+    },
+    {
+      "label": "py311",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.11.15-windows-x86_64-none\\python.exe",
+        "-E",
+        "-s",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "infra/railway/dev",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "parent_cap_s": 30
+    }
+  ],
+  "source_hashes_lf_normalized": {
+    "infra/railway/dev/stage.py": "b91dc6e7ac28577efe1c8ba5f3f8f1508711e833ff350f5a9bc2e66984c9345a",
+    "infra/railway/dev/test_stage.py": "88c84b091b33edcb03e79e3b881b7e423f4d4cd4360169db5773d70e0e2b93b9",
+    "infra/railway/dev/README.md": "351bde41fe02b37719859988e1e438cbcf61dd2d6228faa5b15bcf4fbbdde174"
+  },
+  "paid_calls": 0,
+  "upload": "NOT_RUN",
+  "deployment": "NOT_RUN"
+}

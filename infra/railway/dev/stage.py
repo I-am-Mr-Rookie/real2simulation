@@ -7,9 +7,11 @@ import sys
 
 root = Path(__file__).resolve().parents[3]
 service, destination = sys.argv[1:]
-assert service in {"web", "api", "worker"}
+if service not in {"web", "api", "worker"}:
+    raise ValueError("Unknown staging service")
 target = Path(destination).resolve()
-assert not target.exists(), "Use a fresh staging destination"
+if target.exists():
+    raise FileExistsError("Use a fresh staging destination")
 revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
 prefixes = {
     "web": ("Build/web/src/", "Build/web/package.json"),
@@ -19,10 +21,15 @@ prefixes = {
 files = subprocess.check_output(["git", "ls-tree", "-r", "--name-only", revision], cwd=root, text=True).splitlines()
 selected = [p for p in files if any(p.startswith(x) if x.endswith("/") else p == x for x in prefixes)]
 dockerfile = f"infra/railway/dev/{service}.Dockerfile"
-assert selected and dockerfile in files
+if not selected or dockerfile not in files:
+    raise ValueError("Missing committed staging sources or Dockerfile")
+for source in selected + [dockerfile]:
+    if any(x in Path(source).parts for x in ("archive", ".env", "node_modules", ".next", "__pycache__")):
+        raise ValueError("Forbidden staging source path")
+# Claim exclusively after validation: a competing creator must never be overwritten.
+target.mkdir(parents=True, exist_ok=False)
 manifest = {"service": service, "source_revision": revision, "files": {}}
 for source in selected + [dockerfile]:
-    assert not any(x in Path(source).parts for x in ("archive", ".env", "node_modules", ".next", "__pycache__"))
     content = subprocess.check_output(["git", "show", f"{revision}:{source}"], cwd=root)
     name = "Dockerfile" if source == dockerfile else source
     if name == "Dockerfile":

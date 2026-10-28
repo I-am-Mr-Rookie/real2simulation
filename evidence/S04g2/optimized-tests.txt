@@ -1,0 +1,11 @@
+test_competing_destination_creation_is_not_overwritten (test_stage.StageTests.test_competing_destination_creation_is_not_overwritten) ... ok
+test_existing_destination_untouched_in_both_modes (test_stage.StageTests.test_existing_destination_untouched_in_both_modes) ... ok
+test_forbidden_nested_source_is_rejected_before_any_write (test_stage.StageTests.test_forbidden_nested_source_is_rejected_before_any_write) ... ok
+test_invalid_service_never_creates_destination (test_stage.StageTests.test_invalid_service_never_creates_destination) ... ok
+test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) ... ok
+test_service_manifests_preserve_committed_bytes_hashes_and_allowlists (test_stage.StageTests.test_service_manifests_preserve_committed_bytes_hashes_and_allowlists) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.145s
+
+OK

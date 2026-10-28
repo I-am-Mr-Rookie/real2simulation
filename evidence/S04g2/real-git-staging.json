@@ -1,0 +1,29 @@
+[
+  {
+    "service": "web",
+    "source_revision": "2124001eaa28979ecd76690fcafdb4f52a6ac6a9",
+    "files": 42,
+    "manifest_hashes": "PASS",
+    "optimized_fresh_stage": 0,
+    "optimized_existing_stage": 1,
+    "upload": "NOT_RUN"
+  },
+  {
+    "service": "api",
+    "source_revision": "2124001eaa28979ecd76690fcafdb4f52a6ac6a9",
+    "files": 9,
+    "manifest_hashes": "PASS",
+    "optimized_fresh_stage": 0,
+    "optimized_existing_stage": 1,
+    "upload": "NOT_RUN"
+  },
+  {
+    "service": "worker",
+    "source_revision": "2124001eaa28979ecd76690fcafdb4f52a6ac6a9",
+    "files": 6,
+    "manifest_hashes": "PASS",
+    "optimized_fresh_stage": 0,
+    "optimized_existing_stage": 1,
+    "upload": "NOT_RUN"
+  }
+]

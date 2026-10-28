@@ -1,0 +1,219 @@
+test_existing_destination_untouched_in_both_modes (test_stage.StageTests.test_existing_destination_untouched_in_both_modes) ... 
+  test_existing_destination_untouched_in_both_modes (test_stage.StageTests.test_existing_destination_untouched_in_both_modes) (optimize=0) ... FAIL
+  test_existing_destination_untouched_in_both_modes (test_stage.StageTests.test_existing_destination_untouched_in_both_modes) (optimize=1) ... FAIL
+test_existing_destination_untouched_in_both_modes (test_stage.StageTests.test_existing_destination_untouched_in_both_modes) ... FAIL
+test_forbidden_nested_source_is_rejected_before_any_write (test_stage.StageTests.test_forbidden_nested_source_is_rejected_before_any_write) ... 
+  test_forbidden_nested_source_is_rejected_before_any_write (test_stage.StageTests.test_forbidden_nested_source_is_rejected_before_any_write) (optimize=0) ... FAIL
+test_forbidden_nested_source_is_rejected_before_any_write (test_stage.StageTests.test_forbidden_nested_source_is_rejected_before_any_write) ... FAIL
+test_invalid_service_never_creates_destination (test_stage.StageTests.test_invalid_service_never_creates_destination) ... 
+  test_invalid_service_never_creates_destination (test_stage.StageTests.test_invalid_service_never_creates_destination) (optimize=0) ... FAIL
+  test_invalid_service_never_creates_destination (test_stage.StageTests.test_invalid_service_never_creates_destination) (optimize=1) ... ERROR
+test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) ... 
+  test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) (files=[], optimize=0) ... FAIL
+  test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) (files=[], optimize=1) ... ERROR
+  test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) (files=['Build/api/health/app.py'], optimize=0) ... FAIL
+  test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) (files=['Build/api/health/app.py'], optimize=1) ... ERROR
+test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) ... FAIL
+test_service_manifests_preserve_committed_bytes_hashes_and_allowlists (test_stage.StageTests.test_service_manifests_preserve_committed_bytes_hashes_and_allowlists) ... ok
+
+======================================================================
+ERROR: test_invalid_service_never_creates_destination (test_stage.StageTests.test_invalid_service_never_creates_destination) (optimize=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 61, in test_invalid_service_never_creates_destination
+    self.stage("invalid", optimize=optimize)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 44, in stage
+    exec(compile(SOURCE.read_text(), str(SOURCE), "exec", optimize=optimize),
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         {"__file__": str(SOURCE), "__name__": "__main__"})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\stage.py", line 14, in <module>
+    prefixes = {
+               ~
+    ...<2 lines>...
+        "worker": ("Build/worker/health/", "Build/api/health/dependencies.py"),
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    }[service]
+    ~^^^^^^^^^
+KeyError: 'invalid'
+
+======================================================================
+ERROR: test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) (files=[], optimize=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 69, in test_missing_committed_inputs_never_create_destination
+    self.stage(files=files, optimize=optimize)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 44, in stage
+    exec(compile(SOURCE.read_text(), str(SOURCE), "exec", optimize=optimize),
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         {"__file__": str(SOURCE), "__name__": "__main__"})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\stage.py", line 26, in <module>
+    content = subprocess.check_output(["git", "show", f"{revision}:{source}"], cwd=root)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1247, in _execute_mock_call
+    result = effect(*args, **kwargs)
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 40, in git
+    return files[command[2].split(":", 1)[1]]
+           ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'infra/railway/dev/api.Dockerfile'
+
+======================================================================
+ERROR: test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) (files=['Build/api/health/app.py'], optimize=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 69, in test_missing_committed_inputs_never_create_destination
+    self.stage(files=files, optimize=optimize)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 44, in stage
+    exec(compile(SOURCE.read_text(), str(SOURCE), "exec", optimize=optimize),
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         {"__file__": str(SOURCE), "__name__": "__main__"})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\stage.py", line 26, in <module>
+    content = subprocess.check_output(["git", "show", f"{revision}:{source}"], cwd=root)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1176, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1180, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\mock.py", line 1247, in _execute_mock_call
+    result = effect(*args, **kwargs)
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 40, in git
+    return files[command[2].split(":", 1)[1]]
+           ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'infra/railway/dev/api.Dockerfile'
+
+======================================================================
+FAIL: test_existing_destination_untouched_in_both_modes (test_stage.StageTests.test_existing_destination_untouched_in_both_modes) (optimize=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 54, in test_existing_destination_untouched_in_both_modes
+    self.stage(optimize=optimize)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 44, in stage
+    exec(compile(SOURCE.read_text(), str(SOURCE), "exec", optimize=optimize),
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         {"__file__": str(SOURCE), "__name__": "__main__"})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\stage.py", line 12, in <module>
+    assert not target.exists(), "Use a fresh staging destination"
+           ^^^^^^^^^^^^^^^^^^^
+AssertionError: Use a fresh staging destination
+
+======================================================================
+FAIL: test_existing_destination_untouched_in_both_modes (test_stage.StageTests.test_existing_destination_untouched_in_both_modes) (optimize=1)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 53, in test_existing_destination_untouched_in_both_modes
+    with self.subTest(optimize=optimize), self.assertRaises(FileExistsError):
+                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: FileExistsError not raised
+
+======================================================================
+FAIL: test_existing_destination_untouched_in_both_modes (test_stage.StageTests.test_existing_destination_untouched_in_both_modes)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 55, in test_existing_destination_untouched_in_both_modes
+    self.assertEqual(sentinel.read_bytes(), b"keep-existing")
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: b'synthetic-api\n' != b'keep-existing'
+
+======================================================================
+FAIL: test_forbidden_nested_source_is_rejected_before_any_write (test_stage.StageTests.test_forbidden_nested_source_is_rejected_before_any_write) (optimize=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 75, in test_forbidden_nested_source_is_rejected_before_any_write
+    self.stage(files=FILES | {"Build/api/health/archive/private.txt": b"synthetic"}, optimize=optimize)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 44, in stage
+    exec(compile(SOURCE.read_text(), str(SOURCE), "exec", optimize=optimize),
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         {"__file__": str(SOURCE), "__name__": "__main__"})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\stage.py", line 25, in <module>
+    assert not any(x in Path(source).parts for x in ("archive", ".env", "node_modules", ".next", "__pycache__"))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+======================================================================
+FAIL: test_forbidden_nested_source_is_rejected_before_any_write (test_stage.StageTests.test_forbidden_nested_source_is_rejected_before_any_write)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 76, in test_forbidden_nested_source_is_rejected_before_any_write
+    self.assertFalse(self.target.exists())
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_invalid_service_never_creates_destination (test_stage.StageTests.test_invalid_service_never_creates_destination) (optimize=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 61, in test_invalid_service_never_creates_destination
+    self.stage("invalid", optimize=optimize)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 44, in stage
+    exec(compile(SOURCE.read_text(), str(SOURCE), "exec", optimize=optimize),
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         {"__file__": str(SOURCE), "__name__": "__main__"})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\stage.py", line 10, in <module>
+    assert service in {"web", "api", "worker"}
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+======================================================================
+FAIL: test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) (files=[], optimize=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 69, in test_missing_committed_inputs_never_create_destination
+    self.stage(files=files, optimize=optimize)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 44, in stage
+    exec(compile(SOURCE.read_text(), str(SOURCE), "exec", optimize=optimize),
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         {"__file__": str(SOURCE), "__name__": "__main__"})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\stage.py", line 22, in <module>
+    assert selected and dockerfile in files
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+======================================================================
+FAIL: test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) (files=['Build/api/health/app.py'], optimize=0)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 69, in test_missing_committed_inputs_never_create_destination
+    self.stage(files=files, optimize=optimize)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 44, in stage
+    exec(compile(SOURCE.read_text(), str(SOURCE), "exec", optimize=optimize),
+    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+         {"__file__": str(SOURCE), "__name__": "__main__"})
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\stage.py", line 22, in <module>
+    assert selected and dockerfile in files
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+
+======================================================================
+FAIL: test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-s05-admission\2026-10-26 - Meta Global AI Developer Hackathon\infra\railway\dev\test_stage.py", line 70, in test_missing_committed_inputs_never_create_destination
+    self.assertFalse(self.target.exists())
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.217s
+
+FAILED (failures=9, errors=3)
