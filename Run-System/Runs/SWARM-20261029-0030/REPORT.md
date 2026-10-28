@@ -14,6 +14,8 @@ original58 baseline this is14 new completed leaves, not a count of commits/tests
   Explicit timestep/geometry/physics; immutable common time-series stops at first
   contact. No independent-world timestamps, hidden gravity defaults or fabricated
   contact labels. This is a sampled detector, not post-contact rebound dynamics.
+  It currently handles an axis-aligned synthetic floor and sphere, not arbitrary
+  scene collider reconstruction; coarse-step tunneling is not ruled out.
 - Free-fall and projectile both run through the real common contact adapter.
 - Ramp and nonlinear pendulum reuse RK4 and actual S08 validated setup export.
   Ramp stops before the first endpoint-crossing bracket and rejects unsupported
@@ -75,3 +77,10 @@ update and concrete coordination. No implementation started after18:25UTC.
 
 Final verification/control/cleanup continues to the18:30UTC owner boundary, with
 no dispatcher, schedule or automatic continuation. Further work needs owner scope.
+
+Final local review FF5cdd684: reported findings re-reviewed/closed within the
+synthetic scope; all four actual timeboxes PASS and all reports tracked on main.
+No open P1/P2 reported by that reviewer; it does not certify R-P/vendor or UI.
+Three managed extension worktrees were archived recoverably; native archive
+refused the primary review checkout, retained without deletion/bypass. Source
+manifest covers19 changed Build/contracts/tests files; C0-control audit is clean.

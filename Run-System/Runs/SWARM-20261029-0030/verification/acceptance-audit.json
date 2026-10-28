@@ -1,0 +1,26 @@
+[
+  {
+    "id": "S10cd-extension",
+    "timing_exit_code": 0,
+    "timing": "TIMING PASS; controller must separately verify evidence and any exception\n",
+    "report_tracked": true
+  },
+  {
+    "id": "S10e-extension",
+    "timing_exit_code": 0,
+    "timing": "TIMING PASS; controller must separately verify evidence and any exception\n",
+    "report_tracked": true
+  },
+  {
+    "id": "S10fg-extension",
+    "timing_exit_code": 0,
+    "timing": "TIMING PASS; controller must separately verify evidence and any exception\n",
+    "report_tracked": true
+  },
+  {
+    "id": "R-S10-extension",
+    "timing_exit_code": 0,
+    "timing": "TIMING PASS; controller must separately verify evidence and any exception\n",
+    "report_tracked": true
+  }
+]
