@@ -35,34 +35,40 @@ def _start(template: str) -> dict:
         spec_path, scene_path, _ = regression_case(folder, template)
         artifact = export(spec_path, scene_path)
         encoded = json.dumps(artifact, allow_nan=False)
-        process = subprocess.run(
-            ["node", str(ROOT / "Build/lab/simulate.mjs")], input=encoded,
-            text=True, capture_output=True, encoding="utf-8", cwd=ROOT,
-            timeout=20, env={"PATH": os.environ.get("PATH", ""), "SystemRoot": os.environ.get("SystemRoot", ""),
-                             "PYTHONPATH": os.environ.get("PYTHONPATH", ""), "PYTHONIOENCODING": "utf-8"},
-        )
-        if process.returncode or not process.stdout:
+        child = subprocess.Popen(["node", str(ROOT / "Build/lab/simulate.mjs")], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8", cwd=ROOT, env={"PATH": os.environ.get("PATH", ""), "SystemRoot": os.environ.get("SystemRoot", ""), "PYTHONPATH": os.environ.get("PYTHONPATH", ""), "PYTHONIOENCODING": "utf-8"})
+        try:
+            stdout, _ = child.communicate(encoded, timeout=20)
+        except subprocess.TimeoutExpired:
+            if os.name == "nt": subprocess.run(["taskkill", "/PID", str(child.pid), "/T", "/F"], capture_output=True, timeout=5)
+            else: child.kill()
+            child.wait(timeout=5)
+            return error("synthetic_simulator_timeout")
+        if child.returncode or not stdout:
             return error("synthetic_simulator_failed")
-        trajectory = json.loads(process.stdout)
+        trajectory = json.loads(stdout)
         samples = trajectory.get("samples")
         if not isinstance(samples, list) or not samples or len(samples) > MAX_SAMPLES:
             return error("invalid_trajectory")
         origin_y = samples[0]["position_m"][1]
         observations = []
+        from Build.instruments.synthetic import light_gate_observation, ruler_observation
         for sample in samples:
             time_s = sample.get("time_s")
             position_m = origin_y - sample["position_m"][1]
-            if not _finite(time_s) or not _finite(position_m):
+            if not _finite(time_s) or not _finite(position_m) or position_m < 0:
                 return error("invalid_observation")
+            time_s = light_gate_observation(time_s, resolution_s=1e-6, uncertainty_s=1e-6, bias_s=0)["value"]
+            position_m = ruler_observation(position_m, resolution_m=1e-6, uncertainty_m=1e-6, bias_m=0)["value"]
             observations.append({"time_s": time_s, "position_m": position_m})
         result = {
             "status": "ok", "template": template,
             "observations": observations, "source": "simulated",
             "units": {"time": "s", "position": "m"},
             "limitations": ["synthetic authored instrument settings", "uncertainty model does not propagate input instrument uncertainty"],
+            "private": {"seed": artifact["spec"]["simulation"]["seed"], "gravity_m_s2": artifact["scene"]["gravity"]["magnitude_m_s2"], "setup": {"template": template, "artifact_version": artifact["artifact_version"], "instrument_model": "synthetic light-gate/ruler quantization"}},
         }
         if template in {"free_fall", "projectile"}:
-            result["gravity"] = {"value": 9.81, "unit": "m/s^2", "source": "synthetic authored setup"}
+            result["gravity"] = {"value": result["private"]["gravity_m_s2"], "unit": "m/s^2", "source": "synthetic authored setup"}
         return result
 
 
