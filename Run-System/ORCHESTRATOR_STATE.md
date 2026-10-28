@@ -1,5 +1,35 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — S07b access evidence accepted; Q11/custody continuation (13:10UTC)
+
+S07b recovery2 accepted PARTIAL0f762f5,8 evidence/report-only files, no source
+changes. Fresh controller tracking13 PASS after rebase; worker measurement64 PASS.
+HF public exact SAM3.1 card now readable; inspected session logged out and human
+conditions/info-sharing gate visible. This does NOT prove owner lacks approved
+access. Exact intended checkpoint/config names known, actual bytes/revision/hash
+and loaded runtime unknown. Local standard-cache/default-env inventory limited,
+not proof of all-disk absence. Python3.11 MapAnything CPU is NOT SAM runtime proof.
+
+Q11 stored in STATE and ONE async question sent: owner personally reviews exact
+HF conditions/access, reports already-approved status/path without secrets, or
+defers live SAM. No automatic login/info-sharing/terms/download/job, no repeated
+GPU consent. No such action taken by agent. Recovery2 child CLOSED terminal.
+
+Claim next useful independent S07b recovery3: fresh Sol/medium,15m unpaid local
+ST03 prefix custody under EXISTING scene/tracking approval, no model/access retry.
+Exact contract Runs/S07b/RECOVERY-3.md: registered acquisition paths only, original
+hash before decode, deterministic split before inspection, real presentation PTS,
+native prefix-only JPEGs ignored/no suffix leak, no metrics/physical gate claim.
+Reuse r-m-review/new run/S07b-recovery3; actual child ID recorded after dispatch.
+Source read-only, Owns only new evidence/PLAN/REPORT. No duplicate objective.
+
+S05b CPU proof/stop accepted9b25fcc; GPU allocation cause remains unknown, no paid
+retry. Both own apps stopped/tasks0/containers[] in final receipt;2.85 reserves
+retained/$30 authority unchanged.55/203 deliverables, GateM NOT_RUN/S12 locked.
+Unrelated RUNS heading remains unstaged; preserve via temporary generator/index
+delta as previously verified. Python dispatcher OFF, heartbeat ACTIVE5m. Older
+CURRENT/active sections below historical; Q11 is the one pending owner action.
+
 ## CURRENT — S05b PARTIAL accepted; S07b readiness claim (Oct28 12:56UTC)
 
 S05b recovery5 terminal child01a18281-495c-7251-9c7e-9d7d8cdbfa83 CLOSED after

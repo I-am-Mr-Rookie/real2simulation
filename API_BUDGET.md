@@ -13,8 +13,9 @@ needs an explicit manual/wall-clock guard for any future scoped continuation.
 Retain full **$2.85** ($1.90 historical + $.95 new), exact billing unknown, no
 reserve release or second paid attempt. Existing **$30** authority unchanged;
 at most$27.15 before other debits. Reuse actual CPU receipt; no reinstall/retry
-without changed prerequisite. GateR NOT_RUN/S05c locked. Current S07b recovery2
-is read-only checkpoint/runtime/licence readiness: **no service/GPU calls/spend**.
+without changed prerequisite. GateR NOT_RUN/S05c locked. S07b recovery2 readiness
+is accepted PARTIAL; recovery3 is local approved-input prefix custody only:
+**no paid service/GPU jobs/spend**, no SAM downloads/terms or metric approval.
 Older active/import-pending sections below are historical, superseded here.
 
 ## CURRENT — recovery5 CPU pass, ONE bounded GPU active — Oct28 12:42UTC
