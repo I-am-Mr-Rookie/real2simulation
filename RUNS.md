@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 28, 20:42 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 28, 20:48 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 Codex lanes: Codex. CLAUDE lane: Claude Code. Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **55 / 203** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 5 open reviews
+Progress: **55 / 203** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 6 open reviews
 
 ## Reviews for Koushik
 
@@ -14,6 +14,7 @@ Progress: **55 / 203** runs done · 0 in progress · 0 blocked · 1 waiting for 
 - [ ] R5 [Routine cleaner follow-up, no reply needed] About1.25GB is in two dormant acquisition-worktree input copies with totals matching canonical inputs, NOT yet hash-proven duplicates. Fresh cleaner will full-hash exact copies and canonical/acquisition records; delete only ignored byte-identical redundant FILES in .worktrees/S02c/test-data and .worktrees/S02c1/test-data after proving canonical originals survive and writing a restore/redirect map. Unique originals, all other media/ST03 prefix, reports/history/secrets/worktrees protected. No whole-worktree deletion or Git rewrite; skip any uncertainty.
 - [ ] R6 [Routine no-reply action] Agent-led dev-auth preflight will inspect existing exact service/key NAMES without values and may use already-approved dev redeploy if a stale build is the only issue. Missing secure credentials will be reported precisely, not returned as generic babysitting. Independent CLAUDE-medium review of the local deadline guard proceeds before any paid continuation; no live guard/runtime success claimed.
 - [ ] R7 [Strict worker rule implemented] Every new worker gets its own full30-minute UTC/Dhaka deadline IN the handout prompt and minute25 cutoff. No terminal early PARTIAL/BLOCKED without controller-approved safety/owner-stop exception; send nonterminal blockers and continue useful scoped work. Fully verified DONE may finish early. Controller timing checker rejects short-window/early-incomplete/overrun receipts, then separately checks real acceptance evidence. No filler work or expanded authority. Earlier short reports remain historical, not rewritten.
+- [ ] R8 [Routine continuation; no reply needed] CLEAN2 full hashes confirmed44 matching old input copies but all are tracked in their own worktrees, so none deleted. New CLEAN3 will use normal recoverable Git worktree removal ONLY for dormant .worktrees/S02c and S02c1 after preserving branchrefs/objects and every ignored scratch file; canonical originals/restore maps retained. Never remove r-m-review/ST03 prefix/other active worktrees or Git history. Review found late-stop/cooperative-cancellation defects; source-lane recovery8 fixes locally, no paid retry.
 
 ## Ready now
 

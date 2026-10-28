@@ -1,5 +1,36 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — first strict-window worker active; old partial evidence reconciled
+
+Q14 provision chat01a182f6-79d5-7791-a16c-fc9edc596ec6 active, exact Sol/medium,
+list_threads verified same project. Actual prompt saved LAUNCH.json with UTC
+issue14:42:32, deadline15:12:32UTC/21:12:32Dhaka and cutoff15:07:32UTC.
+Its NONTERMINAL blocker reports possible mandatory tool confirmation and safe
+clipboard-blind transfer investigation. Controller instructed respect actual
+tool confirmation, cite exact requirement/action, don't invent renewed generic
+consent or expose token. No token created/revealed yet claimed. Original deadline
+unchanged; no terminal early PARTIAL, no other UI worker races it.
+
+Historical pre-rule evidence accepted PARTIAL, not retroactively fabricated:
+- CLEAN2 e68b88b:44 exact input hashes freshly reverified, all own-index tracked/
+  nonignored; deleted0. Scope/restore map retained; no generic input deletion.
+- Other-vendor guard review e39aec4: isolated controller repro2.21s vs0.2s under
+  parent10s cap confirms cooperative limit. FindingsP2 late stop skipped after
+  overshoot and no independent watchdog; partial review not a paid gate PASS.
+  Controller trimmed four EOF blank lines only before whitespace-clean commit.
+- Dev-auth preflight20eee0b: exact missing BOTH Clerk key names; no redeploy or
+  credential changes; fresh local links/no-secret-pattern/scope PASS, not E2E.
+  S01b owner row remains TODO; no new Clerk credential authority inferred from Q14.
+
+New exact scopes: S05b recovery8 source-lane Sol/medium, prepared s05b-recovery4/
+run/S05b-recovery8 basee68b88b; fix local late-stop/independent watchdog with real
+SDK text/tests, no cloud execution. CLEAN3 Sol/medium, s02g-forensics/run/CLEAN-
+20261028-3 base20eee0b; safe removal of ONLY two obsolete normal Git worktrees,
+after preserving refs/objects/ignored scratch and canonical full input hashes.
+Individual full30m clocks issued IN actual prompts at launch, IDs follow.
+No active prior worker duplication or global quota/provider/policy change.
+55/203 unchanged;2.85/$30 retained, physical gates NOT_RUN/S12 locked.
+
 ## CURRENT — strict full30m prompt deadline; Q14 provisioning approved
 
 Direct owner screenshots show early PARTIAL sessions (review2m/auth7m/cleaner6m/

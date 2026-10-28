@@ -60,3 +60,30 @@ guard01a182d4-596a-7460-854f-195ad12f6c74, SAM-readiness01a182d4-ec30-7093-8161-
 6787dddb1ca4, cleaner01a182d5-98d4-76d1-832d-0343a6375fd1. Prepared isolated
 worktree paths required explicitly despite canonical initial app cwd. Controller
 waits on actual chats with cursors, not automation/subagent loops. Results pending.
+
+## Latest strict-window correction / verified continuations
+
+Latest direct owner correction supersedes earlier finish-early incomplete scopes.
+Implemented WORKER_TIMEBOX_POLICY, explicit manual handoff template and standard-
+library worker_timebox issue/check with6 passing regressions. New prompts carry
+fresh full30m UTC/Dhaka issue/deadline + minute25 cutoff; no accepted early
+incomplete report without documented safety/owner stop. Verified fully DONE can
+finish early; no fake work/spend/clock reset. These checks enforce arithmetic,
+not proof of effort; controller must still inspect real acceptance evidence.
+
+Q14 direct"y" approved narrow HF-read-token -> private Modal Secret provision;
+new separate chat01a182f6-79d5-7791-a16c-fc9edc596ec6 deadline15:12:32UTC/
+21:12:32Dhaka explicitly in saved launch prompt. Verified same existing project.
+No token creation/runtime success claimed; exact supported secret-safe UI path
+being checked, mandatory runtime confirmation respected. No values in evidence.
+
+Accepted historical evidence (not full physical/product success): S07 metadata
+36fb353 post-rebase tracking13 PASS; S05 local guardcd42ebc spike21/scene11 PASS;
+CLEAN2 e68b88b controller fresh44 candidate/canonical full hashes, deleted0 because
+tracked; guard reviewe39aec4 independent overshoot repro fresh2.21s under10s cap;
+auth preflight20eee0b exact missing Clerk names, fresh document/scope/no-secret
+pattern checks, no stale-build-only redeploy. Original partial/early times remain.
+Guard review incomplete direct SDK check is a limitation, not certified passed.
+Future source recovery8 and recoverable obsolete-worktree CLEAN3 use fresh exact-
+model separate chats with individual full30m prompt deadlines and isolated Owns.
+No paid/GPU/model jobs or reserve release;55/203/physical gates/S12 unchanged.
