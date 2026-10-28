@@ -62,3 +62,57 @@ test('returned contact output is deeply immutable', async () => {
   assert.throws(() => { out.geometry.floorHalfExtents[0] = 99; }, /read only|Cannot assign/i);
   assert.throws(() => { out.samples[0].contacts.push({}); }, /read only|Cannot add property|is not extensible/i);
 });
+
+const initialOnly = (y = 2, dt = 0.005) => freeFallTrajectory({ initialPosition: [0, y, 0],
+  initialVelocity: [0, 0, 0], gravity: 9.81, dt, steps: 0,
+  source: 'simulated', inputProvenance: 'synthetic' });
+
+test('rejects overflow of the derived floor center from finite operands', async () => {
+  await assert.rejects(() => contactAwareTrajectory({ trajectory: initialOnly(), physics, gravity: 9.81,
+    geometry: { ...geometry, floorY: -1e308, floorHalfExtents: [5, 1e308, 5] } }), /floor center.*finite/);
+});
+
+test('rejects initial penetration instead of fabricating a zero-time contact bracket', async () => {
+  for (const y of [0.05, 0.1 - Number.EPSILON, -1]) {
+    await assert.rejects(() => contactAwareTrajectory({ trajectory: initialOnly(y), geometry, physics, gravity: 9.81 }), /initial.*penetrat/);
+  }
+});
+
+test('true initial touch is supported without treating a just-above start as contact', async () => {
+  for (const floor of [geometry, { ...geometry, floorY: 0.25, sphereRadius: 0.125 }]) {
+    const y = floor.floorY + floor.sphereRadius;
+    const out = await contactAwareTrajectory({ trajectory: initialOnly(y), geometry: floor, physics, gravity: 9.81 });
+    assert.equal(out.samples.length, 1);
+    assert.equal(out.samples[0].contact, true);
+    assert.deepEqual(out.samples[0].contactBracket_s, [0, 0]);
+    assert.deepEqual(out.samples[0].position_m, [0, y, 0]);
+    const above = await contactAwareTrajectory({ trajectory: initialOnly(y + Number.EPSILON), geometry: floor, physics, gravity: 9.81 });
+    assert.equal(above.samples[0].contact, false);
+    assert.equal(above.samples[0].contactBracket_s, null);
+  }
+});
+
+test('finite JavaScript inputs cannot overflow or collapse positive Rapier float32 inputs', async () => {
+  const input = { trajectory: initialOnly(), geometry, physics, gravity: 9.81 };
+  const cases = [
+    ['floor center', { geometry: { ...geometry, floorY: -1e40 } }],
+    ['floor extents', { geometry: { ...geometry, floorHalfExtents: [1e40, 0.1, 5] } }],
+    ['floor thickness', { geometry: { ...geometry, floorHalfExtents: [5, 1e-50, 5] } }],
+    ['radius overflow', { geometry: { ...geometry, sphereRadius: 1e40 } }],
+    ['radius underflow', { geometry: { ...geometry, sphereRadius: 1e-50 } }],
+    ['friction', { physics: { ...physics, friction: 1e40 } }],
+    ['density overflow', { physics: { ...physics, density: 1e40 } }],
+    ['density underflow', { physics: { ...physics, density: 1e-50 } }],
+    ['gravity overflow', { gravity: 1e40 }],
+    ['gravity underflow', { gravity: 1e-50 }],
+    ['timestep overflow', { trajectory: initialOnly(2, 1e40) }],
+    ['timestep underflow', { trajectory: initialOnly(2, 1e-50) }],
+    ['initial position', { trajectory: initialOnly(1e40) }],
+  ];
+  for (const [name, overrides] of cases) {
+    await assert.rejects(() => contactAwareTrajectory({ ...input, ...overrides }), /float32/, name);
+  }
+  const laterOverflow = structuredClone(falling());
+  laterOverflow.samples[1].position_m[1] = 1e40;
+  await assert.rejects(() => contactAwareTrajectory({ ...input, trajectory: laterOverflow }), /float32/);
+});

@@ -1,0 +1,40 @@
+✔ both ballistic templates reach real contact through the common run adapter (472.4084ms)
+✔ unsupported replay versions cannot produce unreplayable records (2.6617ms)
+✔ real Rapier contact is mapped onto the same RK4 samples (490.8366ms)
+✔ contact timing tracks analytic impact within one sample for supported timesteps (245.3844ms)
+✔ no-contact trajectory remains no-contact and deterministic (21.0933ms)
+✔ rejects invalid explicit physics and geometry (165.9368ms)
+✔ returned contact output is deeply immutable (29.016ms)
+✔ rejects overflow of the derived floor center from finite operands (0.8967ms)
+✔ rejects initial penetration instead of fabricating a zero-time contact bracket (1.3594ms)
+✔ true initial touch is supported without treating a just-above start as contact (14.044ms)
+✔ finite JavaScript inputs cannot overflow or collapse positive Rapier float32 inputs (15.081ms)
+✔ ramp uses signed fixed-step dynamics and exposes analytic comparison inputs (18.1772ms)
+✔ ramp stops at the first endpoint crossing and rejects unsupported stall/coast regimes (16.0285ms)
+✔ pendulum matches the small-angle analytic comparison and maps geometry (26.6238ms)
+✔ nonlinear pendulum converges and conserves energy (134.9616ms)
+✔ zero horizon is one immutable sample; inputs remain unchanged and deterministic (1.2078ms)
+✔ rejects sparse, nonfinite, overflow, and hidden-default inputs (1.2079ms)
+✔ consumes actual Python validate_setup export for both extended templates (2185.6823ms)
+✔ allowlisted public projection cannot leak arbitrary observation metadata (23.3553ms)
+✔ actual Python S11 response binds to same observations and preserves source (290.071ms)
+✔ version, mutation, and cross-session binding are enforced (172.0782ms)
+✔ same seed is byte-identical and immutable (38.6501ms)
+✔ changed seed/params distinguish; hostile inputs fail (6.2315ms)
+✔ S10a consumes only the trusted S08 validate_setup export and places geometry (4.8294ms)
+✔ RK4 zero-step validates every input, rejects sparse state, and preserves state (0.9246ms)
+✔ RK4 convergence/order, determinism, immutability and invalid dynamics (5.0566ms)
+✔ free fall uses fixed-step RK4 and matches the authoritative analytic reference (10.5802ms)
+✔ projectile preserves horizontal motion and reports a sampled stop-plane bracket (2.4124ms)
+✔ rejects missing provenance and hidden numeric defaults (1.5789ms)
+✔ is deterministic, finite, and does not mutate caller inputs (10.9284ms)
+✔ reports an already-crossed plane without advancing the integrator (0.5993ms)
+✔ accepts only the validated S08 transport and maps explicit template quantities (536.6449ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3291.7599

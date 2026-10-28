@@ -1,0 +1,9 @@
+2026-10-28T20:11:42.509136+00:00
+PRECOMMIT SCOPE PASS: all staged paths inside exact Owns.
+BASE/BRANCH PASS: 0db90ba -> run/R10-S10-fix; no merge or rebase.
+AUDIT PRESERVATION PASS: no diff in historical Claude audit directory.
+WHITESPACE PASS: working and staged diffs.
+TIMING PASS; controller must separately verify evidence and any exception
+Fresh substantive check counts: contacts 9/9; Node simulator/contact integration 32/32; Python unittest 5/5; acceptance 15/15; regression 4/4; contact brackets 6/6; baseline output/replay identity 10/10.
+No main/control/config edits or remote operations.
+Commit verification: controller can inspect branch tip and git show --stat.

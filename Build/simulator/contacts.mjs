@@ -2,9 +2,10 @@ import RAPIER from '@dimforge/rapier3d-compat';
 
 const fail = (message) => { throw new TypeError(`INVALID_CONTACTS: ${message}`); };
 const finite = (v) => typeof v === 'number' && Number.isFinite(v);
+const rapierFinite = (v) => finite(v) && Number.isFinite(Math.fround(v));
 const vec3 = (v) => Array.isArray(v) && v.length === 3 && [0, 1, 2].every((i) => Object.prototype.hasOwnProperty.call(v, i) && finite(v[i]));
-const positive = (v, name) => { if (!finite(v) || v <= 0) fail(`${name} must be finite and positive`); return v; };
-const nonnegative = (v, name) => { if (!finite(v) || v < 0) fail(`${name} must be finite and non-negative`); return v; };
+const positive = (v, name) => { if (!rapierFinite(v) || Math.fround(v) <= 0) fail(`${name} must be finite and positive in Rapier float32`); return v; };
+const nonnegative = (v, name) => { if (!rapierFinite(v) || v < 0) fail(`${name} must be finite and non-negative in Rapier float32`); return v; };
 let ready;
 const init = () => (ready ??= RAPIER.init());
 
@@ -13,19 +14,27 @@ function checked(input) {
   const t = input.trajectory;
   if (!['free-fall', 'projectile'].includes(t.kind) || t.integrator !== 'rk4-fixed-step' || !Array.isArray(t.samples)) fail('trajectory must be an RK4 trajectory output');
   if (t.source !== 'simulated' || t.inputProvenance !== 'synthetic') fail('source labels must be explicit simulated/synthetic');
-  if (!finite(t.dt_s) || t.dt_s <= 0 || !Number.isSafeInteger(t.requestedSteps) || t.requestedSteps < 0) fail('trajectory timestep/steps are invalid');
+  positive(t.dt_s, 'trajectory timestep');
+  if (!Number.isSafeInteger(t.requestedSteps) || t.requestedSteps < 0) fail('trajectory steps are invalid');
   if (t.samples.length === 0 || t.samples.length > t.requestedSteps + 1 || !Array.from({ length: t.samples.length }, (_, i) => Object.prototype.hasOwnProperty.call(t.samples, i)).every(Boolean)) fail('trajectory samples must be non-empty, dense, and bounded');
   const g = input.geometry ?? {};
   if (!finite(g.floorY) || !vec3(g.floorHalfExtents) || g.floorHalfExtents.some((v) => v <= 0)) fail('floorY and floorHalfExtents are required');
+  const floorCenterY = g.floorY - g.floorHalfExtents[1];
+  if (!finite(floorCenterY)) fail('floor center must remain finite');
+  if (!rapierFinite(floorCenterY)) fail('floor center must remain finite in Rapier float32');
+  g.floorHalfExtents.forEach((v) => positive(v, 'floorHalfExtents'));
   const radius = positive(g.sphereRadius, 'sphereRadius');
   const physics = input.physics ?? {};
   const friction = nonnegative(physics.friction, 'friction');
   const restitution = physics.restitution;
   if (!finite(restitution) || restitution < 0 || restitution > 1) fail('restitution must be finite in [0,1]');
   const density = positive(physics.density, 'density');
-  const gravity = input.gravity;
-  if (!finite(gravity) || gravity <= 0) fail('gravity must be finite and positive');
-  return { t, g, radius, friction, restitution, density, gravity };
+  const gravity = positive(input.gravity, 'gravity');
+  const first = t.samples[0];
+  if (!first || !vec3(first.position_m) || !vec3(first.velocity_m_s)) fail('trajectory samples contain invalid state');
+  if (!first.position_m.every(rapierFinite)) fail('trajectory positions must remain finite in Rapier float32');
+  if (first.position_m[1] - radius < g.floorY) fail('initial state penetrates floor; first-touch time is unknown');
+  return { t, g, floorCenterY, radius, friction, restitution, density, gravity };
 }
 
 function readContacts(world, sphere, floor, ids) {
@@ -47,16 +56,15 @@ function readContacts(world, sphere, floor, ids) {
  * sampled at the same step/time and is not a physical Gate-P result.
  */
 export async function contactAwareTrajectory(input) {
-  const { t, g, radius, friction, restitution, density, gravity } = checked(input);
+  const { t, g, floorCenterY, radius, friction, restitution, density, gravity } = checked(input);
   await init();
   const world = new RAPIER.World({ x: 0, y: -gravity, z: 0 });
   world.timestep = t.dt_s;
   const ids = new Map();
   try {
-    const floorDesc = RAPIER.ColliderDesc.cuboid(...g.floorHalfExtents).setTranslation(0, g.floorY - g.floorHalfExtents[1], 0).setFriction(friction).setRestitution(restitution);
+    const floorDesc = RAPIER.ColliderDesc.cuboid(...g.floorHalfExtents).setTranslation(0, floorCenterY, 0).setFriction(friction).setRestitution(restitution);
     const floor = world.createCollider(floorDesc); ids.set(floor.handle, 'floor');
     const first = t.samples[0];
-    if (!first || !vec3(first.position_m) || !vec3(first.velocity_m_s)) fail('trajectory samples contain invalid state');
     // Disable solver evolution: each dynamic body pose is replaced by the exact
     // RK4 sample before Rapier's actual narrow phase runs.
     const body = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setGravityScale(0, true).setTranslation(...first.position_m));
@@ -66,6 +74,7 @@ export async function contactAwareTrajectory(input) {
     for (let index = 0; index < t.samples.length; index += 1) {
       const sample = t.samples[index];
       if (!sample || sample.step !== index || sample.time_s !== index * t.dt_s || !vec3(sample.position_m) || !vec3(sample.velocity_m_s) || !finite(sample.time_s)) fail('trajectory samples must have exact step/time and finite dense state');
+      if (!sample.position_m.every(rapierFinite)) fail('trajectory positions must remain finite in Rapier float32');
       if (Math.abs(sample.position_m[0]) + radius > g.floorHalfExtents[0] || Math.abs(sample.position_m[2]) + radius > g.floorHalfExtents[2]) fail('sphere must remain within supported floor footprint');
       const previous = t.samples[index - 1];
       if (previous && Math.hypot(...previous.velocity_m_s) * t.dt_s + 0.5 * gravity * t.dt_s ** 2 > radius / 2) fail('time_step permits excessive displacement; reduce it');

@@ -1,0 +1,61 @@
+✔ real Rapier contact is mapped onto the same RK4 samples (228.0602ms)
+✔ contact timing tracks analytic impact within one sample for supported timesteps (172.6375ms)
+✔ no-contact trajectory remains no-contact and deterministic (2.5763ms)
+✔ rejects invalid explicit physics and geometry (83.5868ms)
+✔ returned contact output is deeply immutable (27.669ms)
+✖ rejects overflow of the derived floor center from finite operands (2.8475ms)
+✖ rejects initial penetration instead of fabricating a zero-time contact bracket (1.3332ms)
+✔ true initial touch is supported without treating a just-above start as contact (2.8014ms)
+✖ finite JavaScript inputs cannot overflow or collapse positive Rapier float32 inputs (1.5611ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 6
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1487.3623
+
+✖ failing tests:
+
+test at tests\simulator\contacts.test.mjs:70:1
+✖ rejects overflow of the derived floor center from finite operands (2.8475ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/contacts.test.mjs:71:3)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /floor center.*finite/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\simulator\contacts.test.mjs:75:1
+✖ rejects initial penetration instead of fabricating a zero-time contact bracket (1.3332ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/contacts.test.mjs:77:5)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /initial.*penetrat/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\simulator\contacts.test.mjs:95:1
+✖ finite JavaScript inputs cannot overflow or collapse positive Rapier float32 inputs (1.5611ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection: floor center
+      at async TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm10-s10review/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/contacts.test.mjs:113:5)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /float32/,
+    operator: 'rejects',
+    diff: 'simple'
+  }

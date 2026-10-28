@@ -1,0 +1,17 @@
+✔ real Rapier contact is mapped onto the same RK4 samples (212.0649ms)
+✔ contact timing tracks analytic impact within one sample for supported timesteps (145.8546ms)
+✔ no-contact trajectory remains no-contact and deterministic (6.0926ms)
+✔ rejects invalid explicit physics and geometry (64.9571ms)
+✔ returned contact output is deeply immutable (22.9838ms)
+✔ rejects overflow of the derived floor center from finite operands (0.6852ms)
+✔ rejects initial penetration instead of fabricating a zero-time contact bracket (1.1138ms)
+✔ true initial touch is supported without treating a just-above start as contact (5.3985ms)
+✔ finite JavaScript inputs cannot overflow or collapse positive Rapier float32 inputs (15.1445ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1279.7649

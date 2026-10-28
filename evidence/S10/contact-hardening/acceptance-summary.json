@@ -1,0 +1,14 @@
+{
+  "acceptance": {
+    "authored": 15,
+    "passed": 15,
+    "failed": 0,
+    "rejected": 0
+  },
+  "regression_cases": 4,
+  "threshold": 0.005,
+  "actual_replay_deterministic_and_seed_bound": true,
+  "contact_cases": 6,
+  "jitter_observed": false,
+  "scope": "synthetic only; no contact response or physical/real-scene gate"
+}

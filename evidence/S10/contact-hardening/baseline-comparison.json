@@ -1,0 +1,95 @@
+{
+  "baseline": "0db90bae35d9dd1c9c23a032644e0311fb843975",
+  "rows": [
+    {
+      "template": "free_fall",
+      "case": "contact-5ms",
+      "fullOutputIdentical": true,
+      "replayRecordIdentical": true,
+      "seedBound": true,
+      "outputHash": "bb2f6f4c88effa8169933d9b778110a978769612e77177f26249855a9514dca1",
+      "replayHash": "ea35fff5ed8896941990b11d5e5dac72f288af97d2add85e1472c931fdbd1bf5"
+    },
+    {
+      "template": "free_fall",
+      "case": "contact-2.5ms",
+      "fullOutputIdentical": true,
+      "replayRecordIdentical": true,
+      "seedBound": true,
+      "outputHash": "7c10e22689a20f12eed9960aff85bdfab6897e7699466a81f2de472a9fea7307",
+      "replayHash": "4ea5d7d4c5d879fb0be1a6939b45d1151f3d60586e592a90f553499356b5035e"
+    },
+    {
+      "template": "free_fall",
+      "case": "contact-1ms",
+      "fullOutputIdentical": true,
+      "replayRecordIdentical": true,
+      "seedBound": true,
+      "outputHash": "f677d9b121c6e7e56269bed2bdc40657047d46ecc5e42b95832a6acb0e9dec87",
+      "replayHash": "06fc267942105de1c055e755d5c2306eff1d885d68747ce5d1d170ee4af38b0f"
+    },
+    {
+      "template": "free_fall",
+      "case": "initial-touch",
+      "fullOutputIdentical": true,
+      "replayRecordIdentical": true,
+      "seedBound": true,
+      "outputHash": "df957909973724445d11a5b985ba553822c0dd7f3d65ea6a69b62bc2ec0cdc57",
+      "replayHash": "56e6470bd1377ad629ceaf66077c8d19e8d6a2a1c678806b633459221bfe159f"
+    },
+    {
+      "template": "free_fall",
+      "case": "no-contact",
+      "fullOutputIdentical": true,
+      "replayRecordIdentical": true,
+      "seedBound": true,
+      "outputHash": "043a867cc4efc8e83b30e5974a9dbb94453dc36e2e19a9aab93588df8a9bf648",
+      "replayHash": "87c078b64d5d9b6f8a29d385638b37a4865e3ebeb6a7f24d9deb428110acf15d"
+    },
+    {
+      "template": "projectile",
+      "case": "contact-5ms",
+      "fullOutputIdentical": true,
+      "replayRecordIdentical": true,
+      "seedBound": true,
+      "outputHash": "94d205b6cdc6f0afb34d274612585511a44c7884615db195d679f192b0264911",
+      "replayHash": "9cef7b69314f4aafb5dc13b88288ae0acfbc7cc63e84b85f86a298ecf20909f5"
+    },
+    {
+      "template": "projectile",
+      "case": "contact-2.5ms",
+      "fullOutputIdentical": true,
+      "replayRecordIdentical": true,
+      "seedBound": true,
+      "outputHash": "ecb6833b2dddc2f5cb272bd923dcd313c871adfea4445d1bf577e32aebbebccf",
+      "replayHash": "02fc255bcafd794850d6ffe81a0eb2e4a378069c043158882884f11f602a1e89"
+    },
+    {
+      "template": "projectile",
+      "case": "contact-1ms",
+      "fullOutputIdentical": true,
+      "replayRecordIdentical": true,
+      "seedBound": true,
+      "outputHash": "6619dc0788f4da4d3e8fa87962c860c95ddec2c1d5dad1be90342fa77f3a5184",
+      "replayHash": "9af5e83374aac2c7521e141d06bf58855ab130adbaa61017de3dd5de7814e080"
+    },
+    {
+      "template": "projectile",
+      "case": "initial-touch",
+      "fullOutputIdentical": true,
+      "replayRecordIdentical": true,
+      "seedBound": true,
+      "outputHash": "4411fcee19f9edbbf69f5dc6bc1d9f83456a207804b9deebb03ba3473b5e74a4",
+      "replayHash": "e16f8bff81f0a3d66f2c7aea7160a8f977769dcbf2969960367b5b57911812b0"
+    },
+    {
+      "template": "projectile",
+      "case": "no-contact",
+      "fullOutputIdentical": true,
+      "replayRecordIdentical": true,
+      "seedBound": true,
+      "outputHash": "984176012d3f945fcbe253c905ea2a3d9bcd00649545ac923eb8e97bc0c0010d",
+      "replayHash": "7deb990a981d213177a233a858cd5f7080b88a2d10d468cdfddc70afabd94a1b"
+    }
+  ]
+}

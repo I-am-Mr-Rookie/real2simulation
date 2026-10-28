@@ -1,0 +1,50 @@
+[
+  {
+    "name": "finite operands overflow derived floor center",
+    "status": "accepted",
+    "contact": false,
+    "contactBracket_s": null,
+    "manifoldCount": 0
+  },
+  {
+    "name": "initial penetration",
+    "status": "accepted",
+    "contact": true,
+    "contactBracket_s": [
+      0,
+      0
+    ],
+    "manifoldCount": 1
+  },
+  {
+    "name": "finite JS floor center overflows float32",
+    "status": "accepted",
+    "contact": false,
+    "contactBracket_s": null,
+    "manifoldCount": 0
+  },
+  {
+    "name": "finite JS body position overflows float32",
+    "status": "accepted",
+    "contact": false,
+    "contactBracket_s": null,
+    "manifoldCount": 0
+  },
+  {
+    "name": "true initial touch",
+    "status": "accepted",
+    "contact": true,
+    "contactBracket_s": [
+      0,
+      0
+    ],
+    "manifoldCount": 1
+  },
+  {
+    "name": "raw Rapier float32 boundary",
+    "finiteJSInput": true,
+    "fround": "Infinity",
+    "colliderY": "-Infinity",
+    "bodyY": "Infinity"
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "name": "finite operands overflow derived floor center",
+    "status": "rejected",
+    "reason": "TypeError: INVALID_CONTACTS: floor center must remain finite"
+  },
+  {
+    "name": "initial penetration",
+    "status": "rejected",
+    "reason": "TypeError: INVALID_CONTACTS: initial state penetrates floor; first-touch time is unknown"
+  },
+  {
+    "name": "finite JS floor center overflows float32",
+    "status": "rejected",
+    "reason": "TypeError: INVALID_CONTACTS: floor center must remain finite in Rapier float32"
+  },
+  {
+    "name": "finite JS body position overflows float32",
+    "status": "rejected",
+    "reason": "TypeError: INVALID_CONTACTS: trajectory positions must remain finite in Rapier float32"
+  },
+  {
+    "name": "true initial touch",
+    "status": "accepted",
+    "contact": true,
+    "contactBracket_s": [
+      0,
+      0
+    ],
+    "manifoldCount": 1
+  },
+  {
+    "name": "raw Rapier float32 boundary",
+    "finiteJSInput": true,
+    "fround": "Infinity",
+    "colliderY": "-Infinity",
+    "bodyY": "Infinity"
+  }
+]

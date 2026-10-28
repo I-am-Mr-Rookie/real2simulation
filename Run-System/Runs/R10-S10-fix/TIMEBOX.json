@@ -1,0 +1,12 @@
+{
+  "id": "R10-S10-fix",
+  "issued_at": "2026-10-28T20:03:18.139Z",
+  "deadline_at": "2026-10-28T20:33:18.139Z",
+  "implementation_cutoff_at": "2026-10-28T20:28:18.139Z",
+  "deadline_dhaka": "2026-10-29T02:33:18.139+06:00",
+  "work_stopped_at": "2026-10-28T20:11:12.543149+00:00",
+  "reported_at": "2026-10-28T20:11:12.543178+00:00",
+  "status": "DONE",
+  "timing_correction": "Controller corrected Dhaka arithmetic only; original UTC issue/deadline/cutoff unchanged. No clock reset/extension.",
+  "stop_scope": "Implementation and substantive verification complete; reporting, timing/scope receipt and commit finalization follow."
+}
