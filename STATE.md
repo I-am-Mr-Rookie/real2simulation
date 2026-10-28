@@ -25,6 +25,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 | Dispatch enabled | NO |
 | Quota halt | NO — Koushik superseded manual coding-quota checks and the 85% rule on Oct28. OpenCodex manages allowance; dispatch assigned dependency-ready runs without polling percentages. Record actual runtime/dispatch errors; no bypass, resets, purchases or routing changes. Meta/API/AWS gates unchanged. |
 | Active lanes | Sole successor01a182c4-9378-7da0-9fbc-99a5a379380c; separate existing-project chats only. S07b-auth-provision01a182f6-79d5-7791-a16c-fc9edc596ec6 active/verified project, full30m deadline15:12:32UTC. Other prior chats terminal; fresh recovery8/CLEAN3 IDs and individually issued30m clocks recorded at launch in ORCHESTRATOR_STATE. No inline workers/schedule/dispatcher. |
+| Latest full-window dispatch | Recovery8 01a182fd-0856-7fd2-9cf9-8a060a677995 deadline15:19:41UTC=21:19:41Dhaka; CLEAN3 01a182fd-aaed-7222-b51b-fbe5a23bdbbb deadline15:20:06UTC=21:20:06Dhaka. Exact issue/deadline/cutoff IN each actual saved LAUNCH.json prompt, full1800s; list_threads independently confirms same existing project/active. |
 | Judging candidate approval | NO |
 | Fresh QA identities ready | NO |
 | Judging promotion approval | NO |

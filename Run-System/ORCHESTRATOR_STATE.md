@@ -1,5 +1,30 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — three strict-window separate workers, actual prompt clocks verified
+
+Fresh list_threads verifies all3 active in project91e441f8-e40c-4ec4-bea2-de7fa1582d97:
+- S07b-auth-provision01a182f6-79d5-7791-a16c-fc9edc596ec6, Sol/medium,
+  issued14:42:32Z, deadline15:12:32Z=21:12:32Dhaka, cutoff15:07:32Z.
+- S05b recovery8 01a182fd-0856-7fd2-9cf9-8a060a677995, Sol/medium,
+  issued14:49:41Z, deadline15:19:41Z=21:19:41Dhaka, cutoff15:14:41Z.
+- CLEAN3 01a182fd-aaed-7222-b51b-fbe5a23bdbbb, Sol/medium,
+  issued14:50:06Z, deadline15:20:06Z=21:20:06Dhaka, cutoff15:15:06Z.
+Actual exact handout prompts/timeboxes saved under each run LAUNCH.json. Separate
+issue clocks, no shortened shared batch deadline. Only Q14 worker uses browser;
+other2 source/cleanup local. No inline workers/automation/dispatcher/quota polls.
+
+Token NONTERMINAL: no token created/revealed; prepared fine-grained selected-only
+facebook/sam3.1 read scope (global/write/org/billing/inference OFF), no expiry UI.
+Modal exact private secret/key names prepared. Harmless native copy/paste string
+test passed without clipboard read. Installed computer-use confirmations.md §2
+requires action-time human approval for API/persistent access even preapproved.
+Controller relayed ONE exact Create+private-transfer request via async user UI;
+worker had already asked overlapping question before controller message, now
+instructed not to repeat and to use parent human response. This is mandatory
+tool confirmation, NOT renewed Q11/GPU/grant approval or owner key-handling.
+Waiting state authorized while safe owned checks continue under original deadline;
+never create/reveal without required actual human confirmation, no token outputs.
+
 ## CURRENT — first strict-window worker active; old partial evidence reconciled
 
 Q14 provision chat01a182f6-79d5-7791-a16c-fc9edc596ec6 active, exact Sol/medium,
