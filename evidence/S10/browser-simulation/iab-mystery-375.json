@@ -1,0 +1,16 @@
+{
+  "before": {
+    "client": 360,
+    "hasBrowser": false,
+    "scroll": 360,
+    "text": "SYNTHETIC LAB · MYSTERY-G\n\nTest a motion model\n\nExplore a deterministic, simulated trajectory before connecting a measured video.\n\nTemplate\nFree fall\nBallistic drop\nProjectile\nBallistic launch\nRamp\nSliding motion\nPendulum\nOscillation\nMystery-g mode\nHide the simulated gravity until reveal\nRun trial\nFit & reveal\n\nTrial ready. Fit the ballistic model or run another trial.\n\nOBSERVED TRAJECTORY\n\nFree fall samples\nSimulated · m\n\nDownward vertical displacement from start (positive down), not distance along the ramp or pendulum arc. The chart uses all finite observations; the table is sampled.\n\ntime (s)\ndownward displacement (m)\nSampled observations\nTime (s)\tDownward displacement (m)\n0.00\t0.000\n0.03\t0.003\n0.05\t0.014\n0.08\t0.031\n0.10\t0.055\n0.13\t0.087\n0.16\t0.125\n0.18\t0.170\n0.20\t0.205\n\nLimits: synthetic authored instrument settings first-order independent timing/position uncertainty; no correlated clock-rate or scale uncertainty; not calibrated",
+    "width": 375
+  },
+  "after": {
+    "client": 360,
+    "hasBrowser": false,
+    "scroll": 360,
+    "text": "SYNTHETIC LAB · MYSTERY-G\n\nTest a motion model\n\nExplore a deterministic, simulated trajectory before connecting a measured video.\n\nTemplate\nFree fall\nBallistic drop\nProjectile\nBallistic launch\nRamp\nSliding motion\nPendulum\nOscillation\nMystery-g mode\nHide the simulated gravity until reveal\nRun trial\nFit & reveal\n\nFit complete. This is simulated evidence, not a calibrated measurement.\n\nOBSERVED TRAJECTORY\n\nFree fall samples\nSimulated · m\n\nDownward vertical displacement from start (positive down), not distance along the ramp or pendulum arc. The chart uses all finite observations; the table is sampled.\n\ntime (s)\ndownward displacement (m)\nSampled observations\nTime (s)\tDownward displacement (m)\n0.00\t0.000\n0.03\t0.003\n0.05\t0.014\n0.08\t0.031\n0.10\t0.055\n0.13\t0.087\n0.16\t0.125\n0.18\t0.170\n0.20\t0.205\n\nREVEAL\n\n10.249 ± 0.0000756 m/s^2\n\nGravity · source: simulated\n\nUncertainty is one standard uncertainty (1σ), not a 95% interval.\n\nUncertainty model: independent_position_time_first_order. independent observation errors first-order timing linearization at fitted velocity per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2) scale fixed no correlated clock-rate or scale uncertainty no calibration of declared standard uncertainties no errors-in-variables bias correction\n\nLimits: synthetic authored instrument settings first-order independent timing/position uncertainty; no correlated clock-rate or scale uncertainty; not calibrated",
+    "width": 375
+  }
+}
