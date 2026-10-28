@@ -631,7 +631,7 @@ is not generic calibration/source searching. Parent gates/S12 unchanged.
 
 ## 2026-10-28 — Exact SAM access question; independent approved prefix custody
 
-R-S07b recovery2 readiness accepted PARTIAL0f762f5, not live/physical success.
+S07b recovery2 readiness accepted PARTIAL0f762f5, not live/physical success.
 Current logged-out HF conditions gate warrants Q11 owner review, not a claim that
 owner lacks approval. No agent login/info sharing/terms/download authorized.
 While Q11 waits, existing S02 ST03 scene/tracking approval supports bounded local
