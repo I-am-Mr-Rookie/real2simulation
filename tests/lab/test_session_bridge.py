@@ -3,6 +3,7 @@ import json
 import subprocess
 import sys
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -10,6 +11,18 @@ SPEC = importlib.util.spec_from_file_location('s10_bridge', ROOT / 'Build/lab/se
 MODULE = importlib.util.module_from_spec(SPEC); SPEC.loader.exec_module(MODULE)
 
 class BridgeTests(unittest.TestCase):
+    def test_mystery_seed_changes_private_gravity_and_actual_fit(self):
+        values = []
+        for seed in (0, 2**31):
+            with patch.object(MODULE.secrets, 'randbits', return_value=seed):
+                start = MODULE.handle({'action': 'start', 'template': 'free_fall', 'mystery': True})
+            self.assertEqual(start['status'], 'ok')
+            fit = MODULE.handle({'action': 'fit', 'observations': start['observations']})
+            self.assertEqual(fit['status'], 'ok')
+            self.assertAlmostEqual(fit['gravity']['value'], start['private']['gravity_m_s2'], places=3)
+            values.append(fit['gravity']['value'])
+        self.assertGreater(abs(values[0] - values[1]), 5)
+
     def test_all_templates_use_actual_s08_factories(self):
         for template in ('free_fall', 'projectile', 'ramp', 'pendulum'):
             result = MODULE.handle({'action': 'start', 'template': template})

@@ -66,14 +66,19 @@ export async function contactAwareTrajectory(input) {
     for (let index = 0; index < t.samples.length; index += 1) {
       const sample = t.samples[index];
       if (!sample || sample.step !== index || sample.time_s !== index * t.dt_s || !vec3(sample.position_m) || !vec3(sample.velocity_m_s) || !finite(sample.time_s)) fail('trajectory samples must have exact step/time and finite dense state');
+      if (Math.abs(sample.position_m[0]) + radius > g.floorHalfExtents[0] || Math.abs(sample.position_m[2]) + radius > g.floorHalfExtents[2]) fail('sphere must remain within supported floor footprint');
+      const previous = t.samples[index - 1];
+      if (previous && Math.hypot(...previous.velocity_m_s) * t.dt_s + 0.5 * gravity * t.dt_s ** 2 > radius / 2) fail('time_step permits excessive displacement; reduce it');
       body.setTranslation({ x: sample.position_m[0], y: sample.position_m[1], z: sample.position_m[2] }, true);
       body.setLinvel({ x: 0, y: 0, z: 0 }, true);
       world.timestep = t.dt_s;
       world.step();
       const contacts = readContacts(world, sphere, floor, ids);
-      samples.push(Object.freeze({ step: index, time_s: sample.time_s, position_m: Object.freeze([...sample.position_m]), velocity_m_s: Object.freeze([...sample.velocity_m_s]), contacts: Object.freeze(contacts.map((c) => Object.freeze(c))), contact: contacts.length > 0 }));
-      if (contacts.length > 0) break;
+      const touch = sample.position_m[1] - radius <= g.floorY;
+      const bracket = touch ? Object.freeze([previous?.time_s ?? sample.time_s, sample.time_s]) : null;
+      samples.push(Object.freeze({ step: index, time_s: sample.time_s, position_m: Object.freeze([...sample.position_m]), velocity_m_s: Object.freeze([...sample.velocity_m_s]), contacts: Object.freeze(contacts.map((c) => Object.freeze(c))), contact: touch, contactBracket_s: bracket }));
+      if (touch) break;
     }
-    return Object.freeze({ kind: t.kind, source: t.source, inputProvenance: t.inputProvenance, integrator: t.integrator, contactEngine: 'rapier3d-compat-0.21.0', contactSemantics: 'Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact', geometry: Object.freeze({ floorY: g.floorY, floorHalfExtents: Object.freeze([...g.floorHalfExtents]), sphereRadius: radius }), samples: Object.freeze(samples) });
+    return Object.freeze({ kind: t.kind, source: t.source, inputProvenance: t.inputProvenance, integrator: t.integrator, contactEngine: 'rapier3d-compat-0.21.0', contactSemantics: 'Sphere-floor touch uses RK4 sample geometry and a time bracket; contacts contains Rapier candidate manifolds, not touch truth. Unsupported coarse steps reject.', geometry: Object.freeze({ floorY: g.floorY, floorHalfExtents: Object.freeze([...g.floorHalfExtents]), sphereRadius: radius }), samples: Object.freeze(samples) });
   } finally { world.free(); }
 }

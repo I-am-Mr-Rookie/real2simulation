@@ -454,81 +454,106 @@
     "rows": [
       {
         "template": "free_fall",
-        "dt_s": 0.02,
-        "status": "contact_observed",
-        "contact_step": 31,
-        "contact_time_s": 0.62,
-        "expected_contact_time_s": 0.6223823880068597,
-        "contact_time_error_s": -0.002382388006859748,
-        "rebound_claim": false,
-        "samples": 32,
-        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
-      },
-      {
-        "template": "free_fall",
-        "dt_s": 0.01,
-        "status": "contact_observed",
-        "contact_step": 62,
-        "contact_time_s": 0.62,
-        "expected_contact_time_s": 0.6223823880068597,
-        "contact_time_error_s": -0.002382388006859748,
-        "rebound_claim": false,
-        "samples": 63,
-        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
-      },
-      {
-        "template": "free_fall",
         "dt_s": 0.005,
         "status": "contact_observed",
-        "contact_step": 124,
-        "contact_time_s": 0.62,
+        "contact_step": 125,
+        "contact_time_s": 0.625,
+        "contact_bracket_s": [
+          0.62,
+          0.625
+        ],
         "expected_contact_time_s": 0.6223823880068597,
-        "contact_time_error_s": -0.002382388006859748,
+        "contact_time_error_s": 0.0026176119931402564,
         "rebound_claim": false,
-        "samples": 125,
-        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
+        "samples": 126,
+        "contact_semantics": "Sphere-floor touch uses RK4 sample geometry and a time bracket; contacts contains Rapier candidate manifolds, not touch truth. Unsupported coarse steps reject."
       },
       {
-        "template": "projectile",
-        "dt_s": 0.02,
+        "template": "free_fall",
+        "dt_s": 0.0025,
         "status": "contact_observed",
-        "contact_step": 31,
-        "contact_time_s": 0.62,
+        "contact_step": 249,
+        "contact_time_s": 0.6225,
+        "contact_bracket_s": [
+          0.62,
+          0.6225
+        ],
         "expected_contact_time_s": 0.6223823880068597,
-        "contact_time_error_s": -0.002382388006859748,
+        "contact_time_error_s": 0.00011761199314030968,
         "rebound_claim": false,
-        "samples": 32,
-        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
+        "samples": 250,
+        "contact_semantics": "Sphere-floor touch uses RK4 sample geometry and a time bracket; contacts contains Rapier candidate manifolds, not touch truth. Unsupported coarse steps reject."
       },
       {
-        "template": "projectile",
-        "dt_s": 0.01,
+        "template": "free_fall",
+        "dt_s": 0.001,
         "status": "contact_observed",
-        "contact_step": 62,
-        "contact_time_s": 0.62,
+        "contact_step": 623,
+        "contact_time_s": 0.623,
+        "contact_bracket_s": [
+          0.622,
+          0.623
+        ],
         "expected_contact_time_s": 0.6223823880068597,
-        "contact_time_error_s": -0.002382388006859748,
+        "contact_time_error_s": 0.0006176119931402546,
         "rebound_claim": false,
-        "samples": 63,
-        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
+        "samples": 624,
+        "contact_semantics": "Sphere-floor touch uses RK4 sample geometry and a time bracket; contacts contains Rapier candidate manifolds, not touch truth. Unsupported coarse steps reject."
       },
       {
         "template": "projectile",
         "dt_s": 0.005,
         "status": "contact_observed",
-        "contact_step": 124,
-        "contact_time_s": 0.62,
+        "contact_step": 125,
+        "contact_time_s": 0.625,
+        "contact_bracket_s": [
+          0.62,
+          0.625
+        ],
         "expected_contact_time_s": 0.6223823880068597,
-        "contact_time_error_s": -0.002382388006859748,
+        "contact_time_error_s": 0.0026176119931402564,
         "rebound_claim": false,
-        "samples": 125,
-        "contact_semantics": "Rapier intersection detector driven by each RK4 sample; trace is not advanced past first contact"
+        "samples": 126,
+        "contact_semantics": "Sphere-floor touch uses RK4 sample geometry and a time bracket; contacts contains Rapier candidate manifolds, not touch truth. Unsupported coarse steps reject."
+      },
+      {
+        "template": "projectile",
+        "dt_s": 0.0025,
+        "status": "contact_observed",
+        "contact_step": 249,
+        "contact_time_s": 0.6225,
+        "contact_bracket_s": [
+          0.62,
+          0.6225
+        ],
+        "expected_contact_time_s": 0.6223823880068597,
+        "contact_time_error_s": 0.00011761199314030968,
+        "rebound_claim": false,
+        "samples": 250,
+        "contact_semantics": "Sphere-floor touch uses RK4 sample geometry and a time bracket; contacts contains Rapier candidate manifolds, not touch truth. Unsupported coarse steps reject."
+      },
+      {
+        "template": "projectile",
+        "dt_s": 0.001,
+        "status": "contact_observed",
+        "contact_step": 623,
+        "contact_time_s": 0.623,
+        "contact_bracket_s": [
+          0.622,
+          0.623
+        ],
+        "expected_contact_time_s": 0.6223823880068597,
+        "contact_time_error_s": 0.0006176119931402546,
+        "rebound_claim": false,
+        "samples": 624,
+        "contact_semantics": "Sphere-floor touch uses RK4 sample geometry and a time bracket; contacts contains Rapier candidate manifolds, not touch truth. Unsupported coarse steps reject."
       }
     ],
     "assessment": {
       "contact_jitter_observed": false,
-      "max_contact_time_spread_s": 0.0,
-      "max_abs_contact_time_error_s": 0.002382388006859748,
+      "assessment_basis": "analytic time contained in each sampled geometric bracket; raw timestep spread is not jitter",
+      "max_contact_time_spread_s": 0.0024999999999999467,
+      "max_abs_contact_time_error_s": 0.0026176119931402564,
       "fallback_observed": false,
       "fallback_applied": false,
       "fallback_reason": "not triggered by this dt sweep"

@@ -4,6 +4,7 @@ from __future__ import annotations
 import json
 import math
 import os
+import secrets
 from pathlib import Path
 import subprocess
 import sys
@@ -25,14 +26,16 @@ def _finite(value: object) -> bool:
     return type(value) in (int, float) and math.isfinite(value)
 
 
-def _start(template: str) -> dict:
+def _start(template: str, mystery: bool = False) -> dict:
     if template not in {"free_fall", "projectile", "ramp", "pendulum"}:
         return error("unsupported_template")
     from Build.lab.regression import regression_case
     from Build.simulator.export_validated_setup import export
     with tempfile.TemporaryDirectory(prefix="s10-lab-") as tmp:
         folder = Path(tmp)
-        spec_path, scene_path, _ = regression_case(folder, template)
+        seed = secrets.randbits(32) if mystery else 42
+        gravity = 4 + 12 * (seed / 2**32) if mystery else 9.81
+        spec_path, scene_path, _ = regression_case(folder, template, gravity=gravity, seed=seed)
         artifact = export(spec_path, scene_path)
         encoded = json.dumps(artifact, allow_nan=False)
         child = subprocess.Popen(["node", str(ROOT / "Build/lab/simulate.mjs")], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, encoding="utf-8", cwd=ROOT, env={"PATH": os.environ.get("PATH", ""), "SystemRoot": os.environ.get("SystemRoot", ""), "PYTHONPATH": os.environ.get("PYTHONPATH", ""), "PYTHONIOENCODING": "utf-8"})
@@ -93,9 +96,12 @@ def handle(request: object) -> dict:
         action = request.get("action") if isinstance(request, dict) else None
         if action == "start":
             template = request.get("template")
-            if type(template) is not str or set(request) - {"action", "template"}:
+            if type(template) is not str or set(request) - {"action", "template", "mystery"} or type(request.get("mystery", False)) is not bool:
                 return error("invalid_start_request")
-            return _start(template)
+            mystery = request.get("mystery", False)
+            if mystery and template not in {"free_fall", "projectile"}:
+                return error("unsupported_mystery_template")
+            return _start(template, mystery)
         if action == "fit":
             if set(request) - {"action", "observations"} or "observations" not in request:
                 return error("invalid_fit_request")

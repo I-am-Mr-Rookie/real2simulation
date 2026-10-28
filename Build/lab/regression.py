@@ -21,23 +21,23 @@ def quantity(value, unit):
             'source': {'label': 'synthetic', 'evidence': 'authored extension analytic regression input'}}
 
 
-def regression_case(folder, template):
+def regression_case(folder, template, *, gravity=9.81, seed=42):
     """Build actual validated S08 factory inputs, not fake validator labels."""
     source = ROOT / 'test-data/synthetic/scene/room-v1'
     scene = json.loads((source / 'scene.json').read_text(encoding='utf-8'))
     scene['bounds_m'] = {'min': [-10, -1, -10], 'max': [10, 10, 10]}
     scene['colliders'] = []
     scene['gravity'] = dict(status='assumed', direction=[0, -1, 0],
-                            magnitude_m_s2=9.81, evidence='authored synthetic regression')
+                            magnitude_m_s2=gravity, evidence='authored synthetic regression')
     scene_path = folder / 'scene.json'
     scene_path.write_text(json.dumps(scene), encoding='utf-8')
     shutil.copyfile(source / 'points.ply', folder / 'points.ply')
     module = importlib.import_module(f'Build.templates.{template}')
     common = dict(experiment_id=f'extension-{template}', scene=scene, scene_root=folder,
                   origin={'value': [0, 2, 0], 'unit': 'm', 'source': quantity(0, 'm')['source']},
-                  gravity=quantity(9.81, 'm/s^2'), mass=quantity(0.1, 'kg'),
+                  gravity=quantity(gravity, 'm/s^2'), mass=quantity(0.1, 'kg'),
                   radius=quantity(0.02, 'm'), duration=quantity(0.2 if template != 'pendulum' else 1, 's'),
-                  time_step=quantity(0.001, 's'), clearance=quantity(0.01, 'm'), seed=42)
+                  time_step=quantity(0.001, 's'), clearance=quantity(0.01, 'm'), seed=seed)
     parameters = {
         'free_fall': dict(drop_height=quantity(1, 'm'), initial_vertical_velocity=quantity(0, 'm/s')),
         'projectile': dict(launch_height=quantity(1, 'm'), horizontal_speed=quantity(1, 'm/s')),
@@ -71,6 +71,8 @@ def run_regression():
             samples = trajectory['samples']
             reference = getattr(module, f'analytic_{template}')(
                 artifact['spec'], artifact['scene'], folder, times=[s['time_s'] for s in samples])
+            if len(samples) != len(reference['samples']):
+                raise ValueError('analytic sample count mismatch')
             position_error = max(math.dist(s['position_m'], a['position']['value'])
                                  for s, a in zip(samples, reference['samples']))
             if template == 'pendulum':

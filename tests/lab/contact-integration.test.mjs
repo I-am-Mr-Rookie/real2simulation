@@ -7,7 +7,7 @@ test('both ballistic templates reach real contact through the common run adapter
   for (const template of ['free_fall', 'projectile']) {
     const output = await runContactAwareTrajectory({ template, initialPosition: [0, 2, 0],
       initialVelocity: template === 'projectile' ? [1, 0, 0] : [0, 0, 0],
-      gravity: 9.81, dt: 0.01, steps: 150, source: 'simulated', inputProvenance: 'synthetic',
+      gravity: 9.81, dt: 0.005, steps: 300, source: 'simulated', inputProvenance: 'synthetic',
       geometry: { floorY: 0, floorHalfExtents: [5, 0.1, 5], sphereRadius: 0.1 },
       physics: { friction: 0.4, restitution: 0, density: 1 } });
     assert.equal(output.samples.at(-1).contact, true);

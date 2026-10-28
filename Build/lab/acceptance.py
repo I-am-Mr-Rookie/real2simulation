@@ -299,7 +299,7 @@ const run = async () => {
     const rows = [];
     const expectedContactTime = Math.sqrt(2 * (2 - 0.1) / 9.81);
     for (const template of ['free_fall', 'projectile']) {
-      for (const dt of [0.02, 0.01, 0.005]) {
+      for (const dt of [0.005, 0.0025, 0.001]) {
         const trajectory = (template === 'projectile' ? projectileTrajectory : freeFallTrajectory)({
           initialPosition: [0, 2, 0],
           initialVelocity: template === 'projectile' ? [1, 0, 0] : [0, 0, 0],
@@ -314,6 +314,7 @@ const run = async () => {
           const hit = output.samples.find((sample) => sample.contact) ?? null;
           rows.push({ template, dt_s: dt, status: hit ? 'contact_observed' : 'no_contact',
             contact_step: hit?.step ?? null, contact_time_s: hit?.time_s ?? null,
+            contact_bracket_s: hit?.contactBracket_s ?? null,
             expected_contact_time_s: expectedContactTime,
             contact_time_error_s: hit ? hit.time_s - expectedContactTime : null,
             rebound_claim: false, samples: output.samples.length,
@@ -340,9 +341,9 @@ await run();
             by_template.setdefault(row['template'], []).append(row)
         result['assessment'] = {
             'contact_jitter_observed': any(
-                max(row['contact_time_s'] for row in group) -
-                min(row['contact_time_s'] for row in group) > 0
-                for group in by_template.values()),
+                not (row['contact_bracket_s'][0] <= row['expected_contact_time_s']
+                     <= row['contact_bracket_s'][1]) for row in measured),
+            'assessment_basis': 'analytic time contained in each sampled geometric bracket; raw timestep spread is not jitter',
             'max_contact_time_spread_s': max((
                 max(row['contact_time_s'] for row in group) -
                 min(row['contact_time_s'] for row in group)
@@ -357,9 +358,9 @@ await run();
         return result
     except (OSError, subprocess.SubprocessError, json.JSONDecodeError) as error:
         return {'status': 'unavailable', 'reason': str(error), 'rows': [],
-                'assessment': {'contact_jitter_observed': False,
-                               'fallback_observed': False,
-                               'fallback_applied': False,
+                'assessment': {'contact_jitter_observed': None,
+                               'fallback_observed': None,
+                               'fallback_applied': None,
                                'fallback_reason': 'runtime unavailable'}}
 
 

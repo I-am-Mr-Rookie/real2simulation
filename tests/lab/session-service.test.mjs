@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { handleLab, _sessionTest } from '../../Build/lab/session-service.mjs';
 import { POST } from '../../Build/web/src/app/api/lab/route.js';
+process.env.NODE_ENV ??= 'test';
 
 test('normal start/fit uses the actual bridge and fitter', async () => {
   const start = await handleLab({ action: 'start', template: 'free_fall', mystery: false });
@@ -37,6 +38,15 @@ test('allowlists, expiry and bounded session errors are clean', async () => {
   assert.equal((await handleLab({ action: 'fit', sessionId: start.sessionId })).error.code, 'session_not_found_or_expired');
 });
 
+test('aborting an active bridge settles and releases its capacity', async () => {
+  const controller = new AbortController();
+  const pending = handleLab({ action: 'start', template: 'free_fall', mystery: false }, { signal: controller.signal });
+  assert.equal(_sessionTest.getActiveBridges(), 1);
+  controller.abort();
+  assert.equal((await pending).status, 'error');
+  assert.equal(_sessionTest.getActiveBridges(), 0);
+});
+
 test('loopback route accepts the UI contract and rejects nonlocal hosts', async () => {
   const body = JSON.stringify({ action: 'start', template: 'free_fall', mystery: false });
   const good = await POST(new Request('http://localhost:3000/api/lab', { method: 'POST', headers: { host: 'localhost:3000', origin: 'http://localhost:3000' }, body }));
@@ -45,4 +55,14 @@ test('loopback route accepts the UI contract and rejects nonlocal hosts', async 
   assert.equal(bad.status, 403); assert.equal((await bad.json()).error.code, 'local_origin_required');
   const oversized = await POST(new Request('http://localhost:3000/api/lab', { method: 'POST', headers: { host: 'localhost:3000', 'content-length': '1000001' }, body: '{}' }));
   assert.equal(oversized.status, 413); assert.equal((await oversized.json()).error.code, 'request_too_large');
+});
+
+test('production route remains disabled', async () => {
+  const previous = process.env.NODE_ENV;
+  try {
+    process.env.NODE_ENV = 'production';
+    const response = await POST(new Request('http://localhost/api/lab', { method: 'POST', headers: { host: 'localhost' }, body: '{}' }));
+    assert.equal(response.status, 403);
+    assert.equal((await response.json()).error.code, 'local_lab_disabled');
+  } finally { process.env.NODE_ENV = previous; }
 });
