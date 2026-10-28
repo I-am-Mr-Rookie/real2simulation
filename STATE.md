@@ -2,6 +2,15 @@
 
 ## CURRENT — owner one-time inline swarm through Oct29 10:00 Dhaka
 
+OPEN recovery S11j: independent R12 audit found two P2 numerical edges: clustered
+full-rank design can return invalid full covariance as valid, and residual-square
+underflow can masquerade as exact zero uncertainty. Historical accepted default
+coverage/trajectory evidence is not erased; the affected covariance edge path is
+not accepted pending fix + targeted re-review. Queue82/211, two completed rounds.
+Controller fixes only core/docs/two targeted regressions in isolated
+swarm12-covariance-fix, exact independent audit tests kept unchanged. No gate or
+physical scope relaxed. R12 audit is DONE as bounded investigation, not a fix.
+
 Round1 COMPLETE: four recovery leaves S10k/l/m and S11i accepted; queue81/210.
 Verified source/report/timebox, nativeClaude targeted re-review noP0-P2,
 post-rebaseNode66/fitter29/lab11, analytic/replay15/15 unchanged0.005, independent
