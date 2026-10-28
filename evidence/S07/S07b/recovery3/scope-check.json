@@ -1,0 +1,38 @@
+{
+  "verified_utc": "2026-10-28T13:16:48.149558+00:00",
+  "branch": "run/S07b-recovery3",
+  "base": "788c1d8992f54c75082d8ab19893c482bc14830d",
+  "canonical_main_now": "127212a49707f21d0e8d2ae2f3e5c14e40693b0d",
+  "scoped_staged_paths_before_this_receipt": [
+    "Run-System/Runs/S07b/recovery3/PLAN.md",
+    "Run-System/Runs/S07b/recovery3/REPORT.md",
+    "evidence/S07/S07b/recovery3/.gitignore",
+    "evidence/S07/S07b/recovery3/commands.json",
+    "evidence/S07/S07b/recovery3/custody.py",
+    "evidence/S07/S07b/recovery3/manifest.json",
+    "evidence/S07/S07b/recovery3/measurement-tests.txt",
+    "evidence/S07/S07b/recovery3/presentation-map.json",
+    "evidence/S07/S07b/recovery3/self-check.json",
+    "evidence/S07/S07b/recovery3/source-verification.json",
+    "evidence/S07/S07b/recovery3/split-frozen.json",
+    "evidence/S07/S07b/recovery3/tracking-tests.txt"
+  ],
+  "exact_owns": "PASS",
+  "all_271_jpegs_ignored": "PASS",
+  "no_media_staged": "PASS",
+  "source_and_controls_unchanged_from_HEAD": [
+    "Build/measurement/tracking.py",
+    "tests/measurement/test_tracking.py",
+    "AGENTS.md",
+    "STATE.md",
+    "QUEUE.md",
+    "API_BUDGET.md",
+    "ORCHESTRATOR.md",
+    ".gitignore"
+  ],
+  "unstaged_tracked_diff": "empty",
+  "whitespace_checks": "PASS",
+  "manifest_sha256": "a3e6ce0a48b70d5049134ce3ddf2160bd3b95014834a579ba0f391fae162eaa7",
+  "merge": "NOT_PERFORMED; controller integrates",
+  "communication": "one mandatory skill announcement; no optional progress or cross-chat messages"
+}

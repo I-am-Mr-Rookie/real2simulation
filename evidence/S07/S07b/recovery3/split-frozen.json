@@ -1,0 +1,11 @@
+{
+  "frozen_before_jpeg_decode_utc": "2026-10-28T13:14:54.240087+00:00",
+  "selection": "floor(decoded presentation frame count / 2), fixed before visual inspection",
+  "source_frame_count": 543,
+  "training_count": 271,
+  "last_training_frame": 270,
+  "suffix_first_frame": 271,
+  "suffix_count": 272,
+  "operational_split_not_physical_gate": true,
+  "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051"
+}

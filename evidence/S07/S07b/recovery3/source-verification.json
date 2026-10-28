@@ -1,0 +1,42 @@
+{
+  "verified_before_decode_utc": "2026-10-28T13:14:50.417359+00:00",
+  "path": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\ST03.mp4",
+  "sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+  "bytes": 5457582,
+  "acquisition_record": {
+    "clip_id": "ST03",
+    "local_path": "test-data/public/ST03.mp4",
+    "source_url": "https://www.pexels.com/video/woman-dropping-apple-on-ground-12723966/",
+    "download_url": "https://videos.pexels.com/video-files/12723966/12723966-hd_720_1366_30fps.mp4",
+    "licence": "Pexels License",
+    "sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 720,
+          "height": 1366,
+          "avg_frame_rate": "30000/1001"
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "avg_frame_rate": "0/0"
+        }
+      ],
+      "format": {
+        "duration": "18.133333",
+        "size": "5457582"
+      }
+    },
+    "usability_verified": true,
+    "usability_evidence": "evidence/clips/S02c-integration-r1.md",
+    "usability_scope": "real Earth apple drop: STOCK-shard HSV/diff track f58-76 (release to pillow contact) matches every inspected full-rate frame; 25p-in-30p repeats confirmed by integrator pixel diff; playback-time image-space only, capture slow-motion factor and scale unknown, never calibrated g or distribution"
+  },
+  "approval_receipt_sha256": "caa5f27093d8bcacd6fcf96cfe43719ef037dd06b86b8c8c2c22da04c4cc74e8",
+  "scope": "scene_tracking_only",
+  "raw_source_copy": false
+}
