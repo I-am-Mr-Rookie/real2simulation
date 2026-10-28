@@ -3,8 +3,8 @@
   "issued_utc": "2026-10-28T17:23:55Z",
   "deadline_utc": "2026-10-28T17:53:55Z",
   "minute25_utc": "2026-10-28T17:48:55Z",
-  "stopped_utc": "2026-10-28T17:28:30Z",
-  "reported_utc": "2026-10-28T17:28:30Z",
+  "stopped_utc": "2026-10-28T17:34:08Z",
+  "reported_utc": "2026-10-28T17:34:08Z",
   "status": "DONE",
   "terminal_before_deadline": true,
   "terminal_reason": "review of all three current peer correction heads completed; findings recorded"
