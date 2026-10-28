@@ -1,0 +1,19 @@
+test_competing_destination_creation_is_not_overwritten (test_stage.StageTests.test_competing_destination_creation_is_not_overwritten) ... ok
+test_existing_destination_untouched_in_both_modes (test_stage.StageTests.test_existing_destination_untouched_in_both_modes) ... ok
+test_existing_file_destination_is_not_replaced (test_stage.StageTests.test_existing_file_destination_is_not_replaced) ... ok
+test_forbidden_nested_source_is_rejected_before_any_write (test_stage.StageTests.test_forbidden_nested_source_is_rejected_before_any_write) ... ok
+test_invalid_service_never_creates_destination (test_stage.StageTests.test_invalid_service_never_creates_destination) ... ok
+test_missing_committed_inputs_never_create_destination (test_stage.StageTests.test_missing_committed_inputs_never_create_destination) ... ok
+test_service_manifests_preserve_committed_bytes_hashes_and_allowlists (test_stage.StageTests.test_service_manifests_preserve_committed_bytes_hashes_and_allowlists) ... ok
+test_baseline_including_statusless_version_and_worker_503 (test_verify.VerifyTests.test_baseline_including_statusless_version_and_worker_503) ... ok
+test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) ... ok
+test_non_object_json_fails_closed (test_verify.VerifyTests.test_non_object_json_fails_closed) ... ok
+test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) ... ok
+test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) ... ok
+test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) ... ok
+test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.357s
+
+OK

@@ -1,0 +1,106 @@
+[
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/measurement",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 0.577
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/spec",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 20.469
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "contracts/scene",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 5.942
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Build/api/health",
+      "-v"
+    ],
+    "returncode": 1,
+    "elapsed_s": 10.653
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Build/reconstruction/spike",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 32.545
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Build/web/src/shell",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 0.434
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "infra/railway/dev",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 0.694
+  },
+  {
+    "command": [
+      "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Run-System/tests",
+      "-v"
+    ],
+    "returncode": 0,
+    "elapsed_s": 12.129
+  }
+]

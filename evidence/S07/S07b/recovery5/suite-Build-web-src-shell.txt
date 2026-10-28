@@ -1,0 +1,12 @@
+test_fixture_mount_is_real_synthetic_bundle_and_read_only (test_contract.ShellContractTests.test_fixture_mount_is_real_synthetic_bundle_and_read_only) ... ok
+test_guest_cannot_reference_private_scene (test_contract.ShellContractTests.test_guest_cannot_reference_private_scene) ... ok
+test_job_ready_requires_result_and_failed_requires_error (test_contract.ShellContractTests.test_job_ready_requires_result_and_failed_requires_error) ... ok
+test_library_only_public_entries (test_contract.ShellContractTests.test_library_only_public_entries) ... ok
+test_nonready_cannot_publish_result (test_contract.ShellContractTests.test_nonready_cannot_publish_result) ... ok
+test_schema_and_all_examples (test_contract.ShellContractTests.test_schema_and_all_examples) ... ok
+test_unknown_version_extra_fields_and_unsafe_ids (test_contract.ShellContractTests.test_unknown_version_extra_fields_and_unsafe_ids) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.040s
+
+OK

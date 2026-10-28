@@ -8,7 +8,16 @@ NOT RUN; S12 stays locked. Nothing here grants metric or remote-upload approval.
 
 - `load_local_predictor(checkpoint_path, execute=False)` lazily imports the
   official `build_sam3_multiplex_video_predictor`. Requires explicit `execute=True`
-  and an existing local nonsymlink checkpoint; no default download/fallback.
+  and an existing local nonsymlink checkpoint. Before importing SAM it checks
+  exact byte size and streaming SHA256 against `facebook/sam3.1` revision
+  `daa63191845a41281374e725f4c9e51c7a824460` (`sam3.1_multiplex.pt`,
+  3502755717 bytes, SHA256
+  `0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6`).
+  Wrong/truncated/other-version bytes fail closed; no default download/fallback.
+  Identity source: `evidence/S07/S07b/recovery4/IDENTITY.md`. Hashing reads the
+  whole file with bounded memory and counts toward the caller's runtime budget.
+  Custodian must prevent mutation through verification AND model construction;
+  this local loader does not lock the file or attest the installed SAM revision.
   This is a heavy CUDA boundary, not a CPU-compatible implementation promise.
 - `track_training(predictor, prefix_dir, metadata, frame_map, *, prompt,
   object_id, execute=False)` requires explicit opt-in. Calls official

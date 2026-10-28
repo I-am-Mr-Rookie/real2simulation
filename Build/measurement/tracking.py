@@ -1,11 +1,18 @@
 """Local SAM 3.1 training-prefix adapter; import never loads models or footage."""
 from dataclasses import asdict, dataclass
+import hashlib
 import json
 import math
+import os
 from pathlib import Path
 import re
 
 from .inputs import Frame
+
+
+# facebook/sam3.1@daa63191845a41281374e725f4c9e51c7a824460 LFS pointer.
+_CHECKPOINT_BYTES = 3502755717
+_CHECKPOINT_SHA256 = "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6"
 
 
 def _local_path(value):
@@ -140,12 +147,17 @@ def sanitize_responses(responses, metadata, frame_map, *, object_id):
 
 
 def load_local_predictor(checkpoint_path, *, execute=False):
-    """Explicit heavy boundary. No weights download, auth, install or fallback."""
+    """Verify pinned SAM3.1 bytes before the heavy boundary; never download."""
     if execute is not True:
         raise PermissionError("model construction requires explicit execute=True")
     checkpoint = _local_path(checkpoint_path)
     if not checkpoint.is_file() or checkpoint.is_symlink():
         raise ValueError("existing local SAM 3.1 checkpoint required")
+    with checkpoint.open("rb") as stream:
+        if os.fstat(stream.fileno()).st_size != _CHECKPOINT_BYTES:
+            raise ValueError("SAM 3.1 checkpoint byte size mismatch")
+        if hashlib.file_digest(stream, "sha256").hexdigest() != _CHECKPOINT_SHA256:
+            raise ValueError("SAM 3.1 checkpoint SHA256 mismatch")
     from sam3.model_builder import build_sam3_multiplex_video_predictor
     return build_sam3_multiplex_video_predictor(
         checkpoint_path=str(checkpoint.resolve()), compile=False, warm_up=False,

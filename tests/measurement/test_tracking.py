@@ -161,13 +161,32 @@ class TrackingTests(unittest.TestCase):
         builder.build_sam3_multiplex_video_predictor = build
         with tempfile.TemporaryDirectory() as directory:
             checkpoint = Path(directory, "fixture.pt")
-            checkpoint.write_bytes(b"not model weights")
-            with patch.dict(sys.modules, {"sam3": types.ModuleType("sam3"), "sam3.model_builder": builder}):
+            checkpoint.write_bytes(b"abc")  # Integrity fixture only, never model bytes.
+            with patch.dict(sys.modules, {"sam3": types.ModuleType("sam3"), "sam3.model_builder": builder}), \
+                 patch.object(self.module, "_CHECKPOINT_BYTES", 3, create=True), \
+                 patch.object(self.module, "_CHECKPOINT_SHA256",
+                              "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad", create=True):
                 result = self.module.load_local_predictor(checkpoint, execute=True)
             self.assertEqual(result, "fixture-predictor-not-a-model")
             self.assertEqual(calls, [{"checkpoint_path": str(checkpoint.resolve()),
                                      "compile": False, "warm_up": False,
                                      "async_loading_frames": False}])
+
+    def test_checkpoint_size_and_same_size_corruption_rejected_before_builder(self):
+        builder = types.ModuleType("sam3.model_builder")
+        def forbidden(**kwargs):
+            self.fail("unverified checkpoint reached heavy model construction")
+        builder.build_sam3_multiplex_video_predictor = forbidden
+        with tempfile.TemporaryDirectory() as directory, \
+             patch.dict(sys.modules, {"sam3": types.ModuleType("sam3"), "sam3.model_builder": builder}), \
+             patch.object(self.module, "_CHECKPOINT_BYTES", 3, create=True), \
+             patch.object(self.module, "_CHECKPOINT_SHA256",
+                          "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad", create=True):
+            checkpoint = Path(directory, "fixture.pt")
+            for data in (b"ab", b"abcd", b"abd"):
+                checkpoint.write_bytes(data)
+                with self.subTest(data=data), self.assertRaises(ValueError):
+                    self.module.load_local_predictor(checkpoint, execute=True)
 
     def test_exact_documented_calls_prefix_only_and_close_on_failure(self):
         with tempfile.TemporaryDirectory() as directory:
