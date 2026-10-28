@@ -32,3 +32,6 @@ No P1 found.
 ## Skipped / risks
 UI, fitter internals, physical Gate M/S12 not in scope. node_modules installed in worktree only (ignored, uncommitted). Communication: silent; this report is the only output.
 
+
+## Commit
+Findings commit af90244 on run/R10-S10-audit (owned paths only; not merged). worker_timebox.py check: TIMING PASS.
