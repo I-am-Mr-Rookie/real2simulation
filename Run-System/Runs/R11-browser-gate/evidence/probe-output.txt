@@ -1,0 +1,72 @@
+[
+ {
+  "t": "free_fall",
+  "mode": "normal",
+  "status": "ok",
+  "dtoBytes": 3486,
+  "producer": "contracts/experiment/validate_experiment.py",
+  "samples": 201,
+  "integrator": "rk4-fixed-step",
+  "source": "simulated",
+  "prov": "synthetic",
+  "keys": "browserSimulation,gravity,limitations,mode,observationHash,observations,sessionId,source,status,template,units"
+ },
+ {
+  "t": "projectile",
+  "mode": "normal",
+  "status": "ok",
+  "dtoBytes": 3481,
+  "producer": "contracts/experiment/validate_experiment.py",
+  "samples": 201,
+  "integrator": "rk4-fixed-step",
+  "source": "simulated",
+  "prov": "synthetic",
+  "keys": "browserSimulation,gravity,limitations,mode,observationHash,observations,sessionId,source,status,template,units"
+ },
+ {
+  "t": "ramp",
+  "mode": "normal",
+  "status": "ok",
+  "dtoBytes": 3766,
+  "producer": "contracts/experiment/validate_experiment.py",
+  "samples": 201,
+  "integrator": "rk4-fixed-step",
+  "source": "simulated",
+  "prov": "synthetic",
+  "keys": "browserSimulation,limitations,mode,observationHash,observations,sessionId,source,status,template,units"
+ },
+ {
+  "t": "pendulum",
+  "mode": "normal",
+  "status": "ok",
+  "dtoBytes": 3630,
+  "producer": "contracts/experiment/validate_experiment.py",
+  "samples": 1001,
+  "integrator": "rk4-fixed-step",
+  "source": "simulated",
+  "prov": "synthetic",
+  "keys": "browserSimulation,limitations,mode,observationHash,observations,sessionId,source,status,template,units"
+ },
+ {
+  "t": "free_fall",
+  "mode": "mystery-g",
+  "keys": "limitations,mode,observationHash,observations,sessionId,source,status,template,units",
+  "leak": [],
+  "browserRejectsMystery": true
+ },
+ {
+  "t": "projectile",
+  "mode": "mystery-g",
+  "keys": "limitations,mode,observationHash,observations,sessionId,source,status,template,units",
+  "leak": [],
+  "browserRejectsMystery": true
+ },
+ {
+  "mysteryRamp": {
+   "status": "error",
+   "error": {
+    "code": "mystery_supported_for_ballistic_templates_only"
+   }
+  }
+ }
+]

@@ -1,0 +1,10 @@
+{
+  "id": "R11-browser-gate",
+  "issued_at": "2026-10-28T20:37:46.015Z",
+  "deadline_at": "2026-10-28T21:07:46.015Z",
+  "implementation_cutoff_at": "2026-10-28T21:02:46.015Z",
+  "deadline_dhaka": "2026-10-29T03:07:46.015+06:00",
+  "work_stopped_at": "2026-10-28T20:41:32.7031235Z",
+  "reported_at": "2026-10-28T20:41:32.7031235Z",
+  "status": "DONE"
+}
