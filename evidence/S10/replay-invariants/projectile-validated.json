@@ -1,0 +1,284 @@
+{
+  "artifact_version": "s10-validated-setup-v1",
+  "producer": "contracts/experiment/validate_experiment.py",
+  "scene": {
+    "assets": [
+      {
+        "bytes": 418,
+        "format": "ply-ascii-xyzrgb",
+        "id": "points",
+        "path": "points.ply",
+        "sha256": "5644bcc95346de0f41fb62d1c7e3189bd15edd7e8e2faa1e97ea88b7e9f68e6f"
+      }
+    ],
+    "bounds_m": {
+      "max": [
+        10,
+        10,
+        10
+      ],
+      "min": [
+        -10,
+        -1,
+        -10
+      ]
+    },
+    "camera_path": [
+      {
+        "pose": {
+          "position_m": [
+            0,
+            1,
+            3
+          ],
+          "rotation_xyzw": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "time_s": 0,
+        "vertical_fov_deg": 50
+      },
+      {
+        "pose": {
+          "position_m": [
+            0.25,
+            1,
+            3
+          ],
+          "rotation_xyzw": [
+            0,
+            0,
+            0,
+            1
+          ]
+        },
+        "time_s": 1,
+        "vertical_fov_deg": 50
+      }
+    ],
+    "colliders": [],
+    "coordinates": {
+      "camera_forward": "-Z",
+      "handedness": "right",
+      "length_unit": "m",
+      "quaternion_order": "xyzw",
+      "up": "+Y"
+    },
+    "gravity": {
+      "direction": [
+        0,
+        -1,
+        0
+      ],
+      "evidence": "authored synthetic regression",
+      "magnitude_m_s2": 9.81,
+      "status": "assumed"
+    },
+    "id": "synthetic-room-v1",
+    "label": "SYNTHETIC integration fixture \u2014 NOT reconstruction or physics evidence",
+    "labels": [
+      {
+        "id": "fixture-warning",
+        "position_m": [
+          0,
+          0.75,
+          0
+        ],
+        "text": "SYNTHETIC \u2014 no accuracy or performance claim"
+      }
+    ],
+    "provenance": {
+      "evidence": "S05a authored geometric fixture; no footage, model, fitter or simulator used",
+      "method": "synthetic",
+      "models": [],
+      "sources": []
+    },
+    "render": {
+      "asset_id": "points",
+      "kind": "points",
+      "mobile_asset_id": "points",
+      "point_count": 8
+    },
+    "scale": {
+      "evidence": "Synthetic authored dimensions only; not a calibration measurement",
+      "metres_per_source_unit": 1,
+      "status": "calibrated"
+    },
+    "schema_version": "1.0.0",
+    "surfaces": [
+      {
+        "extent_m": [
+          2,
+          2
+        ],
+        "id": "floor",
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "origin_m": [
+          0,
+          0,
+          0
+        ],
+        "role": "floor"
+      },
+      {
+        "extent_m": [
+          1,
+          0.6
+        ],
+        "id": "table",
+        "normal": [
+          0,
+          1,
+          0
+        ],
+        "origin_m": [
+          0,
+          0.75,
+          0
+        ],
+        "role": "table"
+      }
+    ],
+    "synthetic": true
+  },
+  "spec": {
+    "body": {
+      "mass": {
+        "source": {
+          "evidence": "authored extension analytic regression input",
+          "label": "synthetic"
+        },
+        "uncertainty": null,
+        "unit": "kg",
+        "value": 0.1
+      },
+      "radius": {
+        "source": {
+          "evidence": "authored extension analytic regression input",
+          "label": "synthetic"
+        },
+        "uncertainty": null,
+        "unit": "m",
+        "value": 0.02
+      }
+    },
+    "environment": {
+      "air_resistance": "neglected",
+      "gravity": {
+        "source": {
+          "evidence": "authored extension analytic regression input",
+          "label": "synthetic"
+        },
+        "uncertainty": null,
+        "unit": "m/s^2",
+        "value": 9.81
+      },
+      "gravity_direction": [
+        0,
+        -1,
+        0
+      ]
+    },
+    "experiment_id": "extension-projectile",
+    "parameters": {
+      "horizontal_speed": {
+        "source": {
+          "evidence": "authored extension analytic regression input",
+          "label": "synthetic"
+        },
+        "uncertainty": null,
+        "unit": "m/s",
+        "value": 1
+      },
+      "launch_height": {
+        "source": {
+          "evidence": "authored extension analytic regression input",
+          "label": "synthetic"
+        },
+        "uncertainty": null,
+        "unit": "m",
+        "value": 1
+      }
+    },
+    "placement": {
+      "origin": {
+        "source": {
+          "evidence": "authored extension analytic regression input",
+          "label": "synthetic"
+        },
+        "unit": "m",
+        "value": [
+          0,
+          2,
+          0
+        ]
+      },
+      "surface_id": null
+    },
+    "scene": {
+      "constraints": {
+        "allowed_surface_ids": [
+          "floor",
+          "table"
+        ],
+        "bounds_m": {
+          "max": [
+            10,
+            10,
+            10
+          ],
+          "min": [
+            -10,
+            -1,
+            -10
+          ]
+        },
+        "clearance": {
+          "source": {
+            "evidence": "authored extension analytic regression input",
+            "label": "synthetic"
+          },
+          "uncertainty": null,
+          "unit": "m",
+          "value": 0.01
+        },
+        "collision_obstacle_ids": []
+      },
+      "coordinate_system": "right-handed-y-up-metres",
+      "scale_status": "calibrated",
+      "scene_id": "synthetic-room-v1",
+      "schema_version": "1.0.0"
+    },
+    "schema_version": "1.0.0",
+    "simulation": {
+      "duration": {
+        "source": {
+          "evidence": "authored extension analytic regression input",
+          "label": "synthetic"
+        },
+        "uncertainty": null,
+        "unit": "s",
+        "value": 0.2
+      },
+      "seed": 42,
+      "time_step": {
+        "source": {
+          "evidence": "authored extension analytic regression input",
+          "label": "synthetic"
+        },
+        "uncertainty": null,
+        "unit": "s",
+        "value": 0.001
+      }
+    },
+    "template": "projectile"
+  },
+  "validation": "validate_setup"
+}

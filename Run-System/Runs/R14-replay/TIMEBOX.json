@@ -1,0 +1,11 @@
+{
+  "id": "R14-replay",
+  "issued_at": "2026-10-28T21:37:28.000Z",
+  "deadline_at": "2026-10-28T22:07:28.000Z",
+  "implementation_cutoff_at": "2026-10-28T22:02:28.000Z",
+  "deadline_dhaka": "2026-10-29T04:07:28.000+06:00",
+  "work_started_at": "2026-10-28T21:37:38Z",
+  "work_stopped_at": "2026-10-28T21:47:52Z",
+  "reported_at": "2026-10-28T21:48:47Z",
+  "status": "DONE"
+}

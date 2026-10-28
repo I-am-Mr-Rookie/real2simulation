@@ -1,0 +1,59 @@
+{
+  "captured_at": "2026-10-28T21:44:44.702235+00:00",
+  "scope": "existing actual four-template replay transport; simulated synthetic only",
+  "sources_sha256": {
+    "Build/simulator/replay.mjs": "509e617422bac44cd49ffd31cb0c734465d491607996157c596d000ee9e2c8f0",
+    "Build/lab/replay-check.mjs": "1260cff2ad88fc1711a06c162a646970050aed3af545eed3d7e316e5057687dc",
+    "Build/lab/regression.py": "19d5157f2991fa6c6217c4511168e128a232ce27bf87985fb0ffc0d645443111"
+  },
+  "cases": [
+    {
+      "template": "free_fall",
+      "seed": 42,
+      "replay": {
+        "replayHash": "aede065a84d558ee9558d15c872479641c961558b0e07dc095d945e6d9f44398",
+        "traceHash": "e0937438699596a866ba76ea421a9cd7d00c2af9d1adf01cb2c991c7f2b452f2",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 201,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      }
+    },
+    {
+      "template": "projectile",
+      "seed": 42,
+      "replay": {
+        "replayHash": "ba22600d9b3dd6e6225c15c5a626a3d9b84cb6bb8c5279d78a93032ef9f0a9a7",
+        "traceHash": "5ed61ad373f366ad191b9125ff896be09a6ca6fbe63b8057b68f11c5faa51f4a",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 201,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      }
+    },
+    {
+      "template": "ramp",
+      "seed": 42,
+      "replay": {
+        "replayHash": "fca3b964a0651bbc7ed03ec5956d52b13938117cbd0c7f01e0ee0098392eb4a4",
+        "traceHash": "ba310b63f72b639e44c698317aa865fe2beb540c163fda49f5a4452879dd0470",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 201,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      }
+    },
+    {
+      "template": "pendulum",
+      "seed": 42,
+      "replay": {
+        "replayHash": "fd5195cc1223a35bb884b1196263e34a78a05c6c1139251c5df39267885c00ca",
+        "traceHash": "f60a8a6f873dd07ebf8f9e77eefc6865640d6030c91623623a7d9b053757f173",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 1001,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      }
+    }
+  ]
+}
