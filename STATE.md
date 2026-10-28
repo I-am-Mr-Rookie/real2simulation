@@ -1,6 +1,10 @@
 # Real2Simulation — STATE
 
-## CURRENT — owner extended bounded inline swarm to Oct29 00:30 Dhaka
+## CURRENT — extension STOPPED at Oct29 00:30 Dhaka
+
+Owner deadline reached18:30UTC; all four extension workers closed,0 active runs,
+72/205 complete. No further implementation/worker/schedule/automatic continuation.
+Final committed evidence: Run-System/Runs/SWARM-20261029-0030/REPORT.md; Node70PASS.
 
 Fresh direct owner goal: "Keep going at maximum speed. Time increased up to
 12:30 am." Observed18:00:51UTC Oct28. Extend same swarm/simulation-only authority

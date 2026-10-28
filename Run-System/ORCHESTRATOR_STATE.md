@@ -1,6 +1,9 @@
 # Orchestrator recovery checkpoint
 
-## CURRENT — owner extended inline swarm to Oct29 00:30Dhaka
+## CURRENT — extension STOPPED at Oct29 00:30Dhaka
+
+18:30UTC owner deadline reached. All extension workers closed,0 active runs;
+72/205 complete. Final post-fix Node70PASS; no automatic continuation authorized.
 
 Fresh explicit extension supersedes midnight stop below through18:30UTC only.
 Four source/review workers, full30m nominal contracts with explicit owner-stop

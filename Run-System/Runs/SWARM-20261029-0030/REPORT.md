@@ -1,5 +1,9 @@
 # Swarm extension — Oct29 00:00 to00:30 Dhaka
 
+Closed at the18:30UTC owner boundary. All four workers were already closed;
+final checks/cleanup completed, then held quietly to the agreed stop rather than
+manufacturing filler work. Only this administrative closure follows the deadline.
+
 Owner explicitly extended maximum-speed swarm work to2026-10-28T18:30Z.
 First extension clock18:00:51Z; baseline d5af52b,68/205. Same inline exception
 and simulation-only S10/S11 scope; no expanded physical, spend or deployment gate.
