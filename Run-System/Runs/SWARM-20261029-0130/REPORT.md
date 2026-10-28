@@ -52,3 +52,15 @@ in INTEGRATION.md; do not claim universal worker conformity/archive recoverabili
 
 All seven workers were closed by19:26UTC. Final runtime shutdown/control inspection
 continues to19:30UTC; closure receipt will be appended at the actual owner boundary.
+
+## 19:28 cleanup/audit
+
+Fresh machine audit: queue77/205; all15 acceptance cases pass0.005 and actual
+replay determinism; checkpoint maximum equals regenerated evidence exactly.
+Native inventory confirms four managed worktrees archived (UI, service, gate,
+R-P); primary RS05 review checkout cannot be removed and is retained. Earlier
+missing archived snapshot limitation remains. All accepted source/evidence onmain.
+Next dev server79760 terminated with Ctrl-C; no3100 listener after shutdown.
+Temporary IAB test tab closed and viewport override reset. Unchanged owner PDF
+is the sole unrelated untracked file. Local review's corrected late report is
+retained for audit, not counted as a compliant completed run. No new work started.

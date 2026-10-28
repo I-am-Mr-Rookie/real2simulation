@@ -1,0 +1,14 @@
+{
+  "id": "R-S10g-local",
+  "issued_at": "2026-10-28T18:34:55Z",
+  "deadline_at": "2026-10-28T19:04:55Z",
+  "dhaka_deadline_at": "2026-10-29T01:04:55+06:00",
+  "minute25_cutoff_at": "2026-10-28T18:59:55Z",
+  "owner_hard_stop_at": "2026-10-28T19:29:30Z",
+  "status": "PARTIAL",
+  "resumed_at": "2026-10-28T18:51:06.9989541Z",
+  "work_stopped_at": "2026-10-28T19:09:38.0936212Z",
+  "reported_at": "2026-10-28T19:09:38.0936212Z",
+  "deadline_noncompliance": true,
+  "deadline_noncompliance_reason": "Stopped/reported at actual 19:09:38Z after original 19:04:55Z deadline; recorded without backdating."
+}
