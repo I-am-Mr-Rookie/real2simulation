@@ -1,0 +1,14 @@
+{
+  "id": "R10-S11-fix",
+  "issued_at": "2026-10-28T19:59:19.659Z",
+  "deadline_at": "2026-10-28T20:29:19.659Z",
+  "implementation_cutoff_at": "2026-10-28T20:24:19.659Z",
+  "deadline_dhaka": "2026-10-29T02:29:19.659+06:00",
+  "worker_started_at": "2026-10-28T19:59:36.0394572Z",
+  "work_stopped_at": "2026-10-28T20:13:01.0389264Z",
+  "reported_at": "2026-10-28T20:13:58.2272191Z",
+  "status": "DONE",
+  "timing_correction": "Controller corrected Dhaka conversion only; original UTC issue/deadline/cutoff unchanged",
+  "code_commit": "3f913b7f6ee5ac49626b0aa8c08ac6bbd98281f8",
+  "parent_owned_followup": "Caller-label integration and required native Claude targeted rereview; no gate acceptance claimed"
+}
