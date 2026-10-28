@@ -1,11 +1,12 @@
 {
-  "rid": "R-SIM-swarm",
-  "issued_utc": "2026-10-28T17:23:55Z",
-  "deadline_utc": "2026-10-28T17:53:55Z",
-  "minute25_utc": "2026-10-28T17:48:55Z",
-  "stopped_utc": "2026-10-28T17:34:08Z",
-  "reported_utc": "2026-10-28T17:34:08Z",
+  "id": "R-SIM-swarm",
+  "issued_at": "2026-10-28T23:23:55+06:00",
+  "implementation_cutoff_at": "2026-10-28T23:48:55+06:00",
+  "deadline_at": "2026-10-28T23:53:55+06:00",
+  "deadline_dhaka": "2026-10-28T23:53:55+06:00",
+  "work_stopped_at": "2026-10-28T17:51:00+00:00",
+  "reported_at": "2026-10-28T17:51:00+00:00",
   "status": "DONE",
   "terminal_before_deadline": true,
-  "terminal_reason": "review of all three current peer correction heads completed; findings recorded"
+  "terminal_reason": "Final covariance and trajectory correction review completed; all actionable findings re-tested and closed conditionally"
 }

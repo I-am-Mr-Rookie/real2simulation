@@ -45,3 +45,7 @@ Final committed heads were re-reviewed: simulator `e16810e4de1ff5e2e4d14f370995a
 ## Final continuation (17:47Z)
 
 Core covariance correction `cdaf1bd5d750ce88f1824255925b0f493c46804a` passed fresh **19/19** overlay tests and independent physical-basis/underflow/no-zero-certainty checks. API has no new P1/P2. Latest trajectory head `0bf82ba537c48e0ff1e185d6d2189e66bcab32bd` passed **6/6**, but the previously reported P1 remains: fractional duration/time-step ratio 1.5 is accepted and silently floored to one step. Integration remains conditionally held on that narrow trajectory fix. Synthetic/contract-only; no physical/vendor gate acceptance.
+
+## Final trajectory closure (17:51Z)
+
+Final trajectory SHA `ff6067901995f7b040a6cef646f62f8c84c2b890` verified with fresh 6/6 tests and direct fractional repro rejection (`0.015 / 0.01` -> integer-horizon error). All previously reported review findings are closed conditionally: covariance/API `cdaf1bd5d750ce88f1824255925b0f493c46804a` 19/19; trajectory `ff60679` 6/6; simulator/instruments earlier fresh checks remain recorded. No physical/vendor gate acceptance.

@@ -97,3 +97,7 @@ Fresh final-source checks:
 - Trajectory latest committed head `0bf82ba537c48e0ff1e185d6d2189e66bcab32bd`: `node --test tests/simulator/trajectories.test.mjs` passed **6/6**; recursive artifact freeze is present and sparse/time overflow/initial stop checks pass. **P1 remains open:** ratio `duration=1.5`, `time_step=1` is accepted by `consumeValidatedTrajectoryArtifact`, then `trajectoryFromValidatedArtifact` emits `requestedSteps=1` (verified executable repro), silently truncating the horizon. Require integer or explicitly sub-ULP-near-integer ratio; do not floor arbitrary fractional duration.
 
 No physical/vendor gate acceptance; all evidence remains synthetic/contract-level.
+
+## Final trajectory closure (17:51Z)
+
+Fresh final trajectory head `ff6067901995f7b040a6cef646f62f8c84c2b890` was tested: `node --test tests/simulator/trajectories.test.mjs` **6/6 pass**. An independent direct artifact repro with duration `0.015` and time-step `0.01` now rejects with `INVALID_TRAJECTORY: S08 duration/time_step must be an integer horizon`; the previous silent-flooring P1 is closed. Artifact recursive freeze, sparse vectors, overflow, initial stop-plane, and near-integer horizon handling remain covered. Synthetic/contract-only; no physical/vendor-gate acceptance.
