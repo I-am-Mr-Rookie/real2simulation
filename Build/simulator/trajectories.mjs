@@ -4,6 +4,12 @@ const fail = (message) => { throw new TypeError(`INVALID_TRAJECTORY: ${message}`
 const finite = (value) => typeof value === 'number' && Number.isFinite(value);
 const vector3 = (value) => Array.isArray(value) && value.length === 3 && [0, 1, 2].every((i) => Object.prototype.hasOwnProperty.call(value, i) && finite(value[i]));
 const trustedArtifacts = new WeakSet();
+const integerHorizon = (duration, dt) => {
+  const ratio = duration / dt, nearest = Math.round(ratio);
+  // Accept only floating-point representation noise; no fractional horizon is silently truncated.
+  if (!finite(ratio) || ratio < 0 || Math.abs(ratio - nearest) > Number.EPSILON * Math.max(1, Math.abs(ratio))) fail('S08 duration/time_step must be an integer horizon');
+  return nearest;
+};
 const freezeDeep = (value) => {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
     Object.values(value).forEach(freezeDeep); Object.freeze(value);
@@ -64,8 +70,7 @@ export function consumeValidatedTrajectoryArtifact(raw) {
   if (!parameters || !simulation || !finite(simulation.duration?.value) || simulation.duration.value < 0 || !finite(simulation.time_step?.value) || simulation.time_step.value <= 0) fail('explicit S08 duration/time_step required');
   const height = parameters[spec.template === 'free_fall' ? 'drop_height' : 'launch_height'];
   if (!finite(height?.value) || height.value <= 0) fail('explicit stop-plane height required');
-  const ratio = simulation.duration.value / simulation.time_step.value;
-  if (!finite(ratio) || ratio < 0 || !Number.isSafeInteger(Math.floor(ratio))) fail('S08 duration/time_step horizon is not representable');
+  integerHorizon(simulation.duration.value, simulation.time_step.value);
   const artifact = freezeDeep(structuredClone(raw)); trustedArtifacts.add(artifact);
   return artifact;
 }
@@ -75,10 +80,7 @@ export function trajectoryFromValidatedArtifact(artifact) {
   const { spec } = artifact, p = spec.parameters;
   const projectile = spec.template === 'projectile';
   const height = p[projectile ? 'launch_height' : 'drop_height'].value;
-  const ratio = spec.simulation.duration.value / spec.simulation.time_step.value;
-  // shortcut: accept sub-ulp duration ratios, floor the fixed-step horizon; never alter dt.
-  const nearest = Math.round(ratio);
-  const steps = Math.abs(ratio - nearest) <= Number.EPSILON * Math.max(1, Math.abs(ratio)) ? nearest : Math.floor(ratio);
+  const steps = integerHorizon(spec.simulation.duration.value, spec.simulation.time_step.value);
   return (projectile ? projectileTrajectory : freeFallTrajectory)({
     initialPosition: [...spec.placement.origin.value],
     initialVelocity: projectile ? [p.horizontal_speed.value, 0, 0] : [0, p.initial_vertical_velocity.value, 0],

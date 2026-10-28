@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { rmSync } from 'node:fs';
+import { mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -57,15 +57,23 @@ test('reports an already-crossed plane without advancing the integrator', () => 
 
 test('accepts only the validated S08 transport and maps explicit template quantities', () => {
   const root = process.cwd();
-  const d = join(tmpdir(), `s10-export-${process.pid}`);
-  const code = `import sys,json,shutil; from pathlib import Path; root=Path(sys.argv[2]); sys.path[:0]=[str(root),str(root/'tests/spec')]; from test_setup_validation import setup,BUNDLE; from Build.simulator.export_validated_setup import export; d=Path(sys.argv[1]); d.mkdir(parents=True,exist_ok=True); spec,scene=setup('free_fall'); (d/'spec.json').write_text(json.dumps(spec)); (d/'scene.json').write_text(json.dumps(scene)); shutil.copy(BUNDLE/'points.ply', d/'points.ply'); print(json.dumps(export(d/'spec.json', d/'scene.json'))) `;
-  const made = spawnSync('python', ['-c', code, d, root], { encoding: 'utf8' });
-  assert.equal(made.status, 0, made.stderr);
-  const trusted = consumeValidatedTrajectoryArtifact(JSON.parse(made.stdout));
+  const code = `import sys,json,shutil; from pathlib import Path; root=Path(sys.argv[2]); sys.path[:0]=[str(root),str(root/'tests/spec')]; from test_setup_validation import setup,BUNDLE; from Build.simulator.export_validated_setup import export; d=Path(sys.argv[1]); spec,scene=setup('free_fall'); (d/'spec.json').write_text(json.dumps(spec)); (d/'scene.json').write_text(json.dumps(scene)); shutil.copy(BUNDLE/'points.ply', d/'points.ply'); print(json.dumps(export(d/'spec.json', d/'scene.json'))) `;
+  const exportArtifact = () => {
+    const d = mkdtempSync(join(tmpdir(), 's10-export-'));
+    const made = spawnSync('python', ['-c', code, d, root], { encoding: 'utf8' });
+    assert.equal(made.status, 0, made.stderr);
+    const artifact = JSON.parse(made.stdout); rmSync(d, { recursive: true, force: true }); return artifact;
+  };
+  const realExport = exportArtifact();
+  const trusted = consumeValidatedTrajectoryArtifact(realExport);
   const out = trajectoryFromValidatedArtifact(trusted);
   assert.equal(out.kind, 'free-fall'); assert.equal(out.source, 'simulated'); assert.equal(out.inputProvenance, 'synthetic');
   assert.ok(out.samples.length > 1);
   assert.throws(() => { trusted.spec.template = 'projectile'; }, /read only|Cannot assign|frozen/i);
   assert.throws(() => trajectoryFromValidatedArtifact(structuredClone(trusted)), /returned by consume/);
-  rmSync(d, { recursive: true, force: true });
+  const invalid = structuredClone(realExport); invalid.spec.simulation.duration.value = 1.5; invalid.spec.simulation.time_step.value = 1;
+  assert.throws(() => consumeValidatedTrajectoryArtifact(invalid), /integer horizon/);
+  const nearInteger = structuredClone(realExport); nearInteger.spec.simulation.duration.value = 0.3; nearInteger.spec.simulation.time_step.value = 0.1;
+  const rounded = trajectoryFromValidatedArtifact(consumeValidatedTrajectoryArtifact(nearInteger));
+  assert.equal(rounded.requestedSteps, 3); assert.equal(rounded.samples.length, 4); assert.equal(rounded.dt_s, 0.1);
 });
