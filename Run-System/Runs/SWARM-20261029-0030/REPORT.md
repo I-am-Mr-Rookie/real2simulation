@@ -39,6 +39,8 @@ original58 baseline this is14 new completed leaves, not a count of commits/tests
 Exact commands/logs and machine-readable four-template results: verification/.
 Fresh main: lab5/5, combined Node68/68, fitter19/19, instruments10/10 PASS.
 Last narrow replay-version rejection + both real ballistic contact runs7/7 PASS.
+Final post-fix combined Node set, including both new integration tests: **70/70
+PASS** at18:27:46UTC; full command/log in node-post-fix-all.txt/post-fix-summary.json.
 The0.5% analytic threshold is unchanged; max relative position error is pendulum
 0.0002664499123 (0.026645%), at justified small-angle amplitude0.05rad. Other three
 authored cases are near floating-point precision. Actual S08 oracle results,

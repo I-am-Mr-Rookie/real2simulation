@@ -1,0 +1,21 @@
+{
+  "command": [
+    "node",
+    "--test",
+    "tests\\lab\\contact-integration.test.mjs",
+    "tests\\simulator\\contacts.test.mjs",
+    "tests\\simulator\\extended-templates.test.mjs",
+    "tests\\simulator\\mystery-g.test.mjs",
+    "tests\\simulator\\replay.test.mjs",
+    "tests\\simulator\\simulator.test.mjs",
+    "tests\\simulator\\trajectories.test.mjs",
+    "tests\\viewer\\artifact-loader.test.mjs",
+    "tests\\viewer\\render-budget.test.mjs",
+    "tests\\viewer\\scene-overlays.test.mjs",
+    "tests\\viewer\\three-renderer.test.mjs",
+    "tests\\viewer\\viewer.test.mjs"
+  ],
+  "exit_code": 0,
+  "at": "2026-10-28T18:27:46.406324+00:00",
+  "tail": "er dispose (6.0668ms)\n\u2714 shell abort after ready disposes the renderer once (4.0906ms)\n\u2714 mount rejects invalid requests before loading (4.005ms)\n\u2714 mystery mode is unavailable until S10 redacted payload exists (3.7617ms)\n\u2714 abort during load rejects, never renders, stays silent (3.8018ms)\n\u2714 already-aborted signal rejects immediately (3.7419ms)\n\u2714 abort while renderer is being created disposes the partial renderer (4.6063ms)\n\u2714 load and renderer failures report error state with plain codes (5.6531ms)\n\u2139 tests 70\n\u2139 suites 0\n\u2139 pass 70\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 7697.2833\n"
+}
