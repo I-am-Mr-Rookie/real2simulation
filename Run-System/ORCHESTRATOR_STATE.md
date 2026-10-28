@@ -2,6 +2,15 @@
 
 ## CURRENT — three separate desktop chats active, same project verified
 
+New owner RUNS reply14:09UTC rejects manual setup handoff: he signed into
+ChatGPT in-app browser for agents to operate it without babysitting. Reply
+saved before regeneration and ingested in STATE/Q13 answered/R4 action. Current
+S07b chat messaged within original deadline to verify ACTUAL native ChatGPT
+in-app surface via installed computer-use/sky if appropriate, not claim native
+unavailable from a different generic-IAB attach error. No new UI worker race,
+Chrome/auth-policy/secret-exposure/download/job authority. Agent-led existing
+dev-auth setup follows actual surface verification rather than another manual ask.
+
 App create_thread launches with explicit existing Meta AI Hackathon projectId,
 gpt-6.1-sol/medium, local environment; subsequent list_threads confirms ALL three
 are active and project91e441f8-e40c-4ec4-bea2-de7fa1582d97. Initial app cwd canonical;

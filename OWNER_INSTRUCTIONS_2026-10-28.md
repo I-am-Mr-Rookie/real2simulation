@@ -68,6 +68,11 @@ Revisit original pages only to resolve a genuine ambiguity or an owner request.
 - Owner additionally requests a cleaner worker to inspect directory size and
   delete unnecessary files. Preserve unique inputs/evidence/history/secrets and
   active work; delete only verified disposable, recoverable generated artifacts.
+- Owner rejected returning signed-in service setup to him: he signed into the
+  ChatGPT in-app browser so agents can operate it without babysitting. Verify
+  that actual supported surface and do authorized work; never assume a different
+  IAB failure proves it unavailable. All secret/privacy/auth-policy boundaries
+  continue; an owner login claim is not configuration or E2E evidence.
 
 - Latest direct message: EVERY new session, orchestrator or worker, belongs to
   the existing **Meta AI Hackathon** project, ID
