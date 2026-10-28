@@ -31,5 +31,5 @@ Rebased onto canonical main at 31deadc after verified contract/instruments fast-
 
 Rebased onto canonical main 8797fec; corrected core and accepted contract/instrument sources are present in this checkout. Added the smallest covariance-boundary repair: all covariance matrices are physical-basis matrices, diagonal [parameter_index][parameter_index] equals reported variance, transform overflow/underflow abstains honestly, and supplied 	imes must exactly match fit design times. Added shifted/scaled closed-form boundary coverage and tiny-scale abstention coverage. Exact bug: the prior quadratic branch returned normalized-basis local_cov while reporting physical variance, and could divide by underflowed/overflowed scale powers. 
 
-Fresh integrated checks: API 6, core 13, instruments 5 = 24 tests passed; no PYTHONPATH or snapshots. Full requested instrument/core/API command passed. Work stopped at 2026-10-28T17:45:26Z; no controller exception required. 
+Fresh integrated targeted checks: API 6, core 13, and 5 targeted instrument tests = 24 tests passed; no PYTHONPATH or snapshots. Full instrument-suite verification is separate controller work and is not claimed here. Work stopped at 2026-10-28T17:45:26Z; no controller exception required. 
 
