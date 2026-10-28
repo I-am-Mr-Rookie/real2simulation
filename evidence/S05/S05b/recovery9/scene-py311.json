@@ -1,0 +1,20 @@
+{
+  "command": [
+    "C:/Users/HP/AppData/Roaming/uv/python/cpython-3.11-windows-x86_64-none/python.exe",
+    "-E",
+    "-s",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "contracts/scene",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "parent_cap_s": 90,
+  "returncode": 1,
+  "elapsed_s": 0.2549654000904411,
+  "log": "scene-py311.txt"
+}

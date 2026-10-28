@@ -122,28 +122,38 @@ class DeadlineTests(unittest.IsolatedAsyncioTestCase):
             try:
                 await asyncio.sleep(10)
             except asyncio.CancelledError:
-                await asyncio.sleep(.08)
+                await asyncio.sleep(.8)
         f.__class__ = type("LateFake", (Fake,), {"__aenter__": lambda self: late_enter()})
-        with (patch.object(guard, "STARTUP_SECONDS", .01),
-              patch.object(guard, "EXECUTION_SECONDS", .01),
-              patch.object(guard, "CLEANUP_SECONDS", .04),
-              patch.object(guard, "EXIT_SECONDS", .01)):
+        # Windows CPython 3.11 monotonic ticks can be 15.6ms; avoid sub-tick budgets.
+        with (patch.object(guard, "STARTUP_SECONDS", .1),
+              patch.object(guard, "EXECUTION_SECONDS", .1),
+              patch.object(guard, "CLEANUP_SECONDS", .4),
+              patch.object(guard, "EXIT_SECONDS", .1)):
             with self.assertRaises(TimeoutError):
-                await guard.guarded_probe(f, f, (), f.records.append, total_seconds=.1)
+                await guard.guarded_probe(f, f, (), f.records.append, total_seconds=1)
         self.assertEqual(f.stop_calls, 1)
         self.assertTrue(f.records[-1]["remote_stop_confirmed"])
 
     async def test_app_id_published_before_noncooperative_setup_finishes(self):
         f = Fake()
+        release = asyncio.Event()
+        published = asyncio.Event()
         async def slow_enter():
             f.app_id = "ap-fake"
-            await asyncio.sleep(.08)
+            await release.wait()
         f.__class__ = type("SlowFake", (Fake,), {"__aenter__": lambda self: slow_enter()})
-        task = asyncio.create_task(f.execute())
-        await asyncio.sleep(.065)
-        self.assertFalse(task.done())
-        self.assertEqual(f.records[0]["app_id"], "ap-fake")
-        await task
+        def record(state):
+            f.records.append(state)
+            published.set()
+        task = asyncio.create_task(guard.guarded_probe(
+            f, f, (), record, clock=lambda: f.now, sleep=f.sleep))
+        try:
+            await asyncio.wait_for(published.wait(), timeout=2)
+            self.assertFalse(task.done())
+            self.assertEqual(f.records[0]["app_id"], "ap-fake")
+        finally:
+            release.set()
+            await task
 
     async def test_success_stops_and_confirms_before_return(self):
         f = Fake()
@@ -228,14 +238,14 @@ class DeadlineTests(unittest.IsolatedAsyncioTestCase):
     async def test_real_local_timer_bounds_hanging_get(self):
         f = Fake()
         f.hang = True
-        with (patch.object(guard, "STARTUP_SECONDS", .01),
-              patch.object(guard, "EXECUTION_SECONDS", .01),
-              patch.object(guard, "CLEANUP_SECONDS", .04),
-              patch.object(guard, "EXIT_SECONDS", .01)):
+        with (patch.object(guard, "STARTUP_SECONDS", .1),
+              patch.object(guard, "EXECUTION_SECONDS", .1),
+              patch.object(guard, "CLEANUP_SECONDS", .4),
+              patch.object(guard, "EXIT_SECONDS", .1)):
             with self.assertRaises(TimeoutError):
-                await guard.guarded_probe(f, f, (), f.records.append, total_seconds=.15)
+                await guard.guarded_probe(f, f, (), f.records.append, total_seconds=1.5)
         self.assertTrue(f.records[-1]["remote_stop_confirmed"])
-        self.assertLess(f.records[-1]["elapsed_s"], .15)
+        self.assertLess(f.records[-1]["elapsed_s"], 1.5)
 
     async def test_unobserved_setup_state_is_incident(self):
         f = Fake()
@@ -263,14 +273,14 @@ class DeadlineTests(unittest.IsolatedAsyncioTestCase):
         async def hung_stop():
             await asyncio.Event().wait()
         f.stop = api(hung_stop)
-        with (patch.object(guard, "STARTUP_SECONDS", .01),
-              patch.object(guard, "EXECUTION_SECONDS", .01),
-              patch.object(guard, "CLEANUP_SECONDS", .05),
-              patch.object(guard, "STOP_SECONDS", .01),
-              patch.object(guard, "EXIT_SECONDS", .05)):
+        with (patch.object(guard, "STARTUP_SECONDS", .1),
+              patch.object(guard, "EXECUTION_SECONDS", .1),
+              patch.object(guard, "CLEANUP_SECONDS", .5),
+              patch.object(guard, "STOP_SECONDS", .1),
+              patch.object(guard, "EXIT_SECONDS", .5)):
             with self.assertRaises(guard.ResourceIncident):
-                await guard.guarded_probe(f, f, (), f.records.append, total_seconds=.3)
-        self.assertLess(f.records[-1]["elapsed_s"], .3)
+                await guard.guarded_probe(f, f, (), f.records.append, total_seconds=3)
+        self.assertLess(f.records[-1]["elapsed_s"], 3)
         self.assertFalse(f.records[-1]["remote_stop_confirmed"])
 
 

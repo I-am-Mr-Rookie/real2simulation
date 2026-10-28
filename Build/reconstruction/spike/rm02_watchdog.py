@@ -89,7 +89,8 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
                     if name == "stop":
                         state["stop_attempted"] = True
                         emit()
-                    process = subprocess.Popen([*cli, *args], stdout=out, stderr=err)
+                    process = subprocess.Popen([*cli, *args], stdout=out, stderr=err,
+                                               env=dict(os.environ, PYTHONIOENCODING="utf-8"))
                     if name == "stop":
                         state["stop_process_started"] = True
                     try:
@@ -109,16 +110,25 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
                 state["errors"].append("stop:" + type(exc).__name__)
             # Even a failed/lost stop response must not skip the independent check.
             try:
-                info_code = invoke("info", ["app", "info", app_id, "--json"],
-                                   min(15, reserve_seconds / 3))
-                containers_code = invoke("containers", ["container", "list", "--app-id", app_id,
-                                                        "--json"], min(15, reserve_seconds / 3))
-                info = json.loads((directory / "info.stdout").read_text(encoding="utf-8"))
-                containers = json.loads((directory / "containers.stdout").read_text(encoding="utf-8"))
-                state["independent_stop_confirmed"] = (
-                    info_code == containers_code == 0 and info.get("app_id") == app_id
-                    and info.get("lifecycle", {}).get("state") == "stopped"
-                    and containers == [])
+                state["verification_attempts"] = 0
+                while True:
+                    info_code = invoke("info", ["app", "info", app_id, "--json"],
+                                       min(15, reserve_seconds / 3))
+                    containers_code = invoke("containers", ["container", "list", "--app-id", app_id,
+                                                            "--json"], min(15, reserve_seconds / 3))
+                    info = json.loads((directory / "info.stdout").read_text(encoding="utf-8"))
+                    containers = json.loads((directory / "containers.stdout").read_text(encoding="utf-8"))
+                    state["verification_attempts"] += 1
+                    state["independent_stop_confirmed"] = (
+                        info_code == containers_code == 0 and info.get("app_id") == app_id
+                        and info.get("lifecycle", {}).get("state") == "stopped"
+                        and containers == [])
+                    emit()
+                    if state["independent_stop_confirmed"]:
+                        break
+                    # Provider state may lag; never extend the original parent reserve.
+                    time.sleep(min(1, max(0, deadline - time.monotonic()
+                                          - min(2, reserve_seconds / 10))))
             except (OSError, subprocess.SubprocessError, TimeoutError, ValueError, AttributeError) as exc:
                 state["errors"].append("verification:" + type(exc).__name__)
         state["resource_incident"] = not state["independent_stop_confirmed"]

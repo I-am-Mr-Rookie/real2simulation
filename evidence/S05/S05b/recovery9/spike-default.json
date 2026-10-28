@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python",
+    "-E",
+    "-s",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "Build/reconstruction/spike",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "parent_cap_s": 90,
+  "returncode": 0,
+  "elapsed_s": 26.78614990017377,
+  "log": "spike-default.txt"
+}

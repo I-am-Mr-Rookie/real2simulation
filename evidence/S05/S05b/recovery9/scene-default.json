@@ -1,0 +1,20 @@
+{
+  "command": [
+    "python",
+    "-E",
+    "-s",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "contracts/scene",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "parent_cap_s": 90,
+  "returncode": 0,
+  "elapsed_s": 2.9175257000606507,
+  "log": "scene-default.txt"
+}

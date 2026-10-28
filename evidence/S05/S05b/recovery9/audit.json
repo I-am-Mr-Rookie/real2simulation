@@ -1,0 +1,67 @@
+{
+  "scope_pass": true,
+  "branch": "run/S05b-recovery9",
+  "head": "ac1ad81c5c29056ddeca5436c24165be60061b63",
+  "changed_tracked": [
+    ".gitignore",
+    "Build/reconstruction/spike/README.md",
+    "Build/reconstruction/spike/rm02_watchdog.py",
+    "Build/reconstruction/spike/test_rm02_deadline.py",
+    "Build/reconstruction/spike/test_rm02_watchdog.py"
+  ],
+  "production_constants_unchanged": {
+    "TOTAL_SECONDS": 1200,
+    "STARTUP_SECONDS": 90,
+    "EXECUTION_SECONDS": 900,
+    "CLEANUP_SECONDS": 60,
+    "STOP_SECONDS": 20,
+    "EXIT_SECONDS": 10
+  },
+  "runner_and_dependencies_unchanged": true,
+  "ignore_checks": {
+    "evidence/S05/S05b/recovery8/attempt-x/local/RM02-mapanything.npz": {
+      "ignored": true,
+      "rule": ".gitignore:54:/evidence/S05/S05b/recovery8/attempt-*/local/\tevidence/S05/S05b/recovery8/attempt-x/local/RM02-mapanything.npz"
+    },
+    "evidence/S05/S05b/recovery8/attempt-x/local/partial-result": {
+      "ignored": true,
+      "rule": ".gitignore:54:/evidence/S05/S05b/recovery8/attempt-*/local/\tevidence/S05/S05b/recovery8/attempt-x/local/partial-result"
+    },
+    "evidence/S05/S05b/recovery8/attempt-x/worker.json": {
+      "ignored": false,
+      "rule": ""
+    },
+    "evidence/S05/S05b/recovery8/attempt-x/watchdog.json": {
+      "ignored": false,
+      "rule": ""
+    },
+    "evidence/S05/S05b/recovery8/attempt-x/gpu-result.json": {
+      "ignored": false,
+      "rule": ""
+    },
+    "evidence/S05/S05b/recovery8/input.json": {
+      "ignored": false,
+      "rule": ""
+    },
+    "Build/reconstruction/spike/rm02_watchdog.py": {
+      "ignored": false,
+      "rule": ""
+    },
+    "evidence/S05/S05b/recovery9/limits.md": {
+      "ignored": false,
+      "rule": ""
+    }
+  },
+  "sha256": {
+    ".gitignore": "028815cf962527d28ba656cd99f264e2a4327a5302933c51ca79c7fa5dddf66e",
+    "Build/reconstruction/spike/README.md": "4814474e8b22351b877b46fa16582cf0ae7570690501a56335388fbc4f8281d8",
+    "Build/reconstruction/spike/rm02_watchdog.py": "23d9d0211773907830b982fb5f768059dc962cdb7d8e260088f7bbda70894769",
+    "Build/reconstruction/spike/test_rm02_deadline.py": "69b825da9881f71196e6643f6948c9d0667e1eca072ea29a3c1ac8c487b4373b",
+    "Build/reconstruction/spike/test_rm02_watchdog.py": "c5b4ed6088c6387935908c9f99d0d8a002a12ac97ef62e780239db6d3c995653"
+  },
+  "runtime_versions": {
+    "default": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]\r\nnamespace(implementation='QueryPerformanceCounter()', monotonic=True, adjustable=False, resolution=1e-07)",
+    "target": "3.11.15 (main, Jun 11 2026, 04:59:07) [MSC v.1944 64 bit (AMD64)]\r\nnamespace(implementation='GetTickCount64()', monotonic=True, adjustable=False, resolution=0.015625)"
+  },
+  "status": " M .gitignore\n M Build/reconstruction/spike/README.md\n M Build/reconstruction/spike/rm02_watchdog.py\n M Build/reconstruction/spike/test_rm02_deadline.py\n M Build/reconstruction/spike/test_rm02_watchdog.py\n?? evidence/S05/S05b/recovery9/\n"
+}

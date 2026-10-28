@@ -51,3 +51,4 @@ test-data/public/**/*.webm
 test-data/public/**/*.mov
 test-data/public/**/*.mkv
 test-data/public/**/*.avi
+/evidence/S05/S05b/recovery8/attempt-*/local/

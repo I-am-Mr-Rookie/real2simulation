@@ -1,0 +1,13 @@
+{
+  "id": "S05b-recovery9",
+  "issued_at": "2026-10-28T15:23:32+00:00",
+  "deadline_at": "2026-10-28T15:53:32+00:00",
+  "implementation_cutoff_at": "2026-10-28T15:48:32+00:00",
+  "deadline_dhaka": "2026-10-28T21:53:32+06:00",
+  "work_stopped_at": "2026-10-28T15:30:05+00:00",
+  "reported_at": "2026-10-28T15:30:55+00:00",
+  "status": "DONE",
+  "scope": "All four local child acceptance criteria; parent S05b remains PARTIAL, not paid-ready",
+  "project_id": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
+  "chat_id": "01a1831c-0155-7a73-b280-9c79423a8810"
+}

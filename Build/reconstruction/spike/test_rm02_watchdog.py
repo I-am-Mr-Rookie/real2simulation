@@ -15,9 +15,13 @@ CHILD = '''
 import json, os, pathlib, signal, sys, time
 mode = sys.argv[1]
 path = pathlib.Path(os.environ["RM02_WATCHDOG_RECEIPT"])
+if mode == "preflight_fail":
+    sys.exit(9)
 if mode not in ("lost", "hang_lost"):
     path.write_text(json.dumps({"app_id": sys.argv[2]}))
-if mode in ("hang", "hang_lost"):
+if mode == "result_hang":
+    path.with_name("gpu-result.json").write_text('{"synthetic": true}')
+if mode in ("hang", "hang_lost", "result_hang"):
     signal.signal(signal.SIGTERM, signal.SIG_IGN)
     while True:
         pass  # Deliberately blocks all asyncio/cooperative cancellation.
@@ -29,6 +33,8 @@ import json, pathlib, sys, time
 mode, command, action = sys.argv[1:4]
 with pathlib.Path(__file__).with_name("calls.jsonl").open("a") as out:
     out.write(json.dumps(sys.argv[2:]) + "\\n")
+calls = pathlib.Path(__file__).with_name("calls.jsonl").read_text().splitlines()
+rounds = sum(json.loads(line)[1] == "info" for line in calls)
 if action == "stop":
     if mode == "stop_hang":
         time.sleep(10)
@@ -40,9 +46,13 @@ if action == "info":
         print("not json")
     else:
         print(json.dumps({"app_id": sys.argv[4] if mode != "wrong_id" else "ap-wrong",
-                          "lifecycle": {"state": "running" if mode in ("running", "stop_fail_running") else "stopped"}}))
+                          "description": chr(955),
+                          "lifecycle": {"state": "stopping..." if mode == "transition" and rounds == 1
+                                        else "running" if mode in ("running", "stop_fail_running")
+                                        else "stopped"}}, ensure_ascii=False))
 else:
-    print(json.dumps([{"app_id": sys.argv[5]}] if mode == "containers" else []))
+    print(json.dumps([{"app_id": sys.argv[5]}] if mode == "containers" or
+                     (mode == "containers_transition" and rounds == 1) else []))
 '''
 
 
@@ -83,6 +93,55 @@ class WatchdogTests(unittest.TestCase):
         self.assertNotEqual(state["child_returncode"], 0)
         self.assertTrue(state["independent_stop_confirmed"])
         self.assertLess(time.monotonic() - started, 3.5)
+
+    def test_transient_state_and_containers_are_polled_on_exact_same_app(self):
+        for mode in ("transition", "containers_transition"):
+            with self.subTest(mode=mode):
+                self.directory = self.root / mode
+                calls_path = self.root / "calls.jsonl"
+                if calls_path.exists():
+                    calls_path.unlink()
+                state = self.run_guard(cli=mode)
+                self.assertTrue(state["independent_stop_confirmed"])
+                self.assertEqual(state["verification_attempts"], 2)
+                calls = [json.loads(line) for line in calls_path.read_text().splitlines()]
+                self.assertEqual(calls, [["app", "stop", APP_ID, "--yes"]] +
+                                 [["app", "info", APP_ID, "--json"],
+                                  ["container", "list", "--app-id", APP_ID, "--json"]] * 2)
+
+    def test_persistent_running_state_exhausts_original_reserve_as_incident(self):
+        started = time.monotonic()
+        with self.assertRaises(watchdog.ResourceIncident):
+            self.run_guard(cli="running")
+        state = self.receipt()
+        self.assertGreaterEqual(state["verification_attempts"], 2)
+        self.assertTrue(state["resource_incident"])
+        self.assertTrue(state["stop_acknowledged"])
+        self.assertFalse(state["independent_stop_confirmed"])
+        self.assertIn("verification:TimeoutError", state["errors"])
+        self.assertLess(time.monotonic() - started, 3.5)
+
+    def test_cli_json_uses_utf8_even_with_cp1252_parent_environment(self):
+        with patch.dict(watchdog.os.environ, PYTHONIOENCODING="cp1252"):
+            self.run_guard()
+        info = json.loads((self.directory / "info.stdout").read_text(encoding="utf-8"))
+        self.assertEqual(info["description"], chr(955))
+
+    def test_late_result_file_cannot_turn_killed_client_into_success(self):
+        with self.assertRaisesRegex(RuntimeError, "Client failed"):
+            self.run_guard(child="result_hang")
+        self.assertTrue((self.directory / "gpu-result.json").exists())
+        self.assertTrue(self.receipt()["watchdog_fired"])
+        self.assertTrue(self.receipt()["independent_stop_confirmed"])
+
+    def test_preflight_failure_without_id_remains_unknown_not_shutdown_success(self):
+        with self.assertRaises(watchdog.ResourceIncident):
+            self.run_guard(child="preflight_fail")
+        state = self.receipt()
+        self.assertEqual(state["child_returncode"], 9)
+        self.assertTrue(state["resource_incident"])
+        self.assertFalse(state["stop_attempted"])
+        self.assertFalse((self.root / "calls.jsonl").exists())
 
     def test_missing_app_id_durable_incident_no_name_or_account_guess(self):
         with self.assertRaises(watchdog.ResourceIncident):
