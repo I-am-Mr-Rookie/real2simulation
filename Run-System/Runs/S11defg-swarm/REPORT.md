@@ -1,4 +1,4 @@
-# S11defg-swarm — DONE
+# S11defg-swarm — DONE (child implementation only)
 
 ## Scope
 Implemented a private, simulation-only numerical core for S11d–S11g in
@@ -6,6 +6,19 @@ Implemented a private, simulation-only numerical core for S11d–S11g in
 contracts, deployment, credentials, model/checkpoint download, paid job or
 physical result was touched. S11 leaves remain parent-integration dependent;
 this report is not a Gate M/P/R/S12 pass.
+
+## Leaf boundary
+- **S11d:** local least-squares/residual implementation complete; parent
+  acceptance and instrument-contract integration remain pending.
+- **S11e:** local AIC/model-selection implementation complete; same prerequisite.
+- **S11f:** local QR-derived covariance implementation complete; same
+  prerequisite and downstream review remain pending.
+- **S11g:** local seeded synthetic regression complete (95/100); this is not
+  physical coverage or a parent product/gate result.
+
+These are implementation receipts only. Do not mark S11d–S11g product leaves
+accepted until the controller integrates the corrected contract, runs the full
+repository checks, and completes independent review.
 
 ## Concrete implementation
 - Reused the existing measurement lane's numerical posture: stdlib-only,
