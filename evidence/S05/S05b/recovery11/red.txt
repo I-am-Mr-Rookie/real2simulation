@@ -1,0 +1,249 @@
+test_actual_main_persists_pending_then_confirmed_without_importing_modal (test_modal_rm02.ProbeGuards.test_actual_main_persists_pending_then_confirmed_without_importing_modal) ... ok
+test_actual_main_preserves_pending_result_but_no_success_after_cleanup_failure (test_modal_rm02.ProbeGuards.test_actual_main_preserves_pending_result_but_no_success_after_cleanup_failure) ... ok
+test_bounded_single_private_invocation (test_modal_rm02.ProbeGuards.test_bounded_single_private_invocation) ... ok
+test_official_torch_binary_version_family (test_modal_rm02.ProbeGuards.test_official_torch_binary_version_family) ... ok
+test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) ... 
+  test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) (invalid='size') ... FAIL
+  test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) (invalid='hash') ... FAIL
+  test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) (invalid='clip') ... FAIL
+  test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) (invalid='count') ... FAIL
+  test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) (invalid='requirements') ... FAIL
+{"allocated_gpu": "synthetic GPU"}
+test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) ... 
+  test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) (invalid='gpu') ... FAIL
+{"clip_id": "RM02", "model": "facebook/map-anything-apache", "code_revision": "code", "weight_revision": "weights", "gpu": "synthetic GPU", "gpu_count": 1, "inference_s": 8.00006091594696e-06, "function_elapsed_s": 0.0022692999336868525, "peak_allocated_bytes": 0, "peak_reserved_bytes": 0, "output_bytes": 0, "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "gate_R": "NOT RUN", "physical_scale": "unverified", "capture_timebase": "unverified", "torch": "synthetic"}
+{"allocated_gpu": "synthetic GPU"}
+  test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) (invalid='hash') ... FAIL
+{"clip_id": "RM02", "model": "facebook/map-anything-apache", "code_revision": "code", "weight_revision": "weights", "gpu": "synthetic GPU", "gpu_count": 1, "inference_s": 6.8999361246824265e-06, "function_elapsed_s": 0.0017629999201744795, "peak_allocated_bytes": 0, "peak_reserved_bytes": 0, "output_bytes": 0, "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "gate_R": "NOT RUN", "physical_scale": "unverified", "capture_timebase": "unverified", "torch": "synthetic"}
+{"allocated_gpu": "synthetic GPU"}
+  test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) (invalid='count') ... FAIL
+{"clip_id": "RM02", "model": "facebook/map-anything-apache", "code_revision": "code", "weight_revision": "weights", "gpu": "synthetic GPU", "gpu_count": 1, "inference_s": 1.3600103557109833e-05, "function_elapsed_s": 0.0027004999574273825, "peak_allocated_bytes": 0, "peak_reserved_bytes": 0, "output_bytes": 0, "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "gate_R": "NOT RUN", "physical_scale": "unverified", "capture_timebase": "unverified", "torch": "synthetic"}
+{"allocated_gpu": "synthetic GPU"}
+  test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) (invalid='keys') ... FAIL
+{"clip_id": "RM02", "model": "facebook/map-anything-apache", "code_revision": "code", "weight_revision": "weights", "gpu": "synthetic GPU", "gpu_count": 1, "inference_s": 5.899928510189056e-06, "function_elapsed_s": 0.0021196999587118626, "peak_allocated_bytes": 0, "peak_reserved_bytes": 0, "output_bytes": 0, "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "gate_R": "NOT RUN", "physical_scale": "unverified", "capture_timebase": "unverified", "torch": "synthetic"}
+{"allocated_gpu": "synthetic GPU"}
+  test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) (invalid='egress') ... FAIL
+test_planned_compute_allowance_not_a_billing_or_stop_guarantee (test_modal_rm02.ProbeGuards.test_planned_compute_allowance_not_a_billing_or_stop_guarantee) ... ok
+test_result_egress_boundary (test_modal_rm02.ProbeGuards.test_result_egress_boundary) ... ok
+test_supervised_output_preserves_recovery5_inputs_and_explicit_stop (test_modal_rm02.ProbeGuards.test_supervised_output_preserves_recovery5_inputs_and_explicit_stop) ... ok
+
+======================================================================
+FAIL: test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) (invalid='size')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 80, in test_optimized_main_rejects_invalid_preflight_before_remote_admission
+    self.run_main_offline(directory, invalid=invalid)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 73, in run_main_offline
+    namespace["main"]()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\modal_rm02.py", line 138, in main
+    receipt, data = asyncio.run(guarded_probe(
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^
+        app, probe, (frames, requirements, CODE_REV, WEIGHT_REV), record_guard,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        save_result=lambda result: persist_result(EVIDENCE, result),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ))
+    ^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 54, in fake_guard
+    self.fail("invalid preflight reached remote admission")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: invalid preflight reached remote admission
+
+======================================================================
+FAIL: test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) (invalid='hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 80, in test_optimized_main_rejects_invalid_preflight_before_remote_admission
+    self.run_main_offline(directory, invalid=invalid)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 73, in run_main_offline
+    namespace["main"]()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\modal_rm02.py", line 138, in main
+    receipt, data = asyncio.run(guarded_probe(
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^
+        app, probe, (frames, requirements, CODE_REV, WEIGHT_REV), record_guard,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        save_result=lambda result: persist_result(EVIDENCE, result),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ))
+    ^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 54, in fake_guard
+    self.fail("invalid preflight reached remote admission")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: invalid preflight reached remote admission
+
+======================================================================
+FAIL: test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) (invalid='clip')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 80, in test_optimized_main_rejects_invalid_preflight_before_remote_admission
+    self.run_main_offline(directory, invalid=invalid)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 73, in run_main_offline
+    namespace["main"]()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\modal_rm02.py", line 138, in main
+    receipt, data = asyncio.run(guarded_probe(
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^
+        app, probe, (frames, requirements, CODE_REV, WEIGHT_REV), record_guard,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        save_result=lambda result: persist_result(EVIDENCE, result),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ))
+    ^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 54, in fake_guard
+    self.fail("invalid preflight reached remote admission")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: invalid preflight reached remote admission
+
+======================================================================
+FAIL: test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) (invalid='count')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 80, in test_optimized_main_rejects_invalid_preflight_before_remote_admission
+    self.run_main_offline(directory, invalid=invalid)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 73, in run_main_offline
+    namespace["main"]()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\modal_rm02.py", line 138, in main
+    receipt, data = asyncio.run(guarded_probe(
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^
+        app, probe, (frames, requirements, CODE_REV, WEIGHT_REV), record_guard,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        save_result=lambda result: persist_result(EVIDENCE, result),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ))
+    ^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 54, in fake_guard
+    self.fail("invalid preflight reached remote admission")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: invalid preflight reached remote admission
+
+======================================================================
+FAIL: test_optimized_main_rejects_invalid_preflight_before_remote_admission (test_modal_rm02.ProbeGuards.test_optimized_main_rejects_invalid_preflight_before_remote_admission) (invalid='requirements')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 80, in test_optimized_main_rejects_invalid_preflight_before_remote_admission
+    self.run_main_offline(directory, invalid=invalid)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 73, in run_main_offline
+    namespace["main"]()
+    ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\modal_rm02.py", line 138, in main
+    receipt, data = asyncio.run(guarded_probe(
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^
+        app, probe, (frames, requirements, CODE_REV, WEIGHT_REV), record_guard,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        save_result=lambda result: persist_result(EVIDENCE, result),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ))
+    ^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 204, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\runners.py", line 127, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 54, in fake_guard
+    self.fail("invalid preflight reached remote admission")
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: invalid preflight reached remote admission
+
+======================================================================
+FAIL: test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) (invalid='gpu')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 120, in test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress
+    self.assertRaises((ValueError, RuntimeError)):
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) (invalid='hash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 120, in test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress
+    self.assertRaises((ValueError, RuntimeError)):
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) (invalid='count')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 120, in test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress
+    self.assertRaises((ValueError, RuntimeError)):
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) (invalid='keys')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 120, in test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress
+    self.assertRaises((ValueError, RuntimeError)):
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+======================================================================
+FAIL: test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress (test_modal_rm02.ProbeGuards.test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress) (invalid='egress')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\solo-sam-integrity\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_modal_rm02.py", line 120, in test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress
+    self.assertRaises((ValueError, RuntimeError)):
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: (<class 'ValueError'>, <class 'RuntimeError'>) not raised
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.203s
+
+FAILED (failures=10)
+{"clip_id": "RM02", "model": "facebook/map-anything-apache", "code_revision": "code", "weight_revision": "weights", "gpu": "synthetic GPU", "gpu_count": 1, "inference_s": 7.300172001123428e-06, "function_elapsed_s": 0.0023896999191492796, "peak_allocated_bytes": 0, "peak_reserved_bytes": 0, "output_bytes": 268435457, "output_sha256": "82926f3172050e75f40a265011a65261a192efad6d9af770fae1e33d702ddb73", "gate_R": "NOT RUN", "physical_scale": "unverified", "capture_timebase": "unverified", "torch": "synthetic"}

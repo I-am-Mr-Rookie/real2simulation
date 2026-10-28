@@ -3,6 +3,7 @@ import ast
 import asyncio
 from contextlib import nullcontext
 import hashlib
+import io
 import json
 import os
 from pathlib import Path
@@ -19,7 +20,7 @@ from rm02_watchdog import atomic_json
 
 
 class ProbeGuards(unittest.TestCase):
-    def run_main_offline(self, directory, *, cleanup_failure=False):
+    def run_main_offline(self, directory, *, cleanup_failure=False, invalid=None):
         source = Path(__file__).with_name("modal_rm02.py")
         tree = ast.parse(source.read_text())
         main = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "main")
@@ -32,10 +33,25 @@ class ProbeGuards(unittest.TestCase):
             name = f"frame-{index}.bin"
             (directory / name).write_bytes(data)
             frames.append(dict(path=name, bytes=len(data), sha256=hashlib.sha256(data).hexdigest()))
-        (directory / "input.json").write_text(json.dumps({"clip_id": "RM02", "sample": {"frames": frames}}))
+        manifest = {"clip_id": "RM02", "sample": {"frames": frames}}
+        requirements = source.with_name("requirements-linux-py311.txt").read_text()
+        if invalid == "size":
+            frames[0]["bytes"] = 99
+        elif invalid == "hash":
+            frames[0]["sha256"] = "0" * 64
+        elif invalid == "clip":
+            manifest["clip_id"] = "unapproved"
+        elif invalid == "count":
+            frames.pop()
+        elif invalid == "requirements":
+            requirements = "numpy==1.26.4\n"
+        (directory / "input.json").write_text(json.dumps(manifest))
+        (directory / "requirements-linux-py311.txt").write_text(requirements)
         data = b"synthetic-runner-output"
         result = ({"output_bytes": len(data), "output_sha256": hashlib.sha256(data).hexdigest()}, data)
         async def fake_guard(app, probe, args, record, **kwargs):
+            if invalid:
+                self.fail("invalid preflight reached remote admission")
             self.assertEqual(kwargs["deadline"], 1500 - EXIT_SECONDS)
             self.assertEqual(kwargs["total_seconds"], 1140)
             self.assertEqual(len(args[0]), 4)
@@ -44,17 +60,65 @@ class ProbeGuards(unittest.TestCase):
             if cleanup_failure:
                 raise ResourceIncident("synthetic cleanup failure")
             return result
-        namespace = dict(constants, __file__=str(source), sys=NS(
+        namespace = dict(constants, __file__=str(directory / "modal_rm02.py"), sys=NS(
             stdout=NS(reconfigure=lambda **kw: None), stderr=NS(reconfigure=lambda **kw: None)),
             INPUT_EVIDENCE=directory, FRAME_EVIDENCE=directory, EVIDENCE=directory,
             Path=Path, hashlib=hashlib, json=json, time=time, os=os, asyncio=asyncio,
             modal=NS(enable_output=nullcontext), app=object(), probe=object(),
             guarded_probe=fake_guard, EXIT_SECONDS=EXIT_SECONDS,
             atomic_json=atomic_json, persist_result=persist_result)
-        exec(compile(ast.Module(body=[main], type_ignores=[]), str(source), "exec"), namespace)
+        exec(compile(ast.Module(body=[main], type_ignores=[]), str(source), "exec", optimize=2), namespace)
         with patch.dict(os.environ, RM02_CHILD_DEADLINE="1500", RM02_CHILD_BUDGET="1140",
                         RM02_WATCHDOG_RECEIPT=str(directory / "worker.json")):
             namespace["main"]()
+
+    def test_optimized_main_rejects_invalid_preflight_before_remote_admission(self):
+        for invalid in ("size", "hash", "clip", "count", "requirements"):
+            with self.subTest(invalid=invalid), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary)
+                with self.assertRaises(ValueError):
+                    self.run_main_offline(directory, invalid=invalid)
+                self.assertFalse((directory / "worker.json").exists())
+                self.assertFalse((directory / "local").exists())
+
+    def test_optimized_remote_body_rejects_invalid_gpu_frames_results_and_egress(self):
+        source = Path(__file__).with_name("modal_rm02.py")
+        tree = ast.parse(source.read_text())
+        function = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "probe")
+        function.decorator_list = []
+        namespace = {}
+        exec(compile(ast.Module(body=[function], type_ignores=[]), str(source), "exec", optimize=2), namespace)
+        class OversizeBytes(bytes):
+            def __len__(self):
+                return 256 * 1024 * 1024 + 1
+        class OversizeBuffer(io.BytesIO):
+            def getvalue(self):
+                return OversizeBytes(b"tiny synthetic payload")
+        for invalid in ("gpu", "gpu_count", "hash", "count", "keys", "egress"):
+            with self.subTest(invalid=invalid), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary)
+                predictions = [] if invalid == "count" else ([{}] if invalid == "keys" else
+                    [{"pts3d": None, "cam_trans": None, "cam_quats": None}])
+                model = NS(eval=lambda: model, to=lambda device: model,
+                           infer=lambda *args, **kwargs: predictions)
+                torch = NS(cuda=NS(is_available=lambda: invalid != "gpu",
+                    device_count=lambda: 2 if invalid == "gpu_count" else 1,
+                    reset_peak_memory_stats=lambda: None, synchronize=lambda: None,
+                    max_memory_allocated=lambda: 0, max_memory_reserved=lambda: 0),
+                    Tensor=type("UnusedTensor", (), {}), inference_mode=nullcontext, __version__="synthetic")
+                # No tensor entries: shape/codec are outside these trust-boundary cases.
+                modules = {"torch": torch, "numpy": NS(savez_compressed=lambda *a, **k: None),
+                    "mapanything.models": NS(MapAnything=NS(from_pretrained=lambda *a, **k: model)),
+                    "mapanything.utils.image": NS(load_images=lambda paths: paths),
+                    "pathlib": NS(Path=lambda path: directory / Path(path).name)}
+                if invalid == "egress":
+                    modules["io"] = NS(BytesIO=OversizeBuffer)
+                data = b"synthetic frame"
+                digest = "0" * 64 if invalid == "hash" else hashlib.sha256(data).hexdigest()
+                with patch.dict(sys.modules, modules), \
+                     patch("subprocess.run"), patch("subprocess.check_output", return_value="synthetic GPU"), \
+                     self.assertRaises((ValueError, RuntimeError)):
+                    namespace["probe"]([(data, digest)], "synthetic lock", "code", "weights")
 
     def test_actual_main_persists_pending_then_confirmed_without_importing_modal(self):
         with tempfile.TemporaryDirectory() as temporary:
@@ -130,7 +194,6 @@ class ProbeGuards(unittest.TestCase):
         self.assertNotIn('.write_bytes(data)', source[source.index('def main():'):])
         self.assertLess(source.index('if not os.environ.get("RM02_WATCHDOG_RECEIPT")'),
                         source.index('import modal'))
-        self.assertIn('assert len(frames) == 4 and manifest["clip_id"] == "RM02"', source)
         constants = {n.targets[0].id: ast.literal_eval(n.value) for n in ast.parse(source).body
                      if isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Name)
                      and n.targets[0].id in ("CODE_REV", "WEIGHT_REV")}
@@ -140,18 +203,18 @@ class ProbeGuards(unittest.TestCase):
     def test_result_egress_boundary(self):
         tree = ast.parse(Path(__file__).with_name("modal_rm02.py").read_text())
         probe = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "probe")
-        guard = next(n for n in probe.body if isinstance(n, ast.Assert)
+        guard = next(n for n in probe.body if isinstance(n, ast.If)
                      and isinstance(n.test, ast.Compare)
                      and isinstance(n.test.left, ast.Call)
                      and isinstance(n.test.left.func, ast.Name)
                      and n.test.left.func.id == "len"
                      and isinstance(n.test.left.args[0], ast.Name)
                      and n.test.left.args[0].id == "data")
-        code = compile(ast.Module(body=[guard], type_ignores=[]), "egress-guard", "exec")
+        code = compile(ast.Module(body=[guard], type_ignores=[]), "egress-guard", "exec", optimize=2)
         # Execute the production guard without allocating a 256MiB test payload.
         for size in (0, 268435456):
             exec(code, {"data": range(size)})
-        with self.assertRaises(AssertionError):
+        with self.assertRaisesRegex(ValueError, "egress"):
             exec(code, {"data": range(268435457)})
 
 

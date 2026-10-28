@@ -165,3 +165,11 @@ Local synthetic tests cover transient states, bounded persistent state, Unicode,
 late-result rejection and preflight failure. Remote stop/lifecycle timing, real
 CLI/auth, live headroom/no-paid-overage and physical results remain NOT_VERIFIED.
 Parent S05b stays PARTIAL; this review-fix child cannot release paid readiness.
+
+**Optimization-safe input/result gates (recovery11):** runtime exceptions, not
+Python assertions, enforce local frame size/hash, approved RM02 identity/count,
+pinned runtime, one CUDA device, remote frame hash, prediction count/required
+fields and256MiB egress ceiling. `python -O` cannot remove these boundaries.
+This does not attest input-manifest authority or provider behavior; all existing
+independent review/live-admission/stop/budget holds continue. Optimized AST-body
+tests use tiny synthetic data and fake external GPU/model/codec interfaces only.

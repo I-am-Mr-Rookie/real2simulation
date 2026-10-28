@@ -62,10 +62,12 @@ def probe(frames, requirements, code_rev, weight_rev):
     from mapanything.models import MapAnything
     from mapanything.utils.image import load_images
 
-    assert torch.cuda.is_available() and torch.cuda.device_count() == 1
+    if not torch.cuda.is_available() or torch.cuda.device_count() != 1:
+        raise RuntimeError("Exactly one available CUDA device required")
     paths = []
     for index, (data, expected_hash) in enumerate(frames):
-        assert hashlib.sha256(data).hexdigest() == expected_hash
+        if hashlib.sha256(data).hexdigest() != expected_hash:
+            raise ValueError("Remote frame SHA256 mismatch")
         path = Path(f"/tmp/RM02-{index:02}.png")
         path.write_bytes(data)
         paths.append(str(path))
@@ -84,10 +86,12 @@ def probe(frames, requirements, code_rev, weight_rev):
         )
     torch.cuda.synchronize()
     inference_s = time.monotonic() - inference_start
-    assert len(predictions) == len(frames)
+    if len(predictions) != len(frames):
+        raise ValueError("Prediction count does not match input frames")
     arrays, schema = {}, {}
     for index, prediction in enumerate(predictions):
-        assert {"pts3d", "cam_trans", "cam_quats"} <= prediction.keys()
+        if not {"pts3d", "cam_trans", "cam_quats"} <= prediction.keys():
+            raise ValueError("Prediction missing required scene/camera fields")
         for key, value in prediction.items():
             if not isinstance(value, torch.Tensor):
                 continue
@@ -99,7 +103,8 @@ def probe(frames, requirements, code_rev, weight_rev):
     output = io.BytesIO()
     np.savez_compressed(output, **arrays)
     data = output.getvalue()
-    assert len(data) <= 256 * 1024 * 1024, "Result exceeds reserved egress bound"
+    if len(data) > 256 * 1024 * 1024:
+        raise ValueError("Result exceeds reserved egress bound")
     receipt = {
         "clip_id": "RM02", "model": "facebook/map-anything-apache",
         "code_revision": code_rev, "weight_revision": weight_rev,
@@ -123,12 +128,16 @@ def main():
     frames = []
     for frame in manifest["sample"]["frames"]:
         data = (FRAME_EVIDENCE / frame["path"]).read_bytes()
-        assert len(data) == frame["bytes"]
-        assert hashlib.sha256(data).hexdigest() == frame["sha256"]
+        if len(data) != frame["bytes"]:
+            raise ValueError("Local frame byte size mismatch")
+        if hashlib.sha256(data).hexdigest() != frame["sha256"]:
+            raise ValueError("Local frame SHA256 mismatch")
         frames.append((data, frame["sha256"]))
-    assert len(frames) == 4 and manifest["clip_id"] == "RM02"
+    if len(frames) != 4 or manifest["clip_id"] != "RM02":
+        raise ValueError("Exactly four approved RM02 frames required")
     requirements = Path(__file__).with_name("requirements-linux-py311.txt").read_text()
-    assert CODE_REV in requirements and "numpy==2.2.6" in requirements
+    if CODE_REV not in requirements or "numpy==2.2.6" not in requirements:
+        raise ValueError("Pinned reconstruction runtime requirements mismatch")
     started = time.time()
     EVIDENCE.mkdir(parents=True, exist_ok=True)
     def record_guard(state):
