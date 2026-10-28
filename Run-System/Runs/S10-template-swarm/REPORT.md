@@ -1,7 +1,7 @@
 # S10-template-swarm REPORT
 
 - **Status:** DONE — simulation-only S10 trajectory child complete; this is not a parent product or physics-gate pass.
-- **Issued/deadline:** 2026-10-28T17:30:16Z / 2026-10-28T18:00:16Z. Reviewer-unfrozen minimal fix verified DONE and stopped 2026-10-28T17:48:45Z before deadline.
+- **Issued/deadline:** 2026-10-28T17:30:16Z / 2026-10-28T18:00:16Z. Reviewer-unfrozen minimal fix and safe-integer guard verified DONE and stopped 2026-10-28T17:50:41Z before deadline.
 - **Branch/base:** `run/S10-template-swarm`, base `8efd3651bd957b3b36099981b63c11c9409e7950`.
 - **Owns changed:** `Build/simulator/trajectories.mjs`, `tests/simulator/trajectories.test.mjs`, `evidence/S10/trajectories-swarm/`, this run directory.
 
