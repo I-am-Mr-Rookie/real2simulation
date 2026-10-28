@@ -32,6 +32,7 @@
     },
     "candidate2": {
       "port": 3101,
+      "status": "STOPPED via owned exec63695; parent socket probe CLOSED20:50UTC",
       "session_id": 63695,
       "last_verified_pid": 34480
     }

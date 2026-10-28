@@ -116,5 +116,8 @@ scope; no silent unlock or speculative new product features.
 
 Bundle/review/transport workers closed; bundle archive repeatedly refused as
 active app attachment even after parent attachment move. Preserve snapshots,
-no force deletion; transport/review archive requests queued. Candidate2 dev3101
-still serves current accepted source, canonical dev3100 also remains owned.
+no force deletion; transport/review archive requests queued. After acceptance,
+stopped redundant candidate dev3101 through owned exec63695; parent socket
+probe confirms3101/3102 CLOSED and3100 LISTENING. IAB inventory has no temporary
+tabs after turn cleanup; viewport override reset. Canonical3100 remains available
+for later required UI checks. Waiting only on actual R12 worker, not idle padding.
