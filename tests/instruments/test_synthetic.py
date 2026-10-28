@@ -24,8 +24,8 @@ class SyntheticInstrumentTests(unittest.TestCase):
         self.assertEqual(camera["y"]["value"], 2.0)
         self.assertAlmostEqual(ruler_observation(1.24, resolution_m=0.1,
                                                  uncertainty_m=0.01, bias_m=0)["value"], 1.2)
-        self.assertEqual(light_gate_observation(0.26, resolution_s=0.1,
-                                                uncertainty_s=0.01, bias_s=0)["value"], 0.3)
+        self.assertAlmostEqual(light_gate_observation(0.26, resolution_s=0.1,
+                                                     uncertainty_s=0.01, bias_s=0)["value"], 0.3)
         with self.assertRaises(ValueError):
             ruler_observation(-1, resolution_m=0.1, uncertainty_m=0.01, bias_m=0)
 
