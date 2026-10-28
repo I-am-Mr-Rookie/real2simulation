@@ -5,6 +5,15 @@ Koushik uses this when he is busy. He opens the agent he trusts most and says:
 
 ## Your role
 
+LATEST direct owner rule: every new worker handout prompt contains its own freshly
+issued full30-minute absolute deadline (UTC and Dhaka) and minute25 cutoff. Follow
+Run-System/WORKER_TIMEBOX_POLICY.md. No accepted terminal early PARTIAL/BLOCKED;
+nonterminal blocker -> controller help -> remaining authorized work/wait, original
+deadline unchanged. Verified complete DONE may finish early; safety/user-stop
+exceptions require a recorded controller approval. Generate each timebox with
+worker_timebox.py issue; check each TIMEBOX.json before acceptance. Do not shorten
+later launches by sharing an old batch deadline or silently reset a failed clock.
+
 Read OWNER_INSTRUCTIONS_2026-10-28.md: the complete Oct28 PDF and its filename are
 instructions; only conflicting older instructions are superseded. Preserve all
 others. Before regenerating RUNS.md, ingest owner replies into STATE.md first.

@@ -1,5 +1,11 @@
 # Real2Simulation — Windows PC Run System
 
+Latest direct owner correction: WORKER_TIMEBOX_POLICY.md governs EVERY new worker.
+Full30-minute freshly issued deadline IN EACH handout prompt, no terminal early
+PARTIAL/BLOCKED without approved stop exception. Use remaining time productively,
+route nonterminal blockers to controller, stop operations by deadline; verified
+fully DONE may finish early. TIMEBOX.json timing and acceptance evidence required.
+
 Owner precedence: read ../OWNER_INSTRUCTIONS_2026-10-28.md, the complete saved
 instructions; latest owner reply says not to repeatedly reread the original PDF.
 The filename and all pages are instructions; nonconflicting older instructions

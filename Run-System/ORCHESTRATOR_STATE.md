@@ -1,5 +1,27 @@
 # Orchestrator recovery checkpoint
 
+## CURRENT — strict full30m prompt deadline; Q14 provisioning approved
+
+Direct owner screenshots show early PARTIAL sessions (review2m/auth7m/cleaner6m/
+guard13m). Controller accepts responsibility for older "finish early" contracts.
+Prospective owner rule implemented in AGENTS, ORCHESTRATOR, saved OWNER_INSTRUCTIONS,
+RUN_SYSTEM, WORKER_TIMEBOX_POLICY and explicit MANUAL_WORKER_HANDOFF template.
+Each new prompt carries fresh UTC issue+30m UTC/Dhaka deadline and minute25 cutoff.
+No terminal early incomplete absent recorded approved stop exception; nonterminal
+blocker coordination + remaining useful scoped work/controller wait. Verified all-
+criteria DONE may finish early; no filler/spend/scope bypass or clock resets.
+worker_timebox.py issue/check + unit regressions provide controller arithmetic/
+acceptance check, NOT proof of self-reported effort; actual report/chat reviewed.
+Do not silently retroactively reject/rewrite historical evidence/times.
+
+Q14 direct user "y" explicitly approves narrow HF read token -> private Modal
+Secret provisioning, no value exposure in chat/files/logs. Safe supported UI
+transfer only; no general credentials/policy/terms/accounts/jobs/download scope.
+Auth preflight now terminal PARTIAL (both Clerk key NAMES absent); original review
+terminal PARTIAL found local cancellation/late-stop issues. Their reports pending
+controller serial acceptance; no other UI worker active. A fresh Q14 separate
+desktop worker with full30m prompt deadline follows, same existing project.
+
 ## CURRENT — S07 metadata and S05 local guard accepted; next isolated prerequisites
 
 S07b recovery4 terminal PARTIAL accepted7 files, a1f8bf5 -> rebased36fb353/FF;

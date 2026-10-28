@@ -1,5 +1,20 @@
 # Real2Simulation — Decisions and preflight delta
 
+## 2026-10-28 — strict timebox correction and Q14 explicit approval
+
+Koushik rejects early incomplete reports and requires deadline in EACH handout.
+Controller's older short/finish-early contracts caused this; do not blame workers
+or rewrite historical time. All NEW workers use full30m fresh prompt deadlines,
+minute25 cutoff, nonterminal blockers and no accepted early PARTIAL/BLOCKED absent
+controller-approved safety/owner stop. Fully verified DONE can finish early; no
+idle/filler/cost padding. Policy+manual handout+timing validator/test evidence on
+disk; controller must review real acceptance, not accept self-reported times alone.
+Dispatcher remains OFF; no scheduled task, inline workers or route/policy changes.
+
+Direct "y" answers Q14: narrowly scoped read-only HF token privately into Modal
+Secret through signed-in UIs, no exposure in model/chat/files/logs. This is a
+specific credential-provisioning exception, not blanket auth/spend/download scope.
+
 ## 2026-10-28 — successor acceptance and fresh owner RUNS replies
 
 Sole successor verified existing project association; accepted scoped terminal

@@ -61,6 +61,18 @@ Revisit original pages only to resolve a genuine ambiguity or an owner request.
 
 ## Other still-current owner instructions
 
+- Latest direct owner correction after screenshots of short PARTIAL runs: every
+  worker gets a freshly issued FULL30-minute window, deadline explicitly IN THE
+  HANDOUT PROMPT. No early terminal incomplete report absent recorded safety/
+  owner-stop exception; controller helps nonterminal blockers while useful scoped
+  work continues. Fully verified DONE may finish early. Controller rejects early
+  partials using WORKER_TIMEBOX_POLICY.md/TIMEBOX.json checks; never pad or fake
+  work, bypass safeguards, reset clocks or claim elapsed time proves completion.
+- Q14 explicitly approved by direct "y": agent may create a narrowly scoped HF
+  read-only token and store it privately in Modal through signed-in UIs, without
+  exposing values in chat/files/logs. No general credential/policy change, model
+  download, GPU run, paid scope expansion or terms/account permission added.
+
 - Latest direct owner correction: launch workers in fresh SEPARATE desktop chats,
   not inline subagents in this chat. Same existing project remains mandatory.
   Owner explicitly says they will contact the controller with messages; scoped

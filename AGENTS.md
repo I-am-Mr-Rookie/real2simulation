@@ -2,6 +2,18 @@
 
 Scope: this event folder. Current phase: **building Real2Simulation** (solo, indie track). Nothing submitted.
 
+## Latest owner correction — strict full worker window
+
+Every new worker receives a full30-minute absolute timebox IN ITS HANDOUT PROMPT
+(actual UTC issue time, UTC/Dhaka deadline, minute25 cutoff). No early terminal
+PARTIAL/BLOCKED; use remaining time for useful authorized work and send nonterminal
+blockers for controller resolution. Verified fully DONE may finish early. Safety/
+owner-stop exceptions require an explicit controller receipt; never expand scope,
+spend or permissions or fake work to fill time. Controller rejects early partials
+and checks TIMEBOX.json with Run-System/worker_timebox.py before acceptance.
+Read Run-System/WORKER_TIMEBOX_POLICY.md; it supersedes older shorter contracts/
+"finish early" wording for incomplete work, for every model/lane/cleaner/reviewer.
+
 ## Latest owner workflow update — Oct28 scanned instructions
 
 Koushik supplied the four-page `Updated_Instructions_10_28_2026_anything_else_that_this_PDF_doesn't.pdf` (SHA256
