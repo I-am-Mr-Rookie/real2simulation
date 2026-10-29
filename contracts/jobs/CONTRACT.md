@@ -67,3 +67,21 @@ Stages, in order: validate → keyframes → understand → segment → reconstr
   `ready` (scene supplied by caller), terminal failure = `failed` with
   `{code, message}`. Cancellation is a later user action, not a stage event.
 - `job_deadline_s` 360 is the <6 min target to be measured in S13h, not a result.
+
+## Keyframes stage output (S13c)
+
+`Build/pipeline/keyframes.py` (`python -m Build.pipeline.keyframes CLIP_ID PATH OUT_DIR [CLIPS_CSV]`)
+writes `kf_NNNNNN.jpg` + `manifest.json` (`kind: keyframe_manifest`, 1.0.0):
+
+- `keyframes[]`: `index`, `file`, `pts` (stream timebase ticks), `time_s`,
+  `time_source` (`pts`, else `best_effort_timestamp`), `pict_type`. Keyframes =
+  decoder keyframes (`-skip_frame nokey`); times are the clip's original presentation
+  times from ffprobe, never `index/fps`, so VFR and nonzero start offsets survive.
+- `provenance`: copied from the clip's `clips.csv` row (`clip_id, title, source_url,
+  creator, licence, licence_url, attribution, adaptation_notes, status, owner_approved`).
+  Missing row, empty or NC/ND licence, or a path other than the row's `local_path` = INVALID_INPUT.
+  Provenance is not use approval; scoped approval lives in `evidence/owner/S02/APPROVAL.md`.
+- `source`: file name, sha256, ffprobe format/codec/size/timebase/rates/start/duration;
+  duration over `max_duration_s` or no video stream = INVALID_INPUT. `vfr_hint` is advisory.
+- Stage `output_sha256` = sha256 of `manifest.json`. Keyframes/manifests are media
+  derivatives: never committed.
