@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED R-A-orch50 Sol high (threadId:01a189af-b1bb-7091-915f-9c6a4e5d52c0,hostId:local, deadline 2026-10-29T22:32:34+00:00).
+
 S14g DONE (orch47 Opus high; TIMEBOX PASS; agent 49 OK; ff-merged). Gate A MET (live, measured):
 10/10 valid specs, 30 turns, 0 invented numeric claims (independent scan of shown text); offline
 fixture caught 36/36 planted numbers. Meta 42 live calls est $1.13 (billed unknown), ledger
