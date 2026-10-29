@@ -1,0 +1,19 @@
+{
+  "id": "R15-consumer-fixtures",
+  "issued_at": "2026-10-29T07:39:21.000Z",
+  "deadline_at": "2026-10-29T08:09:21.000Z",
+  "minute25_cutoff_at": "2026-10-29T08:04:21.000Z",
+  "deadline_dhaka": "2026-10-29T14:09:21.000+06:00",
+  "owner_stop_at": "2026-10-29T10:00:00.000Z",
+  "work_stopped_at": "2026-10-29T07:49:53.955059+00:00",
+  "reported_at": "2026-10-29T07:49:53.955059+00:00",
+  "status": "DONE",
+  "window_seconds": 1800,
+  "lane": "CODEX-2",
+  "assigned_model": "gpt-6.1-sol",
+  "assigned_effort": "medium",
+  "early_completion": "all owned acceptance freshly verified; no remaining owned implementation",
+  "coding_quota": "OpenCodex-managed; not polled",
+  "cost": "unknown",
+  "tokens": "unknown"
+}

@@ -1,0 +1,4 @@
+Staged Owns scope PASS: 13 files before this generated receipt.
+Authored/non-TAP git diff --cached --check PASS.
+Whole staged check: four whitespace-only lines in original raw browser-before.tap preserved.
+No main merge. Parent must accept the scoped commit independently.

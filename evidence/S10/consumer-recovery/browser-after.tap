@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: free_fall: browser wrapper exactly preserves current engine and server trace
+ok 1 - free_fall: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 128.7335
+  type: 'test'
+  ...
+# Subtest: projectile: browser wrapper exactly preserves current engine and server trace
+ok 2 - projectile: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 129.4493
+  type: 'test'
+  ...
+# Subtest: ramp: browser wrapper exactly preserves current engine and server trace
+ok 3 - ramp: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 124.9707
+  type: 'test'
+  ...
+# Subtest: pendulum: browser wrapper exactly preserves current engine and server trace
+ok 4 - pendulum: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 192.5819
+  type: 'test'
+  ...
+# Subtest: rejects Mystery and absent/bad modes before reading any artifact
+ok 5 - rejects Mystery and absent/bad modes before reading any artifact
+  ---
+  duration_ms: 1.2478
+  type: 'test'
+  ...
+# Subtest: bounds work before touching scene/engine, even if an early event would shorten the run
+ok 6 - bounds work before touching scene/engine, even if an early event would shorten the run
+  ---
+  duration_ms: 2.0276
+  type: 'test'
+  ...
+# Subtest: 2000 samples includes the initial point; one more is rejected without truncation
+ok 7 - 2000 samples includes the initial point; one more is rejected without truncation
+  ---
+  duration_ms: 28.2779
+  type: 'test'
+  ...
+# Subtest: bad horizons are rejected, not coerced, floored, or silently downsampled
+ok 8 - bad horizons are rejected, not coerced, floored, or silently downsampled
+  ---
+  duration_ms: 5.6388
+  type: 'test'
+  ...
+# Subtest: actual existing artifact consumers reject malformed envelopes and non-synthetic scenes
+ok 9 - actual existing artifact consumers reject malformed envelopes and non-synthetic scenes
+  ---
+  duration_ms: 13.4519
+  type: 'test'
+  ...
+# Subtest: browser entry dependency graph uses only the existing browser-compatible RK4 modules
+ok 10 - browser entry dependency graph uses only the existing browser-compatible RK4 modules
+  ---
+  duration_ms: 2.2971
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 769.245

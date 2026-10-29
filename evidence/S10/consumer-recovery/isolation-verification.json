@@ -1,0 +1,25 @@
+{
+  "base": "b37f7b8f03f9a31c6c0b245913509c0b4dfbf0c9",
+  "branch": "run/R15-consumer-fixtures",
+  "old_transport_branch": "9598213140b74db8be2fca2adc21aa408a73cbb5",
+  "immutable_files": 46,
+  "immutable_sha256_pass": true,
+  "changed_tracked_files": [
+    "evidence/S10/browser-simulation/pendulum.server-trace.json",
+    "evidence/S10/browser-simulation/ramp.server-trace.json"
+  ],
+  "protected_paths": [
+    "Build",
+    "contracts",
+    "tests",
+    "test-data",
+    "evidence/S10/numerical-invariants",
+    "evidence/S10/extension-replay",
+    "evidence/S10/replay-invariants",
+    "evidence/S10/replay-recovery"
+  ],
+  "protected_diff_empty": true,
+  "Build_tree": "c58acfffced6fedfa0bc9caf2281d7cf23682232",
+  "snapshots_match_actual_cli_receipt": true,
+  "old_replay_records_untouched": true
+}

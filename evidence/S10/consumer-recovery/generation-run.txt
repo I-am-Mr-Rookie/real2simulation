@@ -1,0 +1,113 @@
+{
+  "immutable_byte_identical": true,
+  "cases": [
+    {
+      "template": "free_fall",
+      "samples": 201,
+      "artifact_sha256": "5cb96becb5c6163d63d0d61eea8afa727431f9f8f37a03ca7aa297605cea807c",
+      "old_snapshot_sha256": "0b04f587a1acc82bbc614005769a2002770806c783beb47e96584d1dcf3c8363",
+      "new_snapshot_sha256": "0b04f587a1acc82bbc614005769a2002770806c783beb47e96584d1dcf3c8363",
+      "old_snapshot_git_blob_sha256": "52424f0b30b7c4dcb3829ad2233fa814c6b2ab008525ea44ee011c45f3d5cdfb",
+      "new_snapshot_git_blob_sha256": "52424f0b30b7c4dcb3829ad2233fa814c6b2ab008525ea44ee011c45f3d5cdfb",
+      "changed": false,
+      "cli_stdout_sha256": "9f1e89d981147242474cd7ccb43fe8b2b61b302978f20012c1090c047e7b56e7",
+      "oracle": "analytic-free-fall-v1",
+      "max_position_error_m": 1.5543122344752192e-15,
+      "characteristic_scale_m": 0.19620000000000015,
+      "relative_error": 7.922080705786024e-15,
+      "threshold": 0.005,
+      "passed": true,
+      "deterministic": true,
+      "metadata_unchanged": true,
+      "changed_sample_count": 0,
+      "max_old_new_scalar_delta": {
+        "step": 0,
+        "time_s": 0
+      },
+      "max_old_new_position_distance_m": 0.0,
+      "max_old_new_velocity_distance_m_s": 0.0
+    },
+    {
+      "template": "projectile",
+      "samples": 201,
+      "artifact_sha256": "89ecf547c99f437ec495ab045de12a8618f9bf65ed4ffda21f90dd4d7f2aba4a",
+      "old_snapshot_sha256": "bba6365e914c3730ca6f0ae633b566c7dfaa4298944129c35ce1a4b326226b3f",
+      "new_snapshot_sha256": "bba6365e914c3730ca6f0ae633b566c7dfaa4298944129c35ce1a4b326226b3f",
+      "old_snapshot_git_blob_sha256": "6eb6802ef376251554f36fa4aa0408a07a69251539bfe7701384937d22eb36aa",
+      "new_snapshot_git_blob_sha256": "6eb6802ef376251554f36fa4aa0408a07a69251539bfe7701384937d22eb36aa",
+      "changed": false,
+      "cli_stdout_sha256": "91ee381d330ea2c6664316ed9fd871cd00deb3555f47a45cf3475f6e65ff4d51",
+      "oracle": "analytic-projectile-v1",
+      "max_position_error_m": 1.5582722720639762e-15,
+      "characteristic_scale_m": 0.28016859210125616,
+      "relative_error": 5.561909207513163e-15,
+      "threshold": 0.005,
+      "passed": true,
+      "deterministic": true,
+      "metadata_unchanged": true,
+      "changed_sample_count": 0,
+      "max_old_new_scalar_delta": {
+        "step": 0,
+        "time_s": 0
+      },
+      "max_old_new_position_distance_m": 0.0,
+      "max_old_new_velocity_distance_m_s": 0.0
+    },
+    {
+      "template": "ramp",
+      "samples": 201,
+      "artifact_sha256": "10b43a6aacbc10d137d2b86c490d6973cb7e6c1a14f1251783f6f80bb8b8c71f",
+      "old_snapshot_sha256": "9ff01494f2c4fce0f6109803cb72be2a7529c116603ff93ce13c5c9d9ca60d98",
+      "new_snapshot_sha256": "9233985cc0580035f48af4678611a9baab035fd576dd7385fc56053953eae746",
+      "old_snapshot_git_blob_sha256": "1f10f43f0c84ccbc66101426d24912ccefded20ab4d99226d7fc6f1c81edbce5",
+      "new_snapshot_git_blob_sha256": "fad824755a89ac3d66f5fe00523357315e44f296afec5540e45b9736c1c8250b",
+      "changed": true,
+      "cli_stdout_sha256": "0a48ec5adbebdc2efc2345b835680d1937e14fdba6e3360161bb5c4e81d238ef",
+      "oracle": "analytic-ramp-v1",
+      "max_position_error_m": 2.2887833992611187e-16,
+      "characteristic_scale_m": 0.07684512080985553,
+      "relative_error": 2.9784368547281638e-15,
+      "threshold": 0.005,
+      "passed": true,
+      "deterministic": true,
+      "metadata_unchanged": true,
+      "changed_sample_count": 90,
+      "max_old_new_scalar_delta": {
+        "step": 0,
+        "time_s": 0,
+        "distance_m": 2.6020852139652106e-18,
+        "speed_m_s": 2.7755575615628914e-17
+      },
+      "max_old_new_position_distance_m": 2.6020852139652106e-18,
+      "max_old_new_velocity_distance_m_s": 3.1031676915590914e-17
+    },
+    {
+      "template": "pendulum",
+      "samples": 1001,
+      "artifact_sha256": "e71842ae09dd361070c0f378a9f958d25a5086d3abcc04cd1f91179b2c4f32a6",
+      "old_snapshot_sha256": "8b1fc732da46c78d16f20e83064587d07d5584f76c902659df3c9ddc90dbe746",
+      "new_snapshot_sha256": "bcd1598ac9707ecee5c8675a880cefaa807ae6466264f29c1b44ee1d179702a2",
+      "old_snapshot_git_blob_sha256": "36ef3ddd99b8d738086c5b084b3e4b088450fdc690892c500d6adddcb160ebc9",
+      "new_snapshot_git_blob_sha256": "7ea0f01b42a357ca49c1d523f98a4d96707f6fc6867f47abead4dc9db3300279",
+      "changed": true,
+      "cli_stdout_sha256": "37370ffbb8260e7bc86b2f1e0011420111751837ab6a9fd092e6bf6a0d52c362",
+      "oracle": "analytic-pendulum-small-angle-v1",
+      "max_position_error_m": 7.302571097807065e-14,
+      "characteristic_scale_m": 0.05,
+      "relative_error": 1.460514219561413e-12,
+      "threshold": 0.005,
+      "passed": true,
+      "deterministic": true,
+      "metadata_unchanged": true,
+      "changed_sample_count": 1000,
+      "max_old_new_scalar_delta": {
+        "step": 0,
+        "time_s": 0,
+        "angle_rad": 1.3322495542370666e-05,
+        "angular_velocity_rad_s": 7.622861298023798e-05
+      },
+      "max_old_new_position_distance_m": 1.3322495542273105e-05,
+      "max_old_new_velocity_distance_m_s": 7.622861298110407e-05
+    }
+  ]
+}
