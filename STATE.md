@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+OWNER (Oct30 ~03:50 Dhaka): heartbeat automation real2sim-orchestrator-wake, every 30 min, targets
+controller chat 01a1882d; no end set (Koushik stops it manually). Overrides Oct28 "no scheduled
+task" for this controller only. On Claude 429/quota: record once, no dispatch/retry churn.
+
 DISPATCHED S07b-param-orch40 Opus medium (threadId:01a18986-6256-7460-a4a4-bc94f9e7dccb,hostId:local, deadline 2026-10-29T21:47:27+00:00;
 receipt DISPATCH-orch40.json): one live RM04 rerun <=$0.50 + ST03 f76 frame_map errata.
 
