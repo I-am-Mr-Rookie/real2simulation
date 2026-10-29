@@ -52,6 +52,9 @@ Risk: deadline constants tightened to 900/480s — next attempt must restore roo
 Controller decision for next S05b: L4 admission failed 3x over 2 days; next
 contract may use one A10G (or L40S if A10G unavailable) attempt, longer session
 admission bound, cumulative <=$1 reserve. Gate R NOT RUN.
+orch14 issued 11:21:47-11:22:12Z full30m (receipt ORCH-20261029-1654/DISPATCH-orch14.json):
+S05b-orch14 Opus (one A10G/L40S RM02 attempt, <=$1, measured cost), S14a Opus,
+S15a/S17a Sonnet fixture-first per owner 17:20 update. S07b-orch13 pending report.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
