@@ -1,0 +1,184 @@
+{
+ "schema": "s06h-checkpoint/1",
+ "evidence_class": "measured Modal runs on approved licensed public clips + read-only billing; NOT gate/physical/calibrated evidence",
+ "billing_read_utc": "2026-10-29T15:49:15Z",
+ "billing_source": "modal billing report --for 'this month' --json --show-resources (read-only; hourly/lagging)",
+ "modal_month_to_date_billed_usd": 0.59959399,
+ "modal_month_to_date_by_resource_usd": {
+  "A10G": 0.42473834,
+  "CPU": 0.05211826,
+  "L4": 0.0022221,
+  "Memory": 0.04562943,
+  "Network Egress": 0.07488586
+ },
+ "modal_monthly_budget_usd": 30,
+ "s06_jobs_billed_usd": 0.05785822,
+ "jobs": [
+  {
+   "task": "S06a",
+   "app_id": "ap-Gf1f5xsIuhpOIGFiwLE1zr",
+   "kind": "CPU image build + check()",
+   "gpu": null,
+   "rc": 0,
+   "launch_utc": "2026-10-29T11:52:44Z",
+   "end_utc": "2026-10-29T11:55:14Z",
+   "reservation_usd": 0.5,
+   "estimated_usd": null,
+   "ledger_billed_usd": 0.0156446,
+   "billed_usd_now": 0.0156446,
+   "ledger_lag_usd": 0.0
+  },
+  {
+   "task": "S06b",
+   "app_id": "ap-vaD1cV50rPyWL1yzQggQ6g",
+   "kind": "A10G warm-start runtime smoke on S06a IMAGE (synthetic noise frames)",
+   "gpu": "NVIDIA A10G, 23028 MiB, driver 610.57.04",
+   "rc": 0,
+   "launch_utc": "2026-10-29T12:15:38Z",
+   "end_utc": "2026-10-29T12:16:27Z",
+   "reservation_usd": 0.5,
+   "estimated_usd": null,
+   "ledger_billed_usd": 0.01175778,
+   "billed_usd_now": 0.01175778,
+   "ledger_lag_usd": 0.0
+  },
+  {
+   "task": "S06d",
+   "app_id": "ap-DwCMDeReYWQYBxl3xvR2IO",
+   "kind": "A10G MapAnything scene_job on S06b RUNTIME_IMAGE, RM02 -> contracts/scene bundle",
+   "gpu": "A10G",
+   "rc": 0,
+   "launch_utc": "2026-10-29T14:46:02Z",
+   "end_utc": "2026-10-29T14:47:21Z",
+   "reservation_usd": 0.3,
+   "estimated_usd": null,
+   "ledger_billed_usd": 0.0066139,
+   "billed_usd_now": 0.00955323,
+   "ledger_lag_usd": 0.00293933
+  },
+  {
+   "task": "S06e",
+   "app_id": "ap-HT56BJbqGtr7qg1pdadmu0",
+   "kind": "A10G MapAnything scene_job (S06e-instrumented) on S06b RUNTIME_IMAGE, RM02",
+   "gpu": "A10G",
+   "rc": 1,
+   "launch_utc": "2026-10-29T15:10:11Z (client); app created 15:10:34Z",
+   "end_utc": "2026-10-29T15:11:22Z (app stopped 15:11:21Z)",
+   "reservation_usd": 0.3,
+   "estimated_usd": 0.01032114,
+   "ledger_billed_usd": 0.01134936,
+   "billed_usd_now": 0.01134936,
+   "ledger_lag_usd": 0.0
+  },
+  {
+   "task": "S06f",
+   "app_id": "ap-ltdA9yMPSJynaFT34T4Ent",
+   "kind": "attempt 1: refused in local preflight (clip_row: 'Pexels License' not allowlisted) BEFORE scene_job.remote; no function call, no GPU container",
+   "gpu": null,
+   "rc": 1,
+   "launch_utc": "2026-10-29T15:26:15Z (client); app created 15:26:25Z",
+   "end_utc": "2026-10-29T15:26:34Z (app stopped, 0 tasks)",
+   "reservation_usd": 0.5,
+   "estimated_usd": null,
+   "ledger_billed_usd": 0,
+   "billed_usd_now": 0.0,
+   "ledger_lag_usd": 0.0
+  },
+  {
+   "task": "S06f",
+   "app_id": "ap-yeKuf0FjgU0P0H8mB9lOvt",
+   "kind": "the one A10G MapAnything scene_job (S06d/S06e entry point, unchanged image) on RM04",
+   "gpu": "A10G",
+   "rc": 0,
+   "launch_utc": "2026-10-29T15:27:12Z (client); app created 15:27:19Z",
+   "end_utc": "2026-10-29T15:28:15Z (app stopped, 0 tasks)",
+   "reservation_usd": 0.5,
+   "estimated_usd": 0.01000701,
+   "ledger_billed_usd": 0.00955325,
+   "billed_usd_now": 0.00955325,
+   "ledger_lag_usd": 0.0
+  }
+ ],
+ "scenes": {
+  "RM02": {
+   "task": "S06e",
+   "app_id": "ap-HT56BJbqGtr7qg1pdadmu0",
+   "gpu": "A10G",
+   "timing_s_measured": {
+    "client_round_trip_s": 39.554,
+    "container_boot_s": 6.457,
+    "cold_start_s": 10.806,
+    "model_load_s": 19.73,
+    "cold_start_to_model_ready_s": 30.536,
+    "inference_s": 1.449,
+    "function_s": 21.719,
+    "container_python_alive_s": 26.068
+   },
+   "gpu_seconds": {
+    "estimated": 28.068,
+    "upper_bound": 41.554,
+    "billed": 30.009
+   },
+   "estimated_usd": 0.01032114,
+   "upper_bound_usd": 0.01528041,
+   "billed_usd": 0.01134936,
+   "billed_read_utc": "2026-10-29T15:49:54+00:00",
+   "peak_allocated_bytes": 7782135808
+  },
+  "RM04": {
+   "task": "S06f",
+   "app_id": "ap-yeKuf0FjgU0P0H8mB9lOvt",
+   "gpu": "A10G",
+   "timing_s_measured": {
+    "client_round_trip_s": 43.642,
+    "container_boot_s": 7.59,
+    "cold_start_s": 11.884,
+    "model_load_s": 18.807,
+    "cold_start_to_model_ready_s": 30.691,
+    "inference_s": 1.506,
+    "function_s": 20.919,
+    "container_python_alive_s": 25.214
+   },
+   "gpu_seconds": {
+    "estimated": 27.214,
+    "upper_bound": 45.642,
+    "billed": 25.962
+   },
+   "estimated_usd": 0.01000701,
+   "upper_bound_usd": 0.01678348,
+   "billed_usd": 0.00955325,
+   "billed_read_utc": "2026-10-29T15:49:54+00:00",
+   "peak_allocated_bytes": 7782135808
+  }
+ },
+ "s06d_rm02_function_elapsed_s": 20.955,
+ "gate_r": {
+  "verdict": "FAIL",
+  "summary": {
+   "scale_passes": 0,
+   "orientation_passes": 0,
+   "qualifying_clips": 0,
+   "gpu_passes": 3,
+   "clips": 3
+  },
+  "fallback": "Fallback 2 (planes + boxes textured with frames; scale UNVERIFIED)",
+  "source": "evidence/S05/S05f/GATE_R.json",
+  "cross_vendor_recheck": "R-R recheck (orch28) PENDING; not CLEAR"
+ },
+ "sam3d": {
+  "backend": "primitive",
+  "reasons": [
+   "disabled: R2S_ENABLE_SAM3D != 1 (default off)",
+   "licence/access: no owner receipt SAM3D-ACCESS.md (custom SAM License, gated manual)",
+   "vram: 23028 MiB < 32768 MiB required"
+  ],
+  "min_vram_mib": 32768,
+  "vram_mib_checked": 23028
+ },
+ "chosen_path": {
+  "reconstruction": "MapAnything facebook/map-anything-apache (Apache-2.0) on Modal A10G, s06d-scene-job entry point",
+  "colliders": "primitive (planes + boxes), SAM 3D Objects off",
+  "renderer": "Fallback 2: frame-textured planes + boxes, scale labelled unverified",
+  "aws": "adapter present, refuses without owner gates; no AWS launch (S06g)"
+ }
+}
