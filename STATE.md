@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+DISPATCHED S12c-orch41 Opus high (threadId:01a1898e-e14c-7433-a6f3-42c6e324c65e,hostId:local, deadline 2026-10-29T21:56:43+00:00).
+DISPATCHED S13f-orch42 Opus high (threadId:01a1898f-af0f-7d30-a0fa-426316a9741a,hostId:local, deadline 2026-10-29T21:57:26+00:00).
+S12c Owns extended by controller: +Build/simulator/ (image-derived provenance label, S12b F1).
+
 S07b-param-orch40 DONE (Opus medium; TIMEBOX PASS; measurement suite OK fresh; ff-merged). Live
 RM04 f0-11 "chair" SAM3.1 masks run exit0 on L4, billed $0.0254, containers [] -> F1 closed; masks
 pass sanitizer. Root cause of ST03 f76/f77: modal_track._frames ffprobe counted decode-order
