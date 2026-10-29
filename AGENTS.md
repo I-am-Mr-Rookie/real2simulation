@@ -2,6 +2,22 @@
 
 Scope: this event folder. Current phase: **building Real2Simulation** (solo, indie track). Nothing submitted.
 
+## Latest owner model reroute — Oct29 (Codex -> Claude)
+
+Owner (Oct29): Codex/Sol repeatedly looped into PARTIALs; Claude quota now OK.
+Model-column-only reroute in QUEUE; lanes, Owns, deps, minutes, approvals unchanged.
+- Opus 5.5 (high = PARTIAL parents/gates): runtime/GPU/reconstruction S05b-f,
+  S06a-h, S07b; prediction/Gate RS S12a-f; external Muse/SAM/Modal S13e-h;
+  LLM interview/Gate A S14a-h.
+- Sonnet 5.5 high: browser/screen QA/capture S04h, S22b-e/g-i, S24c-f/i/j.
+- Cross-vendor kept: R-R, R-RS, R-A now Sol high; R-C (Opus) and R-D (Sol) unchanged.
+- Stay Sol: S02f (blocker is no licensed calibrated source; Opus S02c/S02d hit
+  the same wall), S13a-d, S16, S18, S20, S21, S23, S25 (deterministic code/tests/
+  docs/deploy where Sol delivered: S04, S08, S07c-e, audits).
+Supersedes "do not use Claude extensively" and "preserve Claude usage" notes for
+these rows. No automatic swap back on failure: record it, controller decides.
+Routing only: nothing dispatched; owner takeover/fresh-instruction rule stands.
+
 ## Latest owner takeover — Oct28, after confirmed credential provision
 
 Koushik: "I am taking over. Complete just the current run". Finish only

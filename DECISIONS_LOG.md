@@ -700,3 +700,31 @@ actual presentation PTS and ignored prefix-only JPEGs (<=300), no suffix imagery
 This is operational custody, not a physical threshold or calibrated-capture claim.
 No model/API/GPU jobs, licence expansion, public upload or S12 unlock. Keep2.85
 reserves/$30 ceiling unchanged; no duplicate access/GPU questions or paid retries.
+
+## 2026-10-29 — Owner reroute: looping Codex work to Claude
+
+Koushik: Codex models kept ending tasks PARTIAL and looping; Claude quota solved;
+move future Codex tasks to Claude where it makes sense. Evidence reviewed: S05b
+BLOCKED/PARTIAL after recovery8-12 + swarm readiness; S07b PARTIAL after
+recovery5/6, swarm7, auth-provision (PARTIAL) and provision2; S10 grew from 10
+planned leaves to 18 (S10a-r) plus S11i-l across six Sol recovery rounds, closed
+only after native Claude repair/review (53b4a36, 9d82066, 49ad146) found no P0-P2;
+owner screenshots of early terminal Sol PARTIALs (review2m/auth7m/cleaner6m).
+Sol finished deterministic code first time: S04a-g, S08a-i, S07c-e, R11-R15 audits.
+Opus first-time DONE: S09a-g.
+
+Decision (49 TODO/PARTIAL rows, model column only):
+Owner (Oct29): Codex/Sol repeatedly looped into PARTIALs; Claude quota now OK.
+Model-column-only reroute in QUEUE; lanes, Owns, deps, minutes, approvals unchanged.
+- Opus 5.5 (high = PARTIAL parents/gates): runtime/GPU/reconstruction S05b-f,
+  S06a-h, S07b; prediction/Gate RS S12a-f; external Muse/SAM/Modal S13e-h;
+  LLM interview/Gate A S14a-h.
+- Sonnet 5.5 high: browser/screen QA/capture S04h, S22b-e/g-i, S24c-f/i/j.
+- Cross-vendor kept: R-R, R-RS, R-A now Sol high; R-C (Opus) and R-D (Sol) unchanged.
+- Stay Sol: S02f (blocker is no licensed calibrated source; Opus S02c/S02d hit
+  the same wall), S13a-d, S16, S18, S20, S21, S23, S25 (deterministic code/tests/
+  docs/deploy where Sol delivered: S04, S08, S07c-e, audits).
+Supersedes "do not use Claude extensively" and "preserve Claude usage" notes for
+these rows. No automatic swap back on failure: record it, controller decides.
+Routing only: nothing dispatched; owner takeover/fresh-instruction rule stands.
+

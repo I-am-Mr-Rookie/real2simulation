@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Oct 29, 14:34 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 16:50 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -14,8 +14,8 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
-- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
+- [~] **S05b** — Codex (native Claude) · Opus 5.5, effort high — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
+- [~] **S07b** — Codex (native Claude) · Opus 5.5, effort high — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
@@ -54,10 +54,10 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 - [x] **S02a** — Codex · GPT-6.1 Terra, effort high — Source free-fall and Apollo 15 candidates (30 min)
 - [x] **S02b** — Codex · GPT-6.1 Terra, effort high — Source projectile, bounce, pendulum and room candidates (30 min)
-- [x] **S02c** — Codex · Opus 5.5, effort high — Acquire licensed clips and record attribution (30 min)
-- [x] **S02c1** — Codex · Opus 5.5, effort high — Independently assess NASA real trajectory sources (30 min)
-- [x] **S02c2** — Codex · Opus 5.5, effort high — Independently assess non-sports stock Earth physics (30 min)
-- [x] **S02d** — Codex · Opus 5.5, effort high — Inspect metadata and known-size references (20 min)
+- [x] **S02c** — Codex (native Claude) · Opus 5.5, effort high — Acquire licensed clips and record attribution (30 min)
+- [x] **S02c1** — Codex (native Claude) · Opus 5.5, effort high — Independently assess NASA real trajectory sources (30 min)
+- [x] **S02c2** — Codex (native Claude) · Opus 5.5, effort high — Independently assess non-sports stock Earth physics (30 min)
+- [x] **S02d** — Codex (native Claude) · Opus 5.5, effort high — Inspect metadata and known-size references (20 min)
 - [x] **S02e** — Approve the clip list (10 min)
 
 </details>
@@ -83,33 +83,33 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S04g** — Codex · GPT-6.1 Sol, effort medium — Deploy the dev skeleton via Railway (30 min)
 - [x] **S04g1** — Codex · GPT-6.1 Sol, effort medium — Harden dev deployment verifier semantic checks (15 min)
 - [x] **S04g2** — Codex · GPT-6.1 Sol, effort medium — Preserve staging destination guards under Python optimization (15 min)
-- [ ] **S04h** — Codex · GPT-6.1 Sol, effort medium — Verify sign-in, guest route and dev health (30 min)
+- [ ] **S04h** — Codex (native Claude) · Sonnet 5.5, effort high — Verify sign-in, guest route and dev health (30 min)
 
 </details>
 
 <details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (1/7)</summary>
 
 - [x] **S05a** — Codex · GPT-6.1 Sol, effort medium — Check reconstruction licences and freeze scene artifact contract (30 min)
-- [~] **S05b** — Codex · GPT-6.1 Sol, effort medium — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
-- [ ] **S05c** — Codex · GPT-6.1 Sol, effort medium — Reconstruct remaining scene clips (30 min)
-- [ ] **S05d** — Codex · GPT-6.1 Sol, effort medium — Fit floor, metric scale and gravity orientation (30 min)
-- [ ] **S05e** — Codex · GPT-6.1 Sol, effort high — Run Gate R and inspect reconstruction failures (30 min)
-- [ ] **S05f** — Codex · GPT-6.1 Sol, effort high — Apply the named fallback and checkpoint Gate R (30 min)
-- [ ] **R-R** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate R implementation and failure thresholds (15 min)
+- [~] **S05b** — Codex (native Claude) · Opus 5.5, effort high — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
+- [ ] **S05c** — Codex (native Claude) · Opus 5.5, effort medium — Reconstruct remaining scene clips (30 min)
+- [ ] **S05d** — Codex (native Claude) · Opus 5.5, effort medium — Fit floor, metric scale and gravity orientation (30 min)
+- [ ] **S05e** — Codex (native Claude) · Opus 5.5, effort high — Run Gate R and inspect reconstruction failures (30 min)
+- [ ] **S05f** — Codex (native Claude) · Opus 5.5, effort high — Apply the named fallback and checkpoint Gate R (30 min)
+- [ ] **R-R** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate R implementation and failure thresholds (15 min)
 
 </details>
 
 <details><summary><b>S06</b> — GPU container on Modal (AWS-ready) (1/9)</summary>
 
-- [ ] **S06a** — Codex · GPT-6.1 Sol, effort medium — Define reproducible GPU image and dry-run contract (30 min)
+- [ ] **S06a** — Codex (native Claude) · Opus 5.5, effort medium — Define reproducible GPU image and dry-run contract (30 min)
 - [x] **S06p** — Codex · GPT-6.1 Sol, effort medium — Verify existing Modal allocation and pre-reset GPU readiness (20 min)
-- [ ] **S06b** — Codex · GPT-6.1 Sol, effort medium — Package MapAnything runtime (30 min)
-- [ ] **S06c** — Codex · GPT-6.1 Sol, effort medium — Add optional SAM 3D Objects path (30 min)
-- [ ] **S06d** — Codex · GPT-6.1 Sol, effort medium — Add Modal scene job entry point (30 min)
-- [ ] **S06e** — Codex · GPT-6.1 Sol, effort medium — Add cold-start timing and cost instrumentation (30 min)
-- [ ] **S06f** — Codex · GPT-6.1 Sol, effort medium — Exercise one licensed room clip on Modal (30 min)
-- [ ] **S06g** — Codex · GPT-6.1 Sol, effort medium — Verify CPU dry-run and disabled AWS adapter (30 min)
-- [ ] **S06h** — Codex · GPT-6.1 Sol, effort medium — Checkpoint GPU runtime and fallback evidence (30 min)
+- [ ] **S06b** — Codex (native Claude) · Opus 5.5, effort medium — Package MapAnything runtime (30 min)
+- [ ] **S06c** — Codex (native Claude) · Opus 5.5, effort medium — Add optional SAM 3D Objects path (30 min)
+- [ ] **S06d** — Codex (native Claude) · Opus 5.5, effort medium — Add Modal scene job entry point (30 min)
+- [ ] **S06e** — Codex (native Claude) · Opus 5.5, effort medium — Add cold-start timing and cost instrumentation (30 min)
+- [ ] **S06f** — Codex (native Claude) · Opus 5.5, effort medium — Exercise one licensed room clip on Modal (30 min)
+- [ ] **S06g** — Codex (native Claude) · Opus 5.5, effort medium — Verify CPU dry-run and disabled AWS adapter (30 min)
+- [ ] **S06h** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint GPU runtime and fallback evidence (30 min)
 
 </details>
 
@@ -121,7 +121,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S02i** — Codex · GPT-6.1 Sol, effort high — Audit RP01 side-view metric trajectory segments (30 min)
 - [x] **S07r** — Codex · GPT-6.1 Sol, effort high — Reconcile input readiness and approved small-sample fallback (20 min)
 - [x] **S07a** — Codex · GPT-6.1 Sol, effort medium — Define scale, timestamps and held-out tracking inputs (30 min)
-- [~] **S07b** — Codex · GPT-6.1 Sol, effort medium — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
+- [~] **S07b** — Codex (native Claude) · Opus 5.5, effort high — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
 - [x] **S07c** — Codex · GPT-6.1 Sol, effort medium — Implement deterministic free-fall fit (30 min)
 - [x] **S07d** — Codex · GPT-6.1 Sol, effort medium — Detect slow-motion and propagate measurement uncertainty (30 min)
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)
@@ -203,13 +203,13 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S12</b> — Real2Sim bridge and prediction; Gate RS (0/7)</summary>
 
-- [ ] **S12a** — Codex · GPT-6.1 Sol, effort medium — Define calibration and withheld-frame boundary (30 min)
-- [ ] **S12b** — Codex · GPT-6.1 Sol, effort medium — Transfer measured parameters into simulator (30 min)
-- [ ] **S12c** — Codex · GPT-6.1 Sol, effort medium — Predict held-out projectile and bounce motion (30 min)
-- [ ] **S12d** — Codex · GPT-6.1 Sol, effort medium — Predict pendulum continuation and overlay contract (30 min)
-- [ ] **S12e** — Codex · GPT-6.1 Sol, effort high — Run Gate RS on public motion clips (30 min)
-- [ ] **S12f** — Codex · GPT-6.1 Sol, effort high — Label outputs and choose honest prediction fallback (30 min)
-- [ ] **R-RS** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate RS held-out boundary and error normalization (15 min)
+- [ ] **S12a** — Codex (native Claude) · Opus 5.5, effort medium — Define calibration and withheld-frame boundary (30 min)
+- [ ] **S12b** — Codex (native Claude) · Opus 5.5, effort medium — Transfer measured parameters into simulator (30 min)
+- [ ] **S12c** — Codex (native Claude) · Opus 5.5, effort medium — Predict held-out projectile and bounce motion (30 min)
+- [ ] **S12d** — Codex (native Claude) · Opus 5.5, effort medium — Predict pendulum continuation and overlay contract (30 min)
+- [ ] **S12e** — Codex (native Claude) · Opus 5.5, effort high — Run Gate RS on public motion clips (30 min)
+- [ ] **S12f** — Codex (native Claude) · Opus 5.5, effort high — Label outputs and choose honest prediction fallback (30 min)
+- [ ] **R-RS** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate RS held-out boundary and error normalization (15 min)
 
 </details>
 
@@ -219,24 +219,24 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **S13b** — Codex · GPT-6.1 Sol, effort medium — Implement bucket upload validation (30 min)
 - [ ] **S13c** — Codex · GPT-6.1 Sol, effort medium — Extract ffmpeg keyframes and metadata (30 min)
 - [ ] **S13d** — Codex · GPT-6.1 Sol, effort medium — Add Redis job lifecycle and retry handling (30 min)
-- [ ] **S13e** — Codex · GPT-6.1 Sol, effort medium — Connect Muse Wonder understanding (30 min)
-- [ ] **S13f** — Codex · GPT-6.1 Sol, effort medium — Connect SAM masks and Modal reconstruction (30 min)
-- [ ] **S13g** — Codex · GPT-6.1 Sol, effort medium — Stream job progress to shell integration interface (30 min)
-- [ ] **S13h** — Codex · GPT-6.1 Sol, effort medium — Measure dev upload-to-scene path (30 min)
+- [ ] **S13e** — Codex (native Claude) · Opus 5.5, effort medium — Connect Muse Wonder understanding (30 min)
+- [ ] **S13f** — Codex (native Claude) · Opus 5.5, effort medium — Connect SAM masks and Modal reconstruction (30 min)
+- [ ] **S13g** — Codex (native Claude) · Opus 5.5, effort medium — Stream job progress to shell integration interface (30 min)
+- [ ] **S13h** — Codex (native Claude) · Opus 5.5, effort medium — Measure dev upload-to-scene path (30 min)
 
 </details>
 
 <details><summary><b>S14</b> — Scene-understanding and interview agent (0/9)</summary>
 
-- [ ] **S14a** — Codex · GPT-6.1 Sol, effort medium — Define scene, question and tool-output contracts (30 min)
-- [ ] **S14b** — Codex · GPT-6.1 Sol, effort medium — Integrate Muse Wonder scene understanding (30 min)
-- [ ] **S14c** — Codex · GPT-6.1 Sol, effort medium — Implement one-to-three-question interview (30 min)
-- [ ] **S14d** — Codex · GPT-6.1 Sol, effort medium — Add bounded validator-retry loop (30 min)
-- [ ] **S14e** — Codex · GPT-6.1 Sol, effort medium — Connect Muse Spark trial check (30 min)
-- [ ] **S14f** — Codex · GPT-6.1 Sol, effort medium — Enforce tool-only numbers in replies (30 min)
-- [ ] **S14g** — Codex · GPT-6.1 Sol, effort high — Run Gate A fixture and thirty-turn suite (30 min)
-- [ ] **S14h** — Codex · GPT-6.1 Sol, effort high — Checkpoint Gate A and template-card fallback (30 min)
-- [ ] **R-A** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate A tool-number enforcement (15 min)
+- [ ] **S14a** — Codex (native Claude) · Opus 5.5, effort medium — Define scene, question and tool-output contracts (30 min)
+- [ ] **S14b** — Codex (native Claude) · Opus 5.5, effort medium — Integrate Muse Wonder scene understanding (30 min)
+- [ ] **S14c** — Codex (native Claude) · Opus 5.5, effort medium — Implement one-to-three-question interview (30 min)
+- [ ] **S14d** — Codex (native Claude) · Opus 5.5, effort medium — Add bounded validator-retry loop (30 min)
+- [ ] **S14e** — Codex (native Claude) · Opus 5.5, effort medium — Connect Muse Spark trial check (30 min)
+- [ ] **S14f** — Codex (native Claude) · Opus 5.5, effort medium — Enforce tool-only numbers in replies (30 min)
+- [ ] **S14g** — Codex (native Claude) · Opus 5.5, effort high — Run Gate A fixture and thirty-turn suite (30 min)
+- [ ] **S14h** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint Gate A and template-card fallback (30 min)
+- [ ] **R-A** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate A tool-number enforcement (15 min)
 
 </details>
 
@@ -329,14 +329,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 <details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (0/11)</summary>
 
 - [ ] **S22a** — Codex (native Claude) · Opus 5.5, effort medium — Prepare approved judging-candidate QA checklist (30 min)
-- [ ] **S22b** — Codex · GPT-6.1 Sol, effort high — Capture logged-out guest library walkthrough (30 min)
-- [ ] **S22c** — Codex · GPT-6.1 Sol, effort high — Capture fresh-account full flow run 1 (30 min)
-- [ ] **S22d** — Codex · GPT-6.1 Sol, effort high — Capture fresh-account full flow run 2 (30 min)
-- [ ] **S22e** — Codex · GPT-6.1 Sol, effort high — Capture fresh-account full flow run 3 (30 min)
+- [ ] **S22b** — Codex (native Claude) · Sonnet 5.5, effort high — Capture logged-out guest library walkthrough (30 min)
+- [ ] **S22c** — Codex (native Claude) · Sonnet 5.5, effort high — Capture fresh-account full flow run 1 (30 min)
+- [ ] **S22d** — Codex (native Claude) · Sonnet 5.5, effort high — Capture fresh-account full flow run 2 (30 min)
+- [ ] **S22e** — Codex (native Claude) · Sonnet 5.5, effort high — Capture fresh-account full flow run 3 (30 min)
 - [ ] **S22f** — Codex (native Claude) · Opus 5.5, effort medium — Judge Gate D evidence and prioritize defects (30 min)
-- [ ] **S22g** — Codex · GPT-6.1 Sol, effort high — Capture 375px and auth-boundary QA (30 min)
-- [ ] **S22h** — Codex · GPT-6.1 Sol, effort high — Capture retry, spend-cap and report QA (30 min)
-- [ ] **S22i** — Codex · GPT-6.1 Sol, effort high — Recheck approved candidate after owner-lane fixes (30 min)
+- [ ] **S22g** — Codex (native Claude) · Sonnet 5.5, effort high — Capture 375px and auth-boundary QA (30 min)
+- [ ] **S22h** — Codex (native Claude) · Sonnet 5.5, effort high — Capture retry, spend-cap and report QA (30 min)
+- [ ] **S22i** — Codex (native Claude) · Sonnet 5.5, effort high — Recheck approved candidate after owner-lane fixes (30 min)
 - [ ] **S22j** — Codex (native Claude) · Opus 5.5, effort medium — Record final Gate D decision and freeze recommendation (30 min)
 - [ ] **R-D** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate D protocol and Claude verdict evidence (15 min)
 
@@ -354,14 +354,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 - [ ] **S24a** — Codex (native Claude) · Opus 5.5, effort medium — Write evidence-backed three-minute script (30 min)
 - [ ] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
-- [ ] **S24c** — Codex · GPT-6.1 Sol, effort high — Capture room rebuild and interview (30 min)
-- [ ] **S24d** — Codex · GPT-6.1 Sol, effort high — Capture held-out prediction and reveal (30 min)
-- [ ] **S24e** — Codex · GPT-6.1 Sol, effort high — Capture Apollo result and Mystery-g (30 min)
-- [ ] **S24f** — Codex · GPT-6.1 Sol, effort high — Capture benchmark and Meta model evidence (30 min)
+- [ ] **S24c** — Codex (native Claude) · Sonnet 5.5, effort high — Capture room rebuild and interview (30 min)
+- [ ] **S24d** — Codex (native Claude) · Sonnet 5.5, effort high — Capture held-out prediction and reveal (30 min)
+- [ ] **S24e** — Codex (native Claude) · Sonnet 5.5, effort high — Capture Apollo result and Mystery-g (30 min)
+- [ ] **S24f** — Codex (native Claude) · Sonnet 5.5, effort high — Capture benchmark and Meta model evidence (30 min)
 - [ ] **S24g** — Record optional voice-over part 1 (30 min)
 - [ ] **S24h** — Record optional voice-over part 2 (30 min)
-- [ ] **S24i** — Codex · GPT-6.1 Sol, effort high — Cut video and align captions (30 min)
-- [ ] **S24j** — Codex · GPT-6.1 Sol, effort high — Check playback and approval-gated public video link (30 min)
+- [ ] **S24i** — Codex (native Claude) · Sonnet 5.5, effort high — Cut video and align captions (30 min)
+- [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort high — Check playback and approval-gated public video link (30 min)
 
 </details>
 

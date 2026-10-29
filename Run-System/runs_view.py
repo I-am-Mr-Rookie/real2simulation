@@ -98,7 +98,8 @@ def main():
 
     def line(t, settings=True):
         model = t["model"].replace(" / ", ", effort ")
-        extra = f" — {TOOL[t['lane']]} · {model}" if settings and t["lane"] != "KOUSHIK" else ""
+        tool = TOOL["CLAUDE"] if model.startswith(("Opus", "Sonnet", "Haiku")) else TOOL["CODEX-1"]  # model, not lane, picks route
+        extra = f" — {tool} · {model}" if settings and t["lane"] != "KOUSHIK" else ""
         note = {"IN PROGRESS": " *(in progress)*", "PARTIAL": " *(partial: resume it)*",
                 "BLOCKED": " *(blocked: see STATE.md)*"}.get(t["status"], "")
         if t["id"] in holds and t["status"] in {"TODO", "PARTIAL"}:
