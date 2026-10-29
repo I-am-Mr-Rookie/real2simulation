@@ -1,0 +1,12 @@
+diff --git a/evidence/S12/gate-rs/gate-rs.json b/evidence/S12/gate-rs/gate-rs.json
+index e1a6ea7..4c70238 100644
+--- a/evidence/S12/gate-rs/gate-rs.json
++++ b/evidence/S12/gate-rs/gate-rs.json
+@@ -36,6 +36,7 @@
+       "normalized_rms_first5_diagnostic": 0.13266993873624996,
+       "max_abs": 0.3334069487508844,
+       "scored": false,
++      "provenance": "image-derived",
+       "gate_m": "NOT_MET",
+       "validate": "validate_segment OK",
+       "prefix_retrack_max_abs_vs_orch14": 0.00045112303100769413

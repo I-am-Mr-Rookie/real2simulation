@@ -1,0 +1,167 @@
+{
+  "purpose": "offline adversarial recheck; synthetic probes are NOT public clip evidence",
+  "metric_sanity": {
+    "offset_rms": 0.03000000000000003,
+    "inclusive_80_percent": true
+  },
+  "F1_residual_metadata_relabel_acceptance": {
+    "commitment_before_and_after": "85b79e248ef0ece299f3721f88138b6a0a8f5e54cf8c8505a82b3ab95a7e4823",
+    "target_generated_commitment": "739c125716b790f3b3c0b527e88db3f24b7ccb408f773b9c5b64d344902bc8ef",
+    "original_clip": "REVIEW-foreign",
+    "reported_clip": "REVIEW-target",
+    "training_hash_changed_without_digest_change": true,
+    "scored": true,
+    "coverage": 1.0,
+    "laundered_rms": 0.0,
+    "honest_target_prediction_rms": 0.09999999999999983,
+    "suffix_loader_called": true,
+    "overlay_builder_and_validator_accept": true,
+    "same_clip_training_relabel_also_accepted": true
+  },
+  "F2_nonpublic_synthetic_labeled_image_derived_gate": {
+    "all_clip_ids_absent_from_clips_csv": true,
+    "results": {
+      "projectile": {
+        "clip_id": "REVIEW-NONPUBLIC-projectile",
+        "kind": "projectile",
+        "prediction_sha256": "739c125716b790f3b3c0b527e88db3f24b7ccb408f773b9c5b64d344902bc8ef",
+        "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+        "sealed_frames": 5,
+        "scored_frames": 5,
+        "coverage": 1.0,
+        "normalized_rms": 0.0,
+        "normalized_rms_first5_diagnostic": 0.0,
+        "max_abs": 0.0,
+        "scored": true,
+        "provenance": "image-derived",
+        "gate_m": "NOT_MET"
+      },
+      "bounce": {
+        "clip_id": "REVIEW-NONPUBLIC-bounce",
+        "kind": "bounce",
+        "prediction_sha256": "0861a748a0d873bc0d19b379be0719ee0359f1be7722444140a8652490b603d2",
+        "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+        "sealed_frames": 5,
+        "scored_frames": 5,
+        "coverage": 1.0,
+        "normalized_rms": 0.0,
+        "normalized_rms_first5_diagnostic": 0.0,
+        "max_abs": 0.0,
+        "scored": true,
+        "provenance": "image-derived",
+        "gate_m": "NOT_MET"
+      },
+      "pendulum": {
+        "clip_id": "REVIEW-NONPUBLIC-pendulum",
+        "kind": "pendulum",
+        "prediction_sha256": "30d6aacb7416928f06148db8133c8c58970432def69892055aa53930d3446a50",
+        "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+        "sealed_frames": 5,
+        "scored_frames": 5,
+        "coverage": 1.0,
+        "normalized_rms": 0.0,
+        "normalized_rms_first5_diagnostic": 0.0,
+        "max_abs": 0.0,
+        "scored": true,
+        "provenance": "image-derived",
+        "gate_m": "NOT_MET"
+      }
+    },
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": 0.0,
+        "bounce": 0.0,
+        "pendulum": 0.0
+      },
+      "median": 0.0,
+      "threshold": 0.05,
+      "status": "MET",
+      "shortfall": [],
+      "gate_m": "NOT_MET"
+    }
+  },
+  "real_evidence_recomputed": {
+    "score": {
+      "clip_id": "ST03",
+      "kind": "projectile",
+      "prediction_sha256": "c81e0f94c110eb229502b37d03c29ec36b11621ed8ca97015f9e671508c9d1b0",
+      "suffix_identity_sha256": "aee71c42f900f9b96dc2ad2f9cf15cdcdb467cefec502100a8cc06776d27115c",
+      "sealed_frames": 466,
+      "scored_frames": 7,
+      "coverage": 0.015021459227467811,
+      "normalized_rms": 0.1981633916341227,
+      "normalized_rms_first5_diagnostic": 0.13266993873624996,
+      "max_abs": 0.3334069487508844,
+      "scored": false,
+      "provenance": "image-derived",
+      "gate_m": "NOT_MET"
+    },
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "median": null,
+      "threshold": 0.05,
+      "status": "NOT_MET",
+      "shortfall": [
+        "projectile",
+        "bounce",
+        "pendulum"
+      ],
+      "gate_m": "NOT_MET"
+    },
+    "input_hashes_match": true
+  },
+  "gate_m_all_derived_labels_not_met": [
+    "evidence/S12/boundary-ST03.json",
+    "evidence/S12/overlay-pendulum-SYNTHETIC.json",
+    "evidence/S12/overlay-ST03.json",
+    "evidence/S12/params-ST03.json",
+    "evidence/S12/prediction-ST03.json",
+    "evidence/S12/gate-rs/gate-rs.json"
+  ],
+  "owning_gate_m": {
+    "coverage": null,
+    "gate_passed": false,
+    "independent_measured_count": 0,
+    "max_relative_error": 0.05,
+    "mean_g_m_s2": null,
+    "mean_relative_error": null,
+    "measured_count": 0,
+    "physics_evaluation": "NOT_RUN",
+    "qualifying_count": 0,
+    "reference_g_m_s2": 9.81,
+    "required_successes": 2,
+    "required_trials": 3,
+    "status": "NOT_MET_INPUT_READINESS"
+  },
+  "closed_original_and_extended_probes": {
+    "F1_wrong_clip_and_training": "prediction was made for a different clip or training prefix",
+    "F1_wrong_training_same_clip": "prediction was made for a different clip or training prefix",
+    "F1_precommitted_subset": "prediction trace does not cover the complete sealed suffix",
+    "F1_overlay_build_forged_suffix": "prediction was not made from this clip boundary",
+    "F1_overlay_build_subset": "prediction trace does not cover the complete sealed suffix",
+    "F1_overlay_contract_forged_suffix": "traces[0]: suffix_identity_sha256 does not match the trace's sealed (frame, PTS) identities",
+    "F2_one_projectile_aliased_x3": true,
+    "F4_observed_slot_0_nan": true,
+    "F4_observed_slot_1_nan": true,
+    "F4_gate_projectile_nan": true,
+    "F4_gate_bounce_nan": true,
+    "F4_gate_pendulum_nan": true,
+    "F4_observed_slot_0_inf": true,
+    "F4_observed_slot_1_inf": true,
+    "F4_gate_projectile_inf": true,
+    "F4_gate_bounce_inf": true,
+    "F4_gate_pendulum_inf": true,
+    "F4_observed_slot_0_-inf": true,
+    "F4_observed_slot_1_-inf": true,
+    "F4_gate_projectile_-inf": true,
+    "F4_gate_bounce_-inf": true,
+    "F4_gate_pendulum_-inf": true,
+    "F3_wrong_object": "validate_segment rejected (unscored): segment: record tracks object 999, expected 2",
+    "F3_missing_stage": "validate_segment rejected (unscored): segment: incomplete SAM output (missing stages ['checkpoint', 'model_loaded', 'tracked'])",
+    "F3_missing_mask": "validate_segment rejected (unscored): segment: frame 58: object 2 has no box, centroid or mask"
+  }
+}

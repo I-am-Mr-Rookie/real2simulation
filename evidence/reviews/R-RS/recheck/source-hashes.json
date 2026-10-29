@@ -1,0 +1,139 @@
+{
+  "all_equal_normalizing_crlf": true,
+  "raw_different": [
+    "Build/simulator/package-lock.json",
+    "Build/simulator/package.json"
+  ],
+  "files": {
+    "Build/real2sim/boundary.py": {
+      "worktree": "7796b762c2d2d30644a61345df89fcc9e1526f9bc48201f599ddab32d183a764",
+      "canonical": "7796b762c2d2d30644a61345df89fcc9e1526f9bc48201f599ddab32d183a764",
+      "equal_lf": true
+    },
+    "Build/real2sim/overlay.py": {
+      "worktree": "639f3d43425653b1f6bde4f396f2105fcf2572b516bdb136a67f60727bd42151",
+      "canonical": "639f3d43425653b1f6bde4f396f2105fcf2572b516bdb136a67f60727bd42151",
+      "equal_lf": true
+    },
+    "Build/real2sim/params.py": {
+      "worktree": "455ceb37a823fb42ba91254291b735b564a6aedcf7cb7f74b9eede993340d303",
+      "canonical": "455ceb37a823fb42ba91254291b735b564a6aedcf7cb7f74b9eede993340d303",
+      "equal_lf": true
+    },
+    "Build/real2sim/predict.py": {
+      "worktree": "3ed830cd29b5063d200a80edf01a23908f489f9ae997941c1b16b3e240f5abed",
+      "canonical": "3ed830cd29b5063d200a80edf01a23908f489f9ae997941c1b16b3e240f5abed",
+      "equal_lf": true
+    },
+    "Build/real2sim/score.py": {
+      "worktree": "f1af322e5e4d9dccbbde64cb6fb201799a40e7443a3f76ba66b814abd39aaad0",
+      "canonical": "f1af322e5e4d9dccbbde64cb6fb201799a40e7443a3f76ba66b814abd39aaad0",
+      "equal_lf": true
+    },
+    "Build/simulator/NUMERICS.md": {
+      "worktree": "9eee7eb70a7cadbed379435a5ba325a3fadccf65b14d8ffb1752fe5a2c4d2116",
+      "canonical": "9eee7eb70a7cadbed379435a5ba325a3fadccf65b14d8ffb1752fe5a2c4d2116",
+      "equal_lf": true
+    },
+    "Build/simulator/apparatus.mjs": {
+      "worktree": "e11050c04584462e409078ef7932e805d5cc715157537416efedc0629feee8c9",
+      "canonical": "e11050c04584462e409078ef7932e805d5cc715157537416efedc0629feee8c9",
+      "equal_lf": true
+    },
+    "Build/simulator/contact-runs.mjs": {
+      "worktree": "358726979a129a7df3ae4599fecc6bd0a34a4673fa0c125c48f71cd66d87e1dd",
+      "canonical": "358726979a129a7df3ae4599fecc6bd0a34a4673fa0c125c48f71cd66d87e1dd",
+      "equal_lf": true
+    },
+    "Build/simulator/contacts.mjs": {
+      "worktree": "99f62415fd5eb04ec969e862324072e4e0987928c156a24a4aae0175a9379b7f",
+      "canonical": "99f62415fd5eb04ec969e862324072e4e0987928c156a24a4aae0175a9379b7f",
+      "equal_lf": true
+    },
+    "Build/simulator/export_validated_setup.py": {
+      "worktree": "aab142c252d28685bde64a69e7b9c35bc8c8735926fa3cf89278572de97511c7",
+      "canonical": "aab142c252d28685bde64a69e7b9c35bc8c8735926fa3cf89278572de97511c7",
+      "equal_lf": true
+    },
+    "Build/simulator/extended-templates.mjs": {
+      "worktree": "f62406f590eca2c91dea03006f95fc291c0ec5be12a0408798c9e705d32a2b61",
+      "canonical": "f62406f590eca2c91dea03006f95fc291c0ec5be12a0408798c9e705d32a2b61",
+      "equal_lf": true
+    },
+    "Build/simulator/mystery-g.mjs": {
+      "worktree": "339a9cb1fa39120e112fcf5983ee6f58caf1578e74d0e8555eea4bc396f37ae9",
+      "canonical": "339a9cb1fa39120e112fcf5983ee6f58caf1578e74d0e8555eea4bc396f37ae9",
+      "equal_lf": true
+    },
+    "Build/simulator/package-lock.json": {
+      "worktree": "b9c30f504894ddb61d9217f350f4ab9f486f2f0839b4f7b16a5597569cacd5ab",
+      "canonical": "a10f4a546983236c5a4a67da31dd5eda8a24fe6c1cb3c00a786255b897b06c2a",
+      "equal_lf": true
+    },
+    "Build/simulator/package.json": {
+      "worktree": "fb24a79e81f635e696f960e6bd5a2d8d7dc8b2b067419ee507d795a746320e0f",
+      "canonical": "ec6da3e99c6e2e4d3e52fa79cef6409918b80d757b92368bb275e6b50a9f1f68",
+      "equal_lf": true
+    },
+    "Build/simulator/replay.md": {
+      "worktree": "9f90fee7deefd98eb2d3b220398b3c0da3fac1d17e01f4f2c162ddff21767d21",
+      "canonical": "9f90fee7deefd98eb2d3b220398b3c0da3fac1d17e01f4f2c162ddff21767d21",
+      "equal_lf": true
+    },
+    "Build/simulator/replay.mjs": {
+      "worktree": "483afb36ea0de093219379453cb3dccd158d6acdf8cc52fc76c413d82e832e11",
+      "canonical": "483afb36ea0de093219379453cb3dccd158d6acdf8cc52fc76c413d82e832e11",
+      "equal_lf": true
+    },
+    "Build/simulator/rk4.mjs": {
+      "worktree": "1e8d78356aa3a5b439652eb6e868f7c1869df8ff2d3024814a240661a7f8357b",
+      "canonical": "1e8d78356aa3a5b439652eb6e868f7c1869df8ff2d3024814a240661a7f8357b",
+      "equal_lf": true
+    },
+    "Build/simulator/trajectories.mjs": {
+      "worktree": "b187a110b7f50c2293dc692b74682fb6d460e6154e877102af65e07548d4f8b7",
+      "canonical": "b187a110b7f50c2293dc692b74682fb6d460e6154e877102af65e07548d4f8b7",
+      "equal_lf": true
+    },
+    "contracts/overlay/CONTRACT.md": {
+      "worktree": "47b62b9e2afac706938873811d0e99162209262f254ccc89927b6968a0415cbb",
+      "canonical": "47b62b9e2afac706938873811d0e99162209262f254ccc89927b6968a0415cbb",
+      "equal_lf": true
+    },
+    "contracts/overlay/__init__.py": {
+      "worktree": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "canonical": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "equal_lf": true
+    },
+    "contracts/overlay/validate.py": {
+      "worktree": "7dc288df3994fb844568fe2924d6a151974f83e4955d35285ff629c226a417f5",
+      "canonical": "7dc288df3994fb844568fe2924d6a151974f83e4955d35285ff629c226a417f5",
+      "equal_lf": true
+    },
+    "tests/prediction/test_boundary.py": {
+      "worktree": "cefed48bdeeb03fc65503e7021a445dad89e85e509580c3da040e5bef8e2fe17",
+      "canonical": "cefed48bdeeb03fc65503e7021a445dad89e85e509580c3da040e5bef8e2fe17",
+      "equal_lf": true
+    },
+    "tests/prediction/test_overlay.py": {
+      "worktree": "9ae5bae549ac89d78f79954158dee9ce5c6219d00c9343ee0522e7fc4cd9b893",
+      "canonical": "9ae5bae549ac89d78f79954158dee9ce5c6219d00c9343ee0522e7fc4cd9b893",
+      "equal_lf": true
+    },
+    "tests/prediction/test_params.py": {
+      "worktree": "00a16a9e1bc112be87b09cb4c0675ce3588fbeff0a1c6b4c74180021946cad91",
+      "canonical": "00a16a9e1bc112be87b09cb4c0675ce3588fbeff0a1c6b4c74180021946cad91",
+      "equal_lf": true
+    },
+    "tests/prediction/test_predict.py": {
+      "worktree": "3739e34d1f8a3c8a8bfe0b0a25869a44088ca91f974e5cb52dbe672e630ef8df",
+      "canonical": "3739e34d1f8a3c8a8bfe0b0a25869a44088ca91f974e5cb52dbe672e630ef8df",
+      "equal_lf": true
+    },
+    "tests/prediction/test_score.py": {
+      "worktree": "8fbfa2e81bb0fe89b590ec17f14dc762c825d1247aaa8eb515eb156a24a7cf25",
+      "canonical": "8fbfa2e81bb0fe89b590ec17f14dc762c825d1247aaa8eb515eb156a24a7cf25",
+      "equal_lf": true
+    }
+  }
+}

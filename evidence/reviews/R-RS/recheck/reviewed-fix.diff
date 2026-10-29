@@ -1,0 +1,303 @@
+commit ee4e14f93f5eb0284df62432bf838e22597366fe
+Author:     Mr. Rookie <mr.rookie@users.noreply.github.com>
+AuthorDate: Fri Oct 30 04:10:52 2026 +0600
+Commit:     Mr. Rookie <mr.rookie@users.noreply.github.com>
+CommitDate: Fri Oct 30 04:11:02 2026 +0600
+
+    S12e-fix-orch52: fix R-RS F1-F4 (seal binding, gate eligibility, fail-closed validation, finite checks)
+
+diff --git a/Build/real2sim/overlay.py b/Build/real2sim/overlay.py
+index 83ebab0..25dfb38 100644
+--- a/Build/real2sim/overlay.py
++++ b/Build/real2sim/overlay.py
+@@ -16,8 +16,13 @@ def build(boundary, predictions, frame_map, provenance, sources=()):
+     """Overlay document for predictions made from this boundary; validated before return."""
+     for p in predictions:
+         check(p)
+-        if p.clip_id != boundary.clip_id or p.training_sha256 != boundary.training_sha256:
++        if p.clip_id != boundary.clip_id or p.training_sha256 != boundary.training_sha256 \
++                or p.suffix_identity_sha256 != boundary.suffix_identity_sha256:
+             raise ValueError("prediction was not made from this clip boundary")
++        # R-RS F1: trace identities must equal the complete seal (count + hash), not merely align to PTS.
++        if len(p.trace) != boundary.suffix_count or \
++                _sha(tuple((r[0], r[1]) for r in p.trace)) != boundary.suffix_identity_sha256:
++            raise ValueError("prediction trace does not cover the complete sealed suffix")
+     doc = {"contract_version": VERSION, "clip_id": boundary.clip_id, "source_sha256": boundary.source_sha256,
+            "provenance": provenance, "units": "image-height fraction", "gate_m": GATE_M, "limits": list(LIMITS),
+            "timebase": {"kind": "pts_s", "frame_map_sha256": frame_map_sha256(frame_map), "sources": list(sources)},
+diff --git a/Build/real2sim/score.py b/Build/real2sim/score.py
+index 7ea845c..e97ae80 100644
+--- a/Build/real2sim/score.py
++++ b/Build/real2sim/score.py
+@@ -11,11 +11,12 @@ import math
+ import statistics
+ import sys
+ 
+-from Build.real2sim.boundary import GATE_M, LIMITS, split, verify
++from Build.real2sim.boundary import GATE_M, LIMITS, _sha, split, verify
+ from Build.real2sim.predict import check, projectile, st03_record
+ from Build.real2sim.params import ROOT
+ 
+ CATEGORIES = ("projectile", "bounce", "pendulum")
++ELIGIBLE_PROVENANCE = "image-derived"  # public licensed clip input; synthetic fixtures never count toward Gate RS
+ THRESHOLD, MIN_COVERAGE, EARLY = 0.05, 0.8, 5
+ # Full f58-542 job OOMed on A10G (evidence/S12/gate-rs/ST03-f58-542); 26-frame job fits (orch14 19 frames = 17.1 GB).
+ ST03_TRACK = "evidence/S12/gate-rs/ST03-f58-83/result.json"
+@@ -25,34 +26,73 @@ def _rms(errors):
+     return math.sqrt(sum(e * e for e in errors) / len(errors)) if errors else None
+ 
+ 
+-def score(boundary, sealed, prediction, committed_sha256, load_observations):
+-    """Verify seal + committed prediction, THEN call load_observations() -> {frame: (pts_s, y_norm)}."""
++def _finite(v):
++    return type(v) in (int, float) and math.isfinite(v)
++
++
++def score(boundary, sealed, prediction, committed_sha256, load_observations, provenance="synthetic"):
++    """Verify seal + committed prediction, THEN call load_observations() -> {frame: (pts_s, y_norm)}.
++
++    provenance defaults to synthetic (gate-ineligible); only real clip scores pass "image-derived".
++    """
+     verify(boundary, sealed)
+     check(prediction)
+     if prediction.sha256 != committed_sha256 or \
+             prediction.suffix_identity_sha256 != boundary.suffix_identity_sha256:
+         raise ValueError("prediction is not the committed one for this seal")
++    # R-RS F1: the v1 digest covers [kind, model, trace] only, so bind custody metadata and the
++    # trace's (frame, PTS) identities to the COMPLETE seal before any suffix read.
++    if prediction.clip_id != boundary.clip_id or prediction.training_sha256 != boundary.training_sha256:
++        raise ValueError("prediction was made for a different clip or training prefix")
++    ids = tuple((r[0], r[1]) for r in prediction.trace)
++    if len(ids) != boundary.suffix_count or len(sealed) != boundary.suffix_count \
++            or _sha(ids) != boundary.suffix_identity_sha256:
++        raise ValueError("prediction trace does not cover the complete sealed suffix")
++    if not all(_finite(r[2]) for r in prediction.trace):
++        raise ValueError("prediction trace has non-finite values")
+     observed = load_observations()  # first suffix read: only after both checks passed
+     errors = []
+     for i, p, y, _ in prediction.trace:
+         if i in observed:
++            if not (len(observed[i]) == 2 and all(_finite(v) for v in observed[i])):
++                raise ValueError(f"frame {i}: observation must be finite (pts_s, y_norm)")
+             if abs(observed[i][0] - p) > 1e-6:
+                 raise ValueError(f"frame {i}: observed PTS {observed[i][0]} != sealed {p}")
+             errors.append(y - observed[i][1])
+-    coverage = len(errors) / len(prediction.trace)
++    coverage = len(errors) / boundary.suffix_count
+     rms = _rms(errors)
+     return {"clip_id": boundary.clip_id, "kind": prediction.kind, "prediction_sha256": prediction.sha256,
+-            "suffix_identity_sha256": boundary.suffix_identity_sha256, "sealed_frames": len(prediction.trace),
++            "suffix_identity_sha256": boundary.suffix_identity_sha256, "sealed_frames": boundary.suffix_count,
+             "scored_frames": len(errors), "coverage": coverage, "normalized_rms": rms,
+             "normalized_rms_first5_diagnostic": _rms(errors[:EARLY]),
+             "max_abs": max(map(abs, errors)) if errors else None,
+-            "scored": coverage >= MIN_COVERAGE and rms is not None, "gate_m": GATE_M}
++            "scored": coverage >= MIN_COVERAGE and rms is not None, "provenance": provenance, "gate_m": GATE_M}
++
++
++def _eligible(category, r):
++    """R-RS F2/F4: recompute eligibility from the result's own fields; never trust the scored flag alone."""
++    if not isinstance(r, dict) or r.get("kind") != category or r.get("provenance") != ELIGIBLE_PROVENANCE \
++            or str(r.get("clip_id", "")).upper().startswith("SYNTHETIC"):
++        return False
++    n, k, rms = r.get("sealed_frames"), r.get("scored_frames"), r.get("normalized_rms")
++    if type(n) is not int or type(k) is not int or not 0 < k <= n or not _finite(rms) or rms < 0:
++        return False
++    return r.get("scored") is True and k / n >= MIN_COVERAGE and r.get("coverage") == k / n
+ 
+ 
+ def gate(results):
+-    """results: {category: clip score or None}. Missing/unscored category => measured shortfall."""
+-    per = {c: (results.get(c) or {}).get("normalized_rms") if (results.get(c) or {}).get("scored") else None
+-           for c in CATEGORIES}
++    """results: {category: clip score or None}. Missing/unscored/ineligible category => measured shortfall.
++
++    Eligible = kind matches category, image-derived non-synthetic clip, finite nonnegative RMS, recomputed
++    coverage >= 80%; one clip/prediction may not stand in for two categories.
++    """
++    per, seen = {}, set()
++    for c in CATEGORIES:
++        r = results.get(c)
++        ok = _eligible(c, r) and r["clip_id"] not in seen and r.get("prediction_sha256") not in seen
++        per[c] = r["normalized_rms"] if ok else None
++        if ok:
++            seen |= {r["clip_id"], r.get("prediction_sha256")}
+     complete = all(v is not None for v in per.values())
+     value = statistics.median(per.values()) if complete else None
+     return {"per_category_normalized_rms": per, "median": value, "threshold": THRESHOLD,
+@@ -67,6 +107,7 @@ def st03_observations(raw, frame_pts, height):
+     validate_segment assumes they coincide (true only for first=0), so relative k is mapped to frame_map[k].
+     """
+     from Build.pipeline.gpu_stages import validate_segment
++    from Build.pipeline.gpu_stages import StageError
+     out = json.loads(raw)
+     source = [i for i, _ in out["frame_map"]]
+     if [s[0] for s in out["stream"]] != list(range(len(source))):
+@@ -76,14 +117,9 @@ def st03_observations(raw, frame_pts, height):
+     fmap = [(i, frame_pts[i]) for i in source]
+     try:
+         frames = validate_segment(json.dumps(out), "apple", 2, fmap)["frames"]
+-        note = "validate_segment OK"
+-        obs = {f["frame_index"]: (f["pts_s"], f["centroid_px"][1] / height) for f in frames}
+-    except Exception as error:  # noqa: BLE001 - record the rejection, score only object-2 frames present
+-        note = f"validate_segment rejected: {error}"
+-        ids = {i for i, objs, _ in out["stream"] if 2 in objs}
+-        obs = {f["frame_index"]: (frame_pts[f["frame_index"]], f["y_px"] / height)
+-               for f in out["record"]["frames"] if f["frame_index"] in ids}
+-    return obs, note
++    except StageError as error:  # R-RS F3: a rejected segment is an explicit unscored shortfall, never scored
++        return {}, f"validate_segment rejected (unscored): {error}"
++    return {f["frame_index"]: (f["pts_s"], f["centroid_px"][1] / height) for f in frames}, "validate_segment OK"
+ 
+ 
+ def main(root=ROOT):
+@@ -103,7 +139,7 @@ def main(root=ROOT):
+         notes["prefix_retrack_max_abs_vs_orch14"] = max(diffs) if diffs else None
+         return {i: v for i, v in obs.items() if i > boundary.last_training_frame}
+ 
+-    st03 = score(boundary, sealed, prediction, committed["prediction"]["sha256"], load)
++    st03 = score(boundary, sealed, prediction, committed["prediction"]["sha256"], load, "image-derived")
+     result = gate({"projectile": st03})
+     out = {"gate": "RS", "gate_m": GATE_M, "limitations": list(LIMITS), "result": result,
+            "metric": "per clip RMS |y_pred - y_obs| / image height over sealed suffix; median over categories",
+diff --git a/contracts/overlay/CONTRACT.md b/contracts/overlay/CONTRACT.md
+index 7836d30..1ece22c 100644
+--- a/contracts/overlay/CONTRACT.md
++++ b/contracts/overlay/CONTRACT.md
+@@ -17,7 +17,9 @@ Builder: `Build/real2sim/overlay.build`. Validator: [validate.py](validate.py) (
+ `validate(doc, clip_id, source_sha256, frame_map)` rejects: unknown/missing fields, other version, gate_m
+ other than NOT_MET, other clip or source sha, a frame map whose hash differs, any row whose frame is absent
+ from the map or whose PTS differs by more than 1e-6 s, non-increasing frames, and any trace whose
+-`sha256` no longer matches `[kind, model, trace]`. It returns a tuple of immutable `Trace` named tuples;
++`sha256` no longer matches `[kind, model, trace]`, or whose `suffix_identity_sha256` is not the hash of
++its complete `[[frame_index, pts_s], ...]` rows (R-RS F1; the builder also requires the boundary's seal hash
++and count). It returns a tuple of immutable `Trace` named tuples;
+ renderers read those only and never recompute or edit predictions.
+ 
+ Values may lie outside [0, 1] (ballistic ST03 runs past the image bottom); renderers clip, not the contract.
+diff --git a/contracts/overlay/validate.py b/contracts/overlay/validate.py
+index b07f331..91ffbdc 100644
+--- a/contracts/overlay/validate.py
++++ b/contracts/overlay/validate.py
+@@ -72,5 +72,8 @@ def validate(doc, clip_id, source_sha256, frame_map):
+             need(r[0] in pts and abs(r[1] - pts[r[0]]) <= PTS_TOL_S,
+                  f"traces[{n}]: frame {r[0]} not aligned to the source timebase")
+         need(all(b[0] > a[0] for a, b in zip(rows, rows[1:])), f"traces[{n}]: frames must increase")
++        # R-RS F1: the declared seal hash must be the hash of this trace's complete (frame, PTS) identities.
++        need(_sha([[r[0], r[1]] for r in rows]) == t["suffix_identity_sha256"],
++             f"traces[{n}]: suffix_identity_sha256 does not match the trace's sealed (frame, PTS) identities")
+         out.append(Trace(t["kind"], t["sha256"], t["model"], rows))
+     return tuple(out)
+diff --git a/tests/prediction/test_score.py b/tests/prediction/test_score.py
+index 4518a00..541ec61 100644
+--- a/tests/prediction/test_score.py
++++ b/tests/prediction/test_score.py
+@@ -1,20 +1,29 @@
+ """S12e: Gate RS scoring verifies seal + committed sha BEFORE reading suffix observations."""
+ import dataclasses
++import json
+ import unittest
+ 
+ from Build.real2sim import boundary as b
++from Build.real2sim import overlay as o
+ from Build.real2sim import predict as pr
+ from Build.real2sim import score as s
++from Build.real2sim.params import ROOT
+ 
+ 
+-def ids_only():
++def ids_only(clip="SYNTHETIC", shift=0):
+     # SYNTHETIC: y_px = 100 + 20 i + 3 i^2 on frames 0..9 (H=1000); suffix identities 10..14 only (untracked seal).
+-    frames = [{"frame_index": i, "pts_s": i / 30, "y_px": 100 + 20 * i + 3 * i * i} for i in range(10)]
+-    boundary, sealed = b.split({"clip_id": "SYNTHETIC", "source_sha256": "a" * 64, "last_training_frame": 9,
++    frames = [{"frame_index": i, "pts_s": i / 30, "y_px": 100 + 20 * i + 3 * i * i + shift} for i in range(10)]
++    boundary, sealed = b.split({"clip_id": clip, "source_sha256": "a" * 64, "last_training_frame": 9,
+                                 "height_px": 1000, "frames": frames}, [(i, i / 30) for i in range(10, 15)])
+     return boundary, sealed, pr.projectile(boundary, sealed)
+ 
+ 
++def eligible(kind, clip, rms=0.01):
++    """Shape of a real image-derived clip score (values illustrative, used only for gate() arithmetic)."""
++    return {"clip_id": clip, "kind": kind, "prediction_sha256": clip * 8, "sealed_frames": 10, "scored_frames": 9,
++            "coverage": 0.9, "normalized_rms": rms, "scored": True, "provenance": "image-derived"}
++
++
+ class ScoreTests(unittest.TestCase):
+     def test_exact_truth_scores_zero_and_loader_runs_after_checks(self):
+         boundary, sealed, pred = ids_only()
+@@ -46,12 +55,73 @@ class ScoreTests(unittest.TestCase):
+         self.assertEqual((r["coverage"], r["scored"]), (0.4, False))
+ 
+     def test_gate_needs_every_category(self):
+-        ok = {"scored": True, "normalized_rms": 0.01}
++        ok = eligible("projectile", "P1")
+         self.assertEqual(s.gate({"projectile": ok})["status"], "NOT_MET")
+         self.assertEqual(s.gate({"projectile": ok})["shortfall"], ["bounce", "pendulum"])
+-        g = s.gate({c: ok for c in s.CATEGORIES} | {"pendulum": {"scored": True, "normalized_rms": 0.5}})
++        g = s.gate({"projectile": ok, "bounce": eligible("bounce", "B1"), "pendulum": eligible("pendulum", "D1", 0.5)})
+         self.assertEqual((g["status"], g["median"]), ("MET", 0.01))
+ 
++    # --- R-RS regressions (evidence/reviews/R-RS/reproductions.json) ---
++    def test_f1_wrong_clip_wrong_training_and_precommitted_subset_refused_before_read(self):
++        boundary, sealed, _ = ids_only()
++        never = lambda: self.fail("suffix read before binding check")  # noqa: E731
++        for other in (ids_only(clip="SYNTHETIC-other")[2], ids_only(shift=5)[2]):  # wrong clip / wrong training
++            with self.assertRaisesRegex(ValueError, "different clip or training"):
++                s.score(boundary, sealed, other, other.sha256, never)
++        _, _, pred = ids_only()
++        short = pr._seal(pred.kind, boundary, pred.model, pred.trace[:1])  # precommitted one-row trace
++        with self.assertRaisesRegex(ValueError, "complete sealed suffix"):
++            s.score(boundary, sealed, short, short.sha256, never)
++
++    def test_f1_overlay_forged_suffix_hash_refused(self):
++        boundary, sealed, pred = ids_only()
++        forged = dataclasses.replace(pred, suffix_identity_sha256="0" * 64)
++        with self.assertRaises(ValueError):
++            o.build(boundary, [forged], dict(sealed), "synthetic")
++        doc = o.build(boundary, [pred], dict(sealed), "synthetic")
++        doc["traces"][0]["suffix_identity_sha256"] = "0" * 64
++        with self.assertRaisesRegex(ValueError, "sealed"):
++            o.validate(doc, boundary.clip_id, boundary.source_sha256, dict(sealed))
++
++    def test_f2_one_synthetic_projectile_aliased_three_times_is_shortfall(self):
++        boundary, sealed, pred = ids_only()
++        truth = {i: (t, y) for i, t, y, _ in pred.trace}
++        full = s.score(boundary, sealed, pred, pred.sha256, lambda: truth)
++        g = s.gate({c: full for c in s.CATEGORIES})
++        self.assertEqual((g["status"], g["shortfall"]), ("NOT_MET", list(s.CATEGORIES)))
++        real = eligible("projectile", "P1")
++        g = s.gate({"projectile": real, "bounce": real | {"kind": "bounce"}, "pendulum": real | {"kind": "pendulum"}})
++        self.assertEqual(g["shortfall"], ["bounce", "pendulum"])  # same clip cannot stand in for other categories
++        forged = eligible("bounce", "B1") | {"coverage": 0.9, "scored_frames": 1}  # coverage recomputed, not trusted
++        self.assertIsNone(s.gate({"bounce": forged})["per_category_normalized_rms"]["bounce"])
++
++    def test_f3_wrong_record_object_is_unscored_shortfall(self):
++        record, suffix, _ = pr.st03_record(ROOT)
++        boundary, sealed = b.split(record, suffix)
++        pred = pr.projectile(boundary, sealed)
++        raw = json.loads((ROOT / s.ST03_TRACK).read_text(encoding="utf-8"))
++        raw["record"]["tracking"]["object_id"] = 999
++        obs, note = s.st03_observations(json.dumps(raw), o.st03_frame_map(ROOT), record["height_px"])
++        self.assertEqual(obs, {})
++        self.assertIn("rejected (unscored)", note)
++        r = s.score(boundary, sealed, pred, pred.sha256, lambda: obs, "image-derived")
++        self.assertEqual((r["scored_frames"], r["scored"], r["normalized_rms"]), (0, False, None))
++
++    def test_f4_nonfinite_observations_and_metrics_rejected(self):
++        boundary, sealed, pred = ids_only()
++        for bad in (float("nan"), float("inf")):
++            rows = {i: (bad, y) for i, t, y, _ in pred.trace}
++            with self.assertRaisesRegex(ValueError, "finite"):
++                s.score(boundary, sealed, pred, pred.sha256, lambda: rows)
++            rows = {i: (t, bad) for i, t, y, _ in pred.trace}
++            with self.assertRaisesRegex(ValueError, "finite"):
++                s.score(boundary, sealed, pred, pred.sha256, lambda: rows)
++            g = s.gate({"projectile": eligible("projectile", "P1", 0.0), "bounce": eligible("bounce", "B1", 0.0),
++                        "pendulum": eligible("pendulum", "D1", bad)})
++            self.assertEqual((g["status"], g["shortfall"]), ("NOT_MET", ["pendulum"]))
++        g = s.gate({"projectile": eligible("projectile", "P1", -0.1)})
++        self.assertIn("projectile", g["shortfall"])
++
+ 
+ if __name__ == "__main__":
+     unittest.main()

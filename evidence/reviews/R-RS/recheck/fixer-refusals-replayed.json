@@ -1,0 +1,73 @@
+{
+  "F1_wrong_clip_and_training": {
+    "refused": true,
+    "error": "prediction was made for a different clip or training prefix"
+  },
+  "F1_wrong_training_same_clip": {
+    "refused": true,
+    "error": "prediction was made for a different clip or training prefix"
+  },
+  "F1_precommitted_subset": {
+    "refused": true,
+    "error": "prediction trace does not cover the complete sealed suffix"
+  },
+  "F1_overlay_forged_suffix_hash_build": {
+    "refused": true,
+    "error": "prediction was not made from this clip boundary"
+  },
+  "F1_overlay_forged_suffix_hash_validate": {
+    "refused": true,
+    "error": "traces[0]: suffix_identity_sha256 does not match the trace's sealed (frame, PTS) identities"
+  },
+  "F2_one_synthetic_projectile_aliased_x3": {
+    "refused": true,
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "median": null,
+      "threshold": 0.05,
+      "status": "NOT_MET",
+      "shortfall": [
+        "projectile",
+        "bounce",
+        "pendulum"
+      ],
+      "gate_m": "NOT_MET"
+    }
+  },
+  "F4_nan_pts": {
+    "refused": true,
+    "error": "frame 10: observation must be finite (pts_s, y_norm)"
+  },
+  "F4_inf_y": {
+    "refused": true,
+    "error": "frame 10: observation must be finite (pts_s, y_norm)"
+  },
+  "F4_nan_category_metric": {
+    "refused": true,
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "median": null,
+      "threshold": 0.05,
+      "status": "NOT_MET",
+      "shortfall": [
+        "projectile",
+        "bounce",
+        "pendulum"
+      ],
+      "gate_m": "NOT_MET"
+    }
+  },
+  "F3_wrong_record_object": {
+    "refused": true,
+    "validation": "validate_segment rejected (unscored): segment: record tracks object 999, expected 2",
+    "scored_frames": 0
+  }
+}
