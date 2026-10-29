@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Oct 30, 04:03 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 04:05 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -14,14 +14,13 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- Nothing ready yet: check dependencies and retry holds below.
+- [~] **S12e** — Codex (native Claude) · Opus 5.5, effort high — Run Gate RS on public motion clips (30 min) *(partial: resume it)*
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [ ] **S20b** — Codex · GPT-6.1 Sol, effort medium — Implement reconstruction cap and library exemption (30 min)
 
 **CLAUDE**
-- [ ] **R-RS** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate RS held-out boundary and error normalization (15 min)
 - [ ] **R-A** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate A tool-number enforcement (15 min)
 
 ## Waiting for Koushik
@@ -208,9 +207,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S12b** — Codex (native Claude) · Opus 5.5, effort high — Transfer measured parameters into simulator (30 min)
 - [x] **S12c** — Codex (native Claude) · Opus 5.5, effort high — Predict held-out projectile and bounce motion (30 min)
 - [x] **S12d** — Codex (native Claude) · Opus 5.5, effort high — Predict pendulum continuation and overlay contract (30 min)
-- [x] **S12e** — Codex (native Claude) · Opus 5.5, effort high — Run Gate RS on public motion clips (30 min)
+- [~] **S12e** — Codex (native Claude) · Opus 5.5, effort high — Run Gate RS on public motion clips (30 min) *(partial: resume it)*
 - [ ] **S12f** — Codex (native Claude) · Opus 5.5, effort high — Label outputs and choose honest prediction fallback (30 min)
-- [ ] **R-RS** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate RS held-out boundary and error normalization (15 min)
+- [x] **R-RS** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate RS held-out boundary and error normalization (15 min)
 
 </details>
 

@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+R-RS DONE = CHANGES_REQUIRED (orch49 Sol high; TIMEBOX PASS; evidence ff-merged). Saved Gate RS
+result (NOT_MET, 19.8%, 7/466) reproduced honest; prefix-only + errata re-seal + commit ordering OK.
+P1 defects in Build/real2sim/score.py (future false acceptance): F1 prediction not bound to clip/
+training/full seal (subset trace -> 100% coverage); F2 gate() trusts category keys (1 synthetic
+projectile aliased x3 -> MET); F3 broad except bypasses validate_segment (wrong object scored);
+F4 NaN PTS/RMS accepted. S12e reopened PARTIAL -> S12e-fix (Opus high), then R-RS recheck.
+
 DISPATCHED S20b-orch51 Sol medium (threadId:01a189b1-2600-72d3-9838-d6aea625547d,hostId:local, deadline 2026-10-29T22:34:09+00:00).
 
 S20a DONE (orch48 Sol medium; TIMEBOX PASS; guardrails 17 OK; ff-merged). Build/guardrails/CONTRACT.md
