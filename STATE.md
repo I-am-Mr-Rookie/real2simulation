@@ -73,6 +73,8 @@ Risk: number-word list partial (Gate A must extend). S05b-orch14 A10G RAN (A10 2
 inference 1.13s, peak 7.7GB) but output lost to client unpickle bug; controller
 approved ONE rerun <=$0.95 before 11:46Z.
 S14b-orch16 Opus/high issued 2026-10-29T11:34:25+00:00 (deadline 2026-10-29T12:04:25+00:00); Meta Muse <=20 calls/<=$1, synthetic input only.
+S17b-orch15 DONE accepted (Sonnet; TIMEBOX PASS; fresh 41 tests OK; main b52de01):
+deterministic tables + stdlib SVG charts gated by validate_report. SVG not browser-viewed.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
