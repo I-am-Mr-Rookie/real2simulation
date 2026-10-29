@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+S13d DONE (orch25 Opus medium; pipeline 30 OK fresh; TIMEBOX PASS; ff-merged): job lifecycle,
+leases, idempotent artifacts/paid dispatch, bounded retries; in-memory store, no Redis exercised.
+Risk: crash after paid call can repeat once (max 2) until provider honours forwarded key (S13e+).
+orch27: S13e Opus high dispatched (<=6 live Meta calls, <=$1, ledger; DISPATCH-orch27.json).
 S15h DONE (orch25 Sonnet medium; workspace 66 pass fresh; TIMEBOX PASS; ff-merged): fit table +
 residual SVG from real fitter output on synthetic fixture; not wired into S04 page.
 orch26: S15i Sonnet medium dispatched (receipt DISPATCH-orch26.json).

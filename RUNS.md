@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 21:29 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 21:31 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **127 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **128 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -16,7 +16,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CODEX-1**
 - [ ] **S05f** — Codex (native Claude) · Opus 5.5, effort high — Apply the named fallback and checkpoint Gate R (30 min)
 - [ ] **S06f** — Codex (native Claude) · Opus 5.5, effort high — Exercise one licensed room clip on Modal (30 min)
-- [ ] **S13d** — Codex (native Claude) · Opus 5.5, effort medium — Add Redis job lifecycle and retry handling (30 min)
+- [ ] **S13e** — Codex (native Claude) · Opus 5.5, effort high — Connect Muse Wonder understanding (30 min)
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
@@ -214,12 +214,12 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S13</b> — Upload and reconstruction job pipeline (3/8)</summary>
+<details><summary><b>S13</b> — Upload and reconstruction job pipeline (4/8)</summary>
 
 - [x] **S13a** — Codex (native Claude) · Opus 5.5, effort high — Define resumable upload and job-stage contracts (30 min)
 - [x] **S13b** — Codex (native Claude) · Opus 5.5, effort high — Implement bucket upload validation (30 min)
 - [x] **S13c** — Codex (native Claude) · Opus 5.5, effort high — Extract ffmpeg keyframes and metadata (30 min)
-- [ ] **S13d** — Codex (native Claude) · Opus 5.5, effort medium — Add Redis job lifecycle and retry handling (30 min)
+- [x] **S13d** — Codex (native Claude) · Opus 5.5, effort medium — Add Redis job lifecycle and retry handling (30 min)
 - [ ] **S13e** — Codex (native Claude) · Opus 5.5, effort high — Connect Muse Wonder understanding (30 min)
 - [ ] **S13f** — Codex (native Claude) · Opus 5.5, effort high — Connect SAM masks and Modal reconstruction (30 min)
 - [ ] **S13g** — Codex (native Claude) · Opus 5.5, effort medium — Stream job progress to shell integration interface (30 min)
