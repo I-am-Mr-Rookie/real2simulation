@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+orch30 dispatched full30m (QUEUE effort): S06g Opus medium (CPU, AWS adapter gated, no AWS
+resources), S13f Opus high (<=2 Modal jobs, <=$1), S09h Opus high (3 real scene loads, scale
+unverified label, CPU). Receipt DISPATCH-orch30.json. Running: R-R-recheck-orch28 (Sol).
 Accepted (TIMEBOX PASS, rebased, fresh checks green, ff-merged) Oct29 ~15:45Z:
 - S15j DONE (orch29 Sonnet medium; workspace 77 pass): 375px stacks sidebar below viewport, no
   horizontal scroll (375/1280 IAB measured, screenshots). TIMEBOX schema initially wrong -> same
