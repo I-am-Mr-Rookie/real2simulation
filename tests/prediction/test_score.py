@@ -1,18 +1,27 @@
 """S12e: Gate RS scoring verifies seal + committed sha BEFORE reading suffix observations."""
 import dataclasses
+import json
 import unittest
 
 from Build.real2sim import boundary as b
+from Build.real2sim import overlay as o
 from Build.real2sim import predict as pr
 from Build.real2sim import score as s
+from Build.real2sim.params import ROOT
 
 
-def ids_only():
+def ids_only(clip="SYNTHETIC", shift=0):
     # SYNTHETIC: y_px = 100 + 20 i + 3 i^2 on frames 0..9 (H=1000); suffix identities 10..14 only (untracked seal).
-    frames = [{"frame_index": i, "pts_s": i / 30, "y_px": 100 + 20 * i + 3 * i * i} for i in range(10)]
-    boundary, sealed = b.split({"clip_id": "SYNTHETIC", "source_sha256": "a" * 64, "last_training_frame": 9,
+    frames = [{"frame_index": i, "pts_s": i / 30, "y_px": 100 + 20 * i + 3 * i * i + shift} for i in range(10)]
+    boundary, sealed = b.split({"clip_id": clip, "source_sha256": "a" * 64, "last_training_frame": 9,
                                 "height_px": 1000, "frames": frames}, [(i, i / 30) for i in range(10, 15)])
     return boundary, sealed, pr.projectile(boundary, sealed)
+
+
+def eligible(kind, clip, rms=0.01):
+    """Shape of a real image-derived clip score (values illustrative, used only for gate() arithmetic)."""
+    return {"clip_id": clip, "kind": kind, "prediction_sha256": clip * 8, "sealed_frames": 10, "scored_frames": 9,
+            "coverage": 0.9, "normalized_rms": rms, "scored": True, "provenance": "image-derived"}
 
 
 class ScoreTests(unittest.TestCase):
@@ -46,11 +55,72 @@ class ScoreTests(unittest.TestCase):
         self.assertEqual((r["coverage"], r["scored"]), (0.4, False))
 
     def test_gate_needs_every_category(self):
-        ok = {"scored": True, "normalized_rms": 0.01}
+        ok = eligible("projectile", "P1")
         self.assertEqual(s.gate({"projectile": ok})["status"], "NOT_MET")
         self.assertEqual(s.gate({"projectile": ok})["shortfall"], ["bounce", "pendulum"])
-        g = s.gate({c: ok for c in s.CATEGORIES} | {"pendulum": {"scored": True, "normalized_rms": 0.5}})
+        g = s.gate({"projectile": ok, "bounce": eligible("bounce", "B1"), "pendulum": eligible("pendulum", "D1", 0.5)})
         self.assertEqual((g["status"], g["median"]), ("MET", 0.01))
+
+    # --- R-RS regressions (evidence/reviews/R-RS/reproductions.json) ---
+    def test_f1_wrong_clip_wrong_training_and_precommitted_subset_refused_before_read(self):
+        boundary, sealed, _ = ids_only()
+        never = lambda: self.fail("suffix read before binding check")  # noqa: E731
+        for other in (ids_only(clip="SYNTHETIC-other")[2], ids_only(shift=5)[2]):  # wrong clip / wrong training
+            with self.assertRaisesRegex(ValueError, "different clip or training"):
+                s.score(boundary, sealed, other, other.sha256, never)
+        _, _, pred = ids_only()
+        short = pr._seal(pred.kind, boundary, pred.model, pred.trace[:1])  # precommitted one-row trace
+        with self.assertRaisesRegex(ValueError, "complete sealed suffix"):
+            s.score(boundary, sealed, short, short.sha256, never)
+
+    def test_f1_overlay_forged_suffix_hash_refused(self):
+        boundary, sealed, pred = ids_only()
+        forged = dataclasses.replace(pred, suffix_identity_sha256="0" * 64)
+        with self.assertRaises(ValueError):
+            o.build(boundary, [forged], dict(sealed), "synthetic")
+        doc = o.build(boundary, [pred], dict(sealed), "synthetic")
+        doc["traces"][0]["suffix_identity_sha256"] = "0" * 64
+        with self.assertRaisesRegex(ValueError, "sealed"):
+            o.validate(doc, boundary.clip_id, boundary.source_sha256, dict(sealed))
+
+    def test_f2_one_synthetic_projectile_aliased_three_times_is_shortfall(self):
+        boundary, sealed, pred = ids_only()
+        truth = {i: (t, y) for i, t, y, _ in pred.trace}
+        full = s.score(boundary, sealed, pred, pred.sha256, lambda: truth)
+        g = s.gate({c: full for c in s.CATEGORIES})
+        self.assertEqual((g["status"], g["shortfall"]), ("NOT_MET", list(s.CATEGORIES)))
+        real = eligible("projectile", "P1")
+        g = s.gate({"projectile": real, "bounce": real | {"kind": "bounce"}, "pendulum": real | {"kind": "pendulum"}})
+        self.assertEqual(g["shortfall"], ["bounce", "pendulum"])  # same clip cannot stand in for other categories
+        forged = eligible("bounce", "B1") | {"coverage": 0.9, "scored_frames": 1}  # coverage recomputed, not trusted
+        self.assertIsNone(s.gate({"bounce": forged})["per_category_normalized_rms"]["bounce"])
+
+    def test_f3_wrong_record_object_is_unscored_shortfall(self):
+        record, suffix, _ = pr.st03_record(ROOT)
+        boundary, sealed = b.split(record, suffix)
+        pred = pr.projectile(boundary, sealed)
+        raw = json.loads((ROOT / s.ST03_TRACK).read_text(encoding="utf-8"))
+        raw["record"]["tracking"]["object_id"] = 999
+        obs, note = s.st03_observations(json.dumps(raw), o.st03_frame_map(ROOT), record["height_px"])
+        self.assertEqual(obs, {})
+        self.assertIn("rejected (unscored)", note)
+        r = s.score(boundary, sealed, pred, pred.sha256, lambda: obs, "image-derived")
+        self.assertEqual((r["scored_frames"], r["scored"], r["normalized_rms"]), (0, False, None))
+
+    def test_f4_nonfinite_observations_and_metrics_rejected(self):
+        boundary, sealed, pred = ids_only()
+        for bad in (float("nan"), float("inf")):
+            rows = {i: (bad, y) for i, t, y, _ in pred.trace}
+            with self.assertRaisesRegex(ValueError, "finite"):
+                s.score(boundary, sealed, pred, pred.sha256, lambda: rows)
+            rows = {i: (t, bad) for i, t, y, _ in pred.trace}
+            with self.assertRaisesRegex(ValueError, "finite"):
+                s.score(boundary, sealed, pred, pred.sha256, lambda: rows)
+            g = s.gate({"projectile": eligible("projectile", "P1", 0.0), "bounce": eligible("bounce", "B1", 0.0),
+                        "pendulum": eligible("pendulum", "D1", bad)})
+            self.assertEqual((g["status"], g["shortfall"]), ("NOT_MET", ["pendulum"]))
+        g = s.gate({"projectile": eligible("projectile", "P1", -0.1)})
+        self.assertIn("projectile", g["shortfall"])
 
 
 if __name__ == "__main__":

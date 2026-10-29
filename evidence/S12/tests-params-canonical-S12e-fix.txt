@@ -1,0 +1,12 @@
+canonical checkout (main 4b950c6), read-only; params.py/test_params.py byte-identical to this worktree
+test_committed_st03_params_abstain (tests.prediction.test_params.ParamsTests.test_committed_st03_params_abstain) ... ok
+test_fit_records_carry_value_uncertainty_provenance (tests.prediction.test_params.ParamsTests.test_fit_records_carry_value_uncertainty_provenance) ... ok
+test_linear_motion_abstains_and_transfer_refuses (tests.prediction.test_params.ParamsTests.test_linear_motion_abstains_and_transfer_refuses) ... ok
+test_missing_or_invalid_params_are_refused_not_defaulted (tests.prediction.test_params.ParamsTests.test_missing_or_invalid_params_are_refused_not_defaulted) ... ok
+test_simulator_consumes_values_and_records_survive (tests.prediction.test_params.ParamsTests.test_simulator_consumes_values_and_records_survive) ... ok
+test_simulator_rejection_and_nonsynthetic_refusal_surface (tests.prediction.test_params.ParamsTests.test_simulator_rejection_and_nonsynthetic_refusal_surface) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 2.443s
+
+OK

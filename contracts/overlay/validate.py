@@ -72,5 +72,8 @@ def validate(doc, clip_id, source_sha256, frame_map):
             need(r[0] in pts and abs(r[1] - pts[r[0]]) <= PTS_TOL_S,
                  f"traces[{n}]: frame {r[0]} not aligned to the source timebase")
         need(all(b[0] > a[0] for a, b in zip(rows, rows[1:])), f"traces[{n}]: frames must increase")
+        # R-RS F1: the declared seal hash must be the hash of this trace's complete (frame, PTS) identities.
+        need(_sha([[r[0], r[1]] for r in rows]) == t["suffix_identity_sha256"],
+             f"traces[{n}]: suffix_identity_sha256 does not match the trace's sealed (frame, PTS) identities")
         out.append(Trace(t["kind"], t["sha256"], t["model"], rows))
     return tuple(out)

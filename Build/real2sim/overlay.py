@@ -16,8 +16,13 @@ def build(boundary, predictions, frame_map, provenance, sources=()):
     """Overlay document for predictions made from this boundary; validated before return."""
     for p in predictions:
         check(p)
-        if p.clip_id != boundary.clip_id or p.training_sha256 != boundary.training_sha256:
+        if p.clip_id != boundary.clip_id or p.training_sha256 != boundary.training_sha256 \
+                or p.suffix_identity_sha256 != boundary.suffix_identity_sha256:
             raise ValueError("prediction was not made from this clip boundary")
+        # R-RS F1: trace identities must equal the complete seal (count + hash), not merely align to PTS.
+        if len(p.trace) != boundary.suffix_count or \
+                _sha(tuple((r[0], r[1]) for r in p.trace)) != boundary.suffix_identity_sha256:
+            raise ValueError("prediction trace does not cover the complete sealed suffix")
     doc = {"contract_version": VERSION, "clip_id": boundary.clip_id, "source_sha256": boundary.source_sha256,
            "provenance": provenance, "units": "image-height fraction", "gate_m": GATE_M, "limits": list(LIMITS),
            "timebase": {"kind": "pts_s", "frame_map_sha256": frame_map_sha256(frame_map), "sources": list(sources)},

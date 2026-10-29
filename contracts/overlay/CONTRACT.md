@@ -17,7 +17,9 @@ Builder: `Build/real2sim/overlay.build`. Validator: [validate.py](validate.py) (
 `validate(doc, clip_id, source_sha256, frame_map)` rejects: unknown/missing fields, other version, gate_m
 other than NOT_MET, other clip or source sha, a frame map whose hash differs, any row whose frame is absent
 from the map or whose PTS differs by more than 1e-6 s, non-increasing frames, and any trace whose
-`sha256` no longer matches `[kind, model, trace]`. It returns a tuple of immutable `Trace` named tuples;
+`sha256` no longer matches `[kind, model, trace]`, or whose `suffix_identity_sha256` is not the hash of
+its complete `[[frame_index, pts_s], ...]` rows (R-RS F1; the builder also requires the boundary's seal hash
+and count). It returns a tuple of immutable `Trace` named tuples;
 renderers read those only and never recompute or edit predictions.
 
 Values may lie outside [0, 1] (ballistic ST03 runs past the image bottom); renderers clip, not the contract.
