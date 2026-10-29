@@ -72,6 +72,7 @@ S14a-orch14 DONE accepted (Opus; TIMEBOX PASS; fresh agent 11 + fitter 65 OK; ma
 Risk: number-word list partial (Gate A must extend). S05b-orch14 A10G RAN (A10 23GB,
 inference 1.13s, peak 7.7GB) but output lost to client unpickle bug; controller
 approved ONE rerun <=$0.95 before 11:46Z.
+S14b-orch16 Opus/high issued 2026-10-29T11:34:25+00:00 (deadline 2026-10-29T12:04:25+00:00); Meta Muse <=20 calls/<=$1, synthetic input only.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
