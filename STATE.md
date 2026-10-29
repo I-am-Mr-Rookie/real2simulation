@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+orch21: S05d-orch21 Opus (floor/scale/gravity, CPU, abstain if no source-backed reference);
+S02f-orch21 Sol/high after 12:18Z quota reset (hold cleared by expiry; one bounded attempt,
+same narrowed Falling-ball falsifier). Receipt DISPATCH-orch21.json.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.

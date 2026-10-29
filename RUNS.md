@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Oct 29, 18:16 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 18:20 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -20,16 +20,12 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - …and 1 more ready in this lane
 
 **CODEX-2**
-- Nothing ready yet: check dependencies and retry holds below.
+- [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 
 **CLAUDE**
 - [ ] **S15e** — Codex (native Claude) · Sonnet 5.5, effort high — Build experiment template controls (30 min)
 - [ ] **S17e** — Codex (native Claude) · Sonnet 5.5, effort high — Automate numeric report-to-fitter diff (30 min)
 - [ ] **S19c** — Codex (native Claude) · Sonnet 5.5, effort high — Add install guidance and orientation handling (30 min)
-
-## Waiting to retry
-
-- [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(retry held until Oct 29, 12:18 UTC / Oct 29, 18:18 Dhaka; Owner Oct29: pause all GPT/Codex-model (Sol) dispatch until quota reset 18:18 Dhaka; S02f-orch13 hit usage limit.)*
 
 ## Waiting for Koushik
 
@@ -123,7 +119,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (12/13)</summary>
 
-- [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(retry held until Oct 29, 12:18 UTC / Oct 29, 18:18 Dhaka; Owner Oct29: pause all GPT/Codex-model (Sol) dispatch until quota reset 18:18 Dhaka; S02f-orch13 hit usage limit.)*
+- [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [x] **S02g** — Codex · GPT-6.1 Sol, effort high — Verify original FF01/FF02 calibration sources (30 min)
 - [x] **S02h** — Codex · GPT-6.1 Sol, effort high — Resolve RP03 capture mapping and geometric identifiability (30 min)
 - [x] **S02i** — Codex · GPT-6.1 Sol, effort high — Audit RP01 side-view metric trajectory segments (30 min)
