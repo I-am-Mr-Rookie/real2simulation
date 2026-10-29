@@ -44,6 +44,14 @@ S05b-orch13 blocker 11:08Z: L4 RM02 got no container in 90s startup bound, app
 stopped/verified, no output; watchdog PID mismatch = Windows uv trampoline. Controller
 routine decision: ONE more attempt after PID fix+test, startup bound <=300s,
 cumulative reserve <=$1, no third attempt; started before 11:21Z only.
+S05b-orch13 ACCEPTED as PARTIAL (resource_stop exception per controller decision;
+TIMEBOX check PASS). Two real L4 RM02 launches, no container admitted (90s/210s);
+all apps stopped, containers [] verified; billing $0 charges, $129.99 credits.
+Windows uv trampoline PID fix; spike tests fresh 66/66 after rebase; main FF 3eeda6a.
+Risk: deadline constants tightened to 900/480s — next attempt must restore room.
+Controller decision for next S05b: L4 admission failed 3x over 2 days; next
+contract may use one A10G (or L40S if A10G unavailable) attempt, longer session
+admission bound, cumulative <=$1 reserve. Gate R NOT RUN.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
