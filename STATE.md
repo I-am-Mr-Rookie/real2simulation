@@ -91,6 +91,8 @@ No further live Meta calls until Koushik supplies sanitized balance/usage or rec
 S15c DONE (Sonnet; node 26/26), S17c DONE (Sonnet; reports 30 OK; pdflatex MiKTeX),
 S19a DONE (Sonnet; pwa 5/5; procedural owned icons). Main a65f28f. UI CSS not browser-viewed.
 Minor: S05b/S17c TIMEBOX reported_at rounded seconds into future; passes on recheck.
+orch19 issued full30m: Opus S05c (<=$3 batch all approved scenes), S06a (<=$0.50), S14c
+(offline, no live Meta); Sonnet S15d, S17d, S19b. Receipt DISPATCH-orch19.json.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
