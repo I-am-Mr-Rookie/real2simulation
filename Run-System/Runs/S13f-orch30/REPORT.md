@@ -26,6 +26,7 @@ Reuse: JobRunner/StageError/out:<key> idempotency (S13d) for retry + no duplicat
   - Job 2 (15:52:18Z, app ap-RJiTvMGO3RGcMEFJ1DHgqS): rc 0, A10G, round trip 53.2 s, cold start 25.2 s, inference 1.46 s; bundle validated, 20000 points; `live/reconstruction.json` sha returned. Same idempotency key as job 1 (no out recorded for job 1, so redispatch was correct).
   - Billed (read-only `modal billing report` 15:54:32Z, `python Build/gpu/cost_log.py`): **$0.01141** (A10G $0.00920, mem $0.00107, CPU $0.00079, egress $0.00035); est $0.01040; GPU s billed 30.1. Report may still accrue; latest read wins. Total reserved $1.00 (2 rows) = cap; spent ~$0.011. retries 0 (entry point).
   - post: containers [] ; both apps stopped, tasks 0.
+  - re-read 16:04:34Z (`billing-post2.json`): billed unchanged **$0.01141228**, GPU s 30.065; job-1 app still 0 billing rows; containers [].
 
 ## Findings for owning lanes (no edits made outside Owns)
 - **F1 (S07 lane, blocks live segment):** Build/measurement/runtime/modal_track.py is hardwired to ST03 frames 58-76, OBJECT_ID 2, prompt "apple", and its local entrypoint writes `evidence/S07/S07b/orch14/result.json` (would overwrite accepted evidence). It returns ids/boxes/tracking record, **never masks**. Needs clip/frames/out parameters (and a mask/RLE output if masks are required) before the pipeline can run segment on a room clip. Also only room IDs run in scene_job, so both GPU stages cannot run on "one approved clip" today. Live segment was therefore not dispatched; budget was also fully reserved.
