@@ -1,0 +1,70 @@
+{
+ "errata_for": "evidence/S07/S07b-param/RM04-chair-orch40/result.json",
+ "clip_id": "RM04",
+ "source": "test-data/public/RM04.mp4",
+ "source_sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+ "source_hash_verified": true,
+ "generated_utc": "2026-10-29T21:24:34+00:00",
+ "run": "S07b-param-orch40",
+ "method": "ffprobe -select_streams v:0 -show_entries frame=pts_time -read_intervals %+#44 (decode-order packet margin 32), first 12 presentation frames, strictly increasing",
+ "root_cause": "Build/measurement/runtime/modal_track.py _frames used -read_intervals %+#(last+1); #N counts packets in decode order, so trailing B-frames (has_b_frames=2) were never decoded and later frames shifted into their slots. Fixed in _pts (S07b-param-orch40).",
+ "buggy_method_reproduced": true,
+ "differences": [
+  {
+   "frame_index": 11,
+   "recorded_pts_s": 0.48,
+   "corrected_pts_s": 0.44
+  }
+ ],
+ "frame_map": [
+  [
+   0,
+   0.0
+  ],
+  [
+   1,
+   0.04
+  ],
+  [
+   2,
+   0.08
+  ],
+  [
+   3,
+   0.12
+  ],
+  [
+   4,
+   0.16
+  ],
+  [
+   5,
+   0.2
+  ],
+  [
+   6,
+   0.24
+  ],
+  [
+   7,
+   0.28
+  ],
+  [
+   8,
+   0.32
+  ],
+  [
+   9,
+   0.36
+  ],
+  [
+   10,
+   0.4
+  ],
+  [
+   11,
+   0.44
+  ]
+ ],
+ "scope": "timestamps only; centroids/masks unchanged; accepted original evidence not edited; no gate/physical claim"
+}

@@ -1,0 +1,24 @@
+{
+ "app_id": "ap-c9idzNVYv1w3koKIhkGQyP",
+ "gpu": "NVIDIA L4 (cost_log RATES has no L4; gpu-s not back-solved)",
+ "gpu_seconds": {},
+ "cost": {
+  "estimated": {
+   "total_usd": 0.0
+  },
+  "billed": {
+   "status": "billed",
+   "read_utc": "2026-10-29T21:25:01+00:00",
+   "source": "modal billing report --json --show-resources (read-only)",
+   "note": "report may still be accruing shortly after a job; re-run reconcile, latest read wins",
+   "total_usd": 0.02535615,
+   "by_resource_usd": {
+    "L4": 0.01777789,
+    "Network Egress": 0.00208827,
+    "Memory": 0.00284446,
+    "CPU": 0.00264553
+   },
+   "estimated_minus_billed_usd": -0.02535615
+  }
+ }
+}

@@ -114,6 +114,14 @@ class ModalTrackTest(unittest.TestCase):
             exec(compile(src, "/root/modal_track.py", "exec"),
                  {"__file__": "/root/modal_track.py", "__name__": "modal_track"})
 
+    @unittest.skipUnless(MT.CLIP.exists() and shutil.which("ffprobe"), "local ST03 + ffprobe needed")
+    def test_pts_presentation_order_st03(self):
+        # S07b-errata: hash-verified ST03 f76 = 2.535867 s (orch14 recorded f77's 2.569233)
+        pts = MT._pts(MT.CLIP, MT.LAST)
+        self.assertEqual(len(pts), 77)
+        self.assertAlmostEqual(pts[75], 2.5025, places=6)
+        self.assertAlmostEqual(pts[76], 2.535867, places=6)
+
     def test_mask_rle_roundtrip(self):
         rng = np.random.default_rng(0)
         for mask in (rng.random((7, 5)) > 0.5, np.ones((3, 4), bool), np.zeros((2, 2), bool)):

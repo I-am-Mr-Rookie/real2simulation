@@ -165,15 +165,27 @@ def _frames(clip=CLIP, first=FIRST, last=LAST):
     subprocess.run(["ffmpeg", "-v", "error", "-i", str(clip), "-vf",
                     f"select=between(n\\,{first}\\,{last})", "-fps_mode", "passthrough",
                     "-q:v", "2", "-start_number", "0", str(tmp / "%05d.jpg")], check=True)
-    pts = subprocess.check_output(["ffprobe", "-v", "error", "-select_streams", "v:0",
-                                   "-show_entries", "frame=pts_time", "-of", "csv=p=0",
-                                   "-read_intervals", f"%+#{last + 1}", str(clip)], text=True)
-    pts = [float(x.strip().strip(",")) for x in pts.split() if x.strip()]
+    pts = _pts(clip, last)
     files = sorted(tmp.glob("*.jpg"))
     assert len(files) == last - first + 1 and len(pts) == last + 1, (len(files), len(pts))
     data = [p.read_bytes() for p in files]
     return ([(d, hashlib.sha256(d).hexdigest()) for d in data],
             [(first + i, pts[first + i]) for i in range(len(files))])
+
+
+REORDER_MARGIN = 32  # packets past last: >= any B-frame reorder depth (ST03 has_b_frames=2)
+
+
+def _pts(clip, last):
+    """Presentation PTS of frames 0..last. read_intervals #N counts packets in DECODE order, so
+    reading exactly last+1 packets drops trailing B-frames (orch14 ST03 f76 got f77's PTS)."""
+    out = subprocess.check_output(["ffprobe", "-v", "error", "-select_streams", "v:0",
+                                   "-show_entries", "frame=pts_time", "-of", "csv=p=0",
+                                   "-read_intervals", f"%+#{last + 1 + REORDER_MARGIN}", str(clip)],
+                                  text=True)
+    pts = [float(x.strip().strip(",")) for x in out.split() if x.strip()][:last + 1]
+    assert all(a < b for a, b in zip(pts, pts[1:])), "non-monotonic presentation PTS"
+    return pts
 
 
 def plan(clip="ST03", first=FIRST, last=LAST, prompt="apple", out=DEFAULT_OUT):
