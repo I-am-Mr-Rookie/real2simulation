@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+R-R-recheck-orch28 DONE (Sol; TIMEBOX PASS; evidence-only ff-merge): S05f F1,F3-F6 fixed; F2
+partial -> CHANGES REQUIRED, two P2: D1 duplicate scene JSON keys accepted; D2 duplicate/unknown
+job scene IDs dilute GPU amortization (synthetic FAIL->PASS). Real Gate R still FAIL 0/3 scale,
+0/3 orientation, GPU 3/3; Fallback 2 unaffected. Controller split: S05f-fix-orch32 Opus medium
+(validation + regressions, CPU) then a short Sol recheck before Gate R implementation is CLEAR.
 S06g DONE (orch30 Opus medium; gpu 29 OK fresh; TIMEBOX PASS; ff-merged): CPU dry-run rc0 (96
 pins); aws_adapter.gate() off by default, refuses on-demand/missing gates, never launches (no
 boto3). Risk: gate inputs are owner-recorded, not live-verified. orch31: S06h Opus medium dispatched.
