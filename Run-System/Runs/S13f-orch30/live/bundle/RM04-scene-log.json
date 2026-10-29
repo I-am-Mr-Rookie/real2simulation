@@ -43,7 +43,7 @@
   },
   "billed": {
    "status": "billed",
-   "read_utc": "2026-10-29T15:54:32+00:00",
+   "read_utc": "2026-10-29T16:04:34+00:00",
    "source": "modal billing report --json --show-resources (read-only)",
    "note": "report may still be accruing shortly after a job; re-run reconcile, latest read wins",
    "total_usd": 0.01141228,
