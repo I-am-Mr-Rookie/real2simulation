@@ -51,7 +51,7 @@ This replaces the Measured / 3D pivot in [§000 of the shortlist](../07%20Projec
 
 ## AWS status (Oct 27, from Muse's console check and Koushik's side chat)
 
-**Treat AWS as "quota pending" until Koushik confirms approval.**
+**Oct 29: Koushik reports the quota approved. AWS stays off for agents until he sets up agent access (no AWS CLI or keys on this PC yet) and creates the $50 EC2 budget alert. See tasks for the owner.md §3.**
 
 | Item | Status |
 |---|---|

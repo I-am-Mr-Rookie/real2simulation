@@ -44,11 +44,12 @@ What it may not use: YouTube downloads, any clip marked "non-commercial" (NC) or
 
 How the demo still shows "prediction vs reality" without your own throws: the app watches only the **first part** of a clip (the first half of a flight, the first bounce, the first few swings), predicts the rest, then overlays its prediction on the real frames it never saw.
 
-## 3. AWS (only after the quota is approved)
+## 3. AWS (quota approved; setup whenever you choose)
 
-Right now AWS can't start a GPU machine (quota is 0), so there's nothing to do except wait.
+Oct 29: you reported the quota increase approved. Agents still can't use AWS: this PC has no AWS CLI and no AWS key names in `.env` (Modal keys only). No rush: AWS credits run to 2027-05, and Modal's monthly $30 is used first before its month-end reset. Agents won't launch anything or change AWS settings until both setup steps below are done.
 
-- [ ] When AWS approves the two us-east-2 quota requests, tell me.
+- [x] When AWS approves the two us-east-2 quota requests, tell me. *Owner-reported Oct 29; region/value not checked by an agent yet.*
+- [ ] **Whenever you choose:** give agents AWS access (install the AWS CLI and add a limited IAM user's keys to the event `.env` or the CLI profile). Never paste keys in chat. Then tell me "AWS access ready" so an agent can verify the quota read-only.
 - [ ] **Then**, before the first GPU session, create the **$50 GPU budget** (Billing → Budgets → Create budget → Cost budget, $50/month, filter Service = EC2, email alerts at 50%, 80% and 100%). It only sends warning emails; it never stops a machine. Your two existing $25 budgets are already past their thresholds, so they'll keep emailing; that's harmless.
 - [ ] After every GPU session, check that the instance is **stopped**.
 
