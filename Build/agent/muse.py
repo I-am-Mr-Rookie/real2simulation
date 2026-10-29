@@ -35,14 +35,11 @@ def build_request(context: Mapping[str, Any], model: str = MODEL) -> dict[str, A
 
 
 def output_text(body: Mapping[str, Any]) -> str:
-    """Concatenate output_text parts of a Responses-API body; reject incomplete/empty replies."""
+    """Concatenate output_text parts of a Responses-API body; reject incomplete replies (empty fails JSON parse)."""
     if body.get("status") not in (None, "completed"):
         raise AgentContractError([f"muse: response status {body.get('status')!r}"])
-    text = "".join(part.get("text", "") for item in body.get("output") or () if item.get("type") == "message"
+    return "".join(part.get("text", "") for item in body.get("output") or () if item.get("type") == "message"
                    for part in item.get("content") or () if part.get("type") == "output_text")
-    if not text.strip():
-        raise AgentContractError(["muse: no output_text"])
-    return text
 
 
 def understand(context: Mapping[str, Any], post: Callable[[dict[str, Any]], Mapping[str, Any]]) -> dict[str, Any]:

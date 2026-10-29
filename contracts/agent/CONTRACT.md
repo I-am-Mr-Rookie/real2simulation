@@ -40,7 +40,22 @@ Built only from a bundle that passes `contracts/scene` validation. Exposes
 ids, labels, `synthetic`, scale and gravity *statuses*, surface ids and collider
 shapes; **no numeric fields**, so scene geometry cannot be quoted as a result.
 
-## Limits
+## S14b Muse Wonder scene understanding
+
+`Build/agent/muse.understand(scene_context, post)` sends only the number-free scene
+context to `muse-wonder-1.0` (Meta Model API `/v1/responses`, structured output with
+this schema, minimal reasoning, `max_output_tokens` 1500) and returns a validated
+`agent-response`. No tool outputs are passed, so any number segment is untraced and
+rejected. Added semantics: `candidates[].template` must be an S08 experiment template
+(read from `contracts/experiment/experiment.schema.json`) and candidate ids are unique;
+a non-`completed` Responses status is rejected. Live replies are recorded by
+`python -m Build.agent.record_muse <name>` (key by name from `.env`; <=20 calls/<=$1 guard;
+ledger `evidence/S14/S14b-ledger.jsonl`) as sanitized fixtures in
+`tests/agent/fixtures/muse/`; `tests/agent/test_muse.py` replays them offline.
+Fixture validity is synthetic-scene contract evidence only: not Gate A, video input (S13e),
+real-scene, calibration or physical evidence.
+
+## Limits (S14a)
 
 - Number-word list is a shortcut (`one` allowed as a pronoun; Roman-numeral
   letters and rarer phrasings not caught). Gate A (S14f/S14g) extends it.

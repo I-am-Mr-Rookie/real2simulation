@@ -1,0 +1,5 @@
+KILLED contracts/agent/validate.py if candidate["template"] not in TEMPLATES:
+KILLED contracts/agent/validate.py if candidate["id"] in seen:
+KILLED Build/agent/muse.py if body.get("status") not in (None, "completed"):
+KILLED Build/agent/muse.py validate_response(output_text(post(build_request(context))),
+KILLED Build/agent/record_muse.py if len(rows) >= MAX_CALLS or spent + worst > MAX_USD:
