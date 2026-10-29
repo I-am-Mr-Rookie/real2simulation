@@ -1,5 +1,17 @@
 # Real2Simulation — STATE
 
+S12a DONE (orch37, worker 01a18968 Opus high; TIMEBOX PASS; fresh: prediction 7, measurement 70/1 skip,
+fitter 65 OK; ff-merged f258920). Build/real2sim/boundary.py: frozen prefix/sealed-suffix hashes,
+fit_prefix spy proves no suffix leakage; evidence/S12/boundary-ST03.json gate_m NOT_MET, scale-free.
+FINDING (S07 custody): orch14 frame_map labels f76 PTS 2.569233 s = source f77 (ffprobe 2.535867);
+f58-75 match. Boundary quarantines f77, real prefix fit withheld until frame_map errata. Needs a
+small S07 errata run (new file; never edit accepted orch14). S12c must track sealed ids + verify().
+CONTROLLER ERROR: duplicate S12a dispatch (failed retry script had already created 01a18967; both
+wrote one worktree). 01a18967 stopped by controller, its f74b383 superseded (kept in history).
+Fix: issue+create per job and write receipt before any retry; check thread list on script failure.
+S07b-param-orch38: its one Modal run crashed at import (orch36 WIP REPO path bug), containers [];
+retry declined (cutoff passed); controller to dispatch one bounded rerun after acceptance.
+
 DISPATCHED (receipt ORCH-20261029-1654/DISPATCH-orch37.json): S12a-orch37 Opus high (thread
 01a18968-5c17-7390-9f3a-0ce8f237849c, deadline 21:14:39Z) and S07b-param-orch38 Opus medium from
 orch36 WIP (thread 01a18969-8059-7e70-89a0-55c88cb4b7cc, deadline 21:15:54Z). S13f waits on orch38.
