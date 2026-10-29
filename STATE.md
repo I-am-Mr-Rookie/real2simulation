@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+S13h DONE (orch46 Opus high; TIMEBOX PASS; pipeline 52 OK; ff-merged): RM04 upload->validate->
+keyframes->live SAM segment->live MapAnything reconstruct->viewer-loadable scene in 144.4 s (<360 s),
+CLI path (Build/pipeline/e2e.py). Modal $0.0364 (2 jobs), containers [] final. Bottleneck: two
+sequential cold Modal apps (~60 s cold+load). F1 no HTTP upload/job route in Build/api|web (local
+chunk upload, not network) -> S15/web owner; F2 downstream bound to clips.csv id+sha, unlisted user
+clips cannot flow yet; F3 understand (Meta) latency excluded.
+
 DISPATCHED S12e-orch45 Opus high (threadId:01a1899b-c005-78f2-8aa3-f3201b8b83da,hostId:local, deadline 2026-10-29T22:10:47+00:00).
 DISPATCHED S13h-orch46 Opus high (threadId:01a1899c-81bd-7201-8f9c-c93a521ccc14,hostId:local, deadline 2026-10-29T22:11:29+00:00).
 Modal caps: S12e <=$1.50 (<=4 jobs), S13h <=$1.00 (<=2 jobs); month-to-date ~$0.70 of $30.
