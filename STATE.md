@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+S06h DONE (orch31 Opus medium; gpu 29 OK, checkpoint.py asserts pass; TIMEBOX PASS; ff-merged):
+evidence/S06/CHECKPOINT.md — MapAnything Apache-2.0 on Modal A10G; RM02 39.6 s / RM04 43.6 s
+round trip; billed RM02 $0.0114, RM04 $0.0096; S06 total $0.058; Modal MTD $0.60/$30 (lagging).
+SAM3D off by default (access granted; needs >=32 GB GPU; runtime unverified) — corrected on
+controller request. S06d ledger was a lagging partial read (+$0.0029). Fallback 2 path chosen.
+Note: ~$29 monthly Modal credit unused before Oct31 reset; useful candidate = SAM 3D Objects
+probe on L40S (needs a queue row; S06c guard). Controller will propose, not invent spend.
 S09h DONE (orch30 Opus high; viewer 46/46 pass fresh incl. 3 real loads, 0 skipped; TIMEBOX PASS;
 ff-merged): RM02/RM04/RM05 MapAnything bundles load via existing viewer with "metric scale
 UNVERIFIED" banner; 375px/desktop IAB ok. Media gitignored (real-scene tests skip on fresh copy).

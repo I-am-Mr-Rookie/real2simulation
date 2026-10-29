@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 21:53 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 21:54 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **135 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **136 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -14,7 +14,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- [ ] **S06h** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint GPU runtime and fallback evidence (30 min)
 - [ ] **S13f** — Codex (native Claude) · Opus 5.5, effort high — Connect SAM masks and Modal reconstruction (30 min)
 
 **CODEX-2**
@@ -99,7 +98,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S06</b> — GPU container on Modal (AWS-ready) (8/9)</summary>
+<details><summary><b>S06</b> — GPU container on Modal (AWS-ready) (9/9)</summary>
 
 - [x] **S06a** — Codex (native Claude) · Opus 5.5, effort high — Define reproducible GPU image and dry-run contract (30 min)
 - [x] **S06p** — Codex · GPT-6.1 Sol, effort medium — Verify existing Modal allocation and pre-reset GPU readiness (20 min)
@@ -109,7 +108,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S06e** — Codex (native Claude) · Opus 5.5, effort high — Add cold-start timing and cost instrumentation (30 min)
 - [x] **S06f** — Codex (native Claude) · Opus 5.5, effort high — Exercise one licensed room clip on Modal (30 min)
 - [x] **S06g** — Codex (native Claude) · Opus 5.5, effort medium — Verify CPU dry-run and disabled AWS adapter (30 min)
-- [ ] **S06h** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint GPU runtime and fallback evidence (30 min)
+- [x] **S06h** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint GPU runtime and fallback evidence (30 min)
 
 </details>
 
