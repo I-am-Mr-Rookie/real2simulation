@@ -1,0 +1,2 @@
+Output written on report.pdf (2 pages, 55191 bytes).
+Transcript written on report.log.

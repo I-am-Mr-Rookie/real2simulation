@@ -8,3 +8,8 @@ Fixture-first: validated only against visibly synthetic fitter output (`tests/re
 - `fitter_digest` (sha256 of canonical fitter JSON) pins the report to one `status: "ok"` result of `Build.fitter.api.handle`.
 - Reportable paths (closed list in `contract.py::_FIELDS`): `gravity.value|uncertainty`, `covariance.variance|standard_error`, `fit.rss|rmse|dof|n|rank`, `fit.fitted[i]|residuals[i]`, `uncertainty.residual_variance_floor`, `model_selection.aic[i]|selected_degree`. Anything else is rejected until a later leaf adds it with its unit rule.
 - Limits: one fitter result per report; the trust boundary is the caller holding the real fitter output (S17e re-runs the fitter and diffs); the number-word check is English-only.
+
+## S17c rendering
+- typeset.render_html, render_tex and write_documents re-validate the report, then escape every dynamic string for the target (HTML: html.escape; TeX: tex_escape, non-ASCII as U+XXXX) after splitting out {{id}} placeholders. Charts embed as data-URI img tags (no inline SVG, CSP default-src 'none'); the TeX output has tables only (no SVG).
+- Template text (TEMPLATE_TEXT) is static, digit-free and names context only; it adds no physics claims. Limits: compiled with MiKTeX pdflatex only; HTML not browser-viewed.
+

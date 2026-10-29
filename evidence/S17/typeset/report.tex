@@ -1,0 +1,37 @@
+\documentclass[11pt]{article}
+\usepackage{longtable}
+\title{Synthetic fixture report}
+\author{}\date{}
+\begin{document}\maketitle
+\section*{Free fall}
+Vertical position against time; gravity comes from the curvature of the fitted polynomial.
+
+\begin{itemize}
+\item Motion is vertical with negligible drag.
+\item Time and position share one origin.
+\end{itemize}
+\section*{Results}
+Fitted g is 9.80246 $\pm$ 0.0777081 m/s\textasciicircum{}2 (simulated) from 8 (simulated) samples; residual RMS is 0.00232037 m (simulated).
+
+This is a simulated fixture, not a physical measurement.
+\begin{longtable}{lllll}
+\caption{Reported quantities (values copied from fitter output)}\\ \hline
+Quantity & Value & Unit & Uncertainty (same unit) & Source label \\ \hline \endhead
+g & 9.80246 & m/s\textasciicircum{}2 & 0.0777081 & simulated \\
+n & 8 & 1 &  & simulated \\
+rmse & 0.00232037 & m &  & simulated \\
+\hline\end{longtable}
+\begin{longtable}{lllll}
+\caption{Fit residuals per sample}\\ \hline
+Sample & Fitted & Residual & Unit & Source label \\ \hline \endhead
+0 & 0.998266 & 0.001734 & m & simulated \\
+1 & 1.08898 & 2.02835e-05 & m & simulated \\
+2 & 1.2801 & -0.0041004 & m & simulated \\
+3 & 1.56113 & -0.000127998 & m & simulated \\
+4 & 1.94494 & 6.48285e-05 & m & simulated \\
+5 & 2.42146 & 0.00453663 & m & simulated \\
+6 & 3.00662 & -0.000623225 & m & simulated \\
+7 & 3.6845 & -0.00150411 & m & simulated \\
+\hline\end{longtable}
+\noindent fitter\_digest sha256:024bc80b4466b105ff8d375b86a5a06180febfad1a89e782c8c3f5d480e6037c; labels: simulated
+\end{document}
