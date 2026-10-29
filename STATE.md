@@ -104,6 +104,9 @@ GPU warm-start saving unmeasured. S14c Opus: interview questions->validated spec
 calls, agent 23 + spec 93 OK. S15d Sonnet: interview panel, node 34/34. S17d Sonnet: 4/4
 template PDFs (MiKTeX) + HTML fallback, reports 33 OK. S19b Sonnet: allowlist SW cache,
 39/39 vm tests; no real-browser run. S05c-orch19 still running.
+orch20 issued full30m: Opus S06b (<=$0.50 warm-start measure), S13a, S14d (offline);
+Sonnet S15e, S17e, S19c (first create_thread rejected Sonnet/high validation; one retry as
+S19c-orch20b). Receipt DISPATCH-orch20.json.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
