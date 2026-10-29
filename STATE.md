@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+Owner Oct29 ~22:15 Dhaka (on S04h): "I did complete the sign up and sign in phase totally using
+my Gmail ... with passwordless OTP; this step is not needed." Owner decision: Google + email-OTP
+sign-in evidence = owner receipt (evidence/owner/S01/S01B-RECEIPT.md); agent E4 covers guest,
+health and Google hand-off on 8a9bdc9f. S04h -> DONE. Pending S04h owner review closed.
+orch25 dispatched ~15:58Z full30m (QUEUE effort): S05f Opus high (R-R defect fixes + Q-S05e
+standard-object re-measure / Fallback 2), S06f Opus high (one approved room clip, <=$0.50),
+S13d Opus medium, S15h Sonnet medium. Receipt DISPATCH-orch25.json.
 orch24 ACCEPTED Oct29 ~15:55Z (rebased on main, fresh checks green, ff-merged; main 78334bc+):
 - S06e DONE (Opus; gpu 21 + scene 11 OK; TIMEBOX PASS): cost_log.py scene log; one RM02 A10G
   run: cold start 10.8s, GPU s est 28.1/billed 30.0, cost est $0.0103 vs billed $0.0114 (read-only
