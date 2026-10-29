@@ -78,6 +78,7 @@ deterministic tables + stdlib SVG charts gated by validate_report. SVG not brows
 S17c-orch17 Sonnet/high issued 2026-10-29T11:37:42+00:00 (deadline 2026-10-29T12:07:42+00:00). Acceptance: Escaped user text and template-specific content render safely.
 S15b-orch15 DONE accepted (Sonnet; TIMEBOX PASS; fresh node 17/17; main 6374ade):
 workspace layout/viewport mount via viewer public adapter. Layout CSS NOT visually verified (no server/browser).
+orch18 issued full30m Sonnet/high: S15c-orch18, S19a-orch18 (receipt DISPATCH-orch18.json).
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
