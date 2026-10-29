@@ -1,0 +1,32 @@
+{
+  "RM02": {
+    "views": 4,
+    "image_rows_cols": [
+      294,
+      518
+    ],
+    "npz_sha256": "4ce3c82c5252381933bc99518283d4a39c2b1b4eaa1d82da5471738f351f466b",
+    "sheet": "frames-RM02.png",
+    "sheet_sha256": "7872f2b5bbe782d3fce2e475ef9c251762f76ddbbe43d922803e9b25cbf4c3a3"
+  },
+  "RM04": {
+    "views": 4,
+    "image_rows_cols": [
+      294,
+      518
+    ],
+    "npz_sha256": "1a06953fb8fcc58c00996fecd483547dbad4d9fe1fb2f35946382c6467b5a5c1",
+    "sheet": "frames-RM04.png",
+    "sheet_sha256": "8b6cc75ebfcd71bf0cda19581a5b7a7ad8cfcca075dde21b2f4453cb3d05cf67"
+  },
+  "RM05": {
+    "views": 4,
+    "image_rows_cols": [
+      294,
+      518
+    ],
+    "npz_sha256": "a3bebfebcb7f30166558f6eafd5d8e80b649abba4d46f57261ddac765610a362",
+    "sheet": "frames-RM05.png",
+    "sheet_sha256": "d00b78d6bc085e53427c269f30f9ba8cd9adc9da0a87a34f0f8f6ac542a6bf26"
+  }
+}

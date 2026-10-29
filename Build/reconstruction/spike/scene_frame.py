@@ -102,15 +102,55 @@ def known_object_scale(views, ref):
     Returns metres per model unit with propagated 1-sigma uncertainty."""
     if not ref.get("source") or not ref.get("length_m"):
         raise ValueError("known-object reference needs length_m and a source")
-    img = views[ref["view"]]["pts_img"]
-    model_len = float(np.linalg.norm(img[tuple(ref["p0"])] - img[tuple(ref["p1"])]))
+    img = _view_img(views, ref)
+    a, b = (_pixel_point(img, ref[k]) for k in ("p0", "p1"))
+    if tuple(ref["p0"]) == tuple(ref["p1"]):
+        raise ValueError("reference endpoints must be distinct")
+    model_len = float(np.linalg.norm(a - b))
     s = ref["length_m"] / model_len
     rel = np.hypot(ref.get("length_sd_m", 0.0) / ref["length_m"], ref.get("pixel_sd_rel", 0.0))
     return {"metres_per_model_unit": s, "sd": float(s * rel),
-            "model_length": model_len, "source": ref["source"]}
+            "model_length": model_len, "source": ref["source"], "view": ref["view"],
+            "p0": list(ref["p0"]), "p1": list(ref["p1"]), "length_m": ref["length_m"],
+            "length_sd_m": ref.get("length_sd_m"), "raw_rel_error": abs(model_len - ref["length_m"]) / ref["length_m"]}
 
 
-def analyse(path, gravity_applicable=True, refs=()):
+def _view_img(views, ref):
+    if not isinstance(ref.get("view"), int) or not 0 <= ref["view"] < len(views):
+        raise ValueError(f"reference view out of range: {ref.get('view')!r}")
+    return views[ref["view"]]["pts_img"]
+
+
+def _pixel_point(img, rc):
+    r, c = rc
+    if not (isinstance(r, int) and isinstance(c, int) and 0 <= r < img.shape[0] and 0 <= c < img.shape[1]):
+        raise ValueError(f"pixel {rc!r} outside {img.shape[:2]}")
+    p = img[r, c]
+    if not np.isfinite(p).all():
+        raise ValueError(f"pixel {rc!r} has no finite 3D sample")
+    return p
+
+
+def a4_plane(views, ref):
+    """ref: {view, corners:[[row,col]x4], source}. Plane normal from 3D samples inside the annotated corners.
+
+    shortcut: uses the corners' bounding box, not the exact quadrilateral; upgrade if the sheet is strongly oblique."""
+    if not ref.get("source"):
+        raise ValueError("A4 reference needs a source/identity citation")
+    img = _view_img(views, ref)
+    for rc in ref["corners"]:
+        _pixel_point(img, rc)
+    rs, cs = zip(*ref["corners"])
+    patch = img[min(rs):max(rs) + 1, min(cs):max(cs) + 1].reshape(-1, 3)
+    patch = patch[np.isfinite(patch).all(1)]
+    if len(patch) < 3:
+        raise ValueError("A4 region has <3 valid 3D samples")
+    n, c = refit(patch)
+    return n, {"samples": int(len(patch)), "rms_residual": float(np.sqrt(np.mean(((patch - c) @ n) ** 2))),
+               "corners": [list(x) for x in ref["corners"]], "view": ref["view"], "source": ref["source"]}
+
+
+def analyse(path, gravity_applicable=True, refs=(), a4_refs=()):
     rng = np.random.default_rng(SEED)
     views = load_views(path)
     keep = []
@@ -150,8 +190,15 @@ def analyse(path, gravity_applicable=True, refs=()):
         out["gravity"] = {"status": "estimated", "direction": n.round(6).tolist(), "magnitude_m_s2": None,
                           "uncertainty_deg_1sd": floor["normal_bootstrap_std_deg"],
                           "basis": "floor normal assumed horizontal; magnitude never assumed"}
-    # shortcut: no A4 detector; needs an annotated, source-backed A4 sheet region per clip.
-    out["a4_plane_normal"] = {"status": "ABSTAIN", "reason": "no A4 sheet annotation for this clip"}
+    # No detector: an annotated, source-backed horizontal A4 sheet region is required; gravity must be estimated.
+    if a4_refs and out["gravity"]["status"] == "estimated":
+        fits = [a4_plane(views, r) for r in a4_refs]
+        angles = [angle_deg(fn, n) for fn, _ in fits]
+        out["a4_plane_normal"] = {"status": "MEASURED", "angle_to_gravity_deg": max(angles),
+                                  "per_reference": [{**m, "angle_deg": a} for (_, m), a in zip(fits, angles)]}
+    else:
+        out["a4_plane_normal"] = {"status": "ABSTAIN", "reason": "no accepted A4 sheet annotation for this clip"
+                                  if not a4_refs else "gravity not estimated"}
     if refs:
         ests = [known_object_scale(views, r) for r in refs]
         w = np.array([1 / max(e["sd"], 1e-12) ** 2 for e in ests])
@@ -171,7 +218,7 @@ def main():
     a = ap.parse_args()
     res = {}
     for c in json.loads(Path(a.manifest).read_text()):
-        r = analyse(c["npz"], c.get("gravity_applicable", True), c.get("refs", []))
+        r = analyse(c["npz"], c.get("gravity_applicable", True), c.get("refs", []), c.get("a4_refs", []))
         if r["metric_scale"]["status"] == "ABSTAIN":
             r["metric_scale"]["missing_reference"] = c["missing_reference"]
         r["npz"] = c["npz_label"]

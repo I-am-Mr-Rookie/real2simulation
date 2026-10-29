@@ -1,0 +1,44 @@
+{
+  "clip": "RM02",
+  "view": 0,
+  "npz_sha256": "4ce3c82c5252381933bc99518283d4a39c2b1b4eaa1d82da5471738f351f466b",
+  "image_rows_cols": [
+    294,
+    518
+  ],
+  "corners_row_col": [
+    [
+      226,
+      257
+    ],
+    [
+      202,
+      343
+    ],
+    [
+      217,
+      435
+    ],
+    [
+      247,
+      357
+    ]
+  ],
+  "corner_jitter_px": 2,
+  "model_long_edge": 0.3051534593105316,
+  "model_short_edge": 0.24697139859199524,
+  "aspect": 1.2355822324752808,
+  "aspect_p5_p95": [
+    1.1686009168624878,
+    1.307454490661621
+  ],
+  "A4_aspect": 1.4142857142857144,
+  "US_letter_aspect": 1.2941176470588234,
+  "A4_inside_interval": false,
+  "sheet_plane_fit": {
+    "samples": 8234,
+    "rms_residual": 0.0016942002112045884
+  },
+  "decision": "ABSTAIN",
+  "why": "3D aspect interval excludes A4 1.414 (and includes US Letter 1.294); paper size unspecified by source; identity ambiguous -> owner rule Q-S05e: abstain. No scale/orientation counted."
+}

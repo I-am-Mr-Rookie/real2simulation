@@ -71,8 +71,21 @@ class SceneFrameTests(unittest.TestCase):
         self.assertAlmostEqual(s["sd"], 0.02, places=4)
         r = sf.analyse(self.path, refs=[ref])
         self.assertEqual(r["metric_scale"]["status"], "calibrated")
+        self.assertEqual(r["metric_scale"]["references"][0]["p1"], [200, 300])   # audit trail kept
         with self.assertRaises(ValueError):
             sf.known_object_scale(views, {**ref, "source": ""})
+        for bad in ({"p1": p0}, {"p1": (294, 0)}, {"view": 9}, {"p0": (-1, 0)}):
+            with self.assertRaises(ValueError):
+                sf.known_object_scale(views, {**ref, **bad})
+
+    def test_a4_plane_angle_to_gravity(self):
+        synth_npz(self.path)                    # every sample lies on planes normal to world-down
+        a4 = {"view": 0, "corners": [[100, 100], [100, 140], [130, 140], [130, 100]], "source": "synthetic"}
+        r = sf.analyse(self.path, a4_refs=[a4])
+        self.assertEqual(r["a4_plane_normal"]["status"], "MEASURED")
+        self.assertLess(r["a4_plane_normal"]["angle_to_gravity_deg"], 1.0)
+        r = sf.analyse(self.path, gravity_applicable=False, a4_refs=[a4])
+        self.assertEqual(r["a4_plane_normal"]["status"], "ABSTAIN")  # microgravity never yields an angle
 
 
 if __name__ == "__main__":
