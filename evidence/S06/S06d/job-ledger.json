@@ -1,0 +1,28 @@
+{
+ "run": "S06d-orch23",
+ "authorization_ref": "evidence/owner/S05/GPU-AUTHORIZATION.md (standing); controller contract S06d-orch23: <=1 A10G smoke, cap $0.30, retries 0",
+ "reservation_utc": "2026-10-29T14:46:02Z",
+ "new_all_in_reservation_usd": 0.3,
+ "compute_bound_basis": "A10G x (timeout 300 s + startup_timeout 240 s), cpu 2, 16 GiB, retries 0, max_containers 1, single_use",
+ "pre_billing": "evidence/S06/S06d/billing-pre-today-hourly.csv (14:45Z, may lag)",
+ "input": "RM02 4 frames (419164 bytes) from evidence/S05/S05b/input.json, SHA256-verified; same approved licensed frames S05b already ran on Modal; no personal/new media",
+ "jobs": [
+  {
+   "app_id": "ap-DwCMDeReYWQYBxl3xvR2IO",
+   "app_name": "s06d-scene-job",
+   "kind": "A10G MapAnything scene_job on S06b RUNTIME_IMAGE, RM02 -> contracts/scene bundle",
+   "launch_utc": "2026-10-29T14:46:02Z",
+   "end_utc": "2026-10-29T14:47:21Z",
+   "rc": 0,
+   "function_elapsed_s": 20.955,
+   "peak_allocated_bytes": 7782135808,
+   "image_rebuilt": false,
+   "own_containers_after": [],
+   "app_state_after": "stopped, 0 tasks (evidence/S06/S06d/post-verify.txt 14:47:32Z)",
+   "measured_cost_usd": 0.0066139,
+   "cost_source": "modal billing report --for today --resolution h at 14:48Z (billing-post-today-hourly.csv; may lag, recheck)"
+  }
+ ],
+ "actual_usd": 0.0066139,
+ "release_suggested_usd": 0.293
+}

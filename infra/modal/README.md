@@ -63,5 +63,17 @@ NOT verified: which duplicate wins on sys.path; image cache retention; real-scen
 Default and every failure -> primitive box colliders (scene-schema `collider`). SAM 3D runs only if ALL hold:
 R2S_ENABLE_SAM3D=1; owner-created evidence/owner/S06/SAM3D-ACCESS.md (custom SAM License + manual HF gate; agents
 never create it); GPU >= 32768 MiB (A10G 23028 MiB fails); a packaged runner (none: upstream torch 2.5.1/cu121 +
-pytorch3d env conflicts with this lock, needs its own image + audit). S06d calls object_meshes(objects, vram_mib).
+pytorch3d env conflicts with this lock, needs its own image + audit). S06d calls object_meshes(objects, vram_mib)
+once an object-bounds source exists (not yet: S06d emits empty colliders/surfaces).
 Review: evidence/S06/S06c/REVIEW.md. Offline receipt: python Build/gpu/sam3d_option.py <out.json>.
+
+## Scene job entry point (S06d, Build/gpu/scene_job.py)
+Approved room-scene id (RM02/RM04/RM05 per evidence/owner/S02/APPROVAL.md + allowlisted clips.csv licence)
+-> hash-verified frames from an S05 input manifest -> scene_job on RUNTIME_IMAGE (A10G, retries 0, max 1
+container, single-use) -> npz -> contracts/scene bundle (points.ply + mobile LOD + scene.json), validated
+before return. OpenCV axes converted once (diag(1,-1,-1)); scale "estimated" (nominal MapAnything), gravity
+unknown, no surfaces/colliders, camera time_s = view index (not capture time). Not Gate R evidence.
+    modal run Build/gpu/scene_job.py --scene RM02 --out <dir> --manifest <S05 input.json>
+    python Build/gpu/scene_job.py RM02 <dir> --npz <existing MapAnything npz>   # offline, no Modal
+Bundle media stays gitignored (evidence/S06/S06d/local/); only scene.json manifests are committed.
+RM02 A10G run 2026-10-29: rc 0, function 21.0 s, peak 7.78 GB, $0.0066 billed (hourly CSV, may lag).

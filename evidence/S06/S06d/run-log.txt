@@ -1,0 +1,21 @@
+2026-10-29T14:46:02.2494719Z
+Downloading numpy (12.3MiB)
+ Downloaded numpy
+Installed 34 packages in 4.07s
+✓ Initialized. View run at 
+https://modal.com/apps/koushiksadhakjeet/main/ap-DwCMDeReYWQYBxl3xvR2IO
+✓ Created objects.
+├── ✓ Uploaded C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI 
+│   Developer Hackathon\.worktrees\S06d-orch23\Build\gpu\scene_job.py
+├── ✓ Uploaded PythonPackage:modal_image
+├── ✓ Uploaded PythonPackage:runtime
+├── ✓ Uploaded PythonPackage:image_spec
+└── ✓ Created Function scene_job.
+Loading pretrained dinov2_vitg14 from torch hub
+Downloading: "https://github.com/facebookresearch/dinov2/zipball/main" to /root/.cache/torch/hub/main.zip
+{"scene": "rm02-mapanything-s06d", "points": 20000, "function_elapsed_s": 20.955228328704834, "peak_allocated_bytes": 7782135808}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/koushiksadhakjeet/main/ap-DwCMDeReYWQYBxl3xvR2IO
+rc=0
+2026-10-29T14:47:21.9552404Z
