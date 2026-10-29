@@ -55,6 +55,12 @@ admission bound, cumulative <=$1 reserve. Gate R NOT RUN.
 orch14 issued 11:21:47-11:22:12Z full30m (receipt ORCH-20261029-1654/DISPATCH-orch14.json):
 S05b-orch14 Opus (one A10G/L40S RM02 attempt, <=$1, measured cost), S14a Opus,
 S15a/S17a Sonnet fixture-first per owner 17:20 update. S07b-orch13 pending report.
+S07b-orch13 ACCEPTED PARTIAL (full window, TIMEBOX PASS): on Modal A10, pinned
+sam3 f1647e8 preflight exit0, gated sam3.1 checkpoint SHA256 verified, predictor
+loaded, prompt found 3 objects; propagate_in_video RuntimeError (0-batch features,
+video_tracking_multiplex.py:1318). No track output. Reserve $0.50, exact billing
+unobserved; containers [] verified by worker. Tests 14/14 fresh; token scan 0; main FF 36f4a59.
+S07b-orch14 Opus/high issued 2026-10-29T11:27:38+00:00, deadline 2026-10-29T11:57:38+00:00: fix propagation, <=$2.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
