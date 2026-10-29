@@ -16,6 +16,8 @@
 - use_fa3=True default needs Hopper FA3 -> driver passes use_fa3=False (functools.partial in driver; tracking.py unchanged).
 - Remaining: propagation 0-batch error; zero-detection hypothesis ruled out (3 objects). Likely multiplex tracker path at f1647e8 without FA3/rope settings, or an object-ID/multiplex bucket issue. Next: read video_tracking_multiplex.py:1290-1330 around B, try use_rope_real/multiplex_count settings or one bounded H100+FA3 run.
 
+- Upstream handle_stream_request maps start_frame_index/max_frame_num_to_track exactly as the adapter sends them: request-shape mismatch ruled out (read 11:24).
+
 ## Budget / stop
 
 ## Root-cause notes (source reading; run11 launched 11:21:04, ~5 s before cutoff)
@@ -28,3 +30,6 @@ Reused tracking.py, preflight.py, lock, existing secret, S05b uv+modal 1.6.3 rou
 Risks: lock now known incomplete; resolver installs unpinned (shortcut comment); not calibration, not Gate M. Own bugs cost 3 extra short runs (charmap, path, pickle) and I deleted run9 JSON in cleanup (log kept).
 Communication: silent; one completion line to controller.
 
+
+## Final
+PARTIAL: runtime reached verified checkpoint + loaded model + prompt (3 objects) on Modal A10; propagation blocked by upstream multiplex 0-batch feature error. Adapter tracking.py/tests unchanged (14 passed). Commits 6babbb2, final on run/S07b-orch13. Not calibration, not Gate M.
