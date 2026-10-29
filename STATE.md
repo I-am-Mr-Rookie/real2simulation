@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S20c-orch54 Sol medium (threadId:01a189b9-d539-7c43-af94-f84eb6b12614,hostId:local, deadline 2026-10-29T22:43:38+00:00).
+
 S20b DONE (orch51 Sol medium; TIMEBOX PASS; guardrails 34 OK; ff-merged): Build/guardrails/admission.py
 fail-closed preflight (Meta <$120, Modal $30 + $5 floor; missing/corrupt/stale state -> SPEND_PAUSED);
 public library never consults it. Offline only, not live-wired: pipeline/web call site is a finding.
