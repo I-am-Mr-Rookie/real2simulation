@@ -1,0 +1,43 @@
+{
+ "spec": {
+  "contract": "S06a-gpu-image/v1",
+  "ok": true,
+  "errors": [],
+  "python": "3.11",
+  "gpu": "A10G",
+  "base": "modal.Image.debian_slim",
+  "lock": "Build/reconstruction/spike/requirements-linux-py311.txt",
+  "lock_sha256_lf": "cc352969c963e6dc5d689e83b1e4cce7f052e418ffc2299d27c29af9cd183330",
+  "requirement_count": 96,
+  "model_id": "facebook/map-anything-apache",
+  "code_revision": "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9",
+  "weight_revision": "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a",
+  "weights_license": "apache-2.0",
+  "hf_home": "/weights/hf",
+  "runtime_env": {
+   "HF_HOME": "/weights/hf",
+   "HF_HUB_OFFLINE": "1"
+  }
+ },
+ "remote": {
+  "versions": {
+   "torch": "2.8.0",
+   "torchvision": "0.23.0",
+   "torchaudio": "2.8.0",
+   "numpy": "2.2.6",
+   "timm": "1.0.20",
+   "huggingface-hub": "2.3.0",
+   "mapanything": "1.1.4"
+  },
+  "weights_path": "/weights/hf/hub/models--facebook--map-anything-apache/snapshots/00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a",
+  "weights_files": [
+   ".gitattributes",
+   "README.md",
+   "config.json",
+   "model.safetensors"
+  ],
+  "weights_bytes": 4914071149,
+  "hf_hub_offline": "1",
+  "model_class": "MapAnything"
+ }
+}

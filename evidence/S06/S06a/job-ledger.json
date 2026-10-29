@@ -1,0 +1,35 @@
+{
+ "run": "S06a-orch19",
+ "reservation_utc": "2026-10-29T11:52:28Z",
+ "authorization_ref": "evidence/owner/S05/GPU-AUTHORIZATION.md (standing; controller contract S06a-orch19 allows one image-build/dry-run <= $0.50)",
+ "owner_total_budget_usd": 30,
+ "prior_retained_reservations_usd": 4.75,
+ "new_all_in_reservation_usd": 0.5,
+ "total_retained_reservations_usd": 5.25,
+ "pre_billing": "evidence/S06/S06a/billing-pre.csv (Oct29 day total ~$0.45 actual across all workers, $0 charges reported in UI by orch14 at 11:39Z)",
+ "compute_bound_basis": "CPU-only: image build (pip lock + weight download) + 1 CPU/4GiB check function timeout 300s; no GPU requested",
+ "gpu_requested": null,
+ "retries": 0,
+ "jobs": [
+  {
+   "app_id": "ap-Gf1f5xsIuhpOIGFiwLE1zr",
+   "kind": "CPU image build + check()",
+   "launch_utc": "2026-10-29T11:52:44Z",
+   "app_stopped_utc": "2026-10-29T11:55:14Z",
+   "rc": 0,
+   "gpu": null,
+   "image_layers": {
+    "pip_lock": "im-q581Fc7gkhLxWxxCVcH28L 93.17s",
+    "hf_home_env": "im-5GGQB3sojBd48ARIvq5jRg 2.12s",
+    "weights": "im-cUB9QQ0Dn3FkX30MLmIpf5 28.12s",
+    "offline_env": "im-y8LktidTUGB7wRgfptnz2w 1.46s"
+   },
+   "own_containers_after": [],
+   "measured_cost_usd": 0.0156446,
+   "cost_source": "modal billing report --resolution h at 11:56:41Z (evidence/S06/S06a/billing-post.csv); may lag, recheck later"
+  }
+ ],
+ "prior_retained_reservations_usd_source": "S05b-orch14 ledger only; other concurrent workers' reservations not reconciled here",
+ "actual_usd": 0.0156446,
+ "release_suggested_usd": 0.48
+}

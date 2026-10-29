@@ -1,0 +1,28 @@
+2026-10-29T11:55:38.7638835Z
+[
+ {
+  "app_id": "ap-Pez26JXXUV7H31WyJvvrF8",
+  "description": "s05c-scenes-private-batch",
+  "state": "ephemeral",
+  "tasks": "1",
+  "created_at": "2026-10-29 17:53:49+06:00",
+  "stopped_at": null
+ },
+ {
+  "app_id": "ap-Gf1f5xsIuhpOIGFiwLE1zr",
+  "description": "s06a-image-dryrun",
+  "state": "stopped",
+  "tasks": "0",
+  "created_at": "2026-10-29 17:52:44+06:00",
+  "stopped_at": "2026-10-29 17:55:14+06:00"
+ }
+]
+---containers
+[
+  {
+    "container_id": "ta-01M63R526RXE051SAKT045G8ER",
+    "app_id": "ap-Pez26JXXUV7H31WyJvvrF8",
+    "app_name": "s05c-scenes-private-batch",
+    "start_time": "2026-10-29 17:54:03+06:00"
+  }
+]

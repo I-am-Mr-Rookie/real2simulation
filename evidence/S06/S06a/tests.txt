@@ -1,0 +1,9 @@
+test_crlf_checkout_hashes_like_lf (test_image_spec.DryRunContract.test_crlf_checkout_hashes_like_lf) ... ok
+test_current_pins_pass (test_image_spec.DryRunContract.test_current_pins_pass) ... ok
+test_drift_and_unpinned_rejected (test_image_spec.DryRunContract.test_drift_and_unpinned_rejected) ... ok
+test_nc_or_moved_weights_rejected (test_image_spec.DryRunContract.test_nc_or_moved_weights_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.056s
+
+OK
