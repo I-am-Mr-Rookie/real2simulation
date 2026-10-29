@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S20b-orch51 Sol medium (threadId:01a189b1-2600-72d3-9838-d6aea625547d,hostId:local, deadline 2026-10-29T22:34:09+00:00).
+
 S20a DONE (orch48 Sol medium; TIMEBOX PASS; guardrails 17 OK; ff-merged). Build/guardrails/CONTRACT.md
 + accounting.py (Decimal reference): Meta cap = confirmed history + pending + conservative estimates,
 strictly < $120 routine, $30 reserve not headroom; Modal $30 no-overage; AWS $50 spot-only. Upload
