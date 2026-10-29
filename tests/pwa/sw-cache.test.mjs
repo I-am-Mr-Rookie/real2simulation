@@ -44,7 +44,8 @@ function harness(routes = {}) {
 const stored = (h) => [...h.store.values()].flatMap((m) => [...m.keys()]);
 
 test('committed sw.js is up to date with its sources', () => {
-  assert.equal(readFileSync(swPath, 'utf8'), buildSw());
+  const lf = (s) => s.replace(/\r\n/g, '\n'); // autocrlf checkouts
+  assert.equal(lf(readFileSync(swPath, 'utf8')), lf(buildSw()));
 });
 
 test('install precaches only public static files, skips non-cacheable replies', async () => {
