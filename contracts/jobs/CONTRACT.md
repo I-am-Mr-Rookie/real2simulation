@@ -86,6 +86,24 @@ writes `kf_NNNNNN.jpg` + `manifest.json` (`kind: keyframe_manifest`, 1.0.0):
 - Stage `output_sha256` = sha256 of `manifest.json`. Keyframes/manifests are media
   derivatives: never committed.
 
+## Job progress feed (S13g)
+
+`Build/pipeline/progress.py` (`progress(job_id, events, after=0, scene=None)`, `JobRunner.progress`,
+CLI `python -m Build.pipeline.progress EVENTS.jsonl [AFTER_REVISION]`; tests `tests/pipeline/test_progress.py`, SYNTHETIC):
+
+- `job_progress` 1.0.0 (schema `$defs/job_progress`): `job_id`, `after_revision`, `events[]`, `job`.
+  `job` is exactly `job_snapshot`; the shell host dispatches `{type: 'JOB_UPDATE', job}` to the existing
+  S15a reducer (stale/equal revisions already ignored there). No UI change needed.
+- `events[]` (`progress_event`): `revision, stage, status, attempt, ts, retryable, message`, only
+  revisions > `after_revision`, in order. `retryable` is null unless failed; then true only if the runner will
+  actually retry (code not never_retry and attempts left). No idempotency keys or hashes.
+- `message` (<=240 chars): one readable line; control chars removed; absolute paths -> `<path>`,
+  token/key/bearer-like values -> `<redacted>`; relative `evidence/...` pointers kept. Redaction is a regex
+  safety net, not a guarantee: stage workers must still never put secrets in StageError messages.
+- The whole event sequence is validated (`check_events`) before projection; an invalid feed raises, never shows.
+- Transport: poll (`after_revision` = last seen). Append-only JSONL (one stage_event per line) mirrors `job:<id>:events`.
+  No HTTP route/SSE yet (Build/api, Build/web are outside S13 Owns).
+
 ## Job lifecycle and retry (S13d)
 
 `Build/pipeline/jobs.py` (`JobRunner`, tests `tests/pipeline/test_jobs.py`, SYNTHETIC workers):

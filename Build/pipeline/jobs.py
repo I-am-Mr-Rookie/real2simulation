@@ -10,6 +10,7 @@ import json
 import time
 
 from Build.pipeline.contracts import NEVER_RETRY, POLICY, STAGES, _retry_allowed, check_events, job_snapshot
+from Build.pipeline.progress import progress
 
 BACKOFF_S = POLICY["retry"]["backoff_s"]
 LOST = {"code": "PROCESSING_FAILED", "message": "worker lost mid-stage; no recorded output", "retryable": True}
@@ -82,6 +83,10 @@ class JobRunner:
 
     def events(self, job_id):
         return [json.loads(e) for e in self.store.lrange(f"job:{job_id}:events", 0, -1)]
+
+    def progress(self, job_id, after=0, scene=None):
+        """S13g display feed (job_progress) for the shell host; see Build/pipeline/progress.py."""
+        return progress(job_id, self.events(job_id), after, scene)
 
     def _emit(self, job_id, stage, status, attempt, key, output=None, error=None):
         evs = self.events(job_id)

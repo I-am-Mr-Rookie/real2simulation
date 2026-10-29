@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "urn:real2simulation:jobs:1.0.0",
-  "title": "S13a upload session, chunk ack and stage event DTOs; contracts only, not execution evidence",
-  "oneOf": [{"$ref": "#/$defs/upload_session"}, {"$ref": "#/$defs/chunk_ack"}, {"$ref": "#/$defs/stage_event"}],
+  "title": "S13a upload session, chunk ack and stage event DTOs; S13g job_progress display feed; contracts only, not execution evidence",
+  "oneOf": [{"$ref": "#/$defs/upload_session"}, {"$ref": "#/$defs/chunk_ack"}, {"$ref": "#/$defs/stage_event"}, {"$ref": "#/$defs/job_progress"}],
   "$defs": {
     "id": {"type": "string", "pattern": "^[a-zA-Z0-9][a-zA-Z0-9_-]{0,95}$"},
     "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
@@ -78,6 +78,41 @@
          "then": {"properties": {"error": {"$ref": "#/$defs/error"}}},
          "else": {"properties": {"error": {"type": "null"}}}}
       ]
+    },
+    "progress_event": {
+      "type": "object", "additionalProperties": false,
+      "required": ["revision", "stage", "status", "attempt", "ts", "retryable", "message"],
+      "properties": {
+        "revision": {"type": "integer", "minimum": 1},
+        "stage": {"$ref": "#/$defs/stage"},
+        "status": {"enum": ["started", "succeeded", "failed"]},
+        "attempt": {"type": "integer", "minimum": 1, "maximum": 3},
+        "ts": {"$ref": "#/$defs/utc"},
+        "retryable": {"type": ["boolean", "null"]},
+        "message": {"type": "string", "minLength": 1, "maxLength": 240}
+      },
+      "if": {"properties": {"status": {"const": "failed"}}},
+      "then": {"properties": {"retryable": {"type": "boolean"}}},
+      "else": {"properties": {"retryable": {"type": "null"}}}
+    },
+    "job_progress": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contract_version", "kind", "job_id", "after_revision", "events", "job"],
+      "properties": {
+        "contract_version": {"const": "1.0.0"}, "kind": {"const": "job_progress"},
+        "job_id": {"$ref": "#/$defs/id"},
+        "after_revision": {"type": "integer", "minimum": 0},
+        "events": {"type": "array", "items": {"$ref": "#/$defs/progress_event"}},
+        "job": {
+          "type": "object",
+          "required": ["contract_version", "kind", "job_id", "revision", "status", "result", "error"],
+          "properties": {
+            "kind": {"const": "job"}, "job_id": {"$ref": "#/$defs/id"},
+            "revision": {"type": "integer", "minimum": 0},
+            "status": {"enum": ["queued", "running", "ready", "failed"]}
+          }
+        }
+      }
     }
   }
 }
