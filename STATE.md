@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+Q15 ANSWERED A (Koushik, Oct29 "A"): S12a Depends S07 (step, incl. S02f PARTIAL) -> explicit done
+rows S07r, S07a-f + S10, S11; history kept. S12 uses public motion clips, scale-free normalized
+held-out error; Gate M stays NOT_MET in every output; no calibrated-g claim (DECISIONS_LOG).
+S07b-param-orch36 FAILED: worker turn died ~16:18Z with Claude 429 (retry limit), ~5 min in;
+no Modal job (pre-snapshots only, $0). Unverified WIP preserved on run/S07b-param-orch36
+(3a941b1). Recorded capacity failure; no lane/model swap. Re-dispatch as fresh worker from WIP.
+
 S13f PARTIAL at deadline (orch30 Opus high; TIMEBOX PASS; pipeline 43 OK fresh; verified work
 ff-merged): gpu_stages reconstruct live on RM04 Modal A10G (rc0, 53 s, billed $0.0114; job 1
 failed pre-GPU, Windows cp1252 piping -> UTF-8 fix), validated bundle; segment stage offline-only
@@ -755,7 +762,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
 
-- [ ] Q15 [S12 unlock, Oct29 orch] Bottleneck: S12a (prediction) waits on step S07, and S07 is
+- [x] Q15 ANSWERED A (Koushik, Oct29: "A"). Applied: S12a deps unlocked; constraints in DECISIONS_LOG. [S12 unlock, Oct29 orch] Bottleneck: S12a (prediction) waits on step S07, and S07 is
   incomplete only because S02f (licensed calibrated Earth-fall clips) is PARTIAL with no lead.
   S12 gates S16, S18 (demo library), S21 (benchmark), S24 (video), S25. Options: A (recommended)
   remove S02f from S12's chain; S12 runs on public motion clips with scale-free normalized held-out

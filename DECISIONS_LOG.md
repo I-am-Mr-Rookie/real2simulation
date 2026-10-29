@@ -1,5 +1,13 @@
 # Real2Simulation — Decisions and preflight delta
 
+## 2026-10-29 — Q15 answered A: S12 unlocked from S02f
+
+Koushik replied "A". S12a no longer waits on step S07 (blocked only by S02f PARTIAL);
+Depends now lists the done S07 rows explicitly. Constraints: S12 runs on public motion
+clips with scale-free normalized held-out error; Gate M stays NOT_MET and every S12+
+output says so; no calibrated-g or physical-accuracy claim. S02f stays PARTIAL; a
+calibrated source later re-opens Gate M without changing this unlock.
+
 ## 2026-10-28 — strict timebox correction and Q14 explicit approval
 
 Koushik rejects early incomplete reports and requires deadline in EACH handout.

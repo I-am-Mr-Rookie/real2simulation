@@ -1,19 +1,20 @@
 # Runs checklist
 
-Updated Oct 29, 22:15 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 02:42 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **138 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 1 open reviews
+Progress: **138 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
-- [ ] Q15 [S12 unlock, Oct29 orch] Bottleneck: S12a (prediction) waits on step S07, and S07 is
+None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## Ready now
 
 **CODEX-1**
+- [ ] **S12a** — Codex (native Claude) · Opus 5.5, effort high — Define calibration and withheld-frame boundary (30 min)
 - [~] **S13f** — Codex (native Claude) · Opus 5.5, effort high — Connect SAM masks and Modal reconstruction (30 min) *(partial: resume it)*
 
 **CODEX-2**
