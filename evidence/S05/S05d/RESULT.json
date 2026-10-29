@@ -1,0 +1,201 @@
+{
+  "RM02": {
+    "npz_sha256": "4ce3c82c5252381933bc99518283d4a39c2b1b4eaa1d82da5471738f351f466b",
+    "views": 4,
+    "points_used": 60000,
+    "params": {
+      "seed": 0,
+      "conf_quantile": 0.5,
+      "inlier_band_model_units": 0.02,
+      "prior_max_deg": 35.0,
+      "ransac_iters": 400,
+      "bootstrap": 50,
+      "patch_px": 8
+    },
+    "mapanything_metric_scaling_factor": [
+      1.375432,
+      1.375432,
+      1.375432,
+      1.375432
+    ],
+    "camera_down_prior": [
+      0.0009840000420808792,
+      0.9999679923057556,
+      0.007891000248491764
+    ],
+    "floor": {
+      "status": "FIT",
+      "normal_down": [
+        -0.006306999828666449,
+        0.977882981300354,
+        0.20905999839305878
+      ],
+      "angle_to_camera_down_prior_deg": 11.623,
+      "camera_heights_model_units": [
+        0.3921,
+        0.3855,
+        0.3866,
+        0.3793
+      ],
+      "inliers": 35506,
+      "inlier_fraction": 0.5917666666666667,
+      "rms_residual": 0.007003589067608118,
+      "p95_abs_residual": 0.015465181320905685,
+      "normal_bootstrap_std_deg": 0.00950520960516789,
+      "normal_bootstrap_max_deg": 0.03426402062177658
+    },
+    "gravity": {
+      "status": "estimated",
+      "direction": [
+        -0.006306999828666449,
+        0.977882981300354,
+        0.20905999839305878
+      ],
+      "magnitude_m_s2": null,
+      "uncertainty_deg_1sd": 0.00950520960516789,
+      "basis": "floor normal assumed horizontal; magnitude never assumed"
+    },
+    "a4_plane_normal": {
+      "status": "ABSTAIN",
+      "reason": "no A4 sheet annotation for this clip"
+    },
+    "metric_scale": {
+      "status": "ABSTAIN",
+      "metres_per_model_unit": null,
+      "reason": "no source-backed known-size object reference",
+      "missing_reference": "S02d: 'Room; scene-only' - no source-documented object dimension (door/A4/ball) for RM02; no annotated pixel endpoints"
+    },
+    "npz": "evidence/S05/S05b/recovery8/attempt-6719a7021d70479294ffad678cede3de/local/RM02-mapanything.npz (gitignored; read from .worktrees/S05b-orch14)"
+  },
+  "RM04": {
+    "npz_sha256": "1a06953fb8fcc58c00996fecd483547dbad4d9fe1fb2f35946382c6467b5a5c1",
+    "views": 4,
+    "points_used": 60000,
+    "params": {
+      "seed": 0,
+      "conf_quantile": 0.5,
+      "inlier_band_model_units": 0.02,
+      "prior_max_deg": 35.0,
+      "ransac_iters": 400,
+      "bootstrap": 50,
+      "patch_px": 8
+    },
+    "mapanything_metric_scaling_factor": [
+      1.710212,
+      1.710212,
+      1.710212,
+      1.710212
+    ],
+    "camera_down_prior": [
+      -7.999999797903001e-05,
+      0.9999989867210388,
+      -0.0016870000399649143
+    ],
+    "floor": {
+      "status": "FIT",
+      "normal_down": [
+        -0.014626000076532364,
+        0.9985460042953491,
+        0.05188500136137009
+      ],
+      "angle_to_camera_down_prior_deg": 3.182,
+      "camera_heights_model_units": [
+        1.3418,
+        1.3713,
+        1.4121,
+        1.4112
+      ],
+      "inliers": 3790,
+      "inlier_fraction": 0.06316666666666666,
+      "rms_residual": 0.005719850305467844,
+      "p95_abs_residual": 0.011646360158920288,
+      "normal_bootstrap_std_deg": 0.015453870675656189,
+      "normal_bootstrap_max_deg": 0.05595290660858154
+    },
+    "gravity": {
+      "status": "estimated",
+      "direction": [
+        -0.014626000076532364,
+        0.9985460042953491,
+        0.05188500136137009
+      ],
+      "magnitude_m_s2": null,
+      "uncertainty_deg_1sd": 0.015453870675656189,
+      "basis": "floor normal assumed horizontal; magnitude never assumed"
+    },
+    "a4_plane_normal": {
+      "status": "ABSTAIN",
+      "reason": "no A4 sheet annotation for this clip"
+    },
+    "metric_scale": {
+      "status": "ABSTAIN",
+      "metres_per_model_unit": null,
+      "reason": "no source-backed known-size object reference",
+      "missing_reference": "S02d: 'Room; scene-only' (Pexels empty classroom) - no source-documented desk/door/A4 size; country-specific standard door height not source-backed for this room"
+    },
+    "npz": "evidence/S05/S05b/recovery8/attempt-3853a52b356645c5933a51d293ddfe05/local/RM04-mapanything.npz (gitignored; read from .worktrees/S05c-orch19)"
+  },
+  "RM05": {
+    "npz_sha256": "a3bebfebcb7f30166558f6eafd5d8e80b649abba4d46f57261ddac765610a362",
+    "views": 4,
+    "points_used": 60000,
+    "params": {
+      "seed": 0,
+      "conf_quantile": 0.5,
+      "inlier_band_model_units": 0.02,
+      "prior_max_deg": 35.0,
+      "ransac_iters": 400,
+      "bootstrap": 50,
+      "patch_px": 8
+    },
+    "mapanything_metric_scaling_factor": [
+      0.875704,
+      0.875704,
+      0.875704,
+      0.875704
+    ],
+    "camera_down_prior": [
+      -0.04647799953818321,
+      0.9985889792442322,
+      0.02569900080561638
+    ],
+    "floor": {
+      "status": "FIT",
+      "normal_down": [
+        0.059491999447345734,
+        0.9483699798583984,
+        0.3115380108356476
+      ],
+      "angle_to_camera_down_prior_deg": 17.773,
+      "camera_heights_model_units": [
+        0.8351,
+        0.8234,
+        0.7962,
+        0.7701
+      ],
+      "inliers": 3208,
+      "inlier_fraction": 0.05346666666666667,
+      "rms_residual": 0.010483556427061558,
+      "p95_abs_residual": 0.01896277442574501,
+      "normal_bootstrap_std_deg": 0.022177079361418932,
+      "normal_bootstrap_max_deg": 0.07912936806678772
+    },
+    "gravity": {
+      "status": "ABSTAIN",
+      "direction": null,
+      "magnitude_m_s2": null,
+      "reason": "clip source: not under gravity"
+    },
+    "a4_plane_normal": {
+      "status": "ABSTAIN",
+      "reason": "no A4 sheet annotation for this clip"
+    },
+    "metric_scale": {
+      "status": "ABSTAIN",
+      "metres_per_model_unit": null,
+      "reason": "no source-backed known-size object reference",
+      "missing_reference": "S02d: 'Hatch/handrail dimensions unverified' - no source-backed ISS hatch/handrail dimension tied to annotated pixels"
+    },
+    "npz": "evidence/S05/S05b/recovery8/attempt-3853a52b356645c5933a51d293ddfe05/local/RM05-mapanything.npz (gitignored; read from .worktrees/S05c-orch19)"
+  }
+}

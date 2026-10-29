@@ -1,0 +1,26 @@
+[
+  {
+    "clip_id": "RM02",
+    "npz": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/.worktrees/S05b-orch14/evidence/S05/S05b/recovery8/attempt-6719a7021d70479294ffad678cede3de/local/RM02-mapanything.npz",
+    "npz_label": "evidence/S05/S05b/recovery8/attempt-6719a7021d70479294ffad678cede3de/local/RM02-mapanything.npz (gitignored; read from .worktrees/S05b-orch14)",
+    "gravity_applicable": true,
+    "refs": [],
+    "missing_reference": "S02d: 'Room; scene-only' - no source-documented object dimension (door/A4/ball) for RM02; no annotated pixel endpoints"
+  },
+  {
+    "clip_id": "RM04",
+    "npz": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/.worktrees/S05c-orch19/evidence/S05/S05b/recovery8/attempt-3853a52b356645c5933a51d293ddfe05/local/RM04-mapanything.npz",
+    "npz_label": "evidence/S05/S05b/recovery8/attempt-3853a52b356645c5933a51d293ddfe05/local/RM04-mapanything.npz (gitignored; read from .worktrees/S05c-orch19)",
+    "gravity_applicable": true,
+    "refs": [],
+    "missing_reference": "S02d: 'Room; scene-only' (Pexels empty classroom) - no source-documented desk/door/A4 size; country-specific standard door height not source-backed for this room"
+  },
+  {
+    "clip_id": "RM05",
+    "npz": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/.worktrees/S05c-orch19/evidence/S05/S05b/recovery8/attempt-3853a52b356645c5933a51d293ddfe05/local/RM05-mapanything.npz",
+    "npz_label": "evidence/S05/S05b/recovery8/attempt-3853a52b356645c5933a51d293ddfe05/local/RM05-mapanything.npz (gitignored; read from .worktrees/S05c-orch19)",
+    "gravity_applicable": false,
+    "refs": [],
+    "missing_reference": "S02d: 'Hatch/handrail dimensions unverified' - no source-backed ISS hatch/handrail dimension tied to annotated pixels"
+  }
+]
