@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+S07b-param-orch38 PARTIAL accepted (Opus medium; TIMEBOX PASS; fresh tracking/modal_track/sam 26 OK,
+measurement suite OK; ff-merged). modal_track.py parameterized (clip/frames/prompt/obj/out, opt-in
+RLE masks, mode "x" never overwrites, pre-GPU validation); container-import bug fixed + regression
+test. Live: the one Modal run (RM04 f0-11 chair) crashed at import pre-fix, billed $0.0015,
+containers []. Next: S07b-param-orch40 = one bounded live rerun + ST03 orch14 f76 PTS errata file.
+
 DISPATCHED S12b-orch39 Opus high (thread 01a18983-22c0-79c1-b65f-7881482b076f, deadline
 21:43:53Z; receipt DISPATCH-orch39.json). Scale-free params, Gate M NOT_MET.
 
