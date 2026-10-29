@@ -32,6 +32,8 @@ S05d DONE (Opus; CPU $0; test_scene_frame 4 OK fresh; RESULT deterministic): flo
 direction FIT for RM02/RM04 (model units), RM05 UNRELIABLE (ISS). Metric scale and A4 normal
 ABSTAIN all clips: no source-backed reference objects. S05e/Gate R cannot pass with current
 inputs -> needs source-backed known objects with pixel annotations or planes/boxes fallback.
+S14e DONE (Opus; agent 40 OK fresh; 0 Meta calls): Spark trial check references real
+S10 simulator + fitter output; live Spark behaviour unverified.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.
