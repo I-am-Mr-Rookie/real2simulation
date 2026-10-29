@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S13g-orch44 Opus medium (threadId:01a18997-356b-7161-93c0-f6582ef0e453,hostId:local, deadline 2026-10-29T22:05:50+00:00).
+
 S13f DONE (orch42 Opus high; TIMEBOX PASS; pipeline 43 OK fresh; ff-merged). Pipeline segment stage
 shells to parameterized modal_track CLI, validate_segment (obj id, PTS increasing, RLE size), errata
 frame_map override, readable/retryable failures. Live RM04 segment A10G billed $0.0263, containers [].
