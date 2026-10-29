@@ -2,6 +2,14 @@
 
 ## CURRENT — owner extended inline swarm through Oct29 16:00 Dhaka
 
+Round4 accepted S11k after fresh parent source/report/timebox/375px IAB checks:
+84/216, four completed rounds upon serialized mainFF. Source82791f3/rebased
+46977f0 matches native noP0-P2 review exactly; fresh22 instrument tests PASS.
+R15-integration/REPORT.md records evidence/limits. Four R15 recovery workers
+remain responsible for open numerical/model/replay/transport findings; no
+broader gate completion inferred. No holds relaxed. Later counts supersede
+earlier historical sections.
+
 Latest direct owner extends stop to16:00Dhaka/10:00UTC after actual usage-limit
 interruption; active goal and5min chat heartbeat updated/verified. All locks stay.
 Fresh07:22UTC audit finds all six old worker handles not_found, not live. Preserve

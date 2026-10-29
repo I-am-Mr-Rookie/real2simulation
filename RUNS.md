@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 13:24 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 13:32 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **83 / 216** runs done · 5 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **84 / 216** runs done · 4 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -28,7 +28,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - [~] **S10o** — Codex · GPT-6.1 Sol, effort high — Repair independent valid-domain RK4 and analytic model findings (30 min) *(in progress)*
 - [~] **S10p** — Codex · GPT-6.1 Sol, effort high — Stabilize replay canonicalization and initial snapshot consistency (30 min) *(in progress)*
 - [~] **S10q** — Codex · GPT-6.1 Sol, effort high — Correct local bridge byte decoding and output ceiling (30 min) *(in progress)*
-- [~] **S11k** — Codex · GPT-6.1 Sol, effort high — Correct virtual-instrument half-step and lattice rounding (30 min) *(in progress)*
 - [~] **S11l** — Codex · GPT-6.1 Sol, effort high — Preserve residual scale in RMSE and AIC model selection (30 min) *(in progress)*
 
 ## Waiting for Koushik
@@ -191,7 +190,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S11</b> — Virtual instruments and the fitter service (10/12)</summary>
+<details><summary><b>S11</b> — Virtual instruments and the fitter service (11/12)</summary>
 
 - [x] **S11a** — Codex · GPT-6.1 Sol, effort medium — Define instrument and fitter API contracts (30 min)
 - [x] **S11b** — Codex · GPT-6.1 Sol, effort medium — Model stopwatch reaction error (30 min)
@@ -203,7 +202,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S11h** — Codex · GPT-6.1 Sol, effort medium — Finalize tool-only numeric API and evidence (30 min)
 - [x] **S11i** — Codex · GPT-6.1 Sol, effort high — Correct finite-sample coverage and declared uncertainty overconfidence (30 min)
 - [x] **S11j** — Codex · GPT-6.1 Sol, effort high — Stabilize full covariance and reject lost residual variance (30 min)
-- [~] **S11k** — Codex · GPT-6.1 Sol, effort high — Correct virtual-instrument half-step and lattice rounding (30 min) *(in progress)*
+- [x] **S11k** — Codex · GPT-6.1 Sol, effort high — Correct virtual-instrument half-step and lattice rounding (30 min)
 - [~] **S11l** — Codex · GPT-6.1 Sol, effort high — Preserve residual scale in RMSE and AIC model selection (30 min) *(in progress)*
 
 </details>

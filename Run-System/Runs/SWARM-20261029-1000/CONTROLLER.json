@@ -1,18 +1,18 @@
 {
-  "updated_utc": "2026-10-29T07:24:49.805Z",
+  "updated_utc": "2026-10-29T07:32:01Z",
   "objective": "Maximum-speed authorized simulation-only swarm through2026-10-29T10:00:00Z (16:00Dhaka); owner extended after actual usage-limit interruption",
   "canonical_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
-  "completed_rounds": 3,
-  "queue_done": 83,
+  "completed_rounds": 4,
+  "queue_done": 84,
   "queue_total": 216,
   "main_verified_source": "8eca149",
   "product_reviewed_pin": "9d240b0 (last accepted); new82791f3 awaiting narrow native review",
   "candidate": {
     "worktree": "C:/Users/HP/.codex/worktrees/swarm12-covariance-fix/2026-10-26 - Meta Global AI Developer Hackathon",
     "branch": "run/R14-quantizer-fix",
-    "head": "ed6ac25",
-    "product_pin": "82791f3",
-    "state": "82791f3 native review5ab7401 complete noP0-P2; parent acceptance/freshintegration still pending"
+    "head": "49ad146",
+    "product_pin": "82791f3 / rebased46977f0",
+    "state": "S11k verified accepted, FF packaging pending; R15-integration/REPORT.md"
   },
   "active_workers": [
     {
@@ -48,7 +48,7 @@
       "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-replay/2026-10-26 - Meta Global AI Developer Hackathon"
     }
   ],
-  "next": "Parent verify/FF instrument candidate; four independent recovered fix shards run with full new30m windows. All locked scope unchanged.",
+  "next": "FF verified S11k then collect four actual R15 recoveries; narrow required native review after source pins ready. Do not repeat whole audit/expand scope.",
   "owner_stop": {
     "deadline": "2026-10-29T10:00:00Z",
     "crossing_worker_stop_receipt": "2026-10-29T09:59:30Z",
@@ -58,18 +58,15 @@
   "servers": {
     "canonical3100": "LISTENING PID16808 verified21:28UTC; owned main dev",
     "recovery3101": {
-      "session_id": 78038,
-      "state": "LIVE candidate Nextdev; startupReady actual375px UI checked"
+      "session_id": 4539,
+      "state": "Owned dev started fresh; stop afterFF"
     },
     "production3102": "CLOSED"
   },
   "browser": {
     "kind": "ChatGPT IAB only",
-    "tab_id": "4",
-    "viewport": "375x812 verifiedinnerWidth375/client360==scroll360",
-    "url": "http://127.0.0.1:3101/lab",
-    "proof": "candidate evidence/S11/instrument-invariants/iab-mystery-375.png",
-    "cleanup": "Resetviewport andclose orhandofftab before ending turn"
+    "state": "Fresh375 normal/Mystery verification complete; tab1 closed/viewport reset",
+    "proof": "evidence/S11/instrument-invariants/iab-r15-375.png"
   },
   "project_binding": {
     "assigned_id": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
@@ -101,7 +98,8 @@
     "round2": "ROUND2-INTEGRATION.md",
     "round3": "../R12-covariance-fix/REPORT.md",
     "native_review": "../R12-covariance-review/FOLLOWUP.md",
-    "real_process": "../R13-process-lifecycle/REPORT.md"
+    "real_process": "../R13-process-lifecycle/REPORT.md",
+    "round4": "../R15-integration/REPORT.md"
   },
   "cleanup": "Six completed audit handles closed and ready checkouts reused for disjoint fixes; requirements checkout can archive after evidence integration. No forced cleanup.",
   "main_fast_forward": "55a3d2e",

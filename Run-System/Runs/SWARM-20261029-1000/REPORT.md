@@ -210,3 +210,11 @@ original timebox/noP0-P2; candidate still needs parent integration acceptance.
 Four ready independent fixes relaunched in fresh original Sol/high contexts with
 new full1800s windows07:23-07:53UTC. No code/model/provider/credential/quota bypass.
 Detailed authority and stop semantics OWNER-EXTENSION-1600.md. Scope unchanged.
+
+## Round4 acceptance — S11k, Oct29 recovery window
+
+Parent freshly inspected/rebased source, checked native/report/timebox, ran22
+instrument methods PASS and actualIAB375 normal/Mystery Run/Fit. Reviewedsource
+unchanged. R15-integration/REPORT.md has exact pins, receipt and fresh screenshot.
+84/216, four rounds only after serialized FF; four other R15 workers remain live.
+Physical/real-scene/GPU/deploy/account holds unchanged; goal continues to10:00UTC.
