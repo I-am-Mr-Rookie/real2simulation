@@ -1,0 +1,37 @@
+{
+  "clip_id": "ST03",
+  "boundary_source": {
+    "path": "evidence/S12/boundary-ST03.json",
+    "sha256": "d4b3370fcc3e74029d5b22d479c744e6d522dae928ad3864c6feceb92e5c552b"
+  },
+  "parameters": [
+    {
+      "name": "g",
+      "abstained": "S12a withheld ST03 prefix fit (S07 frame_map PTS conflict, frame 77 quarantined)",
+      "gate_m": "NOT_MET"
+    },
+    {
+      "name": "speed",
+      "abstained": "S12a withheld ST03 prefix fit (S07 frame_map PTS conflict, frame 77 quarantined)",
+      "gate_m": "NOT_MET"
+    },
+    {
+      "name": "friction",
+      "abstained": "no bounce/slide observation measured for ST03",
+      "gate_m": "NOT_MET"
+    },
+    {
+      "name": "restitution",
+      "abstained": "no bounce observation measured for ST03",
+      "gate_m": "NOT_MET"
+    }
+  ],
+  "transfer_refused": "refused (missing/abstained, no default): ['g', 'speed', 'friction', 'restitution']",
+  "simulated": false,
+  "gate_m": "NOT_MET",
+  "limitations": [
+    "Gate M NOT_MET: no calibrated scale or capture clock",
+    "positions are image-height fractions, not metres; no calibrated g",
+    "no physical-accuracy claim"
+  ]
+}
