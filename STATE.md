@@ -2,14 +2,21 @@
 
 ## CURRENT — owner extended inline swarm through Oct29 16:00 Dhaka
 
-Round6 S10r accepted:89/217, six completed rounds once serialized mainFF.
+Round6 S10r accepted:89/217, six completed rounds; mainFF3f43e4b verified.
 One product helper fix17+/4-, unchanged independent exact oracle and frozen
 checks69/69 PASS; native785a279 noP0-P2, actual375px IAB normal/Mystery and fresh
 local production build/32asset checks/18HTTPprobes PASS. Reviewedsourcefe79f61,
 finalBuild/contracts unchanged. Four latent helper failures now green without
 oracle edits. Raw parent preservation4/196 differences independently resolved as
 checkout line endings only; original failed check retained,196 Gitblobs unchanged.
-R17-ui-integration/REPORT.md records limits. Last verified main7087ca8.
+R17-ui-integration/REPORT.md records limits. FinalBuild/contracts identical to
+reviewedfe79f61. Three R16 handles closed and their worktrees archived/verified.
+
+Current08:21UTC: one genuine remaining verification gap under existingS10k:
+R17-normal-http actualnormalNextHTTP/CPUbridge cancellation, full30mdeadline
+08:51:29UTC. No fake producer/delay/privateaudit or new queuecount. Parent IAB
+invalidation check stays separately serialized. Seven recent managed archives
+verified; no completed worker incorrectly reported live.
 
 Prior round5 accepted S10o/p/q/S11l:88/217, five rounds;
 serialized mainFF9eece42 verified. Combined sourceb37f7b8,

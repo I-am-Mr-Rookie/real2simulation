@@ -1,21 +1,31 @@
 {
-  "updated_utc": "2026-10-29T08:17:19Z",
+  "updated_utc": "2026-10-29T08:21:29.000Z",
   "objective": "Maximum-speed authorized simulation-only swarm through2026-10-29T10:00:00Z (16:00Dhaka); owner extended after actual usage-limit interruption",
   "canonical_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
   "completed_rounds": 6,
   "queue_done": 89,
   "queue_total": 217,
-  "main_verified_source": "7087ca8",
+  "main_verified_source": "3f43e4b",
   "product_reviewed_pin": "fe79f61; narrow native785a279 noP0-P2, immutable finalBuild/contracts.",
   "candidate": {
     "worktree": "C:/Users/HP/.codex/worktrees/swarm12-covariance-fix/2026-10-26 - Meta Global AI Developer Hackathon",
     "branch": "run/R16-ui-integration",
     "head": "53b4a36 plus serialized controls",
     "product_pin": "fe79f61",
-    "state": "S10r accepted as sixth round after69combined tests/native/IAB375/production0+32asset+18HTTP. Pending source-identical mainFF packaging."
+    "state": "Round6 source-identical FF3f43e4b verified; no pending acceptance."
   },
-  "active_workers": [],
-  "next": "FF accepted S10r, archive finished worktrees. Next useful scope: bounded actual normal-mode HTTP/real CPU bridge cancellation plus actual UI invalidation, not another broad audit. No new gate scope/permissions.",
+  "active_workers": [
+    {
+      "id": "R17-normal-http",
+      "agent_id": "01a186bf-f5aa-7f43-bba8-63328e9254a2",
+      "issued_at": "2026-10-29T08:21:29.000Z",
+      "deadline_at": "2026-10-29T08:51:29.000Z",
+      "implementation_cutoff_at": "2026-10-29T08:46:29.000Z",
+      "owning_worktree": "C:\\Users\\HP\\.codex\\worktrees\\swarm17-normal-cancel\\2026-10-26 - Meta Global AI Developer Hackathon",
+      "scope": "Actual normal-mode HTTP/CPU cancellation verification only; no fake producer/delay/Mystery/auth scope."
+    }
+  ],
+  "next": "Fresh actual Next normal HTTP cancellation worker; parent IAB invalidation proof separately, no shared endpoint contention or artificial audits/counts. Archive completed managed worktrees confirmed.",
   "owner_stop": {
     "deadline": "2026-10-29T10:00:00Z",
     "crossing_worker_stop_receipt": "2026-10-29T09:59:30Z",
@@ -66,8 +76,8 @@
     "round5": "../R16-combined-integration/REPORT.md",
     "round6": "../R17-ui-integration/REPORT.md"
   },
-  "cleanup": "R16 three completed handles checked/closed; own dev/prod servers stopped. UI/oracle/requirements managed archives pending after accepted FF; noforced cleanup.",
-  "main_fast_forward": "7087ca8",
+  "cleanup": "Seven recent managed instrument/model/replay/numerical/UI/oracle/native checkouts freshly archived, all finished handles closed. New normal-cancel worktreeactive; integrationcandidatepreserved.",
+  "main_fast_forward": "3f43e4b",
   "safety_receipt": {
     "id": "R14-mystery-privacy",
     "state": "native possible-cybersecurity-risk refusal; handleclosed; no retry/rephrase/reroute or audit-complete claim"

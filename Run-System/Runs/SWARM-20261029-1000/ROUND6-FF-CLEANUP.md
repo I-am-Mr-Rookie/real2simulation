@@ -1,0 +1,5 @@
+# Round6 FF / next actual-boundary verification
+
+Main3f43e4b fast-forward freshly verified; finalBuild/contracts identical to reviewedfe79f61. Queue89/217, six accepted rounds. Managed artifacts now explicitly archived_worktree for finishedR16 UI-contract, service-boundary and requirements checkouts, not merely queued. Earlier four instrument/model/replay/numerical recovery archives also verified. All three R16 handles closed. Parent moved to existing integration checkout before archiving the former current requirements attachment; no forced cleanup or discarded work.
+
+One new useful dependency-free verification gap: actual NORMAL-only HTTP abort through real Nextrequest.signal into the actual CPU bridge, beyond prior controlled process fixture/source tests. R17-normal-http assigned full30m08:21:29–08:51:29UTC; no fake producer/delay, private/Mystery/auth audit or gatecount inflation. Parent serialized IAB invalidation verification separately. No new queueleaf/DONE count unless actual scoped implementation is required. All physical/account/paid/publication holds remain unchanged; stop10:00UTC/16:00Dhaka.
