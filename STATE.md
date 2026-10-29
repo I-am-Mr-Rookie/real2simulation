@@ -28,6 +28,10 @@ optional path off by default (flag + owner receipt + >=32GB VRAM), primitive pat
 Owner question Q-S06c (optional, not blocking): to enable SAM 3D Objects, Koushik accepts
 the SAM License on HF himself and saves evidence/owner/S06/SAM3D-ACCESS.md; needs >=32GB GPU
 (A10 23GB too small). Default: keep primitive meshes.
+S05d DONE (Opus; CPU $0; test_scene_frame 4 OK fresh; RESULT deterministic): floor+gravity
+direction FIT for RM02/RM04 (model units), RM05 UNRELIABLE (ISS). Metric scale and A4 normal
+ABSTAIN all clips: no source-backed reference objects. S05e/Gate R cannot pass with current
+inputs -> needs source-backed known objects with pixel annotations or planes/boxes fallback.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.

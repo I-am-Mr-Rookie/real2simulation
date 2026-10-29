@@ -5,7 +5,7 @@ Updated Oct 29, 18:34 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents r
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **113 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **114 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -14,7 +14,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- [ ] **S05d** — Codex (native Claude) · Opus 5.5, effort high — Fit floor, metric scale and gravity orientation (30 min)
+- [ ] **S05e** — Codex (native Claude) · Opus 5.5, effort high — Run Gate R and inspect reconstruction failures (30 min)
 - [ ] **S06d** — Codex (native Claude) · Opus 5.5, effort high — Add Modal scene job entry point (30 min)
 - [ ] **S13b** — Codex (native Claude) · Opus 5.5, effort high — Implement bucket upload validation (30 min)
 - …and 1 more ready in this lane
@@ -89,12 +89,12 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (3/7)</summary>
+<details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (4/7)</summary>
 
 - [x] **S05a** — Codex · GPT-6.1 Sol, effort medium — Check reconstruction licences and freeze scene artifact contract (30 min)
 - [x] **S05b** — Codex (native Claude) · Opus 5.5, effort high — Probe MapAnything on the first licensed scene (30 min)
 - [x] **S05c** — Codex (native Claude) · Opus 5.5, effort high — Reconstruct remaining scene clips (30 min)
-- [ ] **S05d** — Codex (native Claude) · Opus 5.5, effort high — Fit floor, metric scale and gravity orientation (30 min)
+- [x] **S05d** — Codex (native Claude) · Opus 5.5, effort high — Fit floor, metric scale and gravity orientation (30 min)
 - [ ] **S05e** — Codex (native Claude) · Opus 5.5, effort high — Run Gate R and inspect reconstruction failures (30 min)
 - [ ] **S05f** — Codex (native Claude) · Opus 5.5, effort high — Apply the named fallback and checkpoint Gate R (30 min)
 - [ ] **R-R** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate R implementation and failure thresholds (15 min)
