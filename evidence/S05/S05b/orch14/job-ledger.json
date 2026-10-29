@@ -1,0 +1,50 @@
+{
+ "run": "S05b-orch14",
+ "reservation_utc": "2026-10-29T11:26:40Z",
+ "authorization_ref": "evidence/owner/S05/GPU-AUTHORIZATION.md",
+ "controller_rerun_approval": "controller message 11:33Z (one A10G rerun after str(torch.__version__) fix)",
+ "owner_total_budget_usd": 30,
+ "prior_retained_reservations_usd": 3.8,
+ "new_all_in_reservation_usd": 0.95,
+ "total_retained_reservations_usd": 4.75,
+ "compute_bound_basis": "A10G 1020s client bound/attempt (90 startup+600 exec+210 admission) ~$0.375 planned each; both attempts within the single $0.95 reserve",
+ "gpu_requested": "A10G",
+ "retries": 0,
+ "gpu_attempts": [
+  {
+   "app_id": "ap-n1kdxs0OPi7hgSfJbAsuDX",
+   "launch_utc": "2026-10-29T11:26:48Z",
+   "admission_observed": true,
+   "allocated_gpu": "NVIDIA A10, 23028 MiB, 610.57.04",
+   "function_elapsed_s": 158.66,
+   "inference_s": 1.127,
+   "client": "DeserializationError (TorchVersion in receipt; no local torch) - npz not retrieved",
+   "app_stopped_utc": "2026-10-29T11:29:50Z",
+   "containers_after": [],
+   "measured_cost_usd": 0.05817517
+  },
+  {
+   "app_id": "ap-TqJhwZi4v9ucIKg16ZKh1E",
+   "launch_utc": "2026-10-29T11:34:02Z",
+   "admission_observed": true,
+   "allocated_gpu": "NVIDIA A10, 23028 MiB, 610.57.04",
+   "function_elapsed_s": 161.73,
+   "inference_s": 1.198,
+   "peak_allocated_bytes": 7715358720,
+   "peak_reserved_bytes": 7929331712,
+   "output_bytes": 25929797,
+   "output_sha256": "4ce3c82c5252381933bc99518283d4a39c2b1b4eaa1d82da5471738f351f466b",
+   "client": "OK rc=0, result_persisted",
+   "app_stopped_utc": "2026-10-29T11:37:11Z",
+   "containers_after": [],
+   "measured_cost_usd": 0.05715299
+  }
+ ],
+ "measured_cost_source": "modal billing report --start 2026-10-29 --end 2026-10-30 --resolution h --csv (read-only CLI, 11:40Z) -> billing-report-cli.csv",
+ "measured_total_gpu_usd": 0.11532816,
+ "cpu_job_orch13_measured_usd": 0.00468054,
+ "billing_ui": "11:35Z usage $0.20 credits $129.80; ~11:39Z usage $0.28 credits $129.73; $0 charges; limit $155 Set by Modal",
+ "account_wide_no_overage_cap_claimed": false,
+ "reserve_released_usd": 0.83,
+ "gate_R": "NOT RUN"
+}

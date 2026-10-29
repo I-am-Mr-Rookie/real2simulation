@@ -1,0 +1,637 @@
+{
+  "clip_id": "RM02",
+  "model": "facebook/map-anything-apache",
+  "code_revision": "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9",
+  "weight_revision": "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a",
+  "gpu": "NVIDIA A10, 23028 MiB, 610.57.04",
+  "gpu_count": 1,
+  "inference_s": 1.1982711039999856,
+  "function_elapsed_s": 161.72968447399998,
+  "peak_allocated_bytes": 7715358720,
+  "peak_reserved_bytes": 7929331712,
+  "output_bytes": 25929797,
+  "output_sha256": "4ce3c82c5252381933bc99518283d4a39c2b1b4eaa1d82da5471738f351f466b",
+  "schema": {
+    "view0_pts3d": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view0_pts3d_cam": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view0_ray_directions": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view0_depth_along_ray": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view0_cam_trans": {
+      "shape": [
+        1,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 3,
+      "size": 3
+    },
+    "view0_cam_quats": {
+      "shape": [
+        1,
+        4
+      ],
+      "dtype": "float32",
+      "finite": 4,
+      "size": 4
+    },
+    "view0_metric_scaling_factor": {
+      "shape": [
+        1,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 1,
+      "size": 1
+    },
+    "view0_conf": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view0_non_ambiguous_mask": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view0_non_ambiguous_mask_logits": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view0_img_no_norm": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view0_depth_z": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view0_intrinsics": {
+      "shape": [
+        1,
+        3,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 9,
+      "size": 9
+    },
+    "view0_camera_poses": {
+      "shape": [
+        1,
+        4,
+        4
+      ],
+      "dtype": "float32",
+      "finite": 16,
+      "size": 16
+    },
+    "view0_mask": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view1_pts3d": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view1_pts3d_cam": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view1_ray_directions": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view1_depth_along_ray": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view1_cam_trans": {
+      "shape": [
+        1,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 3,
+      "size": 3
+    },
+    "view1_cam_quats": {
+      "shape": [
+        1,
+        4
+      ],
+      "dtype": "float32",
+      "finite": 4,
+      "size": 4
+    },
+    "view1_metric_scaling_factor": {
+      "shape": [
+        1,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 1,
+      "size": 1
+    },
+    "view1_conf": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view1_non_ambiguous_mask": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view1_non_ambiguous_mask_logits": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view1_img_no_norm": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view1_depth_z": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view1_intrinsics": {
+      "shape": [
+        1,
+        3,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 9,
+      "size": 9
+    },
+    "view1_camera_poses": {
+      "shape": [
+        1,
+        4,
+        4
+      ],
+      "dtype": "float32",
+      "finite": 16,
+      "size": 16
+    },
+    "view1_mask": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view2_pts3d": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view2_pts3d_cam": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view2_ray_directions": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view2_depth_along_ray": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view2_cam_trans": {
+      "shape": [
+        1,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 3,
+      "size": 3
+    },
+    "view2_cam_quats": {
+      "shape": [
+        1,
+        4
+      ],
+      "dtype": "float32",
+      "finite": 4,
+      "size": 4
+    },
+    "view2_metric_scaling_factor": {
+      "shape": [
+        1,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 1,
+      "size": 1
+    },
+    "view2_conf": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view2_non_ambiguous_mask": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view2_non_ambiguous_mask_logits": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view2_img_no_norm": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view2_depth_z": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view2_intrinsics": {
+      "shape": [
+        1,
+        3,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 9,
+      "size": 9
+    },
+    "view2_camera_poses": {
+      "shape": [
+        1,
+        4,
+        4
+      ],
+      "dtype": "float32",
+      "finite": 16,
+      "size": 16
+    },
+    "view2_mask": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view3_pts3d": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view3_pts3d_cam": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view3_ray_directions": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view3_depth_along_ray": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view3_cam_trans": {
+      "shape": [
+        1,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 3,
+      "size": 3
+    },
+    "view3_cam_quats": {
+      "shape": [
+        1,
+        4
+      ],
+      "dtype": "float32",
+      "finite": 4,
+      "size": 4
+    },
+    "view3_metric_scaling_factor": {
+      "shape": [
+        1,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 1,
+      "size": 1
+    },
+    "view3_conf": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view3_non_ambiguous_mask": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view3_non_ambiguous_mask_logits": {
+      "shape": [
+        1,
+        294,
+        518
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view3_img_no_norm": {
+      "shape": [
+        1,
+        294,
+        518,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 456876,
+      "size": 456876
+    },
+    "view3_depth_z": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    },
+    "view3_intrinsics": {
+      "shape": [
+        1,
+        3,
+        3
+      ],
+      "dtype": "float32",
+      "finite": 9,
+      "size": 9
+    },
+    "view3_camera_poses": {
+      "shape": [
+        1,
+        4,
+        4
+      ],
+      "dtype": "float32",
+      "finite": 16,
+      "size": 16
+    },
+    "view3_mask": {
+      "shape": [
+        1,
+        294,
+        518,
+        1
+      ],
+      "dtype": "float32",
+      "finite": 152292,
+      "size": 152292
+    }
+  },
+  "gate_R": "NOT RUN",
+  "physical_scale": "unverified",
+  "capture_timebase": "unverified",
+  "torch": "2.8.0+cu128",
+  "remote_cleanup_status": "PENDING"
+}

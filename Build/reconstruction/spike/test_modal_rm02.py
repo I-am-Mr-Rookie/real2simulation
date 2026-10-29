@@ -153,8 +153,8 @@ class ProbeGuards(unittest.TestCase):
         self.assertEqual({k.arg: ast.literal_eval(k.value) for k in image.keywords},
                          {"python_version": "3.11"})
         self.assertIn('sys.stdout.reconfigure(encoding="utf-8")', source)
-        for name, value in {"gpu": "L4", "cpu": (1, 2), "memory": (8192, 16384),
-        "timeout": 480, "startup_timeout": 90, "retries": 0,
+        for name, value in {"gpu": "A10G", "cpu": (1, 2), "memory": (8192, 16384),
+        "timeout": 600, "startup_timeout": 90, "retries": 0,
                             "min_containers": 0, "max_containers": 1, "buffer_containers": 0,
                             "single_use_containers": True, "include_source": False}.items():
             self.assertEqual(options[name], value, name)
@@ -169,11 +169,13 @@ class ProbeGuards(unittest.TestCase):
         self.assertIn("rerun-sdk==0.24.1", lock)
         self.assertIn('"-r", "/tmp/s05b-requirements.txt"', source)
         self.assertLess(source.index('"nvidia-smi"'), source.index('"pip", "install"'))
+        self.assertIn('"torch": str(torch.__version__)', source)
 
     def test_planned_compute_allowance_not_a_billing_or_stop_guarantee(self):
         from rm02_deadline import TOTAL_SECONDS
-        planned_compute = TOTAL_SECONDS * (.000222 + 2 * .0000131 + 16 * .00000222)
-        self.assertAlmostEqual(planned_compute, .255348)
+        # A10G list rate $0.000306/s (orch14 basis; not a billing guarantee).
+        planned_compute = TOTAL_SECONDS * (.000306 + 2 * .0000131 + 16 * .00000222)
+        self.assertAlmostEqual(planned_compute, .3750744)
         self.assertLess(planned_compute, .95)
         self.assertLessEqual(.95, 1)
 

@@ -1,0 +1,47 @@
+final 2026-10-29T11:38:08.2766352Z
+[
+  {
+    "app_id": "ap-ygEqG7VZ0n2krxmdzXuMDh",
+    "description": "s07b-orch14-sam31-track",
+    "state": "ephemeral",
+    "tasks": "1",
+    "created_at": "2026-10-29 17:37:20+06:00",
+    "stopped_at": null
+  },
+  {
+    "app_id": "ap-fSQiiTH0CIYD3TbQdeRirP",
+    "description": "s07b-orch14-sam31-track",
+    "state": "stopped",
+    "tasks": "0",
+    "created_at": "2026-10-29 17:34:13+06:00",
+    "stopped_at": "2026-10-29 17:35:47+06:00"
+  },
+  {
+[
+  {
+    "container_id": "ta-01M63Q73A3JXBQQK873NA9FB0R",
+    "app_id": "ap-ygEqG7VZ0n2krxmdzXuMDh",
+    "app_name": "s07b-orch14-sam31-track",
+    "start_time": "2026-10-29 17:37:42+06:00"
+  }
+]
+own-apps 2026-10-29T11:38:47.7951426Z
+[
+  {
+    "app_id": "ap-TqJhwZi4v9ucIKg16ZKh1E",
+    "description": "s05b-recovery5-rm02-private-probe",
+    "state": "stopped",
+    "tasks": "0",
+    "created_at": "2026-10-29 17:34:08+06:00",
+    "stopped_at": "2026-10-29 17:37:11+06:00"
+  },
+  {
+    "app_id": "ap-n1kdxs0OPi7hgSfJbAsuDX",
+    "description": "s05b-recovery5-rm02-private-probe",
+    "state": "stopped",
+    "tasks": "0",
+    "created_at": "2026-10-29 17:26:52+06:00",
+    "stopped_at": "2026-10-29 17:29:50+06:00"
+  }
+]
+own containers: 0

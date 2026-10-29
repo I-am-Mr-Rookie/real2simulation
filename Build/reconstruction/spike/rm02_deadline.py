@@ -4,10 +4,10 @@ import math
 import time
 
 
-# orch13: 900s total fits the session deadline; admission window = 900-60-90-480-60 = 210s (controller cap 300s).
-TOTAL_SECONDS = 900
+# orch14: one A10G attempt; 600s exec restores pip+weights room; admission = 1020-60-90-600-60 = 210s.
+TOTAL_SECONDS = 1020
 STARTUP_SECONDS = 90
-EXECUTION_SECONDS = 480
+EXECUTION_SECONDS = 600
 CLEANUP_SECONDS = 60
 STOP_SECONDS = 20
 EXIT_SECONDS = 10

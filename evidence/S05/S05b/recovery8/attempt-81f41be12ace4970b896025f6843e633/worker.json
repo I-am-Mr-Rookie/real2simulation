@@ -1,0 +1,17 @@
+{
+  "total_budget_s": 960.0,
+  "stop_requested": true,
+  "absolute_deadline_monotonic": 1401544.421,
+  "remaining_at_start_s": 947.8430000001099,
+  "stop_attempted": true,
+  "stop_dispatched": true,
+  "stop_acknowledged": true,
+  "remote_stop_confirmed": true,
+  "admission_observed": true,
+  "resource_incident": false,
+  "app_id": "ap-n1kdxs0OPi7hgSfJbAsuDX",
+  "function_call_id": "fc-01M63PKHGDBBZ5TVP5W68R9GQM",
+  "caller_error": "DeserializationError",
+  "elapsed_s": 181.625,
+  "cleanup_errors": []
+}

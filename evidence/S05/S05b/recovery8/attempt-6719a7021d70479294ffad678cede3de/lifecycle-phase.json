@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "token": "6e0fd10da7654c2cae8dc8e7cbc5cf4e",
+  "pid": 31868,
+  "ppid": 19548,
+  "phase": "remote_creation_started",
+  "remote_creation_started": true,
+  "history": [
+    "preflight_validated",
+    "remote_creation_started"
+  ]
+}

@@ -27,8 +27,8 @@ app = modal.App("s05b-recovery5-rm02-private-probe")
 
 @app.function(
     image=modal.Image.debian_slim(python_version="3.11"),
-    gpu="L4", cpu=(1, 2), memory=(8192, 16384),
-    timeout=480, startup_timeout=90, retries=0,
+    gpu="A10G", cpu=(1, 2), memory=(8192, 16384),
+    timeout=600, startup_timeout=90, retries=0,
     min_containers=0, max_containers=1, buffer_containers=0,
     scaledown_window=2, single_use_containers=True,
     serialized=True, include_source=False,
@@ -114,7 +114,8 @@ def probe(frames, requirements, code_rev, weight_rev):
         "peak_reserved_bytes": torch.cuda.max_memory_reserved(),
         "output_bytes": len(data), "output_sha256": hashlib.sha256(data).hexdigest(),
         "schema": schema, "gate_R": "NOT RUN", "physical_scale": "unverified",
-        "capture_timebase": "unverified", "torch": torch.__version__,
+        # TorchVersion pickles as a torch type; the local client has no torch (orch14 DeserializationError).
+        "capture_timebase": "unverified", "torch": str(torch.__version__),
     }
     print(json.dumps({k: v for k, v in receipt.items() if k != "schema"}))
     return receipt, data
