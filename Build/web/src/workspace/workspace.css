@@ -60,3 +60,9 @@
 .ws-run { display: grid; gap: .5rem; margin-top: .5rem; }
 .ws-meter { width: 100%; height: 12px; accent-color: var(--blue); }
 
+/* S15g: instrument controls */
+.ws-instruments { display: grid; gap: .5rem; margin-top: .5rem; }
+.ws-trials { margin: 0; padding-left: 1.2rem; display: grid; gap: .5rem; }
+.ws-trial ul { margin: .2rem 0 0; padding-left: 1rem; font-size: .9rem; }
+.ws-tag { border: 1px solid var(--blue); border-radius: 999px; padding: 0 .5rem; font-size: .75rem; color: var(--blue); }
+.ws-src { display: block; font-size: .8rem; opacity: .8; overflow-wrap: anywhere; }

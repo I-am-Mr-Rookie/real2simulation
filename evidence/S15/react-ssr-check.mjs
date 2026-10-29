@@ -111,3 +111,21 @@ import { createReplayRecord as CRR, replayRecord as RPR } from '../../Build/simu
   console.log('S15f SSR ok: paused mid-run controls, done + same-seed replay verified, hidden without run model, disabled without onAction');
 }
 
+// S15g: instrument controls through the real React binding (SSR); readings come from the recorded Build/instruments fixture.
+import { initialInstruments as GI0, reduceInstruments as GIR, measure as GIM } from '../../Build/web/src/workspace/instruments.mjs';
+import { runParameters as RP7, fixtureRunner as FR7, deps as D7, validSpec as VS7 } from '../../Build/web/src/workspace/fixtures.mjs';
+{
+  const FIX = JSON.parse(readFileSync('tests/workspace/fixtures/instrument-readings.json', 'utf8'));
+  const svc = async (id, n) => FIX.readings[id][n];
+  let s = reduce(reduce(withScene, { type: 'INTERVIEW_SPEC', spec: VS7 }, D7), { type: 'RUN_START', seed: 7 }, D7);
+  const Rn = (state, instruments) => renderToString(React.createElement(Workspace, { state, instruments, onAction: () => {}, adapter, loadScene: () => {} }));
+  assert.doesNotMatch(Rn(s, GI0()), /ws-instruments/); // no trial run finished yet
+  s = reduce(s, { type: 'RUN_COMPLETE', seed: 7, observations: FR7(RP7, 7) }, D7);
+  let m = GI0();
+  for (const id of ['stopwatch', 'camera', 'ruler']) { m = GIR(m, { type: 'I_SELECT', instrument: id }, s); m = GIR(m, { type: 'I_MEASURE' }, s); m = GIR(m, await GIM(svc, m), s); }
+  const out = Rn(s, m);
+  for (const re of [/class="ws-instruments"/, /Take reading/, /Trial 1: Stopwatch/, /Trial 2: Camera, frame 0/, /Trial 3: Ruler/, /\u00b1/, /data-label="simulated"/, /source: synthetic stopwatch; seed=1/, /Readings are simulated instrument output/]) assert.match(out, re);
+  assert.doesNotMatch(out, /error/i);
+  writeFileSync('evidence/S15/instrument-preview.html', '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S15g instrument controls preview (SYNTHETIC)</title><style>' + css + '</style><main>' + out + '</main>');
+  console.log('S15g SSR ok: trial readings show value +/- uncertainty, unit, simulated label and source; hidden before a finished run; signed error absent');
+}

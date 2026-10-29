@@ -1,0 +1,202 @@
+{
+ "provenance": "SYNTHETIC settings and inputs; every value is Build/instruments output. Not calibration, physics, Gate P/A, real-scene or physical evidence.",
+ "readings": {
+  "camera": [
+   {
+    "frame_index": 0,
+    "time": {
+     "error": 0.0,
+     "source": {
+      "evidence": "synthetic camera; frame=0; resolutions=0.03333333333333333,1.0",
+      "label": "simulated"
+     },
+     "uncertainty": 0.016666666666666666,
+     "unit": "s",
+     "value": 2.0
+    },
+    "x": {
+     "error": 0.0,
+     "source": {
+      "evidence": "synthetic camera; frame=0; resolutions=0.03333333333333333,1.0",
+      "label": "simulated"
+     },
+     "uncertainty": 0.5,
+     "unit": "px",
+     "value": 0.0
+    },
+    "y": {
+     "error": 0.0,
+     "source": {
+      "evidence": "synthetic camera; frame=0; resolutions=0.03333333333333333,1.0",
+      "label": "simulated"
+     },
+     "uncertainty": 0.5,
+     "unit": "px",
+     "value": 400.0
+    }
+   },
+   {
+    "frame_index": 1,
+    "time": {
+     "error": 0.0,
+     "source": {
+      "evidence": "synthetic camera; frame=1; resolutions=0.03333333333333333,1.0",
+      "label": "simulated"
+     },
+     "uncertainty": 0.016666666666666666,
+     "unit": "s",
+     "value": 1.5
+    },
+    "x": {
+     "error": 0.0,
+     "source": {
+      "evidence": "synthetic camera; frame=1; resolutions=0.03333333333333333,1.0",
+      "label": "simulated"
+     },
+     "uncertainty": 0.5,
+     "unit": "px",
+     "value": 0.0
+    },
+    "y": {
+     "error": 0.0,
+     "source": {
+      "evidence": "synthetic camera; frame=1; resolutions=0.03333333333333333,1.0",
+      "label": "simulated"
+     },
+     "uncertainty": 0.5,
+     "unit": "px",
+     "value": 225.0
+    }
+   },
+   {
+    "frame_index": 2,
+    "time": {
+     "error": 0.0,
+     "source": {
+      "evidence": "synthetic camera; frame=2; resolutions=0.03333333333333333,1.0",
+      "label": "simulated"
+     },
+     "uncertainty": 0.016666666666666666,
+     "unit": "s",
+     "value": 1.0
+    },
+    "x": {
+     "error": 0.0,
+     "source": {
+      "evidence": "synthetic camera; frame=2; resolutions=0.03333333333333333,1.0",
+      "label": "simulated"
+     },
+     "uncertainty": 0.5,
+     "unit": "px",
+     "value": 0.0
+    },
+    "y": {
+     "error": 0.0,
+     "source": {
+      "evidence": "synthetic camera; frame=2; resolutions=0.03333333333333333,1.0",
+      "label": "simulated"
+     },
+     "uncertainty": 0.5,
+     "unit": "px",
+     "value": 100.0
+    }
+   }
+  ],
+  "light_gate": [
+   {
+    "error": 0.0,
+    "source": {
+     "evidence": "synthetic light gate; resolution_s=0.001",
+     "label": "simulated"
+    },
+    "uncertainty": 0.0005,
+    "unit": "s",
+    "value": 2.0
+   },
+   {
+    "error": 0.0,
+    "source": {
+     "evidence": "synthetic light gate; resolution_s=0.001",
+     "label": "simulated"
+    },
+    "uncertainty": 0.0005,
+    "unit": "s",
+    "value": 1.5
+   },
+   {
+    "error": 0.0,
+    "source": {
+     "evidence": "synthetic light gate; resolution_s=0.001",
+     "label": "simulated"
+    },
+    "uncertainty": 0.0005,
+    "unit": "s",
+    "value": 1.0
+   }
+  ],
+  "ruler": [
+   {
+    "error": 0.0,
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.001",
+     "label": "simulated"
+    },
+    "uncertainty": 0.0005,
+    "unit": "m",
+    "value": 4.0
+   },
+   {
+    "error": 0.0,
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.001",
+     "label": "simulated"
+    },
+    "uncertainty": 0.0005,
+    "unit": "m",
+    "value": 2.25
+   },
+   {
+    "error": 0.0,
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.001",
+     "label": "simulated"
+    },
+    "uncertainty": 0.0005,
+    "unit": "m",
+    "value": 1.0
+   }
+  ],
+  "stopwatch": [
+   {
+    "error": 0.06999999999999984,
+    "source": {
+     "evidence": "synthetic stopwatch; seed=1; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.05,
+    "unit": "s",
+    "value": 2.07
+   },
+   {
+    "error": 0.13000000000000012,
+    "source": {
+     "evidence": "synthetic stopwatch; seed=2; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.05,
+    "unit": "s",
+    "value": 1.6300000000000001
+   },
+   {
+    "error": 0.010000000000000009,
+    "source": {
+     "evidence": "synthetic stopwatch; seed=3; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.05,
+    "unit": "s",
+    "value": 1.01
+   }
+  ]
+ }
+}
