@@ -1,0 +1,1 @@
+PASS: all 15 staged files within exact Owns; no bytecode; git diff --cached --check passed

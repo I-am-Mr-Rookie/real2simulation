@@ -1,0 +1,46 @@
+{
+  "provenance": "SYNTHETIC offline accounting examples, NOT current balances or live enforcement",
+  "inputs": {
+    "requests": [
+      {
+        "request_id": "pending",
+        "provider": "Meta Model API",
+        "reserved_usd": "2"
+      },
+      {
+        "request_id": "estimated",
+        "provider": "Meta Model API",
+        "reserved_usd": "1",
+        "est_usd": "3"
+      },
+      {
+        "request_id": "final",
+        "provider": "Meta Model API",
+        "reserved_usd": "5",
+        "billed_usd": "4",
+        "settled": true
+      }
+    ],
+    "candidate_usd": "1"
+  },
+  "below_cap": {
+    "historical_usd": "109.00000000",
+    "requests_usd": "9.00000000",
+    "committed_usd": "118.00000000",
+    "candidate_usd": "1.00000000",
+    "projected_usd": "119.00000000",
+    "routine_headroom_usd": "2.00000000",
+    "demo_reserve_usd": "30",
+    "routine_cap_allows": true
+  },
+  "at_cap": {
+    "historical_usd": "110.00000000",
+    "requests_usd": "9.00000000",
+    "committed_usd": "119.00000000",
+    "candidate_usd": "1.00000000",
+    "projected_usd": "120.00000000",
+    "routine_headroom_usd": "1.00000000",
+    "demo_reserve_usd": "30",
+    "routine_cap_allows": false
+  }
+}

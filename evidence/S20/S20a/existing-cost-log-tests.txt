@@ -1,0 +1,10 @@
+test_missing_remote_timing_refused (test_cost_log.CostLog.test_missing_remote_timing_refused) ... ok
+test_missing_rows_stay_unavailable (test_cost_log.CostLog.test_missing_rows_stay_unavailable) ... ok
+test_rates_match_s06d_bill (test_cost_log.CostLog.test_rates_match_s06d_bill) ... ok
+test_reconcile_billed_only_own_app (test_cost_log.CostLog.test_reconcile_billed_only_own_app) ... ok
+test_timing_and_estimate (test_cost_log.CostLog.test_timing_and_estimate) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
