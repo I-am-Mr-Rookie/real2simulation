@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 17:46 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 17:54 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **99 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **100 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -16,8 +16,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CODEX-1**
 - [ ] **S05c** — Codex (native Claude) · Opus 5.5, effort high — Reconstruct remaining scene clips (30 min)
 - [ ] **S06a** — Codex (native Claude) · Opus 5.5, effort high — Define reproducible GPU image and dry-run contract (30 min)
-- [~] **S07b** — Codex (native Claude) · Opus 5.5, effort high — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
-- …and 1 more ready in this lane
+- [ ] **S14c** — Codex (native Claude) · Opus 5.5, effort high — Implement one-to-three-question interview (30 min)
 
 **CODEX-2**
 - Nothing ready yet: check dependencies and retry holds below.
@@ -121,7 +120,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (11/13)</summary>
+<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (12/13)</summary>
 
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(retry held until Oct 29, 12:18 UTC / Oct 29, 18:18 Dhaka; Owner Oct29: pause all GPT/Codex-model (Sol) dispatch until quota reset 18:18 Dhaka; S02f-orch13 hit usage limit.)*
 - [x] **S02g** — Codex · GPT-6.1 Sol, effort high — Verify original FF01/FF02 calibration sources (30 min)
@@ -129,7 +128,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S02i** — Codex · GPT-6.1 Sol, effort high — Audit RP01 side-view metric trajectory segments (30 min)
 - [x] **S07r** — Codex · GPT-6.1 Sol, effort high — Reconcile input readiness and approved small-sample fallback (20 min)
 - [x] **S07a** — Codex · GPT-6.1 Sol, effort medium — Define scale, timestamps and held-out tracking inputs (30 min)
-- [~] **S07b** — Codex (native Claude) · Opus 5.5, effort high — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
+- [x] **S07b** — Codex (native Claude) · Opus 5.5, effort high — Implement SAM 3.1 tracking adapter (30 min)
 - [x] **S07c** — Codex · GPT-6.1 Sol, effort medium — Implement deterministic free-fall fit (30 min)
 - [x] **S07d** — Codex · GPT-6.1 Sol, effort medium — Detect slow-motion and propagate measurement uncertainty (30 min)
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)

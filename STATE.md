@@ -93,6 +93,11 @@ S19a DONE (Sonnet; pwa 5/5; procedural owned icons). Main a65f28f. UI CSS not br
 Minor: S05b/S17c TIMEBOX reported_at rounded seconds into future; passes on recheck.
 orch19 issued full30m: Opus S05c (<=$3 batch all approved scenes), S06a (<=$0.50), S14c
 (offline, no live Meta); Sonnet S15d, S17d, S19b. Receipt DISPATCH-orch19.json.
+S07b DONE (S07b-orch14 Opus; TIMEBOX PASS; fresh tracking 14/14; token scan 0; main c3646da):
+root cause = upstream exclusive start+max_frame_num_to_track; adapter key removed. Modal A10
+sanitized ST03 f58-76 track 19/19 frames (object 2 falling apple), pts_s provenance. ~$0.15
+GPU est, billing unobserved. Lock still lacks setuptools<81/einops/psutil/pycocotools.
+Uncalibrated pixels; not Gate M. Parent S07 Gate M still NOT_MET.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
