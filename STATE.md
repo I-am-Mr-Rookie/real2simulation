@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+S12b DONE (orch39 Opus high; TIMEBOX PASS; fresh prediction 13 OK, fitter OK; ff-merged).
+Build/real2sim/params.py: validated param records (value/unit/1-sigma/provenance/gate_m NOT_MET),
+transfer refuses missing/abstained/no-provenance, feeds existing Build/simulator via node. ST03 real
+params all ABSTAINED (S07 f76/f77 errata pending). Findings: F1 simulator accepts only
+inputProvenance 'synthetic' -> real params refused; F2 *_m fields carry image heights; F3 no
+friction/restitution measurement source. Controller: S12c Owns +Build/simulator/ for a minimal
+'image-derived' provenance label (routine, reversible); dispatch S12c after orch40 errata lands.
+
 OWNER (Oct30 ~03:50 Dhaka): heartbeat automation real2sim-orchestrator-wake, every 30 min, targets
 controller chat 01a1882d; no end set (Koushik stops it manually). Overrides Oct28 "no scheduled
 task" for this controller only. On Claude 429/quota: record once, no dispatch/retry churn.
