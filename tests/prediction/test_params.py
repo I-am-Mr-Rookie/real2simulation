@@ -91,7 +91,14 @@ class ParamsTests(unittest.TestCase):
             p.simulate(records, SETUP)  # proves restitution reaches the simulator unaltered
         real = synthetic_records()
         real[0]["provenance"]["input_provenance"] = "image-derived"
-        with self.assertRaisesRegex(ValueError, "only synthetic"):
+        with self.assertRaisesRegex(ValueError, "one input provenance"):
+            p.simulate(real, SETUP)
+        for r in real:
+            r["provenance"]["input_provenance"] = "image-derived"
+        out = p.simulate(real, SETUP)  # S12c simulator label: image-derived passes through unrelabelled
+        self.assertEqual(out["simulation"]["inputProvenance"], "image-derived")
+        real[1]["provenance"]["input_provenance"] = "measured"
+        with self.assertRaisesRegex(ValueError, "one input provenance"):
             p.simulate(real, SETUP)
 
     def test_committed_st03_params_abstain(self):

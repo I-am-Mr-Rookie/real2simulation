@@ -8,6 +8,12 @@ import { freeFallTrajectory, projectileTrajectory, consumeValidatedTrajectoryArt
 
 const base = { initialPosition: [0, 2, 0], initialVelocity: [0, 0, 0], gravity: 9.81, dt: 0.01, steps: 100, source: 'simulated', inputProvenance: 'synthetic' };
 
+test('S12c image-derived provenance label passes through; unknown labels still reject', () => {
+  assert.equal(freeFallTrajectory({ ...base, inputProvenance: 'image-derived' }).inputProvenance, 'image-derived');
+  assert.throws(() => freeFallTrajectory({ ...base, inputProvenance: 'measured' }), /source labels/);
+  assert.throws(() => freeFallTrajectory({ ...base, source: 'real', inputProvenance: 'image-derived' }), /source labels/);
+});
+
 test('free fall uses fixed-step RK4 and matches the authoritative analytic reference', () => {
   const out = freeFallTrajectory(base);
   const last = out.samples.at(-1);

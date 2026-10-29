@@ -94,15 +94,16 @@ def simulate(records, setup):
     """
     params = transfer(records)
     kinds = {p["provenance"]["input_provenance"] for p in params.values()}
-    # shortcut: simulator contract only labels inputProvenance 'synthetic'; real params need a Build/simulator label first.
-    if kinds != {"synthetic"}:
-        raise ValueError(f"simulator accepts only synthetic-provenance inputs, got {sorted(kinds)}")
+    # One simulator label per run (S12c added 'image-derived'); mixed provenance is refused, never relabelled.
+    if len(kinds) != 1 or not kinds <= {"synthetic", "image-derived"}:
+        raise ValueError(f"simulator needs one input provenance (synthetic|image-derived), got {sorted(kinds)}")
+    kind = kinds.pop()
     need = ("initial_height", "dt", "steps", "floorY", "floorHalfExtents", "sphereRadius", "density")
     if set(setup) != set(need):
         raise ValueError(f"setup needs exactly {need}")
     value = {n: p["value"] for n, p in params.items()}
     sim_input = {"template": "free_fall", "kind": "free-fall", "source": "simulated",
-                 "inputProvenance": "synthetic", "gravity": value["g"],
+                 "inputProvenance": kind, "gravity": value["g"],
                  "initialPosition": [0, setup["initial_height"], 0],
                  "initialVelocity": [0, -value["speed"], 0],  # image-down speed -> simulator y-up
                  "dt": setup["dt"], "steps": setup["steps"],

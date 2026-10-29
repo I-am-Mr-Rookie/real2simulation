@@ -1,6 +1,8 @@
 import { rk4Step } from './rk4.mjs';
 
 const fail = (message) => { throw new TypeError(`INVALID_TRAJECTORY: ${message}`); };
+// 'image-derived' (S12c): scale-free params fitted from tracked footage; Gate M NOT_MET, never metres.
+export const INPUT_PROVENANCE = Object.freeze(['synthetic', 'image-derived']);
 const finite = (value) => typeof value === 'number' && Number.isFinite(value);
 const vector3 = (value) => Array.isArray(value) && value.length === 3 && [0, 1, 2].every((i) => Object.prototype.hasOwnProperty.call(value, i) && finite(value[i]));
 const trustedArtifacts = new WeakSet();
@@ -26,7 +28,7 @@ function checked(input) {
   if (!finite(dt) || dt <= 0) fail('dt must be finite and positive');
   if (!Number.isSafeInteger(steps) || steps < 0 || steps > 1_000_000) fail('steps must be a safe integer in [0, 1000000]');
   if (!finite(dt * steps)) fail('dt multiplied by steps must remain finite');
-  if (source !== 'simulated' || inputProvenance !== 'synthetic') fail('source labels must be explicit simulated/synthetic');
+  if (source !== 'simulated' || !INPUT_PROVENANCE.includes(inputProvenance)) fail('source labels must be explicit simulated/synthetic|image-derived');
   return { initialPosition: [...initialPosition], initialVelocity: [...initialVelocity], gravity, dt, steps, source, inputProvenance };
 }
 

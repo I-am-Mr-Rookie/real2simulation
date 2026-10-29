@@ -1,4 +1,5 @@
 import RAPIER from '@dimforge/rapier3d-compat';
+import { INPUT_PROVENANCE } from './trajectories.mjs';
 
 const fail = (message) => { throw new TypeError(`INVALID_CONTACTS: ${message}`); };
 const finite = (v) => typeof v === 'number' && Number.isFinite(v);
@@ -13,7 +14,7 @@ function checked(input) {
   if (!input || typeof input !== 'object' || !input.trajectory) fail('trajectory is required');
   const t = input.trajectory;
   if (!['free-fall', 'projectile'].includes(t.kind) || t.integrator !== 'rk4-fixed-step' || !Array.isArray(t.samples)) fail('trajectory must be an RK4 trajectory output');
-  if (t.source !== 'simulated' || t.inputProvenance !== 'synthetic') fail('source labels must be explicit simulated/synthetic');
+  if (t.source !== 'simulated' || !INPUT_PROVENANCE.includes(t.inputProvenance)) fail('source labels must be explicit simulated/synthetic|image-derived');
   positive(t.dt_s, 'trajectory timestep');
   if (!Number.isSafeInteger(t.requestedSteps) || t.requestedSteps < 0) fail('trajectory steps are invalid');
   if (t.samples.length === 0 || t.samples.length > t.requestedSteps + 1 || !Array.from({ length: t.samples.length }, (_, i) => Object.prototype.hasOwnProperty.call(t.samples, i)).every(Boolean)) fail('trajectory samples must be non-empty, dense, and bounded');
