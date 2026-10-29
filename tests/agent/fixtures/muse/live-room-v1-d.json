@@ -1,0 +1,48 @@
+{
+ "provenance": "RECORDED live Meta Model API muse-wonder-1.0 2026-10-29T11:41:30+00:00 by S14b-orch16; sanitized (response ids/headers dropped); input = synthetic scene context only",
+ "scene_dir": "test-data/synthetic/scene/room-v1",
+ "context": {
+  "schema_version": "agent-scene-context/1.0.0",
+  "scene_id": "synthetic-room-v1",
+  "label": "SYNTHETIC integration fixture — NOT reconstruction or physics evidence",
+  "synthetic": true,
+  "scale_status": "calibrated",
+  "gravity_status": "unknown",
+  "surfaces": [
+   "floor",
+   "table"
+  ],
+  "colliders": [
+   {
+    "id": "floor-box",
+    "shape": "box"
+   },
+   {
+    "id": "table-box",
+    "shape": "box"
+   }
+  ],
+  "labels": [
+   "SYNTHETIC — no accuracy or performance claim"
+  ]
+ },
+ "http": 200,
+ "status": "completed",
+ "usage": {
+  "input_tokens": 284,
+  "output_tokens": 665
+ },
+ "error": null,
+ "output": [
+  {
+   "type": "message",
+   "content": [
+    {
+     "type": "output_text",
+     "text": "{\"candidates\": [{\"id\": \"drop-from-table\", \"rationale\": [{\"text\": \"The table and the floor provide clear release and landing surfaces for tracking falling motion.\", \"type\": \"text\"}, {\"text\": \"This scene is synthetic and gravity is unknown, so falling motion can be explored without assuming a known gravitational setting.\", \"type\": \"text\"}], \"template\": \"free_fall\"}, {\"id\": \"roll-off-table\", \"rationale\": [{\"text\": \"The table edge and the floor below support launching motion horizontally and observing its path toward the floor.\", \"type\": \"text\"}, {\"text\": \"This scene is synthetic and gravity is unknown, so the trajectory should be measured rather than predicted from an assumed value.\", \"type\": \"text\"}], \"template\": \"projectile\"}, {\"id\": \"swing-above-table\", \"rationale\": [{\"text\": \"The open space above the table could support hanging apparatus for observing repeated swinging motion.\", \"type\": \"text\"}, {\"text\": \"This scene is synthetic and gravity is unknown, so timing the swing would help characterize motion in this setting.\", \"type\": \"text\"}], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [{\"id\": \"ball\", \"label\": [{\"text\": \"Small ball\", \"type\": \"text\"}]}, {\"id\": \"block\", \"label\": [{\"text\": \"Small block\", \"type\": \"text\"}]}, {\"id\": \"string-and-bob\", \"label\": [{\"text\": \"String and bob\", \"type\": \"text\"}]}], \"id\": \"available-object\", \"kind\": \"chips\", \"prompt\": [{\"text\": \"Which object is available to use in the experiment?\", \"type\": \"text\"}]}], \"scene_id\": \"synthetic-room-v1\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"This is a synthetic scene and is not reconstruction or physics evidence. Gravity is unknown. The scene contains a floor surface and a table surface, with box-shaped colliders for the floor and the table. Scale status is described as calibrated in the provided context.\", \"type\": \"text\"}]}"
+    }
+   ]
+  }
+ ],
+ "expect": "valid"
+}

@@ -1,0 +1,48 @@
+{
+ "provenance": "RECORDED live Meta Model API muse-wonder-1.0 2026-10-29T11:40:23+00:00 by S14b-orch16; sanitized (response ids/headers dropped); input = synthetic scene context only",
+ "scene_dir": "test-data/synthetic/scene/room-v1",
+ "context": {
+  "schema_version": "agent-scene-context/1.0.0",
+  "scene_id": "synthetic-room-v1",
+  "label": "SYNTHETIC integration fixture — NOT reconstruction or physics evidence",
+  "synthetic": true,
+  "scale_status": "calibrated",
+  "gravity_status": "unknown",
+  "surfaces": [
+   "floor",
+   "table"
+  ],
+  "colliders": [
+   {
+    "id": "floor-box",
+    "shape": "box"
+   },
+   {
+    "id": "table-box",
+    "shape": "box"
+   }
+  ],
+  "labels": [
+   "SYNTHETIC — no accuracy or performance claim"
+  ]
+ },
+ "http": 200,
+ "status": "completed",
+ "usage": {
+  "input_tokens": 284,
+  "output_tokens": 707
+ },
+ "error": null,
+ "output": [
+  {
+   "type": "message",
+   "content": [
+    {
+     "type": "output_text",
+     "text": "{\"candidates\": [{\"id\": \"candidate-a\", \"rationale\": [{\"text\": \"The table and the floor could support a drop experiment in the synthetic scene, with gravity unknown stated plainly.\" , \"type\": \"text\"}], \"template\": \"free_fall\"}, {\"id\": \"candidate-b\", \"rationale\": [{\"text\": \"The table edge and the floor could support a launch experiment in the synthetic scene, with gravity unknown stated plainly.\", \"type\": \"text\"}], \"template\": \"projectile\"}], \"questions\": [{\"chips\": [{\"id\": \"drop-object\", \"label\": [{\"text\": \"Use a drop object\", \"type\": \"text\"}]}, {\"id\": \"launch-object\", \"label\": [{\"text\": \"Use a launch object\", \"type\": \"text\"}]}], \"id\": \"q-object\", \"kind\": \"chips\", \"prompt\": [{\"text\": \"What object should be used and what should be measured, given that this is synthetic and gravity is unknown?\", \"type\": \"text\"}]}], \"scene_id\": \"synthetic-room-v1\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"The floor surface is available in the synthetic scene.\", \"type\": \"text\"}, {\"text\": \"The table surface is available in the synthetic scene, with gravity unknown stated plainly.\", \"type\": \"text\"}]}"
+    }
+   ]
+  }
+ ],
+ "expect": "valid"
+}

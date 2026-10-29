@@ -1,0 +1,48 @@
+{
+ "provenance": "RECORDED live Meta Model API muse-wonder-1.0 2026-10-29T11:41:19+00:00 by S14b-orch16; sanitized (response ids/headers dropped); input = synthetic scene context only",
+ "scene_dir": "test-data/synthetic/scene/room-v1",
+ "context": {
+  "schema_version": "agent-scene-context/1.0.0",
+  "scene_id": "synthetic-room-v1",
+  "label": "SYNTHETIC integration fixture — NOT reconstruction or physics evidence",
+  "synthetic": true,
+  "scale_status": "calibrated",
+  "gravity_status": "unknown",
+  "surfaces": [
+   "floor",
+   "table"
+  ],
+  "colliders": [
+   {
+    "id": "floor-box",
+    "shape": "box"
+   },
+   {
+    "id": "table-box",
+    "shape": "box"
+   }
+  ],
+  "labels": [
+   "SYNTHETIC — no accuracy or performance claim"
+  ]
+ },
+ "http": 200,
+ "status": "completed",
+ "usage": {
+  "input_tokens": 284,
+  "output_tokens": 703
+ },
+ "error": null,
+ "output": [
+  {
+   "type": "message",
+   "content": [
+    {
+     "type": "output_text",
+     "text": "{\"candidates\": [{\"id\": \"free-fall-above-table\", \"rationale\": [{\"text\": \"The table provides a clear landing surface for a vertical drop, and gravity is unknown in this synthetic scene, so the fall can be used to probe motion without assuming gravity.\", \"type\": \"text\"} ], \"template\": \"free_fall\"}, {\"id\": \"projectile-over-table\", \"rationale\": [{\"text\": \"The table and floor provide distinct heights for launching and landing in this synthetic scene, while gravity is unknown.\", \"type\": \"text\"} ], \"template\": \"projectile\"}, {\"id\": \"ramp-to-table\", \"rationale\": [{\"text\": \"The table edge and floor could frame a ramp arrangement in this synthetic scene, while gravity is unknown.\", \"type\": \"text\"} ], \"template\": \"ramp\"}], \"questions\": [{\"chips\": [{\"id\": \"ball\", \"label\": [{\"text\": \"Use a ball\", \"type\": \"text\"} ]}, {\"id\": \"block\", \"label\": [{\"text\": \"Use a block\", \"type\": \"text\"} ]}], \"id\": \"object-choice\", \"kind\": \"chips\", \"prompt\": [{\"text\": \"Which object should be used in the experiment?\", \"type\": \"text\"} ]}], \"scene_id\": \"synthetic-room-v1\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"This is a synthetic scene and not reconstruction or physics evidence. Gravity is unknown. Usable surfaces are the floor and the table, with colliders for the floor and the table.\", \"type\": \"text\"}]}"
+    }
+   ]
+  }
+ ],
+ "expect": "valid"
+}

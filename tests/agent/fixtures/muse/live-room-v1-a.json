@@ -1,0 +1,41 @@
+{
+ "provenance": "RECORDED live Meta Model API muse-wonder-1.0 2026-10-29T11:39:19+00:00 by S14b-orch16; sanitized (response ids/headers dropped); input = synthetic scene context only",
+ "scene_dir": "test-data/synthetic/scene/room-v1",
+ "context": {
+  "schema_version": "agent-scene-context/1.0.0",
+  "scene_id": "synthetic-room-v1",
+  "label": "SYNTHETIC integration fixture — NOT reconstruction or physics evidence",
+  "synthetic": true,
+  "scale_status": "calibrated",
+  "gravity_status": "unknown",
+  "surfaces": [
+   "floor",
+   "table"
+  ],
+  "colliders": [
+   {
+    "id": "floor-box",
+    "shape": "box"
+   },
+   {
+    "id": "table-box",
+    "shape": "box"
+   }
+  ],
+  "labels": [
+   "SYNTHETIC — no accuracy or performance claim"
+  ]
+ },
+ "http": 200,
+ "status": "incomplete",
+ "usage": {
+  "input_tokens": 284,
+  "output_tokens": 1500
+ },
+ "error": null,
+ "output": [],
+ "expect": "rejected",
+ "issues": [
+  "muse: response status 'incomplete'"
+ ]
+}

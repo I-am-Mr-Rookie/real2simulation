@@ -23,6 +23,9 @@ LABELS = frozenset(("measured", "simulated"))
 _ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$")
 _VALIDATOR = Draft202012Validator(json.loads(
     Path(__file__).with_name("response.schema.json").read_text(encoding="utf-8")))
+# Candidate templates are the S08 experiment templates; single source of truth, no copy.
+TEMPLATES = frozenset(json.loads((Path(__file__).parents[1] / "experiment" / "experiment.schema.json")
+                                 .read_text(encoding="utf-8"))["properties"]["template"]["enum"])
 # shortcut: word list catches common spelled-out numbers only ("one" stays allowed as a pronoun,
 # Roman-numeral letters are not caught); extend from Gate A misses (S14f/S14g).
 _NUMBER_WORDS = re.compile(
@@ -138,7 +141,13 @@ def validate_response(response: Any, tool_outputs: Iterable[Any], scene_id: str)
             issues.append(f"{where}.chips: free_text has no chips; chip kinds need at least one")
         for c, chip in enumerate(question["chips"]):
             _segments(chip["label"], f"{where}.chips[{c}].label", index, issues)
+    seen: set[str] = set()
     for c, candidate in enumerate(response.get("candidates", ())):
+        if candidate["template"] not in TEMPLATES:
+            issues.append(f"response.candidates[{c}].template: must be one of {sorted(TEMPLATES)}")
+        if candidate["id"] in seen:
+            issues.append(f"response.candidates[{c}].id: duplicate {candidate['id']!r}")
+        seen.add(candidate["id"])
         _segments(candidate["rationale"], f"response.candidates[{c}].rationale", index, issues)
     if issues:
         raise AgentContractError(issues)
