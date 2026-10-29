@@ -22,6 +22,12 @@ S06c/S14e/S15e-orch22. Controller only integrates their reports.
 S15e DONE (S15e-orch20 Sonnet; node 47 pass fresh; 375px IAB preview ok). CONTROLLER
 ERROR: orch22 re-dispatched S15e as a duplicate (failed batch cell hid orch20 creation);
 S15e-orch22 sent approved early stop (duplicate_objective), its work not merged.
+S15e-orch22 stopped: no commits/changes, nothing merged.
+S06c DONE (Opus; gpu 13 OK fresh; $0; main f041de7): SAM 3D Objects licence/VRAM review;
+optional path off by default (flag + owner receipt + >=32GB VRAM), primitive path intact.
+Owner question Q-S06c (optional, not blocking): to enable SAM 3D Objects, Koushik accepts
+the SAM License on HF himself and saves evidence/owner/S06/SAM3D-ACCESS.md; needs >=32GB GPU
+(A10 23GB too small). Default: keep primitive meshes.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.
