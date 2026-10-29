@@ -1,0 +1,16 @@
+test_abstains_without_reference_or_gravity (test_scene_frame.SceneFrameTests.test_abstains_without_reference_or_gravity) ... ok
+test_floor_and_gravity_recovered (test_scene_frame.SceneFrameTests.test_floor_and_gravity_recovered) ... ok
+test_reproducible (test_scene_frame.SceneFrameTests.test_reproducible) ... ok
+test_scale_from_cited_reference (test_scene_frame.SceneFrameTests.test_scale_from_cited_reference) ... ok
+test_abstain_everywhere_fails_as_unmeasured (test_gate_r.GateR.test_abstain_everywhere_fails_as_unmeasured) ... ok
+test_pass_when_measured_within_thresholds (test_gate_r.GateR.test_pass_when_measured_within_thresholds) ... ok
+test_slow_gpu_or_missing_timing_fails (test_gate_r.GateR.test_slow_gpu_or_missing_timing_fails) ... ok
+test_failed_payload_replace_leaves_no_commit_marker (test_rm02_result.ResultTests.test_failed_payload_replace_leaves_no_commit_marker) ... ok
+test_payload_integrity_is_checked_before_writing (test_rm02_result.ResultTests.test_payload_integrity_is_checked_before_writing) ... ok
+test_payload_then_pending_marker_never_claims_cleanup_success (test_rm02_result.ResultTests.test_payload_then_pending_marker_never_claims_cleanup_success) ... ok
+test_pending_marker_failure_keeps_payload_but_never_success (test_rm02_result.ResultTests.test_pending_marker_failure_keeps_payload_but_never_success) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 6.416s
+
+OK

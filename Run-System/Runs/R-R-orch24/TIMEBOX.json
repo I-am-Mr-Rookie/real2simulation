@@ -1,0 +1,12 @@
+{
+  "id": "R-R-orch24",
+  "issued_at": "2026-10-29T15:04:05+00:00",
+  "implementation_cutoff_at": "2026-10-29T15:29:05+00:00",
+  "deadline_at": "2026-10-29T15:34:05+00:00",
+  "deadline_dhaka": "2026-10-29T21:34:05+06:00",
+  "work_stopped_at": "2026-10-29T15:17:54.207288+00:00",
+  "reported_at": "2026-10-29T15:17:54.207288+00:00",
+  "status": "DONE",
+  "completion_basis": "All assigned read-only review acceptance criteria verified; Gate R remains FAIL and S05f blocked on findings.",
+  "first_observed_clock": "2026-10-29T15:04:50+00:00"
+}

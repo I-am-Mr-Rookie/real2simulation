@@ -1,0 +1,15 @@
+Confirmed 14 review cases + scale-formula assertions; synthetic only
+baseline_synthetic observed= PASS required= PASS
+all_abstain observed= FAIL required= FAIL
+actual_producer_calibrated_status observed= FAIL required= PASS
+missing_third_scene observed= PASS required= FAIL_OR_INVALID
+two_of_four_scale_passes observed= PASS required= FAIL_OR_INVALID
+disjoint_criterion_passes observed= PASS required= POLICY_CLARIFICATION
+no_floor observed= PASS required= FAIL_OR_INVALID
+negative_angle observed= PASS required= FAIL_OR_INVALID
+nonfinite_negative_angle observed= PASS required= FAIL_OR_INVALID
+negative_gpu_time observed= PASS required= FAIL_OR_INVALID
+rounded_gpu_over_threshold observed= PASS required= FAIL
+inclusive_scale_boundary_0.9 observed= FAIL required= PASS
+inclusive_scale_boundary_1.1 observed= FAIL required= PASS
+abstain_gravity_reason observed= {'clip': 'A', 'criterion': 'gravity_vs_A4<=5deg', 'kind': 'measured_above_threshold', 'value': 1.0} required= ineligible/abstained gravity reason, not angle above threshold

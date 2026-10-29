@@ -1,0 +1,1 @@
+FAIL {"scale_passes": 0, "orientation_passes": 0, "gpu_passes": 3, "clips": 3}

@@ -1,0 +1,74 @@
+{
+  "review_scope": "offline existing evidence; no new GPU/scene measurements",
+  "input_sha256": {
+    "Build/reconstruction/spike/gate_r.py": "c46d628a22ab77984877d998c54bbe240084bd98cae650413cc107878d67abe8",
+    "Build/reconstruction/spike/scene_frame.py": "c76859abdcbfaa8d1b5fc4114bbc34d918163c3ac92c80b7c3ad6fff79656d71",
+    "Build/reconstruction/spike/test_gate_r.py": "cae77244268cf5e38380d00264bd64f4624ded2f64a09cc4ed1eaded05f17083",
+    "contracts/scene/scene.schema.json": "f2d72f8d0448cf1d0a21a7c72e8bf84c53933b2cb1c5ae2b0e7c0a026015ea84",
+    "contracts/scene/validate_scene.py": "386a74a5e0fc457ccfc5d6bc33ec38c0ecdd164355c705f189c1bc4b7f54e6a9",
+    "evidence/S05/S05d/RESULT.json": "da03599d50e8731a380dd2b993f550e8168395b6877ea6e9c74626a4c8df406e",
+    "evidence/S05/S05d/manifest.json": "0aa6b7ead27033be2d7c7aeb65e0135e9af4be8987ef34da051dd1a98ed27ddf",
+    "evidence/S05/S05c/RESULT.json": "35b035b0f76a6057205c75856b765f4b75fd2d804916ad02ed857ea38938ba51",
+    "evidence/S05/S05c/input.json": "b3fe96a5bf8255d74ef35800d4142855bfa8da9af18d89bd98966131974613bb",
+    "evidence/S05/S05b/orch14/job-ledger.json": "4f9f663a80d469171c5ce9b1c6cedfd5b8c5789e757b4008c7c94151cde94004",
+    "evidence/S05/S05e/GATE_R.json": "5f500258fdb152b31673677ac417ff509062ad27aa8015eabec64adb32d16c16",
+    "evidence/S05/LICENSE_REVIEW.md": "ce7c25f84b84c0c0e21a174ea89035995245bcbfdd0f8f3c406fd4c301067d38",
+    "evidence/owner/S02/APPROVAL.md": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+    "STATE.md": "64f89cbe06ac56594cacfa2d0fc65225cf3c29f5c128efdf8005bd8696ab00d1",
+    "QUEUE.md": "9d704bde8ad317f6a7b5e3a4b07ee59da5c67fff810d9256486b6479b169c666",
+    "clips.csv": "a2c99d521b5cbf1f6d4f8163b0067b573a28bd4bce7883a3652e0e11ba0f917d"
+  },
+  "scenes": [
+    {
+      "clip": "RM02",
+      "npz_sha256": "4ce3c82c5252381933bc99518283d4a39c2b1b4eaa1d82da5471738f351f466b",
+      "local_npz_exists": true,
+      "actual_npz_sha256": "4ce3c82c5252381933bc99518283d4a39c2b1b4eaa1d82da5471738f351f466b",
+      "receipt_and_frame_hash_equal": true,
+      "refs": [],
+      "gravity_applicable": true,
+      "source_url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+      "licence": "Pexels",
+      "csv_approval_historical": "NO",
+      "current_scoped_approval": "evidence/owner/S02/APPROVAL.md"
+    },
+    {
+      "clip": "RM04",
+      "npz_sha256": "1a06953fb8fcc58c00996fecd483547dbad4d9fe1fb2f35946382c6467b5a5c1",
+      "local_npz_exists": true,
+      "actual_npz_sha256": "1a06953fb8fcc58c00996fecd483547dbad4d9fe1fb2f35946382c6467b5a5c1",
+      "receipt_and_frame_hash_equal": true,
+      "refs": [],
+      "gravity_applicable": true,
+      "source_url": "https://www.pexels.com/video/an-empty-classroom-8342689/",
+      "licence": "Pexels License",
+      "csv_approval_historical": "NO",
+      "current_scoped_approval": "evidence/owner/S02/APPROVAL.md"
+    },
+    {
+      "clip": "RM05",
+      "npz_sha256": "a3bebfebcb7f30166558f6eafd5d8e80b649abba4d46f57261ddac765610a362",
+      "local_npz_exists": true,
+      "actual_npz_sha256": "a3bebfebcb7f30166558f6eafd5d8e80b649abba4d46f57261ddac765610a362",
+      "receipt_and_frame_hash_equal": true,
+      "refs": [],
+      "gravity_applicable": false,
+      "source_url": "https://images.nasa.gov/details/Step_Inside_the_Station-4K-Clean",
+      "licence": "PD-USGov-NASA",
+      "csv_approval_historical": "NO",
+      "current_scoped_approval": "evidence/owner/S02/APPROVAL.md"
+    }
+  ],
+  "model": "facebook/map-anything-apache",
+  "code_revision": "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9",
+  "weight_revision": "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a",
+  "successful_rm02_function_s": 161.73,
+  "all_rm02_attempts_function_s": 320.39,
+  "s05c_function_s": 177.9,
+  "limitations": [
+    "Source video bytes and live billing not rechecked.",
+    "CSV NO is historical; scoped APPROVAL.md is controlling.",
+    "Hash equality proves custody, not reference identity/calibration.",
+    "Manifest references and A4 annotations are absent."
+  ]
+}

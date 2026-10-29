@@ -1,0 +1,171 @@
+{
+  "synthetic_only": true,
+  "cases": [
+    {
+      "case": "baseline_synthetic",
+      "observed": "PASS",
+      "required": "PASS",
+      "summary": {
+        "scale_passes": 3,
+        "orientation_passes": 3,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "Control only: fixture declares FIT/MEASURED; no scene claim."
+    },
+    {
+      "case": "all_abstain",
+      "observed": "FAIL",
+      "required": "FAIL",
+      "summary": {
+        "scale_passes": 0,
+        "orientation_passes": 0,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "Existing fail-closed ABSTAIN behavior retained."
+    },
+    {
+      "case": "actual_producer_calibrated_status",
+      "observed": "FAIL",
+      "required": "PASS",
+      "summary": {
+        "scale_passes": 0,
+        "orientation_passes": 3,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "Scale is exactly 1, but producer 'calibrated' is rejected as unmeasured; orientation remains synthetic."
+    },
+    {
+      "case": "missing_third_scene",
+      "observed": "PASS",
+      "required": "FAIL_OR_INVALID",
+      "summary": {
+        "scale_passes": 2,
+        "orientation_passes": 2,
+        "gpu_passes": 2,
+        "clips": 2
+      },
+      "detail": "Two entries suffice; no fixed three-scene cohort enforced."
+    },
+    {
+      "case": "two_of_four_scale_passes",
+      "observed": "PASS",
+      "required": "FAIL_OR_INVALID",
+      "summary": {
+        "scale_passes": 2,
+        "orientation_passes": 4,
+        "gpu_passes": 4,
+        "clips": 4
+      },
+      "detail": "Only 50% scale passes, but hardcoded >=2 accepts."
+    },
+    {
+      "case": "disjoint_criterion_passes",
+      "observed": "PASS",
+      "required": "POLICY_CLARIFICATION",
+      "summary": {
+        "scale_passes": 2,
+        "orientation_passes": 2,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "2 scale and 2 orientation passes, but only B passes both; plan gives no orientation 2/3 waiver."
+    },
+    {
+      "case": "no_floor",
+      "observed": "PASS",
+      "required": "FAIL_OR_INVALID",
+      "summary": {
+        "scale_passes": 3,
+        "orientation_passes": 3,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "Required floor plane is only echoed, never included in verdict."
+    },
+    {
+      "case": "negative_angle",
+      "observed": "PASS",
+      "required": "FAIL_OR_INVALID",
+      "summary": {
+        "scale_passes": 3,
+        "orientation_passes": 3,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "An impossible negative angle satisfies angle<=5."
+    },
+    {
+      "case": "nonfinite_negative_angle",
+      "observed": "PASS",
+      "required": "FAIL_OR_INVALID",
+      "summary": {
+        "scale_passes": 3,
+        "orientation_passes": 3,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "Nonfinite -Infinity also passes; evaluator has no finite check."
+    },
+    {
+      "case": "negative_gpu_time",
+      "observed": "PASS",
+      "required": "FAIL_OR_INVALID",
+      "summary": {
+        "scale_passes": 3,
+        "orientation_passes": 3,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "Negative measured durations pass both GPU comparisons."
+    },
+    {
+      "case": "rounded_gpu_over_threshold",
+      "observed": "PASS",
+      "required": "FAIL",
+      "summary": {
+        "scale_passes": 3,
+        "orientation_passes": 3,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "240.029 seconds rounds to 4.000 minutes before threshold comparison."
+    },
+    {
+      "case": "inclusive_scale_boundary_0.9",
+      "observed": "FAIL",
+      "required": "PASS",
+      "summary": {
+        "scale_passes": 0,
+        "orientation_passes": 3,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "Exactly 10% raw scale error becomes 0.10000000000000009 in binary float."
+    },
+    {
+      "case": "inclusive_scale_boundary_1.1",
+      "observed": "FAIL",
+      "required": "PASS",
+      "summary": {
+        "scale_passes": 0,
+        "orientation_passes": 3,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "detail": "Exactly 10% raw scale error becomes 0.10000000000000009 in binary float."
+    },
+    {
+      "case": "abstain_gravity_reason",
+      "observed": {
+        "clip": "A",
+        "criterion": "gravity_vs_A4<=5deg",
+        "kind": "measured_above_threshold",
+        "value": 1.0
+      },
+      "required": "ineligible/abstained gravity reason, not angle above threshold"
+    }
+  ]
+}
