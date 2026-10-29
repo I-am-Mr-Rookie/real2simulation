@@ -61,6 +61,10 @@ loaded, prompt found 3 objects; propagate_in_video RuntimeError (0-batch feature
 video_tracking_multiplex.py:1318). No track output. Reserve $0.50, exact billing
 unobserved; containers [] verified by worker. Tests 14/14 fresh; token scan 0; main FF 36f4a59.
 S07b-orch14 Opus/high issued 2026-10-29T11:27:38+00:00, deadline 2026-10-29T11:57:38+00:00: fix propagation, <=$2.
+S17a-orch14 DONE accepted (Sonnet; TIMEBOX PASS; fresh 33 unittest OK incl fitter
+regression): r2s.report/1 contract, numbers only via fitter paths, synthetic fixtures.
+S15a-orch14 DONE accepted (Sonnet; TIMEBOX PASS; node workflow.test 8/8 fresh):
+workspace state graph reducer + README, synthetic fixtures. Main FF 00482c7. Fixture-only.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
