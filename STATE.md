@@ -10,6 +10,9 @@ clip, <=$2), S02f-orch13 Sol/high (narrowed Falling-ball provenance falsifier).
 Deadlines 11:26-11:26:21Z. Receipts: Run-System/Runs/ORCH-20261029-1654/DISPATCH.json.
 Routine controller decision: S02f narrowed to S02g-swarm3 next action to avoid
 repeat search loop. No new spend/rights/AWS/deploy authority.
+S02f-orch13 (01a1874d-c448) actual capacity error 10:56:39Z: "You've hit your usage
+limit. Try again at 6:18 PM" (12:18Z). No work done; no retry churn/model swap.
+Recheck managed recovery after 12:18Z; then fresh full30m contract if still needed.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
