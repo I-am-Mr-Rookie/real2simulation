@@ -755,6 +755,13 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
 
+- [ ] Q15 [S12 unlock, Oct29 orch] Bottleneck: S12a (prediction) waits on step S07, and S07 is
+  incomplete only because S02f (licensed calibrated Earth-fall clips) is PARTIAL with no lead.
+  S12 gates S16, S18 (demo library), S21 (benchmark), S24 (video), S25. Options: A (recommended)
+  remove S02f from S12's chain; S12 runs on public motion clips with scale-free normalized held-out
+  error, Gate M stays NOT_MET and every output says so; no calibrated-g claim. B keep S12 locked
+  until a calibrated source exists. Default if silent: B (no unlock inferred). Reply "A" or "B".
+
 - [x] Q11 [S07b exact SAM3.1 access] ANSWERED. Koushik authorized SAM3.1 terms acceptance, completed the access form, replied in RUNS.md "resolved, check now.", then supplied a screenshot showing SAM3 Gating Group Collection ACCEPTED (Oct28). Saved receipt: evidence/owner/S07/SAM31-ACCESS.md. This supersedes earlier pending-review/logged-out observations. Do not ask for access/terms approval again. Actual weight bytes/config/Modal authentication/runtime remain unverified; no token copied, bucket created or weights downloaded by this controller.
 
 - [x] R1 [Owner reply preserved Oct28] "no need to read the 4 pagge scanned pdf again again, save the instructions from it to the directory properly." Complete instructions already saved in OWNER_INSTRUCTIONS_2026-10-28.md; root AGENTS now directs startup there, not repeated scan rendering. Original retained unchanged; revisit only genuine ambiguity/owner request. Original RUNS edits saved in ORCH-20261028-SUCCESSOR/RUNS-owner-replies-before-regeneration.md.
