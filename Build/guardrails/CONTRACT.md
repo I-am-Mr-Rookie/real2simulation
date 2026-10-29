@@ -6,6 +6,11 @@ admission/library behaviour; S20c wires disabled-by-default failover; S20d/R-C t
 Authority: root `API_BUDGET.md`, `AGENTS.md`, approved plan S20, and `contracts/jobs/policy.json`.
 Current direct owner decisions supersede historical budget prose, not the monetary limits below.
 
+S20b narrowed controller delivery: `admission.py` implements offline fail-closed
+preflight; see `ADMISSION.md` for schema, tests and the exact shared reservation
+call site. Pipeline/web edits were forbidden, so live wiring, atomic reservation
+and durable upload quota below remain integration obligations, not completed work.
+
 ## 1. Existing sources, not a parallel spend database
 
 | Source / existing writer | Projection into the shared accounting view |

@@ -1,0 +1,2 @@
+PASS real guest library component renders with no admission-state dependency
+LIMIT: static empty guest page only; no HTTP request or precomputed playback tested

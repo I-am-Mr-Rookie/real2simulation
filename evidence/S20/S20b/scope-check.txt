@@ -1,0 +1,17 @@
+PASS exact Owns prefixes; no bytecode; expected branch; staged whitespace; pipeline/web unchanged from base
+Guest page SHA256: 9872abb5d4a5a790034cf9fd025ca15211cf240959de2811ed77659ccce22081
+Staged paths before scope evidence itself: 14
+Build/guardrails/ADMISSION.md
+Build/guardrails/CONTRACT.md
+Build/guardrails/admission.py
+Run-System/Runs/S20b-orch51/PLAN.md
+Run-System/Runs/S20b-orch51/REPORT.md
+Run-System/Runs/S20b-orch51/TIMEBOX.json
+evidence/S20/S20b/cost-log-tests.txt
+evidence/S20/S20b/guardrails-tests.txt
+evidence/S20/S20b/library-contract-tests.txt
+evidence/S20/S20b/library-render.txt
+evidence/S20/S20b/pipeline-tests.txt
+evidence/S20/S20b/render-library.mjs
+evidence/S20/S20b/timebox-check.txt
+tests/guardrails/test_admission.py

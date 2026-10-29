@@ -1,0 +1,39 @@
+test_allocation_preserves_demo_reserve (test_accounting.Accounting.test_allocation_preserves_demo_reserve) ... ok
+test_breached_headroom_never_negative (test_accounting.Accounting.test_breached_headroom_never_negative) ... ok
+test_decimal_arithmetic_and_rounding_cannot_hide_cap (test_accounting.Accounting.test_decimal_arithmetic_and_rounding_cannot_hide_cap) ... ok
+test_duplicate_missing_or_empty_request_ids_refused (test_accounting.Accounting.test_duplicate_missing_or_empty_request_ids_refused) ... ok
+test_existing_meta_ledger_fields_project_without_importing_live_recorder (test_accounting.Accounting.test_existing_meta_ledger_fields_project_without_importing_live_recorder) ... ok
+test_existing_scene_receipt_provisional_bill_retains_envelope (test_accounting.Accounting.test_existing_scene_receipt_provisional_bill_retains_envelope) ... ok
+test_final_reconciliation_replaces_reserve_without_double_counting (test_accounting.Accounting.test_final_reconciliation_replaces_reserve_without_double_counting) ... ok
+test_higher_estimate_or_provisional_bill_counts (test_accounting.Accounting.test_higher_estimate_or_provisional_bill_counts) ... ok
+test_history_pending_and_conservative_estimates_all_count (test_accounting.Accounting.test_history_pending_and_conservative_estimates_all_count) ... ok
+test_invalid_money_refused_at_every_present_cost_field (test_accounting.Accounting.test_invalid_money_refused_at_every_present_cost_field) ... ok
+test_malformed_collections_cannot_look_like_empty_history (test_accounting.Accounting.test_malformed_collections_cannot_look_like_empty_history) ... ok
+test_no_bill_cannot_be_final_and_no_bound_cannot_be_pending (test_accounting.Accounting.test_no_bill_cannot_be_final_and_no_bound_cannot_be_pending) ... ok
+test_provider_envelopes_cannot_be_mixed (test_accounting.Accounting.test_provider_envelopes_cannot_be_mixed) ... ok
+test_routine_threshold_is_strict_including_candidate (test_accounting.Accounting.test_routine_threshold_is_strict_including_candidate) ... ok
+test_settled_does_not_mask_malformed_unused_fields (test_accounting.Accounting.test_settled_does_not_mask_malformed_unused_fields) ... ok
+test_unknown_history_or_candidate_is_not_zero (test_accounting.Accounting.test_unknown_history_or_candidate_is_not_zero) ... ok
+test_unsettled_bill_and_lower_estimate_never_release_reserve (test_accounting.Accounting.test_unsettled_bill_and_lower_estimate_never_release_reserve) ... ok
+test_below_caps_allows_without_writing_or_dispatching (test_admission.Admission.test_below_caps_allows_without_writing_or_dispatching) ... ok
+test_corrupt_provider_money_fields_pause (test_admission.Admission.test_corrupt_provider_money_fields_pause) ... ok
+test_duplicate_json_fields_cannot_hide_spend (test_admission.Admission.test_duplicate_json_fields_cannot_hide_spend) ... ok
+test_every_required_field_missing_pauses (test_admission.Admission.test_every_required_field_missing_pauses) ... ok
+test_existing_meta_cap_blocks_even_zero_new_meta_cost (test_admission.Admission.test_existing_meta_cap_blocks_even_zero_new_meta_cost) ... ok
+test_final_reconciliation_only_releases_its_own_reservation (test_admission.Admission.test_final_reconciliation_only_releases_its_own_reservation) ... ok
+test_five_dollar_floor_counts_candidate_and_credit (test_admission.Admission.test_five_dollar_floor_counts_candidate_and_credit) ... ok
+test_guard_can_precede_existing_upload_store_and_reservation (test_admission.Admission.test_guard_can_precede_existing_upload_store_and_reservation) ... ok
+test_guest_precomputed_fixture_read_does_not_consult_admission (test_admission.Admission.test_guest_precomputed_fixture_read_does_not_consult_admission) ... ok
+test_invalid_money_and_unbounded_candidate_pause (test_admission.Admission.test_invalid_money_and_unbounded_candidate_pause) ... ok
+test_invalid_rows_or_duplicate_identity_pause (test_admission.Admission.test_invalid_rows_or_duplicate_identity_pause) ... ok
+test_meta_credit_shortfall_blocks_below_routine_cap (test_admission.Admission.test_meta_credit_shortfall_blocks_below_routine_cap) ... ok
+test_meta_history_pending_estimate_and_candidate_reach_cap (test_admission.Admission.test_meta_history_pending_estimate_and_candidate_reach_cap) ... ok
+test_missing_corrupt_wrong_encoding_and_unreadable_state_pause (test_admission.Admission.test_missing_corrupt_wrong_encoding_and_unreadable_state_pause) ... ok
+test_modal_authorized_ceiling_is_not_promotional_credit (test_admission.Admission.test_modal_authorized_ceiling_is_not_promotional_credit) ... ok
+test_stale_future_or_naive_clock_pause (test_admission.Admission.test_stale_future_or_naive_clock_pause) ... ok
+test_unverified_kill_switch_inventory_and_schema_pause (test_admission.Admission.test_unverified_kill_switch_inventory_and_schema_pause) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 0.453s
+
+OK
