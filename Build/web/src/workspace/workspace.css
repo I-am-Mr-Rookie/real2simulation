@@ -14,7 +14,7 @@
 .ws-status { margin: .5rem 0 0; font-size: .9rem; color: var(--muted); }
 .ws-error { color: #8a1c1c; }
 @media (max-width: 860px) {
-  .ws { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nav" "side" "viewport" "panel" "job"; }
+  .ws { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nav" "viewport" "panel" "job" "side"; }
   .ws-host { min-height: 16rem; }
 }
 
