@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S12e-fix-orch52 Opus high (threadId:01a189b2-c14f-7831-8fac-f337c86b6af3,hostId:local, deadline 2026-10-29T22:35:53+00:00).
+
 R-RS DONE = CHANGES_REQUIRED (orch49 Sol high; TIMEBOX PASS; evidence ff-merged). Saved Gate RS
 result (NOT_MET, 19.8%, 7/466) reproduced honest; prefix-only + errata re-seal + commit ordering OK.
 P1 defects in Build/real2sim/score.py (future false acceptance): F1 prediction not bound to clip/
