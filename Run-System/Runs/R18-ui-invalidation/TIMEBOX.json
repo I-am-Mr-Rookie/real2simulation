@@ -1,0 +1,11 @@
+{
+ "id":"R18-ui-invalidation",
+ "issued_at":"2026-10-29T08:25:04Z",
+ "deadline_at":"2026-10-29T08:55:04Z",
+ "implementation_cutoff_at":"2026-10-29T08:50:04Z",
+ "deadline_dhaka":"2026-10-29T14:55:04+06:00",
+ "work_stopped_at":"2026-10-29T08:32:52Z",
+ "reported_at":"2026-10-29T08:32:52Z",
+ "status":"DONE",
+ "completion_basis":"Bounded actual375px normalUI pendingRun/Fit resets and clean successor states, unchangedproduct, browser/servercleanupverified; not CPUabort or newproductgate."
+}

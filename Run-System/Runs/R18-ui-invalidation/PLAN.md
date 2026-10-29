@@ -1,0 +1,5 @@
+# Actual UI invalidation verification
+
+Controller issue2026-10-29T08:25:04Z, deadline08:55:04UTC/14:55:04Dhaka, minute25cutoff08:50:04. Ownerstop10:00UTC/16:00Dhaka not crossed. First issue attempt used web cwd and failed before any manifest existed; corrected issue fromroot, no backdating.
+
+Objective: actual IAB375 normal-mode reset during pending Run/Fit, beyond source-handler tests. Owns only this runfolder and evidence/S10/ui-invalidation/. No product/frozen-test/control change except serialized final control receipts. Sourceacceptedfe79f61/main3f43e4b (docs-only67fd702 base); serverownsession14936 loopback3101. Separate real HTTP worker usesisolated3103, no shared session/state. No Mystery/auth/privacy exploration, mocking/delay injection or new gate count. Observe actualpending state before reset and successor UI; never claim child cancellation solely fromAX. CPU bridge proof is separateR17worker. Ponytailfull reuse existing realUI/helpers, no newcode/deps. All physical/GPU/account/publication holds intact, OpenCodexmanagednotpolled, costsunknown. Stop own server, close temporarytab/resetviewport; report bounded evidence and limits.

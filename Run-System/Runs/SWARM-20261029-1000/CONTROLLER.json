@@ -1,11 +1,11 @@
 {
-  "updated_utc": "2026-10-29T08:21:29.000Z",
+  "updated_utc": "2026-10-29T08:32:52Z",
   "objective": "Maximum-speed authorized simulation-only swarm through2026-10-29T10:00:00Z (16:00Dhaka); owner extended after actual usage-limit interruption",
   "canonical_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
   "completed_rounds": 6,
   "queue_done": 89,
   "queue_total": 217,
-  "main_verified_source": "3f43e4b",
+  "main_verified_source": "67fd702",
   "product_reviewed_pin": "fe79f61; narrow native785a279 noP0-P2, immutable finalBuild/contracts.",
   "candidate": {
     "worktree": "C:/Users/HP/.codex/worktrees/swarm12-covariance-fix/2026-10-26 - Meta Global AI Developer Hackathon",
@@ -25,7 +25,7 @@
       "scope": "Actual normal-mode HTTP/CPU cancellation verification only; no fake producer/delay/Mystery/auth scope."
     }
   ],
-  "next": "Fresh actual Next normal HTTP cancellation worker; parent IAB invalidation proof separately, no shared endpoint contention or artificial audits/counts. Archive completed managed worktrees confirmed.",
+  "next": "Collect actualnormalHTTP/CPUabort evidence from liveR17worker; retain NOTOBSERVED/naturalexit0 faithfully; no productdiagnosis or cancellationPASS until fresh proof. Deadline08:51:29 unchanged.",
   "owner_stop": {
     "deadline": "2026-10-29T10:00:00Z",
     "crossing_worker_stop_receipt": "2026-10-29T09:59:30Z",
@@ -33,13 +33,14 @@
     "authority": "OWNER-EXTENSION-1600.md"
   },
   "servers": {
-    "recovery3101": "Owned dev36958 stopped by CtrlC; socketclosed before build",
-    "production3102": "Fresh18localHTTPprobes PASS; owned processstopped and socketclosed"
+    "recovery3101": "Owned14936CtrlCstopped; freshsocketclosed",
+    "normal3103": "R17workerowns its lifecycle; last observed run cleanupclosed, not assumedcurrentlylive",
+    "production3102": "Priorprobestopped"
   },
   "browser": {
     "kind": "ChatGPT IAB only",
-    "state": "Currenthelper375 normal free-fall Run/Compute201/Fit and Mystery Run/Fit verified; nooverflow; tabclosed viewportreset",
-    "proof": "evidence/S10/ui-helper-ui/iab-375.png"
+    "state": "Actual375 normal in-flight Run/Fit template resets and clean successorProjectile/Ramp verified; tabclosed viewportreset. Not child-killproof.",
+    "proof": "evidence/S10/ui-invalidation/reset-pending-375.png"
   },
   "project_binding": {
     "assigned_id": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
@@ -74,10 +75,11 @@
     "real_process": "../R13-process-lifecycle/REPORT.md",
     "round4": "../R15-integration/REPORT.md",
     "round5": "../R16-combined-integration/REPORT.md",
-    "round6": "../R17-ui-integration/REPORT.md"
+    "round6": "../R17-ui-integration/REPORT.md",
+    "actual_ui_invalidation": "../R18-ui-invalidation/REPORT.md"
   },
   "cleanup": "Seven recent managed instrument/model/replay/numerical/UI/oracle/native checkouts freshly archived, all finished handles closed. New normal-cancel worktreeactive; integrationcandidatepreserved.",
-  "main_fast_forward": "3f43e4b",
+  "main_fast_forward": "67fd702",
   "safety_receipt": {
     "id": "R14-mystery-privacy",
     "state": "native possible-cybersecurity-risk refusal; handleclosed; no retry/rephrase/reroute or audit-complete claim"

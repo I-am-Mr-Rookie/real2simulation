@@ -12,7 +12,13 @@ checkout line endings only; original failed check retained,196 Gitblobs unchange
 R17-ui-integration/REPORT.md records limits. FinalBuild/contracts identical to
 reviewedfe79f61. Three R16 handles closed and their worktrees archived/verified.
 
-Current08:21UTC: one genuine remaining verification gap under existingS10k:
+Current08:32UTC: actualIAB375 normal pendingRun/Fit template resets and clean
+successorProjectile/Ramp states verified, reveal0 onRamp, nooverflow; tabclosed,
+owned3101serverstopped. R18-ui-invalidation/REPORT.md is a verification supplement,
+NOT seventh round/task. R17actualHTTP/CPUabort remains unproven pending liveworker;
+natural exit0 is not accepted as cancellationPASS. No product/Gateclaim widened.
+
+Previous08:21UTC: one genuine remaining verification gap under existingS10k:
 R17-normal-http actualnormalNextHTTP/CPUbridge cancellation, full30mdeadline
 08:51:29UTC. No fake producer/delay/privateaudit or new queuecount. Parent IAB
 invalidation check stays separately serialized. Seven recent managed archives

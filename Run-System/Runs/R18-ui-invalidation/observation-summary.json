@@ -1,0 +1,66 @@
+[
+  {
+    "phase": "free-fall-request-pending",
+    "running": true,
+    "fitting": false,
+    "cleared": false,
+    "rampReady": false,
+    "reveals": null
+  },
+  {
+    "phase": "immediately-before-template-reset",
+    "running": true,
+    "fitting": false,
+    "cleared": false,
+    "rampReady": false,
+    "reveals": null
+  },
+  {
+    "phase": "immediately-after-template-reset",
+    "running": false,
+    "fitting": false,
+    "cleared": true,
+    "rampReady": false,
+    "reveals": null
+  },
+  {
+    "phase": "successor-projectile-ready",
+    "running": false,
+    "fitting": false,
+    "cleared": false,
+    "rampReady": false,
+    "reveals": null
+  },
+  {
+    "phase": "immediately-before-fit-reset",
+    "running": false,
+    "fitting": true,
+    "cleared": false,
+    "rampReady": false,
+    "reveals": null
+  },
+  {
+    "phase": "immediately-after-fit-reset-to-ramp",
+    "running": false,
+    "fitting": false,
+    "cleared": true,
+    "rampReady": false,
+    "reveals": null
+  },
+  {
+    "phase": "successor-ramp-running",
+    "running": true,
+    "fitting": false,
+    "cleared": false,
+    "rampReady": false,
+    "reveals": null
+  },
+  {
+    "phase": "successor-ramp-ready-after-old-fit-window",
+    "running": false,
+    "fitting": false,
+    "cleared": false,
+    "rampReady": true,
+    "reveals": 0
+  }
+]
