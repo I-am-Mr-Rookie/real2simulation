@@ -99,6 +99,12 @@ evidence/S05/S05b/dependency-continuation.json and latest S05b REPORT.
 
 ## Owner-validated GPU window — Oct28 scheduling authority
 
+**Oct29 owner update (supersedes conflicting lines below):** monthly Modal $30 is
+use-it-or-lose-it at month-end; front-load useful GPU jobs and size them from measured
+probe cost to use remaining monthly credit by Oct31 (exact reset unverified). $100
+grant persists. AWS quota owner-reported APPROVED; agents still need owner-created $50
+EC2 alert plus agent AWS access before any launch. No overage/idle burn; ledger jobs.
+
 Koushik confirms the current planning figures: **approximately20 GPU-hours
 needed, approximately15 hours available in his current Modal allocation, and
 reset on or after November1,2026**. These are owner-validated estimates, not

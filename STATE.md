@@ -1,5 +1,29 @@
 # Real2Simulation — STATE
 
+## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
+
+Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.
+- Claude: weekly reset Oct30 18:00 Dhaka (12:00Z), >90% unused. Use it: run every
+  dependency-ready Claude row in parallel (isolated Owns, PARALLELISM_POLICY), full
+  30m windows. Remaining Opus medium -> Opus high; Haiku -> Sonnet high; S13a-d ->
+  Opus high (Codex capacity-paused). Cross-vendor reviews stay Sol.
+- Fixture-first unlock (QUEUE deps edited, not deleted): S14a, S15a, S17a start now
+  vs accepted S08/S09g/S10/S11 + visibly synthetic fixtures; S19a after S15b; S13a after
+  S04g+S06a; S06a after S05b. Real-integration deps moved onto checkpoint leaves
+  S06h(S05) S13f(S06d) S13h(S04,S06) S14g(S13) S15d(S14a) S15k(S09,S14) S17f(S14)
+  S19d(S15). Fixture leaves never claim gate/real-scene evidence.
+- Modal: monthly $30 is use-it-or-lose-it at month-end reset; $100 grant persists to
+  Oct2027. GPU order before reset: S05b -> S05c (all approved scenes) -> S05d, S07b ->
+  tracking on remaining approved clips, S06a-f. Once a probe gives measured cost, size
+  further useful jobs to consume remaining monthly credit by Oct31 (do not assume exact
+  reset time); no paid overage, no idle burn, ledger every job. Standing GPU auth reused.
+- AWS: owner reports quota increase APPROVED (requested: us-east-2, 8 vCPU G/VT
+  on-demand + spot; region/value not agent-verified). Still OFF for agents until Koushik
+  (1) creates the $50 EC2 budget alert and (2) supplies agent AWS access (no AWS CLI or
+  AWS key names on this PC). Credits expire 2027-05: AWS is post-reset overflow and
+  SAM 3D Objects/batch S18/S21, g6e.xlarge us-east-2, spot batch, stop each session.
+Controller: apply on next dispatch decision; in-flight orch13 contracts unchanged.
+
 ## CURRENT — Oct29 16:54 Dhaka owner reappointed orchestrator (this chat 01a1874a)
 
 Owner: "Read the orchestrator.md file and be the orchestrator." Prior controller
