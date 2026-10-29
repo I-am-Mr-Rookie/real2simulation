@@ -1,0 +1,11 @@
+{
+  "id": "R16-combined-integration",
+  "issued_at": "2026-10-29T07:46:16Z",
+  "deadline_at": "2026-10-29T08:16:16Z",
+  "implementation_cutoff_at": "2026-10-29T08:11:16Z",
+  "deadline_dhaka": "2026-10-29T14:16:16+06:00",
+  "work_stopped_at": "2026-10-29T07:55:45Z",
+  "reported_at": "2026-10-29T07:55:45Z",
+  "status": "DONE",
+  "completion_basis": "Four exact-pin recoveries, reviewed worker receipts, current375px IAB and fresh local production checks; integration controls and FF packaging only remain."
+}

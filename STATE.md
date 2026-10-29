@@ -2,14 +2,27 @@
 
 ## CURRENT — owner extended inline swarm through Oct29 16:00 Dhaka
 
-Round4 accepted S11k after fresh parent source/report/timebox/375px IAB checks:
-84/216, four completed rounds upon serialized mainFF. Source82791f3/rebased
+Round5 accepted S10o/p/q and S11l after fresh parent source/report/timebox/
+375px IAB and local production build checks:88/216, five completed rounds once
+serialized FF completes. Last verified main1325ae9; combined sourceb37f7b8,
+native review1b2a87d noP0-P2, finalsource unchanged. Round4 source82791f3/rebased
 46977f0 matches native noP0-P2 review exactly; fresh22 instrument tests PASS.
-R15-integration/REPORT.md records evidence/limits. Four R15 recovery workers
-remain responsible for open numerical/model/replay/transport findings; no
+R15-integration/REPORT.md records round4 evidence/limits. Four R15 recovery workers
+finished and closed; combined productpinb37f7b8 has native noP0-P2 review and
+fresh parent tests. Derived consumer fixtures and combined375px proof verified; no
 broader gate completion inferred. No holds relaxed. Later counts supersede
 earlier historical sections.
 
+Current07:55UTC: consumer fixtures DONE, report/source/timebox independently
+checked and worker closed. All seven R15 handles now closed; no live claim.
+R15-ui-audit recovered on same route after owner capacity-OK correction; bounded
+DONE07:48UTC, report/timebox checked, closed. Parent currentproducer10/10 PASS.
+Four frozen UI helper P3 cases remain unchanged/latent, not called green. Native
+numerical model decision accepts existing S08 linear ODE; two incompatible frozen
+nonlinear-energy controls remain red/disclosed, not weakened. See R16-combined-
+integration/MODEL-DECISION.md. Current receipts supersede historical live counts.
+
+Historical recovery intake below (07:22-07:23UTC, superseded by current acceptance):
 Latest direct owner extends stop to16:00Dhaka/10:00UTC after actual usage-limit
 interruption; active goal and5min chat heartbeat updated/verified. All locks stay.
 Fresh07:22UTC audit finds all six old worker handles not_found, not live. Preserve

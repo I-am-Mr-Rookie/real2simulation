@@ -1,54 +1,21 @@
 {
-  "updated_utc": "2026-10-29T07:32:01Z",
+  "updated_utc": "2026-10-29T07:55:45Z",
   "objective": "Maximum-speed authorized simulation-only swarm through2026-10-29T10:00:00Z (16:00Dhaka); owner extended after actual usage-limit interruption",
   "canonical_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
-  "completed_rounds": 4,
-  "queue_done": 84,
+  "completed_rounds": 5,
+  "queue_done": 88,
   "queue_total": 216,
-  "main_verified_source": "8eca149",
-  "product_reviewed_pin": "9d240b0 (last accepted); new82791f3 awaiting narrow native review",
+  "main_verified_source": "1325ae9",
+  "product_reviewed_pin": "b37f7b8; native R15-combined-gate no P0-P2, pending combined integration",
   "candidate": {
     "worktree": "C:/Users/HP/.codex/worktrees/swarm12-covariance-fix/2026-10-26 - Meta Global AI Developer Hackathon",
-    "branch": "run/R14-quantizer-fix",
-    "head": "49ad146",
-    "product_pin": "82791f3 / rebased46977f0",
-    "state": "S11k verified accepted, FF packaging pending; R15-integration/REPORT.md"
+    "branch": "run/R15-combined-integration",
+    "head": "384a02d plus serialized controls",
+    "product_pin": "b37f7b8",
+    "state": "Accepted four recoveries as round5; pending verified FF packaging only, R16-combined-integration/REPORT.md"
   },
-  "active_workers": [
-    {
-      "id": "R15-numerics",
-      "agent_id": "01a1868b-072b-7cb2-ab18-70f190c70462",
-      "issued_at": "2026-10-29T07:23:40.000Z",
-      "deadline_at": "2026-10-29T07:53:40.000Z",
-      "implementation_cutoff_at": "2026-10-29T07:48:40.000Z",
-      "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26 - Meta Global AI Developer Hackathon"
-    },
-    {
-      "id": "R15-model",
-      "agent_id": "01a1868b-0987-7c42-bbed-d3e336d85601",
-      "issued_at": "2026-10-29T07:23:41.000Z",
-      "deadline_at": "2026-10-29T07:53:41.000Z",
-      "implementation_cutoff_at": "2026-10-29T07:48:41.000Z",
-      "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-model-selection/2026-10-26 - Meta Global AI Developer Hackathon"
-    },
-    {
-      "id": "R15-transport",
-      "agent_id": "01a1868b-0ef4-7c12-ad6c-f341351a2c02",
-      "issued_at": "2026-10-29T07:23:42.000Z",
-      "deadline_at": "2026-10-29T07:53:42.000Z",
-      "implementation_cutoff_at": "2026-10-29T07:48:42.000Z",
-      "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26 - Meta Global AI Developer Hackathon"
-    },
-    {
-      "id": "R15-replay",
-      "agent_id": "01a1868b-1873-7c41-bd55-2dcbd9d3721e",
-      "issued_at": "2026-10-29T07:23:45.000Z",
-      "deadline_at": "2026-10-29T07:53:45.000Z",
-      "implementation_cutoff_at": "2026-10-29T07:48:45.000Z",
-      "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-replay/2026-10-26 - Meta Global AI Developer Hackathon"
-    }
-  ],
-  "next": "FF verified S11k then collect four actual R15 recoveries; narrow required native review after source pins ready. Do not repeat whole audit/expand scope.",
+  "active_workers": [],
+  "next": "FF accepted round5, archive finished managed checkouts, start genuinely useful independent latent-helper corrections without changing current bounded-producer claims.",
   "owner_stop": {
     "deadline": "2026-10-29T10:00:00Z",
     "crossing_worker_stop_receipt": "2026-10-29T09:59:30Z",
@@ -56,17 +23,13 @@
     "authority": "OWNER-EXTENSION-1600.md"
   },
   "servers": {
-    "canonical3100": "LISTENING PID16808 verified21:28UTC; owned main dev",
-    "recovery3101": {
-      "session_id": 4539,
-      "state": "Owned dev started fresh; stop afterFF"
-    },
-    "production3102": "CLOSED"
+    "recovery3101": "Identity verified own23144/15236 tree stopped, socketclosed before production build",
+    "production3102": "Fresh18 localHTTPprobes PASS; owned child stopped; not deployment"
   },
   "browser": {
     "kind": "ChatGPT IAB only",
-    "state": "Fresh375 normal/Mystery verification complete; tab1 closed/viewport reset",
-    "proof": "evidence/S11/instrument-invariants/iab-r15-375.png"
+    "state": "Combined375x812 normal all-four compute and Mystery normalfit verified; tabclosed viewportreset",
+    "proof": "evidence/S10/combined-recovery/iab-375.png"
   },
   "project_binding": {
     "assigned_id": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
@@ -99,13 +62,14 @@
     "round3": "../R12-covariance-fix/REPORT.md",
     "native_review": "../R12-covariance-review/FOLLOWUP.md",
     "real_process": "../R13-process-lifecycle/REPORT.md",
-    "round4": "../R15-integration/REPORT.md"
+    "round4": "../R15-integration/REPORT.md",
+    "round5": "../R16-combined-integration/REPORT.md"
   },
-  "cleanup": "Six completed audit handles closed and ready checkouts reused for disjoint fixes; requirements checkout can archive after evidence integration. No forced cleanup.",
-  "main_fast_forward": "55a3d2e",
+  "cleanup": "Four completed recovery handles and native reviewer closed. UI audit recovered on same route, verified DONE and closed; actual runtime capacity notification preserved separately from worker tool observations. Consumer checkout active; archive others after acceptance via managed API only.",
+  "main_fast_forward": "1325ae9",
   "safety_receipt": {
     "id": "R14-mystery-privacy",
     "state": "native possible-cybersecurity-risk refusal; handleclosed; no retry/rephrase/reroute or audit-complete claim"
   },
-  "interruption": "R14 four workers actual usage errors; all six handles now not_found. No live-worker claim; unfinished tracked/untracked edits preserved. Four fresh original-model recoveries launched07:23UTC after elapsed recovery period, no quota polling/swaps."
+  "interruption": "Historical usage-limit errors retained; UI audit runtime capacity error was real, owner said capacity OK, same handle resumed without model swap and produced bounded DONE at07:48UTC. No quota polling."
 }

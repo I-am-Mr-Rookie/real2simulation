@@ -1,0 +1,25 @@
+▶ R15 actual bounded server envelopes reach the real UI handlers and finite chart with honest labels
+  ✔ free_fall/normal (898.5651ms)
+  ✔ free_fall/Mystery (798.4166ms)
+  ✔ projectile/normal (776.6638ms)
+  ✔ projectile/Mystery (846.2203ms)
+  ✔ ramp/normal (680.0981ms)
+  ✔ pendulum/normal (704.56ms)
+✔ R15 actual bounded server envelopes reach the real UI handlers and finite chart with honest labels (4707.3996ms)
+ℹ free_fall/normal: 201 finite observations; actual local producer, not fitted-accuracy evidence
+ℹ free_fall/mystery-g: 201 finite observations; actual local producer, not fitted-accuracy evidence
+ℹ projectile/normal: 201 finite observations; actual local producer, not fitted-accuracy evidence
+ℹ projectile/mystery-g: 201 finite observations; actual local producer, not fitted-accuracy evidence
+ℹ ramp/normal: 201 finite observations; actual local producer, not fitted-accuracy evidence
+ℹ pendulum/normal: 1001 finite observations; actual local producer, not fitted-accuracy evidence
+✔ R15 actual producer entry rejects caller-supplied observations and fit metadata (1.5698ms)
+✔ R15 actual fit handler refuses missing/cross-session responses before committing a reveal (0.6732ms)
+✔ R15 run/fit stale JSON completion cannot commit after abort or version invalidation (0.9434ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4842.4088

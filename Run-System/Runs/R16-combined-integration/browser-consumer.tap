@@ -1,0 +1,18 @@
+✔ free_fall: browser wrapper exactly preserves current engine and server trace (104.1027ms)
+✔ projectile: browser wrapper exactly preserves current engine and server trace (92.141ms)
+✔ ramp: browser wrapper exactly preserves current engine and server trace (106.4388ms)
+✔ pendulum: browser wrapper exactly preserves current engine and server trace (157.3892ms)
+✔ rejects Mystery and absent/bad modes before reading any artifact (1.1042ms)
+✔ bounds work before touching scene/engine, even if an early event would shorten the run (1.701ms)
+✔ 2000 samples includes the initial point; one more is rejected without truncation (25.0512ms)
+✔ bad horizons are rejected, not coerced, floored, or silently downsampled (2.1773ms)
+✔ actual existing artifact consumers reject malformed envelopes and non-synthetic scenes (6.131ms)
+✔ browser entry dependency graph uses only the existing browser-compatible RK4 modules (1.7729ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 620.1466

@@ -216,5 +216,21 @@ Detailed authority and stop semantics OWNER-EXTENSION-1600.md. Scope unchanged.
 Parent freshly inspected/rebased source, checked native/report/timebox, ran22
 instrument methods PASS and actualIAB375 normal/Mystery Run/Fit. Reviewedsource
 unchanged. R15-integration/REPORT.md has exact pins, receipt and fresh screenshot.
-84/216, four rounds only after serialized FF; four other R15 workers remain live.
+84/216, four rounds after verified mainFF1325ae9; later R15 workers superseded
+by the round5 receipt below.
 Physical/real-scene/GPU/deploy/account holds unchanged; goal continues to10:00UTC.
+
+## Round5 — four combined recoveries accepted
+
+S10o/p/q/S11l accepted as one round after exact-pin native noP0-P2 review,
+source/report/timebox checks, meaningful parent tests, consumer parity and actual
+375px IAB normal/Mystery verification. Queue88/216, five rounds upon serialized
+FF. Current sourceb37f7b8; Build/contracts unchanged after review. Fresh build0,
+32asset boundary checks and18 local production HTTP probes PASS; production lab
+403 intentionally. All seven R15 handles closed, no lingering-live claims.
+R16-combined-integration/REPORT.md has exact distinctions, screenshot and limits.
+Two frozen nonlinear-energy controls conflict with accepted S08 linear ODE;
+unchanged15/17 retained with explicit MODEL-DECISION, not quietly called green.
+Four helper-only latentP3 UI cases retained. No gate/physical/scope relaxation.
+Owner corrected capacity-OK; same UI handle resumed and finished bounded audit,
+no model swap or bypass. Goal remains active through16:00Dhaka/10:00UTC.

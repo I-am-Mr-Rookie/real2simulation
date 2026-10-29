@@ -1,0 +1,78 @@
+✔ real Rapier contact is mapped onto the same RK4 samples (1066.1512ms)
+✔ contact timing tracks analytic impact within one sample for supported timesteps (518.1026ms)
+✔ no-contact trajectory remains no-contact and deterministic (43.9103ms)
+✔ rejects invalid explicit physics and geometry (298.5208ms)
+✔ returned contact output is deeply immutable (92.7811ms)
+✔ rejects overflow of the derived floor center from finite operands (25.0521ms)
+✔ rejects initial penetration instead of fabricating a zero-time contact bracket (2.4411ms)
+✔ true initial touch is supported without treating a just-above start as contact (3.7578ms)
+✔ finite JavaScript inputs cannot overflow or collapse positive Rapier float32 inputs (19.305ms)
+✔ ramp uses signed fixed-step dynamics and exposes analytic comparison inputs (115.6521ms)
+✔ ramp stops at the first endpoint crossing and rejects unsupported stall/coast regimes (128.4194ms)
+✔ pendulum matches the small-angle analytic comparison and maps geometry (95.1466ms)
+✔ nonlinear pendulum converges and conserves energy (419.1515ms)
+✔ zero horizon is one immutable sample; inputs remain unchanged and deterministic (1.0617ms)
+✔ rejects sparse, nonfinite, overflow, and hidden-default inputs (1.0959ms)
+✔ consumes actual Python validate_setup export for both extended templates (5132.3346ms)
+✔ handoff supports both documented models but rejects unknown uncertainty claims (596.4591ms)
+✔ allowlisted public projection cannot leak arbitrary observation metadata (6.0104ms)
+✔ actual Python S11 response binds to same observations and preserves source (861.9769ms)
+✔ version, mutation, and cross-session binding are enforced (666.6036ms)
+{"name":"control-free-fall-fast-downward","samples":61,"maxRelativePositionError":7.400397862288942e-16}
+{"name":"control-free-fall-min-normal-gravity","samples":201,"maxRelativePositionError":0}
+{"name":"control-free-fall-through-apex","samples":601,"maxRelativePositionError":2.565848768022583e-14}
+{"name":"control-pendulum-frequency-step-boundary","samples":33,"maxRelativePositionError":8.33247948876989e-8,"linearEnergyDrift":6.942274310972607e-9,"nonlinearEnergyDrift":0.000002076775379888929}
+{"name":"control-pendulum-negative-phase","samples":2001,"maxRelativePositionError":3.11025255852445e-15,"linearEnergyDrift":5.329070518200751e-15,"nonlinearEnergyDrift":0.0001607267223859843}
+{"name":"control-projectile-fast-horizontal","samples":401,"maxRelativePositionError":1.028109261843701e-14}
+{"name":"control-projectile-low-gravity","samples":1001,"maxRelativePositionError":1.8452531039673634e-14}
+{"name":"control-ramp-friction-above-one","samples":201,"maxRelativePositionError":1.0576653814775286e-14}
+{"name":"control-ramp-shallow","samples":201,"maxRelativePositionError":2.1080035997783574e-15}
+{"name":"control-ramp-steep","samples":101,"maxRelativePositionError":4.5269032604491566e-15}
+{"name":"free-fall-large-finite-gravity","samples":9,"maxRelativePositionError":4.0874809539272366e-13}
+{"name":"pendulum-amplitude-boundary","samples":4001,"maxRelativePositionError":8.855425965267719e-12,"linearEnergyDrift":4.785061236134425e-14,"nonlinearEnergyDrift":0.0008337501653938872}
+{"name":"pendulum-amplitude-boundary-half-step","samples":8001,"maxRelativePositionError":5.540537815237263e-13,"linearEnergyDrift":9.547918011776346e-15,"nonlinearEnergyDrift":0.0008337501654114288}
+{"name":"projectile-large-finite-gravity","samples":9,"maxRelativePositionError":7.1043540339031335e-15}
+{"name":"ramp-large-finite-gravity","samples":9,"maxRelativePositionError":4.147833044690158e-13}
+{"name":"ramp-positive-near-friction-boundary","samples":201,"maxRelativePositionError":1.9744889145528173e-15}
+✔ R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-fast-downward (50.0297ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-min-normal-gravity (110.3841ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-through-apex (49.252ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: control-pendulum-frequency-step-boundary (5.8715ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: control-pendulum-negative-phase (183.5737ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: control-projectile-fast-horizontal (16.6636ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: control-projectile-low-gravity (62.3356ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-friction-above-one (28.9782ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-shallow (8.0078ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-steep (4.1579ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: free-fall-large-finite-gravity (1.2395ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: pendulum-amplitude-boundary (262.2266ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: pendulum-amplitude-boundary-half-step (534.8619ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: projectile-large-finite-gravity (3.0167ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: ramp-large-finite-gravity (1.2406ms)
+✔ R14 recovery: unchanged all-sample 0.005 oracle: ramp-positive-near-friction-boundary (6.3908ms)
+✔ R14 RK4: constant finite derivatives across large, tiny and subnormal scales (1.1053ms)
+✔ R14 RK4: mixed-sign stages and finite weighted increment despite dt*largestSlope overflow (0.633ms)
+✔ R15 RK4: finite half-stage survives overflow of the unhalved product (0.8192ms)
+✔ R14 RK4: actual stage/derivative/result checks are preserved (1.7319ms)
+✔ R14 ramp: positive cancellation result matches S08 and zero/negative are still rejected (25.7639ms)
+✔ R14 ramp: large finite endpoint bracket no longer fails from an unscaled RK4 sum (0.5681ms)
+✔ R14 model: linear dynamics across signed phases, velocities, scales and long horizons (43570.0039ms)
+✔ R14 model: nonlinear-only remains nonlinear and small-angle equilibrium remains supported (2111.9592ms)
+✔ R15 model: linear energy is conserved; nonlinear-energy change has the independently predicted magnitude (1779.0963ms)
+✔ S10a consumes only the trusted S08 validate_setup export and places geometry (5.3726ms)
+✔ RK4 zero-step validates every input, rejects sparse state, and preserves state (0.9111ms)
+✔ RK4 convergence/order, determinism, immutability and invalid dynamics (6.1872ms)
+✔ free fall uses fixed-step RK4 and matches the authoritative analytic reference (10.7802ms)
+✔ projectile preserves horizontal motion and reports a sampled stop-plane bracket (2.8323ms)
+✔ rejects missing provenance and hidden numeric defaults (1.4482ms)
+✔ is deterministic, finite, and does not mutate caller inputs (48.8234ms)
+✔ reports an already-crossed plane without advancing the integrator (0.5575ms)
+✔ accepts only the validated S08 transport and maps explicit template quantities (5503.2944ms)
+ℹ tests 54
+ℹ suites 0
+ℹ pass 54
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 55195.7574

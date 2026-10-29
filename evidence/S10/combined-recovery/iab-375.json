@@ -1,0 +1,53 @@
+{
+  "sourcePin": "b37f7b8",
+  "scope": "actual IAB375 combined simulation-only checks",
+  "observations": [
+    {
+      "phase": "normal-free-fall-fit",
+      "ax": "Browser tab: 2, Title: \"Real2Simulation\", URL: \"http://127.0.0.1:3101/lab\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 0 AXWebArea Real2Simulation, URL: 127.0.0.1:3101/lab",
+      "dimensions": {
+        "client": 360,
+        "scroll": 360,
+        "width": 375
+      }
+    },
+    {
+      "phase": "normal-ramp-compute",
+      "ax": "Browser tab: 2, Title: \"Real2Simulation\", URL: \"http://127.0.0.1:3101/lab\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t\t\t\t103 text Computed 201 actual ramp trajectory points in this browser.\n+\t\t\t\t106 container\n+\t\t\t\t\t107 text Static trace: all  201  engine points; no animation. Time (s) vs world Y position (m).\n+\t\t\t\t108 container Simulated world Y position against time, computed in browser with fixed-step RK4\n+\t\t\t\t109 container\n+\t\t\t\t\t110 text Time:  0 – 0.2  s. World Y:  1.96316 – 2  m.\n+\t\t\t\t111 table Selected actual engine samples (6 significant digits; not the full trace)\n+\t\t\t\t\t112 text Selected actual engine samples (6 significant digits; not the full trace)\n+\t\t\t\t\t113 row\n+\t\t\t\t\t\t114 cell\n+\t\t\t\t\t\t\t115 text Time (s)\n+\t\t\t\t\t\t116 cell\n+\t\t\t\t\t\t\t117 text World Y (m)\n+\t\t\t\t\t118 row\n+\t\t\t\t\t\t119 cell\n+\t\t\t\t\t\t\t120 text 0\n+\t\t\t\t\t\t121 cell\n+\t\t\t\t\t\t\t122 text 2\n+\t\t\t\t\t123 row\n+\t\t\t\t\t\t124 cell\n+\t\t\t\t\t\t\t125 text 0.026\n+\t\t\t\t\t\t126 cell\n+\t\t\t\t\t\t\t127 text 1.99938\n+\t\t\t\t\t128 row\n+\t\t\t\t\t\t129 cell\n+\t\t\t\t\t\t\t130 text 0.052\n+\t\t\t\t\t\t131 cell\n+\t\t\t\t\t\t\t132 text 1.99751\n+\t\t\t\t\t133 row\n+\t\t\t\t\t\t134 cell\n+\t\t\t\t\t\t\t135 text 0.078\n+\t\t\t\t\t\t136 cell\n+\t\t\t\t\t\t\t137 text 1.9944\n+\t\t\t\t\t138 row\n+\t\t\t\t\t\t139 cell\n+\t\t\t\t\t\t\t140 text 0.104\n+\t\t\t\t\t\t141 cell\n+\t\t\t\t\t\t\t142 text 1.99004\n+\t\t\t\t\t143 row\n+\t\t\t\t\t\t144 cell\n+\t\t\t\t\t\t\t145 text 0.13\n+\t\t\t\t\t\t146 cell\n+\t\t\t\t\t\t\t147 text 1.98443\n+\t\t\t\t\t148 row\n+\t\t\t\t\t\t149 cell\n+\t\t\t\t\t\t\t150 text 0.156\n+\t\t\t\t\t\t151 cell\n+\t\t\t\t\t\t\t152 text 1.97759\n+\t\t\t\t\t153 row\n+\t\t\t\t\t\t154 cell\n+\t\t\t\t\t\t\t155 text 0.182\n+\t\t\t\t\t\t156 cell\n+\t\t\t\t\t\t\t157 text 1.96949\n+\t\t\t\t\t158 row\n+\t\t\t\t\t\t159 cell\n+\t\t\t\t\t\t\t160 text 0.2\n+\t\t\t\t\t\t161 cell\n+\t\t\t\t\t\t\t162 text 1.96316\nThe focused UI element is 102 button Compute in browser"
+    },
+    {
+      "phase": "normal-pendulum-compute",
+      "ax": "Browser tab: 2, Title: \"Real2Simulation\", URL: \"http://127.0.0.1:3101/lab\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t\t\t\t103 text Computed 1001 actual pendulum trajectory points in this browser.\n+\t\t\t\t106 container\n+\t\t\t\t\t107 text Static trace: all  1001  engine points; no animation. Time (s) vs world Y position (m).\n+\t\t\t\t108 container Simulated world Y position against time, computed in browser with fixed-step RK4\n+\t\t\t\t109 container\n+\t\t\t\t\t110 text Time:  0 – 1  s. World Y:  1 – 1.00125  m.\n+\t\t\t\t111 table Selected actual engine samples (6 significant digits; not the full trace)\n+\t\t\t\t\t112 text Selected actual engine samples (6 significant digits; not the full trace)\n+\t\t\t\t\t113 row\n+\t\t\t\t\t\t114 cell\n+\t\t\t\t\t\t\t115 text Time (s)\n+\t\t\t\t\t\t116 cell\n+\t\t\t\t\t\t\t117 text World Y (m)\n+\t\t\t\t\t118 row\n+\t\t\t\t\t\t119 cell\n+\t\t\t\t\t\t\t120 text 0\n+\t\t\t\t\t\t121 cell\n+\t\t\t\t\t\t\t122 text 1.00125\n+\t\t\t\t\t123 row\n+\t\t\t\t\t\t124 cell\n+\t\t\t\t\t\t\t125 text 0.126\n+\t\t\t\t\t\t126 cell\n+\t\t\t\t\t\t\t127 text 1.00107\n+\t\t\t\t\t128 row\n+\t\t\t\t\t\t129 cell\n+\t\t\t\t\t\t\t130 text 0.252\n+\t\t\t\t\t\t131 cell\n+\t\t\t\t\t\t\t132 text 1.00062\n+\t\t\t\t\t133 row\n+\t\t\t\t\t\t134 cell\n+\t\t\t\t\t\t\t135 text 0.378\n+\t\t\t\t\t\t136 cell\n+\t\t\t\t\t\t\t137 text 1.00018\n+\t\t\t\t\t138 row\n+\t\t\t\t\t\t139 cell\n+\t\t\t\t\t\t\t140 text 0.504\n+\t\t\t\t\t\t141 cell\n+\t\t\t\t\t\t\t142 text 1\n+\t\t\t\t\t143 row\n+\t\t\t\t\t\t144 cell\n+\t\t\t\t\t\t\t145 text 0.63\n+\t\t\t\t\t\t146 cell\n+\t\t\t\t\t\t\t147 text 1.00019\n+\t\t\t\t\t148 row\n+\t\t\t\t\t\t149 cell\n+\t\t\t\t\t\t\t150 text 0.756\n+\t\t\t\t\t\t151 cell\n+\t\t\t\t\t\t\t152 text 1.00064\n+\t\t\t\t\t153 row\n+\t\t\t\t\t\t154 cell\n+\t\t\t\t\t\t\t155 text 0.882\n+\t\t\t\t\t\t156 cell\n+\t\t\t\t\t\t\t157 text 1.00108\n+\t\t\t\t\t158 row\n+\t\t\t\t\t\t159 cell\n+\t\t\t\t\t\t\t160 text 1\n+\t\t\t\t\t\t161 cell\n+\t\t\t\t\t\t\t162 text 1.00125\nThe focused UI element is 102 button Compute in browser",
+      "dimensions": {
+        "client": 360,
+        "scroll": 360,
+        "width": 375
+      }
+    },
+    {
+      "phase": "normal-projectile-compute",
+      "ax": "Browser tab: 2, Title: \"Real2Simulation\", URL: \"http://127.0.0.1:3101/lab\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t\t\t\t102 text Computed 201 actual projectile trajectory points in this browser.\n+\t\t\t\t105 container\n+\t\t\t\t\t106 text Static trace: all  201  engine points; no animation. Time (s) vs world Y position (m).\n+\t\t\t\t107 container Simulated world Y position against time, computed in browser with fixed-step RK4\n+\t\t\t\t108 container\n+\t\t\t\t\t109 text Time:  0 – 0.2  s. World Y:  1.8038 – 2  m.\n+\t\t\t\t110 table Selected actual engine samples (6 significant digits; not the full trace)\n+\t\t\t\t\t111 text Selected actual engine samples (6 significant digits; not the full trace)\n+\t\t\t\t\t112 row\n+\t\t\t\t\t\t113 cell\n+\t\t\t\t\t\t\t114 text Time (s)\n+\t\t\t\t\t\t115 cell\n+\t\t\t\t\t\t\t116 text World Y (m)\n+\t\t\t\t\t117 row\n+\t\t\t\t\t\t118 cell\n+\t\t\t\t\t\t\t119 text 0\n+\t\t\t\t\t\t120 cell\n+\t\t\t\t\t\t\t121 text 2\n+\t\t\t\t\t122 row\n+\t\t\t\t\t\t123 cell\n+\t\t\t\t\t\t\t124 text 0.026\n+\t\t\t\t\t\t125 cell\n+\t\t\t\t\t\t\t126 text 1.99668\n+\t\t\t\t\t127 row\n+\t\t\t\t\t\t128 cell\n+\t\t\t\t\t\t\t129 text 0.052\n+\t\t\t\t\t\t130 cell\n+\t\t\t\t\t\t\t131 text 1.98674\n+\t\t\t\t\t132 row\n+\t\t\t\t\t\t133 cell\n+\t\t\t\t\t\t\t134 text 0.078\n+\t\t\t\t\t\t135 cell\n+\t\t\t\t\t\t\t136 text 1.97016\n+\t\t\t\t\t137 row\n+\t\t\t\t\t\t138 cell\n+\t\t\t\t\t\t\t139 text 0.104\n+\t\t\t\t\t\t140 cell\n+\t\t\t\t\t\t\t141 text 1.94695\n+\t\t\t\t\t142 row\n+\t\t\t\t\t\t143 cell\n+\t\t\t\t\t\t\t144 text 0.13\n+\t\t\t\t\t\t145 cell\n+\t\t\t\t\t\t\t146 text 1.91711\n+\t\t\t\t\t147 row\n+\t\t\t\t\t\t148 cell\n+\t\t\t\t\t\t\t149 text 0.156\n+\t\t\t\t\t\t150 cell\n+\t\t\t\t\t\t\t151 text 1.88063\n+\t\t\t\t\t152 row\n+\t\t\t\t\t\t153 cell\n+\t\t\t\t\t\t\t154 text 0.182\n+\t\t\t\t\t\t155 cell\n+\t\t\t\t\t\t\t156 text 1.83753\n+\t\t\t\t\t157 row\n+\t\t\t\t\t\t158 cell\n+\t\t\t\t\t\t\t159 text 0.2\n+\t\t\t\t\t\t160 cell\n+\t\t\t\t\t\t\t161 text 1.8038\nThe focused UI element is 101 button Compute in browser"
+    },
+    {
+      "phase": "mystery-before-fit",
+      "ax": "Browser tab: 2, Title: \"Real2Simulation\", URL: \"http://127.0.0.1:3101/lab\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 0 AXWebArea Real2Simulation, URL: 127.0.0.1:3101/lab",
+      "dimensions": {
+        "client": 360,
+        "scroll": 360,
+        "width": 375
+      },
+      "computeButtons": 0,
+      "revealHeadings": 0
+    },
+    {
+      "phase": "mystery-after-fit",
+      "ax": "Browser tab: 2, Title: \"Real2Simulation\", URL: \"http://127.0.0.1:3101/lab\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 0 AXWebArea Real2Simulation, URL: 127.0.0.1:3101/lab",
+      "dimensions": {
+        "client": 360,
+        "scroll": 360,
+        "width": 375
+      },
+      "computeButtons": 0
+    }
+  ]
+}
