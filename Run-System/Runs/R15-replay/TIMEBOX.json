@@ -1,0 +1,12 @@
+{
+  "id": "R15-replay",
+  "issued_at": "2026-10-29T07:23:45.000Z",
+  "deadline_at": "2026-10-29T07:53:45.000Z",
+  "implementation_cutoff_at": "2026-10-29T07:48:45.000Z",
+  "deadline_dhaka": "2026-10-29T13:53:45.000+06:00",
+  "owner_stop_at": "2026-10-29T10:00:00.000Z",
+  "work_started_at": "2026-10-29T07:23:58.000Z",
+  "work_stopped_at": "2026-10-29T07:32:54.852Z",
+  "reported_at": "2026-10-29T07:33:09.000Z",
+  "status": "DONE"
+}

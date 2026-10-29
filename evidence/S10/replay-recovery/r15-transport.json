@@ -1,0 +1,60 @@
+{
+  "captured_at": "2026-10-29T07:29:57.479773+00:00",
+  "scope": "local synthetic CLI replay; identity equality, not authentication or physical accuracy",
+  "sources_sha256": {
+    "Build/simulator/replay.mjs": "483afb36ea0de093219379453cb3dccd158d6acdf8cc52fc76c413d82e832e11",
+    "Build/lab/replay-check.mjs": "1260cff2ad88fc1711a06c162a646970050aed3af545eed3d7e316e5057687dc",
+    "tests/simulator/r14-replay-invariants.test.mjs": "78813526465b4521db89046f2d10d7c2b26276085b70e350cd64003cc546a258",
+    "tests/simulator/replay-recovery.test.mjs": "70e3897e82591abef7f8676d07d82d1cf4cbd637103c8b2fa697766ade8320eb"
+  },
+  "cases": [
+    {
+      "template": "free_fall",
+      "artifact_sha256": "0ac7981b706897b1fd93e709803eb0dfb197cd09467c9c125e97becda3f87daa",
+      "replay": {
+        "replayHash": "aede065a84d558ee9558d15c872479641c961558b0e07dc095d945e6d9f44398",
+        "traceHash": "e0937438699596a866ba76ea421a9cd7d00c2af9d1adf01cb2c991c7f2b452f2",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 201,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      }
+    },
+    {
+      "template": "projectile",
+      "artifact_sha256": "c1982004b15e97f931074bbb03f7b13d8f9ee4216df42f3f0bd71b2e2d14ca3f",
+      "replay": {
+        "replayHash": "ba22600d9b3dd6e6225c15c5a626a3d9b84cb6bb8c5279d78a93032ef9f0a9a7",
+        "traceHash": "5ed61ad373f366ad191b9125ff896be09a6ca6fbe63b8057b68f11c5faa51f4a",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 201,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      }
+    },
+    {
+      "template": "ramp",
+      "artifact_sha256": "e4ed77a77f67b95e8a96308079b2a63662f8244a3d8d48ba0e107e26cd2d4b4f",
+      "replay": {
+        "replayHash": "fca3b964a0651bbc7ed03ec5956d52b13938117cbd0c7f01e0ee0098392eb4a4",
+        "traceHash": "ba310b63f72b639e44c698317aa865fe2beb540c163fda49f5a4452879dd0470",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 201,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      }
+    },
+    {
+      "template": "pendulum",
+      "artifact_sha256": "f7ced5c3b8cfe5b4aa465f73ea382c2867f21865fe01023d3a6cca055604277a",
+      "replay": {
+        "replayHash": "fd5195cc1223a35bb884b1196263e34a78a05c6c1139251c5df39267885c00ca",
+        "traceHash": "f60a8a6f873dd07ebf8f9e77eefc6865640d6030c91623623a7d9b053757f173",
+        "deterministic": true,
+        "seedBound": true,
+        "samples": 1001,
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+      }
+    }
+  ]
+}

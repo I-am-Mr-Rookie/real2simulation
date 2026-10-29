@@ -1,0 +1,13 @@
+# R15-replay — S10p recovery
+
+- Objective: recover the interrupted R14-replay-fix edits, verify deterministic replay correctness against the unchanged frozen oracle, and commit only assigned paths.
+- Assigned CODEX-1 / managed gpt-6.1-sol / high; assignment is not independent runtime/model attestation. OpenCodex-managed; not polled. Costs/tokens unknown.
+- Actual handout issue: 2026-10-29T07:23:45.000Z; deadline: 2026-10-29T07:53:45.000Z / 13:53:45 Dhaka; minute25 cutoff: 07:48:45Z. First tool: 07:23:58Z. Owner stop: 10:00Z / 16:00 Dhaka, outside this full 1800-second window.
+- Checkout: C:/Users/HP/.codex/worktrees/swarm14-replay/2026-10-26 - Meta Global AI Developer Hackathon. Existing branch run/R14-replay-fix, HEAD f62b095734791798f2fe62149ddcc6d60b8ab7c4; created run/R15-replay without reset. Existing tracked replay.mjs edit and untracked replay.md, recovery tests and evidence preserved.
+- Inherited Meta AI Hackathon project 91e441f8-e40c-4ec4-bea2-de7fa1582d97; canonical root C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon. Child UI association not independently verified. Direct owner authorizes this inline recovery; no worker/fanout launched.
+- Owns: Build/simulator/replay.mjs; Build/simulator/replay.md; directly necessary tests/simulator/ replay tests; evidence/S10/replay-recovery/; Run-System/Runs/R15-replay/. No frozen oracle, parent controls/main, instrument quantizer or UI edits.
+- Read current canonical AGENTS/STATE/QUEUE, strict timebox policy, owner transcription, relevant plan/budget/decisions/rubric, R14-replay REPORT and R14-replay-fix PLAN/TIMEBOX, scoped code/callers and frozen tests. Full Ponytail applied: retain the existing canonical/clone/freeze/hash API; inspect every caller; no dependency or abstraction expansion.
+- Acceptance: frozen 31 regression checks green; targeted recovery/caller checks green; original four-template replay/trace identities unchanged. Record fresh evidence and source/oracle hashes, not old uncommitted DONE claims.
+- Interrupted R14-fix has PLAN/TIMEBOX and old TAP evidence but no terminal REPORT or work-stop receipt. Its actual stop is unknown; do not backdate it or treat its old ACTIVE status as current activity.
+- No private Mystery/auth audit, models/jobs/paid GPU, real scenes, physical Gate M/S12, deployment/publication/accounts/terms/credentials/env values/provider/routing/policy changes, quota polling or heavy build. Parent owns review/integration/UI checks/main FF.
+- Use remaining window for unfinished acceptance; no terminal incomplete receipt early absent authorized exception. At minute25 no new implementation. Fully verified DONE may finish early.

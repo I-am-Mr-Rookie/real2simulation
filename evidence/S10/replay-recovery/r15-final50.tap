@@ -1,0 +1,310 @@
+TAP version 13
+# Subtest: clean: independent canonical byte vectors and standard SHA-256
+ok 1 - clean: independent canonical byte vectors and standard SHA-256
+  ---
+  duration_ms: 26.625
+  type: 'test'
+  ...
+# Subtest: clean: actual free_fall output matches independent record/hash oracle
+ok 2 - clean: actual free_fall output matches independent record/hash oracle
+  ---
+  duration_ms: 85.3872
+  type: 'test'
+  ...
+# Subtest: clean: actual projectile output matches independent record/hash oracle
+ok 3 - clean: actual projectile output matches independent record/hash oracle
+  ---
+  duration_ms: 79.1157
+  type: 'test'
+  ...
+# Subtest: clean: actual ramp output matches independent record/hash oracle
+ok 4 - clean: actual ramp output matches independent record/hash oracle
+  ---
+  duration_ms: 78.8987
+  type: 'test'
+  ...
+# Subtest: clean: actual pendulum output matches independent record/hash oracle
+ok 5 - clean: actual pendulum output matches independent record/hash oracle
+  ---
+  duration_ms: 369.3994
+  type: 'test'
+  ...
+# Subtest: clean: sorted object keys preserve identity; ordered arrays do not
+ok 6 - clean: sorted object keys preserve identity; ordered arrays do not
+  ---
+  duration_ms: 5.625
+  type: 'test'
+  ...
+# Subtest: clean: seed is identity-bound metadata, including legal boundary seeds
+ok 7 - clean: seed is identity-bound metadata, including legal boundary seeds
+  ---
+  duration_ms: 14.9232
+  type: 'test'
+  ...
+# Subtest: clean: record is detached and deeply frozen; runner cannot mutate stored parameters
+ok 8 - clean: record is detached and deeply frozen; runner cannot mutate stored parameters
+  ---
+  duration_ms: 6.3154
+  type: 'test'
+  ...
+# Subtest: clean: tampered seed rejects before runner
+ok 9 - clean: tampered seed rejects before runner
+  ---
+  duration_ms: 7.0001
+  type: 'test'
+  ...
+# Subtest: clean: tampered parameters rejects before runner
+ok 10 - clean: tampered parameters rejects before runner
+  ---
+  duration_ms: 3.5448
+  type: 'test'
+  ...
+# Subtest: clean: tampered trace rejects before runner
+ok 11 - clean: tampered trace rejects before runner
+  ---
+  duration_ms: 5.9876
+  type: 'test'
+  ...
+# Subtest: clean: tampered version rejects before runner
+ok 12 - clean: tampered version rejects before runner
+  ---
+  duration_ms: 8.3395
+  type: 'test'
+  ...
+# Subtest: clean: tampered traceHash rejects before runner
+ok 13 - clean: tampered traceHash rejects before runner
+  ---
+  duration_ms: 3.8042
+  type: 'test'
+  ...
+# Subtest: clean: tampered replayHash rejects before runner
+ok 14 - clean: tampered replayHash rejects before runner
+  ---
+  duration_ms: 6.9947
+  type: 'test'
+  ...
+# Subtest: clean: changed runner output rejects; hashes are not authentication
+ok 15 - clean: changed runner output rejects; hashes are not authentication
+  ---
+  duration_ms: 23.0701
+  type: 'test'
+  ...
+# Subtest: clean: documented hostile JSON-incompatible parameter values reject
+ok 16 - clean: documented hostile JSON-incompatible parameter values reject
+  ---
+  duration_ms: 2.0807
+  type: 'test'
+  ...
+# Subtest: counterexample: array index accessor must reject before invoking getter
+ok 17 - counterexample: array index accessor must reject before invoking getter
+  ---
+  duration_ms: 0.5878
+  type: 'test'
+  ...
+# Subtest: counterexample: extra non-index array key 01 must not disappear
+ok 18 - counterexample: extra non-index array key 01 must not disappear
+  ---
+  duration_ms: 0.4023
+  type: 'test'
+  ...
+# Subtest: counterexample: extra non-index array key 4294967295 must not disappear
+ok 19 - counterexample: extra non-index array key 4294967295 must not disappear
+  ---
+  duration_ms: 0.3089
+  type: 'test'
+  ...
+# Subtest: counterexample: array subclass must not manufacture canonical trace through map
+ok 20 - counterexample: array subclass must not manufacture canonical trace through map
+  ---
+  duration_ms: 10.2007
+  type: 'test'
+  ...
+# Subtest: counterexample: malformed record negative seed rejects before running simulator
+ok 21 - counterexample: malformed record negative seed rejects before running simulator
+  ---
+  duration_ms: 1.2042
+  type: 'test'
+  ...
+# Subtest: counterexample: malformed record fractional seed rejects before running simulator
+ok 22 - counterexample: malformed record fractional seed rejects before running simulator
+  ---
+  duration_ms: 0.5294
+  type: 'test'
+  ...
+# Subtest: counterexample: malformed record unsafe seed rejects before running simulator
+ok 23 - counterexample: malformed record unsafe seed rejects before running simulator
+  ---
+  duration_ms: 0.479
+  type: 'test'
+  ...
+# Subtest: counterexample: malformed record null parameters rejects before running simulator
+ok 24 - counterexample: malformed record null parameters rejects before running simulator
+  ---
+  duration_ms: 0.3597
+  type: 'test'
+  ...
+# Subtest: counterexample: malformed record array parameters rejects before running simulator
+ok 25 - counterexample: malformed record array parameters rejects before running simulator
+  ---
+  duration_ms: 0.4226
+  type: 'test'
+  ...
+# Subtest: counterexample: malformed record empty trace rejects before running simulator
+ok 26 - counterexample: malformed record empty trace rejects before running simulator
+  ---
+  duration_ms: 0.2948
+  type: 'test'
+  ...
+# Subtest: counterexample: malformed record object trace rejects before running simulator
+ok 27 - counterexample: malformed record object trace rejects before running simulator
+  ---
+  duration_ms: 0.2915
+  type: 'test'
+  ...
+# Subtest: counterexample: envelope getter must reject before property execution
+ok 28 - counterexample: envelope getter must reject before property execution
+  ---
+  duration_ms: 0.5835
+  type: 'test'
+  ...
+# Subtest: counterexample: async verification must use one detached record snapshot
+ok 29 - counterexample: async verification must use one detached record snapshot
+  ---
+  duration_ms: 22.2664
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable seed accessor without execution
+ok 30 - replay rejects enumerable seed accessor without execution
+  ---
+  duration_ms: 22.475
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable version accessor without execution
+ok 31 - replay rejects enumerable version accessor without execution
+  ---
+  duration_ms: 1.9063
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable parameters accessor without execution
+ok 32 - replay rejects enumerable parameters accessor without execution
+  ---
+  duration_ms: 1.4509
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable trace accessor without execution
+ok 33 - replay rejects enumerable trace accessor without execution
+  ---
+  duration_ms: 1.9552
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable traceHash accessor without execution
+ok 34 - replay rejects enumerable traceHash accessor without execution
+  ---
+  duration_ms: 1.6815
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable replayHash accessor without execution
+ok 35 - replay rejects enumerable replayHash accessor without execution
+  ---
+  duration_ms: 1.5622
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden seed accessor without execution
+ok 36 - replay rejects hidden seed accessor without execution
+  ---
+  duration_ms: 2.2806
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden version accessor without execution
+ok 37 - replay rejects hidden version accessor without execution
+  ---
+  duration_ms: 2.2139
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden parameters accessor without execution
+ok 38 - replay rejects hidden parameters accessor without execution
+  ---
+  duration_ms: 2.4911
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden trace accessor without execution
+ok 39 - replay rejects hidden trace accessor without execution
+  ---
+  duration_ms: 1.5536
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden traceHash accessor without execution
+ok 40 - replay rejects hidden traceHash accessor without execution
+  ---
+  duration_ms: 1.4649
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden replayHash accessor without execution
+ok 41 - replay rejects hidden replayHash accessor without execution
+  ---
+  duration_ms: 1.1946
+  type: 'test'
+  ...
+# Subtest: creation rejects envelope and nested hidden accessors without execution
+ok 42 - creation rejects envelope and nested hidden accessors without execution
+  ---
+  duration_ms: 0.8236
+  type: 'test'
+  ...
+# Subtest: array descriptors reject non-index/symbol/map extras without invoking them
+ok 43 - array descriptors reject non-index/symbol/map extras without invoking them
+  ---
+  duration_ms: 0.6407
+  type: 'test'
+  ...
+# Subtest: array subclass traversal uses own data rather than inherited map/index getters
+ok 44 - array subclass traversal uses own data rather than inherited map/index getters
+  ---
+  duration_ms: 7.213
+  type: 'test'
+  ...
+# Subtest: runner mutation of original record cannot replace the verified snapshot
+ok 45 - runner mutation of original record cannot replace the verified snapshot
+  ---
+  duration_ms: 5.1943
+  type: 'test'
+  ...
+# Subtest: creation detaches parameters and trace before its first await
+ok 46 - creation detaches parameters and trace before its first await
+  ---
+  duration_ms: 1.6588
+  type: 'test'
+  ...
+# Subtest: invalid envelope types reject before runner
+ok 47 - invalid envelope types reject before runner
+  ---
+  duration_ms: 0.7502
+  type: 'test'
+  ...
+# Subtest: unsupported versions reject during creation without a simulator dependency
+ok 48 - unsupported versions reject during creation without a simulator dependency
+  ---
+  duration_ms: 0.4834
+  type: 'test'
+  ...
+# Subtest: same seed is byte-identical and immutable
+ok 49 - same seed is byte-identical and immutable
+  ---
+  duration_ms: 32.025
+  type: 'test'
+  ...
+# Subtest: changed seed/params distinguish; hostile inputs fail
+ok 50 - changed seed/params distinguish; hostile inputs fail
+  ---
+  duration_ms: 3.6253
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 973.0909

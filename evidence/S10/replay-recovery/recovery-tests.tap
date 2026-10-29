@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: replay rejects enumerable seed accessor without execution
+ok 1 - replay rejects enumerable seed accessor without execution
+  ---
+  duration_ms: 50.3919
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable version accessor without execution
+ok 2 - replay rejects enumerable version accessor without execution
+  ---
+  duration_ms: 3.0087
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable parameters accessor without execution
+ok 3 - replay rejects enumerable parameters accessor without execution
+  ---
+  duration_ms: 6.3799
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable trace accessor without execution
+ok 4 - replay rejects enumerable trace accessor without execution
+  ---
+  duration_ms: 8.7201
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable traceHash accessor without execution
+ok 5 - replay rejects enumerable traceHash accessor without execution
+  ---
+  duration_ms: 2.7023
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable replayHash accessor without execution
+ok 6 - replay rejects enumerable replayHash accessor without execution
+  ---
+  duration_ms: 1.8524
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden seed accessor without execution
+ok 7 - replay rejects hidden seed accessor without execution
+  ---
+  duration_ms: 2.2012
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden version accessor without execution
+ok 8 - replay rejects hidden version accessor without execution
+  ---
+  duration_ms: 10.5116
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden parameters accessor without execution
+ok 9 - replay rejects hidden parameters accessor without execution
+  ---
+  duration_ms: 5.5426
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden trace accessor without execution
+ok 10 - replay rejects hidden trace accessor without execution
+  ---
+  duration_ms: 5.7353
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden traceHash accessor without execution
+ok 11 - replay rejects hidden traceHash accessor without execution
+  ---
+  duration_ms: 2.9979
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden replayHash accessor without execution
+ok 12 - replay rejects hidden replayHash accessor without execution
+  ---
+  duration_ms: 5.3993
+  type: 'test'
+  ...
+# Subtest: creation rejects envelope and nested hidden accessors without execution
+ok 13 - creation rejects envelope and nested hidden accessors without execution
+  ---
+  duration_ms: 1.6031
+  type: 'test'
+  ...
+# Subtest: array descriptors reject non-index/symbol/map extras without invoking them
+ok 14 - array descriptors reject non-index/symbol/map extras without invoking them
+  ---
+  duration_ms: 1.1304
+  type: 'test'
+  ...
+# Subtest: array subclass traversal uses own data rather than inherited map/index getters
+ok 15 - array subclass traversal uses own data rather than inherited map/index getters
+  ---
+  duration_ms: 6.2537
+  type: 'test'
+  ...
+# Subtest: runner mutation of original record cannot replace the verified snapshot
+ok 16 - runner mutation of original record cannot replace the verified snapshot
+  ---
+  duration_ms: 15.9548
+  type: 'test'
+  ...
+# Subtest: creation detaches parameters and trace before its first await
+ok 17 - creation detaches parameters and trace before its first await
+  ---
+  duration_ms: 6.6389
+  type: 'test'
+  ...
+# Subtest: invalid envelope types reject before runner
+ok 18 - invalid envelope types reject before runner
+  ---
+  duration_ms: 0.8444
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 440.6963

@@ -1,0 +1,147 @@
+TAP version 13
+# node:internal/modules/package_json_reader:301
+#   throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+#         ^
+# Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@dimforge/rapier3d-compat' imported from C:\\Users\\HP\\.codex\\worktrees\\swarm14-replay\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\simulator\\contacts.mjs
+#     at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)
+#     at packageResolve (node:internal/modules/esm/resolve:768:81)
+#     at moduleResolve (node:internal/modules/esm/resolve:859:18)
+#     at defaultResolve (node:internal/modules/esm/resolve:992:11)
+#     at \#cachedDefaultResolve (node:internal/modules/esm/loader:701:20)
+#     at \#resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:721:38)
+#     at ModuleLoader.resolveSync (node:internal/modules/esm/loader:759:56)
+#     at \#resolve (node:internal/modules/esm/loader:683:17)
+#     at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:603:35)
+#     at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33) {
+#   code: 'ERR_MODULE_NOT_FOUND'
+# }
+# Node.js v24.18.0
+# Subtest: tests\\lab\\contact-integration.test.mjs
+not ok 1 - tests\\lab\\contact-integration.test.mjs
+  ---
+  duration_ms: 659.5391
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-replay\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\contact-integration.test.mjs:1:1'
+  failureType: 'testCodeFailure'
+  exitCode: 1
+  signal: ~
+  error: 'test failed'
+  code: 'ERR_TEST_FAILURE'
+  ...
+# Subtest: replay rejects enumerable seed accessor without execution
+ok 2 - replay rejects enumerable seed accessor without execution
+  ---
+  duration_ms: 87.8215
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable version accessor without execution
+ok 3 - replay rejects enumerable version accessor without execution
+  ---
+  duration_ms: 2.8712
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable parameters accessor without execution
+ok 4 - replay rejects enumerable parameters accessor without execution
+  ---
+  duration_ms: 4.8646
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable trace accessor without execution
+ok 5 - replay rejects enumerable trace accessor without execution
+  ---
+  duration_ms: 2.5844
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable traceHash accessor without execution
+ok 6 - replay rejects enumerable traceHash accessor without execution
+  ---
+  duration_ms: 2.38
+  type: 'test'
+  ...
+# Subtest: replay rejects enumerable replayHash accessor without execution
+ok 7 - replay rejects enumerable replayHash accessor without execution
+  ---
+  duration_ms: 1.6532
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden seed accessor without execution
+ok 8 - replay rejects hidden seed accessor without execution
+  ---
+  duration_ms: 1.5997
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden version accessor without execution
+ok 9 - replay rejects hidden version accessor without execution
+  ---
+  duration_ms: 2.1868
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden parameters accessor without execution
+ok 10 - replay rejects hidden parameters accessor without execution
+  ---
+  duration_ms: 3.1118
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden trace accessor without execution
+ok 11 - replay rejects hidden trace accessor without execution
+  ---
+  duration_ms: 17.1211
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden traceHash accessor without execution
+ok 12 - replay rejects hidden traceHash accessor without execution
+  ---
+  duration_ms: 29.4284
+  type: 'test'
+  ...
+# Subtest: replay rejects hidden replayHash accessor without execution
+ok 13 - replay rejects hidden replayHash accessor without execution
+  ---
+  duration_ms: 24.3768
+  type: 'test'
+  ...
+# Subtest: creation rejects envelope and nested hidden accessors without execution
+ok 14 - creation rejects envelope and nested hidden accessors without execution
+  ---
+  duration_ms: 1.9443
+  type: 'test'
+  ...
+# Subtest: array descriptors reject non-index/symbol/map extras without invoking them
+ok 15 - array descriptors reject non-index/symbol/map extras without invoking them
+  ---
+  duration_ms: 0.9065
+  type: 'test'
+  ...
+# Subtest: array subclass traversal uses own data rather than inherited map/index getters
+ok 16 - array subclass traversal uses own data rather than inherited map/index getters
+  ---
+  duration_ms: 57.8571
+  type: 'test'
+  ...
+# Subtest: runner mutation of original record cannot replace the verified snapshot
+ok 17 - runner mutation of original record cannot replace the verified snapshot
+  ---
+  duration_ms: 148.1873
+  type: 'test'
+  ...
+# Subtest: creation detaches parameters and trace before its first await
+ok 18 - creation detaches parameters and trace before its first await
+  ---
+  duration_ms: 43.5056
+  type: 'test'
+  ...
+# Subtest: invalid envelope types reject before runner
+ok 19 - invalid envelope types reject before runner
+  ---
+  duration_ms: 0.7273
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 18
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1541.0742
