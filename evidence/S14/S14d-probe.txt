@@ -1,0 +1,8 @@
+SYNTHETIC probe: offline replay of recorded live-room-v1-a/-d replies + marked mutations; 0 live calls
+requests sent: 4
+attempt 1 rejected: ["muse: response status 'incomplete'"]
+attempt 2 rejected: ['response: $: invalid JSON: Expecting value: line 1 column 1 (char 0)']
+attempt 3 rejected: ["response.segments[0].text: untraced_number_word 'two'"]
+attempt 4 rejected: ["response.scene_id: expected 'synthetic-room-v1'"]
+retry-4 instructions tail: tputs, so never emit number segments. Say 'the table' not 'one table'. If the scene says synthetic or gravity unknown, say so plainly. Your previous reply was rejected by the validator. Reply again and fix: response.segments[0].text: untraced_number_word 'two'
+final response: {"schema_version": "agent-response/1.0.0", "scene_id": "synthetic-room-v1", "segments": [{"type": "text", "text": "I could not understand this scene reliably, so I will not guess an experiment."}], "questions": [{"id": "template", "kind": "chips", "prompt": [{"type": "text", "text": "Which experiment do you want to set up?"}], "chips": [{"id": "free_fall", "label": [{"type": "text", "text": "Free fall"}]}, {"id": "pendulum", "label": [{"type": "text", "text": "Pendulum"}]}, {"id": "projectile", "label": [{"type": "text", "text": "Projectile"}]}, {"id": "ramp", "label": [{"type": "text", "text": "Ramp"}]}]}], "candidates": []}

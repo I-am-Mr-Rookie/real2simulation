@@ -76,6 +76,20 @@ after S08c `validate_setup`; otherwise `AgentContractError` lists every issue.
 - Tests: `tests/agent/test_interview.py` with S08 SYNTHETIC fixtures, hand-written SYNTHETIC answers and the
   RECORDED S14b fixture `live-room-v1-d`. Not Gate A, real-scene, calibration or physical evidence.
 
+## S14d validator-retry loop (offline)
+
+`muse.understand_with_retry(context, post) -> (response, rejected)`: at most 1 + `MAX_RETRIES` (= 3)
+Muse calls. Each rejected reply's `AgentContractError.issues` (bounded: first 8, 200 chars each) are
+appended to the next request's instructions; input stays the number-free scene context only.
+- Returns the first reply that passes `validate_response`. If none passes after 3 retries, or a valid reply
+  has no candidate (ambiguous scene), returns `muse.ask_user(scene_id)`: code-owned, validated, number-free,
+  `candidates: []`, one `chips` question (id `template`) whose chip ids are the S08 templates; the chosen
+  chip id goes straight to `interview.questions(scene_id, template)`. Nothing is guessed or invented.
+- Transport errors from `post` propagate without retry (no retry churn; caller/ledger decide).
+- Worst case 4 Muse calls x `MAX_OUTPUT_TOKENS` per scene: callers that reserve budget must reserve for 4.
+- Tests: `tests/agent/test_retry.py` replays RECORDED `live-room-v1-a` (incomplete) / `-d` (valid) plus
+  visibly SYNTHETIC mutations. Not Gate A, real-scene, calibration or physical evidence.
+
 ## Limits (S14a)
 
 - Number-word list is a shortcut (`one` allowed as a pronoun; Roman-numeral

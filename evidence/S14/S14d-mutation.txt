@@ -1,0 +1,7 @@
+KILLED - off-by-one: MAX_RETRIES = 4 | FAILED (failures=1)
+KILLED - retries not counted after first attempt | FAILED (failures=1)
+KILLED - retry omits validator feedback | FAILED (failures=2)
+KILLED - candidate-free valid reply returned (no ask) | FAILED (failures=1)
+KILLED - transport errors retried | FAILED (failures=1)
+KILLED - fallback fabricates a candidate | FAILED (failures=2)
+KILLED - fallback skips validation | FAILED (failures=1)
