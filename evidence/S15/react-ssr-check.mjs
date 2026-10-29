@@ -41,3 +41,21 @@ import { job as jobF } from '../../Build/web/src/workspace/fixtures.mjs';
   console.log('S15c SSR ok: failure surface, retry button, blocked-retry copy');
 }
 
+// S15d: interview panel through the real React binding (SSR), plus a static preview for the in-app browser check.
+import { initialInterview as II, reduceInterview as RI } from '../../Build/web/src/workspace/interview.mjs';
+{
+  const fx = JSON.parse(readFileSync('tests/workspace/fixtures/interview-responses.json', 'utf8'));
+  const ev = (m, ...es) => es.reduce(RI, m);
+  const iv = ev(II(), { type: 'Q_LOADED', response: fx.responses['authored-three-kinds'], sceneId: fx.scene_id, toolOutputs: fx.tool_outputs },
+    { type: 'Q_CHIP', chipId: 'ball' }, { type: 'Q_SUBMIT' }, { type: 'Q_TEXT', text: 'Dropped from the <b>edge</b>' }, { type: 'Q_SUBMIT' });
+  const out = renderToString(React.createElement(Workspace, { state: withScene, interview: iv, onAction: () => {}, adapter, loadScene: () => {} }));
+  for (const re of [/class="ws-interview"/, /Question 3 of 3/, /Release surface\?/, /aria-pressed="false"/, /Compare with 9\.8 ± 0\.1 m\/s\^2 \(simulated\)/,
+    /Dropped from the &lt;b&gt;edge&lt;\/b&gt;/, /maxLength="500"|maxlength="500"/i, /Finish/]) assert.match(out, re);
+  assert.doesNotMatch(out, /<b>edge/);
+  assert.doesNotMatch(renderToString(React.createElement(Workspace, { state: withScene, adapter, loadScene: () => {} })), /ws-interview/);
+  assert.match(renderToString(React.createElement(Workspace, { state: withScene, interview: iv, adapter, loadScene: () => {} })), /disabled/);
+  writeFileSync('evidence/S15/interview-preview.html', '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S15d interview preview (SYNTHETIC)</title><style>' + css + '</style><main>' + out + '</main>');
+  console.log('S15d SSR ok: interview panel, escaped free text, disabled without onAction');
+}
+
+

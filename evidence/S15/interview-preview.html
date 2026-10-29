@@ -1,0 +1,91 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S15d interview preview (SYNTHETIC)</title><style>:root {
+  color-scheme: light;
+  --paper: #f5f8fb;
+  --ink: #172e43;
+  --blue: #155a92;
+  --muted: #486579;
+  --rule: #ccd9e3;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 18px/1.6 "Segoe UI", sans-serif; }
+a { color: var(--blue); text-underline-offset: .2em; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--blue); outline-offset: 5px; }
+.skip-link { position: absolute; left: 1rem; top: -6rem; padding: .6rem; background: white; z-index: 10; }
+.skip-link:focus { top: .5rem; }
+.site-header, main, .site-footer { width: min(1120px, calc(100% - 3rem)); margin-inline: auto; }
+.site-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.5rem; border-bottom: 1px solid var(--rule); }
+.site-header nav { display: flex; flex-wrap: wrap; gap: 1rem; }
+.wordmark { color: var(--ink); text-decoration: none; font-weight: 700; font-size: 1.2rem; }
+main { min-height: 70vh; padding-block: 4rem; }
+h1, h2 { font-family: Georgia, serif; line-height: 1.12; font-weight: 400; text-wrap: balance; }
+h1 { font-size: clamp(2.3rem, 5vw, 4rem); margin: 0 0 1.5rem; max-width: 18ch; }
+h2 { font-size: 1.7rem; margin-top: 0; }
+p { max-width: 65ch; margin-block: 0 1.5rem; }
+.lede { font-size: 1.25rem; }
+.entry { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: 3rem; }
+.primary-link { display: inline-block; background: var(--blue); color: white; padding: .8rem 1.25rem; border-radius: 6px; font-weight: 600; }
+.bench { margin: 0; color: var(--blue); }
+.bench svg { display: block; width: 100%; height: auto; }
+figcaption { text-align: center; color: var(--ink); }
+figcaption span { display: block; font-size: .85rem; color: var(--muted); }
+.reading { max-width: 760px; }
+.mount-note { margin-top: 3rem; padding: 1.5rem; border-left: 4px solid var(--rule); background: white; }
+.mount-note p { margin-bottom: 0; }
+.site-footer { padding-block: 1.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; }
+button { font: inherit; color: white; background: var(--blue); border: 0; border-radius: 6px; padding: .6rem 1rem; margin-right: 1rem; cursor: pointer; }
+@media (max-width: 700px) {
+  .entry { grid-template-columns: 1fr; gap: 2rem; }
+  main { padding-block: 2.5rem; }
+  .site-header { flex-wrap: wrap; }
+  .bench { max-width: 420px; }
+}
+/* S15b: responsive slot layout. Wide: stage rail on top, viewport left, panel + job status right. Narrow: one column. */
+.ws { display: grid; gap: 1rem; grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+  grid-template-areas: "nav nav" "viewport panel" "viewport job"; align-items: start; }
+.ws-stages { grid-area: nav; }
+.ws-stages ol { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin: 0; padding: 0; list-style: none; font-size: .95rem; }
+.ws-stages li { color: var(--muted); }
+.ws-stages li[data-status="done"] { color: var(--ink); }
+.ws-stages li[aria-current="step"] { color: var(--blue); font-weight: 700; border-bottom: 2px solid currentColor; }
+.ws-viewport { grid-area: viewport; min-width: 0; }
+.ws-panel { grid-area: panel; }
+.ws-job { grid-area: job; font-size: .9rem; }
+.ws-host { position: relative; width: 100%; min-height: 22rem; aspect-ratio: 4 / 3; background: #0f1d2a; border-radius: 6px; overflow: hidden; }
+.ws-banner { margin: 0 0 .5rem; padding: .35rem .6rem; border: 1px solid var(--rule); border-radius: 4px; background: #fff8e1; font-size: .85rem; }
+.ws-status { margin: .5rem 0 0; font-size: .9rem; color: var(--muted); }
+.ws-error { color: #8a1c1c; }
+@media (max-width: 860px) {
+  .ws { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nav" "viewport" "panel" "job"; }
+  .ws-host { min-height: 16rem; }
+}
+
+/* S15c: status surface */
+.ws-status-surface { display: grid; gap: 0.5rem; margin-block: 0.5rem; }
+.ws-timeline, .ws-events { margin: 0; padding-left: 1.25rem; }
+.ws-timeline li[data-status="current"] { font-weight: 600; }
+.ws-timeline li[data-status="todo"] { opacity: 0.6; }
+.ws-timeline li[data-status="failed"] { font-weight: 600; text-decoration: underline wavy; }
+.ws-events { font-size: 0.85em; font-variant-numeric: tabular-nums; }
+.ws-failure { border: 1px solid currentColor; border-radius: 6px; padding: 0.5rem 0.75rem; }
+.ws-failure h3 { margin: 0 0 0.25rem; }
+.ws-retry { min-height: 44px; padding-inline: 1rem; cursor: pointer; }
+.ws-retry:disabled { cursor: not-allowed; opacity: 0.6; }
++
+/* S15d: interview panel */
+.ws-interview { display: grid; gap: .6rem; margin-top: .5rem; }
+.ws-qa { margin: 0; padding-left: 1.25rem; font-size: .9rem; }
+.ws-qa .ws-a { margin-left: .25rem; }
+.ws-progress { margin: 0; font-size: .85rem; color: var(--muted); }
+.ws-question fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.ws-question legend { font-weight: 600; margin-bottom: .4rem; padding: 0; }
+.ws-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ws-chip, .ws-back, .ws-submit { min-height: 44px; padding-inline: 1rem; cursor: pointer; border: 1px solid var(--rule); border-radius: 999px; background: #fff; color: var(--ink); }
+.ws-chip[aria-pressed="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+.ws-chip:focus-visible, .ws-back:focus-visible, .ws-submit:focus-visible, .ws-freetext textarea:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.ws-submit[aria-disabled="true"] { opacity: .6; }
+.ws-chip:disabled, .ws-back:disabled, .ws-submit:disabled { cursor: not-allowed; opacity: .6; }
+.ws-freetext { display: grid; gap: .25rem; font-size: .9rem; }
+.ws-freetext textarea { width: 100%; box-sizing: border-box; font: inherit; padding: .5rem; resize: vertical; }
+.ws-actions { display: flex; gap: .5rem; margin-top: .5rem; }
+
+</style><main><div class="ws" data-phase="interview.active"><nav class="ws-stages" data-slot="stage-nav" aria-label="Workspace stages"><ol><li data-status="done">Upload</li><li data-status="current" aria-current="step">Interview</li><li data-status="todo">Run</li><li data-status="todo">Fit</li><li data-status="todo">Report</li></ol></nav><section class="ws-viewport" data-slot="viewport" aria-label="Scene viewport"><p class="ws-banner" role="note">SYNTHETIC scene: authored geometry, not reconstruction, measurement or gate evidence</p><div class="ws-host" data-viewer-status="empty"></div><p class="ws-status" role="status" aria-live="polite">No scene yet. The viewport appears when an upload produces a scene.</p></section><section class="ws-panel" data-slot="panel" aria-label="Stage panel"><h2>Scene ready; interview in progress (not a measurement)</h2><section class="ws-interview" data-status="asking" aria-label="Interview"><ol class="ws-qa" aria-label="Answers so far"><li><span class="ws-q">Which object falls?</span> <strong class="ws-a">Ball</strong></li><li><span class="ws-q">Describe the release in your own words.</span> <strong class="ws-a">Dropped from the &lt;b&gt;edge&lt;/b&gt;</strong></li></ol><p class="ws-progress" role="status" aria-live="polite">Question 3 of 3</p><form class="ws-question"><fieldset><legend>Release surface?</legend><div class="ws-chips"><button type="button" class="ws-chip" aria-pressed="false">Table</button><button type="button" class="ws-chip" aria-pressed="false">Compare with 9.8 ± 0.1 m/s^2 (simulated)</button></div><label class="ws-freetext">Your answer<textarea rows="3" maxLength="500"></textarea></label></fieldset><div class="ws-actions"><button type="button" class="ws-back">Back</button><button type="submit" class="ws-submit" aria-disabled="true">Finish</button></div></form></section></section><aside class="ws-job" data-slot="job-status" aria-label="Job status"><p>Job synthetic-job-v1</p><div class="ws-status-surface"><ol class="ws-timeline" aria-label="Job stages"><li data-status="done">Queued</li><li data-status="done">Processing</li><li data-status="done">Scene ready</li></ol></div></aside></div></main>

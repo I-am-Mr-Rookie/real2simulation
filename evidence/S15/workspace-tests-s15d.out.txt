@@ -1,0 +1,42 @@
+✔ every fixture response is a parseable interview round; number chip text comes from the tool output (11.4024ms)
+✔ walk: chips -> free_text -> chips_and_free_text -> complete, with the answers handed out (33.4182ms)
+✔ back restores the previous answer; reload only between rounds; later rounds append; reset clears (2.3866ms)
+✔ free text is capped, stripped of control characters and kept as plain text (0.7211ms)
+✔ malformed or untraced questions are rejected and leave the interview where it was (61.9121ms)
+✔ markup: toggle chips, labelled textarea, actions report plain events; controls disabled without onAction (3.0344ms)
+✔ panel: shown only in interview.active and only when an interview state is supplied (5.1354ms)
+✔ interview.mjs stays pure: no imports, no DOM, network or model access (0.9572ms)
+✔ layout: every phase maps to a labelled stage; slots fixed; exactly one current stage (58.5735ms)
+✔ layout: no scene -> no viewer request; failed upload flags its stage and surfaces the error (4.6105ms)
+✔ viewer request: schema-exact, passes the viewer checker, no job/owner ids, never mystery (1.3776ms)
+✔ viewport: one mount per key, replace aborts+disposes old, destroy cleans up (123.3164ms)
+✔ viewport: a late mount of a replaced scene is disposed and silent (2.2177ms)
+✔ viewport: adapter failure surfaces code once; unexpected throw falls back to RENDER_FAILED (2.1016ms)
+✔ real viewer adapter: reducer scene mounts via public interface (fixture bundle, fake renderer); load failure maps (294.05ms)
+✔ view: slot markup, viewer host has no children, aria, error and synthetic banner (3.2194ms)
+✔ boundary: workspace imports no viewer internals, shell, app, auth or Clerk (5.907ms)
+✔ job-stage events are logged in order, including ignored stale/illegal ones (37.352ms)
+✔ log is bounded and never copies payload text (job status allow-listed) (1.4885ms)
+✔ timeline follows the job through queued -> running -> ready; failure marks the furthest step (1.7514ms)
+✔ upload failure: partial-state says nothing was created; retry offered only when it can help (4.2063ms)
+✔ every offered retry is a legal reducer edge and actually recovers (new job id, log restarts) (1.0523ms)
+✔ run/fit failures keep what exists and say what is missing; no fit number without a validated fit (1.8528ms)
+✔ markup: timeline, events, failure copy and retry button; retry reports only the event type (3.4114ms)
+✔ in-flight upload explains that no scene exists yet; idle renders no status chrome (0.5873ms)
+✔ status module stays inside the workspace import boundary (173.9468ms)
+✔ happy path walks upload -> interview -> run -> fit -> report (6.6323ms)
+✔ shell example job DTO parses; malformed DTOs are rejected (2.0935ms)
+✔ job rules: stale/equal revisions, wrong id, regression and terminal states are ignored (1.1174ms)
+✔ invalid spec stays in interview with a readable error; valid spec advances (0.9625ms)
+✔ run: pause/resume/cancel, seed binding, malformed and gravity-leaking output rejected (0.9409ms)
+✔ fit: only validated reveal for the expected session produces numbers (2.848ms)
+✔ EDIT_SPEC invalidates run and fit; blocked while work is in flight (1.048ms)
+✔ illegal events return the same state; every phase/event is reachable and documented (56.3179ms)
+ℹ tests 34
+ℹ suites 0
+ℹ pass 34
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4484.4521

@@ -70,5 +70,22 @@ button { font: inherit; color: white; background: var(--blue); border: 0; border
 .ws-failure h3 { margin: 0 0 0.25rem; }
 .ws-retry { min-height: 44px; padding-inline: 1rem; cursor: pointer; }
 .ws-retry:disabled { cursor: not-allowed; opacity: 0.6; }
++
+/* S15d: interview panel */
+.ws-interview { display: grid; gap: .6rem; margin-top: .5rem; }
+.ws-qa { margin: 0; padding-left: 1.25rem; font-size: .9rem; }
+.ws-qa .ws-a { margin-left: .25rem; }
+.ws-progress { margin: 0; font-size: .85rem; color: var(--muted); }
+.ws-question fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.ws-question legend { font-weight: 600; margin-bottom: .4rem; padding: 0; }
+.ws-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ws-chip, .ws-back, .ws-submit { min-height: 44px; padding-inline: 1rem; cursor: pointer; border: 1px solid var(--rule); border-radius: 999px; background: #fff; color: var(--ink); }
+.ws-chip[aria-pressed="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+.ws-chip:focus-visible, .ws-back:focus-visible, .ws-submit:focus-visible, .ws-freetext textarea:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.ws-submit[aria-disabled="true"] { opacity: .6; }
+.ws-chip:disabled, .ws-back:disabled, .ws-submit:disabled { cursor: not-allowed; opacity: .6; }
+.ws-freetext { display: grid; gap: .25rem; font-size: .9rem; }
+.ws-freetext textarea { width: 100%; box-sizing: border-box; font: inherit; padding: .5rem; resize: vertical; }
+.ws-actions { display: flex; gap: .5rem; margin-top: .5rem; }
 
 </style><main><div class="ws" data-phase="upload.failed"><nav class="ws-stages" data-slot="stage-nav" aria-label="Workspace stages"><ol><li data-status="current" aria-current="step">Upload (needs attention)</li><li data-status="todo">Interview</li><li data-status="todo">Run</li><li data-status="todo">Fit</li><li data-status="todo">Report</li></ol></nav><section class="ws-viewport" data-slot="viewport" aria-label="Scene viewport"><div class="ws-host" data-viewer-status="empty"></div><p class="ws-status" role="status" aria-live="polite">No scene yet. The viewport appears when an upload produces a scene.</p></section><section class="ws-panel" data-slot="panel" aria-label="Stage panel"><h2>Upload failed</h2></section><aside class="ws-job" data-slot="job-status" aria-label="Job status"><p>Job synthetic-job-v1</p><div class="ws-status-surface"><ol class="ws-timeline" aria-label="Job stages"><li data-status="done">Queued</li><li data-status="done">Processing</li><li data-status="failed">Failed</li></ol><ul class="ws-events" aria-label="Job events"><li>#1 UPLOAD_STARTED (upload.idle -&gt; upload.queued)</li><li>#2 Job update r1: running (upload.queued -&gt; upload.running)</li><li>#3 Job update r2: failed (upload.running -&gt; upload.failed)</li></ul><div class="ws-failure" data-kind="failed" data-stage="upload"><h3>Upload failed</h3><p>A required service is unavailable. Retrying later may work.</p><p class="ws-lost">Not available: Scene: none was created, nothing to view</p><button type="button" class="ws-retry" data-event="UPLOAD_STARTED">Start a new upload</button></div></div><p class="ws-error" role="alert">DEPENDENCY_UNAVAILABLE: SYNTHETIC failure fixture</p></aside></div></main>

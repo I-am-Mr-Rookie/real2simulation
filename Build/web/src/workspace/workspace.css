@@ -29,4 +29,21 @@
 .ws-failure h3 { margin: 0 0 0.25rem; }
 .ws-retry { min-height: 44px; padding-inline: 1rem; cursor: pointer; }
 .ws-retry:disabled { cursor: not-allowed; opacity: 0.6; }
++
+/* S15d: interview panel */
+.ws-interview { display: grid; gap: .6rem; margin-top: .5rem; }
+.ws-qa { margin: 0; padding-left: 1.25rem; font-size: .9rem; }
+.ws-qa .ws-a { margin-left: .25rem; }
+.ws-progress { margin: 0; font-size: .85rem; color: var(--muted); }
+.ws-question fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.ws-question legend { font-weight: 600; margin-bottom: .4rem; padding: 0; }
+.ws-chips { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ws-chip, .ws-back, .ws-submit { min-height: 44px; padding-inline: 1rem; cursor: pointer; border: 1px solid var(--rule); border-radius: 999px; background: #fff; color: var(--ink); }
+.ws-chip[aria-pressed="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+.ws-chip:focus-visible, .ws-back:focus-visible, .ws-submit:focus-visible, .ws-freetext textarea:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
+.ws-submit[aria-disabled="true"] { opacity: .6; }
+.ws-chip:disabled, .ws-back:disabled, .ws-submit:disabled { cursor: not-allowed; opacity: .6; }
+.ws-freetext { display: grid; gap: .25rem; font-size: .9rem; }
+.ws-freetext textarea { width: 100%; box-sizing: border-box; font: inherit; padding: .5rem; resize: vertical; }
+.ws-actions { display: flex; gap: .5rem; margin-top: .5rem; }
 
