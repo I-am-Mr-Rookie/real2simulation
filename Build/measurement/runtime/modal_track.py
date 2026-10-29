@@ -18,7 +18,7 @@ import modal
 
 HERE = Path(__file__).resolve().parent
 MEASUREMENT = HERE.parent
-REPO = MEASUREMENT.parents[1]
+REPO = HERE.parents[2] if len(HERE.parents) > 2 else HERE  # container copy is /root/modal_track.py; REPO is local-only
 CANONICAL = Path("C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon")
 CLIP = CANONICAL / "test-data/public/ST03.mp4"
 APPROVAL = "evidence/owner/S02/APPROVAL.md"
@@ -209,6 +209,8 @@ def plan(clip="ST03", first=FIRST, last=LAST, prompt="apple", out=DEFAULT_OUT):
 @app.local_entrypoint()
 def main(clip: str = "ST03", first: int = FIRST, last: int = LAST, prompt: str = "apple",
          object_id: int = OBJECT_ID, out: str = DEFAULT_OUT, masks: bool = False):
+    if type(object_id) is not int or object_id < 0:  # fail before frames/GPU, not inside the container
+        raise ValueError("nonnegative integer object_id required")
     path, metadata, dest = plan(clip, first, last, prompt, out)
     frames, frame_map = _frames(path, first, last)
     if os.environ.get("S07B_DRY"):

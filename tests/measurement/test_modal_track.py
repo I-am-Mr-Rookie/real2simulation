@@ -92,6 +92,12 @@ class ModalTrackTest(unittest.TestCase):
                     dict(first=10, last=11), dict(first=-1), dict(prompt=" ")):
             with self.subTest(bad=bad), self.assertRaises(ValueError):
                 MT.plan(**{"out": tmp, **bad})
+        remote = mock.Mock()
+        with mock.patch.object(MT.track, "remote", remote), mock.patch.object(MT, "_frames") as grab:
+            for bad in (-1, 1.0, "2"):
+                with self.subTest(object_id=bad), self.assertRaises(ValueError):
+                    MT.main(object_id=bad, out=tmp)
+        remote.assert_not_called(), grab.assert_not_called()
 
     @unittest.skipUnless(shutil.which("ffprobe") and (MT.CANONICAL / "test-data/public/RM04.mp4").exists(),
                          "local RM04 media unavailable")
@@ -100,6 +106,13 @@ class ModalTrackTest(unittest.TestCase):
         self.assertEqual((path.name, md["motion"], md["width_px"], md["height_px"]), ("RM04.mp4", "scene", 3840, 2160))
         md["source_sha256"] = "a" * 64
         _context(md, [(i, i / 25) for i in range(8)], 0)  # accepted sanitizer contract
+
+    def test_imports_at_container_root(self):
+        # orch38 live run 1 died here: Modal copies the file to /root/modal_track.py (shallow path)
+        src = (ROOT / "Build/measurement/runtime/modal_track.py").read_text("utf-8")
+        with mock.patch.dict(sys.modules, {"modal": FAKE}):
+            exec(compile(src, "/root/modal_track.py", "exec"),
+                 {"__file__": "/root/modal_track.py", "__name__": "modal_track"})
 
     def test_mask_rle_roundtrip(self):
         rng = np.random.default_rng(0)
