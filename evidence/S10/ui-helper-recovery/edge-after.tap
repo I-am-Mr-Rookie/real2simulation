@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: R16 supplied uncertainty interpretation cannot contradict the one-sigma UI label
+ok 1 - R16 supplied uncertainty interpretation cannot contradict the one-sigma UI label
+  ---
+  duration_ms: 4.2909
+  type: 'test'
+  ...
+# Subtest: R16 canonical and legacy omitted interpretation preserve the exact reveal shape
+ok 2 - R16 canonical and legacy omitted interpretation preserve the exact reveal shape
+  ---
+  duration_ms: 0.4373
+  type: 'test'
+  ...
+# Subtest: R16 assumptions must contain actual strings at every array index
+ok 3 - R16 assumptions must contain actual strings at every array index
+  ---
+  duration_ms: 0.4029
+  type: 'test'
+  ...
+# Subtest: R16 opposite-sign maximal domains retain every point, endpoint and midpoint
+ok 4 - R16 opposite-sign maximal domains retain every point, endpoint and midpoint
+  ---
+  duration_ms: 0.6046
+  type: 'test'
+  ...
+# Subtest: R16 asymmetric overflowing domains scale both axes independently without reordering
+ok 5 - R16 asymmetric overflowing domains scale both axes independently without reordering
+  ---
+  duration_ms: 0.4712
+  type: 'test'
+  ...
+# Subtest: R16 ordinary, subnormal, adjacent-large and degenerate domains keep existing affine semantics
+ok 6 - R16 ordinary, subnormal, adjacent-large and degenerate domains keep existing affine semantics
+  ---
+  duration_ms: 0.4895
+  type: 'test'
+  ...
+# Subtest: R16 large observation arrays retain finite rows beyond the argument-stack and producer limits
+ok 7 - R16 large observation arrays retain finite rows beyond the argument-stack and producer limits
+  ---
+  duration_ms: 341.3387
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 547.0288

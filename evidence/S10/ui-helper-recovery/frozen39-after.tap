@@ -1,0 +1,251 @@
+TAP version 13
+# Subtest: free_fall: browser wrapper exactly preserves current engine and server trace
+ok 1 - free_fall: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 232.2419
+  type: 'test'
+  ...
+# Subtest: projectile: browser wrapper exactly preserves current engine and server trace
+ok 2 - projectile: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 219.959
+  type: 'test'
+  ...
+# Subtest: ramp: browser wrapper exactly preserves current engine and server trace
+ok 3 - ramp: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 211.258
+  type: 'test'
+  ...
+# Subtest: pendulum: browser wrapper exactly preserves current engine and server trace
+ok 4 - pendulum: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 310.5728
+  type: 'test'
+  ...
+# Subtest: rejects Mystery and absent/bad modes before reading any artifact
+ok 5 - rejects Mystery and absent/bad modes before reading any artifact
+  ---
+  duration_ms: 1.5344
+  type: 'test'
+  ...
+# Subtest: bounds work before touching scene/engine, even if an early event would shorten the run
+ok 6 - bounds work before touching scene/engine, even if an early event would shorten the run
+  ---
+  duration_ms: 2.1505
+  type: 'test'
+  ...
+# Subtest: 2000 samples includes the initial point; one more is rejected without truncation
+ok 7 - 2000 samples includes the initial point; one more is rejected without truncation
+  ---
+  duration_ms: 49.5195
+  type: 'test'
+  ...
+# Subtest: bad horizons are rejected, not coerced, floored, or silently downsampled
+ok 8 - bad horizons are rejected, not coerced, floored, or silently downsampled
+  ---
+  duration_ms: 5.2424
+  type: 'test'
+  ...
+# Subtest: actual existing artifact consumers reject malformed envelopes and non-synthetic scenes
+ok 9 - actual existing artifact consumers reject malformed envelopes and non-synthetic scenes
+  ---
+  duration_ms: 13.3229
+  type: 'test'
+  ...
+# Subtest: browser entry dependency graph uses only the existing browser-compatible RK4 modules
+ok 10 - browser entry dependency graph uses only the existing browser-compatible RK4 modules
+  ---
+  duration_ms: 3.6462
+  type: 'test'
+  ...
+# Subtest: R14 valid accepted DTO preserves value, source, unit and uncertainty metadata
+ok 11 - R14 valid accepted DTO preserves value, source, unit and uncertainty metadata
+  ---
+  duration_ms: 3.6835
+  type: 'test'
+  ...
+# Subtest: R14 finite quantities, correct units/sources/status/session are strict without coercion
+ok 12 - R14 finite quantities, correct units/sources/status/session are strict without coercion
+  ---
+  duration_ms: 1.266
+  type: 'test'
+  ...
+# Subtest: R14 explicit 95% interval metadata must not be accepted as the hardcoded one-sigma reveal
+ok 13 - R14 explicit 95% interval metadata must not be accepted as the hardcoded one-sigma reveal
+  ---
+  duration_ms: 0.4538
+  type: 'test'
+  ...
+# Subtest: R14 sparse assumptions are not a dense array of assumption strings (in-memory boundary)
+ok 14 - R14 sparse assumptions are not a dense array of assumption strings (in-memory boundary)
+  ---
+  duration_ms: 0.3722
+  type: 'test'
+  ...
+# Subtest: R14 malformed/nonfinite/sparse observation arrays are filtered without coercion or mutation
+ok 15 - R14 malformed/nonfinite/sparse observation arrays are filtered without coercion or mutation
+  ---
+  duration_ms: 1.323
+  type: 'test'
+  ...
+# Subtest: R14 two finite extreme observations must not yield NaN/Infinity SVG coordinates
+ok 16 - R14 two finite extreme observations must not yield NaN/Infinity SVG coordinates
+  ---
+  duration_ms: 0.67
+  type: 'test'
+  ...
+# Subtest: R14 oversized observations must not escape rendering as an unmanaged argument-stack RangeError
+ok 17 - R14 oversized observations must not escape rendering as an unmanaged argument-stack RangeError
+  ---
+  duration_ms: 471.9928
+  type: 'test'
+  ...
+# Subtest: R14 adapter rejects invalid/sparse/oversized input arrays, leaving caller input untouched
+ok 18 - R14 adapter rejects invalid/sparse/oversized input arrays, leaving caller input untouched
+  ---
+  duration_ms: 9.4934
+  type: 'test'
+  ...
+# Subtest: R14 actual browser run handler replaces old success with sanitized error and error with success
+ok 19 - R14 actual browser run handler replaces old success with sanitized error and error with success
+  ---
+  duration_ms: 21.1847
+  type: 'test'
+  ...
+# Subtest: R14 actual run/fit handlers suppress late successes and failures after abort/version invalidation
+ok 20 - R14 actual run/fit handlers suppress late successes and failures after abort/version invalidation
+  ---
+  duration_ms: 4.0556
+  type: 'test'
+  ...
+# Subtest: R15 actual bounded server envelopes reach the real UI handlers and finite chart with honest labels
+    # Subtest: free_fall/normal
+    ok 1 - free_fall/normal
+      ---
+      duration_ms: 1391.2095
+      type: 'test'
+      ...
+    # Subtest: free_fall/Mystery
+    ok 2 - free_fall/Mystery
+      ---
+      duration_ms: 1095.5925
+      type: 'test'
+      ...
+    # Subtest: projectile/normal
+    ok 3 - projectile/normal
+      ---
+      duration_ms: 995.1265
+      type: 'test'
+      ...
+    # Subtest: projectile/Mystery
+    ok 4 - projectile/Mystery
+      ---
+      duration_ms: 912.9923
+      type: 'test'
+      ...
+    # Subtest: ramp/normal
+    ok 5 - ramp/normal
+      ---
+      duration_ms: 551.8491
+      type: 'test'
+      ...
+    # Subtest: pendulum/normal
+    ok 6 - pendulum/normal
+      ---
+      duration_ms: 616.7621
+      type: 'test'
+      ...
+    1..6
+ok 21 - R15 actual bounded server envelopes reach the real UI handlers and finite chart with honest labels
+  ---
+  duration_ms: 5566.0206
+  type: 'test'
+  ...
+# free_fall/normal: 201 finite observations; actual local producer, not fitted-accuracy evidence
+# free_fall/mystery-g: 201 finite observations; actual local producer, not fitted-accuracy evidence
+# projectile/normal: 201 finite observations; actual local producer, not fitted-accuracy evidence
+# projectile/mystery-g: 201 finite observations; actual local producer, not fitted-accuracy evidence
+# ramp/normal: 201 finite observations; actual local producer, not fitted-accuracy evidence
+# pendulum/normal: 1001 finite observations; actual local producer, not fitted-accuracy evidence
+# Subtest: R15 actual producer entry rejects caller-supplied observations and fit metadata
+ok 22 - R15 actual producer entry rejects caller-supplied observations and fit metadata
+  ---
+  duration_ms: 1.0473
+  type: 'test'
+  ...
+# Subtest: R15 actual fit handler refuses missing/cross-session responses before committing a reveal
+ok 23 - R15 actual fit handler refuses missing/cross-session responses before committing a reveal
+  ---
+  duration_ms: 0.4908
+  type: 'test'
+  ...
+# Subtest: R15 run/fit stale JSON completion cannot commit after abort or version invalidation
+ok 24 - R15 run/fit stale JSON completion cannot commit after abort or version invalidation
+  ---
+  duration_ms: 1.1595
+  type: 'test'
+  ...
+# Subtest: lab UI keeps the user flow and trust labels visible in source
+ok 25 - lab UI keeps the user flow and trust labels visible in source
+  ---
+  duration_ms: 2.4905
+  type: 'test'
+  ...
+# Subtest: lab layout collapses before the narrow mobile viewport
+ok 26 - lab layout collapses before the narrow mobile viewport
+  ---
+  duration_ms: 0.4748
+  type: 'test'
+  ...
+# Subtest: both request paths retain abort and stale-result guards before state updates
+ok 27 - both request paths retain abort and stale-result guards before state updates
+  ---
+  duration_ms: 0.7442
+  type: 'test'
+  ...
+# Subtest: fit contract accepts only the actual S11 quantity and preserves uncertainty metadata
+ok 28 - fit contract accepts only the actual S11 quantity and preserves uncertainty metadata
+  ---
+  duration_ms: 2.2379
+  type: 'test'
+  ...
+# Subtest: the chart uses all observations, not the downsampled table
+ok 29 - the chart uses all observations, not the downsampled table
+  ---
+  duration_ms: 7.9439
+  type: 'test'
+  ...
+# Subtest: browser engine is mounted only for an explicit normal-mode DTO
+ok 30 - browser engine is mounted only for an explicit normal-mode DTO
+  ---
+  duration_ms: 0.3768
+  type: 'test'
+  ...
+# Subtest: labels describe the bridge ordinate and unsupported fits honestly
+ok 31 - labels describe the bridge ordinate and unsupported fits honestly
+  ---
+  duration_ms: 0.5232
+  type: 'test'
+  ...
+# Subtest: plot helper uses actual finite time and position domains
+ok 32 - plot helper uses actual finite time and position domains
+  ---
+  duration_ms: 0.8361
+  type: 'test'
+  ...
+# Subtest: plot and table ignore nonfinite and malformed observations without coercion
+ok 33 - plot and table ignore nonfinite and malformed observations without coercion
+  ---
+  duration_ms: 2.2868
+  type: 'test'
+  ...
+1..33
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6355.9137
