@@ -13,6 +13,9 @@ repeat search loop. No new spend/rights/AWS/deploy authority.
 S02f-orch13 (01a1874d-c448) actual capacity error 10:56:39Z: "You've hit your usage
 limit. Try again at 6:18 PM" (12:18Z). No work done; no retry churn/model swap.
 Recheck managed recovery after 12:18Z; then fresh full30m contract if still needed.
+Owner Oct29 ~17:00 Dhaka: "Codex models quota will reset 6:18 pm; till then pause
+Codex lanes." => no GPT/Sol dispatch before 12:18Z (S02f retry hold in QUEUE).
+Claude-routed rows (Opus S05b/S07b-orch13) continue unaffected.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 

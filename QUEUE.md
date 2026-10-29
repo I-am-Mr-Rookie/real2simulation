@@ -47,6 +47,7 @@ prerequisite. Lane/slot/ownership/approval checks still apply.
 
 | Run | Retry not before (UTC) | Reason |
 |---|---|---|
+| S02f | 2026-10-29T12:18:00Z | Owner Oct29: pause all GPT/Codex-model (Sol) dispatch until quota reset 18:18 Dhaka; S02f-orch13 hit usage limit. |
 
 ## Leaf tasks
 
