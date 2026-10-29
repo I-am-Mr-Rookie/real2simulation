@@ -16,6 +16,10 @@ Recheck managed recovery after 12:18Z; then fresh full30m contract if still need
 Owner Oct29 ~17:00 Dhaka: "Codex models quota will reset 6:18 pm; till then pause
 Codex lanes." => no GPT/Sol dispatch before 12:18Z (S02f retry hold in QUEUE).
 Claude-routed rows (Opus S05b/S07b-orch13) continue unaffected.
+S05b-orch13 blocker 11:08Z: L4 RM02 got no container in 90s startup bound, app
+stopped/verified, no output; watchdog PID mismatch = Windows uv trampoline. Controller
+routine decision: ONE more attempt after PID fix+test, startup bound <=300s,
+cumulative reserve <=$1, no third attempt; started before 11:21Z only.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
