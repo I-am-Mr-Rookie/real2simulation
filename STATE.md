@@ -39,6 +39,13 @@ S02f-orch21 accepted (Sol; TIMEBOX PASS; evidence-only merge): Falling-ball lead
 also rejected. Zero qualified Earth replacements. Parent S02f stays PARTIAL; physical
 Gate M input hold unchanged. Further search only on an exact new asset/scale/clock lead.
 All in-flight chats finished; per owner stop no new chats. Controller idle awaiting Koushik.
+Owner replies Oct29 ~19:10 Dhaka (ingested; no runs started):
+- Meta: balance $149.92 free credits, no top-up; S14b calls not a problem. Live Meta calls
+  unblocked under frugal per-run caps (API_BUDGET.md); $120 stop/$30 reserve unchanged.
+- Q-S06c ANSWERED: Koushik accepted the SAM License and got SAM 3D access on HF on the
+  night of Oct28. Controller error: no project receipt existed, so it asked again. Receipt:
+  evidence/owner/S06/SAM3D-ACCESS.md (owner-reported; verify read-only in the in-app
+  browser before first use). The >=32 GB GPU requirement still stands.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.

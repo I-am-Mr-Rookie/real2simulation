@@ -161,6 +161,12 @@ Keep older$30 authorized Modal ceiling until reconciled;15h does not authorize a
 
 ## Meta credit policy
 
+**Owner update Oct29 ~19:10 Dhaka:** dev.meta.ai billing shows "Free credits in use",
+balance **$149.92**; no top-up. Owner: the 4-call S14b event is not a problem; ~$150 is
+enough if the process is frugal. Live Meta calls are UNBLOCKED for dependency-ready
+runs under frugal limits: per-run cap set in the contract, ledger every call, and the
+existing $120 routine hard stop + $30 demo reserve remain. Balance is owner-reported.
+
 **Oct29 controller breach (recorded):** S14b-orch16 made 4 live muse-wonder-1.0 calls
 (+1 free GET /v1/models) 11:3x-11:4xZ under a controller contract cap <=$1, while this
 policy still required known billing. Est $0.114 (list $4/$20 per Mtok x1.5), billed
