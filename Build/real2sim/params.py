@@ -15,8 +15,10 @@ from Build.real2sim.boundary import GATE_M, LIMITS, _sha, fit_prefix
 
 ROOT = Path(__file__).resolve().parents[2]
 # Scale-free units only; a metric unit needs a calibrated source (Gate M MET), which does not exist.
+# angular_frequency uses PTS seconds (uncalibrated capture clock), not a metric scale.
 UNITS = {"g": "image-height/s^2", "speed": "image-height/s",
-         "friction": "dimensionless", "restitution": "dimensionless"}
+         "friction": "dimensionless", "restitution": "dimensionless", "angular_frequency": "rad/s"}
+TRANSFER = ("g", "speed", "friction", "restitution")  # simulator transfer set; pendulum frequency is not transferred
 PROVENANCE = ("input_provenance", "method", "source_sha256")
 
 
@@ -72,13 +74,13 @@ def transfer(records):
         if r.get("name") in by_name:
             raise ValueError(f"duplicate parameter {r.get('name')!r}")
         by_name[r.get("name")] = r
-    refused = [n for n in UNITS if n not in by_name or "abstained" in by_name[n]]
+    refused = [n for n in TRANSFER if n not in by_name or "abstained" in by_name[n]]
     if refused:
         raise ValueError(f"refused (missing/abstained, no default): {refused}")
-    if set(by_name) - set(UNITS):
-        raise ValueError(f"unknown parameters {sorted(set(by_name) - set(UNITS))}")
+    if set(by_name) - set(TRANSFER):
+        raise ValueError(f"unknown parameters {sorted(set(by_name) - set(TRANSFER))}")
     return {n: parameter(n, by_name[n]["value"], by_name[n]["uncertainty"], by_name[n]["provenance"])
-            for n in UNITS}
+            for n in TRANSFER}
 
 
 _RUN = ("const {runContactAwareTrajectory} = await import(process.argv[1]);"

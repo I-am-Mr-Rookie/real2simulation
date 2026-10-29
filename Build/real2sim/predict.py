@@ -9,6 +9,8 @@ import json
 import math
 import sys
 
+import numpy
+
 from Build.fitter import jacobian_covariance
 from Build.real2sim.boundary import GATE_M, LIMITS, _sha, fit_prefix, record_json, split
 from Build.real2sim.params import ROOT, from_fit
@@ -97,6 +99,37 @@ def bounce(boundary, sealed, restitution, floor_y, max_bounces=1000):
 
 def as_json(prediction):
     return dict(prediction.__dict__, trace=[list(r) for r in prediction.trace])
+
+
+def pendulum(boundary, sealed, frequency):
+    """Small-angle pendulum continuation of the tracked 1-D image coordinate.
+
+    Same linearized solution as Build/templates/pendulum.analytic_pendulum
+    (theta0 cos wt + omega0/w sin wt) projected onto one image coordinate:
+    y = c + a cos(wt) + b sin(wt). w comes from a validated params angular_frequency record;
+    (c, a, b) from the prefix by linear least squares with a 1-sigma OLS band (w held fixed).
+    Undamped; no amplitude check in image units (Gate M NOT_MET).
+    """
+    ids = _identities(boundary, sealed)
+    w = frequency["value"]
+    if frequency.get("name") != "angular_frequency" or not w > 0:
+        raise ValueError("positive angular_frequency record required")
+    origin = boundary.training[0][1]
+    basis = lambda t: numpy.array([1.0, math.cos(w * t), math.sin(w * t)])  # noqa: E731
+    a = numpy.array([basis(p - origin) for _, p, _ in boundary.training])
+    y = numpy.array([v for *_, v in boundary.training])
+    coef, _, rank, _ = numpy.linalg.lstsq(a, y, rcond=None)
+    if rank < 3:
+        raise ValueError("prefix does not constrain pendulum amplitude and phase")
+    dof = len(y) - 3
+    cov = float(numpy.sum((y - a @ coef) ** 2)) / dof * numpy.linalg.inv(a.T @ a) if dof else None
+    trace = []
+    for i, p in ids:
+        b = basis(p - origin)
+        trace.append((i, p, float(b @ coef), math.sqrt(max(0.0, float(b @ cov @ b))) if dof else None))
+    model = (f"small-angle pendulum y=c+a cos(wt)+b sin(wt), w={w} rad/s "
+             f"({frequency['provenance']['input_provenance']}); 1-sigma OLS band, w fixed; t0=first training PTS")
+    return _seal("pendulum", boundary, model, trace)
 
 
 def st03_record(root=ROOT):
