@@ -108,3 +108,8 @@ authorized live run. Record exact checkpoint hash/config/software and actual
 execution evidence externally; this adapter cannot attest model identity/accuracy.
 
 Checks: `python -m unittest discover -s tests/measurement -v`.
+
+## Runtime attempt S07b-orch13 (2026-10-29)
+
+Modal A10 run: preflight PASS (exact lock), gated checkpoint SHA/size verified, predictor loaded, session+text prompt OK; propagation failed (0-batch expand). Driver needs use_fa3=False, an offload_state_to_cpu shim and extra imports (setuptools<81, einops, pycocotools). See evidence/S07/S07b/orch13/README.md. No track output yet.
+
