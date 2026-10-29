@@ -90,9 +90,11 @@ def track(frames, metadata, frame_map, prompt):
         import functools
         import sam3.model_builder as builder
         # FA3 kernel is Hopper-only and not installed (run8 failed in sam3/perflib/fa3.py on A10/L4).
-        builder.build_sam3_multiplex_video_predictor = functools.partial(
-            builder.build_sam3_multiplex_video_predictor, use_fa3=False)
-        out["builder_override"] = "use_fa3=False"
+        build = builder.build_sam3_multiplex_video_predictor
+        # run11: also test upstream default async_loading_frames=True (run9/10 0-batch features).
+        builder.build_sam3_multiplex_video_predictor = lambda **kw: build(
+            **{**kw, "use_fa3": False, "async_loading_frames": True})
+        out["builder_override"] = "use_fa3=False, async_loading_frames=True"
         predictor = load_local_predictor(path, execute=True)  # re-verifies size+SHA
         import inspect
         init = predictor.model.init_state

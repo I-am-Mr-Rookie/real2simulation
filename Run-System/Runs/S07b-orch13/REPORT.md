@@ -2,7 +2,7 @@
 
 - Model: anthropic/claude-opus-5-5 high (assigned). OpenCodex-managed; not polled. Tokens/cost of model: unknown.
 - UTC: issued 10:56:09, work 10:56:37–~11:21, deadline 11:26:09. Branch run/S07b-orch13 @7303bc5, worktree C:/Users/HP/.codex/worktrees/s07b-orch13.
-- Evidence: evidence/S07/S07b/orch13/README.md (run table), result-run4.json, result-run10.json, modal-run*.log, apps/containers before/after.
+- Evidence: evidence/S07/S07b/orch13/README.md (run table), result-run4.json, result-run10.json, result-run11.json, (modal-run*.log git-ignored, on disk only), apps/containers before/after.
 
 ## Achieved (fresh, on Modal Linux/Py3.12 GPU)
 1. Existing preflight.py on pinned sam3 f1647e8: **exit 0** with exact lock (run4); later runs dependency_ok=false only because of the setuptools pin below.
@@ -17,7 +17,11 @@
 - Remaining: propagation 0-batch error; zero-detection hypothesis ruled out (3 objects). Likely multiplex tracker path at f1647e8 without FA3/rope settings, or an object-ID/multiplex bucket issue. Next: read video_tracking_multiplex.py:1290-1330 around B, try use_rope_real/multiplex_count settings or one bounded H100+FA3 run.
 
 ## Budget / stop
-11 ephemeral apps, retries 0, max 1 container, A10 ~$0.000306/s. Conservative all-in reservation **$0.50** (cap $2); exact billing NOT observed; no paid-overage cap claimed. All s07b-orch13 apps stopped tasks 0; containers [] at 11:19:48Z. Another worker's s05b apps observed, untouched.
+
+## Root-cause notes (source reading; run11 launched 11:21:04, ~5 s before cutoff)
+- Upstream f1647e8 video_tracking_multiplex.py:1318 uses `B = multiplex_state.num_buckets` and expands `current_vision_feats[-1]`, whose batch dim is 0 here: tracker received zero-image backbone features on the propagated frame (not zero objects; add_prompt saw 3).
+- sam3_multiplex_base._propogate_tracker_one_frame_local_gpu skips empty states, so a populated state is reaching the tracker with empty per-frame features. Suspects: detector->tracker feature reuse ("sam2_backbone_out"/"interactive" clones, lines ~1058-1100) under use_fa3=False or async_loading_frames=False. Run11 async_loading_frames=True: identical error, ruled out. Next: one bounded job for use_rope_real=False, then upstream example request sequence; H100+FA3 last.
+12 ephemeral apps, retries 0, max 1 container, A10 ~$0.000306/s. Conservative all-in reservation **$0.50** (cap $2); exact billing NOT observed; no paid-overage cap claimed. All s07b-orch13 apps stopped tasks 0; containers [] at 11:23:06Z. Another worker's s05b apps observed, untouched.
 
 ## Ponytail
 Reused tracking.py, preflight.py, lock, existing secret, S05b uv+modal 1.6.3 route unchanged. One driver (modal_track.py) + tiny import resolver; workarounds live in driver, not adapter. Skipped: tracking.py/test edits, lock regeneration, FA3 install, H100. Checks: tests/measurement/test_tracking.py 14 passed (uv py3.12); ast syntax ok; token-pattern scan 0.

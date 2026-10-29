@@ -15,9 +15,10 @@ Result: PARTIAL — runtime reached checkpoint verify, model load, session start
 | 8 | ap-09dw.. | shim drops that kwarg; FA3 kernel (Hopper-only, not installed) fails on A10 |
 | 9 | ap-CkS0.. | use_fa3=False; session+prompt OK; propagate_in_video RuntimeError expand size 1 vs 0 in video_tracking_multiplex._prepare_memory_conditioned_features (JSON accidentally deleted in my cleanup; modal-run9.log keeps output) |
 | 10 | ap-4ku4.. | diagnostic, prefix f58-76: add_prompt returned **3 objects** (so not zero detections); same propagation RuntimeError -> result-run10.json |
+| 11 | ap-sXYt.. | async_loading_frames=True (upstream default) + use_fa3=False: identical RuntimeError -> result-run11.json; async loading ruled out |
 
 GPU allocated: NVIDIA A10/A10G 23 GB (L4 requested first, A10G fallback). retries=0, max_containers=1, timeout 900 s.
-Stop: apps-after.json all 11 s07b-orch13 apps stopped, tasks 0; containers-after.json `[]` (2026-10-29T11:19:48Z).
+Stop: apps-after.json all 12 s07b-orch13 apps stopped, tasks 0; containers-after.json `[]` (2026-10-29T11:23:06Z).
 Frames: ST03 source frames 50-70 (runs 2-9) / 58-76 (run 10), ffmpeg -q:v 2 JPEG to OS temp outside repo; per-frame SHA256 + PTS map in result-run*.json. No media/checkpoint bytes committed.
 Secret: Modal `real2simulation-hf-read` by name; value never read/printed (rg hf_ token pattern: 0 hits).
 
