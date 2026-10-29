@@ -1,0 +1,66 @@
+{
+ "contract_version": "1.0.0",
+ "kind": "keyframe_manifest",
+ "stage": "keyframes",
+ "provenance": {
+  "clip_id": "RM04",
+  "title": "An Empty Classroom",
+  "source_url": "https://www.pexels.com/video/an-empty-classroom-8342689/",
+  "creator": "Pavel Danilyuk",
+  "licence": "Pexels License",
+  "licence_url": "https://www.pexels.com/license/",
+  "attribution": "Pavel Danilyuk - An Empty Classroom - Pexels",
+  "adaptation_notes": "Check Pexels restrictions and third-party rights before distribution",
+  "status": "UNAPPROVED_CANDIDATE",
+  "owner_approved": "NO"
+ },
+ "source": {
+  "file": "RM04.mp4",
+  "sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+  "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+  "duration_s": 9.24,
+  "start_time_s": 0.0,
+  "codec": "h264",
+  "width": 3840,
+  "height": 2160,
+  "time_base": "1/25",
+  "r_frame_rate": "25/1",
+  "avg_frame_rate": "25/1",
+  "nb_frames": "231",
+  "vfr_hint": false
+ },
+ "keyframes": [
+  {
+   "index": 0,
+   "file": "kf_000001.jpg",
+   "pts": 0,
+   "time_s": 0.0,
+   "time_source": "pts",
+   "pict_type": "I"
+  },
+  {
+   "index": 1,
+   "file": "kf_000002.jpg",
+   "pts": 76,
+   "time_s": 3.04,
+   "time_source": "pts",
+   "pict_type": "I"
+  },
+  {
+   "index": 2,
+   "file": "kf_000003.jpg",
+   "pts": 152,
+   "time_s": 6.08,
+   "time_source": "pts",
+   "pict_type": "I"
+  },
+  {
+   "index": 3,
+   "file": "kf_000004.jpg",
+   "pts": 228,
+   "time_s": 9.12,
+   "time_source": "pts",
+   "pict_type": "I"
+  }
+ ]
+}

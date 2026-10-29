@@ -1,0 +1,1 @@
+{"viewer_model":"ok","sceneId":"rm04-mapanything-s06d","kind":"points","points":20000,"banner":"RECONSTRUCTION — metric scale UNVERIFIED (nominal model output, not calibrated); not physics or Gate R evidence","gateEvidence":false,"ms":40}
