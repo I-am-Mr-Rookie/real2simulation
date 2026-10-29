@@ -8,6 +8,9 @@ templates, tamper-sensitive. Risk: all templates share polynomial fitter fixture
 S13a DONE (Opus; pipeline 8 OK fresh; main e563e3b): versioned upload/job-stage contracts.
 Routine decision recorded: limits 100MiB/60s/8MiB chunks/24h TTL are contract choices,
 revisit at S13h measurement.
+S14d DONE (Opus; agent 30 OK; 0 Meta calls): bounded 3-retry validator loop; live fix
+efficacy unverified. S19c DONE (Sonnet; pwa tests pass): truthful install guidance, no
+orientation lock; real-device check deferred to S19d.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.
