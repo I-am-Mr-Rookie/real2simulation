@@ -4,8 +4,8 @@ orch24 Oct29 ~15:03Z: successor controller chat 01a1882d-3481-7ce3-8f88-45c942e3
 retired). Dispatched full30m, project 91e441f8: S06e, S13c (Opus high); S04h (Sonnet high; fix
 stage.py Railway allowlist first, dev deploy only); S15g (Sonnet high); R-R (Sol high; also lists
 what S05f needs for owner Q-S05e standard-object scale). Deadlines 15:32:44-15:34:05Z. Receipt
-DISPATCH-orch24.json. S02f not redispatched (needs exact new lead). AWS: open owner decision in
-DECISIONS_LOG (on-demand 0, $25 all-service budget vs $50 EC2 gate) — agents stay OFF.
+DISPATCH-orch24.json. S02f not redispatched (needs exact new lead). AWS: superseded by owner
+commit 57deb4b — spot-only us-east-2 G/VT enabled ($50 EC2 budget); Modal first before reset.
 S01b DONE Oct29 13:02Z (owner E2): Koushik confirmed Google, email OTP and guest flows
 orch23 Oct29 ~14:33Z: owner "quota refreshed (Codex+Claude); finish the runs stopped by the
 5h-quota stop, then hand orchestration to a fresh successor". Dispatched full30m: S13b,
