@@ -1,0 +1,38 @@
+{
+ "fitter_digest": "sha256:024bc80b4466b105ff8d375b86a5a06180febfad1a89e782c8c3f5d480e6037c",
+ "numbers": {
+  "g": {
+   "label": "simulated",
+   "path": "gravity.value",
+   "uncertainty": 0.07770809093092845,
+   "uncertainty_path": "gravity.uncertainty",
+   "unit": "m/s^2",
+   "value": 9.802456889624006
+  },
+  "n": {
+   "label": "simulated",
+   "path": "fit.n",
+   "unit": "1",
+   "value": 8
+  },
+  "rmse": {
+   "label": "simulated",
+   "path": "fit.rmse",
+   "unit": "m",
+   "value": 0.0023203655193430764
+  }
+ },
+ "schema": "r2s.report/1",
+ "sections": [
+  {
+   "id": "results",
+   "text": [
+    "Fitted g is {{g}} from {{n}} samples; residual RMS is {{rmse}}.",
+    "This is a simulated fixture, not a physical measurement."
+   ],
+   "title": "Results"
+  }
+ ],
+ "template": "free_fall",
+ "title": "Synthetic fixture report"
+}
