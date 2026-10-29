@@ -1,0 +1,10 @@
+== free_fall: 201 simulated samples; fitter status ok
+tool values: {"synthetic-trial-ff-sim": {"duration": 0.19999999999999998, "drop": 0.19619999999999999}, "synthetic-trial-ff-fit": {"gravity": 9.80999886968593}}
+calls 2; rejected [["response.segments[0].text: untraced_number_word 'ten'"]]
+rendered: Simulated trial: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated) from a simulated drop of 0.1962 ± 1e-06 m (simulated) over 0.2 ± 1e-06 s (simulated). Consistent with the run; simulated, not physical evidence.
+fallback after 4 calls: The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.
+== projectile: 201 simulated samples; fitter status ok
+tool values: {"synthetic-trial-ff-sim": {"duration": 0.19999999999999998, "drop": 0.19619999999999999}, "synthetic-trial-ff-fit": {"gravity": 9.80999886968593}}
+calls 2; rejected [["response.segments[0].text: untraced_number_word 'ten'"]]
+rendered: Simulated trial: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated) from a simulated drop of 0.1962 ± 1e-06 m (simulated) over 0.2 ± 1e-06 s (simulated). Consistent with the run; simulated, not physical evidence.
+fallback after 4 calls: The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.

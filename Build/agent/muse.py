@@ -27,9 +27,9 @@ INSTRUCTIONS = (
 )
 
 
-def build_request(context: Mapping[str, Any], model: str = MODEL, feedback: Sequence[str] = ()) -> dict[str, Any]:
+def build_request(context: Mapping[str, Any], model: str = MODEL, feedback: Sequence[str] = (),
+                  instructions: str = INSTRUCTIONS) -> dict[str, Any]:
     """Responses-API body; structured output via the S14a schema. feedback = validator issues of the last reply."""
-    instructions = INSTRUCTIONS
     if feedback:
         instructions += (" Your previous reply was rejected by the validator. Reply again and fix: "
                          + "; ".join(i[:FEEDBACK_CHARS] for i in feedback[:FEEDBACK_ISSUES]))

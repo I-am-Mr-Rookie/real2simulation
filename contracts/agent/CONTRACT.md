@@ -90,6 +90,26 @@ appended to the next request's instructions; input stays the number-free scene c
 - Tests: `tests/agent/test_retry.py` replays RECORDED `live-room-v1-a` (incomplete) / `-d` (valid) plus
   visibly SYNTHETIC mutations. Not Gate A, real-scene, calibration or physical evidence.
 
+## S14e Muse Spark trial check (offline adapter)
+
+`Build/agent/trial.py`; no live Spark call has been made (Meta billing hold). Model id `muse-spark-1.3` is the
+owner-reported working id, unverified for structured output here.
+- `trial_outputs(trial_id, start, fit)`: S10 session-bridge `start` + `fit` results -> validated tool outputs
+  `<trial_id>-sim` (simulator: `duration` s, `drop` m = last simulated observation, uncertainty = bridge
+  instrument uncertainty) and `<trial_id>-fit` (fitter `gravity` via S14a `fit_tool_output`). Labels stay
+  `simulated`; failed starts/fits produce no tool output.
+- `trial_context(...)` is what Spark sees: scene/trial ids, template, bridge limitations and those tool outputs
+  (values included, so the model can judge them; it may cite them only by ref).
+- `validate_check(reply, outputs, scene_id)` = S14a `validate_response` against THIS trial's outputs, plus: at
+  least one number segment (a trial claim must cite the simulator/fitter) and no questions/candidates.
+  Untraced digits/number words, unknown quantities and refs to another trial's ids are rejected.
+- `check_trial(context, post)`: S14d-style bounded loop (1 + `MAX_RETRIES`, last issues fed back; transport errors
+  propagate). No valid reply -> `tool_only`: code-owned, validated, no model claim, every tool quantity as a ref.
+  Worst case 4 Spark calls per trial; budget reservations must cover 4.
+- `muse.build_request` gained an `instructions` keyword (default = Wonder scene instructions; callers unchanged).
+- Tests: `tests/agent/test_trial.py` runs the actual S10 node simulator + Python fitter in the test and validates
+  hand-written SYNTHETIC Spark replies against those outputs. Not Gate A, real-scene, calibration or physical evidence.
+
 ## Limits (S14a)
 
 - Number-word list is a shortcut (`one` allowed as a pronoun; Roman-numeral
