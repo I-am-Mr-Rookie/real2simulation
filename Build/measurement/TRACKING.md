@@ -50,8 +50,11 @@ contents belong to the prefix. This run creates no real prefix or media exports.
 Only training data reaches the predictor; suffix images/coordinates must remain
 under independent custody. Prompt/object ID selection, tuning and calibration
 must not consult that suffix. The adapter uses forward propagation from local
-zero with `max_frame_num_to_track = len(frame_map) - 1`; upstream's forward bound
-is inclusive. Propagated responses, not provisional prompt previews, are canonical.
+zero over the whole prefix session WITHOUT `max_frame_num_to_track` (the session
+contains only the prefix). Upstream f1647e8 multiplex detector prefetch treats
+`start + max` as an exclusive end, so `max = len - 1` gave the last frame an empty
+backbone batch (`expand ... [5184, 0, 256]`, S07b-orch13; root-caused in orch14).
+Propagated responses, not provisional prompt previews, are canonical.
 
 ## Result and failure semantics
 

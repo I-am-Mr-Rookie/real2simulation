@@ -203,7 +203,7 @@ class TrackingTests(unittest.TestCase):
             stream = predictor.requests[2]
             self.assertEqual(stream["propagation_direction"], "forward")
             self.assertEqual(stream["start_frame_index"], 0)
-            self.assertEqual(stream["max_frame_num_to_track"], 2)
+            self.assertNotIn("max_frame_num_to_track", stream)  # upstream exclusive-end bug
             self.assertEqual(predictor.requests[1]["text"], "ball")
             predictor.responses = [response(3)]
             with self.assertRaises(ValueError):

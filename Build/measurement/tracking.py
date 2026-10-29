@@ -198,8 +198,10 @@ def track_training(predictor, prefix_dir, metadata, frame_map, *, prompt, object
         responses = predictor.handle_stream_request(request={
             "type": "propagate_in_video", "session_id": session_id,
             "propagation_direction": "forward", "start_frame_index": 0,
-            "max_frame_num_to_track": len(mapping) - 1,
         })
+        # No max_frame_num_to_track: the session holds only the prefix, and upstream f1647e8
+        # multiplex prefetch clamps to an exclusive start+max end, emptying the last frame
+        # batch (S07b-orch14 root cause of the 0-batch expand RuntimeError).
         # Use propagated results, not the provisional add_prompt preview.
         return sanitize_responses(responses, json.loads(snapshot), mapping, object_id=object_id)
     finally:
