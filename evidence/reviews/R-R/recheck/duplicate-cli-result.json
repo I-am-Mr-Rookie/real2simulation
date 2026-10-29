@@ -1,0 +1,108 @@
+{
+  "gate": "R",
+  "verdict": "PASS",
+  "thresholds": {
+    "scale_rel": 0.1,
+    "min_qualifying_clips": 2,
+    "cohort": [
+      "RM02",
+      "RM04",
+      "RM05"
+    ],
+    "angle_deg": 5.0,
+    "gpu_min_per_scene": 4.0,
+    "policy": "common cohort: a clip counts only if scale AND orientation pass; floor FIT + gravity estimated required for orientation"
+  },
+  "summary": {
+    "scale_passes": 2,
+    "orientation_passes": 2,
+    "qualifying_clips": 2,
+    "gpu_passes": 3,
+    "clips": 3
+  },
+  "clips": {
+    "RM02": {
+      "floor": "FIT",
+      "gravity": "estimated",
+      "orientation_eligible": true,
+      "scale_rel_error": 0.0,
+      "scale_pass": true,
+      "a4_angle_deg": 1.0,
+      "orientation_pass": true,
+      "gpu": {
+        "app_id": "ap-TqJhwZi4v9ucIKg16ZKh1E",
+        "job_scenes": 1,
+        "function_s": 161.73,
+        "lifetime_s_amortized": 189.0,
+        "function_min_unamortized": 2.696,
+        "lifetime_min_amortized": 3.15,
+        "lifetime_min_unamortized": 3.15,
+        "cost_usd_amortized": 0.05715
+      },
+      "gpu_pass": true,
+      "qualifies": true
+    },
+    "RM04": {
+      "floor": "FIT",
+      "gravity": "estimated",
+      "orientation_eligible": true,
+      "scale_rel_error": 0.0,
+      "scale_pass": true,
+      "a4_angle_deg": 1.0,
+      "orientation_pass": true,
+      "gpu": {
+        "app_id": "ap-Pez26JXXUV7H31WyJvvrF8",
+        "job_scenes": 2,
+        "function_s": 177.9,
+        "lifetime_s_amortized": 131.0,
+        "function_min_unamortized": 2.965,
+        "lifetime_min_amortized": 2.183,
+        "lifetime_min_unamortized": 4.367,
+        "cost_usd_amortized": 0.03241
+      },
+      "gpu_pass": true,
+      "qualifies": true
+    },
+    "RM05": {
+      "floor": "FIT",
+      "gravity": "estimated",
+      "orientation_eligible": true,
+      "scale_rel_error": null,
+      "scale_pass": false,
+      "a4_angle_deg": null,
+      "orientation_pass": false,
+      "gpu": {
+        "app_id": "ap-Pez26JXXUV7H31WyJvvrF8",
+        "job_scenes": 2,
+        "function_s": 177.9,
+        "lifetime_s_amortized": 131.0,
+        "function_min_unamortized": 2.965,
+        "lifetime_min_amortized": 2.183,
+        "lifetime_min_unamortized": 4.367,
+        "cost_usd_amortized": 0.03241
+      },
+      "gpu_pass": true,
+      "qualifies": false
+    }
+  },
+  "failures": [
+    {
+      "clip": "RM05",
+      "criterion": "scale<=10%",
+      "kind": "unmeasured",
+      "reason": "no ref"
+    },
+    {
+      "clip": "RM05",
+      "criterion": "gravity_vs_A4<=5deg",
+      "kind": "unmeasured",
+      "reason": ""
+    }
+  ],
+  "inputs": {
+    "frames": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\R-R-recheck-orch28\\evidence\\reviews\\R-R\\recheck\\duplicate-frames.json",
+    "s05c": "evidence/S05/S05c/RESULT.json",
+    "orch14": "evidence/S05/S05b/orch14/job-ledger.json",
+    "npz_hashes_match": true
+  }
+}

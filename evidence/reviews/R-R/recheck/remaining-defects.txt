@@ -1,0 +1,1 @@
+Residual defects reproduced: duplicate JSON scene key accepted; repeated job IDs turn 600s into 200s

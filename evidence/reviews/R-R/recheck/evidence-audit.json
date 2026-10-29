@@ -1,0 +1,41 @@
+{
+  "custody": [
+    {
+      "clip": "RM02",
+      "npz_sha256": "4ce3c82c5252381933bc99518283d4a39c2b1b4eaa1d82da5471738f351f466b",
+      "sheet_sha256": "7872f2b5bbe782d3fce2e475ef9c251762f76ddbbe43d922803e9b25cbf4c3a3",
+      "no_accepted_references": true,
+      "floor_gravity_unchanged": true
+    },
+    {
+      "clip": "RM04",
+      "npz_sha256": "1a06953fb8fcc58c00996fecd483547dbad4d9fe1fb2f35946382c6467b5a5c1",
+      "sheet_sha256": "8b6cc75ebfcd71bf0cda19581a5b7a7ad8cfcca075dde21b2f4453cb3d05cf67",
+      "no_accepted_references": true,
+      "floor_gravity_unchanged": true
+    },
+    {
+      "clip": "RM05",
+      "npz_sha256": "a3bebfebcb7f30166558f6eafd5d8e80b649abba4d46f57261ddac765610a362",
+      "sheet_sha256": "d00b78d6bc085e53427c269f30f9ba8cd9adc9da0a87a34f0f8f6ac542a6bf26",
+      "no_accepted_references": true,
+      "floor_gravity_unchanged": true
+    }
+  ],
+  "reviewed_hashes": {
+    "Build/reconstruction/spike/gate_r.py": "897e479cf75533d8f667a96fcd7f32b8943e7b47a7706d1ae29d7a56e078c210",
+    "Build/reconstruction/spike/scene_frame.py": "80d274080b7b30e2c26cc0e5b8fbe454d63c63ba55365e4132fb86d171e9a41b",
+    "Build/reconstruction/spike/test_gate_r.py": "aaad00653e7a09c7789eba5400d42489a778abe96aaabca17d9a11c3754995ce",
+    "Build/reconstruction/spike/test_scene_frame.py": "731eeb6664e8c5374fe2b576f1f0a941762087f6d810f6099ed87702d885a3fd",
+    "evidence/S05/S05f/GATE_R.md": "beee45e36a633be459155fac1eb3f203661b9156f55970e5b7554c56d179998d",
+    "evidence/S05/S05f/GATE_R.json": "2a77a37066d6b264b5f84cdbf7cff90c800148f2934a5c974dac2aa48b441cc2",
+    "evidence/S05/S05f/REVIEW_PACKET.md": "2fc36a8c03baa2a7c5f9d0a32fa50d4eb4f319b63b700f016811e667aef06250",
+    "evidence/S05/S05f/rm02-paper-diagnostic.json": "1b63c41f52a5adc1006e7f68aafd89b16b1e01e5bfd9b3e69986a9b47b79de55"
+  },
+  "paper_aspect": 1.2355822324752808,
+  "conditional_jitter_p5_p95": [
+    1.1686009168624878,
+    1.307454490661621
+  ],
+  "interpretation": "Conditional model-space diagnostic only, not an identity test or calibrated confidence interval. Ambiguity warrants abstention; does not prove non-A4 or Letter."
+}

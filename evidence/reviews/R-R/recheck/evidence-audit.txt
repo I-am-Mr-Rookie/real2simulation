@@ -1,0 +1,1 @@
+Custody 3/3, contact-sheet hashes 3/3, no accepted references, thresholds fixed; RM02 aspect/jitter reproduced
