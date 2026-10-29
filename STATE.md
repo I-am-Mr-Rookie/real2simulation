@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+DISPATCHED S12e-orch45 Opus high (threadId:01a1899b-c005-78f2-8aa3-f3201b8b83da,hostId:local, deadline 2026-10-29T22:10:47+00:00).
+DISPATCHED S13h-orch46 Opus high (threadId:01a1899c-81bd-7201-8f9c-c93a521ccc14,hostId:local, deadline 2026-10-29T22:11:29+00:00).
+Modal caps: S12e <=$1.50 (<=4 jobs), S13h <=$1.00 (<=2 jobs); month-to-date ~$0.70 of $30.
+
 S13g DONE (orch44 Opus medium; TIMEBOX PASS; pipeline 50 OK; ff-merged): Build/pipeline/progress.py
 versioned job_progress feed (redacted readable messages, after_revision paging) + JobRunner.progress;
 additive jobs schema. No HTTP route yet (Build/api|web outside Owns) -> S13h/web owner adds GET poll.
