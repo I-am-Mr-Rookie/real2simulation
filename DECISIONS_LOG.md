@@ -788,3 +788,7 @@ Controller moved 26 TODO rows high->medium (Opus: S06g S06h S09i S09j S13d S13g 
 Sonnet: S15h-j S15l S17f S19d S22b-e S22g-i S24c-f S24j). Kept high: gates/checkpoints with
 judgment, real GPU/integration, prediction science, LLM Gate A, Gate D, script, video edit,
 R-C money review. Lanes/Owns/deps/minutes unchanged. Reversible.
+
+## 2026-10-29 — S05f Gate R checkpoint
+
+Gate R FAIL (scale 0/3, orientation 0/3 unmeasured; RM05 ineligible; GPU 3/3 <=240 s successful runs, RM02 cumulative 320.39 s). Q-S05e standard-object rule applied: RM02 paper sheets abstained (3D aspect 1.24 excludes A4); no other standard objects. Fallback 2 adopted, scale unverified. MapAnything weights facebook/map-anything-apache (Apache-2.0) per S05a. Cross-vendor re-review dispatched (R-R-recheck-orch28).

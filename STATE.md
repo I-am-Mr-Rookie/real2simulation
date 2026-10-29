@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+S05f DONE (orch25 Opus high; spike gate/scene/rm02 20 OK + scene contracts fresh; TIMEBOX PASS;
+ff-merged): R-R F1-F6 fixed with regressions; Gate R FAIL -> Fallback 2 (planes+boxes, scale
+UNVERIFIED). Q-S05e applied: RM02 paper aspect 1.24 excludes A4 1.414 -> abstain; no other
+standard objects. Controller split: R-R re-review (Sol high, R-R-recheck-orch28) before S06h/S05
+checkpoint relies on it. Licence: facebook/map-anything-apache Apache-2.0 (S05a).
 S13d DONE (orch25 Opus medium; pipeline 30 OK fresh; TIMEBOX PASS; ff-merged): job lifecycle,
 leases, idempotent artifacts/paid dispatch, bounded retries; in-memory store, no Redis exercised.
 Risk: crash after paid call can repeat once (max 2) until provider honours forwarded key (S13e+).
