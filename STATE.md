@@ -14,6 +14,11 @@ orientation lock; real-device check deferred to S19d.
 S06b DONE (Opus; gpu 8 OK, audit rc0 fresh): runtime on S06a image, A10G synthetic smoke
 $0.0118, function 24.7s vs 161.7s cold (~137s saved/job). Licence audit: 14 NVIDIA EULA
 wheels private-only, plyfile GPL-3.0 private-runtime-only. Modal month-to-date ~$0.57/$30.
+orch22 issued full30m: S06c Opus (licence-first, no terms), S14e Opus (offline), S15e
+Sonnet. S13b create_thread rejected (effort validation) -> NOT created, still TODO.
+OWNER STOP Oct29 ~18:35 Dhaka: "about to hit Claude 5-hour limit; do NOT create new
+chats; let existing chats run." No new dispatch. In flight: S05d-orch21, S02f-orch21,
+S06c/S14e/S15e-orch22. Controller only integrates their reports.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.
