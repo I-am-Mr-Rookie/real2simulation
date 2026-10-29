@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+S13f PARTIAL at deadline (orch30 Opus high; TIMEBOX PASS; pipeline 43 OK fresh; verified work
+ff-merged): gpu_stages reconstruct live on RM04 Modal A10G (rc0, 53 s, billed $0.0114; job 1
+failed pre-GPU, Windows cp1252 piping -> UTF-8 fix), validated bundle; segment stage offline-only
+(validator passes real S07b recorded output). F1: modal_track.py hardwired to ST03/apple, writes
+accepted evidence, no masks -> controller split S07b-param-orch36 (Opus medium, <=1 Modal run
+<=$0.50); S13f resumes after it. F3 note: clips.csv RM04 owner_approved NO vs scoped local
+approval in APPROVAL.md — final clip-list approval is Koushik's (S02e); no change made.
 R-R-recheck2-orch34 DONE (Sol; TIMEBOX PASS; evidence ff-merged): Gate R implementation CLEAR
 (D1/D2 fixed, no new bypass). Real Gate R remains FAIL -> Fallback 2, scale unverified. R-R closed.
 S09j DONE (orch35 Opus medium; viewer 43/3 skip/0 fail canonical; TIMEBOX PASS; ff-merged):
