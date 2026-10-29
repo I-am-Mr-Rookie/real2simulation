@@ -1,6 +1,7 @@
 // S15b: pure workspace layout model. State (S15a reducer) -> slots, stage rail, viewer request, job status text.
 // No DOM/React/viewer imports: the viewer is reached only through an injected adapter (see viewport.mjs).
 import { PHASES, stageOf } from './workflow.mjs';
+import { statusSurface } from './status.mjs';
 
 export const SLOTS = Object.freeze(['stage-nav', 'viewport', 'panel', 'job-status']);
 export const STAGES = Object.freeze(['upload', 'interview', 'run', 'fit', 'report']);
@@ -32,7 +33,7 @@ export const VIEWER_STATUS_TEXT = Object.freeze({
   error: 'The scene could not be shown.',
 });
 
-export function layoutOf(state, opts) {
+export function layoutOf(state, opts = {}) {
   const cur = STAGES.indexOf(stageOf(state));
   const failed = /\.(failed|cancelled)$/.test(state.phase);
   const request = viewerRequestOf(state, opts);
@@ -42,7 +43,7 @@ export function layoutOf(state, opts) {
     stages: STAGES.map((id, i) => ({ id, label: STAGE_LABEL[id], status: i < cur ? 'done' : i === cur ? 'current' : 'todo', failed: i === cur && failed })),
     viewport: { request, key: request && [sceneKey(request.scene), request.mode, request.audience].join('|'),
       banner: state.scene?.evidence === 'synthetic' ? SYNTHETIC_SCENE_BANNER : null },
-    jobStatus: { label: PHASE_LABEL[state.phase], jobId: state.job?.id ?? null, error: state.error },
+    jobStatus: { label: PHASE_LABEL[state.phase], jobId: state.job?.id ?? null, error: state.error, surface: statusSurface(state, opts.log) },
   };
 }
 

@@ -7,16 +7,16 @@ import { layoutOf } from './layout.mjs';
 import { createViewport } from './viewport.mjs';
 import { renderWorkspace } from './view.mjs';
 
-export const createWorkspace = (React) => function Workspace({ state, adapter, loadScene, audience }) {
+export const createWorkspace = (React) => function Workspace({ state, adapter, loadScene, audience, log, onAction }) {
   const { createElement: h, useRef, useEffect, useState } = React;
   const host = useRef(null), ctl = useRef(null);
   const [view, setView] = useState({ status: 'empty', error: null });
-  const layout = layoutOf(state, audience ? { audience } : undefined);
+  const layout = layoutOf(state, { ...(audience ? { audience } : {}), log });
   useEffect(() => {
     ctl.current = createViewport({ adapter, loadScene, onStatus: setView });
     return () => ctl.current.destroy();
   }, [adapter, loadScene]);
   useEffect(() => { ctl.current.sync(host.current, layout.viewport.request, layout.viewport.key); },
     [layout.viewport.key, adapter, loadScene]); // eslint-disable-line react-hooks/exhaustive-deps -- request is derived from key
-  return renderWorkspace(h, layout, view, host);
+  return renderWorkspace(h, layout, view, host, onAction);
 };

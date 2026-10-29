@@ -1,0 +1,34 @@
+✔ layout: every phase maps to a labelled stage; slots fixed; exactly one current stage (7.7223ms)
+✔ layout: no scene -> no viewer request; failed upload flags its stage and surfaces the error (8.9649ms)
+✔ viewer request: schema-exact, passes the viewer checker, no job/owner ids, never mystery (2.8327ms)
+✔ viewport: one mount per key, replace aborts+disposes old, destroy cleans up (44.1148ms)
+✔ viewport: a late mount of a replaced scene is disposed and silent (12.2758ms)
+✔ viewport: adapter failure surfaces code once; unexpected throw falls back to RENDER_FAILED (2.6779ms)
+✔ real viewer adapter: reducer scene mounts via public interface (fixture bundle, fake renderer); load failure maps (73.6569ms)
+✔ view: slot markup, viewer host has no children, aria, error and synthetic banner (2.5772ms)
+✔ boundary: workspace imports no viewer internals, shell, app, auth or Clerk (2.9932ms)
+✔ job-stage events are logged in order, including ignored stale/illegal ones (6.3546ms)
+✔ log is bounded and never copies payload text (job status allow-listed) (1.8257ms)
+✔ timeline follows the job through queued -> running -> ready; failure marks the furthest step (1.8744ms)
+✔ upload failure: partial-state says nothing was created; retry offered only when it can help (2.1442ms)
+✔ every offered retry is a legal reducer edge and actually recovers (new job id, log restarts) (0.8414ms)
+✔ run/fit failures keep what exists and say what is missing; no fit number without a validated fit (6.4861ms)
+✔ markup: timeline, events, failure copy and retry button; retry reports only the event type (3.1961ms)
+✔ in-flight upload explains that no scene exists yet; idle renders no status chrome (0.5972ms)
+✔ status module stays inside the workspace import boundary (1.3063ms)
+✔ happy path walks upload -> interview -> run -> fit -> report (7.1038ms)
+✔ shell example job DTO parses; malformed DTOs are rejected (1.5707ms)
+✔ job rules: stale/equal revisions, wrong id, regression and terminal states are ignored (0.7432ms)
+✔ invalid spec stays in interview with a readable error; valid spec advances (0.8417ms)
+✔ run: pause/resume/cancel, seed binding, malformed and gravity-leaking output rejected (0.9328ms)
+✔ fit: only validated reveal for the expected session produces numbers (0.8878ms)
+✔ EDIT_SPEC invalidates run and fit; blocked while work is in flight (0.7501ms)
+✔ illegal events return the same state; every phase/event is reachable and documented (5.1357ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 555.9615

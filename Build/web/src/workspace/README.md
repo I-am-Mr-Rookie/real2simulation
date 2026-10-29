@@ -52,3 +52,13 @@ Files: `layout.mjs` (state -> slots/stage rail/viewer request/job text, pure), `
 - Request is built from `state.scene` (set by a ready job): audience `signed-in`, mode `inspect`, never `mystery`; no job id/owner/token. One mount per (scene, mode, audience); scene change aborts + disposes the old mount; late mounts are disposed; callbacks after replace/destroy are dropped. The viewport stays mounted from interview through report because the scene persists.
 - The `.ws-host` div has no React children (the viewer owns its contents). Synthetic scenes show a banner. A ready job is an artifact, not accuracy or a gate.
 - App composition (S04 owns the page; not edited here): in a client module, `createWorkspace(React)` + `import './workspace.css'`, passing `createThreeViewer()` and `createArtifactLoader({ bundleUrl })`; authorise the scene server-side first.
+
+
+## S15c: upload status and failure surfaces
+Files: `status.mjs` (pure: `reduceLogged`, `statusSurface`, `failureSurface`, `partialState`, `jobTimeline`), `renderStatus` in `view.mjs`, `.ws-*` rules in `workspace.css`.
+- **Event log:** keep `{ state, log, seq }` with `reduceLogged(m, event, deps)` instead of bare `reduce`. Each event (applied or ignored: stale revision, wrong job, illegal phase) adds one bounded (50) entry made of the event type, phases and an allow-listed job status/revision; payload text is never copied. The panel shows the last 8 since the latest upload start.
+- **Timeline:** Queued -> Processing -> Scene ready for the upload job; failed/cancelled adds a terminal marker after the furthest step seen in the log.
+- **Failures:** upload/run/fit failed or cancelled show a title, cause-specific advice and a retry button. Retry is an existing graph edge (`UPLOAD_STARTED`/`RUN_START`/`FIT_START`) and is withheld for `SPEND_PAUSED` and `UNAUTHORIZED` (retrying cannot help). The button calls `onAction({ type })`; the host adds the payload (new jobId, seed, sessionId) and dispatches. Without `onAction` it is disabled.
+- **Partial state:** derived from state, never assumed: "Kept" (scene, spec, simulated run observations) and "Not available" (no scene was created, no stored run result, no fit value shown). A fit number never appears outside a validated reveal.
+- Wiring: `<Workspace state log onAction ... />`; layout `jobStatus.surface` carries the model. Not covered: polling/transport that produces JOB_UPDATE, real upload UI, browser rendering.
+

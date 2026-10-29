@@ -23,3 +23,21 @@ assert.match(html, /SYNTHETIC scene/); assert.match(html, /<div class="ws-host"[
 const css = readFileSync('Build/web/src/app/styles.css', 'utf8') + readFileSync('Build/web/src/workspace/workspace.css', 'utf8');
 writeFileSync('evidence/S15/layout-preview.html', '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S15b layout preview (SYNTHETIC)</title><style>' + css + '</style><main>' + html + '</main>');
 console.log('react', React.version, 'SSR ok; idle', idle.length, 'bytes, scene', html.length, 'bytes');
+
+// S15c: failure surface through the real React binding (SSR).
+import { initialLogged as IL, reduceLogged as RL } from '../../Build/web/src/workspace/status.mjs';
+import { job as jobF } from '../../Build/web/src/workspace/fixtures.mjs';
+{
+  let m = IL();
+  for (const e of [{ type: 'UPLOAD_STARTED', jobId: 'synthetic-job-v1' }, { type: 'JOB_UPDATE', job: jobF(1, 'running') },
+    { type: 'JOB_UPDATE', job: jobF(2, 'failed', { error: { code: 'DEPENDENCY_UNAVAILABLE', message: 'SYNTHETIC failure fixture' } }) }]) m = RL(m, e);
+  const out = renderToString(React.createElement(Workspace, { state: m.state, log: m.log, onAction: () => {}, adapter, loadScene: () => {} }));
+  for (const re of [/class="ws-timeline"/, /data-status="failed"/, /Job update r2: failed/, /Upload failed/, /Retrying later may work/, /Not available: Scene: none was created/, /data-event="UPLOAD_STARTED"/, /Start a new upload/])
+    assert.match(out, re);
+  assert.doesNotMatch(out, /disabled=""/);
+  const noRetry = renderToString(React.createElement(Workspace, { state: RL(RL(IL(), { type: 'UPLOAD_STARTED', jobId: 'synthetic-job-v1' }), { type: 'JOB_UPDATE', job: jobF(1, 'failed', { error: { code: 'SPEND_PAUSED', message: 'SYNTHETIC' } }) }).state, adapter, loadScene: () => {} }));
+  assert.doesNotMatch(noRetry, /ws-retry/); assert.match(noRetry, /Retry is not available/);
+  writeFileSync('evidence/S15/failure-preview.html', '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S15c failure preview (SYNTHETIC)</title><style>' + css + '</style><main>' + out + '</main>');
+  console.log('S15c SSR ok: failure surface, retry button, blocked-retry copy');
+}
+

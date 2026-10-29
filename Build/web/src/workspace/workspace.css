@@ -17,3 +17,16 @@
   .ws { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nav" "viewport" "panel" "job"; }
   .ws-host { min-height: 16rem; }
 }
+
+/* S15c: status surface */
+.ws-status-surface { display: grid; gap: 0.5rem; margin-block: 0.5rem; }
+.ws-timeline, .ws-events { margin: 0; padding-left: 1.25rem; }
+.ws-timeline li[data-status="current"] { font-weight: 600; }
+.ws-timeline li[data-status="todo"] { opacity: 0.6; }
+.ws-timeline li[data-status="failed"] { font-weight: 600; text-decoration: underline wavy; }
+.ws-events { font-size: 0.85em; font-variant-numeric: tabular-nums; }
+.ws-failure { border: 1px solid currentColor; border-radius: 6px; padding: 0.5rem 0.75rem; }
+.ws-failure h3 { margin: 0 0 0.25rem; }
+.ws-retry { min-height: 44px; padding-inline: 1rem; cursor: pointer; }
+.ws-retry:disabled { cursor: not-allowed; opacity: 0.6; }
+

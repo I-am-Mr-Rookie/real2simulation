@@ -1,0 +1,2 @@
+react 19.3.1 SSR ok; idle 834 bytes, scene 1167 bytes
+S15c SSR ok: failure surface, retry button, blocked-retry copy
