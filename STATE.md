@@ -98,6 +98,12 @@ root cause = upstream exclusive start+max_frame_num_to_track; adapter key remove
 sanitized ST03 f58-76 track 19/19 frames (object 2 falling apple), pts_s provenance. ~$0.15
 GPU est, billing unobserved. Lock still lacks setuptools<81/einops/psutil/pycocotools.
 Uncalibrated pixels; not Gate M. Parent S07 Gate M still NOT_MET.
+orch19 accepted DONE (all TIMEBOX PASS, fresh tests, FF main 4de0da3):
+S06a Opus: pinned MapAnything Modal image (baked weights, offline) + CPU dry-run, $0.0156;
+GPU warm-start saving unmeasured. S14c Opus: interview questions->validated spec, 0 Meta
+calls, agent 23 + spec 93 OK. S15d Sonnet: interview panel, node 34/34. S17d Sonnet: 4/4
+template PDFs (MiKTeX) + HTML fallback, reports 33 OK. S19b Sonnet: allowlist SW cache,
+39/39 vm tests; no real-browser run. S05c-orch19 still running.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
