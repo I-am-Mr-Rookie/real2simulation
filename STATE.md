@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+S12e DONE = measured shortfall (orch45 Opus high; TIMEBOX PASS; prediction 30 OK; ff-merged).
+Gate RS NOT_MET: projectile ST03 7/466 scored, norm RMS 19.8% (apple hits ground at f77; suffix has
+no free flight -> ballistic fit can't pass on ST03); bounce BN01, pendulum PD02/03/04/06 untracked.
+Modal 2 jobs $0.0528 (job1 CUDA OOM on 485 frames A10G; job2 26 frames OK). score.py verifies
+seals/sha before loading observations. Inputs for S12f/R-RS: need a free-flight projectile suffix,
+restitution/floor and angular-frequency records, longer tracking windows (OOM limit ~26-30 frames/job).
+
 S13h DONE (orch46 Opus high; TIMEBOX PASS; pipeline 52 OK; ff-merged): RM04 upload->validate->
 keyframes->live SAM segment->live MapAnything reconstruct->viewer-loadable scene in 144.4 s (<360 s),
 CLI path (Build/pipeline/e2e.py). Modal $0.0364 (2 jobs), containers [] final. Bottleneck: two
