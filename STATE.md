@@ -1,6 +1,10 @@
 # Real2Simulation — STATE
 
 S01b DONE Oct29 13:02Z (owner E2): Koushik confirmed Google, email OTP and guest flows
+orch23 Oct29 ~14:33Z: owner "quota refreshed (Codex+Claude); finish the runs stopped by the
+5h-quota stop, then hand orchestration to a fresh successor". Dispatched full30m: S13b,
+S05e, S06d, S14f (Opus high), S15f (Sonnet high). Receipt DISPATCH-orch23.json. S02f not
+redispatched (orch21 retry ran; needs exact new lead). S04h/S13c etc. left to successor.
 work on Railway dev web deployment 8ab5d816 (source 790f976 = 300cd20 + account menu;
 main c4a3149). Receipt evidence/owner/S01/S01B-RECEIPT.md. S04h now dependency-ready
 (not dispatched). Risk: current main fails Railway build (stage.py web allowlist lacks
