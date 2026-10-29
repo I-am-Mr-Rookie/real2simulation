@@ -1,0 +1,19 @@
+/* S15b: responsive slot layout. Wide: stage rail on top, viewport left, panel + job status right. Narrow: one column. */
+.ws { display: grid; gap: 1rem; grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+  grid-template-areas: "nav nav" "viewport panel" "viewport job"; align-items: start; }
+.ws-stages { grid-area: nav; }
+.ws-stages ol { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin: 0; padding: 0; list-style: none; font-size: .95rem; }
+.ws-stages li { color: var(--muted); }
+.ws-stages li[data-status="done"] { color: var(--ink); }
+.ws-stages li[aria-current="step"] { color: var(--blue); font-weight: 700; border-bottom: 2px solid currentColor; }
+.ws-viewport { grid-area: viewport; min-width: 0; }
+.ws-panel { grid-area: panel; }
+.ws-job { grid-area: job; font-size: .9rem; }
+.ws-host { position: relative; width: 100%; min-height: 22rem; aspect-ratio: 4 / 3; background: #0f1d2a; border-radius: 6px; overflow: hidden; }
+.ws-banner { margin: 0 0 .5rem; padding: .35rem .6rem; border: 1px solid var(--rule); border-radius: 4px; background: #fff8e1; font-size: .85rem; }
+.ws-status { margin: .5rem 0 0; font-size: .9rem; color: var(--muted); }
+.ws-error { color: #8a1c1c; }
+@media (max-width: 860px) {
+  .ws { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nav" "viewport" "panel" "job"; }
+  .ws-host { min-height: 16rem; }
+}

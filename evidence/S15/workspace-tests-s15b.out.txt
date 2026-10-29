@@ -1,0 +1,25 @@
+✔ layout: every phase maps to a labelled stage; slots fixed; exactly one current stage (8.7417ms)
+✔ layout: no scene -> no viewer request; failed upload flags its stage and surfaces the error (1.4063ms)
+✔ viewer request: schema-exact, passes the viewer checker, no job/owner ids, never mystery (1.3853ms)
+✔ viewport: one mount per key, replace aborts+disposes old, destroy cleans up (14.6788ms)
+✔ viewport: a late mount of a replaced scene is disposed and silent (2.2374ms)
+✔ viewport: adapter failure surfaces code once; unexpected throw falls back to RENDER_FAILED (2.2272ms)
+✔ real viewer adapter: reducer scene mounts via public interface (fixture bundle, fake renderer); load failure maps (145.9286ms)
+✔ view: slot markup, viewer host has no children, aria, error and synthetic banner (3.9893ms)
+✔ boundary: workspace imports no viewer internals, shell, app, auth or Clerk (3.1212ms)
+✔ happy path walks upload -> interview -> run -> fit -> report (6.7532ms)
+✔ shell example job DTO parses; malformed DTOs are rejected (31.4167ms)
+✔ job rules: stale/equal revisions, wrong id, regression and terminal states are ignored (0.7982ms)
+✔ invalid spec stays in interview with a readable error; valid spec advances (0.9323ms)
+✔ run: pause/resume/cancel, seed binding, malformed and gravity-leaking output rejected (2.5077ms)
+✔ fit: only validated reveal for the expected session produces numbers (1.615ms)
+✔ EDIT_SPEC invalidates run and fit; blocked while work is in flight (0.6871ms)
+✔ illegal events return the same state; every phase/event is reachable and documented (2.6104ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1290.0789

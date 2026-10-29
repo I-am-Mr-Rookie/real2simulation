@@ -43,3 +43,12 @@ any --RESET--> upload.idle (abandons scene; never cancels a server job)
 - Interview (S14) is consumed only through a validated spec; S14 transcript/chip states are S15d's, not modelled here.
 - Not covered: transport/polling, auth, rendering, real validator wiring, browser behaviour (S15b–S15k).
 
+
+
+## S15b: layout and viewport mount
+Files: `layout.mjs` (state -> slots/stage rail/viewer request/job text, pure), `viewport.mjs` (mount controller), `view.mjs` (markup, `h`-injected), `react.mjs` (`createWorkspace(React)`), `workspace.css` (grid; one column under 860 px).
+- Slots (names match the shell README): `stage-nav`, `viewport`, `panel`, `job-status`. The panel is a placeholder; upload/failure surfaces are S15c, interview S15d.
+- Viewer contact is only `adapter.mount(host, request, { loadScene, signal, onState, onError }) -> { dispose }`. Adapter and `loadScene` are injected; workspace imports no viewer, shell, app or auth module (tested).
+- Request is built from `state.scene` (set by a ready job): audience `signed-in`, mode `inspect`, never `mystery`; no job id/owner/token. One mount per (scene, mode, audience); scene change aborts + disposes the old mount; late mounts are disposed; callbacks after replace/destroy are dropped. The viewport stays mounted from interview through report because the scene persists.
+- The `.ws-host` div has no React children (the viewer owns its contents). Synthetic scenes show a banner. A ready job is an artifact, not accuracy or a gate.
+- App composition (S04 owns the page; not edited here): in a client module, `createWorkspace(React)` + `import './workspace.css'`, passing `createThreeViewer()` and `createArtifactLoader({ bundleUrl })`; authorise the scene server-side first.
