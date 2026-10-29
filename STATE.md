@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+DISPATCHED (receipt ORCH-20261029-1654/DISPATCH-orch37.json): S12a-orch37 Opus high (thread
+01a18968-5c17-7390-9f3a-0ce8f237849c, deadline 21:14:39Z) and S07b-param-orch38 Opus medium from
+orch36 WIP (thread 01a18969-8059-7e70-89a0-55c88cb4b7cc, deadline 21:15:54Z). S13f waits on orch38.
+
 Q15 ANSWERED A (Koushik, Oct29 "A"): S12a Depends S07 (step, incl. S02f PARTIAL) -> explicit done
 rows S07r, S07a-f + S10, S11; history kept. S12 uses public motion clips, scale-free normalized
 held-out error; Gate M stays NOT_MET in every output; no calibrated-g claim (DECISIONS_LOG).
