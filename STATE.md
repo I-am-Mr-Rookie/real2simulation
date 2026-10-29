@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED R-RS-recheck-orch53 Sol high (threadId:01a189b7-f3d0-7780-931f-bb709ab9d009,hostId:local, deadline 2026-10-29T22:41:35+00:00).
+
 S12e-fix-orch52 accepted (Opus high; TIMEBOX PASS; prediction 35 OK on canonical; ff-merged): R-RS
 F1-F4 fixed with regressions; 10 reproductions refused (refusals.json); gate-rs.json unchanged except
 additive provenance (NOT_MET, 19.8%, 7/466). Residual: v1 digest excludes clip/training metadata
