@@ -1,0 +1,28 @@
+test_failed_fit_cannot_back_numbers (test_contracts.ContractTests.test_failed_fit_cannot_back_numbers) ... ok
+test_inline_value_or_unknown_fields_rejected (test_contracts.ContractTests.test_inline_value_or_unknown_fields_rejected) ... ok
+test_number_refs_must_resolve_to_tool_outputs (test_contracts.ContractTests.test_number_refs_must_resolve_to_tool_outputs) ... ok
+test_question_contract (test_contracts.ContractTests.test_question_contract) ... ok
+test_scene_binding_and_strict_json (test_contracts.ContractTests.test_scene_binding_and_strict_json) ... ok
+test_scene_context_has_no_numbers (test_contracts.ContractTests.test_scene_context_has_no_numbers) ... ok
+test_schema_alone_rejects_ascii_digits (test_contracts.ContractTests.test_schema_alone_rejects_ascii_digits) ... ok
+test_schema_is_valid_and_traced_reply_renders_labelled (test_contracts.ContractTests.test_schema_is_valid_and_traced_reply_renders_labelled) ... ok
+test_tool_output_label_tool_and_provenance_enforced (test_contracts.ContractTests.test_tool_output_label_tool_and_provenance_enforced) ... ok
+test_unicode_and_word_numbers (test_contracts.ContractTests.test_unicode_and_word_numbers) ... ok
+test_untraced_numbers_rejected_everywhere (test_contracts.ContractTests.test_untraced_numbers_rejected_everywhere) ... ok
+test_bad_answers_are_rejected_with_reasons (test_interview.InterviewTests.test_bad_answers_are_rejected_with_reasons) ... ok
+test_base_spec_not_mutated_and_unknown_template_rejected (test_interview.InterviewTests.test_base_spec_not_mutated_and_unknown_template_rejected) ... ok
+test_chips_and_free_text_map_into_validated_spec (test_interview.InterviewTests.test_chips_and_free_text_map_into_validated_spec) ... ok
+test_questions_are_one_to_three_and_number_free (test_interview.InterviewTests.test_questions_are_one_to_three_and_number_free) ... ok
+test_recorded_muse_candidate_selects_template (test_interview.InterviewTests.test_recorded_muse_candidate_selects_template) ... ok
+test_every_fixture_is_recorded_sanitized_and_replays_as_labelled (test_muse.RecordedFixtures.test_every_fixture_is_recorded_sanitized_and_replays_as_labelled) ... ok
+test_valid_recordings_carry_scene_and_known_candidates (test_muse.RecordedFixtures.test_valid_recordings_carry_scene_and_known_candidates) ... ok
+test_incomplete_or_empty_reply_rejected (test_muse.Rejections.test_incomplete_or_empty_reply_rejected) ... ok
+test_invalid_structure_rejected (test_muse.Rejections.test_invalid_structure_rejected) ... ok
+test_untraced_numbers_rejected (test_muse.Rejections.test_untraced_numbers_rejected) ... ok
+test_budget_guard_refuses_past_call_or_dollar_cap (test_muse.Request.test_budget_guard_refuses_past_call_or_dollar_cap) ... ok
+test_request_carries_schema_bounds_and_only_context (test_muse.Request.test_request_carries_schema_bounds_and_only_context) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.758s
+
+OK

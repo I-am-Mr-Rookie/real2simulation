@@ -55,6 +55,27 @@ ledger `evidence/S14/S14b-ledger.jsonl`) as sanitized fixtures in
 Fixture validity is synthetic-scene contract evidence only: not Gate A, video input (S13e),
 real-scene, calibration or physical evidence.
 
+## S14c interview (offline, code-owned questions)
+
+`Build/agent/interview.py`: `template_of(response, candidate_id)` takes the template of the Muse
+candidate the user picked; `questions(scene_id, template)` returns a validated, number-free
+agent-response with that template's one to three questions (free_fall/projectile two, ramp/pendulum
+three); `answers_to_spec(base_spec, scene, scene_root, answers)` maps
+`{question id: {"chip": id} | {"text": str}}` onto a copy of a same-template base spec and returns it only
+after S08c `validate_setup`; otherwise `AgentContractError` lists every issue.
+
+- Question id = spec parameter name. Chips are exact meanings only (`at-rest`, `frictionless` -> 0); no
+  default physical numbers. Free text: ASCII decimal plus optional unit (contract unit; angles require
+  `deg`/`rad` since a bare number is ambiguous). Non-finite, words, Unicode digits, unknown chips/units/
+  questions and missing answers are rejected.
+- S14a open item decided: user-entered numbers enter the **spec** only, labelled `assumed`, evidence
+  `user-input:<param>:<chip:id|free-text>`, uncertainty null (unquantified). They are never echoed in
+  agent text; anything displayed comes from simulator/fitter tool outputs.
+- Model-authored questions (S14b) are shown as context only; their chips are not mapped to spec inputs.
+- Unasked inputs (gravity, body, origin, simulation, other parameters) keep the base spec's provenance.
+- Tests: `tests/agent/test_interview.py` with S08 SYNTHETIC fixtures, hand-written SYNTHETIC answers and the
+  RECORDED S14b fixture `live-room-v1-d`. Not Gate A, real-scene, calibration or physical evidence.
+
 ## Limits (S14a)
 
 - Number-word list is a shortcut (`one` allowed as a pronoun; Roman-numeral

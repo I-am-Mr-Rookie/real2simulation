@@ -1,0 +1,24 @@
+# S14c mutation spot checks (in-process monkeypatch; script below, output after)
+import sys,re,unittest,copy;sys.path.insert(0,'tests/agent');sys.path.insert(0,'.')
+import test_interview as t
+from Build.agent import interview as I
+def run():
+    r=unittest.TextTestRunner(stream=open('nul','w')).run(unittest.defaultTestLoader.loadTestsFromModule(t));return len(r.failures)+len(r.errors)
+orig=(I.validate_setup,I._NUMBER,copy.deepcopy(I.UNITS),copy.deepcopy(I.QUESTIONS))
+def restore():
+    I.validate_setup,I._NUMBER=orig[0],orig[1];I.UNITS.clear();I.UNITS.update(copy.deepcopy(orig[2]));I.QUESTIONS.clear();I.QUESTIONS.update(copy.deepcopy(orig[3]))
+print('baseline failures:',run())
+muts={'skip S08 validate_setup':lambda:setattr(I,'validate_setup',lambda s,*a:s),
+ 'unicode digits accepted (\\d)':lambda:setattr(I,'_NUMBER',re.compile(I._NUMBER.pattern.replace('[0-9]','\\d'))),
+ 'bare angle number accepted':lambda:I.UNITS['rad'].__setitem__('',1.0),
+ 'digit in question prompt':lambda:I.QUESTIONS.__setitem__('projectile',(('launch_height','free_text','Height in 2 m?','m',{}),)),
+ 'chip value changed to non-zero':lambda:I.QUESTIONS['free_fall'][1][4].__setitem__('at-rest',('Starts at rest',0.1))}
+for n,m in muts.items():
+    m();print(f'MUTANT {n}: failures={run()} ->','KILLED' if run() else 'SURVIVED');restore()
+# --- output ---
+baseline failures: 0
+MUTANT skip S08 validate_setup: failures=2 -> KILLED
+MUTANT unicode digits accepted (\d): failures=1 -> KILLED
+MUTANT bare angle number accepted: failures=1 -> KILLED
+MUTANT digit in question prompt: failures=2 -> KILLED
+MUTANT chip value changed to non-zero: failures=2 -> KILLED
