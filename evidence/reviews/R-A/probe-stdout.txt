@@ -1,0 +1,84 @@
+{
+  "baseline": "ca34cbff8a3aaae6b3a4b07c4dda83d73e6b9821",
+  "unknown_ref_blocked": true,
+  "fallback_tool_quantities_present": true,
+  "no_outputs_fallback_safe": true,
+  "invalid_tools_raise": true,
+  "normalization": [
+    {
+      "kind": "free_text",
+      "chips": false,
+      "normalized": "free_text",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    },
+    {
+      "kind": "free_text",
+      "chips": true,
+      "normalized": "chips_and_free_text",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    },
+    {
+      "kind": "chips",
+      "chips": false,
+      "normalized": "free_text",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    },
+    {
+      "kind": "chips",
+      "chips": true,
+      "normalized": "chips",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    },
+    {
+      "kind": "chips_and_free_text",
+      "chips": false,
+      "normalized": "free_text",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    },
+    {
+      "kind": "chips_and_free_text",
+      "chips": true,
+      "normalized": "chips_and_free_text",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    }
+  ],
+  "offline_summary": {
+    "valid_specs": "10/10",
+    "turns": 30,
+    "invented_shown": 0,
+    "model_replies_shown": 24,
+    "tool_only_fallbacks": 6,
+    "model_number_attempts_caught": 36,
+    "spark_calls": 66,
+    "wonder_calls": 13,
+    "stopped": null,
+    "gate_a": "MET"
+  },
+  "stored_live_summary": {
+    "valid_specs": "10/10",
+    "turns": 30,
+    "invented_shown": 0,
+    "model_replies_shown": 30,
+    "tool_only_fallbacks": 0,
+    "model_number_attempts_caught": 0,
+    "spark_calls": 30,
+    "wonder_calls": 12,
+    "stopped": null,
+    "gate_a": "MET"
+  },
+  "ledger_rows": 42,
+  "ledger_labels_reconcile": true,
+  "estimated_usd": 1.132782,
+  "model_counts": {
+    "muse-wonder-1.0": 12,
+    "muse-spark-1.3": 30
+  },
+  "billed_unknown": true,
+  "original_S14_evidence_unchanged": true
+}

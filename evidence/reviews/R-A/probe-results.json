@@ -1,0 +1,426 @@
+{
+  "baseline": "ca34cbff8a3aaae6b3a4b07c4dda83d73e6b9821",
+  "probes": [
+    {
+      "input": "Gravity is one metre per second squared.",
+      "blocked": false,
+      "shown": "Gravity is one metre per second squared.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "gate_scan": null
+    },
+    {
+      "input": "Gravity is double the fitted value.",
+      "blocked": false,
+      "shown": "Gravity is double the fitted value.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "gate_scan": null
+    },
+    {
+      "input": "Distance is a couple of metres.",
+      "blocked": false,
+      "shown": "Distance is a couple of metres.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "gate_scan": null
+    },
+    {
+      "input": "Gravity is nine point eight.",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "Distance is two to three metres.",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "Distance is 2-3 m.",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "Gravity is twice the fitted value.",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "Distance is half a metre.",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "Gravity is ٩٫٨.",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "Distance is ½ metre.",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "Gravity is Ⅸ.",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "Gravity is 三.",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "Gravity is 9.81 m/s².",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "Gravity is nine​point​eight.",
+      "blocked": true,
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated).",
+      "gate_scan": null
+    },
+    {
+      "input": "split segments: ni + ne point ei + ght",
+      "blocked": false,
+      "shown": "Gravity is nine point eight metres per second squared. 9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "gate_scan": "untraced_number_word 'nine'"
+    }
+  ],
+  "end_to_end_gate_turns": [
+    {
+      "turn": 0,
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "Gravity is one metre per second squared.9.81 ± 7.4e-05 m/s^2 (simulated)"
+    },
+    {
+      "turn": 1,
+      "template": "projectile",
+      "mystery": false,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "Gravity is double the fitted value.9.81 ± 7.4e-05 m/s^2 (simulated)"
+    },
+    {
+      "turn": 2,
+      "template": "free_fall",
+      "mystery": true,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": "untraced_number_word 'nine'",
+      "shown": "Gravity is nine point eight metres per second squared.14.2151 ± 9.5e-05 m/s^2 (simulated)"
+    }
+  ],
+  "unknown_ref_blocked": true,
+  "fallback_tool_quantities_present": true,
+  "no_outputs_fallback_safe": true,
+  "invalid_tools_raise": true,
+  "normalization": [
+    {
+      "kind": "free_text",
+      "chips": false,
+      "normalized": "free_text",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    },
+    {
+      "kind": "free_text",
+      "chips": true,
+      "normalized": "chips_and_free_text",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    },
+    {
+      "kind": "chips",
+      "chips": false,
+      "normalized": "free_text",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    },
+    {
+      "kind": "chips",
+      "chips": true,
+      "normalized": "chips",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    },
+    {
+      "kind": "chips_and_free_text",
+      "chips": false,
+      "normalized": "free_text",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    },
+    {
+      "kind": "chips_and_free_text",
+      "chips": true,
+      "normalized": "chips_and_free_text",
+      "input_unchanged": true,
+      "prompt_and_chip_numbers_rejected": true
+    }
+  ],
+  "offline_summary": {
+    "valid_specs": "10/10",
+    "turns": 30,
+    "invented_shown": 0,
+    "model_replies_shown": 24,
+    "tool_only_fallbacks": 6,
+    "model_number_attempts_caught": 36,
+    "spark_calls": 66,
+    "wonder_calls": 13,
+    "stopped": null,
+    "gate_a": "MET"
+  },
+  "stored_live_summary": {
+    "valid_specs": "10/10",
+    "turns": 30,
+    "invented_shown": 0,
+    "model_replies_shown": 30,
+    "tool_only_fallbacks": 0,
+    "model_number_attempts_caught": 0,
+    "spark_calls": 30,
+    "wonder_calls": 12,
+    "stopped": null,
+    "gate_a": "MET"
+  },
+  "ledger_rows": 42,
+  "ledger_labels_reconcile": true,
+  "estimated_usd": 1.132782,
+  "model_counts": {
+    "muse-wonder-1.0": 12,
+    "muse-spark-1.3": 30
+  },
+  "billed_unknown": true,
+  "live_independent_residual_scan": [
+    {
+      "turn": 0,
+      "residual": "This trial is simulated, not physical evidence, so it cannot support claims about real gravity. Fitted gravity is consistent with the simulated drop and duration within the reported fit uncertainty.  Limits include authored synthetic settings and simplified independent uncertainty without correlated scale effects, and the setup is not calibrated.",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 1,
+      "residual": "This trial is simulated, not physical evidence. The fitted gravity value is consistent with the simulated drop over the simulated duration within the reported uncertainty, subject to synthetic settings and a simplified independent uncertainty model that omits correlated effects and calibration. The comparison uses simulated drop and duration as listed, with limitations noted.  ",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 2,
+      "residual": "This trial is simulated, not physical evidence. The fitted gravity estimate of   aligns with the simulated drop paired with simulated duration for this virtual run, within quoted uncertainty, while resting on authored settings plus simplified independent timing and position uncertainty without calibrated scale or clock effects.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 3,
+      "residual": "This trial is simulated, not physical evidence, using authored synthetic settings with simplified independent uncertainty and lacking calibration for correlated effects. The fitted gravity value of   aligns with the simulated drop duration of   and simulated drop of   within the stated simplified uncertainty, though this consistency reflects internal model agreement rather than validation against physical measurement.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 4,
+      "residual": "This trial is simulated, not physical evidence. Fit gravity aligns with simulated drop and timing output within stated uncertainty. Consistency holds only under synthetic authored settings with idealized independent uncertainty and lacking calibrated correlated effects. ",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 5,
+      "residual": "This trial is simulated, not physical evidence. The fitted gravity value aligns with the simulated drop behavior over the simulated duration within stated uncertainty, showing internal consistency only. Limits include synthetic authored settings and simplified independent uncertainty lacking correlated effects and calibration, so no claim about real gravity is supported.",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 6,
+      "residual": "This trial is simulated, not physical evidence. The fitted gravity value is derived from the simulated drop and duration under stated uncertainties, and appears consistent within that simplified model.   Limitations include authored synthetic settings and simplified independent uncertainties lacking correlated effects and calibration, so no claim about real gravity can be made.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 7,
+      "residual": "This trial is simulated, not physical evidence, so it cannot support claims about real gravity. The fitted result is consistent with the simulated drop over the simulated duration within the reported fit uncertainty.  Limitations include synthetic authored settings and simplified independent uncertainty with no correlated calibration.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 8,
+      "residual": "This trial is simulated, not physical evidence, and can only speak to internal consistency of the virtual setup. Fitted gravity tracks the simulated drop and timing within stated uncertainty, with no sign of mismatch between simulation and fit. Limits include synthetic authored settings plus simplified independent uncertainty, lacking correlated effects and calibration, so broader claims are unwarranted.",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 9,
+      "residual": "This trial is simulated, not physical evidence. Fitted gravity tracks simulator timing closely within stated uncertainty, showing internal consistency. Limits include authored instrument settings plus simplified independent uncertainty lacking correlated effects and calibration, so outcome cannot support broad claims.",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 10,
+      "residual": "This trial is simulated, not physical evidence. Fitted gravity aligns with simulated drop timing within stated uncertainty, showing internal consistency. Limitation reflects synthetic settings and simplified independent uncertainty without correlated effects or calibration, so result cannot support wider claims.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 11,
+      "residual": "This trial is simulated, not physical evidence. The fitted gravity value of is consistent with the simulated drop and duration within the stated simplified uncertainty. Limitations include synthetic authored settings and independent timing and position uncertainty with absent correlated effects and absent calibration, so broader use is unwarranted.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 12,
+      "residual": "This trial is simulated, not physical evidence. The fitted gravity from the synthetic fit is consistent with the simulated drop timing within stated uncertainty, as seen in value Limits include synthetic authored settings and simplified independent uncertainty with unmodeled correlated effects, so result lacks calibration for real-world use.",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 13,
+      "residual": "This trial is simulated, not physical evidence, and the fitted gravity result looks consistent with the simulated drop across the simulated duration within the stated fit uncertainty. Limits include synthetic authored instrument settings with a simple independent timing and position uncertainty model, absent correlated clock and scale effects and absent calibration, so the outcome cannot support claims about real measurement. ",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 14,
+      "residual": "This trial is simulated, not physical evidence, and cannot support claims about real gravity. The fitted value aligns with the simulated drop paired with simulated duration within quoted uncertainty, with limits from synthetic settings and simplified independent uncertainty lacking correlated effects or calibration.  ",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 15,
+      "residual": "This trial is simulated, not physical evidence, and cannot support claims about the real world. Fitted gravity is consistent with the simulated drop and duration within the stated simplified uncertainty, so the check passes internally.  Limitations include synthetic authored settings and simplified independent uncertainty with no correlated effects and no calibration.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 16,
+      "residual": "This virtual trial shows fitted gravity consistent with the simulated drop over the simulated duration within stated uncertainty, indicating internal agreement between simulator and fitter. This trial is simulated and not physical evidence. Limits include authored synthetic settings and simplified independent uncertainty without correlated effects and without calibration. Additional context from simulated duration supports the check while remaining subject to the same simulated scope. ",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 17,
+      "residual": "This trial is simulated, not physical evidence. Fitted result is internally consistent with the simulated drop and duration within stated uncertainty. Interpretation is limited by synthetic authored settings and simplified independent uncertainty with no correlated calibration, so no claim about real gravity follows. ",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 18,
+      "residual": "This trial is simulated, not physical evidence, with fitted gravity derived from the synthetic run using simulated drop and duration consistent within the stated synthetic uncertainty model, which covers independent timing and position spread only and lacks correlated scale effects and calibration, so applicability beyond the virtual lab remains limited  ",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 19,
+      "residual": "This trial is simulated, not physical evidence. The simulator provides drop and duration, while the fitter reports gravity as Consistency assessment compares that fitted gravity with the value implied by the simulated motion under the projectile template, allowing for stated uncertainties. Limits include authored synthetic settings plus simplified independent timing and position uncertainty, without correlated clock or scale effects and without calibration.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 20,
+      "residual": "The fitted gravity value aligns with the simulated drop and duration within the quoted uncertainty, showing internal consistency for this virtual trial.   This trial is simulated, not physical evidence, using authored instrument settings with simplified independent uncertainty and lacking correlated effects or calibration.",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 21,
+      "residual": "This trial is simulated, not physical evidence, so it cannot support claims about real gravity. The fitted result is internally consistent with the simulated drop and duration within stated uncertainties.  Limitations include authored synthetic settings with simplified independent uncertainty and lack of calibration, so broader validity remains untested.",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 22,
+      "residual": "This trial is simulated, not physical evidence. Fitted result tracks simulated drop behavior within stated uncertainty, showing internal consistency between simulator and fitter. Limits include authored synthetic settings plus simplified independent uncertainty lacking correlated effects and calibration, so no real-world claim follows. Fitted gravity is   supported by simulated timing shown in   and simulated drop of   under those stated limits.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 23,
+      "residual": "This trial is simulated, not physical evidence. Fitted gravity aligns with simulated drop and duration within stated uncertainty, but scope is narrow. Limitations include synthetic settings and simplified independent uncertainty without correlated effects or calibration.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 24,
+      "residual": "This trial is simulated, not physical evidence. Fitted gravity is consistent with the simulated drop and timing within reported uncertainty, subject to limits noted here. Limits include synthetic authored settings plus simplified independent timing and position uncertainty without correlated effects or calibration.",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 25,
+      "residual": "This trial is simulated rather than physical evidence, so it can show internal consistency only.The fitted gravity value is consistent with the simulated drop behavior over the simulated duration within stated uncertainty. Limitations include synthetic authored settings plus simplified independent uncertainty, without correlated effects and without calibration.",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 26,
+      "residual": "This trial is simulated, not physical evidence, so it cannot support claims about real gravity. The fitted gravity value is which is broadly consistent with the simulated drop paired with the simulated duration in this virtual run, within the reported fit uncertainty. Limits include synthetic authored settings and simplified independent uncertainty with no correlated effects and no calibration.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 27,
+      "residual": "This trial is simulated, not physical evidence, and the fitted gravity value aligns with the simulated drop and duration within stated uncertainty. Limitation is synthetic authored settings with simplified independent timing and position uncertainty, lacking correlated or calibrated scale effects.",
+      "common_numeric_tokens": false,
+      "provenance": "UNVERIFIABLE: historical tool outputs and random seed absent; format-only scan"
+    },
+    {
+      "turn": 28,
+      "residual": "This trial is simulated, not physical evidence. Fitted gravity is consistent with simulated drop timing within stated uncertainty, subject to synthetic settings and simplified independent uncertainty lacking correlated effects. Limits noted here prevent use as calibration or real-world confirmation.",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    },
+    {
+      "turn": 29,
+      "residual": "Fitted gravity tracks the simulated drop timing closely, showing internal consistency within this synthetic trial run.   This trial is simulated, not physical evidence, with authored settings plus simplified uncertainty handling that limits wider inference. ",
+      "common_numeric_tokens": false,
+      "provenance": "reproduced deterministic simulator/fitter output"
+    }
+  ],
+  "original_S14_evidence_unchanged": true,
+  "original_S14_sha256": {
+    "evidence\\S14\\S14a-mutation.txt": "7ce8e74254dc62c6b27c7190afc4bdc80418f6d69919df95c8308e09ceb52d02",
+    "evidence\\S14\\S14a-unittest.txt": "4232c2239cf61db0c65172eb5a7edef041879aad6574d9f3b64f310b0e81a058",
+    "evidence\\S14\\S14b-ledger.jsonl": "c3bb3ae00a131f66971f2ce1b5aec53b6775b761f0e42047a25ff73e09f7661e",
+    "evidence\\S14\\S14b-mutation.txt": "3db289b1d93853916a144a24e18d261ecc48c66e3ecdb24a7148e30fcec33cf9",
+    "evidence\\S14\\S14b-unittest.txt": "b61095216e20dba66b590018f60a49cb961f5c59ada26d9ba4f147b38abd5f04",
+    "evidence\\S14\\S14c-mutation.txt": "ccb09ce434183a8deceabf1a8b98ccd6d5052ed9d85471cdcdece442bd577a53",
+    "evidence\\S14\\S14c-probe.txt": "a1407ea51e579bc2be45960ba01492a7619bae42643bbeb2ea048265c9133d0a",
+    "evidence\\S14\\S14c-unittest.txt": "ecf469048a444afd5310af0614b4faaa3ec015c57441c77c31580e5aff1f84ad",
+    "evidence\\S14\\S14d-mutation.txt": "b8e1782fa57c09f0c5c12219bf9e69c98e63bd6d8ae4e86bf2b416bcea6a9565",
+    "evidence\\S14\\S14d-probe.txt": "ba2555b03c5af87dbba9ac7e7f71ee85b6c3c2626f073c5437160821ea163d16",
+    "evidence\\S14\\S14d-unittest.txt": "00a927eccdc775b21d0cd19fc0fb8f6f52b16b8e1fc1e4467b631637ae254a78",
+    "evidence\\S14\\S14d_mutation.py": "043a910b62dde5af6be268f8b508acc6818dc4b75cc9766e1b5be6fa0783f09b",
+    "evidence\\S14\\S14e-mutation.txt": "fd65c8a870b8ae0bb64fe29bfb2a4a6ba0d497857d72ea0ede1bf428c7e26a0e",
+    "evidence\\S14\\S14e-probe.txt": "52f03d78208de1e766d500ae31cd44a54f41d231ab58b068c6dcdd5a1c38ab9b",
+    "evidence\\S14\\S14e-unittest.txt": "3bc0ecc49bbdfcb11d87d1e402bf91eb468500a720c8eccf1a66b907ac4d58cc",
+    "evidence\\S14\\S14e_mutation.py": "33264d1c6983bed01ea30ac34b56dc31e783ed714f05b858a25bd1b8c79bcf55",
+    "evidence\\S14\\S14e_probe.py": "e90559816683dd6dde9532c824cc15cece8c930b404baf840676f916fd48ef1f",
+    "evidence\\S14\\S14f-mutation.txt": "5d2e8d8fb1d22a07feeb5c738d1fe5cc2306003ad0b98dc0767958f899fce5ad",
+    "evidence\\S14\\S14f-S14e-mutation-rerun.txt": "fd65c8a870b8ae0bb64fe29bfb2a4a6ba0d497857d72ea0ede1bf428c7e26a0e",
+    "evidence\\S14\\S14f-unittest.txt": "0e0d895ad41934de47f1e98f9fa3ea9926d48a902447b29e0b7b6d13baafc6bf",
+    "evidence\\S14\\S14f_mutation.py": "829143122be2df0d608c713e75aa7d4cc5fd05b3805c04503c781032d4088113",
+    "evidence\\S14\\S14g-ledger.jsonl": "c35c444ee90ee3ae42a64ba58b84e61b7eeacb4a55d999d3da65e376ff584540",
+    "evidence\\S14\\S14g-live-stdout.txt": "e118e1dcfcec2e110a3a89876927096ce767c481c194566fba793799900a27a8",
+    "evidence\\S14\\S14g-live.json": "b9614f32200989e9fd41d1daa79f95cba002fa00331ee03b8ff5ff9acacbeadb",
+    "evidence\\S14\\S14g-mutation-rerun.txt": "0cff0e736de7f6cc9c43a060e417ecd9bebebc8789da80ed1bc1036b7b21b001",
+    "evidence\\S14\\S14g-offline.json": "f3e2540f8965667a180f8f368c59239ba65e18580d50e25bcf648bc9822d7435",
+    "evidence\\S14\\S14g-unittest.txt": "9d290d1f234d68097fa3a6abde67fcc4db62222b56e04d238682e659a2234a12",
+    "evidence\\S14\\S14g_gate_a.py": "6cb6d1171cf7d51466dbde8b9ab0b90cca6b5edfabc94a1381dc23430b120bae"
+  }
+}

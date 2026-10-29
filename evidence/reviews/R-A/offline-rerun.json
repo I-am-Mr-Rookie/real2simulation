@@ -1,0 +1,610 @@
+{
+  "specs": [
+    {
+      "attempts": 2,
+      "rejected": [
+        [
+          "muse: response status 'incomplete'"
+        ]
+      ],
+      "model_number_attempts": 0,
+      "valid": true,
+      "template": "free_fall"
+    },
+    {
+      "attempts": 1,
+      "rejected": [],
+      "model_number_attempts": 0,
+      "valid": true,
+      "template": "free_fall"
+    },
+    {
+      "attempts": 1,
+      "rejected": [],
+      "model_number_attempts": 0,
+      "valid": true,
+      "template": "free_fall"
+    },
+    {
+      "attempts": 1,
+      "rejected": [],
+      "model_number_attempts": 0,
+      "valid": true,
+      "template": "free_fall"
+    },
+    {
+      "attempts": 2,
+      "rejected": [
+        [
+          "muse: response status 'incomplete'"
+        ]
+      ],
+      "model_number_attempts": 0,
+      "valid": true,
+      "template": "free_fall"
+    },
+    {
+      "attempts": 1,
+      "rejected": [],
+      "model_number_attempts": 0,
+      "valid": true,
+      "template": "free_fall"
+    },
+    {
+      "attempts": 1,
+      "rejected": [],
+      "model_number_attempts": 0,
+      "valid": true,
+      "template": "free_fall"
+    },
+    {
+      "attempts": 1,
+      "rejected": [],
+      "model_number_attempts": 0,
+      "valid": true,
+      "template": "free_fall"
+    },
+    {
+      "attempts": 2,
+      "rejected": [
+        [
+          "muse: response status 'incomplete'"
+        ]
+      ],
+      "model_number_attempts": 0,
+      "valid": true,
+      "template": "free_fall"
+    },
+    {
+      "attempts": 1,
+      "rejected": [],
+      "model_number_attempts": 0,
+      "valid": true,
+      "template": "free_fall"
+    }
+  ],
+  "turns": [
+    {
+      "turn": 0,
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 1,
+      "template": "projectile",
+      "mystery": false,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 2,
+      "template": "free_fall",
+      "mystery": true,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 8.24053 \u00b1 6.7e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 3,
+      "template": "projectile",
+      "mystery": true,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.06123 \u00b1 7e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 4,
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 4,
+      "model_reply_shown": false,
+      "model_number_attempts": 3,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ],
+        [
+          "trial_check.segments: must cite at least one simulator/fitter quantity"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 \u00b1 1e-06 s (simulated) simulator drop 0.1962 \u00b1 1e-06 m (simulated) fitter gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence."
+    },
+    {
+      "turn": 5,
+      "template": "projectile",
+      "mystery": false,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 6,
+      "template": "free_fall",
+      "mystery": true,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 15.9849 \u00b1 0.0001 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 7,
+      "template": "projectile",
+      "mystery": true,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 12.5165 \u00b1 8.6e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 8,
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 9,
+      "template": "projectile",
+      "mystery": false,
+      "attempts": 4,
+      "model_reply_shown": false,
+      "model_number_attempts": 3,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ],
+        [
+          "trial_check.segments: must cite at least one simulator/fitter quantity"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 \u00b1 1e-06 s (simulated) simulator drop 0.1962 \u00b1 1e-06 m (simulated) fitter gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence."
+    },
+    {
+      "turn": 10,
+      "template": "free_fall",
+      "mystery": true,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 13.8926 \u00b1 9.3e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 11,
+      "template": "projectile",
+      "mystery": true,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 10.4164 \u00b1 7.6e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 12,
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 13,
+      "template": "projectile",
+      "mystery": false,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 14,
+      "template": "free_fall",
+      "mystery": true,
+      "attempts": 4,
+      "model_reply_shown": false,
+      "model_number_attempts": 3,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ],
+        [
+          "trial_check.segments: must cite at least one simulator/fitter quantity"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 \u00b1 1e-06 s (simulated) simulator drop 0.156517 \u00b1 1e-06 m (simulated) fitter gravity 7.82586 \u00b1 6.5e-05 m/s^2 (simulated). Simulated, not physical evidence."
+    },
+    {
+      "turn": 15,
+      "template": "projectile",
+      "mystery": true,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 8.0571 \u00b1 6.6e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 16,
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 17,
+      "template": "projectile",
+      "mystery": false,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 18,
+      "template": "free_fall",
+      "mystery": true,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 10.4886 \u00b1 7.7e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 19,
+      "template": "projectile",
+      "mystery": true,
+      "attempts": 4,
+      "model_reply_shown": false,
+      "model_number_attempts": 3,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ],
+        [
+          "trial_check.segments: must cite at least one simulator/fitter quantity"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 \u00b1 1e-06 s (simulated) simulator drop 0.234269 \u00b1 1e-06 m (simulated) fitter gravity 11.7135 \u00b1 8.2e-05 m/s^2 (simulated). Simulated, not physical evidence."
+    },
+    {
+      "turn": 20,
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 21,
+      "template": "projectile",
+      "mystery": false,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 22,
+      "template": "free_fall",
+      "mystery": true,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 6.67488 \u00b1 6.1e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 23,
+      "template": "projectile",
+      "mystery": true,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 10.996 \u00b1 7.9e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 24,
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 4,
+      "model_reply_shown": false,
+      "model_number_attempts": 3,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ],
+        [
+          "trial_check.segments: must cite at least one simulator/fitter quantity"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 \u00b1 1e-06 s (simulated) simulator drop 0.1962 \u00b1 1e-06 m (simulated) fitter gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence."
+    },
+    {
+      "turn": 25,
+      "template": "projectile",
+      "mystery": false,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 26,
+      "template": "free_fall",
+      "mystery": true,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 12.8893 \u00b1 8.8e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 27,
+      "template": "projectile",
+      "mystery": true,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 13.9891 \u00b1 9.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 28,
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 2,
+      "model_reply_shown": true,
+      "model_number_attempts": 1,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "Simulated check: the fitter gives gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence."
+    },
+    {
+      "turn": 29,
+      "template": "projectile",
+      "mystery": false,
+      "attempts": 4,
+      "model_reply_shown": false,
+      "model_number_attempts": 3,
+      "rejected": [
+        [
+          "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'nine'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'twice'"
+        ],
+        [
+          "trial_check.segments: must cite at least one simulator/fitter quantity"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 \u00b1 1e-06 s (simulated) simulator drop 0.1962 \u00b1 1e-06 m (simulated) fitter gravity 9.81 \u00b1 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence."
+    }
+  ],
+  "summary": {
+    "valid_specs": "10/10",
+    "turns": 30,
+    "invented_shown": 0,
+    "model_replies_shown": 24,
+    "tool_only_fallbacks": 6,
+    "model_number_attempts_caught": 36,
+    "spark_calls": 66,
+    "wonder_calls": 13,
+    "stopped": null,
+    "gate_a": "MET"
+  }
+}

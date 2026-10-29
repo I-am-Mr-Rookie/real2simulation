@@ -1,0 +1,16 @@
+✔ every fixture response is a parseable interview round; number chip text comes from the tool output (9.2161ms)
+✔ walk: chips -> free_text -> chips_and_free_text -> complete, with the answers handed out (2.3367ms)
+✔ back restores the previous answer; reload only between rounds; later rounds append; reset clears (0.8388ms)
+✔ free text is capped, stripped of control characters and kept as plain text (0.5158ms)
+✔ malformed or untraced questions are rejected and leave the interview where it was (4.1965ms)
+✔ markup: toggle chips, labelled textarea, actions report plain events; controls disabled without onAction (2.7925ms)
+✔ panel: shown only in interview.active and only when an interview state is supplied (10.5403ms)
+✔ interview.mjs stays pure: no imports, no DOM, network or model access (0.9623ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 307.8205
