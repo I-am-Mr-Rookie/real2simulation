@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+S09j DONE (orch35 Opus medium; viewer 43/3 skip/0 fail canonical; TIMEBOX PASS; ff-merged):
+evidence/S09/CHECKPOINT.md separates synthetic fixture vs real RM02/04/05 (scale UNVERIFIED,
+RM05 display-only); no visual defects found. S09 step complete.
 S09i DONE (orch33 Opus medium; TIMEBOX PASS; ff-merged; canonical viewer 43 pass/3 real skipped
 (media gitignored)/0 fail): HP 250 G7 i3-1005G1 Intel UHD, RM02/RM04/RM05 orbit 59.97 fps
 desktop (vsync cap), ~56 fps at 375px emulation, worst frame 22.9 ms, heap 12-15 MB. No VRAM
