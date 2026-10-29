@@ -45,7 +45,7 @@ for service, host, paths in (
                 expected_content = {
                     "/": "Real2Simulation",
                     "/library": "No demos are published yet",
-                    "/sign-in": "Sign-in unavailable",
+                    "/sign-in": "Sign in to Real2Simulation",  # Clerk configured Oct29; was the unavailable fallback
                     "/workspace/private-check": "Private workspaces remain unavailable",
                 }[path]
                 record["expected_content_present"] = expected_content in body

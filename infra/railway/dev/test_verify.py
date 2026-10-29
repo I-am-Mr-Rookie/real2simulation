@@ -44,7 +44,7 @@ def verify(responses):
             status = 404 if parsed.path.startswith("/workspace/") else 200
             body = "Real2Simulation " + {
                 "/": "", "/library": "No demos are published yet",
-                "/sign-in": "Sign-in unavailable",
+                "/sign-in": "Sign in to Real2Simulation",
                 "/workspace/private-check": "Private workspaces remain unavailable",
             }[parsed.path]
         else:

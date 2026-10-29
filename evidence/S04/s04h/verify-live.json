@@ -1,0 +1,115 @@
+{
+  "observed_utc": "2026-10-29T15:14:41.407595+00:00",
+  "checks": [
+    {
+      "service": "api",
+      "url": "https://api-dev-6091.up.railway.app/health/live",
+      "status": 200,
+      "body": {
+        "service": "api",
+        "status": "ok",
+        "revision": "300cd2096f9e32bcdf3433520b36b67f709df0d5"
+      },
+      "pass": true
+    },
+    {
+      "service": "api",
+      "url": "https://api-dev-6091.up.railway.app/health/ready",
+      "status": 200,
+      "body": {
+        "service": "api",
+        "status": "ok",
+        "revision": "300cd2096f9e32bcdf3433520b36b67f709df0d5",
+        "dependencies": {
+          "postgres": "ok",
+          "redis": "ok",
+          "bucket": "ok"
+        }
+      },
+      "pass": true
+    },
+    {
+      "service": "api",
+      "url": "https://api-dev-6091.up.railway.app/api/version",
+      "status": 200,
+      "body": {
+        "service": "api",
+        "revision": "300cd2096f9e32bcdf3433520b36b67f709df0d5"
+      },
+      "pass": true
+    },
+    {
+      "service": "worker",
+      "url": "https://worker-dev-984d.up.railway.app/health/live",
+      "status": 200,
+      "body": {
+        "service": "worker",
+        "status": "ok",
+        "revision": "300cd2096f9e32bcdf3433520b36b67f709df0d5"
+      },
+      "pass": true
+    },
+    {
+      "service": "worker",
+      "url": "https://worker-dev-984d.up.railway.app/health/ready",
+      "status": 503,
+      "body": {
+        "service": "worker",
+        "status": "unavailable",
+        "revision": "300cd2096f9e32bcdf3433520b36b67f709df0d5",
+        "dependencies": {
+          "redis": "ok",
+          "bucket": "ok",
+          "heartbeat": "unavailable"
+        }
+      },
+      "pass": true
+    },
+    {
+      "service": "worker",
+      "url": "https://worker-dev-984d.up.railway.app/api/version",
+      "status": 200,
+      "body": {
+        "service": "worker",
+        "revision": "300cd2096f9e32bcdf3433520b36b67f709df0d5"
+      },
+      "pass": true
+    },
+    {
+      "service": "web",
+      "url": "https://web-dev-cd80.up.railway.app/",
+      "status": 200,
+      "product_title": true,
+      "auth_fallback": true,
+      "expected_content_present": true,
+      "pass": true
+    },
+    {
+      "service": "web",
+      "url": "https://web-dev-cd80.up.railway.app/library",
+      "status": 200,
+      "product_title": true,
+      "auth_fallback": true,
+      "expected_content_present": true,
+      "pass": true
+    },
+    {
+      "service": "web",
+      "url": "https://web-dev-cd80.up.railway.app/sign-in",
+      "status": 200,
+      "product_title": true,
+      "auth_fallback": true,
+      "expected_content_present": true,
+      "pass": true
+    },
+    {
+      "service": "web",
+      "url": "https://web-dev-cd80.up.railway.app/workspace/private-check",
+      "status": 404,
+      "product_title": true,
+      "auth_fallback": true,
+      "expected_content_present": true,
+      "pass": true
+    }
+  ]
+}
