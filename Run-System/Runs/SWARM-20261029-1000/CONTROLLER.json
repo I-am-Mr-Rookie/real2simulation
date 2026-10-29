@@ -1,40 +1,21 @@
 {
-  "updated_utc": "2026-10-29T07:58:39Z",
+  "updated_utc": "2026-10-29T08:17:19Z",
   "objective": "Maximum-speed authorized simulation-only swarm through2026-10-29T10:00:00Z (16:00Dhaka); owner extended after actual usage-limit interruption",
   "canonical_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
-  "completed_rounds": 5,
-  "queue_done": 88,
-  "queue_total": 216,
-  "main_verified_source": "9eece42",
-  "product_reviewed_pin": "b37f7b8; native R15-combined-gate no P0-P2, pending combined integration",
+  "completed_rounds": 6,
+  "queue_done": 89,
+  "queue_total": 217,
+  "main_verified_source": "7087ca8",
+  "product_reviewed_pin": "fe79f61; narrow native785a279 noP0-P2, immutable finalBuild/contracts.",
   "candidate": {
     "worktree": "C:/Users/HP/.codex/worktrees/swarm12-covariance-fix/2026-10-26 - Meta Global AI Developer Hackathon",
-    "branch": "run/R15-combined-integration",
-    "head": "384a02d plus serialized controls",
-    "product_pin": "b37f7b8",
-    "state": "Round5 FF main9eece42 verified, Build/contracts identical to native-reviewedb37f7b8."
+    "branch": "run/R16-ui-integration",
+    "head": "53b4a36 plus serialized controls",
+    "product_pin": "fe79f61",
+    "state": "S10r accepted as sixth round after69combined tests/native/IAB375/production0+32asset+18HTTP. Pending source-identical mainFF packaging."
   },
-  "active_workers": [
-    {
-      "id": "R16-ui-helpers",
-      "agent_id": "01a186ab-0a66-7f91-9298-088ac10776d3",
-      "issued_at": "2026-10-29T07:58:38.000Z",
-      "deadline_at": "2026-10-29T08:28:38.000Z",
-      "implementation_cutoff_at": "2026-10-29T08:23:38.000Z",
-      "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-ui-contract/2026-10-26 - Meta Global AI Developer Hackathon",
-      "scope": "Sole product writer for four known latentP3 helpers"
-    },
-    {
-      "id": "R16-ui-oracle",
-      "agent_id": "01a186ab-0c66-70a3-85a1-df6d75b43852",
-      "issued_at": "2026-10-29T07:58:39.000Z",
-      "deadline_at": "2026-10-29T08:28:39.000Z",
-      "implementation_cutoff_at": "2026-10-29T08:23:39.000Z",
-      "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26 - Meta Global AI Developer Hackathon",
-      "scope": "Independent immutable oracle, no product edits"
-    }
-  ],
-  "next": "Parallel one product writer and independent oracle, disjoint Owns; accept code only after parent/source/test/timebox/native gate and actual375 checks. No next round count until integration.",
+  "active_workers": [],
+  "next": "FF accepted S10r, archive finished worktrees. Next useful scope: bounded actual normal-mode HTTP/real CPU bridge cancellation plus actual UI invalidation, not another broad audit. No new gate scope/permissions.",
   "owner_stop": {
     "deadline": "2026-10-29T10:00:00Z",
     "crossing_worker_stop_receipt": "2026-10-29T09:59:30Z",
@@ -42,13 +23,13 @@
     "authority": "OWNER-EXTENSION-1600.md"
   },
   "servers": {
-    "recovery3101": "Identity verified own23144/15236 tree stopped, socketclosed before production build",
-    "production3102": "Fresh18 localHTTPprobes PASS; owned child stopped; not deployment"
+    "recovery3101": "Owned dev36958 stopped by CtrlC; socketclosed before build",
+    "production3102": "Fresh18localHTTPprobes PASS; owned processstopped and socketclosed"
   },
   "browser": {
     "kind": "ChatGPT IAB only",
-    "state": "Combined375x812 normal all-four compute and Mystery normalfit verified; tabclosed viewportreset",
-    "proof": "evidence/S10/combined-recovery/iab-375.png"
+    "state": "Currenthelper375 normal free-fall Run/Compute201/Fit and Mystery Run/Fit verified; nooverflow; tabclosed viewportreset",
+    "proof": "evidence/S10/ui-helper-ui/iab-375.png"
   },
   "project_binding": {
     "assigned_id": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
@@ -82,10 +63,11 @@
     "native_review": "../R12-covariance-review/FOLLOWUP.md",
     "real_process": "../R13-process-lifecycle/REPORT.md",
     "round4": "../R15-integration/REPORT.md",
-    "round5": "../R16-combined-integration/REPORT.md"
+    "round5": "../R16-combined-integration/REPORT.md",
+    "round6": "../R17-ui-integration/REPORT.md"
   },
-  "cleanup": "Four completed recovery handles and native reviewer closed. UI audit recovered on same route, verified DONE and closed; actual runtime capacity notification preserved separately from worker tool observations. Consumer checkout active; archive others after acceptance via managed API only.",
-  "main_fast_forward": "9eece42",
+  "cleanup": "R16 three completed handles checked/closed; own dev/prod servers stopped. UI/oracle/requirements managed archives pending after accepted FF; noforced cleanup.",
+  "main_fast_forward": "7087ca8",
   "safety_receipt": {
     "id": "R14-mystery-privacy",
     "state": "native possible-cybersecurity-risk refusal; handleclosed; no retry/rephrase/reroute or audit-complete claim"

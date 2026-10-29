@@ -234,3 +234,15 @@ unchanged15/17 retained with explicit MODEL-DECISION, not quietly called green.
 Four helper-only latentP3 UI cases retained. No gate/physical/scope relaxation.
 Owner corrected capacity-OK; same UI handle resumed and finished bounded audit,
 no model swap or bypass. Goal remains active through16:00Dhaka/10:00UTC.
+
+## Round6 — S10r latent helper recovery
+
+Parent69/69 combined independent exact-oracle/recovery/existing/current checks,
+native noP0-P2 onfe79f61, fresh actual375px normal/Mystery IAB and local production
+build/32asset boundary/18HTTPprobes PASS. Queue89/217, six rounds on verifiedFF.
+All three R16 handles checked and closed; no permanent live-worker claim.
+Four raw-preservation differences were checkout-only LF/mixed/CRLF, proven live
+and by unchanged196 protected Gitblobs. Original failed raw check preserved.
+R17-ui-integration/REPORT.md includes scope/limits; no frozen oracle/tolerance
+edited. Two incompatible nonlinear-energy diagnostics remain explicitly red;
+real-surface builder/physicalGateM/S12 holds remain. Goal continues to10:00UTC.

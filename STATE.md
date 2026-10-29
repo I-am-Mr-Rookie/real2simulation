@@ -2,9 +2,17 @@
 
 ## CURRENT — owner extended inline swarm through Oct29 16:00 Dhaka
 
-Round5 accepted S10o/p/q and S11l after fresh parent source/report/timebox/
-375px IAB and local production build checks:88/217, five completed rounds;
-serialized mainFF9eece42 freshly verified. Combined sourceb37f7b8,
+Round6 S10r accepted:89/217, six completed rounds once serialized mainFF.
+One product helper fix17+/4-, unchanged independent exact oracle and frozen
+checks69/69 PASS; native785a279 noP0-P2, actual375px IAB normal/Mystery and fresh
+local production build/32asset checks/18HTTPprobes PASS. Reviewedsourcefe79f61,
+finalBuild/contracts unchanged. Four latent helper failures now green without
+oracle edits. Raw parent preservation4/196 differences independently resolved as
+checkout line endings only; original failed check retained,196 Gitblobs unchanged.
+R17-ui-integration/REPORT.md records limits. Last verified main7087ca8.
+
+Prior round5 accepted S10o/p/q/S11l:88/217, five rounds;
+serialized mainFF9eece42 verified. Combined sourceb37f7b8,
 native review1b2a87d noP0-P2, finalsource unchanged. Round4 source82791f3/rebased
 46977f0 matches native noP0-P2 review exactly; fresh22 instrument tests PASS.
 R15-integration/REPORT.md records round4 evidence/limits. Four R15 recovery workers

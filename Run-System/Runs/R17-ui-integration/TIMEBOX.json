@@ -1,0 +1,11 @@
+{
+ "id":"R17-ui-integration",
+ "issued_at":"2026-10-29T08:09:31Z",
+ "deadline_at":"2026-10-29T08:39:31Z",
+ "implementation_cutoff_at":"2026-10-29T08:34:31Z",
+ "deadline_dhaka":"2026-10-29T14:39:31+06:00",
+ "work_stopped_at":"2026-10-29T08:17:19Z",
+ "reported_at":"2026-10-29T08:17:19Z",
+ "status":"DONE",
+ "completion_basis":"S10r reports/source/timeboxes,69 combined tests,narrow native noP0-P2,IAB375 and production checks verified; serialized FF packaging remains."
+}

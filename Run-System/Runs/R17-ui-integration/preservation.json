@@ -1,0 +1,12 @@
+{
+  "protected_files": 196,
+  "changed": [
+    "evidence/S10/ui-contract-invariants/R15/prior-R14/existing-command.txt",
+    "evidence/S10/ui-contract-invariants/R15/prior-R14/invariants-command.txt",
+    "evidence/S10/ui-contract-invariants/R15/prior-R14/r14-ui-invariants.test.mjs",
+    "tests/lab/r14-ui-invariants.test.mjs"
+  ],
+  "oracle_git_blob": "fa9eba92e001c565c3ae53fcd35c54a89572a065",
+  "frozen_numerical_diff": [],
+  "reviewed_build_diff": []
+}

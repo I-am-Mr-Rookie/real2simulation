@@ -1,0 +1,53 @@
+{
+  "protected_files": 196,
+  "raw_byte_identical": 192,
+  "line_ending_only": 4,
+  "all_protected_git_blobs_unchanged": true,
+  "rows": [
+    {
+      "path": "evidence/S10/ui-contract-invariants/R15/prior-R14/existing-command.txt",
+      "parent_raw_sha256": "76b066246a94ab6351e5531986ce4f5faf852946c81810072923df11d9643ebf",
+      "worker_raw_sha256": "c94fa16bec262c147a455cd5251b01901aca5c22b7abd5bac3283bb89a2fe9e0",
+      "worker_raw_matches_prior": true,
+      "parent_crlf_count": 2,
+      "worker_crlf_count": 1,
+      "worker_lf_count": 2,
+      "canonical_git_blob_unchanged": true,
+      "line_endings_only": true
+    },
+    {
+      "path": "evidence/S10/ui-contract-invariants/R15/prior-R14/invariants-command.txt",
+      "parent_raw_sha256": "0b31b01dea13bb70fe1a28228abc99419d12c1c3fe338c64d6a0aeb2a404e603",
+      "worker_raw_sha256": "a9b59e907caae17765a6ad768a3ebabf6ec8a4f8824b742b0eb74856d8bb13af",
+      "worker_raw_matches_prior": true,
+      "parent_crlf_count": 3,
+      "worker_crlf_count": 1,
+      "worker_lf_count": 3,
+      "canonical_git_blob_unchanged": true,
+      "line_endings_only": true
+    },
+    {
+      "path": "evidence/S10/ui-contract-invariants/R15/prior-R14/r14-ui-invariants.test.mjs",
+      "parent_raw_sha256": "998db6c82b9b4ff533a382e6c954cd32248030fcf95d259a4309659144e37086",
+      "worker_raw_sha256": "d868465c65a4b6f97c3a66c35c342816381013194547f5ff3c24699612228f58",
+      "worker_raw_matches_prior": true,
+      "parent_crlf_count": 138,
+      "worker_crlf_count": 0,
+      "worker_lf_count": 138,
+      "canonical_git_blob_unchanged": true,
+      "line_endings_only": true
+    },
+    {
+      "path": "tests/lab/r14-ui-invariants.test.mjs",
+      "parent_raw_sha256": "ba6af411a656e930db6d9331cc6fda567d9b40111ec5e3ee2da52464fa7c5ad2",
+      "worker_raw_sha256": "18162be70e9402c27d3d8e049bfd83781ba95c0b3b24d0fee5317044e4ac48e3",
+      "worker_raw_matches_prior": true,
+      "parent_crlf_count": 247,
+      "worker_crlf_count": 0,
+      "worker_lf_count": 247,
+      "canonical_git_blob_unchanged": true,
+      "line_endings_only": true
+    }
+  ],
+  "conclusion": "192 raw-identical; four mixed-LF/CRLF to CRLF checkout conversions only. No source/oracle content edit; original failed raw check preserved."
+}
