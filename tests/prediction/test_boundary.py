@@ -1,98 +1,108 @@
-"""SYNTHETIC S12a boundary checks; not clip, calibration or Gate M evidence."""
+"""S12a boundary checks on visibly synthetic fixtures (plus committed ST03 record).
+
+Not calibration, not Gate M (NOT_MET), no physical-accuracy claim.
+"""
+import copy
+import dataclasses
 import json
 import unittest
-from dataclasses import replace
-from unittest.mock import patch
+from pathlib import Path
+from unittest import mock
 
 from Build.real2sim import boundary as b
 
-NOT_MET = "NOT_MET_INPUT_READINESS"
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def fixture(last=5, n=10):
+    return {"clip_id": "SYNTHETIC", "source_sha256": "a" * 64, "last_training_frame": last,
+            "height_px": 1000,
+            "frames": [{"frame_index": i, "pts_s": i / 30, "x_px": 10.0,
+                        "y_px": 100 + 20 * i + 3 * i * i} for i in range(n)]}
 
 
 class BoundaryTests(unittest.TestCase):
-    def setUp(self):
-        self.data = b.synthetic_fixture()
-        self.boundary, self.held_out = b.split(self.data, NOT_MET)
-
-    def test_split_freezes_prefix_and_commits_suffix_before_fit(self):
-        self.assertEqual([f.frame_index for f in self.boundary.training], list(range(12)))
-        self.assertEqual([f.frame_index for f in self.held_out], list(range(12, 18)))
-        self.assertEqual(self.boundary.held_out_sha256, b.digest(self.held_out))
-        self.data["frames"][0]["x_px"] = 999.0
-        self.data["frames"][-1]["y_px"] = 999.0
-        self.assertEqual(self.boundary.training[0].x_px, 100.0)
-        self.assertEqual(self.boundary.held_out_sha256, b.digest(self.held_out))
-        with self.assertRaises(Exception):
-            self.boundary.training[0].x_px = 1.0
+    def test_split_keeps_suffix_values_out_of_boundary(self):
+        boundary, sealed = b.split(fixture())
+        self.assertEqual([f[0] for f in boundary.training], list(range(6)))
+        self.assertEqual([f[0] for f in sealed], [6, 7, 8, 9])
+        self.assertEqual(boundary.suffix_count, 4)
+        text = repr(boundary)
+        for _, pts, y in sealed:
+            self.assertNotIn(repr(y), text)
+        self.assertEqual(boundary.gate_m, "NOT_MET")
 
     def test_fitter_never_sees_suffix(self):
-        seen = []
-        real = b.fit_motion
-        def spy(times, positions, degree=2, **kw):
-            seen.append(list(times))
-            return real(times, positions, degree, **kw)
-        with patch.object(b, "fit_motion", spy):
-            b.fit_prefix(self.boundary)
-        t0 = self.boundary.training[0].pts_s
-        suffix_times = {f.pts_s - t0 for f in self.held_out}
-        self.assertEqual(len(seen), 2)
-        for times in seen:
-            self.assertEqual(len(times), 12)
-            self.assertFalse(suffix_times & set(times))
-        self.assertFalse(hasattr(self.boundary, "held_out"))
+        boundary, sealed = b.split(fixture())
+        with mock.patch.object(b, "select_model", wraps=b.select_model) as spy:
+            fit = b.fit_prefix(boundary)
+        times, positions = spy.call_args.args[:2]
+        self.assertEqual(len(times), 6)
+        self.assertLess(max(times), sealed[0][1] - boundary.training[0][1])
+        suffix_y = {y for *_, y in sealed}
+        self.assertFalse(suffix_y & set(positions))
+        # Arbitrary suffix values cannot change the fit.
+        tampered = fixture()
+        for f in tampered["frames"][6:]:
+            f["y_px"] = 999.0
+        other = b.fit_prefix(b.split(tampered)[0])
+        self.assertEqual(fit.selected_degree, other.selected_degree)
+        self.assertEqual(fit.candidates[1].coefficients, other.candidates[1].coefficients)
 
-    def test_tampered_or_substituted_suffix_or_prefix_rejected(self):
-        fitted = b.fit_prefix(self.boundary)
-        moved = (replace(self.held_out[0], y_px=self.held_out[0].y_px + 1),) + self.held_out[1:]
-        for bad in (moved, self.held_out[:-1], self.held_out + self.held_out[-1:]):
+    def test_frozen_prefix_and_suffix_detect_tampering(self):
+        boundary, sealed = b.split(fixture())
+        b.verify(boundary, sealed)
+        with self.assertRaises(dataclasses.FrozenInstanceError):
+            boundary.last_training_frame = 7
+        cases = (sealed[:-1], sealed[:1] + ((7, 0.5, sealed[1][2]),) + sealed[2:],
+                 sealed[:1] + ((sealed[1][0], sealed[1][1], 0.5),) + sealed[2:])
+        for bad in cases:
             with self.assertRaises(ValueError):
-                b.evaluate(self.boundary, fitted, bad)
-        forged = replace(self.boundary, training=self.boundary.training[:-1] + (
-            replace(self.boundary.training[-1], x_px=0.0),))
+                b.verify(boundary, bad)
+        hacked = copy.copy(boundary)
+        object.__setattr__(hacked, "training", boundary.training + (sealed[0],))
+        with self.assertRaisesRegex(ValueError, "training prefix"):
+            b.verify(hacked, sealed)
+
+    def test_untracked_suffix_identities_are_sealed(self):
+        record = fixture(last=5, n=6)
+        boundary, sealed = b.split(record, [(6, 0.2), (7, 7 / 30)])
+        self.assertIsNone(boundary.suffix_observation_sha256)
+        b.verify(boundary, sealed)
         with self.assertRaises(ValueError):
-            b.fit_prefix(forged)
-        other, _ = b.split(dict(self.data, last_training_frame=13), NOT_MET)
+            b.verify(boundary, [(6, 0.2), (8, 0.3)])
+
+    def test_invalid_or_leaking_splits_rejected(self):
+        prefix_only = fixture(last=5, n=6)
+        bad = (
+            (fixture(last=1), None),                      # <3 training frames
+            (prefix_only, None),                          # empty suffix
+            (prefix_only, [(5, 0.3)]),                    # index overlap
+            (prefix_only, [(6, 5 / 30)]),                 # PTS overlap
+            (prefix_only, [(7, 0.3), (6, 0.4)]),          # not increasing
+            (fixture(), [(10, 1.0)]),                     # observations AND identities
+            (fixture(last=4) | {"last_training_frame": 4.0}, None),
+        )
+        for record, ids in bad:
+            with self.assertRaises(ValueError):
+                b.split(record, ids)
+        swapped = fixture()
+        swapped["frames"][3]["pts_s"] = 0.0
         with self.assertRaises(ValueError):
-            b.evaluate(other, fitted, self.held_out)
+            b.split(swapped)
 
-    def test_exact_quadratic_extrapolates_and_error_is_scale_free(self):
-        result = b.evaluate(self.boundary, b.fit_prefix(self.boundary), self.held_out)
-        self.assertLess(result["max"], 1e-9)
-        self.assertEqual(result["unit"], "dimensionless")
-        self.assertIn("NOT_MET", result["gate_m_notice"])
-        def bent(scale):
-            data = b.synthetic_fixture()
-            for f in data["frames"]:
-                f["x_px"] *= scale
-                f["y_px"] *= scale
-            data["frames"][-1]["y_px"] += 20 * scale
-            bd, ho = b.split(data, NOT_MET)
-            return b.evaluate(bd, b.fit_prefix(bd), ho)["max"]
-        self.assertGreater(bent(1), 0.01)
-        self.assertAlmostEqual(bent(0.5), bent(1), places=9)
+    def test_outputs_say_gate_m_not_met_and_no_g(self):
+        out = b.record_json(b.split(fixture())[0])
+        self.assertEqual(out["gate_m"], "NOT_MET")
+        self.assertNotIn("g_m_s2", json.dumps(out))
 
-    def test_gate_m_required_and_never_met(self):
-        for status in (None, "", "MET", "PASSED"):
-            with self.assertRaises(ValueError):
-                b.split(b.synthetic_fixture(), status)
-        record = self.boundary.record()
-        self.assertEqual(record["gate_m_status"], NOT_MET)
-        text = json.dumps(record)
-        for f in self.held_out:
-            self.assertNotIn(repr(f.y_px), text)
-
-    def test_leaky_or_short_split_rejected_by_reused_validator(self):
-        for split_at in (1, 17, 99):
-            with self.assertRaises(ValueError):
-                b.split(dict(b.synthetic_fixture(), last_training_frame=split_at), NOT_MET)
-
-    def test_degenerate_prefix_abstains(self):
-        data = b.synthetic_fixture()
-        for f in data["frames"]:
-            f["x_px"], f["y_px"] = 5.0, 5.0
-        bd, _ = b.split(data, NOT_MET)
-        with self.assertRaises(b.FitAbstention):
-            b.fit_prefix(bd)
+    def test_committed_st03_record(self):
+        out = json.loads((ROOT / "evidence/S12/boundary-ST03.json").read_text("utf-8"))
+        self.assertEqual(out["gate_m"], "NOT_MET")
+        self.assertEqual(out["gate_m_source"]["status"], "NOT_MET_INPUT_READINESS")
+        self.assertFalse(out["fit_run"])
+        self.assertEqual(out["boundary"]["last_training_frame"], 76)
+        self.assertEqual(out["quarantined_suffix_frames"], [77])
 
 
 if __name__ == "__main__":

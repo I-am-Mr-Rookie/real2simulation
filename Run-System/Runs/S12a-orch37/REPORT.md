@@ -1,44 +1,57 @@
-# S12a-orch37 REPORT — DONE
+# S12a-orch37 REPORT — DONE (worker 01a18968)
 
-Lane CODEX-1 · anthropic/claude-opus-5-5/high (as assigned) · coding quota OpenCodex-managed; not polled · tokens/cost: unknown (unobservable); no paid API/GPU/Modal/Meta calls.
-UTC start 2026-10-29T20:43:22Z (issue) / work began 20:44:00Z · work stopped 2026-10-29T20:49:27+00:00 · base main d131047 · branch run/S12a-orch37.
+Lane CODEX-1 · anthropic/claude-opus-5-5/high · coding quota OpenCodex-managed; not polled · tokens/cost unknown; no GPU/Modal/Meta/paid calls.
+UTC issue 2026-10-29T20:44:39Z · work started 20:44:59Z · stopped see TIMEBOX.json · base main d131047, rebased onto current main before final commit.
+
+## Duplicate dispatch / write race (controller action)
+Controller dispatched S12a-orch37 twice: worker 01a18967 (issued 20:43:22Z) and this worker (20:44:39Z), same worktree + branch.
+Both wrote Build/real2sim/boundary.py and tests/prediction/test_boundary.py ~20:47-20:49Z. Commit f74b383 (01a18967, REPORT=DONE) captured
+MY boundary.py with ITS test file and ITS evidence (S12a-boundary.json, S12a-tests.txt) -> inconsistent HEAD (its tests target an API that is
+not in git; its module source was overwritten in the working tree and never committed). Nonterminal blocker sent to controller 20:51Z; no
+reply by 21:00Z, so this commit makes the branch consistent with ONE implementation (this one): its two evidence files are removed and its
+PLAN/REPORT/TIMEBOX replaced (all recoverable from f74b383). No other worker files changed after 20:49Z.
 
 ## Result
-Gate M: **NOT_MET_INPUT_READINESS** (fresh run of Build/measurement/gate_m.evaluate_sources on this worktree). No calibrated-g, metric or physical-accuracy claim anywhere.
+Gate M: **NOT_MET** in every output (source evidence/S07/S07f/actual-gate-m.json status NOT_MET_INPUT_READINESS, hashed in the record).
+No calibrated g, metric scale or physical-accuracy claim. Units: image-height fraction (scale-free).
 
-Files (all in Owns):
-- Build/real2sim/boundary.py — split(data, gate_m_status) -> (Boundary, held_out); fit_prefix(Boundary); evaluate(Boundary, PrefixFit, held_out); synthetic_fixture(); CLI `python -m Build.real2sim.boundary --output evidence/S12/S12a-boundary.json`.
-- tests/prediction/test_boundary.py — 7 tests.
-- evidence/S12/S12a-boundary.json — boundary record + live Gate M dict + synthetic evaluation; evidence/S12/S12a-tests.txt.
+Files:
+- Build/real2sim/boundary.py — split(record, suffix_identities=None) -> (Boundary, sealed_suffix); verify(boundary, sealed); fit_prefix(boundary)
+  (wraps fitter select_model); record_json; main() writes the real ST03 record.
+- tests/prediction/test_boundary.py — 7 tests (6 on fixtures labelled SYNTHETIC + 1 check of the committed ST03 record).
+- evidence/S12/boundary-ST03.json — real boundary; evidence/S12/tests-prediction.txt — test log.
 
 Acceptance:
-1. Training prefix / held-out suffix immutable — frozen Frame tuples from S07 validate_input; suffix SHA-256 committed in Boundary at split time; input mutation after split has no effect (test_split_freezes...).
-2. No evaluation leakage — Boundary has no suffix frames (only hash/count); spy on fit_motion proves fitter receives exactly the 12 prefix times, none of the suffix (test_fitter_never_sees_suffix); evaluate rejects modified/truncated/extended suffix, forged prefix, or fit from another split (test_tampered...). Receipt JSON carries no suffix coordinates.
-3. Gate M result required — split() refuses any status not starting NOT_MET (None/""/MET/PASSED rejected); CLI feeds the live evaluator status; every record/evaluation carries gate_m_status + NOT_MET notice.
-- Scale-free: error = Euclidean pixel error / training-prefix extent (dimensionless); test shows identical error at 0.5x pixel scale; exact quadratic extrapolates to <1e-9.
+1. Immutable prefix/suffix: Boundary is a frozen dataclass of tuples; SHA-256 of training rows, suffix identities (index, PTS) and, when tracked,
+   suffix observations taken at split time; verify() rejects dropped/re-indexed/changed suffix frames and a forged prefix (test).
+2. No leakage: Boundary stores only suffix hashes/count; fit_prefix only accepts a Boundary. Spy on select_model proves the fitter receives exactly
+   the 6 prefix samples and no suffix time/position; arbitrary suffix values leave the fit identical (test). split() rejects suffix overlap by index
+   OR PTS, non-increasing data, <3 prefix frames, empty suffix, non-int split (test).
+3. Gate M result required: record carries gate_m NOT_MET plus source path/sha/status; test asserts it and absence of any g field.
 
-## Fresh checks (this worktree, Python 3.14.5)
-- `python -m unittest discover -s tests/prediction -v` → 7 OK.
-- `python -m Build.real2sim.boundary --output evidence/S12/S12a-boundary.json` → "Gate M NOT_MET_INPUT_READINESS; held_out=6"; synthetic max error 3.5e-16.
-- Regression: tests/measurement 70 OK (1 skipped); tests/fitter 65 OK.
-- `python Run-System/worker_timebox.py check Run-System/Runs/S12a-orch37/TIMEBOX.json` → TIMING PASS.
+## Real clip (ST03, approved scene_tracking scope, evidence/owner/S02/APPROVAL.md)
+- Prefix = accepted S07b orch14 SAM3.1 track f58-76 (19 frames); last_training_frame 76; suffix identities = remaining source frames, sealed (465).
+- **Finding (S07 custody):** orch14 frame_map labels frame 76 with PTS 2.569233 s, but the hash-verified source (fresh local ffprobe on
+  test-data/public/ST03.mp4, sha 7239da80..., and recovery3 presentation-map) gives 2.535867 s; 2.569233 s is frame 77. Frames 58-75 match.
+  Boundary quarantines frame 77 from the suffix and fit_run=false (real prefix fit withheld) until S07 owner/controller corrects the
+  frame_map. No S07 evidence edited (outside Owns).
+- Suffix observations are NOT tracked; S12c must track exactly the sealed identities and call verify() before scoring.
 
-## Ponytail (full) applied
-- Reused, not rewritten: validate_input (split/order/leak/≥3-prefix rules, blockers), Frame, FitAbstention, fit_motion, gate_m.evaluate_sources. New code = one ~150-line module; no new deps, no __init__ (namespace pkgs like Build/measurement).
-- Smallest complete: ordering enforced by types (fit_prefix only takes a Boundary that has no suffix) instead of a custody service; hash commit via stdlib hashlib/json.
-- Shortcut recorded in code: fitter only accepts "s"/"m" labels; values are PTS seconds + dimensionless normalized pixels.
-- Skipped: select_model/degree choice (S12b+), parameter transfer, uncertainty, real-clip splits.
+## Fresh checks (Python 3.14.5, this worktree)
+- python -m unittest discover -s tests/prediction -v -> 7 OK (evidence/S12/tests-prediction.txt).
+- python -m Build.real2sim.boundary -> "evidence/S12/boundary-ST03.json gate_m=NOT_MET conflicts=1 quarantined=[77] suffix=465".
+- Regression: tests/measurement OK (1 pre-existing skip); tests/fitter OK.
+- python Run-System/worker_timebox.py check Run-System/Runs/S12a-orch37/TIMEBOX.json -> TIMING PASS (run after commit-ready).
 
-## Real clips
-None split: Gate M evaluator states no real tracks exist (accepted S07 has no real tracking output). real_clips_used=[] in evidence. Fixture is labelled SYNTHETIC with zero source hash.
+## Ponytail (full)
+- Reused fitter select_model (no new fit code) and accepted S07b track / PTS map / Gate M files; stdlib hashlib/json/dataclasses; no deps, no __init__.
+- Smallest complete: custody by type (Boundary has no suffix values) + hashes, not a custody service. One shortcut comment: fitter labels "m"
+  but values are image-height fractions.
+- Skipped: normalized-error scoring (S12c/S12e), parameter transfer (S12b), x-axis (vertical motion only), external sealed storage.
 
-## Limits / risks
-- Process-local custody only: caller still holds the returned suffix; external sealed storage is downstream integration.
-- Time axis is presentation PTS, not capture seconds (timebase unverified); fine for scale-free extrapolation error, not physics.
-- Cross-vendor review of S12 gate path still required per run system.
+## Risks
+- Process-local custody: caller holds the sealed suffix; verify() detects but cannot prevent substitution of both data and boundary.
+- Time axis is presentation PTS (capture clock unverified): fine for scale-free extrapolation, not physics.
+- Cross-vendor review of the S12 gate path still required. Controller must decide how to record the duplicate run (01a18967 also reported DONE).
 
-## Next
-S12b (parameter transfer) can consume Boundary/PrefixFit; first real-clip boundary needs an accepted S07 track for an approved clip.
-
-Communication: silent; one completion line to controller chat as authorized. No canonical controls edited.
-
+Communication: one nonterminal blocker message + one completion line to controller (both authorized). No canonical controls edited.

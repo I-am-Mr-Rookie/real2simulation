@@ -1,0 +1,47 @@
+{
+  "boundary": {
+    "clip_id": "ST03",
+    "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+    "last_training_frame": 76,
+    "training_sha256": "2f4169e48f12fdcac3adf6bee5d0adba50aabf6e7ba86cf5acd5b71eaa4e29d3",
+    "suffix_identity_sha256": "0f2a15626ef609904e390116ad4c69e297d6f16dc4df0261874315a7f905638c",
+    "suffix_observation_sha256": null,
+    "suffix_count": 465,
+    "gate_m": "NOT_MET",
+    "training_count": 19
+  },
+  "gate_m": "NOT_MET",
+  "units": "image-height fraction (scale-free)",
+  "limitations": [
+    "Gate M NOT_MET: no calibrated scale or capture clock",
+    "positions are image-height fractions, not metres; no calibrated g",
+    "no physical-accuracy claim"
+  ],
+  "gate_m_source": {
+    "path": "evidence/S07/S07f/actual-gate-m.json",
+    "sha256": "d1d4b3b3abcdb5900b497f6f404d44d47a8da58627b4bf1be845baec095684de",
+    "status": "NOT_MET_INPUT_READINESS"
+  },
+  "inputs": [
+    {
+      "path": "evidence/S07/S07b/orch14/result.json",
+      "sha256": "c71ce907fd2d5d799a5781eaf3d570ac5543002a8e47535b7758606ac01e5d45"
+    },
+    {
+      "path": "evidence/S07/S07b/recovery3/presentation-map.json",
+      "sha256": "420aef7f9f13d371adcf963ceb1635a4d34190a6fb3734b5b884c5712c33c30b"
+    }
+  ],
+  "pts_conflicts": [
+    {
+      "frame_index": 76,
+      "record_pts_s": 2.569233,
+      "source_map_pts_s": 2.535867
+    }
+  ],
+  "quarantined_suffix_frames": [
+    77
+  ],
+  "fit_run": false,
+  "note": "Suffix observations NOT tracked yet; S12c must track exactly these sealed identities and verify() before scoring. Prefix fit withheld until the PTS conflict is resolved by S07 owner/controller."
+}
