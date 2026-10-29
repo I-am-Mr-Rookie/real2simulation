@@ -106,3 +106,23 @@ writes `kf_NNNNNN.jpg` + `manifest.json` (`kind: keyframe_manifest`, 1.0.0):
   once more (bounded by `max_attempts` 2); workers must forward the key as the provider's
   idempotency key. Lease must exceed the stage runtime. Spend caps remain S20 (`SPEND_PAUSED`).
 
+## Understand stage (S13e)
+
+`Build/pipeline/understand.py` (`run(key, manifest, scene_id, post, out_dir, video_path)`, the
+`understand` JobRunner worker; tests `tests/pipeline/test_understand.py`, fake post):
+
+- Input: S13c keyframe manifest (+ optional clip). Request/validator reused from S14 `Build/agent/muse`:
+  number-free context (title from clips.csv, `scale_status: unverified`, `gravity_status: unknown`),
+  reply must validate as `agent-response/1.0.0`; any numeric claim rejects it. Nothing model-authored
+  is a measurement.
+- Order: clip as `input_video` once (skipped and recorded if absent or > 8 MiB) -> on HTTP error,
+  transport error or contract rejection, explicit fallback: `sample()` <= 4 evenly spaced keyframes
+  (first+last; caps e.g. PD04's 600), ffmpeg-downscaled to <= 512 px, as `input_image`. No valid
+  fallback reply = `StageError PROCESSING_FAILED` retryable (JobRunner max 2 attempts).
+- Provider `Idempotency-Key` = S13d key + `#video` / `#keyframes` (distinct requests). JobRunner `out:`
+  reuse means a user retry never re-calls Muse.
+- Output `understanding.json` (`kind: understanding`, 1.0.0): `input_mode`, `fallback_used`, every
+  attempt (http, usage, issues, rejected excerpt), sampled frames with manifest times, validated
+  response; stage `output_sha256` = its sha256. Live CLI ledgers every call and refuses beyond 6 calls
+  / USD 1 (`SPEND_PAUSED`). Media-derived outputs are not committed except run evidence text.
+

@@ -1,0 +1,144 @@
+{
+ "contract_version": "1.0.0",
+ "kind": "understanding",
+ "stage": "understand",
+ "idempotency_key": "understand:live-st03-1",
+ "clip_id": "ST03",
+ "keyframe_manifest_sha256": "723d5b1115868fe9668678eaedee38260b399abb99018d339843dde949c88047",
+ "input_mode": "keyframes",
+ "fallback_used": true,
+ "attempts": [
+  {
+   "mode": "video",
+   "idempotency_key": "understand:live-st03-1#video",
+   "http": 200,
+   "status": "completed",
+   "usage": {
+    "input_tokens": 4995,
+    "input_tokens_details": {
+     "cached_tokens": 0
+    },
+    "output_tokens": 786,
+    "output_tokens_details": {
+     "reasoning_tokens": 434
+    },
+    "total_tokens": 5781
+   },
+   "issues": [
+    "response.questions[0].chips: free_text has no chips; chip kinds need at least one"
+   ]
+  },
+  {
+   "mode": "keyframes",
+   "frames": 4,
+   "idempotency_key": "understand:live-st03-1#keyframes",
+   "http": 200,
+   "status": "completed",
+   "usage": {
+    "input_tokens": 2725,
+    "input_tokens_details": {
+     "cached_tokens": 0
+    },
+    "output_tokens": 510,
+    "output_tokens_details": {
+     "reasoning_tokens": 136
+    },
+    "total_tokens": 3235
+   }
+  }
+ ],
+ "frames": [
+  {
+   "index": 0,
+   "time_s": 0.0,
+   "time_source": "pts"
+  },
+  {
+   "index": 2,
+   "time_s": 6.006,
+   "time_source": "pts"
+  },
+  {
+   "index": 4,
+   "time_s": 12.012,
+   "time_source": "pts"
+  },
+  {
+   "index": 6,
+   "time_s": 18.018,
+   "time_source": "pts"
+  }
+ ],
+ "response": {
+  "candidates": [
+   {
+    "id": "apple-drop-to-cushion",
+    "rationale": [
+     {
+      "text": "A woman kneeling on the grass holds the apple above the picnic setup and then lowers it toward the cushion area, suggesting a vertical drop can be staged there.",
+      "type": "text"
+     },
+     {
+      "text": "The apple is visible in the hand above the mat and later near the cushion and bowls, providing a clear start and landing region for tracking.",
+      "type": "text"
+     },
+     {
+      "text": "Scale and gravity are unknown, so the setup should be described plainly without assuming either.",
+      "type": "text"
+     }
+    ],
+    "template": "free_fall"
+   }
+  ],
+  "questions": [
+   {
+    "chips": [
+     {
+      "id": "ground",
+      "label": [
+       {
+        "text": "The grass below the mat",
+        "type": "text"
+       }
+      ]
+     },
+     {
+      "id": "cushion",
+      "label": [
+       {
+        "text": "The cushion on the mat",
+        "type": "text"
+       }
+      ]
+     },
+     {
+      "id": "mat",
+      "label": [
+       {
+        "text": "The mat itself",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "id": "landing-surface",
+    "kind": "chips",
+    "prompt": [
+     {
+      "text": "When the apple is released, which surface should count as its landing surface?",
+      "type": "text"
+     }
+    ]
+   }
+  ],
+  "scene_id": "clip-st03",
+  "schema_version": "agent-response/1.0.0",
+  "segments": [
+   {
+    "text": "Outdoors on grass, a woman kneels on a dark mat beside light cushions, with a wooden bowl of green apples and a bowl of strawberries in front of her. A tree trunk is at the side, trees and a white building are in the background, and scale and gravity are unknown.",
+    "type": "text"
+   }
+  ]
+ },
+ "note": "Model description only (validated number-free agent-response); not a measurement."
+}

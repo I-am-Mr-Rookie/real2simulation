@@ -1,0 +1,141 @@
+{
+ "contract_version": "1.0.0",
+ "kind": "understanding",
+ "stage": "understand",
+ "idempotency_key": "understand:live-st03-2",
+ "clip_id": "ST03",
+ "keyframe_manifest_sha256": "723d5b1115868fe9668678eaedee38260b399abb99018d339843dde949c88047",
+ "input_mode": "keyframes",
+ "fallback_used": true,
+ "attempts": [
+  {
+   "mode": "video",
+   "idempotency_key": "understand:live-st03-2#video",
+   "http": 200,
+   "status": "completed",
+   "usage": {
+    "input_tokens": 4995,
+    "input_tokens_details": {
+     "cached_tokens": 0
+    },
+    "output_tokens": 681,
+    "output_tokens_details": {
+     "reasoning_tokens": 277
+    },
+    "total_tokens": 5676
+   },
+   "issues": [
+    "response.questions[0].chips: free_text has no chips; chip kinds need at least one"
+   ],
+   "rejected_text": "{\"candidates\": [{\"id\": \"apple_drop_free_fall\", \"rationale\": [{\"text\": \"A woman kneeling outdoors holds the green apple up and releases it, and the apple falls toward the cushion and mat below, which suits a free fall study. Scale and gravity are unknown, so any result would remain qualitative without added calibration.\", \"type\": \"text\"}], \"template\": \"free_fall\"}], \"questions\": [{\"chips\": [{\"id\": "
+  },
+  {
+   "mode": "keyframes",
+   "frames": 4,
+   "idempotency_key": "understand:live-st03-2#keyframes",
+   "http": 200,
+   "status": "completed",
+   "usage": {
+    "input_tokens": 2725,
+    "input_tokens_details": {
+     "cached_tokens": 0
+    },
+    "output_tokens": 526,
+    "output_tokens_details": {
+     "reasoning_tokens": 214
+    },
+    "total_tokens": 3251
+   }
+  }
+ ],
+ "frames": [
+  {
+   "index": 0,
+   "time_s": 0.0,
+   "time_source": "pts"
+  },
+  {
+   "index": 2,
+   "time_s": 6.006,
+   "time_source": "pts"
+  },
+  {
+   "index": 4,
+   "time_s": 12.012,
+   "time_source": "pts"
+  },
+  {
+   "index": 6,
+   "time_s": 18.018,
+   "time_source": "pts"
+  }
+ ],
+ "response": {
+  "candidates": [
+   {
+    "id": "apple-drop",
+    "rationale": [
+     {
+      "text": "The apple can be released from the raised hand and tracked as it falls toward the mat and pillows below.",
+      "type": "text"
+     },
+     {
+      "text": "Scale and gravity are unknown, so the setup stays qualitative until calibration is provided.",
+      "type": "text"
+     }
+    ],
+    "template": "free_fall"
+   }
+  ],
+  "questions": [
+   {
+    "chips": [
+     {
+      "id": "confirm-drop",
+      "label": [
+       {
+        "text": "Drop the apple onto the mat",
+        "type": "text"
+       }
+      ]
+     },
+     {
+      "id": "use-pillow",
+      "label": [
+       {
+        "text": "Drop the apple onto the pillow",
+        "type": "text"
+       }
+      ]
+     },
+     {
+      "id": "place-only",
+      "label": [
+       {
+        "text": "Show placement without dropping",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "id": "landing-surface",
+    "kind": "chips",
+    "prompt": [
+     {
+      "text": "Where should the apple land when it is released?",
+      "type": "text"
+     }
+    ]
+   }
+  ],
+  "scene_id": "clip-st03",
+  "schema_version": "agent-response/1.0.0",
+  "segments": [
+   {
+    "text": "Outdoor grass ground with a dark mat, light pillows, wooden bowls holding fruit, a tree trunk, leafy trees, and a building in the background. A woman kneels on the mat holding a green apple above the surface, then lowers it toward the mat. Scale and gravity are unknown.",
+    "type": "text"
+   }
+  ]
+ },
+ "note": "Model description only (validated number-free agent-response); not a measurement."
+}
