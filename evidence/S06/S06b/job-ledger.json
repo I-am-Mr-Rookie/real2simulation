@@ -1,0 +1,30 @@
+{
+ "run": "S06b-orch20",
+ "reservation_utc": "2026-10-29T12:15:20Z",
+ "authorization_ref": "evidence/owner/S05/GPU-AUTHORIZATION.md (standing; controller contract S06b-orch20: one A10G warm-start smoke <= $0.50)",
+ "owner_total_budget_usd": 30,
+ "pre_billing": "evidence/S06/S06b/billing-pre-month.csv: month-to-date $0.5573804 at 12:14:58Z (may lag)",
+ "prior_retained_reservations_usd": "5.25 per S06a ledger (other concurrent workers not reconciled here)",
+ "new_all_in_reservation_usd": 0.5,
+ "compute_bound_basis": "A10G x (timeout 300s + startup_timeout 240s), cpu 2, 16 GiB, retries 0, max_containers 1, single_use",
+ "gpu_requested": "A10G",
+ "retries": 0,
+ "jobs": [
+  {
+   "app_id": "ap-vaD1cV50rPyWL1yzQggQ6g",
+   "kind": "A10G warm-start runtime smoke on S06a IMAGE (synthetic noise frames)",
+   "launch_utc": "2026-10-29T12:15:38Z",
+   "app_created": "2026-10-29T12:15:43Z",
+   "app_stopped_utc": "2026-10-29T12:16:27Z",
+   "rc": 0,
+   "gpu": "NVIDIA A10G, 23028 MiB, driver 610.57.04",
+   "image_rebuilt": false,
+   "own_containers_after": [],
+   "post_verify": "evidence/S06/S06b/post-verify.txt (12:16:54Z)",
+   "measured_cost_usd": 0.01175778,
+   "cost_source": "modal billing report --for today --resolution h at ~12:20Z (evidence/S06/S06b/billing-post-today-hourly.csv; may lag, recheck)"
+  }
+ ],
+ "actual_usd": 0.01175778,
+ "release_suggested_usd": 0.488
+}

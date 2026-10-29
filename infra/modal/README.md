@@ -37,3 +37,24 @@ OK and stopped; own containers []. Remote versions torch 2.8.0 / vision 0.23.0 /
 timm 1.0.20 / hf-hub 2.3.0 / mapanything 1.1.4; weights loaded with local_files_only under HF_HUB_OFFLINE=1.
 NOT verified: GPU/CUDA use of this image, warm container start time with cached layers, inference, container
 dependency licence audit (S06b), cache retention period on Modal.
+
+## Runtime (S06b, Build/gpu/runtime.py)
+RUNTIME_IMAGE = IMAGE + modal_image source mount (no layer rebuild). load_model(): exactly one CUDA device,
+MapAnything.from_pretrained(apache @ 00f9c24, local_files_only=True). smoke(): A10G, cpu 2, 16 GiB, timeout 300 s,
+startup 240 s, retries 0, max 1 container, single-use; nvidia-smi + model load + 2 SYNTHETIC noise frames forward
+(runtime check only, no scene meaning) + importlib.metadata licence dump.  modal run Build/gpu/runtime.py --out <json>
+Licence audit: python Build/gpu/licence_audit.py <smoke.json> [audit.json] (tests: Build/gpu/test_licence_audit.py).
+Exit 0 iff every lock pin installed at its version, nothing NC/ND/proprietary outside NVIDIA CUDA wheels, and every
+unknown/copyleft dist has a REVIEWED decision. NVIDIA CUDA wheels (14, proprietary EULA via torch): private runtime only.
+plyfile 1.1.5 GPL-3.0 (mapanything dep): private runtime use, not vendored/redistributed; re-review before shipping
+any image. mapanything metadata empty -> Apache-2.0 per evidence/S05/LICENSE_REVIEW.md.
+
+## Measured (S06b-orch20, 2026-10-29, one A10G job; evidence/S06/S06b/)
+App ap-vaD1cV50rPyWL1yzQggQ6g 12:15:43Z -> stopped 12:16:27Z, rc 0, no image rebuild (S06a layers cached), own
+containers [] after. GPU NVIDIA A10G 23028 MiB, driver 610.57.04; torch 2.8.0+cu128, CUDA 12.8.
+In-function: model load 23.0 s, forward 1.6 s, function 24.7 s, peak alloc 7.78 GB; client round trip 36.3 s.
+Baseline S05b recovery8 (in-function pip) function 161.7 s => ~137 s less in-function setup per cold job.
+Cost $0.0118 (hourly billing CSV, may lag). Audit: 116 dists (111 unique), 96 lock pins all present at version;
+100 permissive, 14 vendor_eula, 2 reviewed. Duplicates attrs/certifi/idna/protobuf/typing-extensions at a second
+(older) version = Modal-injected client deps, plus 15 extras (aiohttp, grpclib, ...); the lock versions are present.
+NOT verified: which duplicate wins on sys.path; image cache retention; real-scene inference/quality (S05c/S06d-f).

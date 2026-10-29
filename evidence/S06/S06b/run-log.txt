@@ -1,0 +1,55 @@
+2026-10-29T12:15:38.3540601Z
+✓ Initialized. View run at 
+https://modal.com/apps/koushiksadhakjeet/main/ap-vaD1cV50rPyWL1yzQggQ6g
+✓ Created objects.
+├── ✓ Uploaded C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI 
+│   Developer Hackathon\.worktrees\S06b-orch20\Build\gpu\runtime.py
+├── ✓ Uploaded PythonPackage:modal_image
+├── ✓ Uploaded PythonPackage:image_spec
+└── ✓ Created Function smoke.
+Loading pretrained dinov2_vitg14 from torch hub
+Downloading: "https://github.com/facebookresearch/dinov2/zipball/main" to /root/.cache/torch/hub/main.zip
+{
+ "input": "SYNTHETIC random-noise frames (2 x 518x392); not a scene",
+ "gpu": "NVIDIA A10G, 23028 MiB, 610.57.04",
+ "torch": "2.8.0+cu128",
+ "cuda": "12.8",
+ "module_import_unix": 1793276153.2170246,
+ "call_start_unix": 1793276160.2917194,
+ "model_load_s": 22.96458411216736,
+ "inference_s": 1.6479051113128662,
+ "function_elapsed_s": 24.67564558982849,
+ "peak_allocated_bytes": 7781052416,
+ "pred_keys": [
+  "cam_quats",
+  "cam_trans",
+  "camera_poses",
+  "conf",
+  "depth_along_ray",
+  "depth_z",
+  "img_no_norm",
+  "intrinsics",
+  "mask",
+  "metric_scaling_factor",
+  "non_ambiguous_mask",
+  "non_ambiguous_mask_logits",
+  "pts3d",
+  "pts3d_cam",
+  "ray_directions"
+ ],
+ "pts3d_shape": [
+  1,
+  392,
+  518,
+  3
+ ],
+ "pts3d_finite_fraction": 1.0,
+ "client_launch_unix": 1793276149.263472,
+ "client_return_unix": 1793276185.5466955,
+ "client_roundtrip_s": 36.283223390579224
+}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/koushiksadhakjeet/main/ap-vaD1cV50rPyWL1yzQggQ6g
+rc=0
+2026-10-29T12:16:28.4963393Z
