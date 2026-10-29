@@ -1,0 +1,165 @@
+[
+ {
+  "caption": "Reported quantities (values copied from fitter output)",
+  "columns": [
+   {
+    "header": "Quantity",
+    "key": "id"
+   },
+   {
+    "header": "Value",
+    "key": "display"
+   },
+   {
+    "header": "Unit",
+    "key": "unit"
+   },
+   {
+    "header": "Uncertainty (same unit)",
+    "key": "uncertainty_display"
+   },
+   {
+    "header": "Source label",
+    "key": "label"
+   }
+  ],
+  "fitter_digest": "sha256:024bc80b4466b105ff8d375b86a5a06180febfad1a89e782c8c3f5d480e6037c",
+  "id": "summary",
+  "labels": [
+   "simulated"
+  ],
+  "rows": [
+   {
+    "display": "9.80246",
+    "id": "g",
+    "label": "simulated",
+    "path": "gravity.value",
+    "uncertainty": 0.07770809093092845,
+    "uncertainty_display": "0.0777081",
+    "uncertainty_path": "gravity.uncertainty",
+    "unit": "m/s^2",
+    "value": 9.802456889624006
+   },
+   {
+    "display": "8",
+    "id": "n",
+    "label": "simulated",
+    "path": "fit.n",
+    "unit": "1",
+    "value": 8
+   },
+   {
+    "display": "0.00232037",
+    "id": "rmse",
+    "label": "simulated",
+    "path": "fit.rmse",
+    "unit": "m",
+    "value": 0.0023203655193430764
+   }
+  ]
+ },
+ {
+  "caption": "Fit residuals per sample",
+  "columns": [
+   {
+    "header": "Sample",
+    "key": "sample"
+   },
+   {
+    "header": "Fitted",
+    "key": "fitted_display"
+   },
+   {
+    "header": "Residual",
+    "key": "residual_display"
+   },
+   {
+    "header": "Unit",
+    "key": "unit"
+   },
+   {
+    "header": "Source label",
+    "key": "label"
+   }
+  ],
+  "fitter_digest": "sha256:024bc80b4466b105ff8d375b86a5a06180febfad1a89e782c8c3f5d480e6037c",
+  "id": "residuals",
+  "labels": [
+   "simulated"
+  ],
+  "rows": [
+   {
+    "fitted": 0.9982660039702201,
+    "fitted_display": "0.998266",
+    "label": "simulated",
+    "residual": 0.0017339960297798607,
+    "residual_display": "0.001734",
+    "sample": 0,
+    "unit": "m"
+   },
+   {
+    "fitted": 1.0889797164589976,
+    "fitted_display": "1.08898",
+    "label": "simulated",
+    "residual": 2.0283541002363847e-05,
+    "residual_display": "2.02835e-05",
+    "sample": 1,
+    "unit": "m"
+   },
+   {
+    "fitted": 1.2801004047307913,
+    "fitted_display": "1.2801",
+    "label": "simulated",
+    "residual": -0.004100404730791318,
+    "residual_display": "-0.0041004",
+    "sample": 2,
+    "unit": "m"
+   },
+   {
+    "fitted": 1.5611279980064239,
+    "fitted_display": "1.56113",
+    "label": "simulated",
+    "residual": -0.000127998006423935,
+    "residual_display": "-0.000127998",
+    "sample": 3,
+    "unit": "m"
+   },
+   {
+    "fitted": 1.9449351714949592,
+    "fitted_display": "1.94494",
+    "label": "simulated",
+    "residual": 6.482850504085924e-05,
+    "residual_display": "6.48285e-05",
+    "sample": 4,
+    "unit": "m"
+   },
+   {
+    "fitted": 2.4214633748398504,
+    "fitted_display": "2.42146",
+    "label": "simulated",
+    "residual": 0.004536625160149743,
+    "residual_display": "0.00453663",
+    "sample": 5,
+    "unit": "m"
+   },
+   {
+    "fitted": 3.00662322516075,
+    "fitted_display": "3.00662",
+    "label": "simulated",
+    "residual": -0.0006232251607496408,
+    "residual_display": "-0.000623225",
+    "sample": 6,
+    "unit": "m"
+   },
+   {
+    "fitted": 3.684504105338006,
+    "fitted_display": "3.6845",
+    "label": "simulated",
+    "residual": -0.0015041053380056013,
+    "residual_display": "-0.00150411",
+    "sample": 7,
+    "unit": "m"
+   }
+  ]
+ }
+]

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300" font-family="sans-serif" font-size="11">
+<title>AIC per candidate model (lower is better)</title>
+<desc>fitter_digest=sha256:024bc80b4466b105ff8d375b86a5a06180febfad1a89e782c8c3f5d480e6037c; unit=1; source label=simulated</desc>
+<rect width="480" height="300" fill="white"/>
+<text x="240.00" y="18" text-anchor="middle" font-size="13">AIC per candidate model (lower is better)</text>
+<text x="14" y="140.00" text-anchor="middle" transform="rotate(-90 14 140.00)">value [1]</text>
+<text x="240.00" y="292" text-anchor="middle">source: simulated (from fitter output)</text>
+<text x="66" y="244.00" text-anchor="end">-91.0565</text>
+<text x="66" y="44.00" text-anchor="end">0</text>
+<line x1="70" y1="40.00" x2="460" y2="40.00" stroke="black"/>
+<rect x="99.25" y="40.00" width="136.50" height="43.75" fill="#4878a8" data-value="-19.919676980990758"/>
+<text x="167.50" y="254" text-anchor="middle">#1</text>
+<rect x="294.25" y="40.00" width="136.50" height="200.00" fill="#4878a8" data-value="-91.0564888683658"/>
+<text x="362.50" y="254" text-anchor="middle">#2</text>
+</svg>

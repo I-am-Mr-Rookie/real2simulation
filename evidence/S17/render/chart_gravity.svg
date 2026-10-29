@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="300" viewBox="0 0 480 300" font-family="sans-serif" font-size="11">
+<title>Fitted g with one-sigma uncertainty</title>
+<desc>fitter_digest=sha256:024bc80b4466b105ff8d375b86a5a06180febfad1a89e782c8c3f5d480e6037c; unit=m/s^2; source label=simulated</desc>
+<rect width="480" height="300" fill="white"/>
+<text x="240.00" y="18" text-anchor="middle" font-size="13">Fitted g with one-sigma uncertainty</text>
+<text x="14" y="140.00" text-anchor="middle" transform="rotate(-90 14 140.00)">value [m/s^2]</text>
+<text x="240.00" y="292" text-anchor="middle">source: simulated (from fitter output)</text>
+<text x="66" y="244.00" text-anchor="end">0</text>
+<text x="66" y="44.00" text-anchor="end">9.88016</text>
+<line x1="70" y1="240.00" x2="460" y2="240.00" stroke="black"/>
+<rect x="128.50" y="41.57" width="273.00" height="198.43" fill="#4878a8" data-value="9.802456889624006"/>
+<line x1="265.00" y1="43.15" x2="265.00" y2="40.00" stroke="black" data-uncertainty="0.07770809093092845"/>
+<text x="265.00" y="254" text-anchor="middle">g</text>
+</svg>
