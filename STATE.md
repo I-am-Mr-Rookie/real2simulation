@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+S14g DONE (orch47 Opus high; TIMEBOX PASS; agent 49 OK; ff-merged). Gate A MET (live, measured):
+10/10 valid specs, 30 turns, 0 invented numeric claims (independent scan of shown text); offline
+fixture caught 36/36 planted numbers. Meta 42 live calls est $1.13 (billed unknown), ledger
+evidence/S14/S14g-ledger.jsonl. Validator now normalises question kind to chips sent (empty-chips
+follow-up closed). Synthetic scene context, not a real-scene interview.
+
 DISPATCHED S14g-orch47 anthropic/claude-opus-5-5/high (threadId:01a189a5-bd89-74d1-a6b0-7f21e2c3a2d6,hostId:local, deadline 2026-10-29T22:21:42+00:00).
 DISPATCHED S20a-orch48 gpt-6.1-sol/medium (threadId:01a189a6-8b0a-7992-92b1-d4331fdd927a,hostId:local, deadline 2026-10-29T22:22:08+00:00).
 DISPATCHED R-RS-orch49 gpt-6.1-sol/high (threadId:01a189a7-5456-7060-ae1f-7f40caad12b1,hostId:local, deadline 2026-10-29T22:23:21+00:00).
