@@ -5,6 +5,24 @@ orch23 Oct29 ~14:33Z: owner "quota refreshed (Codex+Claude); finish the runs sto
 5h-quota stop, then hand orchestration to a fresh successor". Dispatched full30m: S13b,
 S05e, S06d, S14f (Opus high), S15f (Sonnet high). Receipt DISPATCH-orch23.json. S02f not
 redispatched (orch21 retry ran; needs exact new lead). S04h/S13c etc. left to successor.
+orch23 ACCEPTED (all TIMEBOX PASS; rebased on main, fresh checks green, ff-merged):
+- S13b DONE (Opus; pipeline 15 OK): resumable upload validation on local store, synthetic;
+  $0. Risks: no lock for concurrent same-file uploads; owner id caller-supplied (auth at HTTP).
+- S05e DONE (Opus; spike 11 OK; $0 CPU): Gate R evaluated = FAIL, measured/itemised:
+  scale 0/3 and A4-orientation 0/3 UNMEASURED (no source-backed known objects/annotations),
+  GPU <=4 min 3/3 PASS. Recommends S05f Fallback 2 (planes+boxes, scale unverified).
+  Review for Koushik: does a visually identified standard object (A4 sheet, regulation ball)
+  count as source-backed for Gate R? Default if unanswered: Fallback 2, scale labelled unverified.
+- S06d DONE (Opus; gpu 16 + scene 11 OK): Modal scene job entry point; RM02 bundle validated
+  offline and via 1 A10G job $0.0066 (rc0, containers [] verified). Controller reading: re-sending
+  the same approved RM02 frames to Modal compute matches accepted S05b/S05c precedent under
+  standing GPU auth (no new/personal media, no publication). Risks: vertical_fov placeholder 50,
+  torch-hub code fetched at runtime. Modal month-to-date ~$0.58/$30.
+- S14f DONE (Opus; agent 49 OK, mutants 6/6 + S14e 8/8 killed; 0 Meta calls): untraced
+  numbers blocked and replaced by tool-backed reply. Risk: spelled-out number list incomplete.
+- S15f DONE (Sonnet; workspace 54 pass; 375px IAB ok): run/pause/seeded replay controls on
+  fixtures; S04 page not yet hosting the loop. No other-vendor review yet.
+Quota-stopped batch finished. Controller stops dispatching; successor orchestrator takes over.
 work on Railway dev web deployment 8ab5d816 (source 790f976 = 300cd20 + account menu;
 main c4a3149). Receipt evidence/owner/S01/S01B-RECEIPT.md. S04h now dependency-ready
 (not dispatched). Risk: current main fails Railway build (stage.py web allowlist lacks
