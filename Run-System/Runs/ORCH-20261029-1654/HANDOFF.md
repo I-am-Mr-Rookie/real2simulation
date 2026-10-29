@@ -13,8 +13,9 @@ S04h note: main may fail Railway build (stage.py web allowlist lacks simulator/ 
 lab/session-service.mjs; deploy 7e6e079d FAILED) — fix before next main deploy.
 
 ## Open owner items (Reviews for Koushik)
-- S05e: does a visually identified standard object (A4 sheet, regulation ball) count as
-  source-backed for Gate R? Default: S05f Fallback 2 (planes+boxes), scale labelled unverified.
+- S05e ANSWERED "y": visually identified standard objects (A4, regulation ball) count as
+  source-backed (cite standard, per-clip identification evidence, pixel annotations; abstain
+  if ambiguous). Next: annotate + re-measure Gate R before choosing S05f Fallback 2.
 - SAM 3D Objects access CONFIRMED (evidence/owner/S06/SAM3D-ACCESS.md + screenshot); needs a
   >=32 GB Modal GPU (L40S/A100/H100) under standing GPU auth; first worker pins revision + SHA256.
 

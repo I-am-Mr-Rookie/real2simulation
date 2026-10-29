@@ -23,6 +23,11 @@ orch23 ACCEPTED (all TIMEBOX PASS; rebased on main, fresh checks green, ff-merge
 - S15f DONE (Sonnet; workspace 54 pass; 375px IAB ok): run/pause/seeded replay controls on
   fixtures; S04 page not yet hosting the loop. No other-vendor review yet.
 Quota-stopped batch finished. Controller stops dispatching; successor orchestrator takes over.
+Q-S05e ANSWERED Oct29 (Koushik "y"): a visually identified STANDARD object (e.g. ISO 216 A4
+210x297 mm; regulation ball per governing-body spec) counts as source-backed for Gate R.
+Conditions: cite the standard; record identification evidence/confidence per clip; pixel
+endpoint annotations still required; if identity is ambiguous, abstain. Not a Gate R pass by
+itself. Next: Gate R re-measure (S05e follow-up / S05f) with such annotations, else Fallback 2.
 work on Railway dev web deployment 8ab5d816 (source 790f976 = 300cd20 + account menu;
 main c4a3149). Receipt evidence/owner/S01/S01B-RECEIPT.md. S04h now dependency-ready
 (not dispatched). Risk: current main fails Railway build (stage.py web allowlist lacks
