@@ -1,0 +1,260 @@
+TAP version 13
+# Subtest: ramp uses signed fixed-step dynamics and exposes analytic comparison inputs
+ok 1 - ramp uses signed fixed-step dynamics and exposes analytic comparison inputs
+  ---
+  duration_ms: 29.3219
+  type: 'test'
+  ...
+# Subtest: ramp stops at the first endpoint crossing and rejects unsupported stall/coast regimes
+ok 2 - ramp stops at the first endpoint crossing and rejects unsupported stall/coast regimes
+  ---
+  duration_ms: 33.2565
+  type: 'test'
+  ...
+# Subtest: pendulum matches the small-angle analytic comparison and maps geometry
+ok 3 - pendulum matches the small-angle analytic comparison and maps geometry
+  ---
+  duration_ms: 54.8476
+  type: 'test'
+  ...
+# Subtest: nonlinear pendulum converges and conserves energy
+ok 4 - nonlinear pendulum converges and conserves energy
+  ---
+  duration_ms: 228.7831
+  type: 'test'
+  ...
+# Subtest: zero horizon is one immutable sample; inputs remain unchanged and deterministic
+ok 5 - zero horizon is one immutable sample; inputs remain unchanged and deterministic
+  ---
+  duration_ms: 1.1979
+  type: 'test'
+  ...
+# Subtest: rejects sparse, nonfinite, overflow, and hidden-default inputs
+ok 6 - rejects sparse, nonfinite, overflow, and hidden-default inputs
+  ---
+  duration_ms: 1.2885
+  type: 'test'
+  ...
+# Subtest: consumes actual Python validate_setup export for both extended templates
+ok 7 - consumes actual Python validate_setup export for both extended templates
+  ---
+  duration_ms: 3238.7148
+  type: 'test'
+  ...
+# {"name":"control-free-fall-fast-downward","samples":61,"maxRelativePositionError":7.400397862288942e-16}
+# {"name":"control-free-fall-min-normal-gravity","samples":201,"maxRelativePositionError":0}
+# {"name":"control-free-fall-through-apex","samples":601,"maxRelativePositionError":2.565848768022583e-14}
+# {"name":"control-pendulum-frequency-step-boundary","samples":33,"maxRelativePositionError":8.33247948876989e-8,"linearEnergyDrift":6.942274310972607e-9,"nonlinearEnergyDrift":0.000002076775379888929}
+# {"name":"control-pendulum-negative-phase","samples":2001,"maxRelativePositionError":3.11025255852445e-15,"linearEnergyDrift":5.329070518200751e-15,"nonlinearEnergyDrift":0.0001607267223859843}
+# {"name":"control-projectile-fast-horizontal","samples":401,"maxRelativePositionError":1.028109261843701e-14}
+# {"name":"control-projectile-low-gravity","samples":1001,"maxRelativePositionError":1.8452531039673634e-14}
+# {"name":"control-ramp-friction-above-one","samples":201,"maxRelativePositionError":1.0576653814775286e-14}
+# {"name":"control-ramp-shallow","samples":201,"maxRelativePositionError":2.1080035997783574e-15}
+# {"name":"control-ramp-steep","samples":101,"maxRelativePositionError":4.5269032604491566e-15}
+# {"name":"free-fall-large-finite-gravity","samples":9,"maxRelativePositionError":4.0874809539272366e-13}
+# {"name":"pendulum-amplitude-boundary","samples":4001,"maxRelativePositionError":8.855425965267719e-12,"linearEnergyDrift":4.785061236134425e-14,"nonlinearEnergyDrift":0.0008337501653938872}
+# {"name":"pendulum-amplitude-boundary-half-step","samples":8001,"maxRelativePositionError":5.540537815237263e-13,"linearEnergyDrift":9.547918011776346e-15,"nonlinearEnergyDrift":0.0008337501654114288}
+# {"name":"projectile-large-finite-gravity","samples":9,"maxRelativePositionError":7.1043540339031335e-15}
+# {"name":"ramp-large-finite-gravity","samples":9,"maxRelativePositionError":4.147833044690158e-13}
+# {"name":"ramp-positive-near-friction-boundary","samples":201,"maxRelativePositionError":1.9744889145528173e-15}
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-fast-downward
+ok 8 - R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-fast-downward
+  ---
+  duration_ms: 34.8012
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-min-normal-gravity
+ok 9 - R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-min-normal-gravity
+  ---
+  duration_ms: 75.9384
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-through-apex
+ok 10 - R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-through-apex
+  ---
+  duration_ms: 38.0443
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-pendulum-frequency-step-boundary
+ok 11 - R14 recovery: unchanged all-sample 0.005 oracle: control-pendulum-frequency-step-boundary
+  ---
+  duration_ms: 4.785
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-pendulum-negative-phase
+ok 12 - R14 recovery: unchanged all-sample 0.005 oracle: control-pendulum-negative-phase
+  ---
+  duration_ms: 80.5624
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-projectile-fast-horizontal
+ok 13 - R14 recovery: unchanged all-sample 0.005 oracle: control-projectile-fast-horizontal
+  ---
+  duration_ms: 20.2773
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-projectile-low-gravity
+ok 14 - R14 recovery: unchanged all-sample 0.005 oracle: control-projectile-low-gravity
+  ---
+  duration_ms: 83.1614
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-friction-above-one
+ok 15 - R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-friction-above-one
+  ---
+  duration_ms: 11.5158
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-shallow
+ok 16 - R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-shallow
+  ---
+  duration_ms: 27.2374
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-steep
+ok 17 - R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-steep
+  ---
+  duration_ms: 9.05
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: free-fall-large-finite-gravity
+ok 18 - R14 recovery: unchanged all-sample 0.005 oracle: free-fall-large-finite-gravity
+  ---
+  duration_ms: 21.0631
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: pendulum-amplitude-boundary
+ok 19 - R14 recovery: unchanged all-sample 0.005 oracle: pendulum-amplitude-boundary
+  ---
+  duration_ms: 158.8339
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: pendulum-amplitude-boundary-half-step
+ok 20 - R14 recovery: unchanged all-sample 0.005 oracle: pendulum-amplitude-boundary-half-step
+  ---
+  duration_ms: 333.6588
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: projectile-large-finite-gravity
+ok 21 - R14 recovery: unchanged all-sample 0.005 oracle: projectile-large-finite-gravity
+  ---
+  duration_ms: 1.658
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: ramp-large-finite-gravity
+ok 22 - R14 recovery: unchanged all-sample 0.005 oracle: ramp-large-finite-gravity
+  ---
+  duration_ms: 1.3094
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: ramp-positive-near-friction-boundary
+ok 23 - R14 recovery: unchanged all-sample 0.005 oracle: ramp-positive-near-friction-boundary
+  ---
+  duration_ms: 11.8837
+  type: 'test'
+  ...
+# Subtest: R14 RK4: constant finite derivatives across large, tiny and subnormal scales
+ok 24 - R14 RK4: constant finite derivatives across large, tiny and subnormal scales
+  ---
+  duration_ms: 0.8892
+  type: 'test'
+  ...
+# Subtest: R14 RK4: mixed-sign stages and finite weighted increment despite dt*largestSlope overflow
+ok 25 - R14 RK4: mixed-sign stages and finite weighted increment despite dt*largestSlope overflow
+  ---
+  duration_ms: 0.5596
+  type: 'test'
+  ...
+# Subtest: R14 RK4: actual stage/derivative/result checks are preserved
+ok 26 - R14 RK4: actual stage/derivative/result checks are preserved
+  ---
+  duration_ms: 1.9075
+  type: 'test'
+  ...
+# Subtest: R14 ramp: positive cancellation result matches S08 and zero/negative are still rejected
+ok 27 - R14 ramp: positive cancellation result matches S08 and zero/negative are still rejected
+  ---
+  duration_ms: 10.5459
+  type: 'test'
+  ...
+# Subtest: R14 ramp: large finite endpoint bracket no longer fails from an unscaled RK4 sum
+ok 28 - R14 ramp: large finite endpoint bracket no longer fails from an unscaled RK4 sum
+  ---
+  duration_ms: 0.863
+  type: 'test'
+  ...
+# Subtest: R14 model: linear dynamics across signed phases, velocities, scales and long horizons
+ok 29 - R14 model: linear dynamics across signed phases, velocities, scales and long horizons
+  ---
+  duration_ms: 10154.4356
+  type: 'test'
+  ...
+# Subtest: R14 model: nonlinear-only remains nonlinear and small-angle equilibrium remains supported
+ok 30 - R14 model: nonlinear-only remains nonlinear and small-angle equilibrium remains supported
+  ---
+  duration_ms: 319.6965
+  type: 'test'
+  ...
+# Subtest: S10a consumes only the trusted S08 validate_setup export and places geometry
+ok 31 - S10a consumes only the trusted S08 validate_setup export and places geometry
+  ---
+  duration_ms: 4.8522
+  type: 'test'
+  ...
+# Subtest: RK4 zero-step validates every input, rejects sparse state, and preserves state
+ok 32 - RK4 zero-step validates every input, rejects sparse state, and preserves state
+  ---
+  duration_ms: 1.1018
+  type: 'test'
+  ...
+# Subtest: RK4 convergence/order, determinism, immutability and invalid dynamics
+ok 33 - RK4 convergence/order, determinism, immutability and invalid dynamics
+  ---
+  duration_ms: 6.059
+  type: 'test'
+  ...
+# Subtest: free fall uses fixed-step RK4 and matches the authoritative analytic reference
+ok 34 - free fall uses fixed-step RK4 and matches the authoritative analytic reference
+  ---
+  duration_ms: 12.0452
+  type: 'test'
+  ...
+# Subtest: projectile preserves horizontal motion and reports a sampled stop-plane bracket
+ok 35 - projectile preserves horizontal motion and reports a sampled stop-plane bracket
+  ---
+  duration_ms: 2.9401
+  type: 'test'
+  ...
+# Subtest: rejects missing provenance and hidden numeric defaults
+ok 36 - rejects missing provenance and hidden numeric defaults
+  ---
+  duration_ms: 1.8229
+  type: 'test'
+  ...
+# Subtest: is deterministic, finite, and does not mutate caller inputs
+ok 37 - is deterministic, finite, and does not mutate caller inputs
+  ---
+  duration_ms: 19.7361
+  type: 'test'
+  ...
+# Subtest: reports an already-crossed plane without advancing the integrator
+ok 38 - reports an already-crossed plane without advancing the integrator
+  ---
+  duration_ms: 0.5456
+  type: 'test'
+  ...
+# Subtest: accepts only the validated S08 transport and maps explicit template quantities
+ok 39 - accepts only the validated S08 transport and maps explicit template quantities
+  ---
+  duration_ms: 1539.5874
+  type: 'test'
+  ...
+1..39
+# tests 39
+# suites 0
+# pass 39
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 11881.0132

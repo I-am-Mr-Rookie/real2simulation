@@ -1,0 +1,65 @@
+diff --git a/Build/simulator/extended-templates.mjs b/Build/simulator/extended-templates.mjs
+index b241202..073abe6 100644
+--- a/Build/simulator/extended-templates.mjs
++++ b/Build/simulator/extended-templates.mjs
+@@ -67,9 +67,7 @@ function samplesFor(spec, kind, acceleration, endpoint) {
+ 
+ export function rampTrajectory(input) {
+   const spec = checked(input, 'ramp');
+-  const downhill = spec.gravity * Math.sin(spec.inclineAngle);
+-  const normal = spec.gravity * Math.cos(spec.inclineAngle);
+-  const accelerationValue = downhill - spec.frictionCoefficient * normal;
++  const accelerationValue = spec.gravity * (Math.sin(spec.inclineAngle) - spec.frictionCoefficient * Math.cos(spec.inclineAngle));
+   if (!(accelerationValue > 0)) fail('ramp acceleration must be positive; S08 does not support coasting, stalling, or static-friction stick/slip');
+   const acceleration = (state) => {
+     return [state[1], accelerationValue];
+@@ -81,11 +79,13 @@ export function rampTrajectory(input) {
+ 
+ export function pendulumTrajectory(input) {
+   const spec = checked(input, 'pendulum');
+-  const acceleration = (state) => [state[1], -(spec.gravity / spec.length) * Math.sin(state[0])];
+-  const samples = samplesFor(spec, 'pendulum', acceleration).samples;
+   const omega = Math.sqrt(spec.gravity / spec.length);
+   const amplitude = Math.hypot(spec.initialAngle, spec.initialAngularVelocity / omega);
+   const analyticComparison = amplitude <= 0.1 ? { model: 'small-angle-linearized', valid_for_amplitude_rad: 0.1, inputs: { length_m: spec.length, gravity_m_s2: spec.gravity, initial_angle_rad: spec.initialAngle, initial_angular_velocity_rad_s: spec.initialAngularVelocity, angular_frequency_rad_s: omega } } : { model: 'nonlinear-only', inputs: { length_m: spec.length, gravity_m_s2: spec.gravity, initial_angle_rad: spec.initialAngle, initial_angular_velocity_rad_s: spec.initialAngularVelocity } };
++  // Follow the declared S08 model; small-angle angular dynamics conserve linearized energy.
++  const restoringAngle = analyticComparison.model === 'small-angle-linearized' ? (angle) => angle : Math.sin;
++  const acceleration = (state) => [state[1], -(spec.gravity / spec.length) * restoringAngle(state[0])];
++  const samples = samplesFor(spec, 'pendulum', acceleration).samples;
+   return freeze({ kind: 'pendulum', source: spec.source, inputProvenance: spec.inputProvenance, integrator: 'rk4-fixed-step', dt_s: spec.dt, requestedSteps: spec.steps, units: { time: 's', angle: 'rad', angular_velocity: 'rad/s', position: 'm', velocity: 'm/s' }, analyticComparison, samples });
+ }
+ 
+diff --git a/Build/simulator/rk4.mjs b/Build/simulator/rk4.mjs
+index 8dade2b..44fe1f3 100644
+--- a/Build/simulator/rk4.mjs
++++ b/Build/simulator/rk4.mjs
+@@ -11,7 +11,14 @@ export function rk4Step(state, dt, dynamics) {
+   const k1 = deriv(state);
+   const mid = (k) => state.map((x, i) => x + dt * k[i] / 2);
+   const k2 = deriv(mid(k1)); const k3 = deriv(mid(k2)); const k4 = deriv(state.map((x, i) => x + dt * k3[i]));
+-  const next = state.map((x, i) => x + dt * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]) / 6);
++  const next = state.map((x, i) => {
++    // Normalize the weighted mean, not dt: large slopes and subnormal steps remain representable.
++    const scale = Math.max(Math.abs(k1[i]), Math.abs(k2[i]), Math.abs(k3[i]), Math.abs(k4[i]));
++    if (scale === 0) return x;
++    const mean = (k1[i] / scale + 2 * (k2[i] / scale) + 2 * (k3[i] / scale) + k4[i] / scale) / 6;
++    const increment = dt * scale;
++    return x + (Number.isFinite(increment) ? increment * mean : dt * (scale * mean));
++  });
+   if (!validVector(next)) bad('state became non-finite'); return next;
+ }
+ 
+diff --git a/tests/simulator/extended-templates.test.mjs b/tests/simulator/extended-templates.test.mjs
+index 554190b..0b0a0d3 100644
+--- a/tests/simulator/extended-templates.test.mjs
++++ b/tests/simulator/extended-templates.test.mjs
+@@ -57,7 +57,8 @@ test('rejects sparse, nonfinite, overflow, and hidden-default inputs', () => {
+   assert.throws(() => rampTrajectory({ ...ramp, dt: Number.MAX_VALUE, steps: 2 }), /steps/);
+   assert.throws(() => rampTrajectory({ ...ramp, source: undefined }), /labels/);
+   assert.throws(() => pendulumTrajectory({ ...pendulum, initialAngle: 4 }), /initialAngle/);
+-  assert.throws(() => rampTrajectory({ ...ramp, origin: [Number.MAX_VALUE, 0, 0], initialSpeed: Number.MAX_VALUE / 2, steps: 1 }), /position|non-finite/);
++  // Keep the endpoint beyond this step so the test checks actual position overflow, not an unscaled RK4 sum.
++  assert.throws(() => rampTrajectory({ ...ramp, length: Number.MAX_VALUE, origin: [Number.MAX_VALUE, 0, 0], initialSpeed: Number.MAX_VALUE / 2, steps: 1 }), /position|non-finite/);
+ });
+ 
+ test('consumes actual Python validate_setup export for both extended templates', () => {

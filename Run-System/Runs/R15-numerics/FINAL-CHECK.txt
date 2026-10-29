@@ -1,0 +1,9 @@
+branch=run/R15-numerics
+base=5ac5f2557422b15d161723aa23c2d0ab74fa95f8
+authored_staged_diff_check=PASS
+frozen_oracle_whole_tree_diff=UNCHANGED
+staged_owns=PASS
+shared_controls_main_and_other_workers=UNMODIFIED
+raw_TAP_and_inherited_patch_whitespace=PRESERVED; whole_index_diff_check_warns
+checked_at=2026-10-29T07:36:50.7316859Z
+TIMING PASS; controller must separately verify evidence and any exception

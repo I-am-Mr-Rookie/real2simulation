@@ -1,0 +1,176 @@
+TAP version 13
+# {"name":"control-free-fall-fast-downward","samples":61,"maxRelativePositionError":7.400397862288942e-16}
+# {"name":"control-free-fall-min-normal-gravity","samples":201,"maxRelativePositionError":0}
+# {"name":"control-free-fall-through-apex","samples":601,"maxRelativePositionError":2.565848768022583e-14}
+# {"name":"control-pendulum-frequency-step-boundary","samples":33,"maxRelativePositionError":8.33247948876989e-8,"linearEnergyDrift":6.942274310972607e-9,"nonlinearEnergyDrift":0.000002076775379888929}
+# {"name":"control-pendulum-negative-phase","samples":2001,"maxRelativePositionError":3.11025255852445e-15,"linearEnergyDrift":5.329070518200751e-15,"nonlinearEnergyDrift":0.0001607267223859843}
+# {"name":"control-projectile-fast-horizontal","samples":401,"maxRelativePositionError":1.028109261843701e-14}
+# {"name":"control-projectile-low-gravity","samples":1001,"maxRelativePositionError":1.8452531039673634e-14}
+# {"name":"control-ramp-friction-above-one","samples":201,"maxRelativePositionError":1.0576653814775286e-14}
+# {"name":"control-ramp-shallow","samples":201,"maxRelativePositionError":2.1080035997783574e-15}
+# {"name":"control-ramp-steep","samples":101,"maxRelativePositionError":4.5269032604491566e-15}
+# {"name":"free-fall-large-finite-gravity","samples":9,"maxRelativePositionError":4.0874809539272366e-13}
+# {"name":"pendulum-amplitude-boundary","samples":4001,"maxRelativePositionError":8.855425965267719e-12,"linearEnergyDrift":4.785061236134425e-14,"nonlinearEnergyDrift":0.0008337501653938872}
+# {"name":"pendulum-amplitude-boundary-half-step","samples":8001,"maxRelativePositionError":5.540537815237263e-13,"linearEnergyDrift":9.547918011776346e-15,"nonlinearEnergyDrift":0.0008337501654114288}
+# {"name":"projectile-large-finite-gravity","samples":9,"maxRelativePositionError":7.1043540339031335e-15}
+# {"name":"ramp-large-finite-gravity","samples":9,"maxRelativePositionError":4.147833044690158e-13}
+# {"name":"ramp-positive-near-friction-boundary","samples":201,"maxRelativePositionError":1.9744889145528173e-15}
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-fast-downward
+ok 1 - R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-fast-downward
+  ---
+  duration_ms: 8.593
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-min-normal-gravity
+ok 2 - R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-min-normal-gravity
+  ---
+  duration_ms: 8.4774
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-through-apex
+ok 3 - R14 recovery: unchanged all-sample 0.005 oracle: control-free-fall-through-apex
+  ---
+  duration_ms: 14.0337
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-pendulum-frequency-step-boundary
+ok 4 - R14 recovery: unchanged all-sample 0.005 oracle: control-pendulum-frequency-step-boundary
+  ---
+  duration_ms: 2.7664
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-pendulum-negative-phase
+ok 5 - R14 recovery: unchanged all-sample 0.005 oracle: control-pendulum-negative-phase
+  ---
+  duration_ms: 37.3479
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-projectile-fast-horizontal
+ok 6 - R14 recovery: unchanged all-sample 0.005 oracle: control-projectile-fast-horizontal
+  ---
+  duration_ms: 11.798
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-projectile-low-gravity
+ok 7 - R14 recovery: unchanged all-sample 0.005 oracle: control-projectile-low-gravity
+  ---
+  duration_ms: 28.2813
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-friction-above-one
+ok 8 - R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-friction-above-one
+  ---
+  duration_ms: 7.7494
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-shallow
+ok 9 - R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-shallow
+  ---
+  duration_ms: 3.8885
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-steep
+ok 10 - R14 recovery: unchanged all-sample 0.005 oracle: control-ramp-steep
+  ---
+  duration_ms: 3.3863
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: free-fall-large-finite-gravity
+ok 11 - R14 recovery: unchanged all-sample 0.005 oracle: free-fall-large-finite-gravity
+  ---
+  duration_ms: 0.9985
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: pendulum-amplitude-boundary
+ok 12 - R14 recovery: unchanged all-sample 0.005 oracle: pendulum-amplitude-boundary
+  ---
+  duration_ms: 73.9071
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: pendulum-amplitude-boundary-half-step
+ok 13 - R14 recovery: unchanged all-sample 0.005 oracle: pendulum-amplitude-boundary-half-step
+  ---
+  duration_ms: 158.0899
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: projectile-large-finite-gravity
+ok 14 - R14 recovery: unchanged all-sample 0.005 oracle: projectile-large-finite-gravity
+  ---
+  duration_ms: 3.4999
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: ramp-large-finite-gravity
+ok 15 - R14 recovery: unchanged all-sample 0.005 oracle: ramp-large-finite-gravity
+  ---
+  duration_ms: 1.9799
+  type: 'test'
+  ...
+# Subtest: R14 recovery: unchanged all-sample 0.005 oracle: ramp-positive-near-friction-boundary
+ok 16 - R14 recovery: unchanged all-sample 0.005 oracle: ramp-positive-near-friction-boundary
+  ---
+  duration_ms: 7.3024
+  type: 'test'
+  ...
+# Subtest: R14 RK4: constant finite derivatives across large, tiny and subnormal scales
+ok 17 - R14 RK4: constant finite derivatives across large, tiny and subnormal scales
+  ---
+  duration_ms: 1.218
+  type: 'test'
+  ...
+# Subtest: R14 RK4: mixed-sign stages and finite weighted increment despite dt*largestSlope overflow
+ok 18 - R14 RK4: mixed-sign stages and finite weighted increment despite dt*largestSlope overflow
+  ---
+  duration_ms: 0.6385
+  type: 'test'
+  ...
+# Subtest: R15 RK4: finite half-stage survives overflow of the unhalved product
+ok 19 - R15 RK4: finite half-stage survives overflow of the unhalved product
+  ---
+  duration_ms: 1.5184
+  type: 'test'
+  ...
+# Subtest: R14 RK4: actual stage/derivative/result checks are preserved
+ok 20 - R14 RK4: actual stage/derivative/result checks are preserved
+  ---
+  duration_ms: 1.825
+  type: 'test'
+  ...
+# Subtest: R14 ramp: positive cancellation result matches S08 and zero/negative are still rejected
+ok 21 - R14 ramp: positive cancellation result matches S08 and zero/negative are still rejected
+  ---
+  duration_ms: 5.4808
+  type: 'test'
+  ...
+# Subtest: R14 ramp: large finite endpoint bracket no longer fails from an unscaled RK4 sum
+ok 22 - R14 ramp: large finite endpoint bracket no longer fails from an unscaled RK4 sum
+  ---
+  duration_ms: 0.5034
+  type: 'test'
+  ...
+# Subtest: R14 model: linear dynamics across signed phases, velocities, scales and long horizons
+ok 23 - R14 model: linear dynamics across signed phases, velocities, scales and long horizons
+  ---
+  duration_ms: 3031.5226
+  type: 'test'
+  ...
+# Subtest: R14 model: nonlinear-only remains nonlinear and small-angle equilibrium remains supported
+ok 24 - R14 model: nonlinear-only remains nonlinear and small-angle equilibrium remains supported
+  ---
+  duration_ms: 78.008
+  type: 'test'
+  ...
+# Subtest: R15 model: linear energy is conserved; nonlinear-energy change has the independently predicted magnitude
+ok 25 - R15 model: linear energy is conserved; nonlinear-energy change has the independently predicted magnitude
+  ---
+  duration_ms: 95.3399
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3757.7711

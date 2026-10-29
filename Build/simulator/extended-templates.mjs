@@ -67,9 +67,7 @@ function samplesFor(spec, kind, acceleration, endpoint) {
 
 export function rampTrajectory(input) {
   const spec = checked(input, 'ramp');
-  const downhill = spec.gravity * Math.sin(spec.inclineAngle);
-  const normal = spec.gravity * Math.cos(spec.inclineAngle);
-  const accelerationValue = downhill - spec.frictionCoefficient * normal;
+  const accelerationValue = spec.gravity * (Math.sin(spec.inclineAngle) - spec.frictionCoefficient * Math.cos(spec.inclineAngle));
   if (!(accelerationValue > 0)) fail('ramp acceleration must be positive; S08 does not support coasting, stalling, or static-friction stick/slip');
   const acceleration = (state) => {
     return [state[1], accelerationValue];
@@ -81,11 +79,13 @@ export function rampTrajectory(input) {
 
 export function pendulumTrajectory(input) {
   const spec = checked(input, 'pendulum');
-  const acceleration = (state) => [state[1], -(spec.gravity / spec.length) * Math.sin(state[0])];
-  const samples = samplesFor(spec, 'pendulum', acceleration).samples;
   const omega = Math.sqrt(spec.gravity / spec.length);
   const amplitude = Math.hypot(spec.initialAngle, spec.initialAngularVelocity / omega);
   const analyticComparison = amplitude <= 0.1 ? { model: 'small-angle-linearized', valid_for_amplitude_rad: 0.1, inputs: { length_m: spec.length, gravity_m_s2: spec.gravity, initial_angle_rad: spec.initialAngle, initial_angular_velocity_rad_s: spec.initialAngularVelocity, angular_frequency_rad_s: omega } } : { model: 'nonlinear-only', inputs: { length_m: spec.length, gravity_m_s2: spec.gravity, initial_angle_rad: spec.initialAngle, initial_angular_velocity_rad_s: spec.initialAngularVelocity } };
+  // Follow the declared S08 model; small-angle angular dynamics conserve linearized energy.
+  const restoringAngle = analyticComparison.model === 'small-angle-linearized' ? (angle) => angle : Math.sin;
+  const acceleration = (state) => [state[1], -(spec.gravity / spec.length) * restoringAngle(state[0])];
+  const samples = samplesFor(spec, 'pendulum', acceleration).samples;
   return freeze({ kind: 'pendulum', source: spec.source, inputProvenance: spec.inputProvenance, integrator: 'rk4-fixed-step', dt_s: spec.dt, requestedSteps: spec.steps, units: { time: 's', angle: 'rad', angular_velocity: 'rad/s', position: 'm', velocity: 'm/s' }, analyticComparison, samples });
 }
 

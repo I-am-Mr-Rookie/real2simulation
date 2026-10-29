@@ -1,0 +1,18 @@
+[
+  {
+    "Path": "C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\simulator\\r14-invariants.test.mjs",
+    "Hash": "9CF79DB2FBB044F20D8E3ECFEA1EE7C570C8BDB777283D2249F65CEB6B7E9D73"
+  },
+  {
+    "Path": "C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\S10\\numerical-invariants\\validated-cases.json",
+    "Hash": "EEDE562B7CB3C23B8FA894993E3791DC1EBA124B04379E150E53500C3FFBC474"
+  },
+  {
+    "Path": "C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\simulator\\r14-recovery.test.mjs",
+    "Hash": "AC13AA7B7AC7207533DEF2B24D4E0B9EC85017EF3859662CDDBB8993BD7830FF"
+  },
+  {
+    "Path": "C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\simulator\\NUMERICS.md",
+    "Hash": "B36CF4977FA92077F746D4E557B474DDE6275065F4219C94CFE91E7C50F7AAC4"
+  }
+]

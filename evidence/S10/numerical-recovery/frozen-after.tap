@@ -1,0 +1,152 @@
+TAP version 13
+# Subtest: R14 valid-domain control: control-free-fall-fast-downward
+ok 1 - R14 valid-domain control: control-free-fall-fast-downward
+  ---
+  duration_ms: 16.6596
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-free-fall-min-normal-gravity
+ok 2 - R14 valid-domain control: control-free-fall-min-normal-gravity
+  ---
+  duration_ms: 18.6907
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-free-fall-through-apex
+ok 3 - R14 valid-domain control: control-free-fall-through-apex
+  ---
+  duration_ms: 40.5897
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-pendulum-frequency-step-boundary
+not ok 4 - R14 valid-domain control: control-pendulum-frequency-step-boundary
+  ---
+  duration_ms: 32.9547
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\simulator\\r14-invariants.test.mjs:49:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(Math.abs(energy(sample) / initialEnergy - 1) <= 1e-7)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:69:16)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: R14 valid-domain control: control-pendulum-negative-phase
+not ok 5 - R14 valid-domain control: control-pendulum-negative-phase
+  ---
+  duration_ms: 79.694
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-simulator-audit\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\simulator\\r14-invariants.test.mjs:49:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    The expression evaluated to a falsy value:
+    
+      assert.ok(Math.abs(energy(sample) / initialEnergy - 1) <= 1e-7)
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-simulator-audit/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/simulator/r14-invariants.test.mjs:69:16)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: R14 valid-domain control: control-projectile-fast-horizontal
+ok 6 - R14 valid-domain control: control-projectile-fast-horizontal
+  ---
+  duration_ms: 30.3339
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-projectile-low-gravity
+ok 7 - R14 valid-domain control: control-projectile-low-gravity
+  ---
+  duration_ms: 62.0878
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-ramp-friction-above-one
+ok 8 - R14 valid-domain control: control-ramp-friction-above-one
+  ---
+  duration_ms: 29.3347
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-ramp-shallow
+ok 9 - R14 valid-domain control: control-ramp-shallow
+  ---
+  duration_ms: 29.8967
+  type: 'test'
+  ...
+# Subtest: R14 valid-domain control: control-ramp-steep
+ok 10 - R14 valid-domain control: control-ramp-steep
+  ---
+  duration_ms: 6.207
+  type: 'test'
+  ...
+# Subtest: R14 regression: accepted amplitude 0.1 pendulum stays within unchanged 0.005 analytic tolerance over 4 s
+ok 11 - R14 regression: accepted amplitude 0.1 pendulum stays within unchanged 0.005 analytic tolerance over 4 s
+  ---
+  duration_ms: 134.3856
+  type: 'test'
+  ...
+# Subtest: R14 diagnosis: halving pendulum step converges without repairing the model discrepancy
+ok 12 - R14 diagnosis: halving pendulum step converges without repairing the model discrepancy
+  ---
+  duration_ms: 472.0439
+  type: 'test'
+  ...
+# Subtest: R14 regression: actual S08 positive near-friction ramp must not be rejected as stalled
+ok 13 - R14 regression: actual S08 positive near-friction ramp must not be rejected as stalled
+  ---
+  duration_ms: 6.6931
+  type: 'test'
+  ...
+# Subtest: R14 regression: finite RK4 weighted increment must not overflow before multiplication by tiny dt
+ok 14 - R14 regression: finite RK4 weighted increment must not overflow before multiplication by tiny dt
+  ---
+  duration_ms: 0.618
+  type: 'test'
+  ...
+# Subtest: R14 regression: validated finite analytic trajectory remains executable: free-fall-large-finite-gravity
+ok 15 - R14 regression: validated finite analytic trajectory remains executable: free-fall-large-finite-gravity
+  ---
+  duration_ms: 1.569
+  type: 'test'
+  ...
+# Subtest: R14 regression: validated finite analytic trajectory remains executable: projectile-large-finite-gravity
+ok 16 - R14 regression: validated finite analytic trajectory remains executable: projectile-large-finite-gravity
+  ---
+  duration_ms: 0.871
+  type: 'test'
+  ...
+# Subtest: R14 regression: validated finite analytic trajectory remains executable: ramp-large-finite-gravity
+ok 17 - R14 regression: validated finite analytic trajectory remains executable: ramp-large-finite-gravity
+  ---
+  duration_ms: 11.151
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 15
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1385.5892
