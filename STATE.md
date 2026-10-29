@@ -107,6 +107,11 @@ template PDFs (MiKTeX) + HTML fallback, reports 33 OK. S19b Sonnet: allowlist SW
 orch20 issued full30m: Opus S06b (<=$0.50 warm-start measure), S13a, S14d (offline);
 Sonnet S15e, S17e, S19c (first create_thread rejected Sonnet/high validation; one retry as
 S19c-orch20b). Receipt DISPATCH-orch20.json.
+S05c DONE (Opus; TIMEBOX PASS): RM04+RM05 MapAnything in one A10G container, measured
+$0.0648 (~$0.032/scene); with RM02 = 3 scene outputs, all finite, hashes verified, npz
+gitignored. Fresh: watchdog/etc 66/66 system py; modal tests 18/18 under uv+modal
+(test_modal_scenes needs modal installed — import-guard gap). Month-to-date Modal ~$0.30.
+Gate R NOT RUN; physical scale unverified.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
