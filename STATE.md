@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+S20c DONE (orch54 Sol medium; TIMEBOX PASS; guardrails 47 OK; ff-merged): Build/guardrails/failover.py
+Modal default; AWS only with R2S_ENABLE_AWS=1 + valid quota and $50 budget receipts, us-east-2 spot
+only, S20b admission, <=3600 s session bound; never launches. Offline only. R-C next (Opus high).
+
 DISPATCHED S12e-fix2-orch56 Opus high (threadId:01a189bf-550e-7a71-a677-93b694de67de,hostId:local, deadline 2026-10-29T22:49:39+00:00).
 
 R-RS-recheck-orch53 = CHANGES_REQUIRED (Sol high; TIMEBOX PASS; evidence ff-merged). F3/F4 closed;

@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 30, 04:15 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 04:21 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **149 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **150 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -19,10 +19,9 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
-- [ ] **S20c** — Codex · GPT-6.1 Sol, effort medium — Implement disabled-by-default AWS failover switch (30 min)
 
 **CLAUDE**
-- Nothing ready yet: check dependencies and retry holds below.
+- [ ] **R-C** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor review: Gate C cap accounting and library exemption (15 min)
 
 ## Waiting for Koushik
 
@@ -306,11 +305,11 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S20</b> — Spend guardrails and GPU failover (2/5)</summary>
+<details><summary><b>S20</b> — Spend guardrails and GPU failover (3/5)</summary>
 
 - [x] **S20a** — Codex · GPT-6.1 Sol, effort medium — Define spend ledger, upload quota and reserve contract (30 min)
 - [x] **S20b** — Codex · GPT-6.1 Sol, effort medium — Implement reconstruction cap and library exemption (30 min)
-- [ ] **S20c** — Codex · GPT-6.1 Sol, effort medium — Implement disabled-by-default AWS failover switch (30 min)
+- [x] **S20c** — Codex · GPT-6.1 Sol, effort medium — Implement disabled-by-default AWS failover switch (30 min)
 - [ ] **S20d** — Codex · GPT-6.1 Sol, effort high — Run Gate C simulated-cap regression (30 min)
 - [ ] **R-C** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor review: Gate C cap accounting and library exemption (15 min)
 
