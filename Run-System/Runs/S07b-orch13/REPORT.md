@@ -33,3 +33,4 @@ Communication: silent; one completion line to controller.
 
 ## Final
 PARTIAL: runtime reached verified checkpoint + loaded model + prompt (3 objects) on Modal A10; propagation blocked by upstream multiplex 0-batch feature error. Adapter tracking.py/tests unchanged (14 passed). Commits 6babbb2, final on run/S07b-orch13. Not calibration, not Gate M.
+Timebox: task work stopped at deadline 11:26:09Z; a read-only post-stop resource check (containers-final.json = []) ran ~11:26:10-17Z. Report written 2026-10-29T11:26:39+00:00.
