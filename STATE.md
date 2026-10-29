@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+S12e-fix-orch52 accepted (Opus high; TIMEBOX PASS; prediction 35 OK on canonical; ff-merged): R-RS
+F1-F4 fixed with regressions; 10 reproductions refused (refusals.json); gate-rs.json unchanged except
+additive provenance (NOT_MET, 19.8%, 7/466). Residual: v1 digest excludes clip/training metadata
+(hand-edited cross-clip reuse with identical identities). S12e stays PARTIAL until R-RS recheck CLEAR.
+
 DISPATCHED S12e-fix-orch52 Opus high (threadId:01a189b2-c14f-7831-8fac-f337c86b6af3,hostId:local, deadline 2026-10-29T22:35:53+00:00).
 
 R-RS DONE = CHANGES_REQUIRED (orch49 Sol high; TIMEBOX PASS; evidence ff-merged). Saved Gate RS
