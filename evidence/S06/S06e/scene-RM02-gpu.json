@@ -1,0 +1,152 @@
+{
+ "schema_version": "1.0.0",
+ "id": "rm02-mapanything-s06d",
+ "label": "RM02 MapAnything reconstruction - nominal scale, NOT calibrated, NOT Gate R evidence",
+ "synthetic": false,
+ "coordinates": {
+  "handedness": "right",
+  "up": "+Y",
+  "length_unit": "m",
+  "camera_forward": "-Z",
+  "quaternion_order": "xyzw"
+ },
+ "provenance": {
+  "method": "mapanything-apache",
+  "sources": [
+   {
+    "clip_id": "rm02",
+    "source_url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+    "license": "Pexels",
+    "attribution": "Andy Barbour - Tracking shot of empty classroom - Pexels",
+    "approval_evidence": "evidence/owner/S02/APPROVAL.md"
+   }
+  ],
+  "models": [
+   {
+    "id": "facebook/map-anything-apache",
+    "revision": "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a",
+    "code_revision": "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9",
+    "license": "Apache-2.0"
+   }
+  ],
+  "evidence": "S06d offline conversion of existing MapAnything output RM02-mapanything.npz"
+ },
+ "scale": {
+  "status": "estimated",
+  "metres_per_source_unit": 1,
+  "evidence": "MapAnything nominal metric output; no source-backed scale reference (S05d abstained)"
+ },
+ "gravity": {
+  "status": "unknown",
+  "direction": null,
+  "magnitude_m_s2": null,
+  "evidence": "Not estimated by S06d; physics must remain disabled"
+ },
+ "bounds_m": {
+  "min": [
+   -2.01907,
+   -0.8128,
+   -5.0973999999999995
+  ],
+  "max": [
+   1.28321,
+   1.9904,
+   -0.71072
+  ]
+ },
+ "assets": [
+  {
+   "id": "points",
+   "path": "points.ply",
+   "format": "ply-ascii-xyzrgb",
+   "sha256": "e46814613ca923d069663a5d295d360b1b1ada989563d839308ca1d9639b1399",
+   "bytes": 753214
+  },
+  {
+   "id": "points-mobile",
+   "path": "points-mobile.ply",
+   "format": "ply-ascii-xyzrgb",
+   "sha256": "61090c838d261542cb6ca21bf03f09e050556c1a0516ba5f5061e955bb7aab20",
+   "bytes": 188332
+  }
+ ],
+ "render": {
+  "kind": "points",
+  "asset_id": "points",
+  "mobile_asset_id": "points-mobile",
+  "point_count": 20000
+ },
+ "surfaces": [],
+ "colliders": [],
+ "camera_path": [
+  {
+   "time_s": 0.0,
+   "pose": {
+    "position_m": [
+     6.415871030185372e-05,
+     -0.0003005375328939408,
+     -0.001598254544660449
+    ],
+    "rotation_xyzw": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "vertical_fov_deg": 50
+  },
+  {
+   "time_s": 1.0,
+   "pose": {
+    "position_m": [
+     -0.012324902229011059,
+     -0.005770540796220303,
+     -0.007324086967855692
+    ],
+    "rotation_xyzw": [
+     0.002802304756652587,
+     -0.0023512402690744902,
+     0.0008368718994630181,
+     0.9999929591765493
+    ]
+   },
+   "vertical_fov_deg": 50
+  },
+  {
+   "time_s": 2.0,
+   "pose": {
+    "position_m": [
+     -0.06945841759443283,
+     -0.006808419246226549,
+     0.004475786350667477
+    ],
+    "rotation_xyzw": [
+     0.005409794874550864,
+     -0.00600258342438684,
+     0.00048828125,
+     0.9999672318096576
+    ]
+   },
+   "vertical_fov_deg": 50
+  },
+  {
+   "time_s": 3.0,
+   "pose": {
+    "position_m": [
+     -0.1610363870859146,
+     -0.01789822429418564,
+     0.024213554337620735
+    ],
+    "rotation_xyzw": [
+     0.007549631882844837,
+     -0.004890435943361848,
+     0.0005033087921896558,
+     0.9999594158639525
+    ]
+   },
+   "vertical_fov_deg": 50
+  }
+ ],
+ "labels": []
+}

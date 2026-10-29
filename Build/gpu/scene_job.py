@@ -4,6 +4,7 @@ Offline (no Modal/GPU, existing MapAnything npz):
     python Build/gpu/scene_job.py RM02 <out_dir> --npz <RM02-mapanything.npz>
 One A10G job (frames from a S05 input manifest, already-approved licensed frames only):
     modal run Build/gpu/scene_job.py --scene RM02 --out <out_dir> --manifest <S05 input.json>
+    -> <out_dir>/<scene>-scene-log.json: cold start, GPU seconds, estimated cost; billed via Build/gpu/cost_log.py.
 SAM 3D stays off (sam3d_option default); colliders/surfaces stay empty: no object bounds exist yet.
 """
 import argparse
@@ -12,8 +13,10 @@ import hashlib
 import io
 import json
 import sys
+import time
 from pathlib import Path
 
+CONTAINER_START = time.time()  # inside Modal: module import = container start (S06e cold-start split)
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.parent
 sys.path.insert(0, str(HERE))
@@ -24,6 +27,7 @@ APPROVAL = "evidence/owner/S02/APPROVAL.md"
 SCENE_IDS = {"RM02", "RM04", "RM05"}  # room-scene IDs in APPROVAL.md; other approved IDs are tracking clips
 LICENCES = {"Pexels": "Pexels", "Pixabay": "Pixabay", "PD-USGov-NASA": "Public-Domain", "CC0": "CC0-1.0"}
 MAX_POINTS, MOBILE_POINTS = 20000, 5000
+CPU, MEM_MIB, SCALEDOWN_S = 2, 16384, 2  # scene_job resources; also feed the S06e cost estimate
 F = (1.0, -1.0, -1.0)  # OpenCV (x right, y down, z fwd) -> contract (+Y up, camera looks -Z)
 
 
@@ -150,11 +154,10 @@ if modal is not None:
     from runtime import RUNTIME_IMAGE, load_model
     app = modal.App("s06d-scene-job")
 
-    @app.function(image=RUNTIME_IMAGE.add_local_python_source("runtime"), gpu=s.GPU, cpu=2, memory=16384,
+    @app.function(image=RUNTIME_IMAGE.add_local_python_source("runtime"), gpu=s.GPU, cpu=CPU, memory=MEM_MIB,
                   timeout=300, startup_timeout=240, retries=0, min_containers=0, max_containers=1,
-                  buffer_containers=0, scaledown_window=2, single_use_containers=True)
+                  buffer_containers=0, scaledown_window=SCALEDOWN_S, single_use_containers=True)
     def scene_job(frames):
-        import time
         import numpy as np
         import torch
         from mapanything.utils.image import load_images
@@ -164,29 +167,40 @@ if modal is not None:
             paths.append(f"/tmp/frame-{i:02}.png")
             Path(paths[-1]).write_bytes(data)
         model = load_model()
+        t1 = time.time()
         with torch.inference_mode():
             preds = model.infer(load_images(paths), memory_efficient_inference=True, minibatch_size=1,
                                 use_amp=True, amp_dtype="bf16", apply_mask=True, mask_edges=True,
                                 apply_confidence_mask=False, use_multiview_confidence=False)
+        t2 = time.time()
         keys = ("pts3d", "conf", "mask", "img_no_norm", "camera_poses")
         arrays = {f"view{i}_{k}": p[k].float().cpu().numpy() for i, p in enumerate(preds) for k in keys}
         buf = io.BytesIO()
         np.savez_compressed(buf, **arrays)
-        return {"npz": buf.getvalue(), "function_elapsed_s": time.time() - t0,
-                "peak_allocated_bytes": torch.cuda.max_memory_allocated()}
+        t3 = time.time()
+        return {"npz": buf.getvalue(), "function_elapsed_s": t3 - t0,
+                "peak_allocated_bytes": torch.cuda.max_memory_allocated(),
+                "container_start_epoch": CONTAINER_START, "function_start_epoch": t0, "function_end_epoch": t3,
+                "model_load_s": t1 - t0, "inference_s": t2 - t1}
 
     @app.local_entrypoint()
     def main(scene: str, out: str, manifest: str):
+        from cost_log import scene_log
         frames = load_frames(manifest, scene)  # preflight before any GPU allocation
+        call = time.time()
         r = scene_job.remote(frames)
+        ret = time.time()
         out_dir = Path(out)
         out_dir.mkdir(parents=True, exist_ok=True)
+        log = scene_log(app.app_id, call, ret, r, s.GPU, CPU, MEM_MIB / 1024, SCALEDOWN_S)
+        log["peak_allocated_bytes"] = r["peak_allocated_bytes"]
+        (out_dir / f"{scene}-scene-log.json").write_text(json.dumps(log, indent=1) + "\n", encoding="utf-8")
         (out_dir / f"{scene}-mapanything.npz").write_bytes(r["npz"])
         sc = build_bundle(scene, out_dir / f"{scene}-mapanything.npz", out_dir,
-                          "S06d Modal A10G scene_job on S06b runtime image")
+                          "S06d/S06e Modal A10G scene_job on S06b runtime image")
         print(json.dumps({"scene": sc["id"], "points": sc["render"]["point_count"],
-                          "function_elapsed_s": r["function_elapsed_s"],
-                          "peak_allocated_bytes": r["peak_allocated_bytes"]}))
+                          "timing_s": log["timing_s"], "gpu_seconds": log["gpu_seconds"],
+                          "estimated_usd": log["cost"]["estimated"]["total_usd"]}))
 
 
 if __name__ == "__main__":

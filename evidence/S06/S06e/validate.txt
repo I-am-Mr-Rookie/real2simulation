@@ -1,0 +1,2 @@
+PASS rm02-mapanything-s06d points=20000 synthetic=False (not Gate R evidence)
+PASS rm02-mapanything-s06d schema=1.0.0 synthetic=False (not Gate R evidence)

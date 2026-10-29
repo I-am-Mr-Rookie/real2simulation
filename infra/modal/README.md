@@ -77,3 +77,18 @@ unknown, no surfaces/colliders, camera time_s = view index (not capture time). N
     python Build/gpu/scene_job.py RM02 <dir> --npz <existing MapAnything npz>   # offline, no Modal
 Bundle media stays gitignored (evidence/S06/S06d/local/); only scene.json manifests are committed.
 RM02 A10G run 2026-10-29: rc 0, function 21.0 s, peak 7.78 GB, $0.0066 billed (hourly CSV, may lag).
+
+## Cold-start timing and cost receipt (S06e, Build/gpu/cost_log.py)
+modal run scene_job.py also writes <out>/<scene>-scene-log.json (schema s06e-scene-log/1): client round trip,
+container_boot_s (call -> module import in container), cold_start_s (call -> function body), model_load_s,
+cold_start_to_model_ready_s, inference_s, function_s; GPU seconds estimated (container python lifetime + scaledown)
+and upper bound (round trip + scaledown); cost at Modal list rates A10G $0.000306/s, CPU $0.0000131/core-s,
+Memory $0.00000222/GiB-s (back-solved S06d bill agrees). Billed comes ONLY from Modal's own report, read-only:
+    modal billing report --for today -r h --json --show-resources > billing.json
+    python Build/gpu/cost_log.py <scene-log.json> billing.json   # no rows yet -> billed stays "unavailable"
+Run from the event root (uv --env-file splits paths with spaces); the local entrypoint needs jsonschema:
+    uv run --no-project --python 3.11 --with modal==1.6.3 --with numpy --with jsonschema --env-file .env modal run ...
+Client vs container clocks are separate NTP-synced hosts; sub-second skew is possible.
+RM02 A10G run 2026-10-29 (ap-HT56BJbqGtr7qg1pdadmu0): boot 6.5 s, cold start 10.8 s, model load 19.7 s (ready 30.5 s),
+inference 1.4 s, round trip 39.6 s; GPU s est 28.1 / billed 30.0; cost est $0.0103 vs billed $0.0113 (15:18Z read;
+15:12Z read was partial $0.0051 - report lags). Not Gate R / calibration / physical evidence.

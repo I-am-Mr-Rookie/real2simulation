@@ -1,0 +1,32 @@
+{
+ "run": "S06e-orch24",
+ "authorization_ref": "evidence/owner/S05/GPU-AUTHORIZATION.md (standing); controller contract S06e-orch24: <=1 A10G run of approved RM02 scene job, cap $0.30, retries 0",
+ "reservation_utc": "2026-10-29T15:09:51Z",
+ "new_all_in_reservation_usd": 0.3,
+ "compute_bound_basis": "A10G x (timeout 300 s + startup_timeout 240 s) = 540 s x ($0.000306 + 2x$0.0000131 + 16x$0.00000222) = $0.198 + egress/image margin; cpu 2, 16 GiB, retries 0, max_containers 1, single_use",
+ "headroom": "month-to-date ~$0.58 (billing-pre-month.json through Oct28 $0.0064 + billing-pre-today-hourly.json today $0.572; may lag) vs $30 monthly allocation; no paid overage expected",
+ "pre_billing": "evidence/S06/S06e/billing-pre-today-hourly.json (15:06Z)",
+ "input": "RM02 4 frames from canonical evidence/S05/S05b/input.json (gitignored local frames, SHA256-verified by load_frames); same approved licensed frames S05b/S06d ran on Modal; no personal/new media",
+ "jobs": [
+  {
+   "app_id": "ap-HT56BJbqGtr7qg1pdadmu0",
+   "app_name": "s06d-scene-job",
+   "kind": "A10G MapAnything scene_job (S06e-instrumented) on S06b RUNTIME_IMAGE, RM02",
+   "launch_utc": "2026-10-29T15:10:11Z (client); app created 15:10:34Z",
+   "end_utc": "2026-10-29T15:11:22Z (app stopped 15:11:21Z)",
+   "rc": 1,
+   "rc_note": "remote GPU function succeeded and returned; local post-processing failed (jsonschema missing in uv client env) AFTER scene-log + npz were written; bundle completed offline with system python (no second Modal call). Earlier 15:10:01Z attempt failed in uv before any Modal call (--env-file path split).",
+   "retries": 0,
+   "image_rebuilt": false,
+   "own_containers_after": [],
+   "app_state_after": "stopped, 0 tasks (post-verify.txt 15:11:32Z; container list [] again 15:18:35Z)",
+   "scene_log": "evidence/S06/S06e/RM02-scene-log.json",
+   "estimated_cost_usd": 0.01032114,
+   "upper_bound_cost_usd": 0.01528041,
+   "measured_cost_usd": 0.01134936,
+   "cost_source": "modal billing report --for today -r h --json --show-resources at 15:18:32Z (billing-post-today-hourly.json); 15:12:14Z read was partial ($0.00514); may still lag, recheck"
+  }
+ ],
+ "actual_usd": 0.01134936,
+ "release_suggested_usd": 0.288
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "object_id": "ap-FivSp5aI1fHQKSGQQVYpde",
+    "description": "s05b-rm02-private-probe",
+    "environment": "main",
+    "interval_start": "2026-10-28T00:00:00",
+    "cost": "0.00253783"
+  },
+  {
+    "object_id": "ap-HXf8zry5uWtJx63efPpSdA",
+    "description": "s05b-recovery3-cpu-imports",
+    "environment": "main",
+    "interval_start": "2026-10-28T00:00:00",
+    "cost": "0.00012425"
+  },
+  {
+    "object_id": "ap-r3ct5JcmICM3MYJmqfsnPt",
+    "description": "s05b-recovery5-cpu-imports",
+    "environment": "main",
+    "interval_start": "2026-10-28T00:00:00",
+    "cost": "0.00372211"
+  }
+]
