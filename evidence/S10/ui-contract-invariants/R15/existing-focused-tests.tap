@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: free_fall: browser wrapper exactly preserves current engine and server trace
+ok 1 - free_fall: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 171.7461
+  type: 'test'
+  ...
+# Subtest: projectile: browser wrapper exactly preserves current engine and server trace
+ok 2 - projectile: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 122.3929
+  type: 'test'
+  ...
+# Subtest: ramp: browser wrapper exactly preserves current engine and server trace
+ok 3 - ramp: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 128.6259
+  type: 'test'
+  ...
+# Subtest: pendulum: browser wrapper exactly preserves current engine and server trace
+ok 4 - pendulum: browser wrapper exactly preserves current engine and server trace
+  ---
+  duration_ms: 185.8362
+  type: 'test'
+  ...
+# Subtest: rejects Mystery and absent/bad modes before reading any artifact
+ok 5 - rejects Mystery and absent/bad modes before reading any artifact
+  ---
+  duration_ms: 0.9839
+  type: 'test'
+  ...
+# Subtest: bounds work before touching scene/engine, even if an early event would shorten the run
+ok 6 - bounds work before touching scene/engine, even if an early event would shorten the run
+  ---
+  duration_ms: 1.4154
+  type: 'test'
+  ...
+# Subtest: 2000 samples includes the initial point; one more is rejected without truncation
+ok 7 - 2000 samples includes the initial point; one more is rejected without truncation
+  ---
+  duration_ms: 24.0608
+  type: 'test'
+  ...
+# Subtest: bad horizons are rejected, not coerced, floored, or silently downsampled
+ok 8 - bad horizons are rejected, not coerced, floored, or silently downsampled
+  ---
+  duration_ms: 2.0813
+  type: 'test'
+  ...
+# Subtest: actual existing artifact consumers reject malformed envelopes and non-synthetic scenes
+ok 9 - actual existing artifact consumers reject malformed envelopes and non-synthetic scenes
+  ---
+  duration_ms: 6.0341
+  type: 'test'
+  ...
+# Subtest: browser entry dependency graph uses only the existing browser-compatible RK4 modules
+ok 10 - browser entry dependency graph uses only the existing browser-compatible RK4 modules
+  ---
+  duration_ms: 1.4938
+  type: 'test'
+  ...
+# Subtest: lab UI keeps the user flow and trust labels visible in source
+ok 11 - lab UI keeps the user flow and trust labels visible in source
+  ---
+  duration_ms: 3.3871
+  type: 'test'
+  ...
+# Subtest: lab layout collapses before the narrow mobile viewport
+ok 12 - lab layout collapses before the narrow mobile viewport
+  ---
+  duration_ms: 0.4424
+  type: 'test'
+  ...
+# Subtest: both request paths retain abort and stale-result guards before state updates
+ok 13 - both request paths retain abort and stale-result guards before state updates
+  ---
+  duration_ms: 0.7887
+  type: 'test'
+  ...
+# Subtest: fit contract accepts only the actual S11 quantity and preserves uncertainty metadata
+ok 14 - fit contract accepts only the actual S11 quantity and preserves uncertainty metadata
+  ---
+  duration_ms: 2.6322
+  type: 'test'
+  ...
+# Subtest: the chart uses all observations, not the downsampled table
+ok 15 - the chart uses all observations, not the downsampled table
+  ---
+  duration_ms: 9.1956
+  type: 'test'
+  ...
+# Subtest: browser engine is mounted only for an explicit normal-mode DTO
+ok 16 - browser engine is mounted only for an explicit normal-mode DTO
+  ---
+  duration_ms: 0.358
+  type: 'test'
+  ...
+# Subtest: labels describe the bridge ordinate and unsupported fits honestly
+ok 17 - labels describe the bridge ordinate and unsupported fits honestly
+  ---
+  duration_ms: 0.5108
+  type: 'test'
+  ...
+# Subtest: plot helper uses actual finite time and position domains
+ok 18 - plot helper uses actual finite time and position domains
+  ---
+  duration_ms: 0.7417
+  type: 'test'
+  ...
+# Subtest: plot and table ignore nonfinite and malformed observations without coercion
+ok 19 - plot and table ignore nonfinite and malformed observations without coercion
+  ---
+  duration_ms: 2.3096
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 800.3585

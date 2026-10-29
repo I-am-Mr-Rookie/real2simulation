@@ -1,0 +1,136 @@
+✔ R14 valid accepted DTO preserves value, source, unit and uncertainty metadata (4.1633ms)
+✔ R14 finite quantities, correct units/sources/status/session are strict without coercion (0.9497ms)
+✖ R14 explicit 95% interval metadata must not be accepted as the hardcoded one-sigma reveal (2.9777ms)
+✖ R14 sparse assumptions are not a dense array of assumption strings (in-memory boundary) (0.9049ms)
+✔ R14 malformed/nonfinite/sparse observation arrays are filtered without coercion or mutation (1.2953ms)
+✖ R14 two finite extreme observations must not yield NaN/Infinity SVG coordinates (20.7299ms)
+✖ R14 oversized observations must not escape rendering as an unmanaged argument-stack RangeError (101.1094ms)
+✔ R14 adapter rejects invalid/sparse/oversized input arrays, leaving caller input untouched (11.1687ms)
+✔ R14 actual browser run handler replaces old success with sanitized error and error with success (42.2397ms)
+✔ R14 actual run/fit handlers suppress late successes and failures after abort/version invalidation (4.0994ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 6
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1264.1792
+
+✖ failing tests:
+
+test at tests\lab\r14-ui-invariants.test.mjs:44:1
+✖ R14 explicit 95% interval metadata must not be accepted as the hardcoded one-sigma reveal (2.9777ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   assumptions: [
+  +     'independent standard uncertainties'
+  +   ],
+  +   evidence: 'synthetic',
+  +   model: 'independent_position_time_first_order',
+  +   source: 'simulated',
+  +   uncertainty: 0.2,
+  +   unit: 'm/s^2',
+  +   value: 9.7
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-ui-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/r14-ui-invariants.test.mjs:47:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1325:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+      at Test.postRun (node:internal/test_runner/test:1465:19)
+      at Test.run (node:internal/test_runner/test:1390:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { value: 9.7, uncertainty: 0.2, unit: 'm/s^2', source: 'simulated', evidence: 'synthetic', model: 'independent_position_time_first_order', assumptions: [ 'independent standard uncertainties' ] },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\lab\r14-ui-invariants.test.mjs:50:1
+✖ R14 sparse assumptions are not a dense array of assumption strings (in-memory boundary) (0.9049ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + {
+  +   assumptions: [
+  +     <1 empty item>
+  +   ],
+  +   evidence: 'synthetic',
+  +   model: 'independent_position_time_first_order',
+  +   source: 'simulated',
+  +   uncertainty: 0.2,
+  +   unit: 'm/s^2',
+  +   value: 9.7
+  + }
+  - null
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-ui-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/r14-ui-invariants.test.mjs:52:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1325:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+      at Test.postRun (node:internal/test_runner/test:1465:19)
+      at Test.run (node:internal/test_runner/test:1390:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { value: 9.7, uncertainty: 0.2, unit: 'm/s^2', source: 'simulated', evidence: 'synthetic', model: 'independent_position_time_first_order', assumptions: [ <1 empty item> ] },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\lab\r14-ui-invariants.test.mjs:66:1
+✖ R14 two finite extreme observations must not yield NaN/Infinity SVG coordinates (20.7299ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /NaN|Infinity/. Input:
+  
+  '24,190 NaN,NaN'
+  
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-ui-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/r14-ui-invariants.test.mjs:68:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1325:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+      at Test.postRun (node:internal/test_runner/test:1465:19)
+      at Test.run (node:internal/test_runner/test:1390:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '24,190 NaN,NaN',
+    expected: /NaN|Infinity/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at tests\lab\r14-ui-invariants.test.mjs:72:1
+✖ R14 oversized observations must not escape rendering as an unmanaged argument-stack RangeError (101.1094ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Maximum call stack size exceeded"
+      at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-ui-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/r14-ui-invariants.test.mjs:76:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1325:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+      at Test.postRun (node:internal/test_runner/test:1465:19)
+      at Test.run (node:internal/test_runner/test:1390:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: RangeError: Maximum call stack size exceeded
+        at plotPoints (file:///C:/Users/HP/.codex/worktrees/swarm14-ui-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/lab/fit-contract.mjs:29:22)
+        at file:///C:/Users/HP/.codex/worktrees/swarm14-ui-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/r14-ui-invariants.test.mjs:76:38
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-ui-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/r14-ui-invariants.test.mjs:76:10)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1325:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+        at Test.postRun (node:internal/test_runner/test:1465:19)
+        at Test.run (node:internal/test_runner/test:1390:12),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

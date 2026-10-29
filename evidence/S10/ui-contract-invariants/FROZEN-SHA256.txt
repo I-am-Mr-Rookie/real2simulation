@@ -1,0 +1,6 @@
+
+Algorithm : SHA256
+Hash      : D868465C65A4B6F97C3A66C35C342816381013194547F5FF3C24699612228F58
+Path      : C:\Users\HP\.codex\worktrees\swarm14-ui-contract\2026-10-26 - Meta Global AI Developer Hackathon\tests\lab\r14-ui-invariants.test.mjs
+
+

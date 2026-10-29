@@ -1,0 +1,103 @@
+TAP version 13
+# Subtest: R15 actual bounded server envelopes reach the real UI handlers and finite chart with honest labels
+    # Subtest: free_fall/normal
+    ok 1 - free_fall/normal
+      ---
+      duration_ms: 3716.3085
+      type: 'test'
+      ...
+    # Subtest: free_fall/Mystery
+    ok 2 - free_fall/Mystery
+      ---
+      duration_ms: 1641.4258
+      type: 'test'
+      ...
+    # Subtest: projectile/normal
+    ok 3 - projectile/normal
+      ---
+      duration_ms: 1934.1374
+      type: 'test'
+      ...
+    # Subtest: projectile/Mystery
+    ok 4 - projectile/Mystery
+      ---
+      duration_ms: 2254.32
+      type: 'test'
+      ...
+    # Subtest: ramp/normal
+    ok 5 - ramp/normal
+      ---
+      duration_ms: 1028.1461
+      type: 'test'
+      ...
+    # Subtest: pendulum/normal
+    ok 6 - pendulum/normal
+      ---
+      duration_ms: 1052.5685
+      type: 'test'
+      ...
+    1..6
+ok 1 - R15 actual bounded server envelopes reach the real UI handlers and finite chart with honest labels
+  ---
+  duration_ms: 11631.0735
+  type: 'test'
+  ...
+# free_fall/normal: 201 finite observations; actual local producer, not fitted-accuracy evidence
+# free_fall/mystery-g: 201 finite observations; actual local producer, not fitted-accuracy evidence
+# projectile/normal: 201 finite observations; actual local producer, not fitted-accuracy evidence
+# projectile/mystery-g: 201 finite observations; actual local producer, not fitted-accuracy evidence
+# ramp/normal: 201 finite observations; actual local producer, not fitted-accuracy evidence
+# pendulum/normal: 1001 finite observations; actual local producer, not fitted-accuracy evidence
+# Subtest: R15 actual producer entry rejects caller-supplied observations and fit metadata
+ok 2 - R15 actual producer entry rejects caller-supplied observations and fit metadata
+  ---
+  duration_ms: 1.991
+  type: 'test'
+  ...
+# Subtest: R15 accepted existing fixture and maximum browser horizon stay finite; oversized horizon rejects
+not ok 3 - R15 accepted existing fixture and maximum browser horizon stay finite; oversized horizon rejects
+  ---
+  duration_ms: 28.5052
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-ui-contract\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\r14-ui-invariants.test.mjs:222:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    453 !== 2000
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2000
+  actual: 453
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-ui-contract/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/r14-ui-invariants.test.mjs:228:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: R15 actual fit handler refuses missing/cross-session responses before committing a reveal
+ok 4 - R15 actual fit handler refuses missing/cross-session responses before committing a reveal
+  ---
+  duration_ms: 1.2974
+  type: 'test'
+  ...
+# Subtest: R15 run/fit stale JSON completion cannot commit after abort or version invalidation
+ok 5 - R15 run/fit stale JSON completion cannot commit after abort or version invalidation
+  ---
+  duration_ms: 2.1633
+  type: 'test'
+  ...
+1..5
+# tests 11
+# suites 0
+# pass 10
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 12840.1294

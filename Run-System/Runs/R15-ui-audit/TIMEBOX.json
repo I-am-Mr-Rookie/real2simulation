@@ -1,0 +1,17 @@
+{
+  "id": "R15-ui-audit",
+  "issued_at": "2026-10-29T07:35:12.000Z",
+  "deadline_at": "2026-10-29T08:05:12.000Z",
+  "implementation_cutoff_at": "2026-10-29T08:00:12.000Z",
+  "deadline_dhaka": "2026-10-29T14:05:12.000+06:00",
+  "work_stopped_at": "2026-10-29T07:48:06.5197526+00:00",
+  "reported_at": "2026-10-29T07:48:06.5197526+00:00",
+  "status": "DONE",
+  "assigned_lane": "CODEX-2",
+  "assigned_model": "Sol/medium",
+  "parent_project_id": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
+  "project_binding": "inherited; child UI not independently verified",
+  "completion_scope": "bounded audit only; four unchanged latent P3 counterexamples remain failing",
+  "quota": "OpenCodex-managed; not polled",
+  "cost": "unknown"
+}
