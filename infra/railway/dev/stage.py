@@ -14,7 +14,9 @@ if target.exists():
     raise FileExistsError("Use a fresh staging destination")
 revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
 prefixes = {
-    "web": ("Build/web/src/", "Build/web/package.json"),
+    # Web imports ../simulator and ../lab outside Build/web/src: stage only those exact modules.
+    "web": ("Build/web/src/", "Build/web/package.json", "Build/lab/session-service.mjs",
+            *(f"Build/simulator/{m}.mjs" for m in ("trajectories", "extended-templates", "mystery-g", "replay", "rk4"))),
     "api": ("Build/api/health/",),
     "worker": ("Build/worker/health/", "Build/api/health/dependencies.py"),
 }[service]

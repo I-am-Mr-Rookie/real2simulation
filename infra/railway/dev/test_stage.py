@@ -14,6 +14,9 @@ REVISION = "a" * 40
 FILES = {
     "Build/web/src/page.jsx": b"synthetic-web\n",
     "Build/web/package.json": b"{}\n",
+    "Build/lab/session-service.mjs": b"synthetic-lab\n",
+    "Build/simulator/rk4.mjs": b"synthetic-sim\n",
+    "Build/simulator/NUMERICS.md": b"synthetic-excluded\n",
     "Build/api/health/app.py": b"synthetic-api\n",
     "Build/api/health/dependencies.py": b"synthetic-shared\n",
     "Build/worker/health/app.py": b"synthetic-worker\n",
@@ -104,7 +107,8 @@ class StageTests(unittest.TestCase):
                     self.assertEqual(manifest["source_revision"], REVISION)
                     self.assertEqual(manifest["service"], service)
                     expected = {
-                        "web": {"Build/web/src/page.jsx", "Build/web/package.json", "Dockerfile"},
+                        "web": {"Build/web/src/page.jsx", "Build/web/package.json", "Build/lab/session-service.mjs",
+                                "Build/simulator/rk4.mjs", "Dockerfile"},
                         "api": {"Build/api/health/app.py", "Build/api/health/dependencies.py", "Dockerfile"},
                         "worker": {"Build/worker/health/app.py", "Build/api/health/dependencies.py", "Dockerfile"},
                     }[service]
