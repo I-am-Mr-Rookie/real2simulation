@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+S07b-param-orch40 DONE (Opus medium; TIMEBOX PASS; measurement suite OK fresh; ff-merged). Live
+RM04 f0-11 "chair" SAM3.1 masks run exit0 on L4, billed $0.0254, containers [] -> F1 closed; masks
+pass sanitizer. Root cause of ST03 f76/f77: modal_track._frames ffprobe counted decode-order
+packets (B-frames) -> fixed _pts + regression test. Errata (accepted orch14 untouched):
+evidence/S07/S07b-errata/ST03-orch14-frame_map.json, RM04-orch40-frame_map.json. Follow-ups:
+audit other S07 outputs made by old _frames for tail-PTS error; cost_log RATES lacks L4 (Build/gpu).
+S13f continuation and S12c now unblocked.
+
 S12b DONE (orch39 Opus high; TIMEBOX PASS; fresh prediction 13 OK, fitter OK; ff-merged).
 Build/real2sim/params.py: validated param records (value/unit/1-sigma/provenance/gate_m NOT_MET),
 transfer refuses missing/abstained/no-provenance, feeds existing Build/simulator via node. ST03 real
