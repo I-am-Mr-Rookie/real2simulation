@@ -1,0 +1,5 @@
+react 19.3.1 SSR ok; idle 834 bytes, scene 1167 bytes
+S15c SSR ok: failure surface, retry button, blocked-retry copy
+S15d SSR ok: interview panel, escaped free text, disabled without onAction
+S15e SSR ok: units visible, validator rejection shown, accepted spec locks controls in run.ready, disabled without onAction
+S15f SSR ok: paused mid-run controls, done + same-seed replay verified, hidden without run model, disabled without onAction

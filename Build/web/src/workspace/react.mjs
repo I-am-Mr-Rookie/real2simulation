@@ -6,8 +6,9 @@
 import { layoutOf } from './layout.mjs';
 import { createViewport } from './viewport.mjs';
 import { renderWorkspace } from './view.mjs';
+import { runView } from './runcontrol.mjs';
 
-export const createWorkspace = (React) => function Workspace({ state, adapter, loadScene, audience, log, onAction, interview, template }) {
+export const createWorkspace = (React) => function Workspace({ state, adapter, loadScene, audience, log, onAction, interview, template, run }) {
   const { createElement: h, useRef, useEffect, useState } = React;
   const host = useRef(null), ctl = useRef(null);
   const [view, setView] = useState({ status: 'empty', error: null });
@@ -18,5 +19,5 @@ export const createWorkspace = (React) => function Workspace({ state, adapter, l
   }, [adapter, loadScene]);
   useEffect(() => { ctl.current.sync(host.current, layout.viewport.request, layout.viewport.key); },
     [layout.viewport.key, adapter, loadScene]); // eslint-disable-line react-hooks/exhaustive-deps -- request is derived from key
-  return renderWorkspace(h, layout, view, host, onAction, interview, template);
+  return renderWorkspace(h, layout, view, host, onAction, interview, template, run && runView(state, run));
 };

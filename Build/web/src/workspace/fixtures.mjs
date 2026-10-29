@@ -8,6 +8,10 @@ export const jobFailed = (revision) => job(revision, 'failed', { error: { code: 
 export const validSpec = { synthetic: true, template: 'free-fall' };
 export const deps = { validateSpec: (s) => (s?.synthetic === true ? { ok: true } : { ok: false, errors: ['SYNTHETIC validator: spec rejected'] }) };
 export const observations = [{ time_s: 0, position_m: 0 }, { time_s: 1, position_m: 1 }, { time_s: 2, position_m: 4 }];
+// S15f: deterministic fixture runner (replay contract: runner(parameters, seed, version) -> trace; seed is identity only).
+// Deliberately non-physical (a = 2 m/s^2 stand-in, dyadic values so the trace is exact); NOT simulator output or physics evidence.
+export const runParameters = { synthetic: true, template: 'free-fall', steps: 8, accel: 2 };
+export const fixtureRunner = (p) => Array.from({ length: p.steps }, (_, i) => ({ time_s: (i + 1) / 4, position_m: 0.5 * p.accel * ((i + 1) / 4) ** 2 }));
 export const fitBody = (sessionId) => ({ status: 'ok', sessionId, fit: { status: 'ok',
   gravity: { value: 1.25, uncertainty: 0.5, unit: 'm/s^2', source: { label: 'simulated', evidence: SYNTHETIC_NOTICE } },
   uncertainty: { model: 'SYNTHETIC placeholder model', assumptions: ['SYNTHETIC'] } } });

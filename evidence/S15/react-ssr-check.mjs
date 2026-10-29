@@ -85,3 +85,29 @@ import { initialTemplate as IT, reduceTemplate as RT, FIELDS as TF } from '../..
 
 
 
+
+// S15f: run controls through the real React binding (SSR): paused mid-run, then done + same-seed replay verified.
+import { initialRun as IR, reduceRun as RR, prepareRun as PR, verifyReplay as VR } from '../../Build/web/src/workspace/runcontrol.mjs';
+import { runParameters as RP, fixtureRunner as FR, deps as D6, validSpec as VS } from '../../Build/web/src/workspace/fixtures.mjs';
+import { createReplayRecord as CRR, replayRecord as RPR } from '../../Build/simulator/replay.mjs';
+{
+  const ready = reduce(withScene, { type: 'INTERVIEW_SPEC', spec: VS }, D6);
+  let s = reduce(ready, { type: 'RUN_START', seed: 11 }, D6), m = IR();
+  const send = (e) => { m = RR(m, e, s); s = reduce(s, e, D6); };
+  send({ type: 'R_LOAD', record: await PR({ createReplayRecord: CRR, runner: FR, parameters: RP, seed: 11 }) });
+  for (let i = 0; i < 3; i += 1) send({ type: 'R_TICK' });
+  send({ type: 'RUN_PAUSE' });
+  const R = (state, run) => renderToString(React.createElement(Workspace, { state, run, onAction: () => {}, adapter, loadScene: () => {} }));
+  const paused = R(s, m);
+  for (const re of [/class="ws-run"/, /Paused\. Playback is frozen/, /Resume/, /Cancel run/, /Frame 3 of 8/, /<progress[^>]*max="8"[^>]*value="3"/, /Seed 11 \(simulated/]) assert.match(paused, re);
+  assert.doesNotMatch(paused, />Pause</);
+  assert.doesNotMatch(R(s), /ws-run/); assert.match(renderToString(React.createElement(Workspace, { state: s, run: m, adapter, loadScene: () => {} })), /<button[^>]*disabled/);
+  send({ type: 'RUN_RESUME' }); for (let i = 0; i < 5; i += 1) send({ type: 'R_TICK' });
+  send({ type: 'RUN_COMPLETE', seed: 11, observations: m.record.trace }); send({ type: 'R_REPLAY_START' });
+  send({ type: 'R_REPLAY_RESULT', result: await VR({ replayRecord: RPR, record: m.record, runner: FR }) });
+  const done = R(s, m);
+  for (const re of [/Run finished \(simulated\)/, /Run again/, /Replay with same seed/, /Replay matched: identical trace and hashes\./, /Frame 8 of 8/]) assert.match(done, re);
+  writeFileSync('evidence/S15/run-preview.html', '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S15f run controls preview (SYNTHETIC)</title><style>' + css + '</style><main>' + paused + '<hr>' + done + '</main>');
+  console.log('S15f SSR ok: paused mid-run controls, done + same-seed replay verified, hidden without run model, disabled without onAction');
+}
+
