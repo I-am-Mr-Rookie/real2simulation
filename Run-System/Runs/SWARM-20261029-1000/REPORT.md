@@ -165,3 +165,48 @@ Parent project UI corroboration/API discrepancy and readonly skill restriction
 recorded in PROJECT-ASSOCIATION.md. Canonical3100 listeningPID16808; redundant
 3101/production3102 closed by fresh socket probe. Previous goal turn yielded this
 fresh scheduler evidence; this turn dispatches scoped work and corrects controls.
+
+## R14 army — six completed audits, six live recovery/review tasks
+
+Seven concurrent agents accepted, eighth actual runtime limit rejected. Waited
+for genuine completed audit, verified source/report/timebox, closed handle, then
+reused existing isolated checkout for a ready fix. No idle lane or duplicate
+objective, no model/provider/quota workaround. Assigned windows are saved in
+individual DISPATCH.json files; all full1800s with UTC/Dhaka/cutoff.
+
+Bounded audit completions (not product/gate DONE): simulator5ac5f25, instruments
+a78eb02/e4c9603, model-selection36bc33d, replayf62b095, service79eed47,
+requirements4452f92. Read reports/diffs and ran timebox checker. Numeric findings
+create actual S10o/p/q/S11k/l recovery leaves; queue83/216, still three rounds.
+Counterexamples and intentionally red evidence are preserved, not discarded.
+
+Parent instrument source82791f3 uses splitfloor on existingbinary64quotient;
+avoids premature+0.5 rounding, retains decimal1.25/res0.1->1.3. An exactFraction
+prototype failed that existing semantic fixture and was rejected/replaced, not
+made green by changing the fixture. Existing10 + frozen12 instrument methods
+PASS; lab17/fitter45 PASS. Audit independently verified312observations. Candidate
+ed6ac25 includes unchanged frozen audit/source. Live IAB375px normal/Mystery
+keyboard Run/Fit, finite simulated reveal, no pre-fit reveal/no Mystery compute,
+client360==scroll360. Attachment/navigation/evaluate timeouts observed; recovered
+same live tab, never restarted an in-flight trial. Screenshot/DOM artifacts in
+candidate evidence/S11/instrument-invariants, not yet claimed merged/accepted.
+
+Pure UI contract audit now starts after real slot freed. Narrow native Claude
+review only for required S11 instrument gate; Codex owns all implementation and
+routine checks. Simulator/model/replay/transport fixes run independently.
+The Mystery privacy shard was refused by runtime possible-cybersecurity-risk
+safeguard; closed, not retried/rephrased/rerouted. No result/coverage fabricated.
+Requirements matrix preserves missing real-surface builder and historical
+supersession; simulation-only scope does not redefine the full product promise.
+
+## Owner extension/recovery — Oct29 07:23UTC
+
+Owner changed goal/deadline to16:00Dhaka/10:00UTC after actual usage interruption.
+Automation native update and TOML verified. Two actual heartbeat messages prove
+delivery eventually worked; earlier zero-execution audits remain historical facts.
+All six old handles freshly not_found, not merely unobserved or still waiting.
+Uncommitted fixes retained. Native instrument review5ab7401 finished with valid
+original timebox/noP0-P2; candidate still needs parent integration acceptance.
+Four ready independent fixes relaunched in fresh original Sol/high contexts with
+new full1800s windows07:23-07:53UTC. No code/model/provider/credential/quota bypass.
+Detailed authority and stop semantics OWNER-EXTENSION-1600.md. Scope unchanged.

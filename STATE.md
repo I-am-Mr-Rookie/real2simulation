@@ -1,6 +1,41 @@
 # Real2Simulation — STATE
 
-## CURRENT — owner one-time inline swarm through Oct29 10:00 Dhaka
+## CURRENT — owner extended inline swarm through Oct29 16:00 Dhaka
+
+Latest direct owner extends stop to16:00Dhaka/10:00UTC after actual usage-limit
+interruption; active goal and5min chat heartbeat updated/verified. All locks stay.
+Fresh07:22UTC audit finds all six old worker handles not_found, not live. Preserve
+uncommitted recovery edits; no backdated R14 terminal receipts. Native instrument
+review5ab7401 actually completed: noP0-P2. Parent integration remains pending.
+Four fresh Sol/high recoveries R15-numerics/model/transport/replay issued07:23UTC,
+full30m windows through07:53UTC; existing routes unchanged, no quota polling.
+Queue83/216 and three accepted rounds unchanged until fresh acceptance.
+Receipt: SWARM-20261029-1000/OWNER-EXTENSION-1600.md. Historical sections below
+describe their own earlier observation times, not current live-worker status.
+
+R14 army recovery ACTIVE:83/216 queue leaves, three previously completed rounds.
+Peak seven accepted live inline agents; the eighth launch hit actual runtime
+'agent thread limit reached', not a manual owner cap. Finished bounded audits
+are closed and their isolated checkouts reused for ready fixes, no duplicate
+objectives. Six active workers: simulator numerical recovery, fitter model/RMSE
+recovery, bridge transport recovery, replay consistency recovery, pure UI
+contract audit and narrowly required native Claude instrument review.
+
+New R14 evidence reopens simulation numerical/replay checkpoint confidence:
+pendulum nonlinear/linear model drift over4s exceeds unchanged0.005; valid tiny
+positive ramp cancellation; extreme finite RK4 intermediate overflow; replay
+canonicalization/snapshot/metadata gaps; residual-square underflow changes AIC
+choice/RMSE. These are not closed by historical gate receipts. Five real recovery
+leaves S10o/p/q and S11k/l added, not audit/commit/test count inflation.
+S11k split-floor instrument fix82791f3 independently passes22 instrument methods,
+17 lab and45 fitter; actual375px IAB normal/Mystery run-fit and finite tool-only
+reveal checked. Await native narrow acceptance before completion/main merge.
+
+Mystery-privacy audit worker errored with native possible-cybersecurity-risk
+refusal and was closed. No rephrase, reroute, retry or safeguards/account change;
+no new privacy-audit completion claim. Existing verified scope is unchanged.
+Original real-surface builder requirement remains deferred under real-scene
+lock; normal browser RK4 trace is not represented as a builder.
 
 Round3 COMPLETE: S11j accepted; queue83/211, three completed rounds. Independent
 exact-rational audit exposed two P2 covariance edges; both fixed. Additional
