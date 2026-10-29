@@ -19,6 +19,9 @@ Sonnet. S13b create_thread rejected (effort validation) -> NOT created, still TO
 OWNER STOP Oct29 ~18:35 Dhaka: "about to hit Claude 5-hour limit; do NOT create new
 chats; let existing chats run." No new dispatch. In flight: S05d-orch21, S02f-orch21,
 S06c/S14e/S15e-orch22. Controller only integrates their reports.
+S15e DONE (S15e-orch20 Sonnet; node 47 pass fresh; 375px IAB preview ok). CONTROLLER
+ERROR: orch22 re-dispatched S15e as a duplicate (failed batch cell hid orch20 creation);
+S15e-orch22 sent approved early stop (duplicate_objective), its work not merged.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.

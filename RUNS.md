@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 18:25 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 18:31 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **111 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **112 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -23,7 +23,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 
 **CLAUDE**
-- [ ] **S15e** — Codex (native Claude) · Sonnet 5.5, effort high — Build experiment template controls (30 min)
+- [ ] **S15f** — Codex (native Claude) · Sonnet 5.5, effort high — Build run and replay controls (30 min)
 
 ## Waiting for Koushik
 
@@ -242,13 +242,13 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (4/12)</summary>
+<details><summary><b>S15</b> — Workspace UI (5/12)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
 - [x] **S15c** — Codex (native Claude) · Sonnet 5.5, effort high — Build upload status and failure surfaces (30 min)
 - [x] **S15d** — Codex (native Claude) · Sonnet 5.5, effort high — Build interview chips and free-text panel (30 min)
-- [ ] **S15e** — Codex (native Claude) · Sonnet 5.5, effort high — Build experiment template controls (30 min)
+- [x] **S15e** — Codex (native Claude) · Sonnet 5.5, effort high — Build experiment template controls (30 min)
 - [ ] **S15f** — Codex (native Claude) · Sonnet 5.5, effort high — Build run and replay controls (30 min)
 - [ ] **S15g** — Codex (native Claude) · Sonnet 5.5, effort high — Build virtual instrument controls (30 min)
 - [ ] **S15h** — Codex (native Claude) · Sonnet 5.5, effort high — Build fit table and residual chart (30 min)
