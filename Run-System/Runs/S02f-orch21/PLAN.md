@@ -1,0 +1,12 @@
+# S02f-orch21 — bounded provenance audit
+- Objective: falsify/qualify the S02g-swarm3 Falling ball lead using primary page metadata, then at most one distinct unsearched primary-source route.
+- Owns: evidence/clips/calibration-recovery/S02f/orch13/; Run-System/Runs/S02f-orch21/.
+- Parent project: Meta AI Hackathon 91e441f8-e40c-4ec4-bea2-de7fa1582d97; canonical root C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon.
+- Assigned CODEX-2 / gpt-6.1-sol high; managed route unchanged; actual backend identity not independently observable. OpenCodex-managed; not polled.
+- Issued 2026-10-29T12:18:56+00:00; cutoff 12:43:56Z; deadline 12:48:56Z / 18:48:56 Asia/Dhaka.
+- Base main e563e3b839a4c138bcc0395aa4507a4ff9717fe9; managed worktree s02f-orch21; branch run/S02f-orch21.
+- Check rights, original/derivative custody, ordered exposure/frame clock, physical coplanar metric witness and its uncertainty; reject with exact missing facts if unsupported.
+- Reuse existing reject lists and primary source citations; evidence-only changes, no new code/dependencies. Additional route only if not covered in earlier reports.
+- No media acquisition/upload, contacts, accounts, terms, GPU, approvals, manifest/control edits, canonical integration or publication. Controller integrates scoped commit.
+- Fresh verification: source read receipts; shortlist machine assertions; git diff/check/Owns; worker_timebox.py check.
+- Narrow audit may be DONE with explicit rejected lead and completed bounded route; parent S02f/Gate M can remain PARTIAL.

@@ -1,0 +1,127 @@
+{
+  "run": "S02f-orch21",
+  "checked_utc": "2026-10-29T12:34:58+00:00",
+  "result": "ZERO_SOURCE_QUALIFIED_REPLACEMENTS",
+  "bounded_audit": "COMPLETE",
+  "additional_distinct_routes": 1,
+  "parent_S02f_completed": false,
+  "owner_approval_requested": false,
+  "media_downloaded": false,
+  "candidates": [
+    {
+      "id": "FALLING_BALL_2007",
+      "rank": 1,
+      "route": "assigned_falling_ball_provenance",
+      "primary_pages": [
+        "https://commons.wikimedia.org/wiki/File:Falling_ball.jpg",
+        "https://commons.wikimedia.org/wiki/File:Falling_ball_original_plus_text.jpg"
+      ],
+      "creator": "MichaelMaggs / Michael N Maggs",
+      "rights": {
+        "status": "allowed_licence_class",
+        "licence": "CC BY-SA 3.0",
+        "url": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "final_use_owner_approval": false
+      },
+      "asset_form": "single long-exposure stroboscopic photograph, with edited derivatives",
+      "native_video_or_ordered_frame_sequence_located": false,
+      "clock": {
+        "kind": "nominal flash repetition, not video fps",
+        "frequency_hz": 20,
+        "nominal_spacing_s": 0.05,
+        "uncertainty_s": null,
+        "individual_exposure_custody": null,
+        "source": "S1"
+      },
+      "metric_scale": {
+        "claimed_unit_mm": 12,
+        "claim_qualifier": "about; first displacement used as unit",
+        "physical_witness_documented": false,
+        "coplanarity_documented": false,
+        "independent_metric_traceability_documented": false,
+        "uncertainty_mm": null,
+        "source": "S1/S2"
+      },
+      "independent_qualified_trials": 0,
+      "disposition": "REJECTED",
+      "unmet_facts": [
+        "No original video or ordered native frame sequence linked in inspected provenance chain.",
+        "Both supposed original/edited versions explicitly have a scale added digitally; no independent physical 12 mm witness is documented.",
+        "No witness-to-trajectory coplanarity, camera geometry or scale uncertainty.",
+        "No flash timing accuracy/jitter/ordinal custody receipt; nominal flash timing is documented, not absent."
+      ],
+      "eligible": false
+    },
+    {
+      "id": "MAREY_WHITE_BALL_1886",
+      "rank": 2,
+      "route": "historical_scientific_chronophotography",
+      "primary_pages": [
+        "https://commons.wikimedia.org/wiki/File:R%C3%BCckprall_eines_wei%C3%9Fen_Balles_1886.jpg",
+        "http://www.zeno.org/Fotografien/B/Marey,+%C3%89tienne-Jules%3A+R%C3%BCckprall+eines+wei%C3%9Fen+Balles"
+      ],
+      "creator": "Etienne-Jules Marey",
+      "rights": {
+        "status": "Commons_PD_mark_with_US_tag_warning",
+        "licence": "Public Domain Mark / author life+100; source page requests US tag",
+        "final_use_owner_approval": false
+      },
+      "asset_form": "single JPG catalogued as 1886 chronophotography",
+      "native_video_or_ordered_frame_sequence_located": false,
+      "clock": {
+        "frequency_hz": null,
+        "uncertainty_s": null
+      },
+      "metric_scale": {
+        "physical_witness_documented": false,
+        "coplanarity_documented": false,
+        "uncertainty_mm": null
+      },
+      "independent_qualified_trials": 0,
+      "disposition": "REJECTED",
+      "unmet_facts": [
+        "No asset-specific physical scale, coplanarity or uncertainty in Commons/Zeno metadata.",
+        "No native clock, exposure ordinals, complete ordered original frame sequence or uncertainty.",
+        "Potentially relevant 1888 Nature paper cannot be linked to this exact asset from the inspected public preview; indexed snippets are not primary verification.",
+        "Rights metadata retains a US-tag warning; no independent clearance conclusion made."
+      ],
+      "eligible": false
+    },
+    {
+      "id": "MAREY_CAT_1894",
+      "rank": 3,
+      "route": "historical_scientific_chronophotography",
+      "primary_pages": [
+        "https://commons.wikimedia.org/wiki/File:Falling_cat.png",
+        "https://commons.wikimedia.org/wiki/File:Falling_cat_1894.jpg",
+        "https://www.nature.com/articles/051080a0"
+      ],
+      "creator": "Etienne-Jules Marey",
+      "rights": {
+        "status": "allowed_licence_class",
+        "licence": "Commons PD: life+100 and pre-1931 US publication",
+        "final_use_owner_approval": false
+      },
+      "asset_form": "1894 sequence montage PNG and extracted JPG; native exposure order/time mapping unverified from page metadata",
+      "native_video_or_ordered_frame_sequence_located": null,
+      "sequence_status": "montage_located_but_native_order_and_clock_mapping_unverified",
+      "clock": {
+        "frequency_hz": null,
+        "uncertainty_s": null
+      },
+      "metric_scale": {
+        "physical_witness_documented": false,
+        "coplanarity_documented": false,
+        "uncertainty_mm": null
+      },
+      "independent_qualified_trials": 0,
+      "disposition": "REJECTED",
+      "unmet_facts": [
+        "Commons original PNG provides a publisher DOI, but public publisher abstract does not document a native exposure clock or montage-to-clock mapping.",
+        "No measured physical ruler/object size, trajectory-plane coplanarity or uncertainty in inspected pages.",
+        "Extracted JPG and PNG are derivatives of the same source, not independent trials; no quantitative center-of-mass trajectory receipt."
+      ],
+      "eligible": false
+    }
+  ]
+}

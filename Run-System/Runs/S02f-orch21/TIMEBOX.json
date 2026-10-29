@@ -1,0 +1,13 @@
+{
+  "id": "S02f-orch21",
+  "issued_at": "2026-10-29T12:18:56+00:00",
+  "deadline_at": "2026-10-29T12:48:56+00:00",
+  "implementation_cutoff_at": "2026-10-29T12:43:56+00:00",
+  "deadline_dhaka": "2026-10-29T18:48:56+06:00",
+  "status": "DONE",
+  "work_stopped_at": "2026-10-29T12:38:39+00:00",
+  "reported_at": "2026-10-29T12:39:06+00:00",
+  "stop_note": "Substantive source audit and evidence/Owns verification completed; receipt finalization, validation and commit followed.",
+  "first_retained_clock_observation_at": "2026-10-29T12:21:57+00:00",
+  "work_start_note": "Execution began after issue; its exact first-command timestamp was not retained. Issue clock is contractual start, not invented runtime evidence."
+}
