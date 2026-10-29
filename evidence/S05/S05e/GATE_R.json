@@ -1,0 +1,113 @@
+{
+  "gate": "R",
+  "verdict": "FAIL",
+  "thresholds": {
+    "scale_rel": 0.1,
+    "min_scale_passes": 2,
+    "angle_deg": 5.0,
+    "gpu_min_per_scene": 4.0
+  },
+  "summary": {
+    "scale_passes": 0,
+    "orientation_passes": 0,
+    "gpu_passes": 3,
+    "clips": 3
+  },
+  "clips": {
+    "RM02": {
+      "floor": "FIT",
+      "gravity": "estimated",
+      "scale_rel_error": null,
+      "scale_pass": false,
+      "a4_angle_deg": null,
+      "orientation_pass": false,
+      "gpu": {
+        "app_id": "ap-TqJhwZi4v9ucIKg16ZKh1E",
+        "job_scenes": 1,
+        "function_min_unamortized": 2.696,
+        "lifetime_min_amortized": 3.15,
+        "lifetime_min_unamortized": 3.15,
+        "cost_usd_amortized": 0.05715
+      },
+      "gpu_pass": true
+    },
+    "RM04": {
+      "floor": "FIT",
+      "gravity": "estimated",
+      "scale_rel_error": null,
+      "scale_pass": false,
+      "a4_angle_deg": null,
+      "orientation_pass": false,
+      "gpu": {
+        "app_id": "ap-Pez26JXXUV7H31WyJvvrF8",
+        "job_scenes": 2,
+        "function_min_unamortized": 2.965,
+        "lifetime_min_amortized": 2.183,
+        "lifetime_min_unamortized": 4.367,
+        "cost_usd_amortized": 0.03241
+      },
+      "gpu_pass": true
+    },
+    "RM05": {
+      "floor": "FIT",
+      "gravity": "ABSTAIN",
+      "scale_rel_error": null,
+      "scale_pass": false,
+      "a4_angle_deg": null,
+      "orientation_pass": false,
+      "gpu": {
+        "app_id": "ap-Pez26JXXUV7H31WyJvvrF8",
+        "job_scenes": 2,
+        "function_min_unamortized": 2.965,
+        "lifetime_min_amortized": 2.183,
+        "lifetime_min_unamortized": 4.367,
+        "cost_usd_amortized": 0.03241
+      },
+      "gpu_pass": true
+    }
+  },
+  "failures": [
+    {
+      "clip": "RM02",
+      "criterion": "scale<=10%",
+      "kind": "unmeasured",
+      "reason": "S02d: 'Room; scene-only' - no source-documented object dimension (door/A4/ball) for RM02; no annotated pixel endpoints"
+    },
+    {
+      "clip": "RM02",
+      "criterion": "gravity_vs_A4<=5deg",
+      "kind": "unmeasured",
+      "reason": "no A4 sheet annotation for this clip"
+    },
+    {
+      "clip": "RM04",
+      "criterion": "scale<=10%",
+      "kind": "unmeasured",
+      "reason": "S02d: 'Room; scene-only' (Pexels empty classroom) - no source-documented desk/door/A4 size; country-specific standard door height not source-backed for this room"
+    },
+    {
+      "clip": "RM04",
+      "criterion": "gravity_vs_A4<=5deg",
+      "kind": "unmeasured",
+      "reason": "no A4 sheet annotation for this clip"
+    },
+    {
+      "clip": "RM05",
+      "criterion": "scale<=10%",
+      "kind": "unmeasured",
+      "reason": "S02d: 'Hatch/handrail dimensions unverified' - no source-backed ISS hatch/handrail dimension tied to annotated pixels"
+    },
+    {
+      "clip": "RM05",
+      "criterion": "gravity_vs_A4<=5deg",
+      "kind": "unmeasured",
+      "reason": "no A4 sheet annotation for this clip; clip source: not under gravity"
+    }
+  ],
+  "inputs": {
+    "frames": "evidence/S05/S05d/RESULT.json",
+    "s05c": "evidence/S05/S05c/RESULT.json",
+    "orch14": "evidence/S05/S05b/orch14/job-ledger.json",
+    "npz_hashes_match": true
+  }
+}
