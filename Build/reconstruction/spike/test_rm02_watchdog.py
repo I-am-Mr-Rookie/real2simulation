@@ -51,11 +51,14 @@ if mode == "phase_replaced":
         "version": 1, "token": "replaced", "pid": os.getpid(),
         "phase": "preflight_failed", "remote_creation_started": False}))
     sys.exit(9)
+if mode == "trampoline":
+    import subprocess
+    sys.exit(subprocess.call([sys.executable, __file__, "ok", sys.argv[2]]))
 if mode not in ("lost", "hang_lost"):
     path.write_text(json.dumps({"app_id": sys.argv[2]}))
     pathlib.Path(os.environ["RM02_PHASE_RECEIPT"]).write_text(json.dumps({
         "version": 1, "token": os.environ["RM02_PHASE_TOKEN"],
-        "pid": os.getpid(), "phase": "preflight_validated",
+        "pid": os.getpid(), "ppid": os.getppid(), "phase": "preflight_validated",
         "remote_creation_started": False, "history": ["preflight_validated"]}))
 if mode == "result_hang":
     path.with_name("gpu-result.json").write_text('{"synthetic": true}')
@@ -305,6 +308,12 @@ asyncio.run(guard.guarded_probe(f, f, (), lambda state: atomic_json(path, state)
                 with self.assertRaises(watchdog.ResourceIncident):
                     self.run_guard(cli=mode)
                 self.assertTrue(self.receipt()["resource_incident"])
+
+    def test_windows_launcher_trampoline_child_pid_is_accepted(self):
+        state = self.run_guard(child="trampoline")
+        self.assertEqual(state["phase_receipt"], "VALID_PREFLIGHT_VALIDATED")
+        self.assertTrue(state["independent_stop_confirmed"])
+        self.assertFalse(state["resource_incident"])
 
     def test_client_failure_preserved_after_confirmed_independent_cleanup(self):
         with self.assertRaisesRegex(RuntimeError, "Client failed"):

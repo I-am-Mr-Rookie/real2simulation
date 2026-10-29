@@ -1,0 +1,27 @@
+{
+  "total_budget_s": 1200,
+  "independent_reserve_s": 60,
+  "child_deadline_monotonic": 1400408.781,
+  "watchdog_fired": false,
+  "stop_attempted": true,
+  "stop_process_started": true,
+  "stop_dispatched": "NOT_VERIFIED",
+  "stop_acknowledged": false,
+  "independent_stop_confirmed": false,
+  "resource_incident": true,
+  "preflight_validation_failed": false,
+  "no_remote_creation_confirmed": false,
+  "phase_token": "a6483a976e85459bb1637442802e5f4e",
+  "phase_receipt": "INVALID_OR_MISSING",
+  "errors": [
+    "phase:unknown_remote_state:ValueError"
+  ],
+  "child_pid": 29492,
+  "child_returncode": 1,
+  "app_id": "ap-SwALWzKXg4Sxptguav9Jor",
+  "stop_returncode": 1,
+  "verification_attempts": 1,
+  "info_returncode": 0,
+  "containers_returncode": 0,
+  "elapsed_s": 91.21900000004098
+}

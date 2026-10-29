@@ -175,3 +175,12 @@ fields and256MiB egress ceiling. `python -O` cannot remove these boundaries.
 This does not attest input-manifest authority or provider behavior; all existing
 independent review/live-admission/stop/budget holds continue. Optimized AST-body
 tests use tiny synthetic data and fake external GPU/model/codec interfaces only.
+
+
+### S05b-orch13 (Oct29) - first live RM02 admissions
+
+Two L4 attempts (admission 90s, then controller-approved 210s) got NO container; both apps
+stopped/containers [] by exact ID. No GPU/VRAM/output. Bounds now TOTAL 900s / execution 480s so one
+bounded attempt fits a 30-minute session. Phase receipt also records `ppid`: on Windows the uv/venv
+`Scripts/python.exe` launcher spawns the interpreter, so Popen PID may equal the receipt's ppid.
+Receipts: `evidence/S05/S05b/orch13/` and `Run-System/Runs/S05b-orch13/REPORT.md`.

@@ -4,9 +4,10 @@ import math
 import time
 
 
-TOTAL_SECONDS = 1200
+# orch13: 900s total fits the session deadline; admission window = 900-60-90-480-60 = 210s (controller cap 300s).
+TOTAL_SECONDS = 900
 STARTUP_SECONDS = 90
-EXECUTION_SECONDS = 900
+EXECUTION_SECONDS = 480
 CLEANUP_SECONDS = 60
 STOP_SECONDS = 20
 EXIT_SECONDS = 10

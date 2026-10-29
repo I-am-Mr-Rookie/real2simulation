@@ -1,0 +1,13 @@
+{
+  "imports": "CPU_IMPORTS_OK 2.8.0+cu128 0.23.0+cu128 2.8.0+cu128 2.2.6",
+  "elapsed_s": 141.368511091,
+  "python": "3.11.12 (main, May 21 2025, 23:34:13) [GCC 12.2.0]",
+  "gpu_requested": false,
+  "versions": {
+    "torch": "2.8.0",
+    "torchvision": "0.23.0",
+    "torchaudio": "2.8.0",
+    "numpy": "2.2.6",
+    "mapanything": "1.1.4"
+  }
+}

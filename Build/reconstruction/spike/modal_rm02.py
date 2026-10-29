@@ -28,7 +28,7 @@ app = modal.App("s05b-recovery5-rm02-private-probe")
 @app.function(
     image=modal.Image.debian_slim(python_version="3.11"),
     gpu="L4", cpu=(1, 2), memory=(8192, 16384),
-    timeout=900, startup_timeout=90, retries=0,
+    timeout=480, startup_timeout=90, retries=0,
     min_containers=0, max_containers=1, buffer_containers=0,
     scaledown_window=2, single_use_containers=True,
     serialized=True, include_source=False,
@@ -129,7 +129,7 @@ def main():
     def phase(name, remote_creation_started, history):
         if phase_path is not None and phase_token:
             atomic_json(phase_path, {"version": 1, "token": phase_token,
-                                     "pid": os.getpid(), "phase": name,
+                                     "pid": os.getpid(), "ppid": os.getppid(), "phase": name,
                                      "remote_creation_started": remote_creation_started,
                                      "history": history})
     try:

@@ -77,11 +77,18 @@ class Fake:
         await asyncio.sleep(0)
 
     async def execute(self, **kwargs):
+        kwargs.setdefault("total_seconds", 1200)
         return await guard.guarded_probe(self, self, (), self.records.append,
                                         clock=lambda: self.now, sleep=self.sleep, **kwargs)
 
 
 class DeadlineTests(unittest.IsolatedAsyncioTestCase):
+    def setUp(self):
+        # Policy fixtures keep the original 1200s/900s numbers; production constants are checked in test_modal_rm02.
+        patcher = patch.object(guard, "EXECUTION_SECONDS", 900)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     async def test_absolute_deadline_consumes_preflight_time(self):
         f = Fake()
         f.now = 100
@@ -205,7 +212,7 @@ class DeadlineTests(unittest.IsolatedAsyncioTestCase):
             f.records.append(state)
             published.set()
         task = asyncio.create_task(guard.guarded_probe(
-            f, f, (), record, clock=lambda: f.now, sleep=f.sleep))
+            f, f, (), record, clock=lambda: f.now, sleep=f.sleep, total_seconds=1200))
         try:
             await asyncio.wait_for(published.wait(), timeout=2)
             self.assertFalse(task.done())
@@ -323,7 +330,7 @@ class DeadlineTests(unittest.IsolatedAsyncioTestCase):
         def broken_record(state):
             raise OSError("disk unavailable")
         with self.assertRaises(OSError):
-            await guard.guarded_probe(f, f, (), broken_record)
+            await guard.guarded_probe(f, f, (), broken_record, total_seconds=1200)
         self.assertTrue(f.stopped)
         self.assertEqual(f.stop_calls, 1)
 

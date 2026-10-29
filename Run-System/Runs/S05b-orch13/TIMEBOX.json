@@ -1,0 +1,9 @@
+{
+  "id": "S05b-orch13",
+  "issued_at": "2026-10-29T16:56:00+06:00",
+  "deadline_at": "2026-10-29T17:26:00+06:00",
+  "work_stopped_at": "2026-10-29T17:16:30+06:00",
+  "reported_at": "2026-10-29T17:17:00+06:00",
+  "status": "PARTIAL",
+  "controller_exception": {"reason": "resource_stop", "approval_receipt": "Run-System/Runs/S05b-orch13/CONTROLLER-DECISION.md"}
+}

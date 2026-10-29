@@ -83,7 +83,8 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
         try:
             phase = json.loads(phase_path.read_text(encoding="utf-8"))
             if (phase.get("version") != 1 or phase.get("token") != phase_token
-                    or phase.get("pid") != child.pid
+                    # Windows venv/uv Scripts/python.exe is a launcher: the interpreter is its child.
+                    or child.pid not in (phase.get("pid"), phase.get("ppid"))
                     or type(phase.get("remote_creation_started")) is not bool
                     or phase.get("phase") not in ("preflight_failed", "preflight_validated",
                                                    "remote_creation_started")
