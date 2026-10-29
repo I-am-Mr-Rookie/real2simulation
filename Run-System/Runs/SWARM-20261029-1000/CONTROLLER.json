@@ -1,21 +1,40 @@
 {
-  "updated_utc": "2026-10-29T07:55:45Z",
+  "updated_utc": "2026-10-29T07:58:39Z",
   "objective": "Maximum-speed authorized simulation-only swarm through2026-10-29T10:00:00Z (16:00Dhaka); owner extended after actual usage-limit interruption",
   "canonical_root": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon",
   "completed_rounds": 5,
   "queue_done": 88,
   "queue_total": 216,
-  "main_verified_source": "1325ae9",
+  "main_verified_source": "9eece42",
   "product_reviewed_pin": "b37f7b8; native R15-combined-gate no P0-P2, pending combined integration",
   "candidate": {
     "worktree": "C:/Users/HP/.codex/worktrees/swarm12-covariance-fix/2026-10-26 - Meta Global AI Developer Hackathon",
     "branch": "run/R15-combined-integration",
     "head": "384a02d plus serialized controls",
     "product_pin": "b37f7b8",
-    "state": "Accepted four recoveries as round5; pending verified FF packaging only, R16-combined-integration/REPORT.md"
+    "state": "Round5 FF main9eece42 verified, Build/contracts identical to native-reviewedb37f7b8."
   },
-  "active_workers": [],
-  "next": "FF accepted round5, archive finished managed checkouts, start genuinely useful independent latent-helper corrections without changing current bounded-producer claims.",
+  "active_workers": [
+    {
+      "id": "R16-ui-helpers",
+      "agent_id": "01a186ab-0a66-7f91-9298-088ac10776d3",
+      "issued_at": "2026-10-29T07:58:38.000Z",
+      "deadline_at": "2026-10-29T08:28:38.000Z",
+      "implementation_cutoff_at": "2026-10-29T08:23:38.000Z",
+      "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-ui-contract/2026-10-26 - Meta Global AI Developer Hackathon",
+      "scope": "Sole product writer for four known latentP3 helpers"
+    },
+    {
+      "id": "R16-ui-oracle",
+      "agent_id": "01a186ab-0c66-70a3-85a1-df6d75b43852",
+      "issued_at": "2026-10-29T07:58:39.000Z",
+      "deadline_at": "2026-10-29T08:28:39.000Z",
+      "implementation_cutoff_at": "2026-10-29T08:23:39.000Z",
+      "owning_worktree": "C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26 - Meta Global AI Developer Hackathon",
+      "scope": "Independent immutable oracle, no product edits"
+    }
+  ],
+  "next": "Parallel one product writer and independent oracle, disjoint Owns; accept code only after parent/source/test/timebox/native gate and actual375 checks. No next round count until integration.",
   "owner_stop": {
     "deadline": "2026-10-29T10:00:00Z",
     "crossing_worker_stop_receipt": "2026-10-29T09:59:30Z",
@@ -66,7 +85,7 @@
     "round5": "../R16-combined-integration/REPORT.md"
   },
   "cleanup": "Four completed recovery handles and native reviewer closed. UI audit recovered on same route, verified DONE and closed; actual runtime capacity notification preserved separately from worker tool observations. Consumer checkout active; archive others after acceptance via managed API only.",
-  "main_fast_forward": "1325ae9",
+  "main_fast_forward": "9eece42",
   "safety_receipt": {
     "id": "R14-mystery-privacy",
     "state": "native possible-cybersecurity-risk refusal; handleclosed; no retry/rephrase/reroute or audit-complete claim"

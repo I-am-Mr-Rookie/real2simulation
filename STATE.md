@@ -3,8 +3,8 @@
 ## CURRENT — owner extended inline swarm through Oct29 16:00 Dhaka
 
 Round5 accepted S10o/p/q and S11l after fresh parent source/report/timebox/
-375px IAB and local production build checks:88/216, five completed rounds once
-serialized FF completes. Last verified main1325ae9; combined sourceb37f7b8,
+375px IAB and local production build checks:88/216, five completed rounds;
+serialized mainFF9eece42 freshly verified. Combined sourceb37f7b8,
 native review1b2a87d noP0-P2, finalsource unchanged. Round4 source82791f3/rebased
 46977f0 matches native noP0-P2 review exactly; fresh22 instrument tests PASS.
 R15-integration/REPORT.md records round4 evidence/limits. Four R15 recovery workers
@@ -13,7 +13,11 @@ fresh parent tests. Derived consumer fixtures and combined375px proof verified; 
 broader gate completion inferred. No holds relaxed. Later counts supersede
 earlier historical sections.
 
-Current07:55UTC: consumer fixtures DONE, report/source/timebox independently
+Current07:58UTC: two new independent ready shards issued full30m through08:28UTC:
+R16-ui-helpers sole product writer, R16-ui-oracle independent immutable tests.
+They address the four retained latent helper findings without reclassifying them
+as fixed-producer vulnerabilities or inflating queue count. No shared source race.
+Previous07:55UTC: consumer fixtures DONE, report/source/timebox independently
 checked and worker closed. All seven R15 handles now closed; no live claim.
 R15-ui-audit recovered on same route after owner capacity-OK correction; bounded
 DONE07:48UTC, report/timebox checked, closed. Parent currentproducer10/10 PASS.
