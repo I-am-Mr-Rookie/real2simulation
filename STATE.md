@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S12e-fix2-orch56 Opus high (threadId:01a189bf-550e-7a71-a677-93b694de67de,hostId:local, deadline 2026-10-29T22:49:39+00:00).
+
 R-RS-recheck-orch53 = CHANGES_REQUIRED (Sol high; TIMEBOX PASS; evidence ff-merged). F3/F4 closed;
 F1/F2 direct probes refused. Open P1: F1-R v1 digest lets metadata-only relabel (foreign trace
 scores 0 RMS on target) -> v2 custody commitment needed now; F2-R provenance string alone lets 3
