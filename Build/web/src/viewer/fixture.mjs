@@ -6,6 +6,10 @@ import { deepFreeze } from './common.mjs';
 export const SYNTHETIC_BANNER =
   'SYNTHETIC fixture — authored geometry, not reconstruction, physics or Gate R evidence';
 
+// S09h: real reconstructions without measured scale (Gate R FAIL -> S05f Fallback 2) must say so.
+export const SCALE_UNVERIFIED_BANNER =
+  'RECONSTRUCTION — metric scale UNVERIFIED (nominal model output, not calibrated); not physics or Gate R evidence';
+
 export const SYNTHETIC_FIXTURE = deepFreeze({
   sceneId: 'synthetic-room-v1',
   repositoryManifest: 'test-data/synthetic/scene/room-v1/scene.json',

@@ -84,7 +84,7 @@ export function createThreeRenderer({
       if (model.banner) {
         const b = doc.createElement('div');
         b.setAttribute('role', 'note');
-        b.setAttribute('data-viewer-banner', 'synthetic');
+        b.setAttribute('data-viewer-banner', model.synthetic ? 'synthetic' : 'scale-unverified');
         b.textContent = model.banner; // plain text only, never HTML
         b.style.overflowWrap = 'anywhere';
         host.appendChild(b);

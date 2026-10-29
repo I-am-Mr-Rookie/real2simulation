@@ -1,0 +1,32 @@
+<!doctype html>
+<!-- S09h visual check page: real RM02/RM04/RM05 bundles from gitignored evidence/S09/local/ via the
+     existing artifact loader + three viewer. ?scene=RM02 renders one full-page; no param = three 375 px iframes.
+     Serve the worktree root on 127.0.0.1 (local check only). Not Gate R / calibrated-scale evidence. -->
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S09h real scenes</title>
+<script type="importmap">{"imports":{"three":"/Build/web/node_modules/three/build/three.module.js"}}</script>
+<style>body{margin:0;font:14px system-ui} #out{white-space:pre-wrap} #host{width:100%;height:80vh} iframe{width:375px;height:640px;border:1px solid #888;margin:4px}</style>
+<pre id="out">PENDING</pre>
+<div id="host"></div>
+<script type="module">
+import { createArtifactLoader } from '/Build/web/src/viewer/artifact-loader.mjs';
+import { createThreeViewer } from '/Build/web/src/viewer/three-viewer.mjs';
+const rm = new URLSearchParams(location.search).get('scene');
+const out = document.getElementById('out');
+if (!/^RM0[245]$/.test(rm ?? '')) {
+  document.getElementById('host').remove();
+  out.textContent = 'RM02 | RM04 | RM05 at 375 px';
+  for (const s of ['RM02', 'RM04', 'RM05']) { const f = document.createElement('iframe'); f.src = '?scene=' + s; document.body.append(f); }
+} else {
+  const root = location.origin + '/evidence/S09/local/' + rm + '/';
+  try {
+    const manifest = await (await fetch(root + 'scene.json')).json();
+    const states = [];
+    const h = await createThreeViewer().mount(document.getElementById('host'),
+      { contract_version: '1.0.0', kind: 'viewer', audience: 'guest', mode: 'inspect',
+        scene: { scene_id: manifest.id, scene_version: '1.0.0', access: 'public-library', evidence: 'reconstructed' } },
+      { loadScene: createArtifactLoader({ bundleUrl: () => root }), signal: new AbortController().signal,
+        onState: (s) => states.push(s), onError: (e) => states.push('error:' + e.code) });
+    out.textContent = rm + ' ' + states.join(',') + ' id=' + manifest.id + ' scale=' + manifest.scale.status + ' w=' + innerWidth;
+  } catch (e) { out.textContent = rm + ' FAIL ' + (e?.message ?? e); }
+}
+</script>

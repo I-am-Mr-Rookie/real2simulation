@@ -2,7 +2,7 @@
 // Bundle = { manifest: scene-v1 JSON (already validated by contracts/scene), assets: { [assetId]: Uint8Array } }.
 // Runs once per mount (never per frame). Re-checks the identity/integrity facts the viewer relies on.
 import { ViewerError, deepFreeze } from './common.mjs';
-import { SYNTHETIC_BANNER } from './fixture.mjs';
+import { SYNTHETIC_BANNER, SCALE_UNVERIFIED_BANNER } from './fixture.mjs';
 
 const SUPPORTED_RENDER_KINDS = new Set(['points', 'splats']); // mesh: later S09 run
 const KIND_FORMAT = { points: 'ply-ascii-xyzrgb', splats: 'splat' };
@@ -98,7 +98,7 @@ export async function buildSceneModel(bundle, sceneRef) {
     sceneId: m.id,
     label: String(m.label), // plain text only; renderers must use textContent, never HTML
     synthetic: m.synthetic === true,
-    banner: m.synthetic === true ? SYNTHETIC_BANNER : null,
+    banner: m.synthetic === true ? SYNTHETIC_BANNER : m.scale?.status === 'measured' ? null : SCALE_UNVERIFIED_BANNER,
     gateEvidence: false, // viewer output is never gate evidence by itself
     physicsEnabled: false, // viewer never enables physics; S10 owns that decision
     coordinates: copy(m.coordinates),

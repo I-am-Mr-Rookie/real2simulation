@@ -122,3 +122,10 @@ playback continues from where it paused. handle.paused exposes the state.
 
 None for S09b (three 0.186.1 supplied by S04b). Real-GPU, mobile and memory-profiler checks
 remain for later S09 runs; app route mounting is S04/S15 composition.
+
+## Real scene bundles (S09h)
+
+- Non-synthetic bundles get banner SCALE_UNVERIFIED_BANNER (fixture.mjs) unless scale.status === 'measured';
+  banner element data-viewer-banner = 'synthetic' | 'scale-unverified'. Gate R FAIL -> S05f Fallback 2: no calibrated-scale claim.
+- RM02/RM04/RM05 MapAnything bundles load through the unchanged loader/adapter: tests/viewer/real-scenes.test.mjs (skips without
+  gitignored media in evidence/S09/local/), visual page tests/viewer/real-scenes.html. Evidence: evidence/S09/S09h-real-scenes.md.
