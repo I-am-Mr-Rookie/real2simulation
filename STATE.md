@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+S09h DONE (orch30 Opus high; viewer 46/46 pass fresh incl. 3 real loads, 0 skipped; TIMEBOX PASS;
+ff-merged): RM02/RM04/RM05 MapAnything bundles load via existing viewer with "metric scale
+UNVERIFIED" banner; 375px/desktop IAB ok. Media gitignored (real-scene tests skip on fresh copy).
+Review for Koushik (non-blocking): RM05 (NASA PD ISS) clips.csv row is SCENE_ONLY_UNTIL_SCALE_
+VERIFIED; used locally display-only. Default: excluded from any public demo until you approve.
+orch33: S09i Opus medium dispatched (fps/memory, IAB, CPU).
 R-R-recheck-orch28 DONE (Sol; TIMEBOX PASS; evidence-only ff-merge): S05f F1,F3-F6 fixed; F2
 partial -> CHANGES REQUIRED, two P2: D1 duplicate scene JSON keys accepted; D2 duplicate/unknown
 job scene IDs dilute GPU amortization (synthetic FAIL->PASS). Real Gate R still FAIL 0/3 scale,
