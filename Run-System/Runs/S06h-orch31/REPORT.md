@@ -4,7 +4,7 @@ Lane CODEX-1; model anthropic/claude-opus-5-5 medium; coding quota OpenCodex-man
 
 ## Result
 [evidence/S06/CHECKPOINT.md](../../../evidence/S06/CHECKPOINT.md) + [CHECKPOINT.json](../../../evidence/S06/S06h/CHECKPOINT.json). Acceptance "record measured cost, timings and chosen renderer/reconstruction path": met.
-- Chosen: MapAnything (Apache-2.0) on Modal A10G via s06d-scene-job; primitive colliders, SAM3D off (<32 GB, no access receipt); Gate R FAIL -> Fallback 2 planes+boxes, scale UNVERIFIED; R-R recheck cited PENDING (not CLEAR); AWS adapter gated, never launched.
+- Chosen: MapAnything (Apache-2.0) on Modal A10G via s06d-scene-job; primitive colliders, SAM3D off by default (needs >=32 GB GPU, A10G 23 GB too small; checkpoint/runtime unverified; access GRANTED per evidence/owner/S06/SAM3D-ACCESS.md); Gate R FAIL -> Fallback 2 planes+boxes, scale UNVERIFIED; R-R recheck cited PENDING (not CLEAR); AWS adapter gated, never launched.
 - Per scene (measured): RM02 39.6 s round-trip / RM04 43.6 s (63.3 s whole command); ~30 s cold start+model load, inference ~1.5 s.
 - Billed: S06 total $0.05786; RM02 $0.01135 (est $0.01032), RM04 $0.00955 (est $0.01001). Modal month-to-date $0.59959 of $30 (read 15:49:15Z, lagging).
 - Finding: S06d ledger $0.00661 was a lagging partial read; fresh billing $0.00955 (+$0.00294). Canonical ledger not edited (recorded as ledger_lag_usd).
@@ -27,3 +27,6 @@ evidence/S06/CHECKPOINT.md; evidence/S06/S06h/{checkpoint.py, CHECKPOINT.json, b
 ## Limits / risks
 Billing hourly lag: MTD can rise. Not gate/real-scene/physical/calibrated evidence. R-R recheck pending. Spend this run: $0 compute (billing CLI read only). Communication: silent; one completion message to controller.
 
+
+## Controller correction (same scope)
+SAM3D access reason corrected per owner receipt evidence/owner/S06/SAM3D-ACCESS.md; checkpoint.py rerun (asserts pass).

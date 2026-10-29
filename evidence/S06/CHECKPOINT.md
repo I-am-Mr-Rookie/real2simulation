@@ -10,7 +10,7 @@ Billing: one read-only `modal billing report --for "this month" --json --show-re
 | Layer | Choice | Basis |
 |---|---|---|
 | Reconstruction | MapAnything `facebook/map-anything-apache` (Apache-2.0) on Modal **A10G** (2 CPU, 16 GiB), `s06d-scene-job` entry point, S06b runtime image (not rebuilt since S06a) | S05a licence, S06b–S06f runs |
-| Colliders | **primitive** planes + boxes; SAM 3D Objects **off** | S06c gate: default-off, no SAM3D owner access receipt, 23028 MiB < 32768 MiB required |
+| Colliders | **primitive** planes + boxes; SAM 3D Objects **off** | Off by default: needs >=32 GB GPU (A10G 23028 MiB < 32768 MiB); checkpoint/runtime unverified. Access **GRANTED** (evidence/owner/S06/SAM3D-ACCESS.md + SAM3D-ACCESS-granted-20261029.png); S06c gate-default.json access reason predates that receipt |
 | Renderer / scene | **Gate R Fallback 2**: frame-textured planes + boxes, scale **UNVERIFIED** (model-metric only) | S05f GATE_R.json: FAIL, scale 0/3, orientation 0/3, GPU 3/3 |
 | AWS | adapter exists, refuses without owner gates; never launched | S06g aws-adapter-receipt.json |
 | CPU dry-run | image_spec pins valid (96), no GPU needed | S06g image-spec-dryrun.json; Build/gpu 29 tests OK (fresh, [tests.txt](tests.txt)) |
@@ -51,7 +51,7 @@ Projection (estimate, not measured): ~$0.01/scene warm-image A10G → $30 budget
 
 - Gate R FAIL: no metric scale/orientation on public clips; Fallback 2 scale unverified; R-R recheck pending.
 - Billing lags by hours; month total may still rise for today's jobs. Reservations (sum of retained, unreconciled across workers) not re-audited here.
-- SAM 3D Objects unexercised (needs ≥32 GB GPU + owner access receipt); AWS g6e path untested by design.
+- SAM 3D Objects unexercised (needs ≥32 GB GPU, e.g. L40S/A100/H100; access granted; checkpoint/runtime unverified); AWS g6e path untested by design.
 - ~30 s cold start dominates per-scene latency; demo should prewarm or use cached bundles.
 - RM05 visual-only (ISS, gravity ineligible).
 

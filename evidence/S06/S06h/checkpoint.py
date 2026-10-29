@@ -53,10 +53,14 @@ out = {
     "gate_r": {"verdict": gate["verdict"], "summary": gate["summary"],
                "fallback": "Fallback 2 (planes + boxes textured with frames; scale UNVERIFIED)",
                "source": "evidence/S05/S05f/GATE_R.json", "cross_vendor_recheck": "R-R recheck (orch28) PENDING; not CLEAR"},
-    "sam3d": {"backend": sam["backend"], "reasons": sam["reasons"], "min_vram_mib": sam["min_vram_mib"],
+    # S06c gate-default.json predates the owner access receipt; access reason superseded by evidence/owner/S06/SAM3D-ACCESS.md
+    "sam3d": {"backend": sam["backend"], "default": "off", "access": "GRANTED (evidence/owner/S06/SAM3D-ACCESS.md + SAM3D-ACCESS-granted-20261029.png)",
+              "reasons_off": ["needs >=32 GB GPU: A10G %d MiB < %d MiB" % (sam["vram_mib_checked"], sam["min_vram_mib"]),
+                              "checkpoint bytes/config/revision pin and runtime/output unverified"],
+              "s06c_gate_reasons_at_run": sam["reasons"], "min_vram_mib": sam["min_vram_mib"],
               "vram_mib_checked": sam["vram_mib_checked"]},
     "chosen_path": {"reconstruction": "MapAnything facebook/map-anything-apache (Apache-2.0) on Modal A10G, s06d-scene-job entry point",
-                    "colliders": "primitive (planes + boxes), SAM 3D Objects off",
+                    "colliders": "primitive (planes + boxes); SAM 3D Objects off by default (>=32 GB GPU needed, runtime unverified; access granted)",
                     "renderer": "Fallback 2: frame-textured planes + boxes, scale labelled unverified",
                     "aws": "adapter present, refuses without owner gates; no AWS launch (S06g)"},
 }
