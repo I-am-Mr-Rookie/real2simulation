@@ -1,0 +1,18 @@
+{
+  "base": "9eece4239d47ece4600f3fff7f2e38b78403cb02",
+  "oracle_commit": "a79e135ae9e0702d679d3bad2351052651543666",
+  "branch": "run/R16-ui-oracle",
+  "node": "v24.18.0",
+  "python": "Python 3.14.5",
+  "oracle_tests": 23,
+  "oracle_pass": 14,
+  "oracle_fail": 9,
+  "oracle_exit": 1,
+  "existing_ui_tests": 9,
+  "existing_ui_exit": 0,
+  "positive_controls_exit": 0,
+  "producer_capture_exit": 0,
+  "test_git_blob": "fa9eba92e001c565c3ae53fcd35c54a89572a065",
+  "test_sha256": "3CD295FA966747C2199666338997E87B9CEC9BD3677E30FAFB31635F2DFBB072",
+  "recorded_at": "2026-10-29T08:04:34.2339705Z"
+}

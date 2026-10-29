@@ -1,0 +1,433 @@
+TAP version 13
+# Subtest: oracle input spacing is exactly rational, including huge and subnormal cases
+ok 1 - oracle input spacing is exactly rational, including huge and subnormal cases
+  ---
+  duration_ms: 1.6358
+  type: 'test'
+  ...
+# Subtest: exact plot coordinates: ordinary quarters
+ok 2 - exact plot coordinates: ordinary quarters
+  ---
+  duration_ms: 1.2882
+  type: 'test'
+  ...
+# Subtest: exact plot coordinates: opposite-sign overflowing power-of-two span
+not ok 3 - exact plot coordinates: opposite-sign overflowing power-of-two span
+  ---
+  duration_ms: 0.8163
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-service-boundary\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\ui-helper-oracle.test.mjs:63:3'
+  failureType: 'testCodeFailure'
+  error: 'nonfinite pixel: NaN,NaN'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:57:12
+    Array.map (<anonymous>)
+    coordinates (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:54:35)
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:68:22)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: exact plot coordinates: opposite-sign maximum finite span
+not ok 4 - exact plot coordinates: opposite-sign maximum finite span
+  ---
+  duration_ms: 0.3149
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-service-boundary\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\ui-helper-oracle.test.mjs:63:3'
+  failureType: 'testCodeFailure'
+  error: 'nonfinite pixel: NaN,NaN'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:57:12
+    Array.map (<anonymous>)
+    coordinates (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:54:35)
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:68:22)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: exact plot coordinates: positive maximum finite midpoint
+ok 5 - exact plot coordinates: positive maximum finite midpoint
+  ---
+  duration_ms: 0.2106
+  type: 'test'
+  ...
+# Subtest: exact plot coordinates: negative maximum finite midpoint
+ok 6 - exact plot coordinates: negative maximum finite midpoint
+  ---
+  duration_ms: 0.2175
+  type: 'test'
+  ...
+# Subtest: exact plot coordinates: nearby huge positive quarters
+ok 7 - exact plot coordinates: nearby huge positive quarters
+  ---
+  duration_ms: 0.1807
+  type: 'test'
+  ...
+# Subtest: exact plot coordinates: nearby huge negative quarters
+ok 8 - exact plot coordinates: nearby huge negative quarters
+  ---
+  duration_ms: 0.1695
+  type: 'test'
+  ...
+# Subtest: exact plot coordinates: positive subnormal quarters
+ok 9 - exact plot coordinates: positive subnormal quarters
+  ---
+  duration_ms: 0.1787
+  type: 'test'
+  ...
+# Subtest: exact plot coordinates: negative subnormal quarters
+ok 10 - exact plot coordinates: negative subnormal quarters
+  ---
+  duration_ms: 1.1647
+  type: 'test'
+  ...
+# Subtest: exact plot coordinates: opposite-sign subnormal quarters
+ok 11 - exact plot coordinates: opposite-sign subnormal quarters
+  ---
+  duration_ms: 0.2313
+  type: 'test'
+  ...
+# Subtest: exact plot coordinates: subnormal-to-normal boundary quarters
+ok 12 - exact plot coordinates: subnormal-to-normal boundary quarters
+  ---
+  duration_ms: 0.2438
+  type: 'test'
+  ...
+# Subtest: axes are independent; shuffled and duplicate observations keep exact order and count
+ok 13 - axes are independent; shuffled and duplicate observations keep exact order and count
+  ---
+  duration_ms: 0.2946
+  type: 'test'
+  ...
+# Subtest: degenerate axes center independently without moving the other axis
+not ok 14 - degenerate axes center independently without moving the other axis
+  ---
+  duration_ms: 0.3472
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-service-boundary\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\ui-helper-oracle.test.mjs:87:1'
+  failureType: 'testCodeFailure'
+  error: 'nonfinite pixel: NaN,110'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:57:12
+    Array.map (<anonymous>)
+    coordinates (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:54:35)
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:93:58)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: custom finite drawing extents retain the same exact midpoint geometry
+not ok 15 - custom finite drawing extents retain the same exact midpoint geometry
+  ---
+  duration_ms: 0.1904
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-service-boundary\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\ui-helper-oracle.test.mjs:96:1'
+  failureType: 'testCodeFailure'
+  error: 'nonfinite pixel: NaN,NaN'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:57:12
+    Array.map (<anonymous>)
+    coordinates (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:54:35)
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:98:20)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: finite-only filtering and table sampling preserve caller-owned inputs
+ok 16 - finite-only filtering and table sampling preserve caller-owned inputs
+  ---
+  duration_ms: 0.4551
+  type: 'test'
+  ...
+# Subtest: a bounded large point list has no implicit argument-count limit or silent truncation
+not ok 17 - a bounded large point list has no implicit argument-count limit or silent truncation
+  ---
+  duration_ms: 18.3496
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-service-boundary\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\ui-helper-oracle.test.mjs:113:1'
+  failureType: 'testCodeFailure'
+  error: 'Maximum call stack size exceeded'
+  code: 'ERR_TEST_FAILURE'
+  name: 'RangeError'
+  stack: |-
+    plotPoints (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/lab/fit-contract.mjs:29:22)
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:116:18)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: actual producer explicitly supplies one-standard-uncertainty metadata and is accepted unchanged
+ok 18 - actual producer explicitly supplies one-standard-uncertainty metadata and is accepted unchanged
+  ---
+  duration_ms: 607.5865
+  type: 'test'
+  ...
+# Subtest: explicit contradictory uncertainty meaning is not silently relabelled 1-sigma: 95% confidence interval
+not ok 19 - explicit contradictory uncertainty meaning is not silently relabelled 1-sigma: 95% confidence interval
+  ---
+  duration_ms: 2.0388
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-service-boundary\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\ui-helper-oracle.test.mjs:155:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   assumptions: [
+    +     'independent observation errors',
+    +     'first-order timing linearization at fitted velocity',
+    +     'per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)',
+    +     'scale fixed',
+    +     'no correlated clock-rate or scale uncertainty',
+    +     'no calibration of declared standard uncertainties',
+    +     'no errors-in-variables bias correction'
+    +   ],
+    +   evidence: 'synthetic virtual-lab fit',
+    +   model: 'independent_position_time_first_order',
+    +   source: 'simulated',
+    +   uncertainty: 0.00007365069813183884,
+    +   unit: 'm/s^2',
+    +   value: 9.80999886968593
+    + }
+    - null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual:
+    value: 9.80999886968593
+    uncertainty: 0.00007365069813183884
+    unit: 'm/s^2'
+    source: 'simulated'
+    evidence: 'synthetic virtual-lab fit'
+    model: 'independent_position_time_first_order'
+    assumptions:
+      0: 'independent observation errors'
+      1: 'first-order timing linearization at fitted velocity'
+      2: 'per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)'
+      3: 'scale fixed'
+      4: 'no correlated clock-rate or scale uncertainty'
+      5: 'no calibration of declared standard uncertainties'
+      6: 'no errors-in-variables bias correction'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:159:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: explicit contradictory uncertainty meaning is not silently relabelled 1-sigma: expanded uncertainty (two sigma)
+not ok 20 - explicit contradictory uncertainty meaning is not silently relabelled 1-sigma: expanded uncertainty (two sigma)
+  ---
+  duration_ms: 0.8119
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-service-boundary\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\ui-helper-oracle.test.mjs:155:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   assumptions: [
+    +     'independent observation errors',
+    +     'first-order timing linearization at fitted velocity',
+    +     'per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)',
+    +     'scale fixed',
+    +     'no correlated clock-rate or scale uncertainty',
+    +     'no calibration of declared standard uncertainties',
+    +     'no errors-in-variables bias correction'
+    +   ],
+    +   evidence: 'synthetic virtual-lab fit',
+    +   model: 'independent_position_time_first_order',
+    +   source: 'simulated',
+    +   uncertainty: 0.00007365069813183884,
+    +   unit: 'm/s^2',
+    +   value: 9.80999886968593
+    + }
+    - null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual:
+    value: 9.80999886968593
+    uncertainty: 0.00007365069813183884
+    unit: 'm/s^2'
+    source: 'simulated'
+    evidence: 'synthetic virtual-lab fit'
+    model: 'independent_position_time_first_order'
+    assumptions:
+      0: 'independent observation errors'
+      1: 'first-order timing linearization at fitted velocity'
+      2: 'per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)'
+      3: 'scale fixed'
+      4: 'no correlated clock-rate or scale uncertainty'
+      5: 'no calibration of declared standard uncertainties'
+      6: 'no errors-in-variables bias correction'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:159:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: explicit contradictory uncertainty meaning is not silently relabelled 1-sigma: not a standard uncertainty
+not ok 21 - explicit contradictory uncertainty meaning is not silently relabelled 1-sigma: not a standard uncertainty
+  ---
+  duration_ms: 0.6489
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-service-boundary\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\ui-helper-oracle.test.mjs:155:3'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   assumptions: [
+    +     'independent observation errors',
+    +     'first-order timing linearization at fitted velocity',
+    +     'per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)',
+    +     'scale fixed',
+    +     'no correlated clock-rate or scale uncertainty',
+    +     'no calibration of declared standard uncertainties',
+    +     'no errors-in-variables bias correction'
+    +   ],
+    +   evidence: 'synthetic virtual-lab fit',
+    +   model: 'independent_position_time_first_order',
+    +   source: 'simulated',
+    +   uncertainty: 0.00007365069813183884,
+    +   unit: 'm/s^2',
+    +   value: 9.80999886968593
+    + }
+    - null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual:
+    value: 9.80999886968593
+    uncertainty: 0.00007365069813183884
+    unit: 'm/s^2'
+    source: 'simulated'
+    evidence: 'synthetic virtual-lab fit'
+    model: 'independent_position_time_first_order'
+    assumptions:
+      0: 'independent observation errors'
+      1: 'first-order timing linearization at fitted velocity'
+      2: 'per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)'
+      3: 'scale fixed'
+      4: 'no correlated clock-rate or scale uncertainty'
+      5: 'no calibration of declared standard uncertainties'
+      6: 'no errors-in-variables bias correction'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:159:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+# Subtest: legitimate minimal DTO does not acquire a newly required metadata key
+ok 22 - legitimate minimal DTO does not acquire a newly required metadata key
+  ---
+  duration_ms: 0.3061
+  type: 'test'
+  ...
+# Subtest: explicit assumptions must contain actual strings, not sparse array holes
+not ok 23 - explicit assumptions must contain actual strings, not sparse array holes
+  ---
+  duration_ms: 0.5562
+  type: 'test'
+  location: 'C:\\Users\\HP\\.codex\\worktrees\\swarm14-service-boundary\\2026-10-26 - Meta Global AI Developer Hackathon\\tests\\lab\\ui-helper-oracle.test.mjs:174:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + {
+    +   assumptions: [
+    +     <1 empty item>
+    +   ],
+    +   evidence: 'synthetic virtual-lab fit',
+    +   model: 'independent_position_time_first_order',
+    +   source: 'simulated',
+    +   uncertainty: 0.00007365069813183884,
+    +   unit: 'm/s^2',
+    +   value: 9.80999886968593
+    + }
+    - null
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: ~
+  actual:
+    value: 9.80999886968593
+    uncertainty: 0.00007365069813183884
+    unit: 'm/s^2'
+    source: 'simulated'
+    evidence: 'synthetic virtual-lab fit'
+    model: 'independent_position_time_first_order'
+    assumptions:
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/tests/lab/ui-helper-oracle.test.mjs:178:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1325:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:911:18)
+    Test.postRun (node:internal/test_runner/test:1465:19)
+    Test.run (node:internal/test_runner/test:1390:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:911:7)
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 14
+# fail 9
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 756.099

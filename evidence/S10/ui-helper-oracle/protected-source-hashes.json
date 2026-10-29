@@ -1,0 +1,32 @@
+[
+  {
+    "path": "Build/web/src/lab/fit-contract.mjs",
+    "base_blob": "cb80a2e278c73878ab948c079bdfeb9a1dc3e840",
+    "working_blob": "cb80a2e278c73878ab948c079bdfeb9a1dc3e840",
+    "unchanged": true
+  },
+  {
+    "path": "Build/lab/session-bridge.py",
+    "base_blob": "d6b0d7f0cff269c8b6460008714848e4477e49b4",
+    "working_blob": "d6b0d7f0cff269c8b6460008714848e4477e49b4",
+    "unchanged": true
+  },
+  {
+    "path": "Build/fitter/api.py",
+    "base_blob": "3f85c36e090c07779fadc8c94eb1e78d866cb6eb",
+    "working_blob": "3f85c36e090c07779fadc8c94eb1e78d866cb6eb",
+    "unchanged": true
+  },
+  {
+    "path": "contracts/fit/quantity.py",
+    "base_blob": "c00632fc7f561a2bbb7c3101d19da19bdf4d28e4",
+    "working_blob": "c00632fc7f561a2bbb7c3101d19da19bdf4d28e4",
+    "unchanged": true
+  },
+  {
+    "path": "tests/lab/ui-contract.test.mjs",
+    "base_blob": "054203445ccc4847c3c8118272e849b394608248",
+    "working_blob": "054203445ccc4847c3c8118272e849b394608248",
+    "unchanged": true
+  }
+]
