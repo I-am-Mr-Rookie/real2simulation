@@ -35,6 +35,17 @@ from `committed_bytes`. `complete` (whole-file sha256 verified) assigns `job_id`
 `rejected` carries an error. Authorization failures are HTTP errors, never a
 session disclosing another user's IDs (S04g rule).
 
+S13b implementation: `Build/pipeline/uploads.py` (`UploadService`, local
+filesystem store standing in for a bucket; tests `tests/pipeline/test_uploads.py`,
+SYNTHETIC bytes). Server hashes each chunk itself; bytes are fsynced before the
+atomic `meta.json` commit, so a crash mid-chunk resumes at `committed_bytes` and
+torn bytes are truncated. Owner/upload IDs must match the `id` pattern (no path
+traversal). Errors: `UploadError(code, decision, committed_bytes)`; owner
+mismatch = `UNAUTHORIZED`, unknown = `NOT_FOUND`, chunk rejects/limits =
+`INVALID_INPUT`. First chunk is magic-sniffed (MP4/MOV atoms, WebM EBML) and a
+mismatch rejects the session; whole-file sha256 mismatch on `complete` rejects.
+Duration and real container parsing remain the `validate` stage (S13c/ffprobe).
+
 ## Stage events and retry
 
 Stages, in order: validate → keyframes → understand → segment → reconstruct
