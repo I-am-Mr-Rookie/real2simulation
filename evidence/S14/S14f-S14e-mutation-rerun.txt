@@ -1,0 +1,8 @@
+KILLED - uncited claim accepted | FAILED (failures=2)
+KILLED - questions/candidates accepted | FAILED (failures=1)
+KILLED - fitter id not trial-specific | FAILED (failures=3, errors=2)
+KILLED - simulator value fabricated | FAILED (failures=1)
+KILLED - retries not counted after first attempt | FAILED (failures=1)
+KILLED - retry omits validator feedback | FAILED (failures=1)
+KILLED - fallback adds an untraced claim | FAILED (errors=1)
+KILLED - transport errors retried | FAILED (failures=1)

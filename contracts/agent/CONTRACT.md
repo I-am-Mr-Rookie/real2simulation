@@ -110,10 +110,23 @@ owner-reported working id, unverified for structured output here.
 - Tests: `tests/agent/test_trial.py` runs the actual S10 node simulator + Python fitter in the test and validates
   hand-written SYNTHETIC Spark replies against those outputs. Not Gate A, real-scene, calibration or physical evidence.
 
+## S14f: tool-only numbers in replies (`Build/agent/tools.py`)
+
+- `safe_reply(response, tool_outputs, scene_id) -> (text, blocked_issues)` is the ONE path from a model reply to
+  user text. Valid reply -> `render` text, issues `[]`. Any untraced number (digit, Unicode numeral, number word,
+  unknown/foreign ref) or other contract issue blocks the WHOLE reply (no partial redaction) and returns
+  `render(tool_backed(...))`: code-built text `BLOCKED` + every tool quantity as a ref, so every number shown is a
+  rendered tool value. No tool outputs -> number-free `BLOCKED.` text. Invalid tool outputs raise (code bug, never masked).
+- `tool_backed(scene_id, outputs, lead, tail)` is shared with S14e `trial.tool_only`; quantity names that would put
+  a digit/number word in text are shown as "value".
+- Number words extended: ordinals third..twelfth, tenths/hundredths, "one point"/"point one", "single digit".
+  Still allowed: "one" as a pronoun, "first"/"second" (also a unit word), "double-check".
+- Tests: `tests/agent/test_reply.py` (actual S10 simulator + fitter outputs, SYNTHETIC replies, 0 live Meta calls).
+
 ## Limits (S14a)
 
 - Number-word list is a shortcut (`one` allowed as a pronoun; Roman-numeral
-  letters and rarer phrasings not caught). Gate A (S14f/S14g) extends it.
+  letters and rarer phrasings not caught). S14f extended it; Gate A (S14g) extends it from misses.
 - User-entered numbers are not echoable yet (no `user_input` label); S14c decides.
 - Fail-closed false positives: superscripts such as `m/s²` or words like "half"
   in text are rejected; units belong to rendered number segments.

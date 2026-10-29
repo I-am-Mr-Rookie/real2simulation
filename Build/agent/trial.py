@@ -9,9 +9,9 @@ from __future__ import annotations
 from typing import Any, Callable, Mapping, Sequence
 
 from Build.agent.muse import MAX_RETRIES, build_request, output_text
-from Build.agent.tools import fit_tool_output
+from Build.agent.tools import fit_tool_output, tool_backed
 from contracts.agent.validate import (
-    RESPONSE_VERSION, TOOL_OUTPUT_VERSION, AgentContractError, validate_response, validate_tool_output,
+    TOOL_OUTPUT_VERSION, AgentContractError, validate_response, validate_tool_output,
 )
 
 MODEL = "muse-spark-1.3"  # owner-reported working id (API_BUDGET.md); live use unverified and on hold
@@ -70,15 +70,8 @@ def validate_check(reply: Any, outputs: Sequence[Mapping[str, Any]], scene_id: s
 
 def tool_only(scene_id: str, outputs: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
     """Code-owned fallback: no model claim, just every tool quantity as a traced number segment."""
-    segments: list[dict[str, Any]] = [
-        {"type": "text", "text": "The automatic trial check gave no valid reply; tool results only:"}]
-    for output in outputs:
-        for name in output["quantities"]:
-            segments += [{"type": "text", "text": f" {output['tool']} {name.replace('_', ' ')} "},
-                         {"type": "number", "ref": {"tool_output_id": output["id"], "quantity": name}}]
-    segments.append({"type": "text", "text": ". Simulated, not physical evidence."})
-    return validate_check({"schema_version": RESPONSE_VERSION, "scene_id": scene_id, "segments": segments,
-                           "questions": []}, outputs, scene_id)
+    return validate_check(tool_backed(scene_id, outputs, "The automatic trial check gave no valid reply; tool results only:",
+                                      ". Simulated, not physical evidence."), outputs, scene_id)
 
 
 def check_trial(context: Mapping[str, Any], post: Callable[[dict[str, Any]], Mapping[str, Any]]

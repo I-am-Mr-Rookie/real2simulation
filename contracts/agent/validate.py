@@ -26,12 +26,14 @@ _VALIDATOR = Draft202012Validator(json.loads(
 # Candidate templates are the S08 experiment templates; single source of truth, no copy.
 TEMPLATES = frozenset(json.loads((Path(__file__).parents[1] / "experiment" / "experiment.schema.json")
                                  .read_text(encoding="utf-8"))["properties"]["template"]["enum"])
-# shortcut: word list catches common spelled-out numbers only ("one" stays allowed as a pronoun,
-# Roman-numeral letters are not caught); extend from Gate A misses (S14f/S14g).
+# shortcut: word list catches common spelled-out numbers only ("one" stays allowed as a pronoun unless
+# next to "point"; Roman-numeral letters and "first"/"second" are not caught); extend from Gate A misses (S14g).
 _NUMBER_WORDS = re.compile(
     r"\b(zero|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|"
     r"sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|"
-    r"hundred|thousand|million|billion|dozen|half|quarter|percent|twice|thrice|triple)\b", re.I)
+    r"hundred|thousand|million|billion|dozen|half|quarter|percent|twice|thrice|triple|"
+    r"third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|twelfth|tenths|hundredths|"
+    r"one\s+point|point\s+one|single\s+digit)\b", re.I)
 
 
 class AgentContractError(ValueError):

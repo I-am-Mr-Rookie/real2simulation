@@ -1,0 +1,6 @@
+KILLED - untraced reply shown, not replaced | FAILED (errors=11)
+KILLED - replacement drops tool values | FAILED (failures=10)
+KILLED - digit quantity name leaks into text | FAILED (errors=1)
+KILLED - 'one point five' not caught | FAILED (failures=1)
+KILLED - ordinals not caught | FAILED (failures=1)
+KILLED - fallback built without the validated outputs | FAILED (failures=10)
