@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S12d-orch43 Opus high (threadId:01a18995-8caa-7121-98f0-176194e94f1e,hostId:local, deadline 2026-10-29T22:04:01+00:00); Owns +contracts/overlay/.
+
 S12c DONE (orch41 Opus high; TIMEBOX PASS; fresh prediction 18 OK; simulator 118/122 = same 4
 pre-existing fails as main (pendulum/ramp extended-templates); ff-merged). predict.py: hashed frozen
 traces from prefix-only fits (spy: zero suffix reads). Real ST03 with errata: AIC deg2, g 1.846±0.136
