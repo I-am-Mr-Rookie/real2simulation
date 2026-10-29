@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+DISPATCHED S12b-orch39 Opus high (thread 01a18983-22c0-79c1-b65f-7881482b076f, deadline
+21:43:53Z; receipt DISPATCH-orch39.json). Scale-free params, Gate M NOT_MET.
+
 S12a DONE (orch37, worker 01a18968 Opus high; TIMEBOX PASS; fresh: prediction 7, measurement 70/1 skip,
 fitter 65 OK; ff-merged f258920). Build/real2sim/boundary.py: frozen prefix/sealed-suffix hashes,
 fit_prefix spy proves no suffix leakage; evidence/S12/boundary-ST03.json gate_m NOT_MET, scale-free.
