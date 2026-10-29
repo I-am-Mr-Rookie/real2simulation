@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+S12c DONE (orch41 Opus high; TIMEBOX PASS; fresh prediction 18 OK; simulator 118/122 = same 4
+pre-existing fails as main (pendulum/ramp extended-templates); ff-merged). predict.py: hashed frozen
+traces from prefix-only fits (spy: zero suffix reads). Real ST03 with errata: AIC deg2, g 1.846±0.136
+image-height/s^2, speed 0.171±0.042 (image-derived, Gate M NOT_MET); suffix 466 ids sealed (supersedes
+S12a 465-id seal). Simulator accepts 'image-derived' provenance. Bounce synthetic only (no tracked
+bounce clip; Rapier contacts don't rebound -> analytic). Follow-up: 4 pre-existing simulator fails.
+
 DISPATCHED S12c-orch41 Opus high (threadId:01a1898e-e14c-7433-a6f3-42c6e324c65e,hostId:local, deadline 2026-10-29T21:56:43+00:00).
 DISPATCHED S13f-orch42 Opus high (threadId:01a1898f-af0f-7d30-a0fa-426316a9741a,hostId:local, deadline 2026-10-29T21:57:26+00:00).
 S12c Owns extended by controller: +Build/simulator/ (image-derived provenance label, S12b F1).
