@@ -1,0 +1,12 @@
+{
+  "id": "R16-ui-native",
+  "issued_at": "2026-10-29T08:08:43.000Z",
+  "deadline_at": "2026-10-29T08:38:43.000Z",
+  "implementation_cutoff_at": "2026-10-29T08:33:43.000Z",
+  "deadline_dhaka": "2026-10-29T14:38:43.000+06:00",
+  "owner_stop_at": "2026-10-29T10:00:00Z",
+  "work_stopped_at": "2026-10-29T08:11:11Z",
+  "reported_at": "2026-10-29T08:11:11Z",
+  "status": "DONE",
+  "completion_basis": "Whole ~21-line fit-contract.mjs diff fe79f61 vs 9eece42 reviewed; 42 independent checks + 59 targeted tests (incl. frozen a79e135 oracle) pass; no P0-P2; P3 recorded."
+}
