@@ -1,0 +1,35 @@
+test_committed_st03_record (test_boundary.BoundaryTests.test_committed_st03_record) ... ok
+test_fitter_never_sees_suffix (test_boundary.BoundaryTests.test_fitter_never_sees_suffix) ... ok
+test_frozen_prefix_and_suffix_detect_tampering (test_boundary.BoundaryTests.test_frozen_prefix_and_suffix_detect_tampering) ... ok
+test_invalid_or_leaking_splits_rejected (test_boundary.BoundaryTests.test_invalid_or_leaking_splits_rejected) ... ok
+test_outputs_say_gate_m_not_met_and_no_g (test_boundary.BoundaryTests.test_outputs_say_gate_m_not_met_and_no_g) ... ok
+test_split_keeps_suffix_values_out_of_boundary (test_boundary.BoundaryTests.test_split_keeps_suffix_values_out_of_boundary) ... ok
+test_untracked_suffix_identities_are_sealed (test_boundary.BoundaryTests.test_untracked_suffix_identities_are_sealed) ... ok
+test_committed_overlays_validate_against_sources (test_overlay.CommittedEvidenceTest.test_committed_overlays_validate_against_sources) ... ok
+test_build_refuses_prediction_from_other_boundary (test_overlay.OverlayTest.test_build_refuses_prediction_from_other_boundary) ... ok
+test_rejects_misaligned_timebase (test_overlay.OverlayTest.test_rejects_misaligned_timebase) ... ok
+test_rejects_mutated_trace_and_gate_claim (test_overlay.OverlayTest.test_rejects_mutated_trace_and_gate_claim) ... ok
+test_rejects_other_clip_or_source (test_overlay.OverlayTest.test_rejects_other_clip_or_source) ... ok
+test_roundtrip_returns_immutable_traces (test_overlay.OverlayTest.test_roundtrip_returns_immutable_traces) ... ok
+test_continuation_tracks_synthetic_truth_without_reading_suffix (test_overlay.PendulumTest.test_continuation_tracks_synthetic_truth_without_reading_suffix) ... ok
+test_frequency_record_required (test_overlay.PendulumTest.test_frequency_record_required) ... ok
+test_committed_st03_params_abstain (test_params.ParamsTests.test_committed_st03_params_abstain) ... ok
+test_fit_records_carry_value_uncertainty_provenance (test_params.ParamsTests.test_fit_records_carry_value_uncertainty_provenance) ... ok
+test_linear_motion_abstains_and_transfer_refuses (test_params.ParamsTests.test_linear_motion_abstains_and_transfer_refuses) ... ok
+test_missing_or_invalid_params_are_refused_not_defaulted (test_params.ParamsTests.test_missing_or_invalid_params_are_refused_not_defaulted) ... ok
+test_simulator_consumes_values_and_records_survive (test_params.ParamsTests.test_simulator_consumes_values_and_records_survive) ... ok
+test_simulator_rejection_and_nonsynthetic_refusal_surface (test_params.ParamsTests.test_simulator_rejection_and_nonsynthetic_refusal_surface) ... ok
+test_committed_st03_prediction (test_predict.PredictTests.test_committed_st03_prediction) ... ok
+test_prediction_identical_whatever_the_heldout_values (test_predict.PredictTests.test_prediction_identical_whatever_the_heldout_values) ... ok
+test_projectile_never_reads_heldout_and_is_hashed_before_scoring (test_predict.PredictTests.test_projectile_never_reads_heldout_and_is_hashed_before_scoring) ... ok
+test_synthetic_bounce_reflects_with_restitution_without_reading_heldout (test_predict.PredictTests.test_synthetic_bounce_reflects_with_restitution_without_reading_heldout) ... ok
+test_trace_is_immutable_and_tamper_or_reseal_refused (test_predict.PredictTests.test_trace_is_immutable_and_tamper_or_reseal_refused) ... ok
+test_exact_truth_scores_zero_and_loader_runs_after_checks (test_score.ScoreTests.test_exact_truth_scores_zero_and_loader_runs_after_checks) ... ok
+test_gate_needs_every_category (test_score.ScoreTests.test_gate_needs_every_category) ... ok
+test_pts_mismatch_low_coverage_and_rms (test_score.ScoreTests.test_pts_mismatch_low_coverage_and_rms) ... ok
+test_tampered_seal_or_uncommitted_prediction_never_reads_suffix (test_score.ScoreTests.test_tampered_seal_or_uncommitted_prediction_never_reads_suffix) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 2.655s
+
+OK

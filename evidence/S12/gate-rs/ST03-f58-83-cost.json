@@ -1,0 +1,26 @@
+{
+ "app_id": "ap-2Sbu8Pen5jJhHlNxAhuva6",
+ "gpu": "A10G",
+ "gpu_seconds": {
+  "billed": 47.93
+ },
+ "cost": {
+  "estimated": {
+   "total_usd": 0.0
+  },
+  "billed": {
+   "status": "billed",
+   "read_utc": "2026-10-29T21:49:07+00:00",
+   "source": "modal billing report --json --show-resources (read-only)",
+   "note": "report may still be accruing shortly after a job; re-run reconcile, latest read wins",
+   "total_usd": 0.02330591,
+   "by_resource_usd": {
+    "Network Egress": 0.00528954,
+    "Memory": 0.00170665,
+    "CPU": 0.00164319,
+    "A10G": 0.01466653
+   },
+   "estimated_minus_billed_usd": -0.02330591
+  }
+ }
+}
