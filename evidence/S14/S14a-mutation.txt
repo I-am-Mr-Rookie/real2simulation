@@ -1,0 +1,5 @@
+S14a negative controls (2026-10-29, worktree run/S14a-orch14). Synthetic fixtures only.
+Disable text number check (numeric_issue -> None): 10 failing results (incl. subtests) of 11 tests -> tests detect it.
+Disable segment semantics (_segments -> no-op): 5 failures of 11 tests -> ref/number checks detected.
+Normal run: 11 tests OK (S14a-unittest.txt). Regression: tests/fitter 65 tests OK.
+Not Gate A, not real-scene, calibration or physical evidence.

@@ -1,0 +1,16 @@
+test_failed_fit_cannot_back_numbers (test_contracts.ContractTests.test_failed_fit_cannot_back_numbers) ... ok
+test_inline_value_or_unknown_fields_rejected (test_contracts.ContractTests.test_inline_value_or_unknown_fields_rejected) ... ok
+test_number_refs_must_resolve_to_tool_outputs (test_contracts.ContractTests.test_number_refs_must_resolve_to_tool_outputs) ... ok
+test_question_contract (test_contracts.ContractTests.test_question_contract) ... ok
+test_scene_binding_and_strict_json (test_contracts.ContractTests.test_scene_binding_and_strict_json) ... ok
+test_scene_context_has_no_numbers (test_contracts.ContractTests.test_scene_context_has_no_numbers) ... ok
+test_schema_alone_rejects_ascii_digits (test_contracts.ContractTests.test_schema_alone_rejects_ascii_digits) ... ok
+test_schema_is_valid_and_traced_reply_renders_labelled (test_contracts.ContractTests.test_schema_is_valid_and_traced_reply_renders_labelled) ... ok
+test_tool_output_label_tool_and_provenance_enforced (test_contracts.ContractTests.test_tool_output_label_tool_and_provenance_enforced) ... ok
+test_unicode_and_word_numbers (test_contracts.ContractTests.test_unicode_and_word_numbers) ... ok
+test_untraced_numbers_rejected_everywhere (test_contracts.ContractTests.test_untraced_numbers_rejected_everywhere) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.298s
+
+OK

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "real2sim/agent/response/1.0.0",
+  "title": "Agent structured response (S14a)",
+  "description": "Structured output the agent model must emit. Text segments may not contain ASCII digits; every number is a number segment referencing a validated tool output. contracts/agent/validate.py adds Unicode/number-word and reference checks; schema validity alone is not acceptance.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "scene_id", "segments", "questions"],
+  "properties": {
+    "schema_version": {"const": "agent-response/1.0.0"},
+    "scene_id": {"$ref": "#/$defs/id"},
+    "segments": {"$ref": "#/$defs/segments"},
+    "questions": {"type": "array", "maxItems": 3, "items": {"$ref": "#/$defs/question"}},
+    "candidates": {"type": "array", "maxItems": 3, "items": {"$ref": "#/$defs/candidate"}}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$"},
+    "text": {"type": "object", "additionalProperties": false, "required": ["type", "text"],
+      "properties": {"type": {"const": "text"}, "text": {"type": "string", "minLength": 1, "maxLength": 600, "pattern": "^[^0-9]*$"}}},
+    "number": {"type": "object", "additionalProperties": false, "required": ["type", "ref"],
+      "properties": {"type": {"const": "number"},
+        "ref": {"type": "object", "additionalProperties": false, "required": ["tool_output_id", "quantity"],
+          "properties": {"tool_output_id": {"$ref": "#/$defs/id"}, "quantity": {"$ref": "#/$defs/id"}}}}},
+    "segments": {"type": "array", "minItems": 1, "maxItems": 64,
+      "items": {"oneOf": [{"$ref": "#/$defs/text"}, {"$ref": "#/$defs/number"}]}},
+    "chip": {"type": "object", "additionalProperties": false, "required": ["id", "label"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "label": {"$ref": "#/$defs/segments"}}},
+    "question": {"type": "object", "additionalProperties": false, "required": ["id", "kind", "prompt", "chips"],
+      "properties": {"id": {"$ref": "#/$defs/id"},
+        "kind": {"enum": ["chips", "free_text", "chips_and_free_text"]},
+        "prompt": {"$ref": "#/$defs/segments"},
+        "chips": {"type": "array", "maxItems": 6, "items": {"$ref": "#/$defs/chip"}}}},
+    "candidate": {"type": "object", "additionalProperties": false, "required": ["id", "template", "rationale"],
+      "properties": {"id": {"$ref": "#/$defs/id"}, "template": {"$ref": "#/$defs/id"}, "rationale": {"$ref": "#/$defs/segments"}}}
+  }
+}
