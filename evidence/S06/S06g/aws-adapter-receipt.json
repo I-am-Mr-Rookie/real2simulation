@@ -1,0 +1,33 @@
+{
+ "contract": "S06g-aws-adapter/v1",
+ "no_aws_api_calls": true,
+ "default": {
+  "active": false,
+  "reasons": [
+   "disabled: R2S_ENABLE_AWS != 1 (default off)"
+  ],
+  "launched": false,
+  "plan": null
+ },
+ "on_demand": {
+  "active": false,
+  "reasons": [
+   "market: 'on-demand' refused; spot only (on-demand quota 0)"
+  ],
+  "launched": false,
+  "plan": null
+ },
+ "no_gates": {
+  "active": false,
+  "reasons": [
+   "region: None != us-east-2",
+   "market: None refused; spot only (on-demand quota 0)",
+   "quota: G/VT spot None vCPU < 4 needed for g6e.xlarge",
+   "budget: amount None not in (0, 50] USD",
+   "budget: not filtered to EC2-Compute + EC2-Other",
+   "budget: missing alerts ['actual:100', 'actual:50', 'actual:80', 'forecast:100']"
+  ],
+  "launched": false,
+  "plan": null
+ }
+}
