@@ -65,6 +65,8 @@ S17a-orch14 DONE accepted (Sonnet; TIMEBOX PASS; fresh 33 unittest OK incl fitte
 regression): r2s.report/1 contract, numbers only via fitter paths, synthetic fixtures.
 S15a-orch14 DONE accepted (Sonnet; TIMEBOX PASS; node workflow.test 8/8 fresh):
 workspace state graph reducer + README, synthetic fixtures. Main FF 00482c7. Fixture-only.
+orch15 issued full30m: S15b-orch15, S17b-orch15 (Sonnet/high). In flight also S05b-orch14,
+S14a-orch14, S07b-orch14. Receipt ORCH-20261029-1654/DISPATCH-orch15.json.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
