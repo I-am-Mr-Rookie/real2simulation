@@ -1,0 +1,265 @@
+{
+ "output": {
+  "covariance": {
+   "assumptions": [
+    "independent observation errors",
+    "first-order timing linearization at fitted velocity",
+    "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+    "scale fixed",
+    "no correlated clock-rate or scale uncertainty",
+    "no calibration of declared standard uncertainties",
+    "no errors-in-variables bias correction"
+   ],
+   "gravity_scale_factor": 2.0,
+   "interval": null,
+   "model": "independent_position_time_first_order",
+   "parameter": "quadratic_position_coefficient",
+   "source": {
+    "evidence": "S11 QR covariance with declared standard-uncertainty floor",
+    "label": "simulated"
+   },
+   "standard_error": 0.07078921636200018,
+   "standard_error_unit": "m/s^2",
+   "status": "available",
+   "valid": true,
+   "variance": 0.005011113153146075,
+   "variance_unit": "m^2/s^4"
+  },
+  "fit": {
+   "coefficients": [
+    -0.07579608973489593,
+    0.1394602621165606,
+    0.9435621512235891
+   ],
+   "degree": 2,
+   "dof": 5,
+   "fitted": [
+    0.03722805631367054,
+    0.28633460517434833,
+    0.5595528169157936,
+    1.007226323605254,
+    1.523255211254642,
+    2.2862049670660167,
+    3.0235935353924583,
+    4.016604484277814
+   ],
+   "n": 8,
+   "rank": 3,
+   "residuals": [
+    0.022771943686329454,
+    -0.03633460517434833,
+    0.00044718308420643726,
+    -0.0072263236052541036,
+    0.036744788745358026,
+    -0.036204967066016724,
+    0.03640646460754171,
+    -0.016604484277814358
+   ],
+   "rmse": 0.02773378666341046,
+   "rss": 0.00615330338153251,
+   "rss_status": "available",
+   "source": {
+    "evidence": "S11 offline quantity-to-fit adapter",
+    "label": "simulated"
+   },
+   "units": {
+    "position": "m",
+    "time": "s"
+   }
+  },
+  "gravity": {
+   "source": {
+    "evidence": "synthetic virtual-lab fit",
+    "label": "simulated"
+   },
+   "uncertainty": 0.14157843272400036,
+   "unit": "m/s^2",
+   "value": 1.8871243024471782
+  },
+  "model_selection": {
+   "aic": [
+    -17.32863224809187,
+    -51.3616619827239
+   ],
+   "aic_status": [
+    "available",
+    "available"
+   ],
+   "criterion": "AIC",
+   "selected_degree": 2,
+   "source": {
+    "evidence": "S11 offline model selection",
+    "label": "simulated"
+   }
+  },
+  "status": "ok",
+  "uncertainty": {
+   "assumptions": [
+    "independent observation errors",
+    "first-order timing linearization at fitted velocity",
+    "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+    "scale fixed",
+    "no correlated clock-rate or scale uncertainty",
+    "no calibration of declared standard uncertainties",
+    "no errors-in-variables bias correction"
+   ],
+   "model": "independent_position_time_first_order",
+   "quantity_uncertainty": "standard uncertainty (one sigma), not a 95% interval",
+   "residual_degrees_of_freedom": 5,
+   "residual_variance_floor": 0.001230660676306502
+  }
+ },
+ "provenance": "SYNTHETIC settings and inputs; observations are Build/instruments output and 'output' is Build/fitter.handle output. Not calibration, physics, Gate P/A, real-scene or physical evidence.",
+ "request": {
+  "degree": 2,
+  "positions": [
+   {
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.005,
+    "unit": "m",
+    "value": 0.06
+   },
+   {
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.005,
+    "unit": "m",
+    "value": 0.25
+   },
+   {
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.005,
+    "unit": "m",
+    "value": 0.56
+   },
+   {
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.005,
+    "unit": "m",
+    "value": 1.0
+   },
+   {
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.005,
+    "unit": "m",
+    "value": 1.56
+   },
+   {
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.005,
+    "unit": "m",
+    "value": 2.25
+   },
+   {
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.005,
+    "unit": "m",
+    "value": 3.06
+   },
+   {
+    "source": {
+     "evidence": "synthetic ruler; resolution_m=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.005,
+    "unit": "m",
+    "value": 4.0
+   }
+  ],
+  "select_model": true,
+  "times": [
+   {
+    "source": {
+     "evidence": "synthetic stopwatch; seed=1; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.02,
+    "unit": "s",
+    "value": 0.28
+   },
+   {
+    "source": {
+     "evidence": "synthetic stopwatch; seed=2; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.02,
+    "unit": "s",
+    "value": 0.55
+   },
+   {
+    "source": {
+     "evidence": "synthetic stopwatch; seed=3; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.02,
+    "unit": "s",
+    "value": 0.75
+   },
+   {
+    "source": {
+     "evidence": "synthetic stopwatch; seed=4; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.02,
+    "unit": "s",
+    "value": 1.0
+   },
+   {
+    "source": {
+     "evidence": "synthetic stopwatch; seed=5; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.02,
+    "unit": "s",
+    "value": 1.23
+   },
+   {
+    "source": {
+     "evidence": "synthetic stopwatch; seed=6; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.02,
+    "unit": "s",
+    "value": 1.51
+   },
+   {
+    "source": {
+     "evidence": "synthetic stopwatch; seed=7; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.02,
+    "unit": "s",
+    "value": 1.74
+   },
+   {
+    "source": {
+     "evidence": "synthetic stopwatch; seed=8; resolution_s=0.01",
+     "label": "simulated"
+    },
+    "uncertainty": 0.02,
+    "unit": "s",
+    "value": 2.0100000000000002
+   }
+  ]
+ }
+}

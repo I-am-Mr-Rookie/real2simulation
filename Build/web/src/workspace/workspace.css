@@ -66,3 +66,12 @@
 .ws-trial ul { margin: .2rem 0 0; padding-left: 1rem; font-size: .9rem; }
 .ws-tag { border: 1px solid var(--blue); border-radius: 999px; padding: 0 .5rem; font-size: .75rem; color: var(--blue); }
 .ws-src { display: block; font-size: .8rem; opacity: .8; overflow-wrap: anywhere; }
+.ws-fit { display: grid; gap: .75rem; margin-top: .5rem; }
+.ws-fit-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.ws-fit-table caption { text-align: left; font-weight: 700; padding-bottom: .2rem; }
+.ws-fit-table th, .ws-fit-table td { border-bottom: 1px solid var(--rule); padding: .2rem .3rem; text-align: left; overflow-wrap: anywhere; }
+.ws-resid { margin: 0; }
+.ws-resid-svg { width: 100%; height: auto; background: white; border: 1px solid var(--rule); }
+.ws-resid-zero { stroke: var(--muted); stroke-dasharray: 4 3; }
+.ws-resid-pt { fill: var(--blue); }
+.ws-fit-table .ws-tag { white-space: nowrap; }

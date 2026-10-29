@@ -6,8 +6,9 @@ import { templateView } from './template.mjs';
 import { renderTemplate } from './template-view.mjs';
 import { renderRun } from './run-view.mjs';
 import { renderInstruments } from './instrument-view.mjs';
+import { renderFit } from './fit-view.mjs';
 
-export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments) {
+export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments, fit) {
   const { stages, viewport, jobStatus } = layout;
   const err = view.error ?? jobStatus.error;
   return h('div', { className: 'ws', 'data-phase': layout.phase },
@@ -23,7 +24,8 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
       interview && layout.phase === 'interview.active' ? renderInterview(h, interviewView(interview), onAction) : null,
       template && ['interview.active', 'run.ready'].includes(layout.phase) ? renderTemplate(h, templateView(template), layout.phase, onAction) : null,
       run ? renderRun(h, run, onAction) : null,
-      instruments ? renderInstruments(h, instruments, onAction) : null),
+      instruments ? renderInstruments(h, instruments, onAction) : null,
+      fit ? renderFit(h, fit) : null),
     h('aside', { className: 'ws-job', 'data-slot': 'job-status', 'aria-label': 'Job status' },
       h('p', null, jobStatus.jobId ? 'Job ' + jobStatus.jobId : 'No job yet'),
       renderStatus(h, jobStatus.surface, onAction),

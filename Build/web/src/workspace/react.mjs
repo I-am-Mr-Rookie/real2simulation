@@ -8,8 +8,9 @@ import { createViewport } from './viewport.mjs';
 import { renderWorkspace } from './view.mjs';
 import { runView } from './runcontrol.mjs';
 import { instrumentView } from './instruments.mjs';
+import { fitView } from './fit-view.mjs';
 
-export const createWorkspace = (React) => function Workspace({ state, adapter, loadScene, audience, log, onAction, interview, template, run, instruments }) {
+export const createWorkspace = (React) => function Workspace({ state, adapter, loadScene, audience, log, onAction, interview, template, run, instruments, fit }) {
   const { createElement: h, useRef, useEffect, useState } = React;
   const host = useRef(null), ctl = useRef(null);
   const [view, setView] = useState({ status: 'empty', error: null });
@@ -20,5 +21,5 @@ export const createWorkspace = (React) => function Workspace({ state, adapter, l
   }, [adapter, loadScene]);
   useEffect(() => { ctl.current.sync(host.current, layout.viewport.request, layout.viewport.key); },
     [layout.viewport.key, adapter, loadScene]); // eslint-disable-line react-hooks/exhaustive-deps -- request is derived from key
-  return renderWorkspace(h, layout, view, host, onAction, interview, template, run && runView(state, run), instruments && instrumentView(state, instruments));
+  return renderWorkspace(h, layout, view, host, onAction, interview, template, run && runView(state, run), instruments && instrumentView(state, instruments), fit && fitView(state, fit));
 };
