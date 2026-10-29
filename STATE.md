@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+R-A DONE = CHANGES_REQUIRED (orch50 Sol high; TIMEBOX PASS; evidence ff-merged). Gate A NOT clear:
+F1 P1 "one"/"double"/"a couple of" + unit pass validator AND gate scan (shared predicate, not
+independent); F2 P1 split segments render "nine point eight" unblocked at display; F3 P1 10 runs of
+one synthetic scene != 9/10 recorded-scene fixtures, summary over-promotes MET; F4 P2 live packet
+lacks accepted replies/specs/tool outputs; mystery turns not replayable. S14g reopened PARTIAL ->
+S14g-fix (Opus high). Counting/spend ledger honest (42 calls).
+
 DISPATCHED S20c-orch54 Sol medium (threadId:01a189b9-d539-7c43-af94-f84eb6b12614,hostId:local, deadline 2026-10-29T22:43:38+00:00).
 
 S20b DONE (orch51 Sol medium; TIMEBOX PASS; guardrails 34 OK; ff-merged): Build/guardrails/admission.py

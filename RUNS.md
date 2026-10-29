@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Oct 30, 04:13 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 04:15 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -15,13 +15,14 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CODEX-1**
 - [~] **S12e** — Codex (native Claude) · Opus 5.5, effort high — Run Gate RS on public motion clips (30 min) *(partial: resume it)*
+- [~] **S14g** — Codex (native Claude) · Opus 5.5, effort high — Run Gate A fixture and thirty-turn suite (30 min) *(partial: resume it)*
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [ ] **S20c** — Codex · GPT-6.1 Sol, effort medium — Implement disabled-by-default AWS failover switch (30 min)
 
 **CLAUDE**
-- [ ] **R-A** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate A tool-number enforcement (15 min)
+- Nothing ready yet: check dependencies and retry holds below.
 
 ## Waiting for Koushik
 
@@ -234,9 +235,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S14d** — Codex (native Claude) · Opus 5.5, effort high — Add bounded validator-retry loop (30 min)
 - [x] **S14e** — Codex (native Claude) · Opus 5.5, effort high — Connect Muse Spark trial check (30 min)
 - [x] **S14f** — Codex (native Claude) · Opus 5.5, effort high — Enforce tool-only numbers in replies (30 min)
-- [x] **S14g** — Codex (native Claude) · Opus 5.5, effort high — Run Gate A fixture and thirty-turn suite (30 min)
+- [~] **S14g** — Codex (native Claude) · Opus 5.5, effort high — Run Gate A fixture and thirty-turn suite (30 min) *(partial: resume it)*
 - [ ] **S14h** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint Gate A and template-card fallback (30 min)
-- [ ] **R-A** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate A tool-number enforcement (15 min)
+- [x] **R-A** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate A tool-number enforcement (15 min)
 
 </details>
 
