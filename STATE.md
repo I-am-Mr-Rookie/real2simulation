@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED R-C-orch57 Opus high (threadId:01a189c1-1cfc-7c62-aee2-1e79be01ac12,hostId:local, deadline 2026-10-29T22:51:35+00:00).
+
 S20c DONE (orch54 Sol medium; TIMEBOX PASS; guardrails 47 OK; ff-merged): Build/guardrails/failover.py
 Modal default; AWS only with R2S_ENABLE_AWS=1 + valid quota and $50 budget receipts, us-east-2 spot
 only, S20b admission, <=3600 s session bound; never launches. Offline only. R-C next (Opus high).
