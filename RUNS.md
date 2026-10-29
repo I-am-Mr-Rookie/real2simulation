@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 17:30 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 17:33 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **91 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **92 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -16,7 +16,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CODEX-1**
 - [~] **S05b** — Codex (native Claude) · Opus 5.5, effort high — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
 - [~] **S07b** — Codex (native Claude) · Opus 5.5, effort high — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
-- [ ] **S14a** — Codex (native Claude) · Opus 5.5, effort high — Define scene, question and tool-output contracts (30 min)
+- [ ] **S14b** — Codex (native Claude) · Opus 5.5, effort high — Integrate Muse Wonder scene understanding (30 min)
 
 **CODEX-2**
 - Nothing ready yet: check dependencies and retry holds below.
@@ -232,9 +232,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S14</b> — Scene-understanding and interview agent (0/9)</summary>
+<details><summary><b>S14</b> — Scene-understanding and interview agent (1/9)</summary>
 
-- [ ] **S14a** — Codex (native Claude) · Opus 5.5, effort high — Define scene, question and tool-output contracts (30 min)
+- [x] **S14a** — Codex (native Claude) · Opus 5.5, effort high — Define scene, question and tool-output contracts (30 min)
 - [ ] **S14b** — Codex (native Claude) · Opus 5.5, effort high — Integrate Muse Wonder scene understanding (30 min)
 - [ ] **S14c** — Codex (native Claude) · Opus 5.5, effort high — Implement one-to-three-question interview (30 min)
 - [ ] **S14d** — Codex (native Claude) · Opus 5.5, effort high — Add bounded validator-retry loop (30 min)

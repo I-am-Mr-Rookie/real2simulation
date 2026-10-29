@@ -67,6 +67,11 @@ S15a-orch14 DONE accepted (Sonnet; TIMEBOX PASS; node workflow.test 8/8 fresh):
 workspace state graph reducer + README, synthetic fixtures. Main FF 00482c7. Fixture-only.
 orch15 issued full30m: S15b-orch15, S17b-orch15 (Sonnet/high). In flight also S05b-orch14,
 S14a-orch14, S07b-orch14. Receipt ORCH-20261029-1654/DISPATCH-orch15.json.
+S14a-orch14 DONE accepted (Opus; TIMEBOX PASS; fresh agent 11 + fitter 65 OK; main
+79acb95): agent response schema refs-not-values, numerals/number words rejected.
+Risk: number-word list partial (Gate A must extend). S05b-orch14 A10G RAN (A10 23GB,
+inference 1.13s, peak 7.7GB) but output lost to client unpickle bug; controller
+approved ONE rerun <=$0.95 before 11:46Z.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
