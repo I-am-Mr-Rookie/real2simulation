@@ -1,0 +1,28 @@
+[
+  {
+    "contract_version": "1.0.0", "kind": "upload_session", "upload_id": "synthetic-upload-v1", "job_id": null,
+    "media_type": "video/mp4", "size_bytes": 20000000,
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "chunk_bytes": 8388608, "committed_bytes": 8388608, "status": "open",
+    "expires_at": "2026-10-30T12:00:00Z", "error": null
+  },
+  {
+    "contract_version": "1.0.0", "kind": "chunk_ack", "upload_id": "synthetic-upload-v1",
+    "offset": 8388608, "length": 8388608,
+    "chunk_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+    "committed_bytes": 16777216, "duplicate": false
+  },
+  {
+    "contract_version": "1.0.0", "kind": "stage_event", "job_id": "synthetic-job-v1", "revision": 1,
+    "stage": "validate", "status": "started", "attempt": 1,
+    "idempotency_key": "validate:1111111111111111111111111111111111111111111111111111111111111111",
+    "at": "2026-10-29T12:00:00Z", "output_sha256": null, "error": null
+  },
+  {
+    "contract_version": "1.0.0", "kind": "stage_event", "job_id": "synthetic-job-v1", "revision": 2,
+    "stage": "validate", "status": "failed", "attempt": 1,
+    "idempotency_key": "validate:1111111111111111111111111111111111111111111111111111111111111111",
+    "at": "2026-10-29T12:00:01Z", "output_sha256": null,
+    "error": {"code": "INVALID_INPUT", "message": "SYNTHETIC: clip longer than 60 s", "retryable": false}
+  }
+]

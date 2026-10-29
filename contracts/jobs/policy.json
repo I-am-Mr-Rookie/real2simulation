@@ -1,0 +1,25 @@
+{
+  "contract_version": "1.0.0",
+  "kind": "policy",
+  "note": "S13a pipeline policy. Limits are contract decisions, not measured capacity.",
+  "upload": {
+    "max_file_bytes": 104857600,
+    "chunk_bytes": 8388608,
+    "max_duration_s": 60,
+    "media_types": ["video/mp4", "video/quicktime", "video/webm"],
+    "session_ttl_s": 86400
+  },
+  "stages": [
+    {"name": "validate", "max_attempts": 1, "paid": false},
+    {"name": "keyframes", "max_attempts": 3, "paid": false},
+    {"name": "understand", "max_attempts": 2, "paid": true},
+    {"name": "segment", "max_attempts": 2, "paid": true},
+    {"name": "reconstruct", "max_attempts": 2, "paid": true, "runtime_contract": "S06a-gpu-image/v1"},
+    {"name": "package", "max_attempts": 3, "paid": false}
+  ],
+  "retry": {
+    "backoff_s": [5, 30],
+    "never_retry": ["INVALID_INPUT", "UNAUTHORIZED", "NOT_FOUND", "SPEND_PAUSED"],
+    "job_deadline_s": 360
+  }
+}
