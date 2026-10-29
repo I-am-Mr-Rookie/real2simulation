@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 13:59 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 14:02 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **88 / 216** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **88 / 217** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -22,6 +22,10 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **S10r** — Codex · GPT-6.1 Sol, effort high — Harden exported fit-reveal and finite plotting helpers (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -160,7 +164,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S10</b> — Builder and in-browser simulator; Gate P (18/18)</summary>
+<details><summary><b>S10</b> — Builder and in-browser simulator; Gate P (18/19)</summary>
 
 - [x] **S10a** — Codex · GPT-6.1 Sol, effort medium — Build validated-spec apparatus placement (30 min)
 - [x] **S10b** — Codex · GPT-6.1 Sol, effort medium — Implement fixed-step RK4 core (30 min)
@@ -179,6 +183,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S10o** — Codex · GPT-6.1 Sol, effort high — Repair independent valid-domain RK4 and analytic model findings (30 min)
 - [x] **S10p** — Codex · GPT-6.1 Sol, effort high — Stabilize replay canonicalization and initial snapshot consistency (30 min)
 - [x] **S10q** — Codex · GPT-6.1 Sol, effort high — Correct local bridge byte decoding and output ceiling (30 min)
+- [~] **S10r** — Codex · GPT-6.1 Sol, effort high — Harden exported fit-reveal and finite plotting helpers (30 min) *(in progress)*
 - [x] **R-P** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate P analytic comparison and replay (15 min)
 
 </details>
