@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+S05f-fix-orch32 DONE (Opus medium; gate_r 14 OK + spike/rm02 fresh; TIMEBOX PASS; ff-merged):
+D1 duplicate JSON members rejected (object_pairs_hook); D2 job scene lists validated (nonempty,
+unique, in-cohort, no cross-job overlap) before amortizing. Real Gate R unchanged FAIL. Reviewer
+reproduction now fails by design. orch34: R-R-recheck2 Sol high to confirm CLEAR.
 S06h DONE (orch31 Opus medium; gpu 29 OK, checkpoint.py asserts pass; TIMEBOX PASS; ff-merged):
 evidence/S06/CHECKPOINT.md — MapAnything Apache-2.0 on Modal A10G; RM02 39.6 s / RM04 43.6 s
 round trip; billed RM02 $0.0114, RM04 $0.0096; S06 total $0.058; Modal MTD $0.60/$30 (lagging).
