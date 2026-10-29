@@ -1,0 +1,152 @@
+{
+ "schema_version": "1.0.0",
+ "id": "rm04-mapanything-s06d",
+ "label": "RM04 MapAnything reconstruction - nominal scale, NOT calibrated, NOT Gate R evidence",
+ "synthetic": false,
+ "coordinates": {
+  "handedness": "right",
+  "up": "+Y",
+  "length_unit": "m",
+  "camera_forward": "-Z",
+  "quaternion_order": "xyzw"
+ },
+ "provenance": {
+  "method": "mapanything-apache",
+  "sources": [
+   {
+    "clip_id": "rm04",
+    "source_url": "https://www.pexels.com/video/an-empty-classroom-8342689/",
+    "license": "Pexels",
+    "attribution": "Pavel Danilyuk - An Empty Classroom - Pexels",
+    "approval_evidence": "evidence/owner/S02/APPROVAL.md"
+   }
+  ],
+  "models": [
+   {
+    "id": "facebook/map-anything-apache",
+    "revision": "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a",
+    "code_revision": "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9",
+    "license": "Apache-2.0"
+   }
+  ],
+  "evidence": "S06d/S06e Modal A10G scene_job on S06b runtime image"
+ },
+ "scale": {
+  "status": "estimated",
+  "metres_per_source_unit": 1,
+  "evidence": "MapAnything nominal metric output; no source-backed scale reference (S05d abstained)"
+ },
+ "gravity": {
+  "status": "unknown",
+  "direction": null,
+  "magnitude_m_s2": null,
+  "evidence": "Not estimated by S06d; physics must remain disabled"
+ },
+ "bounds_m": {
+  "min": [
+   -3.52849,
+   -1.28633,
+   -2.8666500000000004
+  ],
+  "max": [
+   3.2674000000000003,
+   2.06062,
+   -1.15856
+  ]
+ },
+ "assets": [
+  {
+   "id": "points",
+   "path": "points.ply",
+   "format": "ply-ascii-xyzrgb",
+   "sha256": "9f0c0bd9dd308549bbedc5e1702c0bdf16046123439129959e657e51d0e82385",
+   "bytes": 752219
+  },
+  {
+   "id": "points-mobile",
+   "path": "points-mobile.ply",
+   "format": "ply-ascii-xyzrgb",
+   "sha256": "e4ce5b06f300e6a88e1f930aa10879b98b1f90922d7c288ebd92346fa2d5e432",
+   "bytes": 188327
+  }
+ ],
+ "render": {
+  "kind": "points",
+  "asset_id": "points",
+  "mobile_asset_id": "points-mobile",
+  "point_count": 20000
+ },
+ "surfaces": [],
+ "colliders": [],
+ "camera_path": [
+  {
+   "time_s": 0.0,
+   "pose": {
+    "position_m": [
+     0.00026648450875654817,
+     -0.0001507132255937904,
+     -0.0008229881059378386
+    ],
+    "rotation_xyzw": [
+     -0.0,
+     0.0001220703115905053,
+     0.0001220703115905053,
+     0.9999999850988389
+    ]
+   },
+   "vertical_fov_deg": 50
+  },
+  {
+   "time_s": 1.0,
+   "pose": {
+    "position_m": [
+     0.007972631603479385,
+     0.02400970086455345,
+     0.10170335322618484
+    ],
+    "rotation_xyzw": [
+     0.0003662109375,
+     -0.002620960760935533,
+     0.0002114319833458102,
+     0.999996475869168
+    ]
+   },
+   "vertical_fov_deg": 50
+  },
+  {
+   "time_s": 2.0,
+   "pose": {
+    "position_m": [
+     0.06274159997701645,
+     0.055167555809020996,
+     0.2722145915031433
+    ],
+    "rotation_xyzw": [
+     -0.001855308124215169,
+     -0.0015680215550128332,
+     0.0001220703125,
+     0.9999970421151285
+    ]
+   },
+   "vertical_fov_deg": 50
+  },
+  {
+   "time_s": 3.0,
+   "pose": {
+    "position_m": [
+     0.06238869950175285,
+     0.04875190928578377,
+     0.3789132833480835
+    ],
+    "rotation_xyzw": [
+     -0.0018593196059238058,
+     -0.003929071518415791,
+     -0.0005459150335692846,
+     0.9999904036061458
+    ]
+   },
+   "vertical_fov_deg": 50
+  }
+ ],
+ "labels": []
+}
