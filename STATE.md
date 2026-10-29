@@ -1,5 +1,25 @@
 # Real2Simulation — STATE
 
+orch24 ACCEPTED Oct29 ~15:55Z (rebased on main, fresh checks green, ff-merged; main 78334bc+):
+- S06e DONE (Opus; gpu 21 + scene 11 OK; TIMEBOX PASS): cost_log.py scene log; one RM02 A10G
+  run: cold start 10.8s, GPU s est 28.1/billed 30.0, cost est $0.0103 vs billed $0.0114 (read-only
+  billing report; may lag). Containers [] after. Client rc1 (local jsonschema) -> bundle finished offline.
+- S13c DONE (Opus; pipeline 20 OK): ffprobe-pts keyframes + clips.csv provenance. Risk: no frame
+  cap (PD04 -> 600 JPEGs); S13e must sample/cap before paid steps.
+- S15g DONE (Sonnet; workspace 60 pass): instrument panel w/ provenance+uncertainty on synthetic
+  fixtures; not wired into S04 page or fit yet.
+- R-R DONE (Sol; spike 11 OK; Gate R rerun FAIL reproduced, SHA identical): gate_r DEFECTS block
+  S05f acceptance: scene_frame emits metric_scale "calibrated" but gate_r accepts only "FIT";
+  missing 3rd scene/absent floor/invalid angle-time can PASS; GPU rounding before compare; abstained
+  gravity reported as angle; float 10% boundary. S05f contract must fix these (S05 Owns) + add Q-S05e
+  standard-object identity/citation/endpoints per evidence/reviews/R-R/.
+- S04h PARTIAL (Sonnet; railway 14 OK; TIMEBOX "EARLY INCOMPLETE"): stage.py+Dockerfile fix for
+  simulator/lab merged; dev web deploy 8a9bdc9f SUCCESS; live verify 10/10; guest+health E4 done.
+  Early stop not accepted as DONE: remaining = Google account pick/consent + email OTP code, owner
+  action only. Controller merged the verified fix (main deployable) and keeps row PARTIAL.
+  Review for Koushik: sign in once on dev /sign-in with Google and with email OTP, reply "y"
+  (default if silent: S01b E2 receipt stands, S04h stays PARTIAL). Finding: /lab "Run trial" on
+  Railway returns local_lab_disabled -> label/hide nav on dev (future web task).
 Owner effort correction Oct29 ~15:45Z: Claude 5h quota limiting; 26 future QUEUE rows
 high -> medium (8 Opus, 18 Sonnet); hard gate/GPU/prediction/integration rows stay high.
 List in AGENTS.md "Latest owner effort correction" and DECISIONS_LOG. In-flight runs unchanged.

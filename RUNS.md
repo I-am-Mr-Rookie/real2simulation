@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 21:20 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 21:21 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **121 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **125 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -14,16 +14,16 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- [ ] **S06e** — Codex (native Claude) · Opus 5.5, effort high — Add cold-start timing and cost instrumentation (30 min)
-- [ ] **S13c** — Codex (native Claude) · Opus 5.5, effort high — Extract ffmpeg keyframes and metadata (30 min)
+- [ ] **S05f** — Codex (native Claude) · Opus 5.5, effort high — Apply the named fallback and checkpoint Gate R (30 min)
+- [ ] **S06f** — Codex (native Claude) · Opus 5.5, effort high — Exercise one licensed room clip on Modal (30 min)
+- [ ] **S13d** — Codex (native Claude) · Opus 5.5, effort medium — Add Redis job lifecycle and retry handling (30 min)
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
-- [ ] **S04h** — Codex (native Claude) · Sonnet 5.5, effort high — Verify sign-in, guest route and dev health (30 min)
+- [~] **S04h** — Codex (native Claude) · Sonnet 5.5, effort high — Verify sign-in, guest route and dev health (30 min) *(partial: resume it)*
 
 **CLAUDE**
-- [ ] **S15g** — Codex (native Claude) · Sonnet 5.5, effort high — Build virtual instrument controls (30 min)
-- [ ] **R-R** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate R implementation and failure thresholds (15 min)
+- [ ] **S15h** — Codex (native Claude) · Sonnet 5.5, effort medium — Build fit table and residual chart (30 min)
 
 ## Waiting for Koushik
 
@@ -85,11 +85,11 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S04g** — Codex · GPT-6.1 Sol, effort medium — Deploy the dev skeleton via Railway (30 min)
 - [x] **S04g1** — Codex · GPT-6.1 Sol, effort medium — Harden dev deployment verifier semantic checks (15 min)
 - [x] **S04g2** — Codex · GPT-6.1 Sol, effort medium — Preserve staging destination guards under Python optimization (15 min)
-- [ ] **S04h** — Codex (native Claude) · Sonnet 5.5, effort high — Verify sign-in, guest route and dev health (30 min)
+- [~] **S04h** — Codex (native Claude) · Sonnet 5.5, effort high — Verify sign-in, guest route and dev health (30 min) *(partial: resume it)*
 
 </details>
 
-<details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (5/7)</summary>
+<details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (6/7)</summary>
 
 - [x] **S05a** — Codex · GPT-6.1 Sol, effort medium — Check reconstruction licences and freeze scene artifact contract (30 min)
 - [x] **S05b** — Codex (native Claude) · Opus 5.5, effort high — Probe MapAnything on the first licensed scene (30 min)
@@ -97,18 +97,18 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S05d** — Codex (native Claude) · Opus 5.5, effort high — Fit floor, metric scale and gravity orientation (30 min)
 - [x] **S05e** — Codex (native Claude) · Opus 5.5, effort high — Run Gate R and inspect reconstruction failures (30 min)
 - [ ] **S05f** — Codex (native Claude) · Opus 5.5, effort high — Apply the named fallback and checkpoint Gate R (30 min)
-- [ ] **R-R** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate R implementation and failure thresholds (15 min)
+- [x] **R-R** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate R implementation and failure thresholds (15 min)
 
 </details>
 
-<details><summary><b>S06</b> — GPU container on Modal (AWS-ready) (5/9)</summary>
+<details><summary><b>S06</b> — GPU container on Modal (AWS-ready) (6/9)</summary>
 
 - [x] **S06a** — Codex (native Claude) · Opus 5.5, effort high — Define reproducible GPU image and dry-run contract (30 min)
 - [x] **S06p** — Codex · GPT-6.1 Sol, effort medium — Verify existing Modal allocation and pre-reset GPU readiness (20 min)
 - [x] **S06b** — Codex (native Claude) · Opus 5.5, effort high — Package MapAnything runtime (30 min)
 - [x] **S06c** — Codex (native Claude) · Opus 5.5, effort high — Add optional SAM 3D Objects path (30 min)
 - [x] **S06d** — Codex (native Claude) · Opus 5.5, effort high — Add Modal scene job entry point (30 min)
-- [ ] **S06e** — Codex (native Claude) · Opus 5.5, effort high — Add cold-start timing and cost instrumentation (30 min)
+- [x] **S06e** — Codex (native Claude) · Opus 5.5, effort high — Add cold-start timing and cost instrumentation (30 min)
 - [ ] **S06f** — Codex (native Claude) · Opus 5.5, effort high — Exercise one licensed room clip on Modal (30 min)
 - [ ] **S06g** — Codex (native Claude) · Opus 5.5, effort medium — Verify CPU dry-run and disabled AWS adapter (30 min)
 - [ ] **S06h** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint GPU runtime and fallback evidence (30 min)
@@ -215,11 +215,11 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S13</b> — Upload and reconstruction job pipeline (2/8)</summary>
+<details><summary><b>S13</b> — Upload and reconstruction job pipeline (3/8)</summary>
 
 - [x] **S13a** — Codex (native Claude) · Opus 5.5, effort high — Define resumable upload and job-stage contracts (30 min)
 - [x] **S13b** — Codex (native Claude) · Opus 5.5, effort high — Implement bucket upload validation (30 min)
-- [ ] **S13c** — Codex (native Claude) · Opus 5.5, effort high — Extract ffmpeg keyframes and metadata (30 min)
+- [x] **S13c** — Codex (native Claude) · Opus 5.5, effort high — Extract ffmpeg keyframes and metadata (30 min)
 - [ ] **S13d** — Codex (native Claude) · Opus 5.5, effort medium — Add Redis job lifecycle and retry handling (30 min)
 - [ ] **S13e** — Codex (native Claude) · Opus 5.5, effort high — Connect Muse Wonder understanding (30 min)
 - [ ] **S13f** — Codex (native Claude) · Opus 5.5, effort high — Connect SAM masks and Modal reconstruction (30 min)
@@ -242,7 +242,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (6/12)</summary>
+<details><summary><b>S15</b> — Workspace UI (7/12)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -250,7 +250,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15d** — Codex (native Claude) · Sonnet 5.5, effort high — Build interview chips and free-text panel (30 min)
 - [x] **S15e** — Codex (native Claude) · Sonnet 5.5, effort high — Build experiment template controls (30 min)
 - [x] **S15f** — Codex (native Claude) · Sonnet 5.5, effort high — Build run and replay controls (30 min)
-- [ ] **S15g** — Codex (native Claude) · Sonnet 5.5, effort high — Build virtual instrument controls (30 min)
+- [x] **S15g** — Codex (native Claude) · Sonnet 5.5, effort high — Build virtual instrument controls (30 min)
 - [ ] **S15h** — Codex (native Claude) · Sonnet 5.5, effort medium — Build fit table and residual chart (30 min)
 - [ ] **S15i** — Codex (native Claude) · Sonnet 5.5, effort medium — Build sidebar and report navigation (30 min)
 - [ ] **S15j** — Codex (native Claude) · Sonnet 5.5, effort medium — Stack workspace at 375px (30 min)
