@@ -1,7 +1,7 @@
 # S13f-orch30 REPORT — Connect SAM masks and Modal reconstruction
 
 Status: **PARTIAL** (reconstruct live-verified; segment offline-only — see finding F1). Lane CLAUDE, anthropic/claude-opus-5-5/high; coding quota OpenCodex-managed; not polled.
-UTC start 2026-10-29T15:43:22Z (issued 15:42:44Z); work stop/report: see TIMEBOX.json. Base main 90d6f45; branch run/S13f-orch30.
+UTC start 2026-10-29T15:43:22Z (issued 15:42:44Z); work stopped at deadline 16:12:44Z; reported 2026-10-29T16:12:53+00:00. Base main 90d6f45; branch run/S13f-orch30.
 
 ## Changed (Owns only)
 - [Build/pipeline/gpu_stages.py](../../../Build/pipeline/gpu_stages.py) — JobRunner workers `reconstruct(key, scene, manifest, out, ledger)` and `segment(key, call, out, ledger, prompt)`, `reserve()` GPU ledger guard (<=2 jobs, <=$1, SPEND_PAUSED non-retryable), CLI for one live reconstruct.
