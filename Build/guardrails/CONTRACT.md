@@ -11,6 +11,11 @@ preflight; see `ADMISSION.md` for schema, tests and the exact shared reservation
 call site. Pipeline/web edits were forbidden, so live wiring, atomic reservation
 and durable upload quota below remain integration obligations, not completed work.
 
+S20c adds the offline disabled-by-default `failover.select_provider` using those
+same S20b checks and existing AWS adapter, plus explicit quota/budget receipt
+paths. See `infra/failover/CONTRACT.md` for schemas and caller obligations. It does
+not launch, relax Modal's floor, reserve money or wire the paid boundary.
+
 ## 1. Existing sources, not a parallel spend database
 
 | Source / existing writer | Projection into the shared accounting view |
