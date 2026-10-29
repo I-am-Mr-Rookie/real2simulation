@@ -1,0 +1,7 @@
+3d3c703233f1f2aa2a4af15633129b5ff03f998d 2026-10-30T03:00:29+06:00 2026-10-30T03:00:30+06:00 S12a-orch37 (01a18968): consistent boundary module+tests, ST03 PTS-conflict boundary; supersedes race in f74b383
+5718f235a599186984994a4877162e86d5cad6e0 2026-10-30T03:25:53+06:00 2026-10-30T03:26:01+06:00 S07b-param-orch40: live RM04 rerun OK (L4, $0.025, containers []), masks pass sanitizer; ST03/RM04 frame_map errata + decode-order PTS fix + regression test
+8cf86ab892ec61888bfff353db81f1feee72ce15 2026-10-30T03:32:42+06:00 2026-10-30T03:32:56+06:00 S12c-orch41: prefix-only hashed held-out predictions (ST03 errata, synthetic bounce), simulator image-derived label
+45c65909359c688bcd1da9ed1efb2cb4177fef8e 2026-10-30T03:44:10+06:00 2026-10-30T03:50:53+06:00 S12e-orch45: pre-registered Gate RS metric (before suffix tracking)
+3485ce88aa3f2c90f83843799fcc0d77780f5237 2026-10-30T03:50:35+06:00 2026-10-30T03:50:53+06:00 S12e-orch45: Gate RS scored (NOT_MET, measured shortfall; Gate M NOT_MET)
+81996b02cbbdc19d0ff012995a13afd741b1f91d 1e052d41f28229d3c31e96557d5178a4cf15df12 2026-10-30T03:44:10+06:00 2026-10-30T03:44:10+06:00 S12e-orch45: pre-registered Gate RS metric (before suffix tracking)
+45c65909359c688bcd1da9ed1efb2cb4177fef8e 4095d3e048a80d135844a1e09799f92ce6eafc12 2026-10-30T03:44:10+06:00 2026-10-30T03:50:53+06:00 S12e-orch45: pre-registered Gate RS metric (before suffix tracking)

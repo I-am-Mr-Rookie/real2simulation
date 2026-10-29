@@ -1,0 +1,80 @@
+{
+  "purpose": "review reproductions; defect assertions passing means defects reproduced",
+  "metric_sanity": {
+    "rms_constant_offset": 0.03000000000000003,
+    "coverage_80_scored": true,
+    "coverage_60_scored": false
+  },
+  "F1_wrong_clip_and_training_accepted": {
+    "reported_clip": "SYNTHETIC-review",
+    "prediction_clip": "SYNTHETIC-other-clip",
+    "scored": true,
+    "rms": 0.0
+  },
+  "F1_precommitted_subset_coverage_inflation": {
+    "true_sealed_frames": 5,
+    "clip_id": "SYNTHETIC-review",
+    "kind": "projectile",
+    "prediction_sha256": "9c8831f069667ba221a76bdc43ae6f107053269a9f68b1a5517d9b4822665b17",
+    "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+    "sealed_frames": 1,
+    "scored_frames": 1,
+    "coverage": 1.0,
+    "normalized_rms": 0.0,
+    "normalized_rms_first5_diagnostic": 0.0,
+    "max_abs": 0.0,
+    "scored": true,
+    "gate_m": "NOT_MET"
+  },
+  "F2_one_synthetic_projectile_used_for_all_categories": {
+    "per_category_normalized_rms": {
+      "projectile": 0.0,
+      "bounce": 0.0,
+      "pendulum": 0.0
+    },
+    "median": 0.0,
+    "threshold": 0.05,
+    "status": "MET",
+    "shortfall": [],
+    "gate_m": "NOT_MET"
+  },
+  "F4_nonfinite_data_accepted": {
+    "nan_pts_scored": true,
+    "nan_category_gate_status": "MET",
+    "nan_category_listed_as_shortfall": false
+  },
+  "F1_overlay_accepts_unbound_suffix_metadata": true,
+  "real_evidence_recomputed": {
+    "clip_id": "ST03",
+    "kind": "projectile",
+    "prediction_sha256": "c81e0f94c110eb229502b37d03c29ec36b11621ed8ca97015f9e671508c9d1b0",
+    "suffix_identity_sha256": "aee71c42f900f9b96dc2ad2f9cf15cdcdb467cefec502100a8cc06776d27115c",
+    "sealed_frames": 466,
+    "scored_frames": 7,
+    "coverage": 0.015021459227467811,
+    "normalized_rms": 0.1981633916341227,
+    "normalized_rms_first5_diagnostic": 0.13266993873624996,
+    "max_abs": 0.3334069487508844,
+    "scored": false,
+    "gate_m": "NOT_MET",
+    "validation": "validate_segment OK",
+    "all_input_hashes_match": true,
+    "errata_reseal_old_count": 465,
+    "errata_reseal_new_count": 466
+  },
+  "F3_wrong_object_validation_failure_scores_anyway": {
+    "validation": "validate_segment rejected: segment: record tracks object 999, expected 2",
+    "observations_returned": 26,
+    "same_rms_as_valid_record": true
+  },
+  "original_preregistration_blob_matches_rebased_copy": true,
+  "all_derived_document_gate_m_labels_not_met": [
+    "evidence\\S12\\boundary-ST03.json",
+    "evidence\\S12\\overlay-pendulum-SYNTHETIC.json",
+    "evidence\\S12\\overlay-ST03.json",
+    "evidence\\S12\\params-ST03.json",
+    "evidence\\S12\\prediction-ST03.json",
+    "evidence\\S12\\gate-rs\\gate-rs.json"
+  ],
+  "completed_assertion_groups": 10
+}

@@ -1,0 +1,23 @@
+{
+  "review_snapshot_matches_canonical_test_sources": {
+    "Build/real2sim/boundary.py": true,
+    "Build/real2sim/params.py": true,
+    "Build/real2sim/predict.py": true,
+    "Build/real2sim/overlay.py": true,
+    "Build/real2sim/score.py": true,
+    "Build/pipeline/gpu_stages.py": true,
+    "contracts/overlay/validate.py": true,
+    "tests/prediction/test_boundary.py": true,
+    "tests/prediction/test_overlay.py": true,
+    "tests/prediction/test_params.py": true,
+    "tests/prediction/test_predict.py": true,
+    "tests/prediction/test_score.py": true
+  },
+  "source_video_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+  "original_last_frame_sha256": "3bb5ce284a7d93239e2ca5e54142a23a751fddcf962b0f58b57401ac5d21c977",
+  "fresh_frame_sha256": {
+    "76": "3bb5ce284a7d93239e2ca5e54142a23a751fddcf962b0f58b57401ac5d21c977",
+    "77": "94f92c375f09c0124ff139d5670730b9e7f2c84cc8563febcbb88d0bab77eea1"
+  },
+  "errata_only_changed_pts_not_frame_identity": true
+}
