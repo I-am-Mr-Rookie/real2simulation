@@ -1,5 +1,16 @@
 # Real2Simulation — STATE
 
+## CURRENT — Oct29 16:54 Dhaka owner reappointed orchestrator (this chat 01a1874a)
+
+Owner: "Read the orchestrator.md file and be the orchestrator." Prior controller
+01a1840d systemError after 16:00 stop. Ready-now issued full30m, project 91e441f8:
+S05b-orch13 Opus/high (first actual RM02 MapAnything Modal probe, <=$1 reserve,
+standing GPU auth), S07b-orch13 Opus/high (actual SAM3.1 runtime on one approved
+clip, <=$2), S02f-orch13 Sol/high (narrowed Falling-ball provenance falsifier).
+Deadlines 11:26-11:26:21Z. Receipts: Run-System/Runs/ORCH-20261029-1654/DISPATCH.json.
+Routine controller decision: S02f narrowed to S02g-swarm3 next action to avoid
+repeat search loop. No new spend/rights/AWS/deploy authority.
+
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 
 Owner (Oct29): Codex/Sol repeatedly looped into PARTIALs; Claude quota now OK.
