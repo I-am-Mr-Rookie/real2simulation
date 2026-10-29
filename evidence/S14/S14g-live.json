@@ -1,0 +1,468 @@
+{
+ "specs": [
+  {
+   "attempts": 2,
+   "rejected": [
+    [
+     "response.questions[0].prompt[0].ref: unknown tool_output_id 'none'",
+     "response.questions[0].chips[0].label[0].ref: unknown tool_output_id 'none'",
+     "response.questions[0].chips[1].label[0].ref: unknown tool_output_id 'none'",
+     "response.candidates[0].rationale[0].ref: unknown tool_output_id 'none'",
+     "response.candidates[1].rationale[0].ref: unknown tool_output_id 'none'",
+     "response.candidates[2].rationale[0].ref: unknown tool_output_id 'none'"
+    ]
+   ],
+   "model_number_attempts": 0,
+   "valid": true,
+   "template": "free_fall"
+  },
+  {
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "valid": true,
+   "template": "free_fall"
+  },
+  {
+   "attempts": 2,
+   "rejected": [
+    [
+     "response.questions[0].prompt[0].ref: unknown tool_output_id 'table-box'",
+     "response.questions[0].chips[0].label[0].ref: unknown tool_output_id 'table-box'",
+     "response.questions[0].chips[1].label[0].ref: unknown tool_output_id 'table-box'",
+     "response.questions[0].chips[2].label[0].ref: unknown tool_output_id 'table-box'",
+     "response.candidates[0].rationale[0].ref: unknown tool_output_id 'table-box'",
+     "response.candidates[1].rationale[0].ref: unknown tool_output_id 'table-box'",
+     "response.candidates[2].rationale[0].ref: unknown tool_output_id 'table-box'"
+    ]
+   ],
+   "model_number_attempts": 0,
+   "valid": true,
+   "template": "free_fall"
+  },
+  {
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "valid": true,
+   "template": "free_fall"
+  },
+  {
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "valid": true,
+   "template": "free_fall"
+  },
+  {
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "valid": true,
+   "template": "free_fall"
+  },
+  {
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "valid": true,
+   "template": "free_fall"
+  },
+  {
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "valid": true,
+   "template": "free_fall"
+  },
+  {
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "valid": true,
+   "template": "free_fall"
+  },
+  {
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "valid": true,
+   "template": "free_fall"
+  }
+ ],
+ "turns": [
+  {
+   "turn": 0,
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, so it cannot support claims about real gravity.9.81 ± 7.4e-05 m/s^2 (simulated)Fitted gravity is consistent with the simulated drop and duration within the reported fit uncertainty.0.1962 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limits include authored synthetic settings and simplified independent uncertainty without correlated scale effects, and the setup is not calibrated."
+  },
+  {
+   "turn": 1,
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity value is consistent with the simulated drop over the simulated duration within the reported uncertainty, subject to synthetic settings and a simplified independent uncertainty model that omits correlated effects and calibration.9.81 ± 7.4e-05 m/s^2 (simulated)The comparison uses simulated drop and duration as listed, with limitations noted.0.1962 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)"
+  },
+  {
+   "turn": 2,
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity estimate of 13.0481 ± 8.9e-05 m/s^2 (simulated) aligns with the simulated drop paired with simulated duration for this virtual run, within quoted uncertainty, while resting on authored settings plus simplified independent timing and position uncertainty without calibrated scale or clock effects."
+  },
+  {
+   "turn": 3,
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, using authored synthetic settings with simplified independent uncertainty and lacking calibration for correlated effects. The fitted gravity value of 14.5659 ± 9.7e-05 m/s^2 (simulated) aligns with the simulated drop duration of 0.2 ± 1e-06 s (simulated) and simulated drop of 0.291317 ± 1e-06 m (simulated) within the stated simplified uncertainty, though this consistency reflects internal model agreement rather than validation against physical measurement."
+  },
+  {
+   "turn": 4,
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fit gravity aligns with simulated drop and timing output within stated uncertainty.9.81 ± 7.4e-05 m/s^2 (simulated)Consistency holds only under synthetic authored settings with idealized independent uncertainty and lacking calibrated correlated effects.0.2 ± 1e-06 s (simulated)"
+  },
+  {
+   "turn": 5,
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity value aligns with the simulated drop behavior over the simulated duration within stated uncertainty, showing internal consistency only.9.81 ± 7.4e-05 m/s^2 (simulated)Limits include synthetic authored settings and simplified independent uncertainty lacking correlated effects and calibration, so no claim about real gravity is supported."
+  },
+  {
+   "turn": 6,
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity value is derived from the simulated drop and duration under stated uncertainties, and appears consistent within that simplified model.5.74799 ± 5.7e-05 m/s^2 (simulated)0.2 ± 1e-06 s (simulated)0.11496 ± 1e-06 m (simulated)Limitations include authored synthetic settings and simplified independent uncertainties lacking correlated effects and calibration, so no claim about real gravity can be made."
+  },
+  {
+   "turn": 7,
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, so it cannot support claims about real gravity.9.53417 ± 7.2e-05 m/s^2 (simulated)The fitted result is consistent with the simulated drop over the simulated duration within the reported fit uncertainty.0.190683 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limitations include synthetic authored settings and simplified independent uncertainty with no correlated calibration."
+  },
+  {
+   "turn": 8,
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, and can only speak to internal consistency of the virtual setup.9.81 ± 7.4e-05 m/s^2 (simulated)Fitted gravity tracks the simulated drop and timing within stated uncertainty, with no sign of mismatch between simulation and fit.0.2 ± 1e-06 s (simulated)Limits include synthetic authored settings plus simplified independent uncertainty, lacking correlated effects and calibration, so broader claims are unwarranted."
+  },
+  {
+   "turn": 9,
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity tracks simulator timing closely within stated uncertainty, showing internal consistency.9.81 ± 7.4e-05 m/s^2 (simulated)Limits include authored instrument settings plus simplified independent uncertainty lacking correlated effects and calibration, so outcome cannot support broad claims."
+  },
+  {
+   "turn": 10,
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity aligns with simulated drop timing within stated uncertainty, showing internal consistency.9.37361 ± 7.2e-05 m/s^2 (simulated)Limitation reflects synthetic settings and simplified independent uncertainty without correlated effects or calibration, so result cannot support wider claims."
+  },
+  {
+   "turn": 11,
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity value of11.3014 ± 8.1e-05 m/s^2 (simulated)is consistent with the simulated drop and duration within the stated simplified uncertainty. Limitations include synthetic authored settings and independent timing and position uncertainty with absent correlated effects and absent calibration, so broader use is unwarranted."
+  },
+  {
+   "turn": 12,
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity from the synthetic fit is consistent with the simulated drop timing within stated uncertainty, as seen in value9.81 ± 7.4e-05 m/s^2 (simulated)Limits include synthetic authored settings and simplified independent uncertainty with unmodeled correlated effects, so result lacks calibration for real-world use."
+  },
+  {
+   "turn": 13,
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, and the fitted gravity result looks consistent with the simulated drop across the simulated duration within the stated fit uncertainty.9.81 ± 7.4e-05 m/s^2 (simulated)Limits include synthetic authored instrument settings with a simple independent timing and position uncertainty model, absent correlated clock and scale effects and absent calibration, so the outcome cannot support claims about real measurement.0.2 ± 1e-06 s (simulated)"
+  },
+  {
+   "turn": 14,
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, and cannot support claims about real gravity.9.83253 ± 7.4e-05 m/s^2 (simulated)The fitted value aligns with the simulated drop paired with simulated duration within quoted uncertainty, with limits from synthetic settings and simplified independent uncertainty lacking correlated effects or calibration.0.2 ± 1e-06 s (simulated)0.19665 ± 1e-06 m (simulated)"
+  },
+  {
+   "turn": 15,
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, and cannot support claims about the real world.15.3817 ± 0.0001 m/s^2 (simulated)Fitted gravity is consistent with the simulated drop and duration within the stated simplified uncertainty, so the check passes internally.0.2 ± 1e-06 s (simulated)0.307633 ± 1e-06 m (simulated)Limitations include synthetic authored settings and simplified independent uncertainty with no correlated effects and no calibration."
+  },
+  {
+   "turn": 16,
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This virtual trial shows fitted gravity consistent with the simulated drop over the simulated duration within stated uncertainty, indicating internal agreement between simulator and fitter. This trial is simulated and not physical evidence. Limits include authored synthetic settings and simplified independent uncertainty without correlated effects and without calibration.9.81 ± 7.4e-05 m/s^2 (simulated)Additional context from simulated duration supports the check while remaining subject to the same simulated scope.0.2 ± 1e-06 s (simulated)"
+  },
+  {
+   "turn": 17,
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted result is internally consistent with the simulated drop and duration within stated uncertainty.9.81 ± 7.4e-05 m/s^2 (simulated)Interpretation is limited by synthetic authored settings and simplified independent uncertainty with no correlated calibration, so no claim about real gravity follows.0.2 ± 1e-06 s (simulated)"
+  },
+  {
+   "turn": 18,
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, with fitted gravity derived from the synthetic run using simulated drop and duration9.13236 ± 7.1e-05 m/s^2 (simulated)consistent within the stated synthetic uncertainty model, which covers independent timing and position spread only and lacks correlated scale effects and calibration, so applicability beyond the virtual lab remains limited0.182647 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)"
+  },
+  {
+   "turn": 19,
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The simulator provides drop and duration, while the fitter reports gravity as13.2171 ± 9e-05 m/s^2 (simulated)Consistency assessment compares that fitted gravity with the value implied by the simulated motion under the projectile template, allowing for stated uncertainties. Limits include authored synthetic settings plus simplified independent timing and position uncertainty, without correlated clock or scale effects and without calibration."
+  },
+  {
+   "turn": 20,
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "The fitted gravity value aligns with the simulated drop and duration within the quoted uncertainty, showing internal consistency for this virtual trial.9.81 ± 7.4e-05 m/s^2 (simulated)0.2 ± 1e-06 s (simulated)0.1962 ± 1e-06 m (simulated)This trial is simulated, not physical evidence, using authored instrument settings with simplified independent uncertainty and lacking correlated effects or calibration."
+  },
+  {
+   "turn": 21,
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, so it cannot support claims about real gravity.9.81 ± 7.4e-05 m/s^2 (simulated)The fitted result is internally consistent with the simulated drop and duration within stated uncertainties.0.1962 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limitations include authored synthetic settings with simplified independent uncertainty and lack of calibration, so broader validity remains untested."
+  },
+  {
+   "turn": 22,
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted result tracks simulated drop behavior within stated uncertainty, showing internal consistency between simulator and fitter. Limits include authored synthetic settings plus simplified independent uncertainty lacking correlated effects and calibration, so no real-world claim follows. Fitted gravity is 9.80706 ± 7.4e-05 m/s^2 (simulated) supported by simulated timing shown in 0.2 ± 1e-06 s (simulated) and simulated drop of 0.196141 ± 1e-06 m (simulated) under those stated limits."
+  },
+  {
+   "turn": 23,
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence.10.3067 ± 7.6e-05 m/s^2 (simulated)Fitted gravity aligns with simulated drop and duration within stated uncertainty, but scope is narrow.0.2 ± 1e-06 s (simulated)Limitations include synthetic settings and simplified independent uncertainty without correlated effects or calibration."
+  },
+  {
+   "turn": 24,
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity is consistent with the simulated drop and timing within reported uncertainty, subject to limits noted here.9.81 ± 7.4e-05 m/s^2 (simulated)Limits include synthetic authored settings plus simplified independent timing and position uncertainty without correlated effects or calibration."
+  },
+  {
+   "turn": 25,
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated rather than physical evidence, so it can show internal consistency only.The fitted gravity value is consistent with the simulated drop behavior over the simulated duration within stated uncertainty.9.81 ± 7.4e-05 m/s^2 (simulated)Limitations include synthetic authored settings plus simplified independent uncertainty, without correlated effects and without calibration."
+  },
+  {
+   "turn": 26,
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, so it cannot support claims about real gravity. The fitted gravity value is4.2258 ± 5.3e-05 m/s^2 (simulated)which is broadly consistent with the simulated drop paired with the simulated duration in this virtual run, within the reported fit uncertainty. Limits include synthetic authored settings and simplified independent uncertainty with no correlated effects and no calibration."
+  },
+  {
+   "turn": 27,
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, and the fitted gravity value aligns with the simulated drop and duration within stated uncertainty.8.66253 ± 6.9e-05 m/s^2 (simulated)Limitation is synthetic authored settings with simplified independent timing and position uncertainty, lacking correlated or calibrated scale effects."
+  },
+  {
+   "turn": 28,
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity is consistent with simulated drop timing within stated uncertainty, subject to synthetic settings and simplified independent uncertainty lacking correlated effects.9.81 ± 7.4e-05 m/s^2 (simulated)Limits noted here prevent use as calibration or real-world confirmation."
+  },
+  {
+   "turn": 29,
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "Fitted gravity tracks the simulated drop timing closely, showing internal consistency within this synthetic trial run. 9.81 ± 7.4e-05 m/s^2 (simulated)0.2 ± 1e-06 s (simulated)This trial is simulated, not physical evidence, with authored settings plus simplified uncertainty handling that limits wider inference. "
+  }
+ ],
+ "stopped": null,
+ "summary": {
+  "valid_specs": "10/10",
+  "turns": 30,
+  "invented_shown": 0,
+  "model_replies_shown": 30,
+  "tool_only_fallbacks": 0,
+  "model_number_attempts_caught": 0,
+  "spark_calls": 30,
+  "wonder_calls": 12,
+  "stopped": null,
+  "gate_a": "MET"
+ }
+}

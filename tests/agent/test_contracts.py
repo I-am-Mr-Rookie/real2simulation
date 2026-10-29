@@ -135,8 +135,17 @@ class ContractTests(unittest.TestCase):
     def test_question_contract(self):
         q = response()["questions"][0]
         self.rejected(response(questions=[dict(q, id=f"q{i}") for i in "abcd"]), "is too long")
-        self.rejected(response(questions=[dict(q, kind="free_text")]), "free_text has no chips")
-        self.rejected(response(questions=[dict(q, kind="chips", chips=[])]), "chip kinds need")
+        # S14g: kind/chips mismatch is normalised (never rejected, never drops chips); input not mutated
+        sent = response(questions=[dict(q, kind="free_text")])
+        out = validate_response(sent, self.tools, SCENE_ID)
+        self.assertEqual(out["questions"][0]["kind"], "chips_and_free_text")
+        self.assertEqual(out["questions"][0]["chips"], q["chips"])
+        self.assertEqual(sent["questions"][0]["kind"], "free_text")
+        for kind in ("chips", "chips_and_free_text"):
+            out = validate_response(response(questions=[dict(q, kind=kind, chips=[])]), self.tools, SCENE_ID)
+            self.assertEqual(out["questions"][0]["kind"], "free_text")
+        bad_chip = [{"id": "c", "label": [{"type": "text", "text": "about five"}]}]
+        self.rejected(response(questions=[dict(q, kind="free_text", chips=bad_chip)]), "five")
         validate_response(response(questions=[dict(q, kind="free_text", chips=[])]), self.tools, SCENE_ID)
 
     def test_scene_binding_and_strict_json(self):

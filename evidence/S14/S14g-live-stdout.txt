@@ -1,0 +1,12 @@
+{
+ "valid_specs": "10/10",
+ "turns": 30,
+ "invented_shown": 0,
+ "model_replies_shown": 30,
+ "tool_only_fallbacks": 0,
+ "model_number_attempts_caught": 0,
+ "spark_calls": 30,
+ "wonder_calls": 12,
+ "stopped": null,
+ "gate_a": "MET"
+}

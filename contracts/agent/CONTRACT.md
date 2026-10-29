@@ -24,7 +24,8 @@ raises `AgentContractError` (`issues` tuple). It applies, in order: strict JSON
 JSON Schema 2020-12 (ASCII digits in text rejected; unknown fields rejected),
 then semantics: Unicode numerals/fractions and common number words rejected,
 every ref resolves to an existing tool-output quantity, `scene_id` matches,
-`free_text` has no chips and chip kinds have at least one.
+question `kind` is normalised to the chips sent (S14g: no chips -> `free_text`; chips on `free_text` ->
+`chips_and_free_text`); chip labels are still number-checked; the input object is not mutated.
 
 ## Tool output
 

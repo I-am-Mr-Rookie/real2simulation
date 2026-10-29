@@ -48,8 +48,13 @@ def render(response: Any, tool_outputs: Iterable[Mapping[str, Any]], scene_id: s
             parts.append(segment["text"])
         else:
             q = index[segment["ref"]["tool_output_id"]][segment["ref"]["quantity"]]
-            parts.append(f"{q['value']:.6g} ± {q['uncertainty']:.2g} {q['unit']} ({q['source']['label']})")
+            parts.append(quantity_text(q))
     return "".join(parts)
+
+
+def quantity_text(q: Mapping[str, Any]) -> str:
+    """The only way a number reaches user text: value, uncertainty, unit and label from a tool output."""
+    return f"{q['value']:.6g} ± {q['uncertainty']:.2g} {q['unit']} ({q['source']['label']})"
 
 
 def tool_backed(scene_id: str, tool_outputs: Iterable[Mapping[str, Any]], lead: str = BLOCKED,

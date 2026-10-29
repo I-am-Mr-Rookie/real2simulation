@@ -5,6 +5,7 @@ the model) and validated here; model output is validated against them before dis
 """
 from __future__ import annotations
 
+import copy
 import json
 import re
 from pathlib import Path
@@ -136,11 +137,18 @@ def validate_response(response: Any, tool_outputs: Iterable[Any], scene_id: str)
     if response["scene_id"] != scene_id:
         issues.append(f"response.scene_id: expected {scene_id!r}")
     _segments(response["segments"], "response.segments", index, issues)
+    # S14g: live Muse mislabels question kinds (S13e video replies); normalise the kind to match the chips
+    # actually sent - chip text is still number-checked below, nothing is dropped or relaxed.
+    if any((q["kind"] == "free_text") == bool(q["chips"]) for q in response["questions"]):
+        response = copy.deepcopy(response)
+        for question in response["questions"]:
+            if not question["chips"]:
+                question["kind"] = "free_text"
+            elif question["kind"] == "free_text":
+                question["kind"] = "chips_and_free_text"
     for q, question in enumerate(response["questions"]):
         where = f"response.questions[{q}]"
         _segments(question["prompt"], f"{where}.prompt", index, issues)
-        if (question["kind"] == "free_text") != (not question["chips"]):
-            issues.append(f"{where}.chips: free_text has no chips; chip kinds need at least one")
         for c, chip in enumerate(question["chips"]):
             _segments(chip["label"], f"{where}.chips[{c}].label", index, issues)
     seen: set[str] = set()
