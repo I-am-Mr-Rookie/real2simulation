@@ -1,5 +1,8 @@
 """Synthetic Gate R checks + R-R counterexample regressions (F1-F6). Synthetic only; no scene claim."""
 import copy
+import json
+import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -122,6 +125,41 @@ class GateR(unittest.TestCase):
         for angle, want in ((5.0, True), (5.00001, False)):
             f = ok3(); f["A"] = clip(1.0, angle)
             self.assertEqual(ev(f)["clips"]["A"]["orientation_pass"], want)
+
+    def test_d2_job_scene_ids_validated_before_amortizing(self):
+        jobs = [{"app_id": c, "scenes": [c], "function_s": 160.0, "lifetime_s": 600.0 if c == "A" else 190.0,
+                 "cost_usd": 0.0} for c in ABC]
+        self.assertFalse(ev(ok3(), jobs)["clips"]["A"]["gpu_pass"])          # failing control: 600 s > 240 s
+        for scenes in (["A", "A", "A"], ["A", "X", "Y"], [], "A"):            # duplicate / unknown / empty / not a list
+            bad = copy.deepcopy(jobs); bad[0]["scenes"] = scenes
+            with self.assertRaises(ValueError):
+                ev(ok3(), bad)
+        bad = copy.deepcopy(jobs); bad[1]["scenes"] = ["B", "A"]              # conflicting coverage, no overwrite
+        with self.assertRaises(ValueError):
+            ev(ok3(), bad)
+        self.assertEqual(ev(ok3())["clips"]["C"]["gpu"]["lifetime_s_amortized"], 131.0)  # legit 2-scene job kept
+
+    def test_d1_duplicate_json_members_rejected(self):
+        with self.assertRaises(ValueError):
+            json.loads('{"A": 1, "A": 2}', object_pairs_hook=g._unique_pairs)
+        self.assertEqual(json.loads('{"A": {"B": 1}}', object_pairs_hook=g._unique_pairs), {"A": {"B": 1}})
+
+    def test_d1_cli_rejects_conflicting_duplicate_scene(self):
+        root = Path(__file__).resolve().parents[3]
+        real = g.load_json(root / "evidence/S05/S05f/RESULT.json")
+        frames = {c: {**clip(1.0, 1.0), "npz_sha256": real[c]["npz_sha256"]} for c in g.COHORT}
+        frames["RM05"] = {**clip(), "npz_sha256": real["RM05"]["npz_sha256"]}  # so last-wins RM02 would PASS 2/3
+        bad = {**copy.deepcopy(frames["RM02"]), "metric_scale": {"status": "calibrated", "metres_per_model_unit": 2.0}}
+        with tempfile.TemporaryDirectory() as d:
+            def run(text):
+                p = Path(d) / "frames.json"; p.write_text(text, encoding="utf-8")
+                return subprocess.run([sys.executable, "-B", str(Path(g.__file__)), "--frames", str(p),
+                                       str(Path(d) / "out.json")], cwd=root, capture_output=True, text=True)
+            ctl = run(json.dumps({**frames, "RM02": bad}))                    # unique control runs: FAIL verdict
+            self.assertEqual((ctl.returncode, ctl.stdout.split()[0]), (0, "FAIL"), ctl.stderr)
+            dup = run('{"RM02":' + json.dumps(bad) + ',' + json.dumps(frames)[1:])
+            self.assertNotEqual(dup.returncode, 0)
+            self.assertIn("duplicate JSON members", dup.stderr)
 
 
 if __name__ == "__main__":

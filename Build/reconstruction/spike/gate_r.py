@@ -41,6 +41,19 @@ def _num(x, what, lo=None, hi=None):
     return float(x)
 
 
+def _unique_pairs(pairs):
+    """R-R recheck D1: plain json.loads keeps only the last duplicate member; reject before data is lost."""
+    keys = [k for k, _ in pairs]
+    dup = sorted({k for k in keys if keys.count(k) > 1})
+    if dup:
+        raise ValueError(f"duplicate JSON members: {dup}")
+    return dict(pairs)
+
+
+def load_json(path):
+    return json.loads(Path(path).read_text(encoding="utf-8"), object_pairs_hook=_unique_pairs)
+
+
 def evaluate(frames, jobs, cohort=COHORT):
     """Fixed cohort (R-R F2): every expected clip must be present exactly once, ABSTAIN entries included.
 
@@ -51,6 +64,11 @@ def evaluate(frames, jobs, cohort=COHORT):
     clips, fails = {}, []
     per_scene = {}
     for j in jobs:
+        sc = j["scenes"]  # R-R recheck D2: validate membership before amortizing lifetime/cost
+        if not isinstance(sc, list) or not sc or len(set(sc)) != len(sc) or not set(sc) <= set(cohort):
+            raise ValueError(f"job {j.get('app_id')}: scenes must be nonempty, unique, in cohort; got {sc!r}")
+        if set(sc) & set(per_scene):
+            raise ValueError(f"job {j.get('app_id')}: conflicting GPU coverage for {sorted(set(sc) & set(per_scene))}")
         n = len(j["scenes"])
         fs, ls = _num(j["function_s"], "function_s", 0), _num(j["lifetime_s"], "lifetime_s", 0)
         for s in j["scenes"]:
@@ -120,7 +138,7 @@ def main():
     ap.add_argument("--orch14", default="evidence/S05/S05b/orch14/job-ledger.json")
     ap.add_argument("out")
     a = ap.parse_args()
-    rd = lambda p: json.loads(Path(p).read_text(encoding="utf-8"))
+    rd = load_json
     frames, s05c = rd(a.frames), rd(a.s05c)
     for cid, r in frames.items():  # input integrity: S05d analysed exactly the S05c/S05b npz
         want = s05c["scenes"][cid]["npz_sha256"]

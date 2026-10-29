@@ -1,0 +1,29 @@
+{"allocated_gpu": "synthetic GPU"}
+{"allocated_gpu": "synthetic GPU"}
+{"allocated_gpu": "synthetic GPU"}
+{"allocated_gpu": "synthetic GPU"}
+{"allocated_gpu": "synthetic GPU"}
+{"allocated_gpu": "synthetic GPU"}
+.........................E.......................Executing <Handle BaseProactorEventLoop._loop_self_reading() created at C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\asyncio\windows_events.py:320> took 0.120 seconds
+.....................................
+======================================================================
+ERROR: test_modal_scenes (unittest.loader._FailedTest.test_modal_scenes)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_modal_scenes
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\loader.py", line 426, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\loader.py", line 367, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S05f-fix-orch32\Build\reconstruction\spike\test_modal_scenes.py", line 10, in <module>
+    import modal_scenes
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S05f-fix-orch32\Build\reconstruction\spike\modal_scenes.py", line 17, in <module>
+    import modal
+ModuleNotFoundError: No module named 'modal'
+
+
+----------------------------------------------------------------------
+Ran 86 tests in 99.720s
+
+FAILED (errors=1)

@@ -1,0 +1,19 @@
+test_abstain_everywhere_fails_as_unmeasured (test_gate_r.GateR.test_abstain_everywhere_fails_as_unmeasured) ... ok
+test_d1_cli_rejects_conflicting_duplicate_scene (test_gate_r.GateR.test_d1_cli_rejects_conflicting_duplicate_scene) ... ok
+test_d1_duplicate_json_members_rejected (test_gate_r.GateR.test_d1_duplicate_json_members_rejected) ... ok
+test_d2_job_scene_ids_validated_before_amortizing (test_gate_r.GateR.test_d2_job_scene_ids_validated_before_amortizing) ... ok
+test_disjoint_criteria_do_not_combine (test_gate_r.GateR.test_disjoint_criteria_do_not_combine) ... ok
+test_f1_actual_producer_calibrated_status (test_gate_r.GateR.test_f1_actual_producer_calibrated_status) ... ok
+test_f2_fixed_cohort (test_gate_r.GateR.test_f2_fixed_cohort) ... ok
+test_f3_invalid_values_error (test_gate_r.GateR.test_f3_invalid_values_error) ... ok
+test_f3_no_floor_fails (test_gate_r.GateR.test_f3_no_floor_fails) ... ok
+test_f4_gpu_compared_before_rounding (test_gate_r.GateR.test_f4_gpu_compared_before_rounding) ... ok
+test_f5_abstained_gravity_reason (test_gate_r.GateR.test_f5_abstained_gravity_reason) ... ok
+test_f6_inclusive_scale_boundary (test_gate_r.GateR.test_f6_inclusive_scale_boundary) ... ok
+test_pass_when_measured_within_thresholds (test_gate_r.GateR.test_pass_when_measured_within_thresholds) ... ok
+test_slow_gpu_or_missing_timing_fails (test_gate_r.GateR.test_slow_gpu_or_missing_timing_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 3.246s
+
+OK
