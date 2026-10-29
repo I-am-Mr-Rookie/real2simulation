@@ -5,9 +5,9 @@
   "sourceRevision": "300cd2096f9e32bcdf3433520b36b67f709df0d5",
   "verifiedUtc": "2026-10-27T20:30:01Z",
   "services": {
-    "web": {"id": "49f2938d-1566-480d-94e3-c9f7fefe24c2", "deploymentId": "a7ea1564-fbe6-418e-bb29-7db3b8f45a02", "url": "https://web-dev-cd80.up.railway.app", "providerStatus": "SUCCESS", "port": 8080},
+    "web": {"id": "49f2938d-1566-480d-94e3-c9f7fefe24c2", "deploymentId": "8ab5d816-d52a-4f5f-9d3f-13e3ee149f27", "sourceRevision": "790f97684ac9cc25cd5d81c4118dc5b206b18b0b", "verifiedUtc": "2026-10-29T13:02:10Z", "url": "https://web-dev-cd80.up.railway.app", "providerStatus": "SUCCESS", "port": 8080},
     "api": {"id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6", "deploymentId": "d520a4f9-6a77-472b-8a97-12a745f6aca1", "url": "https://api-dev-6091.up.railway.app", "providerStatus": "SUCCESS", "port": 8080},
     "worker": {"id": "5b5e6ebc-d4f1-46fb-b6de-6b7ff94b89a7", "deploymentId": "533e73fe-909c-42fc-b2cb-aec983c79891", "url": "https://worker-dev-984d.up.railway.app", "providerStatus": "SUCCESS", "port": 8080}
   },
-  "limits": ["Dev only, not judging/production readiness", "Worker HTTP sidecar only: readiness503, no consumer heartbeat", "Clerk configuration absent: sign-in unavailable; no Google/OTP E2E", "Direct dependencies pinned; transitive versions and base image tags not locked"]
+  "limits": ["Dev only, not judging/production readiness", "Worker HTTP sidecar only: readiness503, no consumer heartbeat", "Clerk dev instance configured; Google/email OTP/guest owner-verified (S01b E2), no agent E2E (S04h)", "Web source 790f976 is off-main (300cd20 + account menu); current main fails Railway build until stage.py allowlist covers simulator/ and lab/", "Direct dependencies pinned; transitive versions and base image tags not locked"]
 }

@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+S01b DONE Oct29 13:02Z (owner E2): Koushik confirmed Google, email OTP and guest flows
+work on Railway dev web deployment 8ab5d816 (source 790f976 = 300cd20 + account menu;
+main c4a3149). Receipt evidence/owner/S01/S01B-RECEIPT.md. S04h now dependency-ready
+(not dispatched). Risk: current main fails Railway build (stage.py web allowlist lacks
+simulator/ + lab/session-service.mjs; deploy 7e6e079d FAILED) — fix before next main deploy.
+
 orch21: S05d-orch21 Opus (floor/scale/gravity, CPU, abstain if no source-backed reference);
 S02f-orch21 Sol/high after 12:18Z quota reset (hold cleared by expiry; one bounded attempt,
 same narrowed Falling-ball falsifier). Receipt DISPATCH-orch21.json.

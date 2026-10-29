@@ -2,8 +2,8 @@
 
 Current deployment IDs/URLs/revision: deployments.json. Web production build
 runs on Railway; API ready200 proves read-only dependency operations. Worker
-ready503 intentionally refuses to claim a consumer heartbeat. Sign-in fallback
-remains unavailable pending secure Clerk configuration and owner S01b tests.
+ready503 intentionally refuses to claim a consumer heartbeat. Clerk dev keys are
+set on web (Oct29); owner S01b verified Google, email OTP and guest access.
 No source/config secret values fetched. Historical S04f contract follows.
 
 S04f configures isolated dev-only web/API/worker/Postgres/Redis/object storage;

@@ -19,6 +19,11 @@ Run-System/Runs/S04g/. Provider reports SUCCESS for all three apps. Web producti
 Next build succeeded on Railway; / and /library200. Sign-in is an explicit
 unavailable fallback (no Clerk configuration), private workspace404. Not auth E2E.
 
+Oct29 update: web redeployed as 8ab5d816 from 790f976 (300cd20 + account menu) with
+Clerk dev keys set by Koushik; owner S01b verified Google, email OTP and guest access
+(evidence/owner/S01/S01B-RECEIPT.md). Current main does not build on Railway until
+stage.py's web allowlist includes simulator/ and lab/session-service.mjs.
+
 API /health/live200 and /health/ready200: live Postgres SELECT1, Redis PING and
 bucket HeadBucket succeeded. Worker /health/live200, /health/ready503 with Redis
 and bucket ok but heartbeat unavailable. No job consumer exists. /api/version on

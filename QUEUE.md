@@ -55,7 +55,7 @@ prerequisite. Lane/slot/ownership/approval checks still apply.
 | ID | Lane | Model / effort | Step | Min | Task | Depends | Owns (paths) | Acceptance / evidence | Status |
 |---|---|---|---|---:|---|---|---|---|---|
 | S01a | KOUSHIK | Human only | S01 | 30 | Review Meta access evidence and billing balance | — | evidence/owner/S01/ | Record owner-reported 44-token success separately from independently verified billing; reveal no key. | DONE |
-| S01b | KOUSHIK | Human only | S01 | 30 | Verify Google, email OTP and guest access when S04 is available | S01a, S04g | evidence/owner/S01/ | All three flows have timestamped E2 evidence; until S04, this task waits. | TODO |
+| S01b | KOUSHIK | Human only | S01 | 30 | Verify Google, email OTP and guest access when S04 is available | S01a, S04g | evidence/owner/S01/ | All three flows have timestamped E2 evidence; until S04, this task waits. | DONE |
 | S01c | KOUSHIK | Human only | S01 | 30 | Reconcile service readiness and dev-deploy approval | S01a | evidence/owner/S01/ | Record auth-only versus inference evidence and written dev approval; no extra accounts or purchases. | DONE |
 | S02a | CODEX-2 | GPT-6.1 Terra / high | S02 | 30 | Source free-fall and Apollo 15 candidates | — | test-data/public/; clips.csv; evidence/clips/ | Record original source, rights and scale/timebase suitability for at least 3 fall candidates and Apollo 15. | DONE |
 | S02b | CODEX-2 | GPT-6.1 Terra / high | S02 | 30 | Source projectile, bounce, pendulum and room candidates | S02a | test-data/public/; clips.csv; evidence/clips/ | Cover remaining experiment types and 3 room scenes; reject sports, NC/ND and unknown rights. | DONE |

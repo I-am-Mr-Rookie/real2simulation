@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 18:47 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 19:02 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **115 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **116 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -21,13 +21,14 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
+- [ ] **S04h** — Codex (native Claude) · Sonnet 5.5, effort high — Verify sign-in, guest route and dev health (30 min)
 
 **CLAUDE**
 - [ ] **S15f** — Codex (native Claude) · Sonnet 5.5, effort high — Build run and replay controls (30 min)
 
 ## Waiting for Koushik
 
-- [ ] **S01b** — Verify Google, email OTP and guest access when S04 is available (30 min)
+Nothing right now.
 
 ## All runs by step
 
@@ -44,10 +45,10 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S01</b> — Finish keys and approvals (2/3)</summary>
+<details><summary><b>S01</b> — Finish keys and approvals (3/3)</summary>
 
 - [x] **S01a** — Review Meta access evidence and billing balance (30 min)
-- [ ] **S01b** — Verify Google, email OTP and guest access when S04 is available (30 min)
+- [x] **S01b** — Verify Google, email OTP and guest access when S04 is available (30 min)
 - [x] **S01c** — Reconcile service readiness and dev-deploy approval (30 min)
 
 </details>
