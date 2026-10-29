@@ -5,77 +5,77 @@
         "seed": 0,
         "band": 0.01,
         "status": "FIT",
-        "angle_vs_base_deg": 0.847,
-        "inlier_fraction": 0.5153,
-        "mean_cam_height": 0.3718
+        "angle_vs_base_deg": 1.692,
+        "inlier_fraction": 0.0377,
+        "mean_cam_height": 1.2138
       },
       {
         "seed": 0,
         "band": 0.02,
         "status": "FIT",
         "angle_vs_base_deg": 0.0,
-        "inlier_fraction": 0.5918,
-        "mean_cam_height": 0.3859
+        "inlier_fraction": 0.0687,
+        "mean_cam_height": 1.1763
       },
       {
         "seed": 0,
         "band": 0.04,
         "status": "FIT",
-        "angle_vs_base_deg": 0.755,
-        "inlier_fraction": 0.6709,
-        "mean_cam_height": 0.3806
+        "angle_vs_base_deg": 0.143,
+        "inlier_fraction": 0.0716,
+        "mean_cam_height": 1.1757
       },
       {
         "seed": 1,
         "band": 0.01,
         "status": "FIT",
-        "angle_vs_base_deg": 0.873,
-        "inlier_fraction": 0.5183,
-        "mean_cam_height": 0.3712
+        "angle_vs_base_deg": 1.405,
+        "inlier_fraction": 0.0411,
+        "mean_cam_height": 1.2022
       },
       {
         "seed": 1,
         "band": 0.02,
         "status": "FIT",
-        "angle_vs_base_deg": 0.261,
-        "inlier_fraction": 0.5919,
-        "mean_cam_height": 0.3818
+        "angle_vs_base_deg": 0.705,
+        "inlier_fraction": 0.0735,
+        "mean_cam_height": 1.1642
       },
       {
         "seed": 1,
         "band": 0.04,
         "status": "FIT",
-        "angle_vs_base_deg": 0.878,
-        "inlier_fraction": 0.6742,
-        "mean_cam_height": 0.3805
+        "angle_vs_base_deg": 0.56,
+        "inlier_fraction": 0.078,
+        "mean_cam_height": 1.1636
       },
       {
         "seed": 2,
         "band": 0.01,
         "status": "FIT",
-        "angle_vs_base_deg": 1.073,
-        "inlier_fraction": 0.5171,
-        "mean_cam_height": 0.3682
+        "angle_vs_base_deg": 1.751,
+        "inlier_fraction": 0.0411,
+        "mean_cam_height": 1.2059
       },
       {
         "seed": 2,
         "band": 0.02,
         "status": "FIT",
-        "angle_vs_base_deg": 0.484,
-        "inlier_fraction": 0.5928,
-        "mean_cam_height": 0.3794
+        "angle_vs_base_deg": 0.863,
+        "inlier_fraction": 0.0719,
+        "mean_cam_height": 1.1637
       },
       {
         "seed": 2,
         "band": 0.04,
         "status": "FIT",
-        "angle_vs_base_deg": 0.79,
-        "inlier_fraction": 0.6738,
-        "mean_cam_height": 0.3807
+        "angle_vs_base_deg": 18.158,
+        "inlier_fraction": 0.0382,
+        "mean_cam_height": 1.4473
       }
     ],
     "all_fit": true,
-    "max_angle_vs_base_deg": 1.073
+    "max_angle_vs_base_deg": 18.158
   },
   "RM04": {
     "variants": [
@@ -83,39 +83,39 @@
         "seed": 0,
         "band": 0.01,
         "status": "FIT",
-        "angle_vs_base_deg": 0.087,
-        "inlier_fraction": 0.0571,
-        "mean_cam_height": 1.3809
+        "angle_vs_base_deg": 0.44,
+        "inlier_fraction": 0.044,
+        "mean_cam_height": 1.3905
       },
       {
         "seed": 0,
         "band": 0.02,
         "status": "FIT",
         "angle_vs_base_deg": 0.0,
-        "inlier_fraction": 0.0632,
-        "mean_cam_height": 1.3841
+        "inlier_fraction": 0.0566,
+        "mean_cam_height": 1.404
       },
       {
         "seed": 0,
         "band": 0.04,
         "status": "FIT",
-        "angle_vs_base_deg": 0.309,
-        "inlier_fraction": 0.0649,
-        "mean_cam_height": 1.3964
+        "angle_vs_base_deg": 0.248,
+        "inlier_fraction": 0.0652,
+        "mean_cam_height": 1.4018
       },
       {
         "seed": 1,
         "band": 0.01,
         "status": "FIT",
-        "angle_vs_base_deg": 0.219,
-        "inlier_fraction": 0.0579,
-        "mean_cam_height": 1.3749
+        "angle_vs_base_deg": 0.254,
+        "inlier_fraction": 0.0524,
+        "mean_cam_height": 1.3935
       },
       {
         "seed": 1,
         "band": 0.02,
         "status": "FIT",
-        "angle_vs_base_deg": 0.054,
+        "angle_vs_base_deg": 0.47,
         "inlier_fraction": 0.0627,
         "mean_cam_height": 1.3844
       },
@@ -123,77 +123,77 @@
         "seed": 1,
         "band": 0.04,
         "status": "FIT",
-        "angle_vs_base_deg": 0.276,
+        "angle_vs_base_deg": 0.279,
         "inlier_fraction": 0.0646,
-        "mean_cam_height": 1.3952
+        "mean_cam_height": 1.3962
       },
       {
         "seed": 2,
         "band": 0.01,
         "status": "FIT",
-        "angle_vs_base_deg": 0.286,
-        "inlier_fraction": 0.0571,
-        "mean_cam_height": 1.3778
+        "angle_vs_base_deg": 0.502,
+        "inlier_fraction": 0.0561,
+        "mean_cam_height": 1.3843
       },
       {
         "seed": 2,
         "band": 0.02,
         "status": "FIT",
-        "angle_vs_base_deg": 0.023,
+        "angle_vs_base_deg": 0.46,
         "inlier_fraction": 0.0631,
-        "mean_cam_height": 1.3848
+        "mean_cam_height": 1.3851
       },
       {
         "seed": 2,
         "band": 0.04,
         "status": "FIT",
-        "angle_vs_base_deg": 0.274,
+        "angle_vs_base_deg": 0.28,
         "inlier_fraction": 0.0645,
         "mean_cam_height": 1.3953
       }
     ],
     "all_fit": true,
-    "max_angle_vs_base_deg": 0.309
+    "max_angle_vs_base_deg": 0.502
   },
   "RM05": {
     "variants": [
       {
         "seed": 0,
         "band": 0.01,
-        "status": "FIT",
-        "angle_vs_base_deg": 0.105,
-        "inlier_fraction": 0.0309,
-        "mean_cam_height": 0.8088
+        "status": "ABSTAIN",
+        "angle_vs_base_deg": null,
+        "inlier_fraction": null,
+        "mean_cam_height": null
       },
       {
         "seed": 0,
         "band": 0.02,
         "status": "FIT",
         "angle_vs_base_deg": 0.0,
-        "inlier_fraction": 0.0535,
-        "mean_cam_height": 0.8062
+        "inlier_fraction": 0.0368,
+        "mean_cam_height": 0.8747
       },
       {
         "seed": 0,
         "band": 0.04,
         "status": "FIT",
-        "angle_vs_base_deg": 0.281,
-        "inlier_fraction": 0.0877,
-        "mean_cam_height": 0.806
+        "angle_vs_base_deg": 33.666,
+        "inlier_fraction": 0.0398,
+        "mean_cam_height": 1.9537
       },
       {
         "seed": 1,
         "band": 0.01,
-        "status": "FIT",
-        "angle_vs_base_deg": 5.496,
-        "inlier_fraction": 0.0204,
-        "mean_cam_height": 0.8109
+        "status": "ABSTAIN",
+        "angle_vs_base_deg": null,
+        "inlier_fraction": null,
+        "mean_cam_height": null
       },
       {
         "seed": 1,
         "band": 0.02,
         "status": "FIT",
-        "angle_vs_base_deg": 5.379,
+        "angle_vs_base_deg": 13.015,
         "inlier_fraction": 0.0391,
         "mean_cam_height": 0.8122
       },
@@ -201,23 +201,23 @@
         "seed": 1,
         "band": 0.04,
         "status": "FIT",
-        "angle_vs_base_deg": 4.994,
-        "inlier_fraction": 0.0737,
-        "mean_cam_height": 0.8101
+        "angle_vs_base_deg": 9.23,
+        "inlier_fraction": 0.0537,
+        "mean_cam_height": 0.9927
       },
       {
         "seed": 2,
         "band": 0.01,
-        "status": "FIT",
-        "angle_vs_base_deg": 17.387,
-        "inlier_fraction": 0.0186,
-        "mean_cam_height": 0.9128
+        "status": "ABSTAIN",
+        "angle_vs_base_deg": null,
+        "inlier_fraction": null,
+        "mean_cam_height": null
       },
       {
         "seed": 2,
         "band": 0.02,
         "status": "FIT",
-        "angle_vs_base_deg": 17.316,
+        "angle_vs_base_deg": 9.803,
         "inlier_fraction": 0.0341,
         "mean_cam_height": 0.9118
       },
@@ -225,12 +225,12 @@
         "seed": 2,
         "band": 0.04,
         "status": "FIT",
-        "angle_vs_base_deg": 18.406,
+        "angle_vs_base_deg": 9.319,
         "inlier_fraction": 0.0656,
-        "mean_cam_height": 0.5849
+        "mean_cam_height": 0.9076
       }
     ],
-    "all_fit": true,
-    "max_angle_vs_base_deg": 18.406
+    "all_fit": false,
+    "max_angle_vs_base_deg": 33.666
   }
 }

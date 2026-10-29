@@ -26,33 +26,33 @@
     "floor": {
       "status": "FIT",
       "normal_down": [
-        -0.006306999828666449,
-        0.977882981300354,
-        0.20905999839305878
+        -0.025033000856637955,
+        0.9799469709396362,
+        0.19767899811267853
       ],
-      "angle_to_camera_down_prior_deg": 11.623,
+      "angle_to_camera_down_prior_deg": 11.053,
       "camera_heights_model_units": [
-        0.3921,
-        0.3855,
-        0.3866,
-        0.3793
+        1.1838,
+        1.177,
+        1.1769,
+        1.1676
       ],
-      "inliers": 35506,
-      "inlier_fraction": 0.5917666666666667,
-      "rms_residual": 0.007003589067608118,
-      "p95_abs_residual": 0.015465181320905685,
-      "normal_bootstrap_std_deg": 0.00950520960516789,
-      "normal_bootstrap_max_deg": 0.03426402062177658
+      "inliers": 4124,
+      "inlier_fraction": 0.06873333333333333,
+      "rms_residual": 0.008069973438978195,
+      "p95_abs_residual": 0.014561816118657589,
+      "normal_bootstrap_std_deg": 0.04393192042834663,
+      "normal_bootstrap_max_deg": 0.21028928458690643
     },
     "gravity": {
       "status": "estimated",
       "direction": [
-        -0.006306999828666449,
-        0.977882981300354,
-        0.20905999839305878
+        -0.025033000856637955,
+        0.9799469709396362,
+        0.19767899811267853
       ],
       "magnitude_m_s2": null,
-      "uncertainty_deg_1sd": 0.00950520960516789,
+      "uncertainty_deg_1sd": 0.04393192042834663,
       "basis": "floor normal assumed horizontal; magnitude never assumed"
     },
     "a4_plane_normal": {
@@ -94,33 +94,33 @@
     "floor": {
       "status": "FIT",
       "normal_down": [
-        -0.014626000076532364,
-        0.9985460042953491,
-        0.05188500136137009
+        -0.020215999335050583,
+        0.9980949759483337,
+        0.05829500034451485
       ],
-      "angle_to_camera_down_prior_deg": 3.182,
+      "angle_to_camera_down_prior_deg": 3.627,
       "camera_heights_model_units": [
-        1.3418,
-        1.3713,
-        1.4121,
-        1.4112
+        1.3603,
+        1.3906,
+        1.4327,
+        1.4325
       ],
-      "inliers": 3790,
-      "inlier_fraction": 0.06316666666666666,
-      "rms_residual": 0.005719850305467844,
-      "p95_abs_residual": 0.011646360158920288,
-      "normal_bootstrap_std_deg": 0.015453870675656189,
-      "normal_bootstrap_max_deg": 0.05595290660858154
+      "inliers": 3399,
+      "inlier_fraction": 0.05665,
+      "rms_residual": 0.00618046335875988,
+      "p95_abs_residual": 0.010948818176984787,
+      "normal_bootstrap_std_deg": 0.01951263849441864,
+      "normal_bootstrap_max_deg": 0.06255725026130676
     },
     "gravity": {
       "status": "estimated",
       "direction": [
-        -0.014626000076532364,
-        0.9985460042953491,
-        0.05188500136137009
+        -0.020215999335050583,
+        0.9980949759483337,
+        0.05829500034451485
       ],
       "magnitude_m_s2": null,
-      "uncertainty_deg_1sd": 0.015453870675656189,
+      "uncertainty_deg_1sd": 0.01951263849441864,
       "basis": "floor normal assumed horizontal; magnitude never assumed"
     },
     "a4_plane_normal": {
@@ -162,23 +162,23 @@
     "floor": {
       "status": "FIT",
       "normal_down": [
-        0.059491999447345734,
-        0.9483699798583984,
-        0.3115380108356476
+        0.1999409943819046,
+        0.9279249906539917,
+        0.31460800766944885
       ],
-      "angle_to_camera_down_prior_deg": 17.773,
+      "angle_to_camera_down_prior_deg": 22.27,
       "camera_heights_model_units": [
-        0.8351,
-        0.8234,
-        0.7962,
-        0.7701
+        0.9105,
+        0.897,
+        0.8623,
+        0.8291
       ],
-      "inliers": 3208,
-      "inlier_fraction": 0.05346666666666667,
-      "rms_residual": 0.010483556427061558,
-      "p95_abs_residual": 0.01896277442574501,
-      "normal_bootstrap_std_deg": 0.022177079361418932,
-      "normal_bootstrap_max_deg": 0.07912936806678772
+      "inliers": 2207,
+      "inlier_fraction": 0.036783333333333335,
+      "rms_residual": 0.011544126085937023,
+      "p95_abs_residual": 0.01897639036178589,
+      "normal_bootstrap_std_deg": 0.019833954906164797,
+      "normal_bootstrap_max_deg": 0.07661667466163635
     },
     "gravity": {
       "status": "ABSTAIN",

@@ -18,6 +18,7 @@ PRIOR_MAX_DEG = 35.0     # floor normal must be within this of mean camera-down
 ITERS = 400
 BOOT = 50
 PATCH_PX = 8            # hypothesis triplets are image-local, so low-inlier floors still get sampled
+MIN_SUPPORT = 0.03      # floor = LOWEST plane with >=3% support (dominant plane is often a desk top)
 
 
 def load_views(path):
@@ -74,11 +75,13 @@ def fit_floor(pts, down_prior, cam_centres, rng, samples):
         if np.any((cam_centres - s[0]) @ n > -INLIER_M):
             continue                                 # every camera must be above plane
         cnt = int((np.abs((pts - s[0]) @ n) < INLIER_M).sum())
-        if best is None or cnt > best[0]:
-            best = (cnt, n, s[0])
+        low = float(np.min((s[0] - cam_centres) @ n))   # height below the closest camera
+        if cnt >= MIN_SUPPORT * len(pts) and (best is None or low > best[0] + INLIER_M
+                                              or (abs(low - best[0]) <= INLIER_M and cnt > best[1])):
+            best = (low, cnt, n, s[0])
     if best is None:
         return None
-    _, n, o = best
+    _, _, n, o = best
     for _ in range(2):                               # least-squares polish on inliers
         inl = pts[np.abs((pts - o) @ n) < INLIER_M]
         n2, o = refit(inl)
