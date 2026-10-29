@@ -1,6 +1,7 @@
 import './styles.css';
 import ShellFrame from '../shell/ShellFrame';
 import AuthProvider from '../auth/AuthProvider';
+import { getClerkConfiguration } from '../auth/server-config';
 
 // Re-evaluate configuration per request; never cache a build-time provider when
 // runtime credentials are absent. Private resource checks remain server-side.
@@ -12,5 +13,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  return <html lang="en"><body><AuthProvider><ShellFrame>{children}</ShellFrame></AuthProvider></body></html>;
+  const authAvailable = getClerkConfiguration().available;
+  return <html lang="en"><body><AuthProvider><ShellFrame authAvailable={authAvailable}>{children}</ShellFrame></AuthProvider></body></html>;
 }

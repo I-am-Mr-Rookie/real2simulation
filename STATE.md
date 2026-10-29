@@ -34,6 +34,11 @@ ABSTAIN all clips: no source-backed reference objects. S05e/Gate R cannot pass w
 inputs -> needs source-backed known objects with pixel annotations or planes/boxes fallback.
 S14e DONE (Opus; agent 40 OK fresh; 0 Meta calls): Spark trial check references real
 S10 simulator + fitter output; live Spark behaviour unverified.
+S02f-orch21 accepted (Sol; TIMEBOX PASS; evidence-only merge): Falling-ball lead REJECTED
+(digitally added scale, no measured witness/clock uncertainty); Marey chronophotography route
+also rejected. Zero qualified Earth replacements. Parent S02f stays PARTIAL; physical
+Gate M input hold unchanged. Further search only on an exact new asset/scale/clock lead.
+All in-flight chats finished; per owner stop no new chats. Controller idle awaiting Koushik.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.
