@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+R-R-recheck2-orch34 DONE (Sol; TIMEBOX PASS; evidence ff-merged): Gate R implementation CLEAR
+(D1/D2 fixed, no new bypass). Real Gate R remains FAIL -> Fallback 2, scale unverified. R-R closed.
 S09j DONE (orch35 Opus medium; viewer 43/3 skip/0 fail canonical; TIMEBOX PASS; ff-merged):
 evidence/S09/CHECKPOINT.md separates synthetic fixture vs real RM02/04/05 (scale UNVERIFIED,
 RM05 display-only); no visual defects found. S09 step complete.
