@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S14g-fix-orch55 Opus high (threadId:01a189bb-7d2b-7bf1-aa4f-573d0a042b5d,hostId:local, deadline 2026-10-29T22:45:27+00:00); Meta cap $3.
+
 R-A DONE = CHANGES_REQUIRED (orch50 Sol high; TIMEBOX PASS; evidence ff-merged). Gate A NOT clear:
 F1 P1 "one"/"double"/"a couple of" + unit pass validator AND gate scan (shared predicate, not
 independent); F2 P1 split segments render "nine point eight" unblocked at display; F3 P1 10 runs of
