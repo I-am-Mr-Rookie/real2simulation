@@ -79,6 +79,18 @@ S17c-orch17 Sonnet/high issued 2026-10-29T11:37:42+00:00 (deadline 2026-10-29T12
 S15b-orch15 DONE accepted (Sonnet; TIMEBOX PASS; fresh node 17/17; main 6374ade):
 workspace layout/viewport mount via viewer public adapter. Layout CSS NOT visually verified (no server/browser).
 orch18 issued full30m Sonnet/high: S15c-orch18, S19a-orch18 (receipt DISPATCH-orch18.json).
+S05b DONE (S05b-orch14 Opus; TIMEBOX PASS on recheck; fresh spike 66/66; main a6c2b33):
+first real MapAnything RM02 on Modal A10 23GB: inference 1.2s, function ~162s, peak 7.7GB,
+25.9MB npz (gitignored), measured $0.0582+$0.0572 (billing CLI). Cost dominated by ~155s
+cold setup -> batch scenes per container/prebuilt image for S05c. Gate R NOT RUN.
+S14b DONE (Opus; 18 agent tests fresh): Muse muse-wonder-1.0 adapter, 4 recorded live
+fixtures (synthetic scene input), est $0.114, billed unknown.
+CONTROLLER ERROR (recorded): my S14b contract authorized live Meta calls although
+API_BUDGET.md forbids live calls while Meta billing/headroom is unknown. 4 calls ran.
+No further live Meta calls until Koushik supplies sanitized balance/usage or reconciles.
+S15c DONE (Sonnet; node 26/26), S17c DONE (Sonnet; reports 30 OK; pdflatex MiKTeX),
+S19a DONE (Sonnet; pwa 5/5; procedural owned icons). Main a65f28f. UI CSS not browser-viewed.
+Minor: S05b/S17c TIMEBOX reported_at rounded seconds into future; passes on recheck.
 
 ## CURRENT — Oct29 owner model reroute (routing only, no dispatch)
 

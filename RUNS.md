@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 17:38 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 17:46 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **94 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **99 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -14,17 +14,18 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- [~] **S05b** — Codex (native Claude) · Opus 5.5, effort high — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
+- [ ] **S05c** — Codex (native Claude) · Opus 5.5, effort high — Reconstruct remaining scene clips (30 min)
+- [ ] **S06a** — Codex (native Claude) · Opus 5.5, effort high — Define reproducible GPU image and dry-run contract (30 min)
 - [~] **S07b** — Codex (native Claude) · Opus 5.5, effort high — Implement SAM 3.1 tracking adapter (30 min) *(partial: resume it)*
-- [ ] **S14b** — Codex (native Claude) · Opus 5.5, effort high — Integrate Muse Wonder scene understanding (30 min)
+- …and 1 more ready in this lane
 
 **CODEX-2**
 - Nothing ready yet: check dependencies and retry holds below.
 
 **CLAUDE**
-- [ ] **S15c** — Codex (native Claude) · Sonnet 5.5, effort high — Build upload status and failure surfaces (30 min)
-- [ ] **S17c** — Codex (native Claude) · Sonnet 5.5, effort high — Build TeX/HTML report rendering (30 min)
-- [ ] **S19a** — Codex (native Claude) · Sonnet 5.5, effort high — Add PWA manifest and icons from owned assets (30 min)
+- [ ] **S15d** — Codex (native Claude) · Sonnet 5.5, effort high — Build interview chips and free-text panel (30 min)
+- [ ] **S17d** — Codex (native Claude) · Sonnet 5.5, effort high — Compile reports for all four templates (30 min)
+- [ ] **S19b** — Codex (native Claude) · Sonnet 5.5, effort high — Add safe service-worker caching (30 min)
 
 ## Waiting to retry
 
@@ -94,10 +95,10 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (1/7)</summary>
+<details><summary><b>S05</b> — Gate R spike: metric 3D scene from public clips (2/7)</summary>
 
 - [x] **S05a** — Codex · GPT-6.1 Sol, effort medium — Check reconstruction licences and freeze scene artifact contract (30 min)
-- [~] **S05b** — Codex (native Claude) · Opus 5.5, effort high — Probe MapAnything on the first licensed scene (30 min) *(partial: resume it)*
+- [x] **S05b** — Codex (native Claude) · Opus 5.5, effort high — Probe MapAnything on the first licensed scene (30 min)
 - [ ] **S05c** — Codex (native Claude) · Opus 5.5, effort high — Reconstruct remaining scene clips (30 min)
 - [ ] **S05d** — Codex (native Claude) · Opus 5.5, effort high — Fit floor, metric scale and gravity orientation (30 min)
 - [ ] **S05e** — Codex (native Claude) · Opus 5.5, effort high — Run Gate R and inspect reconstruction failures (30 min)
@@ -233,10 +234,10 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S14</b> — Scene-understanding and interview agent (1/9)</summary>
+<details><summary><b>S14</b> — Scene-understanding and interview agent (2/9)</summary>
 
 - [x] **S14a** — Codex (native Claude) · Opus 5.5, effort high — Define scene, question and tool-output contracts (30 min)
-- [ ] **S14b** — Codex (native Claude) · Opus 5.5, effort high — Integrate Muse Wonder scene understanding (30 min)
+- [x] **S14b** — Codex (native Claude) · Opus 5.5, effort high — Integrate Muse Wonder scene understanding (30 min)
 - [ ] **S14c** — Codex (native Claude) · Opus 5.5, effort high — Implement one-to-three-question interview (30 min)
 - [ ] **S14d** — Codex (native Claude) · Opus 5.5, effort high — Add bounded validator-retry loop (30 min)
 - [ ] **S14e** — Codex (native Claude) · Opus 5.5, effort high — Connect Muse Spark trial check (30 min)
@@ -247,11 +248,11 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (2/12)</summary>
+<details><summary><b>S15</b> — Workspace UI (3/12)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
-- [ ] **S15c** — Codex (native Claude) · Sonnet 5.5, effort high — Build upload status and failure surfaces (30 min)
+- [x] **S15c** — Codex (native Claude) · Sonnet 5.5, effort high — Build upload status and failure surfaces (30 min)
 - [ ] **S15d** — Codex (native Claude) · Sonnet 5.5, effort high — Build interview chips and free-text panel (30 min)
 - [ ] **S15e** — Codex (native Claude) · Sonnet 5.5, effort high — Build experiment template controls (30 min)
 - [ ] **S15f** — Codex (native Claude) · Sonnet 5.5, effort high — Build run and replay controls (30 min)
@@ -277,11 +278,11 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S17</b> — Lab report and charts (2/6)</summary>
+<details><summary><b>S17</b> — Lab report and charts (3/6)</summary>
 
 - [x] **S17a** — Codex (native Claude) · Sonnet 5.5, effort high — Define report data contract and numeric assertions (30 min)
 - [x] **S17b** — Codex (native Claude) · Sonnet 5.5, effort high — Build deterministic report tables and charts (30 min)
-- [ ] **S17c** — Codex (native Claude) · Sonnet 5.5, effort high — Build TeX/HTML report rendering (30 min)
+- [x] **S17c** — Codex (native Claude) · Sonnet 5.5, effort high — Build TeX/HTML report rendering (30 min)
 - [ ] **S17d** — Codex (native Claude) · Sonnet 5.5, effort high — Compile reports for all four templates (30 min)
 - [ ] **S17e** — Codex (native Claude) · Sonnet 5.5, effort high — Automate numeric report-to-fitter diff (30 min)
 - [ ] **S17f** — Codex (native Claude) · Sonnet 5.5, effort high — Checkpoint report accessibility and fallback evidence (30 min)
@@ -303,9 +304,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S19</b> — Installable PWA and phone layout (0/4)</summary>
+<details><summary><b>S19</b> — Installable PWA and phone layout (1/4)</summary>
 
-- [ ] **S19a** — Codex (native Claude) · Sonnet 5.5, effort high — Add PWA manifest and icons from owned assets (30 min)
+- [x] **S19a** — Codex (native Claude) · Sonnet 5.5, effort high — Add PWA manifest and icons from owned assets (30 min)
 - [ ] **S19b** — Codex (native Claude) · Sonnet 5.5, effort high — Add safe service-worker caching (30 min)
 - [ ] **S19c** — Codex (native Claude) · Sonnet 5.5, effort high — Add install guidance and orientation handling (30 min)
 - [ ] **S19d** — Codex (native Claude) · Sonnet 5.5, effort high — Verify installability and 375px walkthrough (30 min)

@@ -161,6 +161,12 @@ Keep older$30 authorized Modal ceiling until reconciled;15h does not authorize a
 
 ## Meta credit policy
 
+**Oct29 controller breach (recorded):** S14b-orch16 made 4 live muse-wonder-1.0 calls
+(+1 free GET /v1/models) 11:3x-11:4xZ under a controller contract cap <=$1, while this
+policy still required known billing. Est $0.114 (list $4/$20 per Mtok x1.5), billed
+unknown. Per-call JSONL ledger: evidence/S14/ (S14b-orch16). Live Meta calls stay blocked
+until Koushik supplies sanitized balance/usage.
+
 | Item | Value / evidence |
 |---|---|
 | Promotional allocation | $150; owner reports billing complete, actual balance not independently verified |
