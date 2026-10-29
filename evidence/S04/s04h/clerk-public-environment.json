@@ -1,0 +1,15 @@
+{
+  "single_session_mode": true,
+  "social": {
+    "oauth_google": true
+  },
+  "attributes_enabled_first_factor": {
+    "email_address": {
+      "first_factor": true,
+      "verifications": [
+        "email_code"
+      ]
+    }
+  },
+  "sign_up_mode": "public"
+}
