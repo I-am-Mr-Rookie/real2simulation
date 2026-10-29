@@ -1,0 +1,172 @@
+{
+ "run": "S09i-orch33",
+ "measured_at_utc": "2026-10-29T15:55Z..15:57Z",
+ "evidence_class": "real reconstruction bundles (MapAnything nominal), scale UNVERIFIED; not Gate R/physics",
+ "hardware": {
+  "model": "HP 250 G7 Notebook PC",
+  "cpu": "Intel Core i3-1005G1 @1.20GHz, 2C/4T",
+  "gpu": "Intel UHD Graphics (driver 30.0.100.9864, 1 GiB AdapterRAM reported)",
+  "ram_bytes": 12656099328,
+  "os": "Windows 11 Pro 10.0.26200",
+  "display": "1366x768 @59Hz",
+  "source": "read-only Get-CimInstance Win32_Processor/VideoController/ComputerSystem/OperatingSystem"
+ },
+ "browser": {
+  "name": "ChatGPT in-app browser (IAB), visible",
+  "ua_chrome": "Chrome/156.0.0.0",
+  "webgl_renderer": "ANGLE (Intel, Intel(R) UHD Graphics (0x00008A56) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "dpr": 1
+ },
+ "method": "tests/viewer/perf-orbit.html: existing createArtifactLoader -> createViewerAdapter -> createThreeRenderer with injected timed requestFrame; after load + 500 ms settle, fixed 360deg orbit at 60deg/s for 6 s (orbit.rotate + invalidate each rAF). fps=(frames-1)/span of renderer draw timestamps; draw_cpu_ms = JS time inside draw (gl.render submit, not GPU completion). heap=performance.memory.usedJSHeapSize (Chromium non-standard, coarse/GC-noisy). 375 = IAB viewport override 375x812 (same laptop GPU, not a phone), reset after.",
+ "viewports": {
+  "desktop": {
+   "viewport": [
+    1280,
+    720
+   ],
+   "canvas": [
+    1280,
+    504
+   ],
+   "budget": {
+    "tier": "full",
+    "pixelRatio": 1,
+    "antialias": true
+   }
+  },
+  "m375": {
+   "viewport": [
+    375,
+    812
+   ],
+   "canvas": [
+    375,
+    568
+   ],
+   "budget": {
+    "tier": "reduced",
+    "pixelRatio": 1,
+    "antialias": false
+   }
+  }
+ },
+ "points_per_scene": 20000,
+ "scale_status": "estimated (UNVERIFIED)",
+ "states": "loading,ready for all six runs",
+ "results": {
+  "desktop": {
+   "RM02": {
+    "fps_mean": 59.97,
+    "frames": 361,
+    "seconds": 6,
+    "frame_ms_p50": 16.7,
+    "frame_ms_p95": 16.9,
+    "frame_ms_max": 18.1,
+    "frames_over_33ms": 0,
+    "draw_cpu_ms_p50": 0.2,
+    "draw_cpu_ms_p95": 0.3,
+    "heap_bytes": {
+     "before_mount": 14053669,
+     "after_load": 12028199,
+     "after_orbit": 14312914
+    }
+   },
+   "RM04": {
+    "fps_mean": 59.97,
+    "frames": 361,
+    "seconds": 6,
+    "frame_ms_p50": 16.7,
+    "frame_ms_p95": 17,
+    "frame_ms_max": 19.7,
+    "frames_over_33ms": 0,
+    "draw_cpu_ms_p50": 0.2,
+    "draw_cpu_ms_p95": 0.4,
+    "heap_bytes": {
+     "before_mount": 19011175,
+     "after_load": 12038690,
+     "after_orbit": 14349425
+    }
+   },
+   "RM05": {
+    "fps_mean": 59.97,
+    "frames": 361,
+    "seconds": 6,
+    "frame_ms_p50": 16.7,
+    "frame_ms_p95": 17.1,
+    "frame_ms_max": 22.9,
+    "frames_over_33ms": 0,
+    "draw_cpu_ms_p50": 0.2,
+    "draw_cpu_ms_p95": 0.4,
+    "heap_bytes": {
+     "before_mount": 19044855,
+     "after_load": 12026224,
+     "after_orbit": 14917823
+    }
+   }
+  },
+  "m375": {
+   "RM02": {
+    "fps_mean": 56.32,
+    "frames": 338,
+    "seconds": 5.98,
+    "frame_ms_p50": 17.8,
+    "frame_ms_p95": 18.2,
+    "frame_ms_max": 19.5,
+    "frames_over_33ms": 0,
+    "draw_cpu_ms_p50": 0.2,
+    "draw_cpu_ms_p95": 0.3,
+    "heap_bytes": {
+     "before_mount": 16573065,
+     "after_load": 12290268,
+     "after_orbit": 15013168
+    }
+   },
+   "RM04": {
+    "fps_mean": 56.4,
+    "frames": 339,
+    "seconds": 5.99,
+    "frame_ms_p50": 17.7,
+    "frame_ms_p95": 18.3,
+    "frame_ms_max": 18.7,
+    "frames_over_33ms": 0,
+    "draw_cpu_ms_p50": 0.2,
+    "draw_cpu_ms_p95": 0.3,
+    "heap_bytes": {
+     "before_mount": 16035616,
+     "after_load": 12257937,
+     "after_orbit": 14993608
+    }
+   },
+   "RM05": {
+    "fps_mean": 56.31,
+    "frames": 338,
+    "seconds": 5.98,
+    "frame_ms_p50": 17.7,
+    "frame_ms_p95": 18.4,
+    "frame_ms_max": 22.2,
+    "frames_over_33ms": 0,
+    "draw_cpu_ms_p50": 0.2,
+    "draw_cpu_ms_p95": 0.3,
+    "heap_bytes": {
+     "before_mount": 16026342,
+     "after_load": 12233740,
+     "after_orbit": 14967311
+    }
+   }
+  }
+ },
+ "acceptance": {
+  "criterion": ">=30 fps orbit, three scenes, identified hardware",
+  "met": true,
+  "min_fps_mean": 56.31,
+  "max_frame_ms": 22.9,
+  "frames_over_33ms_total": 0
+ },
+ "limits": [
+  "rAF is vsync-capped (~60Hz panel); true uncapped headroom only indicated by draw_cpu_ms, GPU time not measured (no EXT_disjoint_timer_query used)",
+  "GPU/VRAM memory not exposed by the browser; not measured",
+  "heap values are coarse and GC-noisy; before_mount > after_load reflects GC, not negative cost",
+  "375 is viewport emulation on this laptop, no real phone",
+  "IAB window visible; hidden tab would pause rendering by design (S09f)"
+ ]
+}
