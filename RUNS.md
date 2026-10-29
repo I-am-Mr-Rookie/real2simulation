@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 18:20 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 18:23 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **106 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **108 / 217** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -16,7 +16,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CODEX-1**
 - [ ] **S05d** — Codex (native Claude) · Opus 5.5, effort high — Fit floor, metric scale and gravity orientation (30 min)
 - [ ] **S06b** — Codex (native Claude) · Opus 5.5, effort high — Package MapAnything runtime (30 min)
-- [ ] **S13a** — Codex (native Claude) · Opus 5.5, effort high — Define resumable upload and job-stage contracts (30 min)
+- [ ] **S13b** — Codex (native Claude) · Opus 5.5, effort high — Implement bucket upload validation (30 min)
 - …and 1 more ready in this lane
 
 **CODEX-2**
@@ -24,7 +24,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - [ ] **S15e** — Codex (native Claude) · Sonnet 5.5, effort high — Build experiment template controls (30 min)
-- [ ] **S17e** — Codex (native Claude) · Sonnet 5.5, effort high — Automate numeric report-to-fitter diff (30 min)
 - [ ] **S19c** — Codex (native Claude) · Sonnet 5.5, effort high — Add install guidance and orientation handling (30 min)
 
 ## Waiting for Koushik
@@ -217,9 +216,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S13</b> — Upload and reconstruction job pipeline (0/8)</summary>
+<details><summary><b>S13</b> — Upload and reconstruction job pipeline (1/8)</summary>
 
-- [ ] **S13a** — Codex (native Claude) · Opus 5.5, effort high — Define resumable upload and job-stage contracts (30 min)
+- [x] **S13a** — Codex (native Claude) · Opus 5.5, effort high — Define resumable upload and job-stage contracts (30 min)
 - [ ] **S13b** — Codex (native Claude) · Opus 5.5, effort high — Implement bucket upload validation (30 min)
 - [ ] **S13c** — Codex (native Claude) · Opus 5.5, effort high — Extract ffmpeg keyframes and metadata (30 min)
 - [ ] **S13d** — Codex (native Claude) · Opus 5.5, effort high — Add Redis job lifecycle and retry handling (30 min)
@@ -274,13 +273,13 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S17</b> — Lab report and charts (4/6)</summary>
+<details><summary><b>S17</b> — Lab report and charts (5/6)</summary>
 
 - [x] **S17a** — Codex (native Claude) · Sonnet 5.5, effort high — Define report data contract and numeric assertions (30 min)
 - [x] **S17b** — Codex (native Claude) · Sonnet 5.5, effort high — Build deterministic report tables and charts (30 min)
 - [x] **S17c** — Codex (native Claude) · Sonnet 5.5, effort high — Build TeX/HTML report rendering (30 min)
 - [x] **S17d** — Codex (native Claude) · Sonnet 5.5, effort high — Compile reports for all four templates (30 min)
-- [ ] **S17e** — Codex (native Claude) · Sonnet 5.5, effort high — Automate numeric report-to-fitter diff (30 min)
+- [x] **S17e** — Codex (native Claude) · Sonnet 5.5, effort high — Automate numeric report-to-fitter diff (30 min)
 - [ ] **S17f** — Codex (native Claude) · Sonnet 5.5, effort high — Checkpoint report accessibility and fallback evidence (30 min)
 
 </details>

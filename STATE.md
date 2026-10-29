@@ -3,6 +3,11 @@
 orch21: S05d-orch21 Opus (floor/scale/gravity, CPU, abstain if no source-backed reference);
 S02f-orch21 Sol/high after 12:18Z quota reset (hold cleared by expiry; one bounded attempt,
 same narrowed Falling-ball falsifier). Receipt DISPATCH-orch21.json.
+S17e DONE (Sonnet; reports 38 OK fresh): report-to-fitter numeric diff, 0 mismatches x4
+templates, tamper-sensitive. Risk: all templates share polynomial fitter fixtures.
+S13a DONE (Opus; pipeline 8 OK fresh; main e563e3b): versioned upload/job-stage contracts.
+Routine decision recorded: limits 100MiB/60s/8MiB chunks/24h TTL are contract choices,
+revisit at S13h measurement.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.
