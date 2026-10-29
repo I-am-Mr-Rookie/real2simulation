@@ -1,9 +1,10 @@
 {
   "id": "S12a-orch37",
   "status": "DONE",
-  "issued_at": "2026-10-29T20:43:22+00:00",
-  "deadline_at": "2026-10-29T21:13:22+00:00",
-  "implementation_cutoff_at": "2026-10-29T21:08:22+00:00",
-  "work_stopped_at": "2026-10-29T20:49:27+00:00",
-  "reported_at": "2026-10-29T20:49:27+00:00"
+  "issued_at": "2026-10-29T20:44:39+00:00",
+  "deadline_at": "2026-10-29T21:14:39+00:00",
+  "implementation_cutoff_at": "2026-10-29T21:09:39+00:00",
+  "work_stopped_at": "2026-10-29T21:00:55+00:00",
+  "reported_at": "2026-10-29T21:00:55+00:00",
+  "worker_thread": "01a18968-5c17-7390-9f3a-0ce8f237849c"
 }

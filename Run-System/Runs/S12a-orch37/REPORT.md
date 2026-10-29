@@ -6,7 +6,8 @@ UTC issue 2026-10-29T20:44:39Z · work started 20:44:59Z · stopped see TIMEBOX.
 ## Duplicate dispatch / write race (controller action)
 Controller dispatched S12a-orch37 twice: worker 01a18967 (issued 20:43:22Z) and this worker (20:44:39Z), same worktree + branch.
 Both wrote Build/real2sim/boundary.py and tests/prediction/test_boundary.py ~20:47-20:49Z. Commit f74b383 (01a18967, REPORT=DONE) captured
-MY boundary.py with ITS test file and ITS evidence (S12a-boundary.json, S12a-tests.txt) -> inconsistent HEAD (its tests target an API that is
+MY boundary.py with ITS test file and ITS evidence (S12a-boundary.json, S12a-tests.txt); after rebase onto main cbf6ad2 that commit is 0c6169f.
+-> inconsistent HEAD (its tests target an API that is
 not in git; its module source was overwritten in the working tree and never committed). Nonterminal blocker sent to controller 20:51Z; no
 reply by 21:00Z, so this commit makes the branch consistent with ONE implementation (this one): its two evidence files are removed and its
 PLAN/REPORT/TIMEBOX replaced (all recoverable from f74b383). No other worker files changed after 20:49Z.
@@ -40,7 +41,7 @@ Acceptance:
 ## Fresh checks (Python 3.14.5, this worktree)
 - python -m unittest discover -s tests/prediction -v -> 7 OK (evidence/S12/tests-prediction.txt).
 - python -m Build.real2sim.boundary -> "evidence/S12/boundary-ST03.json gate_m=NOT_MET conflicts=1 quarantined=[77] suffix=465".
-- Regression: tests/measurement OK (1 pre-existing skip); tests/fitter OK.
+- Regression after rebase: tests/measurement 70 OK (1 pre-existing skip); tests/fitter 65 OK.
 - python Run-System/worker_timebox.py check Run-System/Runs/S12a-orch37/TIMEBOX.json -> TIMING PASS (run after commit-ready).
 
 ## Ponytail (full)
