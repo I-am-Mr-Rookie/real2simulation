@@ -754,3 +754,19 @@ Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they con
   (1) creates the $50 EC2 budget alert and (2) supplies agent AWS access (no AWS CLI or
   AWS key names on this PC). Credits expire 2027-05: AWS is post-reset overflow and
   SAM 3D Objects/batch S18/S21, g6e.xlarge us-east-2, spot batch, stop each session.
+
+## 2026-10-29 — AWS CLI installed; access and quotas agent-verified
+
+Koushik asked for local AWS CLI setup. Installed AWS CLI v2.39.1 (winget, MSI);
+`~/.aws/config` [default] region us-east-2, json, pager off; no keys stored in the repo.
+Owner authenticated with `aws login` (temporary console credentials, auto-refresh).
+Read-only checks only (no resources created):
+- STS: caller is the account **root** console session (IAM user preferred later).
+- us-east-2 G/VT **Spot** (L-3819A6DF) = **8 vCPU**, request CASE_CLOSED (approved).
+- us-east-2 G/VT **On-Demand** (L-DB2E81BA) = **0**, request for 8 still CASE_OPENED.
+- Budgets: two identical "My Monthly Cost Budget" = $25/month, ALL services (not
+  EC2-filtered), credits/refunds excluded; alerts actual 85%/100%, forecast 100%.
+  No $50 EC2-specific budget exists. Owner marked "y" on the alert gate; whether the
+  $25 all-service budget satisfies the $50 EC2 gate is an open owner decision.
+AWS stays OFF for agent GPU jobs until that decision; spot only (g6e.xlarge = 4 vCPU);
+on-demand failover unavailable until L-DB2E81BA is approved.
