@@ -1,0 +1,81 @@
+{
+  "boundary": {
+    "clip_id": "SYNTHETIC-S12A-FIXTURE",
+    "gate_m_notice": "Gate M NOT_MET: scale-free normalized held-out pixel error only; no calibrated-g, metric or physical-accuracy claim.",
+    "gate_m_status": "NOT_MET_INPUT_READINESS",
+    "held_out_count": 6,
+    "held_out_sha256": "da71d1554b6ba2cc5b37916ac6d0ff0e44b052af191aa7865aa17a5dd6757067",
+    "input_blockers": [
+      "metric_use_not_approved",
+      "not_earth_free_fall",
+      "continuous_segment_unverified",
+      "scale_unverified",
+      "capture_timebase_unverified"
+    ],
+    "last_training_frame": 11,
+    "source_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "training_frame_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "training_sha256": "c03dae1e6ceec952e72e5ef91919ea04f32d03c2652660133a6d162112f594d0"
+  },
+  "evaluation": {
+    "gate_m_notice": "Gate M NOT_MET: scale-free normalized held-out pixel error only; no calibrated-g, metric or physical-accuracy claim.",
+    "gate_m_status": "NOT_MET_INPUT_READINESS",
+    "held_out_frame_indices": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17
+    ],
+    "held_out_sha256": "da71d1554b6ba2cc5b37916ac6d0ff0e44b052af191aa7865aa17a5dd6757067",
+    "max": 3.510833468576701e-16,
+    "mean": 1.6953619360546067e-16,
+    "metric": "normalized_pixel_error_per_training_extent",
+    "normalized_errors": [
+      3.510833468576701e-16,
+      2.220446049250313e-16,
+      0.0,
+      2.220446049250313e-16,
+      0.0,
+      2.220446049250313e-16
+    ],
+    "unit": "dimensionless"
+  },
+  "evidence_kind": "SYNTHETIC_fixture_boundary_check",
+  "gate_m": {
+    "coverage": null,
+    "gate_passed": false,
+    "independent_measured_count": 0,
+    "max_relative_error": 0.05,
+    "mean_g_m_s2": null,
+    "mean_relative_error": null,
+    "measured_count": 0,
+    "physics_evaluation": "NOT_RUN",
+    "qualifying_count": 0,
+    "reference_g_m_s2": 9.81,
+    "required_successes": 2,
+    "required_trials": 3,
+    "status": "NOT_MET_INPUT_READINESS"
+  },
+  "gate_m_notice": "Gate M NOT_MET: scale-free normalized held-out pixel error only; no calibrated-g, metric or physical-accuracy claim.",
+  "limitations": [
+    "No accepted S07 real-clip tracks exist (Gate M evaluator: no real tracks), so no real clip is split here.",
+    "Synthetic fixture: errors show plumbing only, not prediction quality or physics.",
+    "Process-local custody: caller must store the suffix out of reach of tuning/fitting."
+  ],
+  "real_clips_used": []
+}
