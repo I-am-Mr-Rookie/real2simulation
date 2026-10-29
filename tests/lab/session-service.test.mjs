@@ -343,6 +343,40 @@ test('a failed active Mystery-g fit can retry without consuming its reveal', asy
   assert.equal(retry.status, 'ok'); assert.equal(retry.reveal.source, 'simulated');
 });
 
+test('UTF-8 bridge output preserves every interior split of two, three and four byte characters', async (t) => {
+  const children = controlledBridge(t);
+  for (const text of ['µ', '€', '😀']) {
+    const reply = { ...startReply, limitations: [text] }, bytes = Buffer.from(JSON.stringify(reply));
+    const offset = bytes.indexOf(Buffer.from(text));
+    for (let part = 1; part < Buffer.byteLength(text); part += 1) {
+      const pending = handleLab(startRequest), child = children.at(-1), split = offset + part;
+      child.stdout.write(bytes.subarray(0, split)); child.stdout.write(bytes.subarray(split)); child.emit('close', 0);
+      const result = await pending; assert.equal(result.status, 'ok'); assert.deepEqual(result.limitations, [text]);
+    }
+  }
+});
+
+test('bridge raw-byte ceiling accepts exactly one million bytes with multibyte output', async (t) => {
+  const children = controlledBridge(t), reply = { ...startReply, limitations: ['µ€😀'] };
+  const bytes = Buffer.from(JSON.stringify(reply)), pending = handleLab(startRequest), child = children.at(-1);
+  child.stdout.write(bytes); child.stdout.write(Buffer.alloc(1_000_000 - bytes.length, 32)); child.emit('close', 0);
+  const result = await pending; assert.equal(result.status, 'ok'); assert.deepEqual(result.limitations, reply.limitations);
+  assert.equal(_sessionTest.getActiveBridges(), 0);
+});
+
+test('bridge raw-byte overflow is sticky and retains capacity until close', async (t) => {
+  const children = controlledBridge(t), count = _sessionTest.sessions.size;
+  const bytes = Buffer.from(JSON.stringify({ ...startReply, limitations: ['µ€😀'] }));
+  const pending = handleLab(startRequest), child = children.at(-1);
+  child.stdout.write(bytes); child.stdout.write(Buffer.alloc(1_000_000 - bytes.length, 32));
+  assert.equal(_sessionTest.getActiveBridges(), 1);
+  child.stdout.write(Buffer.from(' '));
+  assert.equal(_sessionTest.getActiveBridges(), 1);
+  child.stdout.write(Buffer.from(JSON.stringify(startReply))); child.emit('close', 0);
+  assert.deepEqual(await pending, { status: 'error', error: { code: 'lab_request_failed' } });
+  assert.equal(_sessionTest.sessions.size, count); assert.equal(_sessionTest.getActiveBridges(), 0);
+});
+
 test('timeout cannot become success and capacity is retained until close', async (t) => {
   const children = controlledBridge(t);
   t.mock.timers.enable({ apis: ['setTimeout'] });

@@ -1,0 +1,13 @@
+# R15-transport — interrupted transport recovery
+
+- Objective: inspect and recover the existing uncommitted R14 UTF-8 decoder/raw-byte ceiling fix; verify the frozen 11 regressions and 21 targeted session tests, then commit only scoped work.
+- Assigned lane/model: CODEX-1, existing managed gpt-6.1-sol/high. No routing changes; runtime identity not independently attested.
+- Issued: 2026-10-29T07:23:42.000Z. Minute25 cutoff: 2026-10-29T07:48:42.000Z. Deadline: 2026-10-29T07:53:42.000Z / 2026-10-29T13:53:42.000+06:00. Full window: 1800 seconds. Owner stop: 2026-10-29T10:00:00Z; does not cross this window.
+- Worktree: C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26 - Meta Global AI Developer Hackathon. Created run/R15-transport without reset from 79eed4719005abe5b18a2ea51854b3af6eb60fdc, retaining all uncommitted edits and original evidence.
+- Owns: Build/lab/session-service.mjs transport decoding/raw-byte cap only; directly necessary tests/lab/session-service.test.mjs; evidence/S10/transport-recovery/; Run-System/Runs/R15-transport/.
+- Freeze: tests/lab/r14-service-invariants.test.mjs (11 cases), stopTree/sticky abort/capacity/session/privacy behavior, HTTP route and Python producer. No shared controls/main or other worker paths.
+- Acceptance: unchanged frozen 11 pass; exact selected 21 tests pass; fresh syntax/isolation/diff checks and evidence; scoped commit. Parent retains instrument quantizer integration, native gate review, IAB375, heavy builds and serialized main integration.
+- Inherited project: Meta AI Hackathon 91e441f8-e40c-4ec4-bea2-de7fa1582d97; canonical root C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon. Child UI binding not independently verified. Direct handout authorizes inline recovery, superseding older separate-chat requirement for this run only. Old handle authoritatively not_found per handout; no duplicate worker launched.
+- Original interruption: existing report says DONE, but source/tests/evidence remain uncommitted and original TIMEBOX.json is absent. Treat old claims as historical, not accepted; do not invent or backdate the interrupted stop. Fresh verification is required.
+- Ponytail full: inspect shared bridge callers, preserve and reuse the existing standard-library StringDecoder patch and controlled-child tests if correct; avoid unnecessary rewrites/dependencies.
+- No quota polling, fanout, model/paid GPU jobs, real scenes, physical GateM/S12, deployment/publication/accounts/terms/credentials/env values/provider/policy changes. Costs/tokens unknown; OpenCodex-managed; not polled.

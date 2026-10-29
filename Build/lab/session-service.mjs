@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
+import { StringDecoder } from 'node:string_decoder';
 import { createTrustedFitterHandoff, createMysteryGSession } from '../simulator/mystery-g.mjs';
 import { stableHash } from '../simulator/replay.mjs';
 // Resolve from the local launch directory; bundlers treat import.meta URLs as assets.
@@ -51,12 +52,13 @@ function bridge(request, signal) { return new Promise((resolve, reject) => {
       killer.on('exit', (code) => { if (code) child.kill(); });
     } else { try { process.kill(-child.pid, 'SIGKILL'); } catch { child.kill(); } }
   };
-  let out = '', settled = false, stopped = false;
+  const decoder = new StringDecoder('utf8');
+  let out = '', outBytes = 0, settled = false, stopped = false;
   const abort = () => { stopped = true; stopTree(); }; const timer = setTimeout(abort, 30000);
   const finish = (fn, value) => { if (settled) return; settled = true; activeBridges -= 1; clearTimeout(timer); signal?.removeEventListener('abort', abort); fn(value); };
-  signal?.addEventListener('abort', abort, { once: true }); if (signal?.aborted) abort(); child.stdin.on('error', abort); child.stdout.on('data', (b) => { out += b; if (out.length > MAX_BODY) abort(); });
+  signal?.addEventListener('abort', abort, { once: true }); if (signal?.aborted) abort(); child.stdin.on('error', abort); child.stdout.on('data', (b) => { if (stopped) return; outBytes += b.length; if (outBytes > MAX_BODY) return abort(); out += decoder.write(b); });
   // Keep the slot until close; an I/O error alone does not prove process exit.
-  child.on('error', () => { stopped = true; }); child.on('close', (code) => { if (stopped || code !== 0 || out.length > MAX_BODY) return finish(reject, new Error('bridge_failed')); try { finish(resolve, JSON.parse(out)); } catch { finish(reject, new Error('bridge_invalid_response')); } }); child.stdin.end(JSON.stringify(request));
+  child.on('error', () => { stopped = true; }); child.on('close', (code) => { if (stopped || code !== 0 || outBytes > MAX_BODY) return finish(reject, new Error('bridge_failed')); try { finish(resolve, JSON.parse(out + decoder.end())); } catch { finish(reject, new Error('bridge_invalid_response')); } }); child.stdin.end(JSON.stringify(request));
 }); }
 export async function handleLab(request, { signal } = {}) {
   try {

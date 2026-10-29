@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-10-29T07:27:58.9800175Z",
+  "node_version": "v24.18.0",
+  "service_syntax_exit": 0,
+  "test_syntax_exit": 0,
+  "frozen_producer_route_unchanged_exit": 0,
+  "diff_check_exit": 0,
+  "base_sha": "79eed4719005abe5b18a2ea51854b3af6eb60fdc",
+  "main_sha_at_check": "6e1784b24890e6b37e31499769b0a2d5ea3df51b",
+  "branch": "run/R15-transport",
+  "service_blob": "94b350f4a5d85029850c1cfe0b5d4372df591da6",
+  "oracle_blob": "d36fc348c3dc43c7e0baa11d767df280fbb3f27c",
+  "tests_blob": "150cae05e10e66214298705781b1c7e914af2bd3",
+  "frozen_test_exit": 0,
+  "targeted_test_exit": 0,
+  "finished_at": "2026-10-29T07:28:05.6117543Z"
+}

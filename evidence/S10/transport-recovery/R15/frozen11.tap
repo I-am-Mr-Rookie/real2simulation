@@ -1,0 +1,81 @@
+TAP version 13
+# (node:9932) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/.codex/worktrees/swarm14-service-boundary/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/Build/web/src/app/api/lab/route.js is not specified and it doesn't parse as CommonJS.
+# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+# To eliminate this warning, add "type": "module" to \\\\?\\C:\\Users\\HP\\.codex\\worktrees\\swarm14-service-boundary\\2026-10-26 - Meta Global AI Developer Hackathon\\Build\\web\\package.json.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: request shape and allowlists reject malformed JSON values before spawning
+ok 1 - request shape and allowlists reject malformed JSON values before spawning
+  ---
+  duration_ms: 26.271
+  type: 'test'
+  ...
+# Subtest: observation shape, finite numbers and 2000-sample cap fail closed
+ok 2 - observation shape, finite numbers and 2000-sample cap fail closed
+  ---
+  duration_ms: 174.1037
+  type: 'test'
+  ...
+# Subtest: concurrent failed fits share one attempt and a later completed retry is cached
+ok 3 - concurrent failed fits share one attempt and a later completed retry is cached
+  ---
+  duration_ms: 7.6299
+  type: 'test'
+  ...
+# Subtest: malformed successful fits never cache or consume reveal; valid retry succeeds
+ok 4 - malformed successful fits never cache or consume reveal; valid retry succeeds
+  ---
+  duration_ms: 11.3964
+  type: 'test'
+  ...
+# Subtest: interleaved failure and success remain confined to their own sessions
+ok 5 - interleaved failure and success remain confined to their own sessions
+  ---
+  duration_ms: 10.6855
+  type: 'test'
+  ...
+# Subtest: a same-ID replacement cannot receive or publish the old session fit
+ok 6 - a same-ID replacement cannot receive or publish the old session fit
+  ---
+  duration_ms: 4.1735
+  type: 'test'
+  ...
+# Subtest: HTTP parser enforces actual UTF-8 byte cap, inclusive boundary and expected errors
+ok 7 - HTTP parser enforces actual UTF-8 byte cap, inclusive boundary and expected errors
+  ---
+  duration_ms: 137.598
+  type: 'test'
+  ...
+# Subtest: streamed HTTP JSON preserves split UTF-8 and counts bytes across chunks
+ok 8 - streamed HTTP JSON preserves split UTF-8 and counts bytes across chunks
+  ---
+  duration_ms: 48.7942
+  type: 'test'
+  ...
+# Subtest: ASCII-escaped current-producer-style output has no Unicode chunk loss
+ok 9 - ASCII-escaped current-producer-style output has no Unicode chunk loss
+  ---
+  duration_ms: 5.9787
+  type: 'test'
+  ...
+# Subtest: UTF-8 bridge response decoding is independent of stream chunk boundaries
+ok 10 - UTF-8 bridge response decoding is independent of stream chunk boundaries
+  ---
+  duration_ms: 4.1873
+  type: 'test'
+  ...
+# Subtest: bridge response cap rejects more than one million UTF-8 bytes, not just code units
+ok 11 - bridge response cap rejects more than one million UTF-8 bytes, not just code units
+  ---
+  duration_ms: 10.3082
+  type: 'test'
+  ...
+# {"bytes":1020218,"codeUnits":340218,"actualStatus":"error","insertedSessions":0}
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1001.4218

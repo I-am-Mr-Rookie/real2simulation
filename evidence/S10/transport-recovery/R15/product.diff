@@ -1,0 +1,74 @@
+diff --git a/Build/lab/session-service.mjs b/Build/lab/session-service.mjs
+index f5b724d..94b350f 100644
+--- a/Build/lab/session-service.mjs
++++ b/Build/lab/session-service.mjs
+@@ -2,6 +2,7 @@ import { randomUUID } from 'node:crypto';
+ import { spawn } from 'node:child_process';
+ import { existsSync } from 'node:fs';
+ import { resolve, sep } from 'node:path';
++import { StringDecoder } from 'node:string_decoder';
+ import { createTrustedFitterHandoff, createMysteryGSession } from '../simulator/mystery-g.mjs';
+ import { stableHash } from '../simulator/replay.mjs';
+ // Resolve from the local launch directory; bundlers treat import.meta URLs as assets.
+@@ -51,12 +52,13 @@ function bridge(request, signal) { return new Promise((resolve, reject) => {
+       killer.on('exit', (code) => { if (code) child.kill(); });
+     } else { try { process.kill(-child.pid, 'SIGKILL'); } catch { child.kill(); } }
+   };
+-  let out = '', settled = false, stopped = false;
++  const decoder = new StringDecoder('utf8');
++  let out = '', outBytes = 0, settled = false, stopped = false;
+   const abort = () => { stopped = true; stopTree(); }; const timer = setTimeout(abort, 30000);
+   const finish = (fn, value) => { if (settled) return; settled = true; activeBridges -= 1; clearTimeout(timer); signal?.removeEventListener('abort', abort); fn(value); };
+-  signal?.addEventListener('abort', abort, { once: true }); if (signal?.aborted) abort(); child.stdin.on('error', abort); child.stdout.on('data', (b) => { out += b; if (out.length > MAX_BODY) abort(); });
++  signal?.addEventListener('abort', abort, { once: true }); if (signal?.aborted) abort(); child.stdin.on('error', abort); child.stdout.on('data', (b) => { if (stopped) return; outBytes += b.length; if (outBytes > MAX_BODY) return abort(); out += decoder.write(b); });
+   // Keep the slot until close; an I/O error alone does not prove process exit.
+-  child.on('error', () => { stopped = true; }); child.on('close', (code) => { if (stopped || code !== 0 || out.length > MAX_BODY) return finish(reject, new Error('bridge_failed')); try { finish(resolve, JSON.parse(out)); } catch { finish(reject, new Error('bridge_invalid_response')); } }); child.stdin.end(JSON.stringify(request));
++  child.on('error', () => { stopped = true; }); child.on('close', (code) => { if (stopped || code !== 0 || outBytes > MAX_BODY) return finish(reject, new Error('bridge_failed')); try { finish(resolve, JSON.parse(out + decoder.end())); } catch { finish(reject, new Error('bridge_invalid_response')); } }); child.stdin.end(JSON.stringify(request));
+ }); }
+ export async function handleLab(request, { signal } = {}) {
+   try {
+diff --git a/tests/lab/session-service.test.mjs b/tests/lab/session-service.test.mjs
+index 9706343..150cae0 100644
+--- a/tests/lab/session-service.test.mjs
++++ b/tests/lab/session-service.test.mjs
+@@ -343,6 +343,40 @@ test('a failed active Mystery-g fit can retry without consuming its reveal', asy
+   assert.equal(retry.status, 'ok'); assert.equal(retry.reveal.source, 'simulated');
+ });
+ 
++test('UTF-8 bridge output preserves every interior split of two, three and four byte characters', async (t) => {
++  const children = controlledBridge(t);
++  for (const text of ['µ', '€', '😀']) {
++    const reply = { ...startReply, limitations: [text] }, bytes = Buffer.from(JSON.stringify(reply));
++    const offset = bytes.indexOf(Buffer.from(text));
++    for (let part = 1; part < Buffer.byteLength(text); part += 1) {
++      const pending = handleLab(startRequest), child = children.at(-1), split = offset + part;
++      child.stdout.write(bytes.subarray(0, split)); child.stdout.write(bytes.subarray(split)); child.emit('close', 0);
++      const result = await pending; assert.equal(result.status, 'ok'); assert.deepEqual(result.limitations, [text]);
++    }
++  }
++});
++
++test('bridge raw-byte ceiling accepts exactly one million bytes with multibyte output', async (t) => {
++  const children = controlledBridge(t), reply = { ...startReply, limitations: ['µ€😀'] };
++  const bytes = Buffer.from(JSON.stringify(reply)), pending = handleLab(startRequest), child = children.at(-1);
++  child.stdout.write(bytes); child.stdout.write(Buffer.alloc(1_000_000 - bytes.length, 32)); child.emit('close', 0);
++  const result = await pending; assert.equal(result.status, 'ok'); assert.deepEqual(result.limitations, reply.limitations);
++  assert.equal(_sessionTest.getActiveBridges(), 0);
++});
++
++test('bridge raw-byte overflow is sticky and retains capacity until close', async (t) => {
++  const children = controlledBridge(t), count = _sessionTest.sessions.size;
++  const bytes = Buffer.from(JSON.stringify({ ...startReply, limitations: ['µ€😀'] }));
++  const pending = handleLab(startRequest), child = children.at(-1);
++  child.stdout.write(bytes); child.stdout.write(Buffer.alloc(1_000_000 - bytes.length, 32));
++  assert.equal(_sessionTest.getActiveBridges(), 1);
++  child.stdout.write(Buffer.from(' '));
++  assert.equal(_sessionTest.getActiveBridges(), 1);
++  child.stdout.write(Buffer.from(JSON.stringify(startReply))); child.emit('close', 0);
++  assert.deepEqual(await pending, { status: 'error', error: { code: 'lab_request_failed' } });
++  assert.equal(_sessionTest.sessions.size, count); assert.equal(_sessionTest.getActiveBridges(), 0);
++});
++
+ test('timeout cannot become success and capacity is retained until close', async (t) => {
+   const children = controlledBridge(t);
+   t.mock.timers.enable({ apis: ['setTimeout'] });

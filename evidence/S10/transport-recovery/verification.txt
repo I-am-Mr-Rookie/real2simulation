@@ -1,0 +1,11 @@
+v24.18.0
+service_syntax_exit=0
+test_syntax_exit=0
+frozen_producer_route_unchanged_exit=0
+diff_check_exit=0
+79eed4719005abe5b18a2ea51854b3af6eb60fdc
+run/R14-transport-fix
+94b350f4a5d85029850c1cfe0b5d4372df591da6
+d36fc348c3dc43c7e0baa11d767df280fbb3f27c
+150cae05e10e66214298705781b1c7e914af2bd3
+2026-10-28T21:56:54.7498288Z
