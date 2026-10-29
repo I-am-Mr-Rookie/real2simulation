@@ -11,6 +11,9 @@ revisit at S13h measurement.
 S14d DONE (Opus; agent 30 OK; 0 Meta calls): bounded 3-retry validator loop; live fix
 efficacy unverified. S19c DONE (Sonnet; pwa tests pass): truthful install guidance, no
 orientation lock; real-device check deferred to S19d.
+S06b DONE (Opus; gpu 8 OK, audit rc0 fresh): runtime on S06a image, A10G synthetic smoke
+$0.0118, function 24.7s vs 161.7s cold (~137s saved/job). Licence audit: 14 NVIDIA EULA
+wheels private-only, plyfile GPL-3.0 private-runtime-only. Modal month-to-date ~$0.57/$30.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.
