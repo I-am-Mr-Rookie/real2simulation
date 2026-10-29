@@ -1,0 +1,16 @@
+✔ happy path walks upload -> interview -> run -> fit -> report (24.6017ms)
+✔ shell example job DTO parses; malformed DTOs are rejected (7.4464ms)
+✔ job rules: stale/equal revisions, wrong id, regression and terminal states are ignored (0.8319ms)
+✔ invalid spec stays in interview with a readable error; valid spec advances (0.7445ms)
+✔ run: pause/resume/cancel, seed binding, malformed and gravity-leaking output rejected (1.2792ms)
+✔ fit: only validated reveal for the expected session produces numbers (1.1377ms)
+✔ EDIT_SPEC invalidates run and fit; blocked while work is in flight (1.1807ms)
+✔ illegal events return the same state; every phase/event is reachable and documented (4.5704ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 499.6952
