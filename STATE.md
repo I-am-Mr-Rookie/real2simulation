@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+R-RS-recheck-orch53 = CHANGES_REQUIRED (Sol high; TIMEBOX PASS; evidence ff-merged). F3/F4 closed;
+F1/F2 direct probes refused. Open P1: F1-R v1 digest lets metadata-only relabel (foreign trace
+scores 0 RMS on target) -> v2 custody commitment needed now; F2-R provenance string alone lets 3
+nonpublic synthetic fixtures reach MET -> bind to clips.csv/APPROVAL receipt. S12e stays PARTIAL
+-> S12e-fix2 (Opus high).
+
 DISPATCHED S14g-fix-orch55 Opus high (threadId:01a189bb-7d2b-7bf1-aa4f-573d0a042b5d,hostId:local, deadline 2026-10-29T22:45:27+00:00); Meta cap $3.
 
 R-A DONE = CHANGES_REQUIRED (orch50 Sol high; TIMEBOX PASS; evidence ff-merged). Gate A NOT clear:
