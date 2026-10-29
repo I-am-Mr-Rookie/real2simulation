@@ -8,3 +8,9 @@ session). Controller missed this earlier because no receipt existed in project f
 Before first use: verify gated access on HF in the in-app browser (read-only), pin the
 revision and record the checkpoint SHA256. Agents accept no terms themselves.
 Separate safeguard still applies: S06c gate needs a >=32 GB GPU (A10 23 GB too small).
+Modal already offers this (L40S 48 GB, A100 40/80 GB, H100 80 GB): use one of those
+under the standing GPU authorization; no new account/provider needed.
+Note Oct29: owner screenshot shows "granted access" on facebook/sam3.1 (SAM 3.1
+tracking, already verified in S07b), not the SAM 3D Objects repo. A one-time read-only
+look at the SAM 3D Objects page confirms that repo; the checkpoint SHA256 is recorded
+automatically at download for reproducibility (no owner action).
