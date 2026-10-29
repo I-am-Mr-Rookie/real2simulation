@@ -52,6 +52,9 @@ Owner replies Oct29 ~19:10 Dhaka (ingested; no runs started):
   night of Oct28. Controller error: no project receipt existed, so it asked again. Receipt:
   evidence/owner/S06/SAM3D-ACCESS.md (owner-reported; verify read-only in the in-app
   browser before first use). The >=32 GB GPU requirement still stands.
+  Oct29 19:11: owner screenshot of facebook/sam-3d-objects shows "You have been granted
+  access to this model"; saved as evidence/owner/S06/SAM3D-ACCESS-granted-20261029.png.
+  Access CONFIRMED; no further access check. Checkpoint/runtime still unverified.
 ## CURRENT — Oct29 17:20 Dhaka owner update for the active controller
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.
