@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+S06g DONE (orch30 Opus medium; gpu 29 OK fresh; TIMEBOX PASS; ff-merged): CPU dry-run rc0 (96
+pins); aws_adapter.gate() off by default, refuses on-demand/missing gates, never launches (no
+boto3). Risk: gate inputs are owner-recorded, not live-verified. orch31: S06h Opus medium dispatched.
+R-R-recheck nonterminal: F2 incomplete (duplicate scene JSON keys / duplicate job scene IDs can
+inflate GPU amortization FAIL->PASS) -> needs S05 validation repair after recheck report.
 orch30 dispatched full30m (QUEUE effort): S06g Opus medium (CPU, AWS adapter gated, no AWS
 resources), S13f Opus high (<=2 Modal jobs, <=$1), S09h Opus high (3 real scene loads, scale
 unverified label, CPU). Receipt DISPATCH-orch30.json. Running: R-R-recheck-orch28 (Sol).
