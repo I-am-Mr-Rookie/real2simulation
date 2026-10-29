@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+DISPATCHED S07b-param-orch40 Opus medium (threadId:01a18986-6256-7460-a4a4-bc94f9e7dccb,hostId:local, deadline 2026-10-29T21:47:27+00:00;
+receipt DISPATCH-orch40.json): one live RM04 rerun <=$0.50 + ST03 f76 frame_map errata.
+
 S07b-param-orch38 PARTIAL accepted (Opus medium; TIMEBOX PASS; fresh tracking/modal_track/sam 26 OK,
 measurement suite OK; ff-merged). modal_track.py parameterized (clip/frames/prompt/obj/out, opt-in
 RLE masks, mode "x" never overwrites, pre-GPU validation); container-import bug fixed + regression
