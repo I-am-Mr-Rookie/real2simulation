@@ -1,0 +1,56 @@
+2026-10-29T15:26:14.9016979Z
+Installed 34 packages in 2.08s
+✓ Initialized. View run at 
+https://modal.com/apps/koushiksadhakjeet/main/ap-ltdA9yMPSJynaFT34T4Ent
+✓ Created objects.
+├── ✓ Uploaded C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI 
+│   Developer Hackathon\.worktrees\S06f-orch25\Build\gpu\scene_job.py
+├── ✓ Uploaded PythonPackage:modal_image
+├── ✓ Uploaded PythonPackage:runtime
+├── ✓ Uploaded PythonPackage:image_spec
+└── ✓ Created Function scene_job.
+Stopping app - uncaught exception raised locally: ValueError("RM04: licence 'Pexels License' not allowlisted").
+┌───────────────────── Traceback (most recent call last) ─────────────────────┐
+│ C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer       │
+│ Hackathon\.worktrees\S06f-orch25\Build/gpu/scene_job.py:189 in main         │
+│                                                                             │
+│   188 │   │   from cost_log import scene_log                                │
+│ > 189 │   │   frames = load_frames(manifest, scene)  # preflight before any │
+│   190 │   │   call = time.time()                                            │
+│                                                                             │
+│ C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer       │
+│ Hackathon\.worktrees\S06f-orch25\Build/gpu/scene_job.py:132 in load_frames  │
+│                                                                             │
+│   131 │   """Hash-verified frames of one approved scene from a S05 input ma │
+│ > 132 │   clip_row(scene_id)                                                │
+│   133 │   m = json.loads(Path(manifest).read_text(encoding="utf-8"))        │
+│                                                                             │
+│ C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer       │
+│ Hackathon\.worktrees\S06f-orch25\Build/gpu/scene_job.py:41 in clip_row      │
+│                                                                             │
+│    40 │   │   if row["licence"] not in LICENCES:                            │
+│ >  41 │   │   │   raise ValueError(f"{scene_id}: licence {row['licence']!r} │
+│    42 │   │   return row                                                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+ValueError: RM04: licence 'Pexels License' not allowlisted
+rc=1 wall_s=19.7481251
+2026-10-29T15:26:34.6907050Z
+--- attempt 2 after licence-allowlist fix (attempt 1 refused in local preflight; no remote call) ---
+2026-10-29T15:27:12.5327685Z
+✓ Initialized. View run at 
+https://modal.com/apps/koushiksadhakjeet/main/ap-yeKuf0FjgU0P0H8mB9lOvt
+✓ Created objects.
+├── ✓ Uploaded C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI 
+│   Developer Hackathon\.worktrees\S06f-orch25\Build\gpu\scene_job.py
+├── ✓ Uploaded PythonPackage:runtime
+├── ✓ Uploaded PythonPackage:modal_image
+├── ✓ Uploaded PythonPackage:image_spec
+└── ✓ Created Function scene_job.
+Loading pretrained dinov2_vitg14 from torch hub
+Downloading: "https://github.com/facebookresearch/dinov2/zipball/main" to /root/.cache/torch/hub/main.zip
+{"scene": "rm04-mapanything-s06d", "points": 20000, "timing_s": {"client_round_trip_s": 43.642, "container_boot_s": 7.59, "cold_start_s": 11.884, "model_load_s": 18.807, "cold_start_to_model_ready_s": 30.691, "inference_s": 1.506, "function_s": 20.919, "container_python_alive_s": 25.214}, "gpu_seconds": {"estimated": 27.214, "upper_bound": 45.642, "billed": null}, "estimated_usd": 0.01000701}
+Stopping app - local entrypoint completed.
+✓ App completed. View run at 
+https://modal.com/apps/koushiksadhakjeet/main/ap-yeKuf0FjgU0P0H8mB9lOvt
+rc=0 wall_s=63.2962216
+2026-10-29T15:28:15.9444409Z

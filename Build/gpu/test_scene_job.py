@@ -48,6 +48,10 @@ class SceneJob(unittest.TestCase):
             with self.assertRaises(ValueError):
                 j.clip_row(bad)
 
+    def test_all_approved_room_scenes_allowlisted(self):
+        for ok in sorted(j.SCENE_IDS):  # RM04 'Pexels License' spelling broke S06f preflight
+            self.assertIn(j.LICENCES[j.clip_row(ok)["licence"]], {"Pexels", "Public-Domain"})
+
 
 if __name__ == "__main__":
     unittest.main()

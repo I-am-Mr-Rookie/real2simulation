@@ -1,0 +1,42 @@
+{
+ "run": "S06f-orch25",
+ "authorization_ref": "evidence/owner/S05/GPU-AUTHORIZATION.md (standing); controller contract S06f-orch25: <=1 A10G run of one approved room clip other than RM02, cap $0.50, retries 0",
+ "reservation_utc": "2026-10-29T15:26:13.413Z",
+ "new_all_in_reservation_usd": 0.5,
+ "compute_bound_basis": "A10G x (timeout 300 s + startup_timeout 240 s) = 540 s x ($0.000306 + 2x$0.0000131 + 16x$0.00000222) = $0.199 + egress/image margin; cpu 2, 16 GiB, retries 0, max_containers 1, single_use",
+ "headroom": "today ~$0.584 (billing-pre-today-hourly.json 15:25Z, may lag) + S06e month-to-date basis ~$0.58 through Oct28/today vs $30 monthly allocation; no paid overage expected",
+ "pre_billing": "evidence/S06/S06f/billing-pre-today-hourly.json (15:25:40Z); container list [] at 15:25Z",
+ "input": "RM04 (approved, Pexels 'An Empty Classroom', Pavel Danilyuk) 4 frames from .worktrees/S05c-orch19/evidence/S05/S05c/input.json (gitignored local frames, SHA256-verified by load_frames); same approved licensed frames S05c already ran on Modal; no personal/new media",
+ "jobs": [
+  {
+   "app_id": "ap-ltdA9yMPSJynaFT34T4Ent",
+   "app_name": "s06d-scene-job",
+   "kind": "attempt 1: refused in local preflight (clip_row: 'Pexels License' not allowlisted) BEFORE scene_job.remote; no function call, no GPU container",
+   "launch_utc": "2026-10-29T15:26:15Z (client); app created 15:26:25Z",
+   "end_utc": "2026-10-29T15:26:34Z (app stopped, 0 tasks)",
+   "rc": 1,
+   "billed_rows": "none for this app_id in billing-post-today-hourly.json (15:33:27Z)",
+   "measured_cost_usd": 0
+  },
+  {
+   "app_id": "ap-yeKuf0FjgU0P0H8mB9lOvt",
+   "app_name": "s06d-scene-job",
+   "kind": "the one A10G MapAnything scene_job (S06d/S06e entry point, unchanged image) on RM04",
+   "launch_utc": "2026-10-29T15:27:12Z (client); app created 15:27:19Z",
+   "end_utc": "2026-10-29T15:28:15Z (app stopped, 0 tasks)",
+   "rc": 0,
+   "retries": 0,
+   "image_rebuilt": false,
+   "whole_command_wall_s": 63.3,
+   "own_containers_after": [],
+   "app_state_after": "stopped, 0 tasks (post-verify.txt 15:28:26Z)",
+   "scene_log": "evidence/S06/S06f/RM04-scene-log.json",
+   "estimated_cost_usd": 0.01000701,
+   "upper_bound_cost_usd": 0.01678348,
+   "measured_cost_usd": 0.00955325,
+   "cost_source": "modal billing report --for today -r h --json --show-resources at 15:33:27Z and 15:39:20Z (identical; billing-post-today-hourly.json, billing-post2-today-hourly.json) via Build/gpu/cost_log.py; container list [] again 15:39Z"
+  }
+ ],
+ "actual_usd": 0.00955325,
+ "release_suggested_usd": 0.49
+}

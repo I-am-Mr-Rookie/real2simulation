@@ -1,0 +1,60 @@
+{
+ "schema": "s06e-scene-log/1",
+ "app_id": "ap-yeKuf0FjgU0P0H8mB9lOvt",
+ "gpu": "A10G",
+ "cpu_cores": 2,
+ "memory_gib": 16.0,
+ "timing_s": {
+  "client_round_trip_s": 43.642,
+  "container_boot_s": 7.59,
+  "cold_start_s": 11.884,
+  "model_load_s": 18.807,
+  "cold_start_to_model_ready_s": 30.691,
+  "inference_s": 1.506,
+  "function_s": 20.919,
+  "container_python_alive_s": 25.214
+ },
+ "gpu_seconds": {
+  "estimated": 27.214,
+  "upper_bound": 45.642,
+  "billed": 25.962
+ },
+ "cost": {
+  "rates_usd_per_s": {
+   "A10G": 0.000306,
+   "CPU": 1.31e-05,
+   "Memory": 2.22e-06
+  },
+  "estimated": {
+   "total_usd": 0.01000701,
+   "by_resource_usd": {
+    "A10G": 0.00832738,
+    "CPU": 0.000713,
+    "Memory": 0.00096663
+   }
+  },
+  "upper_bound": {
+   "total_usd": 0.01678348,
+   "by_resource_usd": {
+    "A10G": 0.01396645,
+    "CPU": 0.00119582,
+    "Memory": 0.0016212
+   }
+  },
+  "billed": {
+   "status": "billed",
+   "read_utc": "2026-10-29T15:39:27+00:00",
+   "source": "modal billing report --json --show-resources (read-only)",
+   "note": "report may still be accruing shortly after a job; re-run reconcile, latest read wins",
+   "total_usd": 0.00955325,
+   "by_resource_usd": {
+    "Network Egress": 1.13e-06,
+    "Memory": 0.00092445,
+    "CPU": 0.00068322,
+    "A10G": 0.00794445
+   },
+   "estimated_minus_billed_usd": 0.00045376
+  }
+ },
+ "peak_allocated_bytes": 7782135808
+}

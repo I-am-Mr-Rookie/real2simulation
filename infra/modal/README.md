@@ -92,3 +92,13 @@ Client vs container clocks are separate NTP-synced hosts; sub-second skew is pos
 RM02 A10G run 2026-10-29 (ap-HT56BJbqGtr7qg1pdadmu0): boot 6.5 s, cold start 10.8 s, model load 19.7 s (ready 30.5 s),
 inference 1.4 s, round trip 39.6 s; GPU s est 28.1 / billed 30.0; cost est $0.0103 vs billed $0.0113 (15:18Z read;
 15:12Z read was partial $0.0051 - report lags). Not Gate R / calibration / physical evidence.
+
+## Second room clip (S06f): RM04
+From a git worktree, point --env-file at the root .env by a space-free relative path and use the S05c manifest
+(RM04/RM05 frames live beside it, gitignored; load_frames re-checks SHA256):
+    uv run --no-project --python 3.11 --with modal==1.6.3 --with numpy --with jsonschema --env-file ../../.env \
+      modal run Build/gpu/scene_job.py --scene RM04 --out <out> --manifest <S05c input.json>
+clips.csv spells Pexels two ways ("Pexels" RM02, "Pexels License" RM04); both map to contract "Pexels".
+RM04 A10G run 2026-10-29 (ap-yeKuf0FjgU0P0H8mB9lOvt): rc 0, whole command 63.3 s incl. uv env + image lookup
+(target <=300 s), round trip 43.6 s, cold start 11.9 s, model ready 30.7 s, inference 1.5 s; scene validated.
+Billed: see evidence/S06/S06f/job-ledger.json. Not Gate R / calibration / physical evidence.

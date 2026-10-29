@@ -1,0 +1,2 @@
+PASS rm04-mapanything-s06d schema=1.0.0 synthetic=False (not Gate R evidence)
+rc=0

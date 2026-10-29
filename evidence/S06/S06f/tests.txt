@@ -1,0 +1,7 @@
+Ran 22 tests in 0.721s
+
+OK
+Ran 11 tests in 5.204s
+
+OK
+image_spec rc=0

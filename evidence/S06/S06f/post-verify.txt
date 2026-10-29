@@ -1,0 +1,6 @@
+2026-10-29T15:28:26.0999050Z
+container list:
+[]
+app list (s06d-scene-job rows):
+{"app_id": "ap-yeKuf0FjgU0P0H8mB9lOvt", "description": "s06d-scene-job", "state": "stopped", "tasks": "0", "created_at": "2026-10-29 21:27:19+06:00", "stopped_at": "2026-10-29 21:28:15+06:00"}
+{"app_id": "ap-ltdA9yMPSJynaFT34T4Ent", "description": "s06d-scene-job", "state": "stopped", "tasks": "0", "created_at": "2026-10-29 21:26:25+06:00", "stopped_at": "2026-10-29 21:26:34+06:00"}

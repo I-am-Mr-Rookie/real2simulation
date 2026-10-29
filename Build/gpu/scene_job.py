@@ -25,7 +25,8 @@ import image_spec as s
 
 APPROVAL = "evidence/owner/S02/APPROVAL.md"
 SCENE_IDS = {"RM02", "RM04", "RM05"}  # room-scene IDs in APPROVAL.md; other approved IDs are tracking clips
-LICENCES = {"Pexels": "Pexels", "Pixabay": "Pixabay", "PD-USGov-NASA": "Public-Domain", "CC0": "CC0-1.0"}
+LICENCES = {"Pexels": "Pexels", "Pexels License": "Pexels",  # clips.csv uses both spellings (RM02 vs RM04)
+            "Pixabay": "Pixabay", "PD-USGov-NASA": "Public-Domain", "CC0": "CC0-1.0"}
 MAX_POINTS, MOBILE_POINTS = 20000, 5000
 CPU, MEM_MIB, SCALEDOWN_S = 2, 16384, 2  # scene_job resources; also feed the S06e cost estimate
 F = (1.0, -1.0, -1.0)  # OpenCV (x right, y down, z fwd) -> contract (+Y up, camera looks -Z)
