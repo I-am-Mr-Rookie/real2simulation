@@ -1,10 +1,13 @@
 # Real2Simulation — STATE
 
+S15h DONE (orch25 Sonnet medium; workspace 66 pass fresh; TIMEBOX PASS; ff-merged): fit table +
+residual SVG from real fitter output on synthetic fixture; not wired into S04 page.
+orch26: S15i Sonnet medium dispatched (receipt DISPATCH-orch26.json).
 Owner Oct29 ~22:15 Dhaka (on S04h): "I did complete the sign up and sign in phase totally using
 my Gmail ... with passwordless OTP; this step is not needed." Owner decision: Google + email-OTP
 sign-in evidence = owner receipt (evidence/owner/S01/S01B-RECEIPT.md); agent E4 covers guest,
 health and Google hand-off on 8a9bdc9f. S04h -> DONE. Pending S04h owner review closed.
-orch25 dispatched ~15:58Z full30m (QUEUE effort): S05f Opus high (R-R defect fixes + Q-S05e
+orch25 dispatched 15:22-15:24Z full30m (QUEUE effort): S05f Opus high (R-R defect fixes + Q-S05e
 standard-object re-measure / Fallback 2), S06f Opus high (one approved room clip, <=$0.50),
 S13d Opus medium, S15h Sonnet medium. Receipt DISPATCH-orch25.json.
 orch24 ACCEPTED Oct29 ~15:55Z (rebased on main, fresh checks green, ff-merged; main 78334bc+):
