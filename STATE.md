@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+S13f DONE (orch42 Opus high; TIMEBOX PASS; pipeline 43 OK fresh; ff-merged). Pipeline segment stage
+shells to parameterized modal_track CLI, validate_segment (obj id, PTS increasing, RLE size), errata
+frame_map override, readable/retryable failures. Live RM04 segment A10G billed $0.0263, containers [].
+Both GPU stages live-verified separately; chained JobRunner offline only. Findings: F4 container
+preflight_exit 2 (setuptools drift) reported not gating -> S07 lane; worker briefly edited canonical
+gpu_stages.py via apply_patch cwd and reverted (canonical verified clean). S13g now ready.
+
 DISPATCHED S12d-orch43 Opus high (threadId:01a18995-8caa-7121-98f0-176194e94f1e,hostId:local, deadline 2026-10-29T22:04:01+00:00); Owns +contracts/overlay/.
 
 S12c DONE (orch41 Opus high; TIMEBOX PASS; fresh prediction 18 OK; simulator 118/122 = same 4
