@@ -6,7 +6,7 @@ from pathlib import Path
 from rm02_watchdog import atomic_json
 
 
-def persist_result(directory, result):
+def persist_result(directory, result, name="RM02-mapanything.npz"):
     receipt, data = result
     if (len(data) != receipt["output_bytes"]
             or hashlib.sha256(data).hexdigest() != receipt["output_sha256"]):
@@ -14,8 +14,8 @@ def persist_result(directory, result):
     directory = Path(directory)
     local = directory / "local"
     local.mkdir(parents=True, exist_ok=True)
-    destination = local / "RM02-mapanything.npz"
-    temporary = destination.with_suffix(".npz.tmp")
+    destination = local / name
+    temporary = destination.with_name(name + ".tmp")
     temporary.write_bytes(data)
     os.replace(temporary, destination)
     # Per-file atomicity, not a multi-file transaction; marker commits completed bytes.

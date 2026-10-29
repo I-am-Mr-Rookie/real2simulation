@@ -1,0 +1,55 @@
+F......F...............FE.
+======================================================================
+ERROR: test_windows_launcher_trampoline_child_pid_is_accepted (test_rm02_watchdog.WatchdogTests.test_windows_launcher_trampoline_child_pid_is_accepted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 313, in test_windows_launcher_trampoline_child_pid_is_accepted
+    state = self.run_guard(child="trampoline")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 113, in run_guard
+    return watchdog.supervise([sys.executable, str(self.child), child, app_id], self.directory,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\rm02_watchdog.py", line 194, in supervise
+    raise ResourceIncident("Independent stop unconfirmed; inspect " + str(receipt_path))
+rm02_deadline.ResourceIncident: Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmpwzwtuq95\attempt\watchdog.json
+
+======================================================================
+FAIL: test_actual_guard_preserves_payload_when_cleanup_blocks_until_parent_kill (test_rm02_watchdog.WatchdogTests.test_actual_guard_preserves_payload_when_cleanup_blocks_until_parent_kill)
+----------------------------------------------------------------------
+rm02_deadline.ResourceIncident: Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmpd0yioymz\attempt\watchdog.json
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 266, in test_actual_guard_preserves_payload_when_cleanup_blocks_until_parent_kill
+    with self.assertRaisesRegex(RuntimeError, "Client failed"):
+AssertionError: "Client failed" does not match "Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmpd0yioymz\attempt\watchdog.json"
+
+======================================================================
+FAIL: test_contradictory_app_id_never_allows_preflight_success (test_rm02_watchdog.WatchdogTests.test_contradictory_app_id_never_allows_preflight_success)
+----------------------------------------------------------------------
+rm02_deadline.ResourceIncident: Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmpg4a1eift\attempt\watchdog.json
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 207, in test_contradictory_app_id_never_allows_preflight_success
+    with self.assertRaisesRegex(RuntimeError, "Client failed"):
+AssertionError: "Client failed" does not match "Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmpg4a1eift\attempt\watchdog.json"
+
+======================================================================
+FAIL: test_valid_preflight_failure_is_distinguished_without_stop_claim (test_rm02_watchdog.WatchdogTests.test_valid_preflight_failure_is_distinguished_without_stop_claim)
+----------------------------------------------------------------------
+rm02_deadline.ResourceIncident: Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmpskbanjww\attempt\watchdog.json
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\Build\reconstruction\spike\test_rm02_watchdog.py", line 185, in test_valid_preflight_failure_is_distinguished_without_stop_claim
+    with self.assertRaisesRegex(RuntimeError, "Preflight validation failed"):
+AssertionError: "Preflight validation failed" does not match "Independent stop unconfirmed; inspect C:\Users\HP\AppData\Local\Temp\tmpskbanjww\attempt\watchdog.json"
+
+----------------------------------------------------------------------
+Ran 26 tests in 82.296s
+
+FAILED (failures=3, errors=1)

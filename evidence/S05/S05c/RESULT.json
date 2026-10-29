@@ -1,0 +1,60 @@
+{
+  "run": "S05c-orch19",
+  "status": "OK",
+  "app_id": "ap-Pez26JXXUV7H31WyJvvrF8",
+  "launch_utc": "2026-10-29T11:53:38Z",
+  "client_end_utc": "2026-10-29T11:58:00Z",
+  "gpu": "NVIDIA A10, 23028 MiB, 610.57.04",
+  "model": "facebook/map-anything-apache",
+  "code_revision": "3d10cf7a3016fc0f9bb13a071ee66c47b10be0d9",
+  "weight_revision": "00f9c245bbcb60522d1ed7f9e9d88462c6e3f38a",
+  "torch": "2.8.0+cu128",
+  "setup_s": 124.5,
+  "function_elapsed_s": 177.9,
+  "bundle_zip_sha256": "c772bd9aab6e5cd7899b54fc69cd5df08d90a8059387c5be49f79c58c2e4d3b7",
+  "bundle_zip_bytes": 55211073,
+  "local_split_verify": "per-scene npz extracted from zip; sha256 == remote per-scene hash (orch19/local-split-verify.txt)",
+  "measured_cost_usd": 0.06481698,
+  "measured_cost_source": "modal billing report --start 2026-10-29 --end 2026-10-30 --resolution h --csv (orch19/billing-post.csv), hour 11:00Z row for ap-Pez26JXXUV7H31WyJvvrF8",
+  "watchdog": {
+    "child_returncode": 0,
+    "independent_stop_confirmed": true,
+    "resource_incident": false,
+    "stop_returncode": 1,
+    "note": "stop rc1 = already stopped; exact-app info stopped, tasks 0, containers []"
+  },
+  "receipt": "evidence/S05/S05b/recovery8/attempt-3853a52b356645c5933a51d293ddfe05/gpu-result.json",
+  "input": "evidence/S05/S05c/input.json",
+  "scenes": {
+    "RM04": {
+      "frames": 4,
+      "inference_s": 1.068,
+      "peak_allocated_bytes": 7715358720,
+      "peak_reserved_bytes": 7929331712,
+      "npz_bytes": 27698481,
+      "npz_sha256": "1a06953fb8fcc58c00996fecd483547dbad4d9fe1fb2f35946382c6467b5a5c1",
+      "npz_local_path": "evidence/S05/S05b/recovery8/attempt-3853a52b356645c5933a51d293ddfe05/local/RM04-mapanything.npz (gitignored)",
+      "all_arrays_finite": true,
+      "per_view_shape": "pts3d/pts3d_cam/ray_directions/img [1,294,518,3]; depth/mask [1,294,518,1]; conf [1,294,518]; intrinsics 3x3; camera_poses 4x4"
+    },
+    "RM05": {
+      "frames": 4,
+      "inference_s": 0.72,
+      "peak_allocated_bytes": 7758014976,
+      "peak_reserved_bytes": 7998537728,
+      "npz_bytes": 27512338,
+      "npz_sha256": "a3bebfebcb7f30166558f6eafd5d8e80b649abba4d46f57261ddac765610a362",
+      "npz_local_path": "evidence/S05/S05b/recovery8/attempt-3853a52b356645c5933a51d293ddfe05/local/RM05-mapanything.npz (gitignored)",
+      "all_arrays_finite": true,
+      "per_view_shape": "pts3d/pts3d_cam/ray_directions/img [1,294,518,3]; depth/mask [1,294,518,1]; conf [1,294,518]; intrinsics 3x3; camera_poses 4x4"
+    },
+    "RM02": {
+      "source": "S05b-orch14 (not rerun)",
+      "npz_sha256": "4ce3c82c5252381933bc99518283d4a39c2b1b4eaa1d82da5471738f351f466b",
+      "receipt": "evidence/S05/S05b/recovery8/attempt-6719a7021d70479294ffad678cede3de/gpu-result.json"
+    }
+  },
+  "gate_R": "NOT RUN",
+  "physical_scale": "unverified (metric_scaling_factor is model output, not calibration)",
+  "capture_timebase": "unverified"
+}

@@ -202,4 +202,7 @@ def supervise(command, directory, *, total_seconds=TOTAL_SECONDS,
 if __name__ == "__main__":
     root = Path(__file__).resolve().parents[3]
     directory = root / "evidence/S05/S05b/recovery8" / ("attempt-" + uuid.uuid4().hex)
-    supervise([sys.executable, str(Path(__file__).with_name("modal_rm02.py"))], directory)
+    script = sys.argv[1] if len(sys.argv) > 1 else "modal_rm02.py"
+    if script not in {"modal_rm02.py", "modal_scenes.py"}:
+        raise SystemExit("Unknown supervised client")
+    supervise([sys.executable, str(Path(__file__).with_name(script))], directory)

@@ -1,0 +1,92 @@
+{
+  "run": "S05c-orch19",
+  "approval_ref": "evidence/owner/S02/APPROVAL.md",
+  "approval_scope": "local scene/tracking ONLY; not final/public/raw-media redistribution or third-party upload",
+  "extraction": "ffmpeg 8.1.1: select=eq(n,..) then scale=518:-2:flags=lanczos; RM05 seeks -ss 30 so indices are absolute (900+n)",
+  "timing": "file playback indices only; not physical capture time",
+  "physical_scale": "unverified",
+  "capture_timebase": "unverified",
+  "gate_R": "NOT RUN",
+  "scenes": [
+    {
+      "clip_id": "RM04",
+      "source_path": "test-data/public/RM04.mp4",
+      "source_sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+      "source_url": "https://www.pexels.com/video/an-empty-classroom-8342689/",
+      "creator": "Pavel Danilyuk",
+      "license": "Pexels License",
+      "file_fps": "25/1",
+      "width": 518,
+      "frames": [
+        {
+          "frame_index": 0,
+          "file_time_s": 0.0,
+          "path": "local/RM04-01.png",
+          "bytes": 152348,
+          "sha256": "423afe8e8cbe9af7f1f0e86fa53a8d5d628868bac749230d94642f24209cb1d2"
+        },
+        {
+          "frame_index": 75,
+          "file_time_s": 3.0,
+          "path": "local/RM04-02.png",
+          "bytes": 153222,
+          "sha256": "0048bab58c593e92759ec6a7ba2db729ebbdf76b0b372e0daf4aae26eaf98a43"
+        },
+        {
+          "frame_index": 150,
+          "file_time_s": 6.0,
+          "path": "local/RM04-03.png",
+          "bytes": 154173,
+          "sha256": "38020eca2c5f7f9118b78ad28342e86592c7a0473e8d8f7149979818d064d57f"
+        },
+        {
+          "frame_index": 225,
+          "file_time_s": 9.0,
+          "path": "local/RM04-04.png",
+          "bytes": 156130,
+          "sha256": "3f5f1b3180dc27307593de5c32aaf70b64c42f3aa52c04a75eb5576a44b2f467"
+        }
+      ]
+    },
+    {
+      "clip_id": "RM05",
+      "source_path": "test-data/public/RM05.mp4",
+      "source_sha256": "53b9f050e8e8c62ac698236ed6107fd6c51636ed3fc79ba6b41caefcdf3ffbcf",
+      "source_url": "https://images.nasa.gov/details/Step_Inside_the_Station-4K-Clean",
+      "creator": "NASA (JSC)",
+      "license": "PD-USGov-NASA",
+      "file_fps": "30/1",
+      "width": 518,
+      "frames": [
+        {
+          "frame_index": 900,
+          "file_time_s": 30.0,
+          "path": "local/RM05-01.png",
+          "bytes": 206771,
+          "sha256": "5675f8fa77d85514cacac7a2b9b6d35d5324f3a21df6b69009bdcd01e229da36"
+        },
+        {
+          "frame_index": 930,
+          "file_time_s": 31.0,
+          "path": "local/RM05-02.png",
+          "bytes": 220331,
+          "sha256": "f5c0a836c717db15083571b31950c3ec3191a42ab6e206ee71b6879c4e7e4e79"
+        },
+        {
+          "frame_index": 960,
+          "file_time_s": 32.0,
+          "path": "local/RM05-03.png",
+          "bytes": 232522,
+          "sha256": "8c9031a7a9a350e1819c9555c24e776b085a818eee380debaa62ec1d99ccfd4e"
+        },
+        {
+          "frame_index": 990,
+          "file_time_s": 33.0,
+          "path": "local/RM05-04.png",
+          "bytes": 241376,
+          "sha256": "b7081e37f7218df2323448742e7824bb0a67132ae5fdf4d81a6098ab37ceaed2"
+        }
+      ]
+    }
+  ]
+}

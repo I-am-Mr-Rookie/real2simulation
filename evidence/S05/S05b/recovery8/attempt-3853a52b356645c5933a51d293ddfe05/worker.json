@@ -1,0 +1,18 @@
+{
+  "total_budget_s": 960.0,
+  "stop_requested": true,
+  "absolute_deadline_monotonic": 1403157.796,
+  "remaining_at_start_s": 944.7340000001714,
+  "stop_attempted": true,
+  "stop_dispatched": true,
+  "stop_acknowledged": true,
+  "remote_stop_confirmed": true,
+  "admission_observed": true,
+  "resource_incident": false,
+  "app_id": "ap-Pez26JXXUV7H31WyJvvrF8",
+  "function_call_id": "fc-01M63R51QFSGZAF0JQQK61TFHF",
+  "result_received": true,
+  "result_persisted": true,
+  "elapsed_s": 234.8279999999795,
+  "cleanup_errors": []
+}

@@ -1,0 +1,34 @@
+{
+  "run": "S05c-orch19",
+  "reservation_utc": "2026-10-29T11:53:26.73Z",
+  "authorization_ref": "evidence/owner/S05/GPU-AUTHORIZATION.md",
+  "run_cap_usd": 3,
+  "owner_monthly_budget_usd": 30,
+  "billing_pre": "modal billing report 2026-10-01..2026-10-30 daily CSV (read-only CLI, billing-pre.csv): month-to-date total $0.30 (all workers) => ample headroom under $30 monthly + $100 grant; no paid overage expected",
+  "new_all_in_reservation_usd": 0.95,
+  "compute_bound_basis": "one A10G container, 1020s client bound (90 startup+600 exec+210 admission+cleanup) ~$0.375 planned; S05b measured ~$0.057/probe",
+  "gpu_requested": "A10G",
+  "retries": 0,
+  "scenes": [
+    "RM04",
+    "RM05"
+  ],
+  "pre_launch_own_apps": "none live (s05c app not yet created); only live container belongs to other worker app s06a-image-dryrun",
+  "gpu_attempts": [
+    {
+      "app_id": "ap-Pez26JXXUV7H31WyJvvrF8",
+      "launch_utc": "2026-10-29T11:53:38Z",
+      "allocated_gpu": "NVIDIA A10, 23028 MiB, 610.57.04",
+      "scenes": "RM04,RM05",
+      "function_elapsed_s": 177.9,
+      "client": "OK rc=0, result persisted, per-scene hashes verified",
+      "app_stopped": "stopped, tasks 0 (11:58:27Z)",
+      "containers_after": [],
+      "measured_cost_usd": 0.06481698
+    }
+  ],
+  "measured_total_usd": 0.06481698,
+  "reserve_released_usd": 0.885,
+  "account_wide_no_overage_cap_claimed": false,
+  "gate_R": "NOT RUN"
+}
