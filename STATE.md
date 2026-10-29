@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+S09i DONE (orch33 Opus medium; TIMEBOX PASS; ff-merged; canonical viewer 43 pass/3 real skipped
+(media gitignored)/0 fail): HP 250 G7 i3-1005G1 Intel UHD, RM02/RM04/RM05 orbit 59.97 fps
+desktop (vsync cap), ~56 fps at 375px emulation, worst frame 22.9 ms, heap 12-15 MB. No VRAM
+metric. orch35: S09j Opus medium dispatched.
 S05f-fix-orch32 DONE (Opus medium; gate_r 14 OK + spike/rm02 fresh; TIMEBOX PASS; ff-merged):
 D1 duplicate JSON members rejected (object_pairs_hook); D2 job scene lists validated (nonempty,
 unique, in-cohort, no cross-job overlap) before amortizing. Real Gate R unchanged FAIL. Reviewer

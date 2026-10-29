@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 21:57 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 22:00 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **136 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **137 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -20,7 +20,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 
 **CLAUDE**
-- [ ] **S09i** — Codex (native Claude) · Opus 5.5, effort medium — Measure fps and memory on target laptop (30 min)
+- [ ] **S09j** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint viewer evidence and visual fixes (30 min)
 
 ## Waiting for Koushik
 
@@ -144,7 +144,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S09</b> — 3D world viewer with a rendering budget (8/10)</summary>
+<details><summary><b>S09</b> — 3D world viewer with a rendering budget (9/10)</summary>
 
 - [x] **S09a** — Codex (native Claude) · Opus 5.5, effort medium — Define viewer adapter and synthetic fixture scene (30 min)
 - [x] **S09b** — Codex (native Claude) · Opus 5.5, effort medium — Render fixture geometry and orbit camera (30 min)
@@ -154,7 +154,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S09f** — Codex (native Claude) · Opus 5.5, effort medium — Pause rendering when idle or hidden (30 min)
 - [x] **S09g** — Codex (native Claude) · Opus 5.5, effort medium — Add 375px reduced-detail viewer layout (30 min)
 - [x] **S09h** — Codex (native Claude) · Opus 5.5, effort high — Integrate three measured scene artifacts (30 min)
-- [ ] **S09i** — Codex (native Claude) · Opus 5.5, effort medium — Measure fps and memory on target laptop (30 min)
+- [x] **S09i** — Codex (native Claude) · Opus 5.5, effort medium — Measure fps and memory on target laptop (30 min)
 - [ ] **S09j** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint viewer evidence and visual fixes (30 min)
 
 </details>
