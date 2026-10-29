@@ -770,3 +770,12 @@ Read-only checks only (no resources created):
   $25 all-service budget satisfies the $50 EC2 gate is an open owner decision.
 AWS stays OFF for agent GPU jobs until that decision; spot only (g6e.xlarge = 4 vCPU);
 on-demand failover unavailable until L-DB2E81BA is approved.
+
+## 2026-10-29 — AWS budget replaced (owner-directed)
+
+Koushik: "create them" / "delete the existing ones and create the new ones".
+Created "Real2Sim EC2 50 USD": COST, $50/month, SERVICE = EC2-Compute + EC2-Other,
+credits/refunds excluded (gross usage), email alerts (same owner address) at actual
+50/80/100% and forecast 100%. Deleted both "My Monthly Cost Budget" ($25 all-service).
+Owner confirms on-demand request still pending. AWS gates met: agents may use us-east-2
+G/VT SPOT (8 vCPU) within existing rules; on-demand unavailable until approved.

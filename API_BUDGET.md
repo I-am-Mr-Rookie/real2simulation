@@ -200,7 +200,7 @@ Log every provider call with UTC, task/RID, provider, exact model, protocol, inp
 | Modal | Owner dashboard screenshot confirms $130 total: monthly$30 plus Active hackathon grant$100, expires Oct31,2027 | Existing$30 authorised spend ceiling unchanged by balance evidence; GPU/inference and no-overage guard unverified; reserve job costs against applicable credits, headroom and authorization; pause new uploads below $5 while AWS pending |
 | Baseten | Guide offers $100; credited balance unverified | Spark Open primary, exact model ID meta-models/muse-spark-open-1026; verify at S16 |
 | Fireworks | Plan says $80; guide offer $25 does not establish account balance | Fallback only; prior model listing is auth evidence, not inference |
-| AWS | $176.27 remaining reported in earlier notes, not current verified balance | Disabled; owner quota confirmation then owner-created $50 EC2 budget alert; us-east-2 only; spot batch, stop after session |
+| AWS | $176.27 remaining reported in earlier notes, not current verified balance | Spot only (8 vCPU verified Oct29; on-demand 0 pending); $50 EC2 budget alert verified; us-east-2 only; spot batch, stop after session |
 | Kaggle | Plan baseline 30h/week, actual quota unverified | No account/terms acceptance; check memory/licences before spikes |
 | Railway | Existing Pro account reported | Dev deploys approved for future steps; judging/other environments separately gated |
 

@@ -99,10 +99,11 @@ Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they con
   tracking on remaining approved clips, S06a-f. Once a probe gives measured cost, size
   further useful jobs to consume remaining monthly credit by Oct31 (do not assume exact
   reset time); no paid overage, no idle burn, ledger every job. Standing GPU auth reused.
-- AWS: owner reports quota increase APPROVED (requested: us-east-2, 8 vCPU G/VT
-  on-demand + spot; region/value not agent-verified). Still OFF for agents until Koushik
-  (1) creates the $50 EC2 budget alert and (2) supplies agent AWS access (no AWS CLI or
-  AWS key names on this PC). Credits expire 2027-05: AWS is post-reset overflow and
+- AWS (agent-verified Oct29, see DECISIONS_LOG): CLI v2 + `aws login` [default]
+  us-east-2 (root console session; re-run `aws login` if expired). G/VT SPOT 8 vCPU
+  APPROVED; ON-DEMAND still 0 (request open) -> spot only. Both gates met: $50/month
+  EC2 budget "Real2Sim EC2 50 USD" (owner-directed; gross, alerts 50/80/100% + forecast).
+  Credits expire 2027-05: AWS is post-reset overflow and
   SAM 3D Objects/batch S18/S21, g6e.xlarge us-east-2, spot batch, stop each session.
 Controller: apply on next dispatch decision; in-flight orch13 contracts unchanged.
 
@@ -620,7 +621,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 | Local resources | Historical preflight about1.94GiB free RAM, not a current reading or agent cap. Serialize heavy local builds using actual resource checks; lightweight isolated research can proceed concurrently. |
 | Remote / visibility | None configured; local-only, unpublished |
 | Deployments | S04g exact existing Real2Simulation/dev IDs in infra/railway/dev/deployments.json. web https://web-dev-cd80.up.railway.app; api https://api-dev-6091.up.railway.app; worker https://worker-dev-984d.up.railway.app. All app deployments SUCCESS. API dependencies live-verified; worker heartbeat unavailable503; sign-in unavailable. Ongoing Railway cost unknown. No judging/candidate/production change. |
-| AWS | Disabled pending owner-confirmed us-east-2 quota and owner-created $50 EC2 alert |
+| AWS | Enabled for spot only (us-east-2 G/VT spot 8 vCPU verified; on-demand 0 pending); $50 EC2 budget alert verified Oct29 |
 | Muse / VM / relay | Not used |
 | Plan preservation | S08a verified unchanged Git blob from start main f0d6494; blob SHA256 ef101e5efa7c945463fe9f16b0c5f1c66154991fd1464af259507a3eab82706e; Windows file SHA256 4e0c276c7156d15e465eed4b53708821b70e7ee8d6733555a07a2eec65ca60f7 (CRLF; LF-equivalent to blob). Prior recorded hash was stale; plan not edited. |
 

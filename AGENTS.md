@@ -19,10 +19,11 @@ Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they con
   tracking on remaining approved clips, S06a-f. Once a probe gives measured cost, size
   further useful jobs to consume remaining monthly credit by Oct31 (do not assume exact
   reset time); no paid overage, no idle burn, ledger every job. Standing GPU auth reused.
-- AWS: owner reports quota increase APPROVED (requested: us-east-2, 8 vCPU G/VT
-  on-demand + spot; region/value not agent-verified). Still OFF for agents until Koushik
-  (1) creates the $50 EC2 budget alert and (2) supplies agent AWS access (no AWS CLI or
-  AWS key names on this PC). Credits expire 2027-05: AWS is post-reset overflow and
+- AWS (agent-verified Oct29, see DECISIONS_LOG): CLI v2 + `aws login` [default]
+  us-east-2 (root console session; re-run `aws login` if expired). G/VT SPOT 8 vCPU
+  APPROVED; ON-DEMAND still 0 (request open) -> spot only. Both gates met: $50/month
+  EC2 budget "Real2Sim EC2 50 USD" (owner-directed; gross, alerts 50/80/100% + forecast).
+  Credits expire 2027-05: AWS is post-reset overflow and
   SAM 3D Objects/batch S18/S21, g6e.xlarge us-east-2, spot batch, stop each session.
 
 ## Latest owner model reroute — Oct29 (Codex -> Claude)
