@@ -7,14 +7,16 @@ import { renderTemplate } from './template-view.mjs';
 import { renderRun } from './run-view.mjs';
 import { renderInstruments } from './instrument-view.mjs';
 import { renderFit } from './fit-view.mjs';
+import { renderSidebar, renderReport } from './navigation.mjs';
 
-export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments, fit) {
+export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments, fit, sidebar, report) {
   const { stages, viewport, jobStatus } = layout;
   const err = view.error ?? jobStatus.error;
   return h('div', { className: 'ws', 'data-phase': layout.phase },
     h('nav', { className: 'ws-stages', 'data-slot': 'stage-nav', 'aria-label': 'Workspace stages' },
       h('ol', null, ...stages.map((s) => h('li', { key: s.id, 'data-status': s.status, 'aria-current': s.status === 'current' ? 'step' : undefined },
         s.label + (s.failed ? ' (needs attention)' : ''))))),
+    sidebar ? renderSidebar(h, sidebar, onAction) : null,
     h('section', { className: 'ws-viewport', 'data-slot': 'viewport', 'aria-label': 'Scene viewport' },
       viewport.banner ? h('p', { className: 'ws-banner', role: 'note' }, viewport.banner) : null,
       h('div', { className: 'ws-host', ref: hostRef, 'data-viewer-status': view.status }),
@@ -25,7 +27,8 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
       template && ['interview.active', 'run.ready'].includes(layout.phase) ? renderTemplate(h, templateView(template), layout.phase, onAction) : null,
       run ? renderRun(h, run, onAction) : null,
       instruments ? renderInstruments(h, instruments, onAction) : null,
-      fit ? renderFit(h, fit) : null),
+      fit ? renderFit(h, fit) : null,
+      report ? renderReport(h, report) : null),
     h('aside', { className: 'ws-job', 'data-slot': 'job-status', 'aria-label': 'Job status' },
       h('p', null, jobStatus.jobId ? 'Job ' + jobStatus.jobId : 'No job yet'),
       renderStatus(h, jobStatus.surface, onAction),

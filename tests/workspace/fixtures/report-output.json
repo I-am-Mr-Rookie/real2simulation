@@ -1,0 +1,47 @@
+{
+ "provenance": "SYNTHETIC inputs; report built via Build.reports.number_entry and checked by validate_report.",
+ "report": {
+  "fitter_digest": "sha256:5004a05c3608ffa1bc7f617a2add58b6743b0b01148d34305d2350c5428e7ac6",
+  "numbers": {
+   "gravity": {
+    "label": "simulated",
+    "path": "gravity.value",
+    "uncertainty": 0.14157843272400036,
+    "uncertainty_path": "gravity.uncertainty",
+    "unit": "m/s^2",
+    "value": 1.8871243024471782
+   },
+   "observations": {
+    "label": "simulated",
+    "path": "fit.n",
+    "unit": "1",
+    "value": 8
+   },
+   "rmse": {
+    "label": "simulated",
+    "path": "fit.rmse",
+    "unit": "m",
+    "value": 0.02773378666341046
+   }
+  },
+  "schema": "r2s.report/1",
+  "sections": [
+   {
+    "id": "result",
+    "text": [
+     "Fitted gravity is {{gravity}} from {{observations}} observations."
+    ],
+    "title": "Result"
+   },
+   {
+    "id": "quality",
+    "text": [
+     "Residual RMSE is {{rmse}}."
+    ],
+    "title": "Fit quality"
+   }
+  ],
+  "template": "free_fall",
+  "title": "Synthetic free-fall report"
+ }
+}

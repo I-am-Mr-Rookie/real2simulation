@@ -105,3 +105,12 @@ Files: `fit-view.mjs` (`parseFit`, `fitView`, `renderFit`), wired as `<Workspace
 - **Labels:** each row/residual carries the fitter's own `source.label` (`simulated` or `measured`), never upgraded; unknown label, length mismatch, non-finite number or malformed block shows a rejection alert and no numbers. Null gravity shows "unavailable".
 - **Accessibility:** `<table>` with captions and `scope`, SVG `role="img"` with title/desc. Existing deps only.
 - Not covered: S04 page wiring, real fitter transport, the S11 reveal (`state.fit`) is not required by this panel, real/calibrated data, gate evidence.
+
+## S15i: sidebar and report navigation
+
+Files: `navigation.mjs` (`sidebarOf`, `renderSidebar`, `parseReport`, `reportView`, `renderReport`). Opt-in: `<Workspace navigate report={reportJson} interview={interviewState} onAction />`; without `navigate` the markup is unchanged.
+- **Sidebar:** one button per stage; a button carries an event only if the S15a reducer accepts it (`REPORT_OPEN`/`REPORT_CLOSE`/`EDIT_SPEC`/`RESET`); run and fit are never directly reachable. Destructive moves (`EDIT_SPEC`, `RESET`) show their consequence. Report needs both `fit.done` and a received report. The host dispatches `event` to the reducer. The interview entry shows progress from the agent interview state.
+- **Agent (Build/agent, S14):** reached only via its JSON contract (`contracts/agent`, already parsed by `parseQuestions`); no import of Build/agent.
+- **Report (Build/reports, S17):** reached only via the `r2s.report/1` JSON. `parseReport` is a closed-shape mirror (schema, template, number entries, label in measured|simulated, placeholders resolve, no bare digits in prose). Numbers render from `numbers` with unit, uncertainty and label; unit `1` prints nothing. Fixture `tests/workspace/fixtures/report-output.json` is built through the public `Build.reports` API (`evidence/S15/report_fixtures.py [--check]`).
+- Not covered: JS cannot recompute the fitter digest (server `validate_report` does); no live Meta/agent call; S04 page wiring; report tables/charts/PDF (Build/reports render outputs have no JSON transport contract yet).
+

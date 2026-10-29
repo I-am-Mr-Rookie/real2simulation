@@ -1,6 +1,6 @@
 /* S15b: responsive slot layout. Wide: stage rail on top, viewport left, panel + job status right. Narrow: one column. */
 .ws { display: grid; gap: 1rem; grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
-  grid-template-areas: "nav nav" "viewport panel" "viewport job"; align-items: start; }
+  grid-template-areas: "nav nav" "side side" "viewport panel" "viewport job"; align-items: start; }
 .ws-stages { grid-area: nav; }
 .ws-stages ol { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin: 0; padding: 0; list-style: none; font-size: .95rem; }
 .ws-stages li { color: var(--muted); }
@@ -14,7 +14,7 @@
 .ws-status { margin: .5rem 0 0; font-size: .9rem; color: var(--muted); }
 .ws-error { color: #8a1c1c; }
 @media (max-width: 860px) {
-  .ws { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nav" "viewport" "panel" "job"; }
+  .ws { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nav" "side" "viewport" "panel" "job"; }
   .ws-host { min-height: 16rem; }
 }
 
@@ -75,3 +75,14 @@
 .ws-resid-zero { stroke: var(--muted); stroke-dasharray: 4 3; }
 .ws-resid-pt { fill: var(--blue); }
 .ws-fit-table .ws-tag { white-space: nowrap; }
+
+/* S15i: sidebar (opt-in via navigate prop). The empty "side" row collapses when absent. */
+.ws-sidebar { grid-area: side; }
+.ws-sidebar ul { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; list-style: none; }
+.ws-sidebar li { display: grid; min-width: 7rem; }
+.ws-nav { min-height: 44px; padding-inline: 1rem; cursor: pointer; text-align: left; }
+.ws-nav:disabled { cursor: default; opacity: .6; }
+.ws-nav[aria-current=page] { font-weight: 700; border-bottom: 2px solid var(--blue); }
+.ws-nav[data-destructive] { border-style: dashed; }
+.ws-nav-detail, .ws-nav-note { font-size: .8rem; color: var(--muted); }
+.ws-report article { margin-block: .5rem; }
