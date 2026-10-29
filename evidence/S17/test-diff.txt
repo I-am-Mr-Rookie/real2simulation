@@ -1,0 +1,10 @@
+test_every_template_report_equals_fresh_fitter_run (tests.reports.test_diff.NumericDiff.test_every_template_report_equals_fresh_fitter_run) ... ok
+test_report_from_other_fitter_run_is_caught (tests.reports.test_diff.NumericDiff.test_report_from_other_fitter_run_is_caught) ... ok
+test_tampered_chart_is_caught (tests.reports.test_diff.NumericDiff.test_tampered_chart_is_caught) ... ok
+test_tampered_json_number_is_caught (tests.reports.test_diff.NumericDiff.test_tampered_json_number_is_caught) ... ok
+test_tampered_rendered_documents_are_caught (tests.reports.test_diff.NumericDiff.test_tampered_rendered_documents_are_caught) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.109s
+
+OK
