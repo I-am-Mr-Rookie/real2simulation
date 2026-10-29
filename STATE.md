@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+S20a DONE (orch48 Sol medium; TIMEBOX PASS; guardrails 17 OK; ff-merged). Build/guardrails/CONTRACT.md
++ accounting.py (Decimal reference): Meta cap = confirmed history + pending + conservative estimates,
+strictly < $120 routine, $30 reserve not headroom; Modal $30 no-overage; AWS $50 spot-only. Upload
+quota default 1 reconstruction upload/user/UTC day (reversible default, not an owner fact -> review).
+
 DISPATCHED R-A-orch50 Sol high (threadId:01a189af-b1bb-7091-915f-9c6a4e5d52c0,hostId:local, deadline 2026-10-29T22:32:34+00:00).
 
 S14g DONE (orch47 Opus high; TIMEBOX PASS; agent 49 OK; ff-merged). Gate A MET (live, measured):
