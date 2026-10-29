@@ -1,0 +1,41 @@
+{
+ "contract": "S06c-sam3d-option/v1",
+ "synthetic_input": true,
+ "model_id": "facebook/sam-3d-objects",
+ "code_revision": "f91db411c50efee93d8db7aeb323885650f6f722",
+ "weight_revision": "2e73555018d2741ccd486e56c24fac41155a1dc6",
+ "licence": "SAM License (custom, 2025-11-19); HF license:other, gated=manual",
+ "min_vram_mib": 32768,
+ "vram_mib_checked": 23028,
+ "backend": "primitive",
+ "reasons": [
+  "disabled: R2S_ENABLE_SAM3D != 1 (default off)",
+  "licence/access: no owner receipt SAM3D-ACCESS.md (custom SAM License, gated manual)",
+  "vram: 23028 MiB < 32768 MiB required"
+ ],
+ "colliders": [
+  {
+   "id": "synthetic-box",
+   "shape": "box",
+   "pose": {
+    "position_m": [
+     0.0,
+     0.1,
+     0.0
+    ],
+    "rotation_xyzw": [
+     0.0,
+     0.0,
+     0.0,
+     1.0
+    ]
+   },
+   "half_extents_m": [
+    0.1,
+    0.1,
+    0.1
+   ],
+   "surface_id": null
+  }
+ ]
+}

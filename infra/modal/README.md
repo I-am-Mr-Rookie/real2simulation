@@ -58,3 +58,10 @@ Cost $0.0118 (hourly billing CSV, may lag). Audit: 116 dists (111 unique), 96 lo
 100 permissive, 14 vendor_eula, 2 reviewed. Duplicates attrs/certifi/idna/protobuf/typing-extensions at a second
 (older) version = Modal-injected client deps, plus 15 extras (aiohttp, grpclib, ...); the lock versions are present.
 NOT verified: which duplicate wins on sys.path; image cache retention; real-scene inference/quality (S05c/S06d-f).
+
+## Optional SAM 3D Objects path (S06c, Build/gpu/sam3d_option.py) — DISABLED
+Default and every failure -> primitive box colliders (scene-schema `collider`). SAM 3D runs only if ALL hold:
+R2S_ENABLE_SAM3D=1; owner-created evidence/owner/S06/SAM3D-ACCESS.md (custom SAM License + manual HF gate; agents
+never create it); GPU >= 32768 MiB (A10G 23028 MiB fails); a packaged runner (none: upstream torch 2.5.1/cu121 +
+pytorch3d env conflicts with this lock, needs its own image + audit). S06d calls object_meshes(objects, vram_mib).
+Review: evidence/S06/S06c/REVIEW.md. Offline receipt: python Build/gpu/sam3d_option.py <out.json>.
