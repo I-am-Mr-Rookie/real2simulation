@@ -85,3 +85,24 @@ writes `kf_NNNNNN.jpg` + `manifest.json` (`kind: keyframe_manifest`, 1.0.0):
   duration over `max_duration_s` or no video stream = INVALID_INPUT. `vfr_hint` is advisory.
 - Stage `output_sha256` = sha256 of `manifest.json`. Keyframes/manifests are media
   derivatives: never committed.
+
+## Job lifecycle and retry (S13d)
+
+`Build/pipeline/jobs.py` (`JobRunner`, tests `tests/pipeline/test_jobs.py`, SYNTHETIC workers):
+
+- Store: redis-py-shaped calls only (`set nx/ex`, `get`, `delete`, `rpush`, `lrange`).
+  `MemoryStore` for tests; no Redis client is installed, so a real `redis.Redis(decode_responses=True)`
+  is a drop-in that has NOT been exercised. Keys: `job:<id>:events` (JSON stage events, appended only
+  after `check_events` accepts the whole sequence), `out:<idempotency_key>` (stage output sha256,
+  written once), `claim:<idempotency_key>` (lease, SET NX EX `lease_s`, default 900 s).
+- Reuse: an attempt whose key already has `out:` emits `started`/`succeeded` with that output and
+  never calls the worker, within a job or across jobs (user retry = new job ID).
+- Duplicate dispatch: a live lease on the key raises `Busy` before any event or dispatch. A
+  `started` event without outcome (crash) is closed from the store: recorded output = `succeeded`,
+  else `failed` `PROCESSING_FAILED` retryable, counted against `max_attempts`.
+- Retries follow `_retry_allowed` + `backoff_s`; never_retry codes are forced non-retryable.
+  Terminal jobs return their `failed` snapshot and never dispatch again.
+- At-least-once limit: a paid call that ran but crashed before `out:` was written can be dispatched
+  once more (bounded by `max_attempts` 2); workers must forward the key as the provider's
+  idempotency key. Lease must exceed the stage runtime. Spend caps remain S20 (`SPEND_PAUSED`).
+
