@@ -1,5 +1,17 @@
 # Real2Simulation — STATE
 
+Accepted (TIMEBOX PASS, rebased, fresh checks green, ff-merged) Oct29 ~15:45Z:
+- S15j DONE (orch29 Sonnet medium; workspace 77 pass): 375px stacks sidebar below viewport, no
+  horizontal scroll (375/1280 IAB measured, screenshots). TIMEBOX schema initially wrong -> same
+  worker fixed; controller force-added gitignored PLAN/REPORT. Risk: DOM/tab order unchanged.
+- S06f DONE (orch25 Opus high; gpu 22 + scene 11 OK): RM04 end-to-end on Modal A10G, rc0, 63 s
+  incl. cold start (<=300 s target), validate_scene PASS; est $0.0100 vs billed $0.0096; containers
+  [] after. Pre-call licence-spelling refusal ("Pexels License") fixed with test, no spend.
+- S13e DONE (orch27 Opus high; pipeline 37 OK): understand stage, 4-keyframe cap, idempotency key
+  forwarded; live muse-wonder-1.0 ST03 4 calls est $0.168 (ledger in run dir). Video HTTP200 but
+  failed contract 2/2 (free_text question with empty chips) -> keyframe fallback validated 2/2.
+  Routine controller decision: S14 validator should tolerate empty chips on free_text (normalise,
+  not relax number ban); assign with next S14 agent run. Provider idempotency unverified.
 S15i DONE (orch26 Sonnet medium; workspace 75 pass fresh; TIMEBOX PASS; ff-merged): sidebar +
 report nav via public interfaces, fixtures. Finding for S17: no contracts/report schema for
 r2s.report/1 (JS mirror may drift). Host S04 wiring pending. orch29: S15j Sonnet medium dispatched.
