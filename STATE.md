@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+S13g DONE (orch44 Opus medium; TIMEBOX PASS; pipeline 50 OK; ff-merged): Build/pipeline/progress.py
+versioned job_progress feed (redacted readable messages, after_revision paging) + JobRunner.progress;
+additive jobs schema. No HTTP route yet (Build/api|web outside Owns) -> S13h/web owner adds GET poll.
+S12d DONE (orch43 Opus high; TIMEBOX PASS; prediction 26 OK; ff-merged): predict.pendulum (prefix-only,
+small-angle), contracts/overlay/ overlay/1.0.0 validator (clip/source sha/frame_map PTS alignment,
+trace sha, Gate M NOT_MET), evidence/S12/overlay-ST03.json (real, 466 rows) + pendulum SYNTHETIC
+(no tracked PD01-06 clip). S12e (Gate RS) next: needs suffix tracking of real clips.
+
 DISPATCHED S13g-orch44 Opus medium (threadId:01a18997-356b-7161-93c0-f6582ef0e453,hostId:local, deadline 2026-10-29T22:05:50+00:00).
 
 S13f DONE (orch42 Opus high; TIMEBOX PASS; pipeline 43 OK fresh; ff-merged). Pipeline segment stage
