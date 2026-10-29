@@ -1,5 +1,7 @@
 # R-R recheck — S05f (R-R-recheck-orch28)
 
+**Historical verdict below. D1/D2 are now repaired and independently CLEAR in [recheck2/RECHECK2.md](recheck2/RECHECK2.md).** `recheck/reproduce_remaining.py` now asserts repaired behaviour and writes only to `recheck2/`; the old `remaining-defects.json` and `duplicate-cli-result.json` remain historical synthetic counterexamples, not current results or a real Gate R PASS.
+
 **Verdict: CHANGES REQUIRED — two P2 input-validation defects remain. Not CLEAR.**
 
 Read-only cross-vendor review is complete. S05f's original counterexamples are repaired for well-formed inputs, but F2's explicit duplicate-input requirement is incomplete. Return the defects below to the S05 owner; no source was edited. **Real Gate R remains FAIL**, scale/orientation/qualifying **0/3**, GPU **3/3**. The review can be DONE without clearing the gate implementation or passing Gate R.

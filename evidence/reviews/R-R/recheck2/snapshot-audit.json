@@ -1,0 +1,69 @@
+{
+  "snapshot": "47afeeedbe39891855f4fdb95a67bbb9a2d11913",
+  "repair_commit": "56604618585aa0bce91e37c146cf5542c3c9bf38",
+  "synthetic_controls_only": true,
+  "threshold_assignments_unchanged": true,
+  "threshold_ast": {
+    "Tuple(elts=[Name(id='SCALE_TOL', ctx=Store()), Name(id='ANGLE_TOL_DEG', ctx=Store()), Name(id='GPU_MIN_PER_SCENE', ctx=Store()), Name(id='MIN_SCALE_PASSES', ctx=Store())], ctx=Store())": "Tuple(elts=[Constant(value=0.1), Constant(value=5.0), Constant(value=4.0), Constant(value=2)], ctx=Load())",
+    "Name(id='GPU_S', ctx=Store())": "BinOp(left=Name(id='GPU_MIN_PER_SCENE', ctx=Load()), op=Mult(), right=Constant(value=60))",
+    "Name(id='EPS', ctx=Store())": "Constant(value=1e-12)",
+    "Name(id='COHORT', ctx=Store())": "Tuple(elts=[Constant(value='RM02'), Constant(value='RM04'), Constant(value='RM05')], ctx=Load())"
+  },
+  "real_gate_parsed_equal": true,
+  "real_gate_bytes_equal": true,
+  "real_gate_summary": {
+    "scale_passes": 0,
+    "orientation_passes": 0,
+    "qualifying_clips": 0,
+    "gpu_passes": 3,
+    "clips": 3
+  },
+  "real_gate_verdict": "FAIL",
+  "old_vs_new_d2": [
+    {
+      "scenes": [
+        "RM02",
+        "RM02",
+        "RM02"
+      ],
+      "before": "PASS",
+      "after": "REJECTED"
+    },
+    {
+      "scenes": [
+        "RM02",
+        "unknown1",
+        "unknown2"
+      ],
+      "before": "PASS",
+      "after": "REJECTED"
+    }
+  ],
+  "non_scalar_scene_ids": [
+    {
+      "scenes": [
+        [
+          "RM02"
+        ]
+      ],
+      "rejected_as": "TypeError"
+    },
+    {
+      "scenes": [
+        {
+          "scene": "RM02"
+        }
+      ],
+      "rejected_as": "TypeError"
+    }
+  ],
+  "sha256": {
+    "Build/reconstruction/spike/gate_r.py": "d203da0497a5ef1b9e87a01e2c877dbcc69d15750eee13cf2ee3c4a43260de98",
+    "Build/reconstruction/spike/test_gate_r.py": "ec2d4d2dcb6c682028cf0519e3bc4aa125a1ed5ac19549f157a5ef0b36ea666e",
+    "evidence/S05/S05f/RESULT.json": "3a5c82194bcef866c7b06b7a59e18cfc69ae666c7e8023c60bbd2f0bcfc37057",
+    "evidence/S05/S05c/RESULT.json": "35b035b0f76a6057205c75856b765f4b75fd2d804916ad02ed857ea38938ba51",
+    "evidence/S05/S05b/orch14/job-ledger.json": "4f9f663a80d469171c5ce9b1c6cedfd5b8c5789e757b4008c7c94151cde94004",
+    "evidence/S05/S05f/GATE_R.json": "2a77a37066d6b264b5f84cdbf7cff90c800148f2934a5c974dac2aa48b441cc2"
+  },
+  "source_repair_diff": "diff --git a/Build/reconstruction/spike/gate_r.py b/Build/reconstruction/spike/gate_r.py\nindex cc0c92e..382de2e 100644\n--- a/Build/reconstruction/spike/gate_r.py\n+++ b/Build/reconstruction/spike/gate_r.py\n@@ -41,6 +41,19 @@ def _num(x, what, lo=None, hi=None):\n     return float(x)\n \n \n+def _unique_pairs(pairs):\n+    \"\"\"R-R recheck D1: plain json.loads keeps only the last duplicate member; reject before data is lost.\"\"\"\n+    keys = [k for k, _ in pairs]\n+    dup = sorted({k for k in keys if keys.count(k) > 1})\n+    if dup:\n+        raise ValueError(f\"duplicate JSON members: {dup}\")\n+    return dict(pairs)\n+\n+\n+def load_json(path):\n+    return json.loads(Path(path).read_text(encoding=\"utf-8\"), object_pairs_hook=_unique_pairs)\n+\n+\n def evaluate(frames, jobs, cohort=COHORT):\n     \"\"\"Fixed cohort (R-R F2): every expected clip must be present exactly once, ABSTAIN entries included.\n \n@@ -51,6 +64,11 @@ def evaluate(frames, jobs, cohort=COHORT):\n     clips, fails = {}, []\n     per_scene = {}\n     for j in jobs:\n+        sc = j[\"scenes\"]  # R-R recheck D2: validate membership before amortizing lifetime/cost\n+        if not isinstance(sc, list) or not sc or len(set(sc)) != len(sc) or not set(sc) <= set(cohort):\n+            raise ValueError(f\"job {j.get('app_id')}: scenes must be nonempty, unique, in cohort; got {sc!r}\")\n+        if set(sc) & set(per_scene):\n+            raise ValueError(f\"job {j.get('app_id')}: conflicting GPU coverage for {sorted(set(sc) & set(per_scene))}\")\n         n = len(j[\"scenes\"])\n         fs, ls = _num(j[\"function_s\"], \"function_s\", 0), _num(j[\"lifetime_s\"], \"lifetime_s\", 0)\n         for s in j[\"scenes\"]:\n@@ -120,7 +138,7 @@ def main():\n     ap.add_argument(\"--orch14\", default=\"evidence/S05/S05b/orch14/job-ledger.json\")\n     ap.add_argument(\"out\")\n     a = ap.parse_args()\n-    rd = lambda p: json.loads(Path(p).read_text(encoding=\"utf-8\"))\n+    rd = load_json\n     frames, s05c = rd(a.frames), rd(a.s05c)\n     for cid, r in frames.items():  # input integrity: S05d analysed exactly the S05c/S05b npz\n         want = s05c[\"scenes\"][cid][\"npz_sha256\"]\n"
+}

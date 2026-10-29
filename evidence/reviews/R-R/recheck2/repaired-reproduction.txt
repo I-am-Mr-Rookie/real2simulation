@@ -1,0 +1,1 @@
+D1/D2 repaired checks PASS: 7 real CLI rejections, 11 job rejections; failing controls, legitimate 2-scene amortization and timing boundaries preserved; synthetic only

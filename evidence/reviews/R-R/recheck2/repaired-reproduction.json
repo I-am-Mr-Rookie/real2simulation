@@ -1,0 +1,346 @@
+{
+  "synthetic_only": true,
+  "duplicate_frame_keys": {
+    "cli_checks": [
+      {
+        "input": "--frames",
+        "variant": "top_level",
+        "exit": 1,
+        "error": "ValueError: duplicate JSON members: ['RM02']",
+        "output_created": false
+      },
+      {
+        "input": "--frames",
+        "variant": "nested",
+        "exit": 1,
+        "error": "ValueError: duplicate JSON members: ['a']",
+        "output_created": false
+      },
+      {
+        "input": "--s05c",
+        "variant": "top_level",
+        "exit": 1,
+        "error": "ValueError: duplicate JSON members: ['run']",
+        "output_created": false
+      },
+      {
+        "input": "--s05c",
+        "variant": "nested",
+        "exit": 1,
+        "error": "ValueError: duplicate JSON members: ['a']",
+        "output_created": false
+      },
+      {
+        "input": "--orch14",
+        "variant": "top_level",
+        "exit": 1,
+        "error": "ValueError: duplicate JSON members: ['run']",
+        "output_created": false
+      },
+      {
+        "input": "--orch14",
+        "variant": "nested",
+        "exit": 1,
+        "error": "ValueError: duplicate JSON members: ['a']",
+        "output_created": false
+      },
+      {
+        "input": "--frames",
+        "variant": "original_conflicting_RM02",
+        "exit": 1,
+        "error": "ValueError: duplicate JSON members: ['RM02']",
+        "output_created": false
+      }
+    ],
+    "unique_bad_first_control": "FAIL",
+    "observed": "REJECTED",
+    "required": "reject duplicate scene IDs"
+  },
+  "duplicate_job_scene_ids": {
+    "control": {
+      "gate": "R",
+      "verdict": "FAIL",
+      "thresholds": {
+        "scale_rel": 0.1,
+        "min_qualifying_clips": 2,
+        "cohort": [
+          "RM02",
+          "RM04",
+          "RM05"
+        ],
+        "angle_deg": 5.0,
+        "gpu_min_per_scene": 4.0,
+        "policy": "common cohort: a clip counts only if scale AND orientation pass; floor FIT + gravity estimated required for orientation"
+      },
+      "summary": {
+        "scale_passes": 2,
+        "orientation_passes": 2,
+        "qualifying_clips": 2,
+        "gpu_passes": 2,
+        "clips": 3
+      },
+      "clips": {
+        "RM02": {
+          "floor": "FIT",
+          "gravity": "estimated",
+          "orientation_eligible": true,
+          "scale_rel_error": 0.0,
+          "scale_pass": true,
+          "a4_angle_deg": 1.0,
+          "orientation_pass": true,
+          "gpu": {
+            "app_id": "synthetic",
+            "job_scenes": 1,
+            "function_s": 160.0,
+            "lifetime_s_amortized": 600.0,
+            "function_min_unamortized": 2.667,
+            "lifetime_min_amortized": 10.0,
+            "lifetime_min_unamortized": 10.0,
+            "cost_usd_amortized": 0.0
+          },
+          "gpu_pass": false,
+          "qualifies": true
+        },
+        "RM04": {
+          "floor": "FIT",
+          "gravity": "estimated",
+          "orientation_eligible": true,
+          "scale_rel_error": 0.0,
+          "scale_pass": true,
+          "a4_angle_deg": 1.0,
+          "orientation_pass": true,
+          "gpu": {
+            "app_id": "synthetic",
+            "job_scenes": 1,
+            "function_s": 160.0,
+            "lifetime_s_amortized": 190.0,
+            "function_min_unamortized": 2.667,
+            "lifetime_min_amortized": 3.167,
+            "lifetime_min_unamortized": 3.167,
+            "cost_usd_amortized": 0.0
+          },
+          "gpu_pass": true,
+          "qualifies": true
+        },
+        "RM05": {
+          "floor": "FIT",
+          "gravity": "estimated",
+          "orientation_eligible": true,
+          "scale_rel_error": null,
+          "scale_pass": false,
+          "a4_angle_deg": null,
+          "orientation_pass": false,
+          "gpu": {
+            "app_id": "synthetic",
+            "job_scenes": 1,
+            "function_s": 160.0,
+            "lifetime_s_amortized": 190.0,
+            "function_min_unamortized": 2.667,
+            "lifetime_min_amortized": 3.167,
+            "lifetime_min_unamortized": 3.167,
+            "cost_usd_amortized": 0.0
+          },
+          "gpu_pass": true,
+          "qualifies": false
+        }
+      },
+      "failures": [
+        {
+          "clip": "RM02",
+          "criterion": "gpu<=4min",
+          "kind": "measured_above_threshold",
+          "value": {
+            "app_id": "synthetic",
+            "job_scenes": 1,
+            "function_s": 160.0,
+            "lifetime_s_amortized": 600.0,
+            "function_min_unamortized": 2.667,
+            "lifetime_min_amortized": 10.0,
+            "lifetime_min_unamortized": 10.0,
+            "cost_usd_amortized": 0.0
+          }
+        },
+        {
+          "clip": "RM05",
+          "criterion": "scale<=10%",
+          "kind": "unmeasured",
+          "reason": "no ref"
+        },
+        {
+          "clip": "RM05",
+          "criterion": "gravity_vs_A4<=5deg",
+          "kind": "unmeasured",
+          "reason": ""
+        }
+      ]
+    },
+    "observed": "REJECTED",
+    "rejections": [
+      {
+        "scenes": [
+          "RM02",
+          "RM02",
+          "RM02"
+        ],
+        "error": "job synthetic: scenes must be nonempty, unique, in cohort; got ['RM02', 'RM02', 'RM02']"
+      },
+      {
+        "scenes": [
+          "RM02",
+          "unknown1",
+          "unknown2"
+        ],
+        "error": "job synthetic: scenes must be nonempty, unique, in cohort; got ['RM02', 'unknown1', 'unknown2']"
+      },
+      {
+        "scenes": [],
+        "error": "job synthetic: scenes must be nonempty, unique, in cohort; got []"
+      },
+      {
+        "scenes": "RM02",
+        "error": "job synthetic: scenes must be nonempty, unique, in cohort; got 'RM02'"
+      },
+      {
+        "scenes": null,
+        "error": "job synthetic: scenes must be nonempty, unique, in cohort; got None"
+      },
+      {
+        "scenes": [
+          true
+        ],
+        "error": "job synthetic: scenes must be nonempty, unique, in cohort; got [True]"
+      },
+      {
+        "scenes": [
+          2
+        ],
+        "error": "job synthetic: scenes must be nonempty, unique, in cohort; got [2]"
+      },
+      {
+        "scenes": [
+          "rm02"
+        ],
+        "error": "job synthetic: scenes must be nonempty, unique, in cohort; got ['rm02']"
+      },
+      {
+        "scenes": [
+          "RM02 "
+        ],
+        "error": "job synthetic: scenes must be nonempty, unique, in cohort; got ['RM02 ']"
+      },
+      {
+        "cross_job_overlap_reversed": false,
+        "error": "job synthetic: conflicting GPU coverage for ['RM02']"
+      },
+      {
+        "cross_job_overlap_reversed": true,
+        "error": "job synthetic: conflicting GPU coverage for ['RM02']"
+      }
+    ],
+    "legitimate_two_scene": {
+      "gate": "R",
+      "verdict": "PASS",
+      "thresholds": {
+        "scale_rel": 0.1,
+        "min_qualifying_clips": 2,
+        "cohort": [
+          "RM02",
+          "RM04",
+          "RM05"
+        ],
+        "angle_deg": 5.0,
+        "gpu_min_per_scene": 4.0,
+        "policy": "common cohort: a clip counts only if scale AND orientation pass; floor FIT + gravity estimated required for orientation"
+      },
+      "summary": {
+        "scale_passes": 2,
+        "orientation_passes": 2,
+        "qualifying_clips": 2,
+        "gpu_passes": 3,
+        "clips": 3
+      },
+      "clips": {
+        "RM02": {
+          "floor": "FIT",
+          "gravity": "estimated",
+          "orientation_eligible": true,
+          "scale_rel_error": 0.0,
+          "scale_pass": true,
+          "a4_angle_deg": 1.0,
+          "orientation_pass": true,
+          "gpu": {
+            "app_id": "synthetic",
+            "job_scenes": 1,
+            "function_s": 160.0,
+            "lifetime_s_amortized": 190.0,
+            "function_min_unamortized": 2.667,
+            "lifetime_min_amortized": 3.167,
+            "lifetime_min_unamortized": 3.167,
+            "cost_usd_amortized": 0.06
+          },
+          "gpu_pass": true,
+          "qualifies": true
+        },
+        "RM04": {
+          "floor": "FIT",
+          "gravity": "estimated",
+          "orientation_eligible": true,
+          "scale_rel_error": 0.0,
+          "scale_pass": true,
+          "a4_angle_deg": 1.0,
+          "orientation_pass": true,
+          "gpu": {
+            "app_id": "synthetic",
+            "job_scenes": 2,
+            "function_s": 178.0,
+            "lifetime_s_amortized": 131.0,
+            "function_min_unamortized": 2.967,
+            "lifetime_min_amortized": 2.183,
+            "lifetime_min_unamortized": 4.367,
+            "cost_usd_amortized": 0.03
+          },
+          "gpu_pass": true,
+          "qualifies": true
+        },
+        "RM05": {
+          "floor": "FIT",
+          "gravity": "estimated",
+          "orientation_eligible": true,
+          "scale_rel_error": null,
+          "scale_pass": false,
+          "a4_angle_deg": null,
+          "orientation_pass": false,
+          "gpu": {
+            "app_id": "synthetic",
+            "job_scenes": 2,
+            "function_s": 178.0,
+            "lifetime_s_amortized": 131.0,
+            "function_min_unamortized": 2.967,
+            "lifetime_min_amortized": 2.183,
+            "lifetime_min_unamortized": 4.367,
+            "cost_usd_amortized": 0.03
+          },
+          "gpu_pass": true,
+          "qualifies": false
+        }
+      },
+      "failures": [
+        {
+          "clip": "RM05",
+          "criterion": "scale<=10%",
+          "kind": "unmeasured",
+          "reason": "no ref"
+        },
+        {
+          "clip": "RM05",
+          "criterion": "gravity_vs_A4<=5deg",
+          "kind": "unmeasured",
+          "reason": ""
+        }
+      ]
+    },
+    "timing_boundaries": "inclusive 240 s; immediately over FAIL",
+    "missing_coverage": "FAIL",
+    "required": "reject duplicate/unknown job scene IDs before amortization"
+  }
+}

@@ -1,0 +1,1 @@
+Snapshot audit PASS: thresholds/EPS/cohort unchanged; real FAIL byte-identical; historical D2 false-PASS controls now rejected; non-scalar IDs fail closed

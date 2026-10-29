@@ -1,7 +1,7 @@
 """Repaired-behaviour regressions, synthetic only; never a real Gate R pass.
 
 Supersedes the old defect-expecting probe. Historical counterexamples.json/.txt
-remain unchanged. See RECHECK.md for residual defects outside these checks.
+remain unchanged. See recheck2/RECHECK2.md for the latest D1/D2 disposition.
 Run from the repository root with python -B.
 """
 import copy
@@ -46,7 +46,7 @@ def main():
         assert ev({cid: clip(1 / ratio, 1) for cid in "ABC"})["verdict"] == "FAIL"
     with unittest.TestCase().assertRaises(ValueError):
         gate.evaluate(ok3(), JOBS, cohort=("A", "A", "B"))
-    print("Repaired checks PASS: 11 owner regressions + independent numeric/default-cohort assertions; synthetic only")
+    print(f"Repaired checks PASS: {result.testsRun} owner regressions + independent numeric/default-cohort assertions; synthetic only")
 
 
 if __name__ == "__main__":
