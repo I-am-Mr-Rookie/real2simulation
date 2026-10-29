@@ -58,4 +58,30 @@ import { initialInterview as II, reduceInterview as RI } from '../../Build/web/s
   console.log('S15d SSR ok: interview panel, escaped free text, disabled without onAction');
 }
 
+// S15e: template controls through the real React binding (SSR) with verdicts recorded from the Python validator; static preview for the in-app browser.
+import { initialTemplate as IT, reduceTemplate as RT, FIELDS as TF } from '../../Build/web/src/workspace/template.mjs';
+{
+  const cases = JSON.parse(readFileSync('tests/workspace/fixtures/template-cases.json', 'utf8')).verdicts;
+  const pend = cases.find((v) => v.template === 'pendulum' && v.ok && v.answers.release_angle.text === '3 deg');
+  const bad = cases.find((v) => v.template === 'free_fall' && !v.ok && /must be > 0/.test(v.errors[0]));
+  const noUnit = cases.find((v) => v.template === 'ramp' && !v.ok);
+  const enter = (v) => TF[v.template].reduce((s, fd) => RT(s, { type: 'T_EDIT', param: fd.param, text: v.answers[fd.param].text }), RT(IT(), { type: 'T_LOAD', template: v.template }));
+  const verdict = (v, s) => RT(RT(s, { type: 'T_SUBMIT' }), { type: 'T_VERDICT', answers: v.answers, result: v.ok ? { ok: true, spec: v.spec } : { ok: false, errors: v.errors } });
+  const R = (state, template, onAction = () => {}) => renderToString(React.createElement(Workspace, { state, template, onAction, adapter, loadScene: () => {} }));
+  const rejected = R(withScene, verdict(bad, enter(bad)));
+  for (const re of [/class="ws-template"/, /data-status="rejected"/, /Drop height \(m\)/, /Initial upward speed \(m\/s\)/, /m \(blank = m\)/, /role="alert"/, /must be &gt; 0/]) assert.match(rejected, re);
+  const local = R(withScene, RT(enter(noUnit), { type: 'T_SUBMIT' })); // typed "30" for an angle: refused locally, never sent to the validator
+  for (const re of [/Incline angle \(rad\)/, /rad or deg or ° \(unit required\)/, /Friction coefficient \(1\)/, /unitless number/, /data-status="editing"/, /aria-invalid="true"/]) assert.match(local, re);
+  const acc = verdict(pend, enter(pend));
+  assert.match(R(withScene, acc), /Setup accepted\./); assert.match(R(withScene, acc), /Length: 1 m/);
+  const runReady = reduce(withScene, { type: 'INTERVIEW_SPEC', spec: pend.spec }, { validateSpec: () => ({ ok: true }) });
+  const locked = R(runReady, acc);
+  assert.equal(runReady.phase, 'run.ready'); assert.match(locked, /Edit setup/); assert.match(locked, /Release angle: 0\.05235987755982989 rad/); assert.match(locked, /<fieldset[^>]*disabled/);
+  assert.doesNotMatch(renderToString(React.createElement(Workspace, { state: withScene, adapter, loadScene: () => {} })), /ws-template/);
+  assert.match(renderToString(React.createElement(Workspace, { state: withScene, template: acc, adapter, loadScene: () => {} })), /<fieldset[^>]*disabled/);
+  writeFileSync('evidence/S15/template-preview.html', '<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S15e template preview (SYNTHETIC)</title><style>' + css + '</style><main>' + rejected + '</main>');
+  console.log('S15e SSR ok: units visible, validator rejection shown, accepted spec locks controls in run.ready, disabled without onAction');
+}
+
+
 

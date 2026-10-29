@@ -2,8 +2,10 @@
 // The viewport host div has NO children: the viewer owns everything inside it.
 import { VIEWER_STATUS_TEXT } from './layout.mjs';
 import { interviewView } from './interview.mjs';
+import { templateView } from './template.mjs';
+import { renderTemplate } from './template-view.mjs';
 
-export function renderWorkspace(h, layout, view, hostRef, onAction, interview) {
+export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template) {
   const { stages, viewport, jobStatus } = layout;
   const err = view.error ?? jobStatus.error;
   return h('div', { className: 'ws', 'data-phase': layout.phase },
@@ -16,7 +18,8 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview) {
       h('p', { className: 'ws-status', role: 'status', 'aria-live': 'polite' }, VIEWER_STATUS_TEXT[view.status] ?? VIEWER_STATUS_TEXT.error)),
     h('section', { className: 'ws-panel', 'data-slot': 'panel', 'aria-label': 'Stage panel' },
       h('h2', null, jobStatus.label),
-      interview && layout.phase === 'interview.active' ? renderInterview(h, interviewView(interview), onAction) : null),
+      interview && layout.phase === 'interview.active' ? renderInterview(h, interviewView(interview), onAction) : null,
+      template && ['interview.active', 'run.ready'].includes(layout.phase) ? renderTemplate(h, templateView(template), layout.phase, onAction) : null),
     h('aside', { className: 'ws-job', 'data-slot': 'job-status', 'aria-label': 'Job status' },
       h('p', null, jobStatus.jobId ? 'Job ' + jobStatus.jobId : 'No job yet'),
       renderStatus(h, jobStatus.surface, onAction),

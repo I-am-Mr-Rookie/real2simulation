@@ -1,0 +1,1113 @@
+{
+ "fields": {
+  "free_fall": [
+   {
+    "param": "drop_height",
+    "unit": "m",
+    "units": [
+     "",
+     "m"
+    ]
+   },
+   {
+    "param": "initial_vertical_velocity",
+    "unit": "m/s",
+    "units": [
+     "",
+     "m/s"
+    ]
+   }
+  ],
+  "pendulum": [
+   {
+    "param": "length",
+    "unit": "m",
+    "units": [
+     "",
+     "m"
+    ]
+   },
+   {
+    "param": "release_angle",
+    "unit": "rad",
+    "units": [
+     "deg",
+     "rad",
+     "\u00b0"
+    ]
+   },
+   {
+    "param": "initial_angular_velocity",
+    "unit": "rad/s",
+    "units": [
+     "",
+     "rad/s"
+    ]
+   }
+  ],
+  "projectile": [
+   {
+    "param": "launch_height",
+    "unit": "m",
+    "units": [
+     "",
+     "m"
+    ]
+   },
+   {
+    "param": "horizontal_speed",
+    "unit": "m/s",
+    "units": [
+     "",
+     "m/s"
+    ]
+   }
+  ],
+  "ramp": [
+   {
+    "param": "incline_angle",
+    "unit": "rad",
+    "units": [
+     "deg",
+     "rad",
+     "\u00b0"
+    ]
+   },
+   {
+    "param": "friction_coefficient",
+    "unit": "1",
+    "units": [
+     ""
+    ]
+   },
+   {
+    "param": "initial_speed",
+    "unit": "m/s",
+    "units": [
+     "",
+     "m/s"
+    ]
+   }
+  ]
+ },
+ "provenance": "SYNTHETIC inputs; verdicts recorded from Build/agent/interview.py answers_to_spec -> S08 validate_setup. Not Gate P/A, real-scene or physical evidence.",
+ "verdicts": [
+  {
+   "answers": {
+    "drop_height": {
+     "text": "2"
+    },
+    "initial_vertical_velocity": {
+     "text": "0"
+    }
+   },
+   "ok": true,
+   "spec": {
+    "body": {
+     "mass": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "kg",
+      "value": 0.1
+     },
+     "radius": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 0.02
+     }
+    },
+    "environment": {
+     "air_resistance": "neglected",
+     "gravity": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m/s^2",
+      "value": 9.81
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ]
+    },
+    "experiment_id": "synthetic-spec",
+    "parameters": {
+     "drop_height": {
+      "source": {
+       "evidence": "user-input:drop_height:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 2.0
+     },
+     "initial_vertical_velocity": {
+      "source": {
+       "evidence": "user-input:initial_vertical_velocity:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "m/s",
+      "value": 0.0
+     }
+    },
+    "placement": {
+     "origin": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "unit": "m",
+      "value": [
+       0,
+       2,
+       0
+      ]
+     },
+     "surface_id": null
+    },
+    "scene": {
+     "constraints": {
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "bounds_m": {
+       "max": [
+        10,
+        10,
+        10
+       ],
+       "min": [
+        -10,
+        -1,
+        -10
+       ]
+      },
+      "clearance": {
+       "source": {
+        "evidence": "test_experiment_schema.py:authored-fixture",
+        "label": "synthetic"
+       },
+       "uncertainty": null,
+       "unit": "m",
+       "value": 0.01
+      },
+      "collision_obstacle_ids": []
+     },
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "calibrated",
+     "scene_id": "synthetic-room-v1",
+     "schema_version": "1.0.0"
+    },
+    "schema_version": "1.0.0",
+    "simulation": {
+     "duration": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 1
+     },
+     "seed": 42,
+     "time_step": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 0.001
+     }
+    },
+    "template": "free_fall"
+   },
+   "template": "free_fall"
+  },
+  {
+   "answers": {
+    "horizontal_speed": {
+     "text": "1.5"
+    },
+    "launch_height": {
+     "text": "2"
+    }
+   },
+   "ok": true,
+   "spec": {
+    "body": {
+     "mass": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "kg",
+      "value": 0.1
+     },
+     "radius": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 0.02
+     }
+    },
+    "environment": {
+     "air_resistance": "neglected",
+     "gravity": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m/s^2",
+      "value": 9.81
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ]
+    },
+    "experiment_id": "synthetic-spec",
+    "parameters": {
+     "horizontal_speed": {
+      "source": {
+       "evidence": "user-input:horizontal_speed:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "m/s",
+      "value": 1.5
+     },
+     "launch_height": {
+      "source": {
+       "evidence": "user-input:launch_height:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 2.0
+     }
+    },
+    "placement": {
+     "origin": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "unit": "m",
+      "value": [
+       0,
+       2,
+       0
+      ]
+     },
+     "surface_id": null
+    },
+    "scene": {
+     "constraints": {
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "bounds_m": {
+       "max": [
+        10,
+        10,
+        10
+       ],
+       "min": [
+        -10,
+        -1,
+        -10
+       ]
+      },
+      "clearance": {
+       "source": {
+        "evidence": "test_experiment_schema.py:authored-fixture",
+        "label": "synthetic"
+       },
+       "uncertainty": null,
+       "unit": "m",
+       "value": 0.01
+      },
+      "collision_obstacle_ids": []
+     },
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "calibrated",
+     "scene_id": "synthetic-room-v1",
+     "schema_version": "1.0.0"
+    },
+    "schema_version": "1.0.0",
+    "simulation": {
+     "duration": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 1
+     },
+     "seed": 42,
+     "time_step": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 0.001
+     }
+    },
+    "template": "projectile"
+   },
+   "template": "projectile"
+  },
+  {
+   "answers": {
+    "friction_coefficient": {
+     "text": "0.1"
+    },
+    "incline_angle": {
+     "text": "30 deg"
+    },
+    "initial_speed": {
+     "text": "0"
+    }
+   },
+   "ok": true,
+   "spec": {
+    "body": {
+     "mass": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "kg",
+      "value": 0.1
+     },
+     "radius": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 0.02
+     }
+    },
+    "environment": {
+     "air_resistance": "neglected",
+     "gravity": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m/s^2",
+      "value": 9.81
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ]
+    },
+    "experiment_id": "synthetic-spec",
+    "parameters": {
+     "friction_coefficient": {
+      "source": {
+       "evidence": "user-input:friction_coefficient:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "1",
+      "value": 0.1
+     },
+     "incline_angle": {
+      "source": {
+       "evidence": "user-input:incline_angle:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "rad",
+      "value": 0.5235987755982988
+     },
+     "initial_speed": {
+      "source": {
+       "evidence": "user-input:initial_speed:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "m/s",
+      "value": 0.0
+     },
+     "length": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 1
+     }
+    },
+    "placement": {
+     "origin": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "unit": "m",
+      "value": [
+       0,
+       2,
+       0
+      ]
+     },
+     "surface_id": null
+    },
+    "scene": {
+     "constraints": {
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "bounds_m": {
+       "max": [
+        10,
+        10,
+        10
+       ],
+       "min": [
+        -10,
+        -1,
+        -10
+       ]
+      },
+      "clearance": {
+       "source": {
+        "evidence": "test_experiment_schema.py:authored-fixture",
+        "label": "synthetic"
+       },
+       "uncertainty": null,
+       "unit": "m",
+       "value": 0.01
+      },
+      "collision_obstacle_ids": []
+     },
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "calibrated",
+     "scene_id": "synthetic-room-v1",
+     "schema_version": "1.0.0"
+    },
+    "schema_version": "1.0.0",
+    "simulation": {
+     "duration": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 1
+     },
+     "seed": 42,
+     "time_step": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 0.001
+     }
+    },
+    "template": "ramp"
+   },
+   "template": "ramp"
+  },
+  {
+   "answers": {
+    "initial_angular_velocity": {
+     "text": "0"
+    },
+    "length": {
+     "text": "1"
+    },
+    "release_angle": {
+     "text": "3 deg"
+    }
+   },
+   "ok": true,
+   "spec": {
+    "body": {
+     "mass": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "kg",
+      "value": 0.1
+     },
+     "radius": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 0.02
+     }
+    },
+    "environment": {
+     "air_resistance": "neglected",
+     "gravity": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m/s^2",
+      "value": 9.81
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ]
+    },
+    "experiment_id": "synthetic-spec",
+    "parameters": {
+     "initial_angular_velocity": {
+      "source": {
+       "evidence": "user-input:initial_angular_velocity:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "rad/s",
+      "value": 0.0
+     },
+     "length": {
+      "source": {
+       "evidence": "user-input:length:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 1.0
+     },
+     "release_angle": {
+      "source": {
+       "evidence": "user-input:release_angle:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "rad",
+      "value": 0.05235987755982989
+     }
+    },
+    "placement": {
+     "origin": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "unit": "m",
+      "value": [
+       0,
+       2,
+       0
+      ]
+     },
+     "surface_id": null
+    },
+    "scene": {
+     "constraints": {
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "bounds_m": {
+       "max": [
+        10,
+        10,
+        10
+       ],
+       "min": [
+        -10,
+        -1,
+        -10
+       ]
+      },
+      "clearance": {
+       "source": {
+        "evidence": "test_experiment_schema.py:authored-fixture",
+        "label": "synthetic"
+       },
+       "uncertainty": null,
+       "unit": "m",
+       "value": 0.01
+      },
+      "collision_obstacle_ids": []
+     },
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "calibrated",
+     "scene_id": "synthetic-room-v1",
+     "schema_version": "1.0.0"
+    },
+    "schema_version": "1.0.0",
+    "simulation": {
+     "duration": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 1
+     },
+     "seed": 42,
+     "time_step": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 0.001
+     }
+    },
+    "template": "pendulum"
+   },
+   "template": "pendulum"
+  },
+  {
+   "answers": {
+    "drop_height": {
+     "text": "-1"
+    },
+    "initial_vertical_velocity": {
+     "text": "0"
+    }
+   },
+   "errors": [
+    "$.parameters.drop_height.value: must be > 0 (centre travel to stop plane)"
+   ],
+   "ok": false,
+   "template": "free_fall"
+  },
+  {
+   "answers": {
+    "drop_height": {
+     "text": "2 ft"
+    },
+    "initial_vertical_velocity": {
+     "text": "0"
+    }
+   },
+   "errors": [
+    "answers.drop_height: expected a number with unit one of ['', 'm'] ('' = m)"
+   ],
+   "ok": false,
+   "template": "free_fall"
+  },
+  {
+   "answers": {
+    "drop_height": {
+     "text": "abc"
+    },
+    "initial_vertical_velocity": {
+     "text": "0"
+    }
+   },
+   "errors": [
+    "answers.drop_height: expected a number with unit one of ['', 'm'] ('' = m)"
+   ],
+   "ok": false,
+   "template": "free_fall"
+  },
+  {
+   "answers": {
+    "drop_height": {
+     "text": "1e999"
+    },
+    "initial_vertical_velocity": {
+     "text": "0"
+    }
+   },
+   "errors": [
+    "answers.drop_height: number is not finite"
+   ],
+   "ok": false,
+   "template": "free_fall"
+  },
+  {
+   "answers": {
+    "friction_coefficient": {
+     "text": "0.1"
+    },
+    "incline_angle": {
+     "text": "30"
+    },
+    "initial_speed": {
+     "text": "0"
+    }
+   },
+   "errors": [
+    "answers.incline_angle: expected a number with unit one of ['deg', 'rad', '\u00b0'] ('' = rad)"
+   ],
+   "ok": false,
+   "template": "ramp"
+  },
+  {
+   "answers": {
+    "friction_coefficient": {
+     "text": "0.1"
+    },
+    "incline_angle": {
+     "text": "1.5 rad"
+    },
+    "initial_speed": {
+     "text": "0"
+    }
+   },
+   "ok": true,
+   "spec": {
+    "body": {
+     "mass": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "kg",
+      "value": 0.1
+     },
+     "radius": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 0.02
+     }
+    },
+    "environment": {
+     "air_resistance": "neglected",
+     "gravity": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m/s^2",
+      "value": 9.81
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ]
+    },
+    "experiment_id": "synthetic-spec",
+    "parameters": {
+     "friction_coefficient": {
+      "source": {
+       "evidence": "user-input:friction_coefficient:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "1",
+      "value": 0.1
+     },
+     "incline_angle": {
+      "source": {
+       "evidence": "user-input:incline_angle:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "rad",
+      "value": 1.5
+     },
+     "initial_speed": {
+      "source": {
+       "evidence": "user-input:initial_speed:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "m/s",
+      "value": 0.0
+     },
+     "length": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 1
+     }
+    },
+    "placement": {
+     "origin": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "unit": "m",
+      "value": [
+       0,
+       2,
+       0
+      ]
+     },
+     "surface_id": null
+    },
+    "scene": {
+     "constraints": {
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "bounds_m": {
+       "max": [
+        10,
+        10,
+        10
+       ],
+       "min": [
+        -10,
+        -1,
+        -10
+       ]
+      },
+      "clearance": {
+       "source": {
+        "evidence": "test_experiment_schema.py:authored-fixture",
+        "label": "synthetic"
+       },
+       "uncertainty": null,
+       "unit": "m",
+       "value": 0.01
+      },
+      "collision_obstacle_ids": []
+     },
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "calibrated",
+     "scene_id": "synthetic-room-v1",
+     "schema_version": "1.0.0"
+    },
+    "schema_version": "1.0.0",
+    "simulation": {
+     "duration": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 1
+     },
+     "seed": 42,
+     "time_step": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 0.001
+     }
+    },
+    "template": "ramp"
+   },
+   "template": "ramp"
+  },
+  {
+   "answers": {
+    "initial_angular_velocity": {
+     "text": "0"
+    },
+    "length": {
+     "text": "1"
+    },
+    "release_angle": {
+     "text": "2 rad"
+    }
+   },
+   "ok": true,
+   "spec": {
+    "body": {
+     "mass": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "kg",
+      "value": 0.1
+     },
+     "radius": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 0.02
+     }
+    },
+    "environment": {
+     "air_resistance": "neglected",
+     "gravity": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "m/s^2",
+      "value": 9.81
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ]
+    },
+    "experiment_id": "synthetic-spec",
+    "parameters": {
+     "initial_angular_velocity": {
+      "source": {
+       "evidence": "user-input:initial_angular_velocity:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "rad/s",
+      "value": 0.0
+     },
+     "length": {
+      "source": {
+       "evidence": "user-input:length:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "m",
+      "value": 1.0
+     },
+     "release_angle": {
+      "source": {
+       "evidence": "user-input:release_angle:free-text",
+       "label": "assumed"
+      },
+      "uncertainty": null,
+      "unit": "rad",
+      "value": 2.0
+     }
+    },
+    "placement": {
+     "origin": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "unit": "m",
+      "value": [
+       0,
+       2,
+       0
+      ]
+     },
+     "surface_id": null
+    },
+    "scene": {
+     "constraints": {
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "bounds_m": {
+       "max": [
+        10,
+        10,
+        10
+       ],
+       "min": [
+        -10,
+        -1,
+        -10
+       ]
+      },
+      "clearance": {
+       "source": {
+        "evidence": "test_experiment_schema.py:authored-fixture",
+        "label": "synthetic"
+       },
+       "uncertainty": null,
+       "unit": "m",
+       "value": 0.01
+      },
+      "collision_obstacle_ids": []
+     },
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "calibrated",
+     "scene_id": "synthetic-room-v1",
+     "schema_version": "1.0.0"
+    },
+    "schema_version": "1.0.0",
+    "simulation": {
+     "duration": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 1
+     },
+     "seed": 42,
+     "time_step": {
+      "source": {
+       "evidence": "test_experiment_schema.py:authored-fixture",
+       "label": "synthetic"
+      },
+      "uncertainty": null,
+      "unit": "s",
+      "value": 0.001
+     }
+    },
+    "template": "pendulum"
+   },
+   "template": "pendulum"
+  },
+  {
+   "answers": {
+    "horizontal_speed": {
+     "text": "1"
+    },
+    "launch_height": {
+     "text": ""
+    }
+   },
+   "errors": [
+    "answers.launch_height: expected a number with unit one of ['', 'm'] ('' = m)"
+   ],
+   "ok": false,
+   "template": "projectile"
+  }
+ ]
+}
