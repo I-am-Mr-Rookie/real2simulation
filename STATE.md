@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+Owner effort correction Oct29 ~15:45Z: Claude 5h quota limiting; 26 future QUEUE rows
+high -> medium (8 Opus, 18 Sonnet); hard gate/GPU/prediction/integration rows stay high.
+List in AGENTS.md "Latest owner effort correction" and DECISIONS_LOG. In-flight runs unchanged.
 orch24 Oct29 ~15:03Z: successor controller chat 01a1882d-3481-7ce3-8f88-45c942e341cd (01a1874a
 retired). Dispatched full30m, project 91e441f8: S06e, S13c (Opus high); S04h (Sonnet high; fix
 stage.py Railway allowlist first, dev deploy only); S15g (Sonnet high); R-R (Sol high; also lists

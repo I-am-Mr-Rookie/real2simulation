@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Oct 29, 21:05 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 21:20 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -110,8 +110,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S06d** — Codex (native Claude) · Opus 5.5, effort high — Add Modal scene job entry point (30 min)
 - [ ] **S06e** — Codex (native Claude) · Opus 5.5, effort high — Add cold-start timing and cost instrumentation (30 min)
 - [ ] **S06f** — Codex (native Claude) · Opus 5.5, effort high — Exercise one licensed room clip on Modal (30 min)
-- [ ] **S06g** — Codex (native Claude) · Opus 5.5, effort high — Verify CPU dry-run and disabled AWS adapter (30 min)
-- [ ] **S06h** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint GPU runtime and fallback evidence (30 min)
+- [ ] **S06g** — Codex (native Claude) · Opus 5.5, effort medium — Verify CPU dry-run and disabled AWS adapter (30 min)
+- [ ] **S06h** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint GPU runtime and fallback evidence (30 min)
 
 </details>
 
@@ -157,8 +157,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S09f** — Codex (native Claude) · Opus 5.5, effort medium — Pause rendering when idle or hidden (30 min)
 - [x] **S09g** — Codex (native Claude) · Opus 5.5, effort medium — Add 375px reduced-detail viewer layout (30 min)
 - [ ] **S09h** — Codex (native Claude) · Opus 5.5, effort high — Integrate three measured scene artifacts (30 min)
-- [ ] **S09i** — Codex (native Claude) · Opus 5.5, effort high — Measure fps and memory on target laptop (30 min)
-- [ ] **S09j** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint viewer evidence and visual fixes (30 min)
+- [ ] **S09i** — Codex (native Claude) · Opus 5.5, effort medium — Measure fps and memory on target laptop (30 min)
+- [ ] **S09j** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint viewer evidence and visual fixes (30 min)
 
 </details>
 
@@ -220,10 +220,10 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S13a** — Codex (native Claude) · Opus 5.5, effort high — Define resumable upload and job-stage contracts (30 min)
 - [x] **S13b** — Codex (native Claude) · Opus 5.5, effort high — Implement bucket upload validation (30 min)
 - [ ] **S13c** — Codex (native Claude) · Opus 5.5, effort high — Extract ffmpeg keyframes and metadata (30 min)
-- [ ] **S13d** — Codex (native Claude) · Opus 5.5, effort high — Add Redis job lifecycle and retry handling (30 min)
+- [ ] **S13d** — Codex (native Claude) · Opus 5.5, effort medium — Add Redis job lifecycle and retry handling (30 min)
 - [ ] **S13e** — Codex (native Claude) · Opus 5.5, effort high — Connect Muse Wonder understanding (30 min)
 - [ ] **S13f** — Codex (native Claude) · Opus 5.5, effort high — Connect SAM masks and Modal reconstruction (30 min)
-- [ ] **S13g** — Codex (native Claude) · Opus 5.5, effort high — Stream job progress to shell integration interface (30 min)
+- [ ] **S13g** — Codex (native Claude) · Opus 5.5, effort medium — Stream job progress to shell integration interface (30 min)
 - [ ] **S13h** — Codex (native Claude) · Opus 5.5, effort high — Measure dev upload-to-scene path (30 min)
 
 </details>
@@ -251,11 +251,11 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15e** — Codex (native Claude) · Sonnet 5.5, effort high — Build experiment template controls (30 min)
 - [x] **S15f** — Codex (native Claude) · Sonnet 5.5, effort high — Build run and replay controls (30 min)
 - [ ] **S15g** — Codex (native Claude) · Sonnet 5.5, effort high — Build virtual instrument controls (30 min)
-- [ ] **S15h** — Codex (native Claude) · Sonnet 5.5, effort high — Build fit table and residual chart (30 min)
-- [ ] **S15i** — Codex (native Claude) · Sonnet 5.5, effort high — Build sidebar and report navigation (30 min)
-- [ ] **S15j** — Codex (native Claude) · Sonnet 5.5, effort high — Stack workspace at 375px (30 min)
+- [ ] **S15h** — Codex (native Claude) · Sonnet 5.5, effort medium — Build fit table and residual chart (30 min)
+- [ ] **S15i** — Codex (native Claude) · Sonnet 5.5, effort medium — Build sidebar and report navigation (30 min)
+- [ ] **S15j** — Codex (native Claude) · Sonnet 5.5, effort medium — Stack workspace at 375px (30 min)
 - [ ] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min)
-- [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort high — Checkpoint workspace accessibility and evidence (30 min)
+- [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint workspace accessibility and evidence (30 min)
 
 </details>
 
@@ -279,7 +279,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S17c** — Codex (native Claude) · Sonnet 5.5, effort high — Build TeX/HTML report rendering (30 min)
 - [x] **S17d** — Codex (native Claude) · Sonnet 5.5, effort high — Compile reports for all four templates (30 min)
 - [x] **S17e** — Codex (native Claude) · Sonnet 5.5, effort high — Automate numeric report-to-fitter diff (30 min)
-- [ ] **S17f** — Codex (native Claude) · Sonnet 5.5, effort high — Checkpoint report accessibility and fallback evidence (30 min)
+- [ ] **S17f** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint report accessibility and fallback evidence (30 min)
 
 </details>
 
@@ -303,7 +303,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S19a** — Codex (native Claude) · Sonnet 5.5, effort high — Add PWA manifest and icons from owned assets (30 min)
 - [x] **S19b** — Codex (native Claude) · Sonnet 5.5, effort high — Add safe service-worker caching (30 min)
 - [x] **S19c** — Codex (native Claude) · Sonnet 5.5, effort high — Add install guidance and orientation handling (30 min)
-- [ ] **S19d** — Codex (native Claude) · Sonnet 5.5, effort high — Verify installability and 375px walkthrough (30 min)
+- [ ] **S19d** — Codex (native Claude) · Sonnet 5.5, effort medium — Verify installability and 375px walkthrough (30 min)
 
 </details>
 
@@ -330,15 +330,15 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (0/11)</summary>
 
-- [ ] **S22a** — Codex (native Claude) · Opus 5.5, effort high — Prepare approved judging-candidate QA checklist (30 min)
-- [ ] **S22b** — Codex (native Claude) · Sonnet 5.5, effort high — Capture logged-out guest library walkthrough (30 min)
-- [ ] **S22c** — Codex (native Claude) · Sonnet 5.5, effort high — Capture fresh-account full flow run 1 (30 min)
-- [ ] **S22d** — Codex (native Claude) · Sonnet 5.5, effort high — Capture fresh-account full flow run 2 (30 min)
-- [ ] **S22e** — Codex (native Claude) · Sonnet 5.5, effort high — Capture fresh-account full flow run 3 (30 min)
+- [ ] **S22a** — Codex (native Claude) · Opus 5.5, effort medium — Prepare approved judging-candidate QA checklist (30 min)
+- [ ] **S22b** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture logged-out guest library walkthrough (30 min)
+- [ ] **S22c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 1 (30 min)
+- [ ] **S22d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 2 (30 min)
+- [ ] **S22e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 3 (30 min)
 - [ ] **S22f** — Codex (native Claude) · Opus 5.5, effort high — Judge Gate D evidence and prioritize defects (30 min)
-- [ ] **S22g** — Codex (native Claude) · Sonnet 5.5, effort high — Capture 375px and auth-boundary QA (30 min)
-- [ ] **S22h** — Codex (native Claude) · Sonnet 5.5, effort high — Capture retry, spend-cap and report QA (30 min)
-- [ ] **S22i** — Codex (native Claude) · Sonnet 5.5, effort high — Recheck approved candidate after owner-lane fixes (30 min)
+- [ ] **S22g** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture 375px and auth-boundary QA (30 min)
+- [ ] **S22h** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture retry, spend-cap and report QA (30 min)
+- [ ] **S22i** — Codex (native Claude) · Sonnet 5.5, effort medium — Recheck approved candidate after owner-lane fixes (30 min)
 - [ ] **S22j** — Codex (native Claude) · Opus 5.5, effort high — Record final Gate D decision and freeze recommendation (30 min)
 - [ ] **R-D** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate D protocol and Claude verdict evidence (15 min)
 
@@ -355,15 +355,15 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 <details><summary><b>S24</b> — Three-minute demo video (0/10)</summary>
 
 - [ ] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min)
-- [ ] **S24b** — Codex (native Claude) · Opus 5.5, effort high — Review script, captions and footage credits (30 min)
-- [ ] **S24c** — Codex (native Claude) · Sonnet 5.5, effort high — Capture room rebuild and interview (30 min)
-- [ ] **S24d** — Codex (native Claude) · Sonnet 5.5, effort high — Capture held-out prediction and reveal (30 min)
-- [ ] **S24e** — Codex (native Claude) · Sonnet 5.5, effort high — Capture Apollo result and Mystery-g (30 min)
-- [ ] **S24f** — Codex (native Claude) · Sonnet 5.5, effort high — Capture benchmark and Meta model evidence (30 min)
+- [ ] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
+- [ ] **S24c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture room rebuild and interview (30 min)
+- [ ] **S24d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture held-out prediction and reveal (30 min)
+- [ ] **S24e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture Apollo result and Mystery-g (30 min)
+- [ ] **S24f** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture benchmark and Meta model evidence (30 min)
 - [ ] **S24g** — Record optional voice-over part 1 (30 min)
 - [ ] **S24h** — Record optional voice-over part 2 (30 min)
 - [ ] **S24i** — Codex (native Claude) · Sonnet 5.5, effort high — Cut video and align captions (30 min)
-- [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort high — Check playback and approval-gated public video link (30 min)
+- [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort medium — Check playback and approval-gated public video link (30 min)
 
 </details>
 

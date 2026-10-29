@@ -2,6 +2,17 @@
 
 Scope: this event folder. Current phase: **building Real2Simulation** (solo, indie track). Nothing submitted.
 
+## Latest owner effort correction — Oct29 ~21:45 Dhaka (Claude 5h quota)
+
+Owner: Claude 5-hour quota drains fast; the earlier "medium -> high" upgrade was a mistake.
+Future runs only (in-flight unchanged): easy Opus/Sonnet high rows moved to MEDIUM in QUEUE.
+Opus->medium: S06g S06h S09i S09j S13d S13g S22a S24b. Sonnet->medium: S15h S15i S15j S15l
+S17f S19d S22b-e S22g-i S24c-f S24j. Kept HIGH (genuinely hard: gates, real GPU/integration,
+prediction, LLM/Gate A, Gate D judgment, video edit, money review): S05f S06f S09h S12a-f
+S13e S13f S13h S14g S14h S22f S22j S24a S15k S24i R-C, plus S04h redo. Dispatch with the
+QUEUE effort (not a blanket "high"). Supersedes the Oct29 17:20 "Opus medium -> high;
+Haiku -> Sonnet high" line below for effort only; parallelism/other rules unchanged.
+
 ## Latest owner update — Oct29 evening (Claude quota, Modal reset, AWS)
 
 Owner (Oct29 ~17:20 Dhaka); supersedes older frugality notes only where they conflict.

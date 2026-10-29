@@ -779,3 +779,12 @@ credits/refunds excluded (gross usage), email alerts (same owner address) at act
 50/80/100% and forecast 100%. Deleted both "My Monthly Cost Budget" ($25 all-service).
 Owner confirms on-demand request still pending. AWS gates met: agents may use us-east-2
 G/VT SPOT (8 vCPU) within existing rules; on-demand unavailable until approved.
+
+## 2026-10-29 — Claude effort downgrade for easy future rows (owner)
+
+Koushik: Claude 5-hour quota drains fast; earlier medium->high upgrade was a mistake; move
+rows medium can handle to medium, keep genuinely difficult ones high, future runs only.
+Controller moved 26 TODO rows high->medium (Opus: S06g S06h S09i S09j S13d S13g S22a S24b;
+Sonnet: S15h-j S15l S17f S19d S22b-e S22g-i S24c-f S24j). Kept high: gates/checkpoints with
+judgment, real GPU/integration, prediction science, LLM Gate A, Gate D, script, video edit,
+R-C money review. Lanes/Owns/deps/minutes unchanged. Reversible.
