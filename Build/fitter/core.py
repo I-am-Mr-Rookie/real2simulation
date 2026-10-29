@@ -2,6 +2,7 @@
 from dataclasses import dataclass
 import math
 import random
+import sys
 
 class FitError(ValueError):
     """Invalid input or an unidentifiable requested quantity."""
@@ -126,6 +127,11 @@ class FitResult:
     def predict(self, times):
         return _predict_local(self._local_coefficients, times, self._center, self._scale)
 
+def _residual_norm_parts(residuals):
+    scale = max(map(abs, residuals))
+    return scale, math.hypot(*(e / scale for e in residuals)) if scale else 0.0
+
+
 def fit_least_squares(times, positions, degree=2, *, time_unit="s", position_unit="m"):
     _degree(degree)
     if time_unit != "s" or position_unit != "m":
@@ -144,7 +150,12 @@ def fit_least_squares(times, positions, degree=2, *, time_unit="s", position_uni
         raise FitError("rss_overflow") from exc
     if not math.isfinite(rss):
         raise FitError("rss_nonfinite")
-    return FitResult(degree, coefficients, fitted, residuals, rss, math.sqrt(rss / len(x)),
+    # Keep the scale separate: even a rounded subnormal norm can erase positive RMSE.
+    residual_scale, scaled_norm = _residual_norm_parts(residuals)
+    if rss < sys.float_info.min:
+        rss = (residual_scale * scaled_norm) ** 2
+    rmse = residual_scale * (scaled_norm / math.sqrt(len(x)))
+    return FitResult(degree, coefficients, fitted, residuals, rss, rmse,
         degree + 1, len(x) - degree - 1, len(x), time_unit, position_unit, "simulated", x,
         local, center, scale, r, _safe_y_scale(y), q)
 
@@ -168,9 +179,10 @@ class ModelSelection:
     criterion: str = "AIC"
 
 def _aic(fit):
-    if fit.rss == 0.0:
+    scale, scaled_norm = _residual_norm_parts(fit.residuals)
+    if scale == 0.0:
         return float("-inf")
-    return fit.n * math.log(fit.rss / fit.n) + 2 * fit.k
+    return fit.n * (2 * (math.log(scale) + math.log(scaled_norm)) - math.log(fit.n)) + 2 * fit.k
 
 def select_model(times, positions, degrees=(1, 2), **kwargs):
     if isinstance(degrees, (str, bytes)):

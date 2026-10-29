@@ -1,0 +1,18 @@
+test_exact_reference_obeys_interpolation_and_normal_equations (test_invariants.FitterInvariantTests.test_exact_reference_obeys_interpolation_and_normal_equations) ... ok
+test_first_order_timing_sandwich_and_fit_differential_agree_on_exact_motion (test_invariants.FitterInvariantTests.test_first_order_timing_sandwich_and_fit_differential_agree_on_exact_motion) ... ok
+test_huge_time_origin_that_erases_spacing_is_not_an_invariance_claim (test_invariants.FitterInvariantTests.test_huge_time_origin_that_erases_spacing_is_not_an_invariance_claim) ... ok
+test_known_sigma_override_is_not_the_residual_floor (test_invariants.FitterInvariantTests.test_known_sigma_override_is_not_the_residual_floor) ... ok
+test_minimal_declared_noise_covariance_respects_known_intercept_variance (test_invariants.FitterInvariantTests.test_minimal_declared_noise_covariance_respects_known_intercept_variance) ... ok
+test_minimal_known_noise_covariance_cannot_have_negative_diagonal (test_invariants.FitterInvariantTests.test_minimal_known_noise_covariance_cannot_have_negative_diagonal) ... ok
+test_nearly_rank_deficient_full_rank_data_against_exact_reference (test_invariants.FitterInvariantTests.test_nearly_rank_deficient_full_rank_data_against_exact_reference) ... ok
+test_position_origin_shift_preserves_declared_covariance (test_invariants.FitterInvariantTests.test_position_origin_shift_preserves_declared_covariance) ... ok
+test_residual_square_underflow_is_unavailable_not_known_zero_noise (test_invariants.FitterInvariantTests.test_residual_square_underflow_is_unavailable_not_known_zero_noise) ... ok
+test_row_permutations_preserve_full_covariance_with_paired_sigmas (test_invariants.FitterInvariantTests.test_row_permutations_preserve_full_covariance_with_paired_sigmas) ... ok
+test_scaled_physical_problems_still_use_seconds_and_metres (test_invariants.FitterInvariantTests.test_scaled_physical_problems_still_use_seconds_and_metres) ... ok
+test_time_origin_shift_checks_new_declared_covariance_not_only_coefficients (test_invariants.FitterInvariantTests.test_time_origin_shift_checks_new_declared_covariance_not_only_coefficients) ... ok
+test_truly_rank_deficient_design_is_rejected (test_invariants.FitterInvariantTests.test_truly_rank_deficient_design_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.034s
+
+OK

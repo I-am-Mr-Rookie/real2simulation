@@ -1,0 +1,701 @@
+{
+  "python": "3.14.5",
+  "simulation_only": true,
+  "source_sha256": {
+    "Build/fitter/api.py": "cf3c5299ca49cdbded0e6b6e94483698309941214f15a2bbad6bac241ecb5c50",
+    "Build/fitter/core.py": "c0a5a862200d0428c8aab30c18006dd6cd9dfe34b1aea0f73d25ca32e0516ed6",
+    "contracts/fit/quantity.py": "4046eaeda080576458b60f15f954ec185dfbfa08fe1b344b9d762139bc507605",
+    "tests/fitter/test_r14_model_selection.py": "37bd5ce0597fdf88fd989d3402bb467bf04f0b7ba0cd95c1a0f479606e506cbc"
+  },
+  "cases": [
+    {
+      "curvature": 1,
+      "scale_exponent": 0,
+      "times": [
+        -2.0,
+        -1.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "positions": [
+        3.0,
+        -5.0,
+        4.0,
+        -5.0,
+        3.0
+      ],
+      "expected": {
+        "selected_degree": 1,
+        "aic": [
+          18.10689443204607,
+          19.19528664807629
+        ],
+        "exact_rss": [
+          "84",
+          "70"
+        ],
+        "rmse": [
+          4.09878030638384,
+          3.7416573867739413
+        ]
+      },
+      "actual": {
+        "degree": 1,
+        "aic": [
+          18.106894432046065,
+          19.195286648076294
+        ],
+        "rss": [
+          84.0,
+          70.0
+        ],
+        "rmse": [
+          4.098780306383839,
+          3.7416573867739413
+        ],
+        "residuals": [
+          [
+            3.0,
+            -5.0,
+            4.0,
+            -5.0,
+            3.0
+          ],
+          [
+            1.0,
+            -4.0,
+            6.0,
+            -4.0,
+            1.0
+          ]
+        ]
+      },
+      "error": null,
+      "api": {
+        "status": "ok",
+        "fit": {
+          "degree": 2,
+          "coefficients": [
+            -2.0,
+            0.0,
+            1.0
+          ],
+          "fitted": [
+            2.0,
+            -1.0,
+            -2.0,
+            -1.0,
+            2.0
+          ],
+          "residuals": [
+            1.0,
+            -4.0,
+            6.0,
+            -4.0,
+            1.0
+          ],
+          "rss": 70.0,
+          "rss_status": "available",
+          "rmse": 3.7416573867739413,
+          "rank": 3,
+          "dof": 2,
+          "n": 5,
+          "units": {
+            "time": "s",
+            "position": "m"
+          },
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 offline quantity-to-fit adapter"
+          }
+        },
+        "uncertainty": {
+          "model": "independent_position_time_first_order",
+          "assumptions": [
+            "independent observation errors",
+            "first-order timing linearization at fitted velocity",
+            "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+            "scale fixed",
+            "no correlated clock-rate or scale uncertainty",
+            "no calibration of declared standard uncertainties",
+            "no errors-in-variables bias correction"
+          ],
+          "quantity_uncertainty": "standard uncertainty (one sigma), not a 95% interval",
+          "residual_degrees_of_freedom": 2,
+          "residual_variance_floor": 35.0
+        },
+        "covariance": {
+          "valid": true,
+          "variance": 2.500000000000001,
+          "standard_error": 1.58113883008419,
+          "status": "available",
+          "parameter": "quadratic_position_coefficient",
+          "variance_unit": "m^2/s^4",
+          "standard_error_unit": "m/s^2",
+          "gravity_scale_factor": 2.0,
+          "model": "independent_position_time_first_order",
+          "assumptions": [
+            "independent observation errors",
+            "first-order timing linearization at fitted velocity",
+            "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+            "scale fixed",
+            "no correlated clock-rate or scale uncertainty",
+            "no calibration of declared standard uncertainties",
+            "no errors-in-variables bias correction"
+          ],
+          "interval": null,
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 QR covariance with declared standard-uncertainty floor"
+          }
+        },
+        "gravity": {
+          "value": 2.0,
+          "unit": "m/s^2",
+          "uncertainty": 3.16227766016838,
+          "source": {
+            "label": "simulated",
+            "evidence": "synthetic virtual-lab fit"
+          }
+        },
+        "model_selection": {
+          "selected_degree": 1,
+          "criterion": "AIC",
+          "aic": [
+            18.106894432046065,
+            19.195286648076294
+          ],
+          "aic_status": [
+            "available",
+            "available"
+          ],
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 offline model selection"
+          }
+        }
+      }
+    },
+    {
+      "curvature": 4,
+      "scale_exponent": 0,
+      "times": [
+        -2.0,
+        -1.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "positions": [
+        9.0,
+        -8.0,
+        -2.0,
+        -8.0,
+        9.0
+      ],
+      "expected": {
+        "selected_degree": 2,
+        "aic": [
+          24.370709274522905,
+          19.19528664807629
+        ],
+        "exact_rss": [
+          "294",
+          "70"
+        ],
+        "rmse": [
+          7.6681158050723255,
+          3.7416573867739413
+        ]
+      },
+      "actual": {
+        "degree": 2,
+        "aic": [
+          24.370709274522905,
+          19.195286648076294
+        ],
+        "rss": [
+          294.0,
+          70.0
+        ],
+        "rmse": [
+          7.6681158050723255,
+          3.7416573867739413
+        ],
+        "residuals": [
+          [
+            9.0,
+            -8.0,
+            -2.0,
+            -8.0,
+            9.0
+          ],
+          [
+            1.0,
+            -4.0,
+            6.0,
+            -4.0,
+            1.0
+          ]
+        ]
+      },
+      "error": null,
+      "api": {
+        "status": "ok",
+        "fit": {
+          "degree": 2,
+          "coefficients": [
+            -8.0,
+            0.0,
+            4.0
+          ],
+          "fitted": [
+            8.0,
+            -4.0,
+            -8.0,
+            -4.0,
+            8.0
+          ],
+          "residuals": [
+            1.0,
+            -4.0,
+            6.0,
+            -4.0,
+            1.0
+          ],
+          "rss": 70.0,
+          "rss_status": "available",
+          "rmse": 3.7416573867739413,
+          "rank": 3,
+          "dof": 2,
+          "n": 5,
+          "units": {
+            "time": "s",
+            "position": "m"
+          },
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 offline quantity-to-fit adapter"
+          }
+        },
+        "uncertainty": {
+          "model": "independent_position_time_first_order",
+          "assumptions": [
+            "independent observation errors",
+            "first-order timing linearization at fitted velocity",
+            "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+            "scale fixed",
+            "no correlated clock-rate or scale uncertainty",
+            "no calibration of declared standard uncertainties",
+            "no errors-in-variables bias correction"
+          ],
+          "quantity_uncertainty": "standard uncertainty (one sigma), not a 95% interval",
+          "residual_degrees_of_freedom": 2,
+          "residual_variance_floor": 35.0
+        },
+        "covariance": {
+          "valid": true,
+          "variance": 2.500000000000001,
+          "standard_error": 1.58113883008419,
+          "status": "available",
+          "parameter": "quadratic_position_coefficient",
+          "variance_unit": "m^2/s^4",
+          "standard_error_unit": "m/s^2",
+          "gravity_scale_factor": 2.0,
+          "model": "independent_position_time_first_order",
+          "assumptions": [
+            "independent observation errors",
+            "first-order timing linearization at fitted velocity",
+            "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+            "scale fixed",
+            "no correlated clock-rate or scale uncertainty",
+            "no calibration of declared standard uncertainties",
+            "no errors-in-variables bias correction"
+          ],
+          "interval": null,
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 QR covariance with declared standard-uncertainty floor"
+          }
+        },
+        "gravity": {
+          "value": 8.0,
+          "unit": "m/s^2",
+          "uncertainty": 3.16227766016838,
+          "source": {
+            "label": "simulated",
+            "evidence": "synthetic virtual-lab fit"
+          }
+        },
+        "model_selection": {
+          "selected_degree": 2,
+          "criterion": "AIC",
+          "aic": [
+            24.370709274522905,
+            19.195286648076294
+          ],
+          "aic_status": [
+            "available",
+            "available"
+          ],
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 offline model selection"
+          }
+        }
+      }
+    },
+    {
+      "curvature": 4,
+      "scale_exponent": -600,
+      "times": [
+        -2.0,
+        -1.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "positions": [
+        2.1689278785925957e-180,
+        -1.9279358920823073e-180,
+        -4.819839730205768e-181,
+        -1.9279358920823073e-180,
+        2.1689278785925957e-180
+      ],
+      "expected": {
+        "selected_degree": 2,
+        "aic": [
+          -4134.512374085149,
+          -4139.687796711595
+        ],
+        "exact_rss": [
+          "147/8609239728192875309033688848026317741789962372724344960866618408200370345620872809698742268618023086643185459515980793894292463645408330512495804941364358672329751735827995440442339948260027561953233532209528263115672842634120284604946286883018983292367591887869716989357289293891350690398620386238823937277993356373135681446113758102659457217956755570518130688",
+          "35/8609239728192875309033688848026317741789962372724344960866618408200370345620872809698742268618023086643185459515980793894292463645408330512495804941364358672329751735827995440442339948260027561953233532209528263115672842634120284604946286883018983292367591887869716989357289293891350690398620386238823937277993356373135681446113758102659457217956755570518130688"
+        ],
+        "rmse": [
+          1.8479544606553192e-180,
+          9.017094464795467e-181
+        ]
+      },
+      "actual": {
+        "degree": 2,
+        "aic": [
+          -4134.5123740851495,
+          -4139.687796711596
+        ],
+        "rss": [
+          0.0,
+          0.0
+        ],
+        "rmse": [
+          1.8479544606553192e-180,
+          9.017094464795467e-181
+        ],
+        "residuals": [
+          [
+            2.1689278785925957e-180,
+            -1.9279358920823073e-180,
+            -4.819839730205768e-181,
+            -1.9279358920823073e-180,
+            2.1689278785925957e-180
+          ],
+          [
+            2.409919865102884e-181,
+            -9.639679460411536e-181,
+            1.4459519190617305e-180,
+            -9.639679460411536e-181,
+            2.409919865102884e-181
+          ]
+        ]
+      },
+      "error": null,
+      "api": {
+        "status": "ok",
+        "fit": {
+          "degree": 2,
+          "coefficients": [
+            -1.9279358920823073e-180,
+            0.0,
+            9.639679460411536e-181
+          ],
+          "fitted": [
+            1.9279358920823073e-180,
+            -9.639679460411536e-181,
+            -1.9279358920823073e-180,
+            -9.639679460411536e-181,
+            1.9279358920823073e-180
+          ],
+          "residuals": [
+            2.409919865102884e-181,
+            -9.639679460411536e-181,
+            1.4459519190617305e-180,
+            -9.639679460411536e-181,
+            2.409919865102884e-181
+          ],
+          "rss": 0.0,
+          "rss_status": "underflow",
+          "rmse": 9.017094464795467e-181,
+          "rank": 3,
+          "dof": 2,
+          "n": 5,
+          "units": {
+            "time": "s",
+            "position": "m"
+          },
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 offline quantity-to-fit adapter"
+          }
+        },
+        "uncertainty": {
+          "model": "independent_position_time_first_order",
+          "assumptions": [
+            "independent observation errors",
+            "first-order timing linearization at fitted velocity",
+            "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+            "scale fixed",
+            "no correlated clock-rate or scale uncertainty",
+            "no calibration of declared standard uncertainties",
+            "no errors-in-variables bias correction"
+          ],
+          "quantity_uncertainty": "standard uncertainty (one sigma), not a 95% interval",
+          "residual_degrees_of_freedom": 2,
+          "residual_variance_floor": null
+        },
+        "covariance": {
+          "valid": false,
+          "variance": null,
+          "standard_error": null,
+          "status": "unavailable",
+          "parameter": "quadratic_position_coefficient",
+          "variance_unit": "m^2/s^4",
+          "standard_error_unit": "m/s^2",
+          "gravity_scale_factor": 2.0,
+          "model": "independent_position_time_first_order",
+          "assumptions": [
+            "independent observation errors",
+            "first-order timing linearization at fitted velocity",
+            "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+            "scale fixed",
+            "no correlated clock-rate or scale uncertainty",
+            "no calibration of declared standard uncertainties",
+            "no errors-in-variables bias correction"
+          ],
+          "interval": null,
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 QR covariance with declared standard-uncertainty floor"
+          }
+        },
+        "gravity": null,
+        "model_selection": {
+          "selected_degree": 2,
+          "criterion": "AIC",
+          "aic": [
+            -4134.5123740851495,
+            -4139.687796711596
+          ],
+          "aic_status": [
+            "available",
+            "available"
+          ],
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 offline model selection"
+          }
+        }
+      }
+    },
+    {
+      "curvature": 4,
+      "scale_exponent": -540,
+      "times": [
+        -2.0,
+        -1.0,
+        0.0,
+        1.0,
+        2.0
+      ],
+      "positions": [
+        2.500603593170712e-162,
+        -2.2227587494850775e-162,
+        -5.556896873712694e-163,
+        -2.2227587494850775e-162,
+        2.500603593170712e-162
+      ],
+      "expected": {
+        "selected_degree": 2,
+        "aic": [
+          -3718.6240657491817,
+          -3723.7994883756282
+        ],
+        "exact_rss": [
+          "147/6476872105833939787279851095005353825585812792452547787420843456877770866175851100542732278445987983845986491658137981164473879596345391259744428798103632317488557576850123563662941047746982922919672565711127842193984239469590166355779307380773105802905921808395480625674669267687376081029962480276672200425846647714991833088",
+          "35/6476872105833939787279851095005353825585812792452547787420843456877770866175851100542732278445987983845986491658137981164473879596345391259744428798103632317488557576850123563662941047746982922919672565711127842193984239469590166355779307380773105802905921808395480625674669267687376081029962480276672200425846647714991833088"
+        ],
+        "rmse": [
+          2.130546437223665e-162,
+          1.0396002117534061e-162
+        ]
+      },
+      "actual": {
+        "degree": 2,
+        "aic": [
+          -3718.624065749182,
+          -3723.7994883756287
+        ],
+        "rss": [
+          2.5e-323,
+          5e-324
+        ],
+        "rmse": [
+          2.130546437223665e-162,
+          1.0396002117534061e-162
+        ],
+        "residuals": [
+          [
+            2.500603593170712e-162,
+            -2.2227587494850775e-162,
+            -5.556896873712694e-163,
+            -2.2227587494850775e-162,
+            2.500603593170712e-162
+          ],
+          [
+            2.778448436856347e-163,
+            -1.1113793747425387e-162,
+            1.667069062113808e-162,
+            -1.1113793747425387e-162,
+            2.778448436856347e-163
+          ]
+        ]
+      },
+      "error": null,
+      "api": {
+        "status": "ok",
+        "fit": {
+          "degree": 2,
+          "coefficients": [
+            -2.2227587494850775e-162,
+            0.0,
+            1.1113793747425387e-162
+          ],
+          "fitted": [
+            2.2227587494850775e-162,
+            -1.1113793747425387e-162,
+            -2.2227587494850775e-162,
+            -1.1113793747425387e-162,
+            2.2227587494850775e-162
+          ],
+          "residuals": [
+            2.778448436856347e-163,
+            -1.1113793747425387e-162,
+            1.667069062113808e-162,
+            -1.1113793747425387e-162,
+            2.778448436856347e-163
+          ],
+          "rss": 5e-324,
+          "rss_status": "available",
+          "rmse": 1.0396002117534061e-162,
+          "rank": 3,
+          "dof": 2,
+          "n": 5,
+          "units": {
+            "time": "s",
+            "position": "m"
+          },
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 offline quantity-to-fit adapter"
+          }
+        },
+        "uncertainty": {
+          "model": "independent_position_time_first_order",
+          "assumptions": [
+            "independent observation errors",
+            "first-order timing linearization at fitted velocity",
+            "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+            "scale fixed",
+            "no correlated clock-rate or scale uncertainty",
+            "no calibration of declared standard uncertainties",
+            "no errors-in-variables bias correction"
+          ],
+          "quantity_uncertainty": "standard uncertainty (one sigma), not a 95% interval",
+          "residual_degrees_of_freedom": 2,
+          "residual_variance_floor": null
+        },
+        "covariance": {
+          "valid": false,
+          "variance": null,
+          "standard_error": null,
+          "status": "unavailable",
+          "parameter": "quadratic_position_coefficient",
+          "variance_unit": "m^2/s^4",
+          "standard_error_unit": "m/s^2",
+          "gravity_scale_factor": 2.0,
+          "model": "independent_position_time_first_order",
+          "assumptions": [
+            "independent observation errors",
+            "first-order timing linearization at fitted velocity",
+            "per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2)",
+            "scale fixed",
+            "no correlated clock-rate or scale uncertainty",
+            "no calibration of declared standard uncertainties",
+            "no errors-in-variables bias correction"
+          ],
+          "interval": null,
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 QR covariance with declared standard-uncertainty floor"
+          }
+        },
+        "gravity": null,
+        "model_selection": {
+          "selected_degree": 2,
+          "criterion": "AIC",
+          "aic": [
+            -3718.624065749182,
+            -3723.7994883756287
+          ],
+          "aic_status": [
+            "available",
+            "available"
+          ],
+          "source": {
+            "label": "simulated",
+            "evidence": "S11 offline model selection"
+          }
+        }
+      }
+    }
+  ],
+  "additional_precision_hazard": {
+    "times": [
+      1.0,
+      1.1,
+      1.2,
+      1.3,
+      1.4,
+      1.5
+    ],
+    "positions": [
+      3.0,
+      3.2,
+      3.4,
+      3.6,
+      3.8,
+      4.0
+    ],
+    "exact_fraction_linear_relation": true,
+    "selected_degree": 2,
+    "aic": [
+      -417.7732838540375,
+      -420.6388651513355
+    ],
+    "rss": [
+      1.7749370367472766e-30,
+      7.888609052210118e-31
+    ],
+    "classification": "precision hazard; no specified exact-fit tie/precision policy"
+  }
+}

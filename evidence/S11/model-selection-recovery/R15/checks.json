@@ -1,0 +1,248 @@
+{
+  "checks": [
+    {
+      "name": "frozen",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/fitter",
+        "-p",
+        "test_r14_model_selection.py",
+        "-v"
+      ],
+      "started_at": "2026-10-29T07:30:14.029424+00:00",
+      "exit_code": 0,
+      "summary": [
+        "----------------------------------------------------------------------",
+        "Ran 14 tests in 0.014s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "recovery",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/fitter",
+        "-p",
+        "test_r14_model_recovery.py",
+        "-v"
+      ],
+      "started_at": "2026-10-29T07:30:14.240517+00:00",
+      "exit_code": 0,
+      "summary": [
+        "----------------------------------------------------------------------",
+        "Ran 6 tests in 0.012s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "core",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/fitter",
+        "-p",
+        "test_core.py",
+        "-v"
+      ],
+      "started_at": "2026-10-29T07:30:14.451287+00:00",
+      "exit_code": 0,
+      "summary": [
+        "----------------------------------------------------------------------",
+        "Ran 13 tests in 0.036s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "api",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/fitter",
+        "-p",
+        "test_api.py",
+        "-v"
+      ],
+      "started_at": "2026-10-29T07:30:14.690483+00:00",
+      "exit_code": 0,
+      "summary": [
+        "----------------------------------------------------------------------",
+        "Ran 9 tests in 0.008s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "uncertainty",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/fitter",
+        "-p",
+        "test_uncertainty.py",
+        "-v"
+      ],
+      "started_at": "2026-10-29T07:30:14.882364+00:00",
+      "exit_code": 0,
+      "summary": [
+        "----------------------------------------------------------------------",
+        "Ran 10 tests in 4.235s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "invariants",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/fitter",
+        "-p",
+        "test_invariants.py",
+        "-v"
+      ],
+      "started_at": "2026-10-29T07:30:19.290002+00:00",
+      "exit_code": 0,
+      "summary": [
+        "----------------------------------------------------------------------",
+        "Ran 13 tests in 0.034s",
+        "",
+        "OK"
+      ]
+    },
+    {
+      "name": "lab-pipeline",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/lab",
+        "-p",
+        "test_pipeline.py",
+        "-v"
+      ],
+      "started_at": "2026-10-29T07:31:22.716640+00:00",
+      "exit_code": 0,
+      "evidence": "lab-pipeline.txt"
+    },
+    {
+      "name": "lab-bridge",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/lab",
+        "-p",
+        "test_session_bridge.py",
+        "-v"
+      ],
+      "started_at": "2026-10-29T07:31:28.025664+00:00",
+      "exit_code": 0,
+      "evidence": "lab-bridge.txt"
+    },
+    {
+      "name": "frozen-audit",
+      "command": [
+        "C:\\Users\\HP\\AppData\\Local\\Programs\\Python\\Python314\\python.exe",
+        "evidence/S11/model-selection-invariants/audit.py"
+      ],
+      "started_at": "2026-10-29T07:31:44.576671+00:00",
+      "exit_code": 0,
+      "evidence": "frozen-audit.json"
+    },
+    {
+      "name": "frozen-unchanged",
+      "command": [
+        "git",
+        "diff",
+        "--exit-code",
+        "HEAD",
+        "--",
+        "tests/fitter/test_r14_model_selection.py",
+        "evidence/S11/model-selection-invariants"
+      ],
+      "started_at": "2026-10-29T07:31:45.514134+00:00",
+      "exit_code": 0,
+      "evidence": "frozen-unchanged.txt"
+    },
+    {
+      "name": "whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "Build/fitter",
+        "tests/fitter/test_r14_model_recovery.py"
+      ],
+      "started_at": "2026-10-29T07:31:45.819061+00:00",
+      "exit_code": 0,
+      "evidence": "whitespace.txt"
+    }
+  ],
+  "frozen_sha256": "37bd5ce0597fdf88fd989d3402bb467bf04f0b7ba0cd95c1a0f479606e506cbc",
+  "source_sha256": {
+    "Build\\fitter\\core.py": "849ab76f0c660fd66663866c003370cab5e1f46e973fe31c5e2d4602bca135f9",
+    "Build\\fitter\\api.py": "cf3c5299ca49cdbded0e6b6e94483698309941214f15a2bbad6bac241ecb5c50",
+    "Build\\fitter\\README.md": "f0399beda069131e7ef3811703bc3e025402606c3010f6f974ba64b7c1ad4c34",
+    "tests\\fitter\\test_r14_model_recovery.py": "97ad0bb31c7e42c64c6f7afccf36054ffe64d1e252ed7d489800676a69ed7e51"
+  },
+  "historical_r14_artifacts": {
+    "audit-after.json": {
+      "bytes": 21129,
+      "sha256": "59daa18252b3a4873cd387a235dac786d667fa5d38c805f2c288a7093533244f",
+      "status": "inherited; not fresh R15 evidence"
+    },
+    "fitter-after.txt": {
+      "bytes": 9276,
+      "sha256": "e2ad70c0e0105c95c48e65e169823ab11834aa788ac2f8dabf2099d50085b13b",
+      "status": "inherited; not fresh R15 evidence"
+    },
+    "fitter-final.txt": {
+      "bytes": 10146,
+      "sha256": "65ed0fb1b0673af5be62beb6ca20dd05e213a849476a46fd523f0c9fc9431e04",
+      "status": "inherited; not fresh R15 evidence"
+    },
+    "frozen-after.txt": {
+      "bytes": 2562,
+      "sha256": "47864479697dbf40e4b107830e04b9ebb408b88a31161b5ddc41b3dccf32c0ba",
+      "status": "inherited; not fresh R15 evidence"
+    },
+    "frozen-before.txt": {
+      "bytes": 6098,
+      "sha256": "c1ae20ac15834ba30e0fe694e341a48b5e5e6008e8b053851e76ad608fbea738",
+      "status": "inherited; not fresh R15 evidence"
+    },
+    "recovery-tests.txt": {
+      "bytes": 973,
+      "sha256": "7610ebb8c0a54d396a309becaa3edb0b192135d4e7f4c2916a20d6c91e0bb6ed",
+      "status": "inherited; not fresh R15 evidence"
+    }
+  }
+}

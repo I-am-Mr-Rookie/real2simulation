@@ -1,0 +1,11 @@
+test_both_api_models_keep_lost_variance_unavailable (test_r14_model_recovery.R14ModelRecoveryTests.test_both_api_models_keep_lost_variance_unavailable) ... ok
+test_exact_zero_and_explicit_known_zero_are_not_reclassified (test_r14_model_recovery.R14ModelRecoveryTests.test_exact_zero_and_explicit_known_zero_are_not_reclassified) ... ok
+test_representable_declared_noise_can_still_support_covariance (test_r14_model_recovery.R14ModelRecoveryTests.test_representable_declared_noise_can_still_support_covariance) ... ok
+test_representable_subnormal_rss_is_not_lost_to_individual_squares (test_r14_model_recovery.R14ModelRecoveryTests.test_representable_subnormal_rss_is_not_lost_to_individual_squares) ... ok
+test_subnormal_norm_rounding_cannot_erase_representable_rmse (test_r14_model_recovery.R14ModelRecoveryTests.test_subnormal_norm_rounding_cannot_erase_representable_rmse) ... ok
+test_tiny_nonzero_models_are_supported_not_rejected (test_r14_model_recovery.R14ModelRecoveryTests.test_tiny_nonzero_models_are_supported_not_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.012s
+
+OK

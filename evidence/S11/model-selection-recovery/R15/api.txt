@@ -1,0 +1,14 @@
+test_declared_uncertainty_floor_and_timing_monotonicity (test_api.ApiTests.test_declared_uncertainty_floor_and_timing_monotonicity) ... ok
+test_degree_one_also_reports_uncertainty_assumptions (test_api.ApiTests.test_degree_one_also_reports_uncertainty_assumptions) ... ok
+test_instrument_to_fit_to_sourced_response (test_api.ApiTests.test_instrument_to_fit_to_sourced_response) ... ok
+test_invalid_and_degenerate_inputs_are_readable (test_api.ApiTests.test_invalid_and_degenerate_inputs_are_readable) ... ok
+test_known_declared_sigma_supports_zero_residual_dof (test_api.ApiTests.test_known_declared_sigma_supports_zero_residual_dof) ... ok
+test_large_declared_sigma_is_readable_and_json_safe (test_api.ApiTests.test_large_declared_sigma_is_readable_and_json_safe) ... ok
+test_source_and_nonfinite_contract (test_api.ApiTests.test_source_and_nonfinite_contract) ... ok
+test_unavailable_covariance_is_null_and_honest (test_api.ApiTests.test_unavailable_covariance_is_null_and_honest) ... ok
+test_unsupported_uncertainty_and_strict_options (test_api.ApiTests.test_unsupported_uncertainty_and_strict_options) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.008s
+
+OK

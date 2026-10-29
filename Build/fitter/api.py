@@ -6,7 +6,7 @@ import math
 from typing import Any, Mapping
 
 from contracts.fit.quantity import validate_quantity
-from .core import FitError, fit_motion, gravity_quantity, jacobian_covariance, select_model
+from .core import FitError, _sigma2, fit_motion, gravity_quantity, jacobian_covariance, select_model
 
 
 class ApiInputError(ValueError):
@@ -74,6 +74,7 @@ def _fit_json(fit: Any) -> dict[str, Any]:
         "fitted": list(fit.fitted),
         "residuals": list(fit.residuals),
         "rss": fit.rss,
+        "rss_status": "underflow" if fit.rss == 0 and any(fit.residuals) else "available",
         "rmse": fit.rmse,
         "rank": fit.rank,
         "dof": fit.dof,
@@ -119,13 +120,13 @@ def fit_observations(request: Mapping[str, Any]) -> dict[str, Any]:
             "assumptions": assumptions,
             "quantity_uncertainty": "standard uncertainty (one sigma), not a 95% interval",
             "residual_degrees_of_freedom": fit.dof,
-            "residual_variance_floor": fit.rss / fit.dof if fit.dof > 0 else None,
+            "residual_variance_floor": _sigma2(fit, None),
         },
     }
     if degree == 2:
         if legacy:
-            floor = max(max(position_sigmas), math.sqrt(fit.rss / fit.dof) if fit.dof > 0 else 0.0)
-            covariance = jacobian_covariance(fit, sigma=floor if floor > 0 or fit.dof > 0 else None,
+            # Uniform declared noise retains the IID floor without asserting a lost RSS is sigma=0.
+            covariance = jacobian_covariance(fit, position_sigmas=(max(position_sigmas),) * fit.n,
                                              parameter_index=2)
         else:
             covariance = jacobian_covariance(fit, position_sigmas=position_sigmas,
@@ -161,7 +162,9 @@ def fit_observations(request: Mapping[str, Any]) -> dict[str, Any]:
             "selected_degree": selection.selected_degree,
             "criterion": selection.criterion,
             "aic": scores,
-            "aic_status": ["available" if math.isfinite(v) else "unavailable_exact_zero_rss" for v in selection.aic],
+            "aic_status": ["available" if math.isfinite(v) else
+                           "unavailable_exact_zero_rss" if not any(fit.residuals) else
+                           "unavailable_nonfinite" for fit, v in zip(selection.candidates, selection.aic)],
             "source": {"label": "simulated", "evidence": "S11 offline model selection"},
         }
     _json_safe(result)

@@ -1,0 +1,7 @@
+curvature=1 exponent=0: analytic degree/AIC/RMSE and strict JSON PASS
+curvature=4 exponent=0: analytic degree/AIC/RMSE and strict JSON PASS
+curvature=4 exponent=-600: analytic degree/AIC/RMSE and strict JSON PASS
+curvature=4 exponent=-540: analytic degree/AIC/RMSE and strict JSON PASS
+All checked product/test source hashes match final files.
+Frozen oracle and all inherited historical evidence hashes unchanged.
+79 test methods PASS; no owned implementation remains.

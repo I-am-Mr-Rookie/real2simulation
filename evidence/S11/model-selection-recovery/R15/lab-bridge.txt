@@ -1,0 +1,15 @@
+test_all_templates_use_actual_s08_factories (test_session_bridge.BridgeTests.test_all_templates_use_actual_s08_factories) ... ok
+test_ballistic_fit_uses_actual_s11_and_errors_are_clean (test_session_bridge.BridgeTests.test_ballistic_fit_uses_actual_s11_and_errors_are_clean) ... ok
+test_export_exception_is_redacted_without_setup (test_session_bridge.BridgeTests.test_export_exception_is_redacted_without_setup) ... ok
+test_mystery_has_no_public_setup_or_authored_gravity_for_ballistic_seeds (test_session_bridge.BridgeTests.test_mystery_has_no_public_setup_or_authored_gravity_for_ballistic_seeds) ... ok
+test_mystery_seed_changes_private_gravity_and_actual_fit (test_session_bridge.BridgeTests.test_mystery_seed_changes_private_gravity_and_actual_fit) ... ok
+test_normal_dto_is_the_actual_validated_export_for_all_four_templates (test_session_bridge.BridgeTests.test_normal_dto_is_the_actual_validated_export_for_all_four_templates) ... ok
+test_oversized_fractional_and_invalid_horizons_fail_before_spawning (test_session_bridge.BridgeTests.test_oversized_fractional_and_invalid_horizons_fail_before_spawning) ... ok
+test_setup_editing_remains_outside_fixed_request_allowlist (test_session_bridge.BridgeTests.test_setup_editing_remains_outside_fixed_request_allowlist) ... ok
+test_subprocess_protocol_rejects_bad_action_without_traceback (test_session_bridge.BridgeTests.test_subprocess_protocol_rejects_bad_action_without_traceback) ... ok
+test_uncaught_protocol_exception_is_redacted (test_session_bridge.BridgeTests.test_uncaught_protocol_exception_is_redacted) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 15.517s
+
+OK

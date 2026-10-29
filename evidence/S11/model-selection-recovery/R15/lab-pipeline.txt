@@ -1,0 +1,9 @@
+test_cli_and_explicit_settings (test_pipeline.PipelineTests.test_cli_and_explicit_settings) ... ok
+test_cross_process_contract_is_checked (test_pipeline.PipelineTests.test_cross_process_contract_is_checked) ... ok
+test_invalid_spec_cannot_enter_simulator (test_pipeline.PipelineTests.test_invalid_spec_cannot_enter_simulator) ... ok
+test_two_ballistic_templates_reach_actual_fitter (test_pipeline.PipelineTests.test_two_ballistic_templates_reach_actual_fitter) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 4.056s
+
+OK

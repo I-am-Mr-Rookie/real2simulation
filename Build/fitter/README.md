@@ -6,6 +6,18 @@ observed-minus-predicted residuals, chooses by AIC (`k = rank`), and computes
 conditional Jacobian covariance under Gaussian IID residuals. Quadratic
 coefficient uncertainty is the Jacobian for `g = 2*c2`.
 
+RMSE uses the residual norm, and AIC evaluates `n*(2*log(norm)-log(n))+2*k`:
+neither first squares tiny residuals nor divides an already rounded RSS. The
+norm keeps its maximum-residual scale separate through division/logarithms, so
+rounding a subnormal norm first cannot erase a representable positive RMSE.
+The criterion and exact-zero tie behavior are unchanged. A representable nonzero
+residual norm therefore yields finite AIC even if binary64 RSS underflows to zero.
+The API marks that rounded RSS with `rss_status="underflow"`, not an exact fit;
+`unavailable_exact_zero_rss` AIC metadata is reserved for all-zero residuals.
+An unrepresentable residual variance floor is null. Both uncertainty models
+retain covariance abstention rather than turning lost variance into known zero;
+representable RMSE/AIC do not imply representable covariance or physical evidence.
+
 ## Standard uncertainties, not confidence intervals
 
 `jacobian_covariance(fit)` retains residual OLS covariance `RSS/dof * (X'X)^-1`

@@ -1,0 +1,11 @@
+# R15-model — interrupted S11l recovery
+
+- Objective: recover and freshly verify the inherited R14 residual-underflow fix without changing AIC, valid input domain, or covariance honesty.
+- Assigned CODEX-1 / existing managed `gpt-6.1-sol` / high. Runtime identity not independently exposed; OpenCodex-managed; not polled. Tokens/costs unknown.
+- Issued `2026-10-29T07:23:41.000Z`; minute25 cutoff `2026-10-29T07:48:41.000Z`; deadline `2026-10-29T07:53:41.000Z` / Dhaka `2026-10-29T13:53:41.000+06:00`. Full 1800s; latest owner stop `2026-10-29T10:00:00Z` / 16:00 Dhaka supersedes old stop. Verified fully DONE may finish early; no early incomplete report without approved exception.
+- Inherited Meta AI Hackathon project `91e441f8-e40c-4ec4-bea2-de7fa1582d97`; canonical root `C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon`. Child UI binding not independently verified. Direct owner-authorized inline recovery; no duplicate worker or fanout.
+- Initial HEAD `36bc33d62dbdb42b35e24a4e5cfaa03fe6e59fdd`, branch `run/R14-model-fix`; created `run/R15-model` without reset. Preserved all inherited modified core/API/README, untracked recovery tests/evidence. R14 completion/timestamps are not accepted as fresh proof or rewritten.
+- Owns: `Build/fitter/core.py`, `Build/fitter/api.py`, `Build/fitter/README.md`, necessary nonfrozen `tests/fitter/` recovery tests, `evidence/S11/model-selection-recovery/`, `Run-System/Runs/R15-model/`.
+- Acceptance: untouched frozen 14-method regression passes; targeted recovery/core/API/uncertainty checks pass with finite correct AIC/positive representable RMSE and honest unavailable covariance; scoped committed source/evidence with timebox validation.
+- Ponytail FULL applied: inspect shared core and API callers, retain existing stdlib `math.hypot`/log fix and uncertainty safeguards; smallest complete repair, no dependency/QR rewrite/tolerance/noise inflation or new criterion.
+- No shared controls/main/merges/frozen oracle edits; no install/model/GPU jobs, scenes/physical GateM/S12, UI/deploy/publish/accounts/terms/credentials/env values/provider/routing/policy/quota checks. Parent owns instrument quantizer integration, native gate review, IAB375, heavy builds and main FF.

@@ -1,0 +1,12 @@
+{
+  "id": "R15-model",
+  "issued_at": "2026-10-29T07:23:41.000Z",
+  "deadline_at": "2026-10-29T07:53:41.000Z",
+  "implementation_cutoff_at": "2026-10-29T07:48:41.000Z",
+  "deadline_dhaka": "2026-10-29T13:53:41.000+06:00",
+  "owner_stop_at": "2026-10-29T10:00:00Z",
+  "work_stopped_at": "2026-10-29T07:34:32Z",
+  "reported_at": "2026-10-29T07:34:32Z",
+  "status": "DONE",
+  "completion_basis": "All scoped acceptance verified:79 test methods pass; frozen oracle and inherited evidence unchanged. Only report/commit housekeeping follows."
+}

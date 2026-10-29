@@ -1,0 +1,20 @@
+test_both_api_models_keep_lost_variance_unavailable (test_r14_model_recovery.R14ModelRecoveryTests.test_both_api_models_keep_lost_variance_unavailable) ... ok
+test_exact_zero_and_explicit_known_zero_are_not_reclassified (test_r14_model_recovery.R14ModelRecoveryTests.test_exact_zero_and_explicit_known_zero_are_not_reclassified) ... ok
+test_representable_declared_noise_can_still_support_covariance (test_r14_model_recovery.R14ModelRecoveryTests.test_representable_declared_noise_can_still_support_covariance) ... ok
+test_representable_subnormal_rss_is_not_lost_to_individual_squares (test_r14_model_recovery.R14ModelRecoveryTests.test_representable_subnormal_rss_is_not_lost_to_individual_squares) ... ok
+test_subnormal_norm_rounding_cannot_erase_representable_rmse (test_r14_model_recovery.R14ModelRecoveryTests.test_subnormal_norm_rounding_cannot_erase_representable_rmse) ... FAIL
+test_tiny_nonzero_models_are_supported_not_rejected (test_r14_model_recovery.R14ModelRecoveryTests.test_tiny_nonzero_models_are_supported_not_rejected) ... ok
+
+======================================================================
+FAIL: test_subnormal_norm_rounding_cannot_erase_representable_rmse (test_r14_model_recovery.R14ModelRecoveryTests.test_subnormal_norm_rounding_cannot_erase_representable_rmse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\.codex\worktrees\swarm14-model-selection\2026-10-26 - Meta Global AI Developer Hackathon\tests\fitter\test_r14_model_recovery.py", line 26, in test_subnormal_norm_rounding_cannot_erase_representable_rmse
+    self.assertEqual(fit.rmse, expected_rmse)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.0 != 5e-324
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.024s
+
+FAILED (failures=1)
