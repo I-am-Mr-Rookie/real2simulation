@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+S15i DONE (orch26 Sonnet medium; workspace 75 pass fresh; TIMEBOX PASS; ff-merged): sidebar +
+report nav via public interfaces, fixtures. Finding for S17: no contracts/report schema for
+r2s.report/1 (JS mirror may drift). Host S04 wiring pending. orch29: S15j Sonnet medium dispatched.
 S05f DONE (orch25 Opus high; spike gate/scene/rm02 20 OK + scene contracts fresh; TIMEBOX PASS;
 ff-merged): R-R F1-F6 fixed with regressions; Gate R FAIL -> Fallback 2 (planes+boxes, scale
 UNVERIFIED). Q-S05e applied: RM02 paper aspect 1.24 excludes A4 1.414 -> abstain; no other

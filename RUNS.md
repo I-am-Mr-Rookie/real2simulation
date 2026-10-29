@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 29, 21:35 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 29, 21:36 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **129 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **130 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -22,7 +22,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - [ ] **S09h** — Codex (native Claude) · Opus 5.5, effort high — Integrate three measured scene artifacts (30 min)
-- [ ] **S15i** — Codex (native Claude) · Sonnet 5.5, effort medium — Build sidebar and report navigation (30 min)
+- [ ] **S15j** — Codex (native Claude) · Sonnet 5.5, effort medium — Stack workspace at 375px (30 min)
 
 ## Waiting for Koushik
 
@@ -241,7 +241,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (8/12)</summary>
+<details><summary><b>S15</b> — Workspace UI (9/12)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -251,7 +251,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15f** — Codex (native Claude) · Sonnet 5.5, effort high — Build run and replay controls (30 min)
 - [x] **S15g** — Codex (native Claude) · Sonnet 5.5, effort high — Build virtual instrument controls (30 min)
 - [x] **S15h** — Codex (native Claude) · Sonnet 5.5, effort medium — Build fit table and residual chart (30 min)
-- [ ] **S15i** — Codex (native Claude) · Sonnet 5.5, effort medium — Build sidebar and report navigation (30 min)
+- [x] **S15i** — Codex (native Claude) · Sonnet 5.5, effort medium — Build sidebar and report navigation (30 min)
 - [ ] **S15j** — Codex (native Claude) · Sonnet 5.5, effort medium — Stack workspace at 375px (30 min)
 - [ ] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min)
 - [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint workspace accessibility and evidence (30 min)
