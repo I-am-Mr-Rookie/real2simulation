@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S20-fix-orch63 Sol high (threadId:01a18b0f-0491-7270-9614-f72b70a59414,hostId:local, deadline 2026-10-30T04:56:17+00:00); Owns +Build/pipeline/gpu_stages.py.
+
 R-C DONE = CHANGES_REQUIRED (orch60 Opus high; evidence ff-merged). TIMING EXCEPTION (controller):
 worker_timebox check FAILS, work_stopped 04:22:00Z vs deadline 04:21:21Z (39 s overrun, honest
 timestamps); read-only review evidence accepted with this recorded overrun; not a pass on timing.
