@@ -1,9 +1,11 @@
 """Actual stager with synthetic Git blobs; normal/optimized execution, no uploads."""
 from contextlib import redirect_stdout
+import base64
 import hashlib
 import io
 import json
 from pathlib import Path
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -15,6 +17,8 @@ FILES = {
     "Build/web/src/page.jsx": b"synthetic-web\n",
     "Build/web/package.json": b"{}\n",
     "Build/lab/session-service.mjs": b"synthetic-lab\n",
+    "Build/library/loader.mjs": b"synthetic-loader\n",
+    "Build/library/guest.py": b"synthetic-excluded\n",
     "Build/simulator/rk4.mjs": b"synthetic-sim\n",
     "Build/simulator/NUMERICS.md": b"synthetic-excluded\n",
     "Build/api/health/app.py": b"synthetic-api\n",
@@ -25,6 +29,9 @@ FILES = {
     ".env": b"SYNTHETIC_EXCLUDED",
     "archive/private.txt": b"SYNTHETIC_EXCLUDED",
 }
+OBJECT = b'{"synthetic":"trace"}'
+SNAPSHOT = json.dumps({"manifest": {"demos": []}, "objects": {
+    hashlib.sha256(OBJECT).hexdigest(): base64.b64encode(OBJECT).decode()}}).encode()
 
 
 class StageTests(unittest.TestCase):
@@ -33,11 +40,18 @@ class StageTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.target = Path(self.temp.name) / "fresh"
 
-    def stage(self, service="api", *, optimize=0, files=None):
+    def stage(self, service="api", *, optimize=0, files=None, snapshot=SNAPSHOT, dirty=False):
         files = FILES if files is None else files
         def git(command, **kwargs):
+            if command[0] == sys.executable:
+                self.assertEqual(command[1:3], ["-B", "-c"])
+                self.assertIn("load_guest()", command[3])
+                return snapshot
             if command[1] == "rev-parse": return REVISION + "\n"
             if command[1] == "ls-tree": return "\n".join(files)
+            if command[1] == "diff":
+                if dirty: raise subprocess.CalledProcessError(1, command)
+                return b""
             if command[1] == "show":
                 self.assertTrue(command[2].startswith(REVISION + ":"))
                 return files[command[2].split(":", 1)[1]]
@@ -108,7 +122,8 @@ class StageTests(unittest.TestCase):
                     self.assertEqual(manifest["service"], service)
                     expected = {
                         "web": {"Build/web/src/page.jsx", "Build/web/package.json", "Build/lab/session-service.mjs",
-                                "Build/simulator/rk4.mjs", "Dockerfile"},
+                                "Build/library/loader.mjs", "Build/simulator/rk4.mjs", "Dockerfile",
+                                "Build/web/library-snapshot/guest.json"},
                         "api": {"Build/api/health/app.py", "Build/api/health/dependencies.py", "Dockerfile"},
                         "worker": {"Build/worker/health/app.py", "Build/api/health/dependencies.py", "Dockerfile"},
                     }[service]
@@ -116,9 +131,18 @@ class StageTests(unittest.TestCase):
                     for name, digest in manifest["files"].items():
                         content = (self.target / name).read_bytes()
                         self.assertEqual(hashlib.sha256(content).hexdigest(), digest)
-                        if name != "Dockerfile": self.assertEqual(content, FILES[name])
+                        if name != "Dockerfile": self.assertEqual(content, FILES.get(name, SNAPSHOT))
                     self.assertEqual((self.target / "Dockerfile").read_bytes(),
                                      f"ARG R2S_SOURCE_REVISION={REVISION}\n".encode())
+
+    def test_web_snapshot_rejected_before_any_write(self):
+        bad = SNAPSHOT.replace(base64.b64encode(OBJECT), base64.b64encode(OBJECT + b" "))  # hash mismatch
+        self.assertNotEqual(bad, SNAPSHOT)
+        for kwargs, err in (({"snapshot": bad}, ValueError), ({"snapshot": b"not json"}, ValueError),
+                            ({"dirty": True}, subprocess.CalledProcessError)):
+            with self.subTest(**{k: str(v)[:20] for k, v in kwargs.items()}), self.assertRaises(err):
+                self.stage("web", **kwargs)
+            self.assertFalse(self.target.exists())
 
 
 if __name__ == "__main__":
