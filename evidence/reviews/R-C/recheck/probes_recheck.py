@@ -152,4 +152,3 @@ except ImportError as exc:
 
 for row in out:
     print(json.dumps(row))
-
