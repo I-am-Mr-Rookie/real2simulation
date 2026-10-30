@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Oct 30, 10:26 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 11:51 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -278,7 +278,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S17c** — Codex (native Claude) · Sonnet 5.5, effort high — Build TeX/HTML report rendering (30 min)
 - [x] **S17d** — Codex (native Claude) · Sonnet 5.5, effort high — Compile reports for all four templates (30 min)
 - [x] **S17e** — Codex (native Claude) · Sonnet 5.5, effort high — Automate numeric report-to-fitter diff (30 min)
-- [ ] **S17f** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint report accessibility and fallback evidence (30 min)
+- [~] **S17f** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint report accessibility and fallback evidence (30 min) *(partial: resume it)*
 
 </details>
 
@@ -329,7 +329,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (0/11)</summary>
 
-- [ ] **S22a** — Codex (native Claude) · Opus 5.5, effort medium — Prepare approved judging-candidate QA checklist (30 min)
+- [~] **S22a** — Codex (native Claude) · Opus 5.5, effort medium — Prepare approved judging-candidate QA checklist (30 min) *(partial: resume it)*
 - [ ] **S22b** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture logged-out guest library walkthrough (30 min)
 - [ ] **S22c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 1 (30 min)
 - [ ] **S22d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 2 (30 min)
