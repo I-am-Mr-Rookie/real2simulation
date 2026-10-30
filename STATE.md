@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+ACCEPTED S18c-orch94 PARTIAL (Oct30 07:05Z; timing PASS at deadline per controller ruling; 36 library tests OK; merged):
+4 SIMULATED projectile demos content-addressed to S10hi evidence; bounce UNAVAILABLE (BN01 tracking 31/176, no accepted
+source) - data-limited, not retried. QUEUE S18c -> PARTIAL. DISPATCHED S18d-orch101 Sol medium (pendulum + display-only scene
+demos; thread 01a18ba1-22a9-72f0-87c5-cfb3a8ddcb78, deadline 2026-10-30T07:35:38+00:00).
+
 R-A-recheck3-orch96 CHANGES_REQUIRED (Oct30 06:59Z; timing PASS; evidence merged d64bf86): six F1-R2 strings + one g/N +
 CITE forgery closed; Q16 reporting exact (MET_AMENDED_Q16, 10/10 contract, 0/10 setup, 30/30 shown). P1 F1-R3: label-chain
 binding lets "one whole minute: <q>" / "a full second: <q>" state amounts. Gate A not cleared. DISPATCHED S14g-fix6-orch100
