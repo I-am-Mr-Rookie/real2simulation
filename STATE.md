@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+S14g-fix-orch61 PARTIAL accepted (Opus high; TIMEBOX PASS; agent 52 OK; ff-merged after controller
+removed 54 __pycache__ files that the CONTROLLER's own 'git add -A -f' WIP commit had forced in — lesson:
+WIP commits must not use -f on '.'). Visible-text check (NFKC, joined runs, multiplier/one+unit) +
+independent oracle + 29-case adversarial corpus; Gate A NOT_MET: 0/10 recorded scenes. No new Meta.
+Next S14g-fix3: build 10 recorded-scene fixtures from the 10 approved clips (APPROVAL.md) via Wonder.
+
 DISPATCHED S20-fix-orch63 Sol high (threadId:01a18b0f-0491-7270-9614-f72b70a59414,hostId:local, deadline 2026-10-30T04:56:17+00:00); Owns +Build/pipeline/gpu_stages.py.
 
 R-C DONE = CHANGES_REQUIRED (orch60 Opus high; evidence ff-merged). TIMING EXCEPTION (controller):
