@@ -1,0 +1,80 @@
+{
+  "task": "S12f",
+  "rule": "<= 0.05 shown; (0.05, 0.1] shown with measured error; > 0.1 or unmeasured -> virtual lab only",
+  "gate_rs": {
+    "path": "evidence/S12/gate-rs/gate-rs.json",
+    "sha256": "f913897d407139ce78d3f35434e046ddd931f88f0229d9d96c1ff388f41b4d85",
+    "status": "NOT_MET",
+    "median": null,
+    "shortfall": [
+      "projectile",
+      "bounce",
+      "pendulum"
+    ],
+    "recomputed_by": "Build.real2sim.score.gate"
+  },
+  "gate_m": "NOT_MET",
+  "limits": [
+    "Gate M NOT_MET: no calibrated scale or capture clock",
+    "positions are image-height fractions, not metres; no calibrated g",
+    "no physical-accuracy claim"
+  ],
+  "decision": {
+    "tier": "VIRTUAL_LAB_ONLY",
+    "real_scene_prediction": "WITHHELD",
+    "error_label": "unmeasured",
+    "reason": "no measured median (missing category or coverage < 80%): unmeasured"
+  },
+  "clip_scores_diagnostic": {
+    "projectile": {
+      "clip_id": "ST03",
+      "scored_frames": 7,
+      "sealed_frames": 466,
+      "coverage": 0.015021459227467811,
+      "normalized_rms": 0.1981633916341227,
+      "scored": false
+    },
+    "bounce": null,
+    "pendulum": null
+  },
+  "outputs": [
+    {
+      "path": "evidence/S12/overlay-ST03-v2.json",
+      "sha256": "22944fb9c5b3e3914c3a8e1fce1e615f92c7bcb87f57becfeb4541eef081b4d7",
+      "clip_id": "ST03",
+      "provenance": "image-derived",
+      "units": "image-height fraction",
+      "gate_m": "NOT_MET",
+      "scale_label": "SCALE_UNVERIFIED",
+      "limits": [
+        "Gate M NOT_MET: no calibrated scale or capture clock",
+        "positions are image-height fractions, not metres; no calibrated g",
+        "no physical-accuracy claim"
+      ],
+      "banner": "REAL CLIP - PREDICTION WITHHELD",
+      "trace_label": "simulated",
+      "observation_label": "measured (image-derived tracking)",
+      "error_label": "unmeasured",
+      "display": "VIRTUAL_LAB_ONLY"
+    },
+    {
+      "path": "evidence/S12/overlay-pendulum-SYNTHETIC-v2.json",
+      "sha256": "46d13333e013361b9107131d71f4cb313fb58e0af6160bc69c4c144c17703321",
+      "clip_id": "SYNTHETIC-pendulum-v1",
+      "provenance": "synthetic",
+      "units": "image-height fraction",
+      "gate_m": "NOT_MET",
+      "scale_label": "SCALE_UNVERIFIED",
+      "limits": [
+        "Gate M NOT_MET: no calibrated scale or capture clock",
+        "positions are image-height fractions, not metres; no calibrated g",
+        "no physical-accuracy claim"
+      ],
+      "banner": "SYNTHETIC",
+      "trace_label": "simulated",
+      "observation_label": "synthetic",
+      "error_label": "not applicable (synthetic fixture)",
+      "display": "VIRTUAL_LAB"
+    }
+  ]
+}
