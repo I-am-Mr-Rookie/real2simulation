@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+Oct30 ~19:52Z: ACCEPTED S13k-orch153 DONE (RM04 replay stitches understand from accepted S14g-fix3 spec, labelled RECORDED S14g-fix3 @
+2026-10-30T05:06:04Z ledger UTC; job reaches ready; jobs.scene_resolver(store) owner-scoped, questions 200/other owner 404; spec route 422 for
+RM04 = honest 'invalid authoritative bundle' (no real-scale bundle; not a defect of S13k). Fresh after rebase: api-workspace 16/16, pipeline 53/53;
+timebox PASS; diff within Owns). Dispatched S04m-orch156 (Opus HIGH, Claude per owner rule; mount routers + image + dev var names + API dev
+deploy; no new Redis service if none exists), thread 01a18e5c-dfe8, dl 20:19:58Z. Running: S25c-orch155, S04m-orch156. Next RID orch157.
+
 Oct30 ~19:52Z OWNER RULE (standing): "Keep the rule of using codex models less and Claude models more." Claude (Opus/Sonnet, QUEUE effort)
 for every row Claude can do, even where QUEUE lists Sol; Codex only when necessary (owner-pinned Sol rows, cross-vendor review of Claude work).
 Recorded in AGENTS.md and heartbeat prompt (no longer 'until Koushik says otherwise').

@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 01:48 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 01:50 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **201 / 236** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
+Progress: **202 / 236** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
 
 ## Reviews for Koushik
 
@@ -16,13 +16,12 @@ Progress: **201 / 236** runs done · 0 in progress · 0 blocked · 0 waiting for
 
 **CODEX-1**
 - [ ] **S13j** — Codex (native Claude) · Opus 5.5, effort high — OPTIONAL/CUT-FIRST: re-capture RM04 geometry bytes into private dev bucket via existing e2e.py under guardrails (30 min)
-- [ ] **S13k** — Codex (native Claude) · Opus 5.5, effort medium — RM04 replay: stitch recorded S14g-fix3 live understand spec + owner-scoped scene resolver (30 min)
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
+- [ ] **S04m** — Codex (native Claude) · Opus 5.5, effort high — Mount workspace routers, extend API image (+jsonschema pin), set var names, deploy API to dev (30 min)
 - [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
-- [ ] **S22c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 1 (30 min)
-- …and 2 more ready in this lane
+- …and 3 more ready in this lane
 
 **CLAUDE**
 - [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
@@ -226,7 +225,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S13</b> — Upload and reconstruction job pipeline (9/11)</summary>
+<details><summary><b>S13</b> — Upload and reconstruction job pipeline (10/11)</summary>
 
 - [x] **S13a** — Codex (native Claude) · Opus 5.5, effort high — Define resumable upload and job-stage contracts (30 min)
 - [x] **S13b** — Codex (native Claude) · Opus 5.5, effort high — Implement bucket upload validation (30 min)
@@ -238,7 +237,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S13h** — Codex (native Claude) · Opus 5.5, effort high — Measure dev upload-to-scene path (30 min)
 - [x] **S13i** — Codex (native Claude) · Opus 5.5, effort high — API upload + job routes with RECORDED-replay executor (approved-clip sha gate) (30 min)
 - [ ] **S13j** — Codex (native Claude) · Opus 5.5, effort high — OPTIONAL/CUT-FIRST: re-capture RM04 geometry bytes into private dev bucket via existing e2e.py under guardrails (30 min)
-- [ ] **S13k** — Codex (native Claude) · Opus 5.5, effort medium — RM04 replay: stitch recorded S14g-fix3 live understand spec + owner-scoped scene resolver (30 min)
+- [x] **S13k** — Codex (native Claude) · Opus 5.5, effort medium — RM04 replay: stitch recorded S14g-fix3 live understand spec + owner-scoped scene resolver (30 min)
 
 </details>
 
