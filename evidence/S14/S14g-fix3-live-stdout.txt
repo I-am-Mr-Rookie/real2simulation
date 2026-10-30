@@ -1,0 +1,33 @@
+{
+ "distinct_recorded_scenes": 10,
+ "required_recorded_scenes": 10,
+ "spec_cases": {
+  "RM02": true,
+  "RM04": true,
+  "RM05": true,
+  "PD02": true,
+  "PD03": true,
+  "PD04": true,
+  "PD06": true,
+  "PJ03": true,
+  "ST03": true,
+  "BN01": true
+ },
+ "valid_recorded_specs": 10,
+ "turns": 30,
+ "adversarial_turns": 0,
+ "invented_shown_oracle": 0,
+ "model_replies_shown": 30,
+ "tool_only_fallbacks": 0,
+ "model_number_attempts_caught": 0,
+ "spark_calls": 30,
+ "wonder_calls": 10,
+ "oracle_self_check": {
+  "corpus_cases": 29,
+  "oracle_agrees": true
+ },
+ "stopped": null,
+ "gate_a": "MET",
+ "why": null,
+ "scope": "spec validity = numeric spec contract validate(); authoritative-bundle validate_setup unavailable for real clips (no known-scale scene bundles); turns on synthetic-room-v1 tool outputs"
+}

@@ -1,5 +1,5 @@
 # S14g-fix3-orch64 PLAN
-Objective: finish R-A F3/F4 (10 distinct recorded approved-clip scenes for Gate A; persisted re-auditable turns).
+Objective: finish R-A F3/F4: Gate A over 10 distinct recorded approved-clip scenes (+30 Spark turns), persisted re-auditable.
 Owns: Build/agent/; contracts/agent/; tests/agent/; evidence/S14/; Run-System/Runs/S14g-fix3-orch64/.
-Issued 2026-10-30T04:31:37Z; deadline 05:01:37Z; cutoff 04:56:37Z.
-Actual worker session start: 2026-10-30T04:57:38Z (after the minute-25 cutoff) -> no implementation permitted; inventory + handoff only.
+Window (controller reissue): issued 04:58:49Z, cutoff 05:23:49Z, deadline 05:28:49Z (original 04:31:37Z window superseded; thread started late).
+Steps: reuse S14g_fix_gate_a (oracle/turn/summary/live_post) + S13c keyframes + S13e clip_context/build -> offline (stub plumbing) -> live (record) -> offline replay of recorded.
