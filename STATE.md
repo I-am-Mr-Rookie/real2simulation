@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+ACCEPTED S16e-orch103 BLOCKED (Oct30 07:15Z; timing PASS with approved resource_stop receipt; merged): Baseten sign-in page
+only, 0 requests, sanitized evidence/S16/S16e-orch103-billing-preflight.json. QUEUE S16e stays TODO pending Q17.
+
 S16e-orch103 BLOCKED on owner action (Oct30 ~07:17Z): Baseten is NOT signed in inside the ChatGPT in-app browser (redirects
 to "Sign in to Baseten"); credited balance unverifiable; 0 inference requests. Controller resource_stop exception receipt
 Run-System/Runs/ORCH-20261029-1654/EXCEPTION-S16e-orch103.md. Owner question Q17 added. S16f-h wait on S16e.
