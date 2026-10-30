@@ -2,8 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { loadLibraryEntry } from '../../../../../library/loader.mjs';
 import { mountTrajectoryReplay } from '../../../viewer/trajectory-replay.mjs';
-
-const TAG = { playable: 'SIMULATED · playable', 'metadata-only': 'SIMULATED · setup only', unavailable: 'UNAVAILABLE' };
+import { MYSTERY_COPY, TAG, TONE, creditLine, groupDemos } from './library-copy.mjs';
 
 function Replay({ entry }) {
   const host = useRef(null); const [state, setState] = useState('loading');
@@ -19,23 +18,30 @@ function Replay({ entry }) {
     })();
     return () => { ctl.abort(); view?.dispose?.(); };
   }, [entry]);
-  return <div className="mount-note" data-slot="viewer" data-state={state}>
+  const failed = state.startsWith('error');
+  return <div className="lib-replay" id={'replay-' + entry.id} data-slot="viewer" data-state={state} aria-busy={state === 'loading'}>
     <span className="state-tag">SIMULATED · SCALE_UNVERIFIED · display only</span>
-    {state !== 'ready' && <p role="status">{state === 'loading' ? 'Loading verified trace…' : state}</p>}
-    <div ref={host} />
+    {state === 'loading' && <p role="status" className="muted">Loading verified trace…</p>}
+    {failed && <p role="alert"><strong>Replay unavailable.</strong> {state.slice(7)} No trace was shown.</p>}
+    <div ref={host} className="lib-stage" />
   </div>;
 }
 
 function Card({ entry, open, onOpen }) {
   const playable = entry.availability === 'playable';
-  return <li className="library-card" data-label={entry.label} data-availability={entry.availability}>
-    <span className="state-tag">{TAG[entry.availability] || entry.label}</span>
-    <h2>{entry.title}</h2>
-    {entry.availability === 'unavailable' && <p><strong>Why unavailable:</strong> {entry.reason}</p>}
-    {entry.challenge && <p>Mystery-g challenge: setup only. The answer is withheld until your own fit in the <a href="/lab">lab</a>.</p>}
-    {entry.label !== 'UNAVAILABLE' && <p className="muted">{entry.scale_label || 'SCALE_UNVERIFIED'} · display only · not a measurement</p>}
-    {entry.limitations?.length > 0 && <ul className="muted">{entry.limitations.map((t) => <li key={t}>{t}</li>)}</ul>}
-    {playable && <button type="button" aria-expanded={open} onClick={onOpen}>{open ? 'Hide replay' : 'Play simulated replay'}</button>}
+  return <li className="lib-card" data-label={entry.label} data-availability={entry.availability} data-open={open || undefined}>
+    <div className="lib-tags">
+      <span className="state-tag" data-tone={TONE[entry.availability]}>{TAG[entry.availability] || entry.label}</span>
+      <span className="state-tag">{entry.scale_label || 'SCALE_UNVERIFIED'}</span>
+    </div>
+    <h3>{entry.title}</h3>
+    {entry.challenge && <p className="lib-callout">{MYSTERY_COPY} <a href="/lab">Play blind in the lab →</a></p>}
+    <p className="muted lib-meta">{creditLine(entry)}<br />Display only · not a measurement.</p>
+    {entry.limitations?.length > 0 && <details className="lib-limits">
+      <summary>Limitations ({entry.limitations.length})</summary>
+      <ul>{entry.limitations.map((t) => <li key={t}>{t}</li>)}</ul>
+    </details>}
+    {playable && <button type="button" aria-expanded={open} aria-controls={'replay-' + entry.id} onClick={onOpen}>{open ? 'Hide replay' : 'Play simulated replay'}</button>}
     {playable && open && <Replay entry={entry} />}
   </li>;
 }
@@ -45,13 +51,27 @@ export default function LibraryClient() {
   useEffect(() => {
     fetch('/api/library/manifest').then((r) => (r.ok ? r.json() : Promise.reject())).then(setManifest, () => setFailed(true));
   }, []);
-  if (failed) return <p role="alert">Library unavailable. No demo data was loaded.</p>;
-  if (!manifest) return <p role="status">Loading library…</p>;
-  const order = { playable: 0, 'metadata-only': 1, unavailable: 2 };
-  const demos = [...manifest.demos].sort((a, b) => order[a.availability] - order[b.availability]);
+  if (failed) return <div className="state-card" role="alert"><span className="state-tag" data-tone="danger">UNAVAILABLE</span>
+    <p>Library unavailable. No demo data was loaded. Try again later, or use the <a href="/lab">lab</a>.</p></div>;
+  if (!manifest) return <p role="status" className="muted">Loading library…</p>;
+  const { ready, unavailable } = groupDemos(manifest.demos || []);
+  const playable = ready.filter((d) => d.availability === 'playable').length;
   return <>
-    <p className="muted">{manifest.scope}</p>
-    <ul className="library-grid">{demos.map((d) => <Card key={d.id} entry={d} open={open === d.id}
+    <p className="lib-summary mono">
+      <span>{playable} playable</span><span>{ready.length - playable} practice setup</span><span>{unavailable.length} unavailable</span>
+    </p>
+    <h2 className="lib-section">Ready to open</h2>
+    {ready.length ? <ul className="lib-grid">{ready.map((d) => <Card key={d.id} entry={d} open={open === d.id}
       onOpen={() => setOpen(open === d.id ? null : d.id)} />)}</ul>
+      : <p className="state-card">No simulated entries are available right now. Nothing was substituted.</p>}
+    {unavailable.length > 0 && <details className="lib-unavailable">
+      <summary className="lib-section">Not available yet ({unavailable.length})</summary>
+      <p className="muted">Listed so you can see what is missing and why. None of these load data.</p>
+      <ul>{unavailable.map((d) => <li key={d.id} data-label={d.label} data-availability="unavailable">
+        <span className="state-tag" data-tone="danger">UNAVAILABLE</span>
+        <strong>{d.title}</strong><span className="muted">{d.reason}</span>
+      </li>)}</ul>
+    </details>}
+    <p className="muted lib-scope">Scope: {manifest.scope}</p>
   </>;
 }

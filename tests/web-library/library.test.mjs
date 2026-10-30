@@ -8,6 +8,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GUEST_SCRIPT, artifactResponse, manifestResponse } from '../../Build/web/src/app/api/library/guest.mjs';
 import { traceFromBody } from '../../Build/web/src/viewer/trajectory-replay.mjs';
+import { readFileSync } from 'node:fs';
+import { MYSTERY_COPY, TAG, creditLine, groupDemos } from '../../Build/web/src/app/(public)/library/library-copy.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const dir = mkdtempSync(path.join(os.tmpdir(), 's04k-'));
@@ -79,3 +81,17 @@ test('missing snapshot: production 503; local dev falls back to live python, bro
   assert.equal(dev.status, 200); assert.deepEqual(await dev.json(), manifest);
   assert.equal((await manifestResponse(missing, path.join(root, 'no-such-dir'))).status, 503);
 });
+
+test('S04l copy: honest Mystery-g wording, visible labels and credits on real manifest', () => {
+  assert.match(MYSTERY_COPY, /not a blind test/); assert.match(MYSTERY_COPY, /hidden g/);
+  const src = readFileSync(path.join(root, 'Build/web/src/app/(public)/library/LibraryClient.jsx'), 'utf8');
+  assert.doesNotMatch(src + MYSTERY_COPY, /answer is withheld/i);
+  for (const l of ['SIMULATED', 'SCALE_UNVERIFIED', 'UNAVAILABLE']) assert.match(src + JSON.stringify(TAG), new RegExp(l));
+  const { ready, unavailable } = groupDemos(manifest.demos);
+  assert.equal(ready.length + unavailable.length, manifest.demos.length);
+  assert.ok(unavailable.every((d) => TAG[d.availability] === 'UNAVAILABLE' && d.reason));
+  for (const d of ready) { assert.match(TAG[d.availability], /^SIMULATED/); assert.match(creditLine(d), /^Credit: SIMULATED/); }
+  assert.match(creditLine({ source: { kind: 'footage', creator: 'A', licence: 'CC BY' } }), /A · CC BY/);
+  assert.match(creditLine({}), /no media/);
+});
+
