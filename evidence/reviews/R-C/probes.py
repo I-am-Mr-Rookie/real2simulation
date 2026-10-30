@@ -126,6 +126,17 @@ check("A11", aws(max_session_seconds=3601), "PAUSED", "session >1h refused")
 check("A12", aws(qd={**q, "owner_approved": "true"}), "PAUSED", "string approval refused")
 check("A13", aws(bd={**b, "as_of": (NOW - timedelta(minutes=6)).isoformat()}), "PAUSED", "stale budget receipt")
 check("A14", aws(candidate_aws_usd="0"), "PAUSED", "zero AWS bound refused")
+check("A15", [aws(), aws()], ["AWS", "AWS"], "OBSERVED: same receipts admit twice; AWS liabilities live only in the "
+      "receipt's net headroom (no AWS bucket in shared snapshot, no reservation memory)", expected_safe=False)
+
+# --- shared-snapshot shape gaps (orch60)
+check("X1", admit(write(snap(AWS={"historical_usd": "999", "requests": [row("z", prov="AWS", reserved_usd="999")]}),
+                        "x1.json")), "ALLOWED",
+      "OBSERVED: unknown provider bucket (e.g. AWS liabilities) silently ignored, not rejected", expected_safe=False)
+same = write(snap(modal_hist="20"), "c1.json")
+check("C1", [admit(same, modal="4"), admit(same, modal="4")], ["ALLOWED", "ALLOWED"],
+      "OBSERVED: preflight has no reservation; two $4 admissions on one snapshot both pass (projected 28 > floor) "
+      "-> caller must serialize check+reserve", expected_safe=False)
 
 # --- live paid-boundary cap: gpu_stages.reserve is per-ledger-file, not global
 spent = 0.0

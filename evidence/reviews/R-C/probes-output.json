@@ -1,0 +1,76 @@
+{
+ "tmp": "C:\\Users\\HP\\AppData\\Local\\Temp\\rc-probe-b1v185nu",
+ "total": 53,
+ "expected_safe_failures": 0,
+ "observed_findings": [
+  {
+   "id": "L6",
+   "got": "ALLOWED",
+   "want": "ALLOWED",
+   "pass": true,
+   "expected_safe": false,
+   "note": "OBSERVED: settled row trusts billed + any nonempty ref (shape-only; caller must verify finality)"
+  },
+  {
+   "id": "F19",
+   "got": "ALLOWED",
+   "want": "ALLOWED",
+   "pass": true,
+   "expected_safe": false,
+   "note": "OBSERVED: any nonempty source label satisfies inventory (shape-only by design)"
+  },
+  {
+   "id": "R1",
+   "got": "ALLOWED",
+   "want": "ALLOWED",
+   "pass": true,
+   "expected_safe": false,
+   "note": "OBSERVED: Meta credit 1e-9 rounded UP to 1e-8 admits 1e-8 candidate (admission rounds headroom up; failover refuses this)"
+  },
+  {
+   "id": "A15",
+   "got": [
+    "AWS",
+    "AWS"
+   ],
+   "want": [
+    "AWS",
+    "AWS"
+   ],
+   "pass": true,
+   "expected_safe": false,
+   "note": "OBSERVED: same receipts admit twice; AWS liabilities live only in the receipt's net headroom (no AWS bucket in shared snapshot, no reservation memory)"
+  },
+  {
+   "id": "X1",
+   "got": "ALLOWED",
+   "want": "ALLOWED",
+   "pass": true,
+   "expected_safe": false,
+   "note": "OBSERVED: unknown provider bucket (e.g. AWS liabilities) silently ignored, not rejected"
+  },
+  {
+   "id": "C1",
+   "got": [
+    "ALLOWED",
+    "ALLOWED"
+   ],
+   "want": [
+    "ALLOWED",
+    "ALLOWED"
+   ],
+   "pass": true,
+   "expected_safe": false,
+   "note": "OBSERVED: preflight has no reservation; two $4 admissions on one snapshot both pass (projected 28 > floor) -> caller must serialize check+reserve"
+  },
+  {
+   "id": "G1",
+   "got": 3.0,
+   "want": 1.0,
+   "pass": false,
+   "expected_safe": false,
+   "note": "FINDING: three fresh ledger paths each accepted a $1 reservation (caller-chosen path resets cap)"
+  }
+ ],
+ "failures": []
+}
