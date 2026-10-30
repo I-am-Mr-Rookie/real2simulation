@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+S20-fix2-orch65 DONE merged (TIMING PASS; canonical guardrails 64 OK, pipeline 52 OK, aws_adapter 7 OK via Build/gpu
+discovery). Global locked reservation journal wired into gpu_stages + AWS selector; M2/L2 fixed; M3 record_muse deferred
+(needs Build/agent, after S14g). Owns note: tests/pipeline/test_gpu_stages.py caller test touched - accepted.
+S20c stays PARTIAL pending R-C recheck. DISPATCHED R-C-recheck-orch75 opus high (thread 01a18b4a-29ad-7662-b394-9c3c3688a972, deadline 2026-10-30T06:00:54+00:00).
+
 S12e-fix3-orch66 DONE merged (TIMING PASS; canonical tests/prediction 42 OK). F2-R2/F2-A/F2-L fixed locally;
 gate-rs.json additions only, Gate RS NOT_MET 7/466. S12e stays PARTIAL pending R-RS-recheck3.
 Owner 05:13Z: bought Mobbin for top-notch UI finish -> 3 Opus-high UI workers (Mobbin + myfront + Superpowers +
