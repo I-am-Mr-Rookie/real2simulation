@@ -19,6 +19,7 @@ Lane CLAUDE / anthropic/claude-opus-5-5 high (OpenCodex-managed; not polled). Ba
 
 ## Not done / risks (why PARTIAL)
 - Viewer chrome restyle NOT visually verified in browser (viewer mounts in private /workspace behind auth; no viewer screenshots). Only unit tests cover it.
+- Attempted tests/viewer/browser-smoke.html via local python http.server :3175 in IAB at ~05:40Z: page rendered blank (no banner/toolbar, scrollWidth 10786) — harness issue not diagnosed (time); screenshots not committed. Viewer chrome visual remains unverified.
 - tests/lab service tests (contact-integration, process-tree, session-service, r14-service-invariants): earlier full lab run exit 1; isolated rerun shows process-tree harness child failing (Build/lab/session-service.mjs, not touched by this run). Not re-run on base main, so pre-existing vs environmental is unverified.
 - WCAG AA: palette chosen for AA (muted #5b554c on #fffdf8 ≈7:1, accent #b4451f on surface ≈5:1) but not measured with a tool; focus visible by design, not keyboard-walked in browser. --r2s-* tokens were absent on this base (UI-a not merged) so fallbacks rendered; final look depends on UI-a token values. h1/h2 serif comes from global styles (UI-a).
 - 375px full-page screenshot looks right-cropped in capture; DOM metrics show no overflow.
