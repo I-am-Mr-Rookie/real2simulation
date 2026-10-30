@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T23:20Z — orch: S07g PARTIAL accepted; controller ran real SAM 3.1 on OWN01; S07i dispatched
+
+- S07g-orch167 (Opus high): TIMEBOX PASS; 12 owner clips OWN01-OWN12 in clips.csv (PRIVATE_PROCESSING_ONLY, public pending), sha256/PTS evidence, owner approval receipt, modal_track --approval; measurement tests 82 OK (1 skip) fresh; ff-merged; PARTIAL because S20 GPU admission state was missing (worker correctly refused to fabricate). Colour DIAGNOSTIC only: 10.73 ± 0.41 vs 9.79 (miss; causes listed).
+- Controller as trusted operator: verified Modal usage in IAB (Oct cycle $0.78 usage, $0 spend, $30 monthly credits; $100 grant), initialized evidence/S20/runtime reservations.json (first init) + fresh receipt.json, reserved $0.60 (1 of 2-job/$1 standalone envelope), ran REAL SAM 3.1 track OWN01 f40-60 on Modal A10 (45 s remote; app ap-9SEBfxKkipzckSWGcQRGvt stopped). evidence/S07/S07g/OPERATOR-ADMISSION.md + track-own01.json.
+- New row S07i (fit OWN01 from SAM track + one batched track job for OWN02-12 within remaining $0.40/1 job); S07h now depends on S07i. Dispatched S07i-orch170 (Opus high) thread 01a18f1a-c664-7d23-a051-4aebd420e1aa, deadline 23:47:13Z (05:47 Dhaka).
+
 ## 2026-10-30T23:13Z — orch: S15x-orch168 accepted; Q21 asked; S15w dispatched
 
 - S15x: Sonnet medium, TIMEBOX PASS, docs only; 6 Mobbin refs R1-R6 in evidence/ui/mobbin-S15x/REFERENCES.md (Higgsfield, Delphi, PlanetScale, Dovetail, Dropbox, Sprig); ff-merged. Owner question Q21 (pick 3; default R1,R2,R3) added.
