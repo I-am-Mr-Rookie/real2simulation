@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T23:55Z — controller: accept S07h (PARTIAL: OWN07-11 pending); add S07k; dispatch S07k + S24k
+
+- S07h-orch172 merged (timebox PASS; self-check + measurement 86 OK fresh). Frozen v1 pipeline, MEASURED (user-declared scale, phone clock unverified): OWN02 9.29+/-0.32, OWN03 9.54+/-0.63, OWN04 10.39+/-0.46, OWN05 8.62+/-1.28, OWN06 7.12+/-1.02 (premise violated, do not use); with OWN01 10.96+/-0.77 -> 9.79 inside 1u 2/6, 2u 5/6; held-out PASS 0/6. Row PARTIAL until OWN07-OWN11 (05c/d, 06 robustness) are re-tracked (S07j).
+- S07k added (Opus high): pre-registered v2 window/release rule from SAM track signals, second analysis labelled as such. Dispatched S07k-orch174 (thread 01a18f39-48c2-7ff0-89f6-d1d19c53cfca) and S24k-orch175 (Sonnet medium, thread 01a18f3a-ee89-7502-bad0-9f7e93b16e17); deadline 00:20:31Z (06:20 Dhaka). S24k: no invented stopwatch reading (placeholder + owner question if none recorded).
+
 ## 2026-10-30T23:50Z — controller: OWN02-OWN11 batch track run (5/10 tracked, OOM); S07h + S07j dispatched; S07g, S15k closed
 
 - Batch (job 2/2 of the standalone $1 envelope, $0.40 reservation, app ap-7qnUtLNN8xQy534jpuXcQs stopped): OWN02-OWN06 tracked; OWN07-OWN11 CUDA OOM on A10 (per-clip model reload accumulated memory). Modal after: usage $0.89, spend $0. Evidence evidence/S07/S07i/BATCH-RUN.md + track-own02..11.json. The standalone envelope is now exhausted; re-tracking needs S07j's reviewed second envelope (FIX3 N4).
