@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+ACCEPTED S16d-orch98 DONE (Oct30 07:10Z; timing PASS; 72 sidebar-tools tests OK; merged): offline Baseten library-search
+adapter, exact pinned model ID, fail-closed unavailable results, no live call. QUEUE S16d -> DONE. DISPATCHED S16e-orch103
+Sol medium: verify Baseten credit read-only first; only if confirmed, <=3 small live requests, cost recorded; no model
+substitution (thread 01a18ba5-2e55-7d62-9a5b-d1f4179687dc, deadline 2026-10-30T07:40:08+00:00).
+
 ACCEPTED S14g-fix6-orch100 DONE (Oct30 07:08Z; timing PASS; 59 agent tests OK, oracle 66/66; merged cbdb020): bare
 label-chain binding removed (units bind only after a cited quantity or after "in" with no amount); replay MET_AMENDED_Q16,
 30/30 shown, 0 fallback. DISPATCHED R-A-recheck4-orch102 Sol high (thread 01a18ba3-049a-7492-8d1c-e5b5412b4cac, deadline
