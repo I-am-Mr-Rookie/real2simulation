@@ -1,0 +1,459 @@
+{
+ "schema": "s21a-benchmark-manifest/1",
+ "frozen_by": "S21a-orch126",
+ "frozen_from_main": "67e299aa54ed7c2554137d04df655139ed556dba",
+ "rule": "No literal numbers in metrics: every number is a JSON pointer (RFC 6901) into a sha256-pinned accepted evidence file. Classes: measured (from a real run on approved licensed input), simulated (synthetic/analytic), unavailable (value pointer resolves to null or abstain; reason pointer required).",
+ "evidence": {
+  "gate_rs": {
+   "path": "evidence/S12/gate-rs/gate-rs.json",
+   "sha256": "f913897d407139ce78d3f35434e046ddd931f88f0229d9d96c1ff388f41b4d85"
+  },
+  "prediction_st03": {
+   "path": "evidence/S12/prediction-ST03-v2.json",
+   "sha256": "651a01edef6d0ccf0b56b3a1d911ed22d819112e67c595903bad94149907bad2"
+  },
+  "boundary_st03": {
+   "path": "evidence/S12/boundary-ST03.json",
+   "sha256": "d4b3370fcc3e74029d5b22d479c744e6d522dae928ad3864c6feceb92e5c552b"
+  },
+  "training_st03": {
+   "path": "evidence/S07/S07b/orch14/result.json",
+   "sha256": "c71ce907fd2d5d799a5781eaf3d570ac5543002a8e47535b7758606ac01e5d45"
+  },
+  "heldout_track_st03": {
+   "path": "evidence/S12/gate-rs/ST03-f58-83/result.json",
+   "sha256": "e30807fcf5887ad0c43f0b1317a491411c8ce4b34e86c16c7ca290524f028f55"
+  },
+  "cost_st03_job": {
+   "path": "evidence/S12/gate-rs/ST03-f58-83-cost.json",
+   "sha256": "2766c973c53fd3530ce042cf77bcb1b725b2d79889e178a5f75fa5ece4faa147"
+  },
+  "scale_s05d": {
+   "path": "evidence/S05/S05d/RESULT.json",
+   "sha256": "da03599d50e8731a380dd2b993f550e8168395b6877ea6e9c74626a4c8df406e"
+  },
+  "scene_log_rm02": {
+   "path": "evidence/S06/S06e/RM02-scene-log.json",
+   "sha256": "8e3d689d24ebe56fbaec358f8bec1625e37f91152903fff1061616caa80c2d26"
+  },
+  "scene_log_rm04": {
+   "path": "evidence/S06/S06f/RM04-scene-log.json",
+   "sha256": "0dd242560f5f1e66491d0c706b8fbe4875b9a43dd6d9201bb0a99c8fa2fdebcc"
+  },
+  "checkpoint_s06h": {
+   "path": "evidence/S06/S06h/CHECKPOINT.json",
+   "sha256": "82b41f7808d45731a9072bc36ce6376a084297111337470d3b4a51aca921ec40"
+  },
+  "fitter_s11_analytic": {
+   "path": "evidence/S11/invariants/analytic-repro.json",
+   "sha256": "cb7be2c79bcfea4fbcb53ec0a7e7d90eae7fecd2539d050d2ab10dec525222df"
+  }
+ },
+ "gates": {
+  "gate_m": {
+   "evidence": "boundary_st03",
+   "pointer": "/gate_m_source/status"
+  },
+  "gate_rs": {
+   "evidence": "gate_rs",
+   "pointer": "/result/status"
+  }
+ },
+ "clips": [
+  {
+   "clip_id": "ST03",
+   "category": "projectile",
+   "role": "S12 held-out prediction",
+   "source_sha256": {
+    "evidence": "gate_rs",
+    "pointer": "/clips/projectile/source_sha256"
+   },
+   "licence": {
+    "evidence": "gate_rs",
+    "pointer": "/clips/projectile/input_receipt/licence"
+   }
+  },
+  {
+   "clip_id": "BN01",
+   "category": "bounce",
+   "role": "S12 category (not scored)",
+   "reason": {
+    "evidence": "gate_rs",
+    "pointer": "/shortfall_reasons/bounce"
+   }
+  },
+  {
+   "clip_id": "PD02/PD03/PD04/PD06",
+   "category": "pendulum",
+   "role": "S12 category (not scored)",
+   "reason": {
+    "evidence": "gate_rs",
+    "pointer": "/shortfall_reasons/pendulum"
+   }
+  },
+  {
+   "clip_id": "RM02",
+   "category": "scene",
+   "role": "S05d scale / S06 runtime",
+   "npz_sha256": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM02/npz_sha256"
+   }
+  },
+  {
+   "clip_id": "RM04",
+   "category": "scene",
+   "role": "S05d scale / S06 runtime",
+   "npz_sha256": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM04/npz_sha256"
+   }
+  },
+  {
+   "clip_id": "RM05",
+   "category": "scene",
+   "role": "S05d scale",
+   "npz_sha256": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM05/npz_sha256"
+   }
+  }
+ ],
+ "split": {
+  "clip_id": "ST03",
+  "boundary_last_training_frame": {
+   "evidence": "boundary_st03",
+   "pointer": "/boundary/last_training_frame"
+  },
+  "prediction_last_training_frame": {
+   "evidence": "prediction_st03",
+   "pointer": "/boundary/last_training_frame"
+  },
+  "training_count": {
+   "evidence": "prediction_st03",
+   "pointer": "/boundary/training_count"
+  },
+  "suffix_count": {
+   "evidence": "prediction_st03",
+   "pointer": "/boundary/suffix_count"
+  },
+  "train_frames": {
+   "evidence": "training_st03",
+   "pointer": "/record/frames",
+   "key": "frame_index"
+  },
+  "heldout_frames": {
+   "evidence": "prediction_st03",
+   "pointer": "/prediction/trace",
+   "key": 0
+  },
+  "scored_frames": {
+   "evidence": "heldout_track_st03",
+   "pointer": "/frame_map",
+   "key": 0,
+   "after": {
+    "evidence": "gate_rs",
+    "pointer": "/clips/projectile/tracking_evidence/after_frame"
+   }
+  },
+  "training_sha256": [
+   {
+    "evidence": "prediction_st03",
+    "pointer": "/boundary/training_sha256"
+   },
+   {
+    "evidence": "gate_rs",
+    "pointer": "/clips/projectile/training_sha256"
+   }
+  ],
+  "prediction_sha256": [
+   {
+    "evidence": "prediction_st03",
+    "pointer": "/prediction/sha256"
+   },
+   {
+    "evidence": "gate_rs",
+    "pointer": "/clips/projectile/prediction_sha256"
+   }
+  ],
+  "suffix_observations_read_at_fit": {
+   "evidence": "prediction_st03",
+   "pointer": "/suffix_observations_read"
+  }
+ },
+ "metrics": [
+  {
+   "id": "s12_st03_normalized_rms",
+   "class": "measured",
+   "unit": "image-height fraction (scale-free, Q15=A)",
+   "gate_eligible": {
+    "evidence": "gate_rs",
+    "pointer": "/clips/projectile/scored"
+   },
+   "value": {
+    "evidence": "gate_rs",
+    "pointer": "/clips/projectile/normalized_rms"
+   },
+   "sample_count": {
+    "evidence": "gate_rs",
+    "pointer": "/clips/projectile/scored_frames"
+   },
+   "of_count": {
+    "evidence": "gate_rs",
+    "pointer": "/clips/projectile/sealed_frames"
+   },
+   "note": "diagnostic only: coverage below 80%, not gate-scored"
+  },
+  {
+   "id": "s12_gate_rs_median",
+   "class": "unavailable",
+   "unit": "image-height fraction",
+   "value": {
+    "evidence": "gate_rs",
+    "pointer": "/result/median"
+   },
+   "threshold": {
+    "evidence": "gate_rs",
+    "pointer": "/result/threshold"
+   },
+   "reason": {
+    "evidence": "gate_rs",
+    "pointer": "/result/status"
+   }
+  },
+  {
+   "id": "s12_bounce_normalized_rms",
+   "class": "unavailable",
+   "unit": "image-height fraction",
+   "value": {
+    "evidence": "gate_rs",
+    "pointer": "/result/per_category_normalized_rms/bounce"
+   },
+   "reason": {
+    "evidence": "gate_rs",
+    "pointer": "/shortfall_reasons/bounce"
+   }
+  },
+  {
+   "id": "s12_pendulum_normalized_rms",
+   "class": "unavailable",
+   "unit": "image-height fraction",
+   "value": {
+    "evidence": "gate_rs",
+    "pointer": "/result/per_category_normalized_rms/pendulum"
+   },
+   "reason": {
+    "evidence": "gate_rs",
+    "pointer": "/shortfall_reasons/pendulum"
+   }
+  },
+  {
+   "id": "st03_prefix_g_image",
+   "class": "measured",
+   "unit": {
+    "evidence": "prediction_st03",
+    "pointer": "/parameters/0/unit"
+   },
+   "value": {
+    "evidence": "prediction_st03",
+    "pointer": "/parameters/0/value"
+   },
+   "uncertainty": {
+    "evidence": "prediction_st03",
+    "pointer": "/parameters/0/uncertainty"
+   },
+   "sample_count": {
+    "evidence": "prediction_st03",
+    "pointer": "/boundary/training_count"
+   },
+   "note": "image-derived, uncalibrated; not m/s^2"
+  },
+  {
+   "id": "gravity_error_m_s2",
+   "class": "unavailable",
+   "unit": "m/s^2",
+   "value": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM02/gravity/magnitude_m_s2"
+   },
+   "reason": {
+    "evidence": "gate_rs",
+    "pointer": "/limitations/0"
+   }
+  },
+  {
+   "id": "rm02_gravity_direction_uncertainty",
+   "class": "measured",
+   "unit": "deg (1 sd)",
+   "value": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM02/gravity/uncertainty_deg_1sd"
+   },
+   "sample_count": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM02/points_used"
+   },
+   "note": "direction only; magnitude unavailable"
+  },
+  {
+   "id": "rm04_gravity_direction_uncertainty",
+   "class": "measured",
+   "unit": "deg (1 sd)",
+   "value": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM04/gravity/uncertainty_deg_1sd"
+   },
+   "sample_count": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM04/points_used"
+   },
+   "note": "direction only; magnitude unavailable"
+  },
+  {
+   "id": "rm02_metric_scale",
+   "class": "unavailable",
+   "unit": "m per model unit",
+   "value": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM02/metric_scale/metres_per_model_unit"
+   },
+   "reason": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM02/metric_scale/reason"
+   }
+  },
+  {
+   "id": "rm04_metric_scale",
+   "class": "unavailable",
+   "unit": "m per model unit",
+   "value": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM04/metric_scale/metres_per_model_unit"
+   },
+   "reason": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM04/metric_scale/reason"
+   }
+  },
+  {
+   "id": "rm05_metric_scale",
+   "class": "unavailable",
+   "unit": "m per model unit",
+   "value": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM05/metric_scale/metres_per_model_unit"
+   },
+   "reason": {
+    "evidence": "scale_s05d",
+    "pointer": "/RM05/metric_scale/reason"
+   }
+  },
+  {
+   "id": "rm02_cold_start_to_model_ready",
+   "class": "measured",
+   "unit": "s",
+   "value": {
+    "evidence": "scene_log_rm02",
+    "pointer": "/timing_s/cold_start_to_model_ready_s"
+   },
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm02_inference",
+   "class": "measured",
+   "unit": "s",
+   "value": {
+    "evidence": "scene_log_rm02",
+    "pointer": "/timing_s/inference_s"
+   },
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm02_gpu_seconds_billed",
+   "class": "measured",
+   "unit": "GPU-s (A10G)",
+   "value": {
+    "evidence": "scene_log_rm02",
+    "pointer": "/gpu_seconds/billed"
+   },
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm02_cost_billed",
+   "class": "measured",
+   "unit": "USD (billed)",
+   "value": {
+    "evidence": "scene_log_rm02",
+    "pointer": "/cost/billed/total_usd"
+   },
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm02_cost_estimated",
+   "class": "measured",
+   "unit": "USD (estimate, not billed)",
+   "value": {
+    "evidence": "scene_log_rm02",
+    "pointer": "/cost/estimated/total_usd"
+   },
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm04_cold_start_to_model_ready",
+   "class": "measured",
+   "unit": "s",
+   "value": {
+    "evidence": "scene_log_rm04",
+    "pointer": "/timing_s/cold_start_to_model_ready_s"
+   },
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm04_cost_billed",
+   "class": "measured",
+   "unit": "USD (billed)",
+   "value": {
+    "evidence": "scene_log_rm04",
+    "pointer": "/cost/billed/total_usd"
+   },
+   "sample_count": "1 run"
+  },
+  {
+   "id": "st03_tracking_job_cost_billed",
+   "class": "measured",
+   "unit": "USD (billed)",
+   "value": {
+    "evidence": "cost_st03_job",
+    "pointer": "/cost/billed/total_usd"
+   },
+   "sample_count": "1 run"
+  },
+  {
+   "id": "s06_jobs_billed_total",
+   "class": "measured",
+   "unit": "USD (billed)",
+   "value": {
+    "evidence": "checkpoint_s06h",
+    "pointer": "/s06_jobs_billed_usd"
+   },
+   "sample_count": {
+    "evidence": "checkpoint_s06h",
+    "pointer": "/jobs"
+   }
+  },
+  {
+   "id": "s11_fitter_analytic_cases",
+   "class": "simulated",
+   "unit": "cases",
+   "value": {
+    "evidence": "fitter_s11_analytic",
+    "pointer": "/cases"
+   },
+   "provenance": {
+    "evidence": "fitter_s11_analytic",
+    "pointer": "/provenance"
+   },
+   "note": "fitter self-check on synthetic analytic data; not a real-scene benchmark"
+  }
+ ]
+}

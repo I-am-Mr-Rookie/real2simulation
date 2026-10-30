@@ -1,0 +1,191 @@
+{
+ "ok": true,
+ "errors": [],
+ "gates": {
+  "gate_m": "NOT_MET_INPUT_READINESS",
+  "gate_rs": "NOT_MET"
+ },
+ "split": {
+  "train": 19,
+  "train_range": [
+   58,
+   76
+  ],
+  "heldout": 466,
+  "heldout_range": [
+   77,
+   542
+  ],
+  "scored": 7
+ },
+ "metrics": [
+  {
+   "id": "s12_st03_normalized_rms",
+   "class": "measured",
+   "value": 0.1981633916341227,
+   "unit": "image-height fraction (scale-free, Q15=A)",
+   "uncertainty": null,
+   "sample_count": 7
+  },
+  {
+   "id": "s12_gate_rs_median",
+   "class": "unavailable",
+   "value": null,
+   "unit": "image-height fraction",
+   "uncertainty": null,
+   "sample_count": null
+  },
+  {
+   "id": "s12_bounce_normalized_rms",
+   "class": "unavailable",
+   "value": null,
+   "unit": "image-height fraction",
+   "uncertainty": null,
+   "sample_count": null
+  },
+  {
+   "id": "s12_pendulum_normalized_rms",
+   "class": "unavailable",
+   "value": null,
+   "unit": "image-height fraction",
+   "uncertainty": null,
+   "sample_count": null
+  },
+  {
+   "id": "st03_prefix_g_image",
+   "class": "measured",
+   "value": 1.846169545845327,
+   "unit": "image-height/s^2",
+   "uncertainty": 0.13601480244577022,
+   "sample_count": 19
+  },
+  {
+   "id": "gravity_error_m_s2",
+   "class": "unavailable",
+   "value": null,
+   "unit": "m/s^2",
+   "uncertainty": null,
+   "sample_count": null
+  },
+  {
+   "id": "rm02_gravity_direction_uncertainty",
+   "class": "measured",
+   "value": 0.04393192042834663,
+   "unit": "deg (1 sd)",
+   "uncertainty": null,
+   "sample_count": 60000
+  },
+  {
+   "id": "rm04_gravity_direction_uncertainty",
+   "class": "measured",
+   "value": 0.01951263849441864,
+   "unit": "deg (1 sd)",
+   "uncertainty": null,
+   "sample_count": 60000
+  },
+  {
+   "id": "rm02_metric_scale",
+   "class": "unavailable",
+   "value": null,
+   "unit": "m per model unit",
+   "uncertainty": null,
+   "sample_count": null
+  },
+  {
+   "id": "rm04_metric_scale",
+   "class": "unavailable",
+   "value": null,
+   "unit": "m per model unit",
+   "uncertainty": null,
+   "sample_count": null
+  },
+  {
+   "id": "rm05_metric_scale",
+   "class": "unavailable",
+   "value": null,
+   "unit": "m per model unit",
+   "uncertainty": null,
+   "sample_count": null
+  },
+  {
+   "id": "rm02_cold_start_to_model_ready",
+   "class": "measured",
+   "value": 30.536,
+   "unit": "s",
+   "uncertainty": null,
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm02_inference",
+   "class": "measured",
+   "value": 1.449,
+   "unit": "s",
+   "uncertainty": null,
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm02_gpu_seconds_billed",
+   "class": "measured",
+   "value": 30.009,
+   "unit": "GPU-s (A10G)",
+   "uncertainty": null,
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm02_cost_billed",
+   "class": "measured",
+   "value": 0.01134936,
+   "unit": "USD (billed)",
+   "uncertainty": null,
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm02_cost_estimated",
+   "class": "measured",
+   "value": 0.01032114,
+   "unit": "USD (estimate, not billed)",
+   "uncertainty": null,
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm04_cold_start_to_model_ready",
+   "class": "measured",
+   "value": 30.691,
+   "unit": "s",
+   "uncertainty": null,
+   "sample_count": "1 run"
+  },
+  {
+   "id": "rm04_cost_billed",
+   "class": "measured",
+   "value": 0.00955325,
+   "unit": "USD (billed)",
+   "uncertainty": null,
+   "sample_count": "1 run"
+  },
+  {
+   "id": "st03_tracking_job_cost_billed",
+   "class": "measured",
+   "value": 0.02330591,
+   "unit": "USD (billed)",
+   "uncertainty": null,
+   "sample_count": "1 run"
+  },
+  {
+   "id": "s06_jobs_billed_total",
+   "class": "measured",
+   "value": 0.05785822,
+   "unit": "USD (billed)",
+   "uncertainty": null,
+   "sample_count": 6
+  },
+  {
+   "id": "s11_fitter_analytic_cases",
+   "class": "simulated",
+   "value": 5,
+   "unit": "cases",
+   "uncertainty": null,
+   "sample_count": null
+  }
+ ]
+}
