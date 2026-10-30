@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+Oct30 ~11:47Z army: controller decision (owner delegated) relaxed S23 dep for DRAFT docs since S21 fully DONE: dispatched S24a-orch146
+(Opus high, draft 3-min script, deploy beats PENDING S23) and S25a-orch147 (Opus med, README/ATTRIBUTION, judging URL PENDING S23),
+dl 12:15Z. Receipt DISPATCH-orch146.json. S02f/S18c not re-dispatched (no new lead). Next RID orch148.
+
 Oct30 ~11:45Z army: S15k-orch122 resumed -> PARTIAL (two dev redeploys SUCCESS e4cc427a, da4b03e9; sign-in/own workspace/404s/375px PASS;
 loopback NOT reproduced on Railway; upload/interview/run/fit/report NOT-WIRED). ACCEPTED: S21e (BENCHMARK summary + About data, unmounted),
 S21f (cross-check 100 checks, 0 mismatches), S18j (web route 3/3 openable <3 s via snapshot; minimum library = 2 SIMULATED traces +
