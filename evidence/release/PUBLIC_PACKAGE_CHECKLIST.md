@@ -7,7 +7,7 @@ Full per-asset record: [ATTRIBUTION.md](../../ATTRIBUTION.md) → Per-asset reco
 
 | Asset | Licence (per clips.csv) | Public status |
 |---|---|---|
-| PD02, RM02, ST03 (demo script) | Pexels License | Credits OK on end card. Raw frames BLOCKED-for-public until owner Q19 (default B plots-only). ST03 shows a person. |
+| PD02, RM02, ST03 (demo script) | Pexels License | public: short demo-video snippets with on-screen credit (owner Q19 A, Oct31); credits on screen and in ATTRIBUTION.md. ST03 shows a person. Repo visibility still PENDING S25d. |
 | RM04 | Pexels License | Descriptor metadata only (library). Frames BLOCKED-for-public. |
 | PD03 | Pexels License | Local only; BLOCKED-for-public. |
 | BN01, PD04, PD06 | CC BY-SA 4.0 | Local only; if shown, mark adapted + share-alike. |

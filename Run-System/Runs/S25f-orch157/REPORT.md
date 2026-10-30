@@ -17,3 +17,7 @@ Reused an installed MIT text rather than hand-typing; edited only 3 existing lin
 
 ## Communication
 Silent; one final message.
+
+## Addendum: Q19 = A (controller note, Oct31)
+ATTRIBUTION.md (PD02, RM02, ST03 rows) and PUBLIC_PACKAGE_CHECKLIST.md row 10 changed from BLOCKED-for-public to 'public: short demo-video snippets with on-screen credit (owner Q19 A, Oct31)'. All other clips unchanged; PJ03 stays blocked (third-party end card). Repo visibility still PENDING S25d. Check: rg shows no Q19 BLOCKED text left for those three.
+
