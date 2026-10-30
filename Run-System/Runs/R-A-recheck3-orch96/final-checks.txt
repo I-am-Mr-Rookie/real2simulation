@@ -1,0 +1,19 @@
+TIMING PASS; controller must separately verify evidence and any exception
+Protected product/source diff: clean
+warning: in the working copy of 'Run-System/Runs/R-A-recheck3-orch96/PLAN.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Run-System/Runs/R-A-recheck3-orch96/REPORT.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Run-System/Runs/R-A-recheck3-orch96/TIMEBOX.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evidence/reviews/R-A/RECHECK-fix5.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'evidence/reviews/R-A/recheck-fix5/probe.py', LF will be replaced by CRLF the next time Git touches it
+Named-path staging: PASS
+ Run-System/Runs/R-A-recheck3-orch96/PLAN.md        |   22 +
+ Run-System/Runs/R-A-recheck3-orch96/REPORT.md      |   41 +
+ Run-System/Runs/R-A-recheck3-orch96/TIMEBOX.json   |    9 +
+ evidence/reviews/R-A/RECHECK-fix5.md               |   72 +
+ evidence/reviews/R-A/recheck-fix5/agent-tests.txt  |    5 +
+ evidence/reviews/R-A/recheck-fix5/fix5-replay.json | 4124 ++++++++++++++++++++
+ evidence/reviews/R-A/recheck-fix5/probe-stdout.txt |   77 +
+ evidence/reviews/R-A/recheck-fix5/probe.py         |  262 ++
+ evidence/reviews/R-A/recheck-fix5/results.json     | 1827 +++++++++
+ evidence/reviews/R-A/recheck-fix5/setup-tests.txt  |    5 +
+ 10 files changed, 6444 insertions(+)
