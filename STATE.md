@@ -1,5 +1,14 @@
 # Real2Simulation — STATE
 
+OWNER Q16 ANSWERED = A (Oct30 ~13:05 Dhaka, chat): Gate A amended - numeric-contract validation on recorded scenes is
+acceptable, labelled verbatim "scale unverified, not setup-validated"; report as MET_AMENDED_Q16 (never plain MET), with
+setup-validator 0/10 shown. Still requires R-A CLEAR on numeric-language enforcement. Supersedes the default-B note below.
+R-A-recheck2-orch92 CHANGES_REQUIRED (merged evidence): F3-R CLOSED; F1-R2 P1 "a full second"/"one whole minute"/
+"one-second delay" evade both detectors. DISPATCHED S14g-fix5-orch95 opus high (structural unit-binding rule; thread
+01a18b87-57ad-7341-a7b5-07020f25dd48, deadline 2026-10-30T07:07:44+00:00); worker told Q16=A.
+S18c-orch94 blocker answered: no accepted bounce source (BN01 31/176 fail-closed, S12 bounce untracked, no S10/S11
+bounce template) -> projectile catalogue + explicit bounce UNAVAILABLE note; bounce half PARTIAL.
+
 S18b-orch90 DONE merged (TIMING PASS; library 28 OK from worktree cwd): 4 SIMULATED display-only free-fall entries
 (S10hi-gate) + 1 licensed RM02 descriptor; SCALE_UNVERIFIED/Gate M NOT_MET verbatim. DISPATCHED S18c-orch94 sol medium
 (thread 01a18b84-9d7e-7f60-bb14-4b3fa18663b9, deadline 2026-10-30T07:04:45+00:00).

@@ -1,5 +1,14 @@
 # Real2Simulation — Decisions and preflight delta
 
+## 2026-10-30 — Q16 answered A: Gate A amended to numeric-contract scope
+
+Koushik chose A (chat, ~13:05 Dhaka). Gate A ("valid spec on 9 of 10 fixtures, no invented number across 30 turns")
+accepts numeric-contract validation (contracts.experiment validate) on recorded-scene fixtures, because no recorded
+clip has a verified-scale scene bundle, so the production validate_setup path cannot pass (0/10, S14g-fix4-orch86).
+Report status as MET_AMENDED_Q16 with the verbatim label "scale unverified, not setup-validated" and the setup-validator
+result shown; never plain MET. Numeric-language enforcement must still clear the R-A review. No physical, scale or
+calibration claim follows from this amendment.
+
 ## 2026-10-29 — Q15 answered A: S12 unlocked from S02f
 
 Koushik replied "A". S12a no longer waits on step S07 (blocked only by S02f PARTIAL);
