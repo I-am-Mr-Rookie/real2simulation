@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 30, 15:55 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 16:53 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **171 / 220** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **174 / 223** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -19,11 +19,13 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
-- [ ] **S18k** — Codex · GPT-6.1 Sol, effort medium — Publish playable demo assets for guest library (30 min)
-- …and 2 more ready in this lane
+- [ ] **S18h** — Codex · GPT-6.1 Sol, effort medium — Verify licences and approved clip list (30 min)
 
 **CLAUDE**
-- [ ] **S09k** — Codex (native Claude) · Opus 5.5, effort medium — Add simulated-trajectory replay to viewer (30 min)
+- [ ] **S04j** — Codex (native Claude) · Opus 5.5, effort high — Wire guest library page to manifest and simulated replay (30 min)
+- [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
+- [ ] **R-L** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: guest library exposure and Mystery-g answer withholding (15 min)
+- …and 1 more ready in this lane
 
 ## Waiting for Koushik
 
@@ -74,7 +76,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (11/11)</summary>
+<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (11/13)</summary>
 
 - [x] **S04a** — Codex · GPT-6.1 Sol, effort medium — Define shell interfaces and fixture mount points (30 min)
 - [x] **S04b** — Codex · GPT-6.1 Sol, effort medium — Create Next.js shell and isolated route layout (30 min)
@@ -87,6 +89,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S04g2** — Codex · GPT-6.1 Sol, effort medium — Preserve staging destination guards under Python optimization (15 min)
 - [x] **S04h** — Codex (native Claude) · Sonnet 5.5, effort high — Verify sign-in, guest route and dev health (30 min)
 - [x] **S04i** — Codex · GPT-6.1 Sol, effort high — Connect private scene repository and mount workspace route (30 min)
+- [ ] **S04j** — Codex (native Claude) · Opus 5.5, effort high — Wire guest library page to manifest and simulated replay (30 min)
+- [ ] **R-W** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor review: private workspace auth boundary and proxy (15 min)
 
 </details>
 
@@ -148,7 +152,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S09</b> — 3D world viewer with a rendering budget (10/11)</summary>
+<details><summary><b>S09</b> — 3D world viewer with a rendering budget (11/11)</summary>
 
 - [x] **S09a** — Codex (native Claude) · Opus 5.5, effort medium — Define viewer adapter and synthetic fixture scene (30 min)
 - [x] **S09b** — Codex (native Claude) · Opus 5.5, effort medium — Render fixture geometry and orbit camera (30 min)
@@ -160,7 +164,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S09h** — Codex (native Claude) · Opus 5.5, effort high — Integrate three measured scene artifacts (30 min)
 - [x] **S09i** — Codex (native Claude) · Opus 5.5, effort medium — Measure fps and memory on target laptop (30 min)
 - [x] **S09j** — Codex (native Claude) · Opus 5.5, effort medium — Checkpoint viewer evidence and visual fixes (30 min)
-- [ ] **S09k** — Codex (native Claude) · Opus 5.5, effort medium — Add simulated-trajectory replay to viewer (30 min)
+- [x] **S09k** — Codex (native Claude) · Opus 5.5, effort medium — Add simulated-trajectory replay to viewer (30 min)
 
 </details>
 
@@ -285,7 +289,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S18</b> — Demo library with licensed footage (6/11)</summary>
+<details><summary><b>S18</b> — Demo library with licensed footage (7/12)</summary>
 
 - [x] **S18a** — Codex · GPT-6.1 Sol, effort medium — Define library manifest and immutable artifact format (30 min)
 - [x] **S18b** — Codex · GPT-6.1 Sol, effort medium — Precompute free-fall demos (30 min)
@@ -294,7 +298,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S18e** — Codex · GPT-6.1 Sol, effort medium — Prepare Apollo and Mystery-g entries (30 min)
 - [x] **S18f** — Codex · GPT-6.1 Sol, effort medium — Implement guest manifest and artifact endpoint (30 min)
 - [x] **S18g** — Codex · GPT-6.1 Sol, effort medium — Implement library loading integration (30 min)
-- [ ] **S18k** — Codex · GPT-6.1 Sol, effort medium — Publish playable demo assets for guest library (30 min)
+- [x] **S18k** — Codex · GPT-6.1 Sol, effort medium — Publish playable demo assets for guest library (30 min)
+- [ ] **R-L** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: guest library exposure and Mystery-g answer withholding (15 min)
 - [ ] **S18h** — Codex · GPT-6.1 Sol, effort medium — Verify licences and approved clip list (30 min)
 - [ ] **S18i** — Codex · GPT-6.1 Sol, effort medium — Measure library load times (30 min)
 - [ ] **S18j** — Codex · GPT-6.1 Sol, effort medium — Checkpoint minimum-library fallback (30 min)
@@ -310,11 +315,11 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S20</b> — Spend guardrails and GPU failover (4/5)</summary>
+<details><summary><b>S20</b> — Spend guardrails and GPU failover (5/5)</summary>
 
 - [x] **S20a** — Codex · GPT-6.1 Sol, effort medium — Define spend ledger, upload quota and reserve contract (30 min)
 - [x] **S20b** — Codex · GPT-6.1 Sol, effort medium — Implement reconstruction cap and library exemption (30 min)
-- [~] **S20c** — Codex · GPT-6.1 Sol, effort medium — Implement disabled-by-default AWS failover switch (30 min) *(partial: resume it)*
+- [x] **S20c** — Codex · GPT-6.1 Sol, effort medium — Implement disabled-by-default AWS failover switch (30 min)
 - [x] **S20d** — Codex · GPT-6.1 Sol, effort high — Run Gate C simulated-cap regression (30 min)
 - [x] **R-C** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor review: Gate C cap accounting and library exemption (15 min)
 

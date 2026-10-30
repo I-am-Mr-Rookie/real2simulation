@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+Oct30 ~10:40Z: ACCEPTED S18k-orch123 DONE (projectile baseline + small-angle pendulum traces playable, local only; free-fall baseline
+WITHHELD because it shares Mystery-g's answer record /cases/0; 9 other cases lack accepted setup pointers; RM02/RM04 PLY bytes absent
+locally -> UNAVAILABLE; library 81 OK). Controller decisions: S20c PARTIAL -> DONE (its only hold was R-C, now CLEAR + S20-fix1..4 +
+S20d done). Added army rows S04j (Opus high: wire /library page to manifest + replay), R-W (Opus high review of Sol S04i auth),
+R-L (Opus med review of Sol S18e-k guest exposure). S02f not re-dispatched (no new lead after swarm3).
+
 OWNER REPLY (RUNS.md, read Oct30 ~10:33Z; verbatim intent): after 16:50 Dhaka resume S15k-orch122 (stalled on Claude 5h quota).
 Codex quota running low -> in the AGENT ARMY PERIOD (16:50-18:00 Dhaka) ALL ready/becoming-ready tasks, INCLUDING Codex-lane rows, run on
 Claude Opus 5.5 (high for hard, medium for easy/medium). Use all Claude quota by 18:00; stragglers may run until 18:15. No max worker
