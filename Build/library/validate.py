@@ -79,6 +79,9 @@ def validate(manifest, artifact_root, evidence_root=ROOT):
         require(demo["id"] not in ids, "duplicate demo id")
         ids.add(demo["id"])
         source = demo["source"]
+        challenge = demo["artifact"]["kind"] == "challenge-record"
+        require(challenge == ("challenge" in demo), "challenge metadata/kind mismatch")
+        require(not challenge or source.get("kind") == "synthetic", "challenge must be synthetic")
         if source.get("kind") == "synthetic":
             validate_local_simulation(demo, artifact_root, root)
             continue
@@ -148,6 +151,8 @@ def validate(manifest, artifact_root, evidence_root=ROOT):
         defaults = manifest["defaults"]
         selected = next((d for d in manifest["demos"] if d["id"] == defaults["demo_id"]), None)
         require(selected is not None, "default demo not found")
+        require("challenge" not in selected or not defaults["parameters"],
+                "challenge defaults must withhold parameters")
         require(all(p in selected["provenance"]["numeric"] for p in defaults["parameters"]),
                 "default parameters must match selected demo numeric evidence")
         require(selected["source"].get("kind") == "synthetic" or not defaults["parameters"],
@@ -164,10 +169,17 @@ def validate(manifest, artifact_root, evidence_root=ROOT):
     return manifest
 
 
+def challenge_payload(record):
+    """Allowlist public setup only; never copy gravity, seed, errors or replay hashes."""
+    return {"source": "simulated", "mode": "mystery-g", "answer_visibility": "withheld-until-fit",
+            "duration_s": record["duration_s"], "time_step_s": record["time_step_s"]}
+
+
 def validate_local_simulation(demo, artifact_root, root):
     """Check original local acceptance bytes, without inventing clip/job custody."""
     artifact, provenance = demo["artifact"], demo["provenance"]
-    require(demo["label"] == "simulated" and artifact["kind"] == "simulation-record",
+    challenge = artifact["kind"] == "challenge-record"
+    require(demo["label"] == "simulated" and artifact["kind"] in ("simulation-record", "challenge-record"),
             "synthetic source requires simulated record")
     require(provenance.get("execution") == "accepted-local-simulation",
             "synthetic source requires local simulation provenance")
@@ -178,13 +190,14 @@ def validate_local_simulation(demo, artifact_root, root):
     evidence = provenance["artifact_evidence"]
     require(evidence["path"].startswith("evidence/") and evidence["path"].endswith(".json"),
             "expected JSON run evidence")
-    _, original = checked_ref(evidence, root)
-    require(data == original, "artifact differs from accepted evidence")
+    original_path, original = checked_ref(evidence, root)
+    if not challenge:
+        require(data == original, "artifact differs from accepted evidence")
     require(provenance["report"]["path"] == f"Run-System/Runs/{provenance['run_id']}/REPORT.md",
             "run report path mismatch")
     _, report = checked_ref(provenance["report"], root)
     require(evidence["path"] in report.decode("utf-8"), "run report does not identify simulation evidence")
-    payload = load_json(path)
+    payload = load_json(original_path) if challenge else load_json(path)
     require(payload.get("source") == "simulated" and
             payload.get("scope") == "synthetic four-template acceptance only",
             "not a synthetic lab acceptance record")
@@ -196,6 +209,16 @@ def validate_local_simulation(demo, artifact_root, root):
     require(isinstance(record, dict) and record.get("template") in ("free_fall", "projectile", "pendulum") and
             record.get("status") == "passed" and record.get("deterministic") is True,
             "expected passed deterministic free-fall, projectile or pendulum simulation")
+    if challenge:
+        require(record["template"] in ("free_fall", "projectile"), "unsupported challenge template")
+        public = load_json(path)
+        require(public == challenge_payload(record), "challenge artifact must be answer-free setup projection")
+        require(demo["id"] == "simulated-mystery-g", "challenge identity mismatch")
+        expected = [{"name": name, "value": record[name], "unit": "s", "label": "simulated",
+                     "evidence": "artifact", "pointer": "/" + name}
+                    for name in ("duration_s", "time_step_s")]
+        require(provenance["numeric"] == expected, "challenge numeric metadata must withhold answer")
+        return
     require(demo["id"] == "simulated-" + record["template"].replace("_", "-") + "-" + record["case"],
             "simulation identity does not match selected case")
     for numeric in provenance["numeric"]:

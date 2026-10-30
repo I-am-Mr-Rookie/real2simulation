@@ -1,5 +1,28 @@
 # Library manifest v1 (S18a)
 
+## Apollo and Mystery-g (S18e)
+
+- [Apollo 15 — UNAVAILABLE / Moon result not measured](../../evidence/S18/Apollo-UNAVAILABLE.md).
+  AP15 is excluded by current owner approval and not trackable; no Apollo demo,
+  fitter result or lunar numeric claim is fabricated.
+- `python -B -m Build.library.mystery_g` reproducibly builds
+  `test-data/library-artifacts/mystery-g.json` from accepted S10 lab records.
+  This is SIMULATED, metadata-only, not a new Mystery-g run or playable replay.
+  It links the existing `/lab` challenge; its server-owned session/fit handles reveal.
+- `challenge-record` is a content-addressed **allowlist projection** containing
+  only simulated setup duration/time step and challenge labels. Both numbers
+  retain artifact JSON pointers and are compared to the accepted source case.
+  Gravity, seed, trajectory, replay hashes and diagnostic metrics are absent;
+  defaults expose no parameters and leave autoplay/physics OFF. Validator rejects
+  raw acceptance bytes, rehashed extra fields, answer metadata and reveal flags.
+- The provenance source/report references are **offline audit custody**, not a
+  public challenge payload. A future guest endpoint must serve only the selected
+  challenge object, never follow audit refs or expose arbitrary catalogue objects.
+  Other local catalogues intentionally include answers; repository access is not
+  a hidden-answer security boundary. S18f/g still own guest routing/UI integration.
+- SCALE_UNVERIFIED, Gate M/RS NOT_MET, real-scene prediction WITHHELD and S12f
+  VIRTUAL_LAB_ONLY remain unchanged. No GPU/API/simulator run is needed to rebuild.
+
 Offline **local-processing-only** contract. This does not publish demos, create routes,
 authorize raw-media redistribution, or satisfy Gate D. S18f/g own route integration.
 The current example is a validated **descriptor**, not a runnable/viewable asset bundle.

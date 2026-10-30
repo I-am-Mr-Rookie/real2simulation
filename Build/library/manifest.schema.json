@@ -58,7 +58,7 @@
       "type": "object", "additionalProperties": false,
       "required": ["kind", "media_type", "path", "sha256", "bytes"],
       "properties": {
-        "kind": {"enum": ["scene-descriptor", "simulation-record", "fixture-record"]},
+        "kind": {"enum": ["scene-descriptor", "simulation-record", "fixture-record", "challenge-record"]},
         "media_type": {"const": "application/json"},
         "path": {"type": "string", "pattern": "^objects/sha256/[a-f0-9]{64}\\.json$"},
         "sha256": {"$ref": "#/$defs/sha"},
@@ -108,6 +108,7 @@
       "properties": {
         "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"},
         "title": {"$ref": "#/$defs/text"},
+        "challenge": {"const": {"mode": "mystery-g", "answer_visibility": "withheld-until-fit", "target": "/lab"}},
         "source": {"$ref": "#/$defs/source"}, "artifact": {"$ref": "#/$defs/artifact"},
         "provenance": {"$ref": "#/$defs/provenance"}, "label": {"$ref": "#/$defs/label"},
         "scale_verified": {"const": false}, "scale_label": {"const": "SCALE_UNVERIFIED"},

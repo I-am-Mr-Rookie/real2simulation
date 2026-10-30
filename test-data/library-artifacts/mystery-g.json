@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "audience": "local-processing-only",
+  "demos": [
+    {
+      "id": "simulated-mystery-g",
+      "title": "SIMULATED Mystery-g challenge (display-only; answer withheld)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "challenge-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/eae05f9332ce9c4de92c1b30c3a31e958f9f7a8a2859bf6507af1752459c77df.json",
+        "sha256": "eae05f9332ce9c4de92c1b30c3a31e958f9f7a8a2859bf6507af1752459c77df",
+        "bytes": 141
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/0",
+        "numeric": [
+          {
+            "name": "duration_s",
+            "value": 0.2,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/time_step_s"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Pre-contact analytic motion only; no rebound or contact-response claim.",
+        "Local processing only; no public raw-media redistribution or gate promotion.",
+        "Challenge setup projection only; no new Mystery-g session or replay was executed.",
+        "Answer, seed, trajectory and diagnostic/replay hashes are withheld from this artifact.",
+        "Use the existing /lab Mystery-g toggle; reveal only after its server-owned fit.",
+        "Offline provenance references are audit-only, not guest artifact endpoints.",
+        "Gate RS NOT_MET; S12f VIRTUAL_LAB_ONLY; real-scene prediction WITHHELD."
+      ],
+      "challenge": {
+        "mode": "mystery-g",
+        "answer_visibility": "withheld-until-fit",
+        "target": "/lab"
+      }
+    }
+  ],
+  "defaults": {
+    "demo_id": "simulated-mystery-g",
+    "autoplay": false,
+    "physics_enabled": false,
+    "real_scene_prediction": "WITHHELD",
+    "parameters": [],
+    "fallback_evidence": {
+      "path": "evidence/S12/S12f-fallback.json",
+      "sha256": "a83af728ffe7822f651f9743f3529c1c9ba4ce010c3a9cf0eec067bd315aee8d"
+    }
+  }
+}

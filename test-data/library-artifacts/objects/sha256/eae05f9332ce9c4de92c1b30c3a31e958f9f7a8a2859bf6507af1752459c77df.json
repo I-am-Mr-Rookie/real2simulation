@@ -1,0 +1,7 @@
+{
+  "source": "simulated",
+  "mode": "mystery-g",
+  "answer_visibility": "withheld-until-fit",
+  "duration_s": 0.2,
+  "time_step_s": 0.001
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "catalogue": "manifest.json",
+    "sha256": "8236389bedec3c03c3d7c185299f6c96a43dee7eef6130d8d27a185d4e6653ca",
+    "demos": 1,
+    "status": "VALID"
+  },
+  {
+    "catalogue": "free-fall.json",
+    "sha256": "4cd1a398ff78f818c9f38babba2a808f9e7dcdfe88d9620cf439bef3095a559e",
+    "demos": 5,
+    "status": "VALID"
+  },
+  {
+    "catalogue": "projectile.json",
+    "sha256": "fe0d81714b51f69b01bf27f6981de96ba512a7dc7bc681c8cf949453a17bda87",
+    "demos": 4,
+    "status": "VALID"
+  },
+  {
+    "catalogue": "pendulum.json",
+    "sha256": "3742b222ca8b9513fafeface3eb996746810ccdfcd262cb38bf1e9ef32d9ef32",
+    "demos": 4,
+    "status": "VALID"
+  },
+  {
+    "catalogue": "scenes.json",
+    "sha256": "91b01b451ea3104c60cd663e72df51a13ac5a5cef2dfa181ed6385b32553ffa6",
+    "demos": 2,
+    "status": "VALID"
+  },
+  {
+    "catalogue": "mystery-g.json",
+    "sha256": "c3b8e5d65925a0a8aa7585012780da4e3f2518961a5d2f14cacd1e10d55674a1",
+    "demos": 1,
+    "status": "VALID"
+  }
+]
