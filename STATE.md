@@ -1,5 +1,23 @@
 # Real2Simulation — STATE
 
+Accepted ~06:00-06:25Z (TIMING PASS unless noted; ff-merged; fresh suites green):
+- UI-c-orch73 PARTIAL (lab restyle + viewer chrome; viewer visual unverified; viewer+lab tests green).
+- S12e-fix4-orch76 DONE: accepted-tracking custody registry + boundary binding; prediction 42 OK; Gate RS NOT_MET.
+- S24a-draft-orch84 DONE as DRAFT (media/script/DEMO_SCRIPT_DRAFT.md; PENDING placeholders) -> S24a PARTIAL.
+- R-A-recheck-orch77 CHANGES_REQUIRED: F1-R P1 a/an + time/angle claims pass; F3-R P1 Gate A specs bypass
+  validate_setup -> Gate A PROVISIONAL, not MET. -> S14g-fix4 (offline, no spend). Likely owner question: amend Gate A
+  to numeric-contract validation on recorded scenes with unverified scale, or require bundle-bound specs.
+- S16a-orch80 DONE (sidebar contracts; tests OK). S18a-orch79 DONE (library manifest/validator + one example; tests OK).
+- S20-fix3-orch78 NOT ACCEPTED: TIMING FAIL (checker: work stop outside window). WIP kept on branch; successor
+  S20-fix4 verifies it + checks R-C N4 lifetime 2-job cap lockout for standing GPU work.
+- UI-d-orch81 PARTIAL (report CSS; 41 report tests OK, diff 0x4; iab unavailable -> no screenshots).
+- S15k-fixture-orch83 PARTIAL (7-stage fixture walk at model/SSR level; live browser + S14 pending).
+- UI-audit-orch82 PARTIAL (DEFECTS.md: 0 P1, 6 P2, 7 P3) -> UI-e applies them.
+DISPATCHED R-RS-recheck4-orch85 gpt-6.1-sol high (thread 01a18b65-d5e6-7b51-8bdf-01f34f34d54d, deadline 2026-10-30T06:29:55+00:00).
+DISPATCHED S14g-fix4-orch86 claude-opus-5-5 high (thread 01a18b71-74e6-7593-b9bb-6f45fcaab6de, deadline 2026-10-30T06:43:43+00:00).
+DISPATCHED S20-fix4-orch87 gpt-6.1-sol high (thread 01a18b75-b757-77f1-b72a-213d3cc8b9db, deadline 2026-10-30T06:47:59+00:00).
+DISPATCHED UI-e-orch88 claude-opus-5-5 high (thread 01a18b77-ba1b-7f11-8de8-18ec515c2bca, deadline 2026-10-30T06:50:39+00:00).
+
 OWNER QUOTA WINDOW (Oct30 ~12:00 Dhaka): Claude 5h quota reset now; next 5h reset 16:49 Dhaka (10:49Z); WEEKLY reset
 18:00 Dhaka (12:00Z). From 16:50 to 18:00 Dhaka run a MAXIMUM-SPEED Claude army: every useful dependency-light Claude
 row/fix/review/UI pass in parallel with isolated Owns (QUEUE effort; owner override allows pulled-forward fixture-first

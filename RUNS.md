@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 30, 11:51 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 12:21 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **150 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **151 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -19,6 +19,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
+- [ ] **S16b** — Codex · GPT-6.1 Sol, effort medium — Implement validator-first spec patch tool (30 min)
 - [~] **S20c** — Codex · GPT-6.1 Sol, effort medium — Implement disabled-by-default AWS failover switch (30 min) *(partial: resume it)*
 
 **CLAUDE**
@@ -253,14 +254,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15h** — Codex (native Claude) · Sonnet 5.5, effort medium — Build fit table and residual chart (30 min)
 - [x] **S15i** — Codex (native Claude) · Sonnet 5.5, effort medium — Build sidebar and report navigation (30 min)
 - [x] **S15j** — Codex (native Claude) · Sonnet 5.5, effort medium — Stack workspace at 375px (30 min)
-- [ ] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min)
+- [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
 - [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint workspace accessibility and evidence (30 min)
 
 </details>
 
-<details><summary><b>S16</b> — Sidebar agent tools and the open-weight component (0/8)</summary>
+<details><summary><b>S16</b> — Sidebar agent tools and the open-weight component (1/8)</summary>
 
-- [ ] **S16a** — Codex · GPT-6.1 Sol, effort medium — Define sidebar tool-call and search contracts (30 min)
+- [x] **S16a** — Codex · GPT-6.1 Sol, effort medium — Define sidebar tool-call and search contracts (30 min)
 - [ ] **S16b** — Codex · GPT-6.1 Sol, effort medium — Implement validator-first spec patch tool (30 min)
 - [ ] **S16c** — Codex · GPT-6.1 Sol, effort medium — Implement rebuild and tool-output plumbing (30 min)
 - [ ] **S16d** — Codex · GPT-6.1 Sol, effort medium — Connect Baseten Spark Open library search (30 min)
@@ -353,7 +354,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S24</b> — Three-minute demo video (0/10)</summary>
 
-- [ ] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min)
+- [~] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min) *(partial: resume it)*
 - [ ] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
 - [ ] **S24c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture room rebuild and interview (30 min)
 - [ ] **S24d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture held-out prediction and reveal (30 min)
