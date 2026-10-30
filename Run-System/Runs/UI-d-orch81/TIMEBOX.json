@@ -1,0 +1,10 @@
+{
+ "id": "UI-d-orch81",
+ "status": "PARTIAL",
+ "issued_at": "2026-10-30T05:47:23+00:00",
+ "deadline_at": "2026-10-30T06:17:23+00:00",
+ "implementation_cutoff_at": "2026-10-30T06:12:23+00:00",
+ "work_stopped_at": "2026-10-30T06:17:23+00:00",
+ "reported_at": "2026-10-30T06:17:10+00:00",
+ "note": "implementation stopped ~06:06Z; remaining window used for iab retries, prefs verification and reporting; visual verification blocked: iab unavailable"
+}
