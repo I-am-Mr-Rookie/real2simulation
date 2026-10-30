@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+S18a flipped DONE. DISPATCHED S16b-orch89 gpt-6.1-sol medium (thread 01a18b78-dd9f-70c0-b0a9-d750a9b3a35f, deadline 2026-10-30T06:51:50+00:00). DISPATCHED S18b-orch90 gpt-6.1-sol medium (thread 01a18b78-ca2e-7c90-a500-734cba7b0a15, deadline 2026-10-30T06:51:50+00:00).
+
 Accepted ~06:00-06:25Z (TIMING PASS unless noted; ff-merged; fresh suites green):
 - UI-c-orch73 PARTIAL (lab restyle + viewer chrome; viewer visual unverified; viewer+lab tests green).
 - S12e-fix4-orch76 DONE: accepted-tracking custody registry + boundary binding; prediction 42 OK; Gate RS NOT_MET.
