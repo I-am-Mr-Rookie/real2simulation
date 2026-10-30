@@ -79,6 +79,11 @@ def validate(manifest, artifact_root, evidence_root=ROOT):
         require(demo["id"] not in ids, "duplicate demo id")
         ids.add(demo["id"])
         source = demo["source"]
+        if source.get("kind") == "synthetic":
+            validate_local_simulation(demo, artifact_root, root)
+            continue
+        require("ledger" in demo["provenance"] and "app_id" in demo["provenance"],
+                "clip source requires job provenance")
         matches = [r for r in rows if r["clip_id"] == source["clip_id"]]
         require(len(matches) == 1 and approved(source["clip_id"], approval), "clip not approved")
         row = matches[0]
@@ -138,6 +143,52 @@ def validate(manifest, artifact_root, evidence_root=ROOT):
             require(payload.get("label") == demo["label"] and payload.get("clip_id") == source["clip_id"], "simulation/fixture identity mismatch")
         require(demo["scale_verified"] is False, "scale verification unsupported by v1")
     return manifest
+
+
+def validate_local_simulation(demo, artifact_root, root):
+    """Check original local acceptance bytes, without inventing clip/job custody."""
+    artifact, provenance = demo["artifact"], demo["provenance"]
+    require(demo["label"] == "simulated" and artifact["kind"] == "simulation-record",
+            "synthetic source requires simulated record")
+    require(provenance.get("execution") == "accepted-local-simulation",
+            "synthetic source requires local simulation provenance")
+    require(artifact["path"] == f"objects/sha256/{artifact['sha256']}.json",
+            "artifact path is not content-addressed")
+    path, data = checked_ref(artifact, artifact_root)
+    require(len(data) == artifact["bytes"], "artifact byte count mismatch")
+    evidence = provenance["artifact_evidence"]
+    require(evidence["path"].startswith("evidence/") and evidence["path"].endswith(".json"),
+            "expected JSON run evidence")
+    _, original = checked_ref(evidence, root)
+    require(data == original, "artifact differs from accepted evidence")
+    require(provenance["report"]["path"] == f"Run-System/Runs/{provenance['run_id']}/REPORT.md",
+            "run report path mismatch")
+    _, report = checked_ref(provenance["report"], root)
+    require(evidence["path"] in report.decode("utf-8"), "run report does not identify simulation evidence")
+    payload = load_json(path)
+    require(payload.get("source") == "simulated" and
+            payload.get("scope") == "synthetic four-template acceptance only",
+            "not a synthetic lab acceptance record")
+    record_pointer = provenance["record_pointer"]
+    try:
+        record = pointer(payload, record_pointer)
+    except (KeyError, IndexError, TypeError, ValueError) as exc:
+        raise ValueError("simulation record pointer not found") from exc
+    require(isinstance(record, dict) and record.get("template") == "free_fall" and
+            record.get("status") == "passed" and record.get("deterministic") is True,
+            "expected passed deterministic free-fall simulation")
+    for numeric in provenance["numeric"]:
+        require(numeric["evidence"] == "artifact" and numeric["label"] == "simulated" and
+                numeric["pointer"].startswith(record_pointer + "/"),
+                "numeric pointer must identify the selected simulated case")
+        try:
+            actual = pointer(payload, numeric["pointer"])
+        except (KeyError, IndexError, TypeError, ValueError) as exc:
+            raise ValueError("numeric pointer not found") from exc
+        require(type(actual) in (int, float) and math.isfinite(actual) and
+                type(numeric["value"]) in (int, float) and
+                math.isfinite(numeric["value"]) and actual == numeric["value"],
+                "numeric evidence mismatch")
 
 
 def validate_file(path, artifact_root=None, evidence_root=ROOT):

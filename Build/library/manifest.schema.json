@@ -19,6 +19,19 @@
       "properties": {"path": {"$ref": "#/$defs/text"}, "sha256": {"$ref": "#/$defs/sha"}}
     },
     "source": {
+      "oneOf": [
+        {"$ref": "#/$defs/clip_source"},
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "description"],
+          "properties": {
+            "kind": {"const": "synthetic"},
+            "description": {"const": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."}
+          }
+        }
+      ]
+    },
+    "clip_source": {
       "type": "object", "additionalProperties": false,
       "required": ["clip_id", "sha256", "source_url", "licence", "licence_url", "attribution"],
       "properties": {
@@ -52,6 +65,23 @@
       }
     },
     "provenance": {
+      "oneOf": [
+        {"$ref": "#/$defs/job_provenance"},
+        {
+          "type": "object", "additionalProperties": false,
+          "required": ["execution", "run_id", "report", "artifact_evidence", "record_pointer", "numeric"],
+          "properties": {
+            "execution": {"const": "accepted-local-simulation"},
+            "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,95}$"},
+            "report": {"$ref": "#/$defs/ref"},
+            "artifact_evidence": {"$ref": "#/$defs/ref"},
+            "record_pointer": {"type": "string", "pattern": "^/cases/(0|[1-9][0-9]*)$"},
+            "numeric": {"type": "array", "minItems": 1, "maxItems": 64, "items": {"$ref": "#/$defs/numeric"}}
+          }
+        }
+      ]
+    },
+    "job_provenance": {
       "type": "object", "additionalProperties": false,
       "required": ["run_id", "report", "ledger", "app_id", "artifact_evidence", "numeric"],
       "properties": {

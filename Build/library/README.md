@@ -28,7 +28,7 @@ references also hash exact checkout bytes; after an evidence checkout with diffe
 line endings, regenerate the local manifest with `python -m Build.library.example`
 rather than treating a hash mismatch as permission to skip validation.
 
-Every demo has:
+Every clip-backed demo has:
 - Source clip ID, acquisition SHA256, source/licence URLs, licence, attribution.
   Validator re-derives these from `clips.csv`, S02c acquisition registry and the
   **current** scoped owner grant; old CSV approval flags are not authoritative.
@@ -44,6 +44,49 @@ Every demo has:
   matching `clip_id` and `label` in their accepted JSON evidence and matching kind.
 - `scale_verified: false`, `SCALE_UNVERIFIED`, Gate M/RS `NOT_MET`, Gate R
   `NOT_MET`/`NOT_RUN`, explicit limitations and `availability: metadata-only`.
+
+S18b adds a disjoint **local synthetic** source/provenance variant to v1.
+It does not invent footage, a licence, a source clip ID, GPU job or paid ledger.
+These records use `source.kind: synthetic`, `label: simulated`,
+`artifact.kind: simulation-record` and
+`provenance.execution: accepted-local-simulation`. The original acceptance file
+must declare `source: simulated` and the synthetic four-template scope. A record
+pointer selects a passed deterministic free-fall case; every numeric pointer is
+confined to that case. The hashed actual run report must identify the original
+evidence path. Clip-backed entries still require the unchanged current approval,
+acquisition, licence, successful app/ledger and clip-identity checks.
+Neither variant proves independent controller acceptance; the evidence checkout
+must be trusted.
+
+## Precomputed free-fall display catalogue (S18b)
+
+```powershell
+python -B -m Build.library.free_fall
+python -B -m Build.library.validate test-data/library-artifacts/free-fall.json
+python -B -m unittest discover -s tests/library -t tests/library
+```
+
+`free-fall.json` contains four **SIMULATED, display-only** cases from the actual
+`S10hi-gate` acceptance run: baseline-short, upward-launch, tiny-height and
+low-gravity-long-horizon. Its single shared content-addressed object preserves
+the entire original acceptance JSON byte-for-byte (including other templates);
+only the four free-fall records are indexed. Numeric values are copied through
+verified JSON pointers, never recomputed or authored by this builder.
+Stored replay/trace hashes are historical outputs, not bundled replay samples.
+
+The fifth entry is the already-licensed RM02 S06d reconstruction **descriptor
+only**, checked again against current scoped approval and acquisition receipts.
+It is NOT a measured free-fall demo and is not the source of the synthetic
+numbers. No PLY, raw media or playable trajectory is bundled. The builder reuses
+the S18a example writer (refreshing `manifest.json`) and create-once object store.
+
+Every entry retains `SCALE_UNVERIFIED` and the verbatim physical readiness label
+`Gate M: NOT_MET_INPUT_READINESS` from `evidence/S10/GATE-P.json`.
+The actual S07f Gate M receipt independently retains the same status, zero
+eligible/measured trials and physical evaluation `NOT_RUN`. S07c-e synthetic
+verification does not qualify a real clip for metric fitting; no real g/uncertainty
+is asserted here. Routes/playback remain S18f/g work; successful offline validation
+does not unblock physical gates or demonstrate guest UI playback.
 
 v1 deliberately disallows passing gates, verified scale and playable/public status.
 Promoting these requires a reviewed contract change backed by actual evidence;

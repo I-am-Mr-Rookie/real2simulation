@@ -1,0 +1,55 @@
+{
+  "run": "S18b-orch90",
+  "scope": "offline metadata/display only",
+  "simulated_free_fall_entries": [
+    "simulated-free-fall-baseline-short",
+    "simulated-free-fall-upward-launch",
+    "simulated-free-fall-tiny-height",
+    "simulated-free-fall-low-gravity-long-horizon"
+  ],
+  "real_clip_display_entries": [
+    "RM02"
+  ],
+  "calibrated_real_free_fall_entries": 0,
+  "physical_Gate_M": "NOT_MET_INPUT_READINESS",
+  "scale_label": "SCALE_UNVERIFIED",
+  "new_gpu_or_meta_calls": 0,
+  "refs": [
+    {
+      "path": "evidence/owner/S02/APPROVAL.md",
+      "sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8"
+    },
+    {
+      "path": "clips.csv",
+      "sha256": "a2c99d521b5cbf1f6d4f8163b0067b573a28bd4bce7883a3652e0e11ba0f917d"
+    },
+    {
+      "path": "evidence/clips/S02c-acquisition.json",
+      "sha256": "6902f137799919c3750bbd1d07f171041404cb15eec414920982399c8a6d1a8a"
+    },
+    {
+      "path": "evidence/S10/acceptance/acceptance.json",
+      "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+    },
+    {
+      "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+      "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+    },
+    {
+      "path": "evidence/S10/GATE-P.json",
+      "sha256": "308e8594d692acbac0aad40f5dfee759b0bcc530209cb352349d61fcde2259c3"
+    },
+    {
+      "path": "evidence/S07/S07f/actual-gate-m.json",
+      "sha256": "d1d4b3b3abcdb5900b497f6f404d44d47a8da58627b4bf1be845baec095684de"
+    },
+    {
+      "path": "evidence/S05/S05d/RESULT.json",
+      "sha256": "da03599d50e8731a380dd2b993f550e8168395b6877ea6e9c74626a4c8df406e"
+    },
+    {
+      "path": "test-data/library-artifacts/free-fall.json",
+      "sha256": "4cd1a398ff78f818c9f38babba2a808f9e7dcdfe88d9620cf439bef3095a559e"
+    }
+  ]
+}

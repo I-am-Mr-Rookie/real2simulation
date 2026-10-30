@@ -1,0 +1,33 @@
+test_accepted_case_coverage_and_original_bytes (test_free_fall.FreeFallLibraryTests.test_accepted_case_coverage_and_original_bytes) ... ok
+test_builder_is_byte_reproducible (test_free_fall.FreeFallLibraryTests.test_builder_is_byte_reproducible) ... ok
+test_clip_cannot_use_synthetic_provenance (test_free_fall.FreeFallLibraryTests.test_clip_cannot_use_synthetic_provenance) ... ok
+test_corrupt_simulation_object_rejected_and_not_overwritten (test_free_fall.FreeFallLibraryTests.test_corrupt_simulation_object_rejected_and_not_overwritten) ... ok
+test_cross_case_numeric_pointer_rejected (test_free_fall.FreeFallLibraryTests.test_cross_case_numeric_pointer_rejected) ... ok
+test_forged_numeric_rejected (test_free_fall.FreeFallLibraryTests.test_forged_numeric_rejected) ... ok
+test_hashes_do_not_replace_original_evidence (test_free_fall.FreeFallLibraryTests.test_hashes_do_not_replace_original_evidence) ... ok
+test_no_simulation_promotion (test_free_fall.FreeFallLibraryTests.test_no_simulation_promotion) ... ok
+test_non_free_fall_and_missing_selection_rejected (test_free_fall.FreeFallLibraryTests.test_non_free_fall_and_missing_selection_rejected) ... ok
+test_report_binding_rejected (test_free_fall.FreeFallLibraryTests.test_report_binding_rejected) ... ok
+test_synthetic_cannot_use_job_provenance_or_forged_clip (test_free_fall.FreeFallLibraryTests.test_synthetic_cannot_use_job_provenance_or_forged_clip) ... ok
+test_truth_labels_and_no_invented_clip_or_job (test_free_fall.FreeFallLibraryTests.test_truth_labels_and_no_invented_clip_or_job) ... ok
+test_accepted_example (test_library.LibraryTests.test_accepted_example) ... ok
+test_artifact_limits_identity_and_digest (test_library.LibraryTests.test_artifact_limits_identity_and_digest) ... ok
+test_content_address_does_not_replace_evidence_custody (test_library.LibraryTests.test_content_address_does_not_replace_evidence_custody) ... ok
+test_current_authority_is_rechecked_not_cached (test_library.LibraryTests.test_current_authority_is_rechecked_not_cached) ... ok
+test_duplicate_demo (test_library.LibraryTests.test_duplicate_demo) ... ok
+test_example_is_reproducible (test_library.LibraryTests.test_example_is_reproducible) ... ok
+test_immutable_example_writer_refuses_corruption (test_library.LibraryTests.test_immutable_example_writer_refuses_corruption) ... ok
+test_labels (test_library.LibraryTests.test_labels) ... ok
+test_nested_unknown_fields_are_rejected (test_library.LibraryTests.test_nested_unknown_fields_are_rejected) ... ok
+test_no_gate_or_scale_promotion (test_library.LibraryTests.test_no_gate_or_scale_promotion) ... ok
+test_numeric_custody (test_library.LibraryTests.test_numeric_custody) ... ok
+test_paths_and_json_parser (test_library.LibraryTests.test_paths_and_json_parser) ... ok
+test_pointer_escapes (test_library.LibraryTests.test_pointer_escapes) ... ok
+test_run_and_app_binding (test_library.LibraryTests.test_run_and_app_binding) ... ok
+test_strict_manifest_and_demo_shape (test_library.LibraryTests.test_strict_manifest_and_demo_shape) ... ok
+test_unapproved_and_forged_source (test_library.LibraryTests.test_unapproved_and_forged_source) ... ok
+
+----------------------------------------------------------------------
+Ran 28 tests in 14.533s
+
+OK

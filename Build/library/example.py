@@ -11,13 +11,8 @@ def ref(root, path):
     return {"path": path, "sha256": hashlib.sha256((root / path).read_bytes()).hexdigest()}
 
 
-def build(root=ROOT):
-    root = Path(root)
-    destination = root / "test-data/library-artifacts"
-    original = "evidence/S06/S06d/scene-RM02-gpu.json"
-    ledger_ref = "evidence/S06/S06d/job-ledger.json"
-    ledger = json.loads((root / ledger_ref).read_text(encoding="utf-8"))
-    payload = (root / original).read_bytes()
+def store(destination, payload, kind):
+    """Reuse exact evidence bytes; never overwrite a content-addressed object."""
     sha = hashlib.sha256(payload).hexdigest()
     artifact_path = f"objects/sha256/{sha}.json"
     path = destination / artifact_path
@@ -29,6 +24,17 @@ def build(root=ROOT):
     else:
         with path.open("xb") as stream:
             stream.write(payload)
+    return {"kind": kind, "media_type": "application/json", "path": artifact_path,
+            "sha256": sha, "bytes": len(payload)}
+
+
+def build(root=ROOT):
+    root = Path(root)
+    destination = root / "test-data/library-artifacts"
+    original = "evidence/S06/S06d/scene-RM02-gpu.json"
+    ledger_ref = "evidence/S06/S06d/job-ledger.json"
+    ledger = json.loads((root / ledger_ref).read_text(encoding="utf-8"))
+    artifact = store(destination, (root / original).read_bytes(), "scene-descriptor")
     with (root / "clips.csv").open(encoding="utf-8", newline="") as stream:
         row = next(r for r in csv.DictReader(stream) if r["clip_id"] == "RM02")
     registry = json.loads((root / "evidence/clips/S02c-acquisition.json").read_text(encoding="utf-8"))
@@ -37,8 +43,7 @@ def build(root=ROOT):
         "id": "rm02-s06d-descriptor", "title": "RM02 measured reconstruction descriptor (not calibrated)",
         "source": {"clip_id": "RM02", "sha256": source_sha,
                    **{k: row[k] for k in ("source_url", "licence", "licence_url", "attribution")}},
-        "artifact": {"kind": "scene-descriptor", "media_type": "application/json",
-                     "path": artifact_path, "sha256": sha, "bytes": len(payload)},
+        "artifact": artifact,
         "provenance": {"run_id": ledger["run"], "report": ref(root, f"Run-System/Runs/{ledger['run']}/REPORT.md"),
                        "ledger": ref(root, ledger_ref), "app_id": ledger["jobs"][0]["app_id"],
                        "artifact_evidence": ref(root, original),

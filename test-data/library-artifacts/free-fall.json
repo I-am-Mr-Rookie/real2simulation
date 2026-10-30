@@ -1,0 +1,448 @@
+{
+  "schema_version": "1.0.0",
+  "audience": "local-processing-only",
+  "demos": [
+    {
+      "id": "rm02-s06d-descriptor",
+      "title": "RM02 reconstruction display (NOT a measured free-fall demo)",
+      "source": {
+        "clip_id": "RM02",
+        "sha256": "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720",
+        "source_url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+        "licence": "Pexels",
+        "licence_url": "https://www.pexels.com/license/",
+        "attribution": "Andy Barbour - Tracking shot of empty classroom - Pexels"
+      },
+      "artifact": {
+        "kind": "scene-descriptor",
+        "media_type": "application/json",
+        "path": "objects/sha256/d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754.json",
+        "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754",
+        "bytes": 3370
+      },
+      "provenance": {
+        "run_id": "S06d-orch23",
+        "report": {
+          "path": "Run-System/Runs/S06d-orch23/REPORT.md",
+          "sha256": "41f459f9d8ffd88505c6a5c93b3132c04cd6414927c96eb8293d992e12fef157"
+        },
+        "ledger": {
+          "path": "evidence/S06/S06d/job-ledger.json",
+          "sha256": "c313cf6f8f686a51100801fcdf132874981f68f3b0dcf503c7bd6730647e1e3e"
+        },
+        "app_id": "ap-DwCMDeReYWQYBxl3xvR2IO",
+        "artifact_evidence": {
+          "path": "evidence/S06/S06d/scene-RM02-gpu.json",
+          "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754"
+        },
+        "numeric": [
+          {
+            "name": "function_elapsed_s",
+            "value": 20.955,
+            "unit": "s",
+            "label": "measured",
+            "evidence": "ledger",
+            "pointer": "/jobs/0/function_elapsed_s"
+          }
+        ]
+      },
+      "label": "measured",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_MET"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "Measured means reconstruction/job output, not calibrated physical measurements.",
+        "PLY assets are absent; this descriptor alone is not a playable demo.",
+        "Local processing approval only; no public raw-media redistribution approval.",
+        "Nominal model scale; gravity unknown; physics disabled.",
+        "Free-fall source display only; this reconstruction is not a measured free-fall fit.",
+        "Gate M: NOT_MET_INPUT_READINESS"
+      ]
+    },
+    {
+      "id": "simulated-free-fall-baseline-short",
+      "title": "SIMULATED free fall: baseline-short (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/0",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 9.81,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/0/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 0.2,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/0/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/0/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 201,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/0/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 1.5543122344752192e-15,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/0/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 7.922080705786024e-15,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/0/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Pre-contact analytic motion only; no rebound or contact-response claim.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion."
+      ]
+    },
+    {
+      "id": "simulated-free-fall-upward-launch",
+      "title": "SIMULATED free fall: upward-launch (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/1",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 9.81,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/1/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 0.4,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/1/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.002,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/1/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 201,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/1/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 5.773159728050814e-15,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/1/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 2.8317359351282158e-14,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/1/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Pre-contact analytic motion only; no rebound or contact-response claim.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion."
+      ]
+    },
+    {
+      "id": "simulated-free-fall-tiny-height",
+      "title": "SIMULATED free fall: tiny-height (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/2",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 9.81,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/2/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 0.02,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/2/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.0001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/2/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 201,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/2/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 6.661338147750939e-16,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/2/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 3.3951774453368367e-13,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/2/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Pre-contact analytic motion only; no rebound or contact-response claim.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion."
+      ]
+    },
+    {
+      "id": "simulated-free-fall-low-gravity-long-horizon",
+      "title": "SIMULATED free fall: low-gravity-long-horizon (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/3",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 3.7,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/3/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 0.35,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/3/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/3/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 351,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/3/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 1.9984014443252818e-15,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/3/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 4.9757894661071454e-15,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/3/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Pre-contact analytic motion only; no rebound or contact-response claim.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion."
+      ]
+    }
+  ]
+}
