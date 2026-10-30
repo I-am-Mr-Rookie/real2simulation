@@ -272,3 +272,11 @@ Evidence-root validation assumes a trusted repository checkout of accepted run
 records: existence/hashes prove custody, not controller acceptance, model accuracy,
 or an app's independent attestation of which pixels generated its output. No
 network, GPU/API calls, dependency installation, secrets or canonical-control edits.
+
+## Credits (S18h)
+
+`validate` resolves a credit line for every demo before any other custody check:
+footage entries take title/creator/licence/source_url verbatim from their single
+`clips.csv` row (blank field or missing row fails `unresolvable credit`);
+synthetic entries are credited `SIMULATED (no footage)`. `python -B -m
+Build.library.credits` writes `evidence/S18/S18h-credits.json` for every catalogue.

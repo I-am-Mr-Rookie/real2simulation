@@ -1,0 +1,171 @@
+{
+  "credits": [
+    {
+      "id": "rm02-s06d-descriptor",
+      "title": "Tracking shot of empty classroom",
+      "author": "Andy Barbour",
+      "licence": "Pexels",
+      "url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+      "line": "Tracking shot of empty classroom by Andy Barbour, Pexels, https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+      "catalogues": [
+        "manifest.json",
+        "free-fall.json",
+        "scenes.json"
+      ]
+    },
+    {
+      "id": "simulated-free-fall-baseline-short",
+      "title": "SIMULATED free fall: baseline-short (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED free fall: baseline-short (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "free-fall.json"
+      ]
+    },
+    {
+      "id": "simulated-free-fall-upward-launch",
+      "title": "SIMULATED free fall: upward-launch (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED free fall: upward-launch (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "free-fall.json"
+      ]
+    },
+    {
+      "id": "simulated-free-fall-tiny-height",
+      "title": "SIMULATED free fall: tiny-height (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED free fall: tiny-height (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "free-fall.json"
+      ]
+    },
+    {
+      "id": "simulated-free-fall-low-gravity-long-horizon",
+      "title": "SIMULATED free fall: low-gravity-long-horizon (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED free fall: low-gravity-long-horizon (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "free-fall.json"
+      ]
+    },
+    {
+      "id": "simulated-projectile-baseline-short",
+      "title": "SIMULATED projectile: baseline-short (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED projectile: baseline-short (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "projectile.json"
+      ]
+    },
+    {
+      "id": "simulated-projectile-zero-horizontal",
+      "title": "SIMULATED projectile: zero-horizontal (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED projectile: zero-horizontal (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "projectile.json"
+      ]
+    },
+    {
+      "id": "simulated-projectile-tiny-height",
+      "title": "SIMULATED projectile: tiny-height (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED projectile: tiny-height (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "projectile.json"
+      ]
+    },
+    {
+      "id": "simulated-projectile-low-gravity-long-horizon",
+      "title": "SIMULATED projectile: low-gravity-long-horizon (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED projectile: low-gravity-long-horizon (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "projectile.json"
+      ]
+    },
+    {
+      "id": "simulated-pendulum-short-small-angle",
+      "title": "SIMULATED pendulum: short-small-angle (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED pendulum: short-small-angle (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "pendulum.json"
+      ]
+    },
+    {
+      "id": "simulated-pendulum-two-period-horizon",
+      "title": "SIMULATED pendulum: two-period-horizon (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED pendulum: two-period-horizon (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "pendulum.json"
+      ]
+    },
+    {
+      "id": "simulated-pendulum-initial-angular-velocity",
+      "title": "SIMULATED pendulum: initial-angular-velocity (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED pendulum: initial-angular-velocity (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "pendulum.json"
+      ]
+    },
+    {
+      "id": "simulated-pendulum-zero-answer-equilibrium",
+      "title": "SIMULATED pendulum: zero-answer-equilibrium (display-only)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED pendulum: zero-answer-equilibrium (display-only) - SIMULATED (no footage)",
+      "catalogues": [
+        "pendulum.json"
+      ]
+    },
+    {
+      "id": "rm04-s06f-descriptor",
+      "title": "An Empty Classroom",
+      "author": "Pavel Danilyuk",
+      "licence": "Pexels License",
+      "url": "https://www.pexels.com/video/an-empty-classroom-8342689/",
+      "line": "An Empty Classroom by Pavel Danilyuk, Pexels License, https://www.pexels.com/video/an-empty-classroom-8342689/",
+      "catalogues": [
+        "scenes.json"
+      ]
+    },
+    {
+      "id": "simulated-mystery-g",
+      "title": "SIMULATED Mystery-g challenge (display-only; answer withheld)",
+      "author": "Real2Simulation (project-authored)",
+      "licence": "SIMULATED",
+      "url": null,
+      "line": "SIMULATED Mystery-g challenge (display-only; answer withheld) - SIMULATED (no footage)",
+      "catalogues": [
+        "mystery-g.json"
+      ]
+    }
+  ]
+}

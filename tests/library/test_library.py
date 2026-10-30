@@ -137,6 +137,23 @@ class LibraryTests(unittest.TestCase):
     def test_pointer_escapes(self):
         self.assertEqual(pointer({"a/b": {"~c": [5]}}, "/a~1b/~0c/0"), 5)
 
+    def test_entry_without_resolvable_credit_fails(self):
+        from Build.library.validate import credit
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.seed_evidence(root)
+            path = root / "clips.csv"
+            text = path.read_text(encoding="utf-8")
+            path.write_text(text.replace(",Andy Barbour,", ",,", 1), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "unresolvable credit"):
+                validate(self.manifest, self.example_root, root)
+        demo = copy.deepcopy(self.manifest["demos"][0])
+        demo["source"]["clip_id"] = "XX99"
+        with self.assertRaisesRegex(ValueError, "unresolvable credit"):
+            credit(demo, [])
+        line = credit({"id": "s", "title": "T", "source": {"kind": "synthetic"}}, [])
+        self.assertEqual((line["licence"], line["url"]), ("SIMULATED", None))
+
     def seed_evidence(self, root):
         demo = self.manifest["demos"][0]
         paths = ["clips.csv", APPROVAL, REGISTRY]

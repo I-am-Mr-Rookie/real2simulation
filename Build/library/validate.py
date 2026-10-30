@@ -57,6 +57,22 @@ def pointer(document, value):
     return document
 
 
+def credit(demo, rows):
+    """Credit line shown with a demo: its clips.csv row for footage; SIMULATED for synthetic."""
+    source = demo["source"]
+    if source.get("kind") == "synthetic":
+        return {"id": demo["id"], "title": demo["title"], "author": "Real2Simulation (project-authored)",
+                "licence": "SIMULATED", "url": None, "line": f"{demo['title']} - SIMULATED (no footage)"}
+    matches = [r for r in rows if r["clip_id"] == source.get("clip_id")]
+    require(len(matches) == 1, "unresolvable credit: clip not in clips.csv")
+    row = matches[0]
+    fields = {k: (row.get(c) or "").strip() for k, c in
+              (("title", "title"), ("author", "creator"), ("licence", "licence"), ("url", "source_url"))}
+    require(all(fields.values()), "unresolvable credit: missing title/author/licence/url")
+    return {"id": demo["id"], **fields,
+            "line": f"{fields['title']} by {fields['author']}, {fields['licence']}, {fields['url']}"}
+
+
 def validate(manifest, artifact_root, evidence_root=ROOT):
     """Validate structure + current owner grant + bytes + run/ledger/numeric custody.
 
@@ -78,6 +94,7 @@ def validate(manifest, artifact_root, evidence_root=ROOT):
     for demo in manifest["demos"]:
         require(demo["id"] not in ids, "duplicate demo id")
         ids.add(demo["id"])
+        credit(demo, rows)
         source = demo["source"]
         challenge = demo["artifact"]["kind"] == "challenge-record"
         require(challenge == ("challenge" in demo), "challenge metadata/kind mismatch")
