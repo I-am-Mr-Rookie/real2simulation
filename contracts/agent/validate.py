@@ -8,6 +8,7 @@ from __future__ import annotations
 import copy
 import json
 import re
+import unicodedata
 from pathlib import Path
 from typing import Any, Iterable, Mapping
 
@@ -34,7 +35,13 @@ _NUMBER_WORDS = re.compile(
     r"sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|"
     r"hundred|thousand|million|billion|dozen|half|quarter|percent|twice|thrice|triple|"
     r"third|fourth|fifth|sixth|seventh|eighth|ninth|tenth|twelfth|tenths|hundredths|"
-    r"one\s+point|point\s+one|single\s+digit)\b", re.I)
+    r"one\s+point|point\s+one|single\s+digit|"
+    # S14g-fix (R-A F1): multipliers and "one/a" + unit are implicit numbers ("double the value", "one metre",
+    # "a couple of metres"); pronoun "one", "double-check" and unit names alone ("in metres") stay allowed.
+    r"double(?!-)|doubled|couple|pair\s+of|times\s+(?:as|the|larger|smaller|greater|bigger|more|less)|"
+    r"(?:one|an?)\s+(?:(?:centi|milli|kilo)?(?:metres?|meters?)|(?:kilo)?grams?|newtons?|joules?|watts?|"
+    r"hertz|kg|cm|mm|km|m|s|g|n)|one\s+(?:seconds?|minutes?|hours?|degrees?|radians?))\b", re.I)
+_INVISIBLE = dict.fromkeys(i for i in range(0x110000) if unicodedata.category(chr(i)) == "Cf")
 
 
 class AgentContractError(ValueError):
@@ -50,7 +57,9 @@ def numeric_issue(text: str) -> str | None:
     for ch in text:
         if ch.isnumeric():  # ASCII/Unicode digits, fractions, numeral characters
             return f"untraced_numeric_character {ch!r}"
-    match = _NUMBER_WORDS.search(text)
+    text = unicodedata.normalize("NFKC", text)  # fullwidth letters
+    # zero-width/soft-hyphen chars both split ("nine<ZWSP>point") and hide ("se<SHY>ven") words: check both
+    match = _NUMBER_WORDS.search(text) or _NUMBER_WORDS.search(text.translate(_INVISIBLE))
     return f"untraced_number_word {match.group(0)!r}" if match else None
 
 
@@ -107,19 +116,26 @@ def _index(tool_outputs: Iterable[Any]) -> dict[str, dict[str, Any]]:
 
 
 def _segments(segments: list, path: str, index: Mapping[str, Any], issues: list[str]) -> None:
+    visible, before = [], len(issues)
     for i, segment in enumerate(segments):
         where = f"{path}[{i}]"
         if segment["type"] == "text":
+            visible.append(segment["text"])
             problem = numeric_issue(segment["text"])
             if problem:
                 issues.append(f"{where}.text: {problem}")
         else:
+            visible.append(" ")  # a cited quantity renders as its own traced number
             ref = segment["ref"]
             output = index.get(ref["tool_output_id"])
             if output is None:
                 issues.append(f"{where}.ref: unknown tool_output_id {ref['tool_output_id']!r}")
             elif ref["quantity"] not in output["quantities"]:
                 issues.append(f"{where}.ref: tool output has no quantity {ref['quantity']!r}")
+    # S14g-fix (R-A F2): check the VISIBLE run, so "ni" + "ne point ei" + "ght" cannot assemble a number
+    problem = numeric_issue("".join(visible)) if len(issues) == before else None
+    if problem:
+        issues.append(f"{path}: visible text {problem}")
 
 
 def validate_response(response: Any, tool_outputs: Iterable[Any], scene_id: str) -> Any:

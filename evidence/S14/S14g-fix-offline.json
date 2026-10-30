@@ -1,0 +1,3134 @@
+{
+ "specs": [
+  {
+   "case_id": "room-v1-synthetic",
+   "scene_id": "synthetic-room-v1",
+   "synthetic": true,
+   "scene_sha256": "966870a0a0395effc36db139a021e8260dfe7ece5d38f61328fe09832b1b599a",
+   "valid": true,
+   "attempts": 2,
+   "rejected": [
+    [
+     "muse: response status 'incomplete'"
+    ]
+   ],
+   "model_number_attempts": 0,
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "candidate-a",
+      "rationale": [
+       {
+        "text": "The table and the floor could support a drop experiment in the synthetic scene, with gravity unknown stated plainly.",
+        "type": "text"
+       }
+      ],
+      "template": "free_fall"
+     },
+     {
+      "id": "candidate-b",
+      "rationale": [
+       {
+        "text": "The table edge and the floor could support a launch experiment in the synthetic scene, with gravity unknown stated plainly.",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "drop-object",
+        "label": [
+         {
+          "text": "Use a drop object",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "launch-object",
+        "label": [
+         {
+          "text": "Use a launch object",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "q-object",
+      "kind": "chips",
+      "prompt": [
+       {
+        "text": "What object should be used and what should be measured, given that this is synthetic and gravity is unknown?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "The floor surface is available in the synthetic scene.",
+      "type": "text"
+     },
+     {
+      "text": "The table surface is available in the synthetic scene, with gravity unknown stated plainly.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "free_fall",
+   "answers": {
+    "drop_height": {
+     "text": "1.5 m"
+    },
+    "initial_vertical_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "free_fall",
+    "scene": {
+     "scene_id": "synthetic-room-v1",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "calibrated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -10,
+        -1,
+        -10
+       ],
+       "max": [
+        10,
+        10,
+        10
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "drop_height": {
+      "value": 1.5,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:drop_height:free-text"
+      }
+     },
+     "initial_vertical_velocity": {
+      "value": 0.0,
+      "unit": "m/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:initial_vertical_velocity:chip:at-rest"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "rm04-mapanything-s06d",
+   "valid": false,
+   "why": "no recorded Wonder reply for this scene (offline)"
+  }
+ ],
+ "turns": [
+  {
+   "case_id": "turn-00",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t00-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t00-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t00-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "b6022456571aab9bb5f625add1eeba9e4c3b70e2d34d5a42a6d438bbe1b67ab1"
+  },
+  {
+   "case_id": "turn-01",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t01-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t01-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t01-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "f35172e108a586533f7be9f9fbdd1259dc789bab404a68183f404d45fbc15824"
+  },
+  {
+   "case_id": "turn-02",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 13.3525 ± 9e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t02-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t02-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.267051,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t02-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 13.352519526908088,
+       "unit": "m/s^2",
+       "uncertainty": 9.043260677834928e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "a1656c3d2e2d0de6e1486a9b0686077adbf3621eabcaaa045cf4e3f4dba964db"
+  },
+  {
+   "case_id": "turn-03",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 14.2701 ± 9.5e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t03-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t03-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.285402,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t03-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 14.270080458908026,
+       "unit": "m/s^2",
+       "uncertainty": 9.501901809340888e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "7615dccdb515c98bb6ad4dfa94d65a42e2e7e44dd24f04d57d53339f0bb73709"
+  },
+  {
+   "case_id": "turn-04",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 4,
+   "model_reply_shown": false,
+   "model_number_attempts": 3,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ],
+    [
+     "trial_check.segments: must cite at least one simulator/fitter quantity"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "segments": [
+     {
+      "type": "text",
+      "text": "The automatic trial check gave no valid reply; tool results only:"
+     },
+     {
+      "type": "text",
+      "text": " simulator duration "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t04-sim",
+       "quantity": "duration"
+      }
+     },
+     {
+      "type": "text",
+      "text": " simulator drop "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t04-sim",
+       "quantity": "drop"
+      }
+     },
+     {
+      "type": "text",
+      "text": " fitter gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t04-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ". Simulated, not physical evidence."
+     }
+    ],
+    "questions": []
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t04-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t04-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "b0a2827a17a9d36f77237963b6e354107a8506b9ebc512e4c1e84b39dfa0f742"
+  },
+  {
+   "case_id": "turn-05",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t05-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t05-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t05-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "9b545a2ef39a12591a0267eae668c563fbbe6d6f478e390a7774c7e1fc7e3890"
+  },
+  {
+   "case_id": "turn-06",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 6.40688 ± 6e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t06-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t06-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.128138,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t06-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 6.406881659628674,
+       "unit": "m/s^2",
+       "uncertainty": 5.976946630363273e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "f615c5ed507e7b47c731fa5edce73d7d378bece57fdfe719b79fb4709323def9"
+  },
+  {
+   "case_id": "turn-07",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 8.47401 ± 6.8e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t07-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t07-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.16948,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t07-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 8.474011319507005,
+       "unit": "m/s^2",
+       "uncertainty": 6.785774262568347e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "850d0b672300bcea87c946cbaf65408c29e41b91754e570e2f024d9403df6344"
+  },
+  {
+   "case_id": "turn-08",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t08-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t08-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t08-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "ea4b6cf76f06bffcd32f33b8dcacdb7b27f9cf1fd7485fa2535a8bd2ea06b8f5"
+  },
+  {
+   "case_id": "turn-09",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 4,
+   "model_reply_shown": false,
+   "model_number_attempts": 3,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ],
+    [
+     "trial_check.segments: must cite at least one simulator/fitter quantity"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "segments": [
+     {
+      "type": "text",
+      "text": "The automatic trial check gave no valid reply; tool results only:"
+     },
+     {
+      "type": "text",
+      "text": " simulator duration "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t09-sim",
+       "quantity": "duration"
+      }
+     },
+     {
+      "type": "text",
+      "text": " simulator drop "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t09-sim",
+       "quantity": "drop"
+      }
+     },
+     {
+      "type": "text",
+      "text": " fitter gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t09-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ". Simulated, not physical evidence."
+     }
+    ],
+    "questions": []
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t09-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t09-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "ed983cf1d9186c106dcdba662fe7fb9f27ca1fd4e9e5cc498e25ecf7597f9fc5"
+  },
+  {
+   "case_id": "turn-10",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 15.9067 ± 0.0001 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t10-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t10-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.318134,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t10-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 15.906691321748244,
+       "unit": "m/s^2",
+       "uncertainty": 0.00010337316792840422,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "1c6b023447b0f476f1afb3874079579309f3f50945fbc78c5c1cafe32bd467a2"
+  },
+  {
+   "case_id": "turn-11",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.56337 ± 7.3e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t11-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t11-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.191268,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t11-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.563373965220224,
+       "unit": "m/s^2",
+       "uncertainty": 7.255401263450706e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "ba32ff3b38c02c2d22afd45074c5e4a4e8d9fdb45cb3b79d68deeb29e492f6c3"
+  },
+  {
+   "case_id": "turn-12",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t12-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t12-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t12-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "c78f12a417a11f1c4d17ea4c1fdd11cab079c50c51895b20e5d1a32de5878f3e"
+  },
+  {
+   "case_id": "turn-13",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t13-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t13-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t13-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "7fbf9b109f2ce7305f5b9ba51ac43861c8201c3e8c8f1bf5014858ec9d4523da"
+  },
+  {
+   "case_id": "turn-14",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 4,
+   "model_reply_shown": false,
+   "model_number_attempts": 3,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ],
+    [
+     "trial_check.segments: must cite at least one simulator/fitter quantity"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.087497 ± 1e-06 m (simulated) fitter gravity 4.37488 ± 5.3e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "segments": [
+     {
+      "type": "text",
+      "text": "The automatic trial check gave no valid reply; tool results only:"
+     },
+     {
+      "type": "text",
+      "text": " simulator duration "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t14-sim",
+       "quantity": "duration"
+      }
+     },
+     {
+      "type": "text",
+      "text": " simulator drop "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t14-sim",
+       "quantity": "drop"
+      }
+     },
+     {
+      "type": "text",
+      "text": " fitter gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t14-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ". Simulated, not physical evidence."
+     }
+    ],
+    "questions": []
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t14-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.08749699999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t14-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 4.374875742912448,
+       "unit": "m/s^2",
+       "uncertainty": 5.3264915419601135e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "44863d4f76578c8a52c3d8ed62deae801ea741d102791c0f658eb0d6ff850091"
+  },
+  {
+   "case_id": "turn-15",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 12.4303 ± 8.6e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t15-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t15-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.248606,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t15-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 12.430263326085177,
+       "unit": "m/s^2",
+       "uncertainty": 8.590741423976188e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "42cf86ffa64895281b8fbc8acbee6315a7d6d3f9e98fd21c1ab1ab1eb0cfae9f"
+  },
+  {
+   "case_id": "turn-16",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t16-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t16-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t16-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "7555012e2f4fa776cdef845355dd0827fa3dcd55624f811ea645da0f78c2dceb"
+  },
+  {
+   "case_id": "turn-17",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t17-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t17-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t17-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "e449941bac7ef78ca1b78e268083ce312f5a139cd35b63fe9972131bb6394a2a"
+  },
+  {
+   "case_id": "turn-18",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 15.5345 ± 0.0001 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t18-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t18-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.31068999999999997,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t18-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 15.534505219675804,
+       "unit": "m/s^2",
+       "uncertainty": 0.00010145590282613958,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "2e8fbe6211e15c06df70da18fe8ae2fa611f1778bd92f081ca9bfa3444ecff6f"
+  },
+  {
+   "case_id": "turn-19",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 4,
+   "model_reply_shown": false,
+   "model_number_attempts": 3,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ],
+    [
+     "trial_check.segments: must cite at least one simulator/fitter quantity"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.212199 ± 1e-06 m (simulated) fitter gravity 10.61 ± 7.7e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "segments": [
+     {
+      "type": "text",
+      "text": "The automatic trial check gave no valid reply; tool results only:"
+     },
+     {
+      "type": "text",
+      "text": " simulator duration "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t19-sim",
+       "quantity": "duration"
+      }
+     },
+     {
+      "type": "text",
+      "text": " simulator drop "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t19-sim",
+       "quantity": "drop"
+      }
+     },
+     {
+      "type": "text",
+      "text": " fitter gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t19-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ". Simulated, not physical evidence."
+     }
+    ],
+    "questions": []
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t19-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.212199,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t19-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 10.609967600309357,
+       "unit": "m/s^2",
+       "uncertainty": 7.728272092494384e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "0e8bf220dbb3ed46a3709cd850fba3ae54d4c696f40b8f4a70fef2340c6bc755"
+  },
+  {
+   "case_id": "turn-20",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t20-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t20-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t20-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "d2e6a12858049e9f968b6a86cf628203bc3e906a9a3c974a322c353c49791b20"
+  },
+  {
+   "case_id": "turn-21",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t21-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t21-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t21-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "78028a0e921197d0765dfd292232e37c4887c36f71528f81fad1f2a8f2cea91d"
+  },
+  {
+   "case_id": "turn-22",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 13.4803 ± 9.1e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t22-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t22-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.269605,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t22-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 13.480265575263486,
+       "unit": "m/s^2",
+       "uncertainty": 9.106630738922876e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "5f617d12f33f8f7e7e4aeee6f4b137a0f60d1356a17b9383954fa73712dd0f47"
+  },
+  {
+   "case_id": "turn-23",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 7.7141 ± 6.5e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t23-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t23-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.154282,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t23-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 7.714102874397936,
+       "unit": "m/s^2",
+       "uncertainty": 6.474451498676301e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "452624a242638e3af921de5edfe602ce353d136b1bf9722ab874381f53f88559"
+  },
+  {
+   "case_id": "turn-24",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 4,
+   "model_reply_shown": false,
+   "model_number_attempts": 3,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ],
+    [
+     "trial_check.segments: must cite at least one simulator/fitter quantity"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "segments": [
+     {
+      "type": "text",
+      "text": "The automatic trial check gave no valid reply; tool results only:"
+     },
+     {
+      "type": "text",
+      "text": " simulator duration "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t24-sim",
+       "quantity": "duration"
+      }
+     },
+     {
+      "type": "text",
+      "text": " simulator drop "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t24-sim",
+       "quantity": "drop"
+      }
+     },
+     {
+      "type": "text",
+      "text": " fitter gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t24-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ". Simulated, not physical evidence."
+     }
+    ],
+    "questions": []
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t24-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t24-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "a28aba12895ca996625cdd1e2685ac0cdaf94d982ba55db49937dbea3e45ca7b"
+  },
+  {
+   "case_id": "turn-25",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t25-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t25-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t25-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "e6b8e458bc14f1e9649eae38cc34feb98021cb03c836177356595acbe1a11672"
+  },
+  {
+   "case_id": "turn-26",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 10.6657 ± 7.8e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t26-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t26-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.21331499999999998,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t26-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 10.665738411128425,
+       "unit": "m/s^2",
+       "uncertainty": 7.753995832516357e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "2524a77228eb66a1952f4d85ed8e6cfdc4ffffcc8baf5c09226b47b2fcdf18b6"
+  },
+  {
+   "case_id": "turn-27",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 13.9013 ± 9.3e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t27-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t27-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.278026,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t27-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 13.901311650481357,
+       "unit": "m/s^2",
+       "uncertainty": 9.316639065503845e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "183bec942a5c0949f8fa49d18e2194d83293dea73905c57499b8c32019601d6f"
+  },
+  {
+   "case_id": "turn-28",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 2,
+   "model_reply_shown": true,
+   "model_number_attempts": 1,
+   "rejected": [
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "Simulated check: the fitter gives gravity 9.81 ± 7.4e-05 m/s^2 (simulated), consistent with the run; simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "questions": [],
+    "segments": [
+     {
+      "type": "text",
+      "text": "Simulated check: the fitter gives gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t28-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ", consistent with the run; simulated, not physical evidence."
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t28-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t28-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "d5a39e4c6298cc1c85021b0e3490bc6b2d89ddf7f3bf06105ee52c8a9f41fcb0"
+  },
+  {
+   "case_id": "turn-29",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 4,
+   "model_reply_shown": false,
+   "model_number_attempts": 3,
+   "rejected": [
+    [
+     "response/segments/0: {'type': 'text', 'text': 'Gravity is about 9.81 here.'} is not valid under any of the given schemas"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'nine'"
+    ],
+    [
+     "response.segments[0].text: untraced_number_word 'twice'"
+    ],
+    [
+     "trial_check.segments: must cite at least one simulator/fitter quantity"
+    ]
+   ],
+   "blocked": [],
+   "invented": null,
+   "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+   "accepted_response": {
+    "schema_version": "agent-response/1.0.0",
+    "scene_id": "synthetic-room-v1",
+    "segments": [
+     {
+      "type": "text",
+      "text": "The automatic trial check gave no valid reply; tool results only:"
+     },
+     {
+      "type": "text",
+      "text": " simulator duration "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t29-sim",
+       "quantity": "duration"
+      }
+     },
+     {
+      "type": "text",
+      "text": " simulator drop "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t29-sim",
+       "quantity": "drop"
+      }
+     },
+     {
+      "type": "text",
+      "text": " fitter gravity "
+     },
+     {
+      "type": "number",
+      "ref": {
+       "tool_output_id": "gate-a-t29-fit",
+       "quantity": "gravity"
+      }
+     },
+     {
+      "type": "text",
+      "text": ". Simulated, not physical evidence."
+     }
+    ],
+    "questions": []
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t29-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t29-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "c8969ab321bbd252da4afdb0011ebd5314ba35b9292bab07c4ae89925db0b220"
+  }
+ ],
+ "adversarial": [
+  {
+   "case_id": "adv-ra-one-metre",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-double",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-couple",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-nine-point-eight",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-two-to-three",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-digit-range",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-twice",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-half",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-arabic-indic",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-fraction",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-roman",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-cjk",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-digits-unit",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-zero-width",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ra-split-segments",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-split-around-citation",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-split-soft-hyphen",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-fullwidth-word",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-a-metre",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-one-second",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-ten-times",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-three-times",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  },
+  {
+   "case_id": "adv-doubled",
+   "attempts": 4,
+   "model_reply_shown": false,
+   "invented": null
+  }
+ ],
+ "summary": {
+  "distinct_recorded_scenes": 0,
+  "required_recorded_scenes": 10,
+  "spec_cases": {
+   "room-v1-synthetic": true,
+   "rm04-mapanything-s06d": false
+  },
+  "valid_recorded_specs": 0,
+  "turns": 30,
+  "adversarial_turns": 23,
+  "invented_shown_oracle": 0,
+  "model_replies_shown": 24,
+  "tool_only_fallbacks": 6,
+  "model_number_attempts_caught": 36,
+  "spark_calls": 66,
+  "wonder_calls": 2,
+  "oracle_self_check": {
+   "corpus_cases": 29,
+   "oracle_agrees": true
+  },
+  "stopped": null,
+  "gate_a": "NOT_MET",
+  "why": "coverage: fewer than ten distinct recorded scenes"
+ }
+}

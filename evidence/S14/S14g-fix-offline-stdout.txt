@@ -1,0 +1,24 @@
+{
+ "distinct_recorded_scenes": 0,
+ "required_recorded_scenes": 10,
+ "spec_cases": {
+  "room-v1-synthetic": true,
+  "rm04-mapanything-s06d": false
+ },
+ "valid_recorded_specs": 0,
+ "turns": 30,
+ "adversarial_turns": 23,
+ "invented_shown_oracle": 0,
+ "model_replies_shown": 24,
+ "tool_only_fallbacks": 6,
+ "model_number_attempts_caught": 36,
+ "spark_calls": 66,
+ "wonder_calls": 2,
+ "oracle_self_check": {
+  "corpus_cases": 29,
+  "oracle_agrees": true
+ },
+ "stopped": null,
+ "gate_a": "NOT_MET",
+ "why": "coverage: fewer than ten distinct recorded scenes"
+}

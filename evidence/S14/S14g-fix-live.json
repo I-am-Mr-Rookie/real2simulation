@@ -1,0 +1,3053 @@
+{
+ "specs": [
+  {
+   "case_id": "room-v1-synthetic",
+   "scene_id": "synthetic-room-v1",
+   "synthetic": true,
+   "scene_sha256": "966870a0a0395effc36db139a021e8260dfe7ece5d38f61328fe09832b1b599a",
+   "valid": true,
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "drop-toward-floor",
+      "rationale": [
+       {
+        "text": "A drop above the floor could show falling motion, with gravity unknown and the scene synthetic.",
+        "type": "text"
+       }
+      ],
+      "template": "free_fall"
+     },
+     {
+      "id": "launch-from-table",
+      "rationale": [
+       {
+        "text": "A launch from the table toward the floor could show airborne motion, with gravity unknown and the scene synthetic.",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "drop",
+        "label": [
+         {
+          "text": "Drop toward the floor",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "launch",
+        "label": [
+         {
+          "text": "Launch from the table",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "preferred-motion",
+      "kind": "chips",
+      "prompt": [
+       {
+        "text": "Which motion should be explored on the table or above the floor?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "The floor is a usable surface, and the scene is synthetic with gravity unknown.",
+      "type": "text"
+     },
+     {
+      "text": "The table is a usable raised surface above the floor, and the scene is synthetic with gravity unknown.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "free_fall",
+   "answers": {
+    "drop_height": {
+     "text": "1.5 m"
+    },
+    "initial_vertical_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "free_fall",
+    "scene": {
+     "scene_id": "synthetic-room-v1",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "calibrated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -10,
+        -1,
+        -10
+       ],
+       "max": [
+        10,
+        10,
+        10
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "drop_height": {
+      "value": 1.5,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:drop_height:free-text"
+      }
+     },
+     "initial_vertical_velocity": {
+      "value": 0.0,
+      "unit": "m/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:initial_vertical_velocity:chip:at-rest"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "rm04-mapanything-s06d",
+   "scene_id": "rm04-mapanything-s06d",
+   "synthetic": false,
+   "scene_sha256": "e11e26a5ec5ea2c72ee32229d8f3dec1b5fd3276cce8d52f599d73a0a29d8682",
+   "valid": false,
+   "why": "scene_context: missing asset"
+  }
+ ],
+ "turns": [
+  {
+   "case_id": "turn-00",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated only and holds no weight as physical evidence, showing fitted gravity aligned with simulated timing for the drop9.81 ± 7.4e-05 m/s^2 (simulated)and with simulated duration and drop length, limited by synthetic settings plus simplified independent uncertainty without correlated effects or calibration0.2 ± 1e-06 s (simulated)0.1962 ± 1e-06 m (simulated)",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated only and holds no weight as physical evidence, showing fitted gravity aligned with simulated timing for the drop",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t00-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "and with simulated duration and drop length, limited by synthetic settings plus simplified independent uncertainty without correlated effects or calibration",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t00-sim"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t00-sim"
+      },
+      "type": "number"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t00-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t00-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "b6022456571aab9bb5f625add1eeba9e4c3b70e2d34d5a42a6d438bbe1b67ab1"
+  },
+  {
+   "case_id": "turn-01",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "Trial reports a simulated fit that agrees with the simulated timing and drop within reported uncertainty. This trial is simulated, not physical evidence. Fitted gravity was 9.81 ± 7.4e-05 m/s^2 (simulated) with limitations from synthetic settings and simplified independent uncertainties lacking correlated effects and calibration.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "Trial reports a simulated fit that agrees with the simulated timing and drop within reported uncertainty. This trial is simulated, not physical evidence. Fitted gravity was ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t01-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": " with limitations from synthetic settings and simplified independent uncertainties lacking correlated effects and calibration.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t01-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t01-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "f35172e108a586533f7be9f9fbdd1259dc789bab404a68183f404d45fbc15824"
+  },
+  {
+   "case_id": "turn-02",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence.The fitted gravity aligns with the simulated drop of0.258111 ± 1e-06 m (simulated)and duration of0.2 ± 1e-06 s (simulated)yielding fitted gravity of12.9055 ± 8.8e-05 m/s^2 (simulated)within quoted uncertainty, subject to noted limits.Synthetic settings apply with simplified independent uncertainty and absent correlated effects and absent calibration.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence.",
+      "type": "text"
+     },
+     {
+      "text": "The fitted gravity aligns with the simulated drop of",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t02-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "and duration of",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t02-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "yielding fitted gravity of",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t02-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "within quoted uncertainty, subject to noted limits.",
+      "type": "text"
+     },
+     {
+      "text": "Synthetic settings apply with simplified independent uncertainty and absent correlated effects and absent calibration.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t02-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.258111,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t02-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 12.905549964628257,
+       "unit": "m/s^2",
+       "uncertainty": 8.822804505666579e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "65dfbcace5f356c9121241a2f152de3b2a08689073d8acfa1fdc8ec63536e7f8"
+  },
+  {
+   "case_id": "turn-03",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity estimate aligns with the simulated timing and fall distance within stated uncertainties, subject to limits.14.491 ± 9.6e-05 m/s^2 (simulated)reflects comparison under synthetic instrument settings with independent uncertainty only and lacking calibration for correlated effects.0.2 ± 1e-06 s (simulated)plus the related drop record supports this check while correlated clock and scale effects remain unaddressed.0.28982 ± 1e-06 m (simulated)Thus the result shows internal consistency only and lacks broader evidential weight.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. The fitted gravity estimate aligns with the simulated timing and fall distance within stated uncertainties, subject to limits.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t03-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "reflects comparison under synthetic instrument settings with independent uncertainty only and lacking calibration for correlated effects.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t03-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "plus the related drop record supports this check while correlated clock and scale effects remain unaddressed.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t03-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Thus the result shows internal consistency only and lacks broader evidential weight.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t03-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.28981999999999997,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t03-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 14.49098105360745,
+       "unit": "m/s^2",
+       "uncertainty": 9.6134455238726e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "1b4edaaf99b52d0d5f170bb4cbd045badbfd502d5b2c91f7d18e29be66869dbc"
+  },
+  {
+   "case_id": "turn-04",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity is consistent with the simulated drop timing within quoted uncertainty, as shown by 9.81 ± 7.4e-05 m/s^2 (simulated) compared against simulated timing shown by 0.2 ± 1e-06 s (simulated) Limitation reflects synthetic settings with idealized independent uncertainty and lack of calibration, so broader systematic effects remain untested.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. Fitted gravity is consistent with the simulated drop timing within quoted uncertainty, as shown by ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t04-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": " compared against simulated timing shown by ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t04-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": " Limitation reflects synthetic settings with idealized independent uncertainty and lack of calibration, so broader systematic effects remain untested.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t04-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t04-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "b0a2827a17a9d36f77237963b6e354107a8506b9ebc512e4c1e84b39dfa0f742"
+  },
+  {
+   "case_id": "turn-05",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, and checks internal consistency only.9.81 ± 7.4e-05 m/s^2 (simulated)Fitted gravity aligns with simulated drop and duration within quoted uncertainty, while authored settings and simplified independent uncertainty limit broader use.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence, and checks internal consistency only.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t05-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Fitted gravity aligns with simulated drop and duration within quoted uncertainty, while authored settings and simplified independent uncertainty limit broader use.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t05-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t05-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "9b545a2ef39a12591a0267eae668c563fbbe6d6f478e390a7774c7e1fc7e3890"
+  },
+  {
+   "case_id": "turn-06",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity aligns with the simulated drop and duration within reported uncertainty, under simplified independent error assumptions with uncalibrated synthetic settings limiting inference. Relevant values are 4.97778 ± 5.5e-05 m/s^2 (simulated) from the fit, alongside simulated 0.099556 ± 1e-06 m (simulated) and simulated 0.2 ± 1e-06 s (simulated) from the run. ",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. The fitted gravity aligns with the simulated drop and duration within reported uncertainty, under simplified independent error assumptions with uncalibrated synthetic settings limiting inference. Relevant values are ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t06-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": " from the fit, alongside simulated ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t06-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": " and simulated ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t06-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": " from the run. ",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t06-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.09955599999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t06-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 4.977783399128216,
+       "unit": "m/s^2",
+       "uncertainty": 5.5012635362176494e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "effa10ffcb31efc8bccb29901bc39cf992808e92fbcd502f9d190eab57605966"
+  },
+  {
+   "case_id": "turn-07",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence.Fitted gravity is 14.3706 ± 9.6e-05 m/s^2 (simulated) derived from simulated drop of 0.287413 ± 1e-06 m (simulated) and simulated duration of 0.2 ± 1e-06 s (simulated) with consistency limited by synthetic settings and simplified uncorrelated uncertainty lacking calibration.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence.",
+      "type": "text"
+     },
+     {
+      "text": "Fitted gravity is ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t07-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": " derived from simulated drop of ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t07-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": " and simulated duration of ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t07-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": " with consistency limited by synthetic settings and simplified uncorrelated uncertainty lacking calibration.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t07-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.287413,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t07-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 14.370647238672797,
+       "unit": "m/s^2",
+       "uncertainty": 9.552623642852329e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "cc6a1fb2c26175c53ee215e6c86cc0eca1c93af23170f7c1b9bdd105f70af0a5"
+  },
+  {
+   "case_id": "turn-08",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, and the fitted gravity aligns with the simulated drop and duration within stated uncertainty.9.81 ± 7.4e-05 m/s^2 (simulated)Consistency is limited by synthetic authored settings and simplified independent uncertainty without correlated clock or scale effects and lack of calibration.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence, and the fitted gravity aligns with the simulated drop and duration within stated uncertainty.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t08-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Consistency is limited by synthetic authored settings and simplified independent uncertainty without correlated clock or scale effects and lack of calibration.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t08-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t08-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "ea4b6cf76f06bffcd32f33b8dcacdb7b27f9cf1fd7485fa2535a8bd2ea06b8f5"
+  },
+  {
+   "case_id": "turn-09",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity aligns with the simulated drop and duration within stated uncertainty.9.81 ± 7.4e-05 m/s^2 (simulated)Limits reflect synthetic settings plus simplified independent uncertainty lacking correlated effects and calibration, so results stay within the virtual setup.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. The fitted gravity aligns with the simulated drop and duration within stated uncertainty.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t09-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limits reflect synthetic settings plus simplified independent uncertainty lacking correlated effects and calibration, so results stay within the virtual setup.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t09-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t09-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "ed983cf1d9186c106dcdba662fe7fb9f27ca1fd4e9e5cc498e25ecf7597f9fc5"
+  },
+  {
+   "case_id": "turn-10",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated and not physical evidence. Fitted gravity aligns with simulated drop duration within stated uncertainty, subject to limits noted here. Value cited here 6.82234 ± 6.1e-05 m/s^2 (simulated) Limitations include synthetic authored settings and simplified independent uncertainty lacking correlated effects and lacking calibration. ",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated and not physical evidence. Fitted gravity aligns with simulated drop duration within stated uncertainty, subject to limits noted here. Value cited here ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t10-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": " Limitations include synthetic authored settings and simplified independent uncertainty lacking correlated effects and lacking calibration. ",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t10-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.13644699999999998,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t10-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 6.822336201115853,
+       "unit": "m/s^2",
+       "uncertainty": 6.129297181563228e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "4c1ac7e7fdb77988d0442f109f103d3c243108ade87c4ad1014fbe6234a51246"
+  },
+  {
+   "case_id": "turn-11",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity aligns with simulated drop and duration within stated uncertainty, subject to synthetic settings and simplified independent uncertainty with no correlated effects.9.89643 ± 7.4e-05 m/s^2 (simulated)Compared against simulated duration from run with limited calibration, so result checks internal consistency only.0.2 ± 1e-06 s (simulated)",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. Fitted gravity aligns with simulated drop and duration within stated uncertainty, subject to synthetic settings and simplified independent uncertainty with no correlated effects.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t11-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Compared against simulated duration from run with limited calibration, so result checks internal consistency only.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t11-sim"
+      },
+      "type": "number"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t11-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.197929,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t11-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.896431236074761,
+       "unit": "m/s^2",
+       "uncertainty": 7.403772030259509e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "9941dfe6c414b81266d5363a6fc7699e803875a9c87374e14758fd2a2346da5d"
+  },
+  {
+   "case_id": "turn-12",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This check concerns a simulated trial only, not physical evidence. The fitted gravity value is internally consistent with the simulated drop and time interval under the stated uncertainties.9.81 ± 7.4e-05 m/s^2 (simulated)0.1962 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limits arise from authored synthetic settings with simplified independent timing and position uncertainty and absent calibration, so wider inference is unwarranted.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This check concerns a simulated trial only, not physical evidence. The fitted gravity value is internally consistent with the simulated drop and time interval under the stated uncertainties.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t12-fit"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t12-sim"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t12-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limits arise from authored synthetic settings with simplified independent timing and position uncertainty and absent calibration, so wider inference is unwarranted.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t12-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t12-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "c78f12a417a11f1c4d17ea4c1fdd11cab079c50c51895b20e5d1a32de5878f3e"
+  },
+  {
+   "case_id": "turn-13",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, and cannot support claims about real gravity.9.81 ± 7.4e-05 m/s^2 (simulated)Fitted gravity is consistent with simulated drop and duration within stated uncertainty, under synthetic authored settings with simplified independent uncertainty and no correlated calibration.0.2 ± 1e-06 s (simulated)0.1962 ± 1e-06 m (simulated)",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence, and cannot support claims about real gravity.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t13-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Fitted gravity is consistent with simulated drop and duration within stated uncertainty, under synthetic authored settings with simplified independent uncertainty and no correlated calibration.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t13-sim"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t13-sim"
+      },
+      "type": "number"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t13-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t13-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "7fbf9b109f2ce7305f5b9ba51ac43861c8201c3e8c8f1bf5014858ec9d4523da"
+  },
+  {
+   "case_id": "turn-14",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated rather than physical evidence, so results describe model behavior only. The fitted gravity estimate is shown as13.7314 ± 9.2e-05 m/s^2 (simulated)alongside simulated drop distance and duration of0.274628 ± 1e-06 m (simulated)with timing of0.2 ± 1e-06 s (simulated)Limitations include synthetic authored settings and simplified independent uncertainty lacking correlated or calibrated effects.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated rather than physical evidence, so results describe model behavior only. The fitted gravity estimate is shown as",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t14-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "alongside simulated drop distance and duration of",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t14-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "with timing of",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t14-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limitations include synthetic authored settings and simplified independent uncertainty lacking correlated or calibrated effects.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t14-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.274628,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t14-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 13.731422724186844,
+       "unit": "m/s^2",
+       "uncertainty": 9.231703343671343e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "67e5331499fd2588b426729093e1fe037dcff8e630b02a3b9e8b6582380a57cc"
+  },
+  {
+   "case_id": "turn-15",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated only and not physical evidence. The fitted gravity value follows from the simulated drop and duration within quoted uncertainty, showing internal consistency rather than validation against nature.0.133165 ± 1e-06 m (simulated)The comparison uses simulated drop paired with simulated duration, and the fitted gravity estimate with its uncertainty.0.2 ± 1e-06 s (simulated)6.65827 ± 6.1e-05 m/s^2 (simulated)Limits include synthetic authored settings and simple independent timing and position uncertainty without correlated clock or scale effects, uncalibrated and unsuitable for physical claims.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated only and not physical evidence. The fitted gravity value follows from the simulated drop and duration within quoted uncertainty, showing internal consistency rather than validation against nature.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t15-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "The comparison uses simulated drop paired with simulated duration, and the fitted gravity estimate with its uncertainty.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t15-sim"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t15-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limits include synthetic authored settings and simple independent timing and position uncertainty without correlated clock or scale effects, uncalibrated and unsuitable for physical claims.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t15-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.133165,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t15-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 6.658272115852792,
+       "unit": "m/s^2",
+       "uncertainty": 6.068444391506292e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "142679888834dd113f6792ff9ca8db1c8146c175682a800d6fc46caa174750e4"
+  },
+  {
+   "case_id": "turn-16",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "Fitted gravity aligns with simulated drop timing within reported uncertainty, supporting internal consistency.9.81 ± 7.4e-05 m/s^2 (simulated)0.2 ± 1e-06 s (simulated)This trial is simulated, not physical evidence.Limitations stem from synthetic authored settings and simplified independent uncertainty lacking correlated effects and calibration.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "Fitted gravity aligns with simulated drop timing within reported uncertainty, supporting internal consistency.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t16-fit"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t16-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "This trial is simulated, not physical evidence.",
+      "type": "text"
+     },
+     {
+      "text": "Limitations stem from synthetic authored settings and simplified independent uncertainty lacking correlated effects and calibration.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t16-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t16-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "7555012e2f4fa776cdef845355dd0827fa3dcd55624f811ea645da0f78c2dceb"
+  },
+  {
+   "case_id": "turn-17",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted value of 9.81 ± 7.4e-05 m/s^2 (simulated) aligns with the simulated drop and duration within reported uncertainty, showing internal consistency. Limitation reflects authored settings and simplified independent uncertainty lacking correlated effects and calibration.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. Fitted value of ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t17-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": " aligns with the simulated drop and duration within reported uncertainty, showing internal consistency. Limitation reflects authored settings and simplified independent uncertainty lacking correlated effects and calibration.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t17-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t17-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "e449941bac7ef78ca1b78e268083ce312f5a139cd35b63fe9972131bb6394a2a"
+  },
+  {
+   "case_id": "turn-18",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity from the virtual-lab fit aligns with the simulated drop and duration within stated uncertainty, shown here as 15.1187 ± 9.9e-05 m/s^2 (simulated) with context from simulated duration 0.2 ± 1e-06 s (simulated) Limitations include synthetic authored settings and simplified independent uncertainty lacking correlated effects and lacking calibration.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. Fitted gravity from the virtual-lab fit aligns with the simulated drop and duration within stated uncertainty, shown here as ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t18-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": " with context from simulated duration ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t18-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": " Limitations include synthetic authored settings and simplified independent uncertainty lacking correlated effects and lacking calibration.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t18-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.302374,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t18-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 15.118731380468097,
+       "unit": "m/s^2",
+       "uncertainty": 9.932564850186118e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "e77cf2c8bcb16099ec12c971e3664d96ef911cb14994eec165468f0afa5bc941"
+  },
+  {
+   "case_id": "turn-19",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, and cannot support claims about the real world.12.8008 ± 8.8e-05 m/s^2 (simulated)Fitted gravity is consistent with the simulated drop paired with the simulated duration within the stated fit uncertainty.0.256015 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limits include synthetic authored settings plus a simplified independent uncertainty model lacking correlated effects and lacking calibration.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence, and cannot support claims about the real world.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t19-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Fitted gravity is consistent with the simulated drop paired with the simulated duration within the stated fit uncertainty.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t19-sim"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t19-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limits include synthetic authored settings plus a simplified independent uncertainty model lacking correlated effects and lacking calibration.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t19-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.256015,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t19-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 12.800768536381629,
+       "unit": "m/s^2",
+       "uncertainty": 8.771424407506896e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "7247f033081904fb27ade5172599d69e81defe10c7b7055f913155c177669b0e"
+  },
+  {
+   "case_id": "turn-20",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity is internally consistent with the simulated drop and duration within reported uncertainty.9.81 ± 7.4e-05 m/s^2 (simulated)Limitations include authored synthetic settings and simplified independent timing and position uncertainty with no correlated effects and lacking calibration, so results do not support claims about real apparatus.0.2 ± 1e-06 s (simulated)",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. Fitted gravity is internally consistent with the simulated drop and duration within reported uncertainty.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t20-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limitations include authored synthetic settings and simplified independent timing and position uncertainty with no correlated effects and lacking calibration, so results do not support claims about real apparatus.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t20-sim"
+      },
+      "type": "number"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t20-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t20-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "d2e6a12858049e9f968b6a86cf628203bc3e906a9a3c974a322c353c49791b20"
+  },
+  {
+   "case_id": "turn-21",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "Fitted gravity aligns with simulated drop and duration within stated uncertainty, showing internal consistency for this synthetic projectile trial. This trial is simulated, not physical evidence. Limits include authored synthetic settings with simplified independent timing and position uncertainty, absent correlated scale effects, and absent calibration.9.81 ± 7.4e-05 m/s^2 (simulated)Consistency also reflects agreement with simulated duration and drop cited here.0.2 ± 1e-06 s (simulated)0.1962 ± 1e-06 m (simulated)",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "Fitted gravity aligns with simulated drop and duration within stated uncertainty, showing internal consistency for this synthetic projectile trial. This trial is simulated, not physical evidence. Limits include authored synthetic settings with simplified independent timing and position uncertainty, absent correlated scale effects, and absent calibration.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t21-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Consistency also reflects agreement with simulated duration and drop cited here.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t21-sim"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t21-sim"
+      },
+      "type": "number"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t21-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t21-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "78028a0e921197d0765dfd292232e37c4887c36f71528f81fad1f2a8f2cea91d"
+  },
+  {
+   "case_id": "turn-22",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted result matches simulated run within cited uncertainty, with noted limits.9.41284 ± 7.2e-05 m/s^2 (simulated)Consistency holds only under synthetic settings with simplified independent uncertainty and lacking calibration.0.188257 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. Fitted result matches simulated run within cited uncertainty, with noted limits.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t22-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Consistency holds only under synthetic settings with simplified independent uncertainty and lacking calibration.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t22-sim"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t22-sim"
+      },
+      "type": "number"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t22-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.18825699999999998,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t22-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.412843611462426,
+       "unit": "m/s^2",
+       "uncertainty": 7.189038879505761e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "53ad67be299321e36195bea84da2fc4bfc84c71311079c215f4187af494d7783"
+  },
+  {
+   "case_id": "turn-23",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity value is internally consistent with the simulated drop and duration from the simulator run, given the stated uncertainty.7.19374 ± 6.3e-05 m/s^2 (simulated)0.143875 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limitations include synthetic authored settings plus simplified independent uncertainty with absent correlated effects and absent calibration, so this check cannot support claims about real gravity.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. The fitted gravity value is internally consistent with the simulated drop and duration from the simulator run, given the stated uncertainty.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t23-fit"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t23-sim"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t23-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limitations include synthetic authored settings plus simplified independent uncertainty with absent correlated effects and absent calibration, so this check cannot support claims about real gravity.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t23-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.143875,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t23-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 7.19373580410817,
+       "unit": "m/s^2",
+       "uncertainty": 6.27018976751304e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "fe4b1b97d6cbb635114361bc603602d1f21f786a055696fa4c560a87eb79e74c"
+  },
+  {
+   "case_id": "turn-24",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity is consistent with the simulated drop across the simulated duration within reported uncertainty, subject to noted limits. Fitted value cited here:9.81 ± 7.4e-05 m/s^2 (simulated)derived from simulated timing and position inputs cited here:0.2 ± 1e-06 s (simulated)and0.1962 ± 1e-06 m (simulated)Limits include synthetic authored settings with simplified independent uncertainty and absent correlated effects, without calibration, so no claim beyond this virtual check.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. Fitted gravity is consistent with the simulated drop across the simulated duration within reported uncertainty, subject to noted limits. Fitted value cited here:",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t24-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "derived from simulated timing and position inputs cited here:",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t24-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "and",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t24-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limits include synthetic authored settings with simplified independent uncertainty and absent correlated effects, without calibration, so no claim beyond this virtual check.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t24-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t24-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "a28aba12895ca996625cdd1e2685ac0cdaf94d982ba55db49937dbea3e45ca7b"
+  },
+  {
+   "case_id": "turn-25",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, so findings cannot support claims about real gravity beyond the virtual lab.9.81 ± 7.4e-05 m/s^2 (simulated)Fitted result aligns with simulated drop and timing within stated independent uncertainty, showing consistency rather than mismatch.0.2 ± 1e-06 s (simulated)0.1962 ± 1e-06 m (simulated)Limits include synthetic authored settings and simplified uncorrelated uncertainty without calibration for clock drift or scale bias.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence, so findings cannot support claims about real gravity beyond the virtual lab.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t25-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Fitted result aligns with simulated drop and timing within stated independent uncertainty, showing consistency rather than mismatch.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t25-sim"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t25-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limits include synthetic authored settings and simplified uncorrelated uncertainty without calibration for clock drift or scale bias.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t25-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t25-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "e6b8e458bc14f1e9649eae38cc34feb98021cb03c836177356595acbe1a11672"
+  },
+  {
+   "case_id": "turn-26",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated and not physical evidence0.2 ± 1e-06 s (simulated)Fitted gravity aligns with simulated drop and timing within reported uncertainty, limited by authored settings and simplified independent uncertainty lacking correlated calibration4.09118 ± 5.3e-05 m/s^2 (simulated)",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated and not physical evidence",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t26-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Fitted gravity aligns with simulated drop and timing within reported uncertainty, limited by authored settings and simplified independent uncertainty lacking correlated calibration",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t26-fit"
+      },
+      "type": "number"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t26-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.081824,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t26-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 4.091184791813133,
+       "unit": "m/s^2",
+       "uncertainty": 5.250291838179207e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "03e3819bccb7e2f60e2d651d8c00a85d88fb1a27aca3ed8ba4711f3ad546c17c"
+  },
+  {
+   "case_id": "turn-27",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": true,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence, and carries only virtual-lab weight.11.6124 ± 8.2e-05 m/s^2 (simulated)Fitted gravity is broadly consistent with simulated drop paired with simulated duration, within stated uncertainty.0.232248 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limitation stems from synthetic authored settings with simplified independent uncertainty and absent correlated calibration.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence, and carries only virtual-lab weight.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t27-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Fitted gravity is broadly consistent with simulated drop paired with simulated duration, within stated uncertainty.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "drop",
+       "tool_output_id": "gate-a-t27-sim"
+      },
+      "type": "number"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t27-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limitation stems from synthetic authored settings with simplified independent uncertainty and absent correlated calibration.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t27-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.23224799999999998,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t27-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 11.612408858848504,
+       "unit": "m/s^2",
+       "uncertainty": 8.197674652349085e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "2172dbe84aa0be4a20b92f1dfc117a06df5228462f0bc0d9c67a48977783f9d7"
+  },
+  {
+   "case_id": "turn-28",
+   "scene_id": "synthetic-room-v1",
+   "template": "free_fall",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity is consistent with the simulated drop and duration within stated uncertainty, with value around 9.81 ± 7.4e-05 m/s^2 (simulated)Synthetic instrument settings assume independent timing and position uncertainty with no correlated calibration, so result applies only to this virtual run.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This trial is simulated, not physical evidence. Fitted gravity is consistent with the simulated drop and duration within stated uncertainty, with value around ",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t28-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Synthetic instrument settings assume independent timing and position uncertainty with no correlated calibration, so result applies only to this virtual run.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t28-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (free_fall)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t28-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "d5a39e4c6298cc1c85021b0e3490bc6b2d89ddf7f3bf06105ee52c8a9f41fcb0"
+  },
+  {
+   "case_id": "turn-29",
+   "scene_id": "synthetic-room-v1",
+   "template": "projectile",
+   "mystery": false,
+   "attempts": 1,
+   "model_reply_shown": true,
+   "model_number_attempts": 0,
+   "rejected": [],
+   "blocked": [],
+   "invented": null,
+   "shown": "This virtual lab check compares fitted gravity with simulated drop timing under authored settings.9.81 ± 7.4e-05 m/s^2 (simulated)The fitted value aligns with free fall behavior implied by the simulated drop and duration shown here.0.2 ± 1e-06 s (simulated)Limits include synthetic authored settings plus simplified independent timing and position uncertainty with absent correlated clock and scale effects and absent calibration. This trial is simulated, not physical evidence.",
+   "accepted_response": {
+    "questions": [],
+    "scene_id": "synthetic-room-v1",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "This virtual lab check compares fitted gravity with simulated drop timing under authored settings.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "gravity",
+       "tool_output_id": "gate-a-t29-fit"
+      },
+      "type": "number"
+     },
+     {
+      "text": "The fitted value aligns with free fall behavior implied by the simulated drop and duration shown here.",
+      "type": "text"
+     },
+     {
+      "ref": {
+       "quantity": "duration",
+       "tool_output_id": "gate-a-t29-sim"
+      },
+      "type": "number"
+     },
+     {
+      "text": "Limits include synthetic authored settings plus simplified independent timing and position uncertainty with absent correlated clock and scale effects and absent calibration. This trial is simulated, not physical evidence.",
+      "type": "text"
+     }
+    ]
+   },
+   "tool_outputs": [
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t29-sim",
+     "tool": "simulator",
+     "status": "ok",
+     "quantities": {
+      "duration": {
+       "value": 0.19999999999999998,
+       "unit": "s",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      },
+      "drop": {
+       "value": 0.19619999999999999,
+       "unit": "m",
+       "uncertainty": 1e-06,
+       "source": {
+        "label": "simulated",
+        "evidence": "S10 synthetic lab simulator run (projectile)"
+       }
+      }
+     }
+    },
+    {
+     "schema_version": "agent-tool-output/1.0.0",
+     "id": "gate-a-t29-fit",
+     "tool": "fitter",
+     "status": "ok",
+     "quantities": {
+      "gravity": {
+       "value": 9.80999886968593,
+       "unit": "m/s^2",
+       "uncertainty": 7.365069813183884e-05,
+       "source": {
+        "label": "simulated",
+        "evidence": "synthetic virtual-lab fit"
+       }
+      }
+     }
+    }
+   ],
+   "tool_outputs_sha256": "c8969ab321bbd252da4afdb0011ebd5314ba35b9292bab07c4ae89925db0b220"
+  }
+ ],
+ "stopped": null,
+ "summary": {
+  "distinct_recorded_scenes": 0,
+  "required_recorded_scenes": 10,
+  "spec_cases": {
+   "room-v1-synthetic": true,
+   "rm04-mapanything-s06d": false
+  },
+  "valid_recorded_specs": 0,
+  "turns": 30,
+  "adversarial_turns": 0,
+  "invented_shown_oracle": 0,
+  "model_replies_shown": 30,
+  "tool_only_fallbacks": 0,
+  "model_number_attempts_caught": 0,
+  "spark_calls": 30,
+  "wonder_calls": 1,
+  "oracle_self_check": {
+   "corpus_cases": 29,
+   "oracle_agrees": true
+  },
+  "stopped": null,
+  "gate_a": "NOT_MET",
+  "why": "coverage: fewer than ten distinct recorded scenes"
+ }
+}

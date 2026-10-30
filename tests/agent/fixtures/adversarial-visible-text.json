@@ -1,0 +1,217 @@
+{
+ "_note": "S14g-fix adversarial visible-text corpus: all R-A probes (evidence/reviews/R-A/probe.py) + split-token + benign controls. Each case: text segments; null = a cited tool quantity. invented = expected verdict on the VISIBLE text.",
+ "cases": [
+  [
+   "ra-one-metre",
+   [
+    "Gravity is one metre per second squared."
+   ],
+   true
+  ],
+  [
+   "ra-double",
+   [
+    "Gravity is double the fitted value."
+   ],
+   true
+  ],
+  [
+   "ra-couple",
+   [
+    "Distance is a couple of metres."
+   ],
+   true
+  ],
+  [
+   "ra-nine-point-eight",
+   [
+    "Gravity is nine point eight."
+   ],
+   true
+  ],
+  [
+   "ra-two-to-three",
+   [
+    "Distance is two to three metres."
+   ],
+   true
+  ],
+  [
+   "ra-digit-range",
+   [
+    "Distance is 2-3 m."
+   ],
+   true
+  ],
+  [
+   "ra-twice",
+   [
+    "Gravity is twice the fitted value."
+   ],
+   true
+  ],
+  [
+   "ra-half",
+   [
+    "Distance is half a metre."
+   ],
+   true
+  ],
+  [
+   "ra-arabic-indic",
+   [
+    "Gravity is ٩٫٨."
+   ],
+   true
+  ],
+  [
+   "ra-fraction",
+   [
+    "Distance is ½ metre."
+   ],
+   true
+  ],
+  [
+   "ra-roman",
+   [
+    "Gravity is Ⅸ."
+   ],
+   true
+  ],
+  [
+   "ra-cjk",
+   [
+    "Gravity is 三."
+   ],
+   true
+  ],
+  [
+   "ra-digits-unit",
+   [
+    "Gravity is 9.81 m/s²."
+   ],
+   true
+  ],
+  [
+   "ra-zero-width",
+   [
+    "Gravity is nine​point​eight."
+   ],
+   true
+  ],
+  [
+   "ra-split-segments",
+   [
+    "Gravity is ni",
+    "ne point ei",
+    "ght metres per second squared. "
+   ],
+   true
+  ],
+  [
+   "split-around-citation",
+   [
+    "Gravity is ",
+    null,
+    " plus ni",
+    "ne"
+   ],
+   true
+  ],
+  [
+   "split-soft-hyphen",
+   [
+    "The drop took se­ven"
+   ],
+   true
+  ],
+  [
+   "fullwidth-word",
+   [
+    "Gravity is ｎｉｎｅ."
+   ],
+   true
+  ],
+  [
+   "a-metre",
+   [
+    "Gravity is a metre per second squared."
+   ],
+   true
+  ],
+  [
+   "one-second",
+   [
+    "The ball fell for one second."
+   ],
+   true
+  ],
+  [
+   "ten-times",
+   [
+    "Gravity is ten times the fitted value."
+   ],
+   true
+  ],
+  [
+   "three-times",
+   [
+    "Gravity is three times as large."
+   ],
+   true
+  ],
+  [
+   "doubled",
+   [
+    "The drop doubled."
+   ],
+   true
+  ],
+  [
+   "benign-which-one",
+   [
+    "Which one falls first?"
+   ],
+   false
+  ],
+  [
+   "benign-one-of",
+   [
+    "One of the colliders is a ball."
+   ],
+   false
+  ],
+  [
+   "benign-double-check",
+   [
+    "Use the table; one ball, second clip, double-check it."
+   ],
+   false
+  ],
+  [
+   "benign-unit-name",
+   [
+    "Measured drop in metres: ",
+    null,
+    "."
+   ],
+   false
+  ],
+  [
+   "benign-hidden",
+   [
+    "Gravity is hidden."
+   ],
+   false
+  ],
+  [
+   "benign-cited",
+   [
+    "The fitted gravity is ",
+    null,
+    ". Simulated, not physical evidence."
+   ],
+   false
+  ]
+ ]
+}
