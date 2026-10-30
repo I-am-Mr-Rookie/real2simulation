@@ -7,8 +7,9 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "aa539357-ca0f-4ecb-a6f5-523979e37295",
-      "previousDeploymentId": "da4b03e9-659e-4966-8f12-8003199f7be5",
+      "deploymentId": "db4b96a6-bc73-4a27-81f9-4e4af8cc9798",
+      "previousDeploymentId": "aa539357-ca0f-4ecb-a6f5-523979e37295",
+      "redeployNote": "S04m: as-is redeploy of aa539357's build to load WORKSPACE_INTERNAL_TOKEN + WORKSPACE_API_URL=http://${{api.RAILWAY_PRIVATE_DOMAIN}}:8080",
       "sourceRevision": "67e299aa54ed7c2554137d04df655139ed556dba",
       "verifiedUtc": "2026-10-30T11:08:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
@@ -17,7 +18,13 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "d520a4f9-6a77-472b-8a97-12a745f6aca1",
+      "deploymentId": "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd",
+      "previousDeploymentIds": ["3af47dc9-0158-4294-82ad-7b71c27420a8", "d520a4f9-6a77-472b-8a97-12a745f6aca1"],
+      "sourceRevision": "54d15757aabf90b3041537cef8e22d4d0f4532a1",
+      "verifiedUtc": "2026-10-30T20:02:25Z",
+      "variableNamesAdded": {"WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
+                             "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
+                             "REDIS_URL": "unchanged existing reference ${{Redis.REDIS_URL}}"},
       "url": "https://api-dev-6091.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
@@ -31,6 +38,7 @@
     }
   },
   "limits": [
+    "S04m api 8bf100cc = 54d1575: workspace routers mounted (verify.py: health OK, /internal/workspace 401 without token); authenticated web->api private-network call NOT verified; uploads on ephemeral /tmp",
     "Dev only, not judging/production readiness",
     "Worker HTTP sidecar only: readiness503, no consumer heartbeat",
     "Clerk dev instance configured; Google/email OTP/guest owner-verified (S01b E2); S04h agent-verified guest, /lab render, health and Clerk widget + Google hand-off only",

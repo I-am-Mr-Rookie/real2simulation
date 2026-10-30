@@ -11,7 +11,7 @@ from urllib.parse import urlsplit
 from unittest.mock import patch
 
 REVISION = "300cd2096f9e32bcdf3433520b36b67f709df0d5"
-API_REVISION = "300cd2096f9e32bcdf3433520b36b67f709df0d5"
+API_REVISION = "54d15757aabf90b3041537cef8e22d4d0f4532a1"
 PATHS = ("/health/live", "/health/ready", "/api/version")
 ENDPOINTS = [(service, path) for service in ("api", "worker") for path in PATHS]
 INTERNAL = ("api", "/internal/workspace/jobs/job_" + "0" * 32)
@@ -46,7 +46,7 @@ def verify(responses):
         if service == "web":
             status = 404 if parsed.path.startswith("/workspace/") else 200
             body = "Real2Simulation " + {
-                "/": "", "/library": "No demos are published yet",
+                "/": "", "/library": "Demo library",
                 "/sign-in": "Sign in to Real2Simulation",
                 "/workspace/private-check": "Private workspaces require sign-in",
             }[parsed.path]

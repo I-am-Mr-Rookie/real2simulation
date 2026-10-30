@@ -1,0 +1,5 @@
+ERROR: test_postgres_probe_uses_read_only_query_and_bounded_connection (test_dependencies.DependencyTests.test_postgres_probe_uses_read_only_query_and_bounded_connection)
+    with patch("psycopg.connect") as connect:
+ModuleNotFoundError: No module named 'psycopg'
+Ran 16 tests in 13.972s
+FAILED (errors=1)

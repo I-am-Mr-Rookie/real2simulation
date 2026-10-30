@@ -1,0 +1,43 @@
+fetched snapshot sha256:e76f05ff1932b9ed6887127e83f7244d9a6281fc36def6a576769a9b290b5a58 (203 kB bytes)
+[INFO] fetching snapshot
+[INFO] unpacking archive
+[INFO] [internal] load build definition from Dockerfile
+[INFO] [internal] load build definition from Dockerfile
+[INFO] [internal] load build definition from Dockerfile
+[INFO] [internal] load build definition from Dockerfile
+[INFO] [internal] load metadata for docker.io/library/python:3.12-slim
+[INFO] [internal] load metadata for docker.io/library/python:3.12-slim
+[INFO] [internal] load .dockerignore
+[INFO] [internal] load .dockerignore
+[INFO] [internal] load .dockerignore
+[INFO] [internal] load .dockerignore
+[INFO] [6/6] RUN python -B -c "import Build.api.health.app"
+[INFO] [5/6] COPY . /app
+[INFO] [4/6] RUN pip install --no-cache-dir -r requirements.txt
+[INFO] [3/6] COPY Build/api/health/requirements.txt /app/requirements.txt
+[INFO] [internal] load build context
+[INFO] [2/6] WORKDIR /app
+[INFO] [1/6] FROM docker.io/library/python:3.12-slim@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+[INFO] [1/6] FROM docker.io/library/python:3.12-slim@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+[INFO] [internal] load build context
+[INFO] [1/6] FROM docker.io/library/python:3.12-slim@sha256:aa943ce411423c7582288f18707ff66eddcbaeb510502d747a72aeb34f30d159
+[INFO] [internal] load build context
+[INFO] [internal] load build context
+[INFO] [2/6] WORKDIR /app
+[INFO] [3/6] COPY Build/api/health/requirements.txt /app/requirements.txt
+[INFO] [4/6] RUN pip install --no-cache-dir -r requirements.txt
+[INFO] [5/6] COPY . /app
+[INFO] [5/6] COPY . /app
+[INFO] [6/6] RUN python -B -c "import Build.api.health.app"
+[INFO] [6/6] RUN python -B -c "import Build.api.health.app"
+[INFO] exporting to docker image format
+[INFO] image push
+
+====================
+Starting Healthcheck
+====================
+
+Path: /health/live
+Retry window: 2m0s
+
+[1/1] Healthcheck succeeded!
