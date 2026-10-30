@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+Oct30 ~21:22Z: ACCEPTED S15q-orch162 DONE (root cause proven: web posted answers as an ARRAY, API wants the {id:{chip}|{text}} object; fixed in
+controller.specAnswers, API untouched. Spec errors now visible with Retry; job panel shows RECORDED provenance. Fresh by controller: node 110/110,
+api-workspace 21 OK. Web DEV 4ad6b82c SUCCESS; deployments.json updated). CONTROLLER IAB RE-WALK: upload -> ready -> RECORDED labels -> interview
+-> spec PASS ('Ready to run', 'scale unverified' label); Run fails as expected before S15r but shows no reason (P2). New P3: DEV understand
+label says 'time not recorded' (S14g-fix3 ledger probably missing from the stage.py api allowlist). Dispatching S15r with the P2/P3 shell items folded in.
+
 Oct30 ~21:15Z OWNER REPLY: Q20 = A. Added QUEUE S15r (Opus high, deps S15q because they share controller.mjs/analysis.py): for Q16 recorded
 scenes the API returns a what-if run artifact that is explicitly non-synthetic and labelled, never forging scene.synthetic:true. The browser
 simulator accepts that artifact in a labelled what-if mode, and run/fit/report carry 'SIMULATED what-if of your described setup; scale unverified;

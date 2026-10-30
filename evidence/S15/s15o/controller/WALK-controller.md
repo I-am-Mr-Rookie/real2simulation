@@ -18,3 +18,16 @@ Web DEV e6bf5fe2, API DEV a2777e67. Profile was already signed in as the owner; 
 
 Other defects (P3): nav shows "Sign in" link while signed in; footer says "No uploads are enabled" while uploads work.
 
+
+## Re-walk after S15q (web 4ad6b82c), ~21:20Z
+
+| Stage | Result | Evidence |
+|---|---|---|
+| Upload RM04 -> job ready | PASS | job_ceca6693… |
+| RECORDED stage labels in job panel | PASS: per-stage "RECORDED S13h-orch46", understand "RECORDED S14g-fix3 @ time not recorded" | page text |
+| Interview -> spec (1.5 m, at rest) | PASS: "Ready to run"; page shows 'scale unverified' label | 06-rewalk-after-spec.png |
+| Run | EXPECTED FAIL pending S15r (Q20=A): shows "Run failed." with no reason text (P2: reason should be visible) | 07-rewalk-run.png |
+
+New P3: on DEV the understand stage shows "time not recorded" although S13k found the ledger UTC 2026-10-30T05:06:04Z locally. The S14g-fix3 ledger is probably not in the stage.py api allowlist.
+Still open P3: nav "Sign in" while signed in (Build/web/src/shell/ShellFrame.jsx:9, AccountNav.jsx:9); footer "No uploads are enabled" (ShellFrame.jsx:12); viewer LOAD_FAILED (no RM04 geometry on dev).
+
