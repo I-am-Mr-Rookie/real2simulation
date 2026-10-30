@@ -1,0 +1,1002 @@
+{
+ "stages": [
+  "preflight",
+  "checkpoint",
+  "model_loaded",
+  "tracked"
+ ],
+ "gpu": "NVIDIA A10, 23028 MiB, 610.57.04",
+ "preflight_exit": 2,
+ "preflight": {
+  "checks": [
+   {
+    "expected": "4.15.1",
+    "name": "anyio",
+    "observed": "4.15.1",
+    "ok": true
+   },
+   {
+    "expected": "8.5.0",
+    "name": "click",
+    "observed": "8.5.0",
+    "ok": true
+   },
+   {
+    "expected": "4.2.4",
+    "name": "filelock",
+    "observed": "4.2.4",
+    "ok": true
+   },
+   {
+    "expected": "2026.9.0",
+    "name": "fsspec",
+    "observed": "2026.9.0",
+    "ok": true
+   },
+   {
+    "expected": "6.1.1",
+    "name": "ftfy",
+    "observed": "6.1.1",
+    "ok": true
+   },
+   {
+    "expected": "0.16.0",
+    "name": "h11",
+    "observed": "0.16.0",
+    "ok": true
+   },
+   {
+    "expected": "1.7.1",
+    "name": "hf-xet",
+    "observed": "1.7.1",
+    "ok": true
+   },
+   {
+    "expected": "2.16.0",
+    "name": "httpcore2",
+    "observed": "2.16.0",
+    "ok": true
+   },
+   {
+    "expected": "2.16.0",
+    "name": "httpx2",
+    "observed": "2.16.0",
+    "ok": true
+   },
+   {
+    "expected": "2.3.0",
+    "name": "huggingface-hub",
+    "observed": "2.3.0",
+    "ok": true
+   },
+   {
+    "expected": "3.20",
+    "name": "idna",
+    "observed": "3.20",
+    "ok": true
+   },
+   {
+    "expected": "0.1.10",
+    "name": "iopath",
+    "observed": "0.1.10",
+    "ok": true
+   },
+   {
+    "expected": "3.1.6",
+    "name": "jinja2",
+    "observed": "3.1.6",
+    "ok": true
+   },
+   {
+    "expected": "3.0.4",
+    "name": "markupsafe",
+    "observed": "3.0.4",
+    "ok": true
+   },
+   {
+    "expected": "1.3.0",
+    "name": "mpmath",
+    "observed": "1.3.0",
+    "ok": true
+   },
+   {
+    "expected": "3.7",
+    "name": "networkx",
+    "observed": "3.7",
+    "ok": true
+   },
+   {
+    "expected": "1.26.4",
+    "name": "numpy",
+    "observed": "1.26.4",
+    "ok": true
+   },
+   {
+    "expected": "12.8.4.1",
+    "name": "nvidia-cublas-cu12",
+    "observed": "12.8.4.1",
+    "ok": true
+   },
+   {
+    "expected": "12.8.90",
+    "name": "nvidia-cuda-cupti-cu12",
+    "observed": "12.8.90",
+    "ok": true
+   },
+   {
+    "expected": "12.8.93",
+    "name": "nvidia-cuda-nvrtc-cu12",
+    "observed": "12.8.93",
+    "ok": true
+   },
+   {
+    "expected": "12.8.90",
+    "name": "nvidia-cuda-runtime-cu12",
+    "observed": "12.8.90",
+    "ok": true
+   },
+   {
+    "expected": "9.10.2.21",
+    "name": "nvidia-cudnn-cu12",
+    "observed": "9.10.2.21",
+    "ok": true
+   },
+   {
+    "expected": "11.3.3.83",
+    "name": "nvidia-cufft-cu12",
+    "observed": "11.3.3.83",
+    "ok": true
+   },
+   {
+    "expected": "1.13.1.3",
+    "name": "nvidia-cufile-cu12",
+    "observed": "1.13.1.3",
+    "ok": true
+   },
+   {
+    "expected": "10.3.9.90",
+    "name": "nvidia-curand-cu12",
+    "observed": "10.3.9.90",
+    "ok": true
+   },
+   {
+    "expected": "11.7.3.90",
+    "name": "nvidia-cusolver-cu12",
+    "observed": "11.7.3.90",
+    "ok": true
+   },
+   {
+    "expected": "12.5.8.93",
+    "name": "nvidia-cusparse-cu12",
+    "observed": "12.5.8.93",
+    "ok": true
+   },
+   {
+    "expected": "0.7.1",
+    "name": "nvidia-cusparselt-cu12",
+    "observed": "0.7.1",
+    "ok": true
+   },
+   {
+    "expected": "2.27.3",
+    "name": "nvidia-nccl-cu12",
+    "observed": "2.27.3",
+    "ok": true
+   },
+   {
+    "expected": "12.8.93",
+    "name": "nvidia-nvjitlink-cu12",
+    "observed": "12.8.93",
+    "ok": true
+   },
+   {
+    "expected": "12.8.90",
+    "name": "nvidia-nvtx-cu12",
+    "observed": "12.8.90",
+    "ok": true
+   },
+   {
+    "expected": "26.3",
+    "name": "packaging",
+    "observed": "26.3",
+    "ok": true
+   },
+   {
+    "expected": "13.0.0",
+    "name": "pillow",
+    "observed": "13.0.0",
+    "ok": true
+   },
+   {
+    "expected": "4.4.2",
+    "name": "portalocker",
+    "observed": "4.4.2",
+    "ok": true
+   },
+   {
+    "expected": "6.0.3",
+    "name": "pyyaml",
+    "observed": "6.0.3",
+    "ok": true
+   },
+   {
+    "expected": "2026.9.29",
+    "name": "regex",
+    "observed": "2026.9.29",
+    "ok": true
+   },
+   {
+    "expected": "0.8.0",
+    "name": "safetensors",
+    "observed": "0.8.0",
+    "ok": true
+   },
+   {
+    "expected": "84.2.1",
+    "name": "setuptools",
+    "observed": "80.9.0",
+    "ok": false
+   },
+   {
+    "expected": "1.14.0",
+    "name": "sympy",
+    "observed": "1.14.0",
+    "ok": true
+   },
+   {
+    "expected": "1.0.20",
+    "name": "timm",
+    "observed": "1.0.20",
+    "ok": true
+   },
+   {
+    "expected": "2.8.0",
+    "name": "torch",
+    "observed": "2.8.0",
+    "ok": true
+   },
+   {
+    "expected": "0.23.0",
+    "name": "torchvision",
+    "observed": "0.23.0",
+    "ok": true
+   },
+   {
+    "expected": "4.70.1",
+    "name": "tqdm",
+    "observed": "4.70.1",
+    "ok": true
+   },
+   {
+    "expected": "3.4.0",
+    "name": "triton",
+    "observed": "3.4.0",
+    "ok": true
+   },
+   {
+    "expected": "0.10.5",
+    "name": "truststore",
+    "observed": "0.10.5",
+    "ok": true
+   },
+   {
+    "expected": "4.16.0",
+    "name": "typing-extensions",
+    "observed": "4.16.0",
+    "ok": true
+   },
+   {
+    "expected": "0.9.4",
+    "name": "wcwidth",
+    "observed": "0.9.4",
+    "ok": true
+   }
+  ],
+  "dependency_ok": false,
+  "lock": "/root/measurement/runtime/requirements-linux-py312.txt",
+  "manifest": {
+   "build_system": [
+    "setuptools>=61",
+    "wheel"
+   ],
+   "builder": {
+    "async_loading_frames": false,
+    "compile": false,
+    "use_fa3": true,
+    "use_rope_real": true,
+    "warm_up": false
+   },
+   "files": {
+    "README.md": "da3dd047d18ef9a4b33557bf6f8187cf166218dc8aef40f2e18a67cc5249a502",
+    "pyproject.toml": "255f5d8d1db011459878e3de296a6afc84e03a8dda2bfa756a4de304aaff6366",
+    "sam3/__init__.py": "ca3821a125f767e6a35188603b51ef2501b1e7c3d1a90546ac567c5d2a80b9fb",
+    "sam3/assets/bpe_simple_vocab_16e6.txt.gz": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
+    "sam3/model_builder.py": "60cef72b1f7e4a2162d1c3f1ad2c0451bbbdc10e3484433a9aa2d016fed6b448"
+   },
+   "optional_kernels": [
+    "flash-attn-3",
+    "cc_torch"
+   ],
+   "repository": "https://github.com/facebookresearch/sam3",
+   "requirements": {
+    "cuda": ">=12.6",
+    "python": ">=3.12",
+    "torch": ">=2.7"
+   },
+   "revision": "f1647e8d0c1d280991f4d1b7d974c2704537fe66"
+  },
+  "ok": false,
+  "runtime_ok": false,
+  "source": "/opt/sam3",
+  "source_ok": true
+ },
+ "torch": [
+  "2.8.0+cu128",
+  "12.8",
+  true
+ ],
+ "freeze": [
+  "anyio==4.15.1",
+  "click==8.5.0",
+  "einops==0.8.1",
+  "filelock==4.2.4",
+  "fsspec==2026.9.0",
+  "ftfy==6.1.1",
+  "h11==0.16.0",
+  "hf-xet==1.7.1",
+  "httpcore2==2.16.0",
+  "httpx2==2.16.0",
+  "huggingface_hub==2.3.0",
+  "idna==3.20",
+  "iopath==0.1.10",
+  "Jinja2==3.1.6",
+  "MarkupSafe==3.0.4",
+  "mpmath==1.3.0",
+  "networkx==3.7",
+  "numpy==1.26.4",
+  "nvidia-cublas-cu12==12.8.4.1",
+  "nvidia-cuda-cupti-cu12==12.8.90",
+  "nvidia-cuda-nvrtc-cu12==12.8.93",
+  "nvidia-cuda-runtime-cu12==12.8.90",
+  "nvidia-cudnn-cu12==9.10.2.21",
+  "nvidia-cufft-cu12==11.3.3.83",
+  "nvidia-cufile-cu12==1.13.1.3",
+  "nvidia-curand-cu12==10.3.9.90",
+  "nvidia-cusolver-cu12==11.7.3.90",
+  "nvidia-cusparse-cu12==12.5.8.93",
+  "nvidia-cusparselt-cu12==0.7.1",
+  "nvidia-nccl-cu12==2.27.3",
+  "nvidia-nvjitlink-cu12==12.8.93",
+  "nvidia-nvtx-cu12==12.8.90",
+  "packaging==26.3",
+  "pillow==13.0.0",
+  "portalocker==4.4.2",
+  "psutil==7.1.0",
+  "pycocotools==2.0.11",
+  "PyYAML==6.0.3",
+  "regex==2026.9.29",
+  "safetensors==0.8.0",
+  "sam3",
+  "@",
+  "file:///opt/sam3",
+  "setuptools==80.9.0",
+  "sympy==1.14.0",
+  "timm==1.0.20",
+  "torch==2.8.0",
+  "torchvision==0.23.0",
+  "tqdm==4.70.1",
+  "triton==3.4.0",
+  "truststore==0.10.5",
+  "typing_extensions==4.16.0",
+  "uv==0.7.19",
+  "wcwidth==0.9.4",
+  "wheel==0.45.1"
+ ],
+ "checkpoint": {
+  "repo": "facebook/sam3.1",
+  "file": "sam3.1_multiplex.pt",
+  "revision": "daa63191845a41281374e725f4c9e51c7a824460",
+  "bytes": 3502755717,
+  "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+  "download_s": 16.1
+ },
+ "model_reused": false,
+ "builder_override": "use_fa3=False",
+ "shim": "dropped unsupported offload_state_to_cpu=False kwarg",
+ "requests": [
+  [
+   "start_session",
+   null
+  ],
+  [
+   "add_prompt",
+   1
+  ],
+  [
+   "close_session",
+   null
+  ]
+ ],
+ "stream": [
+  [
+   0,
+   [
+    0
+   ],
+   [
+    [
+     0.4731,
+     0.074,
+     0.2639,
+     0.1172
+    ]
+   ]
+  ],
+  [
+   1,
+   [
+    0
+   ],
+   [
+    [
+     0.4731,
+     0.0734,
+     0.2639,
+     0.1182
+    ]
+   ]
+  ],
+  [
+   2,
+   [
+    0
+   ],
+   [
+    [
+     0.4722,
+     0.0724,
+     0.2657,
+     0.1198
+    ]
+   ]
+  ],
+  [
+   3,
+   [
+    0
+   ],
+   [
+    [
+     0.4731,
+     0.0724,
+     0.2648,
+     0.1193
+    ]
+   ]
+  ],
+  [
+   4,
+   [
+    0
+   ],
+   [
+    [
+     0.4713,
+     0.0719,
+     0.2667,
+     0.1193
+    ]
+   ]
+  ],
+  [
+   5,
+   [
+    0
+   ],
+   [
+    [
+     0.4713,
+     0.0734,
+     0.2639,
+     0.1161
+    ]
+   ]
+  ],
+  [
+   6,
+   [
+    0
+   ],
+   [
+    [
+     0.4685,
+     0.0807,
+     0.2611,
+     0.1104
+    ]
+   ]
+  ],
+  [
+   7,
+   [
+    0
+   ],
+   [
+    [
+     0.463,
+     0.0964,
+     0.2648,
+     0.1094
+    ]
+   ]
+  ],
+  [
+   8,
+   [
+    0
+   ],
+   [
+    [
+     0.4556,
+     0.1182,
+     0.2704,
+     0.1109
+    ]
+   ]
+  ],
+  [
+   9,
+   [
+    0
+   ],
+   [
+    [
+     0.4491,
+     0.1443,
+     0.275,
+     0.1172
+    ]
+   ]
+  ],
+  [
+   10,
+   [
+    0
+   ],
+   [
+    [
+     0.4435,
+     0.174,
+     0.2741,
+     0.1281
+    ]
+   ]
+  ],
+  [
+   11,
+   [
+    0
+   ],
+   [
+    [
+     0.4417,
+     0.2188,
+     0.2704,
+     0.1281
+    ]
+   ]
+  ],
+  [
+   12,
+   [
+    0
+   ],
+   [
+    [
+     0.438,
+     0.2682,
+     0.2685,
+     0.1349
+    ]
+   ]
+  ],
+  [
+   13,
+   [
+    0
+   ],
+   [
+    [
+     0.4287,
+     0.3198,
+     0.2685,
+     0.1438
+    ]
+   ]
+  ],
+  [
+   14,
+   [
+    0
+   ],
+   [
+    [
+     0.4296,
+     0.3865,
+     0.2537,
+     0.1401
+    ]
+   ]
+  ],
+  [
+   15,
+   [
+    0
+   ],
+   [
+    [
+     0.4491,
+     0.4615,
+     0.2287,
+     0.1474
+    ]
+   ]
+  ],
+  [
+   16,
+   [
+    0
+   ],
+   [
+    [
+     0.4491,
+     0.5359,
+     0.2176,
+     0.1578
+    ]
+   ]
+  ],
+  [
+   17,
+   [
+    0
+   ],
+   [
+    [
+     0.4389,
+     0.6156,
+     0.2287,
+     0.1792
+    ]
+   ]
+  ],
+  [
+   18,
+   [
+    0
+   ],
+   [
+    [
+     0.4046,
+     0.6995,
+     0.2769,
+     0.1469
+    ]
+   ]
+  ],
+  [
+   19,
+   [
+    0
+   ],
+   [
+    [
+     0.3972,
+     0.7828,
+     0.2713,
+     0.0635
+    ]
+   ]
+  ],
+  [
+   20,
+   [
+    0
+   ],
+   [
+    [
+     0.3972,
+     0.7823,
+     0.2648,
+     0.0599
+    ]
+   ]
+  ],
+  [
+   21,
+   [
+    0
+   ],
+   [
+    [
+     0.3981,
+     0.7807,
+     0.2593,
+     0.062
+    ]
+   ]
+  ]
+ ],
+ "load_s": 19.7,
+ "peak_vram_bytes": 17159218688,
+ "track_s": 8.0,
+ "record": {
+  "approval": {
+   "evidence": "evidence/S07/S07g/OWNER-APPROVAL.md",
+   "scope": "scene_tracking"
+  },
+  "clip_id": "OWN07",
+  "height_px": 1920,
+  "last_training_frame": 61,
+  "licence": "owner-recorded; all rights reserved; public use pending owner go-ahead ",
+  "motion": "free_fall",
+  "provenance": "owner-recorded (local, not published) (Koushik Sadhak Jeet); local 1080x1920 rendition",
+  "source_sha256": "5990e309ba4bd999ee1acca540fc93b5cabfdee2d3d7d4fe9a28ad1c60a695f8",
+  "width_px": 1080,
+  "frames": [
+   {
+    "frame_index": 40,
+    "pts_s": 1.366341,
+    "x_px": 662.6613112749781,
+    "y_px": 260.29427272379934
+   },
+   {
+    "frame_index": 41,
+    "pts_s": 1.399674,
+    "x_px": 662.60839174086,
+    "y_px": 260.5034286796742
+   },
+   {
+    "frame_index": 42,
+    "pts_s": 1.433008,
+    "x_px": 662.5580123990231,
+    "y_px": 259.51933120420813
+   },
+   {
+    "frame_index": 43,
+    "pts_s": 1.466341,
+    "x_px": 663.1560365761117,
+    "y_px": 259.17345196539685
+   },
+   {
+    "frame_index": 44,
+    "pts_s": 1.499674,
+    "x_px": 662.441829401362,
+    "y_px": 258.57363509801706
+   },
+   {
+    "frame_index": 45,
+    "pts_s": 1.533008,
+    "x_px": 661.2788372137151,
+    "y_px": 259.63084191950816
+   },
+   {
+    "frame_index": 46,
+    "pts_s": 1.566341,
+    "x_px": 650.6528842708707,
+    "y_px": 265.4661949122178
+   },
+   {
+    "frame_index": 47,
+    "pts_s": 1.599674,
+    "x_px": 644.6441404115023,
+    "y_px": 289.1865159822987
+   },
+   {
+    "frame_index": 48,
+    "pts_s": 1.633008,
+    "x_px": 639.4084673175335,
+    "y_px": 332.69977860849997
+   },
+   {
+    "frame_index": 49,
+    "pts_s": 1.666341,
+    "x_px": 634.1121983388585,
+    "y_px": 388.6294157487613
+   },
+   {
+    "frame_index": 50,
+    "pts_s": 1.699674,
+    "x_px": 628.4101487845393,
+    "y_px": 459.2630789290371
+   },
+   {
+    "frame_index": 51,
+    "pts_s": 1.733008,
+    "x_px": 623.1083771430636,
+    "y_px": 544.7719364804076
+   },
+   {
+    "frame_index": 52,
+    "pts_s": 1.766341,
+    "x_px": 615.1798368811127,
+    "y_px": 652.0599512673864
+   },
+   {
+    "frame_index": 53,
+    "pts_s": 1.799674,
+    "x_px": 606.2081822440447,
+    "y_px": 761.2954525738675
+   },
+   {
+    "frame_index": 54,
+    "pts_s": 1.833008,
+    "x_px": 601.9305928763364,
+    "y_px": 881.8282354734816
+   },
+   {
+    "frame_index": 55,
+    "pts_s": 1.866341,
+    "x_px": 605.2951397832419,
+    "y_px": 1030.3767906322444
+   },
+   {
+    "frame_index": 56,
+    "pts_s": 1.899674,
+    "x_px": 600.8771066621423,
+    "y_px": 1182.0268069222939
+   },
+   {
+    "frame_index": 57,
+    "pts_s": 1.933008,
+    "x_px": 599.9187331419124,
+    "y_px": 1346.562986165492
+   },
+   {
+    "frame_index": 58,
+    "pts_s": 1.966341,
+    "x_px": 588.0154170485793,
+    "y_px": 1493.4375435380384
+   },
+   {
+    "frame_index": 59,
+    "pts_s": 1.999674,
+    "x_px": 583.9568115838142,
+    "y_px": 1562.6711945808395
+   },
+   {
+    "frame_index": 60,
+    "pts_s": 2.033008,
+    "x_px": 579.6536683785766,
+    "y_px": 1559.7140865737344
+   },
+   {
+    "frame_index": 61,
+    "pts_s": 2.066341,
+    "x_px": 575.7096549448132,
+    "y_px": 1560.3848777089215
+   }
+  ],
+  "tracking": {
+   "adapter": "sam3.1-local-multiplex-v1",
+   "object_id": 0,
+   "point_method": "binary_mask_pixel_index_centroid",
+   "missing_frames": []
+  }
+ },
+ "remote_elapsed_s": 46.2,
+ "frame_sha256": [
+  "67787fe149e84762a8279002f0ca5f6c2b4a9365d6be675b2916412fc0187ed1",
+  "754e504b7d8f04bff1ecc93ad586f3ec299f60edd528a78071390951af98b5f6",
+  "ef1d2764c07e16d3e80b6cb7ea2df165b7a594a4ed21cc44ff3b6194a97da32e",
+  "33078689e6cddda2c416b5decadafa031f09446d12cacbb4c82ab6e97f6d5adb",
+  "bc6dbf99ff7c735e45f44213f1e314435286042236b77c8509c5c217cf969907",
+  "867b399fb5a64e7ba7b2261a2175e1b2c9c8ebe85fa77e048a820c997e321434",
+  "05ee5dd8cc2ae58b8bdbe1b8232fcdbfe8e21df1659faaa9f62298b2646cf8fc",
+  "437e4b14ec2ce9d81d20afc056f9f11da3dc3316b679166e0053bef128831bb6",
+  "ee9bad67047ae3a716a4c2f12cd22948e9b73baba42f7da740d6ac7bc982a688",
+  "1f7bdaee80ddb0ea799ad7b24f5da5aa109a07b41ea22974e34dd5dc2dbbde87",
+  "6d62818738574d2bdcc383f25c6e4ad0319dd4ab6a0fcb0153c7e9c25a48b102",
+  "e662c9e9ce13566a4f024d5908dd88104fe93ad9879aaba9922ec7798cb80786",
+  "3e94d048951b774682d119b86cceacb768ce6000d984236139381fa10cbdb728",
+  "4983f386dfab2c6f2dcaaa96effb79f305a101355e95e4c5d81a55f561da48ef",
+  "a125f4de38a2ab6d1686139d007144bc6a6aadd3535f5ae37d88005fd1526983",
+  "90adbd3bee237f1afd4b18e296be72fe5fd90a62e3441b457dfb9b936232587c",
+  "16c77b97e945fd925a6db27bfaf459489df62e78f946ffe3e600a1e636afabed",
+  "f6e11d4521b2c32f938cdca2cb12ef94d1e0c3a44a8b377f0b4da808b20b42de",
+  "2350cb7ad96bef014fc404ffc636e4b6dcb864e3b51f3a3223a7328dedcbd3e4",
+  "24fdf95ae14e3444eff0e7aa5c4a0aadaee6138c5e4296156ab726eb7480abaf",
+  "b79684b7852e67be1563330435153101d47fe1b6cc90f78a0ee6ba5a5249a812",
+  "232c5d4a588dcfa43dcd0af616a61e822e39be672e4e41882ba97d28df39d524"
+ ],
+ "frame_map": [
+  [
+   40,
+   1.366341
+  ],
+  [
+   41,
+   1.399674
+  ],
+  [
+   42,
+   1.433008
+  ],
+  [
+   43,
+   1.466341
+  ],
+  [
+   44,
+   1.499674
+  ],
+  [
+   45,
+   1.533008
+  ],
+  [
+   46,
+   1.566341
+  ],
+  [
+   47,
+   1.599674
+  ],
+  [
+   48,
+   1.633008
+  ],
+  [
+   49,
+   1.666341
+  ],
+  [
+   50,
+   1.699674
+  ],
+  [
+   51,
+   1.733008
+  ],
+  [
+   52,
+   1.766341
+  ],
+  [
+   53,
+   1.799674
+  ],
+  [
+   54,
+   1.833008
+  ],
+  [
+   55,
+   1.866341
+  ],
+  [
+   56,
+   1.899674
+  ],
+  [
+   57,
+   1.933008
+  ],
+  [
+   58,
+   1.966341
+  ],
+  [
+   59,
+   1.999674
+  ],
+  [
+   60,
+   2.033008
+  ],
+  [
+   61,
+   2.066341
+  ]
+ ]
+}
