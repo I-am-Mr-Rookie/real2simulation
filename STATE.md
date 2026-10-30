@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+ACCEPTED S14g-fix6-orch100 DONE (Oct30 07:08Z; timing PASS; 59 agent tests OK, oracle 66/66; merged cbdb020): bare
+label-chain binding removed (units bind only after a cited quantity or after "in" with no amount); replay MET_AMENDED_Q16,
+30/30 shown, 0 fallback. DISPATCHED R-A-recheck4-orch102 Sol high (thread 01a18ba3-049a-7492-8d1c-e5b5412b4cac, deadline
+2026-10-30T07:37:41+00:00). On CLEAR: S14g DONE (MET_AMENDED_Q16), then S14h.
+
 ACCEPTED S18c-orch94 PARTIAL (Oct30 07:05Z; timing PASS at deadline per controller ruling; 36 library tests OK; merged):
 4 SIMULATED projectile demos content-addressed to S10hi evidence; bounce UNAVAILABLE (BN01 tracking 31/176, no accepted
 source) - data-limited, not retried. QUEUE S18c -> PARTIAL. DISPATCHED S18d-orch101 Sol medium (pendulum + display-only scene
