@@ -809,3 +809,6 @@ R-C money review. Lanes/Owns/deps/minutes unchanged. Reversible.
 ## 2026-10-29 — S05f Gate R checkpoint
 
 Gate R FAIL (scale 0/3, orientation 0/3 unmeasured; RM05 ineligible; GPU 3/3 <=240 s successful runs, RM02 cumulative 320.39 s). Q-S05e standard-object rule applied: RM02 paper sheets abstained (3D aspect 1.24 excludes A4); no other standard objects. Fallback 2 adopted, scale unverified. MapAnything weights facebook/map-anything-apache (Apache-2.0) per S05a. Cross-vendor re-review dispatched (R-R-recheck-orch28).
+
+- 2026-10-31 (Koushik, Q18): MIT licence for the project's own code and docs; third-party clips, models and dependencies keep their own licences. LICENSE file added via S25f.
+- 2026-10-31 (Koushik, Q19 = A): the public demo video may show short PD02/RM02/ST03 snippets with on-screen creator credit and ATTRIBUTION.md entries; supersedes default B for these three clips only. PJ03 stays blocked; repo visibility still needs S25d.

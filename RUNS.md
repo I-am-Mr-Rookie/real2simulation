@@ -1,15 +1,15 @@
 # Runs checklist
 
-Updated Oct 31, 02:03 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 02:05 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **203 / 237** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 1 open reviews
+Progress: **203 / 237** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
-- [ ] Q19 [S24a, Oct30 orch; REWORDED Oct31 after Koushik asked "What do you mean???"] May the PUBLIC demo video show a few seconds of three stock videos made by other people? They are free Pexels clips: PD02 "Foucault Pendulum Swing in Grand Hall" (Alexandre Henry Alves), RM02 "Tracking shot of empty classroom" (Andy Barbour), ST03 "Woman dropping apple on ground" (Roman Odintsov). The Pexels licence allows reuse with credit, but your Oct28 approval (Q7) only let the app process them privately on this computer, so showing them publicly needs your yes. A (recommended): yes, show short snippets with the creator's name on screen and in ATTRIBUTION.md - judges see the real video next to our result. B: no, the video shows only our own charts/3D overlays, never the original footage. Reply "Q19 A" or "Q19 B". Default if silent: B.
+None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## Ready now
 

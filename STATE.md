@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+Oct30 ~20:10Z OWNER REPLY: Q19 = A ("Go with the recommended one"). The public demo video may show short snippets of PD02, RM02 and ST03
+(Pexels) with the creator credit on screen and in ATTRIBUTION.md. This supersedes the S24a/S24b default B (plots only) for these 3 clips only;
+other clips keep their status and PJ03 stays blocked. Sent S25f-orch157 a nonterminal note to update ATTRIBUTION/checklist (in its Owns).
+S24c/S24d capture and edits may use these snippets. No publication or visibility change (S25d still pending).
+
 Oct30 ~20:05Z OWNER REPLIES (from RUNS.md Reviews): Q18 = "My choice: MIT licenced" -> ANSWERED, MIT for code/docs (clips keep own
 licences); added QUEUE S25f (Sonnet med) to add LICENSE + update README/ATTRIBUTION/checklist; public visibility still needs S25d go-ahead.
 Q19: Koushik replied "What do you mean???" -> question reworded in plain words (which 3 clips, who made them, what A/B mean); still open,
@@ -1332,7 +1337,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 - [x] Q18 ANSWERED (Koushik, Oct31 via RUNS.md: "My choice: MIT licenced") -> MIT for project code/docs; third-party clips keep their own
   licences (ATTRIBUTION.md). LICENSE file added by S25f. Repo stays private until S25d go-ahead.
-- [ ] Q19 [S24a, Oct30 orch; REWORDED Oct31 after Koushik asked "What do you mean???"] May the PUBLIC demo video show a few seconds of three stock videos made by other people? They are free Pexels clips: PD02 "Foucault Pendulum Swing in Grand Hall" (Alexandre Henry Alves), RM02 "Tracking shot of empty classroom" (Andy Barbour), ST03 "Woman dropping apple on ground" (Roman Odintsov). The Pexels licence allows reuse with credit, but your Oct28 approval (Q7) only let the app process them privately on this computer, so showing them publicly needs your yes. A (recommended): yes, show short snippets with the creator's name on screen and in ATTRIBUTION.md - judges see the real video next to our result. B: no, the video shows only our own charts/3D overlays, never the original footage. Reply "Q19 A" or "Q19 B". Default if silent: B.
+- [x] Q19 ANSWERED (Koushik, Oct31: "Go with the recommended one" = A): the public demo video may show short snippets of PD02/RM02/ST03 with creator credit on screen + ATTRIBUTION.md. Other clips unchanged; PJ03 blocked; repo visibility still S25d.
 - [x] Q17 ANSWERED (Koushik, Oct30): key-only $100 credit, Muse Open only, no account/dashboard -> S16e-orch108 live calls. [S16e, Oct30 orch] Baseten is not signed in inside the ChatGPT in-app browser, so the hackathon credit balance
   cannot be confirmed and no live Spark Open search call was made. Action: sign in to Baseten once in the in-app browser
   (whatever account holds the event credit), then reply "baseten signed in". Agent will only read the credit page, then
