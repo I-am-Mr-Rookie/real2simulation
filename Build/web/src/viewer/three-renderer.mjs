@@ -86,7 +86,8 @@ export function createThreeRenderer({
         b.setAttribute('role', 'note');
         b.setAttribute('data-viewer-banner', model.synthetic ? 'synthetic' : 'scale-unverified');
         b.textContent = model.banner; // plain text only, never HTML
-        b.style.overflowWrap = 'anywhere';
+        // Chrome consumes shared --r2s-* tokens with fallbacks; truth banner stays fully visible, never softened.
+        Object.assign(b.style, { overflowWrap: 'anywhere', position: 'relative', zIndex: '1', padding: '6px 10px', font: '700 12px/1.4 var(--r2s-font-mono, "Space Mono", ui-monospace, Consolas, monospace)', letterSpacing: '.03em', textTransform: 'uppercase', color: 'var(--r2s-ink, #1c1a17)', background: 'var(--r2s-surface, #fffdf8)', borderBottom: '2px solid var(--r2s-warn, #8a5a00)' });
         host.appendChild(b);
         cleanups.push(() => b.remove());
       }
@@ -103,7 +104,7 @@ export function createThreeRenderer({
           const el = doc.createElement('div');
           el.setAttribute('data-viewer-label', String(l.id));
           el.textContent = String(l.text); // plain text only, never HTML
-          Object.assign(el.style, { position: 'absolute', left: '0', top: '0', whiteSpace: 'nowrap', display: 'none' });
+          Object.assign(el.style, { position: 'absolute', left: '0', top: '0', whiteSpace: 'nowrap', display: 'none', padding: '2px 6px', font: '12px/1.3 var(--r2s-font-mono, "Space Mono", ui-monospace, Consolas, monospace)', color: 'var(--r2s-ink, #1c1a17)', background: 'var(--r2s-surface, #fffdf8)', border: '1px solid var(--r2s-ink, #1c1a17)', borderRadius: '3px', boxShadow: '2px 2px 0 var(--r2s-ink, #1c1a17)' });
           layer.appendChild(el);
           cleanups.push(() => el.remove());
           labelEls.push({ id: l.id, el, anchor: l.position_m, screen: null });
@@ -191,7 +192,7 @@ export function createThreeRenderer({
       const button = (text, label, fn) => {
         const el = doc.createElement('button');
         el.type = 'button'; el.textContent = text; el.setAttribute('aria-label', label);
-        Object.assign(el.style, { minWidth: '44px', minHeight: '44px', fontSize: '18px' });
+        Object.assign(el.style, { minWidth: '44px', minHeight: '44px', fontSize: '18px', margin: '0', padding: '0', cursor: 'pointer', color: 'var(--r2s-ink, #1c1a17)', background: 'var(--r2s-surface, #fffdf8)', border: '1px solid var(--r2s-ink, #1c1a17)', borderRadius: 'var(--r2s-radius, 6px)', boxShadow: '3px 3px 0 var(--r2s-ink, #1c1a17)' });
         bar.appendChild(el);
         cleanups.push(() => el.remove());
         listen(el, 'click', fn);

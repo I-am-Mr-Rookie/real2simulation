@@ -24,10 +24,10 @@ export default function BrowserSimulation({ payload }) {
     }
   }
 
-  return <section aria-label="In-browser simulation">
+  return <section className="lab-browser-sim" aria-label="In-browser simulation">
     <h2>In-browser trajectory</h2>
-    <p>Simulated · synthetic · RK4-only. No contact response or free drag.</p>
-    <button type="button" onClick={run}>Compute in browser</button>
+    <p className="eyebrow">Simulated · synthetic · RK4-only. No contact response or free drag.</p>
+    <button type="button" className="secondary" onClick={run}>Compute in browser</button>
     <p role="status">{current?.error || (trajectory
       ? `Computed ${trajectory.samples.length} actual ${trajectory.kind} trajectory points in this browser.`
       : 'NORMAL mode only. Compute to show the actual engine trace.')}</p>
