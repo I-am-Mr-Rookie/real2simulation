@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T23:10Z — orch: S15u-orch166 accepted (DONE)
+
+- Sonnet medium, TIMEBOX PASS, rebased, diff within Owns; fresh node 117/117; ff-merged. Fit view: 375px wrap, truthful what-if source note, compact residuals (details), sig figs with exact value on hover. DEV web bec439d2 (rev 35805e6a, pre-rebase identical content) recorded in deployments.json. Controller 375px re-walk pending.
+
 ## 2026-10-30T22:45Z — orch: owner input (Oct31) on owner-recorded clips; S07g + S15x dispatched
 
 - Owner message (verbatim, preserved): New owner inputs (Oct31): owner-recorded drop clips in "Videos for Meta AI Hackathon/" — read CLIPS.md there (roles, windows, scale: book horizontal edge 20.28 cm). Add them to clips.csv as owner-recorded (face-free trims; public use still needs my go-ahead). Priority: (1) run the real pipeline (SAM 3.1 track + fit) on 01_demo_hero and report g ± uncertainty against 9.79; evaluate 02–06 as held-out/robustness; (2) product must accept 30 fps phone clips, ask for a known size, and report uncertainty instead of failing; (3) one UI pass applying myfront 1.2.0 (round-3) + make-interfaces-feel-better, and propose 6 Mobbin references for me to pick 3; (4) update the 3-min script with the stopwatch-vs-phone before/after. Prefer Claude per standing rule. No publication.

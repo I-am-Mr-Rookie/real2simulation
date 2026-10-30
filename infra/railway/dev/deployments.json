@@ -7,10 +7,10 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "b1805418-6caa-44db-8f15-133918341eff",
-      "previousDeploymentId": "d4663452-8223-4d7d-8919-2b72219d7e0a",
-      "redeployNote": "S15t-orch165: stage.py web + railway up (fit request degree/select_model; fit view input; report error visible)",
-      "sourceRevision": "1f6c012dcefde8b27ee4abe5bf9d92bb8c62701d",
+      "deploymentId": "bec439d2-582a-4c87-bb3b-4e34ccd5c177",
+      "previousDeploymentId": "b1805418-6caa-44db-8f15-133918341eff",
+      "redeployNote": "S15u-orch166: stage.py web + railway up (fit view 375px wrap, truthful what-if note, compact residuals, sig figs)",
+      "sourceRevision": "35805e6af742e4355e12f073dc494794572c68df",
       "verifiedUtc": "2026-10-30T21:14:23Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
