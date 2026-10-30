@@ -1,0 +1,45 @@
+{
+ "scope": "visibly synthetic fixtures; fitter re-run per template; no gate/real-scene/physical evidence",
+ "templates": {
+  "free_fall": {
+   "checked": {
+    "chart_values": 11,
+    "fitter_digest": "sha256:c9f67234c263ee1c1f6a0d82bdc448d3ccec92cdb9cf34f516f6ceab1050f64e",
+    "html_tokens": 34,
+    "json_numbers": 15,
+    "tex_tokens": 34
+   },
+   "mismatches": []
+  },
+  "pendulum": {
+   "checked": {
+    "chart_values": 12,
+    "fitter_digest": "sha256:627eb1784a8a27d12fdd267cdf9927657b3c9c0954cbfb90ed519e317d6a2284",
+    "html_tokens": 37,
+    "json_numbers": 15,
+    "tex_tokens": 37
+   },
+   "mismatches": []
+  },
+  "projectile": {
+   "checked": {
+    "chart_values": 11,
+    "fitter_digest": "sha256:9d773a2087e89aaef92a01c32d46a3ae1ee003d91991416c2fd3a0e70a07e444",
+    "html_tokens": 34,
+    "json_numbers": 15,
+    "tex_tokens": 34
+   },
+   "mismatches": []
+  },
+  "ramp": {
+   "checked": {
+    "chart_values": 13,
+    "fitter_digest": "sha256:1415c8b382b442b300660d34ee776e68188bc52e8581cffe00f6e6807edd0816",
+    "html_tokens": 40,
+    "json_numbers": 15,
+    "tex_tokens": 40
+   },
+   "mismatches": []
+  }
+ }
+}

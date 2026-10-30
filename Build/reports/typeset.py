@@ -15,13 +15,53 @@ from typing import Any, Mapping
 from .contract import _PLACEHOLDER
 from .render import _fmt, build_charts, build_tables
 
-# Accessibility: dark-on-white text (high contrast), visible focus, skip link, print rules; digit-free so the numeric diff ignores it.
-_CSS = ("body{font-family:sans-serif;line-height:1.5;color:#111;background:#fff;max-width:48rem;margin:2rem auto;padding:0 1rem}"
-        "table{border-collapse:collapse}td,th{border:1px solid #767676;padding:.2rem .5rem;text-align:left}caption{font-weight:bold;text-align:left}"
-        ".tw{overflow-x:auto}.tw:focus,.skip:focus{outline:3px solid #0b57d0;outline-offset:2px}img{max-width:100%;height:auto}"
-        ".skip{position:absolute;left:-999px}.skip:focus{position:static}figure{margin:1rem 0}"
-        "@media print{.skip,.noprint{display:none}body{max-width:none;margin:0}.tw{overflow:visible}tr,figure{break-inside:avoid}"
-        "thead{display:table-header-group}}")
+# Accessibility: AA ink-on-paper contrast, visible focus, skip link, print rules. diff.py strips <style> before the numeric diff.
+# UI-d: formal-report home (serif headings, shared sans body, mono numbers), warm paper, one clay accent, hard offset shadow on
+# screen only. CSP has no font-src: fonts are local-name stacks with system fallbacks, never fetched. No motion is used.
+_CSS = (":root{--r-bg:var(--r2s-bg,#f5efe3);--r-surface:var(--r2s-surface,#fffcf5);--r-ink:var(--r2s-ink,#1d1f1c);"
+        "--r-muted:var(--r2s-muted,#55514a);--r-border:var(--r2s-border,#8a8273);--r-hair:#d8cfbd;--r-accent:var(--r2s-accent,#9a3b16);"
+        "--r-focus:var(--r2s-focus,#0b57d0);--r-shadow:var(--r2s-shadow,4px 4px 0 #1d1f1c);"
+        "--r-serif:'Libre Baskerville','Crimson Pro',Baskerville,'Iowan Old Style','Palatino Linotype',Georgia,serif;"
+        "--r-sans:var(--r2s-font-sans,'Instrument Sans','Segoe UI',system-ui,-apple-system,Roboto,'Helvetica Neue',Arial,sans-serif);"
+        "--r-mono:var(--r2s-font-mono,'Space Mono','Source Code Pro',Consolas,'SFMono-Regular',Menlo,ui-monospace,monospace)}"
+        "*,*::before,*::after{box-sizing:border-box}html{background:var(--r-bg);-webkit-text-size-adjust:100%}"
+        "body{font-family:var(--r-sans);font-size:1.0625rem;line-height:1.6;color:var(--r-ink);background:var(--r-bg);"
+        "max-width:46rem;margin:0 auto;padding:2.5rem 1.25rem 3rem;overflow-wrap:break-word}"
+        "h1,h2{font-family:var(--r-serif);font-weight:700;line-height:1.2;letter-spacing:-.005em;text-wrap:balance}"
+        "h1{font-size:clamp(1.75rem,5vw,2.4rem);margin:0 0 .75rem;padding-bottom:.9rem;border-bottom:3px double var(--r-ink)}"
+        "h2{font-size:1.35rem;margin:2.25rem 0 .6rem}main>h2:first-of-type{margin-top:1.5rem;font-size:.8rem;font-family:var(--r-mono);"
+        "font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--r-accent)}"
+        "main>h2:first-of-type+p{font-family:var(--r-serif);font-size:1.15rem;line-height:1.55;margin:.25rem 0 .75rem}"
+        "p{margin:.5rem 0 .9rem}ul{margin:.5rem 0 1.25rem;padding-left:1.25rem}li{margin:.2rem 0}li::marker{color:var(--r-accent)}"
+        "section{margin-top:.5rem}a{color:var(--r-accent);text-underline-offset:.15em}"
+        ".noprint{font-size:.9rem;color:var(--r-muted);background:var(--r-surface);border:1px solid var(--r-hair);"
+        "border-left:3px solid var(--r-accent);padding:.5rem .75rem;border-radius:var(--r2s-radius,3px)}"
+        ".tw{overflow-x:auto;margin:1.75rem 0;background:var(--r-surface);border:2px solid var(--r-ink);border-radius:var(--r2s-radius,3px);"
+        "box-shadow:var(--r-shadow);padding:.25rem .75rem .75rem}"
+        "table{border-collapse:collapse;width:100%;font-size:.95rem}"
+        "caption{caption-side:top;text-align:left;padding:.6rem 0 .5rem;font-family:var(--r-serif);font-weight:700;font-size:1.05rem}"
+        "th,td{border:0;border-bottom:1px solid var(--r-hair);padding:.45rem .75rem .45rem 0;text-align:left;vertical-align:top}"
+        "thead th{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--r-muted);"
+        "border-bottom:2px solid var(--r-ink);white-space:nowrap}"
+        "tbody th{font-weight:600}tbody td{font-family:var(--r-mono);font-size:.875rem;font-variant-numeric:tabular-nums;color:var(--r-ink)}"
+        "tbody tr:last-child>*{border-bottom:0}tbody tr:hover>*{background:var(--r-bg)}"
+        ".tw:focus{outline:none}.tw:focus-visible,.skip:focus,a:focus-visible{outline:3px solid var(--r-focus);outline-offset:3px}"
+        "img{display:block;max-width:100%;height:auto;margin:0 auto}"
+        "figure{margin:1.75rem 0;background:var(--r-surface);border:2px solid var(--r-ink);border-radius:var(--r2s-radius,3px);"
+        "box-shadow:var(--r-shadow);padding:1rem}"
+        "figcaption{margin-top:.75rem;padding-top:.6rem;border-top:1px solid var(--r-hair);font-size:.875rem;color:var(--r-muted)}"
+        ".skip{position:absolute;left:-999px;top:.75rem}.skip:focus{left:.75rem;z-index:1;background:var(--r-ink);color:var(--r-surface);"
+        "padding:.5rem .9rem;border-radius:var(--r2s-radius,3px);font-weight:700;text-decoration:none}"
+        "footer{margin-top:2.5rem;padding-top:.9rem;border-top:3px double var(--r-ink);color:var(--r-muted)}"
+        "footer small{display:block;font-family:var(--r-mono);font-size:.78rem;line-height:1.6;overflow-wrap:anywhere}"
+        "@media (max-width:30rem){body{padding:1.5rem 1rem 2rem;font-size:1rem}.tw,figure{box-shadow:3px 3px 0 var(--r-ink)}"
+        ".tw{padding:.25rem .5rem .5rem}th,td{padding-right:.6rem}}"
+        "@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}"
+        "@media (forced-colors:active){.tw,figure{border-color:CanvasText;box-shadow:none}}"
+        "@media print{.skip,.noprint{display:none}html,body{background:#fff;color:#000}body{max-width:none;margin:0;padding:0;font-size:11pt}"
+        ".tw,figure{box-shadow:none;border:0;background:none;padding:0;overflow:visible}main>h2:first-of-type{color:#000}"
+        "tbody tr:hover>*{background:none}tr,figure{break-inside:avoid}h1,h2,caption{break-after:avoid}thead{display:table-header-group}"
+        "@page{margin:18mm}}")
 CHART_ALT = {"gravity": "Bar chart of the fitted gravity value with one-sigma error bar; exact values are in the summary table.",
              "residuals": "Bar chart of fit residuals per sample; exact values are in the residuals table.",
              "model_selection": "Bar chart of AIC per candidate model, lower is better; exact scores are in the summary table."}
