@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S20-fix2-orch65 Sol high from orch63 WIP (threadId:01a18b2e-6b4c-7cd1-94c9-8d09f2e2267f,hostId:local, deadline 2026-10-30T05:30:36+00:00).
+
 S20-fix-orch63 PARTIAL, NOT integrated (Sol high; TIMEBOX FAIL: 159 s overrun, self-reported). Unverified
 WIP ad99589 on run/S20-fix-orch63: global reservations.py + durable.py (O_EXCL lock), gpu_stages
 wiring, ROUND_FLOOR, unknown-key/AWS bucket; no tests run, failover AWS repeat unfinished, fixtures
