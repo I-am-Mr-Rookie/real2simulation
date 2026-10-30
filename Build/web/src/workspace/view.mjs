@@ -36,6 +36,8 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
       run ? renderRun(h, run, onAction) : null,
       instruments ? renderInstruments(h, instruments, onAction) : null,
       fit ? renderFit(h, fit) : null,
+      run?.next ? h('div', { className: 'ws-actions', 'data-slot': 'next-step' },
+        h('button', { type: 'button', className: 'ws-submit', 'data-event': run.next.event, disabled: !onAction, onClick: () => onAction?.({ type: run.next.event }) }, run.next.label)) : null,
       report ? renderReport(h, report) : null),
     h('aside', { className: 'ws-job', 'data-slot': 'job-status', 'aria-label': 'Job status' },
       h('p', null, jobStatus.jobId ? 'Job ' + jobStatus.jobId : 'No job yet'),

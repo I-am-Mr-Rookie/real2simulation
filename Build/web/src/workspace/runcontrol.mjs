@@ -41,6 +41,8 @@ const STATUS = { 'run.ready': 'Ready to run.', 'run.running': 'Playing simulated
 const REPLAY = { checking: 'Replaying with the same seed...', verified: 'Replay matched: identical trace and hashes.',
   mismatch: 'Replay did NOT match the recorded run.' };
 const short = (h) => (typeof h === 'string' ? h.slice(0, 12) : null);
+// S15s: forward step after a finished run/fit; reuses the existing graph edges run.done -FIT_START-> and fit.done -REPORT_OPEN->.
+const NEXT = { 'run.done': { event: 'FIT_START', label: 'Fit' }, 'fit.done': { event: 'REPORT_OPEN', label: 'Open report' } };
 
 export function runView(state, m) {
   const p = state.phase, rec = hasRecord(state, m) ? m.record : null, total = rec?.trace.length ?? 0;
@@ -57,5 +59,6 @@ export function runView(state, m) {
     traceHash: short(rec?.traceHash), replayHash: short(rec?.replayHash),
     replay: m.replay ? { status: m.replay.status, text: m.replay.message ? REPLAY[m.replay.status] + ' ' + m.replay.message : REPLAY[m.replay.status] } : null,
     label: 'simulated',
+    next: NEXT[p] ?? null,
   };
 }

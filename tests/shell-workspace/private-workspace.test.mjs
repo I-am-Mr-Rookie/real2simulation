@@ -28,6 +28,7 @@ test('routeAction: workflow events reach the controller, unknown fetch failures 
   const ctl = createController({ fetch: async (url, init) => { calls.push(init.method + ' ' + url); return { status: 503, ok: false, json: async () => ({}) }; } });
   const local = { interview: initialInterview(), instruments: initialInstruments() };
   assert.equal(await routeAction(ctl, local, { type: 'FIT_START' }), local); // illegal from upload.idle: no request
+  assert.equal(await routeAction(ctl, local, { type: 'REPORT_OPEN' }), local); // S15s: report needs fit.done; no request
   assert.deepEqual(calls, []);
   assert.equal(ctl.state.phase, 'upload.idle');
   await routeAction(ctl, local, { type: 'RUN_START' });

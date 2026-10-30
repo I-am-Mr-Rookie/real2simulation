@@ -215,10 +215,33 @@ test('what-if: artifact runs in labelled what-if mode, report request carries th
   await r.c.run(1);
   assert.equal(r.c.state.phase, 'run.done');
   assert.ok(r.c.state.run.observations.length > 1);
-  await r.c.fit(); await r.c.openReport();
-  assert.equal(r.calls.find((x) => x.path === 'report').body.label, WHAT_IF_LABEL);
   const layout = (phase, error = null) => ({ phase, stages: [], viewport: { banner: null }, jobStatus: { label: 'x', jobId: null, error, surface: null } });
   const text = (t) => JSON.stringify(t);
+  // S15s: reach fit and report through the rendered next-step buttons and the real host router (PrivateWorkspace.routeAction)
+  const { routeAction } = await import('../../Build/web/src/shell/PrivateWorkspace.mjs');
+  const { runView, initialRun } = await import('../../Build/web/src/workspace/runcontrol.mjs');
+  const local = { interview: null, instruments: null };
+  const render = () => renderWorkspace(h, layout(r.c.state.phase), { status: 'idle', error: null }, null, (a) => routeAction(r.c, local, a),
+    null, null, runView(r.c.state, initialRun()), null, null, null, r.c.snapshot().report ? reportView(r.c.state, r.c.snapshot().report) : null, null, WHAT_IF_LABEL);
+  const next = (t) => find(t, (n) => n.props['data-slot'] === 'next-step');
+  const click = async (label) => {
+    const t = render(), b = find(next(t)[0], (n) => n.tag === 'button');
+    assert.equal(b.length, 1); assert.equal(b[0].kids[0], label);
+    assert.match(text(t), /SIMULATED what-if of your described setup/);
+    await b[0].props.onClick();
+  };
+  await click('Fit');
+  assert.equal(r.c.state.phase, 'fit.done');
+  assert.equal(r.calls.filter((x) => x.path === 'fit').length, 1);
+  await click('Open report');
+  assert.equal(r.c.state.phase, 'report.open');
+  assert.equal(r.calls.find((x) => x.path === 'report').body.label, WHAT_IF_LABEL);
+  const rep = render();
+  assert.deepEqual(next(rep), []); // no forward control once the report is open
+  assert.match(text(rep), /SIMULATED what-if of your described setup/);
+  assert.ok(find(rep, (n) => n.tag === 'iframe').length === 1, 'report shown in the sandboxed iframe');
+  for (const phase of ['upload.idle', 'interview.active', 'run.ready', 'run.running', 'run.paused', 'run.failed', 'fit.running', 'fit.failed', 'report.open'])
+    assert.equal(runView({ phase, run: null }, initialRun()).next, null, phase);
   assert.match(text(renderWorkspace(h, layout('fit.done'), { status: 'idle', error: null }, null, null, null, null, null, null, null, null, null, null, WHAT_IF_LABEL)), /SIMULATED what-if of your described setup; scale unverified; not measured from the clip/);
   const failed = renderWorkspace(h, layout('run.failed', { code: 'PROCESSING_FAILED', message: 'INVALID_BROWSER_SIMULATION: bad horizon' }), { status: 'idle', error: null }, null, null, null, null, null, null, null, null, null, null);
   const panel = find(failed, (n) => n.props['aria-label'] === 'Stage panel')[0];
@@ -232,6 +255,20 @@ test('what-if: artifact runs in labelled what-if mode, report request carries th
 });
 
 const find = (n, pred, out = []) => { if (n && typeof n === 'object') { if (pred(n)) out.push(n); n.kids.forEach((k) => find(k, pred, out)); } return out; };
+
+test('S15s normal path: run.done -> Fit -> fit.done -> Open report -> report.open via runView.next and the host router', async () => {
+  const { routeAction } = await import('../../Build/web/src/shell/PrivateWorkspace.mjs');
+  const { runView, initialRun } = await import('../../Build/web/src/workspace/runcontrol.mjs');
+  const r = await toRunReady({});
+  await r.c.run(7);
+  for (const [from, event, label, to] of [['run.done', 'FIT_START', 'Fit', 'fit.done'], ['fit.done', 'REPORT_OPEN', 'Open report', 'report.open']]) {
+    assert.equal(r.c.state.phase, from);
+    assert.deepEqual(runView(r.c.state, initialRun()).next, { event, label });
+    await routeAction(r.c, {}, { type: event });
+    assert.equal(r.c.state.phase, to);
+  }
+  assert.equal(r.c.snapshot().report.html, '<p>SYNTHETIC report</p>');
+});
 
 test('upload control: labelled, keyboard-reachable file input; busy disables; errors announced', () => {
   const base = { state: { phase: 'upload.idle', error: null }, busy: false, upload: null };
