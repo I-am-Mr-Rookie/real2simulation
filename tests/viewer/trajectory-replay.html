@@ -1,0 +1,19 @@
+<!doctype html>
+<!-- S09k manual/screenshot page: synthetic simulator trace replay. Serve repo root; open /tests/viewer/trajectory-replay.html -->
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>S09k replay</title>
+<body style="margin:0;padding:12px;box-sizing:border-box">
+<div id="host"></div><pre id="out">PENDING</pre>
+<script type="module">
+import { projectileTrajectory } from '/Build/simulator/trajectories.mjs';
+import { traceFromBody, sha256Hex, mountTrajectoryReplay } from '/Build/web/src/viewer/trajectory-replay.mjs';
+const sim = projectileTrajectory({ initialPosition: [0, 1, 0], initialVelocity: [3, 4, 0], gravity: 9.81, dt: 0.02, steps: 60, source: 'simulated', inputProvenance: 'synthetic' });
+const bytes = new TextEncoder().encode(JSON.stringify({ kind: sim.kind, source: 'simulated', inputProvenance: 'synthetic', dt_s: sim.dt_s, label: 'SIMULATED',
+  samples: sim.samples.map(({ step, time_s, position_m }) => ({ step, time_s, position_m })) }));
+const out = document.getElementById('out');
+try {
+  const v = await mountTrajectoryReplay(document.getElementById('host'), await traceFromBody(bytes, await sha256Hex(bytes)));
+  const r = document.querySelector('input[type=range]'); r.value = '0.6'; r.dispatchEvent(new Event('input'));
+  out.textContent = 'OK scrollWidth=' + document.documentElement.scrollWidth + ' innerWidth=' + innerWidth;
+  globalThis.replay = v;
+} catch (e) { out.textContent = 'FAIL ' + e.code + ' ' + e.message; }
+</script>

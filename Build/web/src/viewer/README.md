@@ -129,3 +129,12 @@ remain for later S09 runs; app route mounting is S04/S15 composition.
   banner element data-viewer-banner = 'synthetic' | 'scale-unverified'. Gate R FAIL -> S05f Fallback 2: no calibrated-scale claim.
 - RM02/RM04/RM05 MapAnything bundles load through the unchanged loader/adapter: tests/viewer/real-scenes.test.mjs (skips without
   gitignored media in evidence/S09/local/), visual page tests/viewer/real-scenes.html. Evidence: evidence/S09/S09h-real-scenes.md.
+
+## Simulated-trajectory replay (S09k)
+
+- trajectory-replay.mjs: traceFromBody(bytes, sha256) verifies exact body bytes (<=262144) then checkTrace; checkTrace validates the
+  S18k DTO (evidence/S18/S18k-TRACE-CONTRACT.md): exact fields, simulated/synthetic/SIMULATED labels, 2..4096 dense samples,
+  time_s === step*dt_s, finite |xyz| <= 1e4 m. mountTrajectoryReplay(host, trace, { mode, signal }) renders an SVG side view (x right,
+  +Y up) with SIMULATED banner, dashed reference axes labelled "not scene geometry", play/pause button + native range scrub.
+- Mystery mode throws UNAVAILABLE before touching host/trace. Not a scene-v1 bundle; createThreeViewer is unchanged.
+  Dispose (or signal abort) cancels the frame, removes listeners and DOM. Tests: tests/viewer/trajectory-replay.test.mjs.

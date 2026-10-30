@@ -1,0 +1,60 @@
+✔ loads the fixture bundle over transport, fetches only manifest + render asset, safe fetch options (73.9569ms)
+✔ adapter end-to-end with the loader: loading -> ready; loader codes pass through (10.7898ms)
+✔ splat bundle: loads, decodes centres/colours/scales/quaternions, renders as points (7.1996ms)
+✔ decodeSplats rejects bad records (1.3682ms)
+✔ loader rejects unsafe or inconsistent manifests before fetching assets (21.7282ms)
+✔ loader enforces transport integrity: status, JSON, size caps, length and sha (16.2458ms)
+✔ abort during fetch rejects with AbortError and adapter stays silent (32.3782ms)
+﹣ RM02 real bundle loads through loader + adapter with scale-unverified banner (2.406ms) # local media absent
+﹣ RM04 real bundle loads through loader + adapter with scale-unverified banner (0.2904ms) # local media absent
+﹣ RM05 real bundle loads through loader + adapter with scale-unverified banner (0.186ms) # local media absent
+✔ real (non-synthetic) scene without measured scale always carries the scale-unverified banner (24.6072ms)
+✔ desktop budget caps DPR at 2 and keeps full detail (3.1863ms)
+✔ 375 px phone gets reduced detail and DPR capped at 1.5 (1.5992ms)
+✔ tier boundaries: width 767 reduced, 768 full; memory <4 GiB or <4 cores reduced (0.4738ms)
+✔ invalid or missing device facts fall back deterministically (DPR 1, unknown facts ignored) (0.5255ms)
+✔ same device -> identical frozen budget (0.9092ms)
+✔ probeDevice uses the narrower of layout viewport and screen (phone page without meta viewport reports 980) (0.6833ms)
+✔ decimatePoints keeps every ceil(n/max)-th point, colours aligned (0.7491ms)
+✔ decimatePoints returns the original arrays when within budget and rejects bad caps (0.7303ms)
+✔ fixture geometry is aligned: collider faces touch surfaces, points lie on faces, labels in bounds (846.6925ms)
+✔ misalignment is reported: offset, rotation footprint, bad quaternion, label outside bounds, missing surface (820.2832ms)
+✔ collider edges: 12 segments per box, each an axis edge between corners (794.9077ms)
+✔ camera path: validation, lerp/slerp sampling, clamping (869.4763ms)
+✔ ndcToScreen maps the viewport and clips outside/behind (2.9298ms)
+✔ frameBounds centres target and frames the bounding sphere (4.2952ms)
+✔ orbit rotates at constant distance, clamps poles and zoom, ignores non-finite input (1.1167ms)
+✔ fixture mounts through the adapter, renders points with banner, orbits and unmounts with zero live resources (849.5346ms)
+✔ 100 mount/abort cycles leave no live resources (170.1931ms)
+✔ renderer start failure frees partial resources and reports RENDER_FAILED (15.0229ms)
+✔ non +Y-up model is rejected before touching the DOM (0.6528ms)
+✔ S09d fixture interaction: aligned colliders, projected text labels, camera path playback, clean unmount (792.5824ms)
+✔ S09f pauses rendering while hidden or offscreen and resumes correctly (795.5137ms)
+✔ 375 px phone budget: DPR 3 -> 1.5, no antialias, 600k points decimated to 200k (475.7073ms)
+✔ S09g 375 px compact layout: canvas fits host, reduced label detail, touch-size controls zoom/play, full again when wide (17.3265ms)
+✔ desktop budget: DPR 3 -> 2, antialias, points untouched; same device twice -> same budget (638.0604ms)
+✔ valid simulator-produced body verifies by byte hash and is frozen (33.3604ms)
+✔ rejects byte tamper, wrong labels, non-finite, non-dense, oversize, extra fields (12.6454ms)
+✔ sampleTrace interpolates and clamps (15.2916ms)
+✔ mystery mode is refused before touching host or trace (1.6652ms)
+✔ mount shows SIMULATED banner; scrub and play move marker; dispose cleans up (7.2829ms)
+✔ invalid trace never mounts (4.4532ms)
+✔ fixture scene is the S04a mount, marked synthetic, not Gate R evidence (18.9391ms)
+✔ scene model decodes PLY points and carries synthetic banner, physics disabled (853.5318ms)
+✔ scene model rejects mismatches and tampered bytes (787.0531ms)
+✔ mount: loading -> ready, idempotent dispose, no callbacks after dispose (5.3062ms)
+✔ shell abort after ready disposes the renderer once (3.9316ms)
+✔ mount rejects invalid requests before loading (4.2447ms)
+✔ mystery mode is unavailable until S10 redacted payload exists (3.6385ms)
+✔ abort during load rejects, never renders, stays silent (4.2366ms)
+✔ already-aborted signal rejects immediately (3.2598ms)
+✔ abort while renderer is being created disposes the partial renderer (4.6613ms)
+✔ load and renderer failures report error state with plain codes (5.3799ms)
+ℹ tests 52
+ℹ suites 0
+ℹ pass 49
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 3
+ℹ todo 0
+ℹ duration_ms 4287.9572
