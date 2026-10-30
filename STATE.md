@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+S07-pts-audit-orch58 DONE (Sol medium; TIMEBOX PASS; ff-merged). 23 PTS-bearing files audited: 18 OK,
+5 WRONG (ST03 f76 in orch13 run10/run11, orch14 result/run1; RM04 f11 orch40) -> errata maps in
+evidence/S07/S07b-errata/audit-orch58/ (originals untouched). Current consumers (S12 predict/overlay/
+gate-rs, S13f/h) already use corrected PTS. cost_log RATES +L4 $0.000222/GPU-s (Modal list price,
+fetched Oct30). Note: clips.csv has no sha column; hashes from evidence/clips/S02c-acquisition.json.
+
 DISPATCHED S07-pts-audit-orch58 Sol medium (threadId:01a18a4e-2f99-7cb1-bee4-a08b333b60e8,hostId:local, deadline 2026-10-30T01:25:41+00:00): old-_frames PTS audit + L4 cost rate.
 
 CLAUDE QUOTA: S14g-fix-orch55, S12e-fix2-orch56, R-C-orch57 all died 22:24Z Oct29 with 429 (retry
