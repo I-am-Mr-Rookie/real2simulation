@@ -1,5 +1,14 @@
 # Real2Simulation — STATE
 
+ARMY PERIOD (from 10:53Z = 16:53 Dhaka; all Claude/Opus per owner): dispatched S18h-125 S21a-126 S22a-127 S04j-128 R-W-129 R-L-130
+(dl 11:23Z), S21b-131 S18i-132 (dl 11:38Z), S04k-133 S18l-134 (dl 11:42Z); resumed S15k-orch122 (new window to 11:23:46Z).
+Receipt DISPATCH-orch125.json. ACCEPTED (timebox PASS, rebased, fresh tests, ff): S21a DONE (frozen benchmark manifest, leakage check,
+Gate M/RS NOT_MET; 6 tests), S18h DONE (credit validator; 2 Pexels + 13 SIMULATED credits; library 82), R-W CLEAR (S04i auth; P2 loopback
+risk -> S15k; P3 notes), S22a DONE (30-check Gate D checklist; candidate-deploy approval still required), S04j DONE (/library cards +
+replay; web-library 3, build PASS; BUT runtime spawns python -> web image has none -> controller added S04k snapshot fix), R-L
+CHANGES_REQUIRED (P2: Mystery-g g=9.81 recoverable from projectile trace/public repo) -> controller added S18l (route to /lab hidden g or
+relabel honestly). Next RID orch135.
+
 Oct30 ~10:40Z: ACCEPTED S18k-orch123 DONE (projectile baseline + small-angle pendulum traces playable, local only; free-fall baseline
 WITHHELD because it shares Mystery-g's answer record /cases/0; 9 other cases lack accepted setup pointers; RM02/RM04 PLY bytes absent
 locally -> UNAVAILABLE; library 81 OK). Controller decisions: S20c PARTIAL -> DONE (its only hold was R-C, now CLEAR + S20-fix1..4 +
