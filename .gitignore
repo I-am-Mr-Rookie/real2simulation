@@ -52,3 +52,9 @@ test-data/public/**/*.mov
 test-data/public/**/*.mkv
 test-data/public/**/*.avi
 /evidence/S05/S05b/recovery8/attempt-*/local/
+# S25c-recommended (controller, Oct31): local browser/tool scratch and the owner's private instruction PDF.
+.playwright-mcp/
+.tmp-*/
+Updated_Instructions_*.pdf
+*storage-state*.json
+*cookies*.json

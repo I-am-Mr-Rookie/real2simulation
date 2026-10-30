@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+Oct30 ~19:56Z: ACCEPTED S25c-orch155 DONE (secret scan: 351 branches/1,158 commits/6,166 blobs + 3,675 tracked files; regex + in-process
+exact .env value match; verdict PASS, 0 real secrets; only false positives = empty .env.example Modal names and public model IDs/URLs;
+358 binary/>8MB blobs, reflog, stashes not scanned; re-run scan.py before S25d. Controller re-checked: no .env credential value in the scan
+outputs; timebox PASS; diff within Owns). Controller hygiene: added S25c-recommended .gitignore entries (.playwright-mcp/, .tmp-*/,
+Updated_Instructions_*.pdf, *storage-state*.json, *cookies*.json); nothing deleted. Running: S04m-orch156. Next RID orch157.
+
 Oct30 ~19:52Z: ACCEPTED S13k-orch153 DONE (RM04 replay stitches understand from accepted S14g-fix3 spec, labelled RECORDED S14g-fix3 @
 2026-10-30T05:06:04Z ledger UTC; job reaches ready; jobs.scene_resolver(store) owner-scoped, questions 200/other owner 404; spec route 422 for
 RM04 = honest 'invalid authoritative bundle' (no real-scale bundle; not a defect of S13k). Fresh after rebase: api-workspace 16/16, pipeline 53/53;
