@@ -1,0 +1,30 @@
+{
+ "free_fall": {
+  "html": "report.html",
+  "pages": 2,
+  "pdf": "report.pdf",
+  "pdf_sha256": "b8e4232b1a2cbf834797082081420dcfbede7cba423012c243d70b3737f810a6",
+  "status": "pdf"
+ },
+ "pendulum": {
+  "html": "report.html",
+  "pages": 2,
+  "pdf": "report.pdf",
+  "pdf_sha256": "5db8ff9fba82c539e3c4f824422b81d68fae16cbf2c435d2137d8a0682448e97",
+  "status": "pdf"
+ },
+ "projectile": {
+  "html": "report.html",
+  "pages": 2,
+  "pdf": "report.pdf",
+  "pdf_sha256": "5942fb95b0e6de188f037b7ded2196c0cae2e9f8649b420f5416ce932eb4a4f9",
+  "status": "pdf"
+ },
+ "ramp": {
+  "html": "report.html",
+  "pages": 2,
+  "pdf": "report.pdf",
+  "pdf_sha256": "77d3a88fc3e1393b4cad9fcf88e87aa0b6fc7ebaad381f053cdade9129d244ff",
+  "status": "pdf"
+ }
+}

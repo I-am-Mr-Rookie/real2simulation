@@ -15,6 +15,17 @@ from typing import Any, Mapping
 from .contract import _PLACEHOLDER
 from .render import _fmt, build_charts, build_tables
 
+# Accessibility: dark-on-white text (high contrast), visible focus, skip link, print rules; digit-free so the numeric diff ignores it.
+_CSS = ("body{font-family:sans-serif;line-height:1.5;color:#111;background:#fff;max-width:48rem;margin:2rem auto;padding:0 1rem}"
+        "table{border-collapse:collapse}td,th{border:1px solid #767676;padding:.2rem .5rem;text-align:left}caption{font-weight:bold;text-align:left}"
+        ".tw{overflow-x:auto}.tw:focus,.skip:focus{outline:3px solid #0b57d0;outline-offset:2px}img{max-width:100%;height:auto}"
+        ".skip{position:absolute;left:-999px}.skip:focus{position:static}figure{margin:1rem 0}"
+        "@media print{.skip,.noprint{display:none}body{max-width:none;margin:0}.tw{overflow:visible}tr,figure{break-inside:avoid}"
+        "thead{display:table-header-group}}")
+CHART_ALT = {"gravity": "Bar chart of the fitted gravity value with one-sigma error bar; exact values are in the summary table.",
+             "residuals": "Bar chart of fit residuals per sample; exact values are in the residuals table.",
+             "model_selection": "Bar chart of AIC per candidate model, lower is better; exact scores are in the summary table."}
+
 # shortcut: the fitter is one polynomial model, so template text only names the context; per-template physics can grow when S12 adds models.
 TEMPLATE_TEXT: dict[str, dict[str, Any]] = {
     "free_fall": {"name": "Free fall", "model": "Vertical position against time; gravity comes from the curvature of the fitted polynomial.",
@@ -66,22 +77,29 @@ def render_html(report: Mapping[str, Any], fitter: Mapping[str, Any]) -> str:
     p = lambda s: _prose(s, nums, _h, "\u00b1")
     o = ['<!DOCTYPE html>', '<html lang="en"><head><meta charset="utf-8">',
          '<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src data:; style-src \'unsafe-inline\'">',
-         f"<title>{p(report['title'])}</title>",
-         "<style>body{font-family:sans-serif;max-width:48rem;margin:2rem auto}table{border-collapse:collapse}"
-         "td,th{border:1px solid #888;padding:.2rem .5rem;text-align:left}</style></head><body>",
-         f"<h1>{p(report['title'])}</h1>", f"<h2>{_h(t['name'])}</h2>", f"<p>{_h(t['model'])}</p>",
+         '<meta name="viewport" content="width=device-width, initial-scale=1">',
+         f"<title>{p(report['title'])}</title>", "<style>" + _CSS + "</style></head><body>",
+         '<a class="skip" href="#main">Skip to report content</a><main id="main">',
+         f"<h1>{p(report['title'])}</h1>",
+         '<p class="noprint">To save a PDF, use your browser Print command and choose Save as PDF.</p>',
+         f"<h2>{_h(t['name'])}</h2>", f"<p>{_h(t['model'])}</p>",
          "<ul>" + "".join(f"<li>{_h(a)}</li>" for a in t["assumptions"]) + "</ul>"]
     for s in report["sections"]:
-        o.append(f'<section id="{_h(s["id"])}"><h2>{p(s["title"])}</h2>' + "".join(f"<p>{p(x)}</p>" for x in s["text"]) + "</section>")
+        o.append(f'<section id="{_h(s["id"])}" aria-labelledby="h-{_h(s["id"])}"><h2 id="h-{_h(s["id"])}">{p(s["title"])}</h2>'
+                 + "".join(f"<p>{p(x)}</p>" for x in s["text"]) + "</section>")
     for tb in tables:
-        o.append(f'<table id="{_h(tb["id"])}"><caption>{_h(tb["caption"])}</caption><tr>'
-                 + "".join(f'<th>{_h(c["header"])}</th>' for c in tb["columns"]) + "</tr>")
+        # scrollable wrapper is focusable so keyboard users can pan a wide table; first column is the row header
+        o.append(f'<div class="tw" role="region" aria-label="{_h(tb["caption"])}" tabindex="0"><table id="{_h(tb["id"])}">'
+                 f'<caption>{_h(tb["caption"])}</caption><thead><tr>'
+                 + "".join(f'<th scope="col">{_h(c["header"])}</th>' for c in tb["columns"]) + "</tr></thead><tbody>")
         for r in tb["rows"]:
-            o.append("<tr>" + "".join(f'<td>{_h(str(r.get(c["key"], "")))}</td>' for c in tb["columns"]) + "</tr>")
-        o.append("</table>")
+            o.append("<tr>" + "".join(("<th scope=\"row\">" if i == 0 else "<td>") + _h(str(r.get(c["key"], ""))) + ("</th>" if i == 0 else "</td>")
+                                      for i, c in enumerate(tb["columns"])) + "</tr>")
+        o.append("</tbody></table></div>")
     for k, svg in charts.items():  # data-URI img: the SVG cannot touch the page DOM or run script
-        o.append(f'<p><img alt="{_h(k)} chart" src="data:image/svg+xml;base64,{base64.b64encode(svg.encode()).decode()}"></p>')
-    o.append(f"<footer><small>fitter_digest {_h(report['fitter_digest'])}; labels: {_h(', '.join(tables[0]['labels']))}</small></footer>")
+        o.append(f'<figure><img alt="{_h(CHART_ALT[k])}" src="data:image/svg+xml;base64,{base64.b64encode(svg.encode()).decode()}">'
+                 f"<figcaption>{_h(CHART_ALT[k])}</figcaption></figure>")
+    o.append(f"</main><footer><small>fitter_digest {_h(report['fitter_digest'])}; labels: {_h(', '.join(tables[0]['labels']))}</small></footer>")
     return "\n".join(o + ["</body></html>"]) + "\n"
 
 
@@ -89,7 +107,7 @@ def render_tex(report: Mapping[str, Any], fitter: Mapping[str, Any]) -> str:
     tables = build_tables(report, fitter)
     t, nums = TEMPLATE_TEXT[report["template"]], report["numbers"]
     p = lambda s: _prose(s, nums, tex_escape, r"$\pm$")
-    o = [r"\documentclass[11pt]{article}", r"\usepackage{longtable}",
+    o = [r"\documentclass[11pt]{article}", r"\usepackage{longtable}", r"\usepackage[pdfusetitle,pdflang={en}]{hyperref}",  # PDF title + language
          "\\title{" + p(report["title"]) + "}", r"\author{}\date{}", r"\begin{document}\maketitle",
          "\\section*{" + tex_escape(t["name"]) + "}", tex_escape(t["model"]) + "\n",
          r"\begin{itemize}" + "".join("\n\\item " + tex_escape(a) for a in t["assumptions"]) + "\n" + r"\end{itemize}"]
