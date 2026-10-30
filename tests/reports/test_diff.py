@@ -4,7 +4,7 @@ from Build.reports.diff import diff_report
 from Build.reports.typeset import render_html, render_tex
 from Build.fitter.api import handle
 
-from .templates import MODELS, report, request
+from tests.reports.templates import MODELS, report, request
 
 
 class NumericDiff(unittest.TestCase):
