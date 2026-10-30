@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+S12e-fix2b-orch59 accepted (Opus high; TIMEBOX PASS; prediction 37 OK canonical; ff-merged):
+prediction/v2 commitment binds clip/source sha/training/suffix seal+count; v1 legacy-audit only;
+ST03 re-committed v2 (b9c092b5...); public_receipt from clips.csv + APPROVAL.md + S02c registry,
+caller provenance descriptive only. Gate RS NOT_MET measurements unchanged. Limit: receipt binds
+declared clip+sha, not that observations came from those bytes. S12e PARTIAL until recheck2 CLEAR.
+
 Claude probe orch59 progressing (quota recovered ~03:46Z).
 DISPATCHED R-C-orch60 Opus high (threadId:01a18aef-07a8-72f0-a39b-60ca7faf38ab,hostId:local, deadline 2026-10-30T04:21:21+00:00) from 429 WIP.
 DISPATCHED S14g-fix-orch61 Opus high (threadId:01a18af1-4397-7f03-a1ef-f7f44a8f5f78,hostId:local, deadline 2026-10-30T04:23:39+00:00) from 429 WIP.
