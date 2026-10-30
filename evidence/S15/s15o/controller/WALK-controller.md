@@ -1,6 +1,6 @@
 # S15o controller walk (exception) — DEV, ChatGPT in-app browser
 
-Run by the controller chat on 2026-10-30 ~21:10-21:20Z. Worker S15o-orch161 could not reach the in-app browser: the IAB is bound to the controller chat session (cua inventory metadata codexSessionId = controller), so it is unavailable inside worker chats. Recorded controller exception; no code changed.
+Run by the controller chat on 2026-10-30 ~20:58-21:06Z. Worker S15o-orch161 could not reach the in-app browser: the IAB is bound to the controller chat session (cua inventory metadata codexSessionId = controller), so it is unavailable inside worker chats. Recorded controller exception; no code changed.
 Web DEV e6bf5fe2, API DEV a2777e67. Profile was already signed in as the owner; auth was not changed. No paid call.
 
 | # | Stage | Result | Evidence |

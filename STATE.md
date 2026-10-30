@@ -1,6 +1,8 @@
 # Real2Simulation — STATE
 
-Oct30 ~21:20Z: S15o-orch161 PARTIAL accepted as evidence (IAB unavailable in worker chats; RM04 sha verified; logged-out checks PASS). Root cause:
+Oct30 ~21:08Z: Dispatched S15q-orch162 (Opus med), thread 01a18ea4-04c3, dl 21:37:40Z. Next RID orch163.
+
+Oct30 ~21:06Z: S15o-orch161 PARTIAL accepted as evidence (IAB unavailable in worker chats; RM04 sha verified; logged-out checks PASS). Root cause:
 the ChatGPT in-app browser is bound to the CONTROLLER chat session (cua inventory codexSessionId = controller), so workers cannot use it.
 CONTROLLER EXCEPTION: the controller ran the signed-in DEV walk itself (no code changes); see evidence/S15/s15o/controller/WALK-controller.md.
 PASS: LIVE notice, RM04 upload (4 chunks + complete 200), job ready, questions 200, 375px no horizontal scroll, no secrets visible.
