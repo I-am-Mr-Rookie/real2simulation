@@ -8,7 +8,7 @@ from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from pathlib import Path
 
-from Build.guardrails.accounting import liability_usd, meta_snapshot, usd
+from Build.guardrails.accounting import headroom_usd, liability_usd, meta_snapshot, usd
 
 MODAL_CAP_USD = Decimal("30")
 MODAL_FLOOR_USD = Decimal("5")
@@ -56,6 +56,10 @@ def require_reconstruction(state_path, *, candidate_modal_usd, candidate_meta_us
     try:
         state = json.loads(Path(state_path).read_text(encoding="utf-8"),
                            object_pairs_hook=_unique_fields, parse_float=Decimal)
+        allowed = {"schema", "as_of", "paused", "coverage_verified", "credit_verified",
+                   "sources", "Meta Model API", "Modal", "AWS"}
+        if not isinstance(state, dict) or set(state) - allowed:
+            raise ValueError("Unknown snapshot fields")
         clock = now if now is not None else datetime.now(timezone.utc)
         as_of = datetime.fromisoformat(state["as_of"])
         if (state["schema"] != "reconstruction-admission/1" or state["paused"] is not False
@@ -77,12 +81,20 @@ def require_reconstruction(state_path, *, candidate_modal_usd, candidate_meta_us
         committed = usd(modal["historical_usd"]) + sum(
             (liability_usd(row) for row in modal["requests"]), Decimal(0))
         projected = committed + modal_candidate
-        meta_credit, modal_credit = usd(meta["credit_headroom_usd"]), usd(modal["credit_headroom_usd"])
+        meta_credit, modal_credit = headroom_usd(meta["credit_headroom_usd"]), headroom_usd(modal["credit_headroom_usd"])
+        aws_committed = None
+        if "AWS" in state:
+            aws = _provider(state, "AWS")
+            aws_committed = usd(aws["historical_usd"]) + sum(
+                (liability_usd(row) for row in aws["requests"]), Decimal(0))
+            if aws_committed > 50:
+                raise ValueError("AWS liabilities exceed gross cap")
+            headroom_usd(aws["credit_headroom_usd"])
         if (not accounting["routine_cap_allows"] or meta_credit < meta_candidate
                 or projected > MODAL_CAP_USD or modal_credit < modal_candidate
                 or min(MODAL_CAP_USD - projected, modal_credit - modal_candidate) < MODAL_FLOOR_USD):
             raise ReconstructionPaused("Reconstruction budget cap or credit floor reached")
         return {"meta": accounting, "modal_committed_usd": committed,
-                "modal_projected_usd": projected}
+                "modal_projected_usd": projected, "aws_committed_usd": aws_committed}
     except (OSError, UnicodeError, ValueError, TypeError, KeyError, AttributeError, OverflowError):
         raise ReconstructionPaused("Reconstruction accounting state unavailable or invalid") from None

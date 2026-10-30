@@ -1,5 +1,5 @@
 """Offline S20a accounting reference over existing ledger fields; no I/O or live admission lock."""
-from decimal import Decimal, InvalidOperation, ROUND_CEILING
+from decimal import Decimal, InvalidOperation, ROUND_CEILING, ROUND_FLOOR
 
 META_ALLOCATION_USD = Decimal("150")
 META_ROUTINE_STOP_USD = Decimal("120")
@@ -35,6 +35,12 @@ def liability_usd(row):
     if "reserved_usd" not in amounts:
         raise ValueError("Unsettled request requires a conservative reservation")
     return max(amounts.values())
+
+
+def headroom_usd(value):
+    """Validate like a liability, but never round available credit up."""
+    usd(value)
+    return Decimal(str(value)).quantize(Decimal("0.00000001"), rounding=ROUND_FLOOR)
 
 
 def meta_snapshot(historical_usd, requests, candidate_usd=0):

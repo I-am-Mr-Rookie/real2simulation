@@ -16,6 +16,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from Build.pipeline.jobs import StageError
+from Build.guardrails.admission import ReconstructionPaused
+from Build.guardrails.reservations import reserve_gpu
 
 ROOT = Path(__file__).resolve().parents[2]
 MAX_JOBS, CAP_USD = 2, 1.0  # S13f contract: <=2 Modal GPU jobs, <=$1 total, retries 0
@@ -38,15 +40,10 @@ def _now():
 
 def reserve(ledger, stage, key, usd):
     """Append a reservation row or raise SPEND_PAUSED; rows count even if the job later fails (conservative)."""
-    ledger = Path(ledger)
-    rows = [json.loads(x) for x in ledger.read_text(encoding="utf-8").splitlines() if x] if ledger.exists() else []
-    spent = sum(r["reserved_usd"] for r in rows)
-    if len(rows) >= MAX_JOBS or spent + usd > CAP_USD:
-        raise StageError("SPEND_PAUSED", f"GPU budget guard: {len(rows)} jobs, reserved USD {spent:.2f}, next {usd:.2f}", False)
-    ledger.parent.mkdir(parents=True, exist_ok=True)
-    with ledger.open("a", encoding="utf-8") as fh:
-        fh.write(json.dumps({"utc": _now(), "stage": stage, "idempotency_key": key, "reserved_usd": usd,
-                             "billed_usd": None}) + "\n")
+    try:
+        reserve_gpu(ROOT, ledger, stage, key, usd, max_jobs=MAX_JOBS, cap_usd=CAP_USD)
+    except ReconstructionPaused as exc:
+        raise StageError("SPEND_PAUSED", str(exc), False) from None
 
 
 def _write(out_dir, name, doc):
