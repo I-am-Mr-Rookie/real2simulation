@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 30, 17:45 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 17:53 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **191 / 235** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **196 / 235** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -14,16 +14,17 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- Nothing ready yet: check dependencies and retry holds below.
+- [ ] **S13i** — Codex (native Claude) · Opus 5.5, effort high — API upload + job routes with RECORDED-replay executor (approved-clip sha gate) (30 min)
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [ ] **S04n** — Codex (native Claude) · Opus 5.5, effort medium — Web BFF proxy /api/workspace/[...path] (Clerk auth, capped body, private-network forward) (30 min)
 - [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
-- …and 1 more ready in this lane
+- …and 2 more ready in this lane
 
 **CLAUDE**
-- Nothing ready yet: check dependencies and retry holds below.
+- [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
+- [ ] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
 
 ## Waiting for Koushik
 
@@ -239,7 +240,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S14</b> — Scene-understanding and interview agent (9/10)</summary>
+<details><summary><b>S14</b> — Scene-understanding and interview agent (10/10)</summary>
 
 - [x] **S14a** — Codex (native Claude) · Opus 5.5, effort high — Define scene, question and tool-output contracts (30 min)
 - [x] **S14b** — Codex (native Claude) · Opus 5.5, effort high — Integrate Muse Wonder scene understanding (30 min)
@@ -249,12 +250,12 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S14f** — Codex (native Claude) · Opus 5.5, effort high — Enforce tool-only numbers in replies (30 min)
 - [x] **S14g** — Codex (native Claude) · Opus 5.5, effort high — Run Gate A fixture and thirty-turn suite (30 min)
 - [x] **S14h** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint Gate A and template-card fallback (30 min)
-- [ ] **S14i** — Codex (native Claude) · Opus 5.5, effort high — API workspace analysis routers: internal-token auth, interview questions, spec validate, fit, HTML report (30 min)
+- [x] **S14i** — Codex (native Claude) · Opus 5.5, effort high — API workspace analysis routers: internal-token auth, interview questions, spec validate, fit, HTML report (30 min)
 - [x] **R-A** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate A tool-number enforcement (15 min)
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (11/15)</summary>
+<details><summary><b>S15</b> — Workspace UI (12/15)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -269,7 +270,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
 - [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint workspace accessibility and evidence (30 min)
 - [x] **S15m** — Codex (native Claude) · Opus 5.5, effort high — Plan end-to-end workspace wiring (upload to report) (30 min)
-- [ ] **S15n** — Codex (native Claude) · Opus 5.5, effort high — Workspace controller: reduce() state + fetch adapters + upload control (30 min)
+- [x] **S15n** — Codex (native Claude) · Opus 5.5, effort high — Workspace controller: reduce() state + fetch adapters + upload control (30 min)
 - [ ] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min)
 
 </details>
@@ -316,12 +317,12 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S19</b> — Installable PWA and phone layout (3/4)</summary>
+<details><summary><b>S19</b> — Installable PWA and phone layout (4/4)</summary>
 
 - [x] **S19a** — Codex (native Claude) · Sonnet 5.5, effort high — Add PWA manifest and icons from owned assets (30 min)
 - [x] **S19b** — Codex (native Claude) · Sonnet 5.5, effort high — Add safe service-worker caching (30 min)
 - [x] **S19c** — Codex (native Claude) · Sonnet 5.5, effort high — Add install guidance and orientation handling (30 min)
-- [~] **S19d** — Codex (native Claude) · Sonnet 5.5, effort medium — Verify installability and 375px walkthrough (30 min) *(partial: resume it)*
+- [x] **S19d** — Codex (native Claude) · Sonnet 5.5, effort medium — Verify installability and 375px walkthrough (30 min)
 
 </details>
 
@@ -370,9 +371,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S24</b> — Three-minute demo video (0/10)</summary>
+<details><summary><b>S24</b> — Three-minute demo video (1/10)</summary>
 
-- [~] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min) *(partial: resume it)*
+- [x] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min)
 - [ ] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
 - [ ] **S24c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture room rebuild and interview (30 min)
 - [ ] **S24d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture held-out prediction and reveal (30 min)
@@ -385,9 +386,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S25</b> — README, attribution and public repo (0/5)</summary>
+<details><summary><b>S25</b> — README, attribution and public repo (1/5)</summary>
 
-- [ ] **S25a** — Codex · GPT-6.1 Sol, effort medium — Write setup, architecture and Meta usage README (30 min)
+- [x] **S25a** — Codex · GPT-6.1 Sol, effort medium — Write setup, architecture and Meta usage README (30 min)
 - [ ] **S25b** — Codex · GPT-6.1 Sol, effort medium — Write footage attribution and public-package checklist (30 min)
 - [ ] **S25c** — Codex · GPT-6.1 Sol, effort medium — Scan tracked files and full Git history (30 min)
 - [ ] **S25d** — Authorize public repository visibility (10 min)
