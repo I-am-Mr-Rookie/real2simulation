@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+CLAUDE PROBE: DISPATCHED S12e-fix2b-orch59 Opus high from orch56 WIP (threadId:01a18aea-630c-7b82-bf7c-26c18c10b090,hostId:local, deadline 2026-10-30T04:16:18+00:00). If 429 again: wait, no churn.
+
 S07-pts-audit-orch58 DONE (Sol medium; TIMEBOX PASS; ff-merged). 23 PTS-bearing files audited: 18 OK,
 5 WRONG (ST03 f76 in orch13 run10/run11, orch14 result/run1; RM04 f11 orch40) -> errata maps in
 evidence/S07/S07b-errata/audit-orch58/ (originals untouched). Current consumers (S12 predict/overlay/
