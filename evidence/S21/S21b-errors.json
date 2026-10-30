@@ -1,0 +1,436 @@
+{
+ "schema": "s21b-errors/1",
+ "generated_by": "Build/benchmark/errors.py",
+ "manifest_sha256": "884e6c55328433c85e543624869384daa58811a7b3f6e59cc506e42f491d4734",
+ "evidence_sha256": {
+  "gate_rs": "f913897d407139ce78d3f35434e046ddd931f88f0229d9d96c1ff388f41b4d85",
+  "prediction_st03": "651a01edef6d0ccf0b56b3a1d911ed22d819112e67c595903bad94149907bad2",
+  "boundary_st03": "d4b3370fcc3e74029d5b22d479c744e6d522dae928ad3864c6feceb92e5c552b",
+  "training_st03": "c71ce907fd2d5d799a5781eaf3d570ac5543002a8e47535b7758606ac01e5d45",
+  "heldout_track_st03": "e30807fcf5887ad0c43f0b1317a491411c8ce4b34e86c16c7ca290524f028f55",
+  "cost_st03_job": "2766c973c53fd3530ce042cf77bcb1b725b2d79889e178a5f75fa5ece4faa147",
+  "scale_s05d": "da03599d50e8731a380dd2b993f550e8168395b6877ea6e9c74626a4c8df406e",
+  "scene_log_rm02": "8e3d689d24ebe56fbaec358f8bec1625e37f91152903fff1061616caa80c2d26",
+  "scene_log_rm04": "0dd242560f5f1e66491d0c706b8fbe4875b9a43dd6d9201bb0a99c8fa2fdebcc",
+  "checkpoint_s06h": "82b41f7808d45731a9072bc36ce6376a084297111337470d3b4a51aca921ec40",
+  "fitter_s11_analytic": "cb7be2c79bcfea4fbcb53ec0a7e7d90eae7fecd2539d050d2ab10dec525222df"
+ },
+ "gates": {
+  "gate_m": "NOT_MET_INPUT_READINESS",
+  "gate_rs": "NOT_MET"
+ },
+ "summary": {
+  "measured": 8,
+  "unavailable": 8
+ },
+ "rows": [
+  {
+   "id": "gravity_magnitude_error_m_s2",
+   "class": "unavailable",
+   "value": null,
+   "unit": "m/s^2",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/gravity/magnitude_m_s2"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/gravity/magnitude_m_s2"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM05/gravity/magnitude_m_s2"
+    }
+   ],
+   "reason": "Gate M NOT_MET_INPUT_READINESS: Gate M NOT_MET: no calibrated scale or capture clock",
+   "reason_sources": [
+    {
+     "evidence": "boundary_st03",
+     "pointer": "/gate_m_source/status"
+    },
+    {
+     "evidence": "gate_rs",
+     "pointer": "/limitations/0"
+    },
+    {
+     "evidence": "prediction_st03",
+     "pointer": "/limitations/1"
+    }
+   ],
+   "note": "applies to ST03 and RM02/RM04/RM05; no clip has calibrated g"
+  },
+  {
+   "id": "st03_g_image_relative_uncertainty",
+   "class": "measured",
+   "value": 0.07367405813396816,
+   "unit": "fraction (1-sigma / abs g)",
+   "uncertainty": null,
+   "uncertainty_kind": "1-sigma standard",
+   "n": 19,
+   "sources": [
+    {
+     "evidence": "prediction_st03",
+     "pointer": "/parameters/0/value"
+    },
+    {
+     "evidence": "prediction_st03",
+     "pointer": "/parameters/0/uncertainty"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "g = 1.846169545845327 +/- 0.13601480244577022 image-height/s^2 (prefix fit, uncalibrated); precision of the fit, NOT an error vs true g"
+  },
+  {
+   "id": "rm02_gravity_direction_error_vs_truth",
+   "class": "unavailable",
+   "value": null,
+   "unit": "deg",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/gravity/basis"
+    }
+   ],
+   "reason": "no independent ground-truth vertical in evidence; basis: floor normal assumed horizontal; magnitude never assumed",
+   "reason_sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/gravity/basis"
+    }
+   ],
+   "note": null
+  },
+  {
+   "id": "rm02_gravity_direction_bootstrap_sd",
+   "class": "measured",
+   "value": 0.04393192042834663,
+   "unit": "deg (1 sd)",
+   "uncertainty": 0.21028928458690643,
+   "uncertainty_kind": "bootstrap max deviation over 50 resamples",
+   "n": 4124,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/gravity/uncertainty_deg_1sd"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/floor/normal_bootstrap_max_deg"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "n = floor inlier points; precision, not accuracy"
+  },
+  {
+   "id": "rm02_gravity_vs_camera_down_prior",
+   "class": "measured",
+   "value": 11.0526638876659,
+   "unit": "deg",
+   "uncertainty": 0.04393192042834663,
+   "uncertainty_kind": "floor-normal bootstrap 1 sd (prior uncertainty unrecorded)",
+   "n": 4124,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/gravity/direction"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/camera_down_prior"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/floor/angle_to_camera_down_prior_deg"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "disagreement between two estimates, not error vs truth; recomputed from pinned vectors"
+  },
+  {
+   "id": "rm04_gravity_direction_error_vs_truth",
+   "class": "unavailable",
+   "value": null,
+   "unit": "deg",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/gravity/basis"
+    }
+   ],
+   "reason": "no independent ground-truth vertical in evidence; basis: floor normal assumed horizontal; magnitude never assumed",
+   "reason_sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/gravity/basis"
+    }
+   ],
+   "note": null
+  },
+  {
+   "id": "rm04_gravity_direction_bootstrap_sd",
+   "class": "measured",
+   "value": 0.01951263849441864,
+   "unit": "deg (1 sd)",
+   "uncertainty": 0.06255725026130676,
+   "uncertainty_kind": "bootstrap max deviation over 50 resamples",
+   "n": 3399,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/gravity/uncertainty_deg_1sd"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/floor/normal_bootstrap_max_deg"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "n = floor inlier points; precision, not accuracy"
+  },
+  {
+   "id": "rm04_gravity_vs_camera_down_prior",
+   "class": "measured",
+   "value": 3.627442796301267,
+   "unit": "deg",
+   "uncertainty": 0.01951263849441864,
+   "uncertainty_kind": "floor-normal bootstrap 1 sd (prior uncertainty unrecorded)",
+   "n": 3399,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/gravity/direction"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/camera_down_prior"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/floor/angle_to_camera_down_prior_deg"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "disagreement between two estimates, not error vs truth; recomputed from pinned vectors"
+  },
+  {
+   "id": "rm05_gravity_direction",
+   "class": "unavailable",
+   "value": null,
+   "unit": "deg",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM05/gravity/direction"
+    }
+   ],
+   "reason": "clip source: not under gravity",
+   "reason_sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM05/gravity/reason"
+    }
+   ],
+   "note": null
+  },
+  {
+   "id": "rm02_metric_scale_error",
+   "class": "unavailable",
+   "value": null,
+   "unit": "m per model unit",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/metric_scale/metres_per_model_unit"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/mapanything_metric_scaling_factor"
+    }
+   ],
+   "reason": "no source-backed known-size object reference; S02d: 'Room; scene-only' - no source-documented object dimension (door/A4/ball) for RM02; no annotated pixel endpoints",
+   "reason_sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/metric_scale/reason"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/metric_scale/missing_reference"
+    }
+   ],
+   "note": "MapAnything's self-reported scaling factor has no reference to compare against"
+  },
+  {
+   "id": "rm02_floor_plane_rms_residual",
+   "class": "measured",
+   "value": 0.008069973438978195,
+   "unit": "model units (not metres)",
+   "uncertainty": 0.014561816118657589,
+   "uncertainty_kind": "p95 abs residual",
+   "n": 4124,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/floor/rms_residual"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM02/floor/p95_abs_residual"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "geometric fit error in unscaled model units"
+  },
+  {
+   "id": "rm04_metric_scale_error",
+   "class": "unavailable",
+   "value": null,
+   "unit": "m per model unit",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/metric_scale/metres_per_model_unit"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/mapanything_metric_scaling_factor"
+    }
+   ],
+   "reason": "no source-backed known-size object reference; S02d: 'Room; scene-only' (Pexels empty classroom) - no source-documented desk/door/A4 size; country-specific standard door height not source-backed for this room",
+   "reason_sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/metric_scale/reason"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/metric_scale/missing_reference"
+    }
+   ],
+   "note": "MapAnything's self-reported scaling factor has no reference to compare against"
+  },
+  {
+   "id": "rm04_floor_plane_rms_residual",
+   "class": "measured",
+   "value": 0.00618046335875988,
+   "unit": "model units (not metres)",
+   "uncertainty": 0.010948818176984787,
+   "uncertainty_kind": "p95 abs residual",
+   "n": 3399,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/floor/rms_residual"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM04/floor/p95_abs_residual"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "geometric fit error in unscaled model units"
+  },
+  {
+   "id": "rm05_metric_scale_error",
+   "class": "unavailable",
+   "value": null,
+   "unit": "m per model unit",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM05/metric_scale/metres_per_model_unit"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM05/mapanything_metric_scaling_factor"
+    }
+   ],
+   "reason": "no source-backed known-size object reference; S02d: 'Hatch/handrail dimensions unverified' - no source-backed ISS hatch/handrail dimension tied to annotated pixels",
+   "reason_sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM05/metric_scale/reason"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM05/metric_scale/missing_reference"
+    }
+   ],
+   "note": "MapAnything's self-reported scaling factor has no reference to compare against"
+  },
+  {
+   "id": "rm05_floor_plane_rms_residual",
+   "class": "measured",
+   "value": 0.011544126085937023,
+   "unit": "model units (not metres)",
+   "uncertainty": 0.01897639036178589,
+   "uncertainty_kind": "p95 abs residual",
+   "n": 2207,
+   "sources": [
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM05/floor/rms_residual"
+    },
+    {
+     "evidence": "scale_s05d",
+     "pointer": "/RM05/floor/p95_abs_residual"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "geometric fit error in unscaled model units"
+  },
+  {
+   "id": "st03_metric_scale_error",
+   "class": "unavailable",
+   "value": null,
+   "unit": "m per image-height",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "prediction_st03",
+     "pointer": "/parameters/0/unit"
+    }
+   ],
+   "reason": "positions are image-height fractions, not metres; no calibrated g",
+   "reason_sources": [
+    {
+     "evidence": "prediction_st03",
+     "pointer": "/limitations/1"
+    }
+   ],
+   "note": null
+  }
+ ]
+}
