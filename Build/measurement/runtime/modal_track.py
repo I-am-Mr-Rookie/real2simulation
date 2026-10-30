@@ -33,7 +33,8 @@ FIRST, LAST = 58, 76  # continuous unoccluded fall f58-76 (clips.csv); prefix en
 # orch14 run1 (prefix-only stream boxes): obj 0/1 are static ground apples (y~0.82-0.84); obj 2 falls y 0.32->0.77.
 OBJECT_ID = 2
 # Batch worst case = (300 s startup_timeout + this timeout) x (A10 $0.000306 + 2 cores x $0.0000131
-# + 16 GiB x $0.00000222)/s = 1080 x $0.0003677 = $0.397 <= the $0.40 standalone envelope (S07i).
+# + 16 GiB x $0.00000222)/s = 1080 x $0.0003677 = $0.397 <= the $0.40 standalone envelope (S07i). Count-independent:
+# S07j's 5-clip OWN07-OWN11 retry has the same $0.397 all-in bound (<= envelope 2's remaining $0.50).
 BATCH_TIMEOUT_S = 780
 
 
@@ -68,6 +69,18 @@ def iou(a, b):
 
 
 MIN_RESEED_IOU = 0.5
+# S07j: one SAM predictor per container. S07i reloaded it per clip; reserved VRAM grew to ~22-23 GB and
+# OWN07-OWN11 hit CUDA OOM on the A10 even with gc.collect() + empty_cache() between clips.
+_MODEL = []
+
+
+def shared_predictor(load):
+    """(predictor, original handle_request, original handle_stream_request); load() runs once per container.
+    A failed load caches nothing, so the next clip retries; callers re-wrap the originals per clip."""
+    if not _MODEL:
+        predictor = load()
+        _MODEL.append((predictor, predictor.handle_request, predictor.handle_stream_request))
+    return _MODEL[0]
 
 
 def track_chunks(predictor, frames_dir, metadata, frame_map, frame_sha, prompt, object_id, chunk,
@@ -167,7 +180,7 @@ def track_batch(jobs, masks=False, chunk=0):
     results = []
     for frames, metadata, frame_map, prompt, object_id in jobs:
         results.append(json.loads(track_one(frames, metadata, frame_map, prompt, object_id, masks, chunk)))
-        gc.collect()  # drop the previous predictor before the next clip loads its own
+        gc.collect()  # drop the previous clip's sessions/tensors; the predictor itself is shared (_MODEL)
         if "torch" in sys.modules:
             sys.modules["torch"].cuda.empty_cache()
     return json.dumps(results)
@@ -214,22 +227,27 @@ def track_one(frames, metadata, frame_map, prompt, object_id=OBJECT_ID, masks=Fa
         sys.path.insert(0, "/root")
         from measurement.tracking import load_local_predictor, track_training
         t = time.monotonic()
-        import functools
-        import sam3.model_builder as builder
-        # FA3 kernel is Hopper-only and not installed (run8 failed in sam3/perflib/fa3.py on A10/L4).
-        build = builder.build_sam3_multiplex_video_predictor
-        builder.build_sam3_multiplex_video_predictor = lambda **kw: build(
-            **{**kw, "use_fa3": False})
+
+        def load():
+            import sam3.model_builder as builder
+            # FA3 kernel is Hopper-only and not installed (run8 failed in sam3/perflib/fa3.py on A10/L4).
+            build = builder.build_sam3_multiplex_video_predictor
+            builder.build_sam3_multiplex_video_predictor = lambda **kw: build(
+                **{**kw, "use_fa3": False})
+            predictor = load_local_predictor(path, execute=True)  # re-verifies size+SHA
+            import inspect
+            init = predictor.model.init_state
+            if "offload_state_to_cpu" not in inspect.signature(init).parameters:
+                # Upstream f1647e8 base start_session always passes it; multiplex init_state rejects it (run7).
+                predictor.model.init_state = lambda **kw: init(
+                    **{k: v for k, v in kw.items() if k != "offload_state_to_cpu"})
+            return predictor
+        out["model_reused"] = bool(_MODEL)
+        predictor, handle, stream = shared_predictor(load)
         out["builder_override"] = "use_fa3=False"
-        predictor = load_local_predictor(path, execute=True)  # re-verifies size+SHA
-        import inspect
-        init = predictor.model.init_state
-        if "offload_state_to_cpu" not in inspect.signature(init).parameters:
-            # Upstream f1647e8 base start_session always passes it; multiplex init_state rejects it (run7).
-            predictor.model.init_state = lambda **kw: init(
-                **{k: v for k, v in kw.items() if k != "offload_state_to_cpu"})
+        if getattr(predictor.model.init_state, "__name__", "") == "<lambda>":
             out["shim"] = "dropped unsupported offload_state_to_cpu=False kwarg"
-        handle, out["requests"] = predictor.handle_request, []
+        out["requests"] = []
 
         def logged(request):  # diagnostic: object count per request (run9 0-batch error)
             resp = handle(request)
@@ -237,7 +255,7 @@ def track_one(frames, metadata, frame_map, prompt, object_id=OBJECT_ID, masks=Fa
             out["requests"].append([request["type"], None if ids is None else len(ids)])
             return resp
         predictor.handle_request = logged
-        stream, out["stream"] = predictor.handle_stream_request, []
+        out["stream"] = []
 
         if masks:
             out["masks"] = []
@@ -256,8 +274,8 @@ def track_one(frames, metadata, frame_map, prompt, object_id=OBJECT_ID, masks=Fa
             for resp in stream(request):
                 log(resp)
                 yield resp
-        if not chunk:  # chunk mode logs the merged selected-object stream instead
-            predictor.handle_stream_request = logged_stream
+        # chunk mode logs the merged selected-object stream instead; reset either way (shared predictor)
+        predictor.handle_stream_request = stream if chunk else logged_stream
         out["load_s"] = round(time.monotonic() - t, 1)
         out["stages"].append("model_loaded")
         t = time.monotonic()

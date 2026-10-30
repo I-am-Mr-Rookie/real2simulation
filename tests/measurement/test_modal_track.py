@@ -285,3 +285,44 @@ class BatchTest(unittest.TestCase):
         self.assertEqual(len({c["out"] for c in fixed}), len(fixed))
         worst = (300 + MT.BATCH_TIMEOUT_S) * (0.000306 + 2 * 0.0000131 + 16 * 0.00000222)
         self.assertLessEqual(worst, 0.40)  # Modal list prices 2026-10-31; A10 is the dearer allowed GPU
+
+    def test_s07j_retrack_subset_is_unchanged_s07i_windows(self):
+        old = {c["clip"]: c for c in json.loads((ROOT / "evidence/S07/S07i/fall-windows.json").read_text())["clips"]}
+        new = json.loads((ROOT / "evidence/S07/S07j/fall-windows-own07-11.json").read_text())["clips"]
+        self.assertEqual([c["clip"] for c in new], [f"OWN{i:02d}" for i in range(7, 12)])
+        for c in new:
+            self.assertEqual({**c, "out": old[c["clip"]]["out"]}, old[c["clip"]])  # only the output moved
+            self.assertTrue(c["out"].startswith("evidence/S07/S07j/"))
+
+
+class SharedPredictorTest(unittest.TestCase):
+    """S07j: one SAM load per container (S07i per-clip reloads OOMed OWN07-OWN11 on the A10)."""
+
+    def setUp(self):
+        MT._MODEL.clear()
+        self.addCleanup(MT._MODEL.clear)
+
+    def test_loads_once_and_returns_unwrapped_originals(self):
+        loads = []
+
+        def load():
+            loads.append(types.SimpleNamespace(handle_request="h", handle_stream_request="s"))
+            return loads[-1]
+        predictor, _, _ = MT.shared_predictor(load)
+        predictor.handle_request = predictor.handle_stream_request = "clip-1 wrapper"
+        self.assertEqual(MT.shared_predictor(load), (loads[0], "h", "s"))  # wrappers never stack across clips
+        self.assertEqual(len(loads), 1)
+
+    def test_failed_load_caches_nothing_and_next_clip_retries(self):
+        def oom():
+            raise RuntimeError("CUDA out of memory")
+        with self.assertRaises(RuntimeError):
+            MT.shared_predictor(oom)
+        ok = types.SimpleNamespace(handle_request=1, handle_stream_request=2)
+        self.assertIs(MT.shared_predictor(lambda: ok)[0], ok)
+
+    def test_track_one_loads_only_through_shared_predictor(self):
+        source = inspect.getsource(MT.track_one)
+        self.assertEqual(source.count("load_local_predictor(path"), 1)
+        self.assertIn("shared_predictor(load)", source)
+        self.assertIn("predictor.handle_stream_request = stream if chunk else logged_stream", source)

@@ -199,8 +199,45 @@ except ReconstructionPaused:
         with patch.object(standalone, "ROOT", self.root), patch.dict(os.environ, {"S20_MODAL_RESERVATION_USD": ".5"}):
             standalone.admit_standalone("fake")
             reserve_gpu(self.root, self.root / "gpu.jsonl", "segment", "fake", ".5", max_jobs=2, cap_usd=1)
+            standalone.admit_standalone("third")  # S07j envelope 2: cumulative 3 jobs/$1.50
             with self.assertRaises(ReconstructionPaused):
                 standalone.admit_standalone("fresh")
+
+    def seed_envelope1(self):
+        """Mirror S07i: OWN01 $0.60 + batch $0.40 in the old ledger, both still unsettled."""
+        old = self.runtime / "standalone-gpu-ledger.jsonl"
+        for key, amount in (("modal-track:OWN01:x", ".6"), ("modal-track:batch:OWN02:y", ".4")):
+            reserve_gpu(self.root, old, "segment", key, amount, max_jobs=2, cap_usd=1)
+        return old, old.read_bytes(), read_json(self.runtime / "reservations.json")["requests"]
+
+    def test_envelope2_keeps_old_rows_and_admits_only_its_bound(self):
+        old, before, rows = self.seed_envelope1()
+        self.assertEqual(standalone.LEDGER, "evidence/S20/runtime/standalone-gpu-ledger-2.jsonl")
+        with patch.object(standalone, "ROOT", self.root):
+            with patch.dict(os.environ, {"S20_MODAL_RESERVATION_USD": ".51"}), self.assertRaises(ReconstructionPaused):
+                standalone.admit_standalone("modal-track:batch:OWN07")  # $1.00 old + $0.51 > $1.50
+            with patch.dict(os.environ, {"S20_MODAL_RESERVATION_USD": ".4"}):
+                request = standalone.admit_standalone("modal-track:batch:OWN07")
+                with self.assertRaises(ReconstructionPaused):
+                    standalone.admit_standalone("modal-track:batch:again")  # 3 jobs reached
+            with patch.dict(os.environ, {"S20_MODAL_RESERVATION_USD": ".01"}), self.assertRaises(ReconstructionPaused):
+                standalone.admit_standalone("modal-track:tiny")
+        journal = read_json(self.runtime / "reservations.json")["requests"]
+        self.assertEqual((old.read_bytes(), journal[:2]), (before, rows))  # never cleared/rewritten/released
+        self.assertEqual(len(journal), 3)
+        self.assertTrue(request.startswith(standalone.LEDGER + ":segment:"))
+        new = (self.root / standalone.LEDGER).read_text().splitlines()
+        self.assertEqual([json.loads(r)["reserved_usd"] for r in new], ["0.40000000"])
+
+    def test_envelope2_still_requires_global_modal_headroom(self):
+        self.seed_envelope1()
+        self.receipt["Modal"]["credit_headroom_usd"] = "1.2"  # < $1.00 old liability + $0.40
+        self.save()
+        with patch.object(standalone, "ROOT", self.root), patch.dict(os.environ, {"S20_MODAL_RESERVATION_USD": ".4"}):
+            with self.assertRaises(ReconstructionPaused):
+                standalone.admit_standalone("modal-track:batch:OWN07")
+        self.assertEqual(len(read_json(self.runtime / "reservations.json")["requests"]), 2)
+        self.assertFalse((self.root / standalone.LEDGER).exists())
 
     def test_standalone_requires_explicit_bound_and_valid_runtime(self):
         with patch.object(standalone, "ROOT", self.root), patch.dict(os.environ, {}, clear=True):

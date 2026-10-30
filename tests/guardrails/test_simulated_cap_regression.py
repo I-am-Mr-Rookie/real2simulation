@@ -9,9 +9,17 @@ REPO = Path(__file__).resolve().parents[2]
 spec = importlib.util.spec_from_file_location("simulated_cap_regression", REPO / "evidence/S20/simulated_cap_regression.py")
 regression = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(regression)
+# The committed replay is envelope-1 Gate C evidence (2 jobs/$1). S07j envelope 2 is tested in
+# test_live_admission; pin envelope 1 here so the historical replay keeps its exact meaning.
+ENVELOPE_1 = dict(LEDGER="evidence/S20/runtime/standalone-gpu-ledger.jsonl", MAX_JOBS=2, CAP_USD="1")
 
 
 class SimulatedCapRegression(unittest.TestCase):
+    def setUp(self):
+        pin = patch.multiple(regression.standalone, **ENVELOPE_1)
+        pin.start()
+        self.addCleanup(pin.stop)
+
     def test_replay_is_deterministic_and_explicitly_simulated(self):
         result = regression.run_regression()
         self.assertEqual(result, regression.run_regression())

@@ -1,0 +1,64 @@
+{
+ "source": "evidence/S07/S07i/fall-windows.json (windows/prompts/object_id copied unchanged; only out paths moved to S07j)",
+ "reason": "S07i batch OOM on OWN07-OWN11 (evidence/S07/S07i/BATCH-RUN.md); failed S07i track-own07..11.json kept untouched",
+ "rule": [
+  "Rule (fixed here, same yellow threshold as the S07g diagnostic, quarter resolution):",
+  "release = first frame (>= 10) > 2 px (= 8 px full-res) below the frames 0-9 median that STARTS a run of",
+  ">= 4 strictly increasing centroids ending > 10 px (40 px full-res) below that median (v1 without the run",
+  "test triggered on hand jitter at OWN03/09/10/11; revised before any tracking);",
+  "fall end = last frame of the strictly increasing centroid run after release;",
+  "window = [release - 6 (>= 5 held frames for the box-width scale), fall end + 2], clipped to the clip."
+ ],
+ "clips": [
+  {
+   "clip": "OWN07",
+   "first": 40,
+   "last": 61,
+   "frames": 83,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07j/track-own07.json",
+   "rule": "release f46, increasing run to f59"
+  },
+  {
+   "clip": "OWN08",
+   "first": 30,
+   "last": 50,
+   "frames": 77,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07j/track-own08.json",
+   "rule": "release f36, increasing run to f48"
+  },
+  {
+   "clip": "OWN09",
+   "first": 4,
+   "last": 24,
+   "frames": 59,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07j/track-own09.json",
+   "rule": "release f10, increasing run to f22"
+  },
+  {
+   "clip": "OWN10",
+   "first": 6,
+   "last": 18,
+   "frames": 86,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07j/track-own10.json",
+   "rule": "release f12, increasing run to f16"
+  },
+  {
+   "clip": "OWN11",
+   "first": 23,
+   "last": 34,
+   "frames": 86,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07j/track-own11.json",
+   "rule": "release f29, increasing run to f32"
+  }
+ ]
+}
