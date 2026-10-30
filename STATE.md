@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+CLAUDE QUOTA: S14g-fix-orch55, S12e-fix2-orch56, R-C-orch57 all died 22:24Z Oct29 with 429 (retry
+limit). Unverified WIP committed on their run branches (5ddce1f, 3591656, bf5d9bd). S14g-fix had live
+Meta: 31 calls est $0.97 (reserved $1.81, billed unknown; ledger evidence/S14/S14g-fix-ledger.jsonl
+on branch). No Modal. Per owner: no retry churn/model swap; next Claude dispatch only as ONE probe
+after ~03:30Z (5h window), then resume fixes from WIP branches. Sol work continues meanwhile.
+
 DISPATCHED R-C-orch57 Opus high (threadId:01a189c1-1cfc-7c62-aee2-1e79be01ac12,hostId:local, deadline 2026-10-29T22:51:35+00:00).
 
 S20c DONE (orch54 Sol medium; TIMEBOX PASS; guardrails 47 OK; ff-merged): Build/guardrails/failover.py
