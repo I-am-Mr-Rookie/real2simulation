@@ -149,6 +149,8 @@ def run(mode) -> dict:
         summ.update(gate_a="NOT_MET", why="stub replies present: plumbing only")
     summ["scope"] = ("spec validity = numeric spec contract validate(); authoritative-bundle validate_setup unavailable "
                      "for real clips (no known-scale scene bundles); turns on synthetic-room-v1 tool outputs")
+    if summ["gate_a"] == "MET":  # S14g-fix4 (R-A F3-R): numeric-contract scope is never Gate A MET
+        summ.update(gate_a="PROVISIONAL", why="numeric-contract scope only; real validate_setup path: see S14g_fix4_gate_a.py")
     result["summary"] = summ
     return result
 

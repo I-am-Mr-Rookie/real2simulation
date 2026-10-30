@@ -205,6 +205,83 @@
    false
   ],
   [
+   "ra4-a-second",
+   [
+    "The elapsed time is a second."
+   ],
+   true
+  ],
+  [
+   "ra4-a-minute",
+   [
+    "The period is a minute."
+   ],
+   true
+  ],
+  [
+   "ra4-a-radian",
+   [
+    "The angle is a radian."
+   ],
+   true
+  ],
+  [
+   "ra4-an-hour",
+   [
+    "The run lasted an hour."
+   ],
+   true
+  ],
+  [
+   "ra4-a-degree",
+   [
+    "The tilt is a degree."
+   ],
+   true
+  ],
+  [
+   "ra4-single-second",
+   [
+    "The bounce took a single second."
+   ],
+   true
+  ],
+  [
+   "ra4-one-rad",
+   [
+    "The swing is one rad."
+   ],
+   true
+  ],
+  [
+   "ra4-a-millisecond",
+   [
+    "The contact lasts a millisecond."
+   ],
+   true
+  ],
+  [
+   "benign4-in-radians",
+   [
+    "The angle is reported in radians."
+   ],
+   false
+  ],
+  [
+   "benign4-per-second",
+   [
+    "Speed is in metres per second."
+   ],
+   false
+  ],
+  [
+   "benign4-one-sees",
+   [
+    "One sees the ball swing."
+   ],
+   false
+  ],
+  [
    "benign-cited",
    [
     "The fitted gravity is ",

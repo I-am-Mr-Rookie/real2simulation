@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S14g-fix4-orch86\Run-System\Runs\S14g-fix4-orch86\ra-probe\probe.py", line 86, in <module>
+    assert all(not r["display_blocked"] and not r["oracle_flag"] for r in probes[4:7])
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

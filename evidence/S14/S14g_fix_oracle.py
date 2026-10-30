@@ -18,7 +18,9 @@ dozen half halves quarter quarters percent twice thrice triple tripled quadruple
 fifth sixth seventh eighth ninth tenth tenths hundredths""".split())
 UNITS = set("""metre metres meter meters centimetre centimetres centimeter centimeters millimetre millimetres
 kilometre kilometres kilogram kilograms gram grams newton newtons joule joules watt watts hertz kg cm mm km m""".split())
-TIME = {"second", "seconds", "minute", "minutes", "hour", "hours", "degree", "degrees", "s"}
+TIME = {"second", "seconds", "minute", "minutes", "hour", "hours", "degree", "degrees", "s",
+        # S14g-fix4 (R-A F1-R): angles and short time forms
+        "millisecond", "milliseconds", "ms", "min", "hr", "h", "radian", "radians", "rad", "deg"}
 MORE = {"as", "the", "larger", "smaller", "greater", "bigger", "more", "less"}
 
 
@@ -40,7 +42,7 @@ def _scan(text: str) -> str | None:
             return f"word {tok!r}"
         if tok == "times" and nxt in MORE or tok == "point" and (prev in WORDS | {"one"} or nxt in WORDS | {"one"}):
             return f"phrase {prev} {tok} {nxt}"
-        if tok == "one" and (nxt in UNITS | TIME) or tok in ("a", "an") and nxt in UNITS:
+        if tok in ("one", "a", "an", "single") and nxt in UNITS | TIME:  # fix4: a/an + time/angle too
             return f"implicit one {tok} {nxt}"
     return None
 

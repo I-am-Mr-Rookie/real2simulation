@@ -39,8 +39,10 @@ _NUMBER_WORDS = re.compile(
     # S14g-fix (R-A F1): multipliers and "one/a" + unit are implicit numbers ("double the value", "one metre",
     # "a couple of metres"); pronoun "one", "double-check" and unit names alone ("in metres") stay allowed.
     r"double(?!-)|doubled|couple|pair\s+of|times\s+(?:as|the|larger|smaller|greater|bigger|more|less)|"
-    r"(?:one|an?)\s+(?:(?:centi|milli|kilo)?(?:metres?|meters?)|(?:kilo)?grams?|newtons?|joules?|watts?|"
-    r"hertz|kg|cm|mm|km|m|s|g|n)|one\s+(?:seconds?|minutes?|hours?|degrees?|radians?))\b", re.I)
+    # S14g-fix4 (R-A F1-R): ONE quantifier rule for every unit family; "a second"/"a minute"/"a radian" are claims.
+    # Fail-closed by design: "a second look" is also refused (trial falls back to the tool-only reply).
+    r"(?:one|an?|single)\s+(?:(?:centi|milli|kilo)?(?:metres?|meters?)|(?:kilo)?grams?|newtons?|joules?|watts?|"
+    r"hertz|kg|cm|mm|km|m|s|g|n|(?:milli)?seconds?|minutes?|hours?|degrees?|radians?|rad|deg|ms|min|hr|h))\b", re.I)
 _INVISIBLE = dict.fromkeys(i for i in range(0x110000) if unicodedata.category(chr(i)) == "Cf")
 
 
