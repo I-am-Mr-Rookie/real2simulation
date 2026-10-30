@@ -1,0 +1,22 @@
+{
+  "modules": [
+    "tests.agent.test_visible_text",
+    "tests.agent.test_contracts",
+    "tests.agent.test_reply",
+    "tests.agent.test_trial",
+    "tests.agent.test_retry",
+    "tests.agent.test_interview",
+    "tests.agent.test_muse",
+    "tests.pipeline.test_understand",
+    "tests.spec.test_setup_validation"
+  ],
+  "tests_run": 73,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "success": true,
+  "protected_files": 451,
+  "protected_inputs_unchanged": true,
+  "network_denied": true,
+  "spend_usd": 0
+}

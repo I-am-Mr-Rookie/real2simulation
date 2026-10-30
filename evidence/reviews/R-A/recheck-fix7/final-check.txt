@@ -1,0 +1,2 @@
+{'prior_cases': 20, 'prior_refused': 16, 'binder_helper_refusals': 11, 'matrix_refused': 192, 'residual_accepted': 4, 'tests': 73}
+FINAL PROTECTED HASH CHECK PASS

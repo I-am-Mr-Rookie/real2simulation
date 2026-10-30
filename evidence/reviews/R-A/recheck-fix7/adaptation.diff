@@ -1,0 +1,56 @@
+diff --git a/evidence/reviews/R-A/recheck-fix6/probe.py b/evidence/reviews/R-A/recheck-fix7/probe.py
+index 4023fba..c3085fb 100644
+--- a/evidence/reviews/R-A/recheck-fix6/probe.py
++++ b/evidence/reviews/R-A/recheck-fix7/probe.py
+@@ -1 +1 @@
+-"""Independent offline fix6 review, adapted from the original reviewer fix5 source. Writes only alongside this script; no product mutations."""
++"""Independent offline fix7 review, adapted from original reviewer fix6, not the fix7 worker copy."""
+@@ -223,2 +223,2 @@ replay["summary"]["scope"] = replay["summary"]["scope"].replace("fix5 structural
+-    "fix6 unit rule (no bare label binding)")
+-assert replay["summary"] == read(ROOT / "evidence/S14/S14g-fix6-offline.json")["summary"]
++    "fix7 clause unit rule (no amount word in a unit clause)")
++assert replay["summary"] == read(ROOT / "evidence/S14/S14g-fix7-offline.json")["summary"]
+@@ -252,6 +252,6 @@ binder_cases = [
+-    ("units-before-one", "The elapsed time in seconds is one: ", "duration", True, True),
+-    ("one-before-units", "The elapsed time is one in seconds: ", "duration", True, True),
+-    ("units-before-full-one", "The elapsed time in seconds is a full one. Tool result: ", "duration", True, True),
+-    ("units-before-single-one", "The delay in minutes is a single one: ", "duration", True, True),
+-    ("distance-units-before-one", "The distance in metres is one: ", "drop", True, True),
+-    ("distance-one-before-units", "The distance is one in metres: ", "drop", True, True),
++    ("units-before-one", "The elapsed time in seconds is one: ", "duration", True, False),
++    ("one-before-units", "The elapsed time is one in seconds: ", "duration", True, False),
++    ("units-before-full-one", "The elapsed time in seconds is a full one. Tool result: ", "duration", True, False),
++    ("units-before-single-one", "The delay in minutes is a single one: ", "duration", True, False),
++    ("distance-units-before-one", "The distance in metres is one: ", "drop", True, False),
++    ("distance-one-before-units", "The distance is one in metres: ", "drop", True, False),
+@@ -301 +301 @@ for name, text, quantity, numeric_claim, expect_accept in binder_cases:
+-    if numeric_claim and expect_accept:
++    if numeric_claim:
+@@ -305,2 +305,2 @@ for name, text, quantity, numeric_claim, expect_accept in binder_cases:
+-        assert row["attempts"] == 1 and row["model_reply_shown"] and not row["invented"]
+-        assert text in row["shown"] and not row["blocked"]
++        assert row["attempts"] == 4 and not row["model_reply_shown"] and not row["invented"]
++        assert text not in row["shown"] and not row["blocked"]
+@@ -309 +309 @@ for name, text, quantity, numeric_claim, expect_accept in binder_cases:
+-assert len(binder_gate_turns) == 6
++assert len(binder_gate_turns) == 11
+@@ -314 +314 @@ assert not any(name and name.startswith("contracts.agent") for name in imports)
+-assert fix.self_check() == {"corpus_cases": 66, "oracle_agrees": True}
++assert fix.self_check() == {"corpus_cases": 84, "oracle_agrees": True}
+@@ -317 +317,2 @@ assert before == after, "protected inputs changed"
+-output = {"verdict": "CHANGES_REQUIRED", "prior_fixes": "F1_R3_CLOSED_PRIOR_FIXES_PRESERVED",
++output = {"verdict": "FIX7_BASELINE_CLOSURES_VERIFIED_PENDING_INDEPENDENT_EXTENSION",
++          "prior_fixes": "F1_R4_CLOSED_PRIOR_FIXES_PRESERVED",
+@@ -322 +323 @@ output = {"verdict": "CHANGES_REQUIRED", "prior_fixes": "F1_R3_CLOSED_PRIOR_FIXE
+-          "setup_calls": setup_calls, "fix6_summary": summary, "threshold_logic_only": thresholds,
++          "setup_calls": setup_calls, "fix7_summary": summary, "threshold_logic_only": thresholds,
+@@ -326 +327 @@ output = {"verdict": "CHANGES_REQUIRED", "prior_fixes": "F1_R3_CLOSED_PRIOR_FIXE
+-(OUT / "fix6-replay.json").write_text(json.dumps(replay, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
++(OUT / "fix7-replay.json").write_text(json.dumps(replay, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+@@ -329 +330,2 @@ print(json.dumps({"verdict": output["verdict"], "prior_cases": len(results), "su
+-                  "numeric_bypasses": len(binder_gate_turns),
++                  "numeric_bypasses": sum(r["model_reply_shown"] for r in binder_gate_turns),
++                  "binder_helper_checks": len(binder_gate_turns),
+@@ -331 +333 @@ print(json.dumps({"verdict": output["verdict"], "prior_cases": len(results), "su
+-                  "fix6_summary": summary, "oracle_corpus": output["oracle_corpus"],
++                  "fix7_summary": summary, "oracle_corpus": output["oracle_corpus"],

@@ -1,0 +1,2686 @@
+{
+  "verdict": "FIX7_BASELINE_CLOSURES_VERIFIED_PENDING_INDEPENDENT_EXTENSION",
+  "prior_fixes": "F1_R4_CLOSED_PRIOR_FIXES_PRESERVED",
+  "binder_probes": [
+    {
+      "case": "units-before-one",
+      "text": "The elapsed time in seconds is one: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_issue": "unbound unit seconds",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "one-before-units",
+      "text": "The elapsed time is one in seconds: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "units-before-full-one",
+      "text": "The elapsed time in seconds is a full one. Tool result: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_issue": "unbound unit seconds",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "units-before-single-one",
+      "text": "The delay in minutes is a single one: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_issue": "unbound unit minutes",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "distance-units-before-one",
+      "text": "The distance in metres is one: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_issue": "unbound unit metres",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19619999999999999,
+        "unit": "m",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "distance-one-before-units",
+      "text": "The distance is one in metres: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19619999999999999,
+        "unit": "m",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "units-before-two",
+      "text": "The elapsed time in seconds is two: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'two'",
+      "oracle_issue": "unbound unit seconds",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "two-before-units",
+      "text": "The elapsed time is two in seconds: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'two'",
+      "oracle_issue": "word 'two'",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "units-before-digit",
+      "text": "The elapsed time in seconds is 1: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response/segments/0: {'type': 'text', 'text': 'The elapsed time in seconds is 1: '} is not valid under any of the given schemas",
+      "oracle_issue": "numeral '1'",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "amount-inside-label",
+      "text": "The elapsed time in one second: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'one second'",
+      "oracle_issue": "implicit one one second",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "modifier-inside-label",
+      "text": "The elapsed time in whole seconds: ",
+      "numeric_claim": false,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_issue": "amount 'whole' in unit clause",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "fix6-closed-control",
+      "text": "The elapsed time is a full second: ",
+      "numeric_claim": true,
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_issue": "amount 'a' in unit clause",
+      "trial_rejections": 4,
+      "fallback": true,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "benign-time-label",
+      "text": "Elapsed time in seconds = ",
+      "numeric_claim": false,
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "fallback": false,
+      "shown": "Elapsed time in seconds = 0.2 ± 1e-06 s (simulated)",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "benign-distance-label",
+      "text": "The measured distance in metres: ",
+      "numeric_claim": false,
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "fallback": false,
+      "shown": "The measured distance in metres: 0.1962 ± 1e-06 m (simulated)",
+      "cited_quantity": {
+        "value": 0.19619999999999999,
+        "unit": "m",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "benign-one-pronoun",
+      "text": "This one fits the scene. ",
+      "numeric_claim": false,
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "fallback": false,
+      "shown": "This one fits the scene. 9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "cited_quantity": {
+        "value": 9.80999886968593,
+        "unit": "m/s^2",
+        "uncertainty": 7.365069813183884e-05,
+        "source": {
+          "label": "simulated",
+          "evidence": "synthetic virtual-lab fit"
+        }
+      },
+      "synthetic_model_response": true
+    },
+    {
+      "case": "benign-double-check",
+      "text": "Please double-check the fit. ",
+      "numeric_claim": false,
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "fallback": false,
+      "shown": "Please double-check the fit. 9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "cited_quantity": {
+        "value": 9.80999886968593,
+        "unit": "m/s^2",
+        "uncertainty": 7.365069813183884e-05,
+        "source": {
+          "label": "simulated",
+          "evidence": "synthetic virtual-lab fit"
+        }
+      },
+      "synthetic_model_response": true
+    }
+  ],
+  "binder_surfaces": [
+    {
+      "case": "units-before-one",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "units-before-one",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "units-before-one",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "units-before-one",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "one-before-units",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-before-units",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-before-units",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-before-units",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "units-before-full-one",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "units-before-full-one",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "units-before-full-one",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "units-before-full-one",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "units-before-single-one",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "unbound unit minutes"
+    },
+    {
+      "case": "units-before-single-one",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "unbound unit minutes"
+    },
+    {
+      "case": "units-before-single-one",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "unbound unit minutes"
+    },
+    {
+      "case": "units-before-single-one",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "unbound unit minutes"
+    },
+    {
+      "case": "distance-units-before-one",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "unbound unit metres"
+    },
+    {
+      "case": "distance-units-before-one",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "unbound unit metres"
+    },
+    {
+      "case": "distance-units-before-one",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "unbound unit metres"
+    },
+    {
+      "case": "distance-units-before-one",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "unbound unit metres"
+    },
+    {
+      "case": "distance-one-before-units",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "distance-one-before-units",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "distance-one-before-units",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "distance-one-before-units",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "units-before-two",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "units-before-two",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "units-before-two",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "units-before-two",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "unbound unit seconds"
+    },
+    {
+      "case": "two-before-units",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "word 'two'"
+    },
+    {
+      "case": "two-before-units",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "word 'two'"
+    },
+    {
+      "case": "two-before-units",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "word 'two'"
+    },
+    {
+      "case": "two-before-units",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "word 'two'"
+    },
+    {
+      "case": "units-before-digit",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "numeral '1'"
+    },
+    {
+      "case": "units-before-digit",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "numeral '1'"
+    },
+    {
+      "case": "units-before-digit",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "numeral '1'"
+    },
+    {
+      "case": "units-before-digit",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "numeral '1'"
+    },
+    {
+      "case": "amount-inside-label",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "implicit one one second"
+    },
+    {
+      "case": "amount-inside-label",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "implicit one one second"
+    },
+    {
+      "case": "amount-inside-label",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "implicit one one second"
+    },
+    {
+      "case": "amount-inside-label",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "implicit one one second"
+    },
+    {
+      "case": "modifier-inside-label",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'whole' in unit clause"
+    },
+    {
+      "case": "modifier-inside-label",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'whole' in unit clause"
+    },
+    {
+      "case": "modifier-inside-label",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'whole' in unit clause"
+    },
+    {
+      "case": "modifier-inside-label",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'whole' in unit clause"
+    },
+    {
+      "case": "fix6-closed-control",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "fix6-closed-control",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "fix6-closed-control",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "fix6-closed-control",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "benign-time-label",
+      "surface": "segments",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-time-label",
+      "surface": "prompt",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-time-label",
+      "surface": "chip",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-time-label",
+      "surface": "rationale",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-distance-label",
+      "surface": "segments",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-distance-label",
+      "surface": "prompt",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-distance-label",
+      "surface": "chip",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-distance-label",
+      "surface": "rationale",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-one-pronoun",
+      "surface": "segments",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-one-pronoun",
+      "surface": "prompt",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-one-pronoun",
+      "surface": "chip",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-one-pronoun",
+      "surface": "rationale",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-double-check",
+      "surface": "segments",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-double-check",
+      "surface": "prompt",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-double-check",
+      "surface": "chip",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "case": "benign-double-check",
+      "surface": "rationale",
+      "accepted": true,
+      "oracle_issue": null
+    }
+  ],
+  "binder_gate_turns": [
+    {
+      "case": "units-before-one",
+      "text": "The elapsed time in seconds is one: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "case": "one-before-units",
+      "text": "The elapsed time is one in seconds: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "case": "units-before-full-one",
+      "text": "The elapsed time in seconds is a full one. Tool result: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "case": "units-before-single-one",
+      "text": "The delay in minutes is a single one: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "case": "distance-units-before-one",
+      "text": "The distance in metres is one: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "case": "distance-one-before-units",
+      "text": "The distance is one in metres: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "case": "units-before-two",
+      "text": "The elapsed time in seconds is two: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "case": "two-before-units",
+      "text": "The elapsed time is two in seconds: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "case": "units-before-digit",
+      "text": "The elapsed time in seconds is 1: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "case": "amount-inside-label",
+      "text": "The elapsed time in one second: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "case": "fix6-closed-control",
+      "text": "The elapsed time is a full second: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    }
+  ],
+  "exact_prior_cases": [
+    {
+      "case": "original-second",
+      "text": "The elapsed time is a second.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'a second'",
+      "numeric_issue": "untraced_number_word 'a second'",
+      "oracle_issue": "implicit one a second",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "original-minute",
+      "text": "The period is a minute.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'a minute'",
+      "numeric_issue": "untraced_number_word 'a minute'",
+      "oracle_issue": "implicit one a minute",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "original-radian",
+      "text": "The angle is a radian.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'a radian'",
+      "numeric_issue": "untraced_number_word 'a radian'",
+      "oracle_issue": "implicit one a radian",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "an-hour",
+      "text": "The period is an hour.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'an hour'",
+      "numeric_issue": "untraced_number_word 'an hour'",
+      "oracle_issue": "implicit one an hour",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "single-second",
+      "text": "The delay is a single second.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'single second'",
+      "numeric_issue": "untraced_number_word 'single second'",
+      "oracle_issue": "implicit one single second",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "one-rad",
+      "text": "The angle is one rad.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'one rad'",
+      "numeric_issue": "untraced_number_word 'one rad'",
+      "oracle_issue": "implicit one one rad",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "a-millisecond",
+      "text": "The delay is a millisecond.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'a millisecond'",
+      "numeric_issue": "untraced_number_word 'a millisecond'",
+      "oracle_issue": "implicit one a millisecond",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "a-degree",
+      "text": "The angle is a degree.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'a degree'",
+      "numeric_issue": "untraced_number_word 'a degree'",
+      "oracle_issue": "implicit one a degree",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "pronoun-one",
+      "text": "This one fits the scene.",
+      "expected_bad": false,
+      "runtime_error": null,
+      "numeric_issue": null,
+      "oracle_issue": null,
+      "display_blocked": false,
+      "trial_rejections": 0,
+      "fallback": false,
+      "trial_blocked": false,
+      "untraced_text_displayed": true,
+      "trial_shown": "This one fits the scene.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "double-check",
+      "text": "Please double-check the fit.",
+      "expected_bad": false,
+      "runtime_error": null,
+      "numeric_issue": null,
+      "oracle_issue": null,
+      "display_blocked": false,
+      "trial_rejections": 0,
+      "fallback": false,
+      "trial_blocked": false,
+      "untraced_text_displayed": true,
+      "trial_shown": "Please double-check the fit.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "unit-only",
+      "text": "Measure the angle in radians.",
+      "expected_bad": false,
+      "runtime_error": null,
+      "numeric_issue": null,
+      "oracle_issue": null,
+      "display_blocked": false,
+      "trial_rejections": 0,
+      "fallback": false,
+      "trial_blocked": false,
+      "untraced_text_displayed": true,
+      "trial_shown": "Measure the angle in radians.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "rate-unit-only",
+      "text": "The speed is expressed in metres per second.",
+      "expected_bad": false,
+      "runtime_error": null,
+      "numeric_issue": null,
+      "oracle_issue": null,
+      "display_blocked": false,
+      "trial_rejections": 0,
+      "fallback": false,
+      "trial_blocked": false,
+      "untraced_text_displayed": true,
+      "trial_shown": "The speed is expressed in metres per second.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "a-full-second",
+      "text": "The elapsed time is a full second.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "numeric_issue": "amount_word_in_unit_clause 'a'",
+      "oracle_issue": "amount 'a' in unit clause",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "one-whole-minute",
+      "text": "The period is one whole minute.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "numeric_issue": "amount_word_in_unit_clause 'one'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "one-full-radian",
+      "text": "The angle is one full radian.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "numeric_issue": "amount_word_in_unit_clause 'one'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "one-full-metre",
+      "text": "The distance is one full metre.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "numeric_issue": "amount_word_in_unit_clause 'one'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "one-hyphen-second",
+      "text": "This is a one-second delay.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "numeric_issue": "amount_word_in_unit_clause 'a'",
+      "oracle_issue": "implicit one one second",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "single-hyphen-second",
+      "text": "The delay is a single-second interval.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "numeric_issue": "amount_word_in_unit_clause 'a'",
+      "oracle_issue": "implicit one single second",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "one-short-g",
+      "text": "The mass is one g.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'one g'",
+      "numeric_issue": "untraced_number_word 'one g'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    },
+    {
+      "case": "one-short-n",
+      "text": "The force is one N.",
+      "expected_bad": true,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'one N'",
+      "numeric_issue": "untraced_number_word 'one N'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "display_blocked": true,
+      "trial_rejections": 4,
+      "fallback": true,
+      "trial_blocked": false,
+      "untraced_text_displayed": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "fallback_residual_oracle": null
+    }
+  ],
+  "visible_surfaces": [
+    {
+      "case": "original-second",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "implicit one a second"
+    },
+    {
+      "case": "original-second",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "implicit one a second"
+    },
+    {
+      "case": "original-second",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "implicit one a second"
+    },
+    {
+      "case": "original-second",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "implicit one a second"
+    },
+    {
+      "case": "original-minute",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "implicit one a minute"
+    },
+    {
+      "case": "original-minute",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "implicit one a minute"
+    },
+    {
+      "case": "original-minute",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "implicit one a minute"
+    },
+    {
+      "case": "original-minute",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "implicit one a minute"
+    },
+    {
+      "case": "original-radian",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "implicit one a radian"
+    },
+    {
+      "case": "original-radian",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "implicit one a radian"
+    },
+    {
+      "case": "original-radian",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "implicit one a radian"
+    },
+    {
+      "case": "original-radian",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "implicit one a radian"
+    },
+    {
+      "case": "an-hour",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "implicit one an hour"
+    },
+    {
+      "case": "an-hour",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "implicit one an hour"
+    },
+    {
+      "case": "an-hour",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "implicit one an hour"
+    },
+    {
+      "case": "an-hour",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "implicit one an hour"
+    },
+    {
+      "case": "single-second",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "implicit one single second"
+    },
+    {
+      "case": "single-second",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "implicit one single second"
+    },
+    {
+      "case": "single-second",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "implicit one single second"
+    },
+    {
+      "case": "single-second",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "implicit one single second"
+    },
+    {
+      "case": "one-rad",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "implicit one one rad"
+    },
+    {
+      "case": "one-rad",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "implicit one one rad"
+    },
+    {
+      "case": "one-rad",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "implicit one one rad"
+    },
+    {
+      "case": "one-rad",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "implicit one one rad"
+    },
+    {
+      "case": "a-millisecond",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "implicit one a millisecond"
+    },
+    {
+      "case": "a-millisecond",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "implicit one a millisecond"
+    },
+    {
+      "case": "a-millisecond",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "implicit one a millisecond"
+    },
+    {
+      "case": "a-millisecond",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "implicit one a millisecond"
+    },
+    {
+      "case": "a-degree",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "implicit one a degree"
+    },
+    {
+      "case": "a-degree",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "implicit one a degree"
+    },
+    {
+      "case": "a-degree",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "implicit one a degree"
+    },
+    {
+      "case": "a-degree",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "implicit one a degree"
+    },
+    {
+      "case": "pronoun-one",
+      "surface": "segments",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "pronoun-one",
+      "surface": "prompt",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "pronoun-one",
+      "surface": "chip",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "pronoun-one",
+      "surface": "rationale",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "double-check",
+      "surface": "segments",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "double-check",
+      "surface": "prompt",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "double-check",
+      "surface": "chip",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "double-check",
+      "surface": "rationale",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "unit-only",
+      "surface": "segments",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "unit-only",
+      "surface": "prompt",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "unit-only",
+      "surface": "chip",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "unit-only",
+      "surface": "rationale",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "rate-unit-only",
+      "surface": "segments",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "rate-unit-only",
+      "surface": "prompt",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "rate-unit-only",
+      "surface": "chip",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "rate-unit-only",
+      "surface": "rationale",
+      "blocked": false,
+      "oracle_issue": null
+    },
+    {
+      "case": "a-full-second",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "a-full-second",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "a-full-second",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "a-full-second",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "one-whole-minute",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-whole-minute",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-whole-minute",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-whole-minute",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-full-radian",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-full-radian",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-full-radian",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-full-radian",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-full-metre",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-full-metre",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-full-metre",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-full-metre",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-hyphen-second",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "implicit one one second"
+    },
+    {
+      "case": "one-hyphen-second",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "implicit one one second"
+    },
+    {
+      "case": "one-hyphen-second",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "implicit one one second"
+    },
+    {
+      "case": "one-hyphen-second",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "implicit one one second"
+    },
+    {
+      "case": "single-hyphen-second",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "implicit one single second"
+    },
+    {
+      "case": "single-hyphen-second",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "implicit one single second"
+    },
+    {
+      "case": "single-hyphen-second",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "implicit one single second"
+    },
+    {
+      "case": "single-hyphen-second",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "implicit one single second"
+    },
+    {
+      "case": "one-short-g",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-short-g",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-short-g",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-short-g",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-short-n",
+      "surface": "segments",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-short-n",
+      "surface": "prompt",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-short-n",
+      "surface": "chip",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-short-n",
+      "surface": "rationale",
+      "blocked": true,
+      "oracle_issue": "amount 'one' in unit clause"
+    }
+  ],
+  "cite_forgeries": [
+    {
+      "marker": "U+E000",
+      "surface": "segments",
+      "blocked": true,
+      "escaped_json_trial_rejections": 4
+    },
+    {
+      "marker": "U+E000",
+      "surface": "prompt",
+      "blocked": true
+    },
+    {
+      "marker": "U+E000",
+      "surface": "chip",
+      "blocked": true
+    },
+    {
+      "marker": "U+E000",
+      "surface": "rationale",
+      "blocked": true
+    },
+    {
+      "marker": "U+F8FF",
+      "surface": "segments",
+      "blocked": true,
+      "escaped_json_trial_rejections": 4
+    },
+    {
+      "marker": "U+F8FF",
+      "surface": "prompt",
+      "blocked": true
+    },
+    {
+      "marker": "U+F8FF",
+      "surface": "chip",
+      "blocked": true
+    },
+    {
+      "marker": "U+F8FF",
+      "surface": "rationale",
+      "blocked": true
+    },
+    {
+      "marker": "U+F0000",
+      "surface": "segments",
+      "blocked": true,
+      "escaped_json_trial_rejections": 4
+    },
+    {
+      "marker": "U+F0000",
+      "surface": "prompt",
+      "blocked": true
+    },
+    {
+      "marker": "U+F0000",
+      "surface": "chip",
+      "blocked": true
+    },
+    {
+      "marker": "U+F0000",
+      "surface": "rationale",
+      "blocked": true
+    }
+  ],
+  "bounded_gap_probes": [
+    {
+      "case": "disclosed-gravity-label",
+      "text": "The period is one whole minute: ",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "trial_rejections": 4,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 9.80999886968593,
+        "unit": "m/s^2",
+        "uncertainty": 7.365069813183884e-05,
+        "source": {
+          "label": "simulated",
+          "evidence": "synthetic virtual-lab fit"
+        }
+      }
+    },
+    {
+      "case": "full-second-label",
+      "text": "The elapsed time is a full second: ",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_issue": "amount 'a' in unit clause",
+      "trial_rejections": 4,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 9.80999886968593,
+        "unit": "m/s^2",
+        "uncertainty": 7.365069813183884e-05,
+        "source": {
+          "label": "simulated",
+          "evidence": "synthetic virtual-lab fit"
+        }
+      }
+    },
+    {
+      "case": "full-radian-label",
+      "text": "The angle is one full radian = ",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "trial_rejections": 4,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 9.80999886968593,
+        "unit": "m/s^2",
+        "uncertainty": 7.365069813183884e-05,
+        "source": {
+          "label": "simulated",
+          "evidence": "synthetic virtual-lab fit"
+        }
+      }
+    },
+    {
+      "case": "full-metre-label",
+      "text": "The distance is one full metre: ",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "trial_rejections": 4,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 9.80999886968593,
+        "unit": "m/s^2",
+        "uncertainty": 7.365069813183884e-05,
+        "source": {
+          "label": "simulated",
+          "evidence": "synthetic virtual-lab fit"
+        }
+      }
+    },
+    {
+      "case": "same-dimension-amount",
+      "text": "The elapsed time is a full second: ",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_issue": "amount 'a' in unit clause",
+      "trial_rejections": 4,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 0.19999999999999998,
+        "unit": "s",
+        "uncertainty": 1e-06,
+        "source": {
+          "label": "simulated",
+          "evidence": "S10 synthetic lab simulator run (free_fall)"
+        }
+      }
+    },
+    {
+      "case": "full-second-comma",
+      "text": "The elapsed time is a full second, ",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_issue": "amount 'a' in unit clause",
+      "trial_rejections": 4,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 9.80999886968593,
+        "unit": "m/s^2",
+        "uncertainty": 7.365069813183884e-05,
+        "source": {
+          "label": "simulated",
+          "evidence": "synthetic virtual-lab fit"
+        }
+      }
+    },
+    {
+      "case": "full-second-period",
+      "text": "The elapsed time is a full second. ",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_issue": "amount 'a' in unit clause",
+      "trial_rejections": 4,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 9.80999886968593,
+        "unit": "m/s^2",
+        "uncertainty": 7.365069813183884e-05,
+        "source": {
+          "label": "simulated",
+          "evidence": "synthetic virtual-lab fit"
+        }
+      }
+    },
+    {
+      "case": "one-more-minute",
+      "text": "The period is one more minute. ",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_issue": "amount 'one' in unit clause",
+      "trial_rejections": 4,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "cited_quantity": {
+        "value": 9.80999886968593,
+        "unit": "m/s^2",
+        "uncertainty": 7.365069813183884e-05,
+        "source": {
+          "label": "simulated",
+          "evidence": "synthetic virtual-lab fit"
+        }
+      }
+    }
+  ],
+  "bounded_gap_surfaces": [
+    {
+      "case": "disclosed-gravity-label",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "disclosed-gravity-label",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "disclosed-gravity-label",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "disclosed-gravity-label",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "full-second-label",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-label",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-label",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-label",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-radian-label",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "full-radian-label",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "full-radian-label",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "full-radian-label",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "full-metre-label",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "full-metre-label",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "full-metre-label",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "full-metre-label",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "same-dimension-amount",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "same-dimension-amount",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "same-dimension-amount",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "same-dimension-amount",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-comma",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-comma",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-comma",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-comma",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-period",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-period",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-period",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "full-second-period",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'a' in unit clause"
+    },
+    {
+      "case": "one-more-minute",
+      "surface": "segments",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-more-minute",
+      "surface": "prompt",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-more-minute",
+      "surface": "chip",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    },
+    {
+      "case": "one-more-minute",
+      "surface": "rationale",
+      "accepted": false,
+      "oracle_issue": "amount 'one' in unit clause"
+    }
+  ],
+  "actual_gate_turns": [
+    {
+      "text": "The elapsed time is a full second.",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "text": "The period is one whole minute.",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "text": "The angle is one full radian.",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "text": "The distance is one full metre.",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "text": "This is a one-second delay.",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "text": "The delay is a single-second interval.",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    },
+    {
+      "text": "The period is one whole minute: ",
+      "attempts": 4,
+      "model_reply_shown": false,
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "blocked": []
+    }
+  ],
+  "setup_calls": [
+    {
+      "scene_id": "rm02",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "rm04",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "rm05",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "pd02",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "pd03",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "pd04",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "pd06",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "pj03",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "st03",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "bn01",
+      "bundle_is_none": true,
+      "real_binding": true
+    }
+  ],
+  "fix7_summary": {
+    "gate_a": "MET_AMENDED_Q16",
+    "gate_a_label": "scale unverified, not setup-validated",
+    "amendment": "owner Q16=A (Oct30): numeric-contract validation on recorded scenes accepted, labelled verbatim; not plain MET; final clearance needs the R-A recheck",
+    "distinct_recorded_scenes": 10,
+    "numeric_contract_valid_specs": 10,
+    "setup_validator_valid_specs": 0,
+    "required_valid_specs": 9,
+    "numeric_contract_cases": {
+      "RM02": true,
+      "RM04": true,
+      "RM05": true,
+      "PD02": true,
+      "PD03": true,
+      "PD04": true,
+      "PD06": true,
+      "PJ03": true,
+      "ST03": true,
+      "BN01": true
+    },
+    "setup_validator_cases": {
+      "RM02": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "RM04": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "RM05": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD02": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD03": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD04": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD06": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PJ03": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "ST03": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "BN01": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ]
+    },
+    "live_turns_replayed": 30,
+    "live_turns_shown_unchanged": 30,
+    "live_turns_fallback_tool_only": 0,
+    "invented_shown_oracle": 0,
+    "oracle_self_check": {
+      "corpus_cases": 84,
+      "oracle_agrees": true
+    },
+    "network_denied": true,
+    "spend_usd": 0,
+    "scope": "offline replay of saved fix3 responses under the fix7 clause unit rule (no amount word in a unit clause); a refused saved reply is shown as the code-owned tool-only fallback (live retries not replayable offline); synthetic interview answers; turn tool outputs are synthetic-room-v1, not physical evidence"
+  },
+  "threshold_logic_only": [
+    {
+      "synthetic_logic_only": true,
+      "numeric_passes": 8,
+      "turns": 30,
+      "invention": false,
+      "actual": "NOT_MET"
+    },
+    {
+      "synthetic_logic_only": true,
+      "numeric_passes": 9,
+      "turns": 30,
+      "invention": false,
+      "actual": "MET_AMENDED_Q16"
+    },
+    {
+      "synthetic_logic_only": true,
+      "numeric_passes": 10,
+      "turns": 29,
+      "invention": false,
+      "actual": "NOT_MET"
+    },
+    {
+      "synthetic_logic_only": true,
+      "numeric_passes": 10,
+      "turns": 30,
+      "invention": true,
+      "actual": "NOT_MET"
+    }
+  ],
+  "oracle_imports": [
+    "__future__",
+    "pathlib"
+  ],
+  "oracle_corpus": {
+    "corpus_cases": 84,
+    "oracle_agrees": true
+  },
+  "protected_input_sha256": {
+    "Build\\agent\\__init__.py": "43bd3b872ce26db44a3f002e99242a8ab85a795d9abc32cbf937d07ec49af7a8",
+    "Build\\agent\\interview.py": "c1d478b31a89d8d96ae2ca97509e9bf8a09dde87438317869f2e39c6b258749e",
+    "Build\\agent\\muse.py": "100fd62167c310ff7751ee0131915b15b522e9d4f1c1df775aa4d680846c6628",
+    "Build\\agent\\record_muse.py": "ffada904867eafccb38dde3625da9cf8ec72a354a102bec6c301c58a15cab021",
+    "Build\\agent\\tools.py": "784395c69b9458447bf3a1b77b4666b20c00446a79301884f549fda544204da1",
+    "Build\\agent\\trial.py": "0acc5e8d395ab6ccd86f3a1df641a408a4a3f6dafec555a0f033356e7d160e6f",
+    "Build\\api\\health\\app.py": "a462bb4ed1ccab6b046fbcc934709348cc0052512dc191439b19dffd31fc71f8",
+    "Build\\api\\health\\CONTRACT.md": "a4ef39afa7ad9945c23426ccf7d154bacb90a670478c594816e31ff098ed0509",
+    "Build\\api\\health\\dependencies.py": "7bead39e709768f652de403370f61e2640f3086da51ecbbefe05ea6fce2f2bbb",
+    "Build\\api\\health\\README.md": "495fe26eca28ea60e8b8fac602ab8a7a05d8a168be23e02b4d183350fe6cb5c1",
+    "Build\\api\\health\\requirements-test.txt": "d7782d151a26685f096123e87d1979316a32e9ff7b8d4614d7469722bd4df61d",
+    "Build\\api\\health\\requirements.txt": "b42c917ab59f15a541763be0cfce5cd0fb05d548928137de922be598f8cc104b",
+    "Build\\api\\health\\test_dependencies.py": "cbf974a9529266b26479092efd181125671061f87842aae9eb5a43b4b2ddd265",
+    "Build\\api\\health\\test_health.py": "82798c23ff080ec671ae4e1b7dfea47d44647d583112088fdd217621f9754c78",
+    "Build\\fitter\\__init__.py": "e9e30af1d28cd9b870529cb6fc22776adaf1cd211b5b206d8de0eb0e60abda27",
+    "Build\\fitter\\api.py": "cf3c5299ca49cdbded0e6b6e94483698309941214f15a2bbad6bac241ecb5c50",
+    "Build\\fitter\\core.py": "849ab76f0c660fd66663866c003370cab5e1f46e973fe31c5e2d4602bca135f9",
+    "Build\\fitter\\README.md": "f0399beda069131e7ef3811703bc3e025402606c3010f6f974ba64b7c1ad4c34",
+    "Build\\gpu\\aws_adapter.py": "6931d2129d9e33eef498468b1899b84a8215b919db6de23954775bbf60af6efc",
+    "Build\\gpu\\cost_log.py": "73a719a4ab9a338da9bdd4a27b6bb071a3db8add20ad91af63f36514df783cf1",
+    "Build\\gpu\\image_spec.py": "ed60162b82f09007e4337f8fc60239fc8fa1f0c20d11a6f1302d2131923d75d7",
+    "Build\\gpu\\licence_audit.py": "f2440f1d1452ba906d642f362b395d7ff0eb7b66c4fed5a5316029023b18484e",
+    "Build\\gpu\\modal_image.py": "397e318be8f02fe7f67b2c1de3cafd04b48074c62049734f0829d00bec996f27",
+    "Build\\gpu\\runtime.py": "70e5d77a150296491a97c2f65b7856ce2882a7e2b91a9b2b774a542087c213fd",
+    "Build\\gpu\\sam3d_option.py": "86de5db784d03d0c657797e6e78fcc69e59ce3bf9f0e501e6f25abc7019ef76e",
+    "Build\\gpu\\scene_job.py": "a4e146818c36121e9fe03ea5be76e5c138de9ce0620ae19449d2477d9f8dd6c4",
+    "Build\\gpu\\test_aws_adapter.py": "e1d0d89b3de11a1a7218784cdb670b050d92327d1123dc8b922a7b1f1003922d",
+    "Build\\gpu\\test_cost_log.py": "a16fa4b42e24d1d5d5688402c7e2ac015c382aad07ef87dc3ac2f7a9996c99a9",
+    "Build\\gpu\\test_image_spec.py": "5c79c0e0d7a97511d71dd6d1fd8e9180407266d50bffe4b04941be52f73ab0aa",
+    "Build\\gpu\\test_licence_audit.py": "9a85a3b064267c290b23ea35da36255e5252af5216e2e02eb32ac57436fc7dda",
+    "Build\\gpu\\test_sam3d_option.py": "69ada7d09bebdab5e6438f57013b1f5dcf39204d213e12aa9f0799845fd733c6",
+    "Build\\gpu\\test_scene_job.py": "9c4587e94db3e846fc2dce2f2fc92b230af1bfe7f3ddeb085909082b8ed74e26",
+    "Build\\guardrails\\accounting.py": "484c5f004bb37ccca6ab5574aa3fc5340b98370fbee9ce023002d1d9af0f0f05",
+    "Build\\guardrails\\ADMISSION.md": "c9502e4f7279066f1292e7cbfa1eee00e53564be1627f0b891d98b037dd65f6e",
+    "Build\\guardrails\\admission.py": "dac89933564fe8e473991b562512710261962f39f3209da79e718c86e0c39b97",
+    "Build\\guardrails\\CONTRACT.md": "fb7ac157d829aedc053af7ff04e190ccf42239ae3cdef2016efefdd176dd719d",
+    "Build\\guardrails\\durable.py": "cbfa6188ac139eea95fa9e106ca4b047bb324ad65936341276de567687198b12",
+    "Build\\guardrails\\failover.py": "f27e5e16b7921ee428b70a2b10b2c542258d58941017f37b170d01a8396d0d7d",
+    "Build\\guardrails\\reservations.py": "2052825626573211541d8c791c8409e592b96fdbb156c28b80bc124c29a14767",
+    "Build\\guardrails\\settlement.py": "b6b729d1b73056746409a7274d36f52cd938c84e519192987018a6d1ce2c26e9",
+    "Build\\guardrails\\standalone.py": "06bac9b4112f4aa468d845c1c1d23643bd3b45295038f7df0022923f0870974d",
+    "Build\\instruments\\__init__.py": "fec91c39aa79c7d9a082cc8bb5c72339042e0ac4535a61a477e73076e331a39e",
+    "Build\\instruments\\synthetic.py": "3f216767bb4d7b16541955d169c699668daf54ef228c1626b37e33fe7c7ba78d",
+    "Build\\lab\\acceptance.py": "4ebdad7410402b591cfc85bf1fce53bc5382388e06590302a08a4c756d339a1d",
+    "Build\\lab\\pipeline.py": "ac8d06c6dd090e477bc9c4bb967bb9673e27ba8d799654e8ebe283bf7c36032f",
+    "Build\\lab\\README.md": "dcfd2b81aae8ce586a041feef599192161884c3d3deca76549dcab79ae85e08b",
+    "Build\\lab\\regression.py": "19d5157f2991fa6c6217c4511168e128a232ce27bf87985fb0ffc0d645443111",
+    "Build\\lab\\replay-check.mjs": "1260cff2ad88fc1711a06c162a646970050aed3af545eed3d7e316e5057687dc",
+    "Build\\lab\\session-bridge.py": "f155b86f7d3b94499a20b37df367db455d548451beaf6081c073d1c434467569",
+    "Build\\lab\\session-service.mjs": "2675a5ac2cfa20851e27d80317afa78aa77a1fbf8fa5ea6d777f1cda84fe5aaa",
+    "Build\\lab\\simulate.mjs": "7f1a03cae86a7c29c9a26015b28e965d0e09084375bd56b923e83573f11d619f",
+    "Build\\library\\example.py": "1ff0c778918ae4dded0697fbbb79a81046ff92ac068381e9262bb7c14cfbffad",
+    "Build\\library\\free_fall.py": "6effdf22bf4d3f2abd6a8b7bb63522c021be8e18b6382eba2b7f8b3351dcc9a2",
+    "Build\\library\\manifest.schema.json": "fd2560ccd152f6713990cfd75147f5c4811fa78f4bfc22c9e6436b9767573a3d",
+    "Build\\library\\pendulum.py": "8499308aea001af90df9d0eb2f553810f4af39462fddc0cd3ccad0b9c24941a3",
+    "Build\\library\\projectile.py": "c4f7eb9da274e7d92646b7e8c8fa3867579345621093a3aa303d59deddc620cb",
+    "Build\\library\\README.md": "71cec00c75c36834b6e398aa4c90a426f82d8ee8aebed472aa66720b683577de",
+    "Build\\library\\scenes.py": "be44bec16b09b7113d9b81cfd45995450378e72b6cdcebb78a8d630ba117fe13",
+    "Build\\library\\validate.py": "26cd71cc425b2ff07336a9727af9e8e1bf1da403d91506ac67c5d364ce42a16e",
+    "Build\\measurement\\FITTING.md": "bbd5307e35fd59b4746ec25669d937de5b2b0f1f1f193c29f0d87089ca484125",
+    "Build\\measurement\\free_fall.py": "755b504bba55074c9e203d574e6219c1c06e0b63de0532cf54de48ec9dfb83f1",
+    "Build\\measurement\\GATE_M.md": "573b809417731476d8b3a9748baa56c188fbb0b658cb81d0985c32d7c13dd574",
+    "Build\\measurement\\gate_m.py": "200219af7b47ca2d0e89244ccafb4d8ab87ab1992ea3e15307d5cd10e7e5d6b9",
+    "Build\\measurement\\inputs.py": "913e7b2bf81087a25a3abfd19bcce4951c4c9035dac9315a23983190bef9ed3d",
+    "Build\\measurement\\README.md": "34acecf966d49c8430bcc597263b52df6727e0ca6c81029c8db6da415e4ff012",
+    "Build\\measurement\\runtime\\modal_track.py": "4ac13f2f93dc0e8ba24e809737649c0b3ca8aab20c34384ff1f96de8677b9099",
+    "Build\\measurement\\runtime\\preflight.py": "b76aab49b64e08d982c70f05f950333a3bd51205d5a84245e5865e4510c1d9f7",
+    "Build\\measurement\\runtime\\README.md": "d5e6c1cdf2100e30e963c7c37c252e2fcabcbd04a5804e3797e699b21c07e775",
+    "Build\\measurement\\runtime\\requirements-linux-py312.txt": "df787c4da369c631b9d372d533393b91b400835b4d9d51bdcbbce383b387d1b9",
+    "Build\\measurement\\runtime\\requirements.in": "974e8919b25f04b8b6a9b769226af5bea29c2a77602ce467827b54b3edf5233c",
+    "Build\\measurement\\runtime\\resolve_imports.py": "386f4c8f37414c6719f5a5b129b41f94a944a71c90c9be89bf86ff7f68a39139",
+    "Build\\measurement\\TRACKING.md": "597eb81eca08cdde7719ff1351f40766918674d26d622c8d483bf079ebb2aeb2",
+    "Build\\measurement\\tracking.py": "9849e75568a36fa3f0b1dadec69c910448a1d99eeaec59d3f4d0c7d1637e0479",
+    "Build\\measurement\\UNCERTAINTY.md": "4cc8233a472e91f22652dab901b2a448ae17d2b2bd6fbdb86bba45fbf175d8ad",
+    "Build\\measurement\\uncertainty.py": "07fbc6230af3adbf6cadcf75a9cc23715f71571c3771401e641633e7ef17d0ab",
+    "Build\\pipeline\\__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "Build\\pipeline\\contracts.py": "1abcf430eb2503f15f454f09421980712635780baf4f5ca0041c3debba8ffbf2",
+    "Build\\pipeline\\e2e.py": "d344059ccc5f828ed84d6a8cce5c39a2ddb44d1aa1da2761dbf523acb5097c1f",
+    "Build\\pipeline\\gpu_stages.py": "f3714b3c9cca8b2826fb47bf9be01cca535a98cd943fc9c37419287a5eb6fcb8",
+    "Build\\pipeline\\jobs.py": "6b3c3dc1563ac2f456d01217443aff3f65cf278d86e778517f2591702159ecf8",
+    "Build\\pipeline\\keyframes.py": "be416d7e91d60045f3ebefada9d9ff74c486d768a6126698854f37b9cafa3467",
+    "Build\\pipeline\\progress.py": "235877bd80834de38cea89a19eb1262a766ca7825c680ebcecc726050f7f68c5",
+    "Build\\pipeline\\understand.py": "336572a086650456d8fa9b30d7084b70379e27b7ccf8859b3beb1a2eccb182bb",
+    "Build\\pipeline\\uploads.py": "cbecd696a4915644852af5f04307c19d6edcd63f42d9eb2d7070135fd0a0e593",
+    "Build\\real2sim\\boundary.py": "7796b762c2d2d30644a61345df89fcc9e1526f9bc48201f599ddab32d183a764",
+    "Build\\real2sim\\fallback.py": "9b26437a8506c0ac56eee32bddbd874eb8489d5a1b283a2fe9c24e2e4b6cee1d",
+    "Build\\real2sim\\overlay.py": "bcbb474a23a25af26ad57d1182de2a1bd6d3f5298bd9b49756362ac4d0fa0bf4",
+    "Build\\real2sim\\params.py": "455ceb37a823fb42ba91254291b735b564a6aedcf7cb7f74b9eede993340d303",
+    "Build\\real2sim\\predict.py": "00d7dc5a242a4f619d5334ec08e106a9eea55f5d13ab2a349d0fc608ed3549cc",
+    "Build\\real2sim\\score.py": "0e0b14e2e3c110626e2ba6012b1303c1c0805a5921b686c1bd21d9ea5d228137",
+    "Build\\reconstruction\\spike\\cpu_import_probe.py": "c4297f9d16c2de9722fc365e06587ea8df5a336d64ca4de57b380f4df7d36631",
+    "Build\\reconstruction\\spike\\gate_r.py": "d203da0497a5ef1b9e87a01e2c877dbcc69d15750eee13cf2ee3c4a43260de98",
+    "Build\\reconstruction\\spike\\modal_rm02.py": "87085d86baa166b7369e83d02011d449d910df4913b272fd41917b44b322c0c9",
+    "Build\\reconstruction\\spike\\modal_scenes.py": "9036e0a9454b0d9c1131d9b55c1875d8c78e69a5f050bae48dc8acc2af41f1e8",
+    "Build\\reconstruction\\spike\\README.md": "e78abf6ce807ac8277cb288fa5d486e5a262bd9d6b900c448472d1819660bac8",
+    "Build\\reconstruction\\spike\\requirements-linux-py311.txt": "be3ea474d87851918d43248340b03b1bdcf24165d8532b16316e55df03f37e7c",
+    "Build\\reconstruction\\spike\\requirements.in": "fdaf4a012ed1f484f9cf23dcb4fcb901b813ce7aee27d5bbd4b8be703d0b3a89",
+    "Build\\reconstruction\\spike\\rm02_deadline.py": "729704c8c63f1daea61912f4d5adb4ed81a0377eba5543851c926462b1a8e2ab",
+    "Build\\reconstruction\\spike\\rm02_result.py": "0a60c5c2448839b84ad5f68ab753c639b5361c1c6e843606007f15f106623abe",
+    "Build\\reconstruction\\spike\\rm02_watchdog.py": "80aa667c5bd570f686f0597b5d72efa19a341ba8e17a0e19801185fa02caf444",
+    "Build\\reconstruction\\spike\\scene_frame.py": "80d274080b7b30e2c26cc0e5b8fbe454d63c63ba55365e4132fb86d171e9a41b",
+    "Build\\reconstruction\\spike\\test_cpu_import_probe.py": "179528893534eeb06b8ba9d01ec948c24c2574ba9c6681b3ce655edae356edc5",
+    "Build\\reconstruction\\spike\\test_gate_r.py": "ec2d4d2dcb6c682028cf0519e3bc4aa125a1ed5ac19549f157a5ef0b36ea666e",
+    "Build\\reconstruction\\spike\\test_modal_rm02.py": "811d7f07d0e521d435198b31be8821a314dcf3b7964cc3591418a2dcabee4bc5",
+    "Build\\reconstruction\\spike\\test_modal_scenes.py": "8346820f6c357f3b9502093f78c5a414d9cc32b736c301dcb7261a014c324e27",
+    "Build\\reconstruction\\spike\\test_rm02_deadline.py": "75fb918aae7e1c8098a40a0e771693afe33ec260d4132b8b62c7311d7cdc5c67",
+    "Build\\reconstruction\\spike\\test_rm02_result.py": "6ac7149a2dee23458e84eb6ca0c9b388e61afc136771eb75ff6e630badba542f",
+    "Build\\reconstruction\\spike\\test_rm02_watchdog.py": "0ed23c5bcd4ad58f9ba1fa985369d4555772feeaffaa62b6a44c581071202574",
+    "Build\\reconstruction\\spike\\test_scene_frame.py": "731eeb6664e8c5374fe2b576f1f0a941762087f6d810f6099ed87702d885a3fd",
+    "Build\\reports\\__init__.py": "960d8e685bfefba00a19234b53c1f7d3a91392765dce8d916114ddfa4caff079",
+    "Build\\reports\\compile.py": "b3dc867517e0fe28efd08d672b7fa2e0ecbb2f640e76a0dbf7df46db6720a736",
+    "Build\\reports\\CONTRACT.md": "e3ef8590ffd034d93b8b6906458016d1b8d5df730bde0d9e10512cf3caebee4b",
+    "Build\\reports\\contract.py": "d10c89385192812b34217c78826a02620d6ccfd2744d3c3b992999a7ca4b4605",
+    "Build\\reports\\diff.py": "e6f1e336b203674970f80ae5e898c93741164eccf31cd16599ce9bc1e06ae94b",
+    "Build\\reports\\render.py": "47c87f737df982c39ba30889ea5ad34af3bbe28c680da952f1704442e1aa1035",
+    "Build\\reports\\typeset.py": "720e6d7e1e9ced8ee3f09921879928b79210aaf63afe682e712b81a4f1b9d99e",
+    "Build\\sidebar-tools\\CONTRACT.md": "17322e2e208db7fd2890da43c4769da3ac6e19e126d70ca027394442cec6902f",
+    "Build\\sidebar-tools\\contracts.py": "039ddd4ad13a98dd83228b3e8c10edad00e0350dd74a1639f2da9c5d5f416aea",
+    "Build\\sidebar-tools\\library_search.py": "cd64aaa1374fc1f633e9fe168341e5957755d44935bb5d44aa5a394e0e753209",
+    "Build\\sidebar-tools\\rebuild.py": "165cd9b35ccafa29335193e6e4de0767d0a236eced72e973accd6c52dff1204d",
+    "Build\\sidebar-tools\\spec_patch.py": "595819ed595b288f5da3a21ec1ad61ca6e559ddd0b6af986d239b55183b0363c",
+    "Build\\simulator\\apparatus.mjs": "e11050c04584462e409078ef7932e805d5cc715157537416efedc0629feee8c9",
+    "Build\\simulator\\contact-runs.mjs": "358726979a129a7df3ae4599fecc6bd0a34a4673fa0c125c48f71cd66d87e1dd",
+    "Build\\simulator\\contacts.mjs": "99f62415fd5eb04ec969e862324072e4e0987928c156a24a4aae0175a9379b7f",
+    "Build\\simulator\\export_validated_setup.py": "aab142c252d28685bde64a69e7b9c35bc8c8735926fa3cf89278572de97511c7",
+    "Build\\simulator\\extended-templates.mjs": "f62406f590eca2c91dea03006f95fc291c0ec5be12a0408798c9e705d32a2b61",
+    "Build\\simulator\\mystery-g.mjs": "339a9cb1fa39120e112fcf5983ee6f58caf1578e74d0e8555eea4bc396f37ae9",
+    "Build\\simulator\\NUMERICS.md": "9eee7eb70a7cadbed379435a5ba325a3fadccf65b14d8ffb1752fe5a2c4d2116",
+    "Build\\simulator\\package-lock.json": "b9c30f504894ddb61d9217f350f4ab9f486f2f0839b4f7b16a5597569cacd5ab",
+    "Build\\simulator\\package.json": "fb24a79e81f635e696f960e6bd5a2d8d7dc8b2b067419ee507d795a746320e0f",
+    "Build\\simulator\\replay.md": "9f90fee7deefd98eb2d3b220398b3c0da3fac1d17e01f4f2c162ddff21767d21",
+    "Build\\simulator\\replay.mjs": "483afb36ea0de093219379453cb3dccd158d6acdf8cc52fc76c413d82e832e11",
+    "Build\\simulator\\rk4.mjs": "1e8d78356aa3a5b439652eb6e868f7c1869df8ff2d3024814a240661a7f8357b",
+    "Build\\simulator\\trajectories.mjs": "b187a110b7f50c2293dc692b74682fb6d460e6154e877102af65e07548d4f8b7",
+    "Build\\templates\\free_fall.py": "ecb2434690add8efb7129099eb8a7dc0f5ed7928ba90c2cf94c9d488972951b7",
+    "Build\\templates\\pendulum.py": "663ac598ebef952461e1f862b285478670eb9bb96b893a1b3dfb166bdb9dc483",
+    "Build\\templates\\projectile.py": "639f5e3d53ca057e28d5a343c43825b36c1953367dc9b3c07213965fc5efc35d",
+    "Build\\templates\\ramp.py": "9908e940647200953bd8b7dc376cf906d5c0eefcb5eac529939f6586e4316d3b",
+    "Build\\templates\\README.md": "53724d4d6c68b62473939d36ebee87d3d0a5e144086de945a3da23b3f0541716",
+    "Build\\web\\AGENTS.md": "d273860cb120cdc0c127d565b196d6846274ad3933d5848932659c2a0b193898",
+    "Build\\web\\next.config.js": "2b3c6ae0e9e07e5093c3a6927b39663b248e59e5f8be973568e3cd93e9761b9a",
+    "Build\\web\\package.json": "547df182ef15de5411598a30981f71de90027b8744c356c9eef699fa1547a95d",
+    "Build\\web\\public\\pwa\\icon-192.png": "0c496919c95b32b3ebfd9a3fe2dbb3c8326a276f1ab24bac0330c07aa3879e53",
+    "Build\\web\\public\\pwa\\icon-512.png": "d1ef2a8fc12adf8e0591377f25de458106372d705373adc85d5764053bcaefb3",
+    "Build\\web\\public\\pwa\\icon-maskable-512.png": "adcf13cfec83b1e7d92787e55e797fb58e28c7cc3e8f6471ada3b40e347a0236",
+    "Build\\web\\public\\pwa\\icon.svg": "58b850c5e8797e4c39deaf4751b76ee4ba31de04f61a76eaaa2cf7d6900f5d9d",
+    "Build\\web\\public\\pwa\\manifest.webmanifest": "c5d962c56de2db240974910b19790d31b455933ace0cd2fa67477bd087e315d5",
+    "Build\\web\\public\\pwa\\sw.js": "b52031c4499b642ea045284dd290b2f36a14688d58bbc2e1033456d3841a0574",
+    "Build\\web\\src\\app\\(private)\\layout.jsx": "6cbd8afe0b930d7569169e41358a6bcb6e6c944037b929117b87c4850806f099",
+    "Build\\web\\src\\app\\(private)\\workspace\\[sceneId]\\page.jsx": "7ca23fc592a4b6af556646bafabd157d63fe125fc30ef3ec46088b4b03f88443",
+    "Build\\web\\src\\app\\(public)\\lab\\page.jsx": "87e862249753c1fe01a65ee5c7935cb94e604d8f960c6b8878d900c91e5bf8e5",
+    "Build\\web\\src\\app\\(public)\\layout.jsx": "74b8a71736ab0bcf1ba8d67d5b7b67da8d968fb52daccb582e1805be4610a5c5",
+    "Build\\web\\src\\app\\(public)\\library\\page.jsx": "ebc9a07a46c90a2feea70f1408fdcb9d3f2965ad1e70e14f8d86056fb4dec951",
+    "Build\\web\\src\\app\\(public)\\page.jsx": "b3bd157d5c8f48fb9214ca862ebec58bc03f36dc5f73fb54e1419e72b08cde9a",
+    "Build\\web\\src\\app\\(public)\\sign-in\\[[...sign-in]]\\page.jsx": "049a81e7895d84650d360893ab6cbd3486633f789c12e29a4fa95068918b0b23",
+    "Build\\web\\src\\app\\(public)\\sign-up\\[[...sign-up]]\\page.jsx": "63dd725dd08a4214823cd863ba23efdaac4906fbfe83f55427b09c6eab3e48cf",
+    "Build\\web\\src\\app\\api\\lab\\route.js": "085e4f081ced5269c353f22a218a9a3360419f0c28cecdb1329b4398ea533c3e",
+    "Build\\web\\src\\app\\CONTRACT.md": "ab2bf55f6b843aa8b098ba576b467d0bdf785041376529dd23c7de175c6be809",
+    "Build\\web\\src\\app\\error.jsx": "1ddc5a40c2d60698de29791741aa21e3bda710167d9c71d14fd69aa01d0ba05f",
+    "Build\\web\\src\\app\\icon.svg": "bf63b3afe0be0aad5f8db2648c0a2c9275da93fcd2aadd89ac48dac53c439c60",
+    "Build\\web\\src\\app\\layout.jsx": "1db7d50c3428c160e2a7be3111e9dbb353948f3ba52c741e789e00529440f2b7",
+    "Build\\web\\src\\app\\not-found.jsx": "fa5b28c29dedda9d9e200cca7287cb3c99945017040c701c73d723e9cfce5aae",
+    "Build\\web\\src\\app\\styles.css": "d230a39e320fcc8ea6dde6bf0c360e4a858a78042e99848f46e027c60a36464b",
+    "Build\\web\\src\\auth\\access.mjs": "aeec55e5134c566463bb0b4f2c84deb6f6233eaed4c8b73b9ad699938ca04acd",
+    "Build\\web\\src\\auth\\access.test.mjs": "039f025eb7b1827c5eaf053266ec4b660986282bdfa2d3eb65bc335ea5cd06a7",
+    "Build\\web\\src\\auth\\appearance.js": "607393181325b63ead60b98ebc811292aaaa9af57221eff90494ee1a4e04677e",
+    "Build\\web\\src\\auth\\AuthProvider.jsx": "ec681ca2faf20807c5be19dd1857314a3a2995b1969ada30b55aaa27a55025e9",
+    "Build\\web\\src\\auth\\bundle-check.mjs": "815682eb52c97ad173b9216926b29811be3b53c88f68bb9404641509f7d93688",
+    "Build\\web\\src\\auth\\config.mjs": "415eaada1f9abc27a27c9ab95a115672cbbaaac102b8c9c598151a3c8f881fe0",
+    "Build\\web\\src\\auth\\config.test.mjs": "39cbef6dfb5307e1e95851ec68559ddc060ed179c9a1080597aaa8808d009989",
+    "Build\\web\\src\\auth\\CONTRACT.md": "952cc4df43be8f650b244a10352117bd962bd9c021ca9e51a6b31a15ad8569ad",
+    "Build\\web\\src\\auth\\README.md": "f95625c1ce0cd5e00b02f6cd85cddf0f2300c4994f3f01955b58c217d08e37b9",
+    "Build\\web\\src\\auth\\server-access.js": "0b3d379e418f2e72dde8b49ab39167808807a2bd549f3c3c75bb0afb611fee8b",
+    "Build\\web\\src\\auth\\server-config.js": "1415fd4d7b159dcfa15554de7216d3b4d3e44da2be48fad29582a939c1f5975a",
+    "Build\\web\\src\\lab\\browser-simulator.mjs": "e4768f99e8138b169e9a74bb1abe7c6c65fec9c6b25bb69d16c5af34a31f2e3d",
+    "Build\\web\\src\\lab\\BrowserSimulation.jsx": "5ecd7a26c02b81b56d4e430897c893cd591edac46a335e51169cfd71c652d542",
+    "Build\\web\\src\\lab\\fit-contract.mjs": "89bad3b956914ad30f215755e6df6cf36405ab8024b1a963e919070f5a6241fc",
+    "Build\\web\\src\\lab\\lab.css": "f7f9739631dc93fcea397e193b5d090d08caaefff7e8f82491602d7c260e300a",
+    "Build\\web\\src\\lab\\LabClient.jsx": "c73f00b476ecdac59cf2ea5ddb9bb3b3cff4f2a7330b078f0dfa57d82b1c427a",
+    "Build\\web\\src\\pwa\\build-pwa-assets.mjs": "5908fc1c065564e59bd9af6b07385da1bf92da31ad38ddf267a650327dc189e6",
+    "Build\\web\\src\\pwa\\build-sw.mjs": "d5163146842a4a1733c90489eaa9a84e6f7583de86814e3373b44800f416832c",
+    "Build\\web\\src\\pwa\\cache-policy.mjs": "c1e04e5fde8587f8956ab6c12e4bd8f8dde62581230ef5475e03688f3c1c921f",
+    "Build\\web\\src\\pwa\\icons.mjs": "7bb24d1a217738276cf60a9029760b77bbd6b70d025ab010666b87024a1a667e",
+    "Build\\web\\src\\pwa\\install-client.mjs": "df2cd3e4da55b0a9c7b236fc9f46ae48d9a1db0c023d448441abb240f9e8493c",
+    "Build\\web\\src\\pwa\\install-guidance.mjs": "beddca1b4b026963d184a3a53cc185883c4400abf94f6dfb1f21a56720abaa34",
+    "Build\\web\\src\\pwa\\InstallGuidance.jsx": "145a0cd45cf232cd8ea2c832d763bf4e6a11005464635c2e37d1866274cb7e0d",
+    "Build\\web\\src\\pwa\\manifest.mjs": "7b50433a909a709d7897190d2c6952455fcec589e6c961b6d09e0dfbd18b6c3e",
+    "Build\\web\\src\\pwa\\README.md": "3ba2aac416284559d0422e47e73259384a98916d4c56abe830c24647c0aeaa3f",
+    "Build\\web\\src\\pwa\\sw-glue.js": "feafc09a4269c33a437b7a8ba6a3518ed5436e74537d395f2690407c78621305",
+    "Build\\web\\src\\pwa\\SwRegister.jsx": "01920e7cbe8a42cb66aac137b79c13297d680188480dbaa1736aee41a1d42c60",
+    "Build\\web\\src\\shell\\AccountNav.jsx": "d097bfff0dffcd242a376250655aa327d99a452d33cadd9cdcc31967a0653222",
+    "Build\\web\\src\\shell\\examples.json": "78bd1a828f28f0b1cbb7f023fa8f61994924cbbf80b33c9e6e6b61cac3dd9ea8",
+    "Build\\web\\src\\shell\\fixture-mounts.json": "58a26949e4050de06df92f62c91a3a762e10ce296ace3898502d6cfecf31afe5",
+    "Build\\web\\src\\shell\\integration.schema.json": "58ceb93d212ca54095e5860b6ab82208c66de660560f264075fec0fb9c42467c",
+    "Build\\web\\src\\shell\\README.md": "0a0b0e8606ee2610e121c285aec0b89023db43d2d94326761bd0a8122166b6a9",
+    "Build\\web\\src\\shell\\ShellFrame.jsx": "48a1d5402b19da8fe2e296ca0587a2084e86ae931a7b63f7ba22575852ec42dd",
+    "Build\\web\\src\\shell\\smoke.mjs": "32336707883f91d41cfb4dd76dfaf7a8798e9d1826ae9ce87f717e23245678a3",
+    "Build\\web\\src\\shell\\test_contract.py": "e203691ed719f08977c79fbae4a627324c563041f1981cd9957b2b88d59e0b24",
+    "Build\\web\\src\\viewer\\adapter.mjs": "df2aa556f9edca38cc0b46c9699adedc49b17a65b626297413ad43810e0a32f3",
+    "Build\\web\\src\\viewer\\artifact-loader.mjs": "abf8ee689fa6a6fa80599a486ffd6c68dc34a6ef5da8021a436c9218f0623e0f",
+    "Build\\web\\src\\viewer\\common.mjs": "966853ef71327bc4a32cee02be700db8abb7dd9db36d1ee8c6d03091fb36fbc8",
+    "Build\\web\\src\\viewer\\fixture.mjs": "0e3020c59594871695cbb04bc209f1957439630fac1dbb4400c4dd7d80c8e627",
+    "Build\\web\\src\\viewer\\README.md": "c5b73bf556b818f443326e3649a0f74d228810498af19fa6e494806f4e1ce870",
+    "Build\\web\\src\\viewer\\render-budget.mjs": "10cd751e1a4e0964489020a01af64fa7e303a6626a0c648c9c140570c34369ee",
+    "Build\\web\\src\\viewer\\scene-model.mjs": "9d5cd5e8cb70e4bfbe81199a643ca256ed53ad1b166268cad3bac2210bb82cd2",
+    "Build\\web\\src\\viewer\\scene-overlays.mjs": "36e92445246a42f9de4b0636b3074a67b83e8159d8fd0e14ec97fa5b3d35dcb9",
+    "Build\\web\\src\\viewer\\three-renderer.mjs": "702d0d267b5cafb7f64c7dc3c33b96bd60b88edcfc57917858e04c1b0af76a6c",
+    "Build\\web\\src\\viewer\\three-viewer.mjs": "c5487c7395d43470b24353d1a8e5f75ab0ac55cc4fe0c73528389a099d48f1d0",
+    "Build\\web\\src\\workspace\\fit-view.mjs": "94e5001d2ff0f129fefbe25c4642545fc21b529b9ec8a0a737e6babf10025f74",
+    "Build\\web\\src\\workspace\\fixtures.mjs": "29d328615655bcd670ced22a986e8425cd5fe236ceb16a62ad14673d8d84eef0",
+    "Build\\web\\src\\workspace\\instrument-view.mjs": "9bfd70548907f8a42d96efe3e686a236ff0452b872fa03bb3547e861ef999d89",
+    "Build\\web\\src\\workspace\\instruments.mjs": "a80c197e4e3661c86ad9752dcb22eb4c1b32e654f889383e324c64e7ffd1e37e",
+    "Build\\web\\src\\workspace\\interview.mjs": "4af29cc4fea46ad1b1c7d702e4f108a7d50c260b73690a92b3b8744d3d06d100",
+    "Build\\web\\src\\workspace\\layout.mjs": "2722f390fb134db7c5884de02aae8145ff67869f46aeee98aa7b069740372ef9",
+    "Build\\web\\src\\workspace\\navigation.mjs": "c28286292f313daff9625a8a0dacd7453f909c818c50a5a3368bb0e5b4bc5f38",
+    "Build\\web\\src\\workspace\\react.mjs": "853fb84b3b23bc92ee3e653d7d729fba50e232560634a2175b9eb3def442e101",
+    "Build\\web\\src\\workspace\\README.md": "53d39a15662bfe718c9535c8e6e015ebda7e02a678e7e423c13024e700d756a8",
+    "Build\\web\\src\\workspace\\run-view.mjs": "649edd2c3808dea1492d3eee2459f488637a6a2c0b6d8e1592d4fbe70b3e61c2",
+    "Build\\web\\src\\workspace\\runcontrol.mjs": "a3b8aafb0885d1b42b5f900e96d5293d5b9173e7040a70cb5311797761757f8f",
+    "Build\\web\\src\\workspace\\status.mjs": "a30ae4cc1e04f93899c24224460a9326b5b57eb48a917d17f198bb1dbd3bed74",
+    "Build\\web\\src\\workspace\\template-view.mjs": "bfeca4eb3468759d0bd6f66c5d537839772a399b87e70273d77f69a347c64217",
+    "Build\\web\\src\\workspace\\template.mjs": "6327594185c989114eb3cc418abfd9ecd62e2078c977792fdeadd657ff88d52d",
+    "Build\\web\\src\\workspace\\view.mjs": "4c6849718cd185afc0f42827375bcb83ef23770e3c700b1c517a55229a160226",
+    "Build\\web\\src\\workspace\\viewport.mjs": "f2243222c3895e582d5ac9139a87c3ec454c8030a6d0a4467a1d3486e2fe17aa",
+    "Build\\web\\src\\workspace\\workflow.mjs": "0bbb36b552ffc6934fd0d9b463fd23d0f6edef716aba1ece9563cbd7560e5597",
+    "Build\\web\\src\\workspace\\workspace.css": "e891a020f664be644b598342f46fafb7d1e21016b8ad627b116d4ed10b72ed05",
+    "Build\\worker\\health\\app.py": "2256e08687bbfb2b98952a5890b6ea0cdfa565e8906c441e8444b914fcd61f46",
+    "Build\\worker\\health\\CONTRACT.md": "c7969e432be4c04045f443b85a9c8c733770f1d4dd251d9b17ffdb36fc574929",
+    "Build\\worker\\health\\README.md": "2295c378ed1b71b2ba581a7270384fe380a381c4e4350452b1ef3821c7bd9d84",
+    "Build\\worker\\health\\requirements.txt": "51974a0321e2403b86cbf951adbb68c1effbb00db4e61423342030bea7e6554c",
+    "contracts\\agent\\CONTRACT.md": "a17705b7fe135d7d6e369fd2d1fff3b893326a841910461585bc49b4d0f2fc5a",
+    "contracts\\agent\\response.schema.json": "23fe8a685a7a33f3efc7abe9e94844648db0b3c370a04677769a30a033751af4",
+    "contracts\\agent\\validate.py": "0cbf2e90ff5be1feceb43a6d4f20a32116ef6e17d020ea2a1950c77b0d7e50aa",
+    "contracts\\experiment\\experiment.schema.json": "c78fee59175e1528fd543e3f6f468faec2e37b6aac7063313a9a4848a338c80f",
+    "contracts\\experiment\\README.md": "dfd1354daf80b73a7d1886084f25c588ec923addd41b6b6fde46cfbea5e87dff",
+    "contracts\\experiment\\requirements.txt": "373dd495566d5da33b2e830ac8588528e2f5ebf67ad312a4219618d6fcfadb9f",
+    "contracts\\experiment\\validate_experiment.py": "c87e082757ab387078fccc98ada95c1b097e52da3160f1dabc23a0f1754fcabe",
+    "contracts\\fit\\__init__.py": "4113ccb9a4f738445f14512af72d1c90570031b5d4326201a8bddd1cf0643349",
+    "contracts\\fit\\CONTRACT.md": "54f87392deae66b5108be31d1bf410f1c04f3683f347717b8b834fc752d585a4",
+    "contracts\\fit\\quantity.py": "4046eaeda080576458b60f15f954ec185dfbfa08fe1b344b9d762139bc507605",
+    "contracts\\jobs\\CONTRACT.md": "ccfa528f4a0693eaaddfce140eecc83d7592674b83042745b683075cc1cbab5f",
+    "contracts\\jobs\\examples.json": "b78a698a30207079838cffbb6f6db34e3056452f874ac5094be938427ab135de",
+    "contracts\\jobs\\jobs.schema.json": "a142fb6ac281c0a729de71354536ffc98d12d3afd429229b1c92c49b47655778",
+    "contracts\\jobs\\policy.json": "4eb2297f63a9edffa70326124e02b6929ddee90789029aa562fc436c8a4d7b94",
+    "contracts\\lab\\README.md": "3dab76dc0c2c508fc9d9cb8bd19dad43d0cd66814b22a551445c9ed468109a07",
+    "contracts\\overlay\\__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "contracts\\overlay\\CONTRACT.md": "b6930ccbe350fa33cef714fff024587f35f7d23ff3678a7ba239c8c86927cf2b",
+    "contracts\\overlay\\validate.py": "53aff38131b51fe7e55d924fed8262c99179f40630c6ebafdf075567b7633672",
+    "contracts\\scene\\.gitattributes": "a79691a93b46e49ce460c26ef22afcc03d6eca1e63bf2edbc20e96159510f6c9",
+    "contracts\\scene\\README.md": "8d64ff7f8a3378b33f6e6d9da922f41e236cf17c696212ff4686bcd247632de0",
+    "contracts\\scene\\requirements.txt": "cb9e5058abe248be8579db704a1c9e30e655b30cb7d5dd093bebf97f44766591",
+    "contracts\\scene\\scene.schema.json": "f2d72f8d0448cf1d0a21a7c72e8bf84c53933b2cb1c5ae2b0e7c0a026015ea84",
+    "contracts\\scene\\test_scene.py": "17cf523ce0147becc194daf97ce845428b486b2380aefe8f8de38652da5aaf90",
+    "contracts\\scene\\validate_scene.py": "386a74a5e0fc457ccfc5d6bc33ec38c0ecdd164355c705f189c1bc4b7f54e6a9",
+    "evidence\\S14\\fix6-reviewer-probe\\run\\fix5-replay.json": "148fc594289e2063f368421dcbf1990421d4c3aa9e72d73413aff2c8900e1043",
+    "evidence\\S14\\fix6-reviewer-probe\\run\\probe-stdout.txt": "d99f6e08087111594c2b5a3a1d1c49f2a4d938e5d697bf91d0052c3640653794",
+    "evidence\\S14\\fix6-reviewer-probe\\run\\probe.py": "726bd8972cb4583d11083d70b5e29c385f887de072766c80e2c247eb5c36fbc7",
+    "evidence\\S14\\fix6-reviewer-probe\\run\\results.json": "62a080da0282afaa247270d0d039072e0fddb88b8813af1434029d0976cd8f59",
+    "evidence\\S14\\fix7-reviewer-probe\\adaptation.diff": "e77588815f866b7007a2ebb685965c91632ea1162f50da66c6e18fb20e6dba80",
+    "evidence\\S14\\fix7-reviewer-probe\\probe-stdout.txt": "78d37d18361c0147d8dcd7092cef0afa98b8de75e94dd6d2aa8e830fac56b319",
+    "evidence\\S14\\fix7-reviewer-probe\\recheck-fix6\\fix6-replay.json": "3da74a8cc237ce1453ea20a6383af28957677d7ead83390a7025037332e13932",
+    "evidence\\S14\\fix7-reviewer-probe\\recheck-fix6\\probe.py": "7e6edde1fe819a469d598c2f8d48bb45fdf60dea06a2e1b288175cbd19161d11",
+    "evidence\\S14\\fix7-reviewer-probe\\recheck-fix6\\results.json": "66748328eb3b12a76d84a736fbff2d853b17d6888648ec151a9aa0110188eb22",
+    "evidence\\S14\\S14a-mutation.txt": "7ce8e74254dc62c6b27c7190afc4bdc80418f6d69919df95c8308e09ceb52d02",
+    "evidence\\S14\\S14a-unittest.txt": "4232c2239cf61db0c65172eb5a7edef041879aad6574d9f3b64f310b0e81a058",
+    "evidence\\S14\\S14b-ledger.jsonl": "c3bb3ae00a131f66971f2ce1b5aec53b6775b761f0e42047a25ff73e09f7661e",
+    "evidence\\S14\\S14b-mutation.txt": "3db289b1d93853916a144a24e18d261ecc48c66e3ecdb24a7148e30fcec33cf9",
+    "evidence\\S14\\S14b-unittest.txt": "b61095216e20dba66b590018f60a49cb961f5c59ada26d9ba4f147b38abd5f04",
+    "evidence\\S14\\S14c-mutation.txt": "ccb09ce434183a8deceabf1a8b98ccd6d5052ed9d85471cdcdece442bd577a53",
+    "evidence\\S14\\S14c-probe.txt": "a1407ea51e579bc2be45960ba01492a7619bae42643bbeb2ea048265c9133d0a",
+    "evidence\\S14\\S14c-unittest.txt": "ecf469048a444afd5310af0614b4faaa3ec015c57441c77c31580e5aff1f84ad",
+    "evidence\\S14\\S14d-mutation.txt": "b8e1782fa57c09f0c5c12219bf9e69c98e63bd6d8ae4e86bf2b416bcea6a9565",
+    "evidence\\S14\\S14d-probe.txt": "ba2555b03c5af87dbba9ac7e7f71ee85b6c3c2626f073c5437160821ea163d16",
+    "evidence\\S14\\S14d-unittest.txt": "00a927eccdc775b21d0cd19fc0fb8f6f52b16b8e1fc1e4467b631637ae254a78",
+    "evidence\\S14\\S14d_mutation.py": "043a910b62dde5af6be268f8b508acc6818dc4b75cc9766e1b5be6fa0783f09b",
+    "evidence\\S14\\S14e-mutation.txt": "fd65c8a870b8ae0bb64fe29bfb2a4a6ba0d497857d72ea0ede1bf428c7e26a0e",
+    "evidence\\S14\\S14e-probe.txt": "52f03d78208de1e766d500ae31cd44a54f41d231ab58b068c6dcdd5a1c38ab9b",
+    "evidence\\S14\\S14e-unittest.txt": "3bc0ecc49bbdfcb11d87d1e402bf91eb468500a720c8eccf1a66b907ac4d58cc",
+    "evidence\\S14\\S14e_mutation.py": "33264d1c6983bed01ea30ac34b56dc31e783ed714f05b858a25bd1b8c79bcf55",
+    "evidence\\S14\\S14e_probe.py": "e90559816683dd6dde9532c824cc15cece8c930b404baf840676f916fd48ef1f",
+    "evidence\\S14\\S14f-mutation.txt": "5d2e8d8fb1d22a07feeb5c738d1fe5cc2306003ad0b98dc0767958f899fce5ad",
+    "evidence\\S14\\S14f-S14e-mutation-rerun.txt": "fd65c8a870b8ae0bb64fe29bfb2a4a6ba0d497857d72ea0ede1bf428c7e26a0e",
+    "evidence\\S14\\S14f-unittest.txt": "0e0d895ad41934de47f1e98f9fa3ea9926d48a902447b29e0b7b6d13baafc6bf",
+    "evidence\\S14\\S14f_mutation.py": "829143122be2df0d608c713e75aa7d4cc5fd05b3805c04503c781032d4088113",
+    "evidence\\S14\\S14g-fix-ledger.jsonl": "ec6409678e88d9cc25ab26713755d40bdb321c55a309ce3adee60b9e1912228c",
+    "evidence\\S14\\S14g-fix-live-stdout.txt": "83909117f7ce1ad2793da0947416dd0a435fb39f941b718dd1e05432f8669f5b",
+    "evidence\\S14\\S14g-fix-live.json": "9a21163e4a9be458e1c73ed365f5f03271b364562c3f9182062049042454031e",
+    "evidence\\S14\\S14g-fix-offline-stdout.txt": "fab4ea3856e893cbc70cfce01f0170e0ec4e2604dc2f3dbad1ff25f91759d3a5",
+    "evidence\\S14\\S14g-fix-offline.json": "2bf72e6aeaca380f6ac1bfb728b8e98e0dae36dda44d31e541150700e81ef9b4",
+    "evidence\\S14\\S14g-fix3-ledger.jsonl": "3dc945f6576558552b025189803ef4fa8766449c6653aa15c0877db1b066f7dd",
+    "evidence\\S14\\S14g-fix3-live-stdout.txt": "35d2587544608b2c254da96722ba596b62f450ace7ea24b58e2316c6c0abf091",
+    "evidence\\S14\\S14g-fix3-live.json": "2173bd63a7a0ebcec2a00523425dc151fb268b06122b09646838a9060aba0dcd",
+    "evidence\\S14\\S14g-fix3-offline.json": "21ba3c6de9b6ec5be9502759a3d55c53bc544dd57dfe217e24296b0b2a49ad27",
+    "evidence\\S14\\S14g-fix3-recorded.json": "cd6b5738ef0f4dbbf428cde5c6e38a511eca9ba0a9546a97078a5efa75ec7fde",
+    "evidence\\S14\\S14g-fix4-offline-stdout.txt": "6928099ef53f9962e017721d427124659639de5240cc8a97184eab179a656f5e",
+    "evidence\\S14\\S14g-fix4-offline.json": "c28c91200fd418f7816b509e4e07db574efcb8df3b990e0682b7f3318c008b1e",
+    "evidence\\S14\\S14g-fix4-unittest.txt": "6f5ec67d775b5f07d498a702f9320e892023c5bab8401324868608b76c9a564c",
+    "evidence\\S14\\S14g-fix5-offline-stdout.txt": "d9c3259cadddb5b03012cf6d038c818f040c968618d2bee0b686e475312a5f66",
+    "evidence\\S14\\S14g-fix5-offline.json": "0d679b7c952c2b363753e8a6b95f9272af25b6de3b3801089528b4e3de54e499",
+    "evidence\\S14\\S14g-fix5-unittest.txt": "e06923ec6b964002358f4cf3d49ba706cdcef39fad46abab337e3fc1f7532846",
+    "evidence\\S14\\S14g-fix6-offline-stdout.txt": "030c22810ca33b744cc348a4fb619a09fe751585a30cedf4c3e6c09a7c242e5d",
+    "evidence\\S14\\S14g-fix6-offline.json": "4972efc19ed8d147b01f24d0759eb2f920c3f35eb66d95a5cbf7c3fa4f68308f",
+    "evidence\\S14\\S14g-fix6-unittest.txt": "78e5e117a431f12cae71c3a1383b08f33a3dcf6b9b78a46abd01ea0097bf8c68",
+    "evidence\\S14\\S14g-fix7-offline-stdout.txt": "dadf4dcb722a1627e9b39af81df5176e2c203e5473c41a462ad4ef2c51adce05",
+    "evidence\\S14\\S14g-fix7-offline.json": "3da74a8cc237ce1453ea20a6383af28957677d7ead83390a7025037332e13932",
+    "evidence\\S14\\S14g-fix7-unittest.txt": "02995b6d2a13dde3c918fa2972c8423b14bf1de8e1f46d6f6f4c902848b77483",
+    "evidence\\S14\\S14g-ledger.jsonl": "c35c444ee90ee3ae42a64ba58b84e61b7eeacb4a55d999d3da65e376ff584540",
+    "evidence\\S14\\S14g-live-stdout.txt": "e118e1dcfcec2e110a3a89876927096ce767c481c194566fba793799900a27a8",
+    "evidence\\S14\\S14g-live.json": "b9614f32200989e9fd41d1daa79f95cba002fa00331ee03b8ff5ff9acacbeadb",
+    "evidence\\S14\\S14g-mutation-rerun.txt": "0cff0e736de7f6cc9c43a060e417ecd9bebebc8789da80ed1bc1036b7b21b001",
+    "evidence\\S14\\S14g-offline.json": "f3e2540f8965667a180f8f368c59239ba65e18580d50e25bcf648bc9822d7435",
+    "evidence\\S14\\S14g-unittest.txt": "9d290d1f234d68097fa3a6abde67fcc4db62222b56e04d238682e659a2234a12",
+    "evidence\\S14\\S14g_fix3_gate_a.py": "bd1d97057ccf6e5cd1c2650ff8864ef328dcbafabb024f0533cbfab0945dde6d",
+    "evidence\\S14\\S14g_fix4_gate_a.py": "06baa8a460485087f217832f47fdef182b5149dc4b0a4fafce8062de0f13a301",
+    "evidence\\S14\\S14g_fix5_gate_a.py": "28a5075710165090ade9b54237c429fc282097728a6bb671be02ec57f66b3d2d",
+    "evidence\\S14\\S14g_fix6_gate_a.py": "7f3d0a88cf7941418e66614e835340c63fa72c095b4fc92d6d7e994347b7d775",
+    "evidence\\S14\\S14g_fix7_gate_a.py": "89908448beac925dad3b56597d62b413ff34f7f37b5307757a5f040e57ae826d",
+    "evidence\\S14\\S14g_fix_gate_a.py": "fbc86cdf87a64a6f1b65034fda7e0dc2b585097c872d0c334feb14ac052b0e33",
+    "evidence\\S14\\S14g_fix_oracle.py": "402f275082ed0e0b48268e9ffd049a67b30c970bf4306343b731b7f095343204",
+    "evidence\\S14\\S14g_gate_a.py": "6cb6d1171cf7d51466dbde8b9ab0b90cca6b5edfabc94a1381dc23430b120bae",
+    "tests\\agent\\fixtures\\adversarial-visible-text.json": "8e4d59832547866ffc06dfdc139098b5de8f8b79a1afc6ea978c082b098e00fc",
+    "tests\\agent\\fixtures\\muse\\live-room-v1-a.json": "30897aa0e72646233c5aace6add709bef457f6dabbaa23d063f6ac79f87a969e",
+    "tests\\agent\\fixtures\\muse\\live-room-v1-b.json": "0d7f8bebb66fc48d38e661d1ac9ce677954a35c28003f40df885d10530421fa8",
+    "tests\\agent\\fixtures\\muse\\live-room-v1-c.json": "b7c80ec656b577fe948feb8809ae8b58b68cf76296a4de186036b285d173c552",
+    "tests\\agent\\fixtures\\muse\\live-room-v1-d.json": "815f2cadd2437a6c8ee3409a8cdba29b498a53bfd7037897dfc2a5d3335377b3",
+    "tests\\agent\\test_contracts.py": "e547e1a84e062965ee62af8915791b4bee819472ebb433344f37cb2206631a88",
+    "tests\\agent\\test_interview.py": "50df8cee512597c54f353db10b35ece1b3974bfb238f9f75d74c9fc541358bb2",
+    "tests\\agent\\test_muse.py": "09aac593f1e7494efc837794e6e8aae3fb5e6cbbe833f602124f1048796cf9dc",
+    "tests\\agent\\test_reply.py": "f9cc436dc73217925f76aa857cac6edf765a35431d553fd73cbc3c4ce7c4eb88",
+    "tests\\agent\\test_retry.py": "4f42aedaaf6e644ee2eff1db07e3334e3d4d2aedc84a31362092324266eac7f6",
+    "tests\\agent\\test_trial.py": "60ad5a7192c630cfdc3e7a37103b8913ab405dd7fe889a5a6465cb13c2ef0292",
+    "tests\\agent\\test_visible_text.py": "c85ba397bb0faef12c9e146aab832349f2563ed9afe53890f6f5500d6ccef091",
+    "tests\\fitter\\test_api.py": "1267e7d17eebef056229470e4bc5aa611856168e83ad3bc430356c48e3e6094a",
+    "tests\\fitter\\test_core.py": "b122e82510b1365474d235d6994b525007eb487a6ff99cdca66ac28501539d3f",
+    "tests\\fitter\\test_invariants.py": "a7100e07616581894aa899074c4aac3bc648836a6c2fc8c4891fd87c21fd0a08",
+    "tests\\fitter\\test_r14_model_recovery.py": "9fa1f0d24095f41fcdd0b776523feab1a0608111084b91ddca0f769089d2e25e",
+    "tests\\fitter\\test_r14_model_selection.py": "c5844d7964632a96ab73cf5fba2188e625a679da4acff006008149b9310bd0d5",
+    "tests\\fitter\\test_uncertainty.py": "ae916678080e94701753a92037ee134f3d25c124f2c400dc7dbdd9f32ff47f65",
+    "tests\\gpu\\test_cost_log_l4.py": "de6243002b405b41e6b7f8c1437528bb92571cf738eec9b26e29bcc8220c6dd4",
+    "tests\\guardrails\\test_accounting.py": "77d7857e7213bc06d65596c09f956f302de9d682bcd8c98a4d850db3388d9c73",
+    "tests\\guardrails\\test_admission.py": "1d15efa242f93307e31def759d30a1651bef63ef05b9d937136be15ed28f4bd3",
+    "tests\\guardrails\\test_failover.py": "539557ce4292ef30bbbe263280648a45fd409c3b052009f14d97f1aa631b276f",
+    "tests\\guardrails\\test_live_admission.py": "aba18c624154dc23650f6c96ef711b2652ffddc21c2eb2df45c55ac523936b1e",
+    "tests\\guardrails\\test_reservations.py": "88db0f11249017c8994a6ac44db4a76672f63b1514f27bca37f5da886371eb46",
+    "tests\\guardrails\\test_settlement.py": "a9e87d4a7847b7f8dbc241a635a989f7fbf8bcf7080a62f8a1d5bb4e0e09f9f0",
+    "tests\\instruments\\test_quantity_contract.py": "e03d7976b52c3e36001962e941d605a8baeb14915d9b9d7077f58c59203e1689",
+    "tests\\instruments\\test_r14_invariants.py": "d37ed805ecfb3adfb76624a83f4313be42326173d4ccb0bc5b22a45fb6798a58",
+    "tests\\instruments\\test_synthetic.py": "3d6fced7dee4e0817580694945c00be193c60b0ef27a9c4fed078fbc336747ae",
+    "tests\\lab\\browser-simulator.test.mjs": "69ee29134a0ed8d6ea13431e13557701830f5cccb7970e34658ea38e74314a77",
+    "tests\\lab\\contact-integration.test.mjs": "7d4211594446e2eb450136e314174b1139b79401dae7f3dd1e2db38e1c5903e0",
+    "tests\\lab\\process-tree.test.mjs": "9d26485c7bba5cfe1cc62203fab0ded3b40bea584d52f3a679979dfe1944e07f",
+    "tests\\lab\\r14-service-invariants.test.mjs": "bf4585608f975561e63383ff2c46ba95bb15781f7de8834bd8ef10da2a959cf0",
+    "tests\\lab\\r14-ui-invariants.test.mjs": "ba6af411a656e930db6d9331cc6fda567d9b40111ec5e3ee2da52464fa7c5ad2",
+    "tests\\lab\\session-service.test.mjs": "dd7b36a23cf601a1e42f1a05f4d246c268bb888ea0cae029dc4333fc5439d7cc",
+    "tests\\lab\\test_acceptance.py": "00cab109018e0509223017884db077b36decf1075c4e09ca097bfd94bdb30372",
+    "tests\\lab\\test_pipeline.py": "0bbefcc322cc82c8c17dd4ae3e5331001a8056b8fc0b822a33d6fe4b578f40a0",
+    "tests\\lab\\test_regression.py": "3f77365b6bbcb3b446cecce4e7ed4f1bea72aa5b719ec4c9a477b858ca41af9c",
+    "tests\\lab\\test_session_bridge.py": "d896a80afa07d62d526d7bafcc9f425a3000af865b86fb196d7f479dd390abb9",
+    "tests\\lab\\ui-contract.test.mjs": "9669af5dbedf08693f3c337d777289678d137c40053238ea35608c6957b3ed95",
+    "tests\\lab\\ui-helper-oracle.test.mjs": "cf40a8da592c8530edcd310f9c965dcac83cfb7b6840064eca92631dfd7542b9",
+    "tests\\lab\\ui-helper-recovery.test.mjs": "512b4ca2199eb41758249e1d039fdc8ec0aa4a173476bca37061d7ddc7e9a4c8",
+    "tests\\library\\test_free_fall.py": "24dab7281d5f141d86cd8a12afcb8feb89f4063cbe5066fcdbdc9eeee12d87f3",
+    "tests\\library\\test_library.py": "3b72d0c9d1330f402ef4d3a12df689243c08191afb4893a1fce964df4dbb0cb8",
+    "tests\\library\\test_pendulum_scenes.py": "84e7594726a57fcdf795011a3c14b5c4adbad9db53ce7a9775aa1918244b85b4",
+    "tests\\library\\test_projectile.py": "a2ae62dd1edf3de1dc1984c66f66974eae08d57b638b0003a26aa83824d73d97",
+    "tests\\measurement\\test_free_fall.py": "41f1ac93a038dac7da2830e6ea46b60db7f02810ef13d8ce1f35945c64c93bfa",
+    "tests\\measurement\\test_gate_m.py": "d19235019c3f935a29ae6b851f7cca87e96046416ced90764cf3e81f7605177d",
+    "tests\\measurement\\test_inputs.py": "9cf64c584abb4a1e7f3687388ffb7a5d5c3785e8946ff869f7aa43993dbf7bc3",
+    "tests\\measurement\\test_modal_track.py": "84632f2190cedcd1887c69a009c225e91c986efc11a372c2e16fc849d09fc473",
+    "tests\\measurement\\test_sam_runtime.py": "8effc8f92e575fe66fcf02e47217d5b643886de074db96435bed91d9cc1fd5d8",
+    "tests\\measurement\\test_tracking.py": "561a11895839973daf19e2c3da57dea269c36a1bcb051e00b1d0ac665c695b8a",
+    "tests\\measurement\\test_uncertainty.py": "d6cb223e71581944dfbfded164113db01bfad43655acc0fa5e15d8293c60b4ac",
+    "tests\\pipeline\\test_contracts.py": "3856bba92de004bcb49e159cba3546da1b78db9c2d73452774e8ccb14050e3fc",
+    "tests\\pipeline\\test_e2e.py": "72564125138fe1ab4b09a4f265c3835a039ae63929d9f4323ddef29e853d51c1",
+    "tests\\pipeline\\test_gpu_stages.py": "a862a2c624168c2d8494d9c4b000f0f8144e6ea6501e777125efae2b48fe8e5e",
+    "tests\\pipeline\\test_jobs.py": "e87e8454b611c87e79425b8aa2bee73cd267fd11fd2b5847fe89dc247edbb988",
+    "tests\\pipeline\\test_keyframes.py": "f0306ef6ddbdf7da90b0c72b070079e0d0e62d15297da008c5fe6805849d8d40",
+    "tests\\pipeline\\test_progress.py": "fdf673c7c7ffe5822d02681bdbb0f94c6629c1ab81e07184778f1cf22ea38520",
+    "tests\\pipeline\\test_understand.py": "89951eb79194125c5fefe0792ba149502dcb841ff01cd6d67c845e4c46d0ecb7",
+    "tests\\pipeline\\test_uploads.py": "26fe743ad6206600c8cbde60f51bcd29cb9b0787d6dac52ad2a138c1750705c1",
+    "tests\\prediction\\test_boundary.py": "cefed48bdeeb03fc65503e7021a445dad89e85e509580c3da040e5bef8e2fe17",
+    "tests\\prediction\\test_fallback.py": "5c57f29ceaad750d58effd6cb2c107ce31efc98513eb103b2b9e24f0e0c40536",
+    "tests\\prediction\\test_overlay.py": "8e4f26efd3426f87f481299efe9a5f06062da45c5bc7ef57ad86949a5e36980f",
+    "tests\\prediction\\test_params.py": "00a16a9e1bc112be87b09cb4c0675ce3588fbeff0a1c6b4c74180021946cad91",
+    "tests\\prediction\\test_predict.py": "0bc47e295b9099c247d1bdb1f2d12ba9f67aaaa3113d9c8bb55f0dca0789bc00",
+    "tests\\prediction\\test_score.py": "fca333ab904fb4c384238094c12820bdbd8bb04d096511974e1422eed181c0d5",
+    "tests\\pwa\\install-guidance.test.mjs": "11527f1a5f1a43fbb3508ed99b884fb902c92877ba9a1396dd80fe59862d6442",
+    "tests\\pwa\\manifest.test.mjs": "f932a4afcb1fe7df7e36f237a3b393177173f245772a0b0cae79185303848fe9",
+    "tests\\pwa\\sw-cache.test.mjs": "94013a95f79c0a33ad8dde5cf110f33be145d837d7789e15136df5ce861c3888",
+    "tests\\reports\\__init__.py": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+    "tests\\reports\\fixture.py": "e834949ffe2b2b71ae83d3c41b9eb6a97d4c816d823d7e4e4322788b0a2411c6",
+    "tests\\reports\\run_diff.py": "200e95b34bc53a387d56f445ea7f59a0bc82a06bf628e71c69cc14de9c757c13",
+    "tests\\reports\\templates.py": "5554b333433e0cddd30029784e3319a79a04f627bc74316df18508cd9e36bc96",
+    "tests\\reports\\test_a11y.py": "211ece9252e9ce1ba6e424d57691d88a91d0feb28822fb513b879c49eaaec15d",
+    "tests\\reports\\test_compile.py": "cde7b4c932b4c5746312e100a6f3d00a2f6c6348458e50bdf0a9f1e56c0a5957",
+    "tests\\reports\\test_contract.py": "111f36d675cca5bfe9fe2558de983551ab8c5c6a141c49798de40a11f29533f3",
+    "tests\\reports\\test_diff.py": "a9ac3a4e1e43bc5a9398972e3ef1d56b0a7ba579df89f39f16b7a480f8521ef5",
+    "tests\\reports\\test_render.py": "8dccfafdef6259ab430605a2f4c8cc4bf5e55e4a9c8154ddb8eedd0a29ece3ef",
+    "tests\\reports\\test_typeset.py": "b1c0193ba70baf03e85b555daafc5977bb973cf40adad1e38b616393155047ac",
+    "tests\\sidebar-tools\\test_contracts.py": "6a826dd498ce952b90aed4aaafb771ee8f2144045785fbebe46e068d4817400d",
+    "tests\\sidebar-tools\\test_library_search.py": "752507182e190e9304a77adaf1bd4607ba54648e481f8b3cd36a5a0bcb4616e8",
+    "tests\\sidebar-tools\\test_rebuild.py": "707bd58f166a9571bdf2d8449ca8fcd853b7c3f718a2605fd4549f960ed1f6dc",
+    "tests\\sidebar-tools\\test_spec_patch.py": "27d87b21eda19dcd61a102bebd7a1a34fb9f45f0e65f7d42a227567a26103b57",
+    "tests\\simulator\\contacts.test.mjs": "76f6ce020bb962dfbaf4acb64cc6ce82ab0249e7e6139e179ca599db685b5b55",
+    "tests\\simulator\\extended-templates.test.mjs": "e85f844c4b9374c10638b908aef1f6b72ed93d531bfc3fef5b6b2929e2e006f4",
+    "tests\\simulator\\mystery-g.test.mjs": "bccb22a349170cae40f49360ed2633bd98730cc7d54987aede734c90d2474d4a",
+    "tests\\simulator\\r14-invariants.test.mjs": "587641241caec2a1752ceac19d67013ea4c28d42c17adab58949e0f323101f4f",
+    "tests\\simulator\\r14-recovery.test.mjs": "00f0c3ad9d415345346dbf7af84bfded9b32d8ff2413737c97c629a9106c5263",
+    "tests\\simulator\\r14-replay-invariants.test.mjs": "723bfbfe8807d3e5eea3a3ab43b108811319d990885fda7c8e35c50b7efc370f",
+    "tests\\simulator\\replay-recovery.test.mjs": "c1c7924f8138fb3898c42f6314564de9019effd883ad2383752bfee0ab3fb28d",
+    "tests\\simulator\\replay.test.mjs": "05a073618516438f2ef5b4042af82ac64ab8255b12679aca24781064976526c2",
+    "tests\\simulator\\simulator.test.mjs": "b9e128ba0e719d4cbf661b1181780b9d664af5c6ae0276adba67b87126fea29f",
+    "tests\\simulator\\test_s10_adapter.py": "aeb92c642de84c7d40c245ce676b37febfcde6c73930bd23cb92562d00cbdbf4",
+    "tests\\simulator\\trajectories.test.mjs": "71b899d09c5574e1784fb438e9d300b24a8c6e877fdd360a123a68889165bbf8",
+    "tests\\spec\\fixtures\\ten_bad_specs.json": "ca3ed37571cdb9cae74bf6263321bc2f25a6cb19c51bfd83016f02c05f9a0e3d",
+    "tests\\spec\\fixtures\\unsafe_setups.json": "bdb11912f46abfc0a0766a4f7b9aac3e576c040cf290c1fa0f03da4579ac0e92",
+    "tests\\spec\\test_experiment_schema.py": "4cdd95fcec6532485741b4641ede404790e55c518e90121c389e21c86bdf2be3",
+    "tests\\spec\\test_experiment_validation.py": "9fd637d682ed9db45e939de31cf73e070e4271308875140ed616703ba4b970bb",
+    "tests\\spec\\test_free_fall.py": "9b73fe71b0b7e3a6b523fa087fac6fa63c73ceb5fe97470985e167457cd914dd",
+    "tests\\spec\\test_pendulum.py": "5340b588452a5603e0b1a81bd710bb240b5ce58cf3d51cfd2d6d88a992d13c33",
+    "tests\\spec\\test_projectile.py": "003ffbb32efbc59472086a1e42b02918be3a0c81936440bc4180f06e3ad679b9",
+    "tests\\spec\\test_ramp.py": "6dcf3778a966ffc963181e18782e335ba37e62c93cb60e16424365c024031726",
+    "tests\\spec\\test_s08_acceptance.py": "3d48e1a60d0ac23897798a5fe8eb29a2f4e29007b95bb1df15f0f496ff9a2ac2",
+    "tests\\spec\\test_setup_validation.py": "87ec5f87885557732297e02a7fa7e9a18d415c15142543ce64c4a5fbdc7e88e0",
+    "tests\\viewer\\artifact-loader.test.mjs": "71311f5b4a5d943a933d9282790708417ddcc321207cd5b15d48b0932526b4b1",
+    "tests\\viewer\\browser-smoke.html": "0a5bc086fc3195d45da8a90c38d437272361bc897a3c86973fc11556ec244f6e",
+    "tests\\viewer\\browser-smoke.mjs": "4c77e640d7852d5c1699d8d471b360ec05ecb33009e85d2ce774267d1425f1c9",
+    "tests\\viewer\\fixture-bundle.mjs": "57e1b2df33946c66746782b80bbba7fda9e4a57f51655e76bd7d6d56995bb984",
+    "tests\\viewer\\perf-orbit.html": "4823c9b581baaeff85944b5e3d7e3d2cd7f5d0c70528a111c50b40b358e82665",
+    "tests\\viewer\\real-scenes.html": "8d60f4c65fd0ce52267d61931b0800bf122f4c923d0d1e20864b973f52e5f5f1",
+    "tests\\viewer\\real-scenes.test.mjs": "9fb1df20582a676419655802408d51d381084f88c8948ba16f10c7ec9315bdb6",
+    "tests\\viewer\\render-budget.test.mjs": "149dac3da6b05cf1a6366a8204147ec85fba986165f7ab86fd56ca8868e5b1b8",
+    "tests\\viewer\\scene-overlays.test.mjs": "0a95b31493e1d2ce7e501695aacb4a85e90b6de07e55c32934b4afc9ec98c725",
+    "tests\\viewer\\three-renderer.test.mjs": "bbdf7964bc89310517ff48829b0db7eb26793745f82989d012ab94c0510efa76",
+    "tests\\viewer\\viewer.test.mjs": "7ac7f79714f26fb2a22c1fc9d0c1e903fbc437d40a153dca192eb4ed64ba0958",
+    "tests\\workspace\\fit.test.mjs": "abbe2a98a1bf147ce16c489b9522a17af89b69f07cfab0a604bb87d6974377df",
+    "tests\\workspace\\fixtures\\fit-output.json": "320974b0b3c628c90fac6ad14e703761e9789de40f1cfb1d1f82a2a8021d8c23",
+    "tests\\workspace\\fixtures\\instrument-readings.json": "25705e01f51a52823e6bf2849ffece1a5c44c8bdd0aba3d119d1a660725c92d8",
+    "tests\\workspace\\fixtures\\interview-responses.json": "af67f236250737bf01c7e67172e58e9fee2ac4c4fd7896ce33f5f6bc46ff7f18",
+    "tests\\workspace\\fixtures\\report-output.json": "701efc218431a9b59ead4f8f9f6029916200e0f409edabd5e30ac866e3d9e64a",
+    "tests\\workspace\\fixtures\\template-cases.json": "cdf533c5340e1f1167aa3ffbb165a4ff0732e36bbdd646cdd58fb2c7651d54ac",
+    "tests\\workspace\\instruments.test.mjs": "b1c9f0780bf412cbed26986b586ca79782a3e89c939a3ce9c9930a535790a611",
+    "tests\\workspace\\interview.test.mjs": "ec3b5716cbaf89010d0cdeca8fca5912b2169910cfb197177fac6a40ef092f79",
+    "tests\\workspace\\layout.test.mjs": "c897760c5cded5a7a9e2e741f408ec754fc73e0631e4028dc3c3d7787241ae60",
+    "tests\\workspace\\navigation.test.mjs": "6eed8c0bd6875d2b68469b2f7eb15867fbc8f59cfabeefa16fd122cfbc856e40",
+    "tests\\workspace\\run.test.mjs": "d7d3aee8e899295051bc3bf86edd7d79addc05652afa8a7023d98e335c0098bf",
+    "tests\\workspace\\stack.test.mjs": "95138da3e736abad5f21bcde49f1b1700060ce7784f5d17158af8ac73addc1e0",
+    "tests\\workspace\\status.test.mjs": "fd30d01c7b324bbc886215970e786182d6d324f0ff462402a7e4221596e0b463",
+    "tests\\workspace\\template.test.mjs": "da6361560bd3677530d8f8629cfd2e69849821cf0d0a8c588c4654ad2dd20e74",
+    "tests\\workspace\\walk.test.mjs": "c4d640257f4011aee2f5102053716e793571560f325017a34f0ab4c09e82ec3f",
+    "tests\\workspace\\workflow.test.mjs": "263ff91aaf8885ca96a5bd1a761802d4031d3a51504ae7d1a3fc152a9a8722b8"
+  },
+  "protected_inputs_unchanged": true,
+  "network_denied": true,
+  "spend_usd": 0
+}

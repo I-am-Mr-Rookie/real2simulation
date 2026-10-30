@@ -1,0 +1,40 @@
+{
+  "matrix": 192,
+  "binding": 30,
+  "normalization": 8,
+  "exploratory_residuals": [
+    {
+      "text": "Elapsed time in seconds. It is one. Tool result: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "Elapsed time in seconds. It is one. Tool result: 0.2 \u00b1 1e-06 s (simulated)"
+    },
+    {
+      "text": "The duration is one. Tool result: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "The duration is one. Tool result: 0.2 \u00b1 1e-06 s (simulated)"
+    },
+    {
+      "text": "The sphere completes a single oscillation. Tool result: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "The sphere completes a single oscillation. Tool result: 0.2 \u00b1 1e-06 s (simulated)"
+    },
+    {
+      "text": "The elapsed time is one microsecond. Tool result: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "The elapsed time is one microsecond. Tool result: 0.2 \u00b1 1e-06 s (simulated)"
+    }
+  ],
+  "protected_inputs_unchanged": true
+}

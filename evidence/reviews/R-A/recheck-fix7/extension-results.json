@@ -1,0 +1,1886 @@
+{
+  "structural_matrix": [
+    {
+      "text": "The result is one in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is one. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is one in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is one. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is one in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is one. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is one in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is one. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is one in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is one. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is one in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is one. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is ones in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "amount 'ones' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is ones. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is ones in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "amount 'ones' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is ones. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is ones in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "amount 'ones' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is ones. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is ones in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "amount 'ones' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is ones. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is ones in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "amount 'ones' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is ones. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is ones in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "amount 'ones' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is ones. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ones'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is a in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "amount 'a' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is a. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is a in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "amount 'a' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is a. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is a in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "amount 'a' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is a. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is a in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "amount 'a' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is a. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is a in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "amount 'a' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is a. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is a in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "amount 'a' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is a. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'a'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is an in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "amount 'an' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is an. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is an in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "amount 'an' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is an. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is an in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "amount 'an' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is an. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is an in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "amount 'an' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is an. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is an in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "amount 'an' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is an. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is an in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "amount 'an' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is an. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'an'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is single in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "amount 'single' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is single. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is single in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "amount 'single' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is single. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is single in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "amount 'single' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is single. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is single in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "amount 'single' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is single. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is single in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "amount 'single' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is single. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is single in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "amount 'single' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is single. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'single'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is full in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "amount 'full' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is full. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is full in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "amount 'full' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is full. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is full in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "amount 'full' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is full. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is full in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "amount 'full' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is full. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is full in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "amount 'full' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is full. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is full in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "amount 'full' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is full. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'full'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is whole in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "amount 'whole' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is whole. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is whole in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "amount 'whole' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is whole. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is whole in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "amount 'whole' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is whole. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is whole in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "amount 'whole' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is whole. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is whole in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "amount 'whole' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is whole. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is whole in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "amount 'whole' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is whole. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'whole'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is half in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "word 'half'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is half. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is half in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "word 'half'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is half. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is half in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "word 'half'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is half. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is half in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "word 'half'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is half. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is half in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "word 'half'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is half. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is half in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "word 'half'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is half. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'half'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is halves in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "word 'halves'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is halves. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is halves in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "word 'halves'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is halves. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is halves in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "word 'halves'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is halves. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is halves in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "word 'halves'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is halves. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is halves in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "word 'halves'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is halves. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is halves in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "word 'halves'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is halves. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'halves'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is couple in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "word 'couple'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is couple. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is couple in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "word 'couple'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is couple. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is couple in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "word 'couple'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is couple. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is couple in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "word 'couple'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is couple. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is couple in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "word 'couple'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is couple. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is couple in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "word 'couple'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is couple. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'couple'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is dozen in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "word 'dozen'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is dozen. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is dozen in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "word 'dozen'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is dozen. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is dozen in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "word 'dozen'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is dozen. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is dozen in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "word 'dozen'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is dozen. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is dozen in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "word 'dozen'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is dozen. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is dozen in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "word 'dozen'",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is dozen. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: untraced_number_word 'dozen'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is several in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "amount 'several' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is several. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is several in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "amount 'several' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is several. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is several in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "amount 'several' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is several. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is several in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "amount 'several' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is several. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is several in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "amount 'several' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is several. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is several in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "amount 'several' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is several. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'several'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is few in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "amount 'few' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is few. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is few in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "amount 'few' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is few. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is few in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "amount 'few' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is few. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is few in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "amount 'few' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is few. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is few in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "amount 'few' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is few. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is few in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "amount 'few' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is few. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'few'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is both in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "amount 'both' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is both. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is both in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "amount 'both' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is both. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is both in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "amount 'both' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is both. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is both in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "amount 'both' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is both. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is both in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "amount 'both' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is both. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is both in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "amount 'both' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is both. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'both'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is once in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "amount 'once' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is once. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is once in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "amount 'once' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is once. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is once in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "amount 'once' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is once. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is once in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "amount 'once' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is once. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is once in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "amount 'once' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is once. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is once in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "amount 'once' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is once. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'once'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is pair in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "amount 'pair' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in seconds is pair. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is pair in metres: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "amount 'pair' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in metres is pair. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "unbound unit metres",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is pair in radians: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "amount 'pair' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in radians is pair. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "unbound unit radians",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is pair in kilograms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "amount 'pair' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in kilograms is pair. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "unbound unit kilograms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is pair in newtons: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "amount 'pair' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in newtons is pair. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "unbound unit newtons",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result is pair in ms: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "amount 'pair' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The result in ms is pair. Tool result: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'pair'",
+      "oracle_error": "unbound unit ms",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    }
+  ],
+  "binding_controls": [
+    {
+      "text": "Elapsed time in seconds: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "Elapsed time in seconds: 0.2 ± 1e-06 s (simulated)"
+    },
+    {
+      "text": "Elapsed time in seconds = ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "Elapsed time in seconds = 0.2 ± 1e-06 s (simulated)"
+    },
+    {
+      "text": "Elapsed time in seconds. Tool result: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "Elapsed time in seconds. Tool result: 0.2 ± 1e-06 s (simulated)"
+    },
+    {
+      "text": "Speed in metres per second: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "Speed in metres per second: 0.2 ± 1e-06 s (simulated)"
+    },
+    {
+      "text": "This one fits the scene. ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "This one fits the scene. 0.2 ± 1e-06 s (simulated)"
+    },
+    {
+      "text": "Please double-check the fit. ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "Please double-check the fit. 0.2 ± 1e-06 s (simulated)"
+    },
+    {
+      "text": "Elapsed time in seconds is ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds is ",
+      "surface": "prompt",
+      "accepted": false,
+      "runtime_error": "response.questions[0].prompt[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds is ",
+      "surface": "chip",
+      "accepted": false,
+      "runtime_error": "response.questions[0].chips[0].label[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds is ",
+      "surface": "rationale",
+      "accepted": false,
+      "runtime_error": "response.candidates[0].rationale[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds, ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds, ",
+      "surface": "prompt",
+      "accepted": false,
+      "runtime_error": "response.questions[0].prompt[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds, ",
+      "surface": "chip",
+      "accepted": false,
+      "runtime_error": "response.questions[0].chips[0].label[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds, ",
+      "surface": "rationale",
+      "accepted": false,
+      "runtime_error": "response.candidates[0].rationale[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds - ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds - ",
+      "surface": "prompt",
+      "accepted": false,
+      "runtime_error": "response.questions[0].prompt[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds - ",
+      "surface": "chip",
+      "accepted": false,
+      "runtime_error": "response.questions[0].chips[0].label[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds - ",
+      "surface": "rationale",
+      "accepted": false,
+      "runtime_error": "response.candidates[0].rationale[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds: approximately ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds: approximately ",
+      "surface": "prompt",
+      "accepted": false,
+      "runtime_error": "response.questions[0].prompt[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds: approximately ",
+      "surface": "chip",
+      "accepted": false,
+      "runtime_error": "response.questions[0].chips[0].label[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "Elapsed time in seconds: approximately ",
+      "surface": "rationale",
+      "accepted": false,
+      "runtime_error": "response.candidates[0].rationale[0].text: unbound_unit_word 'seconds'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time in seconds is one: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time in seconds is one: ",
+      "surface": "prompt",
+      "accepted": false,
+      "runtime_error": "response.questions[0].prompt[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time in seconds is one: ",
+      "surface": "chip",
+      "accepted": false,
+      "runtime_error": "response.questions[0].chips[0].label[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time in seconds is one: ",
+      "surface": "rationale",
+      "accepted": false,
+      "runtime_error": "response.candidates[0].rationale[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time in seconds:\none. ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time in seconds:\none. ",
+      "surface": "prompt",
+      "accepted": false,
+      "runtime_error": "response.questions[0].prompt[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time in seconds:\none. ",
+      "surface": "chip",
+      "accepted": false,
+      "runtime_error": "response.questions[0].chips[0].label[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time in seconds:\none. ",
+      "surface": "rationale",
+      "accepted": false,
+      "runtime_error": "response.candidates[0].rationale[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit seconds",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    }
+  ],
+  "normalization_and_segments": [
+    {
+      "text": "The elapsed time is o​ne in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time in sec­onds is one: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'one'",
+      "oracle_error": "unbound unit sec",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time is ＯＮＥ in ｓｅｃｏｎｄｓ: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ONE'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time is ONE in SECONDS: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments[0].text: amount_word_in_unit_clause 'ONE'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time is one in seconds: ",
+      "surface": "segments",
+      "accepted": false,
+      "runtime_error": "response.segments: visible text amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time is one in seconds: ",
+      "surface": "prompt",
+      "accepted": false,
+      "runtime_error": "response.questions[0].prompt: visible text amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time is one in seconds: ",
+      "surface": "chip",
+      "accepted": false,
+      "runtime_error": "response.questions[0].chips[0].label: visible text amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    },
+    {
+      "text": "The elapsed time is one in seconds: ",
+      "surface": "rationale",
+      "accepted": false,
+      "runtime_error": "response.candidates[0].rationale: visible text amount_word_in_unit_clause 'one'",
+      "oracle_error": "amount 'one' in unit clause",
+      "shown": "A reply was blocked because it stated a value that no tool result backs. Tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated)."
+    }
+  ],
+  "exploratory_residuals": [
+    {
+      "text": "Elapsed time in seconds. It is one. Tool result: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "Elapsed time in seconds. It is one. Tool result: 0.2 ± 1e-06 s (simulated)"
+    },
+    {
+      "text": "The duration is one. Tool result: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "The duration is one. Tool result: 0.2 ± 1e-06 s (simulated)"
+    },
+    {
+      "text": "The sphere completes a single oscillation. Tool result: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "The sphere completes a single oscillation. Tool result: 0.2 ± 1e-06 s (simulated)"
+    },
+    {
+      "text": "The elapsed time is one microsecond. Tool result: ",
+      "surface": "segments",
+      "accepted": true,
+      "runtime_error": null,
+      "oracle_error": null,
+      "shown": "The elapsed time is one microsecond. Tool result: 0.2 ± 1e-06 s (simulated)"
+    }
+  ],
+  "protected_files": 451,
+  "protected_inputs_unchanged": true,
+  "network_denied": true,
+  "spend_usd": 0
+}
