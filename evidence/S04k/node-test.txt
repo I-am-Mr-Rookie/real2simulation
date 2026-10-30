@@ -1,0 +1,13 @@
+✔ manifest labels: playable SIMULATED, unavailable with reason, mystery answer-free (8.3437ms)
+✔ snapshot is exactly the load_guest projection: objects = manifest artifacts, no answers (4.0229ms)
+✔ artifact route: strict id, 404 unknown, immutable verified bytes replay (49.6429ms)
+✔ corrupt or oversize snapshot fails closed with 503, no data (90.5428ms)
+✔ missing snapshot: production 503; local dev falls back to live python, broken root 503 (4863.0427ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11196.5417
