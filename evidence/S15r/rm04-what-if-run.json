@@ -1,0 +1,20 @@
+{
+ "input": "evidence/S15r/rm04-spec-response.json (RM04 Q16 path, web answer body tests/workspace/fixtures/rm04-spec-body.json)",
+ "mode": "what-if",
+ "label": "SIMULATED what-if of your described setup; scale unverified; not measured from the clip",
+ "scene": {
+  "id": "rm04",
+  "schema_version": "1.0.0",
+  "synthetic": false,
+  "scale_verified": false
+ },
+ "samples": 555,
+ "first": {
+  "time_s": 0,
+  "position_m": 2
+ },
+ "last": {
+  "time_s": 0.554,
+  "position_m": 0.4945770200000035
+ }
+}

@@ -11,7 +11,7 @@ import { instrumentView } from './instruments.mjs';
 import { fitView } from './fit-view.mjs';
 import { sidebarOf, reportView } from './navigation.mjs';
 
-export const createWorkspace = (React) => function Workspace({ state, adapter, loadScene, audience, log, onAction, interview, template, run, instruments, fit, report, navigate, provenance }) {
+export const createWorkspace = (React) => function Workspace({ state, adapter, loadScene, audience, log, onAction, interview, template, run, instruments, fit, report, navigate, provenance, whatIf }) {
   const { createElement: h, useRef, useEffect, useState } = React;
   const host = useRef(null), ctl = useRef(null);
   const [view, setView] = useState({ status: 'empty', error: null });
@@ -22,5 +22,5 @@ export const createWorkspace = (React) => function Workspace({ state, adapter, l
   }, [adapter, loadScene]);
   useEffect(() => { ctl.current.sync(host.current, layout.viewport.request, layout.viewport.key); },
     [layout.viewport.key, adapter, loadScene]); // eslint-disable-line react-hooks/exhaustive-deps -- request is derived from key
-  return renderWorkspace(h, layout, view, host, onAction, interview, template, run && runView(state, run), instruments && instrumentView(state, instruments), fit && fitView(state, fit), navigate && sidebarOf(state, { interview, report }), report !== undefined || state.phase === 'report.open' ? reportView(state, report) : null, provenance);
+  return renderWorkspace(h, layout, view, host, onAction, interview, template, run && runView(state, run), instruments && instrumentView(state, instruments), fit && fitView(state, fit), navigate && sidebarOf(state, { interview, report }), report !== undefined || state.phase === 'report.open' ? reportView(state, report) : null, provenance, whatIf);
 };

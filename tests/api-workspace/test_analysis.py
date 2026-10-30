@@ -13,7 +13,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from Build.agent import interview
-from Build.api.workspace.analysis import create_router
+from Build.api.workspace.analysis import WHAT_IF_LABEL, create_router
 from Build.fitter.api import handle
 from Build.reports.render import _fmt
 from Build.instruments.synthetic import ruler_observation, stopwatch_observation
@@ -85,7 +85,9 @@ class AnalysisRouterTests(unittest.TestCase):
         self.assertEqual(r.status_code, 200, r.text)
         spec, scene = setup("free_fall")
         expected = interview.answers_to_spec(spec, scene, BUNDLE, ANSWERS)
-        self.assertEqual(r.json(), {"ok": True, "spec": expected, "validated_setup": expected})
+        artifact = {"artifact_version": "s10-validated-setup-v1", "validation": "validate_setup",
+                    "producer": "contracts/experiment/validate_experiment.py", "spec": expected, "scene": scene}
+        self.assertEqual(r.json(), {"ok": True, "spec": expected, "validated_setup": artifact})
         for answers in ({"drop_height": {"text": "tall"}}, {}, ["x"]):
             with self.subTest(answers=answers):
                 r = self.client.post(url, headers=AUTH, json={"answers": answers})
@@ -111,6 +113,15 @@ class AnalysisRouterTests(unittest.TestCase):
         self.assertEqual(out["labels"], ["simulated"])
         self.assertIn(_fmt(self.fit["gravity"]["value"]), out["html"])  # number copied from the fit, not authored
         self.assertIn("Content-Security-Policy", out["html"])
+        self.assertNotIn("what_if_label", out)
+        r = self.client.post("/internal/workspace/report", headers=AUTH,
+                             json={"spec": {"template": "free_fall"}, "fit": self.fit, "label": WHAT_IF_LABEL})
+        self.assertEqual(r.status_code, 200, r.text)  # S15r: Q20 label passed through into the report
+        self.assertEqual(r.json()["what_if_label"], WHAT_IF_LABEL)
+        self.assertIn(WHAT_IF_LABEL, r.json()["html"])
+        r = self.client.post("/internal/workspace/report", headers=AUTH,
+                             json={"spec": {"template": "free_fall"}, "fit": self.fit, "label": "measured"})
+        self.assertEqual(self.code(r, 422), "INVALID_INPUT")
         for body in ({"spec": {"template": "nope"}, "fit": self.fit}, {"spec": {"template": "free_fall"}},
                      {"spec": {"template": "free_fall"}, "fit": {"status": "error"}}, ["x"]):
             with self.subTest(body=body):

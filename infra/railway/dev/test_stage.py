@@ -26,6 +26,7 @@ FILES = {
     "Build/api/workspace/jobs.py": b"synthetic-workspace\n",
     "clips.csv": b"synthetic-clips\n",
     "evidence/S13/S13h/live/timing.json": b"{}\n",
+    "evidence/S14/S14g-fix3-ledger.jsonl": b"{}\n",
     "evidence/S12/excluded.json": b"synthetic-excluded\n",
     "Build/worker/health/app.py": b"synthetic-worker\n",
     **{f"infra/railway/dev/{service}.Dockerfile": b"ARG R2S_SOURCE_REVISION\n"
@@ -129,7 +130,7 @@ class StageTests(unittest.TestCase):
                                 "Build/library/loader.mjs", "Build/simulator/rk4.mjs", "Dockerfile",
                                 "Build/web/library-snapshot/guest.json"},
                         "api": {"Build/api/health/app.py", "Build/api/health/dependencies.py", "Build/api/workspace/jobs.py",
-                                "clips.csv", "evidence/S13/S13h/live/timing.json", "Dockerfile"},
+                                "clips.csv", "evidence/S13/S13h/live/timing.json", "evidence/S14/S14g-fix3-ledger.jsonl", "Dockerfile"},
                         "worker": {"Build/worker/health/app.py", "Build/api/health/dependencies.py", "Dockerfile"},
                     }[service]
                     self.assertEqual(set(manifest["files"]), expected)

@@ -11,7 +11,7 @@ from fastapi.testclient import TestClient
 
 from Build.agent import interview
 from Build.api.workspace import jobs
-from Build.api.workspace.analysis import Q16_LABEL, create_router
+from Build.api.workspace.analysis import Q16_LABEL, WHAT_IF_LABEL, create_router
 from contracts.agent.validate import AgentContractError
 
 from test_analysis import ANSWERS, AUTH, SCENE, TOKEN, resolver as synthetic_resolver
@@ -54,7 +54,13 @@ class Q16SpecTests(unittest.TestCase):
         body = r.json()
         self.assertEqual(body["label"], "scale unverified, not setup-validated")
         self.assertIs(body["setup_validated"], False)
-        self.assertEqual(body["spec"], body["validated_setup"])
+        art = body["validated_setup"]  # S15r Q20=A: labelled what-if artifact, never forged synthetic
+        self.assertEqual(art["spec"], body["spec"])
+        self.assertEqual((art["what_if"], art["validation"], art["label"], body["what_if_label"]),
+                         (True, "numeric_contract_only", WHAT_IF_LABEL, WHAT_IF_LABEL))
+        self.assertIs(art["scene"]["synthetic"], False)
+        self.assertIs(art["scene"]["scale_verified"], False)
+        self.assertNotEqual(art["artifact_version"], "s10-validated-setup-v1")
         params = body["spec"]["parameters"]
         self.assertEqual(params["drop_height"]["value"], 1.5)  # the user's number, not a default
         self.assertEqual(params["drop_height"]["source"]["label"], "assumed")
@@ -73,7 +79,9 @@ class Q16SpecTests(unittest.TestCase):
         r = self.post(SCENE, ANSWERS)
         self.assertEqual(r.status_code, 200, r.text)
         self.assertEqual(set(r.json()), {"ok", "spec", "validated_setup"})
-        self.assertEqual(r.json()["validated_setup"], interview.answers_to_spec(*synthetic_resolver(AUTH["x-workspace-owner"], SCENE), ANSWERS))
+        art = r.json()["validated_setup"]
+        self.assertEqual(art["spec"], interview.answers_to_spec(*synthetic_resolver(AUTH["x-workspace-owner"], SCENE), ANSWERS))
+        self.assertEqual(art["artifact_version"], "s10-validated-setup-v1")
 
 
 if __name__ == "__main__":

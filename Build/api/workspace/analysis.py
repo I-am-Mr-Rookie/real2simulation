@@ -25,6 +25,8 @@ _SCENE_ID = re.compile(r"[A-Za-z0-9._-]{1,128}")
 _REFS = {"g": ("gravity.value", "gravity.uncertainty"), "rmse": ("fit.rmse", None), "n": ("fit.n", None)}
 # Owner Q16=A (Gate A MET_AMENDED_Q16): recorded scenes with no authoritative bundle get numeric-contract validation only.
 Q16_LABEL = "scale unverified, not setup-validated"
+# Owner Q20=A: Run on a Q16 scene is only a labelled what-if; this exact label travels with run/fit/report numbers.
+WHAT_IF_LABEL = "SIMULATED what-if of your described setup; scale unverified; not measured from the clip"
 _NO_BUNDLE = "$.scene: invalid authoritative bundle:"
 # The exact answers_to_spec code with Gate A's spec_only stand-in (numeric validate()) as validate_setup; no global patch.
 _numeric_answers_to_spec = types.FunctionType(
@@ -42,6 +44,21 @@ def _scene(scenes: SceneResolver, owner: str, scene_id: str):
     if found is None:  # other owners' scenes are indistinguishable from missing ones
         raise error(404, "NOT_FOUND", "scene not found")
     return found
+
+
+def _s10_artifact(spec: Mapping[str, Any], scene: Mapping[str, Any]) -> dict[str, Any]:
+    """Same shape as Build/simulator/export_validated_setup.export (validate_setup already ran on spec+scene)."""
+    return {"artifact_version": "s10-validated-setup-v1", "validation": "validate_setup",
+            "producer": "contracts/experiment/validate_experiment.py", "spec": spec, "scene": scene}
+
+
+def _what_if_artifact(spec: Mapping[str, Any]) -> dict[str, Any]:
+    """Q16 recorded scene: numeric-contract spec only. Explicitly non-synthetic and scale-unverified; scene ids copied from spec."""
+    ref = spec.get("scene") or {}
+    return {"artifact_version": "s15r-what-if-setup-v1", "validation": "numeric_contract_only", "what_if": True,
+            "label": WHAT_IF_LABEL, "producer": "contracts/experiment/validate_experiment.py#validate", "spec": spec,
+            "scene": {"id": ref.get("scene_id"), "schema_version": ref.get("schema_version"), "synthetic": False,
+                      "scale_verified": False}}
 
 
 def _report(template: str, fit: Mapping[str, Any]) -> dict[str, Any]:
@@ -82,8 +99,9 @@ def create_router(scenes: SceneResolver = _no_scenes) -> APIRouter:
                 validated = _numeric_answers_to_spec(base_spec, scene, root, answers)
             except AgentContractError as exc2:  # answers_to_spec wraps validate()'s ValueError
                 raise error(422, "INVALID_INPUT", "spec did not validate", ok=False, errors=list(exc2.issues))
-            return {"ok": True, "spec": validated, "validated_setup": validated, "label": Q16_LABEL, "setup_validated": False}
-        return {"ok": True, "spec": validated, "validated_setup": validated}
+            return {"ok": True, "spec": validated, "validated_setup": _what_if_artifact(validated), "label": Q16_LABEL,
+                    "setup_validated": False, "what_if_label": WHAT_IF_LABEL}
+        return {"ok": True, "spec": validated, "validated_setup": _s10_artifact(validated, scene)}
 
     @router.post("/fit")
     def fit(body: Any = Body(...)):
@@ -99,13 +117,19 @@ def create_router(scenes: SceneResolver = _no_scenes) -> APIRouter:
         template = spec_doc.get("template") if isinstance(spec_doc, dict) else None
         if template not in TEMPLATE_TEXT or not isinstance(fit_doc, dict) or fit_doc.get("status") != "ok":
             raise error(422, "INVALID_INPUT", "body must be {spec: {template}, fit: ok fitter result}")
+        what_if = body.get("label")  # only the exact Q20 label may be passed through; anything else is rejected
+        if what_if is not None and what_if != WHAT_IF_LABEL:
+            raise error(422, "INVALID_INPUT", "label must be absent or the exact what-if label")
         try:
             doc = _report(template, fit_doc)
+            if what_if:
+                doc["sections"][0]["text"].insert(0, WHAT_IF_LABEL + ".")
             html = render_html(doc, fit_doc)  # validates numbers against the fit before rendering
         except (ReportError, KeyError, TypeError, ValueError) as exc:
             raise error(422, "INVALID_INPUT", "report did not validate", errors=[str(exc)])
         labels = sorted({n["label"] for n in doc["numbers"].values()})
         # PDF needs pdflatex (absent in the API image): same explicit fallback status as reports/compile.py.
-        return {"status": "html-print-fallback", "labels": labels, "fitter_digest": doc["fitter_digest"], "html": html}
+        out = {"status": "html-print-fallback", "labels": labels, "fitter_digest": doc["fitter_digest"], "html": html}
+        return {**out, "what_if_label": WHAT_IF_LABEL} if what_if else out
 
     return router

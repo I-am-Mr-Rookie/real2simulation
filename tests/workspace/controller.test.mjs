@@ -198,6 +198,39 @@ test('report view: html-print-fallback renders only in a sandboxed srcdoc iframe
 
 // Minimal createElement stand-in: enough to inspect the accessible tree.
 const h = (tag, props, ...kids) => ({ tag, props: props ?? {}, kids: kids.flat().filter((k) => k !== null && k !== undefined) });
+
+// S15r (owner Q20=A): SYNTHETIC numbers in the API what-if artifact shape (analysis._what_if_artifact); real simulator, fake BFF.
+test('what-if: artifact runs in labelled what-if mode, report request carries the label, panel shows label and run-failure reason', async () => {
+  const { WHAT_IF_LABEL } = await import('../../Build/web/src/lab/browser-simulator.mjs');
+  const { renderWorkspace } = await import('../../Build/web/src/workspace/view.mjs');
+  const qq = (value, unit) => ({ value, unit });
+  const spec = { template: 'free_fall', scene: { scene_id: 'RM04', schema_version: '1.0.0' },
+    environment: { gravity: qq(9.81, 'm/s^2'), gravity_direction: [0, -1, 0] }, placement: { origin: qq([0, 1.5, 0], 'm') },
+    parameters: { drop_height: qq(1.5, 'm'), initial_vertical_velocity: qq(0, 'm/s') }, simulation: { duration: qq(0.5, 's'), time_step: qq(0.01, 's') } };
+  const art = { artifact_version: 's15r-what-if-setup-v1', validation: 'numeric_contract_only', what_if: true, label: WHAT_IF_LABEL, spec,
+    scene: { id: 'RM04', schema_version: '1.0.0', synthetic: false, scale_verified: false } };
+  const r = await toRunReady({ 'POST scenes/synthetic-room-v1/spec': () => [200, { ok: true, spec, validated_setup: art, label: 'scale unverified, not setup-validated', setup_validated: false }] },
+    { simulate: browserSimulate(runBrowserSimulation) });
+  assert.equal(r.c.snapshot().whatIfLabel, WHAT_IF_LABEL);
+  await r.c.run(1);
+  assert.equal(r.c.state.phase, 'run.done');
+  assert.ok(r.c.state.run.observations.length > 1);
+  await r.c.fit(); await r.c.openReport();
+  assert.equal(r.calls.find((x) => x.path === 'report').body.label, WHAT_IF_LABEL);
+  const layout = (phase, error = null) => ({ phase, stages: [], viewport: { banner: null }, jobStatus: { label: 'x', jobId: null, error, surface: null } });
+  const text = (t) => JSON.stringify(t);
+  assert.match(text(renderWorkspace(h, layout('fit.done'), { status: 'idle', error: null }, null, null, null, null, null, null, null, null, null, null, WHAT_IF_LABEL)), /SIMULATED what-if of your described setup; scale unverified; not measured from the clip/);
+  const failed = renderWorkspace(h, layout('run.failed', { code: 'PROCESSING_FAILED', message: 'INVALID_BROWSER_SIMULATION: bad horizon' }), { status: 'idle', error: null }, null, null, null, null, null, null, null, null, null, null);
+  const panel = find(failed, (n) => n.props['aria-label'] === 'Stage panel')[0];
+  assert.match(text(panel), /INVALID_BROWSER_SIMULATION: bad horizon/);
+  // an S10-shaped setup still goes through normal mode, which rejects a non-synthetic scene
+  const bad = await toRunReady({ 'POST scenes/synthetic-room-v1/spec': () => [200, { ok: true, spec, validated_setup: { ...art, what_if: false }, label: 'x' }] },
+    { simulate: browserSimulate(runBrowserSimulation) });
+  await bad.c.run(1);
+  assert.equal(bad.c.state.phase, 'run.failed');
+  assert.match(bad.c.state.error.message, /untrusted validated artifact/);
+});
+
 const find = (n, pred, out = []) => { if (n && typeof n === 'object') { if (pred(n)) out.push(n); n.kids.forEach((k) => find(k, pred, out)); } return out; };
 
 test('upload control: labelled, keyboard-reachable file input; busy disables; errors announced', () => {

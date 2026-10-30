@@ -79,11 +79,13 @@ export default function PrivateWorkspace({ scene }) {
     live ? null : React.createElement('p', { role: 'note' }, scene.notice),
     // the upload error is rendered once, by the workspace job panel (S15n limit: avoid a double alert)
     live ? renderUpload(React.createElement, { ...up, error: null }, (file) => ctl.upload(file)) : null,
-    live && simulated ? React.createElement('p', { role: 'note', 'data-label': 'simulated' },
-      'SIMULATED: run and fit values come from the in-browser simulator on the validated setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')) : null,
+    live && simulated ? React.createElement('p', { role: 'note', 'data-label': s.whatIfLabel ? 'what-if' : 'simulated' }, s.whatIfLabel
+      ? s.whatIfLabel + '. Run and fit values come from the in-browser simulator on your described setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')
+      : 'SIMULATED: run and fit values come from the in-browser simulator on the validated setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')) : null,
     live ? React.createElement('p', { role: 'note', 'data-instruments': 'unavailable' }, INSTRUMENTS_UNAVAILABLE) : null,
     React.createElement(Workspace, { state: s.state, adapter, audience: 'signed-in', onAction,
       interview: live ? local.interview : undefined, run: live ? initialRun() : undefined, instruments: live ? local.instruments : undefined,
-      fit: live ? s.state.fit ?? undefined : undefined, report: live && s.report ? s.report : undefined, provenance: live ? s.provenance ?? undefined : undefined }));
+      fit: live ? s.state.fit ?? undefined : undefined, report: live && s.report ? s.report : undefined, provenance: live ? s.provenance ?? undefined : undefined,
+      whatIf: live ? s.whatIfLabel ?? undefined : undefined }));
 }
 

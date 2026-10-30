@@ -30,8 +30,9 @@ const ACTIVE = new Set(['upload.queued', 'upload.running']);
 // S15p: browser simulator dep. The API validated_setup is passed verbatim as the NORMAL payload; runBrowserSimulation
 // itself rejects anything that is not a trusted S10 validated artifact (missing field -> thrown, honest RUN_FAIL).
 // Samples map to the lab's existing observation shape (BrowserSimulation.jsx): world-Y position vs time.
+// S15r (Q20=A): an API what-if artifact selects the simulator's explicit labelled what-if mode; the simulator re-checks it.
 export const browserSimulate = (runSim) => async (validatedSetup) =>
-  runSim({ mode: 'normal', validatedSetup }).samples.map((s) => ({ time_s: s.time_s, position_m: s.position_m[1] }));
+  runSim({ mode: validatedSetup?.what_if === true ? 'what-if' : 'normal', validatedSetup }).samples.map((s) => ({ time_s: s.time_s, position_m: s.position_m[1] }));
 
 // API /fit (fitter.api.fit_observations) takes quantity lists. Engine samples are exact simulated values: uncertainty 0 is
 // their declared sigma, not a measurement; the fitter floors variance with residual RSS.
@@ -47,7 +48,7 @@ export const revealBody = (d, sessionId) => (d?.status === 'ok' && d.gravity
 export function createController({ fetch: f = globalThis.fetch, base = API_BASE, simulate, sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
   pollMs = 1000, maxPolls = 900, onChange, newSessionId = () => 'fit-' + Date.now().toString(36) } = {}) {
   let state = initialState();
-  const meta = { busy: false, upload: null, events: [], questions: null, validatedSetup: null, specLabel: null, fitRaw: null, report: null, provenance: null };
+  const meta = { busy: false, upload: null, events: [], questions: null, validatedSetup: null, specLabel: null, whatIfLabel: null, fitRaw: null, report: null, provenance: null };
   const snap = () => ({ state, ...meta });
   const set = (s) => { state = s; onChange?.(snap()); return state; };
   const patch = (m) => { Object.assign(meta, m); onChange?.(snap()); };
@@ -139,7 +140,8 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
       const ok = d?.ok === true && !!d.spec && !!d.validated_setup;
       // S14j: recorded scenes carry a verbatim label (e.g. 'scale unverified, not setup-validated'); shown through run/fit/report.
       const label = [d?.label, d?.validated_setup?.label].find((x) => typeof x === 'string' && x) ?? null;
-      if (ok) patch({ validatedSetup: d.validated_setup, specLabel: label });
+      const whatIfLabel = d?.validated_setup?.what_if === true && typeof d.validated_setup.label === 'string' ? d.validated_setup.label : null;
+      if (ok) patch({ validatedSetup: d.validated_setup, specLabel: label, whatIfLabel });
       return dispatch({ type: 'INTERVIEW_SPEC', spec: ok ? d.spec : null },
         { validateSpec: (s) => (ok && s === d.spec ? { ok: true } : { ok: false, errors: Array.isArray(d?.errors) && d.errors.length ? d.errors.map(String) : ['spec rejected'] }) });
     },
@@ -167,7 +169,8 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
 
     async openReport() {
       if (state.phase !== 'fit.done') return state;
-      const r = await call('POST', 'report', { spec: state.spec, fit: meta.fitRaw }); // API needs the raw fitter result
+      // API needs the raw fitter result; a what-if run passes its label so the report carries it too
+      const r = await call('POST', 'report', { spec: state.spec, fit: meta.fitRaw, ...(meta.whatIfLabel ? { label: meta.whatIfLabel } : {}) });
       if (r.error) return failWith(r.error);
       if (typeof r.data?.html !== 'string' || !r.data.html) return failWith({ code: 'PROCESSING_FAILED', message: 'Report response failed validation.' });
       patch({ report: { status: r.data.status ?? null, html: r.data.html, labels: Array.isArray(r.data.labels) ? r.data.labels : [], specLabel: meta.specLabel } });

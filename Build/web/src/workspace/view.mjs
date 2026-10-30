@@ -9,11 +9,12 @@ import { renderInstruments } from './instrument-view.mjs';
 import { renderFit } from './fit-view.mjs';
 import { renderSidebar, renderReport } from './navigation.mjs';
 
-export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments, fit, sidebar, report, provenance) {
+export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments, fit, sidebar, report, provenance, whatIf) {
   const { stages, viewport, jobStatus } = layout;
   // S15q: a viewer LOAD_FAILED must not hide a job/API error (the live spec 422 was masked this way)
   const errs = [view.error, jobStatus.error].filter((e, i, a) => e && (i === 0 || e !== a[0]));
   const specError = layout.phase === 'interview.active' ? jobStatus.error : null;
+  const stageError = /\.failed$/.test(layout.phase) ? jobStatus.error : null; // S15r: say why run/fit failed, not just 'Run failed.'
   return h('div', { className: 'ws', 'data-phase': layout.phase },
     h('nav', { className: 'ws-stages', 'data-slot': 'stage-nav', 'aria-label': 'Workspace stages' },
       h('ol', null, ...stages.map((s) => h('li', { key: s.id, 'data-status': s.status, 'aria-current': s.status === 'current' ? 'step' : undefined },
@@ -25,6 +26,8 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
       h('p', { className: 'ws-status', role: 'status', 'aria-live': 'polite' }, VIEWER_STATUS_TEXT[view.status] ?? VIEWER_STATUS_TEXT.error)),
     h('section', { className: 'ws-panel', 'data-slot': 'panel', 'aria-label': 'Stage panel' },
       h('h2', null, jobStatus.label),
+      whatIf && /^(run|fit|report)\./.test(layout.phase) ? h('p', { className: 'ws-whatif', role: 'note', 'data-label': 'what-if' }, whatIf) : null,
+      stageError ? h('p', { className: 'ws-error', 'data-stage-error': layout.phase }, stageError.code + ': ' + stageError.message) : null,
       interview && layout.phase === 'interview.active' ? renderInterview(h, interviewView(interview), onAction) : null,
       specError ? h('div', { className: 'ws-failure', 'data-stage': 'spec' },
         h('p', { className: 'ws-error', role: 'alert' }, specError.code + ': ' + specError.message),
