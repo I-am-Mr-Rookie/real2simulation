@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+R-A-recheck3-orch96 CHANGES_REQUIRED (Oct30 06:59Z; timing PASS; evidence merged d64bf86): six F1-R2 strings + one g/N +
+CITE forgery closed; Q16 reporting exact (MET_AMENDED_Q16, 10/10 contract, 0/10 setup, 30/30 shown). P1 F1-R3: label-chain
+binding lets "one whole minute: <q>" / "a full second: <q>" state amounts. Gate A not cleared. DISPATCHED S14g-fix6-orch100
+Opus high (thread 01a18b9b-a14f-75f2-b9c9-0e573193006d, deadline 2026-10-30T07:29:33+00:00); then R-A recheck4 (Sol high).
+
 ACCEPTED S19d-wire-orch91 DONE/local (Oct30 06:56Z; timing PASS; merged; tests/pwa 52/52): manifest+SW registration in
 layout; Owns deviation Build/web/next.config.js headers (Service-Worker-Allowed) ACCEPTED as necessary. S19d stays TODO until
 HTTPS dev evidence. DISPATCHED S19d-dev-orch99 Sonnet medium (Railway dev web redeploy + in-app-browser installability/375px;
