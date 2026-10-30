@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T00:00Z — controller: OWN07-OWN11 re-tracked 5/5 (envelope 2); S07h resume dispatched
+
+- Re-track (envelope 2 job 1/1, $0.40 reservation, app ap-HTu3CU7IfNE1A9Q6T9EyvL stopped): OWN07-OWN11 all tracked; load-once fix removed the OOM. Evidence evidence/S07/S07j/RETRACK-RUN.md + track-own07..11.json. Envelope 2 now exhausted; any further GPU job needs a new reviewed envelope.
+- S07h-orch176 dispatched (Opus high, thread 01a18f3f-b439-7000-a2e9-a808455ba42b, deadline 00:27:45Z / 06:27 Dhaka): same frozen S07h rules on OWN07-OWN11 -> full 11-clip table, 05a-d repeatability, robustness.
+
 ## 2026-10-30T23:57Z — controller: accept S07j DONE (reviewed envelope 2); OWN07-OWN11 re-track started
 
 - S07j-orch173 DONE (Opus high), controller-reviewed: modal_track.py loads SAM 3.1 once per container (shared_predictor), per-clip isolation kept; Build/guardrails/standalone.py envelope 2 = evidence/S20/runtime/standalone-gpu-ledger-2.jsonl, 3 jobs/$1.50 CUMULATIVE with the unsettled envelope-1 rows (old $1.00 still counted -> exactly one new job <= $0.50); old ledger/journal untouched, no release; global Modal headroom/receipt check still applies (tests). Record evidence/S07/S07j/ENVELOPE-2.md. Fresh: measurement 90 OK; guardrails 95 with 1 failure test_guest_precomputed_fixture_read_does_not_consult_admission (expects library copy 'Guest browsing needs no account'; unrelated to S07j, pre-existing per worker stash check) -> needs a small follow-up.
