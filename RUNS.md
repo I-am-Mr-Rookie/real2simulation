@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 03:40 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 03:46 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **210 / 241** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **210 / 242** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -25,6 +25,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CLAUDE**
 - [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
 - [~] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min) *(partial: resume it)*
+- [ ] **S15s** — Codex (native Claude) · Opus 5.5, effort medium — Reach Fit and Report from a finished run in the live workspace (30 min)
 
 ## Waiting for Koushik
 
@@ -257,7 +258,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (15/18)</summary>
+<details><summary><b>S15</b> — Workspace UI (15/19)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -277,6 +278,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15p** — Codex (native Claude) · Opus 5.5, effort medium — Wire workspace run (browser simulator), honest instruments and API report shape (30 min)
 - [x] **S15q** — Codex (native Claude) · Opus 5.5, effort medium — Fix live workspace spec 422 + surface errors and RECORDED labels (S15o controller walk defects) (30 min)
 - [x] **S15r** — Codex (native Claude) · Opus 5.5, effort high — Owner Q20=A: labelled what-if Run on Q16 recorded scenes (API artifact + simulator mode + labels) (30 min)
+- [ ] **S15s** — Codex (native Claude) · Opus 5.5, effort medium — Reach Fit and Report from a finished run in the live workspace (30 min)
 
 </details>
 

@@ -31,3 +31,19 @@ Other defects (P3): nav shows "Sign in" link while signed in; footer says "No up
 New P3: on DEV the understand stage shows "time not recorded" although S13k found the ledger UTC 2026-10-30T05:06:04Z locally. The S14g-fix3 ledger is probably not in the stage.py api allowlist.
 Still open P3: nav "Sign in" while signed in (Build/web/src/shell/ShellFrame.jsx:9, AccountNav.jsx:9); footer "No uploads are enabled" (ShellFrame.jsx:12); viewer LOAD_FAILED (no RM04 geometry on dev).
 
+
+
+## Re-walk after S15r (web 0144fdf3, api 81a74b99, rev 0b0f980c), ~21:55Z
+
+| Stage | Result | Evidence |
+|---|---|---|
+| Upload RM04 -> job ready (job_59f5ef74…) | PASS | page text |
+| RECORDED stage labels; understand "RECORDED S14g-fix3 @ 2026-10-30T05:06:04Z" (ledger now staged) | PASS | page text |
+| Interview (1.5 m, Starts at rest) -> spec "Ready to run" with verbatim Q20 label | PASS | 08-r-spec-whatif.png |
+| Run -> "Run finished (simulated)" with verbatim label "SIMULATED what-if of your described setup; scale unverified; not measured from the clip" | PASS | 09-r-run-whatif.png |
+| Fit / Report | FAIL (P1): no control reaches them. In run.done the stage panel offers only "Run again" (runcontrol.mjs); FIT_START is dispatched only by the fit.failed retry; no REPORT_OPEN control. Live instruments say "Instruments are not available in this build". Fix row S15s. | page buttons |
+| Footer truthful ("Uploads are limited to approved licensed clips…"); nav no longer shows "Sign in" | PASS | page text |
+| 375px: scrollWidth 360 == clientWidth 360; no secret-like text; console only the Clerk dev-keys warning | PASS | 10-r-375px.png |
+
+P3 still open: viewer LOAD_FAILED (no RM04 geometry on dev; optional S13j). P3: signed-in nav on /workspace shows no account link/UserButton.
+

@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T21:47Z — orch: S15o controller re-walk after S15r; S15s dispatched
+
+- DEV walk (IAB, controller exception): upload RM04 -> RECORDED labels (understand UTC now shown) -> interview -> spec Ready to run -> Run finished (simulated) with verbatim Q20 label: PASS. 375px/no secrets PASS. Footer truthful.
+- FAIL (P1): Fit/Report unreachable — run.done offers only "Run again"; no Fit / Open report control. S15o stays PARTIAL. New row S15s.
+- Dispatched S15s-orch164 (Opus medium), thread 01a18ec6-a150-7400-9f1d-525f2a61591e, deadline 22:15:24Z (04:15 Dhaka). Receipt DISPATCH-orch164.json.
+
 ## 2026-10-30T21:45Z — orch: S15r-orch163 accepted (DONE)
 
 - Opus high, TIMEBOX PASS, rebased on 07825ca5, diff within Owns. Fresh: node 114/114, api-workspace 21, railway-dev 16, pipeline 53. ff-merged 0b0f980c.
