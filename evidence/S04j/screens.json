@@ -1,0 +1,58 @@
+{
+  "desktop": {
+    "cards": 18,
+    "labels": [
+      "SIMULATED/playable",
+      "SIMULATED/playable",
+      "SIMULATED/metadata-only",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable"
+    ],
+    "replays": [
+      "ready"
+    ],
+    "overflowX": false,
+    "mysteryAnswerShown": false
+  },
+  "mobile-375": {
+    "cards": 18,
+    "labels": [
+      "SIMULATED/playable",
+      "SIMULATED/playable",
+      "SIMULATED/metadata-only",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable",
+      "UNAVAILABLE/unavailable"
+    ],
+    "replays": [
+      "ready"
+    ],
+    "overflowX": false,
+    "mysteryAnswerShown": false
+  }
+}
