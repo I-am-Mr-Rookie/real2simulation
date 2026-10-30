@@ -64,6 +64,6 @@ test_reflected_journal_liability_does_not_reduce_net_credit_twice (test_reservat
 test_scene_log_overrun_is_folded_and_missing_known_source_pauses (test_reservations.Reservations.test_scene_log_overrun_is_folded_and_missing_known_source_pauses) ... ok
 
 ----------------------------------------------------------------------
-Ran 64 tests in 2.935s
+Ran 64 tests in 3.487s
 
 OK

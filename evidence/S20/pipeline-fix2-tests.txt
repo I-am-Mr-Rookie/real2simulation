@@ -55,6 +55,6 @@ test_unauthorized_and_unknown_rejected_without_disclosure (test_uploads.UploadTe
 test_whole_file_hash_mismatch_rejects (test_uploads.UploadTests.test_whole_file_hash_mismatch_rejects) ... ok
 
 ----------------------------------------------------------------------
-Ran 52 tests in 15.905s
+Ran 52 tests in 13.924s
 
 OK
