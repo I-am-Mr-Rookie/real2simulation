@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S12e-fix3-orch66 Opus high (threadId:01a18b2f-c1cd-7fa2-8f84-3f00e79b0952,hostId:local, deadline 2026-10-30T05:31:54+00:00).
+
 R-RS-recheck2-orch62 = CHANGES_REQUIRED (Sol high; evidence ff-merged). TIMING FAIL: stop 05:00:01Z,
 7m31s late (self-reported; controller records exception, review evidence accepted, not timing pass).
 F2-R2 P1: synthetic/foreign observations declared with genuine PJ03/BN01/PD02 id+sha reach MET;
