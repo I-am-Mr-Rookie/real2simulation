@@ -1,0 +1,106 @@
+TAP version 13
+# Subtest: all 18 current entries load without playable/gate promotion or source mutation
+ok 1 - all 18 current entries load without playable/gate promotion or source mutation
+  ---
+  duration_ms: 75.6519
+  type: 'test'
+  ...
+# Subtest: projectile and pendulum are setup metadata, not substituted synthetic fixtures
+ok 2 - projectile and pendulum are setup metadata, not substituted synthetic fixtures
+  ---
+  duration_ms: 7.3949
+  type: 'test'
+  ...
+# Subtest: Mystery-g keeps answer withheld and Apollo never fetches
+ok 3 - Mystery-g keeps answer withheld and Apollo never fetches
+  ---
+  duration_ms: 3.0984
+  type: 'test'
+  ...
+# Subtest: malformed/unavailable entries refuse without transport
+ok 4 - malformed/unavailable entries refuse without transport
+  ---
+  duration_ms: 1.3618
+  type: 'test'
+  ...
+# Subtest: unknown kind refuses before network
+ok 5 - unknown kind refuses before network
+  ---
+  duration_ms: 0.3935
+  type: 'test'
+  ...
+# Subtest: URL is the exact hash endpoint, not arbitrary source/audit URLs
+ok 6 - URL is the exact hash endpoint, not arbitrary source/audit URLs
+  ---
+  duration_ms: 0.8944
+  type: 'test'
+  ...
+# Subtest: hash mismatch refuses readable error before JSON consumption
+ok 7 - hash mismatch refuses readable error before JSON consumption
+  ---
+  duration_ms: 3.1835
+  type: 'test'
+  ...
+# Subtest: declared oversize/invalid sizes refuse before fetch
+ok 8 - declared oversize/invalid sizes refuse before fetch
+  ---
+  duration_ms: 1.0597
+  type: 'test'
+  ...
+# Subtest: short response, oversized Content-Length and streamed overflow refuse
+ok 9 - short response, oversized Content-Length and streamed overflow refuse
+  ---
+  duration_ms: 2.8498
+  type: 'test'
+  ...
+# Subtest: invalid JSON, UTF-8, scalar and array refuse after hash verification
+ok 10 - invalid JSON, UTF-8, scalar and array refuse after hash verification
+  ---
+  duration_ms: 4.8024
+  type: 'test'
+  ...
+# Subtest: unsafe labels/defaults refuse before network
+ok 11 - unsafe labels/defaults refuse before network
+  ---
+  duration_ms: 1.681
+  type: 'test'
+  ...
+# Subtest: challenge extra answer, unknown template and invalid timing refuse
+ok 12 - challenge extra answer, unknown template and invalid timing refuse
+  ---
+  duration_ms: 4.9436
+  type: 'test'
+  ...
+# Subtest: scene request identity, scale/evidence, point and asset limits reuse viewer validation
+ok 13 - scene request identity, scale/evidence, point and asset limits reuse viewer validation
+  ---
+  duration_ms: 7.7026
+  type: 'test'
+  ...
+# Subtest: HTTP failure/network error authored; no upstream secret text
+ok 14 - HTTP failure/network error authored; no upstream secret text
+  ---
+  duration_ms: 1.8411
+  type: 'test'
+  ...
+# Subtest: selection mutation during transport cannot change checked safety defaults
+ok 15 - selection mutation during transport cannot change checked safety defaults
+  ---
+  duration_ms: 1.6942
+  type: 'test'
+  ...
+# Subtest: aborts refuse before fetch and in-flight signal is forwarded
+ok 16 - aborts refuse before fetch and in-flight signal is forwarded
+  ---
+  duration_ms: 1.2153
+  type: 'test'
+  ...
+1..16
+# tests 16
+# suites 0
+# pass 16
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 136.521

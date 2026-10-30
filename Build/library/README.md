@@ -227,6 +227,16 @@ fetched, hashed or promised available** by S18a. Future precompute/bundle work m
 validate the actual assets with `contracts/scene/validate_scene.py` and the viewer
 loader before exposing a playable demo. No browser/runtime verification here.
 
+## Guest loader integration (S18g)
+
+`loader.mjs` exports `loadLibraryEntry(entry, { signal, fetch })`: bounded,
+SHA-verified guest metadata with SIMULATED / SCALE_UNVERIFIED / UNAVAILABLE labels
+and immutable safe defaults. Real descriptors produce the unchanged viewer's
+validated guest/inspect request; current entries cannot mount because the guest
+API exposes metadata, not render assets or trajectories. No app/viewer edits.
+See [exact one-call wiring and kind mapping](../../evidence/S18/S18g-LOADER-INTERFACE.md).
+The standard library Python suite also runs the Node loader contract tests.
+
 ## Example custody
 
 `test-data/library-artifacts/manifest.json` derives RM02 from accepted S06d-orch23

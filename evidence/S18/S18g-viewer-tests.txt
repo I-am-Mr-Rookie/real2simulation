@@ -1,0 +1,30 @@
+✔ loads the fixture bundle over transport, fetches only manifest + render asset, safe fetch options (94.5618ms)
+✔ adapter end-to-end with the loader: loading -> ready; loader codes pass through (23.3282ms)
+✔ splat bundle: loads, decodes centres/colours/scales/quaternions, renders as points (8.2379ms)
+✔ decodeSplats rejects bad records (1.5592ms)
+✔ loader rejects unsafe or inconsistent manifests before fetching assets (19.1208ms)
+✔ loader enforces transport integrity: status, JSON, size caps, length and sha (13.5537ms)
+✔ abort during fetch rejects with AbortError and adapter stays silent (17.7877ms)
+﹣ RM02 real bundle loads through loader + adapter with scale-unverified banner (1.6784ms) # local media absent
+﹣ RM04 real bundle loads through loader + adapter with scale-unverified banner (0.418ms) # local media absent
+﹣ RM05 real bundle loads through loader + adapter with scale-unverified banner (0.2522ms) # local media absent
+✔ real (non-synthetic) scene without measured scale always carries the scale-unverified banner (46.008ms)
+✔ fixture scene is the S04a mount, marked synthetic, not Gate R evidence (17.8868ms)
+✔ scene model decodes PLY points and carries synthetic banner, physics disabled (768.6281ms)
+✔ scene model rejects mismatches and tampered bytes (533.3689ms)
+✔ mount: loading -> ready, idempotent dispose, no callbacks after dispose (5.3908ms)
+✔ shell abort after ready disposes the renderer once (4.299ms)
+✔ mount rejects invalid requests before loading (4.245ms)
+✔ mystery mode is unavailable until S10 redacted payload exists (3.2408ms)
+✔ abort during load rejects, never renders, stays silent (5.3636ms)
+✔ already-aborted signal rejects immediately (3.6104ms)
+✔ abort while renderer is being created disposes the partial renderer (7.3148ms)
+✔ load and renderer failures report error state with plain codes (5.9482ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 3
+ℹ todo 0
+ℹ duration_ms 1594.2128
