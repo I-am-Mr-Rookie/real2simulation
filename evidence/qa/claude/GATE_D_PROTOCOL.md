@@ -2,6 +2,7 @@
 
 Author run: S22a-orch70 (CLAUDE, Opus 5.5 medium assigned). Written 2026-10-30 from main a2fa169.
 Status: **protocol only. Gate D is NOT met and NOT assessed.** No product code, deploys, accounts or terms touched.
+Current per-surface checklist (main 67e299a): [GATE_D_CHECKLIST.md](GATE_D_CHECKLIST.md) (S22a-orch127); it supersedes the dependency table below.
 
 ## 0. Authority and hard preconditions
 
