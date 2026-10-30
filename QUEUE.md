@@ -258,7 +258,7 @@ prerequisite. Lane/slot/ownership/approval checks still apply.
 | S23b | CODEX-2 | GPT-6.1 Sol / medium | S23 | 20 | Promote frozen revision to judging | S23a | infra/railway/judging/; evidence/S23/ | Sol deploys approved immutable SHA; records returned revision. | TODO |
 | S23c | CODEX-2 | GPT-6.1 Sol / medium | S23 | 30 | Verify deployed revision and smoke flow | S23b | infra/railway/judging/; evidence/S23/ | Version endpoint equals frozen SHA; repeat S22 smoke; rollback only to known passing revision. | TODO |
 | S24a | CLAUDE | Opus 5.5 / high | S24 | 30 | Write evidence-backed three-minute script | S21, S23 | media/script/ | Opus leads with measurement/Real2Sim; every claim links benchmark or actual run. | DONE |
-| S24b | CLAUDE | Opus 5.5 / medium | S24 | 30 | Review script, captions and footage credits | S24a | media/script/ | Opus names Meta models and event-only work; includes uncertainty and honest misses. | TODO |
+| S24b | CLAUDE | Opus 5.5 / medium | S24 | 30 | Review script, captions and footage credits | S24a | media/script/ | Opus names Meta models and event-only work; includes uncertainty and honest misses. | DONE |
 | S24c | CODEX-2 | Sonnet 5.5 / medium | S24 | 30 | Capture room rebuild and interview | S24b | media/capture/; media/edit/ | Sol screen capture only; no staged results or personal files. | TODO |
 | S24d | CODEX-2 | Sonnet 5.5 / medium | S24 | 30 | Capture held-out prediction and reveal | S24c | media/capture/; media/edit/ | Sol records real prediction compared with unseen frames. | TODO |
 | S24e | CODEX-2 | Sonnet 5.5 / medium | S24 | 30 | Capture Apollo result and Mystery-g | S24d | media/capture/; media/edit/ | Only claim measured Moon g if real; simulated Mystery-g labelled. | TODO |

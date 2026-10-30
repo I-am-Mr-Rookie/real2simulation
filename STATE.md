@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+Oct30 ~12:05Z: ACCEPTED S24b-orch150 DONE (script review: 8 wording/credit fixes; Meta cost UNAVAILABLE, open-weight bonus not claimed,
+exact Muse IDs, 4-clip fallback miss shown, Q19 default B plots-only, Gate D/S23 PENDING; check_script + check_review PASS fresh).
+For S25b: clips.csv RM02 licence "Pexels" vs "Pexels License"; PD02/RM02/ST03 status UNAPPROVED_CANDIDATE/owner_approved NO vs S02 grant.
+
 Oct30 ~12:02Z: ACCEPTED S13i-orch148 DONE (upload/job routes, approved-sha gate, RECORDED S13h-orch46 replay; api-workspace 14/14 fresh,
 pipeline 53 per worker). Finding: S13h never ran understand -> replay stops DEPENDENCY_UNAVAILABLE, job never ready. CONTROLLER DECISION
 (owner delegated; $0, no contract change, no invented output): replay understand from accepted live S14g-fix3 RM04 spec, labelled
