@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 02:22 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 02:23 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **206 / 237** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **206 / 239** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -14,6 +14,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
+- [ ] **S14j** — Codex (native Claude) · Opus 5.5, effort high — Workspace spec route: owner Q16 'scale unverified, not setup-validated' path for recorded scenes (30 min)
 - [ ] **S13j** — Codex (native Claude) · Opus 5.5, effort high — OPTIONAL/CUT-FIRST: re-capture RM04 geometry bytes into private dev bucket via existing e2e.py under guardrails (30 min)
 
 **CODEX-2**
@@ -23,8 +24,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - …and 1 more ready in this lane
 
 **CLAUDE**
-- [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
-- [ ] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min)
+- [ ] **S15p** — Codex (native Claude) · Opus 5.5, effort medium — Wire workspace run (browser simulator), honest instruments and API report shape (30 min)
 
 ## Waiting for Koushik
 
@@ -241,7 +241,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S14</b> — Scene-understanding and interview agent (10/10)</summary>
+<details><summary><b>S14</b> — Scene-understanding and interview agent (10/11)</summary>
 
 - [x] **S14a** — Codex (native Claude) · Opus 5.5, effort high — Define scene, question and tool-output contracts (30 min)
 - [x] **S14b** — Codex (native Claude) · Opus 5.5, effort high — Integrate Muse Wonder scene understanding (30 min)
@@ -252,11 +252,12 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S14g** — Codex (native Claude) · Opus 5.5, effort high — Run Gate A fixture and thirty-turn suite (30 min)
 - [x] **S14h** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint Gate A and template-card fallback (30 min)
 - [x] **S14i** — Codex (native Claude) · Opus 5.5, effort high — API workspace analysis routers: internal-token auth, interview questions, spec validate, fit, HTML report (30 min)
+- [ ] **S14j** — Codex (native Claude) · Opus 5.5, effort high — Workspace spec route: owner Q16 'scale unverified, not setup-validated' path for recorded scenes (30 min)
 - [x] **R-A** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate A tool-number enforcement (15 min)
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (12/15)</summary>
+<details><summary><b>S15</b> — Workspace UI (12/16)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -273,6 +274,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15m** — Codex (native Claude) · Opus 5.5, effort high — Plan end-to-end workspace wiring (upload to report) (30 min)
 - [x] **S15n** — Codex (native Claude) · Opus 5.5, effort high — Workspace controller: reduce() state + fetch adapters + upload control (30 min)
 - [ ] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min)
+- [ ] **S15p** — Codex (native Claude) · Opus 5.5, effort medium — Wire workspace run (browser simulator), honest instruments and API report shape (30 min)
 
 </details>
 

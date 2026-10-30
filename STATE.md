@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+Oct30 ~20:25Z: CONTROLLER DECISION (owner delegated; applies owner Q16 = A, no new authority): the live workspace flow is blocked at spec for
+every real clip (RM04 spec 422: no authoritative bundle, no verified scale). Added QUEUE S14j (Opus high): the spec route applies the Q16 path
+(numeric-contract validation only, label 'scale unverified, not setup-validated', never MET, no invented scale) and the API is redeployed to dev.
+Added S15p (Opus med): web run via runBrowserSimulation (SIMULATED), API report html in a sandboxed iframe, honest instruments; web redeployed
+to dev. S15o deps now S04o, S04m, S14j, S15p. Dispatched S14j-orch159 (thread 01a18e7b-44cb) + S15p-orch160 (thread 01a18e7b-5135), dl
+20:52:53Z. Next RID orch161.
+
 Oct30 ~20:30Z: ACCEPTED S04o-orch158 DONE (PrivateWorkspace mounts S15n controller via BFF; probeApi -> LIVE notice + upload control, else honest
 unavailable + fixture notice, no numbers; controller.mjs route fix to real S13i paths (Owns extension approved); 104/104 node tests fresh by
 controller; build PASS per worker; web DEV 197153d3 SUCCESS (rev a09fe75), deployments.json web entry updated by controller; logged-out 401/404
