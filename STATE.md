@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+CODEX RESUMED (Oct30 08:55Z, after 14:47 Dhaka refresh): dispatched Sol workers R-A-recheck5-orch109 (high), S18e-orch110 (medium),
+S16f-orch111 (medium), S20d-orch112 (high); deadline 09:25:26Z (15:25 Dhaka). Receipt Run-System/Runs/ORCH-20261029-1654/DISPATCH-orch109.json.
+orch107/orch104 superseded (quota-failed, never accepted). Next RID orch113.
+
 CODEX QUOTA HIT (recorded once, Oct30 ~07:37Z): R-A-recheck5-orch107 and S18e-orch104 failed "You've hit your usage limit. Try
 again at 2:47 PM." No commits; uncommitted WIP left in their worktrees (not accepted). Not restarted. After 14:47 Dhaka: fresh
 R-A recheck5 + S18e runs (new RIDs, new timeboxes), then S20d, S16f. Claude lane unaffected.
