@@ -1,0 +1,539 @@
+{
+  "schema": "gate-c-simulated-regression/1",
+  "status": "PASS",
+  "mode": "SIMULATED_ONLY",
+  "scope": "S20d local simulated-cap regression; NOT full runtime Gate C",
+  "cost_semantics": "Per-event candidate bounds or simulated final bills; NOT additive spend. See after liabilities.",
+  "provider_calls": 0,
+  "actual_spend_usd": "0.00000000",
+  "clock": "2026-10-30T09:00:00+00:00",
+  "meta_routine_stop_usd": "120",
+  "meta_demo_reserve_usd": "30",
+  "meta_demo_remaining_simulated_usd": "30.00000001",
+  "modal_cap_usd": "30",
+  "modal_floor_usd": "5",
+  "aws_flag": "UNSET",
+  "aws_activation_calls": 0,
+  "events": [
+    {
+      "scene": "SIM-meta-1",
+      "action": "reserve_meta",
+      "provider": "Meta Model API",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.05000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "119.75000000",
+        "Modal": "0.00000000",
+        "journal_rows": 1,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-meta-2",
+      "action": "reserve_meta",
+      "provider": "Meta Model API",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.10000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "119.85000000",
+        "Modal": "0.00000000",
+        "journal_rows": 2,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-meta-3",
+      "action": "reserve_meta",
+      "provider": "Meta Model API",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.14999999",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "119.99999999",
+        "Modal": "0.00000000",
+        "journal_rows": 3,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-meta-4",
+      "action": "reserve_meta",
+      "provider": "Meta Model API",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.00000001",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "119.99999999",
+        "Modal": "0.00000000",
+        "journal_rows": 3,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-meta-5",
+      "action": "reserve_meta",
+      "provider": "Meta Model API",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.00000002",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "119.99999999",
+        "Modal": "0.00000000",
+        "journal_rows": 3,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-modal-1",
+      "action": "parent_reserve",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.50000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "24.50000000",
+        "journal_rows": 1,
+        "active_modal_jobs": 1
+      }
+    },
+    {
+      "scene": "SIM-modal-2",
+      "action": "parent_reserve",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.50000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "25.00000000",
+        "journal_rows": 2,
+        "active_modal_jobs": 2
+      }
+    },
+    {
+      "scene": "SIM-modal-3-before-settle",
+      "action": "third_job_refused",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.01000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "25.00000000",
+        "journal_rows": 2,
+        "active_modal_jobs": 2
+      }
+    },
+    {
+      "scene": "SIM-modal-1-child",
+      "action": "one_use_handoff",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.00000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "25.00000000",
+        "journal_rows": 2,
+        "active_modal_jobs": 2
+      }
+    },
+    {
+      "scene": "SIM-modal-1-replay",
+      "action": "handoff_replay",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.00000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "25.00000000",
+        "journal_rows": 2,
+        "active_modal_jobs": 2
+      }
+    },
+    {
+      "scene": "SIM-modal-1-settle",
+      "action": "simulated_final_bill",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.10000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "24.60000000",
+        "journal_rows": 2,
+        "active_modal_jobs": 1
+      }
+    },
+    {
+      "scene": "SIM-modal-3",
+      "action": "slot_reused_history_retained",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.40000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "25.00000000",
+        "journal_rows": 3,
+        "active_modal_jobs": 2
+      }
+    },
+    {
+      "scene": "SIM-modal-settle-replay",
+      "action": "settlement_replay",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.00000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "25.00000000",
+        "journal_rows": 3,
+        "active_modal_jobs": 2
+      }
+    },
+    {
+      "scene": "SIM-modal-tampered-proof",
+      "action": "tampered_proof_refused_then_restored",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.50000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "25.00000000",
+        "journal_rows": 3,
+        "active_modal_jobs": 2
+      }
+    },
+    {
+      "scene": "SIM-monthly-floor-exact",
+      "action": "select_provider_AWS_unset",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "1.00000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "24.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-monthly-floor-below",
+      "action": "select_provider_AWS_unset",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "1.00000001",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "24.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-monthly-cap-exact",
+      "action": "select_provider_AWS_unset",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "1.00000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "29.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-monthly-cap-above",
+      "action": "select_provider_AWS_unset",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "1.00000001",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "29.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-credit-floor-exact",
+      "action": "select_provider_AWS_unset",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.50000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-credit-floor-below",
+      "action": "select_provider_AWS_unset",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.50000001",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-no-bound",
+      "action": "standalone_missing_bound",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.00000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-standalone-1",
+      "action": "standalone_reserve_and_claim",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.50000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.50000000",
+        "journal_rows": 1,
+        "active_modal_jobs": 1
+      }
+    },
+    {
+      "scene": "SIM-pipeline-with-standalone",
+      "action": "same_global_envelope",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.50000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "1.00000000",
+        "journal_rows": 2,
+        "active_modal_jobs": 2
+      }
+    },
+    {
+      "scene": "SIM-standalone-3",
+      "action": "shared_job_cap",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.50000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "1.00000000",
+        "journal_rows": 2,
+        "active_modal_jobs": 2
+      }
+    },
+    {
+      "scene": "SIM-active-cap-one",
+      "action": "global_one_dollar_active_bound",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.60000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.60000000",
+        "journal_rows": 1,
+        "active_modal_jobs": 1
+      }
+    },
+    {
+      "scene": "SIM-active-cap-over",
+      "action": "global_one_dollar_active_bound",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.40000001",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.60000000",
+        "journal_rows": 1,
+        "active_modal_jobs": 1
+      }
+    },
+    {
+      "scene": "SIM-active-cap-exact",
+      "action": "global_one_dollar_active_bound",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.40000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "1.00000000",
+        "journal_rows": 2,
+        "active_modal_jobs": 2
+      }
+    },
+    {
+      "scene": "SIM-paused-meta",
+      "action": "explicit_pause",
+      "provider": "Meta Model API",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.10000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-paused-failover",
+      "action": "no_auto_AWS_on_pause",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.10000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-main:Build/gpu/runtime.py",
+      "action": "real_launch_tail_refused",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.10000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-main:Build/gpu/scene_job.py",
+      "action": "real_launch_tail_refused",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.10000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-main:Build/measurement/runtime/modal_track.py",
+      "action": "real_launch_tail_refused",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.10000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-main:Build/reconstruction/spike/modal_rm02.py",
+      "action": "real_launch_tail_refused",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.10000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-main:Build/reconstruction/spike/modal_scenes.py",
+      "action": "real_launch_tail_refused",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.10000000",
+      "outcome": "SPEND_PAUSED",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    },
+    {
+      "scene": "SIM-AWS-default",
+      "action": "AWS_flag_unset",
+      "provider": "Modal",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.10000000",
+      "outcome": "PASS",
+      "after": {
+        "Meta Model API": "0.00000000",
+        "Modal": "0.00000000",
+        "journal_rows": 0,
+        "active_modal_jobs": 0
+      }
+    }
+  ],
+  "public_library_checks": [
+    {
+      "admission_state": "Meta candidate reaches/exceeds routine cap",
+      "read": "existing public DTO + synthetic manifest",
+      "outcome": "PASS",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.00000000"
+    },
+    {
+      "admission_state": "explicit SPEND_PAUSED",
+      "read": "existing public DTO + synthetic manifest",
+      "outcome": "PASS",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.00000000"
+    },
+    {
+      "admission_state": "missing admission receipt",
+      "read": "existing public DTO + synthetic manifest",
+      "outcome": "PASS",
+      "cost_kind": "SIMULATED",
+      "simulated_usd": "0.00000000"
+    }
+  ],
+  "limitations": [
+    "Offline local guards only; NOT live enforcement, measured costs or physical gate evidence.",
+    "Modal $5 floor makes $25 the effective routine monthly ceiling; outer $30 cap also refuses.",
+    "R-C R2-1..4 remain: operator settlement trust, bearer IDs, entrypoint-only guard, removed-worktree pause.",
+    "Upload HTTP integration/durable daily user quota remain unimplemented per ADMISSION.md; no exhausted-quota claim.",
+    "Library check reads existing public DTO + synthetic manifest, NOT live HTTP, rendered UI or playback."
+  ]
+}
