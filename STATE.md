@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+Oct30 ~11:45Z army: S15k-orch122 resumed -> PARTIAL (two dev redeploys SUCCESS e4cc427a, da4b03e9; sign-in/own workspace/404s/375px PASS;
+loopback NOT reproduced on Railway; upload/interview/run/fit/report NOT-WIRED). ACCEPTED: S21e (BENCHMARK summary + About data, unmounted),
+S21f (cross-check 100 checks, 0 mismatches), S18j (web route 3/3 openable <3 s via snapshot; minimum library = 2 SIMULATED traces +
+Mystery-g practice; "4 public clips" fallback NOT met - content/approval blocker), S04l (library copy aligned with S18l + UI polish; 6
+tests), S15m (integration plan evidence/S15/S15m: API-hosted routers + web BFF, default path $0 RECORDED replay). Controller added S15m's 8
+rows (S14i S15n S04n S13i S04m S04o S15o S13j-optional) to QUEUE. Dispatched S15m-140, S21f-141, S19d-142 (Sonnet; dev redeploy incl.
+S04j/k/l + PWA/library walk, dl 12:06Z), wave 1 S14i-143 S15n-144 S04n-145 (dl 12:10Z). Receipt DISPATCH-orch140.json. Next RID orch146.
+
 Oct30 ~11:30Z army: ACCEPTED S21b (8 measured precision rows / 8 UNAVAILABLE; no accuracy claim), S21c (held-out: 2 measured, 4 UNAVAILABLE),
 S21d (24 cost rows, billed/estimated/reservation/simulated never summed; Meta cost UNAVAILABLE), S18l (Mystery-g relabelled "Earth-g
 practice shape, not a blind test; play blind in /lab" - /lab already draws server hidden g; library 83), S04k (web /library served from
