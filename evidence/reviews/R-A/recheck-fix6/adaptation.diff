@@ -1,0 +1,113 @@
+--- original-reviewer-fix5/probe.py
++++ independent-reviewer-fix6/probe.py
+@@ -1 +1 @@
+-"""Offline fix5 review. Writes only alongside this script; no product mutations."""
++"""Independent offline fix6 review, adapted from the original reviewer fix5 source. Writes only alongside this script; no product mutations."""
+@@ -34,0 +35,2 @@
++            if target.name == ".env":
++                raise AssertionError("review never reads .env")
+@@ -153,5 +155,5 @@
+-    ("disclosed-gravity-label", "The period is one whole minute: ", "gravity", True),
+-    ("full-second-label", "The elapsed time is a full second: ", "gravity", True),
+-    ("full-radian-label", "The angle is one full radian = ", "gravity", True),
+-    ("full-metre-label", "The distance is one full metre: ", "gravity", True),
+-    ("same-dimension-amount", "The elapsed time is a full second: ", "duration", True),
++    ("disclosed-gravity-label", "The period is one whole minute: ", "gravity", False),
++    ("full-second-label", "The elapsed time is a full second: ", "gravity", False),
++    ("full-radian-label", "The angle is one full radian = ", "gravity", False),
++    ("full-metre-label", "The distance is one full metre: ", "gravity", False),
++    ("same-dimension-amount", "The elapsed time is a full second: ", "duration", False),
+@@ -192 +194 @@
+-# Actual evidence runner: all six old misses now fall back; disclosed label miss is still shown.
++# Actual evidence runner: all seven previous misses must now fall back.
+@@ -203 +205 @@
+-assert gate_turns[-1]["attempts"] == 1 and gate_turns[-1]["model_reply_shown"] and not gate_turns[-1]["invented"]
++assert gate_turns[-1]["attempts"] == 4 and not gate_turns[-1]["model_reply_shown"] and not gate_turns[-1]["invented"]
+@@ -220 +222,3 @@
+-assert replay["summary"] == read(ROOT / "evidence/S14/S14g-fix5-offline.json")["summary"]
++replay["summary"]["scope"] = replay["summary"]["scope"].replace("fix5 structural unit rule",
++    "fix6 unit rule (no bare label binding)")
++assert replay["summary"] == read(ROOT / "evidence/S14/S14g-fix6-offline.json")["summary"]
+@@ -244,0 +249,62 @@
++# Bounded independent extension: an amount before/after an "in <units>" label is not a pronoun.
++# These are SYNTHETIC model responses; tools below retain the saved simulator values, not physical evidence.
++binder_cases = [
++    ("units-before-one", "The elapsed time in seconds is one: ", "duration", True, True),
++    ("one-before-units", "The elapsed time is one in seconds: ", "duration", True, True),
++    ("units-before-full-one", "The elapsed time in seconds is a full one. Tool result: ", "duration", True, True),
++    ("units-before-single-one", "The delay in minutes is a single one: ", "duration", True, True),
++    ("distance-units-before-one", "The distance in metres is one: ", "drop", True, True),
++    ("distance-one-before-units", "The distance is one in metres: ", "drop", True, True),
++    ("units-before-two", "The elapsed time in seconds is two: ", "duration", True, False),
++    ("two-before-units", "The elapsed time is two in seconds: ", "duration", True, False),
++    ("units-before-digit", "The elapsed time in seconds is 1: ", "duration", True, False),
++    ("amount-inside-label", "The elapsed time in one second: ", "duration", True, False),
++    ("modifier-inside-label", "The elapsed time in whole seconds: ", "duration", False, False),
++    ("fix6-closed-control", "The elapsed time is a full second: ", "duration", True, False),
++    ("benign-time-label", "Elapsed time in seconds = ", "duration", False, True),
++    ("benign-distance-label", "The measured distance in metres: ", "drop", False, True),
++    ("benign-one-pronoun", "This one fits the scene. ", "gravity", False, True),
++    ("benign-double-check", "Please double-check the fit. ", "gravity", False, True),
++]
++binder_results, binder_surfaces, binder_gate_turns = [], [], []
++for name, text, quantity, numeric_claim, expect_accept in binder_cases:
++    ref = copy.deepcopy(number)
++    if quantity != "gravity":
++        ref["ref"] = {"tool_output_id": tools[0]["id"], "quantity": quantity}
++    response = response_for(text, ref=ref)
++    issue = validate_error(response)
++    oracle_issue = next(filter(None, map(fix.oracle, fix.visible_strings(response))), None)
++    shown_direct, direct_blocked = safe_reply(response, tools, sid)
++    accepted, rejected = trial.check_trial({"scene_id": sid, "tool_outputs": tools},
++                                          lambda _r: fix.OLD.body(json.dumps(response)))
++    shown, blocked = safe_reply(accepted, tools, sid)
++    fallback = accepted["segments"][0]["text"].startswith("The automatic trial check")
++    assert (issue is None) == (oracle_issue is None) == expect_accept, (name, issue, oracle_issue)
++    assert bool(direct_blocked) != expect_accept and (text in shown_direct) == expect_accept
++    assert len(rejected) == (0 if expect_accept else 4) and not blocked and fallback != expect_accept
++    assert (text in shown) == expect_accept
++    for surface in ("segments", "prompt", "chip", "rationale"):
++        r = response_for(text, surface, ref)
++        err = validate_error(r)
++        oracle_err = next(filter(None, map(fix.oracle, fix.visible_strings(r))), None)
++        assert (err is None) == (oracle_err is None) == expect_accept, (name, surface)
++        binder_surfaces.append({"case": name, "surface": surface, "accepted": err is None,
++                                "oracle_issue": oracle_err})
++    value = next(o["quantities"][quantity] for o in tools if o["id"] == ref["ref"]["tool_output_id"])
++    if numeric_claim and expect_accept:
++        assert value["value"] != 1, "counterexample must differ from the claimed one"
++    binder_results.append({"case": name, "text": text, "numeric_claim": numeric_claim,
++        "accepted": issue is None, "runtime_error": issue, "oracle_issue": oracle_issue,
++        "trial_rejections": len(rejected), "fallback": fallback, "shown": shown,
++        "cited_quantity": value, "synthetic_model_response": True})
++    # Exercise the actual Gate A helper on each bypass, not only the component validator.
++    if numeric_claim and expect_accept:
++        gate_response = copy.deepcopy(response)
++        gate_response["scene_id"] = fix.OLD.SCENE_ID
++        row = fix.turn(0, lambda _r: fix.OLD.body(json.dumps(gate_response)), fix.OLD.SCENE_ID)
++        assert row["attempts"] == 1 and row["model_reply_shown"] and not row["invented"]
++        assert text in row["shown"] and not row["blocked"]
++        binder_gate_turns.append({"case": name, "text": text, **{k: row[k] for k in
++            ("attempts", "model_reply_shown", "invented", "shown", "blocked")}})
++assert len(binder_gate_turns) == 6
++
+@@ -248 +314 @@
+-assert fix.self_check() == {"corpus_cases": 56, "oracle_agrees": True}
++assert fix.self_check() == {"corpus_cases": 66, "oracle_agrees": True}
+@@ -251 +317,3 @@
+-output = {"verdict": "CHANGES_REQUIRED", "exact_prior_cases": results, "visible_surfaces": surfaces,
++output = {"verdict": "CHANGES_REQUIRED", "prior_fixes": "F1_R3_CLOSED_PRIOR_FIXES_PRESERVED",
++          "binder_probes": binder_results, "binder_surfaces": binder_surfaces, "binder_gate_turns": binder_gate_turns,
++          "exact_prior_cases": results, "visible_surfaces": surfaces,
+@@ -254 +322 @@
+-          "setup_calls": setup_calls, "fix5_summary": summary, "threshold_logic_only": thresholds,
++          "setup_calls": setup_calls, "fix6_summary": summary, "threshold_logic_only": thresholds,
+@@ -258 +326 @@
+-(OUT / "fix5-replay.json").write_text(json.dumps(replay, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
++(OUT / "fix6-replay.json").write_text(json.dumps(replay, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+@@ -259,0 +328,2 @@
++                  "binder_cases": len(binder_results), "binder_surface_checks": len(binder_surfaces),
++                  "numeric_bypasses": len(binder_gate_turns),
+@@ -261 +331 @@
+-                  "fix5_summary": summary, "oracle_corpus": output["oracle_corpus"],
++                  "fix6_summary": summary, "oracle_corpus": output["oracle_corpus"],
