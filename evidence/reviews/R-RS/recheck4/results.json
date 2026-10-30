@@ -1,0 +1,514 @@
+{
+  "base": "b2fc20bea02efce45aa7d993ce6e46f2a7ddd3a9",
+  "warning": "Synthetic offline attacks, not physical or Gate RS success",
+  "recheck3_rerun": "Expected historical _tracking_ok assertion now fails at line 99: forged trackers no longer eligible",
+  "F1_before_suffix_read": {
+    "clip_id": "ValueError: predicted trace changed after hashing",
+    "source_sha256": "ValueError: predicted trace changed after hashing",
+    "training_sha256": "ValueError: predicted trace changed after hashing",
+    "suffix_identity_sha256": "ValueError: predicted trace changed after hashing",
+    "suffix_count": "ValueError: predicted trace changed after hashing",
+    "kind": "ValueError: predicted trace changed after hashing",
+    "model": "ValueError: predicted trace changed after hashing",
+    "trace": "ValueError: predicted trace changed after hashing",
+    "commitment": "ValueError: legacy prediction/v1 is audit-readable only, never newly eligible; re-commit as v2",
+    "self_consistent_subset": "ValueError: prediction trace does not cover the complete sealed suffix"
+  },
+  "F2_R3_native_forgery": {
+    "scores": {
+      "projectile": {
+        "clip_id": "PJ03",
+        "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+        "kind": "projectile",
+        "prediction_sha256": "6a9cb5213f4e75f693007b0b8b302c4621ea33fff014aa8a23713a5e733fd0f4",
+        "prediction_commitment": "prediction/v2",
+        "training_sha256": "de291ae93a806fb3b7d5517c24fb999c149a5b0e793dade48d1eee73e657cedd",
+        "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+        "sealed_frames": 5,
+        "scored_frames": 5,
+        "coverage": 1.0,
+        "normalized_rms": 0.0,
+        "normalized_rms_first5_diagnostic": 0.0,
+        "max_abs": 0.0,
+        "scored": true,
+        "provenance": "image-derived",
+        "input_receipt": {
+          "clip_id": "PJ03",
+          "category": "projectile",
+          "experiment": "projectile",
+          "licence": "CC-BY-SA-4.0",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf"
+        },
+        "ineligible_reason": "no accepted tracking custody: tracker artifact 'evidence/reviews/R-RS/recheck4/rerun-recheck3/projectile-SYNTHETIC-track.json' has no accepted tracking custody in evidence/S12/accepted-tracking.json",
+        "tracking_evidence": {
+          "path": "evidence/reviews/R-RS/recheck4/rerun-recheck3/projectile-SYNTHETIC-track.json",
+          "sha256": "69c46dabffb43ff406d235cf9e770e0aa2c66fa3bbb83afe62651528fe287fc4",
+          "clip_id": "PJ03",
+          "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+          "object_id": 2,
+          "prompt": "apple",
+          "validate": "validate_segment OK",
+          "frame_pts": [
+            [
+              0,
+              0.0
+            ],
+            [
+              1,
+              0.03333333333333333
+            ],
+            [
+              2,
+              0.06666666666666667
+            ],
+            [
+              3,
+              0.1
+            ],
+            [
+              4,
+              0.13333333333333333
+            ],
+            [
+              5,
+              0.16666666666666666
+            ],
+            [
+              6,
+              0.2
+            ],
+            [
+              7,
+              0.23333333333333334
+            ],
+            [
+              8,
+              0.26666666666666666
+            ],
+            [
+              9,
+              0.3
+            ],
+            [
+              10,
+              0.3333333333333333
+            ],
+            [
+              11,
+              0.36666666666666664
+            ],
+            [
+              12,
+              0.4
+            ],
+            [
+              13,
+              0.43333333333333335
+            ],
+            [
+              14,
+              0.4666666666666667
+            ]
+          ],
+          "after_frame": 9,
+          "prefix_frames": 10,
+          "prefix_max_abs": 0.0,
+          "seal": {
+            "clip_id": "PJ03",
+            "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+            "last_training_frame": 9,
+            "training_sha256": "de291ae93a806fb3b7d5517c24fb999c149a5b0e793dade48d1eee73e657cedd",
+            "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+            "suffix_count": 5
+          },
+          "custody": null,
+          "custody_error": "no accepted tracking custody: tracker artifact 'evidence/reviews/R-RS/recheck4/rerun-recheck3/projectile-SYNTHETIC-track.json' has no accepted tracking custody in evidence/S12/accepted-tracking.json"
+        },
+        "observations_sha256": "7e4ca6f40154ae7d7c3e694ccbaec7579197fb97eaba2845e964aab8f6639f67",
+        "gate_m": "NOT_MET"
+      },
+      "bounce": {
+        "clip_id": "BN01",
+        "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+        "kind": "bounce",
+        "prediction_sha256": "5fc6a33b572f2a1471b8fab5f64992272fbb5379d94b128849912043217b1c0e",
+        "prediction_commitment": "prediction/v2",
+        "training_sha256": "de291ae93a806fb3b7d5517c24fb999c149a5b0e793dade48d1eee73e657cedd",
+        "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+        "sealed_frames": 5,
+        "scored_frames": 5,
+        "coverage": 1.0,
+        "normalized_rms": 4.965068306494546e-17,
+        "normalized_rms_first5_diagnostic": 4.965068306494546e-17,
+        "max_abs": 1.1102230246251565e-16,
+        "scored": true,
+        "provenance": "image-derived",
+        "input_receipt": {
+          "clip_id": "BN01",
+          "category": "bounce",
+          "experiment": "bounce",
+          "licence": "CC-BY-SA-4.0",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b"
+        },
+        "ineligible_reason": "no accepted tracking custody: tracker artifact 'evidence/reviews/R-RS/recheck4/rerun-recheck3/bounce-SYNTHETIC-track.json' has no accepted tracking custody in evidence/S12/accepted-tracking.json",
+        "tracking_evidence": {
+          "path": "evidence/reviews/R-RS/recheck4/rerun-recheck3/bounce-SYNTHETIC-track.json",
+          "sha256": "3cb81056931345630b3c1c106981e5b72a9c7199a4c5cb40300137b3b0505e05",
+          "clip_id": "BN01",
+          "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+          "object_id": 2,
+          "prompt": "apple",
+          "validate": "validate_segment OK",
+          "frame_pts": [
+            [
+              0,
+              0.0
+            ],
+            [
+              1,
+              0.03333333333333333
+            ],
+            [
+              2,
+              0.06666666666666667
+            ],
+            [
+              3,
+              0.1
+            ],
+            [
+              4,
+              0.13333333333333333
+            ],
+            [
+              5,
+              0.16666666666666666
+            ],
+            [
+              6,
+              0.2
+            ],
+            [
+              7,
+              0.23333333333333334
+            ],
+            [
+              8,
+              0.26666666666666666
+            ],
+            [
+              9,
+              0.3
+            ],
+            [
+              10,
+              0.3333333333333333
+            ],
+            [
+              11,
+              0.36666666666666664
+            ],
+            [
+              12,
+              0.4
+            ],
+            [
+              13,
+              0.43333333333333335
+            ],
+            [
+              14,
+              0.4666666666666667
+            ]
+          ],
+          "after_frame": 9,
+          "prefix_frames": 10,
+          "prefix_max_abs": 0.0,
+          "seal": {
+            "clip_id": "BN01",
+            "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+            "last_training_frame": 9,
+            "training_sha256": "de291ae93a806fb3b7d5517c24fb999c149a5b0e793dade48d1eee73e657cedd",
+            "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+            "suffix_count": 5
+          },
+          "custody": null,
+          "custody_error": "no accepted tracking custody: tracker artifact 'evidence/reviews/R-RS/recheck4/rerun-recheck3/bounce-SYNTHETIC-track.json' has no accepted tracking custody in evidence/S12/accepted-tracking.json"
+        },
+        "observations_sha256": "b85d907112386696457ca03e392739afbe3e69d27f32ebf09e147144e388ee1f",
+        "gate_m": "NOT_MET"
+      },
+      "pendulum": {
+        "clip_id": "PD02",
+        "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+        "kind": "pendulum",
+        "prediction_sha256": "83a865db78e661f84dab51fc51c251cbea29ae73a42343af33b890ea923fa916",
+        "prediction_commitment": "prediction/v2",
+        "training_sha256": "de291ae93a806fb3b7d5517c24fb999c149a5b0e793dade48d1eee73e657cedd",
+        "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+        "sealed_frames": 5,
+        "scored_frames": 5,
+        "coverage": 1.0,
+        "normalized_rms": 0.0,
+        "normalized_rms_first5_diagnostic": 0.0,
+        "max_abs": 0.0,
+        "scored": true,
+        "provenance": "image-derived",
+        "input_receipt": {
+          "clip_id": "PD02",
+          "category": "pendulum",
+          "experiment": "pendulum",
+          "licence": "Pexels License",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d"
+        },
+        "ineligible_reason": "no accepted tracking custody: tracker artifact 'evidence/reviews/R-RS/recheck4/rerun-recheck3/pendulum-SYNTHETIC-track.json' has no accepted tracking custody in evidence/S12/accepted-tracking.json",
+        "tracking_evidence": {
+          "path": "evidence/reviews/R-RS/recheck4/rerun-recheck3/pendulum-SYNTHETIC-track.json",
+          "sha256": "eaa0f92262c4110530b252b5239aec9847c93f4d9b9ea68ebf8daead5e95231d",
+          "clip_id": "PD02",
+          "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+          "object_id": 2,
+          "prompt": "apple",
+          "validate": "validate_segment OK",
+          "frame_pts": [
+            [
+              0,
+              0.0
+            ],
+            [
+              1,
+              0.03333333333333333
+            ],
+            [
+              2,
+              0.06666666666666667
+            ],
+            [
+              3,
+              0.1
+            ],
+            [
+              4,
+              0.13333333333333333
+            ],
+            [
+              5,
+              0.16666666666666666
+            ],
+            [
+              6,
+              0.2
+            ],
+            [
+              7,
+              0.23333333333333334
+            ],
+            [
+              8,
+              0.26666666666666666
+            ],
+            [
+              9,
+              0.3
+            ],
+            [
+              10,
+              0.3333333333333333
+            ],
+            [
+              11,
+              0.36666666666666664
+            ],
+            [
+              12,
+              0.4
+            ],
+            [
+              13,
+              0.43333333333333335
+            ],
+            [
+              14,
+              0.4666666666666667
+            ]
+          ],
+          "after_frame": 9,
+          "prefix_frames": 10,
+          "prefix_max_abs": 0.0,
+          "seal": {
+            "clip_id": "PD02",
+            "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+            "last_training_frame": 9,
+            "training_sha256": "de291ae93a806fb3b7d5517c24fb999c149a5b0e793dade48d1eee73e657cedd",
+            "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+            "suffix_count": 5
+          },
+          "custody": null,
+          "custody_error": "no accepted tracking custody: tracker artifact 'evidence/reviews/R-RS/recheck4/rerun-recheck3/pendulum-SYNTHETIC-track.json' has no accepted tracking custody in evidence/S12/accepted-tracking.json"
+        },
+        "observations_sha256": "0d0961331a62372641abe0058a46e69cbce6b2b392376321effb2a8f3e2c0a83",
+        "gate_m": "NOT_MET"
+      }
+    },
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "input_receipts": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "median": null,
+      "threshold": 0.05,
+      "status": "NOT_MET",
+      "shortfall": [
+        "projectile",
+        "bounce",
+        "pendulum"
+      ],
+      "gate_m": "NOT_MET"
+    }
+  },
+  "actual_gate": {
+    "result": {
+      "per_category_normalized_rms": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "input_receipts": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "median": null,
+      "threshold": 0.05,
+      "status": "NOT_MET",
+      "shortfall": [
+        "projectile",
+        "bounce",
+        "pendulum"
+      ],
+      "gate_m": "NOT_MET"
+    },
+    "scored_frames": 7,
+    "sealed_frames": 466,
+    "normalized_rms": 0.1981633916341227,
+    "coverage": 0.015021459227467811
+  },
+  "F2_C": "ValueError: Tracked loader is bound to a different boundary than the one being scored",
+  "registry_trust": {
+    "cases": {
+      "artifact_digest": "ValueError: tracker artifact 'evidence/S12/gate-rs/ST03-f58-83/result.json' has no accepted tracking custody in evidence/S12/accepted-tracking.json",
+      "artifact_path": "ValueError: tracker artifact 'evidence/S12/gate-rs/ST03-f58-83/result.json' has no accepted tracking custody in evidence/S12/accepted-tracking.json",
+      "presentation_digest": "ValueError: presentation map digest differs from accepted custody",
+      "range_start": "ValueError: tracker frames/PTS differ from the accepted frame range and presentation map",
+      "range_end": "ValueError: tracker frames/PTS differ from the accepted frame range and presentation map",
+      "reversed_range": "ValueError: tracker frames/PTS differ from the accepted frame range and presentation map",
+      "seal": "ValueError: accepted tracking custody binds a different clip/source/training prefix/seal",
+      "duplicate": "ValueError: tracker artifact 'evidence/S12/gate-rs/ST03-f58-83/result.json' has no accepted tracking custody in evidence/S12/accepted-tracking.json",
+      "empty_registry": "ValueError: tracker artifact 'evidence/S12/gate-rs/ST03-f58-83/result.json' has no accepted tracking custody in evidence/S12/accepted-tracking.json",
+      "caller_pts": "ValueError: tracker frames/PTS differ from the accepted frame range and presentation map",
+      "map_bytes": "ValueError: presentation map digest differs from accepted custody",
+      "registry_edit_old_receipt": "rejected",
+      "registry_edit_fresh_receipt": "accepted: registry writer is trusted",
+      "exact_registry_replay": "accepted: no monotonic revision/revocation store",
+      "invented_ledger_app_run_metadata": "accepted by custody reader; controller-only assertions"
+    },
+    "actual_entry_ledger_match": [
+      {
+        "utc": "2026-10-29T21:49:22+00:00",
+        "run": "S12e-orch45",
+        "app_id": "ap-2Sbu8Pen5jJhHlNxAhuva6",
+        "gpu": "A10G (NVIDIA A10)",
+        "result": "tracked 26 frames, peak VRAM 19.09 GB, remote 48.0 s",
+        "billed_usd": 0.02330591,
+        "billed_read": "read-only 21:49:07Z via cost_log.reconcile (may still accrue)",
+        "retries": 0,
+        "containers_before": "unrelated other-worker s06d-scene-job pending (not this run)",
+        "containers_after": []
+      }
+    ],
+    "ledger_binds_artifact_sha": false,
+    "authority": "Any repository/file writer can edit registry; controller review is the admission boundary, not JSON parser or git commit verification",
+    "trusted_registry_writer_can_admit_synthetic": {
+      "gate": {
+        "per_category_normalized_rms": {
+          "projectile": 0.0,
+          "bounce": 4.965068306494546e-17,
+          "pendulum": 0.0
+        },
+        "input_receipts": {
+          "projectile": {
+            "clip_id": "PJ03",
+            "category": "projectile",
+            "experiment": "projectile",
+            "licence": "CC-BY-SA-4.0",
+            "approval_ref": "evidence/owner/S02/APPROVAL.md",
+            "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+            "registry_ref": "evidence/clips/S02c-acquisition.json",
+            "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf"
+          },
+          "bounce": {
+            "clip_id": "BN01",
+            "category": "bounce",
+            "experiment": "bounce",
+            "licence": "CC-BY-SA-4.0",
+            "approval_ref": "evidence/owner/S02/APPROVAL.md",
+            "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+            "registry_ref": "evidence/clips/S02c-acquisition.json",
+            "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b"
+          },
+          "pendulum": {
+            "clip_id": "PD02",
+            "category": "pendulum",
+            "experiment": "pendulum",
+            "licence": "Pexels License",
+            "approval_ref": "evidence/owner/S02/APPROVAL.md",
+            "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+            "registry_ref": "evidence/clips/S02c-acquisition.json",
+            "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d"
+          }
+        },
+        "median": 0.0,
+        "threshold": 0.05,
+        "status": "MET",
+        "shortfall": [],
+        "gate_m": "NOT_MET"
+      },
+      "committed": false,
+      "media_gpu_used": false,
+      "meaning": "Trusted registry modified in owned scratch; NOT a bypass available to an ordinary tracker caller"
+    }
+  },
+  "F2_A": {
+    "not approved": "ValueError: clip 'PJ03' is not owner-approved for local scene/tracking pipeline work in evidence/owner/S02/APPROVAL.md",
+    "denied": "ValueError: clip 'PJ03' is not owner-approved for local scene/tracking pipeline work in evidence/owner/S02/APPROVAL.md",
+    "revoked": "ValueError: clip 'PJ03' is not owner-approved for local scene/tracking pipeline work in evidence/owner/S02/APPROVAL.md",
+    "withdrawn": "ValueError: clip 'PJ03' is not owner-approved for local scene/tracking pipeline work in evidence/owner/S02/APPROVAL.md",
+    "never": "ValueError: clip 'PJ03' is not owner-approved for local scene/tracking pipeline work in evidence/owner/S02/APPROVAL.md",
+    "except": "ValueError: clip 'PJ03' is not owner-approved for local scene/tracking pipeline work in evidence/owner/S02/APPROVAL.md"
+  },
+  "F2_L": {
+    "CC-BY-NC-4.0": "ValueError: clip 'PJ03' licence 'CC-BY-NC-4.0' is not an allowed public licence",
+    "CC-BY-ND-4.0": "ValueError: clip 'PJ03' licence 'CC-BY-ND-4.0' is not an allowed public licence",
+    "pd-nc": "ValueError: clip 'PJ03' licence 'pd-nc' is not an allowed public licence",
+    "pd-not-public": "ValueError: clip 'PJ03' licence 'pd-not-public' is not an allowed public licence",
+    "CC-BY-999.99": "ValueError: clip 'PJ03' licence 'CC-BY-999.99' is not an allowed public licence",
+    "CC-BY-.": "ValueError: clip 'PJ03' licence 'CC-BY-.' is not an allowed public licence",
+    "CC-BY-": "ValueError: clip 'PJ03' licence 'CC-BY-' is not an allowed public licence",
+    "CC-BY-SA-9.0": "ValueError: clip 'PJ03' licence 'CC-BY-SA-9.0' is not an allowed public licence"
+  }
+}

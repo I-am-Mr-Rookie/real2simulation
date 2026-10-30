@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\R-RS-recheck4-orch85\evidence\reviews\R-RS\recheck4\review.py", line 50, in main
+    r3.main()
+    ~~~~~~~^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\R-RS-recheck4-orch85\evidence\reviews\R-RS\recheck3\review.py", line 99, in main
+    assert forged[kind]["scored"] and forged[kind]["input_receipt"] and s._tracking_ok(forged[kind], ROOT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

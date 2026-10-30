@@ -1,0 +1,1 @@
+PASS: F2-R3/F2-C/F1/F2-A/F2-L; registry tamper/replay probes; actual RS NOT_MET 7/466; protected hashes unchanged

@@ -1,0 +1,74 @@
+test_committed_st03_record (test_boundary.BoundaryTests.test_committed_st03_record) ... ok
+test_fitter_never_sees_suffix (test_boundary.BoundaryTests.test_fitter_never_sees_suffix) ... ok
+test_frozen_prefix_and_suffix_detect_tampering (test_boundary.BoundaryTests.test_frozen_prefix_and_suffix_detect_tampering) ... ok
+test_invalid_or_leaking_splits_rejected (test_boundary.BoundaryTests.test_invalid_or_leaking_splits_rejected) ... ok
+test_outputs_say_gate_m_not_met_and_no_g (test_boundary.BoundaryTests.test_outputs_say_gate_m_not_met_and_no_g) ... ok
+test_split_keeps_suffix_values_out_of_boundary (test_boundary.BoundaryTests.test_split_keeps_suffix_values_out_of_boundary) ... ok
+test_untracked_suffix_identities_are_sealed (test_boundary.BoundaryTests.test_untracked_suffix_identities_are_sealed) ... ok
+test_committed_overlays_validate_against_sources (test_overlay.CommittedEvidenceTest.test_committed_overlays_validate_against_sources) ... ok
+test_build_refuses_prediction_from_other_boundary (test_overlay.OverlayTest.test_build_refuses_prediction_from_other_boundary) ... ok
+test_rejects_misaligned_timebase (test_overlay.OverlayTest.test_rejects_misaligned_timebase) ... ok
+test_rejects_mutated_trace_and_gate_claim (test_overlay.OverlayTest.test_rejects_mutated_trace_and_gate_claim) ... ok
+test_rejects_other_clip_or_source (test_overlay.OverlayTest.test_rejects_other_clip_or_source) ... ok
+test_roundtrip_returns_immutable_traces (test_overlay.OverlayTest.test_roundtrip_returns_immutable_traces) ... ok
+test_continuation_tracks_synthetic_truth_without_reading_suffix (test_overlay.PendulumTest.test_continuation_tracks_synthetic_truth_without_reading_suffix) ... ok
+test_frequency_record_required (test_overlay.PendulumTest.test_frequency_record_required) ... ok
+test_committed_st03_params_abstain (test_params.ParamsTests.test_committed_st03_params_abstain) ... ok
+test_fit_records_carry_value_uncertainty_provenance (test_params.ParamsTests.test_fit_records_carry_value_uncertainty_provenance) ... ok
+test_linear_motion_abstains_and_transfer_refuses (test_params.ParamsTests.test_linear_motion_abstains_and_transfer_refuses) ... ok
+test_missing_or_invalid_params_are_refused_not_defaulted (test_params.ParamsTests.test_missing_or_invalid_params_are_refused_not_defaulted) ... ok
+test_simulator_consumes_values_and_records_survive (test_params.ParamsTests.test_simulator_consumes_values_and_records_survive) ... ERROR
+test_simulator_rejection_and_nonsynthetic_refusal_surface (test_params.ParamsTests.test_simulator_rejection_and_nonsynthetic_refusal_surface) ... FAIL
+test_committed_st03_prediction (test_predict.PredictTests.test_committed_st03_prediction) ... ok
+test_prediction_identical_whatever_the_heldout_values (test_predict.PredictTests.test_prediction_identical_whatever_the_heldout_values) ... ok
+test_projectile_never_reads_heldout_and_is_hashed_before_scoring (test_predict.PredictTests.test_projectile_never_reads_heldout_and_is_hashed_before_scoring) ... ok
+test_synthetic_bounce_reflects_with_restitution_without_reading_heldout (test_predict.PredictTests.test_synthetic_bounce_reflects_with_restitution_without_reading_heldout) ... ok
+test_trace_is_immutable_and_tamper_or_reseal_refused (test_predict.PredictTests.test_trace_is_immutable_and_tamper_or_reseal_refused) ... ok
+test_exact_truth_scores_zero_and_loader_runs_after_checks (test_score.ScoreTests.test_exact_truth_scores_zero_and_loader_runs_after_checks) ... ok
+test_f1_overlay_forged_suffix_hash_refused (test_score.ScoreTests.test_f1_overlay_forged_suffix_hash_refused) ... ok
+test_f1_wrong_clip_wrong_training_and_precommitted_subset_refused_before_read (test_score.ScoreTests.test_f1_wrong_clip_wrong_training_and_precommitted_subset_refused_before_read) ... ok
+test_f1r_metadata_only_relabel_refused_before_read (test_score.ScoreTests.test_f1r_metadata_only_relabel_refused_before_read) ... ok
+test_f2_one_synthetic_projectile_aliased_three_times_is_shortfall (test_score.ScoreTests.test_f2_one_synthetic_projectile_aliased_three_times_is_shortfall) ... ok
+test_f2r_nonpublic_synthetic_fixtures_labelled_image_derived_are_shortfall (test_score.ScoreTests.test_f2r_nonpublic_synthetic_fixtures_labelled_image_derived_are_shortfall) ... ok
+test_f3_wrong_record_object_is_unscored_shortfall (test_score.ScoreTests.test_f3_wrong_record_object_is_unscored_shortfall) ... ok
+test_f4_nonfinite_observations_and_metrics_rejected (test_score.ScoreTests.test_f4_nonfinite_observations_and_metrics_rejected) ... ok
+test_gate_needs_every_category (test_score.ScoreTests.test_gate_needs_every_category) ... ok
+test_pts_mismatch_low_coverage_and_rms (test_score.ScoreTests.test_pts_mismatch_low_coverage_and_rms) ... ok
+test_tampered_seal_or_uncommitted_prediction_never_reads_suffix (test_score.ScoreTests.test_tampered_seal_or_uncommitted_prediction_never_reads_suffix) ... ok
+test_f2a_only_positive_scoped_grant_in_authoritative_block (test_score.TrackingEvidenceTests.test_f2a_only_positive_scoped_grant_in_authoritative_block) ... ok
+test_f2c_tracked_bound_to_other_boundary_refused_and_not_eligible (test_score.TrackingEvidenceTests.test_f2c_tracked_bound_to_other_boundary_refused_and_not_eligible)
+R-RS recheck3 F2-C with the genuine ST03 artifact: loader/boundary mismatch refuses before any read. ... ok
+test_f2l_finite_licence_allowlist (test_score.TrackingEvidenceTests.test_f2l_finite_licence_allowlist) ... ok
+test_f2r2_known_public_id_true_sha_synthetic_observations_are_shortfall (test_score.TrackingEvidenceTests.test_f2r2_known_public_id_true_sha_synthetic_observations_are_shortfall) ... ok
+test_f2r2_real_evidence_rechecked_and_not_transplantable (test_score.TrackingEvidenceTests.test_f2r2_real_evidence_rechecked_and_not_transplantable) ... ok
+test_f2r2_wrong_source_tracker_payload_and_mutated_real_record_refused (test_score.TrackingEvidenceTests.test_f2r2_wrong_source_tracker_payload_and_mutated_real_record_refused) ... ok
+test_f2r3_reviewer_forged_native_tracked_end_to_end_is_shortfall (test_score.TrackingEvidenceTests.test_f2r3_reviewer_forged_native_tracked_end_to_end_is_shortfall)
+R-RS recheck3 F2-R3, unpatched: hand-authored tracker JSON via native Tracked never reaches MET. ... ok
+
+======================================================================
+ERROR: test_simulator_consumes_values_and_records_survive (test_params.ParamsTests.test_simulator_consumes_values_and_records_survive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\R-RS-recheck4-orch85\tests\prediction\test_params.py", line 74, in test_simulator_consumes_values_and_records_survive
+    out = p.simulate(records, SETUP)
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\R-RS-recheck4-orch85\Build\real2sim\params.py", line 121, in simulate
+    raise ValueError("simulator rejected transfer: " + next((l for l in lines if "Error: INVALID_" in l), lines[-1]))
+ValueError: simulator rejected transfer: Node.js v24.18.0
+
+======================================================================
+FAIL: test_simulator_rejection_and_nonsynthetic_refusal_surface (test_params.ParamsTests.test_simulator_rejection_and_nonsynthetic_refusal_surface)
+----------------------------------------------------------------------
+ValueError: simulator rejected transfer: Node.js v24.18.0
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\R-RS-recheck4-orch85\tests\prediction\test_params.py", line 90, in test_simulator_rejection_and_nonsynthetic_refusal_surface
+    with self.assertRaisesRegex(ValueError, r"simulator rejected.*restitution must be finite in \[0,1\]"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "simulator rejected.*restitution must be finite in \[0,1\]" does not match "simulator rejected transfer: Node.js v24.18.0"
+
+----------------------------------------------------------------------
+Ran 44 tests in 3.438s
+
+FAILED (failures=1, errors=1)
