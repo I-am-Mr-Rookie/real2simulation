@@ -1,0 +1,128 @@
+{
+  "manifest_acquisition_bindings": [
+    {
+      "case_id": "RM02",
+      "source_and_manifest_bound_to_acquisition": true,
+      "selected_frames": 3,
+      "time_sources": [
+        "pts"
+      ],
+      "context_scale": "unverified",
+      "numeric_spec_scale": "estimated"
+    },
+    {
+      "case_id": "RM04",
+      "source_and_manifest_bound_to_acquisition": true,
+      "selected_frames": 3,
+      "time_sources": [
+        "pts"
+      ],
+      "context_scale": "unverified",
+      "numeric_spec_scale": "estimated"
+    },
+    {
+      "case_id": "RM05",
+      "source_and_manifest_bound_to_acquisition": true,
+      "selected_frames": 3,
+      "time_sources": [
+        "ffmpeg-seek(container duration)"
+      ],
+      "context_scale": "unverified",
+      "numeric_spec_scale": "estimated"
+    },
+    {
+      "case_id": "PD02",
+      "source_and_manifest_bound_to_acquisition": true,
+      "selected_frames": 2,
+      "time_sources": [
+        "pts"
+      ],
+      "context_scale": "unverified",
+      "numeric_spec_scale": "estimated"
+    },
+    {
+      "case_id": "PD03",
+      "source_and_manifest_bound_to_acquisition": true,
+      "selected_frames": 3,
+      "time_sources": [
+        "pts"
+      ],
+      "context_scale": "unverified",
+      "numeric_spec_scale": "estimated"
+    },
+    {
+      "case_id": "PD04",
+      "source_and_manifest_bound_to_acquisition": true,
+      "selected_frames": 3,
+      "time_sources": [
+        "pts"
+      ],
+      "context_scale": "unverified",
+      "numeric_spec_scale": "estimated"
+    },
+    {
+      "case_id": "PD06",
+      "source_and_manifest_bound_to_acquisition": true,
+      "selected_frames": 3,
+      "time_sources": [
+        "pts"
+      ],
+      "context_scale": "unverified",
+      "numeric_spec_scale": "estimated"
+    },
+    {
+      "case_id": "PJ03",
+      "source_and_manifest_bound_to_acquisition": true,
+      "selected_frames": 3,
+      "time_sources": [
+        "ffmpeg-seek(container duration)"
+      ],
+      "context_scale": "unverified",
+      "numeric_spec_scale": "estimated"
+    },
+    {
+      "case_id": "ST03",
+      "source_and_manifest_bound_to_acquisition": true,
+      "selected_frames": 3,
+      "time_sources": [
+        "pts"
+      ],
+      "context_scale": "unverified",
+      "numeric_spec_scale": "estimated"
+    },
+    {
+      "case_id": "BN01",
+      "source_and_manifest_bound_to_acquisition": true,
+      "selected_frames": 3,
+      "time_sources": [
+        "pts"
+      ],
+      "context_scale": "unverified",
+      "numeric_spec_scale": "estimated"
+    }
+  ],
+  "live_ledger_calls": 40,
+  "ledger_labels_match_saved_attempts": true,
+  "all_recorded_http_200": true,
+  "oracle_imports_independent_of_runtime_numeric_predicate": true,
+  "offline_vs_live_summary_differences": {
+    "model_replies_shown": {
+      "offline": 24,
+      "live": 30
+    },
+    "tool_only_fallbacks": {
+      "offline": 6,
+      "live": 0
+    },
+    "model_number_attempts_caught": {
+      "offline": 36,
+      "live": 0
+    },
+    "spark_calls": {
+      "offline": 66,
+      "live": 30
+    }
+  },
+  "live_turn_scene_count": 1,
+  "live_mystery_turns": 14
+}

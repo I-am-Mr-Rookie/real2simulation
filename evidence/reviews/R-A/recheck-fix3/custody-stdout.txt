@@ -1,0 +1,1 @@
+PASS: 10 acquisition/manifest bindings; 40 recorded calls; oracle import independence; exact timing-source metadata saved

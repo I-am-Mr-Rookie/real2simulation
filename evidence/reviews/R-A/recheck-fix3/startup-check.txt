@@ -1,0 +1,1 @@
+PASS: final probe startup, owned scratch directory and bounded frame memoization

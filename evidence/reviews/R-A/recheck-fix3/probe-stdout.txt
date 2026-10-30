@@ -1,0 +1,10 @@
+{
+  "original_attacks_closed": 4,
+  "new_common_unit_claim_misses": 3,
+  "recorded_clip_custody": 10,
+  "numeric_specs": 10,
+  "live_turns_exact_replayed": 30,
+  "hygiene_files": 7,
+  "offline_full_turns_deterministic": false,
+  "source_evidence_unchanged": true
+}
