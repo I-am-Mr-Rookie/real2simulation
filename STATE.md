@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+R-A-recheck4-orch102 CHANGES_REQUIRED (Oct30 07:21Z; timing PASS; evidence merged da38bc8): F1-R3 CLOSED, earlier fixes
+preserved, Q16 reporting exact (30/30, 0 fallback). New P1 F1-R4: "in seconds is one: <q>" (q=0.2 s) and amount-before-units
+variants pass. DISPATCHED S14g-fix7-orch105 Opus high: ONE clause-level rule (unit-word clause may contain no amount word)
+to end the whack-a-mole (thread 01a18baf-8a3d-7f02-b527-2fcb5a32b4ac, deadline 2026-10-30T07:51:25+00:00); then R-A recheck5.
+
 ACCEPTED S18d-orch101 DONE (Oct30 07:19Z; timing PASS; 50 library tests OK; merged): 4 SIMULATED pendulum demos + RM02/RM04
 display-only scenes with validated safe defaults (physics/autoplay off, real-scene prediction WITHHELD); RM05 UNAVAILABLE.
 QUEUE S18d -> DONE. DISPATCHED S18e-orch104 Sol medium (Apollo + Mystery-g entries; thread
