@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 01:45 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 01:47 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **200 / 236** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
+Progress: **201 / 236** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
 
 ## Reviews for Koushik
 
@@ -388,10 +388,10 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S25</b> — README, attribution and public repo (1/5)</summary>
+<details><summary><b>S25</b> — README, attribution and public repo (2/5)</summary>
 
 - [x] **S25a** — Codex · GPT-6.1 Sol, effort medium — Write setup, architecture and Meta usage README (30 min)
-- [ ] **S25b** — Codex · GPT-6.1 Sol, effort medium — Write footage attribution and public-package checklist (30 min)
+- [x] **S25b** — Codex · GPT-6.1 Sol, effort medium — Write footage attribution and public-package checklist (30 min)
 - [ ] **S25c** — Codex · GPT-6.1 Sol, effort medium — Scan tracked files and full Git history (30 min)
 - [ ] **S25d** — Authorize public repository visibility (10 min)
 - [ ] **S25e** — Codex · GPT-6.1 Sol, effort medium — Make approved repo public and verify anonymous links (20 min)

@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+Oct30 ~19:48Z: ACCEPTED S25b-orch154 DONE (per-asset ATTRIBUTION table for 10 used/S02e-approved clips + 13 unused listed; raw frames all
+BLOCKED-for-public pending Q19; PJ03 third-party end card unlicensed -> blocked; evidence/release/PUBLIC_PACKAGE_CHECKLIST.md; coverage 23/23 ids and
+links re-checked fresh by controller; worker finished early verified-DONE). Recorded findings (no edit yet): clips.csv RM01-03 'Pexels' vs 'Pexels License';
+all rows still UNAPPROVED_CANDIDATE/NO incl. S02e-approved 10 (per-ID note recommended, public NO until Q19); .playwright-mcp/, .tmp-*, owner PDF
+untracked and not gitignored -> add ignores before S23 publication. Dispatched S25c-orch155 (Sonnet med, secret scan tracked+full history,
+thread 01a18e59-ebba, dl 20:16:44Z, receipt DISPATCH-orch155.json). Running: S13k-orch153. Next RID orch156.
+
 Oct30 ~19:45Z: controller chat reloaded, codex_app thread tools restored. Redispatched errored workers with fresh RIDs/timeboxes: S13k-orch153
 (Opus med, thread 01a18e56-6fc4) and S25b-orch154 (Sonnet med, thread 01a18e57-37ea), dl 20:12:49Z (02:12 Dhaka). Removed empty S13k-orch151 worktree
 + branch (no commits). Receipts DISPATCH-orch153/154.json. Waiting: S13k -> S04m -> S04o -> S15o; S25b -> S25c. Next RID orch155.
