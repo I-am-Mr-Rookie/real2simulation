@@ -1,0 +1,21 @@
+test_accepted_example (test_library.LibraryTests.test_accepted_example) ... ok
+test_artifact_limits_identity_and_digest (test_library.LibraryTests.test_artifact_limits_identity_and_digest) ... ok
+test_content_address_does_not_replace_evidence_custody (test_library.LibraryTests.test_content_address_does_not_replace_evidence_custody) ... ok
+test_current_authority_is_rechecked_not_cached (test_library.LibraryTests.test_current_authority_is_rechecked_not_cached) ... ok
+test_duplicate_demo (test_library.LibraryTests.test_duplicate_demo) ... ok
+test_example_is_reproducible (test_library.LibraryTests.test_example_is_reproducible) ... ok
+test_immutable_example_writer_refuses_corruption (test_library.LibraryTests.test_immutable_example_writer_refuses_corruption) ... ok
+test_labels (test_library.LibraryTests.test_labels) ... ok
+test_nested_unknown_fields_are_rejected (test_library.LibraryTests.test_nested_unknown_fields_are_rejected) ... ok
+test_no_gate_or_scale_promotion (test_library.LibraryTests.test_no_gate_or_scale_promotion) ... ok
+test_numeric_custody (test_library.LibraryTests.test_numeric_custody) ... ok
+test_paths_and_json_parser (test_library.LibraryTests.test_paths_and_json_parser) ... ok
+test_pointer_escapes (test_library.LibraryTests.test_pointer_escapes) ... ok
+test_run_and_app_binding (test_library.LibraryTests.test_run_and_app_binding) ... ok
+test_strict_manifest_and_demo_shape (test_library.LibraryTests.test_strict_manifest_and_demo_shape) ... ok
+test_unapproved_and_forged_source (test_library.LibraryTests.test_unapproved_and_forged_source) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 148.068s
+
+OK

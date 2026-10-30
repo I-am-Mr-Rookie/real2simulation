@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:real2sim:library:1.0.0",
+  "title": "Real2Simulation local library manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "audience", "demos"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "audience": {"const": "local-processing-only"},
+    "demos": {"type": "array", "minItems": 1, "maxItems": 100, "items": {"$ref": "#/$defs/demo"}}
+  },
+  "$defs": {
+    "text": {"type": "string", "minLength": 1, "maxLength": 2048},
+    "sha": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "label": {"enum": ["measured", "simulated", "fixture"]},
+    "ref": {
+      "type": "object", "additionalProperties": false, "required": ["path", "sha256"],
+      "properties": {"path": {"$ref": "#/$defs/text"}, "sha256": {"$ref": "#/$defs/sha"}}
+    },
+    "source": {
+      "type": "object", "additionalProperties": false,
+      "required": ["clip_id", "sha256", "source_url", "licence", "licence_url", "attribution"],
+      "properties": {
+        "clip_id": {"type": "string", "pattern": "^[A-Z0-9]{2,16}$"},
+        "sha256": {"$ref": "#/$defs/sha"},
+        "source_url": {"type": "string", "pattern": "^https://", "maxLength": 2048},
+        "licence": {"$ref": "#/$defs/text"},
+        "licence_url": {"type": "string", "pattern": "^https://", "maxLength": 2048},
+        "attribution": {"$ref": "#/$defs/text"}
+      }
+    },
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "media_type", "path", "sha256", "bytes"],
+      "properties": {
+        "kind": {"enum": ["scene-descriptor", "simulation-record", "fixture-record"]},
+        "media_type": {"const": "application/json"},
+        "path": {"type": "string", "pattern": "^objects/sha256/[a-f0-9]{64}\\.json$"},
+        "sha256": {"$ref": "#/$defs/sha"},
+        "bytes": {"type": "integer", "minimum": 1, "maximum": 67108864}
+      }
+    },
+    "numeric": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "value", "unit", "label", "evidence", "pointer"],
+      "properties": {
+        "name": {"$ref": "#/$defs/text"}, "value": {"type": "number"},
+        "unit": {"$ref": "#/$defs/text"}, "label": {"$ref": "#/$defs/label"},
+        "evidence": {"enum": ["artifact", "ledger"]},
+        "pointer": {"type": "string", "pattern": "^/(?:[^~]|~[01])+$", "maxLength": 1024}
+      }
+    },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["run_id", "report", "ledger", "app_id", "artifact_evidence", "numeric"],
+      "properties": {
+        "run_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_-]{0,95}$"},
+        "report": {"$ref": "#/$defs/ref"}, "ledger": {"$ref": "#/$defs/ref"},
+        "app_id": {"$ref": "#/$defs/text"}, "artifact_evidence": {"$ref": "#/$defs/ref"},
+        "numeric": {"type": "array", "minItems": 1, "maxItems": 64, "items": {"$ref": "#/$defs/numeric"}}
+      }
+    },
+    "demo": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "title", "source", "artifact", "provenance", "label", "scale_verified", "scale_label", "gates", "limitations", "availability"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]{0,63}$"},
+        "title": {"$ref": "#/$defs/text"},
+        "source": {"$ref": "#/$defs/source"}, "artifact": {"$ref": "#/$defs/artifact"},
+        "provenance": {"$ref": "#/$defs/provenance"}, "label": {"$ref": "#/$defs/label"},
+        "scale_verified": {"const": false}, "scale_label": {"const": "SCALE_UNVERIFIED"},
+        "availability": {"const": "metadata-only"},
+        "gates": {
+          "type": "object", "additionalProperties": false, "required": ["M", "RS", "R"],
+          "properties": {"M": {"const": "NOT_MET"}, "RS": {"const": "NOT_MET"}, "R": {"enum": ["NOT_MET", "NOT_RUN"]}}
+        },
+        "limitations": {"type": "array", "minItems": 1, "maxItems": 32, "items": {"$ref": "#/$defs/text"}}
+      }
+    }
+  }
+}

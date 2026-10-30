@@ -1,0 +1,2 @@
+# SHA-256 addresses exact bytes, including line endings.
+objects/sha256/*.json -text
