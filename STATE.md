@@ -1,5 +1,14 @@
 # Real2Simulation — STATE
 
+S14g-fix4-orch86 DONE merged (TIMING PASS; agent 52 OK; $0): F1-R closed (a/an/single + time/angle units, oracle
+40-case corpus); Gate A now honestly PROVISIONAL: numeric-contract 10/10, real validate_setup 0/10 (no scale bundles).
+S14g stays PARTIAL. DISPATCHED R-A-recheck2-orch92 sol high (thread 01a18b7c-7787-7ca0-909a-bc4217d9cd6c, deadline 2026-10-30T06:55:51+00:00).
+
+## Reviews for Koushik
+- Q16 (asked in chat ~12:30 Dhaka, Oct30): Gate A amendment. (A) accept numeric-contract validation on recorded scenes
+  labelled "scale unverified, not setup-validated" (Gate A can close), or (B) keep strict: setup-validated specs required,
+  Gate A stays PROVISIONAL until scale-verified bundles exist. Default while unanswered: B (no gate claim).
+
 S19d-orch69 EARLY INCOMPLETE (checker; finished ~9 min, PARTIAL; deadline long past so no return possible): NOT accepted
 as a run; evidence-only s19d-375-results.json merged (375px pass; dev PWA assets 404, manifest/SW never wired into
 app layout). DISPATCHED S19d-wire-orch91 sonnet medium (thread 01a18b7a-a1ac-76d2-9c90-1d99e8e9d108, deadline 2026-10-30T06:53:51+00:00).
