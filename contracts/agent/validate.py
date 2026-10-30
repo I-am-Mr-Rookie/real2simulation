@@ -44,6 +44,18 @@ _NUMBER_WORDS = re.compile(
     r"(?:one|an?|single)\s+(?:(?:centi|milli|kilo)?(?:metres?|meters?)|(?:kilo)?grams?|newtons?|joules?|watts?|"
     r"hertz|kg|cm|mm|km|m|s|g|n|(?:milli)?seconds?|minutes?|hours?|degrees?|radians?|rad|deg|ms|min|hr|h))\b", re.I)
 _INVISIBLE = dict.fromkeys(i for i in range(0x110000) if unicodedata.category(chr(i)) == "Cf")
+# S14g-fix5 (R-A F1-R2): STRUCTURAL unit rule, no per-phrase list. A unit word in visible text is allowed only when
+# bound to a cited quantity: right after it ("<q> metres per second") or as a label before it ("in metres: <q>"),
+# or names a unit with no amount ("in metres per second"). Any other unit word ("a full second", "one-second delay",
+# "a second look") is refused -> tool-only fallback.
+CITE = "\ue000"  # placeholder for a cited quantity in a visible run; model text may not contain private-use chars
+_UNIT = (r"(?:(?:centi|milli|kilo)?(?:metres?|meters?)|(?:kilo)?grams?|newtons?|joules?|watts?|hertz|pascals?|"
+         r"(?:milli)?seconds?|secs?|minutes?|hours?|days?|degrees?|radians?|revolutions?|inch(?:es)?|foot|feet|"
+         r"yards?|miles?|pounds?|lbs?|gees?|kg|cm|mm|km|ft|hz|pa|ms|min|hr|rad|deg|m|s|g|n|j|w|h)")
+_LINK = rf"(?:{_UNIT}|per|squared|cubed|or)"
+_GAP = rf"[^\w.!?;{CITE}]*"  # spaces/symbols only: a word or sentence end breaks the binding
+_BOUND = re.compile(rf"(?:{CITE}|\bin\b)(?:{_GAP}\b{_LINK}\b)*|(?:\b{_LINK}\b{_GAP})+[:=]{_GAP}{CITE}", re.I)
+_UNIT_WORD = re.compile(rf"(?<![\w'’.]){_UNIT}(?![\w'’])", re.I)  # not "it's"/"e.g."
 
 
 class AgentContractError(ValueError):
@@ -62,7 +74,13 @@ def numeric_issue(text: str) -> str | None:
     text = unicodedata.normalize("NFKC", text)  # fullwidth letters
     # zero-width/soft-hyphen chars both split ("nine<ZWSP>point") and hide ("se<SHY>ven") words: check both
     match = _NUMBER_WORDS.search(text) or _NUMBER_WORDS.search(text.translate(_INVISIBLE))
-    return f"untraced_number_word {match.group(0)!r}" if match else None
+    if match:
+        return f"untraced_number_word {match.group(0)!r}"
+    for run in (text, text.translate(_INVISIBLE)):
+        unit = _UNIT_WORD.search(_BOUND.sub(" ", run))
+        if unit:
+            return f"unbound_unit_word {unit.group(0)!r}"
+    return None
 
 
 def validate_tool_output(data: Any) -> dict[str, Any]:
@@ -119,15 +137,18 @@ def _index(tool_outputs: Iterable[Any]) -> dict[str, dict[str, Any]]:
 
 def _segments(segments: list, path: str, index: Mapping[str, Any], issues: list[str]) -> None:
     visible, before = [], len(issues)
+    cite = lambda j: CITE if 0 <= j < len(segments) and segments[j]["type"] != "text" else ""  # noqa: E731
     for i, segment in enumerate(segments):
         where = f"{path}[{i}]"
         if segment["type"] == "text":
-            visible.append(segment["text"])
-            problem = numeric_issue(segment["text"])
+            text = segment["text"]
+            visible.append(text)
+            problem = ("private_use_character" if any(unicodedata.category(c) == "Co" for c in text)
+                       else numeric_issue(cite(i - 1) + text + cite(i + 1)))
             if problem:
                 issues.append(f"{where}.text: {problem}")
         else:
-            visible.append(" ")  # a cited quantity renders as its own traced number
+            visible.append(CITE)  # a cited quantity renders as its own traced number
             ref = segment["ref"]
             output = index.get(ref["tool_output_id"])
             if output is None:

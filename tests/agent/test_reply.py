@@ -73,9 +73,11 @@ class SafeReplyTests(unittest.TestCase):
         self.blocked([text("Mass "), num(f"{TRIAL_ID}-sim", "mass")], "no quantity")
 
     def test_ordinary_words_still_pass(self):
-        out, issues = safe_reply(SYNTHETIC([text("Use the table; one ball, second clip, double-check it.")]),
+        out, issues = safe_reply(SYNTHETIC([text("Use the table; one ball, the other clip, double-check it.")]),
                                  self.outputs, SCENE_ID)
         self.assertEqual(issues, [])
+        # S14g-fix5: an unbound unit word fails closed even when benign ("second clip")
+        self.blocked([text("Use the second clip.")], "unbound_unit_word")
 
     def test_no_tool_outputs_gives_number_free_block(self):
         out, issues = safe_reply(SYNTHETIC([text("The table is 0.75 m high.")]), (), SCENE_ID)

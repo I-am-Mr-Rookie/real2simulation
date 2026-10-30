@@ -24,7 +24,7 @@ QUESTIONS: dict[str, tuple[tuple[str, str, str, str, dict[str, tuple[str, float]
         ("horizontal_speed", "free_text", "How fast does it leave horizontally, in metres per second?", "m/s", {}),
     ),
     "ramp": (
-        ("incline_angle", "free_text", "How steep is the ramp? Type the angle with deg or rad.", "rad", {}),
+        ("incline_angle", "free_text", "How steep is the ramp? Type the angle in deg or rad.", "rad", {}),
         ("friction_coefficient", "chips_and_free_text",
          "Is the ramp frictionless? Otherwise type the friction coefficient.", "1", {"frictionless": ("Frictionless", 0.0)}),
         ("initial_speed", "chips_and_free_text",
@@ -32,7 +32,7 @@ QUESTIONS: dict[str, tuple[tuple[str, str, str, str, dict[str, tuple[str, float]
     ),
     "pendulum": (
         ("length", "free_text", "How long is the pendulum, in metres?", "m", {}),
-        ("release_angle", "free_text", "How far is it pulled back? Type the angle with deg or rad.", "rad", {}),
+        ("release_angle", "free_text", "How far is it pulled back? Type the angle in deg or rad.", "rad", {}),
         ("initial_angular_velocity", "chips_and_free_text",
          "Is it released from rest? Otherwise type its angular speed in radians per second.", "rad/s", REST),
     ),

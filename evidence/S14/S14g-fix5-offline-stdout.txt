@@ -1,0 +1,64 @@
+{
+ "gate_a": "MET_AMENDED_Q16",
+ "gate_a_label": "scale unverified, not setup-validated",
+ "amendment": "owner Q16=A (Oct30): numeric-contract validation on recorded scenes accepted, labelled verbatim; not plain MET; final clearance needs the R-A recheck",
+ "distinct_recorded_scenes": 10,
+ "numeric_contract_valid_specs": 10,
+ "setup_validator_valid_specs": 0,
+ "required_valid_specs": 9,
+ "numeric_contract_cases": {
+  "RM02": true,
+  "RM04": true,
+  "RM05": true,
+  "PD02": true,
+  "PD03": true,
+  "PD04": true,
+  "PD06": true,
+  "PJ03": true,
+  "ST03": true,
+  "BN01": true
+ },
+ "setup_validator_cases": {
+  "RM02": [
+   "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+  ],
+  "RM04": [
+   "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+  ],
+  "RM05": [
+   "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+  ],
+  "PD02": [
+   "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+  ],
+  "PD03": [
+   "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+  ],
+  "PD04": [
+   "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+  ],
+  "PD06": [
+   "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+  ],
+  "PJ03": [
+   "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+  ],
+  "ST03": [
+   "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+  ],
+  "BN01": [
+   "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+  ]
+ },
+ "live_turns_replayed": 30,
+ "live_turns_shown_unchanged": 30,
+ "live_turns_fallback_tool_only": 0,
+ "invented_shown_oracle": 0,
+ "oracle_self_check": {
+  "corpus_cases": 56,
+  "oracle_agrees": true
+ },
+ "network_denied": true,
+ "spend_usd": 0,
+ "scope": "offline replay of saved fix3 responses under the fix5 structural unit rule; a refused saved reply is shown as the code-owned tool-only fallback (live retries not replayable offline); synthetic interview answers; turn tool outputs are synthetic-room-v1, not physical evidence"
+}

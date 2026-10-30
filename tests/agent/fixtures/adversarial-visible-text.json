@@ -1,5 +1,5 @@
 {
- "_note": "S14g-fix adversarial visible-text corpus: all R-A probes (evidence/reviews/R-A/probe.py) + split-token + benign controls. Each case: text segments; null = a cited tool quantity. invented = expected verdict on the VISIBLE text.",
+ "_note": "S14g-fix adversarial visible-text corpus: all R-A probes (evidence/reviews/R-A/probe.py) + split-token + benign controls. Each case: text segments; null = a cited tool quantity. invented = expected verdict on the VISIBLE text. fix5: ANY unit word must be bound to a cited quantity (right after it, or a label ending in : or = right before it, or a unit named after \"in\" with no amount); unbound unit words, incl. benign-looking ones, are invented=true (fail-closed).",
  "cases": [
   [
    "ra-one-metre",
@@ -186,7 +186,7 @@
    [
     "Use the table; one ball, second clip, double-check it."
    ],
-   false
+   true
   ],
   [
    "benign-unit-name",
@@ -289,6 +289,124 @@
     ". Simulated, not physical evidence."
    ],
    false
+  ],
+  [
+   "ra5-full-second",
+   [
+    "The elapsed time is a full second."
+   ],
+   true
+  ],
+  [
+   "ra5-whole-minute",
+   [
+    "The period is one whole minute."
+   ],
+   true
+  ],
+  [
+   "ra5-full-radian",
+   [
+    "The angle is one full radian."
+   ],
+   true
+  ],
+  [
+   "ra5-full-metre",
+   [
+    "The distance is one full metre."
+   ],
+   true
+  ],
+  [
+   "ra5-one-second-delay",
+   [
+    "This is a one-second delay."
+   ],
+   true
+  ],
+  [
+   "ra5-single-second-interval",
+   [
+    "There is a single-second interval."
+   ],
+   true
+  ],
+  [
+   "ra5-one-g",
+   [
+    "Gravity is one g."
+   ],
+   true
+  ],
+  [
+   "ra5-one-n",
+   [
+    "The force is one N."
+   ],
+   true
+  ],
+  [
+   "ra5-unit-before-cite-no-label",
+   [
+    "The period is one whole minute. Gravity is ",
+    null,
+    "."
+   ],
+   true
+  ],
+  [
+   "ra5-a-second-look",
+   [
+    "Take a second look."
+   ],
+   true
+  ],
+  [
+   "benign5-this-one",
+   [
+    "This one fits the scene."
+   ],
+   false
+  ],
+  [
+   "benign5-double-check",
+   [
+    "Please double-check the fit."
+   ],
+   false
+  ],
+  [
+   "benign5-label-unit",
+   [
+    "Measured drop in metres: ",
+    null,
+    "."
+   ],
+   false
+  ],
+  [
+   "benign5-unit-after-cite",
+   [
+    "Gravity is ",
+    null,
+    " metres per second squared."
+   ],
+   false
+  ],
+  [
+   "benign5-apostrophe-eg",
+   [
+    "It's the ball's drop, e.g. the red one."
+   ],
+   false
+  ],
+  [
+   "ra5-in-full-second",
+   [
+    "It fell in one full second."
+   ],
+   true
   ]
  ]
 }

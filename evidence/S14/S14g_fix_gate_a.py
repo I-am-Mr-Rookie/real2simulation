@@ -30,7 +30,7 @@ def _load(name, path):
 
 
 OLD = _load("s14g_gate_a", HERE / "S14g_gate_a.py")  # reuse helpers (simulator bridge, scripted replies)
-from S14g_fix_oracle import oracle, self_check, visible  # noqa: E402
+from S14g_fix_oracle import CITE, oracle, self_check, visible  # noqa: E402
 from Build.agent import muse, trial  # noqa: E402
 from Build.agent.interview import answers_to_spec, questions, template_of  # noqa: E402
 from Build.agent.record_muse import ENV, IN_USD, OUT_USD  # noqa: E402
@@ -52,8 +52,8 @@ sha = lambda obj: hashlib.sha256(json.dumps(obj, sort_keys=True).encode()).hexdi
 
 
 def visible_strings(response) -> list[str]:
-    """Every user-visible text run of a validated response (cited quantities as a space)."""
-    run = lambda segs: "".join(" " if s["type"] == "number" else s["text"] for s in segs)
+    """Every user-visible text run of a validated response (cited quantities as the oracle's CITE marker)."""
+    run = lambda segs: "".join(CITE if s["type"] == "number" else s["text"] for s in segs)
     out = [run(response["segments"])]
     for q in response.get("questions", ()):
         out += [run(q["prompt"])] + [run(c["label"]) for c in q["chips"]]
