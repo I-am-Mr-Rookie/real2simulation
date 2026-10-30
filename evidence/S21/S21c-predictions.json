@@ -1,0 +1,219 @@
+{
+ "schema": "s21c-predictions/1",
+ "generated_by": "Build/benchmark/predictions.py",
+ "manifest_sha256": "884e6c55328433c85e543624869384daa58811a7b3f6e59cc506e42f491d4734",
+ "evidence_sha256": {
+  "gate_rs": "f913897d407139ce78d3f35434e046ddd931f88f0229d9d96c1ff388f41b4d85",
+  "prediction_st03": "651a01edef6d0ccf0b56b3a1d911ed22d819112e67c595903bad94149907bad2",
+  "boundary_st03": "d4b3370fcc3e74029d5b22d479c744e6d522dae928ad3864c6feceb92e5c552b",
+  "training_st03": "c71ce907fd2d5d799a5781eaf3d570ac5543002a8e47535b7758606ac01e5d45",
+  "heldout_track_st03": "e30807fcf5887ad0c43f0b1317a491411c8ce4b34e86c16c7ca290524f028f55",
+  "cost_st03_job": "2766c973c53fd3530ce042cf77bcb1b725b2d79889e178a5f75fa5ece4faa147",
+  "scale_s05d": "da03599d50e8731a380dd2b993f550e8168395b6877ea6e9c74626a4c8df406e",
+  "scene_log_rm02": "8e3d689d24ebe56fbaec358f8bec1625e37f91152903fff1061616caa80c2d26",
+  "scene_log_rm04": "0dd242560f5f1e66491d0c706b8fbe4875b9a43dd6d9201bb0a99c8fa2fdebcc",
+  "checkpoint_s06h": "82b41f7808d45731a9072bc36ce6376a084297111337470d3b4a51aca921ec40",
+  "fitter_s11_analytic": "cb7be2c79bcfea4fbcb53ec0a7e7d90eae7fecd2539d050d2ab10dec525222df",
+  "fallback_s12f": "a83af728ffe7822f651f9743f3529c1c9ba4ce010c3a9cf0eec067bd315aee8d"
+ },
+ "gates": {
+  "gate_m": "NOT_MET_INPUT_READINESS",
+  "gate_rs": "NOT_MET"
+ },
+ "split": {
+  "train": 19,
+  "train_range": [
+   58,
+   76
+  ],
+  "heldout": 466,
+  "heldout_range": [
+   77,
+   542
+  ],
+  "scored": 7
+ },
+ "summary": {
+  "measured": 2,
+  "simulated": 0,
+  "unavailable": 4
+ },
+ "rows": [
+  {
+   "id": "st03_heldout_normalized_rms",
+   "class": "measured",
+   "value": 0.1981633916341227,
+   "unit": "image-height fraction (scale-free)",
+   "uncertainty": 0.018216121040900715,
+   "uncertainty_kind": "max prediction 1-sigma OLS band over scored frames (model band only)",
+   "n": 7,
+   "sources": [
+    {
+     "evidence": "prediction_st03",
+     "pointer": "/prediction/trace"
+    },
+    {
+     "evidence": "heldout_track_st03",
+     "pointer": "/record/frames"
+    },
+    {
+     "evidence": "heldout_track_st03",
+     "pointer": "/record/height_px"
+    },
+    {
+     "evidence": "gate_rs",
+     "pointer": "/clips/projectile/normalized_rms"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "diagnostic only, not gate-scored: 7/466 sealed suffix frames (frames 77-83, all after last training frame 76); tracking re-track repeatability 0.00045112303100769413 (max abs, prefix frames)"
+  },
+  {
+   "id": "st03_heldout_max_abs_error",
+   "class": "measured",
+   "value": 0.3334069487508844,
+   "unit": "image-height fraction (scale-free)",
+   "uncertainty": 0.018216121040900715,
+   "uncertainty_kind": "max prediction 1-sigma OLS band over scored frames (model band only)",
+   "n": 7,
+   "sources": [
+    {
+     "evidence": "prediction_st03",
+     "pointer": "/prediction/trace"
+    },
+    {
+     "evidence": "heldout_track_st03",
+     "pointer": "/record/frames"
+    },
+    {
+     "evidence": "heldout_track_st03",
+     "pointer": "/record/height_px"
+    },
+    {
+     "evidence": "gate_rs",
+     "pointer": "/clips/projectile/max_abs"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "diagnostic only, not gate-scored: 7/466 sealed suffix frames (frames 77-83, all after last training frame 76)"
+  },
+  {
+   "id": "st03_range_error",
+   "class": "unavailable",
+   "value": null,
+   "unit": "image-height fraction (scale-free)",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "gate_rs",
+     "pointer": "/result/per_category_normalized_rms/projectile"
+    }
+   ],
+   "reason": "ST03 scored 7/466 sealed frames (coverage < 80%): full f58-542 job hit CUDA OOM on A10G 24 GB; 26 frames is the measured fit. Ballistic prefix fit has no floor: apple is on the ground from f77 (y~0.80-0.82) while prediction leaves the image at f81 (y>1).",
+   "reason_sources": [
+    {
+     "evidence": "gate_rs",
+     "pointer": "/shortfall_reasons/projectile"
+    },
+    {
+     "evidence": "gate_rs",
+     "pointer": "/limitations/0"
+    }
+   ],
+   "note": "prefix ballistic fit has no floor model, so no predicted landing/range to compare; not gate-scored"
+  },
+  {
+   "id": "bounce_height_error",
+   "class": "unavailable",
+   "value": null,
+   "unit": "image-height fraction (scale-free)",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "gate_rs",
+     "pointer": "/result/per_category_normalized_rms/bounce"
+    },
+    {
+     "evidence": "gate_rs",
+     "pointer": "/clips/bounce"
+    }
+   ],
+   "reason": "BN01 approved, but no prefix tracking and no sourced restitution/floor record; ~26 contiguous frames/job (0.11 s at 240 fps) cannot span its 0.67 s contact-to-contact arc; strict prefix job -> committed prediction -> suffix job not run",
+   "reason_sources": [
+    {
+     "evidence": "gate_rs",
+     "pointer": "/shortfall_reasons/bounce"
+    }
+   ],
+   "note": null
+  },
+  {
+   "id": "pendulum_period_error",
+   "class": "unavailable",
+   "value": null,
+   "unit": "image-height fraction (scale-free)",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "gate_rs",
+     "pointer": "/result/per_category_normalized_rms/pendulum"
+    },
+    {
+     "evidence": "gate_rs",
+     "pointer": "/clips/pendulum"
+    }
+   ],
+   "reason": "PD02/03/04/06 approved, but no prefix tracking and no sourced angular-frequency record; ~26 contiguous frames/job (~0.9 s at 30 fps) is far below one period; not run",
+   "reason_sources": [
+    {
+     "evidence": "gate_rs",
+     "pointer": "/shortfall_reasons/pendulum"
+    }
+   ],
+   "note": null
+  },
+  {
+   "id": "gate_rs_median_heldout_error",
+   "class": "unavailable",
+   "value": null,
+   "unit": "image-height fraction (scale-free)",
+   "uncertainty": null,
+   "uncertainty_kind": null,
+   "n": null,
+   "sources": [
+    {
+     "evidence": "gate_rs",
+     "pointer": "/result/median"
+    },
+    {
+     "evidence": "fallback_s12f",
+     "pointer": "/gate_rs/median"
+    }
+   ],
+   "reason": "Gate RS NOT_MET; S12f VIRTUAL_LAB_ONLY: no measured median (missing category or coverage < 80%): unmeasured",
+   "reason_sources": [
+    {
+     "evidence": "gate_rs",
+     "pointer": "/result/status"
+    },
+    {
+     "evidence": "fallback_s12f",
+     "pointer": "/decision/tier"
+    },
+    {
+     "evidence": "fallback_s12f",
+     "pointer": "/decision/reason"
+    }
+   ],
+   "note": "threshold 0.05; scale-free image-plane agreement only; not calibrated, not physical accuracy"
+  }
+ ]
+}
