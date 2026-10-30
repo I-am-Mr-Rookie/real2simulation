@@ -1,0 +1,44 @@
+{
+ "schema_version": "agent-response/1.0.0",
+ "scene_id": "job_00000000000000000000000000000000",
+ "segments": [
+  {
+   "type": "text",
+   "text": "A few questions to set up the free fall experiment."
+  }
+ ],
+ "questions": [
+  {
+   "id": "drop_height",
+   "kind": "free_text",
+   "prompt": [
+    {
+     "type": "text",
+     "text": "How far does the ball fall before it lands, in metres?"
+    }
+   ],
+   "chips": []
+  },
+  {
+   "id": "initial_vertical_velocity",
+   "kind": "chips_and_free_text",
+   "prompt": [
+    {
+     "type": "text",
+     "text": "Is it released from rest? Otherwise type its upward speed in metres per second."
+    }
+   ],
+   "chips": [
+    {
+     "id": "at-rest",
+     "label": [
+      {
+       "type": "text",
+       "text": "Starts at rest"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

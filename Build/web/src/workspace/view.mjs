@@ -9,9 +9,11 @@ import { renderInstruments } from './instrument-view.mjs';
 import { renderFit } from './fit-view.mjs';
 import { renderSidebar, renderReport } from './navigation.mjs';
 
-export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments, fit, sidebar, report) {
+export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments, fit, sidebar, report, provenance) {
   const { stages, viewport, jobStatus } = layout;
-  const err = view.error ?? jobStatus.error;
+  // S15q: a viewer LOAD_FAILED must not hide a job/API error (the live spec 422 was masked this way)
+  const errs = [view.error, jobStatus.error].filter((e, i, a) => e && (i === 0 || e !== a[0]));
+  const specError = layout.phase === 'interview.active' ? jobStatus.error : null;
   return h('div', { className: 'ws', 'data-phase': layout.phase },
     h('nav', { className: 'ws-stages', 'data-slot': 'stage-nav', 'aria-label': 'Workspace stages' },
       h('ol', null, ...stages.map((s) => h('li', { key: s.id, 'data-status': s.status, 'aria-current': s.status === 'current' ? 'step' : undefined },
@@ -24,6 +26,9 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
     h('section', { className: 'ws-panel', 'data-slot': 'panel', 'aria-label': 'Stage panel' },
       h('h2', null, jobStatus.label),
       interview && layout.phase === 'interview.active' ? renderInterview(h, interviewView(interview), onAction) : null,
+      specError ? h('div', { className: 'ws-failure', 'data-stage': 'spec' },
+        h('p', { className: 'ws-error', role: 'alert' }, specError.code + ': ' + specError.message),
+        h('button', { type: 'button', className: 'ws-retry', 'data-event': 'SPEC_RETRY', disabled: !onAction, onClick: () => onAction?.({ type: 'SPEC_RETRY' }) }, 'Retry')) : null,
       template && ['interview.active', 'run.ready'].includes(layout.phase) ? renderTemplate(h, templateView(template), layout.phase, onAction) : null,
       run ? renderRun(h, run, onAction) : null,
       instruments ? renderInstruments(h, instruments, onAction) : null,
@@ -31,8 +36,19 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
       report ? renderReport(h, report) : null),
     h('aside', { className: 'ws-job', 'data-slot': 'job-status', 'aria-label': 'Job status' },
       h('p', null, jobStatus.jobId ? 'Job ' + jobStatus.jobId : 'No job yet'),
+      provenance ? renderProvenance(h, provenance) : null,
       renderStatus(h, jobStatus.surface, onAction),
-      err ? h('p', { className: 'ws-error', role: 'alert' }, err.code + ': ' + err.message) : null));
+      ...errs.map((e, i) => h('p', { key: 'err' + i, className: 'ws-error', role: 'alert' }, e.code + ': ' + e.message))));
+}
+
+// S15q: server job provenance (jobs.py recorded replay) shown verbatim: per-stage RECORDED labels + understand UTC. Text only.
+export function renderProvenance(h, p) {
+  const labels = p.stage_labels && typeof p.stage_labels === 'object' ? Object.entries(p.stage_labels) : [];
+  const utc = typeof p.understand?.recorded_utc === 'string' ? p.understand.recorded_utc : null;
+  return h('div', { className: 'ws-provenance', 'data-executor': String(p.executor ?? ''), 'aria-label': 'Job provenance' },
+    h('p', null, String(p.label ?? 'Provenance') + (p.live === false ? ' (not a live run)' : '')),
+    labels.length ? h('ul', null, ...labels.map(([s, l]) => h('li', { key: s }, s + ': ' + String(l) + (s === 'understand' && utc ? ' @ ' + utc : '')))) : null,
+    typeof p.note === 'string' ? h('p', { className: 'ws-note' }, p.note) : null);
 }
 
 // S15d: interview panel. Chips are toggle buttons, free text a labelled textarea; everything is text (no raw HTML). Reports { type, ... }

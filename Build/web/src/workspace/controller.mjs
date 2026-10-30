@@ -11,9 +11,14 @@ const BY_STATUS = { 401: 'UNAUTHORIZED', 403: 'UNAUTHORIZED', 404: 'NOT_FOUND', 
 export function errorOf(status, body) {
   const e = body?.error ?? body?.detail;
   const code = CODES.includes(e?.code) ? e.code : BY_STATUS[status] ?? 'DEPENDENCY_UNAVAILABLE';
-  const message = typeof e?.message === 'string' && e.message ? e.message : typeof e === 'string' && e ? e : `Workspace API ${status || 'unreachable'}`;
+  const base = typeof e?.message === 'string' && e.message ? e.message : typeof e === 'string' && e ? e : `Workspace API ${status || 'unreachable'}`;
+  const message = Array.isArray(e?.errors) && e.errors.length ? `${base}: ${e.errors.map(String).join('; ')}` : base; // S15q: say which field failed
   return { code, message: message.slice(0, 240) };
 }
+
+// S15q: interview.answers_to_spec takes {question id: {chip: id} | {text: str}} (exactly one key); interviewAnswers() emits
+// [{questionId, chipId, text}]. Sending that array verbatim was the live 422. A chosen chip wins over typed text.
+export const specAnswers = (list) => Object.fromEntries(list.map((a) => [a.questionId, a.chipId ? { chip: a.chipId } : { text: a.text ?? '' }]));
 
 export async function sha256Hex(bytes) {
   const d = await globalThis.crypto.subtle.digest('SHA-256', bytes);
@@ -127,7 +132,8 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
     // The API (S08 validate_setup) is the validator; the reducer accepts only the exact spec object it returned.
     async submitAnswers(answers) {
       if (state.phase !== 'interview.active') return state;
-      const r = await call('POST', `scenes/${encodeURIComponent(state.scene?.scene_id ?? '')}/spec`, { answers });
+      const body = { answers: Array.isArray(answers) ? specAnswers(answers) : answers };
+      const r = await call('POST', `scenes/${encodeURIComponent(state.scene?.scene_id ?? '')}/spec`, body);
       if (r.error) return failWith(r.error);
       const d = r.data;
       const ok = d?.ok === true && !!d.spec && !!d.validated_setup;

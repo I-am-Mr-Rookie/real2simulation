@@ -175,6 +175,17 @@ class JobsRouterTests(unittest.TestCase):
         self.assertIsNone(resolve(OTHER, job_id))
         self.assertIsNone(resolve(OWNER, "job_" + "f" * 32))
 
+    def test_web_spec_body_rm04_200_and_old_array_body_422(self):  # S15q: live 422 root cause
+        job_id = self.finish()["job"]["job_id"]
+        body = json.loads((ROOT / "tests/workspace/fixtures/rm04-spec-body.json").read_text(encoding="utf-8"))  # pinned by spec-body.test.mjs
+        s = self.client.post(f"/internal/workspace/scenes/{job_id}/spec", headers=AUTH, json=body)
+        self.assertEqual(s.status_code, 200, s.text)
+        self.assertEqual((s.json()["label"], s.json()["spec"]["parameters"]["drop_height"]["value"]), ("scale unverified, not setup-validated", 1.5))
+        old = [{"questionId": "drop_height", "chipId": None, "text": "1.5"},  # pre-S15q web body (interviewAnswers() verbatim)
+               {"questionId": "initial_vertical_velocity", "chipId": "at-rest", "text": None}]
+        r = self.client.post(f"/internal/workspace/scenes/{job_id}/spec", headers=AUTH, json={"answers": old})
+        self.assertEqual(self.code(r, 422), "INVALID_INPUT")
+
     def test_missing_recording_is_dependency_unavailable(self):
         out = self.finish(self.app(self.tmp / "absent"))
         self.assertEqual(out["job"]["status"], "failed")

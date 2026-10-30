@@ -36,6 +36,11 @@ export async function routeAction(ctl, local, a) {
     if (answers) await ctl.submitAnswers(answers);
     return { ...local, interview };
   }
+  if (t === 'SPEC_RETRY') { // S15q: resend the completed answers after a visible spec/API error
+    const answers = interviewAnswers(local.interview);
+    if (answers) await ctl.submitAnswers(answers);
+    return local;
+  }
   if (t.startsWith('I_')) {
     let instruments = reduceInstruments(local.instruments, a, ctl.state);
     // shortcut: no instrument service exists in this build; a measure request fails honestly instead of inventing a reading.
@@ -79,6 +84,6 @@ export default function PrivateWorkspace({ scene }) {
     live ? React.createElement('p', { role: 'note', 'data-instruments': 'unavailable' }, INSTRUMENTS_UNAVAILABLE) : null,
     React.createElement(Workspace, { state: s.state, adapter, audience: 'signed-in', onAction,
       interview: live ? local.interview : undefined, run: live ? initialRun() : undefined, instruments: live ? local.instruments : undefined,
-      fit: live ? s.state.fit ?? undefined : undefined, report: live && s.report ? s.report : undefined }));
+      fit: live ? s.state.fit ?? undefined : undefined, report: live && s.report ? s.report : undefined, provenance: live ? s.provenance ?? undefined : undefined }));
 }
 
