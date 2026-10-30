@@ -1,2 +1,2 @@
 # SHA-256 addresses exact bytes, including line endings.
-objects/sha256/*.json -text
+objects/sha256/*.json -text whitespace=cr-at-eol
