@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+Owner 05:03Z: 73% of Claude 5h quota left before 05:50Z reset; use it. Controller pulled forward
+dependency-light Claude work with isolated Owns (QUEUE efforts kept; dep-gated parts stay pending/PARTIAL):
+DISPATCHED S07-chunktrack-orch67 claude-opus-5-5 high (thread 01a18b34-bd3a-7810-b27b-2ead7f0c40cb, deadline 2026-10-30T05:37:12+00:00).
+DISPATCHED S17f-orch68 claude-sonnet-5-5 medium (thread 01a18b34-fdd7-7d01-b927-eedc04660771, deadline 2026-10-30T05:37:47+00:00).
+DISPATCHED S19d-orch69 claude-sonnet-5-5 medium (thread 01a18b36-1517-75c0-b3cf-832b84d08890, deadline 2026-10-30T05:38:58+00:00).
+DISPATCHED S22a-orch70 claude-opus-5-5 medium (thread 01a18b36-e083-70d0-980c-39c0f2f5909f, deadline 2026-10-30T05:39:38+00:00).
+
 DISPATCHED S12e-fix3-orch66 Opus high (threadId:01a18b2f-c1cd-7fa2-8f84-3f00e79b0952,hostId:local, deadline 2026-10-30T05:31:54+00:00).
 
 R-RS-recheck2-orch62 = CHANGES_REQUIRED (Sol high; evidence ff-merged). TIMING FAIL: stop 05:00:01Z,
