@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+OWNER (Oct30 ~13:32 Dhaka, chat): Codex models that fail or stop responding = quota reached; Codex quota refreshes 14:47 Dhaka
+(08:47Z). PAUSE all new Codex (GPT/Sol) dispatches until 14:47 Dhaka. In-flight Sol runs (R-A-recheck5-orch107, S16e-orch108,
+S18e-orch104) are not restarted if they fail; record once. Held for 14:47: S20d (Sol high). Claude runs continue. Heartbeat updated.
+ACCEPTED R-C-recheck2-orch106 DONE/CLEAR (07:33Z; timing PASS; guardrails 91 + pipeline 53 OK; merged b25cc21): N1/M3/N2,
+double reservation, N4 closed; four P3 residuals (operator-reviewed settlement trust, bearer request IDs, entry-point-only
+guard incl. 2 unguarded CPU Modal launchers, worktree-removal pause). CLEAR is review-only; S20d runs the Gate C regression.
+
 OWNER Q17 ANSWERED (Oct30 ~13:28 Dhaka, chat annotation): organizers sent a Baseten API key (in .env) with $100 credit that can
 only call Meta Muse Open; it is not tied to any account, so no dashboard/billing page exists. Credit = owner-confirmed;
 balance unobservable. DISPATCHED S16e-orch108 Sol medium (<=3 small live calls, exact pinned model, no browser sign-in,
