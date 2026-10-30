@@ -1,0 +1,148 @@
+{
+  "purpose": "offline adversarial recheck; synthetic probes are NOT public clip evidence",
+  "metric_sanity": {
+    "offset_rms": 0.03000000000000003,
+    "inclusive_80_percent": true
+  },
+  "F1R_metadata_relabel_refused": {
+    "predict.check(relabeled clip+training)": "predicted trace changed after hashing",
+    "score(relabeled) before suffix read": "predicted trace changed after hashing",
+    "overlay.build(relabeled)": "predicted trace changed after hashing",
+    "overlay.validate(relabeled doc)": "traces[0]: trace or custody metadata changed after commitment",
+    "score(same clip, training relabel) before suffix read": "predicted trace changed after hashing",
+    "score(legacy v1 commitment) before suffix read": "legacy prediction/v1 is audit-readable only, never newly eligible; re-commit as v2"
+  },
+  "F2R_nonpublic_synthetic_labeled_image_derived_gate": {
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "input_receipts": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "median": null,
+      "threshold": 0.05,
+      "status": "NOT_MET",
+      "shortfall": [
+        "projectile",
+        "bounce",
+        "pendulum"
+      ],
+      "gate_m": "NOT_MET"
+    },
+    "ineligible_reasons": {
+      "projectile": "clip 'REVIEW-NONPUBLIC-projectile' is not exactly one clips.csv row",
+      "bounce": "clip 'REVIEW-NONPUBLIC-bounce' is not exactly one clips.csv row",
+      "pendulum": "clip 'REVIEW-NONPUBLIC-pendulum' is not exactly one clips.csv row"
+    }
+  },
+  "real_evidence_recomputed": {
+    "score": {
+      "clip_id": "ST03",
+      "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+      "kind": "projectile",
+      "prediction_sha256": "b9c092b5d5cb27bc0878ddd39a20538fd3f4cc2c864a1b89f6a08c417ffc7cc1",
+      "prediction_commitment": "prediction/v2",
+      "suffix_identity_sha256": "aee71c42f900f9b96dc2ad2f9cf15cdcdb467cefec502100a8cc06776d27115c",
+      "sealed_frames": 466,
+      "scored_frames": 7,
+      "coverage": 0.015021459227467811,
+      "normalized_rms": 0.1981633916341227,
+      "normalized_rms_first5_diagnostic": 0.13266993873624996,
+      "max_abs": 0.3334069487508844,
+      "scored": false,
+      "provenance": "image-derived",
+      "input_receipt": {
+        "clip_id": "ST03",
+        "category": "projectile",
+        "experiment": "free_fall",
+        "licence": "Pexels License",
+        "approval_ref": "evidence/owner/S02/APPROVAL.md",
+        "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+        "registry_ref": "evidence/clips/S02c-acquisition.json",
+        "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051"
+      },
+      "ineligible_reason": null,
+      "gate_m": "NOT_MET"
+    },
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "input_receipts": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "median": null,
+      "threshold": 0.05,
+      "status": "NOT_MET",
+      "shortfall": [
+        "projectile",
+        "bounce",
+        "pendulum"
+      ],
+      "gate_m": "NOT_MET"
+    },
+    "input_hashes_match": true
+  },
+  "gate_m_all_derived_labels_not_met": [
+    "evidence/S12/boundary-ST03.json",
+    "evidence/S12/overlay-pendulum-SYNTHETIC-v2.json",
+    "evidence/S12/overlay-pendulum-SYNTHETIC.json",
+    "evidence/S12/overlay-ST03-v2.json",
+    "evidence/S12/overlay-ST03.json",
+    "evidence/S12/params-ST03.json",
+    "evidence/S12/prediction-ST03-v2.json",
+    "evidence/S12/prediction-ST03.json",
+    "evidence/S12/gate-rs/gate-rs.json"
+  ],
+  "owning_gate_m": {
+    "coverage": null,
+    "gate_passed": false,
+    "independent_measured_count": 0,
+    "max_relative_error": 0.05,
+    "mean_g_m_s2": null,
+    "mean_relative_error": null,
+    "measured_count": 0,
+    "physics_evaluation": "NOT_RUN",
+    "qualifying_count": 0,
+    "reference_g_m_s2": 9.81,
+    "required_successes": 2,
+    "required_trials": 3,
+    "status": "NOT_MET_INPUT_READINESS"
+  },
+  "closed_original_and_extended_probes": {
+    "F1_wrong_clip_and_training": "prediction/v2 commitment binds a different clip, source, training prefix or seal",
+    "F1_wrong_training_same_clip": "prediction/v2 commitment binds a different clip, source, training prefix or seal",
+    "F1_precommitted_subset": "predicted trace changed after hashing",
+    "F1_overlay_build_forged_suffix": "predicted trace changed after hashing",
+    "F1_overlay_build_subset": "predicted trace changed after hashing",
+    "F1_overlay_contract_forged_suffix": "traces[0]: trace or custody metadata changed after commitment",
+    "F2_one_projectile_aliased_x3": true,
+    "F4_observed_slot_0_nan": true,
+    "F4_observed_slot_1_nan": true,
+    "F4_gate_projectile_nan": true,
+    "F4_gate_bounce_nan": true,
+    "F4_gate_pendulum_nan": true,
+    "F4_observed_slot_0_inf": true,
+    "F4_observed_slot_1_inf": true,
+    "F4_gate_projectile_inf": true,
+    "F4_gate_bounce_inf": true,
+    "F4_gate_pendulum_inf": true,
+    "F4_observed_slot_0_-inf": true,
+    "F4_observed_slot_1_-inf": true,
+    "F4_gate_projectile_-inf": true,
+    "F4_gate_bounce_-inf": true,
+    "F4_gate_pendulum_-inf": true,
+    "F3_wrong_object": "validate_segment rejected (unscored): segment: record tracks object 999, expected 2",
+    "F3_missing_stage": "validate_segment rejected (unscored): segment: incomplete SAM output (missing stages ['checkpoint', 'model_loaded', 'tracked'])",
+    "F3_missing_mask": "validate_segment rejected (unscored): segment: frame 58: object 2 has no box, centroid or mask"
+  }
+}

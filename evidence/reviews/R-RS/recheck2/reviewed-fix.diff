@@ -1,0 +1,652 @@
+diff --git a/Build/real2sim/overlay.py b/Build/real2sim/overlay.py
+index 25dfb38..6ad76cc 100644
+--- a/Build/real2sim/overlay.py
++++ b/Build/real2sim/overlay.py
+@@ -8,21 +8,14 @@ import sys
+ 
+ from Build.real2sim.boundary import GATE_M, LIMITS, _sha, split
+ from Build.real2sim.params import ROOT, parameter
+-from Build.real2sim.predict import as_json, check, pendulum, projectile, st03_record
++from Build.real2sim.predict import as_json, pendulum, projectile, require_v2, st03_record
+ from contracts.overlay.validate import VERSION, frame_map_sha256, validate
+ 
+ 
+ def build(boundary, predictions, frame_map, provenance, sources=()):
+     """Overlay document for predictions made from this boundary; validated before return."""
+     for p in predictions:
+-        check(p)
+-        if p.clip_id != boundary.clip_id or p.training_sha256 != boundary.training_sha256 \
+-                or p.suffix_identity_sha256 != boundary.suffix_identity_sha256:
+-            raise ValueError("prediction was not made from this clip boundary")
+-        # R-RS F1: trace identities must equal the complete seal (count + hash), not merely align to PTS.
+-        if len(p.trace) != boundary.suffix_count or \
+-                _sha(tuple((r[0], r[1]) for r in p.trace)) != boundary.suffix_identity_sha256:
+-            raise ValueError("prediction trace does not cover the complete sealed suffix")
++        require_v2(p, boundary)  # R-RS F1/F1-R: v2 commitment bound to this clip/source/training/complete seal
+     doc = {"contract_version": VERSION, "clip_id": boundary.clip_id, "source_sha256": boundary.source_sha256,
+            "provenance": provenance, "units": "image-height fraction", "gate_m": GATE_M, "limits": list(LIMITS),
+            "timebase": {"kind": "pts_s", "frame_map_sha256": frame_map_sha256(frame_map), "sources": list(sources)},
+@@ -59,14 +52,15 @@ def main(root=ROOT):
+     record, suffix, inputs = st03_record(root)
+     boundary, sealed = split(record, suffix)
+     prediction = projectile(boundary, sealed)
+-    committed = json.loads((root / "evidence/S12/prediction-ST03.json").read_text(encoding="utf-8"))
++    committed = json.loads((root / "evidence/S12/prediction-ST03-v2.json").read_text(encoding="utf-8"))
+     if committed["prediction"]["sha256"] != prediction.sha256:
+-        raise ValueError("ST03 prediction no longer matches committed S12c evidence")
+-    docs = {"overlay-ST03.json": build(boundary, [prediction], st03_frame_map(root), "image-derived", inputs[1:])}
++        raise ValueError("ST03 prediction no longer matches committed v2 evidence")
++    # v1 overlay-*.json files are kept untouched as legacy-audited; new documents are overlay/2.0.0.
++    docs = {"overlay-ST03-v2.json": build(boundary, [prediction], st03_frame_map(root), "image-derived", inputs[1:])}
+     record, freq = synthetic_pendulum()
+     boundary, sealed = split(record)
+     fmap = {f["frame_index"]: f["pts_s"] for f in record["frames"]}
+-    docs["overlay-pendulum-SYNTHETIC.json"] = build(boundary, [pendulum(boundary, sealed, freq)], fmap, "synthetic")
++    docs["overlay-pendulum-SYNTHETIC-v2.json"] = build(boundary, [pendulum(boundary, sealed, freq)], fmap, "synthetic")
+     for name, doc in docs.items():
+         (root / "evidence/S12" / name).write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8")
+         print(f"evidence/S12/{name} {doc['contract_version']} gate_m={doc['gate_m']} "
+diff --git a/Build/real2sim/predict.py b/Build/real2sim/predict.py
+index f08cd66..c381c13 100644
+--- a/Build/real2sim/predict.py
++++ b/Build/real2sim/predict.py
+@@ -3,7 +3,7 @@
+ Scale-free image-height units only. Gate M is NOT_MET: no calibrated g, scale, clock or
+ physical-accuracy claim. Scoring against held-out observations is S12e, not here.
+ """
+-from dataclasses import dataclass
++from dataclasses import dataclass, replace
+ import hashlib
+ import json
+ import math
+@@ -15,10 +15,16 @@ from Build.fitter import jacobian_covariance
+ from Build.real2sim.boundary import GATE_M, LIMITS, _sha, fit_prefix, record_json, split
+ from Build.real2sim.params import ROOT, from_fit
+ 
++COMMITMENT, LEGACY = "prediction/v2", "prediction/v1"
++
+ 
+ @dataclass(frozen=True)
+ class Prediction:
+-    """Immutable predicted trace: ((frame_index, pts_s, y_pred, sigma_or_None), ...)."""
++    """Immutable predicted trace: ((frame_index, pts_s, y_pred, sigma_or_None), ...).
++
++    prediction/v2 (R-RS F1-R) commits kind, model, trace AND clip id, source sha, training sha, suffix seal
++    hash and count. Defaults describe a legacy prediction/v1 object (digest over [kind, model, trace] only).
++    """
+     kind: str
+     clip_id: str
+     training_sha256: str
+@@ -27,6 +33,18 @@ class Prediction:
+     trace: tuple
+     sha256: str
+     gate_m: str = GATE_M
++    source_sha256: str = None
++    suffix_count: int = None
++    commitment: str = LEGACY
++
++
++def commitment_sha256(p):
++    if p.commitment == COMMITMENT:
++        return _sha([COMMITMENT, p.kind, p.model, p.trace, p.clip_id, p.source_sha256, p.training_sha256,
++                     p.suffix_identity_sha256, p.suffix_count])
++    if p.commitment == LEGACY:
++        return _sha([p.kind, p.model, p.trace])
++    raise ValueError(f"unknown prediction commitment {p.commitment!r}")
+ 
+ 
+ def _identities(boundary, sealed):
+@@ -41,16 +59,32 @@ def _identities(boundary, sealed):
+ 
+ def _seal(kind, boundary, model, trace):
+     trace = tuple(tuple(row) for row in trace)
+-    return Prediction(kind, boundary.clip_id, boundary.training_sha256,
+-                      boundary.suffix_identity_sha256, model, trace, _sha([kind, model, trace]))
++    p = Prediction(kind, boundary.clip_id, boundary.training_sha256, boundary.suffix_identity_sha256, model, trace,
++                   "", source_sha256=boundary.source_sha256, suffix_count=boundary.suffix_count, commitment=COMMITMENT)
++    return replace(p, sha256=commitment_sha256(p))
+ 
+ 
+ def check(prediction):
+     """Raise unless the trace still matches the hash taken at prediction time."""
+-    if _sha([prediction.kind, prediction.model, prediction.trace]) != prediction.sha256:
++    if commitment_sha256(prediction) != prediction.sha256:
+         raise ValueError("predicted trace changed after hashing")
+ 
+ 
++def require_v2(prediction, boundary):
++    """R-RS F1-R: new eligible evidence needs a v2 commitment whose bound custody equals this exact seal."""
++    if prediction.commitment != COMMITMENT:
++        raise ValueError("legacy prediction/v1 is audit-readable only, never newly eligible; re-commit as v2")
++    check(prediction)
++    bound = (prediction.clip_id, prediction.source_sha256, prediction.training_sha256,
++             prediction.suffix_identity_sha256, prediction.suffix_count)
++    if bound != (boundary.clip_id, boundary.source_sha256, boundary.training_sha256,
++                 boundary.suffix_identity_sha256, boundary.suffix_count):
++        raise ValueError("prediction/v2 commitment binds a different clip, source, training prefix or seal")
++    ids = tuple((r[0], r[1]) for r in prediction.trace)
++    if len(ids) != boundary.suffix_count or _sha(ids) != boundary.suffix_identity_sha256:
++        raise ValueError("prediction trace does not cover the complete sealed suffix")
++
++
+ def projectile(boundary, sealed):
+     """Ballistic (AIC-selected prefix polynomial) extrapolation to the sealed suffix times."""
+     ids = _identities(boundary, sealed)
+@@ -160,18 +194,24 @@ def main(root=ROOT):
+     boundary, sealed = split(record, suffix)
+     prediction = projectile(boundary, sealed)
+     old = json.loads((root / "evidence/S12/boundary-ST03.json").read_text(encoding="utf-8"))["boundary"]
++    # F1-R: v1 prediction-ST03.json is kept as legacy-audited; the v2 re-commit must be the same frozen trace.
++    v1 = json.loads((root / "evidence/S12/prediction-ST03.json").read_text(encoding="utf-8"))["prediction"]["sha256"]
++    if commitment_sha256(replace(prediction, commitment=LEGACY)) != v1:
++        raise ValueError("re-derived trace differs from the legacy v1 commitment; refusing v2 re-commit")
+     out = record_json(boundary, inputs=inputs, prediction=as_json(prediction),
+                       parameters=from_fit(boundary, "image-derived"),
+                       suffix_observations_read=False,
+                       supersedes_s12a_seal={"suffix_identity_sha256": old["suffix_identity_sha256"],
+                                             "suffix_count": old["suffix_count"],
+                                             "reason": "frame 77 quarantine lifted: errata f76 PTS 2.535867 < f77 2.569233"},
+-                      note=("Suffix observations NOT tracked; S12e must track exactly these sealed identities, "
++                      legacy_v1_prediction={"path": "evidence/S12/prediction-ST03.json", "sha256": v1},
++                      note=("prediction/v2 re-commit of the legacy v1 trace from the same frozen inputs. "
++                            "Suffix observations NOT tracked; S12e must track exactly these sealed identities, "
+                             "verify(), then score against prediction.sha256. y>1 is beyond the image bottom: "
+                             "ballistic model has no floor (no ST03 bounce observation)."))
+-    path = root / "evidence/S12/prediction-ST03.json"
++    path = root / "evidence/S12/prediction-ST03-v2.json"
+     path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
+-    print(f"evidence/S12/prediction-ST03.json gate_m={GATE_M} suffix={boundary.suffix_count} "
++    print(f"evidence/S12/prediction-ST03-v2.json gate_m={GATE_M} suffix={boundary.suffix_count} "
+           f"sha256={prediction.sha256}")
+ 
+ 
+diff --git a/Build/real2sim/score.py b/Build/real2sim/score.py
+index e97ae80..526c38d 100644
+--- a/Build/real2sim/score.py
++++ b/Build/real2sim/score.py
+@@ -4,22 +4,58 @@ Metric (pre-registered in Run-System/Runs/S12e-orch45/PLAN.md before any suffix
+ per clip, RMS over sealed suffix frames of |y_pred - y_obs| in image-height fractions (scale-free, Q15=A);
+ Gate RS = median over projectile/bounce/pendulum <= 5%; a category without a scored clip is a measured
+ shortfall. Gate M is NOT_MET: no calibrated g, scale, clock or physical-accuracy claim.
++Eligibility (R-RS F1-R/F2-R): a prediction/v2 commitment bound to the seal, and an independent public-input
++receipt from clips.csv + evidence/owner/S02/APPROVAL.md + the S02c acquisition hash registry.
+ """
++import csv
+ import hashlib
+ import json
+ import math
++import re
+ import statistics
+ import sys
+ 
+-from Build.real2sim.boundary import GATE_M, LIMITS, _sha, split, verify
+-from Build.real2sim.predict import check, projectile, st03_record
++from Build.real2sim.boundary import GATE_M, LIMITS, split, verify
++from Build.real2sim.predict import projectile, require_v2, st03_record
+ from Build.real2sim.params import ROOT
+ 
+ CATEGORIES = ("projectile", "bounce", "pendulum")
+-ELIGIBLE_PROVENANCE = "image-derived"  # public licensed clip input; synthetic fixtures never count toward Gate RS
+ THRESHOLD, MIN_COVERAGE, EARLY = 0.05, 0.8, 5
+ # Full f58-542 job OOMed on A10G (evidence/S12/gate-rs/ST03-f58-542); 26-frame job fits (orch14 19 frames = 17.1 GB).
+ ST03_TRACK = "evidence/S12/gate-rs/ST03-f58-83/result.json"
++APPROVAL, REGISTRY = "evidence/owner/S02/APPROVAL.md", "evidence/clips/S02c-acquisition.json"
++APPROVED_USE = "local scene/tracking pipeline work"
++# clips.csv experiment -> Gate RS category (ST03 free fall is the ballistic/projectile case, as pre-registered).
++CATEGORY_EXPERIMENTS = {"projectile": {"projectile", "free_fall"}, "bounce": {"bounce"}, "pendulum": {"pendulum"}}
++# Allowed by AGENTS.md: NASA/US-Gov PD, CC0, CC BY, CC BY-SA, Pexels, Pixabay. NC/ND never match.
++LICENCE = re.compile(r"pexels( license)?|pixabay( (content )?license)?|pd-[a-z-]+|public domain|cc0(-1\.0)?"
++                     r"|cc-by(-sa)?-[0-9.]+", re.I)
++
++
++def public_receipt(clip_id, source_sha256, category, root=ROOT):
++    """R-RS F2-R: independent receipt for an approved, licensed public clip; raise ValueError otherwise.
++
++    Never consults caller provenance strings or clip-name patterns: unknown/missing/synthetic clips fail closed.
++    """
++    with open(root / "clips.csv", encoding="utf-8", newline="") as f:
++        rows = [r for r in csv.DictReader(f) if r["clip_id"] == clip_id]
++    if len(rows) != 1:
++        raise ValueError(f"clip {clip_id!r} is not exactly one clips.csv row")
++    row, raw = rows[0], (root / APPROVAL).read_bytes()
++    approved = re.search(r"\*\*Approved IDs:\*\*\s*([A-Z0-9,]+)", raw.decode("utf-8"))
++    if not approved or clip_id not in approved.group(1).split(",") or APPROVED_USE not in raw.decode("utf-8"):
++        raise ValueError(f"clip {clip_id!r} is not owner-approved for {APPROVED_USE} in {APPROVAL}")
++    if not LICENCE.fullmatch(row["licence"].strip()):
++        raise ValueError(f"clip {clip_id!r} licence {row['licence']!r} is not an allowed public licence")
++    hashes = [f.get("sha256") for f in json.loads((root / REGISTRY).read_text(encoding="utf-8"))["files"]
++              if f.get("clip_id") == clip_id]
++    if hashes != [source_sha256]:
++        raise ValueError(f"clip {clip_id!r} source sha does not match the acquisition registry")
++    if row["experiment"] not in CATEGORY_EXPERIMENTS.get(category, ()):
++        raise ValueError(f"clip {clip_id!r} experiment {row['experiment']!r} is not eligible for {category!r}")
++    return {"clip_id": clip_id, "category": category, "experiment": row["experiment"], "licence": row["licence"],
++            "approval_ref": APPROVAL, "approval_sha256": hashlib.sha256(raw).hexdigest(),
++            "registry_ref": REGISTRY, "source_sha256": source_sha256}
+ 
+ 
+ def _rms(errors):
+@@ -31,25 +67,22 @@ def _finite(v):
+ 
+ 
+ def score(boundary, sealed, prediction, committed_sha256, load_observations, provenance="synthetic"):
+-    """Verify seal + committed prediction, THEN call load_observations() -> {frame: (pts_s, y_norm)}.
++    """Verify seal + v2 committed prediction, THEN call load_observations() -> {frame: (pts_s, y_norm)}.
+ 
+-    provenance defaults to synthetic (gate-ineligible); only real clip scores pass "image-derived".
++    provenance is a descriptive label only; gate eligibility comes from public_receipt(), never from it.
+     """
+     verify(boundary, sealed)
+-    check(prediction)
+-    if prediction.sha256 != committed_sha256 or \
+-            prediction.suffix_identity_sha256 != boundary.suffix_identity_sha256:
++    require_v2(prediction, boundary)  # R-RS F1-R: custody bound into the commitment, checked before any read
++    if prediction.sha256 != committed_sha256:
+         raise ValueError("prediction is not the committed one for this seal")
+-    # R-RS F1: the v1 digest covers [kind, model, trace] only, so bind custody metadata and the
+-    # trace's (frame, PTS) identities to the COMPLETE seal before any suffix read.
+-    if prediction.clip_id != boundary.clip_id or prediction.training_sha256 != boundary.training_sha256:
+-        raise ValueError("prediction was made for a different clip or training prefix")
+-    ids = tuple((r[0], r[1]) for r in prediction.trace)
+-    if len(ids) != boundary.suffix_count or len(sealed) != boundary.suffix_count \
+-            or _sha(ids) != boundary.suffix_identity_sha256:
++    if len(sealed) != boundary.suffix_count:
+         raise ValueError("prediction trace does not cover the complete sealed suffix")
+     if not all(_finite(r[2]) for r in prediction.trace):
+         raise ValueError("prediction trace has non-finite values")
++    try:
++        receipt, ineligible = public_receipt(boundary.clip_id, boundary.source_sha256, prediction.kind), None
++    except ValueError as error:
++        receipt, ineligible = None, str(error)
+     observed = load_observations()  # first suffix read: only after both checks passed
+     errors = []
+     for i, p, y, _ in prediction.trace:
+@@ -61,18 +94,26 @@ def score(boundary, sealed, prediction, committed_sha256, load_observations, pro
+             errors.append(y - observed[i][1])
+     coverage = len(errors) / boundary.suffix_count
+     rms = _rms(errors)
+-    return {"clip_id": boundary.clip_id, "kind": prediction.kind, "prediction_sha256": prediction.sha256,
++    return {"clip_id": boundary.clip_id, "source_sha256": boundary.source_sha256, "kind": prediction.kind,
++            "prediction_sha256": prediction.sha256, "prediction_commitment": prediction.commitment,
+             "suffix_identity_sha256": boundary.suffix_identity_sha256, "sealed_frames": boundary.suffix_count,
+             "scored_frames": len(errors), "coverage": coverage, "normalized_rms": rms,
+             "normalized_rms_first5_diagnostic": _rms(errors[:EARLY]),
+             "max_abs": max(map(abs, errors)) if errors else None,
+-            "scored": coverage >= MIN_COVERAGE and rms is not None, "provenance": provenance, "gate_m": GATE_M}
++            "scored": coverage >= MIN_COVERAGE and rms is not None, "provenance": provenance,
++            "input_receipt": receipt, "ineligible_reason": ineligible, "gate_m": GATE_M}
+ 
+ 
+-def _eligible(category, r):
+-    """R-RS F2/F4: recompute eligibility from the result's own fields; never trust the scored flag alone."""
+-    if not isinstance(r, dict) or r.get("kind") != category or r.get("provenance") != ELIGIBLE_PROVENANCE \
+-            or str(r.get("clip_id", "")).upper().startswith("SYNTHETIC"):
++def _eligible(category, r, root=ROOT):
++    """R-RS F2/F2-R/F4: recompute eligibility, re-deriving the public-input receipt independently."""
++    if not isinstance(r, dict) or r.get("kind") != category:
++        return False
++    if r.get("prediction_commitment") != "prediction/v2":  # F1-R: legacy v1 results are audit-only
++        return False
++    try:
++        if r.get("input_receipt") != public_receipt(r.get("clip_id"), r.get("source_sha256"), category, root):
++            return False
++    except (ValueError, TypeError, KeyError, OSError):
+         return False
+     n, k, rms = r.get("sealed_frames"), r.get("scored_frames"), r.get("normalized_rms")
+     if type(n) is not int or type(k) is not int or not 0 < k <= n or not _finite(rms) or rms < 0:
+@@ -80,22 +121,23 @@ def _eligible(category, r):
+     return r.get("scored") is True and k / n >= MIN_COVERAGE and r.get("coverage") == k / n
+ 
+ 
+-def gate(results):
++def gate(results, root=ROOT):
+     """results: {category: clip score or None}. Missing/unscored/ineligible category => measured shortfall.
+ 
+-    Eligible = kind matches category, image-derived non-synthetic clip, finite nonnegative RMS, recomputed
+-    coverage >= 80%; one clip/prediction may not stand in for two categories.
++    Eligible = kind matches category, independently re-derived public-input receipt equals the carried one,
++    finite nonnegative RMS, recomputed coverage >= 80%; one clip/prediction may not stand in for two categories.
+     """
+-    per, seen = {}, set()
++    per, receipts, seen = {}, {}, set()
+     for c in CATEGORIES:
+         r = results.get(c)
+-        ok = _eligible(c, r) and r["clip_id"] not in seen and r.get("prediction_sha256") not in seen
++        ok = _eligible(c, r, root) and r["clip_id"] not in seen and r.get("prediction_sha256") not in seen
+         per[c] = r["normalized_rms"] if ok else None
++        receipts[c] = r["input_receipt"] if ok else None
+         if ok:
+             seen |= {r["clip_id"], r.get("prediction_sha256")}
+     complete = all(v is not None for v in per.values())
+     value = statistics.median(per.values()) if complete else None
+-    return {"per_category_normalized_rms": per, "median": value, "threshold": THRESHOLD,
++    return {"per_category_normalized_rms": per, "input_receipts": receipts, "median": value, "threshold": THRESHOLD,
+             "status": "MET" if complete and value <= THRESHOLD else "NOT_MET",
+             "shortfall": [c for c, v in per.items() if v is None or v > THRESHOLD], "gate_m": GATE_M}
+ 
+@@ -125,7 +167,7 @@ def st03_observations(raw, frame_pts, height):
+ def main(root=ROOT):
+     record, suffix, inputs = st03_record(root)
+     boundary, sealed = split(record, suffix)
+-    committed = json.loads((root / "evidence/S12/prediction-ST03.json").read_text(encoding="utf-8"))
++    committed = json.loads((root / "evidence/S12/prediction-ST03-v2.json").read_text(encoding="utf-8"))
+     prediction = projectile(boundary, sealed)
+     raw = (root / ST03_TRACK).read_bytes()
+     pmap = json.loads((root / "evidence/S07/S07b/recovery3/presentation-map.json").read_text(encoding="utf-8"))
+diff --git a/contracts/overlay/CONTRACT.md b/contracts/overlay/CONTRACT.md
+index 1ece22c..85865d7 100644
+--- a/contracts/overlay/CONTRACT.md
++++ b/contracts/overlay/CONTRACT.md
+@@ -1,4 +1,4 @@
+-# overlay/1.0.0 (S12d)
++# overlay/2.0.0 (S12d; v2 by S12e-fix2b, R-RS F1-R)
+ 
+ Ties each immutable predicted trace (S12c `Build.real2sim.predict.Prediction`) to one clip, its source
+ file sha and the source PTS frame timebase, so a renderer can draw prediction over actual frames.
+@@ -6,20 +6,22 @@ Builder: `Build/real2sim/overlay.build`. Validator: [validate.py](validate.py) (
+ 
+ | Field | Rule |
+ |---|---|
+-| `contract_version` | `overlay/1.0.0` |
++| `contract_version` | `overlay/2.0.0` (`overlay/1.0.0` readable only with `legacy=True`, audit-only, never new evidence) |
+ | `clip_id`, `source_sha256` | must equal the clip/source the consumer is showing |
+ | `provenance` | `synthetic` or `image-derived` |
+ | `units` | `image-height fraction` (scale-free, Owner Q15=A) |
+ | `gate_m`, `limits` | `NOT_MET`; no calibrated or physical-accuracy claim |
+ | `timebase` | `{kind: pts_s, frame_map_sha256, sources}`; sha of sorted `[[frame_index, pts_s], ...]` of the source frame map (errata-corrected where one exists) |
+-| `traces[]` | `Prediction` JSON: `kind, clip_id, training_sha256, suffix_identity_sha256, model, trace, sha256, gate_m`; rows `[frame_index, pts_s, value, sigma or null]` |
++| `traces[]` | `Prediction` JSON: `kind, clip_id, training_sha256, suffix_identity_sha256, model, trace, sha256, gate_m, source_sha256, suffix_count, commitment`; rows `[frame_index, pts_s, value, sigma or null]` |
+ 
+-`validate(doc, clip_id, source_sha256, frame_map)` rejects: unknown/missing fields, other version, gate_m
++`validate(doc, clip_id, source_sha256, frame_map, legacy=False)` rejects: unknown/missing fields, other version, gate_m
+ other than NOT_MET, other clip or source sha, a frame map whose hash differs, any row whose frame is absent
+ from the map or whose PTS differs by more than 1e-6 s, non-increasing frames, and any trace whose
+-`sha256` no longer matches `[kind, model, trace]`, or whose `suffix_identity_sha256` is not the hash of
+-its complete `[[frame_index, pts_s], ...]` rows (R-RS F1; the builder also requires the boundary's seal hash
+-and count). It returns a tuple of immutable `Trace` named tuples;
++`sha256` no longer matches the `prediction/v2` commitment over `[prediction/v2, kind, model, trace, clip_id,
++source_sha256, training_sha256, suffix_identity_sha256, suffix_count]` (v1 legacy: `[kind, model, trace]`),
++whose `suffix_identity_sha256` is not the hash of its complete `[[frame_index, pts_s], ...]` rows, or whose
++`suffix_count` differs from its row count (R-RS F1/F1-R; the builder requires v2 bound to the boundary's
++clip, source, training and seal). It returns a tuple of immutable `Trace` named tuples (with `commitment`);
+ renderers read those only and never recompute or edit predictions.
+ 
+ Values may lie outside [0, 1] (ballistic ST03 runs past the image bottom); renderers clip, not the contract.
+diff --git a/contracts/overlay/validate.py b/contracts/overlay/validate.py
+index 91ffbdc..f8abab8 100644
+--- a/contracts/overlay/validate.py
++++ b/contracts/overlay/validate.py
+@@ -1,19 +1,21 @@
+-"""overlay/1.0.0: predicted traces tied to clip id, source sha and the source PTS frame timebase.
++"""overlay/2.0.0: predicted traces tied to clip id, source sha and the source PTS frame timebase.
+ 
+ Stdlib only. validate() returns immutable traces; renderers consume them read-only.
+ Values are image-height fractions (scale-free); Gate M NOT_MET is mandatory.
++overlay/1.0.0 (prediction/v1 digests over [kind, model, trace] only) is readable solely with legacy=True.
+ """
+ import hashlib
+ import json
+ import math
+ from typing import NamedTuple
+ 
+-VERSION = "overlay/1.0.0"
++VERSION, LEGACY_VERSION = "overlay/2.0.0", "overlay/1.0.0"
+ PTS_TOL_S = 1e-6  # same tolerance as the S12c errata vs presentation-map agreement check
+ KEYS = {"contract_version", "clip_id", "source_sha256", "provenance", "units", "gate_m", "limits",
+         "timebase", "traces"}
+-TRACE_KEYS = {"kind", "clip_id", "training_sha256", "suffix_identity_sha256", "model", "trace",
+-              "sha256", "gate_m"}
++LEGACY_TRACE_KEYS = {"kind", "clip_id", "training_sha256", "suffix_identity_sha256", "model", "trace",
++                     "sha256", "gate_m"}
++TRACE_KEYS = LEGACY_TRACE_KEYS | {"source_sha256", "suffix_count", "commitment"}
+ PROVENANCE = {"synthetic", "image-derived"}
+ 
+ 
+@@ -26,6 +28,7 @@ class Trace(NamedTuple):
+     prediction_sha256: str
+     model: str
+     rows: tuple  # ((frame_index, pts_s, value, sigma_or_None), ...)
++    commitment: str = "prediction/v2"
+ 
+ 
+ def _sha(obj):
+@@ -42,13 +45,21 @@ def _num(v):
+     return type(v) in (int, float) and math.isfinite(v)
+ 
+ 
+-def validate(doc, clip_id, source_sha256, frame_map):
++def _commitment(t):
++    # Identical to Build.real2sim.predict.commitment_sha256 for prediction/v2 (R-RS F1-R custody binding).
++    return _sha(["prediction/v2", t["kind"], t["model"], t["trace"], t["clip_id"], t["source_sha256"],
++                 t["training_sha256"], t["suffix_identity_sha256"], t["suffix_count"]])
++
++
++def validate(doc, clip_id, source_sha256, frame_map, legacy=False):
+     """Raise OverlayError unless doc aligns with this clip/source/timebase; return tuple of Trace."""
+     def need(ok, why):
+         if not ok:
+             raise OverlayError(why)
+-    need(isinstance(doc, dict) and set(doc) == KEYS, "overlay fields differ from overlay/1.0.0")
+-    need(doc["contract_version"] == VERSION, "unsupported contract_version")
++    need(isinstance(doc, dict) and set(doc) == KEYS, "overlay fields differ from the overlay contract")
++    v1 = doc["contract_version"] == LEGACY_VERSION
++    need(doc["contract_version"] == VERSION or (v1 and legacy),
++         "unsupported contract_version (overlay/1.0.0 is legacy-audit only: legacy=True, never new evidence)")
+     need(doc["gate_m"] == "NOT_MET", "gate_m must be NOT_MET")
+     need(doc["units"] == "image-height fraction", "units must be scale-free image-height fraction")
+     need(doc["provenance"] in PROVENANCE, "provenance must be synthetic or image-derived")
+@@ -61,9 +72,14 @@ def validate(doc, clip_id, source_sha256, frame_map):
+     need(isinstance(doc["traces"], list) and doc["traces"], "at least one trace required")
+     out = []
+     for n, t in enumerate(doc["traces"]):
+-        need(isinstance(t, dict) and set(t) == TRACE_KEYS, f"traces[{n}]: fields differ")
++        need(isinstance(t, dict) and set(t) == (LEGACY_TRACE_KEYS if v1 else TRACE_KEYS), f"traces[{n}]: fields differ")
+         need(t["clip_id"] == clip_id and t["gate_m"] == "NOT_MET", f"traces[{n}]: clip or gate_m mismatch")
+-        need(_sha([t["kind"], t["model"], t["trace"]]) == t["sha256"], f"traces[{n}]: trace changed after hashing")
++        if v1:
++            need(_sha([t["kind"], t["model"], t["trace"]]) == t["sha256"], f"traces[{n}]: trace changed after hashing")
++        else:
++            need(t["commitment"] == "prediction/v2" and t["source_sha256"] == source_sha256,
++                 f"traces[{n}]: not a prediction/v2 commitment for this source")
++            need(_commitment(t) == t["sha256"], f"traces[{n}]: trace or custody metadata changed after commitment")
+         rows = tuple(tuple(r) for r in t["trace"])
+         need(rows, f"traces[{n}]: empty trace")
+         for r in rows:
+@@ -75,5 +91,6 @@ def validate(doc, clip_id, source_sha256, frame_map):
+         # R-RS F1: the declared seal hash must be the hash of this trace's complete (frame, PTS) identities.
+         need(_sha([[r[0], r[1]] for r in rows]) == t["suffix_identity_sha256"],
+              f"traces[{n}]: suffix_identity_sha256 does not match the trace's sealed (frame, PTS) identities")
+-        out.append(Trace(t["kind"], t["sha256"], t["model"], rows))
++        need(v1 or t["suffix_count"] == len(rows), f"traces[{n}]: suffix_count differs from the complete trace")
++        out.append(Trace(t["kind"], t["sha256"], t["model"], rows, "prediction/v1" if v1 else "prediction/v2"))
+     return tuple(out)
+diff --git a/tests/prediction/test_overlay.py b/tests/prediction/test_overlay.py
+index c6649d6..7f6ef15 100644
+--- a/tests/prediction/test_overlay.py
++++ b/tests/prediction/test_overlay.py
+@@ -78,13 +78,14 @@ class OverlayTest(unittest.TestCase):
+     def test_rejects_mutated_trace_and_gate_claim(self):
+         doc = copy.deepcopy(self.doc)
+         doc["traces"][0]["trace"][5][2] += 1e-6
+-        with self.assertRaisesRegex(OverlayError, "changed after hashing"):
++        with self.assertRaisesRegex(OverlayError, "changed after commitment"):
+             self.ok(doc)
+         doc = copy.deepcopy(self.doc)
+         doc["traces"][0]["trace"][5][1] += 1 / 30  # retimed row: rejected (hash first; alignment is the backstop)
+         with self.assertRaises(OverlayError):
+             self.ok(doc)
+-        for key, value in (("gate_m", "MET"), ("contract_version", "overlay/2.0.0"), ("units", "m")):
++        for key, value in (("gate_m", "MET"), ("contract_version", "overlay/1.0.0"), ("contract_version", "overlay/9"),
++                           ("units", "m")):
+             doc = dict(copy.deepcopy(self.doc), **{key: value})
+             with self.assertRaises(OverlayError):
+                 self.ok(doc)
+@@ -92,22 +93,28 @@ class OverlayTest(unittest.TestCase):
+     def test_build_refuses_prediction_from_other_boundary(self):
+         record, _ = ov.synthetic_pendulum(last=30)
+         other, _ = b.split(record)
+-        with self.assertRaisesRegex(ValueError, "not made from this clip boundary"):
++        with self.assertRaisesRegex(ValueError, "different clip, source, training"):
+             ov.build(other, [self.pred], self.fmap, "synthetic")
+ 
+ 
+ class CommittedEvidenceTest(unittest.TestCase):
+     def test_committed_overlays_validate_against_sources(self):
+         record, suffix, _ = pr.st03_record(ROOT)
+-        st03 = json.loads((ROOT / "evidence/S12/overlay-ST03.json").read_text(encoding="utf-8"))
+-        (trace,) = validate(st03, record["clip_id"], record["source_sha256"], ov.st03_frame_map(ROOT))
+-        committed = json.loads((ROOT / "evidence/S12/prediction-ST03.json").read_text(encoding="utf-8"))
+-        self.assertEqual(trace.prediction_sha256, committed["prediction"]["sha256"])
+-        self.assertEqual([r[:2] for r in trace.rows], [tuple(s) for s in suffix])
+-        synth = json.loads((ROOT / "evidence/S12/overlay-pendulum-SYNTHETIC.json").read_text(encoding="utf-8"))
+         rec, _ = ov.synthetic_pendulum()
+-        validate(synth, rec["clip_id"], rec["source_sha256"], {f["frame_index"]: f["pts_s"] for f in rec["frames"]})
+-        self.assertEqual(synth["provenance"], "synthetic")
++        fmap = {f["frame_index"]: f["pts_s"] for f in rec["frames"]}
++        for tag, legacy in (("", True), ("-v2", False)):  # v1 files: legacy-audit only; v2: new evidence
++            st03 = json.loads((ROOT / f"evidence/S12/overlay-ST03{tag}.json").read_text(encoding="utf-8"))
++            if legacy:
++                with self.assertRaisesRegex(OverlayError, "legacy-audit only"):
++                    validate(st03, record["clip_id"], record["source_sha256"], ov.st03_frame_map(ROOT))
++            (trace,) = validate(st03, record["clip_id"], record["source_sha256"], ov.st03_frame_map(ROOT), legacy)
++            committed = json.loads((ROOT / f"evidence/S12/prediction-ST03{tag}.json").read_text(encoding="utf-8"))
++            self.assertEqual(trace.prediction_sha256, committed["prediction"]["sha256"])
++            self.assertEqual(trace.commitment, "prediction/v1" if legacy else "prediction/v2")
++            self.assertEqual([r[:2] for r in trace.rows], [tuple(s) for s in suffix])
++            synth = json.loads((ROOT / f"evidence/S12/overlay-pendulum-SYNTHETIC{tag}.json").read_text(encoding="utf-8"))
++            validate(synth, rec["clip_id"], rec["source_sha256"], fmap, legacy)
++            self.assertEqual(synth["provenance"], "synthetic")
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/tests/prediction/test_predict.py b/tests/prediction/test_predict.py
+index 43495fb..437ac2d 100644
+--- a/tests/prediction/test_predict.py
++++ b/tests/prediction/test_predict.py
+@@ -91,16 +91,27 @@ class PredictTests(unittest.TestCase):
+         self.assertIn("synthetic", pred.model)
+ 
+     def test_committed_st03_prediction(self):
+-        rec = json.loads((ROOT / "evidence/S12/prediction-ST03.json").read_text(encoding="utf-8"))
+-        self.assertEqual(rec["gate_m"], "NOT_MET")
+-        self.assertFalse(rec["suffix_observations_read"])
+-        self.assertIsNone(rec["boundary"]["suffix_observation_sha256"])
+-        trace = tuple(tuple(r) for r in rec["prediction"]["trace"])
+-        self.assertEqual(len(trace), rec["boundary"]["suffix_count"])
+-        pr.check(pr.Prediction(**dict(rec["prediction"], trace=trace)))
+-        record, suffix, _ = pr.st03_record(ROOT)  # regenerates byte-identical prediction
+-        self.assertEqual(pr.projectile(*b.split(record, suffix)).sha256, rec["prediction"]["sha256"])
+-        self.assertEqual([r["name"] for r in rec["parameters"] if "abstained" not in r], ["g", "speed"])
++        record, suffix, _ = pr.st03_record(ROOT)
++        boundary, sealed = b.split(record, suffix)
++        regen = pr.projectile(boundary, sealed)  # regenerates byte-identical v2 prediction
++        for name, commitment in (("prediction-ST03.json", pr.LEGACY), ("prediction-ST03-v2.json", pr.COMMITMENT)):
++            rec = json.loads((ROOT / "evidence/S12" / name).read_text(encoding="utf-8"))
++            self.assertEqual(rec["gate_m"], "NOT_MET")
++            self.assertFalse(rec["suffix_observations_read"])
++            self.assertIsNone(rec["boundary"]["suffix_observation_sha256"])
++            trace = tuple(tuple(r) for r in rec["prediction"]["trace"])
++            self.assertEqual(len(trace), rec["boundary"]["suffix_count"])
++            p = pr.Prediction(**dict(rec["prediction"], trace=trace))
++            pr.check(p)
++            self.assertEqual(p.commitment, commitment)
++            # v1 kept untouched (legacy-audited); v2 re-commits the same frozen trace
++            self.assertEqual(pr.commitment_sha256(dataclasses.replace(regen, commitment=commitment)), p.sha256)
++            self.assertEqual(p.trace, regen.trace)
++            self.assertEqual([r["name"] for r in rec["parameters"] if "abstained" not in r], ["g", "speed"])
++        pr.require_v2(p, boundary)
++        with self.assertRaisesRegex(ValueError, "legacy"):
++            pr.require_v2(pr.Prediction(**dict(json.loads((ROOT / "evidence/S12/prediction-ST03.json").read_text(
++                encoding="utf-8"))["prediction"], trace=trace)), boundary)
+ 
+ 
+ if __name__ == "__main__":
+diff --git a/tests/prediction/test_score.py b/tests/prediction/test_score.py
+index 541ec61..8c148b5 100644
+--- a/tests/prediction/test_score.py
++++ b/tests/prediction/test_score.py
+@@ -18,10 +18,18 @@ def ids_only(clip="SYNTHETIC", shift=0):
+     return boundary, sealed, pr.projectile(boundary, sealed)
+ 
+ 
++REAL = {"P1": "PJ03", "B1": "BN01", "D1": "PD02"}  # approved licensed public clips (clips.csv + APPROVAL.md)
++SHA = {f["clip_id"]: f["sha256"] for f in json.loads((ROOT / s.REGISTRY).read_text(encoding="utf-8"))["files"]
++       if f.get("clip_id")}
++
++
+ def eligible(kind, clip, rms=0.01):
+     """Shape of a real image-derived clip score (values illustrative, used only for gate() arithmetic)."""
+-    return {"clip_id": clip, "kind": kind, "prediction_sha256": clip * 8, "sealed_frames": 10, "scored_frames": 9,
+-            "coverage": 0.9, "normalized_rms": rms, "scored": True, "provenance": "image-derived"}
++    clip = REAL[clip]
++    return {"clip_id": clip, "source_sha256": SHA[clip], "kind": kind, "prediction_sha256": clip * 16,
++            "prediction_commitment": "prediction/v2", "sealed_frames": 10, "scored_frames": 9, "coverage": 0.9,
++            "normalized_rms": rms, "scored": True, "provenance": "image-derived",
++            "input_receipt": s.public_receipt(clip, SHA[clip], kind)}
+ 
+ 
+ class ScoreTests(unittest.TestCase):
+@@ -66,7 +74,7 @@ class ScoreTests(unittest.TestCase):
+         boundary, sealed, _ = ids_only()
+         never = lambda: self.fail("suffix read before binding check")  # noqa: E731
+         for other in (ids_only(clip="SYNTHETIC-other")[2], ids_only(shift=5)[2]):  # wrong clip / wrong training
+-            with self.assertRaisesRegex(ValueError, "different clip or training"):
++            with self.assertRaisesRegex(ValueError, "different clip, source, training"):
+                 s.score(boundary, sealed, other, other.sha256, never)
+         _, _, pred = ids_only()
+         short = pr._seal(pred.kind, boundary, pred.model, pred.trace[:1])  # precommitted one-row trace
+@@ -80,9 +88,53 @@ class ScoreTests(unittest.TestCase):
+             o.build(boundary, [forged], dict(sealed), "synthetic")
+         doc = o.build(boundary, [pred], dict(sealed), "synthetic")
+         doc["traces"][0]["suffix_identity_sha256"] = "0" * 64
+-        with self.assertRaisesRegex(ValueError, "sealed"):
++        with self.assertRaisesRegex(ValueError, "after commitment"):  # seal hash is inside the v2 commitment
+             o.validate(doc, boundary.clip_id, boundary.source_sha256, dict(sealed))
+ 
++    # --- R-RS recheck regressions (evidence/reviews/R-RS/RECHECK.md F1-R, F2-R) ---
++    def test_f1r_metadata_only_relabel_refused_before_read(self):
++        boundary, sealed, target = ids_only(clip="TARGET")
++        never = lambda: self.fail("suffix read before binding check")  # noqa: E731
++        for foreign in (ids_only(clip="FOREIGN")[2], ids_only(clip="TARGET", shift=5)[2]):  # foreign clip / training
++            relabel = dataclasses.replace(foreign, clip_id=target.clip_id, training_sha256=target.training_sha256)
++            with self.assertRaisesRegex(ValueError, "changed after hashing"):
++                pr.check(relabel)
++            with self.assertRaisesRegex(ValueError, "changed after hashing"):
++                s.score(boundary, sealed, relabel, relabel.sha256, never)
++            with self.assertRaises(ValueError):
++                o.build(boundary, [relabel], dict(sealed), "synthetic")
++            fb, fs, _ = ids_only(clip=foreign.clip_id, shift=5 if foreign.clip_id == "TARGET" else 0)
++            doc = o.build(fb, [foreign], dict(fs), "synthetic")
++            doc["clip_id"] = doc["traces"][0]["clip_id"] = target.clip_id
++            doc["traces"][0]["training_sha256"] = target.training_sha256
++            with self.assertRaisesRegex(ValueError, "after commitment"):
++                o.validate(doc, target.clip_id, boundary.source_sha256, dict(sealed))
++        v1 = dataclasses.replace(target, commitment=pr.LEGACY)
++        v1 = dataclasses.replace(v1, sha256=pr.commitment_sha256(v1))
++        pr.check(v1)  # legacy stays audit-readable ...
++        with self.assertRaisesRegex(ValueError, "legacy prediction/v1"):  # ... never newly eligible
++            s.score(boundary, sealed, v1, v1.sha256, never)
++
++    def test_f2r_nonpublic_synthetic_fixtures_labelled_image_derived_are_shortfall(self):
++        results = {}
++        for kind in s.CATEGORIES:
++            boundary, sealed, base = ids_only(clip=f"REVIEW-NONPUBLIC-{kind}")
++            pred = pr._seal(kind, boundary, f"{kind} fixture", base.trace)  # distinct genuine v2 commitments
++            truth = {i: (t, y) for i, t, y, _ in pred.trace}
++            r = s.score(boundary, sealed, pred, pred.sha256, lambda: truth, "image-derived")
++            self.assertEqual((r["scored"], r["normalized_rms"], r["input_receipt"]), (True, 0.0, None))
++            self.assertIn("clips.csv", r["ineligible_reason"])
++            results[kind] = r
++        g = s.gate(results)
++        self.assertEqual((g["status"], g["shortfall"], g["median"]), ("NOT_MET", list(s.CATEGORIES), None))
++        # approved clip id with a non-registry source sha also fails closed
++        boundary, sealed, pred = ids_only(clip="PJ03")
++        r = s.score(boundary, sealed, pred, pred.sha256, lambda: {i: (t, y) for i, t, y, _ in pred.trace})
++        self.assertIn("source sha", r["ineligible_reason"])
++        self.assertEqual(s.gate({"projectile": r})["shortfall"], list(s.CATEGORIES))
++        legacy = eligible("projectile", "P1") | {"prediction_commitment": "prediction/v1"}
++        self.assertIn("projectile", s.gate({"projectile": legacy})["shortfall"])
++
+     def test_f2_one_synthetic_projectile_aliased_three_times_is_shortfall(self):
+         boundary, sealed, pred = ids_only()
+         truth = {i: (t, y) for i, t, y, _ in pred.trace}

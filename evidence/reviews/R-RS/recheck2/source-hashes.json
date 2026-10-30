@@ -1,0 +1,146 @@
+{
+  "reviewed_snapshot": "d87fe75c440b5d27737ee373df8ab6f4bc6c96d3",
+  "canonical_head_at_verification": "34886b9cb637f8b2fb2c6af78c48304b6f6a9330",
+  "files": {
+    "Build/pipeline/gpu_stages.py": {
+      "sha256": "588a6c819ba9d805927ed907a31d5850fba8e680d77ac2a5a59f512367ab9f7f",
+      "canonical_sha256": "588a6c819ba9d805927ed907a31d5850fba8e680d77ac2a5a59f512367ab9f7f",
+      "byte_identical": true
+    },
+    "Build/real2sim/boundary.py": {
+      "sha256": "7796b762c2d2d30644a61345df89fcc9e1526f9bc48201f599ddab32d183a764",
+      "canonical_sha256": "7796b762c2d2d30644a61345df89fcc9e1526f9bc48201f599ddab32d183a764",
+      "byte_identical": true
+    },
+    "Build/real2sim/overlay.py": {
+      "sha256": "bcbb474a23a25af26ad57d1182de2a1bd6d3f5298bd9b49756362ac4d0fa0bf4",
+      "canonical_sha256": "bcbb474a23a25af26ad57d1182de2a1bd6d3f5298bd9b49756362ac4d0fa0bf4",
+      "byte_identical": true
+    },
+    "Build/real2sim/params.py": {
+      "sha256": "455ceb37a823fb42ba91254291b735b564a6aedcf7cb7f74b9eede993340d303",
+      "canonical_sha256": "455ceb37a823fb42ba91254291b735b564a6aedcf7cb7f74b9eede993340d303",
+      "byte_identical": true
+    },
+    "Build/real2sim/predict.py": {
+      "sha256": "00d7dc5a242a4f619d5334ec08e106a9eea55f5d13ab2a349d0fc608ed3549cc",
+      "canonical_sha256": "00d7dc5a242a4f619d5334ec08e106a9eea55f5d13ab2a349d0fc608ed3549cc",
+      "byte_identical": true
+    },
+    "Build/real2sim/score.py": {
+      "sha256": "db59aaf0fdef8be60a142195e9dd26104151564d01006ca0d446a82136b72dba",
+      "canonical_sha256": "db59aaf0fdef8be60a142195e9dd26104151564d01006ca0d446a82136b72dba",
+      "byte_identical": true
+    },
+    "Build/simulator/NUMERICS.md": {
+      "sha256": "9eee7eb70a7cadbed379435a5ba325a3fadccf65b14d8ffb1752fe5a2c4d2116",
+      "canonical_sha256": "9eee7eb70a7cadbed379435a5ba325a3fadccf65b14d8ffb1752fe5a2c4d2116",
+      "byte_identical": true
+    },
+    "Build/simulator/apparatus.mjs": {
+      "sha256": "e11050c04584462e409078ef7932e805d5cc715157537416efedc0629feee8c9",
+      "canonical_sha256": "e11050c04584462e409078ef7932e805d5cc715157537416efedc0629feee8c9",
+      "byte_identical": true
+    },
+    "Build/simulator/contact-runs.mjs": {
+      "sha256": "358726979a129a7df3ae4599fecc6bd0a34a4673fa0c125c48f71cd66d87e1dd",
+      "canonical_sha256": "358726979a129a7df3ae4599fecc6bd0a34a4673fa0c125c48f71cd66d87e1dd",
+      "byte_identical": true
+    },
+    "Build/simulator/contacts.mjs": {
+      "sha256": "99f62415fd5eb04ec969e862324072e4e0987928c156a24a4aae0175a9379b7f",
+      "canonical_sha256": "99f62415fd5eb04ec969e862324072e4e0987928c156a24a4aae0175a9379b7f",
+      "byte_identical": true
+    },
+    "Build/simulator/export_validated_setup.py": {
+      "sha256": "aab142c252d28685bde64a69e7b9c35bc8c8735926fa3cf89278572de97511c7",
+      "canonical_sha256": "aab142c252d28685bde64a69e7b9c35bc8c8735926fa3cf89278572de97511c7",
+      "byte_identical": true
+    },
+    "Build/simulator/extended-templates.mjs": {
+      "sha256": "f62406f590eca2c91dea03006f95fc291c0ec5be12a0408798c9e705d32a2b61",
+      "canonical_sha256": "f62406f590eca2c91dea03006f95fc291c0ec5be12a0408798c9e705d32a2b61",
+      "byte_identical": true
+    },
+    "Build/simulator/mystery-g.mjs": {
+      "sha256": "339a9cb1fa39120e112fcf5983ee6f58caf1578e74d0e8555eea4bc396f37ae9",
+      "canonical_sha256": "339a9cb1fa39120e112fcf5983ee6f58caf1578e74d0e8555eea4bc396f37ae9",
+      "byte_identical": true
+    },
+    "Build/simulator/package-lock.json": {
+      "sha256": "b9c30f504894ddb61d9217f350f4ab9f486f2f0839b4f7b16a5597569cacd5ab",
+      "canonical_sha256": "a10f4a546983236c5a4a67da31dd5eda8a24fe6c1cb3c00a786255b897b06c2a",
+      "byte_identical": false
+    },
+    "Build/simulator/package.json": {
+      "sha256": "fb24a79e81f635e696f960e6bd5a2d8d7dc8b2b067419ee507d795a746320e0f",
+      "canonical_sha256": "ec6da3e99c6e2e4d3e52fa79cef6409918b80d757b92368bb275e6b50a9f1f68",
+      "byte_identical": false
+    },
+    "Build/simulator/replay.md": {
+      "sha256": "9f90fee7deefd98eb2d3b220398b3c0da3fac1d17e01f4f2c162ddff21767d21",
+      "canonical_sha256": "9f90fee7deefd98eb2d3b220398b3c0da3fac1d17e01f4f2c162ddff21767d21",
+      "byte_identical": true
+    },
+    "Build/simulator/replay.mjs": {
+      "sha256": "483afb36ea0de093219379453cb3dccd158d6acdf8cc52fc76c413d82e832e11",
+      "canonical_sha256": "483afb36ea0de093219379453cb3dccd158d6acdf8cc52fc76c413d82e832e11",
+      "byte_identical": true
+    },
+    "Build/simulator/rk4.mjs": {
+      "sha256": "1e8d78356aa3a5b439652eb6e868f7c1869df8ff2d3024814a240661a7f8357b",
+      "canonical_sha256": "1e8d78356aa3a5b439652eb6e868f7c1869df8ff2d3024814a240661a7f8357b",
+      "byte_identical": true
+    },
+    "Build/simulator/trajectories.mjs": {
+      "sha256": "b187a110b7f50c2293dc692b74682fb6d460e6154e877102af65e07548d4f8b7",
+      "canonical_sha256": "b187a110b7f50c2293dc692b74682fb6d460e6154e877102af65e07548d4f8b7",
+      "byte_identical": true
+    },
+    "contracts/overlay/CONTRACT.md": {
+      "sha256": "b6930ccbe350fa33cef714fff024587f35f7d23ff3678a7ba239c8c86927cf2b",
+      "canonical_sha256": "b6930ccbe350fa33cef714fff024587f35f7d23ff3678a7ba239c8c86927cf2b",
+      "byte_identical": true
+    },
+    "contracts/overlay/__init__.py": {
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "canonical_sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "byte_identical": true
+    },
+    "contracts/overlay/validate.py": {
+      "sha256": "53aff38131b51fe7e55d924fed8262c99179f40630c6ebafdf075567b7633672",
+      "canonical_sha256": "53aff38131b51fe7e55d924fed8262c99179f40630c6ebafdf075567b7633672",
+      "byte_identical": true
+    },
+    "tests/prediction/test_boundary.py": {
+      "sha256": "cefed48bdeeb03fc65503e7021a445dad89e85e509580c3da040e5bef8e2fe17",
+      "canonical_sha256": "cefed48bdeeb03fc65503e7021a445dad89e85e509580c3da040e5bef8e2fe17",
+      "byte_identical": true
+    },
+    "tests/prediction/test_overlay.py": {
+      "sha256": "8e4f26efd3426f87f481299efe9a5f06062da45c5bc7ef57ad86949a5e36980f",
+      "canonical_sha256": "8e4f26efd3426f87f481299efe9a5f06062da45c5bc7ef57ad86949a5e36980f",
+      "byte_identical": true
+    },
+    "tests/prediction/test_params.py": {
+      "sha256": "00a16a9e1bc112be87b09cb4c0675ce3588fbeff0a1c6b4c74180021946cad91",
+      "canonical_sha256": "00a16a9e1bc112be87b09cb4c0675ce3588fbeff0a1c6b4c74180021946cad91",
+      "byte_identical": true
+    },
+    "tests/prediction/test_predict.py": {
+      "sha256": "0bc47e295b9099c247d1bdb1f2d12ba9f67aaaa3113d9c8bb55f0dca0789bc00",
+      "canonical_sha256": "0bc47e295b9099c247d1bdb1f2d12ba9f67aaaa3113d9c8bb55f0dca0789bc00",
+      "byte_identical": true
+    },
+    "tests/prediction/test_score.py": {
+      "sha256": "61415c62d2e81698afad69b4682af8fc646883447ca12a9731b6f1514fc945fb",
+      "canonical_sha256": "61415c62d2e81698afad69b4682af8fc646883447ca12a9731b6f1514fc945fb",
+      "byte_identical": true
+    }
+  },
+  "historical_artifacts_unchanged": [
+    "evidence/S12/prediction-ST03.json",
+    "evidence/S12/overlay-ST03.json",
+    "evidence/S12/overlay-pendulum-SYNTHETIC.json"
+  ]
+}

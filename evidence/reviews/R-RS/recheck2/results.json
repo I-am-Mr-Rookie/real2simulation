@@ -1,0 +1,446 @@
+{
+  "warning": "review-only synthetic probes; no real gate success",
+  "snapshot": "d87fe75c440b5d27737ee373df8ab6f4bc6c96d3",
+  "known_public_identity_synthetic_observations": {
+    "scores": {
+      "projectile": {
+        "clip_id": "PJ03",
+        "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+        "kind": "projectile",
+        "prediction_sha256": "6a9cb5213f4e75f693007b0b8b302c4621ea33fff014aa8a23713a5e733fd0f4",
+        "prediction_commitment": "prediction/v2",
+        "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+        "sealed_frames": 5,
+        "scored_frames": 5,
+        "coverage": 1.0,
+        "normalized_rms": 0.0,
+        "normalized_rms_first5_diagnostic": 0.0,
+        "max_abs": 0.0,
+        "scored": true,
+        "provenance": "synthetic",
+        "input_receipt": {
+          "clip_id": "PJ03",
+          "category": "projectile",
+          "experiment": "projectile",
+          "licence": "CC-BY-SA-4.0",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf"
+        },
+        "ineligible_reason": null,
+        "gate_m": "NOT_MET"
+      },
+      "bounce": {
+        "clip_id": "BN01",
+        "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+        "kind": "bounce",
+        "prediction_sha256": "5fc6a33b572f2a1471b8fab5f64992272fbb5379d94b128849912043217b1c0e",
+        "prediction_commitment": "prediction/v2",
+        "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+        "sealed_frames": 5,
+        "scored_frames": 5,
+        "coverage": 1.0,
+        "normalized_rms": 0.0,
+        "normalized_rms_first5_diagnostic": 0.0,
+        "max_abs": 0.0,
+        "scored": true,
+        "provenance": "synthetic",
+        "input_receipt": {
+          "clip_id": "BN01",
+          "category": "bounce",
+          "experiment": "bounce",
+          "licence": "CC-BY-SA-4.0",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b"
+        },
+        "ineligible_reason": null,
+        "gate_m": "NOT_MET"
+      },
+      "pendulum": {
+        "clip_id": "PD02",
+        "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+        "kind": "pendulum",
+        "prediction_sha256": "83a865db78e661f84dab51fc51c251cbea29ae73a42343af33b890ea923fa916",
+        "prediction_commitment": "prediction/v2",
+        "suffix_identity_sha256": "6d121170db1f4ae7cc424a88bb84a3ed25f4dd6d9eb9cfd7fee46362fcf7f819",
+        "sealed_frames": 5,
+        "scored_frames": 5,
+        "coverage": 1.0,
+        "normalized_rms": 0.0,
+        "normalized_rms_first5_diagnostic": 0.0,
+        "max_abs": 0.0,
+        "scored": true,
+        "provenance": "synthetic",
+        "input_receipt": {
+          "clip_id": "PD02",
+          "category": "pendulum",
+          "experiment": "pendulum",
+          "licence": "Pexels License",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d"
+        },
+        "ineligible_reason": null,
+        "gate_m": "NOT_MET"
+      }
+    },
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": 0.0,
+        "bounce": 0.0,
+        "pendulum": 0.0
+      },
+      "input_receipts": {
+        "projectile": {
+          "clip_id": "PJ03",
+          "category": "projectile",
+          "experiment": "projectile",
+          "licence": "CC-BY-SA-4.0",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf"
+        },
+        "bounce": {
+          "clip_id": "BN01",
+          "category": "bounce",
+          "experiment": "bounce",
+          "licence": "CC-BY-SA-4.0",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b"
+        },
+        "pendulum": {
+          "clip_id": "PD02",
+          "category": "pendulum",
+          "experiment": "pendulum",
+          "licence": "Pexels License",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d"
+        }
+      },
+      "median": 0.0,
+      "threshold": 0.05,
+      "status": "MET",
+      "shortfall": [],
+      "gate_m": "NOT_MET"
+    },
+    "media_or_tracker_read": false,
+    "prediction_committed_before_observation_loader": true
+  },
+  "known_public_identity_false_image_label": {
+    "per_category_normalized_rms": {
+      "projectile": 0.0,
+      "bounce": 0.0,
+      "pendulum": 0.0
+    },
+    "input_receipts": {
+      "projectile": {
+        "clip_id": "PJ03",
+        "category": "projectile",
+        "experiment": "projectile",
+        "licence": "CC-BY-SA-4.0",
+        "approval_ref": "evidence/owner/S02/APPROVAL.md",
+        "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+        "registry_ref": "evidence/clips/S02c-acquisition.json",
+        "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf"
+      },
+      "bounce": {
+        "clip_id": "BN01",
+        "category": "bounce",
+        "experiment": "bounce",
+        "licence": "CC-BY-SA-4.0",
+        "approval_ref": "evidence/owner/S02/APPROVAL.md",
+        "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+        "registry_ref": "evidence/clips/S02c-acquisition.json",
+        "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b"
+      },
+      "pendulum": {
+        "clip_id": "PD02",
+        "category": "pendulum",
+        "experiment": "pendulum",
+        "licence": "Pexels License",
+        "approval_ref": "evidence/owner/S02/APPROVAL.md",
+        "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+        "registry_ref": "evidence/clips/S02c-acquisition.json",
+        "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d"
+      }
+    },
+    "median": 0.0,
+    "threshold": 0.05,
+    "status": "MET",
+    "shortfall": [],
+    "gate_m": "NOT_MET"
+  },
+  "synthetic_tracker_payload_wrong_source": {
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": 0.0,
+        "bounce": 4.965068306494546e-17,
+        "pendulum": 0.0
+      },
+      "input_receipts": {
+        "projectile": {
+          "clip_id": "PJ03",
+          "category": "projectile",
+          "experiment": "projectile",
+          "licence": "CC-BY-SA-4.0",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf"
+        },
+        "bounce": {
+          "clip_id": "BN01",
+          "category": "bounce",
+          "experiment": "bounce",
+          "licence": "CC-BY-SA-4.0",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b"
+        },
+        "pendulum": {
+          "clip_id": "PD02",
+          "category": "pendulum",
+          "experiment": "pendulum",
+          "licence": "Pexels License",
+          "approval_ref": "evidence/owner/S02/APPROVAL.md",
+          "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+          "registry_ref": "evidence/clips/S02c-acquisition.json",
+          "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d"
+        }
+      },
+      "median": 0.0,
+      "threshold": 0.05,
+      "status": "MET",
+      "shortfall": [],
+      "gate_m": "NOT_MET"
+    },
+    "validator": "validate_segment OK in all three categories",
+    "all_raw_clip_and_source_identities_differ_from_receipt": true,
+    "media_or_checkpoint_bytes_read": false
+  },
+  "unknown_public_identity_refused": {
+    "per_category_normalized_rms": {
+      "projectile": null,
+      "bounce": null,
+      "pendulum": null
+    },
+    "input_receipts": {
+      "projectile": null,
+      "bounce": null,
+      "pendulum": null
+    },
+    "median": null,
+    "threshold": 0.05,
+    "status": "NOT_MET",
+    "shortfall": [
+      "projectile",
+      "bounce",
+      "pendulum"
+    ],
+    "gate_m": "NOT_MET"
+  },
+  "valid_receipt_f4_and_legacy_controls": "all three categories refuse v1, nonfinite/negative RMS, cross-category receipt",
+  "category_matrix": {
+    "PJ03": {
+      "projectile": "accepted",
+      "bounce": "clip 'PJ03' experiment 'projectile' is not eligible for 'bounce'",
+      "pendulum": "clip 'PJ03' experiment 'projectile' is not eligible for 'pendulum'"
+    },
+    "BN01": {
+      "projectile": "clip 'BN01' experiment 'bounce' is not eligible for 'projectile'",
+      "bounce": "accepted",
+      "pendulum": "clip 'BN01' experiment 'bounce' is not eligible for 'pendulum'"
+    },
+    "PD02": {
+      "projectile": "clip 'PD02' experiment 'pendulum' is not eligible for 'projectile'",
+      "bounce": "clip 'PD02' experiment 'pendulum' is not eligible for 'bounce'",
+      "pendulum": "accepted"
+    }
+  },
+  "licence_regex": {
+    "CC-BY-SA-4.0": true,
+    "CC-BY-4.0": true,
+    "CC0-1.0": true,
+    "Public Domain": true,
+    "Pexels License": true,
+    "Pixabay Content License": true,
+    "CC-BY-NC-4.0": false,
+    "CC-BY-ND-4.0": false,
+    "CC-BY-NC-SA-4.0": false,
+    "pd-nc": true,
+    "pd-not-public": true,
+    "CC-BY-999.99": true,
+    "CC-BY-.": true
+  },
+  "licence_full_receipt": {
+    "CC-BY-NC-4.0": "clip 'PJ03' licence 'CC-BY-NC-4.0' is not an allowed public licence",
+    "CC-BY-ND-4.0": "clip 'PJ03' licence 'CC-BY-ND-4.0' is not an allowed public licence",
+    "pd-nc": "accepted",
+    "pd-not-public": "accepted",
+    "CC-BY-999.99": "accepted",
+    "CC-BY-.": "accepted"
+  },
+  "approval_parser": {
+    "negated_use": "accepted",
+    "unrelated_use_mention": "accepted",
+    "ids_spaces": "clip 'PJ03' is not owner-approved for local scene/tracking pipeline work in evidence/owner/S02/APPROVAL.md"
+  },
+  "registry_controls": {
+    "missing_sha": "ValueError: clip 'PJ03' source sha does not match the acquisition registry",
+    "duplicate_clip": "ValueError: clip 'PJ03' source sha does not match the acquisition registry",
+    "duplicate_csv": "ValueError: clip 'PJ03' is not exactly one clips.csv row",
+    "missing_approval": "ValueError: clip 'PJ03' is not owner-approved for local scene/tracking pipeline work in evidence/owner/S02/APPROVAL.md",
+    "wrong_category": "ValueError: clip 'PJ03' experiment 'scene' is not eligible for 'projectile'"
+  },
+  "real_evidence_recomputed": {
+    "score": {
+      "clip_id": "ST03",
+      "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+      "kind": "projectile",
+      "prediction_sha256": "b9c092b5d5cb27bc0878ddd39a20538fd3f4cc2c864a1b89f6a08c417ffc7cc1",
+      "prediction_commitment": "prediction/v2",
+      "suffix_identity_sha256": "aee71c42f900f9b96dc2ad2f9cf15cdcdb467cefec502100a8cc06776d27115c",
+      "sealed_frames": 466,
+      "scored_frames": 7,
+      "coverage": 0.015021459227467811,
+      "normalized_rms": 0.1981633916341227,
+      "normalized_rms_first5_diagnostic": 0.13266993873624996,
+      "max_abs": 0.3334069487508844,
+      "scored": false,
+      "provenance": "image-derived",
+      "input_receipt": {
+        "clip_id": "ST03",
+        "category": "projectile",
+        "experiment": "free_fall",
+        "licence": "Pexels License",
+        "approval_ref": "evidence/owner/S02/APPROVAL.md",
+        "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+        "registry_ref": "evidence/clips/S02c-acquisition.json",
+        "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051"
+      },
+      "ineligible_reason": null,
+      "gate_m": "NOT_MET"
+    },
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "input_receipts": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "median": null,
+      "threshold": 0.05,
+      "status": "NOT_MET",
+      "shortfall": [
+        "projectile",
+        "bounce",
+        "pendulum"
+      ],
+      "gate_m": "NOT_MET"
+    },
+    "input_hashes_match": true
+  },
+  "measured_values_unchanged_vs_pre_fix2": [
+    "sealed_frames",
+    "scored_frames",
+    "coverage",
+    "normalized_rms",
+    "normalized_rms_first5_diagnostic",
+    "max_abs",
+    "scored"
+  ],
+  "tracker_identity_probes": {
+    "clip_id": {
+      "altered_value": "OTHER-CLIP",
+      "validator": "validate_segment OK",
+      "same_observations": true
+    },
+    "source_sha256": {
+      "altered_value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "validator": "validate_segment OK",
+      "same_observations": true
+    }
+  },
+  "gate_m": {
+    "json_files_checked": [
+      "evidence\\S12\\boundary-ST03.json",
+      "evidence\\S12\\gate-rs\\billing-post.json",
+      "evidence\\S12\\gate-rs\\containers-after-job1.json",
+      "evidence\\S12\\gate-rs\\containers-after-job2.json",
+      "evidence\\S12\\gate-rs\\containers-before-job2.json",
+      "evidence\\S12\\gate-rs\\containers-before.json",
+      "evidence\\S12\\gate-rs\\gate-rs.json",
+      "evidence\\S12\\gate-rs\\ST03-f58-542\\result.json",
+      "evidence\\S12\\gate-rs\\ST03-f58-542-cost.json",
+      "evidence\\S12\\gate-rs\\ST03-f58-83\\result.json",
+      "evidence\\S12\\gate-rs\\ST03-f58-83-cost.json",
+      "evidence\\S12\\overlay-pendulum-SYNTHETIC-v2.json",
+      "evidence\\S12\\overlay-pendulum-SYNTHETIC.json",
+      "evidence\\S12\\overlay-ST03-v2.json",
+      "evidence\\S12\\overlay-ST03.json",
+      "evidence\\S12\\params-ST03.json",
+      "evidence\\S12\\prediction-ST03-v2.json",
+      "evidence\\S12\\prediction-ST03.json"
+    ],
+    "gate_m_fields_checked": 28,
+    "owning_gate": {
+      "coverage": null,
+      "gate_passed": false,
+      "independent_measured_count": 0,
+      "max_relative_error": 0.05,
+      "mean_g_m_s2": null,
+      "mean_relative_error": null,
+      "measured_count": 0,
+      "physics_evaluation": "NOT_RUN",
+      "qualifying_count": 0,
+      "reference_g_m_s2": 9.81,
+      "required_successes": 2,
+      "required_trials": 3,
+      "status": "NOT_MET_INPUT_READINESS"
+    }
+  },
+  "closed_probes": {
+    "v2_clip_id": "ValueError: predicted trace changed after hashing",
+    "v2_source_sha256": "ValueError: predicted trace changed after hashing",
+    "v2_training_sha256": "ValueError: predicted trace changed after hashing",
+    "v2_suffix_identity_sha256": "ValueError: predicted trace changed after hashing",
+    "v2_suffix_count": "ValueError: predicted trace changed after hashing",
+    "v2_model": "ValueError: predicted trace changed after hashing",
+    "v2_kind": "ValueError: predicted trace changed after hashing",
+    "v2_trace": "ValueError: predicted trace changed after hashing",
+    "v2_commitment": "ValueError: legacy prediction/v1 is audit-readable only, never newly eligible; re-commit as v2",
+    "foreign_unmodified": "ValueError: prediction/v2 commitment binds a different clip, source, training prefix or seal",
+    "self_consistent_v2_subset": "ValueError: prediction trace does not cover the complete sealed suffix",
+    "foreign_metadata_only": "ValueError: predicted trace changed after hashing",
+    "foreign_overlay_builder": "ValueError: predicted trace changed after hashing",
+    "foreign_overlay_validator": "OverlayError: traces[0]: trace or custody metadata changed after commitment",
+    "legacy_score": "ValueError: legacy prediction/v1 is audit-readable only, never newly eligible; re-commit as v2",
+    "legacy_overlay_build": "ValueError: legacy prediction/v1 is audit-readable only, never newly eligible; re-commit as v2",
+    "nonfinite_0_nan": "ValueError: frame 10: observation must be finite (pts_s, y_norm)",
+    "nonfinite_1_nan": "ValueError: frame 10: observation must be finite (pts_s, y_norm)",
+    "nonfinite_0_inf": "ValueError: frame 10: observation must be finite (pts_s, y_norm)",
+    "nonfinite_1_inf": "ValueError: frame 10: observation must be finite (pts_s, y_norm)",
+    "nonfinite_0_-inf": "ValueError: frame 10: observation must be finite (pts_s, y_norm)",
+    "nonfinite_1_-inf": "ValueError: frame 10: observation must be finite (pts_s, y_norm)",
+    "wrong_source_PJ03": "ValueError: clip 'PJ03' source sha does not match the acquisition registry",
+    "wrong_source_BN01": "ValueError: clip 'BN01' source sha does not match the acquisition registry",
+    "wrong_source_PD02": "ValueError: clip 'PD02' source sha does not match the acquisition registry",
+    "F3_wrong_object": "validate_segment rejected (unscored): segment: record tracks object 999, expected 2",
+    "F3_missing_stages": "validate_segment rejected (unscored): segment: incomplete SAM output (missing stages ['checkpoint', 'model_loaded', 'tracked'])",
+    "F3_missing_masks": "validate_segment rejected (unscored): segment: frame 58: object 2 has no box, centroid or mask"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "R-RS-recheck2-orch62",
+  "status": "DONE",
+  "issued_at": "2026-10-30T04:22:30+00:00",
+  "deadline_at": "2026-10-30T04:52:30+00:00",
+  "implementation_cutoff_at": "2026-10-30T04:47:30+00:00",
+  "work_stopped_at": "2026-10-30T05:00:01+00:00",
+  "reported_at": "2026-10-30T05:00:32+00:00"
+}
