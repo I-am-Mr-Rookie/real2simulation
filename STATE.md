@@ -1,6 +1,9 @@
 # Real2Simulation — STATE
 
-Oct30 ~20:58Z: ACCEPTED S15p-orch160 DONE (controller runs runBrowserSimulation on the API validated_setup verbatim and never forges trust
+Oct30 ~20:36Z: Dispatched S15o-orch161 (Sonnet high, live dev walk in the in-app browser: RM04 upload -> spec with the Q16 label -> Run, which is
+expected to fail honestly pending Q20), thread 01a18e85-e88b, dl 21:04:46Z. Next RID orch162.
+
+Oct30 ~20:34Z: ACCEPTED S15p-orch160 DONE (controller runs runBrowserSimulation on the API validated_setup verbatim and never forges trust
 fields; fit shape mismatch fixed (API wants {times,positions} and returns top-level gravity; re-enveloped for parseFitReveal, raw fit sent to
 /report); report html shown only in a sandboxed iframe with labels + spec label; instruments honest 'not available'. 106/106 node tests
 fresh by controller; web DEV e6bf5fe2 SUCCESS; deployments.json web updated). STRUCTURAL GAP: the API spec route returns a bare spec, not
