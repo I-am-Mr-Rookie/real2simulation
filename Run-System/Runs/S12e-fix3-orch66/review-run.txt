@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S12e-fix3-orch66\evidence\reviews\R-RS\recheck2\review.py", line 307, in <module>
+    print(json.dumps(run(), indent=2, allow_nan=False))
+                     ~~~^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S12e-fix3-orch66\evidence\reviews\R-RS\recheck2\review.py", line 116, in run
+    assert bypass["status"] == "MET" and bypass["median"] == 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

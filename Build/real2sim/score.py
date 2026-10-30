@@ -6,6 +6,9 @@ Gate RS = median over projectile/bounce/pendulum <= 5%; a category without a sco
 shortfall. Gate M is NOT_MET: no calibrated g, scale, clock or physical-accuracy claim.
 Eligibility (R-RS F1-R/F2-R): a prediction/v2 commitment bound to the seal, and an independent public-input
 receipt from clips.csv + evidence/owner/S02/APPROVAL.md + the S02c acquisition hash registry.
+F2-R2: observations must come through Tracked (accepted tracker artifact: path+sha custody, validate_segment,
+tracker clip/source identity == receipt, prefix re-tracked); gate() re-derives them. Generic/synthetic scoring
+still works but is never gate-eligible.
 """
 import csv
 import hashlib
@@ -25,11 +28,26 @@ THRESHOLD, MIN_COVERAGE, EARLY = 0.05, 0.8, 5
 ST03_TRACK = "evidence/S12/gate-rs/ST03-f58-83/result.json"
 APPROVAL, REGISTRY = "evidence/owner/S02/APPROVAL.md", "evidence/clips/S02c-acquisition.json"
 APPROVED_USE = "local scene/tracking pipeline work"
+# F2-A: the authoritative grant is the Use line directly under Approved IDs, phrased exactly as owner-approved.
+GRANT = re.compile(r"^\*\*Approved IDs:\*\*\s*([A-Z0-9,]+)\.?[ \t]*\r?\n\*\*Use:\*\*[ \t]*(.*)$", re.M)
+NEGATION = re.compile(r"\b(not|no|denied|deny|revoked|withdrawn|never|except)\b", re.I)
 # clips.csv experiment -> Gate RS category (ST03 free fall is the ballistic/projectile case, as pre-registered).
 CATEGORY_EXPERIMENTS = {"projectile": {"projectile", "free_fall"}, "bounce": {"bounce"}, "pendulum": {"pendulum"}}
-# Allowed by AGENTS.md: NASA/US-Gov PD, CC0, CC BY, CC BY-SA, Pexels, Pixabay. NC/ND never match.
-LICENCE = re.compile(r"pexels( license)?|pixabay( (content )?license)?|pd-[a-z-]+|public domain|cc0(-1\.0)?"
-                     r"|cc-by(-sa)?-[0-9.]+", re.I)
+# F2-L: finite allowlist per AGENTS.md (NASA PD, Commons PD, CC0, CC BY, CC BY-SA, Pexels, Pixabay); NC/ND never listed.
+CC_VERSIONS = ("1.0", "2.0", "2.5", "3.0", "4.0")
+LICENCES = frozenset({"pexels", "pexels license", "pixabay", "pixabay license", "pixabay content license",
+                      "public domain", "pd-usgov-nasa", "pd-usgov", "pd-self", "pd-old", "cc0", "cc0-1.0"}
+                     | {f"cc-by{sa}-{v}" for sa in ("", "-sa") for v in CC_VERSIONS})
+PREFIX_TOL = 0.002  # image heights; ST03 f58-83 re-track vs orch14 prefix measured 0.00045
+
+
+def approved(clip_id, text):
+    """F2-A: True only for a positive scoped grant in the single authoritative Approved IDs/Use block."""
+    blocks = GRANT.findall(text)
+    if len(blocks) != 1:
+        return False
+    ids, use = blocks[0]
+    return clip_id in ids.split(",") and use.startswith(APPROVED_USE + " ONLY") and not NEGATION.search(use)
 
 
 def public_receipt(clip_id, source_sha256, category, root=ROOT):
@@ -42,10 +60,9 @@ def public_receipt(clip_id, source_sha256, category, root=ROOT):
     if len(rows) != 1:
         raise ValueError(f"clip {clip_id!r} is not exactly one clips.csv row")
     row, raw = rows[0], (root / APPROVAL).read_bytes()
-    approved = re.search(r"\*\*Approved IDs:\*\*\s*([A-Z0-9,]+)", raw.decode("utf-8"))
-    if not approved or clip_id not in approved.group(1).split(",") or APPROVED_USE not in raw.decode("utf-8"):
+    if not approved(clip_id, raw.decode("utf-8")):
         raise ValueError(f"clip {clip_id!r} is not owner-approved for {APPROVED_USE} in {APPROVAL}")
-    if not LICENCE.fullmatch(row["licence"].strip()):
+    if row["licence"].strip().lower() not in LICENCES:
         raise ValueError(f"clip {clip_id!r} licence {row['licence']!r} is not an allowed public licence")
     hashes = [f.get("sha256") for f in json.loads((root / REGISTRY).read_text(encoding="utf-8"))["files"]
               if f.get("clip_id") == clip_id]
@@ -66,10 +83,64 @@ def _finite(v):
     return type(v) in (int, float) and math.isfinite(v)
 
 
+def _obs_sha(observed):
+    return hashlib.sha256(json.dumps(sorted([i, *v] for i, v in observed.items())).encode()).hexdigest()
+
+
+class Tracked:
+    """The only gate-eligible observation loader: accepted tracker artifact under root (F2-R2).
+
+    Custody = artifact path + sha256; validate_segment outcome; tracker clip/source == the boundary's (receipt) identity;
+    every training (prefix) frame re-tracked within PREFIX_TOL. Returns suffix observations; .evidence goes to score().
+    """
+
+    def __init__(self, boundary, rel, frame_pts, root=ROOT, object_id=2, prompt="apple"):
+        self.boundary, self.rel, self.frame_pts, self.root, self.evidence = boundary, rel, frame_pts, root, None
+        self.object_id, self.prompt = object_id, prompt
+
+    def __call__(self):
+        b, raw = self.boundary, _artifact(self.root, self.rel)
+        source = [i for i, _ in json.loads(raw)["frame_map"]]
+        fpts = [[i, self.frame_pts[i]] for i in source]
+        obs, note = st03_observations(raw.decode(), dict(fpts), b.clip_id, b.source_sha256, self.object_id, self.prompt)
+        diffs = [abs(obs[i][1] - y) for i, _, y in b.training if i in obs]
+        if obs and (len(diffs) != len(b.training) or max(diffs) > PREFIX_TOL):
+            raise ValueError("tracker artifact does not re-track the committed prefix (prefix custody)")
+        self.evidence = {"path": self.rel, "sha256": hashlib.sha256(raw).hexdigest(), "clip_id": b.clip_id,
+                         "source_sha256": b.source_sha256, "object_id": self.object_id, "prompt": self.prompt,
+                         "validate": note, "frame_pts": fpts,
+                         "after_frame": b.last_training_frame, "prefix_frames": len(diffs),
+                         "prefix_max_abs": max(diffs) if diffs else None}
+        return {i: v for i, v in obs.items() if i > b.last_training_frame}
+
+
+def _artifact(root, rel):
+    path = (root / rel).resolve()
+    if not path.is_relative_to(root.resolve()):
+        raise ValueError(f"tracker artifact {rel!r} is outside the evidence root")
+    return path.read_bytes()
+
+
+def _tracking_ok(r, root):
+    """gate(): re-read the carried artifact, re-check sha/validation/identity and the scored observation digest."""
+    e = r.get("tracking_evidence")
+    if r.get("provenance") == "synthetic" or not isinstance(e, dict) or e.get("validate") != "validate_segment OK":
+        return False
+    if (e.get("clip_id"), e.get("source_sha256")) != (r.get("clip_id"), r.get("source_sha256")):
+        return False
+    raw = _artifact(root, e["path"])
+    if hashlib.sha256(raw).hexdigest() != e.get("sha256"):
+        return False
+    obs, note = st03_observations(raw.decode(), {i: p for i, p in e["frame_pts"]}, r["clip_id"], r["source_sha256"],
+                                  e["object_id"], e["prompt"])
+    suffix = {i: v for i, v in obs.items() if i > e["after_frame"]}
+    return note == "validate_segment OK" and _obs_sha(suffix) == r.get("observations_sha256")
+
+
 def score(boundary, sealed, prediction, committed_sha256, load_observations, provenance="synthetic"):
     """Verify seal + v2 committed prediction, THEN call load_observations() -> {frame: (pts_s, y_norm)}.
 
-    provenance is a descriptive label only; gate eligibility comes from public_receipt(), never from it.
+    provenance is descriptive except 'synthetic' (never eligible); eligibility needs public_receipt() AND a Tracked loader.
     """
     verify(boundary, sealed)
     require_v2(prediction, boundary)  # R-RS F1-R: custody bound into the commitment, checked before any read
@@ -84,6 +155,9 @@ def score(boundary, sealed, prediction, committed_sha256, load_observations, pro
     except ValueError as error:
         receipt, ineligible = None, str(error)
     observed = load_observations()  # first suffix read: only after both checks passed
+    tracking = load_observations.evidence if isinstance(load_observations, Tracked) else None
+    if tracking is None and ineligible is None:
+        ineligible = "observations did not come through the accepted tracking-evidence path (Tracked)"
     errors = []
     for i, p, y, _ in prediction.trace:
         if i in observed:
@@ -101,11 +175,12 @@ def score(boundary, sealed, prediction, committed_sha256, load_observations, pro
             "normalized_rms_first5_diagnostic": _rms(errors[:EARLY]),
             "max_abs": max(map(abs, errors)) if errors else None,
             "scored": coverage >= MIN_COVERAGE and rms is not None, "provenance": provenance,
-            "input_receipt": receipt, "ineligible_reason": ineligible, "gate_m": GATE_M}
+            "input_receipt": receipt, "ineligible_reason": ineligible, "tracking_evidence": tracking,
+            "observations_sha256": _obs_sha(observed), "gate_m": GATE_M}
 
 
 def _eligible(category, r, root=ROOT):
-    """R-RS F2/F2-R/F4: recompute eligibility, re-deriving the public-input receipt independently."""
+    """R-RS F2/F2-R/F2-R2/F4: recompute eligibility, re-deriving the receipt and tracking evidence independently."""
     if not isinstance(r, dict) or r.get("kind") != category:
         return False
     if r.get("prediction_commitment") != "prediction/v2":  # F1-R: legacy v1 results are audit-only
@@ -113,7 +188,9 @@ def _eligible(category, r, root=ROOT):
     try:
         if r.get("input_receipt") != public_receipt(r.get("clip_id"), r.get("source_sha256"), category, root):
             return False
-    except (ValueError, TypeError, KeyError, OSError):
+        if not _tracking_ok(r, root):
+            return False
+    except (ValueError, TypeError, KeyError, OSError, IndexError):
         return False
     n, k, rms = r.get("sealed_frames"), r.get("scored_frames"), r.get("normalized_rms")
     if type(n) is not int or type(k) is not int or not 0 < k <= n or not _finite(rms) or rms < 0:
@@ -142,11 +219,12 @@ def gate(results, root=ROOT):
             "shortfall": [c for c, v in per.items() if v is None or v > THRESHOLD], "gate_m": GATE_M}
 
 
-def st03_observations(raw, frame_pts, height):
-    """Tracked obj-2 centroids via Build/pipeline validate_segment; frame_pts = presentation-map PTS.
+def st03_observations(raw, frame_pts, clip_id, source_sha256, object_id=2, prompt="apple"):
+    """Tracked centroids via Build/pipeline validate_segment; frame_pts = presentation-map PTS.
 
     modal_track streams/masks use segment-relative indices 0..n-1 while record frames use source indices;
     validate_segment assumes they coincide (true only for first=0), so relative k is mapped to frame_map[k].
+    F2-R2: tracker clip/source must equal the expected (receipt) identity, frame_sha256 one per frame; else ValueError.
     """
     from Build.pipeline.gpu_stages import validate_segment
     from Build.pipeline.gpu_stages import StageError
@@ -158,10 +236,17 @@ def st03_observations(raw, frame_pts, height):
         row[0] = source[row[0]]
     fmap = [(i, frame_pts[i]) for i in source]
     try:
-        frames = validate_segment(json.dumps(out), "apple", 2, fmap)["frames"]
+        seg = validate_segment(json.dumps(out), prompt, object_id, fmap)
     except StageError as error:  # R-RS F3: a rejected segment is an explicit unscored shortfall, never scored
         return {}, f"validate_segment rejected (unscored): {error}"
-    return {f["frame_index"]: (f["pts_s"], f["centroid_px"][1] / height) for f in frames}, "validate_segment OK"
+    if (seg["clip_id"], seg["source_sha256"]) != (clip_id, source_sha256):
+        raise ValueError(f"tracker identity {seg['clip_id']!r}/{seg['source_sha256']!r} != expected {clip_id!r}")
+    fsha = seg["frame_sha256"]
+    if fsha is not None and not (isinstance(fsha, list) and len(fsha) == len(source)
+                                 and all(isinstance(h, str) and len(h) == 64 for h in fsha)):
+        raise ValueError("tracker frame_sha256 is not one sha256 per extracted frame")
+    height = out["record"]["height_px"]  # validate_segment checked every mask against this
+    return {f["frame_index"]: (f["pts_s"], f["centroid_px"][1] / height) for f in seg["frames"]}, "validate_segment OK"
 
 
 def main(root=ROOT):
@@ -172,17 +257,10 @@ def main(root=ROOT):
     raw = (root / ST03_TRACK).read_bytes()
     pmap = json.loads((root / "evidence/S07/S07b/recovery3/presentation-map.json").read_text(encoding="utf-8"))
     frame_pts = {f["source_frame_index"]: float(f["pts_time"]) for f in pmap["frames"]}
-    notes = {}
-
-    def load():
-        obs, notes["validate"] = st03_observations(raw.decode(), frame_pts, record["height_px"])
-        prefix = {i: y for i, _, y in boundary.training}
-        diffs = [abs(obs[i][1] - y) for i, y in prefix.items() if i in obs]
-        notes["prefix_retrack_max_abs_vs_orch14"] = max(diffs) if diffs else None
-        return {i: v for i, v in obs.items() if i > boundary.last_training_frame}
-
+    load = Tracked(boundary, ST03_TRACK, frame_pts, root)
     st03 = score(boundary, sealed, prediction, committed["prediction"]["sha256"], load, "image-derived")
-    result = gate({"projectile": st03})
+    notes = {"validate": load.evidence["validate"], "prefix_retrack_max_abs_vs_orch14": load.evidence["prefix_max_abs"]}
+    result = gate({"projectile": st03}, root)
     out = {"gate": "RS", "gate_m": GATE_M, "limitations": list(LIMITS), "result": result,
            "metric": "per clip RMS |y_pred - y_obs| / image height over sealed suffix; median over categories",
            "clips": {"projectile": st03 | notes, "bounce": None, "pendulum": None},

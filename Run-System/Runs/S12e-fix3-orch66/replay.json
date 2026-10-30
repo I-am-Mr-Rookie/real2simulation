@@ -1,0 +1,95 @@
+{
+  "known_public_identity_synthetic_observations": {
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "input_receipts": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "median": null,
+      "threshold": 0.05,
+      "status": "NOT_MET",
+      "shortfall": [
+        "projectile",
+        "bounce",
+        "pendulum"
+      ],
+      "gate_m": "NOT_MET"
+    },
+    "ineligible": {
+      "projectile": "observations did not come through the accepted tracking-evidence path (Tracked)",
+      "bounce": "observations did not come through the accepted tracking-evidence path (Tracked)",
+      "pendulum": "observations did not come through the accepted tracking-evidence path (Tracked)"
+    }
+  },
+  "known_public_identity_false_image_label": {
+    "gate": {
+      "per_category_normalized_rms": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "input_receipts": {
+        "projectile": null,
+        "bounce": null,
+        "pendulum": null
+      },
+      "median": null,
+      "threshold": 0.05,
+      "status": "NOT_MET",
+      "shortfall": [
+        "projectile",
+        "bounce",
+        "pendulum"
+      ],
+      "gate_m": "NOT_MET"
+    },
+    "ineligible": {
+      "projectile": "observations did not come through the accepted tracking-evidence path (Tracked)",
+      "bounce": "observations did not come through the accepted tracking-evidence path (Tracked)",
+      "pendulum": "observations did not come through the accepted tracking-evidence path (Tracked)"
+    }
+  },
+  "tracker_identity_probes": {
+    "wrong_clip": "ValueError: tracker identity 'NOT-ST03'/'7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051' != expected 'ST03'",
+    "wrong_clip_score": "ValueError: tracker identity 'NOT-ST03'/'7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051' != expected 'ST03'",
+    "wrong_source": "ValueError: tracker identity 'ST03'/'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff' != expected 'ST03'",
+    "wrong_source_score": "ValueError: tracker identity 'ST03'/'ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff' != expected 'ST03'",
+    "other_public_clip": "ValueError: tracker identity 'PJ03'/'7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051' != expected 'ST03'",
+    "other_public_clip_score": "ValueError: tracker identity 'PJ03'/'7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051' != expected 'ST03'",
+    "legacy_3arg_call": "TypeError: st03_observations() missing 1 required positional argument: 'source_sha256'"
+  },
+  "real_evidence": {
+    "normalized_rms": 0.1981633916341227,
+    "scored_frames": 7,
+    "sealed_frames": 466,
+    "coverage": 0.015021459227467811,
+    "scored": false,
+    "tracking_ok": true
+  },
+  "transplanted_real_evidence_onto_synthetic": "shortfall (all categories)",
+  "licence_full_receipt": {
+    "CC-BY-NC-4.0": "ValueError: clip 'PJ03' licence 'CC-BY-NC-4.0' is not an allowed public licence",
+    "CC-BY-ND-4.0": "ValueError: clip 'PJ03' licence 'CC-BY-ND-4.0' is not an allowed public licence",
+    "pd-nc": "ValueError: clip 'PJ03' licence 'pd-nc' is not an allowed public licence",
+    "pd-not-public": "ValueError: clip 'PJ03' licence 'pd-not-public' is not an allowed public licence",
+    "CC-BY-999.99": "ValueError: clip 'PJ03' licence 'CC-BY-999.99' is not an allowed public licence",
+    "CC-BY-.": "ValueError: clip 'PJ03' licence 'CC-BY-.' is not an allowed public licence",
+    "CC-BY-": "ValueError: clip 'PJ03' licence 'CC-BY-' is not an allowed public licence"
+  },
+  "approval_parser": {
+    "negated_use": "ValueError: clip 'PJ03' is not owner-approved for local scene/tracking pipeline work in evidence/owner/S02/APPROVAL.md",
+    "unrelated_use_mention": "ValueError: clip 'PJ03' is not owner-approved for local scene/tracking pipeline work in evidence/owner/S02/APPROVAL.md",
+    "original_accepted": "PJ03"
+  },
+  "gate_m": {
+    "json_files": 18,
+    "gate_m_fields": 28,
+    "owning_gate": "NOT_MET_INPUT_READINESS"
+  }
+}

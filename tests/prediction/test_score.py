@@ -1,7 +1,11 @@
 """S12e: Gate RS scoring verifies seal + committed sha BEFORE reading suffix observations."""
 import dataclasses
 import json
+import shutil
+import tempfile
 import unittest
+from pathlib import Path
+from unittest import mock
 
 from Build.real2sim import boundary as b
 from Build.real2sim import overlay as o
@@ -10,10 +14,10 @@ from Build.real2sim import score as s
 from Build.real2sim.params import ROOT
 
 
-def ids_only(clip="SYNTHETIC", shift=0):
+def ids_only(clip="SYNTHETIC", shift=0, sha="a" * 64):
     # SYNTHETIC: y_px = 100 + 20 i + 3 i^2 on frames 0..9 (H=1000); suffix identities 10..14 only (untracked seal).
     frames = [{"frame_index": i, "pts_s": i / 30, "y_px": 100 + 20 * i + 3 * i * i + shift} for i in range(10)]
-    boundary, sealed = b.split({"clip_id": clip, "source_sha256": "a" * 64, "last_training_frame": 9,
+    boundary, sealed = b.split({"clip_id": clip, "source_sha256": sha, "last_training_frame": 9,
                                 "height_px": 1000, "frames": frames}, [(i, i / 30) for i in range(10, 15)])
     return boundary, sealed, pr.projectile(boundary, sealed)
 
@@ -33,6 +37,12 @@ def eligible(kind, clip, rms=0.01):
 
 
 class ScoreTests(unittest.TestCase):
+    def setUp(self):
+        # receipt/arithmetic layer only; the tracking-evidence re-check is exercised unpatched in TrackingEvidenceTests.
+        patcher = mock.patch.object(s, "_tracking_ok", return_value=True)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+
     def test_exact_truth_scores_zero_and_loader_runs_after_checks(self):
         boundary, sealed, pred = ids_only()
         calls = []
@@ -153,7 +163,7 @@ class ScoreTests(unittest.TestCase):
         pred = pr.projectile(boundary, sealed)
         raw = json.loads((ROOT / s.ST03_TRACK).read_text(encoding="utf-8"))
         raw["record"]["tracking"]["object_id"] = 999
-        obs, note = s.st03_observations(json.dumps(raw), o.st03_frame_map(ROOT), record["height_px"])
+        obs, note = s.st03_observations(json.dumps(raw), o.st03_frame_map(ROOT), "ST03", record["source_sha256"])
         self.assertEqual(obs, {})
         self.assertIn("rejected (unscored)", note)
         r = s.score(boundary, sealed, pred, pred.sha256, lambda: obs, "image-derived")
@@ -173,6 +183,110 @@ class ScoreTests(unittest.TestCase):
             self.assertEqual((g["status"], g["shortfall"]), ("NOT_MET", ["pendulum"]))
         g = s.gate({"projectile": eligible("projectile", "P1", -0.1)})
         self.assertIn("projectile", g["shortfall"])
+
+
+def st03():
+    record, suffix, _ = pr.st03_record(ROOT)
+    boundary, sealed = b.split(record, suffix)
+    return boundary, sealed, pr.projectile(boundary, sealed)
+
+
+class TrackingEvidenceTests(unittest.TestCase):
+    """R-RS F2-R2 / F2-A / F2-L regressions (no patching of the eligibility path)."""
+
+    def test_f2r2_known_public_id_true_sha_synthetic_observations_are_shortfall(self):
+        for prov in ("synthetic", "image-derived"):
+            results = {}
+            for kind, clip in (("projectile", "PJ03"), ("bounce", "BN01"), ("pendulum", "PD02")):
+                boundary, sealed, base = ids_only(clip=clip, sha=SHA[clip])
+                pred = pr._seal(kind, boundary, f"{kind} fixture", base.trace)
+                truth = {i: (t, y) for i, t, y, _ in pred.trace}
+                r = s.score(boundary, sealed, pred, pred.sha256, lambda: truth, prov)
+                self.assertIsNotNone(r["input_receipt"])  # identity is genuinely public...
+                self.assertIn("tracking-evidence", r["ineligible_reason"])  # ...but observations are not tracked
+                self.assertEqual((r["scored"], r["normalized_rms"], r["tracking_evidence"]), (True, 0.0, None))
+                results[kind] = r
+            g = s.gate(results)
+            self.assertEqual((g["status"], g["median"], g["shortfall"]), ("NOT_MET", None, list(s.CATEGORIES)))
+
+    def test_f2r2_real_evidence_rechecked_and_not_transplantable(self):
+        boundary, sealed, pred = st03()
+        load = s.Tracked(boundary, s.ST03_TRACK, o.st03_frame_map(ROOT))
+        real = s.score(boundary, sealed, pred, pred.sha256, load, "image-derived")
+        self.assertEqual((real["scored_frames"], real["tracking_evidence"]["prefix_frames"]), (7, 19))
+        self.assertTrue(s._tracking_ok(real, ROOT))
+        self.assertFalse(s._tracking_ok(real | {"provenance": "synthetic"}, ROOT))  # explicit synthetic never eligible
+        self.assertFalse(s._tracking_ok(real | {"observations_sha256": "0" * 64}, ROOT))  # scored obs bound to artifact
+        self.assertFalse(s._tracking_ok(real | {"clip_id": "PJ03", "source_sha256": SHA["PJ03"]}, ROOT))
+        bad = dict(real["tracking_evidence"], sha256="0" * 64)
+        self.assertFalse(s._tracking_ok(real | {"tracking_evidence": bad}, ROOT))
+        outside = dict(real["tracking_evidence"], path="../outside.json")
+        self.assertFalse(s._eligible("projectile", real | {"tracking_evidence": outside}))
+        shifted = tuple((i, p, y + 0.01) for i, p, y in boundary.training)  # prefix not from this artifact
+        with self.assertRaisesRegex(ValueError, "prefix custody"):
+            s.Tracked(dataclasses.replace(boundary, training=shifted), s.ST03_TRACK, o.st03_frame_map(ROOT))()
+
+    def test_f2r2_wrong_source_tracker_payload_and_mutated_real_record_refused(self):
+        boundary, sealed, pred = st03()
+        raw = json.loads((ROOT / s.ST03_TRACK).read_text(encoding="utf-8"))
+        fmap = o.st03_frame_map(ROOT)
+        for field, value in (("clip_id", "PJ03"), ("source_sha256", SHA["PJ03"]), ("clip_id", None)):
+            mutated = json.loads(json.dumps(raw))
+            mutated["record"][field] = value
+            with self.assertRaisesRegex(ValueError, "tracker identity"):
+                s.st03_observations(json.dumps(mutated), fmap, "ST03", boundary.source_sha256)
+            with tempfile.TemporaryDirectory() as tmp:
+                Path(tmp, "track.json").write_text(json.dumps(mutated), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "tracker identity"):
+                    s.score(boundary, sealed, pred, pred.sha256, s.Tracked(boundary, "track.json", fmap, Path(tmp)),
+                            "image-derived")
+        self.assertEqual(s.gate({})["shortfall"], list(s.CATEGORIES))  # refused score => no result => shortfall
+        mutated = json.loads(json.dumps(raw))
+        mutated["frame_sha256"] = mutated["frame_sha256"][:-1]
+        with self.assertRaisesRegex(ValueError, "frame_sha256"):
+            s.st03_observations(json.dumps(mutated), fmap, "ST03", boundary.source_sha256)
+
+    def test_f2a_only_positive_scoped_grant_in_authoritative_block(self):
+        text = (ROOT / s.APPROVAL).read_text(encoding="utf-8")
+        self.assertTrue(s.approved("PJ03", text))
+        self.assertFalse(s.approved("XX99", text))
+        denied = {"negated_use": text.replace("**Use:** local", "**Use:** NOT approved for local"),
+                  "unrelated_use_mention": "**Approved IDs:** PJ03.\n**Use:** DENIED.\n"
+                                           "Prior request: local scene/tracking pipeline work\n",
+                  "only_then_denied": text.replace("work ONLY", "work ONLY - DENIED"),
+                  "two_blocks": text + "\n**Approved IDs:** PJ03.\n**Use:** local scene/tracking pipeline work ONLY\n",
+                  "unrecognized": "**Approved IDs:** PJ03.\n**Use:** demo publication\n"}
+        for name, doc in denied.items():
+            self.assertFalse(s.approved("PJ03", doc), name)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = copy_inputs(Path(tmp))
+            (root / s.APPROVAL).write_text(denied["negated_use"], encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "owner-approved"):
+                s.public_receipt("PJ03", SHA["PJ03"], "projectile", root)
+
+    def test_f2l_finite_licence_allowlist(self):
+        for good in ("Pexels", "Pexels License", "PD-USGov-NASA", "CC-BY-SA-4.0", "CC-BY-3.0", "CC0"):
+            self.assertIn(good.lower(), s.LICENCES)
+        for bad in ("pd-nc", "pd-not-public", "CC-BY-999.99", "CC-BY-", "CC-BY-NC-4.0", "CC-BY-ND-4.0",
+                    "CC-BY-NC-SA-4.0", "pd-", "cc-by-sa-4.0.1"):
+            self.assertNotIn(bad.lower(), s.LICENCES, bad)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = copy_inputs(Path(tmp))
+            csv_path = root / "clips.csv"
+            original = csv_path.read_text(encoding="utf-8")
+            row = next(line for line in original.splitlines() if line.startswith("PJ03,"))
+            licence = next(x for x in row.split(",") if x.strip().lower() in s.LICENCES)
+            for bad in ("pd-nc", "pd-not-public", "CC-BY-999.99", "CC-BY-"):
+                csv_path.write_text(original.replace(row, row.replace(licence, bad, 1)), encoding="utf-8")
+                with self.assertRaisesRegex(ValueError, "licence"):
+                    s.public_receipt("PJ03", SHA["PJ03"], "projectile", root)
+
+
+def copy_inputs(root):
+    for rel in ("clips.csv", s.APPROVAL, s.REGISTRY):
+        (root / rel).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(ROOT / rel, root / rel)
+    return root
 
 
 if __name__ == "__main__":
