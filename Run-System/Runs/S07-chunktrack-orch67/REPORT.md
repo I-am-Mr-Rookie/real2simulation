@@ -1,7 +1,7 @@
 # S07-chunktrack-orch67 REPORT — PARTIAL (mode DONE; PD02 measured < 1.25 periods; BN01 re-seed stopped)
 
 Lane CODEX-1 (S07/S12); assigned anthropic/claude-opus-5-5/high (OpenCodex-managed; not polled). Branch run/S07-chunktrack-orch67 from main a2fa169.
-Issued 05:07:12Z; UTC start 05:07:53Z; work stopped 05:29Z; deadline 05:37:12Z. Tokens unknown. Modal: 3 jobs, retries 0; Meta/AWS spend 0.
+Issued 05:07:12Z; UTC start 05:07:53Z; implementation stopped 05:30Z (billing read 05:34Z), work_stopped/reported at deadline; deadline 05:37:12Z. Tokens unknown. Modal: 3 jobs, retries 0; Meta/AWS spend 0.
 
 ## Change (Build/measurement/runtime/modal_track.py, +~90 lines)
 - `--chunk N` (default 0 = unchanged single-session path, orch14 defaults/args unchanged): `chunk_spans` (1-frame overlap, tail >=3 frames),
@@ -20,7 +20,8 @@ Issued 05:07:12Z; UTC start 05:07:53Z; work stopped 05:29Z; deadline 05:37:12Z. 
 | PD02 f0-438 (whole clip) "gold ball" | ap-aWSShryM8nygn84r9uzF5G | 30, re-seed IoU min 0.984 | **439/439** (PTS 0-14.6 s) | full **OK** | 17.14 GB | 216 | 0.080 |
 | BN01 f3385-3560 "ball" | ap-XZl3qSj8FbdV0I07l0chXv | 3, stopped at chunk 2 (f3415: no re-detection, IoU 0) | 31/176 (14.170-14.295 s) | full rejected (f3416 missing); observed subset OK | 17.14 GB | 55 | 0.020 |
 | PD04 f0-599 "ball" | ap-SHTDPOF4taWCluMdzjl8Zc | 2, stopped | 0/600 (prompt found no obj 0) | rejected | 17.09 GB | 54 | 0.020 |
-*cost_log.cost(remote_elapsed_s, A10G, 2 CPU, 16 GiB) only; excludes cold start; billed not reconciled (hourly billing lag) -> billed_usd null in gpu-ledger.jsonl.
+*cost_log.cost(remote_elapsed_s, A10G, 2 CPU, 16 GiB) only; excludes cold start. Modal billing report read 05:34Z (billing-post.json; hourly, may still
+accrue): billed PD02 0.0879, BN01 0.0251, PD04 0.0263 = **0.1394 USD**.
 Reservation per job 0.56 (1500 s cap), total 1.68 <= 2.50. Containers before [] (containers-before.json), after [] (containers-after.json,
 containers-after-PD04.json); apps-after.json shows both first apps stopped, tasks 0.
 
@@ -38,7 +39,7 @@ containers-after-PD04.json); apps-after.json shows both first apps stopped, task
 ## Ponytail (full)
 - Reused: existing session calls (start/add_prompt/propagate/close), `sanitize_responses` for the merged record, existing `log` rows/mask_rle,
   `_pts` presentation map, frame SHA list, cost_log.cost, validate_segment. One CLI flag; default path byte-identical behavior.
-- Skipped: mask/box re-seed (unverified API), automatic retries/prompt search, billing reconciliation, Build/pipeline fixes, PD03/PD06 jobs.
+- Skipped: mask/box re-seed (unverified API), automatic retries/prompt search, Build/pipeline fixes, PD03/PD06 jobs.
 - PD02 identity check: SAM centroid vs S02c template-box centre over 439 frames median 5.2 px, p95 13.2, max 14.2 (PD02-vs-S02c-template.json; rough reference, not ground truth) => obj 0 is the gold bob throughout.
 - Risks: text re-seed fails on blur/occlusion (fails closed, loses tail); chunk-0 object_id is caller-chosen "first detection".
 
