@@ -1,0 +1,13 @@
+{
+  "id": "S16e-orch103",
+  "status": "BLOCKED",
+  "issued_at": "2026-10-30T07:10:08+00:00",
+  "deadline_at": "2026-10-30T07:40:08+00:00",
+  "implementation_cutoff_at": "2026-10-30T07:35:08+00:00",
+  "work_stopped_at": "2026-10-30T07:13:53+00:00",
+  "reported_at": "2026-10-30T07:14:33+00:00",
+  "controller_exception": {
+    "reason": "resource_stop",
+    "approval_receipt": "Run-System/Runs/ORCH-20261029-1654/EXCEPTION-S16e-orch103.md"
+  }
+}
