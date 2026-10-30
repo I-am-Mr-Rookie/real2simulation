@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+ACCEPTED S14g-fix5-orch95 DONE (Oct30 06:47Z; timing PASS; rebased, 59 agent tests OK, oracle 56/56 agrees; merged 0a18072):
+structural unit-binding rule at display boundary + independent oracle; offline replay gate_a=MET_AMENDED_Q16, 30/30 saved
+turns shown, 0 invented; residual: label adjacency has no unit-dimension check. DISPATCHED R-A-recheck3-orch96 Sol high
+(thread 01a18b90-6228-78a2-acf3-036569432d12, deadline 2026-10-30T07:17:20+00:00). On CLEAR: S14g DONE (MET_AMENDED_Q16), then S14h.
+
 OWNER Q16 ANSWERED = A (Oct30 ~13:05 Dhaka, chat): Gate A amended - numeric-contract validation on recorded scenes is
 acceptable, labelled verbatim "scale unverified, not setup-validated"; report as MET_AMENDED_Q16 (never plain MET), with
 setup-validator 0/10 shown. Still requires R-A CLEAR on numeric-language enforcement. Supersedes the default-B note below.
