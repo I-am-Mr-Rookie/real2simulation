@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T22:45Z — orch: owner input (Oct31) on owner-recorded clips; S07g + S15x dispatched
+
+- Owner message (verbatim, preserved): New owner inputs (Oct31): owner-recorded drop clips in "Videos for Meta AI Hackathon/" — read CLIPS.md there (roles, windows, scale: book horizontal edge 20.28 cm). Add them to clips.csv as owner-recorded (face-free trims; public use still needs my go-ahead). Priority: (1) run the real pipeline (SAM 3.1 track + fit) on 01_demo_hero and report g ± uncertainty against 9.79; evaluate 02–06 as held-out/robustness; (2) product must accept 30 fps phone clips, ask for a known size, and report uncertainty instead of failing; (3) one UI pass applying myfront 1.2.0 (round-3) + make-interfaces-feel-better, and propose 6 Mobbin references for me to pick 3; (4) update the 3-min script with the stopwatch-vs-phone before/after. Prefer Claude per standing rule. No publication.
+- QUEUE rows added: S07g (register + hero g), S07h (02-06 held-out/robustness; after S07g), S15v (product phone clips/known size/uncertainty; after S07g+S15u), S15w (UI pass; after S15u+S15x), S15x (6 Mobbin refs), S24k (script; after S07h). DECISIONS_LOG appended.
+- Dispatched S07g-orch167 (Opus high) thread 01a18ef9-dbba-7531-a82c-12cd61aac090 and S15x-orch168 (Sonnet medium) thread 01a18efa-d70b-7ac1-bcaf-7c52a8fb9f66; both deadline 23:11:13Z (05:11 Dhaka). S15u-orch166 still running (05:01 Dhaka).
+
 ## 2026-10-30T22:33Z — orch: S15t-orch165 accepted; DEV walk reaches Report; S15u dispatched
 
 - S15t: Opus high, TIMEBOX PASS, diff within Owns; fresh node 113/113, api-workspace 21; ff-merged (root causes: fit view fed revealed fit instead of {times, output}; fit request lacked degree/select_model so report KeyError model_selection). DEV web b1805418 recorded; API unchanged; verify.py exit 0.
