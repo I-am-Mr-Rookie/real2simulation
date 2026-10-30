@@ -12,6 +12,11 @@
       "bounce": null,
       "pendulum": null
     },
+    "input_receipts": {
+      "projectile": null,
+      "bounce": null,
+      "pendulum": null
+    },
     "median": null,
     "threshold": 0.05,
     "status": "NOT_MET",
@@ -26,8 +31,10 @@
   "clips": {
     "projectile": {
       "clip_id": "ST03",
+      "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
       "kind": "projectile",
-      "prediction_sha256": "c81e0f94c110eb229502b37d03c29ec36b11621ed8ca97015f9e671508c9d1b0",
+      "prediction_sha256": "b9c092b5d5cb27bc0878ddd39a20538fd3f4cc2c864a1b89f6a08c417ffc7cc1",
+      "prediction_commitment": "prediction/v2",
       "suffix_identity_sha256": "aee71c42f900f9b96dc2ad2f9cf15cdcdb467cefec502100a8cc06776d27115c",
       "sealed_frames": 466,
       "scored_frames": 7,
@@ -37,6 +44,17 @@
       "max_abs": 0.3334069487508844,
       "scored": false,
       "provenance": "image-derived",
+      "input_receipt": {
+        "clip_id": "ST03",
+        "category": "projectile",
+        "experiment": "free_fall",
+        "licence": "Pexels License",
+        "approval_ref": "evidence/owner/S02/APPROVAL.md",
+        "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+        "registry_ref": "evidence/clips/S02c-acquisition.json",
+        "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051"
+      },
+      "ineligible_reason": null,
       "gate_m": "NOT_MET",
       "validate": "validate_segment OK",
       "prefix_retrack_max_abs_vs_orch14": 0.00045112303100769413

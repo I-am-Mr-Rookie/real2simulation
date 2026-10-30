@@ -3,7 +3,7 @@
 Scale-free image-height units only. Gate M is NOT_MET: no calibrated g, scale, clock or
 physical-accuracy claim. Scoring against held-out observations is S12e, not here.
 """
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import hashlib
 import json
 import math
@@ -15,10 +15,16 @@ from Build.fitter import jacobian_covariance
 from Build.real2sim.boundary import GATE_M, LIMITS, _sha, fit_prefix, record_json, split
 from Build.real2sim.params import ROOT, from_fit
 
+COMMITMENT, LEGACY = "prediction/v2", "prediction/v1"
+
 
 @dataclass(frozen=True)
 class Prediction:
-    """Immutable predicted trace: ((frame_index, pts_s, y_pred, sigma_or_None), ...)."""
+    """Immutable predicted trace: ((frame_index, pts_s, y_pred, sigma_or_None), ...).
+
+    prediction/v2 (R-RS F1-R) commits kind, model, trace AND clip id, source sha, training sha, suffix seal
+    hash and count. Defaults describe a legacy prediction/v1 object (digest over [kind, model, trace] only).
+    """
     kind: str
     clip_id: str
     training_sha256: str
@@ -27,6 +33,18 @@ class Prediction:
     trace: tuple
     sha256: str
     gate_m: str = GATE_M
+    source_sha256: str = None
+    suffix_count: int = None
+    commitment: str = LEGACY
+
+
+def commitment_sha256(p):
+    if p.commitment == COMMITMENT:
+        return _sha([COMMITMENT, p.kind, p.model, p.trace, p.clip_id, p.source_sha256, p.training_sha256,
+                     p.suffix_identity_sha256, p.suffix_count])
+    if p.commitment == LEGACY:
+        return _sha([p.kind, p.model, p.trace])
+    raise ValueError(f"unknown prediction commitment {p.commitment!r}")
 
 
 def _identities(boundary, sealed):
@@ -41,14 +59,30 @@ def _identities(boundary, sealed):
 
 def _seal(kind, boundary, model, trace):
     trace = tuple(tuple(row) for row in trace)
-    return Prediction(kind, boundary.clip_id, boundary.training_sha256,
-                      boundary.suffix_identity_sha256, model, trace, _sha([kind, model, trace]))
+    p = Prediction(kind, boundary.clip_id, boundary.training_sha256, boundary.suffix_identity_sha256, model, trace,
+                   "", source_sha256=boundary.source_sha256, suffix_count=boundary.suffix_count, commitment=COMMITMENT)
+    return replace(p, sha256=commitment_sha256(p))
 
 
 def check(prediction):
     """Raise unless the trace still matches the hash taken at prediction time."""
-    if _sha([prediction.kind, prediction.model, prediction.trace]) != prediction.sha256:
+    if commitment_sha256(prediction) != prediction.sha256:
         raise ValueError("predicted trace changed after hashing")
+
+
+def require_v2(prediction, boundary):
+    """R-RS F1-R: new eligible evidence needs a v2 commitment whose bound custody equals this exact seal."""
+    if prediction.commitment != COMMITMENT:
+        raise ValueError("legacy prediction/v1 is audit-readable only, never newly eligible; re-commit as v2")
+    check(prediction)
+    bound = (prediction.clip_id, prediction.source_sha256, prediction.training_sha256,
+             prediction.suffix_identity_sha256, prediction.suffix_count)
+    if bound != (boundary.clip_id, boundary.source_sha256, boundary.training_sha256,
+                 boundary.suffix_identity_sha256, boundary.suffix_count):
+        raise ValueError("prediction/v2 commitment binds a different clip, source, training prefix or seal")
+    ids = tuple((r[0], r[1]) for r in prediction.trace)
+    if len(ids) != boundary.suffix_count or _sha(ids) != boundary.suffix_identity_sha256:
+        raise ValueError("prediction trace does not cover the complete sealed suffix")
 
 
 def projectile(boundary, sealed):
@@ -160,18 +194,24 @@ def main(root=ROOT):
     boundary, sealed = split(record, suffix)
     prediction = projectile(boundary, sealed)
     old = json.loads((root / "evidence/S12/boundary-ST03.json").read_text(encoding="utf-8"))["boundary"]
+    # F1-R: v1 prediction-ST03.json is kept as legacy-audited; the v2 re-commit must be the same frozen trace.
+    v1 = json.loads((root / "evidence/S12/prediction-ST03.json").read_text(encoding="utf-8"))["prediction"]["sha256"]
+    if commitment_sha256(replace(prediction, commitment=LEGACY)) != v1:
+        raise ValueError("re-derived trace differs from the legacy v1 commitment; refusing v2 re-commit")
     out = record_json(boundary, inputs=inputs, prediction=as_json(prediction),
                       parameters=from_fit(boundary, "image-derived"),
                       suffix_observations_read=False,
                       supersedes_s12a_seal={"suffix_identity_sha256": old["suffix_identity_sha256"],
                                             "suffix_count": old["suffix_count"],
                                             "reason": "frame 77 quarantine lifted: errata f76 PTS 2.535867 < f77 2.569233"},
-                      note=("Suffix observations NOT tracked; S12e must track exactly these sealed identities, "
+                      legacy_v1_prediction={"path": "evidence/S12/prediction-ST03.json", "sha256": v1},
+                      note=("prediction/v2 re-commit of the legacy v1 trace from the same frozen inputs. "
+                            "Suffix observations NOT tracked; S12e must track exactly these sealed identities, "
                             "verify(), then score against prediction.sha256. y>1 is beyond the image bottom: "
                             "ballistic model has no floor (no ST03 bounce observation)."))
-    path = root / "evidence/S12/prediction-ST03.json"
+    path = root / "evidence/S12/prediction-ST03-v2.json"
     path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
-    print(f"evidence/S12/prediction-ST03.json gate_m={GATE_M} suffix={boundary.suffix_count} "
+    print(f"evidence/S12/prediction-ST03-v2.json gate_m={GATE_M} suffix={boundary.suffix_count} "
           f"sha256={prediction.sha256}")
 
 
