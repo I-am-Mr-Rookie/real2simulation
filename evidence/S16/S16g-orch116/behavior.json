@@ -1,0 +1,133 @@
+{
+  "label": "OFFLINE_SYNTHETIC_FAKE_TRANSPORT",
+  "live_requests": 0,
+  "inference_cost_usd": 0,
+  "patch_errors": {
+    "out_of_scope": "Invalid sidebar input at properties.patch.additionalProperties; check required fields, types and allowed values.",
+    "stale_hash": "stale base_spec_sha256",
+    "oversized": "Sidebar call exceeds the 64 KiB limit; send a smaller request.",
+    "invalid_unit": "Invalid patch candidate; check complete sections, finite quantities, supported units and nesting."
+  },
+  "search_results": {
+    "baseten_timeout": {
+      "schema_version": "sidebar-tools/1.0.0",
+      "call_id": "search_one",
+      "scene_id": "scene_one",
+      "tool": "library.search",
+      "status": "error",
+      "payload": {
+        "code": "not_ready",
+        "issues": [
+          "Library search unavailable: baseten request failed or timed out; no automatic provider switch."
+        ]
+      },
+      "tool_outputs": [],
+      "execution": {
+        "provider": "baseten",
+        "model": "meta-models/muse-spark-open-1026",
+        "state": "failed",
+        "meta_bonus_claimed": false
+      }
+    },
+    "baseten_malformed": {
+      "schema_version": "sidebar-tools/1.0.0",
+      "call_id": "search_one",
+      "scene_id": "scene_one",
+      "tool": "library.search",
+      "status": "error",
+      "payload": {
+        "code": "not_ready",
+        "issues": [
+          "Library search unavailable: baseten response was unusable; no automatic provider switch."
+        ]
+      },
+      "tool_outputs": [],
+      "execution": {
+        "provider": "baseten",
+        "model": "meta-models/muse-spark-open-1026",
+        "state": "failed",
+        "meta_bonus_claimed": false
+      }
+    },
+    "baseten_empty": {
+      "schema_version": "sidebar-tools/1.0.0",
+      "call_id": "search_one",
+      "scene_id": "scene_one",
+      "tool": "library.search",
+      "status": "ok",
+      "payload": {
+        "query": "free fall",
+        "items": []
+      },
+      "tool_outputs": [],
+      "execution": {
+        "provider": "baseten",
+        "model": "meta-models/muse-spark-open-1026",
+        "state": "served",
+        "meta_bonus_claimed": false
+      }
+    },
+    "fireworks_timeout": {
+      "schema_version": "sidebar-tools/1.0.0",
+      "call_id": "search_one",
+      "scene_id": "scene_one",
+      "tool": "library.search",
+      "status": "error",
+      "payload": {
+        "code": "not_ready",
+        "issues": [
+          "Library search unavailable: fireworks request failed or timed out; no automatic provider switch."
+        ]
+      },
+      "tool_outputs": [],
+      "execution": {
+        "provider": "fireworks",
+        "model": "accounts/fireworks/models/synthetic-ranker",
+        "state": "failed",
+        "meta_bonus_claimed": false
+      }
+    },
+    "fireworks_malformed": {
+      "schema_version": "sidebar-tools/1.0.0",
+      "call_id": "search_one",
+      "scene_id": "scene_one",
+      "tool": "library.search",
+      "status": "error",
+      "payload": {
+        "code": "not_ready",
+        "issues": [
+          "Library search unavailable: fireworks response was unusable; no automatic provider switch."
+        ]
+      },
+      "tool_outputs": [],
+      "execution": {
+        "provider": "fireworks",
+        "model": "accounts/fireworks/models/synthetic-ranker",
+        "state": "failed",
+        "meta_bonus_claimed": false
+      }
+    },
+    "fireworks_empty": {
+      "schema_version": "sidebar-tools/1.0.0",
+      "call_id": "search_one",
+      "scene_id": "scene_one",
+      "tool": "library.search",
+      "status": "ok",
+      "payload": {
+        "query": "free fall",
+        "items": []
+      },
+      "tool_outputs": [],
+      "execution": {
+        "provider": "fireworks",
+        "model": "accounts/fireworks/models/synthetic-ranker",
+        "state": "served",
+        "meta_bonus_claimed": false
+      }
+    }
+  },
+  "limitations": [
+    "Callable behavior, not browser UI acceptance.",
+    "No live availability, billing or bonus eligibility verified."
+  ]
+}

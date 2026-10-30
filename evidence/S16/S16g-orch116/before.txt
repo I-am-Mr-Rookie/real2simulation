@@ -1,0 +1,72 @@
+.FFFEE..
+======================================================================
+ERROR: test_raw_malformed_duplicate_json_does_not_echo_input (test_failure_safety.PatchFailureSafetyTests.test_raw_malformed_duplicate_json_does_not_echo_input) (raw='{"fake-secret-never-log-this":1,"fake-secret-never-log-this":2}')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 102, in test_raw_malformed_duplicate_json_does_not_echo_input
+    c.parse_json(raw)
+    ~~~~~~~~~~~~^^^^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\contracts\experiment\validate_experiment.py", line 43, in parse_json
+    result = json.loads(text, parse_constant=constant, object_pairs_hook=unique)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\json\__init__.py", line 365, in loads
+    return cls(**kw).decode(s)
+           ~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\json\decoder.py", line 345, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\json\decoder.py", line 361, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\contracts\experiment\validate_experiment.py", line 38, in unique
+    raise ExperimentValidationError([f"$: duplicate JSON key {key!r}"])
+contracts.experiment.validate_experiment.ExperimentValidationError: $: duplicate JSON key 'fake-secret-never-log-this'
+
+======================================================================
+ERROR: test_raw_malformed_duplicate_json_does_not_echo_input (test_failure_safety.PatchFailureSafetyTests.test_raw_malformed_duplicate_json_does_not_echo_input)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 103, in test_raw_malformed_duplicate_json_does_not_echo_input
+    self.assertNotIn(SECRET, str(caught.exception))
+                                 ^^^^^^^^^^^^^^^^
+AttributeError: '_AssertRaisesContext' object has no attribute 'exception'
+
+======================================================================
+FAIL: test_malformed_out_of_scope_and_traversal_never_write (test_failure_safety.PatchFailureSafetyTests.test_malformed_out_of_scope_and_traversal_never_write) (kind='dict', index=10)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 69, in test_malformed_out_of_scope_and_traversal_never_write
+    self.reject_everywhere(bad)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 48, in reject_everywhere
+    self.assertNotIn(SECRET, message)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: 'fake-secret-never-log-this' unexpectedly found in "['patch']: Additional properties are not allowed ('fake-secret-never-log-this' was unexpected)"
+
+======================================================================
+FAIL: test_malformed_out_of_scope_and_traversal_never_write (test_failure_safety.PatchFailureSafetyTests.test_malformed_out_of_scope_and_traversal_never_write) (kind='dict', index=15)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 69, in test_malformed_out_of_scope_and_traversal_never_write
+    self.reject_everywhere(bad)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 48, in reject_everywhere
+    self.assertNotIn(SECRET, message)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: 'fake-secret-never-log-this' unexpectedly found in "$.simulation.duration.unit: 'fake-secret-never-log-this' is not one of ['m', 's', 'kg', 'm/s', 'm/s^2', 'rad', 'rad/s', '1']; $.simulation.duration.unit: 's' was expected"
+
+======================================================================
+FAIL: test_oversized_patch_rejected_before_experiment_validation (test_failure_safety.PatchFailureSafetyTests.test_oversized_patch_rejected_before_experiment_validation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 75, in test_oversized_patch_rejected_before_experiment_validation
+    self.reject_everywhere(bad)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 43, in reject_everywhere
+    with self.assertRaises(c.SidebarContractError) as caught:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: SidebarContractError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.336s
+
+FAILED (failures=3, errors=2)

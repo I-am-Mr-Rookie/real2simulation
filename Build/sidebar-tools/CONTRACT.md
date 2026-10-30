@@ -13,7 +13,9 @@ Result: `{schema_version, call_id, scene_id, tool, status, payload, tool_outputs
 All fields required; unknown fields rejected at every locally defined object boundary.
 Results must match call id, scene id and tool. `status` is `ok` or `error`.
 APIs return defensive copies. Exceptions are `SidebarContractError`; direct
-`spec_sha256`/`parse_json` use existing experiment errors (`ValueError` subclasses).
+`spec_sha256` uses existing experiment errors (`ValueError` subclasses).
+`parse_json` reuses strict experiment parsing but exposes a sanitized
+`SidebarContractError` (`ValueError`), never raw duplicate keys or input values.
 Parse raw JSON using `parse_json` **before** either validator to reject duplicate keys.
 
 ### `spec.patch`
@@ -268,6 +270,31 @@ Codes: invalid_request, stale_spec, not_found, not_ready, budget_blocked, intern
 `validate_result` requires a valid originating call (including a trusted base for patch);
 malformed pre-envelope transport errors are not this correlated-result contract. Never
 return stack traces/secrets as issues; caller owns safe human-readable errors.
+
+### S16g offline failure boundary
+
+`validate_call` caps the serialized UTF-8 call at **64 KiB**, before experiment
+validation, copying or execution. Oversized, malformed, nonfinite, unencodable,
+cyclic and excessively nested inputs raise readable `SidebarContractError`.
+Schema errors identify trusted schema fields only; candidate errors explain that
+complete sections, finite quantities and supported units are required. Raw input
+values and underlying untrusted validation tracebacks are suppressed. Valid spec
+hashes and whole-section patch semantics are unchanged.
+
+Malformed/out-of-scope/traversal/stale patches remain exceptions, not fake
+correlated success/error receipts: the wire envelope itself may be invalid.
+The host must catch `SidebarContractError` and display `str(error)` without
+publishing stack traces. `apply_patch` is still a pure handoff; rejected calls to
+`RebuildSession.handle` do not change its current spec or execute/write a rebuild.
+This is a callable boundary, not a newly added UI/HTTP route or raw-body server cap.
+
+Both search providers retain the existing one-attempt, no-redirect transport.
+Unavailable config/catalogue, timeout, HTTP errors and unusable responses yield
+sanitized `not_ready` results; no automatic provider switch or numeric outputs.
+An empty successful rank returns `items: []`, `execution.state: served`; an empty
+local catalogue returns `items: []`, `execution.state: not_requested` without
+calling a provider. Neither claims a bonus. Only fake transports were exercised;
+no live provider availability, billing or bonus eligibility is established.
 
 S16a-d local contract/application/rebuild/offline search scope does not complete S16e-h,
 parent S16, real-scene integration or Gate A/RS.

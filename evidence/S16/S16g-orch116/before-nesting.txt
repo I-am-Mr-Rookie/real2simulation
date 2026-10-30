@@ -1,0 +1,2484 @@
+...EE....
+======================================================================
+ERROR: test_nested_candidate_schema_errors_cannot_escape_as_recursion_crash (test_failure_safety.PatchFailureSafetyTests.test_nested_candidate_schema_errors_cannot_escape_as_recursion_crash) (depth=600)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 127, in test_nested_candidate_schema_errors_cannot_escape_as_recursion_crash
+    boundary()
+    ~~~~~~~~^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 122, in <lambda>
+    for boundary in (lambda: c.validate_call(bad, base_spec=self.base),
+                             ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\Build\sidebar-tools\contracts.py", line 203, in validate_call
+    _candidate(call, base_spec)
+    ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\Build\sidebar-tools\contracts.py", line 189, in _candidate
+    candidate.update(copy.deepcopy(call["arguments"]["patch"]))
+                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 202, in _deepcopy_dict
+    y[deepcopy(key, memo)] = deepcopy(value, memo)
+                             ~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\copy.py", line 131, in deepcopy
+    y = copier(x, memo)
+RecursionError: maximum recursion depth exceeded
+
+======================================================================
+ERROR: test_nested_candidate_schema_errors_cannot_escape_as_recursion_crash (test_failure_safety.PatchFailureSafetyTests.test_nested_candidate_schema_errors_cannot_escape_as_recursion_crash)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16g-orch116\tests\sidebar-tools\test_failure_safety.py", line 128, in test_nested_candidate_schema_errors_cannot_escape_as_recursion_crash
+    self.assertNotIn(SECRET, "".join(traceback.format_exception(caught.exception)))
+                                                                ^^^^^^^^^^^^^^^^
+AttributeError: '_AssertRaisesContext' object has no attribute 'exception'
+
+----------------------------------------------------------------------
+Ran 8 tests in 7.742s
+
+FAILED (errors=2)

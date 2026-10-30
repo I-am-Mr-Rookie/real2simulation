@@ -10,7 +10,7 @@ from typing import Any, Literal, NotRequired, TypedDict
 from jsonschema import Draft202012Validator
 
 from contracts.agent.validate import TEMPLATES, validate_tool_output
-from contracts.experiment.validate_experiment import parse_json, validate
+from contracts.experiment.validate_experiment import parse_json as _parse_json, validate
 
 VERSION = "sidebar-tools/1.0.0"
 TOOLS = ("spec.patch", "scene.rebuild", "library.search")
@@ -19,6 +19,7 @@ LICENSES = tuple(json.loads((Path(__file__).resolve().parents[2] /
     "contracts/scene/scene.schema.json").read_text(encoding="utf-8"))["$defs"]["source"]
     ["properties"]["license"]["enum"])
 PATCH_FIELDS = ("environment", "body", "placement", "parameters", "simulation")
+MAX_CALL_BYTES = 64 * 1024
 
 
 class ToolCall(TypedDict):
@@ -137,16 +138,30 @@ RESULT_SCHEMA = _object({"schema_version": {"const": VERSION}, "call_id": ID,
     ["schema_version", "call_id", "scene_id", "tool", "status", "payload", "tool_outputs"])
 
 
-def _check(data, schema):
+def parse_json(text):
+    """Keep strict experiment parsing without echoing untrusted keys or values."""
+    try:
+        return _parse_json(text)
+    except (ValueError, TypeError, OverflowError, RecursionError):
+        raise SidebarContractError("Invalid JSON; check syntax, duplicate keys and finite numbers.") from None
+
+
+def _check(data, schema, *, max_bytes=None):
     # Reuse strict JSON checks for Python objects too (nonfinite numbers/duplicate keys on wire).
     try:
-        parse_json(json.dumps(data, allow_nan=False))
-        issues = sorted(f"{list(e.absolute_path)}: {e.message}"
-                        for e in Draft202012Validator(schema).iter_errors(data))
-    except (ValueError, TypeError, OverflowError, RecursionError) as exc:
-        raise SidebarContractError(str(exc)) from exc
-    if issues:
-        raise SidebarContractError("; ".join(issues))
+        encoded = json.dumps(data, allow_nan=False, ensure_ascii=False).encode("utf-8")
+        if max_bytes is not None and len(encoded) > max_bytes:
+            raise SidebarContractError("Sidebar call exceeds the 64 KiB limit; send a smaller request.")
+        parse_json(encoded)
+        error = next(Draft202012Validator(schema).iter_errors(data), None)
+    except SidebarContractError:
+        raise
+    except (ValueError, TypeError, OverflowError, RecursionError):
+        raise SidebarContractError("Invalid sidebar input; use finite, UTF-8 JSON values without cycles or excessive nesting.") from None
+    if error is not None:
+        # Schema paths are trusted; instance paths/messages can contain secret input.
+        field = ".".join(str(part) for part in error.absolute_schema_path)
+        raise SidebarContractError(f"Invalid sidebar input at {field}; check required fields, types and allowed values.")
 
 
 def spec_sha256(spec: dict[str, Any]) -> str:
@@ -172,13 +187,16 @@ def _candidate(call, base_spec):
         raise SidebarContractError("scene_id does not match base spec")
     candidate = copy.deepcopy(base_spec)
     candidate.update(copy.deepcopy(call["arguments"]["patch"]))
-    validate(candidate)
+    try:
+        validate(candidate)
+    except (ValueError, TypeError, OverflowError, RecursionError):
+        raise SidebarContractError("Invalid patch candidate; check complete sections, finite quantities, supported units and nesting.") from None
     return candidate
 
 
 def validate_call(call: Any, *, base_spec=None) -> ToolCall:
     """Validate before dispatch; patch uses whole-section replacement, never deep merge."""
-    _check(call, CALL_SCHEMA)
+    _check(call, CALL_SCHEMA, max_bytes=MAX_CALL_BYTES)
     _check(call["arguments"], ARGUMENT_SCHEMAS[call["tool"]])
     try:
         if call["tool"] == "spec.patch":
@@ -189,8 +207,10 @@ def validate_call(call: Any, *, base_spec=None) -> ToolCall:
                 raise SidebarContractError("spec_sha256 mismatch")
             if call["scene_id"] != spec["scene"]["scene_id"]:
                 raise SidebarContractError("scene_id does not match rebuild spec")
-    except ValueError as exc:
-        raise SidebarContractError(str(exc)) from exc
+    except SidebarContractError:
+        raise
+    except (ValueError, TypeError, OverflowError, RecursionError):
+        raise SidebarContractError("Invalid experiment spec; check complete sections, finite quantities, supported units and nesting.") from None
     return copy.deepcopy(call)
 
 

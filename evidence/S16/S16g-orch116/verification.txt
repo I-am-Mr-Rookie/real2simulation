@@ -1,0 +1,5 @@
+PASS: AST parse for both changed Python files; offline receipt audit (4 patch errors, 6 search results).
+PASS: test temporary directories cleaned.
+PASS: git diff --check
+TIMING PASS; controller must separately verify evidence and any exception
+PASS: git diff --cached --check; exactly 12 named owned files staged; no cache/temp files.
