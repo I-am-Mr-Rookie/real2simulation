@@ -1,0 +1,12 @@
+test_auth_rejects_missing_bad_token_and_owner (test_analysis.AnalysisRouterTests.test_auth_rejects_missing_bad_token_and_owner) ... ok
+test_fit_is_fitter_handle (test_analysis.AnalysisRouterTests.test_fit_is_fitter_handle) ... ok
+test_no_paid_client_imported (test_analysis.AnalysisRouterTests.test_no_paid_client_imported) ... ok
+test_questions_owner_scoped_and_from_interview (test_analysis.AnalysisRouterTests.test_questions_owner_scoped_and_from_interview) ... ok
+test_report_degree_one_fit_rejected_not_invented (test_analysis.AnalysisRouterTests.test_report_degree_one_fit_rejected_not_invented) ... ok
+test_report_html_fallback_labelled_simulated (test_analysis.AnalysisRouterTests.test_report_html_fallback_labelled_simulated) ... ok
+test_spec_validates_via_interview_and_never_defaults (test_analysis.AnalysisRouterTests.test_spec_validates_via_interview_and_never_defaults) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 8.555s
+
+OK
