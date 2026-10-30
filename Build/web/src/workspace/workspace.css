@@ -57,7 +57,7 @@
 .ws button { font: inherit; color: var(--ws-ink); }
 .ws-chip, .ws-back, .ws-submit, .ws-retry, .ws-nav {
   min-height: 44px; padding-inline: 1rem; cursor: pointer; border: 1px solid var(--ws-ink); border-radius: var(--ws-radius);
-  background: var(--ws-surface); transition: transform .08s ease, box-shadow .08s ease, background-color .12s ease; }
+  background: var(--ws-surface); transition: transform .1s ease-out, box-shadow .1s ease-out, background-color .15s ease-out; }
 .ws-chip:hover:not(:disabled), .ws-back:hover:not(:disabled), .ws-nav:hover:not(:disabled) { background: #f1ebdd; }
 /* .ws prefix: outranks ".ws button { color: ink }", which left ink-on-accent text (~3.3:1, fails AA) */
 .ws .ws-submit, .ws .ws-retry { background: var(--ws-accent); color: var(--ws-accent-ink); font-weight: 700; box-shadow: 3px 3px 0 var(--ws-ink); }
@@ -66,6 +66,7 @@
 .ws-submit[aria-disabled="true"] { background: var(--ws-surface); color: var(--ws-muted); box-shadow: none; border-style: dashed; }
 .ws-chip:disabled, .ws-back:disabled, .ws-submit:disabled, .ws-retry:disabled, .ws-nav:disabled { cursor: not-allowed; opacity: .55; box-shadow: none; transform: none; }
 .ws input, .ws textarea, .ws select { font: inherit; color: var(--ws-ink); background: #fff; border: 1px solid var(--ws-ink); border-radius: var(--ws-radius); }
+.ws :is(input:not([type="checkbox"], [type="radio"], [type="range"]), textarea, select):focus { box-shadow: 3px 3px 0 var(--ws-ink); }
 .ws input:disabled, .ws textarea:disabled { background: #efeadf; color: var(--ws-muted); cursor: not-allowed; }
 .ws input[aria-invalid="true"] { border-color: var(--ws-danger); box-shadow: inset 4px 0 0 var(--ws-danger); }
 
@@ -91,6 +92,8 @@
 .ws-qa .ws-q { color: var(--ws-muted); }
 .ws-qa .ws-a { margin-left: .25rem; }
 .ws-progress { margin: 0; font-size: .8rem; color: var(--ws-muted); font-family: var(--ws-mono); }
+.ws-progress, .ws-status, .ws-inflight, .ws-job > p:first-child { font-variant-numeric: tabular-nums; }
+.ws-banner, .ws-notice, .ws-hint, .ws-failure p, .ws-qa { text-wrap: pretty; }
 .ws-question fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: var(--ws-s2); min-width: 0; }
 .ws-question legend { font-weight: 700; margin-bottom: .4rem; padding: 0; }
 .ws-chips { display: flex; flex-wrap: wrap; gap: var(--ws-s2); }
@@ -127,13 +130,15 @@
 /* S15h: fit + residual chart (two neutrals + one accent) */
 .ws-fit { display: grid; gap: var(--ws-s3); margin-top: var(--ws-s2); min-width: 0; }
 .ws-fit > * { min-width: 0; }
-.ws-resid-more summary { cursor: pointer; font-weight: 600; padding: .3rem 0; }
+.ws-resid-more summary { cursor: pointer; font-weight: 600; padding: .65rem 0; min-height: 44px; } /* list-item display kept: flex would drop the disclosure marker */
 .ws-fit-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
 .ws-fit-table caption { text-align: left; font-weight: 700; padding-bottom: .3rem; }
 .ws-fit-table th, .ws-fit-table td { border-bottom: 1px solid var(--ws-border); padding: .3rem .35rem; text-align: left; overflow-wrap: anywhere; vertical-align: top; }
 .ws-fit-table thead th { font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; color: var(--ws-muted); border-bottom-color: var(--ws-ink); }
 .ws-fit-table tbody th { font-weight: 600; }
 .ws-fit-table td { font-variant-numeric: tabular-nums; }
+.ws-fit-table tbody tr { transition: background-color .15s ease-out; }
+.ws-fit-table tbody tr:hover { background: var(--ws-bg); }
 .ws-fit-table .ws-tag { white-space: nowrap; }
 @media (max-width: 520px) {
   /* 375px: break at word/hyphen boundaries instead of mid-word ("QUANT/ITY"); tighter cells keep the table inside the card */
