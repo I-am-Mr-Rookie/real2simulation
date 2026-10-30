@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+ACCEPTED S12f-orch97 DONE (Oct30 06:55Z; timing PASS; merged; canonical tests/prediction 50/50 OK): code-owned fallback
+re-runs score.gate -> VIRTUAL_LAB_ONLY, real-scene prediction WITHHELD (median unmeasured); labels sidecar
+evidence/S12/S12f-fallback.json (UI consumers must read it); review packet evidence/S12/S12f-REVIEW-PACKET.md. S12 leaves all DONE.
+
 ACCEPTED S16c-orch93 DONE (Oct30 06:55Z; timing PASS; rebased, 56 sidebar-tools tests OK; merged): local rebuild API calls
 existing lab/simulator/fitter, typed outputs with sha256; process-local session/cache; synthetic only. QUEUE S16c -> DONE.
 DISPATCHED S16d-orch98 Sol medium (Baseten adapter, fake transport, NO live call - live inference is S16e; thread
