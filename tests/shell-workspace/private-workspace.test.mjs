@@ -1,7 +1,7 @@
 // S04o: PrivateWorkspace host wiring. Probe decides live vs honest-unavailable; onAction routes to controller/reducers.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { probeApi, routeAction, UNAVAILABLE_NOTICE } from '../../Build/web/src/shell/PrivateWorkspace.mjs';
+import { probeApi, routeAction, UNAVAILABLE_NOTICE, INSTRUMENTS_UNAVAILABLE } from '../../Build/web/src/shell/PrivateWorkspace.mjs';
 import { createController } from '../../Build/web/src/workspace/controller.mjs';
 import { initialInterview } from '../../Build/web/src/workspace/interview.mjs';
 import { initialInstruments } from '../../Build/web/src/workspace/instruments.mjs';
@@ -43,5 +43,6 @@ test('routeAction: Q_* go to the interview reducer, I_MEASURE fails honestly wit
   assert.equal(i.instruments.selected, 'ruler');
   const m = await routeAction(ctl, { ...local, instruments: i.instruments }, { type: 'I_MEASURE' });
   assert.equal(m.instruments.trials.length, 0); // not run.done: no reading, nothing invented
+  assert.match(INSTRUMENTS_UNAVAILABLE, /not available in this build/);
 });
 

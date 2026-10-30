@@ -1,7 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { createController, errorOf, API_BASE } from '../../Build/web/src/workspace/controller.mjs';
+import { createController, errorOf, API_BASE, browserSimulate } from '../../Build/web/src/workspace/controller.mjs';
+import { runBrowserSimulation } from '../../Build/web/src/lab/browser-simulator.mjs';
+import { reportView, renderReport } from '../../Build/web/src/workspace/navigation.mjs';
 import { uploadView, renderUpload } from '../../Build/web/src/workspace/upload-view.mjs';
 import { job, jobReady, observations, fitBody } from '../../Build/web/src/workspace/fixtures.mjs';
 
@@ -23,6 +25,10 @@ const bytes = new Uint8Array([0, 0, 0, 24, 102, 116, 121, 112, 105, 115]); // 10
 const file = () => new File([bytes], 'synthetic.mp4', { type: 'video/mp4' });
 const progress = (j, rev) => ({ contract_version: '1.0.0', kind: 'job_progress', job_id: 'synthetic-job-v1', after_revision: 0, events: [{ revision: rev, message: 'SYNTHETIC' }], job: j });
 const SPEC = { synthetic: true }, SETUP = { synthetic: true, spec: { template: 'free_fall' } };
+// SYNTHETIC body in the real fitter.api.fit_observations shape (top-level gravity/uncertainty, no sessionId).
+const apiFit = (gravity = { value: 9.8, unit: 'm/s^2', uncertainty: 0.1, source: { label: 'simulated', evidence: 'SYNTHETIC' } }) => ({ status: 'ok',
+  fit: { degree: 2, rmse: 0.01, n: 3, source: { label: 'simulated', evidence: 'SYNTHETIC' } }, gravity,
+  uncertainty: { model: 'independent_position_time_first_order', assumptions: ['SYNTHETIC'], quantity_uncertainty: 'standard uncertainty (one sigma), not a 95% interval' } });
 function happyRoutes() {
   let polls = 0;
   return {
@@ -34,9 +40,9 @@ function happyRoutes() {
     'POST uploads/up1/complete': () => [200, { upload: { upload_id: 'up1', sha256: 'abcdef0123456789' }, job: job(0, 'queued'), provenance: { label: 'SYNTHETIC' } }],
     'GET jobs/synthetic-job-v1': () => [200, (polls += 1) === 1 ? progress(job(1, 'running'), 1) : progress(jobReady(2), 2)],
     'GET scenes/synthetic-room-v1/questions': () => [200, { questions: [] }],
-    'POST scenes/synthetic-room-v1/spec': () => [200, { ok: true, spec: SPEC, validated_setup: SETUP }],
-    'POST fit': (r) => [200, fitBody(r.body.sessionId)],
-    'POST report': () => [200, { status: 'html-print-fallback', html: '<p>SYNTHETIC report</p>' }],
+    'POST scenes/synthetic-room-v1/spec': () => [200, { ok: true, spec: SPEC, validated_setup: SETUP, label: 'scale unverified, not setup-validated' }],
+    'POST fit': () => [200, apiFit()],
+    'POST report': () => [200, { status: 'html-print-fallback', labels: ['simulated'], fitter_digest: 'x', html: '<p>SYNTHETIC report</p>' }],
   };
 }
 const make = (routes, extra = {}) => {
@@ -69,10 +75,16 @@ test('happy path drives upload.idle -> JOB_UPDATE(ready) -> INTERVIEW_SPEC -> RU
   assert.equal(c.state.run.label, 'simulated');
   await c.fit();
   assert.equal(c.state.phase, 'fit.done');
-  assert.deepEqual(calls.find((x) => x.path === 'fit').body.observations, observations);
+  const fitReq = calls.find((x) => x.path === 'fit').body;
+  assert.deepEqual(Object.keys(fitReq).sort(), ['positions', 'times']); // fitter rejects unknown fields
+  assert.deepEqual(fitReq.times.map((t) => t.value), observations.map((o) => o.time_s));
+  assert.deepEqual(fitReq.positions.map((t) => [t.value, t.unit, t.source.label]), observations.map((o) => [o.position_m, 'm', 'simulated']));
+  assert.equal(c.state.fit.value, 9.8);
   await c.openReport();
+  assert.deepEqual(calls.find((x) => x.path === 'report').body.fit, apiFit()); // raw fitter result, as the API requires
   assert.equal(c.state.phase, 'report.open');
   assert.equal(c.snapshot().report.status, 'html-print-fallback');
+  assert.equal(c.snapshot().report.specLabel, 'scale unverified, not setup-validated');
   assert.deepEqual(phases, ['upload.idle', 'upload.queued', 'upload.running', 'interview.active', 'run.ready', 'run.running', 'run.done', 'fit.running', 'fit.done', 'report.open']);
   for (const x of calls) assert.equal(x.init.credentials, 'same-origin');
 });
@@ -145,16 +157,43 @@ test('spec rejection, missing simulator, fit transport error and invalid fit bod
   assert.equal(r.c.state.error.code, 'DEPENDENCY_UNAVAILABLE');
   assert.equal(r.c.state.fit, null);
 
-  r = await toRunReady({ 'POST fit': (q) => [200, { ...fitBody(q.body.sessionId), sessionId: 'someone-else' }] });
+  r = await toRunReady({ 'POST fit': () => [200, apiFit(null)] }); // covariance unavailable -> no gravity -> no number
   await r.c.run(7); await r.c.fit();
   assert.equal(r.c.state.phase, 'fit.failed');
   assert.equal(r.c.state.fit, null);
+
+  r = await toRunReady({ 'POST fit': () => [200, fitBody('fit-s1')] }); // legacy lab envelope is not the API shape
+  await r.c.run(7); await r.c.fit();
+  assert.equal(r.c.state.phase, 'fit.failed');
 
   r = await toRunReady({ 'POST report': () => [200, { status: 'ok' }] });
   await r.c.run(7); await r.c.fit(); await r.c.openReport();
   assert.equal(r.c.state.phase, 'fit.done');
   assert.equal(r.c.state.error.code, 'PROCESSING_FAILED');
   assert.equal(r.c.snapshot().report, null);
+});
+
+test('browserSimulate: real runBrowserSimulation fails closed on a non-artifact setup; samples map to world-Y observations', async () => {
+  await assert.rejects(browserSimulate(runBrowserSimulation)({ template: 'free_fall' }), /INVALID_BROWSER_SIMULATION/);
+  const fake = (p) => (p.mode === 'normal' && p.validatedSetup === SETUP ? { samples: [{ time_s: 0, position_m: [0, 2, 0] }, { time_s: 0.1, position_m: [0, 1.95, 0] }] } : null);
+  assert.deepEqual(await browserSimulate(fake)(SETUP), [{ time_s: 0, position_m: 2 }, { time_s: 0.1, position_m: 1.95 }]);
+  const r = await toRunReady({}, { simulate: browserSimulate(runBrowserSimulation) });
+  await r.c.run(7);
+  assert.equal(r.c.state.phase, 'run.failed');
+  assert.equal(r.c.state.run.observations, null);
+});
+
+test('report view: html-print-fallback renders only in a sandboxed srcdoc iframe with server labels; bad shape rejected', () => {
+  const open = { phase: 'report.open' };
+  const v = reportView(open, { status: 'html-print-fallback', html: '<p>SYNTHETIC</p>', labels: ['simulated'], specLabel: 'scale unverified, not setup-validated' });
+  assert.equal(v.error, null);
+  const tree = renderReport(h, v);
+  const frame = find(tree, (n) => n.tag === 'iframe')[0];
+  assert.equal(frame.props.sandbox, '');
+  assert.equal(frame.props.srcDoc, '<p>SYNTHETIC</p>');
+  assert.match(JSON.stringify(tree), /SIMULATED/);
+  assert.match(JSON.stringify(tree), /scale unverified, not setup-validated/);
+  assert.match(reportView(open, { status: 'html-print-fallback', html: '<p>x</p>', labels: [1] }).error, /rejected/);
 });
 
 // Minimal createElement stand-in: enough to inspect the accessible tree.

@@ -4,7 +4,8 @@
 import React from 'react';
 import { createWorkspace } from '../workspace/react.mjs';
 import { createThreeViewer } from '../viewer/three-viewer.mjs';
-import { createController, API_BASE } from '../workspace/controller.mjs';
+import { createController, API_BASE, browserSimulate } from '../workspace/controller.mjs';
+import { runBrowserSimulation } from '../lab/browser-simulator.mjs';
 import { uploadView, renderUpload } from '../workspace/upload-view.mjs';
 import { initialInterview, reduceInterview, interviewAnswers } from '../workspace/interview.mjs';
 import { initialInstruments, reduceInstruments } from '../workspace/instruments.mjs';
@@ -14,6 +15,7 @@ const Workspace = createWorkspace(React);
 const adapter = createThreeViewer();
 export const UNAVAILABLE_NOTICE = 'Workspace service unavailable: the private API did not answer, so no upload, job or result is shown. Nothing on this page is a measurement.';
 export const LIVE_NOTICE = 'Connected to the private workspace API. Only approved licensed clips are accepted; every result is labelled RECORDED or SIMULATED by the server.';
+export const INSTRUMENTS_UNAVAILABLE = 'Instruments are not available in this build; no reading is shown.';
 
 // Reachable = the BFF forwarded and the API answered with JSON (any 2xx/4xx except auth). 401/403/5xx/network = unavailable.
 export async function probeApi(f = globalThis.fetch, base = API_BASE) {
@@ -36,8 +38,8 @@ export async function routeAction(ctl, local, a) {
   }
   if (t.startsWith('I_')) {
     let instruments = reduceInstruments(local.instruments, a, ctl.state);
-    // shortcut: no instrument service is deployed yet; a measure request fails honestly instead of inventing a reading.
-    if (t === 'I_MEASURE' && instruments.pending) instruments = reduceInstruments(instruments, { type: 'I_FAIL', message: 'Instrument service unavailable.' }, ctl.state);
+    // shortcut: no instrument service exists in this build; a measure request fails honestly instead of inventing a reading.
+    if (t === 'I_MEASURE' && instruments.pending) instruments = reduceInstruments(instruments, { type: 'I_FAIL', message: INSTRUMENTS_UNAVAILABLE }, ctl.state);
     return { ...local, instruments };
   }
   if (t === 'RUN_START') await ctl.run(a.seed ?? 1);
@@ -54,7 +56,7 @@ export default function PrivateWorkspace({ scene }) {
   const [local, setLocal] = useState({ interview: initialInterview(), instruments: initialInstruments() });
   const localRef = useRef(local);
   localRef.current = local;
-  const ctl = useMemo(() => createController({ onChange: setSnap }), []);
+  const ctl = useMemo(() => createController({ onChange: setSnap, simulate: browserSimulate(runBrowserSimulation) }), []);
   useEffect(() => { let on = true; probeApi().then((s) => on && setApi(s)); return () => { on = false; }; }, []);
   const s = snap ?? ctl.snapshot();
   const phase = s.state.phase;
@@ -65,12 +67,16 @@ export default function PrivateWorkspace({ scene }) {
   const live = api === 'live';
   const onAction = live ? (a) => routeAction(ctl, localRef.current, a).then(setLocal) : undefined;
   const up = uploadView(s);
+  const simulated = /^(run|fit|report)\./.test(phase); // run/fit/report numbers are browser-simulated, never recorded
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
     React.createElement('h1', null, scene.title),
     React.createElement('p', { role: 'note' }, live ? LIVE_NOTICE : api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),
     live ? null : React.createElement('p', { role: 'note' }, scene.notice),
     // the upload error is rendered once, by the workspace job panel (S15n limit: avoid a double alert)
     live ? renderUpload(React.createElement, { ...up, error: null }, (file) => ctl.upload(file)) : null,
+    live && simulated ? React.createElement('p', { role: 'note', 'data-label': 'simulated' },
+      'SIMULATED: run and fit values come from the in-browser simulator on the validated setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')) : null,
+    live ? React.createElement('p', { role: 'note', 'data-instruments': 'unavailable' }, INSTRUMENTS_UNAVAILABLE) : null,
     React.createElement(Workspace, { state: s.state, adapter, audience: 'signed-in', onAction,
       interview: live ? local.interview : undefined, run: live ? initialRun() : undefined, instruments: live ? local.instruments : undefined,
       fit: live ? s.state.fit ?? undefined : undefined, report: live && s.report ? s.report : undefined }));

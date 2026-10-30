@@ -39,6 +39,14 @@ const fmt = (e) => String(e.value) + (e.uncertainty !== undefined ? ' \u00b1 ' +
 export function reportView(state, input) {
   if (state.phase !== 'report.open') return { show: false };
   if (!input) return { show: true, error: 'No report received yet.' };
+  // S15p: API /report returns server-rendered HTML (html-print-fallback). Shown only in a script-less sandboxed iframe;
+  // labels are the server's number labels, verbatim. No number is parsed or produced here.
+  if (input.status === 'html-print-fallback') {
+    const labels = input.labels, str = (x) => typeof x === 'string' && x;
+    if (!str(input.html) || !Array.isArray(labels) || !labels.every(str) || (input.specLabel != null && !str(input.specLabel))) return { show: true, error: 'Report rejected: html response shape' };
+    return { show: true, error: null, html: input.html, title: 'Report (HTML print fallback)', labels, specLabel: input.specLabel ?? null,
+      notice: 'Server-rendered from fitter output; every number carries its source label. Not gate, real-scene or physical evidence.' };
+  }
   try {
     const r = parseReport(input), fill = (t) => t.replace(PH, (_, id) => fmt(r.numbers[id]));
     return { show: true, error: null, title: fill(r.title), template: r.template,
@@ -73,6 +81,11 @@ export function renderSidebar(h, items, onAction) {
 export function renderReport(h, v) {
   if (!v.show) return null;
   if (v.error) return h('section', { className: 'ws-report', 'aria-label': 'Report' }, h('p', { className: 'ws-error', role: 'alert' }, v.error));
+  if (v.html) return h('section', { className: 'ws-report', 'aria-label': 'Report' }, h('h3', null, v.title),
+    h('p', { className: 'ws-labels', 'data-labels': v.labels.join(',') }, 'Labels: ' + (v.labels.join(', ').toUpperCase() || 'none')),
+    v.specLabel ? h('p', { className: 'ws-spec-label', role: 'note' }, 'Spec: ' + v.specLabel) : null,
+    h('iframe', { title: 'Report', sandbox: '', srcDoc: v.html, className: 'ws-report-frame', style: { width: '100%', minHeight: '24rem', border: 0 } }),
+    h('p', { className: 'ws-notice', role: 'note' }, v.notice));
   return h('section', { className: 'ws-report', 'aria-label': 'Report' }, h('h3', null, v.title),
     ...v.sections.map((s) => h('article', { key: s.id }, h('h4', null, s.title), ...s.text.map((t, i) => h('p', { key: i }, t)))),
     h('p', { className: 'ws-notice', role: 'note' }, v.notice));

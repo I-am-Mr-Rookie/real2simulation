@@ -22,12 +22,27 @@ export async function sha256Hex(bytes) {
 
 const ACTIVE = new Set(['upload.queued', 'upload.running']);
 
+// S15p: browser simulator dep. The API validated_setup is passed verbatim as the NORMAL payload; runBrowserSimulation
+// itself rejects anything that is not a trusted S10 validated artifact (missing field -> thrown, honest RUN_FAIL).
+// Samples map to the lab's existing observation shape (BrowserSimulation.jsx): world-Y position vs time.
+export const browserSimulate = (runSim) => async (validatedSetup) =>
+  runSim({ mode: 'normal', validatedSetup }).samples.map((s) => ({ time_s: s.time_s, position_m: s.position_m[1] }));
+
+// API /fit (fitter.api.fit_observations) takes quantity lists. Engine samples are exact simulated values: uncertainty 0 is
+// their declared sigma, not a measurement; the fitter floors variance with residual RSS.
+const EVIDENCE = 'browser RK4 simulator sample (exact simulated value, no measurement uncertainty)';
+const q = (value, unit) => ({ value, unit, uncertainty: 0, source: { label: 'simulated', evidence: EVIDENCE } });
+export const fitRequest = (obs) => ({ times: obs.map((o) => q(o.time_s, 's')), positions: obs.map((o) => q(o.position_m, 'm')) });
+// Re-envelope the API result for the parseFitReveal gate; numbers are copied by reference, never recomputed.
+export const revealBody = (d, sessionId) => (d?.status === 'ok' && d.gravity
+  ? { status: 'ok', sessionId, fit: { status: 'ok', gravity: d.gravity, uncertainty: d.uncertainty } } : null);
+
 // deps: fetch (BFF, same-origin cookies), simulate(validatedSetup, seed) -> observations (runBrowserSimulation wrapper),
 // sleep(ms), onChange(snapshot). Missing simulate = honest DEPENDENCY_UNAVAILABLE, never fixture output.
 export function createController({ fetch: f = globalThis.fetch, base = API_BASE, simulate, sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
   pollMs = 1000, maxPolls = 900, onChange, newSessionId = () => 'fit-' + Date.now().toString(36) } = {}) {
   let state = initialState();
-  const meta = { busy: false, upload: null, events: [], questions: null, validatedSetup: null, report: null, provenance: null };
+  const meta = { busy: false, upload: null, events: [], questions: null, validatedSetup: null, specLabel: null, fitRaw: null, report: null, provenance: null };
   const snap = () => ({ state, ...meta });
   const set = (s) => { state = s; onChange?.(snap()); return state; };
   const patch = (m) => { Object.assign(meta, m); onChange?.(snap()); };
@@ -116,7 +131,9 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
       if (r.error) return failWith(r.error);
       const d = r.data;
       const ok = d?.ok === true && !!d.spec && !!d.validated_setup;
-      if (ok) patch({ validatedSetup: d.validated_setup });
+      // S14j: recorded scenes carry a verbatim label (e.g. 'scale unverified, not setup-validated'); shown through run/fit/report.
+      const label = [d?.label, d?.validated_setup?.label].find((x) => typeof x === 'string' && x) ?? null;
+      if (ok) patch({ validatedSetup: d.validated_setup, specLabel: label });
       return dispatch({ type: 'INTERVIEW_SPEC', spec: ok ? d.spec : null },
         { validateSpec: (s) => (ok && s === d.spec ? { ok: true } : { ok: false, errors: Array.isArray(d?.errors) && d.errors.length ? d.errors.map(String) : ['spec rejected'] }) });
     },
@@ -136,17 +153,18 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
     async fit(extra = {}) {
       dispatch({ type: 'FIT_START', sessionId: newSessionId() });
       if (state.phase !== 'fit.running') return state;
-      const r = await call('POST', 'fit', { ...extra, sessionId: state.fit.sessionId, observations: state.run.observations });
+      const r = await call('POST', 'fit', { ...extra, ...fitRequest(state.run.observations) });
       if (r.error) { dispatch({ type: 'FIT_FAIL', error: r.error }); return failWith(r.error); }
-      return dispatch({ type: 'FIT_RESULT', body: r.data }); // parseFitReveal gate: invalid body -> fit.failed, no number
+      patch({ fitRaw: r.data });
+      return dispatch({ type: 'FIT_RESULT', body: revealBody(r.data, state.fit.sessionId) }); // parseFitReveal gate: invalid -> fit.failed
     },
 
     async openReport() {
       if (state.phase !== 'fit.done') return state;
-      const r = await call('POST', 'report', { spec: state.spec, fit: state.fit });
+      const r = await call('POST', 'report', { spec: state.spec, fit: meta.fitRaw }); // API needs the raw fitter result
       if (r.error) return failWith(r.error);
       if (typeof r.data?.html !== 'string' || !r.data.html) return failWith({ code: 'PROCESSING_FAILED', message: 'Report response failed validation.' });
-      patch({ report: { status: r.data.status ?? null, html: r.data.html } });
+      patch({ report: { status: r.data.status ?? null, html: r.data.html, labels: Array.isArray(r.data.labels) ? r.data.labels : [], specLabel: meta.specLabel } });
       return dispatch({ type: 'REPORT_OPEN' });
     },
   };
