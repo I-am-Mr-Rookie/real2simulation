@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+ACCEPTED R-RS-recheck4-orch85 DONE/CLEAR (Oct30 06:49Z; timing PASS; merged; canonical tests/prediction 44/44 OK): F2-R3/F2-C
+closed; P3 nonblocking: registry is a reviewed allowlist, not authenticated storage (controller reviews every admission diff).
+S12e -> DONE as measured shortfall (Gate RS NOT_MET, ST03 7/466, median null). DISPATCHED S12f-orch97 Opus high (code-owned
+honest fallback from scored result; thread 01a18b92-7520-7221-93fb-8e3af5f793fc, deadline 2026-10-30T07:19:37+00:00).
+
 ACCEPTED S14g-fix5-orch95 DONE (Oct30 06:47Z; timing PASS; rebased, 59 agent tests OK, oracle 56/56 agrees; merged 0a18072):
 structural unit-binding rule at display boundary + independent oracle; offline replay gate_a=MET_AMENDED_Q16, 30/30 saved
 turns shown, 0 invented; residual: label adjacency has no unit-dimension check. DISPATCHED R-A-recheck3-orch96 Sol high
