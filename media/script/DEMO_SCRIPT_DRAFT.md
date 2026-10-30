@@ -1,4 +1,4 @@
-# Real2Simulation — 3:00 demo script — DRAFT v2 (S24a-orch146)
+# Real2Simulation — 3:00 demo script — DRAFT v3 (S24a-orch146 + S24k-orch175 stopwatch-vs-phone beat 5b)
 
 **Status: DRAFT.** S21 benchmark is DONE and every number below is quoted from it or from a cited evidence file. S23 (judging deploy) is NOT done: every deployed-URL / live-screen beat is **PENDING S23 / S24c-f**. Do not publish a recording until the PENDING register is empty.
 
@@ -32,16 +32,33 @@ Rules: lead with measurement. Every number = a generated value copied from [BENC
 | # | Time | Beat | Shot (footage / screen) | Caption (burned in) | Voice-over | Evidence | Status |
 |---|---|---|---|---|---|---|---|
 | 1 | 0:00–0:12 | Hook: measure, don't guess | PD02 clip, SAM 3.1 track dot drawn over the bob | Real video → measured track → simulation → honest error | "Real2Simulation measures physics from real video — and tells you exactly what it could not measure." | clip credit row PD02 | clip frames PENDING owner Q19 (default B: track plot only); capture PENDING S24c |
-| 2 | 0:12–0:40 | Measurement: tracking | PD02 full swing with per-frame mask/track overlay; small "A10G" tag | SAM 3.1 · 439/439 frames tracked · Modal A10G | "Meta's SAM 3.1 segments and tracks the object in every frame on a Modal GPU." | [PD02-summary.json](../../evidence/S07/S07-chunktrack-orch67/PD02-summary.json) `frames_observed`, `frames_total`, `gpu` | capture PENDING S24c |
-| 3 | 0:40–1:00 | Reconstruction + gravity direction | RM02 classroom → MapAnything point cloud, floor plane, badge "scale: ABSTAINED" | Floor-normal spread 0.04393° (bootstrap 1 sd) · Metric scale: ABSTAINED (unverified) | "MapAnything rebuilds the room and finds the floor. When metric scale can't be sourced, the system abstains instead of guessing." | BENCHMARK `rm02_gravity_direction_bootstrap_sd`, `rm02_gravity_vs_camera_down_prior` (11.05°); [S05d RESULT.json](../../evidence/S05/S05d/RESULT.json) | viewer capture PENDING S24c |
-| 4 | 1:00–1:25 | Fit with uncertainty | ST03 apple drop; fitter panel: track points + fitted parabola + 1σ band | Image-space g fit: ±0.07367 relative (1σ, n=19) · precision, not accuracy | "A deterministic fitter — not a language model — fits the fall and reports its uncertainty. It's image-space only: the clip is probably slow motion, so this is not g in metres per second squared." | BENCHMARK `st03_g_image_relative_uncertainty`; clips.csv ST03 suitability note | capture PENDING S24c |
-| 5 | 1:25–1:50 | Predict, then check | ST03: committed prediction drawn before suffix is revealed; suffix frames overlaid; error meter | Gate RS: NOT_MET — diagnostic RMS 0.1982 image heights, 7/466 frames scored | "We seal a prediction before seeing the rest of the clip. Today it misses: the full tracking job ran out of GPU memory, and the ballistic fit has no floor — the apple lands, the prediction keeps falling." | BENCHMARK `st03_heldout_normalized_rms`, `st03_range_error` reason; [gate-rs.json](../../evidence/S12/gate-rs/gate-rs.json) | capture PENDING S24c |
-| 6 | 1:50–2:15 | Muse interview, numbers from tools | Workspace chat: Muse asks setup questions; every number chip tagged "tool" | Gate A: MET_AMENDED_Q16 — scale unverified, not setup-validated · numeric contract 10/10 · setup validator 0/10 | "Muse Spark interviews you about the setup, but every number it shows comes from a tool. Our checker flagged zero invented numbers across 30 replayed turns — on recorded scenes, not validated setups." | [GATE_A.json](../../evidence/S14/GATE_A.json) `/counts` (10/10, 0/10, 30/30, 0) | capture PENDING S24d |
-| 7 | 2:15–2:35 | Virtual lab + library | /library card tagged SIMULATED; Mystery-g practice card copy; cut to /lab blind round; sidebar search result | SIMULATED library traces · Mystery-g practice ≠ blind /lab · Muse Open: 1 live dev call, 1,176 tokens, Meta cost UNAVAILABLE | "The library holds simulated experiments, clearly labelled. The Mystery-g card is practice at Earth g; the lab draws a hidden g each session for a real blind test. In local dev, sidebar search made one live Muse Spark Open call — cost unavailable." | [library-copy.mjs](../../Build/web/src/app/(public)/library/library-copy.mjs); BENCHMARK `meta_s16e_total_tokens`, `meta_s16e_latency_s` (2.52345 s), `meta_s16e_cost_usd`; [lab-375.jpg](../../evidence/S10/ui/lab-375.jpg) (reference only) | deployed screens PENDING S23 + Gate D (S22f/S22j) + S24e; if Gate D fails, library path only |
-| 8 | 2:35–2:50 | Cost + honest misses | Checklist card (static, project-authored) | Modal billed to date: $0.599594 · Gate M ✗ · Gate RS ✗ · Gate A amended · scale unverified | "The whole Modal bill so far is under a dollar. And here is what we have not proven: no calibrated metric source, so no physical-accuracy claim." | BENCHMARK `modal_month_to_date_billed_usd`, Gates | card PENDING S24f |
+| 2 | 0:12–0:34 | Measurement: tracking | PD02 full swing with per-frame mask/track overlay; small "A10G" tag | SAM 3.1 · 439/439 frames tracked · Modal A10G | "Meta's SAM 3.1 segments and tracks the object in every frame on a Modal GPU." | [PD02-summary.json](../../evidence/S07/S07-chunktrack-orch67/PD02-summary.json) `frames_observed`, `frames_total`, `gpu` | capture PENDING S24c |
+| 3 | 0:34–0:48 | Reconstruction + gravity direction | RM02 classroom → MapAnything point cloud, floor plane, badge "scale: ABSTAINED" | Floor-normal spread 0.04393° (bootstrap 1 sd) · Metric scale: ABSTAINED (unverified) | "MapAnything finds the floor. When metric scale can't be sourced, the system abstains." | BENCHMARK `rm02_gravity_direction_bootstrap_sd`, `rm02_gravity_vs_camera_down_prior` (11.05°); [S05d RESULT.json](../../evidence/S05/S05d/RESULT.json) | viewer capture PENDING S24c |
+| 4 | 0:48–1:13 | Fit with uncertainty | ST03 apple drop; fitter panel: track points + fitted parabola + 1σ band | Image-space g fit: ±0.07367 relative (1σ, n=19) · precision, not accuracy | "A deterministic fitter — not a language model — fits the fall and reports its uncertainty. It's image-space only: the clip is probably slow motion, so this is not g in metres per second squared." | BENCHMARK `st03_g_image_relative_uncertainty`; clips.csv ST03 suitability note | capture PENDING S24c |
+| 5 | 1:13–1:38 | Predict, then check | ST03: committed prediction drawn before suffix is revealed; suffix frames overlaid; error meter | Gate RS: NOT_MET — diagnostic RMS 0.1982 image heights, 7/466 frames scored | "We seal a prediction before seeing the rest of the clip. Today it misses: the full tracking job ran out of GPU memory, and the ballistic fit has no floor — the apple lands, the prediction keeps falling." | BENCHMARK `st03_heldout_normalized_rms`, `st03_range_error` reason; [gate-rs.json](../../evidence/S12/gate-rs/gate-rs.json) | capture PENDING S24c |
+| 5b | 1:38–1:58 | Stopwatch vs phone, before / after | Split frame: LEFT "before" = owner stopwatch card (**[OWNER STOPWATCH READING - not recorded]**); RIGHT "after" = fit table OWN01–OWN05 from SWAP BLOCK, then SAM track + parabola on 01_demo_hero (private owner clip — **public use pending Koushik's go-ahead**; default = plot/table only, no raw frames) | MEASURED (SAM 3.1 + fit) · user-declared scale 20.28 cm · phone clock unverified · held-out check FAILS 0/6 | "Before: a stopwatch and a guess. After: the same drop on a phone — SAM tracks it, you declare the book edge. Five of six clips land within two uncertainties of 9.79; one is invalid. But the fit does not yet predict the held-out frames. Not a validated measurement." | SWAP BLOCK → [S07i README](../../evidence/S07/S07i/README.md), [S07h README](../../evidence/S07/S07h/README.md) results.json | stopwatch number PENDING owner; owner-clip frames PENDING Koushik go-ahead; capture PENDING S24c; numbers may be replaced by S07k v2 |
+| 6 | 1:58–2:23 | Muse interview, numbers from tools | Workspace chat: Muse asks setup questions; every number chip tagged "tool" | Gate A: MET_AMENDED_Q16 — scale unverified, not setup-validated · numeric contract 10/10 · setup validator 0/10 | "Muse Spark interviews you about the setup, but every number it shows comes from a tool. Our checker flagged zero invented numbers across 30 replayed turns — on recorded scenes, not validated setups." | [GATE_A.json](../../evidence/S14/GATE_A.json) `/counts` (10/10, 0/10, 30/30, 0) | capture PENDING S24d |
+| 7 | 2:23–2:39 | Virtual lab + library | /library card tagged SIMULATED; Mystery-g practice card copy; cut to /lab blind round; sidebar search result | SIMULATED library traces · Mystery-g practice ≠ blind /lab · Muse Open: 1 live dev call, 1,176 tokens, Meta cost UNAVAILABLE | "The library holds simulated experiments, clearly labelled. The Mystery-g card is practice at Earth g; the lab draws a hidden g each session for a real blind test." | [library-copy.mjs](../../Build/web/src/app/(public)/library/library-copy.mjs); BENCHMARK `meta_s16e_total_tokens`, `meta_s16e_latency_s` (2.52345 s), `meta_s16e_cost_usd`; [lab-375.jpg](../../evidence/S10/ui/lab-375.jpg) (reference only) | deployed screens PENDING S23 + Gate D (S22f/S22j) + S24e; if Gate D fails, library path only |
+| 8 | 2:39–2:50 | Cost + honest misses | Checklist card (static, project-authored) | Modal billed to date: $0.599594 · Gate M ✗ · Gate RS ✗ · Gate A amended · scale unverified | "Modal bill so far: under a dollar. Not proven: no calibrated metric source, so no physical-accuracy claim." | BENCHMARK `modal_month_to_date_billed_usd`, Gates | card PENDING S24f |
 | 9 | 2:50–3:00 | Close | Judging URL + repo + BENCHMARK.md | Built Oct 27 – Nov 4 · every number links to BENCHMARK.md | "Every number you saw is a pointer into the repo's benchmark. Try it." | [BENCHMARK.md](../../BENCHMARK.md) | URL PENDING S23 (written go-ahead); public repo PENDING owner |
 
-Timing: 12+28+20+25+25+25+20+15+10 = 180 s.
+Timing: 12+22+14+25+25+20(5b)+25+16+11+10 = 180 s (3:00). Beat 5b added by trimming beat 2 (−6), 3 (−6), 7 (−4), 8 (−4).
+
+## SWAP BLOCK — beat 5b numbers (edit only here; replace if S07k v2 pre-registered re-analysis lands)
+
+Label: **MEASURED** (real SAM 3.1 tracks; user-declared scale 0.2028 m book edge; phone clock NOT externally verified). Reference g = 9.79 m/s² (local, comparison only). Source: [S07h README](../../evidence/S07/S07h/README.md) (results.json), [S07i README](../../evidence/S07/S07i/README.md).
+
+| clip | g ± u (m/s²) | within 2u of 9.79 | held-out (≤ 6 px RMSE) |
+|---|---|---|---|
+| OWN01 (demo hero) | 10.96 ± 0.77 | yes | FAIL (23.0 px) |
+| OWN02 | 9.29 ± 0.32 | yes | FAIL (39.6 px) |
+| OWN03 | 9.54 ± 0.63 | yes | FAIL (87.3 px) |
+| OWN04 | 10.39 ± 0.46 | yes | FAIL (35.1 px) |
+| OWN05 | 8.62 ± 1.28 | yes | FAIL (13.0 px) |
+| OWN06 | 7.12 ± 1.02 | no — INVALID (release misdetected); do not show as a result | FAIL (119.1 px) |
+
+Spoken summary: within 2u on 5 of 6; held-out 0 of 6 → "not a validated measurement". Stopwatch ("before"): **[OWNER STOPWATCH READING - not recorded]** — no stopwatch reading exists in repo/owner notes; never invent one. If none arrives, cut to the "after" half only (−8 s, give back to beat 2).
+Owner-clip rights: every OWN* shot is **public use pending Koushik's go-ahead** (CLIPS.md; face-free trims, local only, gitignored).
 
 ## Shot list — footage, licence, credit
 
@@ -67,12 +84,13 @@ Models: SAM 3.1 (SAM License) · MapAnything (Apache-2.0 code) · Muse Spark 1.3
 ```text
 [0:00] Real video → measured track → simulation → honest error
 [0:12] SAM 3.1 · 439/439 frames tracked · Modal A10G
-[0:40] Floor-normal spread 0.04393° (bootstrap 1 sd) · Metric scale: ABSTAINED (unverified)
-[1:00] Image-space g fit: ±0.07367 relative (1σ, n=19) · precision, not accuracy
-[1:25] Gate RS: NOT_MET — diagnostic RMS 0.1982 image heights, 7/466 frames scored
-[1:50] Gate A: MET_AMENDED_Q16 — scale unverified, not setup-validated · numeric contract 10/10 · setup validator 0/10
-[2:15] SIMULATED library traces · Mystery-g practice ≠ blind /lab · Muse Open: 1 live dev call, 1,176 tokens, Meta cost UNAVAILABLE
-[2:35] Modal billed to date: $0.599594 · Meta cost UNAVAILABLE · Gate M ✗ · Gate RS ✗ · Gate A amended · scale unverified · 4-clip library ✗
+[0:34] Floor-normal spread 0.04393° (bootstrap 1 sd) · Metric scale: ABSTAINED (unverified)
+[0:48] Image-space g fit: ±0.07367 relative (1σ, n=19) · precision, not accuracy
+[1:13] Gate RS: NOT_MET — diagnostic RMS 0.1982 image heights, 7/466 frames scored
+[1:38] MEASURED · scale user-declared 20.28 cm · phone clock unverified · held-out check FAILS 0/6 · stopwatch [OWNER STOPWATCH READING - not recorded]
+[1:58] Gate A: MET_AMENDED_Q16 — scale unverified, not setup-validated · numeric contract 10/10 · setup validator 0/10
+[2:23] SIMULATED library traces · Mystery-g practice ≠ blind /lab · Muse Open: 1 live dev call, 1,176 tokens, Meta cost UNAVAILABLE
+[2:39] Modal billed to date: $0.599594 · Meta cost UNAVAILABLE · Gate M ✗ · Gate RS ✗ · Gate A amended · scale unverified · 4-clip library ✗
 [2:50] Built Oct 27 – Nov 4 · every number links to BENCHMARK.md
 ```
 
@@ -87,5 +105,6 @@ Models: SAM 3.1 (SAM License) · MapAnything (Apache-2.0 code) · Muse Spark 1.3
 - Re-quote check: if any BENCHMARK/evidence value changes, re-run the number check in [REPORT.md](../../Run-System/Runs/S24a-orch146/REPORT.md) before recording.
 
 ## Cut list if over time
+(Beat 3 VO and beat 7 sidebar clause already trimmed in v3.)
 Beat 3 VO → caption only (−8 s); merge beats 8+9 (−10 s); drop sidebar clause from beat 7 (−5 s).
 
