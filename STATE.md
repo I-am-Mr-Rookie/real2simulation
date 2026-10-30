@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+S16b-orch89 DONE merged (TIMING PASS; sidebar tests OK). DISPATCHED S16c-orch93 sol medium (thread 01a18b81-d4c0-70a3-9218-ca4eefe3f071, deadline 2026-10-30T07:01:42+00:00).
+
 S14g-fix4-orch86 DONE merged (TIMING PASS; agent 52 OK; $0): F1-R closed (a/an/single + time/angle units, oracle
 40-case corpus); Gate A now honestly PROVISIONAL: numeric-contract 10/10, real validate_setup 0/10 (no scale bundles).
 S14g stays PARTIAL. DISPATCHED R-A-recheck2-orch92 sol high (thread 01a18b7c-7787-7ca0-909a-bc4217d9cd6c, deadline 2026-10-30T06:55:51+00:00).
