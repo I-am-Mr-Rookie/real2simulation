@@ -1,0 +1,11 @@
+{
+  "id": "S04i-orch118",
+  "status": "DONE",
+  "issued_at": "2026-10-30T09:17:50+00:00",
+  "deadline_at": "2026-10-30T09:47:50+00:00",
+  "implementation_cutoff_at": "2026-10-30T09:42:50+00:00",
+  "work_stopped_at": "2026-10-30T09:33:56+00:00",
+  "reported_at": "2026-10-30T09:34:43+00:00",
+  "acceptance_boundary": "Controller explicitly narrowed child acceptance to local repository/mount/proxy/404/bounded HTTP implementation and authorized DONE now; real-key signed-in HTTP proof formally moved to S15k on Railway dev. No live auth/workflow/gate claim.",
+  "controller_receipt_thread": "01a1882d-3481-7ce3-8f88-45c942e341cd"
+}

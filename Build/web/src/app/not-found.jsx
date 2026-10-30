@@ -6,7 +6,7 @@ export default function NotFound() {
     <h1>Page unavailable</h1>
     <div className="state-card">
       <p>This page is not available. No scene or job data has been loaded.</p>
-      <p style={{ marginTop: '1rem' }}>Private workspaces remain unavailable until sign-in and ownership checks are connected.</p>
+      <p style={{ marginTop: '1rem' }}>Private workspaces require sign-in and scene ownership.</p>
     </div>
     <p style={{ marginTop: '2rem' }}><Link className="secondary-link" href="/library">Browse the public library</Link></p>
   </section>;

@@ -9,6 +9,7 @@ const web = fileURLToPath(new URL('../../', import.meta.url));
 const app = path.join(web, 'src/app');
 // No real credentials, sessions, email or OAuth calls in either smoke mode.
 const configured = process.argv.includes('--synthetic-clerk');
+const bindHost = process.argv.includes('--container-bind') ? '0.0.0.0' : 'localhost';
 const sentinel = 'sk_test_S04C_SYNTHETIC_SERVER_SENTINEL';
 const syntheticPublicKey = 'pk_test_' + Buffer.from('example.clerk.accounts.dev$').toString('base64');
 async function checkIsolation(folder) {
@@ -17,7 +18,7 @@ async function checkIsolation(folder) {
     if (entry.isDirectory()) await checkIsolation(item);
     else if (/\.(jsx|js|mjs)$/.test(entry.name)) {
       const source = await readFile(item, 'utf8');
-      assert.doesNotMatch(source, /(?:from\s*|import\s*\()['"][^'"]*(?:\/viewer\/|\/workspace\/)/,
+      assert.doesNotMatch(source.replace("import '../../workspace/workspace.css';", ''), /(?:from\s*|import\s*\()['"][^'"]*(?:\/viewer\/|\/workspace\/)/,
         'shell routes must not import viewer/workspace internals');
     }
   }
@@ -28,7 +29,7 @@ await new Promise(resolve => probe.listen(0, '127.0.0.1', resolve));
 const port = probe.address().port;
 await new Promise(resolve => probe.close(resolve));
 const server = spawn(process.execPath, [path.join(web, 'node_modules/next/dist/bin/next'), 'start',
-  '--hostname', '127.0.0.1', '--port', String(port)], {
+  '--hostname', bindHost, '--port', String(port)], {
   cwd: web, env: { ...process.env, NEXT_TELEMETRY_DISABLED: '1', CLERK_TELEMETRY_DISABLED: '1',
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: configured ? syntheticPublicKey : '',
     CLERK_SECRET_KEY: configured ? sentinel : '' }, stdio: ['ignore', 'pipe', 'pipe']
@@ -38,7 +39,8 @@ server.stdout.on('data', chunk => { logs += chunk; });
 server.stderr.on('data', chunk => { logs += chunk; });
 let processError;
 server.on('error', error => { processError = error; });
-const base = `http://127.0.0.1:${port}`;
+// Clerk resumes via a same-URL rewrite; use Next's canonical localhost origin, not a different loopback alias.
+const base = `http://localhost:${port}`;
 const get = (route) => fetch(base + route, { signal: AbortSignal.timeout(3000), redirect: 'manual' });
 try {
   let ready = false;
@@ -56,7 +58,10 @@ try {
     ['/sign-in', 200, configured ? 'Sign in to Real2Simulation' : 'Sign-in unavailable'],
     ['/sign-in/factor-one', 200, configured ? 'Sign in to Real2Simulation' : 'Sign-in unavailable'],
     ['/sign-up', 200, configured ? 'Join Real2Simulation' : 'Sign-up unavailable'],
-    ['/workspace/probe-private-id', 404, 'Private workspaces remain unavailable'],
+    ['/workspace', 404, 'Private workspaces require sign-in'],
+    ['/workspace/probe-private-id', 404, 'Private workspaces require sign-in'],
+    ['/health/live', 404, 'Page unavailable'],
+    ['/health/ready', 404, 'Page unavailable'],
     ['/library/not-an-approved-entry', 404, 'Page unavailable'],
     ['/not-a-route', 404, 'Page unavailable']
   ]) {

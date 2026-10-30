@@ -47,18 +47,33 @@ failure. It returns a minimal grant, never storage roots or the scene payload.
 Callbacks are trusted server dependencies, never request parameters. Check again
 at every job/asset read or mutation; do not rely on a layout, proxy or old grant.
 
-**No private repository is wired.** An absent server metadata lookup denies before
-identity retrieval (no needless provider work for unavailable scenes), and
-the private layout retains independent unconditional denial. Authenticated private
-access is intentionally unavailable; there is no test-user or fixture bypass.
-Future integration must wire Clerk's required session-context proxy and replace
-the absent lookup with ownership-filtered trusted metadata, review the boundary,
-and prove real owner/nonowner/session E2E before removing layout denial. Do not
-add an env flag to enable private access. An attempted Next16/Clerk proxy stalled
-configured private HTTP requests in this run (also with no identity lookup);
-standalone middleware returned200. It was removed rather than shipping a hanging
-boundary. Root cause within the Next/SDK integration is unresolved; real session
-verification is not claimed. Missing context/errors will still deny at the guard.
+**S04i development repository:** `scene-repository.js` is server-only and reads
+one deterministic `dev-fixture-<SHA256 of verified user ID>` record per user.
+`/workspace` derives that ID from Clerk's session, then redirects to its guarded
+scene leaf. Metadata and payload reads both filter by the verified owner.
+The payload omits owner identity. There is no global fixture owner, HTTP-supplied
+identity, persistence, upload, asset/job endpoint or mutation. It is visibly
+FIXTURE/SYNTHETIC and mounts S15's public React interface in `upload.idle` with
+no fabricated scene artifacts, run or fit values. Full workflow service wiring
+remains separate from this route mount.
+
+The repository is available only in local NODE_ENV development/test, or the
+existing Railway environment named exactly `dev` (including a production-built
+Next server there). A named non-dev Railway environment overrides local mode.
+An unlabelled production environment denies; there is no new enable/bypass flag.
+Existing Clerk configuration is still required and ownership checks always run.
+
+`src/proxy.js` uses standard `clerkMiddleware()` only on `/workspace/:path*`;
+public library, sign-in and health paths do not match. Missing configuration
+continues to the denying leaf; middleware errors uniformly deny. Clerk handshake
+redirects, when needed for real session refresh, remain SDK-controlled rather
+than hand-authored. The prior S04d proxy-hang finding requires bounded request
+checks; S04i evidence records these independently from real session E2E. The
+local 127.0.0.1 bind reproduced a loop of localhost same-route rewrites (diagnostic
+channels saw no Clerk/JWKS host). Consistent localhost bind/request origins and
+the deployment's 0.0.0.0 bind both pass bounded synthetic-config requests, with
+the SDK unchanged. The smoke script now uses the consistent origin and can
+also check the Docker bind via `--container-bind`.
 
 S01b/S04h/S22 must prove actual Google/OTP and logged-out flows with development
 keys; no authenticated end-to-end flow was run. Production Google is deferred,
@@ -69,6 +84,7 @@ and shared development credentials are not a production configuration.
 ```powershell
 node --test Build/web/src/auth/config.test.mjs
 node --test Build/web/src/auth/access.test.mjs
+node --test tests/web-private/*.test.mjs
 npm run build --prefix Build/web
 npm run smoke --prefix Build/web
 node Build/web/src/auth/bundle-check.mjs

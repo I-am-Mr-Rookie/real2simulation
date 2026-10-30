@@ -1,9 +1,7 @@
-import { notFound } from 'next/navigation';
+import '../../workspace/workspace.css';
 
-// Fail closed until a private repository is connected and integration-reviewed.
-// The leaf independently uses requirePrivateScene; this layout is defense in depth.
-// A route group is composition only, never an authorization boundary.
+// Authorization belongs to each leaf's server data boundary, not a route group.
 export const dynamic = 'force-dynamic';
-export default function PrivateLayout() {
-  notFound();
+export default function PrivateLayout({ children }) {
+  return children;
 }

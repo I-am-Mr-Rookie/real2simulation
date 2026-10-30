@@ -1,0 +1,263 @@
+S04I_OUTBOUND_HOST 127.0.0.1
+S04I_OUTBOUND_HOST 127.0.0.1
+S04I_OUTBOUND_HOST 127.0.0.1
+S04I_OUTBOUND_HOST 127.0.0.1
+S04I_OUTBOUND_HOST 127.0.0.1
+S04I_OUTBOUND_HOST 127.0.0.1
+PASS / -> 200
+S04I_OUTBOUND_HOST 127.0.0.1
+PASS /icon.svg -> 200
+S04I_OUTBOUND_HOST 127.0.0.1
+PASS /library -> 200
+S04I_OUTBOUND_HOST 127.0.0.1
+PASS /sign-in -> 200
+S04I_OUTBOUND_HOST 127.0.0.1
+PASS /sign-in/factor-one -> 200
+S04I_OUTBOUND_HOST 127.0.0.1
+PASS /sign-up -> 200
+S04I_OUTBOUND_HOST 127.0.0.1
+Smoke server diagnostics: ▲ Next.js 16.4.3
+- Local:         http://127.0.0.1:6980
+- Network:       http://127.0.0.1:6980
+✓ Ready in 489ms
+✓ Running next.config.js took 59ms
+S04I_HTTP_HOST localhost PATH /workspace
+Error: S04I_FIRST_HTTP_STACK
+    at C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S04i-orch118\tests\web-private\network-trace.cjs:9:54
+    at Channel.publish (node:diagnostics_channel:165:9)
+    at ClientRequest._finish (node:_http_client:483:33)
+    at ClientRequest.end (node:_http_outgoing:1108:10)
+    at PassThrough.onend (node:internal/streams/readable:950:10)
+    at Object.onceWrapper (node:events:630:28)
+    at PassThrough.emit (node:events:509:28)
+    at endReadableNT (node:internal/streams/readable:1729:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+S04I_HTTP_HOST localhost PATH /workspace
+
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+[DOMException [TimeoutError]: The operation was aborted due to timeout]
+
+Node.js v24.18.0

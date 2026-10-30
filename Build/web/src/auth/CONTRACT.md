@@ -17,9 +17,12 @@
   use uniform 404 to avoid enumeration. Errors must not leak tokens or existence.
 
 S04c implements SDK/provider/sign-in/sign-up configuration wiring only; see README.md.
-S04d adds a server-only resource guard backed by a tested ownership policy. No
-private metadata repository/session-context proxy is connected: missing lookup
-denies before identity retrieval and the private layout independently denies.
-No private access is enabled. S01b/S04h/S22 must prove real sessions and future
-repository integration; see README.md for the proxy-integration limitation.
+S04d adds a server-only resource guard backed by a tested ownership policy.
+S04i connects it to a read-only per-user development fixture repository and the
+standard Clerk session-context proxy, matched only to `/workspace/:path*`.
+Each leaf authorizes before reading its client DTO; the layout is composition,
+not an access boundary. Missing sessions/configuration, nonowners, unknown IDs,
+repository failures and non-development environments uniformly deny with 404.
+The fixture is an empty scene container, not reconstructed geometry or a live
+workflow. S15k/S22 still need real signed-in browser/deployment verification.
 Shell DTO contract: `../shell/integration.schema.json` and `../shell/README.md`.

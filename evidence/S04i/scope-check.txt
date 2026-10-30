@@ -1,0 +1,1 @@
+PASS git diff --check; all tracked/untracked changes within granted Owns

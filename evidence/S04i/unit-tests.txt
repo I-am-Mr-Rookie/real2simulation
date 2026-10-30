@@ -1,0 +1,30 @@
+✔ missing configuration or invalid ID denies before identity/data access (2.1115ms)
+✔ unverified/missing identity cannot trigger a private metadata lookup (0.5037ms)
+✔ only exact owner, scene ID and private access match is authorized (3.4017ms)
+✔ missing repository and identity/lookup failures deny without leaking errors (0.5988ms)
+✔ missing and partial configuration disables Clerk without exposing values (2.429ms)
+✔ blank, malformed, mismatched and unsafe configuration fails closed (1.1309ms)
+✔ configured result exposes only the public key, never secret or custom OAuth credentials (0.7206ms)
+✔ accepts unpadded Clerk publishable keys (1.8527ms)
+✔ only local development/test or existing Railway dev environment enables the repository (1.3501ms)
+✔ fixture identities are stable, distinct, bounded and never a client-supplied default owner (0.5672ms)
+✔ owner is granted; nonowner, unknown, invalid, guest, missing config uniformly deny (1.9484ms)
+✔ fixture states do not persist mutations or contain fabricated artifacts/numbers (0.4164ms)
+✔ public S15 React interface mounts all workspace slots with a visible honest fixture notice (12.9416ms)
+✔ server-only repository and guarded leaf keep owner identity out of client composition (10.4528ms)
+✔ actual Next matcher includes only workspace, never public library or health endpoints (373.9301ms)
+(node:38564) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/.worktrees/S04i-orch118/Build/web/src/auth/server-access.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to \\?\C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S04i-orch118\Build\web\package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ actual server facade returns only the owner view and derives entry ID from the verified session (2.1738ms)
+✔ actual facade uniformly throws Next 404 for guest, other owner, unknown, malformed, config/auth failure (2.7851ms)
+✔ actual facade denies even the owner outside development, without reading a session (0.6773ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 715.1191

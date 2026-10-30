@@ -1,0 +1,45 @@
+PASS / -> 200
+PASS /icon.svg -> 200
+PASS /library -> 200
+PASS /sign-in -> 200
+PASS /sign-in/factor-one -> 200
+PASS /sign-up -> 200
+PASS /workspace -> 404
+PASS /workspace/probe-private-id -> 404
+PASS /health/live -> 404
+PASS /health/ready -> 404
+PASS /library/not-an-approved-entry -> 404
+PASS /not-a-route -> 404
+PASS forged client identity -> 404
+PASS RSC404 digest, forged auth metadata, public query isolation and HEAD boundaries
+PASS source isolation; production HTTP smoke (missing-config)
+PASS / -> 200
+PASS /icon.svg -> 200
+PASS /library -> 200
+PASS /sign-in -> 200
+PASS /sign-in/factor-one -> 200
+PASS /sign-up -> 200
+PASS /workspace -> 404
+PASS /workspace/probe-private-id -> 404
+PASS /health/live -> 404
+PASS /health/ready -> 404
+PASS /library/not-an-approved-entry -> 404
+PASS /not-a-route -> 404
+PASS forged client identity -> 404
+PASS RSC404 digest, forged auth metadata, public query isolation and HEAD boundaries
+PASS source isolation; production HTTP smoke (synthetic-config SSR only)
+PASS / -> 200
+PASS /icon.svg -> 200
+PASS /library -> 200
+PASS /sign-in -> 200
+PASS /sign-in/factor-one -> 200
+PASS /sign-up -> 200
+PASS /workspace -> 404
+PASS /workspace/probe-private-id -> 404
+PASS /health/live -> 404
+PASS /health/ready -> 404
+PASS /library/not-an-approved-entry -> 404
+PASS /not-a-route -> 404
+PASS forged client identity -> 404
+PASS RSC404 digest, forged auth metadata, public query isolation and HEAD boundaries
+PASS source isolation; production HTTP smoke (synthetic-config SSR only)
