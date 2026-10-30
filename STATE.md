@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T23:13Z — orch: S15x-orch168 accepted; Q21 asked; S15w dispatched
+
+- S15x: Sonnet medium, TIMEBOX PASS, docs only; 6 Mobbin refs R1-R6 in evidence/ui/mobbin-S15x/REFERENCES.md (Higgsfield, Delphi, PlanetScale, Dovetail, Dropbox, Sprig); ff-merged. Owner question Q21 (pick 3; default R1,R2,R3) added.
+- Dispatched S15w-orch169 (Opus high; UI pass, presentation only, default refs R1-R3), thread 01a18f14-2b50-7a72-8a5c-c0010c1c13ab, deadline 23:39:52Z (05:39 Dhaka). Receipt DISPATCH-orch169.json.
+
 ## 2026-10-30T23:10Z — orch: S15u-orch166 accepted (DONE)
 
 - Sonnet medium, TIMEBOX PASS, rebased, diff within Owns; fresh node 117/117; ff-merged. Fit view: 375px wrap, truthful what-if source note, compact residuals (details), sig figs with exact value on hover. DEV web bec439d2 (rev 35805e6a, pre-rebase identical content) recorded in deployments.json. Controller 375px re-walk pending.
@@ -1447,6 +1452,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
   historical balance unknown. Railway ongoing resource charges unknown, not zero.
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
+- [ ] Q21 (UI refs, S15x): pick 3 of the 6 Mobbin references R1-R6 in evidence/ui/mobbin-S15x/REFERENCES.md for the UI pass (S15w); default R1,R2,R3 (Higgsfield upload/analyzing, Delphi question step, PlanetScale data table) if no reply.
 
 - [x] Q20 ANSWERED (Koushik, Oct31: 'A'): Run is allowed on real clips as a clearly labelled what-if: 'SIMULATED what-if of your described setup; scale unverified; not measured from the clip'. Numbers come from the simulator and spec values, never presented as measured from the video. Implemented by QUEUE S15r.
 - [x] Q18 ANSWERED (Koushik, Oct31 via RUNS.md: "My choice: MIT licenced") -> MIT for project code/docs; third-party clips keep their own

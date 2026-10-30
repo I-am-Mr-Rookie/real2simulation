@@ -1,15 +1,15 @@
 # Runs checklist
 
-Updated Oct 31, 05:09 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 05:11 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **213 / 250** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **214 / 250** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 1 open reviews
 
 ## Reviews for Koushik
 
-None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
+- [ ] Q21 (UI refs, S15x): pick 3 of the 6 Mobbin references R1-R6 in evidence/ui/mobbin-S15x/REFERENCES.md for the UI pass (S15w); default R1,R2,R3 (Higgsfield upload/analyzing, Delphi question step, PlanetScale data table) if no reply.
 
 ## Ready now
 
@@ -26,6 +26,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - [ ] **S07g** — Codex (native Claude) · Opus 5.5, effort high — Owner clips: register in clips.csv and measure g on 01_demo_hero with the real pipeline (30 min)
 - [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
 - [~] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min) *(partial: resume it)*
+- …and 1 more ready in this lane
 
 ## Waiting for Koushik
 
@@ -260,7 +261,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (18/24)</summary>
+<details><summary><b>S15</b> — Workspace UI (19/24)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -285,7 +286,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15u** — Codex (native Claude) · Sonnet 5.5, effort medium — Fit view polish: 375px overflow, truthful what-if source note, compact residuals (30 min)
 - [ ] **S15v** — Codex (native Claude) · Opus 5.5, effort high — Product: accept 30 fps phone clips, ask for a known size, report uncertainty instead of failing (30 min)
 - [ ] **S15w** — Codex (native Claude) · Opus 5.5, effort high — One UI pass: myfront 1.2.0 round-3 + make-interfaces-feel-better (30 min)
-- [ ] **S15x** — Codex (native Claude) · Sonnet 5.5, effort medium — Propose 6 Mobbin references for the owner to pick 3 (20 min)
+- [x] **S15x** — Codex (native Claude) · Sonnet 5.5, effort medium — Propose 6 Mobbin references for the owner to pick 3 (20 min)
 
 </details>
 
