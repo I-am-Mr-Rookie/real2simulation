@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T22:14Z — orch: S15s-orch164 accepted; walk finds Fit/Report contract bug; S15t dispatched
+
+- S15s: Opus medium, TIMEBOX PASS, diff within Owns, fresh node 112/112, ff-merged 01db492f. DEV web d4663452 recorded in deployments.json; verify.py exit 0.
+- Controller DEV walk: Fit/Open report controls present; /fit 200 but UI "Fit display rejected: fit output not ok"; /report 422 with no visible error. S15o stays PARTIAL.
+- Dispatched S15t-orch165 (Opus high; contract debugging across API/web), thread 01a18ede-db5e-73f0-b0f6-4af3652c6a04, deadline 22:41:54Z (04:41 Dhaka). Receipt DISPATCH-orch165.json.
+
 ## 2026-10-30T21:47Z — orch: S15o controller re-walk after S15r; S15s dispatched
 
 - DEV walk (IAB, controller exception): upload RM04 -> RECORDED labels (understand UTC now shown) -> interview -> spec Ready to run -> Run finished (simulated) with verbatim Q20 label: PASS. 375px/no secrets PASS. Footer truthful.

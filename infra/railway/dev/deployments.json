@@ -7,10 +7,10 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "0144fdf3-5747-4979-ba23-0fd8a2f91a6d",
-      "previousDeploymentId": "4ad6b82c-7b39-4ef4-96ab-8a674989f883",
-      "redeployNote": "S15r-orch163: stage.py web + railway up (Q20 what-if labels on run/fit/report; run failure reason; truthful nav/footer)",
-      "sourceRevision": "0b0f980c5519c6c2394e9f801e6786e91a83746e",
+      "deploymentId": "d4663452-8223-4d7d-8919-2b72219d7e0a",
+      "previousDeploymentId": "0144fdf3-5747-4979-ba23-0fd8a2f91a6d",
+      "redeployNote": "S15s-orch164: stage.py web + railway up (Fit and Open report controls after a finished run)",
+      "sourceRevision": "01db492f0ab3bed8b51fd103e8935b5d5f0daab4",
       "verifiedUtc": "2026-10-30T21:14:23Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
