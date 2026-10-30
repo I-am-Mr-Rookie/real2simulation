@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+ACCEPTED S18d-orch101 DONE (Oct30 07:19Z; timing PASS; 50 library tests OK; merged): 4 SIMULATED pendulum demos + RM02/RM04
+display-only scenes with validated safe defaults (physics/autoplay off, real-scene prediction WITHHELD); RM05 UNAVAILABLE.
+QUEUE S18d -> DONE. DISPATCHED S18e-orch104 Sol medium (Apollo + Mystery-g entries; thread
+01a18bad-7120-7183-82ad-40215e733a23, deadline 2026-10-30T07:49:02+00:00).
+
 ACCEPTED S16e-orch103 BLOCKED (Oct30 07:15Z; timing PASS with approved resource_stop receipt; merged): Baseten sign-in page
 only, 0 requests, sanitized evidence/S16/S16e-orch103-billing-preflight.json. QUEUE S16e stays TODO pending Q17.
 
