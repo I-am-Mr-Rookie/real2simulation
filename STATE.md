@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+Oct30 ~17:50Z wake: ACCEPTED S22b-orch149 DONE (DEV pre-candidate guest library QA, not judging-candidate; caveat: IAB profile was
+signed in as owner, guest behaviour confirmed by cookie-less curl). L1-L6 PASS, L7 PARTIAL (400 vs 404). Defects for S22f: D1 P2 /lab
+raw local_lab_disabled -> Mystery-g unusable on dev; D2 P2 API host lacks /api/library/*; D3-D7 P3 (400 vs 404, 0.2 s replays, Clerk
+console error, desktop grid width, Mystery-g card spoiler wording). Dispatched S25b-orch152 (Sonnet med, thread 01a18cb0-6cf6, dl 12:32:11Z,
+receipt not written). S13k-orch151 and S25b-orch152 threads ERRORED in the app (red icon; no commits; S25b made no worktree) -> treat as
+not run, QUEUE stays TODO. Redispatch blocked this wake: codex_app thread tools absent from controller catalog; ran
+Set-CodexAppToolMode -Mode Full so the next wake can redispatch both. Next RID orch153.
+
 Oct30 ~12:05Z: ACCEPTED S24b-orch150 DONE (script review: 8 wording/credit fixes; Meta cost UNAVAILABLE, open-weight bonus not claimed,
 exact Muse IDs, 4-clip fallback miss shown, Q19 default B plots-only, Gate D/S23 PENDING; check_script + check_review PASS fresh).
 For S25b: clips.csv RM02 licence "Pexels" vs "Pexels License"; PD02/RM02/ST03 status UNAPPROVED_CANDIDATE/owner_approved NO vs S02 grant.
