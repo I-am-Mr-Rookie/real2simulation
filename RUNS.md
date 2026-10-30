@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 30, 15:26 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 15:30 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **166 / 218** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **168 / 218** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -19,11 +19,11 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [ ] **S04i** — Codex · GPT-6.1 Sol, effort high — Connect private scene repository and mount workspace route (30 min)
-- [ ] **S16g** — Codex · GPT-6.1 Sol, effort medium — Test patch safety and search failures (30 min)
+- [ ] **S16h** — Codex · GPT-6.1 Sol, effort medium — Checkpoint open-weight evidence and fallback claims (30 min)
 - …and 3 more ready in this lane
 
 **CLAUDE**
-- [~] **S17f** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint report accessibility and fallback evidence (30 min) *(partial: resume it)*
+- Nothing ready yet: check dependencies and retry holds below.
 
 ## Waiting for Koushik
 
@@ -260,7 +260,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S16</b> — Sidebar agent tools and the open-weight component (6/8)</summary>
+<details><summary><b>S16</b> — Sidebar agent tools and the open-weight component (7/8)</summary>
 
 - [x] **S16a** — Codex · GPT-6.1 Sol, effort medium — Define sidebar tool-call and search contracts (30 min)
 - [x] **S16b** — Codex · GPT-6.1 Sol, effort medium — Implement validator-first spec patch tool (30 min)
@@ -268,19 +268,19 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S16d** — Codex · GPT-6.1 Sol, effort medium — Connect Baseten Spark Open library search (30 min)
 - [x] **S16e** — Codex · GPT-6.1 Sol, effort medium — Verify real dev search inference (30 min)
 - [x] **S16f** — Codex · GPT-6.1 Sol, effort medium — Add Fireworks fallback (30 min)
-- [ ] **S16g** — Codex · GPT-6.1 Sol, effort medium — Test patch safety and search failures (30 min)
+- [x] **S16g** — Codex · GPT-6.1 Sol, effort medium — Test patch safety and search failures (30 min)
 - [ ] **S16h** — Codex · GPT-6.1 Sol, effort medium — Checkpoint open-weight evidence and fallback claims (30 min)
 
 </details>
 
-<details><summary><b>S17</b> — Lab report and charts (5/6)</summary>
+<details><summary><b>S17</b> — Lab report and charts (6/6)</summary>
 
 - [x] **S17a** — Codex (native Claude) · Sonnet 5.5, effort high — Define report data contract and numeric assertions (30 min)
 - [x] **S17b** — Codex (native Claude) · Sonnet 5.5, effort high — Build deterministic report tables and charts (30 min)
 - [x] **S17c** — Codex (native Claude) · Sonnet 5.5, effort high — Build TeX/HTML report rendering (30 min)
 - [x] **S17d** — Codex (native Claude) · Sonnet 5.5, effort high — Compile reports for all four templates (30 min)
 - [x] **S17e** — Codex (native Claude) · Sonnet 5.5, effort high — Automate numeric report-to-fitter diff (30 min)
-- [~] **S17f** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint report accessibility and fallback evidence (30 min) *(partial: resume it)*
+- [x] **S17f** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint report accessibility and fallback evidence (30 min)
 
 </details>
 

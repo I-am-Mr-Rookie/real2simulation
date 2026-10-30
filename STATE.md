@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+Oct30 ~09:33Z: ACCEPTED S17f-orch119 DONE (Build/reports/checkpoint.py; Gate A label refused unless verbatim; RM02 honest fallback page,
+physics NOT_RUN; reports 48 OK; HTML accessible, PDF untagged print artefact) and S16g-orch116 DONE (64 KiB call cap, no raw-input
+echo, RecursionError -> typed rejection; sidebar-tools 100 OK). S04i nonterminal: clerkMiddleware hang with SYNTHETIC Clerk keys;
+controller: no SDK patch, likely fake-host network wait, mark UNVERIFIED, signed-in proof deferred to S15k on Railway dev. S18g note:
+guest library is metadata-only (no PLY/trajectories) -> playable viewer mount upstream-unavailable; worker returns UNAVAILABLE readably.
+Dispatched S16h-orch121 (Sol med, dl 09:58Z). Next RID orch122.
+
 Oct30 ~09:25Z: ACCEPTED S14h-orch115 DONE (GATE_A.json/md MET_AMENDED_Q16 checkpoint; fallback card proven code-owned; validator +micro/nano
 seconds; agent 60 OK, oracle 84/84; unitless "one"/count nouns stay P2-open) and S18f-orch113 DONE (Build/library/guest.py read-only
 manifest + sha256 artifact endpoints; library 72 OK; not deployed). STRUCTURAL BLOCKER found: (private) layout notFound() -> S15 workspace
