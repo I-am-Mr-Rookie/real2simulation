@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+ACCEPTED S19d-wire-orch91 DONE/local (Oct30 06:56Z; timing PASS; merged; tests/pwa 52/52): manifest+SW registration in
+layout; Owns deviation Build/web/next.config.js headers (Service-Worker-Allowed) ACCEPTED as necessary. S19d stays TODO until
+HTTPS dev evidence. DISPATCHED S19d-dev-orch99 Sonnet medium (Railway dev web redeploy + in-app-browser installability/375px;
+thread 01a18b98-542f-7a22-a7bb-f43f9ea91d51, deadline 2026-10-30T07:26:00+00:00).
+
 ACCEPTED S12f-orch97 DONE (Oct30 06:55Z; timing PASS; merged; canonical tests/prediction 50/50 OK): code-owned fallback
 re-runs score.gate -> VIRTUAL_LAB_ONLY, real-scene prediction WITHHELD (median unmeasured); labels sidecar
 evidence/S12/S12f-fallback.json (UI consumers must read it); review packet evidence/S12/S12f-REVIEW-PACKET.md. S12 leaves all DONE.
