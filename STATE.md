@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+Oct30 ~20:30Z: ACCEPTED S04o-orch158 DONE (PrivateWorkspace mounts S15n controller via BFF; probeApi -> LIVE notice + upload control, else honest
+unavailable + fixture notice, no numbers; controller.mjs route fix to real S13i paths (Owns extension approved); 104/104 node tests fresh by
+controller; build PASS per worker; web DEV 197153d3 SUCCESS (rev a09fe75), deployments.json web entry updated by controller; logged-out 401/404
+unchanged). NOT verified: signed-in round trip, RM04 upload live, screenshots, 375px (IAB unavailable in worker chat). Known gaps for S15o/next:
+run step not wired (no browser simulate -> DEPENDENCY_UNAVAILABLE), instruments I_MEASURE fails honestly (no instrument service), report view expects
+r2s.report/1 but controller stores {status,html} -> shows rejected. Next RID orch159.
+
 Oct30 ~20:20Z: S04o-orch158 nonterminal blocker resolved by controller. (1) The in-app browser is not available inside worker chats (cua 'Browser is
 not available: iab'), so the signed-in round trip, screenshots and 375px check are deferred to S15o (controller or owner session). (2) Real defect: S15n
 controller.mjs routes do not match the S13i API (chunk PUT path, POST /jobs absent, progress path). Controller extended S04o Owns to

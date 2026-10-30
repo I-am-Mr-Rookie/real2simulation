@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "db4b96a6-bc73-4a27-81f9-4e4af8cc9798",
-      "previousDeploymentId": "aa539357-ca0f-4ecb-a6f5-523979e37295",
-      "redeployNote": "S04m: as-is redeploy of aa539357's build to load WORKSPACE_INTERNAL_TOKEN + WORKSPACE_API_URL=http://${{api.RAILWAY_PRIVATE_DOMAIN}}:8080",
-      "sourceRevision": "67e299aa54ed7c2554137d04df655139ed556dba",
-      "verifiedUtc": "2026-10-30T11:08:00Z",
+      "deploymentId": "197153d3-5f88-4287-8e21-d7cf77cb4d27",
+      "previousDeploymentId": "db4b96a6-bc73-4a27-81f9-4e4af8cc9798",
+      "redeployNote": "S04o-orch158: stage.py web + railway up (PrivateWorkspace mounts controller; route fix); superseded 3f707632",
+      "sourceRevision": "a09fe75707461fb9b81803f88448db46a0b1aea5",
+      "verifiedUtc": "2026-10-30T20:20:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080

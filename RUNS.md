@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 02:16 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 02:22 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **205 / 237** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **206 / 237** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,7 +24,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
-- [ ] **S04o** — Codex (native Claude) · Opus 5.5, effort medium — PrivateWorkspace mounts controller; deploy web to dev (30 min)
+- [ ] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min)
 
 ## Waiting for Koushik
 
@@ -75,7 +75,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (17/18)</summary>
+<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (18/18)</summary>
 
 - [x] **S04a** — Codex · GPT-6.1 Sol, effort medium — Define shell interfaces and fixture mount points (30 min)
 - [x] **S04b** — Codex · GPT-6.1 Sol, effort medium — Create Next.js shell and isolated route layout (30 min)
@@ -93,7 +93,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S04l** — Codex (native Claude) · Opus 5.5, effort medium — Polish guest library page copy and UI (30 min)
 - [x] **S04n** — Codex (native Claude) · Opus 5.5, effort medium — Web BFF proxy /api/workspace/[...path] (Clerk auth, capped body, private-network forward) (30 min)
 - [x] **S04m** — Codex (native Claude) · Opus 5.5, effort high — Mount workspace routers, extend API image (+jsonschema pin), set var names, deploy API to dev (30 min)
-- [ ] **S04o** — Codex (native Claude) · Opus 5.5, effort medium — PrivateWorkspace mounts controller; deploy web to dev (30 min)
+- [x] **S04o** — Codex (native Claude) · Opus 5.5, effort medium — PrivateWorkspace mounts controller; deploy web to dev (30 min)
 - [x] **R-W** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor review: private workspace auth boundary and proxy (15 min)
 
 </details>
