@@ -1,0 +1,32 @@
+{
+ "stages": [
+  "preflight",
+  "checkpoint",
+  "model_loaded",
+  "tracked"
+ ],
+ "gpu": "NVIDIA A10G, 23028 MiB, 610.57.04",
+ "error": null,
+ "peak_vram_bytes": 17144765440,
+ "load_s": 21.5,
+ "track_s": 165.4,
+ "remote_elapsed_s": 216.3,
+ "frames_total": 439,
+ "frames_observed": 439,
+ "validate_full": "OK",
+ "validate_observed_subset": "OK",
+ "observed_pts_span_s": [
+  0.0,
+  14.6
+ ],
+ "x_reversals": 1,
+ "x_range_px": [
+  407.9,
+  1294.3
+ ],
+ "chunks": 30,
+ "chunk_peak_vram_bytes_max": 17144765440,
+ "reseed_iou_min": 0.9841737210158262,
+ "stopped": [],
+ "estimated_usd_remote_elapsed_only": 0.07953784
+}

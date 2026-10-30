@@ -1,0 +1,45 @@
+{
+ "stages": [
+  "preflight",
+  "checkpoint",
+  "model_loaded",
+  "tracked"
+ ],
+ "gpu": "NVIDIA A10G, 23028 MiB, 610.57.04",
+ "error": null,
+ "peak_vram_bytes": 17094255616,
+ "load_s": 21.3,
+ "track_s": 10.9,
+ "remote_elapsed_s": 54.2,
+ "frames_total": 600,
+ "frames_observed": 0,
+ "validate_full": "rejected: segment: frame 0: object 0 has no box, centroid or mask",
+ "validate_observed_subset": "rejected: segment: incomplete SAM output (missing stages [])",
+ "chunks": 2,
+ "chunk_peak_vram_bytes_max": 17094255616,
+ "reseed_iou_min": 0.0,
+ "stopped": [
+  {
+   "chunk": 1,
+   "local_frames": [
+    15,
+    30
+   ],
+   "source_frames": [
+    15,
+    30
+   ],
+   "pts_s": [
+    0.5,
+    1.0
+   ],
+   "local_object_id": null,
+   "reseed_iou": 0.0,
+   "seal_sha256": "6b82a0f228bef9798372d9c72e72ffee2d97f5109547ebf61eb92d910cb5e342",
+   "stopped": "re-seed IoU below threshold; remaining frames missing",
+   "peak_vram_bytes": 17094255616,
+   "elapsed_s": 4.5
+  }
+ ],
+ "estimated_usd_remote_elapsed_only": 0.01993042
+}

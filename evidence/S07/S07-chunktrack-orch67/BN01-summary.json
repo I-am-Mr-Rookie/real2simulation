@@ -1,0 +1,54 @@
+{
+ "stages": [
+  "preflight",
+  "checkpoint",
+  "model_loaded",
+  "tracked"
+ ],
+ "gpu": "NVIDIA A10, 23028 MiB, 610.57.04",
+ "error": null,
+ "peak_vram_bytes": 17144760320,
+ "load_s": 19.3,
+ "track_s": 15.6,
+ "remote_elapsed_s": 54.8,
+ "frames_total": 176,
+ "frames_observed": 31,
+ "validate_full": "rejected: segment: frame 3416: object 0 has no box, centroid or mask",
+ "validate_observed_subset": "OK",
+ "observed_pts_span_s": [
+  14.17,
+  14.295
+ ],
+ "y_reversals": 0,
+ "y_range_px": [
+  577.2,
+  656.2
+ ],
+ "chunks": 3,
+ "chunk_peak_vram_bytes_max": 17144760320,
+ "reseed_iou_min": 0.0,
+ "stopped": [
+  {
+   "chunk": 2,
+   "local_frames": [
+    30,
+    45
+   ],
+   "source_frames": [
+    3415,
+    3430
+   ],
+   "pts_s": [
+    14.295,
+    14.357
+   ],
+   "local_object_id": null,
+   "reseed_iou": 0.0,
+   "seal_sha256": "b01523cc3511dcc0737624168220df5290a0fa55957ed61dd2d5f9cc4c391e41",
+   "stopped": "re-seed IoU below threshold; remaining frames missing",
+   "peak_vram_bytes": 17134494720,
+   "elapsed_s": 4.4
+  }
+ ],
+ "estimated_usd_remote_elapsed_only": 0.02015106
+}
