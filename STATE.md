@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T23:57Z — controller: accept S07j DONE (reviewed envelope 2); OWN07-OWN11 re-track started
+
+- S07j-orch173 DONE (Opus high), controller-reviewed: modal_track.py loads SAM 3.1 once per container (shared_predictor), per-clip isolation kept; Build/guardrails/standalone.py envelope 2 = evidence/S20/runtime/standalone-gpu-ledger-2.jsonl, 3 jobs/$1.50 CUMULATIVE with the unsettled envelope-1 rows (old $1.00 still counted -> exactly one new job <= $0.50); old ledger/journal untouched, no release; global Modal headroom/receipt check still applies (tests). Record evidence/S07/S07j/ENVELOPE-2.md. Fresh: measurement 90 OK; guardrails 95 with 1 failure test_guest_precomputed_fixture_read_does_not_consult_admission (expects library copy 'Guest browsing needs no account'; unrelated to S07j, pre-existing per worker stash check) -> needs a small follow-up.
+- Modal read 23:55Z in-app browser: usage $0.90, spend $0, credits header $129.10; receipt refreshed (historical 0.90, headroom 29.10). Re-track OWN07-OWN11 started 23:55Z, reservation $0.40 (envelope 2, job 1/1).
+
 ## 2026-10-30T23:55Z — controller: accept S07h (PARTIAL: OWN07-11 pending); add S07k; dispatch S07k + S24k
 
 - S07h-orch172 merged (timebox PASS; self-check + measurement 86 OK fresh). Frozen v1 pipeline, MEASURED (user-declared scale, phone clock unverified): OWN02 9.29+/-0.32, OWN03 9.54+/-0.63, OWN04 10.39+/-0.46, OWN05 8.62+/-1.28, OWN06 7.12+/-1.02 (premise violated, do not use); with OWN01 10.96+/-0.77 -> 9.79 inside 1u 2/6, 2u 5/6; held-out PASS 0/6. Row PARTIAL until OWN07-OWN11 (05c/d, 06 robustness) are re-tracked (S07j).
