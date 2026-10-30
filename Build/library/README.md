@@ -1,5 +1,42 @@
 # Library manifest v1 (S18a)
 
+## Anonymous read-only API (S18f)
+
+`Build.library.guest.create_app(root=ROOT)` is an unmounted FastAPI factory.
+No credentials, providers, guardrails, inference, network requests, asset fetches,
+or writes are needed. S18f does **not** change the deployed health API or web app.
+See [the exact S18g interface](../../evidence/S18/S18f-GUEST-INTERFACE.md).
+
+- `GET /api/library/manifest`: `guest-1.0.0` guest projection of five explicitly
+  selected, validated catalogues. Includes SIMULATED / SCALE_UNVERIFIED display-only
+  entries, UNAVAILABLE Apollo/bounce/RM05, safe per-demo/default selection, and
+  content-addressed guest artifact URLs. Successful manifest and handler errors use
+  `Cache-Control: no-store`.
+- `GET /api/library/artifacts/{sha256}`: only lowercase 64-hex hashes present in
+  the validated guest projection. JSON bytes are bounded and SHA-256 checked;
+  success has quoted ETag, JSON content type, byte Content-Length, nosniff and
+  `Cache-Control: public, max-age=31536000, immutable`.
+- Guest objects are read-only in-memory projections, not newly persisted local
+  artifacts. Scene descriptor/challenge bytes keep their original object hashes.
+  Simulation objects expose only selected setup metadata and have **new hashes**;
+  raw local acceptance objects (including a known source hash) are not addressable.
+  Audit reports/ledgers are never followed by the HTTP artifact route.
+- All guest defaults expose no numeric parameters; no alternative catalogue can
+  disclose the Mystery-g gravity/seed/replay/diagnostic answer. Repository/source
+  access is still outside this guest security boundary.
+- Validation is request-time, not startup-only: revocations or changed/missing
+  source/evidence bytes fail closed with 503 on the next request. Invalid IDs
+  return 400, valid unknown hashes 404, non-GET methods 405. No path is formed
+  from the user ID. Canonical catalogue paths and object refs reuse containment
+  validation, byte limits, custody and owner-grant checks.
+
+This is metadata, **not playable demos**: no PLY/frames/trajectories are bundled,
+no public raw-media redistribution is authorized, no calibration/gate is promoted.
+Current tradeoff: all five small catalogues are validated for each valid request;
+cache/precompute only with an explicit authority/custody invalidation design if
+the library grows. The existing validator's numeric/fitter imports are offline
+helpers; provider/GPU/guardrail imports and process/network calls are tested absent.
+
 ## Apollo and Mystery-g (S18e)
 
 - [Apollo 15 — UNAVAILABLE / Moon result not measured](../../evidence/S18/Apollo-UNAVAILABLE.md).

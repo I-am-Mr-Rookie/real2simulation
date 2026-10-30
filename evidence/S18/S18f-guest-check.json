@@ -1,0 +1,19 @@
+{
+  "manifest_status": 200,
+  "schema_version": "guest-1.0.0",
+  "entry_count": 18,
+  "available_metadata_count": 15,
+  "unavailable_ids": [
+    "apollo",
+    "bounce",
+    "rm05-scene"
+  ],
+  "scene_http_status": 200,
+  "scene_sha256_verified": true,
+  "scene_content_type": "application/json",
+  "scene_cache_control": "public, max-age=31536000, immutable",
+  "scene_etag": "\"d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754\"",
+  "manifest_bytes": 21338,
+  "no_new_compute_calls": "asserted by fresh-process test, not a remote/provider health claim",
+  "scope": "local metadata-only, not mounted or deployed"
+}
