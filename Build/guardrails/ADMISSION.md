@@ -3,7 +3,7 @@
 `admission.require_reconstruction(path, candidate_modal_usd=..., candidate_meta_usd=0)`
 returns Decimal accounting or raises `ReconstructionPaused` (`code=SPEND_PAUSED`,
 `retryable=False`). No exception may be converted to permission. This is a guard
-ready for caller integration, **not deployed/live enforcement**.
+used inside the pipeline's locked reservation boundary. **Offline-tested, not deployed/live verified**.
 
 ## Decisions
 
@@ -57,11 +57,11 @@ is fresh verified applicable credit **net of all outstanding liabilities**; it i
 not a gross credit display or a second spend total. The caller verifies inventory
 completeness, source hashes/coverage, period, receipt finality and actual headroom
 before setting the flags/as_of. The guard validates their shape, not their truth.
-No reconciler or second authoritative ledger is introduced by this run.
+The runtime journal below holds new durable reservations; it does not replace historical ledgers.
 
-## One owning paid-boundary integration finding
+## Owning paid boundary (S20-fix2)
 
-**`Build/pipeline/gpu_stages.py::reserve` (currently line 39)** is shared by both
+**`Build/pipeline/gpu_stages.py::reserve`** is shared by both
 segment and reconstruct. Under a single global cross-process serialization
 boundary: load/reconcile canonical state, call this guard with this attempt's
 all-in bound, enforce existing run/job limits, durably reserve BEFORE dispatch,
@@ -75,8 +75,44 @@ bytes and map failure to existing `UploadError("SPEND_PAUSED", ...)`. No HTTP up
 route exists in this checkout; durable user/day quota remains separate future work.
 Existing CLI/other paid entry points are NOT protected merely by this helper.
 
-No pipeline/web edits were authorized. Controller integrates those boundaries;
-until then this run must not be described as a live global cap or quota gate.
+The pipeline now calls `reservations.reserve_gpu` for that transaction, retaining
+the $1/two-job cap globally across its run directories, as well as each local
+ledger's cap. Outstanding failed attempts still consume both; an automatic retry
+of the same reserved identity pauses instead of paying twice. New paid retry
+authorization/reconciliation is not implemented by silently resetting a ledger.
+
+### Runtime state and bootstrap
+
+All linked worktrees resolve the Git common directory to the canonical checkout.
+Only that checkout's `evidence/S20/runtime/` is used. Its contents are ignored;
+this change deliberately creates **no live balance receipt or empty live journal**.
+A trusted operator must supply a fresh, verified `receipt.json` with the schema
+above and a `reservations.json` object with `schema="gpu-reservations/1"`,
+`requests` and `ledgers` arrays. Empty arrays are valid only after verifying there
+are no prior journal obligations to carry forward. Never delete/reset the journal
+to regain headroom. No unattended bootstrap/reset command is supplied.
+
+`admission.lock` uses stdlib O_EXCL: contention pauses immediately; a crashed
+owner's lock stays fail-closed until an operator verifies ownership/stop state.
+Under that lock, inventory S05/S06/S07/S12/S13/S14 ledgers plus run gpu-ledgers,
+fold reserve/result/bill events and job envelopes, hash sources and project linked
+scene-log upper bounds. Missing previously inventoried files, ambiguous app
+associations, malformed amounts, missing/corrupt receipt/journal or write failure
+all pause. Atomic replace + fsync persists the journal **before** local append and
+before dispatch; a failed local append leaves the global liability intact.
+
+`snapshot.json` is derived, not authoritative. Receipt history must be disjoint
+from inventoried requests, and receipt credit is net of its listed liabilities.
+Unreflected new journal liabilities reduce that net credit; reflected identities
+are merged once. Source hashes prove observed bytes, not completeness or billing
+finality. No legacy release hints are accepted as final reconciliation.
+
+`Build/agent/record_muse.py::reserve/record` is deliberately **not changed** (M3,
+another worker owns it). It still needs the same global locked Meta admission +
+durable reservation before transport, rather than its est-only local cap. Existing
+S14 rows are projected here as `source#L<line>` with max(reserved, estimated, billed).
+Standalone GPU CLIs/Meta callers and any future HTTP upload route must also be
+integrated before claiming an end-to-end Gate C or universal spend cap.
 
 ## Library exemption and verification scope
 

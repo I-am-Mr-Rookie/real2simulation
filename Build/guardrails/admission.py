@@ -51,7 +51,7 @@ def require_reconstruction(state_path, *, candidate_modal_usd, candidate_meta_us
 
     Snapshot is server-owned, complete, disjoint and freshly reconciled (see ADMISSION.md).
     credit_headroom_usd is verified credit NET of outstanding liabilities, not an allocation.
-    shortcut: preflight only, wire inside the caller's global check/reserve transaction before live use.
+    Pure preflight; pipeline/AWS callers wrap this in the shared durable reservation transaction.
     """
     try:
         state = json.loads(Path(state_path).read_text(encoding="utf-8"),

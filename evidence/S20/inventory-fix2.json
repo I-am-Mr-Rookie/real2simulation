@@ -1,0 +1,45 @@
+{
+  "note": "READ-ONLY projection audit; synthetic zero history/credit placeholders are NOT live balances or admission evidence",
+  "root": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon",
+  "sources": [
+    "Run-System/Runs/S13f-orch30/live/bundle/RM04-scene-log.json#sha256=c281cece49d2e0600d1aecd143f6964c5f5a48126cd6fc37f44c820f3e18ed86",
+    "Run-System/Runs/S13f-orch30/live/gpu-ledger.jsonl#sha256=c9a0431750c73586772b43b29704751ecbd47e934e864a48aec708fb2fe656d5",
+    "Run-System/Runs/S13f-orch30/live/reconstruction.json#sha256=7b971031864e7aff7cf18eaa68be1bb7bbb58b4fe18acfdb824ae7208ade584f",
+    "evidence/S05/S05b/job-ledger.json#sha256=1eb090a678f1530a0e0fa4d8e96181d1537f5b7737837eade9b3a64ab68866ab",
+    "evidence/S05/S05b/orch13/job-ledger.json#sha256=55533befa2c2dbfcb3ef0f2a592aa9b93072b557c29d64d691bd3acfae648c08",
+    "evidence/S05/S05b/orch14/job-ledger.json#sha256=4f9f663a80d469171c5ce9b1c6cedfd5b8c5789e757b4008c7c94151cde94004",
+    "evidence/S05/S05b/recovery2/job-ledger.json#sha256=7948827f93ecb94b51accc96c63ac221cb1283d17962b0f254e659434328c954",
+    "evidence/S05/S05b/recovery3/job-ledger.json#sha256=5026915ed93f56ebb2275356ee54e6856bacf876126bb95e997d87fb0eb8b30f",
+    "evidence/S05/S05b/recovery4/job-ledger.json#sha256=24e3354de0b8b3f424778e2b8f5b4c81649b17c32000f7a0c4820ecdaf95bbfe",
+    "evidence/S05/S05b/recovery5/job-ledger.json#sha256=155b24c06d843cb73a369a45464af4a63997b56d824b156f4972f2ca5d3ed44c",
+    "evidence/S05/S05c/orch19/job-ledger.json#sha256=7c78104701da2b160cfda52404d4b70ea0236ffe7b862e967e18f3cd548b090e",
+    "evidence/S06/S06a/job-ledger.json#sha256=fd7246382918a5934a663a3ac866793d7853689836e6cb969683ea03599276ea",
+    "evidence/S06/S06b/job-ledger.json#sha256=56e0318a718f123b716de1d3967a4ac80898c56eda9911f5cc667b0c086d8490",
+    "evidence/S06/S06d/job-ledger.json#sha256=c313cf6f8f686a51100801fcdf132874981f68f3b0dcf503c7bd6730647e1e3e",
+    "evidence/S06/S06e/RM02-scene-log.json#sha256=8e3d689d24ebe56fbaec358f8bec1625e37f91152903fff1061616caa80c2d26",
+    "evidence/S06/S06e/job-ledger.json#sha256=700e852b0e4ef75bcd0275a4e3a555acfa5ba44ab1c15826c8eb5171ae3b5de8",
+    "evidence/S06/S06f/RM04-scene-log.json#sha256=0dd242560f5f1e66491d0c706b8fbe4875b9a43dd6d9201bb0a99c8fa2fdebcc",
+    "evidence/S06/S06f/job-ledger.json#sha256=ed4362138550147b6bf64131efa631ec1f4595f0984b6de4e0ee9bfe0a7e5c7c",
+    "evidence/S07/S07b-param/gpu-ledger.jsonl#sha256=86497fdb4c0f377de5d2ff7b93c28f40b0ead6a7f9979051765dca14bbcc13ff",
+    "evidence/S12/gate-rs/gpu-ledger.jsonl#sha256=7529644b0182895773ff7327cf78603e0ee6cd3bc2a698f4fddb0c03542b297a",
+    "evidence/S13/S13f/live-orch42/gpu-ledger.jsonl#sha256=f929314a6e322ded6edc94c5fc2c1fd5ad457707e6cf8ca301e3388ccb5ee8fb",
+    "evidence/S13/S13h/live/gpu-ledger.jsonl#sha256=6adab4829a1184cfdc32f8c09e53b7a2b09956b9d3dfeddf4d7b3b11982cc136",
+    "evidence/S13/S13h/live/reconstruct/bundle/RM04-scene-log.json#sha256=d861edb13212c8c3461a866c2f8c3f1e3001d53423bc6f5c4bc3f55cc821d651",
+    "evidence/S13/S13h/live/reconstruct/reconstruction.json#sha256=6fc2e50c9dc1b12eaa4b0ef04afaaa37fdc718d829b8c394581f61e9e406e3b8",
+    "evidence/S14/S14b-ledger.jsonl#sha256=c3bb3ae00a131f66971f2ce1b5aec53b6775b761f0e42047a25ff73e09f7661e",
+    "evidence/S14/S14g-fix-ledger.jsonl#sha256=ec6409678e88d9cc25ab26713755d40bdb321c55a309ce3adee60b9e1912228c",
+    "evidence/S14/S14g-ledger.jsonl#sha256=c35c444ee90ee3ae42a64ba58b84e61b7eeacb4a55d999d3da65e376ff584540",
+    "evidence/S20/runtime/receipt.json",
+    "evidence/S20/runtime/reservations.json"
+  ],
+  "liabilities_usd": {
+    "Modal": "11.80000000",
+    "Meta Model API": "4.47405600",
+    "AWS": "0"
+  },
+  "requests": {
+    "Modal": 21,
+    "Meta Model API": 77,
+    "AWS": 0
+  }
+}

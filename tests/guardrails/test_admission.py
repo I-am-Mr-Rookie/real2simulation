@@ -195,7 +195,15 @@ class Admission(unittest.TestCase):
         self.save()
         self.admit()
         session = service.create("synthetic-owner", "video/mp4", 12, "0" * 64)
-        reserve(ledger, "reconstruct", "synthetic-attempt", .5)
+        runtime = self.path.parent / "evidence/S20/runtime"
+        runtime.mkdir(parents=True)
+        state = copy.deepcopy(self.state)
+        state["as_of"] = datetime.now(timezone.utc).isoformat()
+        (runtime / "receipt.json").write_text(json.dumps(state), encoding="utf-8")
+        (runtime / "reservations.json").write_text(json.dumps(
+            {"schema": "gpu-reservations/1", "requests": [], "ledgers": []}), encoding="utf-8")
+        with patch("Build.guardrails.reservations.repository_root", return_value=self.path.parent):
+            reserve(ledger, "reconstruct", "synthetic-attempt", .5)
         self.assertEqual(service.get("synthetic-owner", session["upload_id"])["status"], "open")
         files = sorted(p.relative_to(store) for p in store.rglob("*"))
         before = ledger.read_bytes()

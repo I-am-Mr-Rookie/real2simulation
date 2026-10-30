@@ -1,17 +1,51 @@
-"""Offline provider selection, default Modal. No cloud calls, reservation writes or launch."""
+"""Default Modal preflight; AWS plans require a shared durable reservation. No launch."""
 import json
 import os
 from datetime import datetime, timedelta, timezone
 from decimal import Decimal
 from pathlib import Path
+from uuid import uuid4
 
 from Build.gpu import aws_adapter
-from Build.guardrails.accounting import usd
+from Build.guardrails.accounting import headroom_usd, liability_usd, usd
+from Build.guardrails.durable import exclusive, read_json, write_json
+from Build.guardrails.reservations import project, repository_root
 from Build.guardrails.admission import (
     MAX_SNAPSHOT_AGE, ReconstructionPaused, _unique_fields, require_reconstruction,
 )
 
 MAX_SESSION_SECONDS = 3600
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def _reserve_aws(state_path, bound, receipt, modal, meta, clock):
+    root = repository_root(ROOT)
+    runtime = root / "evidence/S20/runtime"
+    with exclusive(runtime / "admission.lock"):
+        journal = read_json(runtime / "reservations.json")
+        state, paths = project(root, read_json(state_path), journal)
+        write_json(runtime / "snapshot.json", state)
+        admission = require_reconstruction(runtime / "snapshot.json", candidate_modal_usd=modal,
+                                           candidate_meta_usd=meta, now=clock)
+        if "AWS" not in state:
+            raise ValueError("AWS liabilities bucket required before enablement")
+        outstanding = sum((liability_usd(r) for r in journal["requests"]
+                           if r["provider"] == "AWS"), Decimal(0))
+        available = min(Decimal(50) - admission["aws_committed_usd"],
+                        headroom_usd(state["AWS"]["credit_headroom_usd"]),
+                        headroom_usd(receipt["remaining_gross_usd"]) - outstanding,
+                        headroom_usd(receipt["credit_headroom_usd"]) - outstanding)
+        if bound > available:
+            raise ValueError("AWS outstanding liabilities exhaust headroom")
+        request_id = "aws:" + uuid4().hex
+        journal["requests"].append({"request_id": request_id, "provider": "AWS",
+                                    "utc": clock.isoformat(), "reserved_usd": str(bound), "billed_usd": None})
+        if usd(meta) > 0:
+            journal["requests"].append({"request_id": request_id + ":meta", "provider": "Meta Model API",
+                                        "reserved_usd": str(usd(meta)), "billed_usd": None})
+        journal["ledgers"] = sorted(str(p) for p in paths)
+        write_json(runtime / "reservations.json", journal)
+        return admission, request_id
 
 
 def _receipt(path, schema, clock):
@@ -32,7 +66,7 @@ def select_provider(state_path, *, candidate_modal_usd, candidate_meta_usd=0,
     """Return an admitted provider plan or raise nonretryable SPEND_PAUSED.
 
     Inputs/receipt paths must be server-owned, never upload/browser-controlled.
-    shortcut: offline preflight only, wire inside shared check/reserve + guaranteed-stop boundary before dispatch.
+    shortcut: AWS reserves but does not launch; guaranteed-stop dispatch remains the caller's obligation.
     S20b remains mandatory even for AWS; no cap/floor failure grants failover.
     """
     clock = now if now is not None else datetime.now(timezone.utc)
@@ -73,8 +107,11 @@ def select_provider(state_path, *, candidate_modal_usd, candidate_meta_usd=0,
         result = aws_adapter.activate(gates, env=env)
         if not result["active"]:
             raise ValueError("AWS adapter refused activation")
+        admission, request_id = _reserve_aws(state_path, bound, receipt, candidate_modal_usd,
+                                              candidate_meta_usd, clock)
         return {"provider": "AWS", "admission": admission, "launched": False,
                 "aws": {**result["plan"], "all_in_usd": bound,
+                        "reservation_id": request_id,
                         "max_session_seconds": max_session_seconds, "stop_on_exit": True}}
     except (OSError, UnicodeError, ValueError, TypeError, KeyError, AttributeError, OverflowError):
         raise ReconstructionPaused("AWS failover evidence unavailable, invalid or insufficient") from None

@@ -1,0 +1,17 @@
+E
+======================================================================
+ERROR: test_aws_adapter (unittest.loader._FailedTest.test_aws_adapter)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_aws_adapter
+Traceback (most recent call last):
+  File "C:\Users\HP\AppData\Local\Programs\Python\Python314\Lib\unittest\loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S20-fix2-orch65\Build\gpu\test_aws_adapter.py", line 3, in <module>
+    import aws_adapter as m
+ModuleNotFoundError: No module named 'aws_adapter'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

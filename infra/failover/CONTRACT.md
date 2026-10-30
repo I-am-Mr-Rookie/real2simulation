@@ -42,7 +42,21 @@ plan = select_provider(
 Amounts above are **synthetic illustrations, not live prices, balances or approval**.
 Result fields: `provider` (Modal/AWS), unchanged S20b `admission`, `launched=False`,
 and `aws` (None, or region/instance/market/all_in_usd/max_session_seconds/stop_on_exit).
-This pure plan has no activation side effects or persisted enable state.
+No enable flag is persisted and no cloud call is made. AWS selection now has a
+deliberate local side effect: it durably reserves its bound before returning the
+plan, with `aws.reservation_id`. Repeating selection is a NEW liability, not a
+read-only quote or permission to reuse stale headroom. Modal-only selection stays
+a read-only preflight (the pipeline reserves at its own paid boundary).
+
+AWS requires an `AWS` bucket in the shared admission snapshot with `historical_usd`,
+`requests` and verified net `credit_headroom_usd`. Under the SAME canonical
+`evidence/S20/runtime/admission.lock` as pipeline GPU reservations, the selector
+projects existing sources and the pre-existing `reservations.json`, rechecks S20b,
+checks $50 gross/AWS credits/budget receipt headroom net of outstanding journal
+liabilities, and atomically reserves AWS (and any Meta candidate). Missing state
+pauses; no automatic empty-journal creation. See `Build/guardrails/ADMISSION.md`.
+Conservative receipt debits may over-reserve until explicit reconciliation, never
+release money based on a lagging AWS Budgets alert. Unknown top-level keys pause.
 
 S20b is called first for **both** providers. Meta history/pending/candidate and
 Modal cap/credit/$5 floor remain unchanged. This deliberately conservative selector
@@ -85,13 +99,14 @@ requires `stop_on_exit=True`. These are preflight constraints, not an implemente
 
 ## Integration boundary / unchanged behavior
 
-No existing pipeline/upload call site is wired by S20c (outside Owns, same finding
-as S20b ADMISSION.md). Before real dispatch the controller must wire this selector
-inside the shared global check + durable reservation transaction, validate receipt
-provenance and enforce all-in limits plus guaranteed shutdown on success/failure.
-A returned plan does not reserve money, establish current cloud health, implement
-termination or authorize a launch by itself. Fresh live credit/price/quota/headroom
+The pipeline now globally reserves Modal work (ADMISSION.md); no pipeline/upload
+AWS dispatch call site or termination watchdog is added here. Before real dispatch
+the controller must validate receipt provenance and enforce all-in limits plus
+guaranteed shutdown on success/failure. An AWS plan reserves locally but does not
+establish cloud health, implement termination or authorize a launch by itself.
+Fresh live credit/price/quota/headroom
 and bounded-job/shutdown evidence remain mandatory at that boundary.
 
 No AWS configuration, environment variable, cloud resource or existing adapter
-changed. No SDK/API calls, installs, new ledger or live resources in this run.
+changed. No SDK/API calls, installs or live resources in this run. The existing
+shared runtime journal records the new local reservation.

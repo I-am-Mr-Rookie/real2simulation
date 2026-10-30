@@ -29,6 +29,15 @@ class Failover(unittest.TestCase):
                       "Meta Model API": {"historical_usd": "110", "requests": [],
                                          "credit_headroom_usd": "40"},
                       "Modal": {"historical_usd": "1", "requests": [], "credit_headroom_usd": "29"}}
+        self.state["AWS"] = {"historical_usd": "0", "requests": [], "credit_headroom_usd": "50"}
+        runtime = root / "evidence/S20/runtime"
+        runtime.mkdir(parents=True)
+        self.journal_path = runtime / "reservations.json"
+        self.journal_path.write_text(json.dumps(
+            {"schema": "gpu-reservations/1", "requests": [], "ledgers": []}), encoding="utf-8")
+        root_patch = patch("Build.guardrails.failover.ROOT", root)
+        root_patch.start()
+        self.addCleanup(root_patch.stop)
         self.quota = {"schema": "aws-quota-receipt/1", "as_of": NOW.isoformat(),
                       "owner_approved": True, "region": "us-east-2", "market": "spot",
                       "quota_code": aws_adapter.SPOT_QUOTA_CODE, "spot_quota_vcpu": 8}
@@ -205,18 +214,42 @@ class Failover(unittest.TestCase):
         self.assertEqual(self.select(candidate_aws_usd="1.000000001")["aws"]["all_in_usd"],
                          Decimal("1.00000001"))
 
-    def test_selection_is_read_only_and_admission_failure_precedes_adapter(self):
+    def test_receipts_stay_read_only_but_aws_selection_durably_reserves(self):
         paths = (self.state_path, self.quota_path, self.budget_path)
         before = [path.read_bytes() for path in paths]
         env = dict(ON)
         self.select(env=env)
         self.assertEqual(env, ON)
         self.assertEqual([path.read_bytes() for path in paths], before)
+        self.assertEqual(len(json.loads(self.journal_path.read_text())["requests"]), 1)
         self.state["paused"] = True
         self.save()
         with patch("Build.guardrails.failover.aws_adapter.activate") as adapter:
             self.refused()
         adapter.assert_not_called()
+
+    def test_A15_repeated_admissions_cannot_reuse_same_aws_headroom(self):
+        self.select(candidate_aws_usd="6")
+        self.refused(candidate_aws_usd="6")
+        self.assertEqual(len(json.loads(self.journal_path.read_text())["requests"]), 1)
+
+    def test_aws_requires_bucket_and_existing_global_journal(self):
+        del self.state["AWS"]
+        self.save()
+        self.refused()
+        self.state["AWS"] = {"historical_usd": "0", "requests": [], "credit_headroom_usd": "50"}
+        self.save()
+        self.journal_path.unlink()
+        self.refused()
+
+    def test_aws_also_reserves_meta_candidate_before_returning_plan(self):
+        self.state["Meta Model API"]["historical_usd"] = "119"
+        self.save()
+        self.select(candidate_meta_usd=".5")
+        self.refused(candidate_meta_usd=".5")
+        rows = json.loads(self.journal_path.read_text())["requests"]
+        self.assertEqual({r["provider"] for r in rows}, {"AWS", "Meta Model API"})
+        self.assertEqual(len(rows), 2)
 
 
 if __name__ == "__main__":

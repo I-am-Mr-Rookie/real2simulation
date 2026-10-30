@@ -7,6 +7,8 @@ import tempfile
 import unittest
 from collections import Counter
 from pathlib import Path
+from datetime import datetime, timezone
+from unittest.mock import patch
 
 from Build.pipeline import gpu_stages as g
 from Build.pipeline.contracts import STAGES
@@ -47,8 +49,24 @@ def fake_run(calls, rc=0, stderr=""):
 
 class GpuStages(unittest.TestCase):
     def setUp(self):
-        self.d = Path(tempfile.mkdtemp())
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.d = Path(temp.name)
         self.ledger = self.d / "ledger.jsonl"
+        runtime = self.d / "evidence/S20/runtime"
+        runtime.mkdir(parents=True)
+        state = {"schema": "reconstruction-admission/1", "as_of": datetime.now(timezone.utc).isoformat(),
+                 "paused": False, "coverage_verified": True, "credit_verified": True,
+                 "sources": ["SYNTHETIC isolated runtime"],
+                 "Meta Model API": {"historical_usd": "0", "requests": [], "credit_headroom_usd": "150"},
+                 "Modal": {"historical_usd": "0", "requests": [], "credit_headroom_usd": "30"}}
+        (runtime / "receipt.json").write_text(json.dumps(state), encoding="utf-8")
+        (runtime / "reservations.json").write_text(json.dumps(
+            {"schema": "gpu-reservations/1", "requests": [], "ledgers": []}), encoding="utf-8")
+        # Patch only shared-state resolution, not GPU code/assets or the guard itself.
+        root_patch = patch("Build.guardrails.reservations.repository_root", return_value=self.d)
+        root_patch.start()
+        self.addCleanup(root_patch.stop)
 
     def test_reconstruct_validated_output(self):
         calls = Counter()
@@ -63,7 +81,7 @@ class GpuStages(unittest.TestCase):
         self.assertEqual((e.exception.code, e.exception.retryable), ("INVALID_INPUT", False))
         self.assertIn("not an owner-approved", e.exception.message)
         with self.assertRaises(StageError) as e:
-            g.reconstruct("k", "RM02", "m.json", self.d, self.ledger, run=fake_run(Counter(), 1, "modal.exception.FunctionTimeoutError: timeout"))
+            g.reconstruct("k2", "RM02", "m.json", self.d, self.ledger, run=fake_run(Counter(), 1, "modal.exception.FunctionTimeoutError: timeout"))
         self.assertEqual((e.exception.code, e.exception.retryable), ("PROCESSING_FAILED", True))
         self.assertIn("FunctionTimeoutError", e.exception.message)
 
@@ -91,8 +109,8 @@ class GpuStages(unittest.TestCase):
             self.assertEqual((e.exception.code, e.exception.retryable), ("PROCESSING_FAILED", True))
             self.assertIn(msg, e.exception.message)
 
-    def test_jobrunner_retry_and_no_duplicate_dispatch(self):
-        """Failed segment retries once; resumed/duplicate jobs reuse out:<key> so no paid stage dispatches twice."""
+    def test_jobrunner_retry_cannot_duplicate_reserved_dispatch(self):
+        """Failed dispatch retains its liability; automatic same-attempt retry must pause."""
         calls, sam = Counter(), iter([RuntimeError("modal: container lost"), json.dumps(SAM_OK)])
 
         def sam_call():
@@ -108,13 +126,12 @@ class GpuStages(unittest.TestCase):
         store = MemoryStore()
         runner = JobRunner(store, workers, sleep=lambda s: None)
         snap = runner.run("job-1", "cd" * 32, SCENE)
-        self.assertEqual(snap["status"], "ready", snap)
-        self.assertEqual((calls["sam"], calls["run"]), (2, 1))
-        self.assertEqual(runner.run("job-2", "cd" * 32, SCENE)["status"], "ready")  # same input: every stage reused
-        self.assertEqual((calls["sam"], calls["run"]), (2, 1))
+        self.assertEqual(snap["status"], "failed", snap)
+        self.assertEqual((calls["sam"], calls["run"]), (1, 0))
         seg = [e for e in runner.events("job-1") if e["stage"] == "segment"]
-        self.assertEqual([e["status"] for e in seg], ["started", "failed", "started", "succeeded"])
+        self.assertEqual([e["status"] for e in seg], ["started", "failed", "started", "failed"])
         self.assertIn("container lost", seg[1]["error"]["message"])
+        self.assertEqual(seg[-1]["error"]["code"], "SPEND_PAUSED")
 
     def test_sam_call_cli_reuse_retry_and_bad_input(self):
         """Parameterized S07b CLI: clean raw reused (no 2nd dispatch); errored raw moved aside + redispatched; bad input not retried."""
@@ -132,7 +149,10 @@ class GpuStages(unittest.TestCase):
             g.segment("segment:cc", call, self.d / "seg", self.ledger, "chair", 0)
         self.assertIn("boom", e.exception.message)
         g.segment("segment:cc", call, self.d / "seg", self.d / "l2.jsonl", "chair", 0)
-        g.segment("segment:cc", call, self.d / "seg", self.d / "l3.jsonl", "chair", 0)  # reuses clean raw
+        self.assertEqual(call(), sam_raw())  # clean raw cache needs no paid admission
+        with self.assertRaises(StageError) as paused:
+            g.segment("segment:cc", call, self.d / "seg", self.d / "l3.jsonl", "chair", 0)
+        self.assertEqual(paused.exception.code, "SPEND_PAUSED")
         a = dict(zip(cmds[0], cmds[0][1:]))
         self.assertEqual((len(cmds), a["--clip"], a["--object-id"], a["--last"], cmds[0][-1]), (2, "RM04", "0", "11", "--masks"))
         self.assertEqual(len(list(raw.parent.glob("raw-result.failed-*.json"))), 1)
