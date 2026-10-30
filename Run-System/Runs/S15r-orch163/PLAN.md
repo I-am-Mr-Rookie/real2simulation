@@ -1,0 +1,5 @@
+# S15r-orch163 PLAN
+Lane CLAUDE, anthropic/claude-opus-5-5/high (OpenCodex-managed; not polled). Issued 2026-10-30T21:19:08Z, deadline 21:49:08Z, cutoff 21:44:08Z.
+Objective: owner Q20=A labelled what-if Run on Q16 recorded scenes, per QUEUE S15r + controller contract.
+Owns: Build/api/workspace/analysis.py; Build/web/src/lab/browser-simulator.mjs; Build/web/src/workspace/; Build/web/src/shell/PrivateWorkspace.mjs; Build/web/src/shell/ShellFrame.jsx; Build/web/src/shell/AccountNav.jsx; infra/railway/dev/stage.py; infra/railway/dev/test_stage.py; tests/workspace/; tests/shell-workspace/; tests/api-workspace/; tests/simulator/; evidence/S15r/; Run-System/Runs/S15r-orch163/.
+Steps: (1) API spec returns S10 artifact (export_validated_setup shape) or s15r what-if artifact (non-synthetic, scale-unverified, labelled); report accepts/passes exact label. (2) browser-simulator explicit 'what-if' mode; normal mode unchanged. (3) controller/view/PrivateWorkspace show label; run failure reason in stage panel. (4) nav/footer truthful; S14g-fix3 ledger staged. Tests + build, rebase, deploy api+web DEV.
