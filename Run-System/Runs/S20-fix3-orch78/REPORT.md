@@ -1,4 +1,4 @@
-# S20-fix3-orch78 — verification in progress
+# S20-fix3-orch78 — PARTIAL (timing violation; controller review required)
 
 CODEX-2 / S20; assigned gpt-6.1-sol/high. OpenCodex-managed; not polled.
 Actual backend identity/tokens/subscription cost: unobservable. Cloud/API spend: none.
@@ -6,7 +6,10 @@ Parent Meta AI Hackathon project 91e441f8-e40c-4ec4-bea2-de7fa1582d97 per delega
 Base main dc742610ef4b2134b00a2ccfddd7c6f49aa239c0; isolated branch run/S20-fix3-orch78.
 No canonical controls modified, merge, push, deployment, scheduler or extra worker.
 Issued 2026-10-30T05:44:30+00:00; implementation cutoff 06:09:30Z; deadline 06:14:30Z.
-Actual stop/report timestamps will be recorded in TIMEBOX.json after final verification.
+Actual stop/report timestamps are recorded in TIMEBOX.json. The checker REJECTED the
+receipt: `Work stop must be within the original dispatch window`. Implementation/test
+repair crossed the cutoff and commit crossed the deadline. No exception was approved;
+do NOT accept timing as PASS or treat this as an on-time completed run.
 
 ## Changes / reach
 
@@ -38,10 +41,17 @@ corrupt/missing/paused/locked state and all five launch tails.
 
 ## Verification
 
-Evidence files are under evidence/S20/fix3-*; final counts pending ongoing suites.
+Evidence files are under evidence/S20/fix3-*.
 Initial guardrails run found Decimal/float addition in both new local cost prechecks;
 fixed by existing upward-rounding usd conversion, then reran checks.
-Pipeline full suite: 52 PASS. Final understand-specific rerun pending.
+Pipeline full suite: 52 PASS; final understand-specific rerun: 7 PASS.
+Final guardrails: 79 PASS. Agent: 52 PASS. AWS adapter: 7 PASS.
+Measurement initial run: 81 tests, one error (existing metadata test did not mock
+the new admission boundary), one unavailable-directory-symlink skip. Patched that
+test to mock admission and assert the expected operation. Final full measurement
+run: 81 tests OK, one skip; completion observed AFTER deadline, not on-time evidence.
+Final Muse-specific rerun was launched before finalization; its receipt is not relied
+on here. No further implementation or new verification launched after stop receipt.
 Original reviewer probe: 13 rows, all ok=true (temp directories only).
 N-REFILL remains a documented P3 trusted-journal-tamper finding. N-META-UNDERSTAND
 still reports the pure cost calculator admitting fresh ledgers: that probe never calls
