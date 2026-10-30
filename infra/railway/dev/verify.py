@@ -6,7 +6,7 @@ from urllib.error import HTTPError
 from urllib.request import urlopen
 
 revision = "300cd2096f9e32bcdf3433520b36b67f709df0d5"
-# S04m redeployed only the API (deployments.json api.sourceRevision).
+# S04m/S14j redeployed only the API (deployments.json api.sourceRevision).
 revisions = {"api": "49754d0b7ed031fb5ea21f659423a13fcac7e510", "worker": revision}
 checks = []
 for service, host, paths in (
