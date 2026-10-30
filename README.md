@@ -95,7 +95,7 @@ event work.
 
 - Footage and third-party libraries: [ATTRIBUTION.md](ATTRIBUTION.md); clip licence ledger: [clips.csv](clips.csv).
 - Only NASA public domain, Wikimedia Commons (CC BY / CC BY-SA / PD / CC0), Pexels and Pixabay clips are used.
-- Project source licence: PENDING (no LICENSE file yet; owner decision before publication).
+- Project source licence: [MIT](LICENSE) (owner choice, Q18). It covers this project's own code and docs only. Third-party footage ([clips.csv](clips.csv), [ATTRIBUTION.md](ATTRIBUTION.md)), model weights/APIs (Meta Muse, SAM 3.1, etc.) and dependencies keep their own licences/terms.
 
 ## Development controls
 

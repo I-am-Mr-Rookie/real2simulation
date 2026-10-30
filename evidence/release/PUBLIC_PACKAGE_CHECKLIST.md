@@ -26,7 +26,7 @@ Raw video files stay out of Git (.gitignore test-data/public/**; originals in pr
 | Demo video | PENDING S24/S23 (README marks it PENDING) |
 | Railway dev URLs | Dev only, not the judging build |
 | Local links (BENCHMARK.md, Build/*, API_BUDGET.md, .env.example) | Checked to resolve; see REPORT.md |
-| LICENSE | PENDING owner Q18; no LICENSE file; README says so |
+| LICENSE | DONE: MIT, owner Q18 (S25f); [LICENSE](../../LICENSE) covers own code/docs only; repo visibility stays PENDING S25d owner go-ahead |
 
 ## 3. Private data exclusions (must not enter the public repo)
 archive/ (incl. teammate data), .env and .env.* (only .env.example), owner PDF `Updated_Instructions_10_28_2026_...pdf`, Build Notes.pdf, Hackathon Credit Terms.pdf, modal.fillout.com*.png, .playwright-mcp/, .tmp-* (e.g. .tmp-s19d-ctx/), test-data/private/, uploads/, .worktrees/, credentials/key files. Note: .playwright-mcp/, .tmp-* and the owner PDF are untracked but NOT in .gitignore: add ignores or delete before publication (controller/owner decision).

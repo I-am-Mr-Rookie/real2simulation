@@ -4,6 +4,10 @@ Real2Simulation uses only licensed clips. Ledger of every candidate, licence and
 Library credit export: [evidence/S18/S18h-credits.json](evidence/S18/S18h-credits.json)
 (audit: [S18h-LICENCE-AUDIT.md](evidence/S18/S18h-LICENCE-AUDIT.md)). No endorsement by any creator or agency is implied.
 
+## Project licence
+
+This project's own code and docs are MIT-licensed ([LICENSE](LICENSE), owner choice Q18). MIT does not cover third-party footage (clips.csv, tables below), model weights/APIs (Meta Muse, SAM 3.1) or dependencies; those keep their own licences/terms.
+
 ## Footage used
 
 Clips used by the benchmark ([BENCHMARK.md](BENCHMARK.md) → Method → Clips) and the library (S18h credits).
