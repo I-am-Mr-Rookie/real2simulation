@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Oct 30, 13:23 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 13:27 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -303,7 +303,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S19a** — Codex (native Claude) · Sonnet 5.5, effort high — Add PWA manifest and icons from owned assets (30 min)
 - [x] **S19b** — Codex (native Claude) · Sonnet 5.5, effort high — Add safe service-worker caching (30 min)
 - [x] **S19c** — Codex (native Claude) · Sonnet 5.5, effort high — Add install guidance and orientation handling (30 min)
-- [ ] **S19d** — Codex (native Claude) · Sonnet 5.5, effort medium — Verify installability and 375px walkthrough (30 min)
+- [~] **S19d** — Codex (native Claude) · Sonnet 5.5, effort medium — Verify installability and 375px walkthrough (30 min) *(partial: resume it)*
 
 </details>
 

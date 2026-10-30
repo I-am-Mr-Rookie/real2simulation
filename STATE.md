@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+ACCEPTED S20-fix4-orch87 DONE (Oct30 07:26Z; timing PASS; worker thread later systemError, no callback; rebased; guardrails 91,
+pipeline 53, measurement 81, agent 52, aws 7 OK; merged incl. cherry-picked fix3 WIP): global Meta reservation, standalone
+Modal guards, one-use parent->child GPU reservation handoff, hash-bound settlement (no manual reset). DISPATCHED
+R-C-recheck2-orch106 Opus high (thread 01a18bb4-259f-7a43-9a23-0928ef13b392, deadline 2026-10-30T07:56:19+00:00); then S20d.
+ACCEPTED S19d-dev-orch99 (timing PASS; merged; railway tests OK): dev web redeploy 61d3a805 SUCCESS; stage.py/web.Dockerfile
+now ship public/ + next.config.js; HTTPS manifest/SW/icons pass, SW active scope "/", 375px no h-scroll on / /library /lab.
+QUEUE S19d -> PARTIAL: dev /library empty and no viewer route yet; redo viewer walkthrough after S18f/g publish demos.
+
 R-A-recheck4-orch102 CHANGES_REQUIRED (Oct30 07:21Z; timing PASS; evidence merged da38bc8): F1-R3 CLOSED, earlier fixes
 preserved, Q16 reporting exact (30/30, 0 fallback). New P1 F1-R4: "in seconds is one: <q>" (q=0.2 s) and amount-before-units
 variants pass. DISPATCHED S14g-fix7-orch105 Opus high: ONE clause-level rule (unit-word clause may contain no amount word)
