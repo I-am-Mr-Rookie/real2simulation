@@ -38,7 +38,8 @@ export const browserSimulate = (runSim) => async (validatedSetup) =>
 // their declared sigma, not a measurement; the fitter floors variance with residual RSS.
 const EVIDENCE = 'browser RK4 simulator sample (exact simulated value, no measurement uncertainty)';
 const q = (value, unit) => ({ value, unit, uncertainty: 0, source: { label: 'simulated', evidence: EVIDENCE } });
-export const fitRequest = (obs) => ({ times: obs.map((o) => q(o.time_s, 's')), positions: obs.map((o) => q(o.position_m, 'm')) });
+// S15t: degree 2 + AIC selection, as the S15 fit fixture; /report renders model_selection and 422s without it.
+export const fitRequest = (obs) => ({ times: obs.map((o) => q(o.time_s, 's')), positions: obs.map((o) => q(o.position_m, 'm')), degree: 2, select_model: true });
 // Re-envelope the API result for the parseFitReveal gate; numbers are copied by reference, never recomputed.
 export const revealBody = (d, sessionId) => (d?.status === 'ok' && d.gravity
   ? { status: 'ok', sessionId, fit: { status: 'ok', gravity: d.gravity, uncertainty: d.uncertainty } } : null);
@@ -48,7 +49,7 @@ export const revealBody = (d, sessionId) => (d?.status === 'ok' && d.gravity
 export function createController({ fetch: f = globalThis.fetch, base = API_BASE, simulate, sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
   pollMs = 1000, maxPolls = 900, onChange, newSessionId = () => 'fit-' + Date.now().toString(36) } = {}) {
   let state = initialState();
-  const meta = { busy: false, upload: null, events: [], questions: null, validatedSetup: null, specLabel: null, whatIfLabel: null, fitRaw: null, report: null, provenance: null };
+  const meta = { busy: false, upload: null, events: [], questions: null, validatedSetup: null, specLabel: null, whatIfLabel: null, fitRaw: null, fitInput: null, report: null, provenance: null };
   const snap = () => ({ state, ...meta });
   const set = (s) => { state = s; onChange?.(snap()); return state; };
   const patch = (m) => { Object.assign(meta, m); onChange?.(snap()); };
@@ -161,9 +162,10 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
     async fit(extra = {}) {
       dispatch({ type: 'FIT_START', sessionId: newSessionId() });
       if (state.phase !== 'fit.running') return state;
-      const r = await call('POST', 'fit', { ...extra, ...fitRequest(state.run.observations) });
+      const req = { ...extra, ...fitRequest(state.run.observations) };
+      const r = await call('POST', 'fit', req);
       if (r.error) { dispatch({ type: 'FIT_FAIL', error: r.error }); return failWith(r.error); }
-      patch({ fitRaw: r.data });
+      patch({ fitRaw: r.data, fitInput: { times: req.times, output: r.data } }); // fitInput = fit-view parseFit's { times, output }
       return dispatch({ type: 'FIT_RESULT', body: revealBody(r.data, state.fit.sessionId) }); // parseFitReveal gate: invalid -> fit.failed
     },
 

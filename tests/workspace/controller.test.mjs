@@ -76,7 +76,8 @@ test('happy path drives upload.idle -> JOB_UPDATE(ready) -> INTERVIEW_SPEC -> RU
   await c.fit();
   assert.equal(c.state.phase, 'fit.done');
   const fitReq = calls.find((x) => x.path === 'fit').body;
-  assert.deepEqual(Object.keys(fitReq).sort(), ['positions', 'times']); // fitter rejects unknown fields
+  assert.deepEqual(Object.keys(fitReq).sort(), ['degree', 'positions', 'select_model', 'times']); // fitter rejects unknown fields
+  assert.deepEqual(c.snapshot().fitInput, { times: fitReq.times, output: apiFit() }); // what PrivateWorkspace hands the fit view
   assert.deepEqual(fitReq.times.map((t) => t.value), observations.map((o) => o.time_s));
   assert.deepEqual(fitReq.positions.map((t) => [t.value, t.unit, t.source.label]), observations.map((o) => [o.position_m, 'm', 'simulated']));
   assert.equal(c.state.fit.value, 9.8);

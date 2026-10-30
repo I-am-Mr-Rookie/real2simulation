@@ -14,7 +14,8 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
   // S15q: a viewer LOAD_FAILED must not hide a job/API error (the live spec 422 was masked this way)
   const errs = [view.error, jobStatus.error].filter((e, i, a) => e && (i === 0 || e !== a[0]));
   const specError = layout.phase === 'interview.active' ? jobStatus.error : null;
-  const stageError = /\.failed$/.test(layout.phase) ? jobStatus.error : null; // S15r: say why run/fit failed, not just 'Run failed.'
+  // S15r: say why run/fit failed, not just 'Run failed.'; S15t: a report 422 leaves fit.done, say it there too
+  const stageError = /\.failed$|^fit\.done$/.test(layout.phase) ? jobStatus.error : null;
   return h('div', { className: 'ws', 'data-phase': layout.phase },
     h('nav', { className: 'ws-stages', 'data-slot': 'stage-nav', 'aria-label': 'Workspace stages' },
       h('ol', null, ...stages.map((s) => h('li', { key: s.id, 'data-status': s.status, 'aria-current': s.status === 'current' ? 'step' : undefined },

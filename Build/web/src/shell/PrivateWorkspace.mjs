@@ -85,7 +85,7 @@ export default function PrivateWorkspace({ scene }) {
     live ? React.createElement('p', { role: 'note', 'data-instruments': 'unavailable' }, INSTRUMENTS_UNAVAILABLE) : null,
     React.createElement(Workspace, { state: s.state, adapter, audience: 'signed-in', onAction,
       interview: live ? local.interview : undefined, run: live ? initialRun() : undefined, instruments: live ? local.instruments : undefined,
-      fit: live ? s.state.fit ?? undefined : undefined, report: live && s.report ? s.report : undefined, provenance: live ? s.provenance ?? undefined : undefined,
+      fit: live ? s.fitInput ?? undefined : undefined, report: live && s.report ? s.report : undefined, provenance: live ? s.provenance ?? undefined : undefined,
       whatIf: live ? s.whatIfLabel ?? undefined : undefined }));
 }
 
