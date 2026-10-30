@@ -6,5 +6,5 @@ import { UserButton, useAuth } from '@clerk/nextjs';
 export default function AccountNav() {
   const { isLoaded, isSignedIn } = useAuth();
   if (isLoaded && isSignedIn) return <UserButton />;
-  return <Link href="/sign-in">Sign in</Link>;
+  return <Link className="nav-cta" href="/sign-in">Sign in</Link>;
 }
