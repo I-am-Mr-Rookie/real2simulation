@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+S18b-orch90 DONE merged (TIMING PASS; library 28 OK from worktree cwd): 4 SIMULATED display-only free-fall entries
+(S10hi-gate) + 1 licensed RM02 descriptor; SCALE_UNVERIFIED/Gate M NOT_MET verbatim. DISPATCHED S18c-orch94 sol medium
+(thread 01a18b84-9d7e-7f60-bb14-4b3fa18663b9, deadline 2026-10-30T07:04:45+00:00).
+UI-e-orch88 DONE merged (TIMING PASS; workspace+viewer 122 pass/0 fail/3 skip): audit P2-1..6 + P3s fixed, fit values
+display-rounded only (raw kept in title), AA fix on submit/retry, viewer smoke harness diagnosed (not a render failure).
+
 S16b-orch89 DONE merged (TIMING PASS; sidebar tests OK). DISPATCHED S16c-orch93 sol medium (thread 01a18b81-d4c0-70a3-9218-ca4eefe3f071, deadline 2026-10-30T07:01:42+00:00).
 
 S14g-fix4-orch86 DONE merged (TIMING PASS; agent 52 OK; $0): F1-R closed (a/an/single + time/angle units, oracle
