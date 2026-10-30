@@ -3,6 +3,8 @@ ENV NEXT_TELEMETRY_DISABLED=1
 WORKDIR /app
 COPY Build/web/package.json ./package.json
 RUN npm install --no-audit --no-fund
+COPY Build/web/next.config.js ./next.config.js
+COPY Build/web/public ./public
 COPY Build/web/src ./src
 # Relative imports from src/ reach /simulator and /lab (Build/ layout at filesystem root).
 COPY Build/simulator /simulator

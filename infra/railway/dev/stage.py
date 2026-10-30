@@ -15,7 +15,7 @@ if target.exists():
 revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=root, text=True).strip()
 prefixes = {
     # Web imports ../simulator and ../lab outside Build/web/src: stage only those exact modules.
-    "web": ("Build/web/src/", "Build/web/package.json", "Build/lab/session-service.mjs",
+    "web": ("Build/web/src/", "Build/web/public/", "Build/web/package.json", "Build/web/next.config.js", "Build/lab/session-service.mjs",
             *(f"Build/simulator/{m}.mjs" for m in ("trajectories", "extended-templates", "mystery-g", "replay", "rk4"))),
     "api": ("Build/api/health/",),
     "worker": ("Build/worker/health/", "Build/api/health/dependencies.py"),
