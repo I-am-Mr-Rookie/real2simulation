@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+OWNER REPLY (RUNS.md, read Oct30 ~10:33Z; verbatim intent): after 16:50 Dhaka resume S15k-orch122 (stalled on Claude 5h quota).
+Codex quota running low -> in the AGENT ARMY PERIOD (16:50-18:00 Dhaka) ALL ready/becoming-ready tasks, INCLUDING Codex-lane rows, run on
+Claude Opus 5.5 (high for hard, medium for easy/medium). Use all Claude quota by 18:00; stragglers may run until 18:15. No max worker
+count. Anything blocked by owner absence: controller decides on his behalf with recommended best decisions (existing safety/spend/
+account/terms/public/production boundaries still apply; record each decision). Before 16:50: no new Codex dispatch (quota low).
+S09k-orch124 ACCEPTED DONE (SVG simulated-trace replay, SHA/bounds checked, mystery refused, a11y controls, 375px; viewer 49 pass/3 skip).
+
 Oct30 ~09:57Z: ACCEPTED S18g-orch120 DONE (Build/library/loader.mjs metadata loading + validated viewer-request boundary; all 18 entries
 canMount=false because no render bytes/traces; library 73 OK incl. stdin-driven loader.test.mjs via test_loader.py - running it
 standalone waits on stdin). Controller added QUEUE rows S18k (Sol med: publish hashed simulator traces / RM02-RM04 PLY if bytes match)
