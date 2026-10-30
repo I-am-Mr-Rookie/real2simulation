@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+S20-fix-orch63 PARTIAL, NOT integrated (Sol high; TIMEBOX FAIL: 159 s overrun, self-reported). Unverified
+WIP ad99589 on run/S20-fix-orch63: global reservations.py + durable.py (O_EXCL lock), gpu_stages
+wiring, ROUND_FLOOR, unknown-key/AWS bucket; no tests run, failover AWS repeat unfinished, fixtures
+not migrated. Re-dispatch S20-fix2 from WIP (Sol high).
+
 S14g-fix3-orch64 TIMEBOX REISSUED by controller: create_thread hung ~25 min (turn started 2026-10-30T04:57:28.000Z); new window 2026-10-30T04:58:49+00:00 -> 2026-10-30T05:28:49+00:00, messaged to worker.
 
 DISPATCHED S14g-fix3-orch64 Opus high (threadId:01a18b13-ec19-7332-98e3-d9c0ee9ff331,hostId:local, deadline 2026-10-30T05:01:37+00:00); Meta cap $2.50.
