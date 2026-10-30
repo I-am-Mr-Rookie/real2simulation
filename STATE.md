@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+CODEX QUOTA HIT (recorded once, Oct30 ~07:37Z): R-A-recheck5-orch107 and S18e-orch104 failed "You've hit your usage limit. Try
+again at 2:47 PM." No commits; uncommitted WIP left in their worktrees (not accepted). Not restarted. After 14:47 Dhaka: fresh
+R-A recheck5 + S18e runs (new RIDs, new timeboxes), then S20d, S16f. Claude lane unaffected.
+
 ACCEPTED S16e-orch108 DONE (07:36Z; timing PASS; merged): ONE live Baseten request, exact model meta-models/muse-spark-open-1026,
 HTTP 200, 2.52 s, measured 774+402=1176 tokens, $ unknown (no dashboard), 2 ranked SIMULATED library cards validated.
 Evidence evidence/S16/S16e-orch108-live.json (sanitized). QUEUE S16e -> DONE. S16f (Sol) held until 14:47 Dhaka Codex pause.
