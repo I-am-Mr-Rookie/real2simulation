@@ -166,10 +166,10 @@ class JobsRouterTests(unittest.TestCase):
                 f"/internal/workspace/scenes/{job_id}/{path}", headers=OTHER_AUTH,
                 **({} if path == "questions" else {"json": {"answers": rm04["answers"]}}))
             self.assertEqual(self.code(r, 404), "NOT_FOUND")
-        # Recorded scene_context is not an authoritative bundle (S14g: validate_setup not run): 422, never a default.
+        # Recorded scene_context is not an authoritative bundle: owner Q16=A numeric-contract path (S14j), labelled.
         s = self.client.post(f"/internal/workspace/scenes/{job_id}/spec", headers=AUTH, json={"answers": rm04["answers"]})
-        self.assertEqual(self.code(s, 422), "INVALID_INPUT")
-        self.assertIn("authoritative bundle", " ".join(s.json()["detail"]["errors"]))
+        self.assertEqual(s.status_code, 200, s.text)
+        self.assertEqual((s.json()["label"], s.json()["setup_validated"]), ("scale unverified, not setup-validated", False))
         resolve = scene_resolver(self.store, self.und)
         self.assertEqual(resolve(OWNER, job_id)[0], rm04["spec"])
         self.assertIsNone(resolve(OTHER, job_id))

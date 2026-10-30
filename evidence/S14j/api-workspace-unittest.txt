@@ -1,0 +1,25 @@
+test_auth_rejects_missing_bad_token_and_owner (test_analysis.AnalysisRouterTests.test_auth_rejects_missing_bad_token_and_owner) ... ok
+test_fit_is_fitter_handle (test_analysis.AnalysisRouterTests.test_fit_is_fitter_handle) ... ok
+test_no_paid_client_imported (test_analysis.AnalysisRouterTests.test_no_paid_client_imported) ... ok
+test_questions_owner_scoped_and_from_interview (test_analysis.AnalysisRouterTests.test_questions_owner_scoped_and_from_interview) ... ok
+test_report_degree_one_fit_rejected_not_invented (test_analysis.AnalysisRouterTests.test_report_degree_one_fit_rejected_not_invented) ... ok
+test_report_html_fallback_labelled_simulated (test_analysis.AnalysisRouterTests.test_report_html_fallback_labelled_simulated) ... ok
+test_spec_validates_via_interview_and_never_defaults (test_analysis.AnalysisRouterTests.test_spec_validates_via_interview_and_never_defaults) ... ok
+test_auth_required (test_jobs.JobsRouterTests.test_auth_required) ... ok
+test_missing_recording_is_dependency_unavailable (test_jobs.JobsRouterTests.test_missing_recording_is_dependency_unavailable) ... ok
+test_other_owner_gets_404 (test_jobs.JobsRouterTests.test_other_owner_gets_404) ... ok
+test_real_rm04_recording_and_approval (test_jobs.JobsRouterTests.test_real_rm04_recording_and_approval) ... ok
+test_recorded_executor_never_spends (test_jobs.JobsRouterTests.test_recorded_executor_never_spends) ... ok
+test_recorded_replay_labelled_with_original_utc (test_jobs.JobsRouterTests.test_recorded_replay_labelled_with_original_utc) ... ok
+test_resumable_upload_and_unapproved_sha (test_jobs.JobsRouterTests.test_resumable_upload_and_unapproved_sha) ... ok
+test_scene_resolver_owner_scoped_questions_and_spec (test_jobs.JobsRouterTests.test_scene_resolver_owner_scoped_questions_and_spec) ... ok
+test_without_recorded_understand_replay_stops_honestly (test_jobs.JobsRouterTests.test_without_recorded_understand_replay_stops_honestly) ... ok
+test_authoritative_scene_unchanged (test_spec_q16.Q16SpecTests.test_authoritative_scene_unchanged) ... ok
+test_rm04_invalid_answers_422 (test_spec_q16.Q16SpecTests.test_rm04_invalid_answers_422) ... ok
+test_rm04_production_path_is_bundle_only_failure (test_spec_q16.Q16SpecTests.test_rm04_production_path_is_bundle_only_failure) ... ok
+test_rm04_valid_answers_200_labelled_never_setup_validated (test_spec_q16.Q16SpecTests.test_rm04_valid_answers_200_labelled_never_setup_validated) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 3.690s
+
+OK

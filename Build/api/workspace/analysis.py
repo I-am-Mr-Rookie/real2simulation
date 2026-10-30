@@ -4,6 +4,7 @@ Every number comes from existing modules (interview/validate_setup, fitter.api.h
 this file adds routing, auth and error mapping only. No model, GPU or paid call; no storage.
 """
 import re
+import types
 from pathlib import Path
 from typing import Any, Callable, Mapping
 
@@ -15,12 +16,21 @@ from Build.fitter.api import handle as fit_handle
 from Build.reports import SCHEMA, ReportError, digest, number_entry, render_html
 from Build.reports.typeset import TEMPLATE_TEXT
 from contracts.agent.validate import AgentContractError
+from contracts.experiment.validate_experiment import validate
 
 # (owner, scene_id) -> (base_spec, scene, scene_root) for a scene this owner may read, else None.
 SceneResolver = Callable[[str, str], "tuple[Mapping[str, Any], Mapping[str, Any], Path] | None"]
 _SCENE_ID = re.compile(r"[A-Za-z0-9._-]{1,128}")
 # Report placeholders -> fitter paths (value, uncertainty). reports tables/charts require gravity, so degree-1 fits 422.
 _REFS = {"g": ("gravity.value", "gravity.uncertainty"), "rmse": ("fit.rmse", None), "n": ("fit.n", None)}
+# Owner Q16=A (Gate A MET_AMENDED_Q16): recorded scenes with no authoritative bundle get numeric-contract validation only.
+Q16_LABEL = "scale unverified, not setup-validated"
+_NO_BUNDLE = "$.scene: invalid authoritative bundle:"
+# The exact answers_to_spec code with Gate A's spec_only stand-in (numeric validate()) as validate_setup; no global patch.
+_numeric_answers_to_spec = types.FunctionType(
+    interview.answers_to_spec.__code__,
+    {**interview.answers_to_spec.__globals__, "validate_setup": lambda spec, _scene, _root: validate(spec)},
+    "numeric_answers_to_spec")
 
 
 def _no_scenes(owner: str, scene_id: str):
@@ -65,7 +75,14 @@ def create_router(scenes: SceneResolver = _no_scenes) -> APIRouter:
         try:
             validated = interview.answers_to_spec(base_spec, scene, root, answers)
         except AgentContractError as exc:  # invalid answers never fall back to default numbers
-            raise error(422, "INVALID_INPUT", "spec did not validate", ok=False, errors=list(exc.issues))
+            issues = list(exc.issues)
+            if not (issues and all(str(i).startswith(_NO_BUNDLE) for i in issues)):
+                raise error(422, "INVALID_INPUT", "spec did not validate", ok=False, errors=issues)
+            try:  # only the bundle is missing (answers mapped, numeric validate() already ran first in validate_setup)
+                validated = _numeric_answers_to_spec(base_spec, scene, root, answers)
+            except AgentContractError as exc2:  # answers_to_spec wraps validate()'s ValueError
+                raise error(422, "INVALID_INPUT", "spec did not validate", ok=False, errors=list(exc2.issues))
+            return {"ok": True, "spec": validated, "validated_setup": validated, "label": Q16_LABEL, "setup_validated": False}
         return {"ok": True, "spec": validated, "validated_setup": validated}
 
     @router.post("/fit")
