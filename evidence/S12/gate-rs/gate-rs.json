@@ -35,6 +35,7 @@
       "kind": "projectile",
       "prediction_sha256": "b9c092b5d5cb27bc0878ddd39a20538fd3f4cc2c864a1b89f6a08c417ffc7cc1",
       "prediction_commitment": "prediction/v2",
+      "training_sha256": "eb4f9cbcf28f01d9ec12536612923691331f00a1428c8075051ed3d47471ed68",
       "suffix_identity_sha256": "aee71c42f900f9b96dc2ad2f9cf15cdcdb467cefec502100a8cc06776d27115c",
       "sealed_frames": 466,
       "scored_frames": 7,
@@ -171,7 +172,21 @@
         ],
         "after_frame": 76,
         "prefix_frames": 19,
-        "prefix_max_abs": 0.00045112303100769413
+        "prefix_max_abs": 0.00045112303100769413,
+        "seal": {
+          "clip_id": "ST03",
+          "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+          "last_training_frame": 76,
+          "training_sha256": "eb4f9cbcf28f01d9ec12536612923691331f00a1428c8075051ed3d47471ed68",
+          "suffix_identity_sha256": "aee71c42f900f9b96dc2ad2f9cf15cdcdb467cefec502100a8cc06776d27115c",
+          "suffix_count": 466
+        },
+        "custody": {
+          "registry": "evidence/S12/accepted-tracking.json",
+          "registry_sha256": "513f8cfc3c60810f8f16704af54e9cf4833c64bb123f370f551f47468d49dbee",
+          "entry": "ST03-f58-83-S12e-orch45"
+        },
+        "custody_error": null
       },
       "observations_sha256": "8cd9d69300707d0104df13bdd4d92030d0f6bba2d74b84836221a92887f8c702",
       "gate_m": "NOT_MET",

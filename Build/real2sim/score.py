@@ -9,6 +9,9 @@ receipt from clips.csv + evidence/owner/S02/APPROVAL.md + the S02c acquisition h
 F2-R2: observations must come through Tracked (accepted tracker artifact: path+sha custody, validate_segment,
 tracker clip/source identity == receipt, prefix re-tracked); gate() re-derives them. Generic/synthetic scoring
 still works but is never gate-eligible.
+F2-R3/F2-C: Tracked must be bound to the scored boundary, and its artifact must have exactly one entry in the
+controller-reviewed accepted-tracking registry (artifact sha + seal + presentation map + frame range); unknown
+caller-authored trackers are diagnostic-only.
 """
 import csv
 import hashlib
@@ -39,6 +42,35 @@ LICENCES = frozenset({"pexels", "pexels license", "pixabay", "pixabay license", 
                       "public domain", "pd-usgov-nasa", "pd-usgov", "pd-self", "pd-old", "cc0", "cc0-1.0"}
                      | {f"cc-by{sa}-{v}" for sa in ("", "-sa") for v in CC_VERSIONS})
 PREFIX_TOL = 0.002  # image heights; ST03 f58-83 re-track vs orch14 prefix measured 0.00045
+# F2-R3: independent, controller-reviewed custody. Only entries built from accepted run evidence are listed; any other
+# artifact (even internally consistent, correct ids, validate_segment OK) is diagnostic-only, never gate-eligible.
+TRACKING_REGISTRY = "evidence/S12/accepted-tracking.json"
+
+
+def seal_identity(b):
+    """F2-C: the boundary/prediction-commitment identity a tracking artifact must be bound to."""
+    return {"clip_id": b.clip_id, "source_sha256": b.source_sha256, "last_training_frame": b.last_training_frame,
+            "training_sha256": b.training_sha256, "suffix_identity_sha256": b.suffix_identity_sha256,
+            "suffix_count": b.suffix_count}
+
+
+def accepted_tracking(rel, sha256, seal, frame_pts, root=ROOT):
+    """F2-R3: exactly one accepted registry entry binding artifact path+sha, seal identity, presentation map, frames."""
+    raw = (root / TRACKING_REGISTRY).read_bytes()
+    hits = [e for e in json.loads(raw)["accepted"] if e.get("artifact") == rel and e.get("artifact_sha256") == sha256]
+    if len(hits) != 1:
+        raise ValueError(f"tracker artifact {rel!r} has no accepted tracking custody in {TRACKING_REGISTRY}")
+    e = hits[0]
+    if e.get("seal") != seal:
+        raise ValueError("accepted tracking custody binds a different clip/source/training prefix/seal")
+    pmap = _artifact(root, e["presentation_map"])
+    if hashlib.sha256(pmap).hexdigest() != e.get("presentation_map_sha256"):
+        raise ValueError("presentation map digest differs from accepted custody")
+    pts = {f["source_frame_index"]: float(f["pts_time"]) for f in json.loads(pmap)["frames"]}
+    first, last = e["frame_range"]
+    if [list(r) for r in frame_pts] != [[i, pts[i]] for i in range(first, last + 1)]:
+        raise ValueError("tracker frames/PTS differ from the accepted frame range and presentation map")
+    return {"registry": TRACKING_REGISTRY, "registry_sha256": hashlib.sha256(raw).hexdigest(), "entry": e["id"]}
 
 
 def approved(clip_id, text):
@@ -106,11 +138,17 @@ class Tracked:
         diffs = [abs(obs[i][1] - y) for i, _, y in b.training if i in obs]
         if obs and (len(diffs) != len(b.training) or max(diffs) > PREFIX_TOL):
             raise ValueError("tracker artifact does not re-track the committed prefix (prefix custody)")
-        self.evidence = {"path": self.rel, "sha256": hashlib.sha256(raw).hexdigest(), "clip_id": b.clip_id,
+        sha, seal = hashlib.sha256(raw).hexdigest(), seal_identity(b)
+        try:
+            custody, custody_error = accepted_tracking(self.rel, sha, seal, fpts, self.root), None
+        except (ValueError, KeyError, TypeError, OSError) as error:  # unknown artifact: diagnostic-only
+            custody, custody_error = None, f"no accepted tracking custody: {error}"
+        self.evidence = {"path": self.rel, "sha256": sha, "clip_id": b.clip_id,
                          "source_sha256": b.source_sha256, "object_id": self.object_id, "prompt": self.prompt,
                          "validate": note, "frame_pts": fpts,
                          "after_frame": b.last_training_frame, "prefix_frames": len(diffs),
-                         "prefix_max_abs": max(diffs) if diffs else None}
+                         "prefix_max_abs": max(diffs) if diffs else None, "seal": seal,
+                         "custody": custody, "custody_error": custody_error}
         return {i: v for i, v in obs.items() if i > b.last_training_frame}
 
 
@@ -128,8 +166,20 @@ def _tracking_ok(r, root):
         return False
     if (e.get("clip_id"), e.get("source_sha256")) != (r.get("clip_id"), r.get("source_sha256")):
         return False
+    seal = e.get("seal")  # F2-C: tracking bound to the same seal the committed prediction was scored against
+    if not isinstance(seal, dict) or e.get("after_frame") != seal.get("last_training_frame") or \
+            (seal.get("clip_id"), seal.get("source_sha256"), seal.get("training_sha256"),
+             seal.get("suffix_identity_sha256"), seal.get("suffix_count")) != \
+            (r.get("clip_id"), r.get("source_sha256"), r.get("training_sha256"), r.get("suffix_identity_sha256"),
+             r.get("sealed_frames")):
+        return False
     raw = _artifact(root, e["path"])
     if hashlib.sha256(raw).hexdigest() != e.get("sha256"):
+        return False
+    try:  # F2-R3: independent accepted custody, never the artifact's own location/hash/validation
+        if accepted_tracking(e["path"], e["sha256"], seal, e["frame_pts"], root) != e.get("custody"):
+            return False
+    except (ValueError, KeyError, TypeError, OSError):
         return False
     obs, note = st03_observations(raw.decode(), {i: p for i, p in e["frame_pts"]}, r["clip_id"], r["source_sha256"],
                                   e["object_id"], e["prompt"])
@@ -150,6 +200,8 @@ def score(boundary, sealed, prediction, committed_sha256, load_observations, pro
         raise ValueError("prediction trace does not cover the complete sealed suffix")
     if not all(_finite(r[2]) for r in prediction.trace):
         raise ValueError("prediction trace has non-finite values")
+    if isinstance(load_observations, Tracked) and load_observations.boundary != boundary:  # F2-C, before any read
+        raise ValueError("Tracked loader is bound to a different boundary than the one being scored")
     try:
         receipt, ineligible = public_receipt(boundary.clip_id, boundary.source_sha256, prediction.kind), None
     except ValueError as error:
@@ -158,6 +210,8 @@ def score(boundary, sealed, prediction, committed_sha256, load_observations, pro
     tracking = load_observations.evidence if isinstance(load_observations, Tracked) else None
     if tracking is None and ineligible is None:
         ineligible = "observations did not come through the accepted tracking-evidence path (Tracked)"
+    if tracking is not None and tracking["custody"] is None and ineligible is None:
+        ineligible = tracking["custody_error"]
     errors = []
     for i, p, y, _ in prediction.trace:
         if i in observed:
@@ -170,6 +224,7 @@ def score(boundary, sealed, prediction, committed_sha256, load_observations, pro
     rms = _rms(errors)
     return {"clip_id": boundary.clip_id, "source_sha256": boundary.source_sha256, "kind": prediction.kind,
             "prediction_sha256": prediction.sha256, "prediction_commitment": prediction.commitment,
+            "training_sha256": prediction.training_sha256,
             "suffix_identity_sha256": boundary.suffix_identity_sha256, "sealed_frames": boundary.suffix_count,
             "scored_frames": len(errors), "coverage": coverage, "normalized_rms": rms,
             "normalized_rms_first5_diagnostic": _rms(errors[:EARLY]),

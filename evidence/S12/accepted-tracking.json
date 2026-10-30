@@ -1,0 +1,39 @@
+{
+  "schema": "accepted-tracking/v1",
+  "gate_m": "NOT_MET",
+  "rule": "F2-R3: an artifact is gate-eligible only via exactly one entry here, built from existing accepted run evidence and reviewed by the controller; any other tracker JSON is diagnostic-only. Entries prove custody of a tracking job output, not physical accuracy or calibration.",
+  "accepted": [
+    {
+      "id": "ST03-f58-83-S12e-orch45",
+      "artifact": "evidence/S12/gate-rs/ST03-f58-83/result.json",
+      "artifact_sha256": "e30807fcf5887ad0c43f0b1317a491411c8ce4b34e86c16c7ca290524f028f55",
+      "seal": {
+        "clip_id": "ST03",
+        "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+        "last_training_frame": 76,
+        "training_sha256": "eb4f9cbcf28f01d9ec12536612923691331f00a1428c8075051ed3d47471ed68",
+        "suffix_identity_sha256": "aee71c42f900f9b96dc2ad2f9cf15cdcdb467cefec502100a8cc06776d27115c",
+        "suffix_count": 466
+      },
+      "presentation_map": "evidence/S07/S07b/recovery3/presentation-map.json",
+      "presentation_map_sha256": "420aef7f9f13d371adcf963ceb1635a4d34190a6fb3734b5b884c5712c33c30b",
+      "frame_range": [
+        58,
+        83
+      ],
+      "object_id": 2,
+      "prompt": "apple",
+      "gpu": {
+        "ledger": "evidence/S12/gate-rs/gpu-ledger.jsonl",
+        "app_id": "ap-2Sbu8Pen5jJhHlNxAhuva6",
+        "gpu": "A10G",
+        "billed_usd": 0.02330591
+      },
+      "accepted_runs": [
+        "Run-System/Runs/S12e-orch45/REPORT.md",
+        "evidence/S07/S07b/orch14/result.json (accepted S07b prefix track; f58-83 re-tracks it within PREFIX_TOL, measured 0.00045 H)"
+      ],
+      "limits": "26 frames f58-83; sealed suffix f77-542 covered only 7/466 (OOM on f58-542); image-plane only, Gate M NOT_MET"
+    }
+  ]
+}

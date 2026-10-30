@@ -1,5 +1,7 @@
 """S12e: Gate RS scoring verifies seal + committed sha BEFORE reading suffix observations."""
 import dataclasses
+import copy
+import importlib.util
 import json
 import shutil
 import tempfile
@@ -225,6 +227,51 @@ class TrackingEvidenceTests(unittest.TestCase):
         shifted = tuple((i, p, y + 0.01) for i, p, y in boundary.training)  # prefix not from this artifact
         with self.assertRaisesRegex(ValueError, "prefix custody"):
             s.Tracked(dataclasses.replace(boundary, training=shifted), s.ST03_TRACK, o.st03_frame_map(ROOT))()
+        self.assertEqual(real["tracking_evidence"]["custody"]["entry"], "ST03-f58-83-S12e-orch45")  # F2-R3 positive
+        unregistered = dict(real["tracking_evidence"], custody=None)
+        self.assertFalse(s._tracking_ok(real | {"tracking_evidence": unregistered}, ROOT))
+
+    def test_f2r3_reviewer_forged_native_tracked_end_to_end_is_shortfall(self):
+        """R-RS recheck3 F2-R3, unpatched: hand-authored tracker JSON via native Tracked never reaches MET."""
+        here = ROOT / "evidence/reviews/R-RS/recheck3"
+        spec = importlib.util.spec_from_file_location("rrs_recheck3", here / "review.py")
+        rv3 = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(rv3)
+        forged = {}
+        for kind, clip in (("projectile", "PJ03"), ("bounce", "BN01"), ("pendulum", "PD02")):
+            kb, ki, kp = rv3.rv.fixture(clip, rv3.rv.SHA[clip])
+            kp = rv3.rv.kind_prediction(kind, kb, ki, kp)
+            rel = (here / (kind + "-SYNTHETIC-track.json")).relative_to(ROOT).as_posix()
+            self.assertEqual(json.loads((ROOT / rel).read_text(encoding="utf-8")), rv3.tracker(kb, kp))
+            loader = s.Tracked(kb, rel, dict(list((i, t) for i, t, _ in kb.training) + list(ki)))
+            forged[kind] = s.score(kb, ki, kp, kp.sha256, loader, "image-derived")
+            self.assertTrue(forged[kind]["scored"] and forged[kind]["input_receipt"])  # internally consistent...
+            self.assertEqual(forged[kind]["tracking_evidence"]["validate"], "validate_segment OK")
+            self.assertIn("no accepted tracking custody", forged[kind]["ineligible_reason"])  # ...but unknown
+            self.assertFalse(s._tracking_ok(forged[kind], ROOT))
+        g = s.gate(forged)
+        self.assertEqual((g["status"], g["median"], g["shortfall"]), ("NOT_MET", None, list(s.CATEGORIES)))
+
+    def test_f2c_tracked_bound_to_other_boundary_refused_and_not_eligible(self):
+        """R-RS recheck3 F2-C with the genuine ST03 artifact: loader/boundary mismatch refuses before any read."""
+        record, suffix, _ = pr.st03_record(ROOT)
+        real_bd, _ = b.split(record, suffix)
+        shifted = copy.deepcopy(record)
+        for frame in shifted["frames"]:
+            frame["y_px"] += shifted["height_px"] * 0.01
+        shifted_bd, shifted_seal = b.split(shifted, suffix)
+        shifted_pred = pr.projectile(shifted_bd, shifted_seal)
+        wrong = s.Tracked(real_bd, s.ST03_TRACK, o.st03_frame_map(ROOT))
+        with self.assertRaisesRegex(ValueError, "different boundary"):
+            s.score(shifted_bd, shifted_seal, shifted_pred, shifted_pred.sha256, wrong, "image-derived")
+        self.assertIsNone(wrong.evidence)  # refused before the artifact/suffix was read
+        boundary, sealed, pred = st03()
+        real = s.score(boundary, sealed, pred, pred.sha256, s.Tracked(boundary, s.ST03_TRACK, o.st03_frame_map(ROOT)),
+                       "image-derived")
+        transplant = real | {"training_sha256": shifted_bd.training_sha256}  # carried seal != scored prediction's
+        self.assertFalse(s._tracking_ok(transplant, ROOT))
+        reseal = dict(real["tracking_evidence"], seal=s.seal_identity(shifted_bd))  # custody binds the accepted seal
+        self.assertFalse(s._tracking_ok(transplant | {"tracking_evidence": reseal}, ROOT))
 
     def test_f2r2_wrong_source_tracker_payload_and_mutated_real_record_refused(self):
         boundary, sealed, pred = st03()
