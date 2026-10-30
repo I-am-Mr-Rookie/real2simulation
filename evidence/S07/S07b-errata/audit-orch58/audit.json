@@ -1,0 +1,676 @@
+{
+  "run": "S07-pts-audit-orch58",
+  "generated_utc": "2026-10-30T01:02:01.507655+00:00",
+  "base_commit": "ea0dcc9dc0a8185e6959682a4f6245054f18b04c",
+  "tracked_evidence_files_scanned": 1664,
+  "ffprobe_version": "ffprobe version 8.1.1-full_build-www.gyan.dev Copyright (c) 2007-2026 the FFmpeg developers",
+  "sources": {
+    "ST03": {
+      "source": "test-data/public/ST03.mp4",
+      "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+      "hash_verified": true,
+      "hash_reference": "evidence/clips/S02c-acquisition.json",
+      "clips_csv_note": "clips.csv has paths/rights but no SHA column; acquisition record pins SHA",
+      "source_url": "https://www.pexels.com/video/woman-dropping-apple-on-ground-12723966/",
+      "licence": "Pexels License",
+      "frame_count": 543,
+      "stream": {
+        "has_b_frames": 2,
+        "time_base": "1/30000"
+      },
+      "command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "frame=pts,pts_time:stream=time_base,has_b_frames",
+        "-of",
+        "json",
+        "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\ST03.mp4"
+      ]
+    },
+    "RM04": {
+      "source": "test-data/public/RM04.mp4",
+      "source_sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+      "hash_verified": true,
+      "hash_reference": "evidence/clips/S02c-acquisition.json",
+      "clips_csv_note": "clips.csv has paths/rights but no SHA column; acquisition record pins SHA",
+      "source_url": "https://www.pexels.com/video/an-empty-classroom-8342689/",
+      "licence": "Pexels License",
+      "frame_count": 231,
+      "stream": {
+        "has_b_frames": 2,
+        "time_base": "1/25"
+      },
+      "command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "frame=pts,pts_time:stream=time_base,has_b_frames",
+        "-of",
+        "json",
+        "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\RM04.mp4"
+      ]
+    }
+  },
+  "tolerance_s": 1e-06,
+  "results": [
+    {
+      "file": "evidence/S07/S07b-errata/RM04-orch40-frame_map.json",
+      "sha256": "cc41a7eb101ab2a0ea312771306c723b8dc55c0e98d2a4679aaafd17942b98d4",
+      "clip_id": "RM04",
+      "status": "OK",
+      "timestamp_occurrences": 12,
+      "unique_frames": 12,
+      "differences": []
+    },
+    {
+      "file": "evidence/S07/S07b-errata/ST03-orch14-frame_map.json",
+      "sha256": "b49858b0a227e94064bea3478a922d51a4b7530f666dc3d241e8b863303ada86",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 19,
+      "unique_frames": 19,
+      "differences": []
+    },
+    {
+      "file": "evidence/S07/S07b-param/RM04-chair-orch40/result.json",
+      "sha256": "d9725a3a126ef4e24324301be9cf4f8c67b05645960682b9ce39ae6e85a44855",
+      "clip_id": "RM04",
+      "status": "WRONG",
+      "timestamp_occurrences": 24,
+      "unique_frames": 12,
+      "differences": [
+        {
+          "pointer": "/record/frames/11/pts_s",
+          "frame_index": 11,
+          "recorded_pts_s": 0.48,
+          "corrected_pts_s": 0.44
+        },
+        {
+          "pointer": "/frame_map/11/1",
+          "frame_index": 11,
+          "recorded_pts_s": 0.48,
+          "corrected_pts_s": 0.44
+        }
+      ],
+      "errata": "evidence/S07/S07b-errata/audit-orch58/S07--S07b-param--RM04-chair-orch40--result-frame_map.json"
+    },
+    {
+      "file": "evidence/S07/S07b/orch13/result-run10.json",
+      "sha256": "7348f1572a8b7156115322894ec49ded6b92fdf26a66f2a209c9fcc9eaac127b",
+      "clip_id": "ST03",
+      "status": "WRONG",
+      "timestamp_occurrences": 19,
+      "unique_frames": 19,
+      "differences": [
+        {
+          "pointer": "/frame_map/18/1",
+          "frame_index": 76,
+          "recorded_pts_s": 2.569233,
+          "corrected_pts_s": 2.535867
+        }
+      ],
+      "errata": "evidence/S07/S07b-errata/audit-orch58/S07--S07b--orch13--result-run10-frame_map.json"
+    },
+    {
+      "file": "evidence/S07/S07b/orch13/result-run11.json",
+      "sha256": "16a719b57d5ef53ba94b34c8dd409e3d58465ad696c88287ec4d5cdc945d4cdd",
+      "clip_id": "ST03",
+      "status": "WRONG",
+      "timestamp_occurrences": 19,
+      "unique_frames": 19,
+      "differences": [
+        {
+          "pointer": "/frame_map/18/1",
+          "frame_index": 76,
+          "recorded_pts_s": 2.569233,
+          "corrected_pts_s": 2.535867
+        }
+      ],
+      "errata": "evidence/S07/S07b-errata/audit-orch58/S07--S07b--orch13--result-run11-frame_map.json"
+    },
+    {
+      "file": "evidence/S07/S07b/orch13/result-run4.json",
+      "sha256": "0517c0508a6475a93a98c6bffe6663d3cf755314f5ab7dc9787c3562a98b8f29",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 21,
+      "unique_frames": 21,
+      "differences": []
+    },
+    {
+      "file": "evidence/S07/S07b/orch13/result-run5.json",
+      "sha256": "b46c0cdfe56e48d57b84f24686e1b65f191b68081dba8cf4a20f94961f0a3fc9",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 21,
+      "unique_frames": 21,
+      "differences": []
+    },
+    {
+      "file": "evidence/S07/S07b/orch13/result-run6.json",
+      "sha256": "af2d9654b56d2015a72123e745cb1d45d9e56ab3f72e69e221ab526ac432d1ef",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 21,
+      "unique_frames": 21,
+      "differences": []
+    },
+    {
+      "file": "evidence/S07/S07b/orch13/result-run7.json",
+      "sha256": "7e91923c17c9556e582286ecfd3e7bb41e8a8f4cc277594d5301260c164ae889",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 21,
+      "unique_frames": 21,
+      "differences": []
+    },
+    {
+      "file": "evidence/S07/S07b/orch13/result-run8.json",
+      "sha256": "9b367252dfb47182871df53e24570bcb0328f145dc7419419fadadc6dfc12400",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 21,
+      "unique_frames": 21,
+      "differences": []
+    },
+    {
+      "file": "evidence/S07/S07b/orch14/result-run1.json",
+      "sha256": "6b0a9e50eb8745f11f02bb3dbe742c1135a23d62909e2de64983e36aa5207bea",
+      "clip_id": "ST03",
+      "status": "WRONG",
+      "timestamp_occurrences": 38,
+      "unique_frames": 19,
+      "differences": [
+        {
+          "pointer": "/record/frames/18/pts_s",
+          "frame_index": 76,
+          "recorded_pts_s": 2.569233,
+          "corrected_pts_s": 2.535867
+        },
+        {
+          "pointer": "/frame_map/18/1",
+          "frame_index": 76,
+          "recorded_pts_s": 2.569233,
+          "corrected_pts_s": 2.535867
+        }
+      ],
+      "errata": "evidence/S07/S07b-errata/audit-orch58/S07--S07b--orch14--result-run1-frame_map.json"
+    },
+    {
+      "file": "evidence/S07/S07b/orch14/result.json",
+      "sha256": "c71ce907fd2d5d799a5781eaf3d570ac5543002a8e47535b7758606ac01e5d45",
+      "clip_id": "ST03",
+      "status": "WRONG",
+      "timestamp_occurrences": 38,
+      "unique_frames": 19,
+      "differences": [
+        {
+          "pointer": "/record/frames/18/pts_s",
+          "frame_index": 76,
+          "recorded_pts_s": 2.569233,
+          "corrected_pts_s": 2.535867
+        },
+        {
+          "pointer": "/frame_map/18/1",
+          "frame_index": 76,
+          "recorded_pts_s": 2.569233,
+          "corrected_pts_s": 2.535867
+        }
+      ],
+      "errata": "evidence/S07/S07b-errata/audit-orch58/S07--S07b--orch14--result-frame_map.json"
+    },
+    {
+      "file": "evidence/S07/S07b/recovery3/manifest.json",
+      "sha256": "a3e6ce0a48b70d5049134ce3ddf2160bd3b95014834a579ba0f391fae162eaa7",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 271,
+      "unique_frames": 271,
+      "differences": []
+    },
+    {
+      "file": "evidence/S07/S07b/recovery3/presentation-map.json",
+      "sha256": "420aef7f9f13d371adcf963ceb1635a4d34190a6fb3734b5b884c5712c33c30b",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 543,
+      "unique_frames": 543,
+      "differences": []
+    },
+    {
+      "file": "evidence/S12/gate-rs/ST03-f58-542/result.json",
+      "sha256": "166421c1373139d2fdd19f93ccb20af1642755db484218eeaf6c1551937283c2",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 485,
+      "unique_frames": 485,
+      "differences": []
+    },
+    {
+      "file": "evidence/S12/gate-rs/ST03-f58-83/result.json",
+      "sha256": "e30807fcf5887ad0c43f0b1317a491411c8ce4b34e86c16c7ca290524f028f55",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 52,
+      "unique_frames": 26,
+      "differences": []
+    },
+    {
+      "file": "evidence/S12/overlay-ST03.json",
+      "sha256": "73d16f876cca8ce176fb107cd8f513e79c2b5de73286cd3d17439031039ef283",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 466,
+      "unique_frames": 466,
+      "differences": []
+    },
+    {
+      "file": "evidence/S12/prediction-ST03.json",
+      "sha256": "42596b66a8dcab37f050ababc45459747afa5b1c717a4172c99b392c5cf8063b",
+      "clip_id": "ST03",
+      "status": "OK",
+      "timestamp_occurrences": 466,
+      "unique_frames": 466,
+      "differences": []
+    },
+    {
+      "file": "evidence/S13/S13f/live-orch42/raw-result.json",
+      "sha256": "cb3248b53633adf8743d04e5651f7483f998f171799e11e41823198faf8d3803",
+      "clip_id": "RM04",
+      "status": "OK",
+      "timestamp_occurrences": 24,
+      "unique_frames": 12,
+      "differences": []
+    },
+    {
+      "file": "evidence/S13/S13f/live-orch42/segmentation.json",
+      "sha256": "5d9c6faa6ae6c07cc479eafd14ae1762db8aea1dfcf5c4f60d0f96df26d955a4",
+      "clip_id": "RM04",
+      "status": "OK",
+      "timestamp_occurrences": 12,
+      "unique_frames": 12,
+      "differences": []
+    },
+    {
+      "file": "evidence/S13/S13f/replay-orch40/segmentation.json",
+      "sha256": "ec0a2ebec0e540b3759187146229593b3fa0bdf57ab15579e383e6f80ea75604",
+      "clip_id": "RM04",
+      "status": "OK",
+      "timestamp_occurrences": 12,
+      "unique_frames": 12,
+      "differences": []
+    },
+    {
+      "file": "evidence/S13/S13h/live/segment/raw-result.json",
+      "sha256": "f6369ac256526d1204822227c1b5776dea3f99af96cc5d9ac9a3833f47c6dd01",
+      "clip_id": "RM04",
+      "status": "OK",
+      "timestamp_occurrences": 24,
+      "unique_frames": 12,
+      "differences": []
+    },
+    {
+      "file": "evidence/S13/S13h/live/segment/segmentation.json",
+      "sha256": "7123a0226ab5e6ba6909a35f8cad37bec8671573a83de58b38d081ad430242ea",
+      "clip_id": "RM04",
+      "status": "OK",
+      "timestamp_occurrences": 12,
+      "unique_frames": 12,
+      "differences": []
+    }
+  ],
+  "counts": {
+    "OK": 18,
+    "WRONG": 5
+  },
+  "excluded_timestamp_candidates": [
+    {
+      "file": "evidence/S05/S05b/input.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S05/S05c/input.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S06/S06d/scene-RM02-gpu.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S06/S06d/scene-RM02-offline.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S06/S06e/scene-RM02-gpu.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S06/S06f/scene-RM04-gpu.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/browser-simulation/free_fall.artifact.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/browser-simulation/free_fall.server-trace.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/browser-simulation/pendulum.artifact.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/browser-simulation/pendulum.server-trace.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/browser-simulation/projectile.artifact.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/browser-simulation/projectile.server-trace.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/browser-simulation/ramp.artifact.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/browser-simulation/ramp.server-trace.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/browser-transport/actual-normal-dtos.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/consumer-recovery/generation-verification.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/numerical-invariants/observed.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/numerical-invariants/validated-cases.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/replay-invariants/free_fall-validated.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/replay-invariants/pendulum-validated.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/replay-invariants/projectile-validated.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S10/replay-invariants/ramp-validated.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S12/overlay-pendulum-SYNTHETIC.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 66
+    },
+    {
+      "file": "evidence/S13/S13h/live/keyframes/manifest.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/S13/S13h/live/reconstruct/bundle/scene.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/S02c-PD02-frame-track.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,nominal_seconds,x,y,w,h,match,mean_abs_frame_delta"
+    },
+    {
+      "file": "evidence/clips/S02c-PD03-blobtrack.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,pts_s,cx,cy,blob_area_px"
+    },
+    {
+      "file": "evidence/clips/S02c-PD04-track.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,x,y,box,match"
+    },
+    {
+      "file": "evidence/clips/S02c-PD06-track.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,x,y,box,match"
+    },
+    {
+      "file": "evidence/clips/S02c-RM04-frame-flow.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,nominal_seconds,wall_tracks,wall_inliers,foreground_tracks,median_residual_halfres_px,max_residual_halfres_px,front_left,front_right,back_left,back_right"
+    },
+    {
+      "file": "evidence/clips/S02c-int1/N3-62.7-72.7s-tmpl-seed150.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,x,y,box,match"
+    },
+    {
+      "file": "evidence/clips/S02c-int1/PJ03-seg15-36s-20fps-tmpl-seed280.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,x,y,box,match"
+    },
+    {
+      "file": "evidence/clips/S02c-r2/BN01seg-tmpl.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,x,y,box,match"
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02h/frame-diagnostics.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,pts_s,crop_md5,crop_mad_prev"
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02h/replay-correspondences.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "realtime_frame,realtime_pts_s,replay_frame,replay_pts_s,crop_mad"
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-127-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-202-step2.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-204.4-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-211-step3.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-218-step2.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-221-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-228-step3.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-230.2-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-234.6-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-323-step2.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-352-step2.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-371-step2.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-420-step25.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-476-step5.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/mapping-486-step5.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/inventory.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/mapping-437-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/mapping-448-step5.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/mapping-455-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/mapping-459.8-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/mapping-468-step5.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/mapping-502-step5.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/mapping-502.4-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/mapping-512.4-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/mapping-519-step5.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/calibration-recovery/S02i/recovery2/mapping-525-step1.json",
+      "classification": "not modal_track PTS output (independent research, synthetic, scene index time, or reference-only)",
+      "extracted_pairs": 0
+    },
+    {
+      "file": "evidence/clips/shards/NASA/candidates-round1.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "clip_id,nasa_id,title,source_url,download_url,creator_credit,licence,licence_url,fetch,local_path,sha256,bytes,file_wh,file_fps,frames,duration_s,source_master,reviewed_segment_s,frame_evidence,intended_use,verdict,limitations"
+    },
+    {
+      "file": "evidence/clips/shards/NASA/candidates.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "clip_id,nasa_id,title,source_url,download_url,creator_credit,licence,licence_url,fetch,local_path,sha256,bytes,file_wh,file_fps,frames,duration_s,source_master,reviewed_segment_s,frame_evidence,intended_use,verdict,limitations"
+    },
+    {
+      "file": "evidence/clips/shards/STOCK/ST01-track.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,pts_s,cx,cy,blob_area_px"
+    },
+    {
+      "file": "evidence/clips/shards/STOCK/ST02-track.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,pts_s,cx,cy,blob_area_px"
+    },
+    {
+      "file": "evidence/clips/shards/STOCK/ST03-track.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,t_s,cx,cy,area,w,h"
+    },
+    {
+      "file": "evidence/clips/shards/STOCK/ST05-track.csv",
+      "classification": "independent research/acquisition CSV, not modal_track output",
+      "header": "frame,t_s,cx,cy,area,w,h,exact_repeat"
+    }
+  ],
+  "non_json_named_json": [
+    {
+      "file": "evidence/S07/S07b/orch13/apps-before.json",
+      "reason": "Expecting value: line 1 column 1 (char 0)"
+    }
+  ]
+}

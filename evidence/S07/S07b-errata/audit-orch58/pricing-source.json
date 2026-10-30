@@ -1,0 +1,9 @@
+{
+  "source_url": "https://modal.com/pricing",
+  "verified_date_utc": "2026-10-30",
+  "retrieval": "TinyFish search then fetch_content; official Modal resource-cost table",
+  "resource": "Nvidia L4",
+  "usd_per_gpu_second": 0.000222,
+  "scope": "Published GPU Tasks list rate; not an observed bill or new GPU job",
+  "code": "Build/gpu/cost_log.py:RATES[L4]"
+}

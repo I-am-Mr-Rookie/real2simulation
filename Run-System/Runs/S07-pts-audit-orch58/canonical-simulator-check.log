@@ -1,0 +1,7 @@
+test_simulator_consumes_values_and_records_survive (test_params.ParamsTests.test_simulator_consumes_values_and_records_survive) ... ok
+test_simulator_rejection_and_nonsynthetic_refusal_surface (test_params.ParamsTests.test_simulator_rejection_and_nonsynthetic_refusal_surface) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 2.793s
+
+OK

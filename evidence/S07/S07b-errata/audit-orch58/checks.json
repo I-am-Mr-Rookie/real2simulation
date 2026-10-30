@@ -1,0 +1,136 @@
+{
+  "status": "PASS",
+  "timestamp_occurrences_checked": 2641,
+  "files_checked": 23,
+  "corrected_maps_checked": 5,
+  "old_and_fixed_reproductions": [
+    {
+      "clip_id": "RM04",
+      "last": 11,
+      "fixed_equals_full_stream": true,
+      "old_command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "frame=pts_time",
+        "-of",
+        "csv=p=0",
+        "-read_intervals",
+        "%+#12",
+        "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\RM04.mp4"
+      ],
+      "old_returned_frames": 12,
+      "old_differences": [
+        {
+          "frame_index": 11,
+          "old_pts_s": 0.48,
+          "corrected_pts_s": 0.44
+        }
+      ]
+    },
+    {
+      "clip_id": "ST03",
+      "last": 70,
+      "fixed_equals_full_stream": true,
+      "old_command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "frame=pts_time",
+        "-of",
+        "csv=p=0",
+        "-read_intervals",
+        "%+#71",
+        "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\ST03.mp4"
+      ],
+      "old_returned_frames": 71,
+      "old_differences": []
+    },
+    {
+      "clip_id": "ST03",
+      "last": 76,
+      "fixed_equals_full_stream": true,
+      "old_command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "frame=pts_time",
+        "-of",
+        "csv=p=0",
+        "-read_intervals",
+        "%+#77",
+        "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\ST03.mp4"
+      ],
+      "old_returned_frames": 77,
+      "old_differences": [
+        {
+          "frame_index": 76,
+          "old_pts_s": 2.569233,
+          "corrected_pts_s": 2.535867
+        }
+      ]
+    },
+    {
+      "clip_id": "ST03",
+      "last": 83,
+      "fixed_equals_full_stream": true,
+      "old_command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "frame=pts_time",
+        "-of",
+        "csv=p=0",
+        "-read_intervals",
+        "%+#84",
+        "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\ST03.mp4"
+      ],
+      "old_returned_frames": 84,
+      "old_differences": [
+        {
+          "frame_index": 82,
+          "old_pts_s": 2.769433,
+          "corrected_pts_s": 2.736067
+        },
+        {
+          "frame_index": 83,
+          "old_pts_s": 2.836167,
+          "corrected_pts_s": 2.769433
+        }
+      ]
+    },
+    {
+      "clip_id": "ST03",
+      "last": 542,
+      "fixed_equals_full_stream": true,
+      "old_command": [
+        "ffprobe",
+        "-v",
+        "error",
+        "-select_streams",
+        "v:0",
+        "-show_entries",
+        "frame=pts_time",
+        "-of",
+        "csv=p=0",
+        "-read_intervals",
+        "%+#543",
+        "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\test-data\\public\\ST03.mp4"
+      ],
+      "old_returned_frames": 543,
+      "old_differences": []
+    }
+  ]
+}

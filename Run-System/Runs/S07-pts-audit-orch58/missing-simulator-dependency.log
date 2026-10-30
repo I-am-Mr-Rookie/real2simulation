@@ -1,0 +1,6 @@
+node:internal/modules/package_json_reader:301
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@dimforge/rapier3d-compat' imported from C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S07-pts-audit-orch58\Build\simulator\contacts.mjs
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:301:9)

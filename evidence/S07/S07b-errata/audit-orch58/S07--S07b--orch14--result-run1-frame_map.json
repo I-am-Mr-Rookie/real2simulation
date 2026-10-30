@@ -1,0 +1,103 @@
+{
+  "errata_for": "evidence/S07/S07b/orch14/result-run1.json",
+  "original_sha256": "6b0a9e50eb8745f11f02bb3dbe742c1135a23d62909e2de64983e36aa5207bea",
+  "clip_id": "ST03",
+  "source": "test-data/public/ST03.mp4",
+  "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+  "source_hash_verified": true,
+  "run": "S07-pts-audit-orch58",
+  "method": "full-stream ffprobe presentation frames; no read_intervals packet limit",
+  "differences": [
+    {
+      "pointer": "/record/frames/18/pts_s",
+      "frame_index": 76,
+      "recorded_pts_s": 2.569233,
+      "corrected_pts_s": 2.535867
+    },
+    {
+      "pointer": "/frame_map/18/1",
+      "frame_index": 76,
+      "recorded_pts_s": 2.569233,
+      "corrected_pts_s": 2.535867
+    }
+  ],
+  "frame_map": [
+    [
+      58,
+      1.935267
+    ],
+    [
+      59,
+      1.968633
+    ],
+    [
+      60,
+      2.002
+    ],
+    [
+      61,
+      2.035367
+    ],
+    [
+      62,
+      2.068733
+    ],
+    [
+      63,
+      2.1021
+    ],
+    [
+      64,
+      2.135467
+    ],
+    [
+      65,
+      2.168833
+    ],
+    [
+      66,
+      2.2022
+    ],
+    [
+      67,
+      2.235567
+    ],
+    [
+      68,
+      2.268933
+    ],
+    [
+      69,
+      2.3023
+    ],
+    [
+      70,
+      2.335667
+    ],
+    [
+      71,
+      2.369033
+    ],
+    [
+      72,
+      2.4024
+    ],
+    [
+      73,
+      2.435767
+    ],
+    [
+      74,
+      2.469133
+    ],
+    [
+      75,
+      2.5025
+    ],
+    [
+      76,
+      2.535867
+    ]
+  ],
+  "scope": "PTS-only correction; does not validate tracking, calibration, or physical gates"
+}

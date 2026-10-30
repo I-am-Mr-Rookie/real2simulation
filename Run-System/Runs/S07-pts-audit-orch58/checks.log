@@ -1,0 +1,107 @@
+test_estimate_includes_cpu_and_memory (test_cost_log_l4.L4Cost.test_estimate_includes_cpu_and_memory) ... ok
+test_scene_receipt_and_billed_seconds (test_cost_log_l4.L4Cost.test_scene_receipt_and_billed_seconds) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+test_missing_remote_timing_refused (test_cost_log.CostLog.test_missing_remote_timing_refused) ... ok
+test_missing_rows_stay_unavailable (test_cost_log.CostLog.test_missing_rows_stay_unavailable) ... ok
+test_rates_match_s06d_bill (test_cost_log.CostLog.test_rates_match_s06d_bill) ... ok
+test_reconcile_billed_only_own_app (test_cost_log.CostLog.test_reconcile_billed_only_own_app) ... ok
+test_timing_and_estimate (test_cost_log.CostLog.test_timing_and_estimate) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+OK
+test_committed_st03_record (test_boundary.BoundaryTests.test_committed_st03_record) ... ok
+test_fitter_never_sees_suffix (test_boundary.BoundaryTests.test_fitter_never_sees_suffix) ... ok
+test_frozen_prefix_and_suffix_detect_tampering (test_boundary.BoundaryTests.test_frozen_prefix_and_suffix_detect_tampering) ... ok
+test_invalid_or_leaking_splits_rejected (test_boundary.BoundaryTests.test_invalid_or_leaking_splits_rejected) ... ok
+test_outputs_say_gate_m_not_met_and_no_g (test_boundary.BoundaryTests.test_outputs_say_gate_m_not_met_and_no_g) ... ok
+test_split_keeps_suffix_values_out_of_boundary (test_boundary.BoundaryTests.test_split_keeps_suffix_values_out_of_boundary) ... ok
+test_untracked_suffix_identities_are_sealed (test_boundary.BoundaryTests.test_untracked_suffix_identities_are_sealed) ... ok
+test_committed_overlays_validate_against_sources (test_overlay.CommittedEvidenceTest.test_committed_overlays_validate_against_sources) ... ok
+test_build_refuses_prediction_from_other_boundary (test_overlay.OverlayTest.test_build_refuses_prediction_from_other_boundary) ... ok
+test_rejects_misaligned_timebase (test_overlay.OverlayTest.test_rejects_misaligned_timebase) ... ok
+test_rejects_mutated_trace_and_gate_claim (test_overlay.OverlayTest.test_rejects_mutated_trace_and_gate_claim) ... ok
+test_rejects_other_clip_or_source (test_overlay.OverlayTest.test_rejects_other_clip_or_source) ... ok
+test_roundtrip_returns_immutable_traces (test_overlay.OverlayTest.test_roundtrip_returns_immutable_traces) ... ok
+test_continuation_tracks_synthetic_truth_without_reading_suffix (test_overlay.PendulumTest.test_continuation_tracks_synthetic_truth_without_reading_suffix) ... ok
+test_frequency_record_required (test_overlay.PendulumTest.test_frequency_record_required) ... ok
+test_committed_st03_params_abstain (test_params.ParamsTests.test_committed_st03_params_abstain) ... ok
+test_fit_records_carry_value_uncertainty_provenance (test_params.ParamsTests.test_fit_records_carry_value_uncertainty_provenance) ... ok
+test_linear_motion_abstains_and_transfer_refuses (test_params.ParamsTests.test_linear_motion_abstains_and_transfer_refuses) ... ok
+test_missing_or_invalid_params_are_refused_not_defaulted (test_params.ParamsTests.test_missing_or_invalid_params_are_refused_not_defaulted) ... ok
+test_simulator_consumes_values_and_records_survive (test_params.ParamsTests.test_simulator_consumes_values_and_records_survive) ... ERROR
+test_simulator_rejection_and_nonsynthetic_refusal_surface (test_params.ParamsTests.test_simulator_rejection_and_nonsynthetic_refusal_surface) ... FAIL
+test_committed_st03_prediction (test_predict.PredictTests.test_committed_st03_prediction) ... ok
+test_prediction_identical_whatever_the_heldout_values (test_predict.PredictTests.test_prediction_identical_whatever_the_heldout_values) ... ok
+test_projectile_never_reads_heldout_and_is_hashed_before_scoring (test_predict.PredictTests.test_projectile_never_reads_heldout_and_is_hashed_before_scoring) ... ok
+test_synthetic_bounce_reflects_with_restitution_without_reading_heldout (test_predict.PredictTests.test_synthetic_bounce_reflects_with_restitution_without_reading_heldout) ... ok
+test_trace_is_immutable_and_tamper_or_reseal_refused (test_predict.PredictTests.test_trace_is_immutable_and_tamper_or_reseal_refused) ... ok
+test_exact_truth_scores_zero_and_loader_runs_after_checks (test_score.ScoreTests.test_exact_truth_scores_zero_and_loader_runs_after_checks) ... ok
+test_f1_overlay_forged_suffix_hash_refused (test_score.ScoreTests.test_f1_overlay_forged_suffix_hash_refused) ... ok
+test_f1_wrong_clip_wrong_training_and_precommitted_subset_refused_before_read (test_score.ScoreTests.test_f1_wrong_clip_wrong_training_and_precommitted_subset_refused_before_read) ... ok
+test_f2_one_synthetic_projectile_aliased_three_times_is_shortfall (test_score.ScoreTests.test_f2_one_synthetic_projectile_aliased_three_times_is_shortfall) ... ok
+test_f3_wrong_record_object_is_unscored_shortfall (test_score.ScoreTests.test_f3_wrong_record_object_is_unscored_shortfall) ... ok
+test_f4_nonfinite_observations_and_metrics_rejected (test_score.ScoreTests.test_f4_nonfinite_observations_and_metrics_rejected) ... ok
+test_gate_needs_every_category (test_score.ScoreTests.test_gate_needs_every_category) ... ok
+test_pts_mismatch_low_coverage_and_rms (test_score.ScoreTests.test_pts_mismatch_low_coverage_and_rms) ... ok
+test_tampered_seal_or_uncommitted_prediction_never_reads_suffix (test_score.ScoreTests.test_tampered_seal_or_uncommitted_prediction_never_reads_suffix) ... ok
+
+======================================================================
+ERROR: test_simulator_consumes_values_and_records_survive (test_params.ParamsTests.test_simulator_consumes_values_and_records_survive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S07-pts-audit-orch58\tests\prediction\test_params.py", line 74, in test_simulator_consumes_values_and_records_survive
+    out = p.simulate(records, SETUP)
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S07-pts-audit-orch58\Build\real2sim\params.py", line 121, in simulate
+    raise ValueError("simulator rejected transfer: " + next((l for l in lines if "Error: INVALID_" in l), lines[-1]))
+ValueError: simulator rejected transfer: Node.js v24.18.0
+
+======================================================================
+FAIL: test_simulator_rejection_and_nonsynthetic_refusal_surface (test_params.ParamsTests.test_simulator_rejection_and_nonsynthetic_refusal_surface)
+----------------------------------------------------------------------
+ValueError: simulator rejected transfer: Node.js v24.18.0
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S07-pts-audit-orch58\tests\prediction\test_params.py", line 90, in test_simulator_rejection_and_nonsynthetic_refusal_surface
+    with self.assertRaisesRegex(ValueError, r"simulator rejected.*restitution must be finite in \[0,1\]"):
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "simulator rejected.*restitution must be finite in \[0,1\]" does not match "simulator rejected transfer: Node.js v24.18.0"
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.661s
+
+FAILED (failures=1, errors=1)
+test_budget_guard (test_gpu_stages.GpuStages.test_budget_guard) ... ok
+test_jobrunner_retry_and_no_duplicate_dispatch (test_gpu_stages.GpuStages.test_jobrunner_retry_and_no_duplicate_dispatch)
+Failed segment retries once; resumed/duplicate jobs reuse out:<key> so no paid stage dispatches twice. ... ok
+test_reconstruct_errors_readable (test_gpu_stages.GpuStages.test_reconstruct_errors_readable) ... ok
+test_reconstruct_validated_output (test_gpu_stages.GpuStages.test_reconstruct_validated_output) ... ok
+test_sam_call_cli_reuse_retry_and_bad_input (test_gpu_stages.GpuStages.test_sam_call_cli_reuse_retry_and_bad_input)
+Parameterized S07b CLI: clean raw reused (no 2nd dispatch); errored raw moved aside + redispatched; bad input not retried. ... ok
+test_segment_validates_and_rejects (test_gpu_stages.GpuStages.test_segment_validates_and_rejects) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.497s
+
+OK
+test_default_metadata_and_remote_args_match_accepted_run (test_modal_track.ModalTrackTest.test_default_metadata_and_remote_args_match_accepted_run) ... ok
+test_default_never_overwrites_accepted_evidence (test_modal_track.ModalTrackTest.test_default_never_overwrites_accepted_evidence) ... ok
+test_defaults_are_accepted_st03_values (test_modal_track.ModalTrackTest.test_defaults_are_accepted_st03_values) ... ok
+test_imports_at_container_root (test_modal_track.ModalTrackTest.test_imports_at_container_root) ... ok
+test_mask_rle_roundtrip (test_modal_track.ModalTrackTest.test_mask_rle_roundtrip) ... ok
+test_parameter_validation_before_gpu (test_modal_track.ModalTrackTest.test_parameter_validation_before_gpu) ... ok
+test_pts_presentation_order_st03 (test_modal_track.ModalTrackTest.test_pts_presentation_order_st03) ... ok
+test_room_clip_metadata_passes_tracking_contract (test_modal_track.ModalTrackTest.test_room_clip_metadata_passes_tracking_contract) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.926s
+
+OK
+{"stages": ["tracked"], "gpu": null, "preflight_exit": null, "checkpoint": null, "error": null}

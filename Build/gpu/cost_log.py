@@ -11,7 +11,8 @@ from pathlib import Path
 
 # Modal list rates (modal.com/pricing, read 2026-10-28 in evidence/S06/pre-reset/READINESS.md). Back-solving the
 # S06d billed rows (A10G $0.00794449, CPU $0.00068323 @2 cores, Memory $0.00092445 @16 GiB) gives ~26 s each: consistent.
-RATES = {"A10G": 0.000306, "CPU": 0.0000131, "Memory": 0.00000222}  # USD per GPU-s / core-s / GiB-s
+# L4: https://modal.com/pricing (verified 2026-10-30), USD 0.000222 per GPU-second.
+RATES = {"A10G": 0.000306, "L4": 0.000222, "CPU": 0.0000131, "Memory": 0.00000222}  # USD per GPU-s / core-s / GiB-s
 
 
 def cost(seconds, gpu, cpu, mem_gib):
