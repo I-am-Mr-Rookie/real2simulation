@@ -174,9 +174,11 @@ def validate_local_simulation(demo, artifact_root, root):
         record = pointer(payload, record_pointer)
     except (KeyError, IndexError, TypeError, ValueError) as exc:
         raise ValueError("simulation record pointer not found") from exc
-    require(isinstance(record, dict) and record.get("template") == "free_fall" and
+    require(isinstance(record, dict) and record.get("template") in ("free_fall", "projectile") and
             record.get("status") == "passed" and record.get("deterministic") is True,
-            "expected passed deterministic free-fall simulation")
+            "expected passed deterministic free-fall or projectile simulation")
+    require(demo["id"] == "simulated-" + record["template"].replace("_", "-") + "-" + record["case"],
+            "simulation identity does not match selected case")
     for numeric in provenance["numeric"]:
         require(numeric["evidence"] == "artifact" and numeric["label"] == "simulated" and
                 numeric["pointer"].startswith(record_pointer + "/"),

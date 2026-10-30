@@ -51,8 +51,9 @@ These records use `source.kind: synthetic`, `label: simulated`,
 `artifact.kind: simulation-record` and
 `provenance.execution: accepted-local-simulation`. The original acceptance file
 must declare `source: simulated` and the synthetic four-template scope. A record
-pointer selects a passed deterministic free-fall case; every numeric pointer is
-confined to that case. The hashed actual run report must identify the original
+pointer selects a passed deterministic free-fall or projectile case; every numeric
+pointer is confined to that case. Its ID must match the selected template and case.
+The hashed actual run report must identify the original
 evidence path. Clip-backed entries still require the unchanged current approval,
 acquisition, licence, successful app/ledger and clip-identity checks.
 Neither variant proves independent controller acceptance; the evidence checkout
@@ -91,6 +92,30 @@ does not unblock physical gates or demonstrate guest UI playback.
 v1 deliberately disallows passing gates, verified scale and playable/public status.
 Promoting these requires a reviewed contract change backed by actual evidence;
 callers cannot flip a flag. Do not infer gate success from successful validation.
+
+## Projectile catalogue and unavailable bounce (S18c)
+
+```powershell
+python -B -m Build.library.projectile
+python -B -m Build.library.validate test-data/library-artifacts/projectile.json
+python -B -m unittest discover -s tests/library -t tests/library
+```
+
+`projectile.json` indexes only the four accepted S10hi-gate projectile cases:
+baseline-short, zero-horizontal, tiny-height and low-gravity-long-horizon.
+It reuses `free_fall.simulated_demos`, the same immutable acceptance object,
+numeric JSON pointers and original run report. Free-fall output stays unchanged.
+There is no made-up PJ03/BN01/RM05 clip, licence, descriptor, job or ledger.
+These are **SIMULATED, metadata-only, pre-contact** outputs, not real-clip
+held-out comparisons, uncertainty estimates or playable trajectories.
+
+Bounce is explicitly **UNAVAILABLE**; see
+[`bounce-UNAVAILABLE.md`](../../test-data/library-artifacts/bounce-UNAVAILABLE.md).
+BN01 chunk tracking stopped fail-closed, the accepted Gate RS bounce category
+is an untracked shortfall, and S10/S11 contain no accepted bounce template.
+No fake bounce manifest is generated. SCALE_UNVERIFIED, Gate M NOT_MET and
+Gate RS NOT_MET remain unchanged; this partial child does not complete parent S18.
+
 Existing `public_receipt` restricts Gate RS physics categories; reconstruction
 is not one of them. This validator reuses its authoritative `approved` and licence
 allowlist helpers **without broadening** Gate RS eligibility or modifying that code.

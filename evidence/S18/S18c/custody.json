@@ -1,0 +1,129 @@
+{
+  "scope": "offline custody/availability audit; no scientific or gate promotion",
+  "source": {
+    "path": "evidence/S10/acceptance/acceptance.json",
+    "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+  },
+  "run_report": {
+    "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+    "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+  },
+  "projectile": [
+    {
+      "id": "simulated-projectile-baseline-short",
+      "record_pointer": "/cases/4",
+      "numeric_pointer_count": 6,
+      "artifact_sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+    },
+    {
+      "id": "simulated-projectile-zero-horizontal",
+      "record_pointer": "/cases/5",
+      "numeric_pointer_count": 6,
+      "artifact_sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+    },
+    {
+      "id": "simulated-projectile-tiny-height",
+      "record_pointer": "/cases/6",
+      "numeric_pointer_count": 6,
+      "artifact_sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+    },
+    {
+      "id": "simulated-projectile-low-gravity-long-horizon",
+      "record_pointer": "/cases/7",
+      "numeric_pointer_count": 6,
+      "artifact_sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+    }
+  ],
+  "bounce": {
+    "availability": "UNAVAILABLE",
+    "chunktrack_report": {
+      "path": "Run-System/Runs/S07-chunktrack-orch67/REPORT.md",
+      "sha256": "de34aa1ae46066f819f33c275fdc87dc4c1ac2bf510c9707e6cf05af91a0c6c3"
+    },
+    "gate_receipt": {
+      "path": "evidence/S12/gate-rs/gate-rs.json",
+      "sha256": "f913897d407139ce78d3f35434e046ddd931f88f0229d9d96c1ff388f41b4d85"
+    },
+    "gate_status_pointer": "/result/status",
+    "gate_status": "NOT_MET",
+    "category_pointer": "/clips/bounce",
+    "category": null,
+    "shortfall_reason_pointer": "/shortfall_reasons/bounce",
+    "shortfall_reason": "BN01 approved, but no prefix tracking and no sourced restitution/floor record; ~26 contiguous frames/job (0.11 s at 240 fps) cannot span its 0.67 s contact-to-contact arc; strict prefix job -> committed prediction -> suffix job not run",
+    "S10_has_bounce_template": false,
+    "S11_json_contains_bounce": false,
+    "S11_checked_refs": [
+      {
+        "path": "evidence/S11/api-swarm/RESULT.json",
+        "sha256": "fdb82df91a7ad2397e31deefa8b3721e47b1784fa594e852c51df90f00eea184"
+      },
+      {
+        "path": "evidence/S11/covariance-recovery/iab-375.json",
+        "sha256": "42d81eb70d35031dc01ca15a63097cfc3f24c2ff0d565c4c0e9bb2ea42759eb8"
+      },
+      {
+        "path": "evidence/S11/fitter-swarm/RESULT.json",
+        "sha256": "a86c6eafadf60dff30218f30c4a5a8a7142ad364470d7e3bcd5fe774931d68bf"
+      },
+      {
+        "path": "evidence/S11/instrument-invariants/candidate-verification.json",
+        "sha256": "450c65ae96788ee6f3728558c45d8013803ded703b0af8ab75ceb91e30144022"
+      },
+      {
+        "path": "evidence/S11/instrument-invariants/iab-375.json",
+        "sha256": "5fe35c9931bb1b6f6ab6d48b46d3ef235a5b7daa453adebe430aa8a65f330b59"
+      },
+      {
+        "path": "evidence/S11/instrument-invariants/iab-r15-375.json",
+        "sha256": "f733b4ac212545c1339888abcb17420ca0a97c70a1b51e5228ba51c6649b0ee3"
+      },
+      {
+        "path": "evidence/S11/instrument-invariants/probe.json",
+        "sha256": "56254cc20adcafb958846871c06fa61ccebc1b475ce90555f3d99ce29ecde921"
+      },
+      {
+        "path": "evidence/S11/invariants/analytic-repro.json",
+        "sha256": "cb7be2c79bcfea4fbcb53ec0a7e7d90eae7fecd2539d050d2ab10dec525222df"
+      },
+      {
+        "path": "evidence/S11/model-selection-invariants/audit.json",
+        "sha256": "f37131ca03d53ff381c6eec2fafa367aa3d4de7075f20843335f62e74148f957"
+      },
+      {
+        "path": "evidence/S11/model-selection-invariants/checks.json",
+        "sha256": "10a2907ed69a092700ca63ed7566453091e40b32e2d69a8fd2a43fddba03bce7"
+      },
+      {
+        "path": "evidence/S11/model-selection-recovery/audit-after.json",
+        "sha256": "59daa18252b3a4873cd387a235dac786d667fa5d38c805f2c288a7093533244f"
+      },
+      {
+        "path": "evidence/S11/uncertainty-hardening/after.json",
+        "sha256": "c06e57155b0d8c60474e9368c6f4f9afc06aeae6bcc5a6d501323f8786b0b53b"
+      },
+      {
+        "path": "evidence/S11/uncertainty-hardening/before.json",
+        "sha256": "c580559ba854718bcf5eb6514c1ac6ef3a65ba3a22115ef8d3fb8e834c51d4bc"
+      },
+      {
+        "path": "evidence/S11/uncertainty-hardening/reference.json",
+        "sha256": "eeb2bd7e64fd668178cacd8a1fabe5c55657cf72c25e737a8e328c6e50e90737"
+      },
+      {
+        "path": "evidence/S11/model-selection-recovery/R15/checks.json",
+        "sha256": "eb1f293d06f639e1a252739b0cf48438767353d881bcd4fae24a7392a1b79541"
+      },
+      {
+        "path": "evidence/S11/model-selection-recovery/R15/frozen-audit.json",
+        "sha256": "2adc0e1f459f3724fcceebd3f8409644b48739c6f71b0363c737097ab3c94ccd"
+      }
+    ]
+  },
+  "limits": [
+    "metadata-only",
+    "SCALE_UNVERIFIED",
+    "Gate RS NOT_MET",
+    "no real-clip held-out comparison or uncertainty bundled",
+    "hashes establish custody, not independent acceptance or accuracy"
+  ]
+}

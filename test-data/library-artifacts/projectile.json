@@ -1,0 +1,386 @@
+{
+  "schema_version": "1.0.0",
+  "audience": "local-processing-only",
+  "demos": [
+    {
+      "id": "simulated-projectile-baseline-short",
+      "title": "SIMULATED projectile: baseline-short (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/4",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 9.81,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/4/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 0.2,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/4/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/4/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 201,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/4/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 1.5582722720639762e-15,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/4/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 5.561909207513163e-15,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/4/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Pre-contact analytic motion only; no rebound or contact-response claim.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion."
+      ]
+    },
+    {
+      "id": "simulated-projectile-zero-horizontal",
+      "title": "SIMULATED projectile: zero-horizontal (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/5",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 9.81,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/5/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 0.4,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/5/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.002,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/5/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 201,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/5/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 1.5543122344752192e-15,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/5/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 1.980520176446507e-15,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/5/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Pre-contact analytic motion only; no rebound or contact-response claim.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion."
+      ]
+    },
+    {
+      "id": "simulated-projectile-tiny-height",
+      "title": "SIMULATED projectile: tiny-height (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/6",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 9.81,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/6/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 0.03,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/6/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.0001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/6/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 301,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/6/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 8.886678698825137e-16,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/6/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 1.0211348682342259e-13,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/6/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Pre-contact analytic motion only; no rebound or contact-response claim.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion."
+      ]
+    },
+    {
+      "id": "simulated-projectile-low-gravity-long-horizon",
+      "title": "SIMULATED projectile: low-gravity-long-horizon (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/7",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 3.7,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/7/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 0.4,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/7/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/7/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 401,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/7/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 8.881784197001252e-16,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/7/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 3.0006027692571796e-15,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/7/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Pre-contact analytic motion only; no rebound or contact-response claim.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion."
+      ]
+    }
+  ]
+}

@@ -86,7 +86,7 @@ class FreeFallLibraryTests(unittest.TestCase):
 
     def test_non_free_fall_and_missing_selection_rejected(self):
         self.reject(lambda d: d["provenance"].update(record_pointer="/cases/4"),
-                    "free-fall simulation")
+                    "simulation identity")
         self.reject(lambda d: d["provenance"].update(record_pointer="/cases/999"),
                     "record pointer not found")
 

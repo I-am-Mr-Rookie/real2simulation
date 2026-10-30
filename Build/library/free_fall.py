@@ -12,28 +12,24 @@ RUN = "S10hi-gate"
 GATE = "evidence/S10/GATE-P.json"
 
 
-def build(root=ROOT):
+def simulated_demos(root, template):
+    """Index one accepted template; keep exact source bytes and numeric pointers."""
     root = Path(root)
-    # Reuse the licensed descriptor builder and its current owner-grant checks.
-    manifest = load_json(build_example(root))
     destination = root / "test-data/library-artifacts"
     artifact = store(destination, (root / ACCEPTANCE).read_bytes(), "simulation-record")
     acceptance = load_json(root / ACCEPTANCE)
     gate = load_json(root / GATE)
     if gate["physical_Gate_M"] != "NOT_MET_INPUT_READINESS":
         raise ValueError("review library limitations before changing physical Gate M")
-    manifest["demos"][0]["title"] = "RM02 reconstruction display (NOT a measured free-fall demo)"
-    manifest["demos"][0]["limitations"] += [
-        "Free-fall source display only; this reconstruction is not a measured free-fall fit.",
-        "Gate M: " + gate["physical_Gate_M"],
-    ]
+    demos = []
+    slug = template.replace("_", "-")
     for index, case in enumerate(acceptance["cases"]):
-        if case["template"] != "free_fall":
+        if case["template"] != template:
             continue
         prefix = f"/cases/{index}"
-        manifest["demos"].append({
-            "id": "simulated-free-fall-" + case["case"],
-            "title": "SIMULATED free fall: " + case["case"] + " (display-only)",
+        demos.append({
+            "id": "simulated-" + slug + "-" + case["case"],
+            "title": "SIMULATED " + template.replace("_", " ") + ": " + case["case"] + " (display-only)",
             "source": {
                 "kind": "synthetic",
                 "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements.",
@@ -66,6 +62,22 @@ def build(root=ROOT):
                 "Local processing only; no public raw-media redistribution or gate promotion.",
             ],
         })
+    if not demos:
+        raise ValueError("no accepted simulation cases for " + template)
+    return demos
+
+
+def build(root=ROOT):
+    root = Path(root)
+    # Reuse the licensed descriptor builder and its current owner-grant checks.
+    manifest = load_json(build_example(root))
+    manifest["demos"][0]["title"] = "RM02 reconstruction display (NOT a measured free-fall demo)"
+    manifest["demos"][0]["limitations"] += [
+        "Free-fall source display only; this reconstruction is not a measured free-fall fit.",
+        "Gate M: " + load_json(root / GATE)["physical_Gate_M"],
+    ]
+    manifest["demos"].extend(simulated_demos(root, "free_fall"))
+    destination = root / "test-data/library-artifacts"
     output = destination / "free-fall.json"
     output.write_text(json.dumps(manifest, indent=2, allow_nan=False) + "\n", encoding="utf-8")
     validate_file(output, evidence_root=root)
