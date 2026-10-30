@@ -1,0 +1,78 @@
+{
+  "verdict": "CHANGES_REQUIRED",
+  "original_examples_closed": true,
+  "new_common_modifier_misses": [
+    "a-full-second",
+    "one-whole-minute",
+    "one-full-radian",
+    "one-full-metre"
+  ],
+  "fix4_summary": {
+    "gate_a": "PROVISIONAL",
+    "why": "numeric-contract scope only: 10/10 recorded specs pass contracts.experiment validate(); real interview.validate_setup path passes 0/10 (no authoritative scene bundle with known scale exists for these clips). Gate A needs >= 9 on the normal setup path or an owner-approved amendment.",
+    "distinct_recorded_scenes": 10,
+    "numeric_contract_valid_specs": 10,
+    "setup_validator_valid_specs": 0,
+    "required_valid_specs": 9,
+    "numeric_contract_cases": {
+      "RM02": true,
+      "RM04": true,
+      "RM05": true,
+      "PD02": true,
+      "PD03": true,
+      "PD04": true,
+      "PD06": true,
+      "PJ03": true,
+      "ST03": true,
+      "BN01": true
+    },
+    "setup_validator_cases": {
+      "RM02": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "RM04": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "RM05": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD02": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD03": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD04": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD06": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PJ03": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "ST03": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "BN01": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ]
+    },
+    "live_turns_replayed": 30,
+    "live_turns_valid_and_render_unchanged": 30,
+    "invented_shown_oracle": 0,
+    "oracle_self_check": {
+      "corpus_cases": 40,
+      "oracle_agrees": true
+    },
+    "spec_sources": "recorded (S14g-fix3-recorded.json); no new model call",
+    "network_denied": true,
+    "spend_usd": 0,
+    "scope": "offline replay of saved fix3 responses; synthetic interview answers (fixture, not user evidence); turn tool outputs are synthetic-room-v1, not physical evidence"
+  },
+  "oracle_corpus": {
+    "corpus_cases": 40,
+    "oracle_agrees": true
+  },
+  "protected_inputs_unchanged": true
+}

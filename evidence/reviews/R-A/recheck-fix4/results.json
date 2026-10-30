@@ -1,0 +1,1268 @@
+{
+  "verdict": "CHANGES_REQUIRED",
+  "original_examples_closed": true,
+  "new_common_modifier_misses": [
+    "a-full-second",
+    "one-whole-minute",
+    "one-full-radian",
+    "one-full-metre"
+  ],
+  "probes": [
+    {
+      "case": "original-second",
+      "text": "The elapsed time is a second.",
+      "expected_numeric": true,
+      "numeric_issue": "untraced_number_word 'a second'",
+      "display_blocked": true,
+      "oracle_issue": "implicit one a second",
+      "trial_rejections": 4,
+      "trial_fallback": true,
+      "trial_blocked": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "untraced_text_displayed": false,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "original-minute",
+      "text": "The period is a minute.",
+      "expected_numeric": true,
+      "numeric_issue": "untraced_number_word 'a minute'",
+      "display_blocked": true,
+      "oracle_issue": "implicit one a minute",
+      "trial_rejections": 4,
+      "trial_fallback": true,
+      "trial_blocked": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "untraced_text_displayed": false,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "original-radian",
+      "text": "The angle is a radian.",
+      "expected_numeric": true,
+      "numeric_issue": "untraced_number_word 'a radian'",
+      "display_blocked": true,
+      "oracle_issue": "implicit one a radian",
+      "trial_rejections": 4,
+      "trial_fallback": true,
+      "trial_blocked": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "untraced_text_displayed": false,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "an-hour",
+      "text": "The period is an hour.",
+      "expected_numeric": true,
+      "numeric_issue": "untraced_number_word 'an hour'",
+      "display_blocked": true,
+      "oracle_issue": "implicit one an hour",
+      "trial_rejections": 4,
+      "trial_fallback": true,
+      "trial_blocked": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "untraced_text_displayed": false,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "single-second",
+      "text": "The delay is a single second.",
+      "expected_numeric": true,
+      "numeric_issue": "untraced_number_word 'single second'",
+      "display_blocked": true,
+      "oracle_issue": "implicit one single second",
+      "trial_rejections": 4,
+      "trial_fallback": true,
+      "trial_blocked": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "untraced_text_displayed": false,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "one-rad",
+      "text": "The angle is one rad.",
+      "expected_numeric": true,
+      "numeric_issue": "untraced_number_word 'one rad'",
+      "display_blocked": true,
+      "oracle_issue": "implicit one one rad",
+      "trial_rejections": 4,
+      "trial_fallback": true,
+      "trial_blocked": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "untraced_text_displayed": false,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "a-millisecond",
+      "text": "The delay is a millisecond.",
+      "expected_numeric": true,
+      "numeric_issue": "untraced_number_word 'a millisecond'",
+      "display_blocked": true,
+      "oracle_issue": "implicit one a millisecond",
+      "trial_rejections": 4,
+      "trial_fallback": true,
+      "trial_blocked": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "untraced_text_displayed": false,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "a-degree",
+      "text": "The angle is a degree.",
+      "expected_numeric": true,
+      "numeric_issue": "untraced_number_word 'a degree'",
+      "display_blocked": true,
+      "oracle_issue": "implicit one a degree",
+      "trial_rejections": 4,
+      "trial_fallback": true,
+      "trial_blocked": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "untraced_text_displayed": false,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "pronoun-one",
+      "text": "This one fits the scene.",
+      "expected_numeric": false,
+      "numeric_issue": null,
+      "display_blocked": false,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "trial_fallback": false,
+      "trial_blocked": false,
+      "trial_shown": "This one fits the scene.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "untraced_text_displayed": true,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "double-check",
+      "text": "Please double-check the fit.",
+      "expected_numeric": false,
+      "numeric_issue": null,
+      "display_blocked": false,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "trial_fallback": false,
+      "trial_blocked": false,
+      "trial_shown": "Please double-check the fit.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "untraced_text_displayed": true,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "unit-only",
+      "text": "Measure the angle in radians.",
+      "expected_numeric": false,
+      "numeric_issue": null,
+      "display_blocked": false,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "trial_fallback": false,
+      "trial_blocked": false,
+      "trial_shown": "Measure the angle in radians.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "untraced_text_displayed": true,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "rate-unit-only",
+      "text": "The speed is expressed in metres per second.",
+      "expected_numeric": false,
+      "numeric_issue": null,
+      "display_blocked": false,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "trial_fallback": false,
+      "trial_blocked": false,
+      "trial_shown": "The speed is expressed in metres per second.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "untraced_text_displayed": true,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "a-full-second",
+      "text": "The elapsed time is a full second.",
+      "expected_numeric": true,
+      "numeric_issue": null,
+      "display_blocked": false,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "trial_fallback": false,
+      "trial_blocked": false,
+      "trial_shown": "The elapsed time is a full second.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "untraced_text_displayed": true,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "one-whole-minute",
+      "text": "The period is one whole minute.",
+      "expected_numeric": true,
+      "numeric_issue": null,
+      "display_blocked": false,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "trial_fallback": false,
+      "trial_blocked": false,
+      "trial_shown": "The period is one whole minute.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "untraced_text_displayed": true,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "one-full-radian",
+      "text": "The angle is one full radian.",
+      "expected_numeric": true,
+      "numeric_issue": null,
+      "display_blocked": false,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "trial_fallback": false,
+      "trial_blocked": false,
+      "trial_shown": "The angle is one full radian.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "untraced_text_displayed": true,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "one-full-metre",
+      "text": "The distance is one full metre.",
+      "expected_numeric": true,
+      "numeric_issue": null,
+      "display_blocked": false,
+      "oracle_issue": null,
+      "trial_rejections": 0,
+      "trial_fallback": false,
+      "trial_blocked": false,
+      "trial_shown": "The distance is one full metre.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "untraced_text_displayed": true,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "one-hyphen-second",
+      "text": "This is a one-second delay.",
+      "expected_numeric": true,
+      "numeric_issue": null,
+      "display_blocked": false,
+      "oracle_issue": "implicit one one second",
+      "trial_rejections": 0,
+      "trial_fallback": false,
+      "trial_blocked": false,
+      "trial_shown": "This is a one-second delay.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "untraced_text_displayed": true,
+      "trial_residual_oracle": "implicit one one second"
+    },
+    {
+      "case": "single-hyphen-second",
+      "text": "The delay is a single-second interval.",
+      "expected_numeric": true,
+      "numeric_issue": null,
+      "display_blocked": false,
+      "oracle_issue": "implicit one single second",
+      "trial_rejections": 0,
+      "trial_fallback": false,
+      "trial_blocked": false,
+      "trial_shown": "The delay is a single-second interval.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "untraced_text_displayed": true,
+      "trial_residual_oracle": "implicit one single second"
+    },
+    {
+      "case": "one-short-g",
+      "text": "The mass is one g.",
+      "expected_numeric": true,
+      "numeric_issue": "untraced_number_word 'one g'",
+      "display_blocked": true,
+      "oracle_issue": null,
+      "trial_rejections": 4,
+      "trial_fallback": true,
+      "trial_blocked": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "untraced_text_displayed": false,
+      "trial_residual_oracle": null
+    },
+    {
+      "case": "one-short-n",
+      "text": "The force is one N.",
+      "expected_numeric": true,
+      "numeric_issue": "untraced_number_word 'one N'",
+      "display_blocked": true,
+      "oracle_issue": null,
+      "trial_rejections": 4,
+      "trial_fallback": true,
+      "trial_blocked": false,
+      "trial_shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "untraced_text_displayed": false,
+      "trial_residual_oracle": null
+    }
+  ],
+  "actual_gate_turns": [
+    {
+      "case": "original-second",
+      "case_id": "turn-00",
+      "scene_id": "synthetic-room-v1",
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 4,
+      "model_reply_shown": false,
+      "model_number_attempts": 4,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'a second'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'a second'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'a second'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'a second'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "accepted_response": {
+        "schema_version": "agent-response/1.0.0",
+        "scene_id": "synthetic-room-v1",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The automatic trial check gave no valid reply; tool results only:"
+          },
+          {
+            "type": "text",
+            "text": " simulator duration "
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-sim",
+              "quantity": "duration"
+            }
+          },
+          {
+            "type": "text",
+            "text": " simulator drop "
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-sim",
+              "quantity": "drop"
+            }
+          },
+          {
+            "type": "text",
+            "text": " fitter gravity "
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-fit",
+              "quantity": "gravity"
+            }
+          },
+          {
+            "type": "text",
+            "text": ". Simulated, not physical evidence."
+          }
+        ],
+        "questions": []
+      },
+      "tool_outputs": [
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-sim",
+          "tool": "simulator",
+          "status": "ok",
+          "quantities": {
+            "duration": {
+              "value": 0.19999999999999998,
+              "unit": "s",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            },
+            "drop": {
+              "value": 0.19619999999999999,
+              "unit": "m",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            }
+          }
+        },
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-fit",
+          "tool": "fitter",
+          "status": "ok",
+          "quantities": {
+            "gravity": {
+              "value": 9.80999886968593,
+              "unit": "m/s^2",
+              "uncertainty": 7.365069813183884e-05,
+              "source": {
+                "label": "simulated",
+                "evidence": "synthetic virtual-lab fit"
+              }
+            }
+          }
+        }
+      ],
+      "tool_outputs_sha256": "b6022456571aab9bb5f625add1eeba9e4c3b70e2d34d5a42a6d438bbe1b67ab1"
+    },
+    {
+      "case": "original-minute",
+      "case_id": "turn-00",
+      "scene_id": "synthetic-room-v1",
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 4,
+      "model_reply_shown": false,
+      "model_number_attempts": 4,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'a minute'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'a minute'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'a minute'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'a minute'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "accepted_response": {
+        "schema_version": "agent-response/1.0.0",
+        "scene_id": "synthetic-room-v1",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The automatic trial check gave no valid reply; tool results only:"
+          },
+          {
+            "type": "text",
+            "text": " simulator duration "
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-sim",
+              "quantity": "duration"
+            }
+          },
+          {
+            "type": "text",
+            "text": " simulator drop "
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-sim",
+              "quantity": "drop"
+            }
+          },
+          {
+            "type": "text",
+            "text": " fitter gravity "
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-fit",
+              "quantity": "gravity"
+            }
+          },
+          {
+            "type": "text",
+            "text": ". Simulated, not physical evidence."
+          }
+        ],
+        "questions": []
+      },
+      "tool_outputs": [
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-sim",
+          "tool": "simulator",
+          "status": "ok",
+          "quantities": {
+            "duration": {
+              "value": 0.19999999999999998,
+              "unit": "s",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            },
+            "drop": {
+              "value": 0.19619999999999999,
+              "unit": "m",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            }
+          }
+        },
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-fit",
+          "tool": "fitter",
+          "status": "ok",
+          "quantities": {
+            "gravity": {
+              "value": 9.80999886968593,
+              "unit": "m/s^2",
+              "uncertainty": 7.365069813183884e-05,
+              "source": {
+                "label": "simulated",
+                "evidence": "synthetic virtual-lab fit"
+              }
+            }
+          }
+        }
+      ],
+      "tool_outputs_sha256": "b6022456571aab9bb5f625add1eeba9e4c3b70e2d34d5a42a6d438bbe1b67ab1"
+    },
+    {
+      "case": "original-radian",
+      "case_id": "turn-00",
+      "scene_id": "synthetic-room-v1",
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 4,
+      "model_reply_shown": false,
+      "model_number_attempts": 4,
+      "rejected": [
+        [
+          "response.segments[0].text: untraced_number_word 'a radian'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'a radian'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'a radian'"
+        ],
+        [
+          "response.segments[0].text: untraced_number_word 'a radian'"
+        ]
+      ],
+      "blocked": [],
+      "invented": null,
+      "shown": "The automatic trial check gave no valid reply; tool results only: simulator duration 0.2 ± 1e-06 s (simulated) simulator drop 0.1962 ± 1e-06 m (simulated) fitter gravity 9.81 ± 7.4e-05 m/s^2 (simulated). Simulated, not physical evidence.",
+      "accepted_response": {
+        "schema_version": "agent-response/1.0.0",
+        "scene_id": "synthetic-room-v1",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The automatic trial check gave no valid reply; tool results only:"
+          },
+          {
+            "type": "text",
+            "text": " simulator duration "
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-sim",
+              "quantity": "duration"
+            }
+          },
+          {
+            "type": "text",
+            "text": " simulator drop "
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-sim",
+              "quantity": "drop"
+            }
+          },
+          {
+            "type": "text",
+            "text": " fitter gravity "
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-fit",
+              "quantity": "gravity"
+            }
+          },
+          {
+            "type": "text",
+            "text": ". Simulated, not physical evidence."
+          }
+        ],
+        "questions": []
+      },
+      "tool_outputs": [
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-sim",
+          "tool": "simulator",
+          "status": "ok",
+          "quantities": {
+            "duration": {
+              "value": 0.19999999999999998,
+              "unit": "s",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            },
+            "drop": {
+              "value": 0.19619999999999999,
+              "unit": "m",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            }
+          }
+        },
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-fit",
+          "tool": "fitter",
+          "status": "ok",
+          "quantities": {
+            "gravity": {
+              "value": 9.80999886968593,
+              "unit": "m/s^2",
+              "uncertainty": 7.365069813183884e-05,
+              "source": {
+                "label": "simulated",
+                "evidence": "synthetic virtual-lab fit"
+              }
+            }
+          }
+        }
+      ],
+      "tool_outputs_sha256": "b6022456571aab9bb5f625add1eeba9e4c3b70e2d34d5a42a6d438bbe1b67ab1"
+    },
+    {
+      "case": "a-full-second",
+      "case_id": "turn-00",
+      "scene_id": "synthetic-room-v1",
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "The elapsed time is a full second.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "accepted_response": {
+        "schema_version": "agent-response/1.0.0",
+        "scene_id": "synthetic-room-v1",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The elapsed time is a full second."
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-fit",
+              "quantity": "gravity"
+            }
+          }
+        ],
+        "questions": []
+      },
+      "tool_outputs": [
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-sim",
+          "tool": "simulator",
+          "status": "ok",
+          "quantities": {
+            "duration": {
+              "value": 0.19999999999999998,
+              "unit": "s",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            },
+            "drop": {
+              "value": 0.19619999999999999,
+              "unit": "m",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            }
+          }
+        },
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-fit",
+          "tool": "fitter",
+          "status": "ok",
+          "quantities": {
+            "gravity": {
+              "value": 9.80999886968593,
+              "unit": "m/s^2",
+              "uncertainty": 7.365069813183884e-05,
+              "source": {
+                "label": "simulated",
+                "evidence": "synthetic virtual-lab fit"
+              }
+            }
+          }
+        }
+      ],
+      "tool_outputs_sha256": "b6022456571aab9bb5f625add1eeba9e4c3b70e2d34d5a42a6d438bbe1b67ab1"
+    },
+    {
+      "case": "one-whole-minute",
+      "case_id": "turn-00",
+      "scene_id": "synthetic-room-v1",
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "The period is one whole minute.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "accepted_response": {
+        "schema_version": "agent-response/1.0.0",
+        "scene_id": "synthetic-room-v1",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The period is one whole minute."
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-fit",
+              "quantity": "gravity"
+            }
+          }
+        ],
+        "questions": []
+      },
+      "tool_outputs": [
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-sim",
+          "tool": "simulator",
+          "status": "ok",
+          "quantities": {
+            "duration": {
+              "value": 0.19999999999999998,
+              "unit": "s",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            },
+            "drop": {
+              "value": 0.19619999999999999,
+              "unit": "m",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            }
+          }
+        },
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-fit",
+          "tool": "fitter",
+          "status": "ok",
+          "quantities": {
+            "gravity": {
+              "value": 9.80999886968593,
+              "unit": "m/s^2",
+              "uncertainty": 7.365069813183884e-05,
+              "source": {
+                "label": "simulated",
+                "evidence": "synthetic virtual-lab fit"
+              }
+            }
+          }
+        }
+      ],
+      "tool_outputs_sha256": "b6022456571aab9bb5f625add1eeba9e4c3b70e2d34d5a42a6d438bbe1b67ab1"
+    },
+    {
+      "case": "one-full-radian",
+      "case_id": "turn-00",
+      "scene_id": "synthetic-room-v1",
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "The angle is one full radian.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "accepted_response": {
+        "schema_version": "agent-response/1.0.0",
+        "scene_id": "synthetic-room-v1",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The angle is one full radian."
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-fit",
+              "quantity": "gravity"
+            }
+          }
+        ],
+        "questions": []
+      },
+      "tool_outputs": [
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-sim",
+          "tool": "simulator",
+          "status": "ok",
+          "quantities": {
+            "duration": {
+              "value": 0.19999999999999998,
+              "unit": "s",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            },
+            "drop": {
+              "value": 0.19619999999999999,
+              "unit": "m",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            }
+          }
+        },
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-fit",
+          "tool": "fitter",
+          "status": "ok",
+          "quantities": {
+            "gravity": {
+              "value": 9.80999886968593,
+              "unit": "m/s^2",
+              "uncertainty": 7.365069813183884e-05,
+              "source": {
+                "label": "simulated",
+                "evidence": "synthetic virtual-lab fit"
+              }
+            }
+          }
+        }
+      ],
+      "tool_outputs_sha256": "b6022456571aab9bb5f625add1eeba9e4c3b70e2d34d5a42a6d438bbe1b67ab1"
+    },
+    {
+      "case": "one-full-metre",
+      "case_id": "turn-00",
+      "scene_id": "synthetic-room-v1",
+      "template": "free_fall",
+      "mystery": false,
+      "attempts": 1,
+      "model_reply_shown": true,
+      "model_number_attempts": 0,
+      "rejected": [],
+      "blocked": [],
+      "invented": null,
+      "shown": "The distance is one full metre.9.81 ± 7.4e-05 m/s^2 (simulated)",
+      "accepted_response": {
+        "schema_version": "agent-response/1.0.0",
+        "scene_id": "synthetic-room-v1",
+        "segments": [
+          {
+            "type": "text",
+            "text": "The distance is one full metre."
+          },
+          {
+            "type": "number",
+            "ref": {
+              "tool_output_id": "gate-a-t00-fit",
+              "quantity": "gravity"
+            }
+          }
+        ],
+        "questions": []
+      },
+      "tool_outputs": [
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-sim",
+          "tool": "simulator",
+          "status": "ok",
+          "quantities": {
+            "duration": {
+              "value": 0.19999999999999998,
+              "unit": "s",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            },
+            "drop": {
+              "value": 0.19619999999999999,
+              "unit": "m",
+              "uncertainty": 1e-06,
+              "source": {
+                "label": "simulated",
+                "evidence": "S10 synthetic lab simulator run (free_fall)"
+              }
+            }
+          }
+        },
+        {
+          "schema_version": "agent-tool-output/1.0.0",
+          "id": "gate-a-t00-fit",
+          "tool": "fitter",
+          "status": "ok",
+          "quantities": {
+            "gravity": {
+              "value": 9.80999886968593,
+              "unit": "m/s^2",
+              "uncertainty": 7.365069813183884e-05,
+              "source": {
+                "label": "simulated",
+                "evidence": "synthetic virtual-lab fit"
+              }
+            }
+          }
+        }
+      ],
+      "tool_outputs_sha256": "b6022456571aab9bb5f625add1eeba9e4c3b70e2d34d5a42a6d438bbe1b67ab1"
+    }
+  ],
+  "visible_surfaces": [
+    {
+      "surface": "segments",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "surface": "prompt",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "surface": "chip",
+      "accepted": true,
+      "oracle_issue": null
+    },
+    {
+      "surface": "rationale",
+      "accepted": true,
+      "oracle_issue": null
+    }
+  ],
+  "setup_calls": [
+    {
+      "scene_id": "rm02",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "rm04",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "rm05",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "pd02",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "pd03",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "pd04",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "pd06",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "pj03",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "st03",
+      "bundle_is_none": true,
+      "real_binding": true
+    },
+    {
+      "scene_id": "bn01",
+      "bundle_is_none": true,
+      "real_binding": true
+    }
+  ],
+  "fix4_summary": {
+    "gate_a": "PROVISIONAL",
+    "why": "numeric-contract scope only: 10/10 recorded specs pass contracts.experiment validate(); real interview.validate_setup path passes 0/10 (no authoritative scene bundle with known scale exists for these clips). Gate A needs >= 9 on the normal setup path or an owner-approved amendment.",
+    "distinct_recorded_scenes": 10,
+    "numeric_contract_valid_specs": 10,
+    "setup_validator_valid_specs": 0,
+    "required_valid_specs": 9,
+    "numeric_contract_cases": {
+      "RM02": true,
+      "RM04": true,
+      "RM05": true,
+      "PD02": true,
+      "PD03": true,
+      "PD04": true,
+      "PD06": true,
+      "PJ03": true,
+      "ST03": true,
+      "BN01": true
+    },
+    "setup_validator_cases": {
+      "RM02": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "RM04": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "RM05": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD02": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD03": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD04": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PD06": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "PJ03": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "ST03": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ],
+      "BN01": [
+        "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+      ]
+    },
+    "live_turns_replayed": 30,
+    "live_turns_valid_and_render_unchanged": 30,
+    "invented_shown_oracle": 0,
+    "oracle_self_check": {
+      "corpus_cases": 40,
+      "oracle_agrees": true
+    },
+    "spec_sources": "recorded (S14g-fix3-recorded.json); no new model call",
+    "network_denied": true,
+    "spend_usd": 0,
+    "scope": "offline replay of saved fix3 responses; synthetic interview answers (fixture, not user evidence); turn tool outputs are synthetic-room-v1, not physical evidence"
+  },
+  "threshold_logic_only": [
+    {
+      "synthetic_logic_test_only": true,
+      "setup_passes": 0,
+      "turns": 30,
+      "invention": false,
+      "expected": "PROVISIONAL",
+      "actual": "PROVISIONAL"
+    },
+    {
+      "synthetic_logic_test_only": true,
+      "setup_passes": 8,
+      "turns": 30,
+      "invention": false,
+      "expected": "PROVISIONAL",
+      "actual": "PROVISIONAL"
+    },
+    {
+      "synthetic_logic_test_only": true,
+      "setup_passes": 9,
+      "turns": 30,
+      "invention": false,
+      "expected": "MET",
+      "actual": "MET"
+    },
+    {
+      "synthetic_logic_test_only": true,
+      "setup_passes": 10,
+      "turns": 30,
+      "invention": false,
+      "expected": "MET",
+      "actual": "MET"
+    },
+    {
+      "synthetic_logic_test_only": true,
+      "setup_passes": 9,
+      "turns": 29,
+      "invention": false,
+      "expected": "NOT_MET",
+      "actual": "NOT_MET"
+    },
+    {
+      "synthetic_logic_test_only": true,
+      "setup_passes": 9,
+      "turns": 30,
+      "invention": true,
+      "expected": "NOT_MET",
+      "actual": "NOT_MET"
+    }
+  ],
+  "fix3_saved_fixture_summary_relabel": {
+    "distinct_recorded_scenes": 10,
+    "required_recorded_scenes": 10,
+    "spec_cases": {
+      "RM02": true,
+      "RM04": true,
+      "RM05": true,
+      "PD02": true,
+      "PD03": true,
+      "PD04": true,
+      "PD06": true,
+      "PJ03": true,
+      "ST03": true,
+      "BN01": true
+    },
+    "valid_recorded_specs": 10,
+    "turns": 30,
+    "adversarial_turns": 0,
+    "invented_shown_oracle": 0,
+    "model_replies_shown": 30,
+    "tool_only_fallbacks": 0,
+    "model_number_attempts_caught": 0,
+    "spark_calls": 30,
+    "wonder_calls": 10,
+    "oracle_self_check": {
+      "corpus_cases": 40,
+      "oracle_agrees": true
+    },
+    "stopped": null,
+    "gate_a": "PROVISIONAL",
+    "why": "numeric-contract scope only; real validate_setup path: see S14g_fix4_gate_a.py",
+    "scope": "spec validity = numeric spec contract validate(); authoritative-bundle validate_setup unavailable for real clips (no known-scale scene bundles); turns on synthetic-room-v1 tool outputs"
+  },
+  "oracle_imports": [
+    "__future__",
+    "pathlib"
+  ],
+  "oracle_corpus": {
+    "corpus_cases": 40,
+    "oracle_agrees": true
+  },
+  "protected_input_sha256": {
+    "Build\\agent\\__init__.py": "43bd3b872ce26db44a3f002e99242a8ab85a795d9abc32cbf937d07ec49af7a8",
+    "Build\\agent\\interview.py": "3acf5c8f6901d64726e3a5f7240db6049258e005f9169d53154b21a80e585db0",
+    "Build\\agent\\muse.py": "100fd62167c310ff7751ee0131915b15b522e9d4f1c1df775aa4d680846c6628",
+    "Build\\agent\\record_muse.py": "74839b879d25b0ee6e10e7747ebc1c60aabd79a65472b15d708ebece895257e4",
+    "Build\\agent\\tools.py": "784395c69b9458447bf3a1b77b4666b20c00446a79301884f549fda544204da1",
+    "Build\\agent\\trial.py": "0acc5e8d395ab6ccd86f3a1df641a408a4a3f6dafec555a0f033356e7d160e6f",
+    "contracts\\agent\\CONTRACT.md": "a17705b7fe135d7d6e369fd2d1fff3b893326a841910461585bc49b4d0f2fc5a",
+    "contracts\\agent\\response.schema.json": "23fe8a685a7a33f3efc7abe9e94844648db0b3c370a04677769a30a033751af4",
+    "contracts\\agent\\validate.py": "7edf1ea106824895b4537dfb203f279d43ca3eb53f4225527254223812e1a94f",
+    "evidence\\S14\\S14a-mutation.txt": "7ce8e74254dc62c6b27c7190afc4bdc80418f6d69919df95c8308e09ceb52d02",
+    "evidence\\S14\\S14a-unittest.txt": "4232c2239cf61db0c65172eb5a7edef041879aad6574d9f3b64f310b0e81a058",
+    "evidence\\S14\\S14b-ledger.jsonl": "c3bb3ae00a131f66971f2ce1b5aec53b6775b761f0e42047a25ff73e09f7661e",
+    "evidence\\S14\\S14b-mutation.txt": "3db289b1d93853916a144a24e18d261ecc48c66e3ecdb24a7148e30fcec33cf9",
+    "evidence\\S14\\S14b-unittest.txt": "b61095216e20dba66b590018f60a49cb961f5c59ada26d9ba4f147b38abd5f04",
+    "evidence\\S14\\S14c-mutation.txt": "ccb09ce434183a8deceabf1a8b98ccd6d5052ed9d85471cdcdece442bd577a53",
+    "evidence\\S14\\S14c-probe.txt": "a1407ea51e579bc2be45960ba01492a7619bae42643bbeb2ea048265c9133d0a",
+    "evidence\\S14\\S14c-unittest.txt": "ecf469048a444afd5310af0614b4faaa3ec015c57441c77c31580e5aff1f84ad",
+    "evidence\\S14\\S14d-mutation.txt": "b8e1782fa57c09f0c5c12219bf9e69c98e63bd6d8ae4e86bf2b416bcea6a9565",
+    "evidence\\S14\\S14d-probe.txt": "ba2555b03c5af87dbba9ac7e7f71ee85b6c3c2626f073c5437160821ea163d16",
+    "evidence\\S14\\S14d-unittest.txt": "00a927eccdc775b21d0cd19fc0fb8f6f52b16b8e1fc1e4467b631637ae254a78",
+    "evidence\\S14\\S14d_mutation.py": "043a910b62dde5af6be268f8b508acc6818dc4b75cc9766e1b5be6fa0783f09b",
+    "evidence\\S14\\S14e-mutation.txt": "fd65c8a870b8ae0bb64fe29bfb2a4a6ba0d497857d72ea0ede1bf428c7e26a0e",
+    "evidence\\S14\\S14e-probe.txt": "52f03d78208de1e766d500ae31cd44a54f41d231ab58b068c6dcdd5a1c38ab9b",
+    "evidence\\S14\\S14e-unittest.txt": "3bc0ecc49bbdfcb11d87d1e402bf91eb468500a720c8eccf1a66b907ac4d58cc",
+    "evidence\\S14\\S14e_mutation.py": "33264d1c6983bed01ea30ac34b56dc31e783ed714f05b858a25bd1b8c79bcf55",
+    "evidence\\S14\\S14e_probe.py": "e90559816683dd6dde9532c824cc15cece8c930b404baf840676f916fd48ef1f",
+    "evidence\\S14\\S14f-mutation.txt": "5d2e8d8fb1d22a07feeb5c738d1fe5cc2306003ad0b98dc0767958f899fce5ad",
+    "evidence\\S14\\S14f-S14e-mutation-rerun.txt": "fd65c8a870b8ae0bb64fe29bfb2a4a6ba0d497857d72ea0ede1bf428c7e26a0e",
+    "evidence\\S14\\S14f-unittest.txt": "0e0d895ad41934de47f1e98f9fa3ea9926d48a902447b29e0b7b6d13baafc6bf",
+    "evidence\\S14\\S14f_mutation.py": "829143122be2df0d608c713e75aa7d4cc5fd05b3805c04503c781032d4088113",
+    "evidence\\S14\\S14g-fix-ledger.jsonl": "ec6409678e88d9cc25ab26713755d40bdb321c55a309ce3adee60b9e1912228c",
+    "evidence\\S14\\S14g-fix-live-stdout.txt": "83909117f7ce1ad2793da0947416dd0a435fb39f941b718dd1e05432f8669f5b",
+    "evidence\\S14\\S14g-fix-live.json": "9a21163e4a9be458e1c73ed365f5f03271b364562c3f9182062049042454031e",
+    "evidence\\S14\\S14g-fix-offline-stdout.txt": "fab4ea3856e893cbc70cfce01f0170e0ec4e2604dc2f3dbad1ff25f91759d3a5",
+    "evidence\\S14\\S14g-fix-offline.json": "2bf72e6aeaca380f6ac1bfb728b8e98e0dae36dda44d31e541150700e81ef9b4",
+    "evidence\\S14\\S14g-fix3-ledger.jsonl": "3dc945f6576558552b025189803ef4fa8766449c6653aa15c0877db1b066f7dd",
+    "evidence\\S14\\S14g-fix3-live-stdout.txt": "35d2587544608b2c254da96722ba596b62f450ace7ea24b58e2316c6c0abf091",
+    "evidence\\S14\\S14g-fix3-live.json": "2173bd63a7a0ebcec2a00523425dc151fb268b06122b09646838a9060aba0dcd",
+    "evidence\\S14\\S14g-fix3-offline.json": "21ba3c6de9b6ec5be9502759a3d55c53bc544dd57dfe217e24296b0b2a49ad27",
+    "evidence\\S14\\S14g-fix3-recorded.json": "cd6b5738ef0f4dbbf428cde5c6e38a511eca9ba0a9546a97078a5efa75ec7fde",
+    "evidence\\S14\\S14g-fix4-offline-stdout.txt": "6928099ef53f9962e017721d427124659639de5240cc8a97184eab179a656f5e",
+    "evidence\\S14\\S14g-fix4-offline.json": "c28c91200fd418f7816b509e4e07db574efcb8df3b990e0682b7f3318c008b1e",
+    "evidence\\S14\\S14g-fix4-unittest.txt": "6f5ec67d775b5f07d498a702f9320e892023c5bab8401324868608b76c9a564c",
+    "evidence\\S14\\S14g-ledger.jsonl": "c35c444ee90ee3ae42a64ba58b84e61b7eeacb4a55d999d3da65e376ff584540",
+    "evidence\\S14\\S14g-live-stdout.txt": "e118e1dcfcec2e110a3a89876927096ce767c481c194566fba793799900a27a8",
+    "evidence\\S14\\S14g-live.json": "b9614f32200989e9fd41d1daa79f95cba002fa00331ee03b8ff5ff9acacbeadb",
+    "evidence\\S14\\S14g-mutation-rerun.txt": "0cff0e736de7f6cc9c43a060e417ecd9bebebc8789da80ed1bc1036b7b21b001",
+    "evidence\\S14\\S14g-offline.json": "f3e2540f8965667a180f8f368c59239ba65e18580d50e25bcf648bc9822d7435",
+    "evidence\\S14\\S14g-unittest.txt": "9d290d1f234d68097fa3a6abde67fcc4db62222b56e04d238682e659a2234a12",
+    "evidence\\S14\\S14g_fix3_gate_a.py": "bd1d97057ccf6e5cd1c2650ff8864ef328dcbafabb024f0533cbfab0945dde6d",
+    "evidence\\S14\\S14g_fix4_gate_a.py": "06baa8a460485087f217832f47fdef182b5149dc4b0a4fafce8062de0f13a301",
+    "evidence\\S14\\S14g_fix_gate_a.py": "979db683140c43b37e82691f3e04e8f3e8f496e7751a6e6035d4652a798c76c2",
+    "evidence\\S14\\S14g_fix_oracle.py": "8122d85fbba887471b2df4f4436a1656c322b9358512121375dd31b03e0bc634",
+    "evidence\\S14\\S14g_gate_a.py": "6cb6d1171cf7d51466dbde8b9ab0b90cca6b5edfabc94a1381dc23430b120bae",
+    "tests\\agent\\fixtures\\adversarial-visible-text.json": "bf85034637ca364c69a108f29f576eee87ea6cbc357587e2f3416d06e98a0ab7",
+    "tests\\agent\\fixtures\\muse\\live-room-v1-a.json": "30897aa0e72646233c5aace6add709bef457f6dabbaa23d063f6ac79f87a969e",
+    "tests\\agent\\fixtures\\muse\\live-room-v1-b.json": "0d7f8bebb66fc48d38e661d1ac9ce677954a35c28003f40df885d10530421fa8",
+    "tests\\agent\\fixtures\\muse\\live-room-v1-c.json": "b7c80ec656b577fe948feb8809ae8b58b68cf76296a4de186036b285d173c552",
+    "tests\\agent\\fixtures\\muse\\live-room-v1-d.json": "815f2cadd2437a6c8ee3409a8cdba29b498a53bfd7037897dfc2a5d3335377b3",
+    "tests\\agent\\test_contracts.py": "e547e1a84e062965ee62af8915791b4bee819472ebb433344f37cb2206631a88",
+    "tests\\agent\\test_interview.py": "50df8cee512597c54f353db10b35ece1b3974bfb238f9f75d74c9fc541358bb2",
+    "tests\\agent\\test_muse.py": "09aac593f1e7494efc837794e6e8aae3fb5e6cbbe833f602124f1048796cf9dc",
+    "tests\\agent\\test_reply.py": "1a37a3aee2c8f92a19d4e637c230563177c0b3259b92a7b8d696446443088e19",
+    "tests\\agent\\test_retry.py": "4f42aedaaf6e644ee2eff1db07e3334e3d4d2aedc84a31362092324266eac7f6",
+    "tests\\agent\\test_trial.py": "60ad5a7192c630cfdc3e7a37103b8913ab405dd7fe889a5a6465cb13c2ef0292",
+    "tests\\agent\\test_visible_text.py": "c85ba397bb0faef12c9e146aab832349f2563ed9afe53890f6f5500d6ccef091"
+  },
+  "protected_inputs_unchanged": true,
+  "network_denied": true,
+  "spend_usd": 0
+}

@@ -1,0 +1,24 @@
+Protected source diff:
+Historical custody git objects (HEAD vs working copy):
+evidence/S14/S14g-fix3-live.json HEAD=94bed5396d12303fff160a2a37aff56e85512d97 working=94bed5396d12303fff160a2a37aff56e85512d97
+evidence/S14/S14g-fix3-offline.json HEAD=4057f8fb592729147da67746c070d718b43f2268 working=4057f8fb592729147da67746c070d718b43f2268
+Whitespace:
+Test log receipts:
+....................................................
+----------------------------------------------------------------------
+Ran 52 tests in 5.147s
+
+OK
+..............
+----------------------------------------------------------------------
+Ran 14 tests in 7.247s
+
+OK
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 2.960s
+
+OK
+No canonical controls/product/S14 writes; review artifacts only.
+TIMING PASS; controller must separately verify evidence and any exception
+Staged scope: 12 explicit named files only; cached whitespace check passed; no bytecode.
