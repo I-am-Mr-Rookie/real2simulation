@@ -94,15 +94,24 @@ ARGUMENT_SCHEMAS = {
     "scene.rebuild": _object({"spec_sha256": SHA, "spec": {"type": "object"}}),
     "library.search": SEARCH,
 }
-SOURCE = _object({"clip_id": ID, "source_url": URL,
+SOURCE = _object({"clip_id": {"type": "string", "pattern": r"^[A-Za-z][A-Za-z0-9_-]{0,63}$"}, "source_url": URL,
                   "license": {"enum": list(LICENSES)}, "license_url": URL,
                   "attribution": TEXT, "approval_evidence": PATH})
 PROVENANCE = _object({"run_id": TEXT, "evidence": PATH,
     "numeric_label": {"enum": ["measured", "simulated", "synthetic", "unknown"]}})
+SYNTHETIC_SOURCE = _object({"kind": {"const": "synthetic"}, "description": TEXT})
 LIBRARY_ITEM = _object({
     "id": ID, "title": TEXT, "template": {"enum": sorted(TEMPLATES)},
-    "synthetic": {"type": "boolean"}, "source": SOURCE,
+    "synthetic": {"type": "boolean"}, "source": {"oneOf": [SOURCE, SYNTHETIC_SOURCE]},
     "artifact": _object({"path": PATH, "sha256": SHA}), "provenance": PROVENANCE,
+})
+# Optional for older S16 callers; store-backed search always preserves these restrictions.
+LIBRARY_ITEM["properties"].update({
+    "availability": {"const": "metadata-only"}, "scale_verified": {"const": False},
+    "scale_label": {"const": "SCALE_UNVERIFIED"},
+    "limitations": {"type": "array", "minItems": 1, "maxItems": 32, "items": TEXT},
+    "gates": _object({"M": {"const": "NOT_MET"}, "RS": {"const": "NOT_MET"},
+                      "R": {"enum": ["NOT_MET", "NOT_RUN"]}}),
 })
 PAYLOAD_SCHEMAS = {
     "spec.patch": _object({"spec": {"type": "object"}, "spec_sha256": SHA,
@@ -227,8 +236,10 @@ def validate_result(result: Any, call: Any, *, base_spec=None) -> ToolResult:
             for item in items:
                 if args["templates"] and item["template"] not in args["templates"]:
                     raise SidebarContractError("library template outside requested filters")
-                if args["licenses"] and item["source"]["license"] not in args["licenses"]:
+                if args["licenses"] and item["source"].get("license") not in args["licenses"]:
                     raise SidebarContractError("library license outside requested filters")
+                if item["source"].get("kind") == "synthetic" and not item["synthetic"]:
+                    raise SidebarContractError("synthetic source requires synthetic item")
                 if item["synthetic"] != (item["provenance"]["numeric_label"] == "synthetic"):
                     raise SidebarContractError("synthetic item/provenance mismatch")
     return copy.deepcopy(result)

@@ -1,0 +1,100 @@
+{
+  "scope": "OFFLINE: injected fake provider; accepted local library metadata; no live inference, spend or physical validation",
+  "recorded_at": "2026-10-30T07:06:48.470796+00:00",
+  "requests": [
+    {
+      "method": "POST",
+      "endpoint": "https://inference.baseten.co/v1/chat/completions",
+      "model": "meta-models/muse-spark-open-1026",
+      "stream": false,
+      "timeout_seconds": 15,
+      "candidate_count": 4
+    }
+  ],
+  "logs": [
+    "library.search model=meta-models/muse-spark-open-1026"
+  ],
+  "result": {
+    "schema_version": "sidebar-tools/1.0.0",
+    "call_id": "offline_search",
+    "scene_id": "synthetic_scene",
+    "tool": "library.search",
+    "status": "ok",
+    "payload": {
+      "query": "free fall",
+      "items": [
+        {
+          "id": "simulated-free-fall-baseline-short",
+          "title": "SIMULATED free fall: baseline-short (display-only)",
+          "template": "free_fall",
+          "synthetic": true,
+          "source": {
+            "kind": "synthetic",
+            "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+          },
+          "artifact": {
+            "path": "test-data/library-artifacts/objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "provenance": {
+            "run_id": "S10hi-gate",
+            "evidence": "evidence/S10/acceptance/acceptance.json",
+            "numeric_label": "synthetic"
+          },
+          "availability": "metadata-only",
+          "scale_verified": false,
+          "scale_label": "SCALE_UNVERIFIED",
+          "gates": {
+            "M": "NOT_MET",
+            "RS": "NOT_MET",
+            "R": "NOT_RUN"
+          },
+          "limitations": [
+            "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+            "Gate M: NOT_MET_INPUT_READINESS",
+            "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+            "Pre-contact analytic motion only; no rebound or contact-response claim.",
+            "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+            "Local processing only; no public raw-media redistribution or gate promotion."
+          ]
+        },
+        {
+          "id": "simulated-free-fall-upward-launch",
+          "title": "SIMULATED free fall: upward-launch (display-only)",
+          "template": "free_fall",
+          "synthetic": true,
+          "source": {
+            "kind": "synthetic",
+            "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+          },
+          "artifact": {
+            "path": "test-data/library-artifacts/objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "provenance": {
+            "run_id": "S10hi-gate",
+            "evidence": "evidence/S10/acceptance/acceptance.json",
+            "numeric_label": "synthetic"
+          },
+          "availability": "metadata-only",
+          "scale_verified": false,
+          "scale_label": "SCALE_UNVERIFIED",
+          "gates": {
+            "M": "NOT_MET",
+            "RS": "NOT_MET",
+            "R": "NOT_RUN"
+          },
+          "limitations": [
+            "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+            "Gate M: NOT_MET_INPUT_READINESS",
+            "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+            "Pre-contact analytic motion only; no rebound or contact-response claim.",
+            "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+            "Local processing only; no public raw-media redistribution or gate promotion."
+          ]
+        }
+      ]
+    },
+    "tool_outputs": []
+  }
+}

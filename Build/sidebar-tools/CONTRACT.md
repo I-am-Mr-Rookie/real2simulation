@@ -1,4 +1,4 @@
-# Sidebar tools v1 — S16a contracts, S16b patch, S16c local rebuild
+# Sidebar tools v1 — S16a contracts, S16b patch, S16c rebuild, S16d search adapter
 
 `contracts.py` exports Python TypedDicts, Draft 2020-12 schema dictionaries,
 `validate_call`, `validate_result`, `spec_sha256`, and the reused strict `parse_json`.
@@ -147,7 +147,9 @@ Arguments: `{query, limit, templates, licenses}`. Nonblank query <=256 character
 limit integer 1..20 (not bool); arrays unique; empty arrays mean no filter.
 Templates reuse S08/S14's canonical template set. Licences reuse the exact scene-source
 schema enum (`Public-Domain`, `CC0-1.0`, versioned `CC-BY-*`/`CC-BY-SA-*`, Pexels/Pixabay).
-No NC/ND/unknown licence vocabulary. Search is local/metadata-only; not web acquisition.
+No NC/ND/unknown licence vocabulary. The searchable source is local/metadata-only,
+not web acquisition. Baseten receives the query and candidate card metadata, never
+raw media, artifact numeric arrays or report contents.
 
 Success payload: `{query, items}` (zero matches is valid). Query echoes exactly; items
 are unique by id, <=limit, and match both requested filter sets. Each item requires:
@@ -155,7 +157,7 @@ are unique by id, <=limit, and match both requested filter sets. Each item requi
 | Field | Shape |
 |---|---|
 | id, title, template, synthetic | Stable identifier, display title, canonical template, boolean |
-| source | clip_id, source_url, license, license_url, attribution, approval_evidence |
+| source | clip_id (including uppercase registry IDs), source_url, license, license_url, attribution, approval_evidence; or synthetic `{kind: "synthetic", description}` without invented licence/clip |
 | artifact | path, sha256 (lowercase 64-hex immutable-content digest) |
 | provenance | run_id, evidence, numeric_label: measured/simulated/synthetic/unknown |
 
@@ -164,14 +166,56 @@ references without traversal, absolute paths, drive letters or backslashes. Path
 validation does not resolve files or authorize serving them. Synthetic flag and provenance
 must agree; no numeric values appear in search cards. `tool_outputs: []`.
 
-**S18 boundary:** base main dc74261 has no `Build/library` yet. This wire projection
-preserves established scene provenance field names and exact licence values, adds rights
-URL, immutable artifact digest, actual-run/evidence references and numeric label. S18's
-full manifest may contain additional metadata; an S16e adapter must explicitly project it
-into this shape, not pass arbitrary manifest fields through. Direct compatibility with an
-unmerged S18 schema is NOT asserted/tested; no unmerged files were read or imported.
-Structural validation cannot prove licence truth, owner approval, artifact bytes, actual
-run origin or physical calibration. Library serving must verify these against S18 receipts.
+Store-backed items additionally retain `availability: metadata-only`, `scale_verified:
+false`, `scale_label: SCALE_UNVERIFIED`, `gates` and `limitations`. These fields are
+optional for backward-compatible S16a-c callers but mandatory in the search projection.
+Synthetic sources require a synthetic item/provenance label, and cannot match an external
+licence filter. Clip-backed fixture records also retain a synthetic provenance label.
+
+#### S16d Baseten adapter (offline verified only)
+
+`import_module("Build.sidebar-tools.library_search").search(call, *, manifest_path=None,
+evidence_root=ROOT, environ=None, send=transport)` returns the correlated result above.
+Invalid input raises the same `SidebarContractError` as the existing tools. The caller
+loads environment secrets in its existing in-process loader (or passes its mapping as
+`environ`); never put credentials in tool arguments. This module does not auto-load `.env`.
+
+All three names `BASETEN_API_KEY`, `BASETEN_BASE_URL`, `BASETEN_MODEL` must be populated.
+The model must exactly equal **`meta-models/muse-spark-open-1026`**; mismatches fail closed,
+without echoing the configured value. URL is restricted to
+`https://inference.baseten.co/v1` (optional trailing slash). Every invocation emits one
+INFO record `library.search model=meta-models/muse-spark-open-1026` through the module
+logger; host logging configuration must enable INFO. No prompt, credential, URL,
+provider body or exception text is logged.
+
+Search reuses `Build.library.validate.validate_file`, current owner/acquisition checks,
+content-addressed artifact hashes, and evidence/numeric pointer checks. Default source
+is the existing `test-data/library-artifacts/free-fall.json`; a trusted caller may select
+another accepted manifest under `evidence_root`. No new index or guessed experiments.
+Artifact JSON is read once per distinct digest per call; there is no stale cross-call
+cache. The current source yields four **synthetic simulated**, metadata-only free-fall
+cards. The RM02 reconstruction descriptor has no verified template and is omitted rather
+than mislabelled as free fall. Source paths remain local references, not playable URLs.
+
+The model ranks the filtered, validated candidates and may return only `{"ids":[...]}`.
+Only IDs selected from this exact catalogue are accepted; duplicate/unknown IDs, extra
+fields, prose, non-JSON, tool calls, non-stop completions and wrong response model IDs
+are unavailable results. All returned fields come from the store, never model text.
+Search cards are **tool-result payloads**, not S14 numeric receipts; `tool_outputs` stays
+empty and cannot authorize numeric claims in agent text. No free-form explanation is
+returned. Empty candidates need no provider request; an empty model selection is valid.
+
+Transport is stdlib urllib/json, one POST `/chat/completions`, Bearer authorization,
+non-streaming, 15-second timeout, no retries/redirects, 256-KiB request / 64-KiB response
+limits. Config/library/provider failures return `status: error`, `code: not_ready`, and a
+readable `Library search unavailable: ...` message without raw exception content. HTTP
+error bodies are closed without reading/logging. This adapter is callable, not a new
+route, UI dispatcher, billing guard or permission grant: **S16e must verify balance,
+authorized live invocation, deployed routing and exact pinned model availability**.
+
+Request shape follows the [Meta Baseten cookbook](https://github.com/meta-models/meta-oss-cookbook/blob/main/muse-spark/hosted/baseten.md).
+Its current example uses the unpinned alias; this adapter deliberately retains the
+owner-required pinned ID instead. Documentation lookup is not live inference proof.
 
 ## Errors and downstream work
 
@@ -181,9 +225,9 @@ Codes: invalid_request, stale_spec, not_found, not_ready, budget_blocked, intern
 malformed pre-envelope transport errors are not this correlated-result contract. Never
 return stack traces/secrets as issues; caller owns safe human-readable errors.
 
-S16a-c local contract/application/rebuild scope does not complete S16d-h,
+S16a-d local contract/application/rebuild/offline search scope does not complete S16e-h,
 parent S16, real-scene integration or Gate A/RS.
-No Baseten/Fireworks/Meta call, dependency install, search engine, public upload or spend.
+No live Baseten/Fireworks/Meta call, dependency install, public upload or spend in S16d.
 
 ## Checks
 
