@@ -60,3 +60,18 @@ P3 still open: viewer LOAD_FAILED (no RM04 geometry on dev; optional S13j). P3: 
 
 Fix row S15t.
 
+
+
+## Walk after S15t (web b1805418, rev 1f6c012d), ~22:30Z
+
+| Stage | Result | Evidence |
+|---|---|---|
+| Upload -> interview -> spec -> Run (what-if label) | PASS | — |
+| Fit: table renders (gravity, degree, RMSE, n=555, AIC degree), every row SIMULATED; what-if label in panel | PASS | 13-t-fit.png |
+| Open report: sandboxed iframe (sandbox=""), title Report; first result line is the verbatim Q20 label; all numbers labelled simulated | PASS | 14-t-report.png |
+| Nav after Clerk load: "Private workspace" + user menu | PASS | AX tree |
+| 375px after fit: scrollWidth 395 > clientWidth 360 (horizontal scroll) | FAIL (P2) | 15-t-375px.png |
+| No secret-like text | PASS | — |
+
+P3: what-if gravity row's source note says "synthetic virtual-lab fit" (run is a what-if of a recorded scene, not the synthetic lab); fit view dumps all 555 residual rows; gravity shown as -9.809999999999958 ± 0.000000000000002. Viewer LOAD_FAILED still open (optional S13j). Fix row S15u.
+

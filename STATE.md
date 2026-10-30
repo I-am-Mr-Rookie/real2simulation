@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T22:33Z — orch: S15t-orch165 accepted; DEV walk reaches Report; S15u dispatched
+
+- S15t: Opus high, TIMEBOX PASS, diff within Owns; fresh node 113/113, api-workspace 21; ff-merged (root causes: fit view fed revealed fit instead of {times, output}; fit request lacked degree/select_model so report KeyError model_selection). DEV web b1805418 recorded; API unchanged; verify.py exit 0.
+- Controller DEV walk: upload -> interview -> Run -> Fit table -> Open report (sandboxed iframe, verbatim Q20 label, all numbers simulated) PASS. Nav now shows Private workspace + user menu.
+- Remaining: 375px after fit scrollWidth 395 > 360 (P2); what-if gravity note says "synthetic virtual-lab fit"; 555 residual rows dumped; over-precise gravity (P3). S15o stays PARTIAL until fixed.
+- Dispatched S15u-orch166 (Sonnet medium), thread 01a18ef0-bc8e-76c1-837d-5012e042265e, deadline 23:01:23Z (05:01 Dhaka). Receipt DISPATCH-orch166.json.
+
 ## 2026-10-30T22:14Z — orch: S15s-orch164 accepted; walk finds Fit/Report contract bug; S15t dispatched
 
 - S15s: Opus medium, TIMEBOX PASS, diff within Owns, fresh node 112/112, ff-merged 01db492f. DEV web d4663452 recorded in deployments.json; verify.py exit 0.
