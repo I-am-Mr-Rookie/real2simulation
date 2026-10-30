@@ -27,10 +27,12 @@ function happyRoutes() {
   let polls = 0;
   return {
     'POST uploads': () => [201, { upload_id: 'up1', chunk_bytes: 4, committed_bytes: 0 }],
-    'PUT uploads/up1': () => [200, { kind: 'chunk_ack' }],
-    'POST uploads/up1/complete': () => [200, { upload_id: 'up1', sha256: 'x', approved_clip: 'SYNTHETIC-CLIP' }],
-    'POST jobs': () => [202, job(0, 'queued')],
-    'GET jobs/synthetic-job-v1/progress': () => [200, (polls += 1) === 1 ? progress(job(1, 'running'), 1) : progress(jobReady(2), 2)],
+    'PUT uploads/up1/chunks/0': () => [200, { kind: 'chunk_ack' }],
+    'PUT uploads/up1/chunks/4': () => [200, { kind: 'chunk_ack' }],
+    'PUT uploads/up1/chunks/8': () => [200, { kind: 'chunk_ack' }],
+    // S13i: complete returns {upload, job, provenance}; no POST /jobs
+    'POST uploads/up1/complete': () => [200, { upload: { upload_id: 'up1', sha256: 'abcdef0123456789' }, job: job(0, 'queued'), provenance: { label: 'SYNTHETIC' } }],
+    'GET jobs/synthetic-job-v1': () => [200, (polls += 1) === 1 ? progress(job(1, 'running'), 1) : progress(jobReady(2), 2)],
     'GET scenes/synthetic-room-v1/questions': () => [200, { questions: [] }],
     'POST scenes/synthetic-room-v1/spec': () => [200, { ok: true, spec: SPEC, validated_setup: SETUP }],
     'POST fit': (r) => [200, fitBody(r.body.sessionId)],
@@ -51,12 +53,14 @@ test('happy path drives upload.idle -> JOB_UPDATE(ready) -> INTERVIEW_SPEC -> RU
   assert.equal(c.state.phase, 'interview.active');
   assert.equal(c.state.scene.scene_id, 'synthetic-room-v1');
   const puts = calls.filter((x) => x.init.method === 'PUT');
-  assert.deepEqual(puts.map((x) => x.path), ['uploads/up1?offset=0', 'uploads/up1?offset=4', 'uploads/up1?offset=8']);
+  assert.deepEqual(puts.map((x) => x.path), ['uploads/up1/chunks/0', 'uploads/up1/chunks/4', 'uploads/up1/chunks/8']);
+  assert.ok(!calls.some((x) => x.path === 'jobs'));
   assert.equal(puts[2].init.headers['x-chunk-sha256'], createHash('sha256').update(bytes.subarray(8)).digest('hex'));
   assert.equal(calls[0].body.sha256, createHash('sha256').update(bytes).digest('hex'));
-  assert.equal(c.snapshot().upload.approvedClip, 'SYNTHETIC-CLIP');
+  assert.equal(c.snapshot().upload.approvedClip, 'sha256 abcdef012345');
+  assert.equal(c.snapshot().provenance.label, 'SYNTHETIC');
   assert.equal(c.snapshot().events.length, 2);
-  assert.ok(calls.some((x) => x.path === 'jobs/synthetic-job-v1/progress?after=1'));
+  assert.ok(calls.some((x) => x.path === 'jobs/synthetic-job-v1?after=1'));
   await c.loadQuestions();
   await c.submitAnswers({ q1: 'a' });
   assert.equal(c.state.phase, 'run.ready');
@@ -84,7 +88,8 @@ test('errorOf maps body codes first, then HTTP status, else DEPENDENCY_UNAVAILAB
 test('upload errors keep the phase, create no job and inject no data', async () => {
   for (const [route, status, body, code] of [['POST uploads', 401, { error: { code: 'UNAUTHORIZED', message: 'sign in' } }, 'UNAUTHORIZED'],
     ['POST uploads/up1/complete', 422, { error: { code: 'INVALID_INPUT', message: 'not an approved clip' } }, 'INVALID_INPUT'],
-    ['POST jobs', 402, { error: { code: 'SPEND_PAUSED', message: 'cap reached' } }, 'SPEND_PAUSED'],
+    ['PUT uploads/up1/chunks/4', 402, { error: { code: 'SPEND_PAUSED', message: 'cap reached' } }, 'SPEND_PAUSED'],
+    ['POST uploads/up1/complete', 200, { upload: { upload_id: 'up1' }, job: { status: 'queued' } }, 'PROCESSING_FAILED'],
     ['POST uploads', 502, undefined, 'DEPENDENCY_UNAVAILABLE']]) {
     const routes = { ...happyRoutes(), [route]: () => [status, body] };
     const { c } = make(routes);
@@ -101,15 +106,15 @@ test('upload errors keep the phase, create no job and inject no data', async () 
 });
 
 test('failed job, bad progress doc and poll timeout fail honestly', async () => {
-  let r = make({ ...happyRoutes(), 'GET jobs/synthetic-job-v1/progress': () => [200, progress(job(1, 'failed', { error: { code: 'DEPENDENCY_UNAVAILABLE', message: 'no recorded run' } }), 1)] });
+  let r = make({ ...happyRoutes(), 'GET jobs/synthetic-job-v1': () => [200, progress(job(1, 'failed', { error: { code: 'DEPENDENCY_UNAVAILABLE', message: 'no recorded run' } }), 1)] });
   await r.c.upload(file());
   assert.equal(r.c.state.phase, 'upload.failed');
   assert.equal(r.c.state.error.code, 'DEPENDENCY_UNAVAILABLE');
-  r = make({ ...happyRoutes(), 'GET jobs/synthetic-job-v1/progress': () => [200, { kind: 'other' }] });
+  r = make({ ...happyRoutes(), 'GET jobs/synthetic-job-v1': () => [200, { kind: 'other' }] });
   await r.c.upload(file());
   assert.equal(r.c.state.error.code, 'PROCESSING_FAILED');
   assert.equal(r.c.state.scene, null);
-  r = make({ ...happyRoutes(), 'GET jobs/synthetic-job-v1/progress': () => [200, progress(job(1, 'running'), 1)] }, { maxPolls: 3 });
+  r = make({ ...happyRoutes(), 'GET jobs/synthetic-job-v1': () => [200, progress(job(1, 'running'), 1)] }, { maxPolls: 3 });
   await r.c.upload(file());
   assert.equal(r.c.state.phase, 'upload.running');
   assert.equal(r.c.state.error.code, 'DEPENDENCY_UNAVAILABLE');

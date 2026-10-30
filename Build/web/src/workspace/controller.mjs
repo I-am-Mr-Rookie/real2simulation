@@ -27,7 +27,7 @@ const ACTIVE = new Set(['upload.queued', 'upload.running']);
 export function createController({ fetch: f = globalThis.fetch, base = API_BASE, simulate, sleep = (ms) => new Promise((r) => setTimeout(r, ms)),
   pollMs = 1000, maxPolls = 900, onChange, newSessionId = () => 'fit-' + Date.now().toString(36) } = {}) {
   let state = initialState();
-  const meta = { busy: false, upload: null, events: [], questions: null, validatedSetup: null, report: null };
+  const meta = { busy: false, upload: null, events: [], questions: null, validatedSetup: null, report: null, provenance: null };
   const snap = () => ({ state, ...meta });
   const set = (s) => { state = s; onChange?.(snap()); return state; };
   const patch = (m) => { Object.assign(meta, m); onChange?.(snap()); };
@@ -50,8 +50,9 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
 
   async function poll(jobId) {
     let after = 0;
-    for (let i = 0; i < maxPolls && ACTIVE.has(state.phase); i += 1) {
-      const r = await call('GET', `jobs/${encodeURIComponent(jobId)}/progress?after=${after}`);
+    // first read always runs: the S13i RECORDED replay can already be ready in the complete response, and its events still show
+    for (let i = 0; i < maxPolls && (i === 0 || ACTIVE.has(state.phase)); i += 1) {
+      const r = await call('GET', `jobs/${encodeURIComponent(jobId)}?after=${after}`);
       if (r.error) return failWith(r.error);
       const doc = r.data;
       if (doc?.kind !== 'job_progress' || doc.job_id !== jobId) return failWith({ code: 'PROCESSING_FAILED', message: 'Progress response failed validation.' });
@@ -84,19 +85,19 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
         const id = encodeURIComponent(session.upload_id);
         for (let off = session.committed_bytes ?? 0; off < bytes.length; off += step) {
           const chunk = bytes.subarray(off, off + step);
-          r = await call('PUT', `uploads/${id}?offset=${off}`, chunk, { 'x-chunk-sha256': await sha256Hex(chunk) });
+          r = await call('PUT', `uploads/${id}/chunks/${off}`, chunk, { 'x-chunk-sha256': await sha256Hex(chunk) });
           if (r.error) return failWith(r.error);
           patch({ upload: { ...meta.upload, committed: Math.min(bytes.length, off + chunk.length) } });
         }
+        // S13i: complete starts the job and returns {upload, job, provenance}; there is no separate POST /jobs.
         r = await call('POST', `uploads/${id}/complete`, {});
         if (r.error) return failWith(r.error);
-        patch({ upload: { ...meta.upload, approvedClip: r.data.approved_clip ?? null } });
-        r = await call('POST', 'jobs', { upload_id: session.upload_id });
-        if (r.error) return failWith(r.error);
-        dispatch({ type: 'UPLOAD_STARTED', jobId: r.data?.job_id });
+        const job = r.data?.job;
+        patch({ upload: { ...meta.upload, approvedClip: typeof r.data?.upload?.sha256 === 'string' ? 'sha256 ' + r.data.upload.sha256.slice(0, 12) : null }, provenance: r.data?.provenance ?? null });
+        dispatch({ type: 'UPLOAD_STARTED', jobId: job?.job_id });
         if (state.phase !== 'upload.queued') return failWith({ code: 'PROCESSING_FAILED', message: 'Job response failed validation.' });
-        dispatch({ type: 'JOB_UPDATE', job: r.data });
-        return await poll(r.data.job_id);
+        dispatch({ type: 'JOB_UPDATE', job });
+        return await poll(job.job_id);
       } finally { patch({ busy: false }); }
     },
 
