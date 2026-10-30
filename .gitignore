@@ -58,3 +58,5 @@ test-data/public/**/*.avi
 Updated_Instructions_*.pdf
 *storage-state*.json
 *cookies*.json
+# Owner-recorded raw drop clips (Oct31, ~460 MB, faces in frames): local only, never commit.
+/Videos for Meta AI Hackathon/
