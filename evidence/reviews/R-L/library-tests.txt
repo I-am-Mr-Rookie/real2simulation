@@ -1,0 +1,3 @@
+python -B -m unittest discover -s tests/library -t tests/library (worktree main 67e299a, 2026-10-30T11:09Z)
+Ran 81 tests in 97.264s
+OK
