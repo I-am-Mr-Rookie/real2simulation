@@ -1,0 +1,69 @@
+{
+  "label": "FIXTURE walk, models + SSR, not browser/live",
+  "react": "19.3.1",
+  "steps": [
+    {
+      "step": "1 upload",
+      "mode": "FIXTURE synthetic job (no real upload service)",
+      "ok": true,
+      "phase": "interview.active",
+      "ms": 677.3,
+      "error": null,
+      "htmlBytes": 2426
+    },
+    {
+      "step": "2 interview",
+      "mode": "FIXTURE recorded agent response (S14 live pending)",
+      "ok": true,
+      "phase": "interview.active",
+      "ms": 125.5,
+      "error": null,
+      "htmlBytes": 2864
+    },
+    {
+      "step": "3 template/spec",
+      "mode": "FIXTURE recorded real Python validate_setup verdict",
+      "ok": true,
+      "phase": "run.ready",
+      "ms": 146.2,
+      "error": null,
+      "htmlBytes": 3489
+    },
+    {
+      "step": "4 run",
+      "mode": "FIXTURE deterministic runner + REAL Build/simulator replay record",
+      "ok": true,
+      "phase": "run.done",
+      "ms": 382.2,
+      "error": null,
+      "htmlBytes": 3052
+    },
+    {
+      "step": "5 instruments",
+      "mode": "FIXTURE recorded readings (real Build/instruments)",
+      "ok": true,
+      "phase": "run.done",
+      "ms": 569.7,
+      "error": null,
+      "htmlBytes": 3796
+    },
+    {
+      "step": "6 fit",
+      "mode": "FIXTURE synthetic S11 reveal (reducer) + recorded REAL fitter output (panel)",
+      "ok": true,
+      "phase": "fit.done",
+      "ms": 460.5,
+      "error": null,
+      "htmlBytes": 6962
+    },
+    {
+      "step": "7 report",
+      "mode": "FIXTURE recorded Build.reports output",
+      "ok": true,
+      "phase": "report.open",
+      "ms": 631.7,
+      "error": null,
+      "htmlBytes": 2952
+    }
+  ]
+}

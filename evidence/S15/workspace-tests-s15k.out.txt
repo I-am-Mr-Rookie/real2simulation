@@ -1,0 +1,478 @@
+TAP version 13
+# Subtest: fixture is current real fitter output
+ok 1 - fixture is current real fitter output
+  ---
+  duration_ms: 8767.9704
+  type: 'test'
+  ...
+# Subtest: every table/residual value equals fitter output; labels persist
+ok 2 - every table/residual value equals fitter output; labels persist
+  ---
+  duration_ms: 13.3259
+  type: 'test'
+  ...
+# Subtest: chart geometry stays in bounds and the zero line is the residual 0
+ok 3 - chart geometry stays in bounds and the zero line is the residual 0
+  ---
+  duration_ms: 1.2893
+  type: 'test'
+  ...
+# Subtest: a measured label from the fitter is retained, never upgraded or downgraded
+ok 4 - a measured label from the fitter is retained, never upgraded or downgraded
+  ---
+  duration_ms: 3.6749
+  type: 'test'
+  ...
+# Subtest: invalid fitter output is rejected, never displayed as numbers
+ok 5 - invalid fitter output is rejected, never displayed as numbers
+  ---
+  duration_ms: 6.043
+  type: 'test'
+  ...
+# Subtest: null gravity (invalid covariance) shows unavailable, no invented number
+ok 6 - null gravity (invalid covariance) shows unavailable, no invented number
+  ---
+  duration_ms: 0.7499
+  type: 'test'
+  ...
+# Subtest: fixture is current real instrument output
+ok 7 - fixture is current real instrument output
+  ---
+  duration_ms: 7235.1231
+  type: 'test'
+  ...
+# Subtest: every trial row renders value, plus-minus uncertainty, unit, simulated label and source evidence; error is never shown
+ok 8 - every trial row renders value, plus-minus uncertainty, unit, simulated label and source evidence; error is never shown
+  ---
+  duration_ms: 13.07
+  type: 'test'
+  ...
+# Subtest: repeat readings for one instrument advance through the service; exhaustion is a visible failure
+ok 9 - repeat readings for one instrument advance through the service; exhaustion is a visible failure
+  ---
+  duration_ms: 111.374
+  type: 'test'
+  ...
+# Subtest: rejects readings that lack provenance or uncertainty, or break the contract
+ok 10 - rejects readings that lack provenance or uncertainty, or break the contract
+  ---
+  duration_ms: 142.9077
+  type: 'test'
+  ...
+# Subtest: guards: phase, pending, stale readings, same-reference no-ops, run changes clear trials
+ok 11 - guards: phase, pending, stale readings, same-reference no-ops, run changes clear trials
+  ---
+  duration_ms: 134.6512
+  type: 'test'
+  ...
+# Subtest: controls: disabled without onAction and while pending; buttons report their events
+ok 12 - controls: disabled without onAction and while pending; buttons report their events
+  ---
+  duration_ms: 2.9137
+  type: 'test'
+  ...
+# Subtest: every fixture response is a parseable interview round; number chip text comes from the tool output
+ok 13 - every fixture response is a parseable interview round; number chip text comes from the tool output
+  ---
+  duration_ms: 247.4032
+  type: 'test'
+  ...
+# Subtest: walk: chips -> free_text -> chips_and_free_text -> complete, with the answers handed out
+ok 14 - walk: chips -> free_text -> chips_and_free_text -> complete, with the answers handed out
+  ---
+  duration_ms: 6.3997
+  type: 'test'
+  ...
+# Subtest: back restores the previous answer; reload only between rounds; later rounds append; reset clears
+ok 15 - back restores the previous answer; reload only between rounds; later rounds append; reset clears
+  ---
+  duration_ms: 125.1976
+  type: 'test'
+  ...
+# Subtest: free text is capped, stripped of control characters and kept as plain text
+ok 16 - free text is capped, stripped of control characters and kept as plain text
+  ---
+  duration_ms: 1.4203
+  type: 'test'
+  ...
+# Subtest: malformed or untraced questions are rejected and leave the interview where it was
+ok 17 - malformed or untraced questions are rejected and leave the interview where it was
+  ---
+  duration_ms: 9.1168
+  type: 'test'
+  ...
+# Subtest: markup: toggle chips, labelled textarea, actions report plain events; controls disabled without onAction
+ok 18 - markup: toggle chips, labelled textarea, actions report plain events; controls disabled without onAction
+  ---
+  duration_ms: 142.5997
+  type: 'test'
+  ...
+# Subtest: panel: shown only in interview.active and only when an interview state is supplied
+ok 19 - panel: shown only in interview.active and only when an interview state is supplied
+  ---
+  duration_ms: 257.6336
+  type: 'test'
+  ...
+# Subtest: interview.mjs stays pure: no imports, no DOM, network or model access
+ok 20 - interview.mjs stays pure: no imports, no DOM, network or model access
+  ---
+  duration_ms: 105.3509
+  type: 'test'
+  ...
+# Subtest: layout: every phase maps to a labelled stage; slots fixed; exactly one current stage
+ok 21 - layout: every phase maps to a labelled stage; slots fixed; exactly one current stage
+  ---
+  duration_ms: 226.3964
+  type: 'test'
+  ...
+# Subtest: layout: no scene -> no viewer request; failed upload flags its stage and surfaces the error
+ok 22 - layout: no scene -> no viewer request; failed upload flags its stage and surfaces the error
+  ---
+  duration_ms: 173.3307
+  type: 'test'
+  ...
+# Subtest: viewer request: schema-exact, passes the viewer checker, no job/owner ids, never mystery
+ok 23 - viewer request: schema-exact, passes the viewer checker, no job/owner ids, never mystery
+  ---
+  duration_ms: 8.9075
+  type: 'test'
+  ...
+# Subtest: viewport: one mount per key, replace aborts+disposes old, destroy cleans up
+ok 24 - viewport: one mount per key, replace aborts+disposes old, destroy cleans up
+  ---
+  duration_ms: 668.7631
+  type: 'test'
+  ...
+# Subtest: viewport: a late mount of a replaced scene is disposed and silent
+ok 25 - viewport: a late mount of a replaced scene is disposed and silent
+  ---
+  duration_ms: 312.6539
+  type: 'test'
+  ...
+# Subtest: viewport: adapter failure surfaces code once; unexpected throw falls back to RENDER_FAILED
+ok 26 - viewport: adapter failure surfaces code once; unexpected throw falls back to RENDER_FAILED
+  ---
+  duration_ms: 10.8594
+  type: 'test'
+  ...
+# Subtest: real viewer adapter: reducer scene mounts via public interface (fixture bundle, fake renderer); load failure maps
+ok 27 - real viewer adapter: reducer scene mounts via public interface (fixture bundle, fake renderer); load failure maps
+  ---
+  duration_ms: 897.6015
+  type: 'test'
+  ...
+# Subtest: view: slot markup, viewer host has no children, aria, error and synthetic banner
+ok 28 - view: slot markup, viewer host has no children, aria, error and synthetic banner
+  ---
+  duration_ms: 262.6599
+  type: 'test'
+  ...
+# Subtest: boundary: workspace imports no viewer internals, shell, app, auth or Clerk
+ok 29 - boundary: workspace imports no viewer internals, shell, app, auth or Clerk
+  ---
+  duration_ms: 246.1607
+  type: 'test'
+  ...
+# Subtest: fixture report is current Build.reports output (public interface)
+ok 30 - fixture report is current Build.reports output (public interface)
+  ---
+  duration_ms: 13740.9769
+  type: 'test'
+  ...
+# Subtest: sidebar: one entry per stage, exactly one current, every event is reducer-legal in that phase
+ok 31 - sidebar: one entry per stage, exactly one current, every event is reducer-legal in that phase
+  ---
+  duration_ms: 282.2331
+  type: 'test'
+  ...
+# Subtest: sidebar: navigation moves fit <-> report and back to interview; run/fit are never directly reachable
+ok 32 - sidebar: navigation moves fit <-> report and back to interview; run/fit are never directly reachable
+  ---
+  duration_ms: 2.327
+  type: 'test'
+  ...
+# Subtest: sidebar: report is gated by fit.done and by having a report; never from earlier phases
+ok 33 - sidebar: report is gated by fit.done and by having a report; never from earlier phases
+  ---
+  duration_ms: 1.54
+  type: 'test'
+  ...
+# Subtest: agent wiring: interview progress from the agent contract shows on the sidebar entry
+ok 34 - agent wiring: interview progress from the agent contract shows on the sidebar entry
+  ---
+  duration_ms: 8.839
+  type: 'test'
+  ...
+# Subtest: report: parses fixture; numbers rendered with unit, uncertainty and label; placeholders resolved
+ok 35 - report: parses fixture; numbers rendered with unit, uncertainty and label; placeholders resolved
+  ---
+  duration_ms: 135.0152
+  type: 'test'
+  ...
+# Subtest: report: rejects bare numbers, unknown placeholders, bad labels, extra keys, bad schema; shows an error, not a partial report
+ok 36 - report: rejects bare numbers, unknown placeholders, bad labels, extra keys, bad schema; shows an error, not a partial report
+  ---
+  duration_ms: 136.4197
+  type: 'test'
+  ...
+# Subtest: view: sidebar and report render; buttons report events; absent when not injected
+ok 37 - view: sidebar and report render; buttons report events; absent when not injected
+  ---
+  duration_ms: 32.8662
+  type: 'test'
+  ...
+# Subtest: boundary: new modules import only workspace siblings (agent/report reached via contracts, not imports)
+ok 38 - boundary: new modules import only workspace siblings (agent/report reached via contracts, not imports)
+  ---
+  duration_ms: 140.4072
+  type: 'test'
+  ...
+# Subtest: run, pause, resume, complete: pause freezes the cursor and never changes the trace
+ok 39 - run, pause, resume, complete: pause freezes the cursor and never changes the trace
+  ---
+  duration_ms: 4268.0964
+  type: 'test'
+  ...
+# Subtest: same-seed replay reproduces an identical trace and hashes; seed is bound into identity only
+ok 40 - same-seed replay reproduces an identical trace and hashes; seed is bound into identity only
+  ---
+  duration_ms: 881.0107
+  type: 'test'
+  ...
+# Subtest: replay mismatch is surfaced, never swallowed
+ok 41 - replay mismatch is surfaced, never swallowed
+  ---
+  duration_ms: 965.9772
+  type: 'test'
+  ...
+# Subtest: replay UI flow: only when done, once at a time, result recorded; run again clears it
+ok 42 - replay UI flow: only when done, once at a time, result recorded; run again clears it
+  ---
+  duration_ms: 918.0894
+  type: 'test'
+  ...
+# Subtest: guards: stale/foreign records, ticks outside running, cancel and spec edit drop playback
+ok 43 - guards: stale/foreign records, ticks outside running, cancel and spec edit drop playback
+  ---
+  duration_ms: 131.6431
+  type: 'test'
+  ...
+# Subtest: a hidden-physics key in the trace still fails the run (S15a leak guard)
+ok 44 - a hidden-physics key in the trace still fails the run (S15a leak guard)
+  ---
+  duration_ms: 227.3249
+  type: 'test'
+  ...
+# Subtest: controls per phase; clicks report plain events; disabled without a host
+ok 45 - controls per phase; clicks report plain events; disabled without a host
+  ---
+  duration_ms: 285.9244
+  type: 'test'
+  ...
+# Subtest: 375px: single column, sidebar stacked below viewport, panel and job
+ok 46 - 375px: single column, sidebar stacked below viewport, panel and job
+  ---
+  duration_ms: 17.0606
+  type: 'test'
+  ...
+# Subtest: no fixed width/min-width wider than a 375px viewport minus padding
+ok 47 - no fixed width/min-width wider than a 375px viewport minus padding
+  ---
+  duration_ms: 1.9108
+  type: 'test'
+  ...
+# Subtest: job-stage events are logged in order, including ignored stale/illegal ones
+ok 48 - job-stage events are logged in order, including ignored stale/illegal ones
+  ---
+  duration_ms: 218.155
+  type: 'test'
+  ...
+# Subtest: log is bounded and never copies payload text (job status allow-listed)
+ok 49 - log is bounded and never copies payload text (job status allow-listed)
+  ---
+  duration_ms: 6.7601
+  type: 'test'
+  ...
+# Subtest: timeline follows the job through queued -> running -> ready; failure marks the furthest step
+ok 50 - timeline follows the job through queued -> running -> ready; failure marks the furthest step
+  ---
+  duration_ms: 167.1938
+  type: 'test'
+  ...
+# Subtest: upload failure: partial-state says nothing was created; retry offered only when it can help
+ok 51 - upload failure: partial-state says nothing was created; retry offered only when it can help
+  ---
+  duration_ms: 9.5889
+  type: 'test'
+  ...
+# Subtest: every offered retry is a legal reducer edge and actually recovers (new job id, log restarts)
+ok 52 - every offered retry is a legal reducer edge and actually recovers (new job id, log restarts)
+  ---
+  duration_ms: 3.1333
+  type: 'test'
+  ...
+# Subtest: run/fit failures keep what exists and say what is missing; no fit number without a validated fit
+ok 53 - run/fit failures keep what exists and say what is missing; no fit number without a validated fit
+  ---
+  duration_ms: 11.7438
+  type: 'test'
+  ...
+# Subtest: markup: timeline, events, failure copy and retry button; retry reports only the event type
+ok 54 - markup: timeline, events, failure copy and retry button; retry reports only the event type
+  ---
+  duration_ms: 187.5792
+  type: 'test'
+  ...
+# Subtest: in-flight upload explains that no scene exists yet; idle renders no status chrome
+ok 55 - in-flight upload explains that no scene exists yet; idle renders no status chrome
+  ---
+  duration_ms: 0.9711
+  type: 'test'
+  ...
+# Subtest: status module stays inside the workspace import boundary
+ok 56 - status module stays inside the workspace import boundary
+  ---
+  duration_ms: 388.306
+  type: 'test'
+  ...
+# Subtest: FIELDS match the Python interview contract (params, units, accepted typed units)
+ok 57 - FIELDS match the Python interview contract (params, units, accepted typed units)
+  ---
+  duration_ms: 171.2138
+  type: 'test'
+  ...
+# Subtest: angle factors match Python (deg -> rad); angle needs a unit
+ok 58 - angle factors match Python (deg -> rad); angle needs a unit
+  ---
+  duration_ms: 2.6389
+  type: 'test'
+  ...
+# Subtest: parser rejects non-numbers, bad units, non-finite, unicode digits, overlong
+ok 59 - parser rejects non-numbers, bad units, non-finite, unicode digits, overlong
+  ---
+  duration_ms: 3.7008
+  type: 'test'
+  ...
+# Subtest: accepts only what the validator accepted: every recorded verdict agrees with the reducer
+ok 60 - accepts only what the validator accepted: every recorded verdict agrees with the reducer
+  ---
+  duration_ms: 10.2135
+  type: 'test'
+  ...
+# Subtest: local parse failures never reach the validator and keep per-field errors
+ok 61 - local parse failures never reach the validator and keep per-field errors
+  ---
+  duration_ms: 140.104
+  type: 'test'
+  ...
+# Subtest: forged, stale, mismatching or out-of-order verdicts are not accepted
+ok 62 - forged, stale, mismatching or out-of-order verdicts are not accepted
+  ---
+  duration_ms: 3.0839
+  type: 'test'
+  ...
+# Subtest: editing clears an accepted spec; edits are blocked while checking; illegal events return the same object
+ok 63 - editing clears an accepted spec; edits are blocked while checking; illegal events return the same object
+  ---
+  duration_ms: 3.5302
+  type: 'test'
+  ...
+# Subtest: control characters are stripped and input length bounded
+ok 64 - control characters are stripped and input length bounded
+  ---
+  duration_ms: 1.1368
+  type: 'test'
+  ...
+# Subtest: T_LOAD prefills from a spec only for contract-unit numbers
+ok 65 - T_LOAD prefills from a spec only for contract-unit numbers
+  ---
+  duration_ms: 0.4518
+  type: 'test'
+  ...
+# Subtest: accepted spec passes the S15a reducer only with its validator; fail-closed without one
+ok 66 - accepted spec passes the S15a reducer only with its validator; fail-closed without one
+  ---
+  duration_ms: 1.9004
+  type: 'test'
+  ...
+# Subtest: view: every field label shows its unit and hint; check button reports T_SUBMIT
+ok 67 - view: every field label shows its unit and hint; check button reports T_SUBMIT
+  ---
+  duration_ms: 153.0215
+  type: 'test'
+  ...
+# Subtest: view: disabled without onAction, while checking and when locked (run.ready); accepted values show units; errors are alerts
+ok 68 - view: disabled without onAction, while checking and when locked (run.ready); accepted values show units; errors are alerts
+  ---
+  duration_ms: 7.8811
+  type: 'test'
+  ...
+# Subtest: view: user text is data only (no raw HTML props)
+ok 69 - view: user text is data only (no raw HTML props)
+  ---
+  duration_ms: 1.2447
+  type: 'test'
+  ...
+# Subtest: fixture walk: upload -> spec -> run -> fit -> report, each stage legal; real fitter output is NOT an S11 reveal (known gap)
+ok 70 - fixture walk: upload -> spec -> run -> fit -> report, each stage legal; real fitter output is NOT an S11 reveal (known gap)
+  ---
+  duration_ms: 655.1943
+  type: 'test'
+  ...
+# Subtest: happy path walks upload -> interview -> run -> fit -> report
+ok 71 - happy path walks upload -> interview -> run -> fit -> report
+  ---
+  duration_ms: 136.2464
+  type: 'test'
+  ...
+# Subtest: shell example job DTO parses; malformed DTOs are rejected
+ok 72 - shell example job DTO parses; malformed DTOs are rejected
+  ---
+  duration_ms: 4.0198
+  type: 'test'
+  ...
+# Subtest: job rules: stale/equal revisions, wrong id, regression and terminal states are ignored
+ok 73 - job rules: stale/equal revisions, wrong id, regression and terminal states are ignored
+  ---
+  duration_ms: 1.6997
+  type: 'test'
+  ...
+# Subtest: invalid spec stays in interview with a readable error; valid spec advances
+ok 74 - invalid spec stays in interview with a readable error; valid spec advances
+  ---
+  duration_ms: 2.3396
+  type: 'test'
+  ...
+# Subtest: run: pause/resume/cancel, seed binding, malformed and gravity-leaking output rejected
+ok 75 - run: pause/resume/cancel, seed binding, malformed and gravity-leaking output rejected
+  ---
+  duration_ms: 81.8928
+  type: 'test'
+  ...
+# Subtest: fit: only validated reveal for the expected session produces numbers
+ok 76 - fit: only validated reveal for the expected session produces numbers
+  ---
+  duration_ms: 11.6145
+  type: 'test'
+  ...
+# Subtest: EDIT_SPEC invalidates run and fit; blocked while work is in flight
+ok 77 - EDIT_SPEC invalidates run and fit; blocked while work is in flight
+  ---
+  duration_ms: 2.1574
+  type: 'test'
+  ...
+# Subtest: illegal events return the same state; every phase/event is reachable and documented
+ok 78 - illegal events return the same state; every phase/event is reachable and documented
+  ---
+  duration_ms: 4.4105
+  type: 'test'
+  ...
+1..78
+# tests 78
+# suites 0
+# pass 78
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 45187.5983
