@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S07-pts-audit-orch58 Sol medium (threadId:01a18a4e-2f99-7cb1-bee4-a08b333b60e8,hostId:local, deadline 2026-10-30T01:25:41+00:00): old-_frames PTS audit + L4 cost rate.
+
 CLAUDE QUOTA: S14g-fix-orch55, S12e-fix2-orch56, R-C-orch57 all died 22:24Z Oct29 with 429 (retry
 limit). Unverified WIP committed on their run branches (5ddce1f, 3591656, bf5d9bd). S14g-fix had live
 Meta: 31 calls est $0.97 (reserved $1.81, billed unknown; ledger evidence/S14/S14g-fix-ledger.jsonl
