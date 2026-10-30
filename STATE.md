@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+Oct30 ~20:10Z: ACCEPTED S04m-orch156 DONE (api app mounts jobs + analysis routers on one store; requirements +numpy/jsonschema pins;
+api.Dockerfile build-time import smoke; stage.py api allowlist = traced import closure + runtime data; verify.py stale texts fixed + internal
+route 401 check; Railway DEV: WORKSPACE_INTERNAL_TOKEN (api+web, names only), WORKSPACE_API_URL, WORKSPACE_UPLOAD_DIR=/tmp; REDIS_URL
+already referenced the existing dev Redis; api 8bf100cc + web db4b96a6 SUCCESS; verify.py 11/11. Controller fresh after rebase: railway-dev
+16, api-workspace 16, pipeline 53 OK; no .env value or token in evidence. Limits: signed-in BFF->API not verified; /tmp uploads ephemeral).
+Dispatched S04o-orch158 (Opus med, mount controller + web dev deploy + IAB round-trip check), thread 01a18e6d-0834, dl 20:37:23Z.
+Running: S25f-orch157, S04o-orch158. Next RID orch159.
+
 Oct30 ~20:10Z OWNER REPLY: Q19 = A ("Go with the recommended one"). The public demo video may show short snippets of PD02, RM02 and ST03
 (Pexels) with the creator credit on screen and in ATTRIBUTION.md. This supersedes the S24a/S24b default B (plots only) for these 3 clips only;
 other clips keep their status and PJ03 stays blocked. Sent S25f-orch157 a nonterminal note to update ATTRIBUTION/checklist (in its Owns).
