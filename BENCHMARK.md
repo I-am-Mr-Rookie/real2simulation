@@ -167,4 +167,8 @@ cost is UNAVAILABLE (Q17). The table is the script's `--md` output pasted verbat
 and the About data. After any evidence change, rerun the generators (`errors.py`, `predictions.py`,
 `costs.py`, `about.py`); a sha mismatch means the freeze must be redone, not edited.
 
-Not done here: cross-checking pitch/demo numbers against this file; mounting About.jsx on an app route.
+Pitch-number cross-check (S21f): `python Build/benchmark/crosscheck.py` re-checks every table row, prose decimal,
+count claim and gate label here, plus about.json rows and About.jsx (no typed numbers; SWC compile in
+`test_crosscheck.py`), against the S21 JSONs and GATE_A.json; frozen output
+[evidence/S21/crosscheck.json](evidence/S21/crosscheck.json). Not done here: mounting About.jsx on an app route
+(it is currently unmounted); pitch deck/video text (not yet written) must be re-checked when it exists.
