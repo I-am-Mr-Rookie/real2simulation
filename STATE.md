@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+Oct30 ~20:35Z: ACCEPTED S14j-orch159 DONE (spec route: only when every issue is '$.scene: invalid authoritative bundle', reruns
+answers_to_spec with Gate A's numeric validate() as validate_setup and returns 200 + label 'scale unverified, not setup-validated',
+setup_validated:false; other failures still 422; authoritative path unchanged. Fresh by controller: api-workspace 20, pipeline 53 OK. API DEV
+a2777e67 SUCCESS (src 49754d0); controller updated deployments.json api + verify.py api pin. RISK for S15o/S22f: RM04 recorded base spec
+carries fixture-labelled gravity/mass/origin/bounds and scale_status 'estimated' from S14g-fix3, so the run/fit numbers are SIMULATED from those
+values. UI must keep the SIMULATED and Q16 labels; never present them as measured from the clip. Running: S15p-orch160.
+
 Oct30 ~20:25Z: CONTROLLER DECISION (owner delegated; applies owner Q16 = A, no new authority): the live workspace flow is blocked at spec for
 every real clip (RM04 spec 422: no authoritative bundle, no verified scale). Added QUEUE S14j (Opus high): the spec route applies the Q16 path
 (numeric-contract validation only, label 'scale unverified, not setup-validated', never MET, no invented scale) and the API is redeployed to dev.
