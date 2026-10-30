@@ -158,7 +158,7 @@ class GateMTests(unittest.TestCase):
         self.assertEqual(out['eligible_count'], 0)
         self.assertEqual(out['gate']['measured_count'], 0)
         self.assertFalse(out['gate']['gate_passed'])
-        self.assertEqual(len(out['trials']), 8)
+        self.assertEqual(len(out['trials']), 20)  # S07g: +12 owner free_fall rows, still not metric-approved here
         self.assertTrue(out['sources_sha256'])
         for trial in out['trials']:
             self.assertIsNone(trial['g_m_s2'])

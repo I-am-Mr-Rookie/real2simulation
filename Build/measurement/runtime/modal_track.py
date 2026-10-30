@@ -293,11 +293,11 @@ def _pts(clip, last):
     return pts
 
 
-def plan(clip="ST03", first=FIRST, last=LAST, prompt="apple", out=DEFAULT_OUT):
+def plan(clip="ST03", first=FIRST, last=LAST, prompt="apple", out=DEFAULT_OUT, approval=APPROVAL):
     """Validate a run before any GPU spend; returns (clip_path, metadata_without_sha, dest)."""
-    approved = re.search(r"\*\*Approved IDs:\*\*\s*([A-Z0-9,]+)", (REPO / APPROVAL).read_text("utf-8"))
+    approved = re.search(r"\*\*Approved IDs:\*\*\s*([A-Z0-9,]+)", (REPO / approval).read_text("utf-8"))
     if not approved or clip not in approved.group(1).split(","):
-        raise ValueError(f"{clip} not in scoped owner approval {APPROVAL}")
+        raise ValueError(f"{clip} not in scoped owner approval {approval}")
     if type(first) is not int or type(last) is not int or not 0 <= first <= last - 2:
         raise ValueError("need integer 0 <= first and at least three frames")
     if not isinstance(prompt, str) or not prompt.strip():
@@ -317,7 +317,7 @@ def plan(clip="ST03", first=FIRST, last=LAST, prompt="apple", out=DEFAULT_OUT):
         "clip_id": clip, "licence": f"{row['licence']} {row['licence_url']}",
         "provenance": f"{row['source_url']} ({row['creator']}); local {width}x{height} rendition",
         "motion": row["experiment"],
-        "approval": {"scope": "scene_tracking", "evidence": APPROVAL},
+        "approval": {"scope": "scene_tracking", "evidence": approval},
         "width_px": width, "height_px": height, "last_training_frame": last,
     }
     return path, metadata, dest
@@ -325,12 +325,13 @@ def plan(clip="ST03", first=FIRST, last=LAST, prompt="apple", out=DEFAULT_OUT):
 
 @app.local_entrypoint()
 def main(clip: str = "ST03", first: int = FIRST, last: int = LAST, prompt: str = "apple",
-         object_id: int = OBJECT_ID, out: str = DEFAULT_OUT, masks: bool = False, chunk: int = 0):
+         object_id: int = OBJECT_ID, out: str = DEFAULT_OUT, masks: bool = False, chunk: int = 0,
+         approval: str = APPROVAL):
     if type(object_id) is not int or object_id < 0:  # fail before frames/GPU, not inside the container
         raise ValueError("nonnegative integer object_id required")
     if chunk:
         chunk_spans(last - first + 1, chunk)  # validate before frames/GPU
-    path, metadata, dest = plan(clip, first, last, prompt, out)
+    path, metadata, dest = plan(clip, first, last, prompt, out, approval)
     frames, frame_map = _frames(path, first, last)
     if os.environ.get("S07B_DRY"):
         print(json.dumps({"frames": len(frames), "frame_map": frame_map}))

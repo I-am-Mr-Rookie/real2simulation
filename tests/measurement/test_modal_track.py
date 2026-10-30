@@ -56,7 +56,8 @@ class ModalTrackTest(unittest.TestCase):
         params = inspect.signature(MT.main).parameters
         self.assertEqual({k: p.default for k, p in params.items()}, {
             "clip": "ST03", "first": 58, "last": 76, "prompt": "apple", "object_id": 2,
-            "out": "evidence/S07/S07b/orch14/result.json", "masks": False, "chunk": 0})
+            "out": "evidence/S07/S07b/orch14/result.json", "masks": False, "chunk": 0,
+            "approval": "evidence/owner/S02/APPROVAL.md"})
         remote = inspect.signature(MT.track.local).parameters
         self.assertEqual((remote["object_id"].default, remote["masks"].default), (2, False))
 
@@ -100,6 +101,16 @@ class ModalTrackTest(unittest.TestCase):
                 with self.subTest(object_id=bad), self.assertRaises(ValueError):
                     MT.main(object_id=bad, out=tmp)
         remote.assert_not_called(), grab.assert_not_called()
+
+    def test_scoped_approval_file_gates_owner_clips(self):
+        # S07g: owner clips are approved by their own receipt, never by widening S02 APPROVAL.md
+        tmp = str(Path(tempfile.mkdtemp()) / "o.json")
+        with self.assertRaises(ValueError):
+            MT.plan("OWN01", 40, 60, "yellow book", tmp)
+        if shutil.which("ffprobe") and (MT.CANONICAL / "Videos for Meta AI Hackathon/01_demo_hero__035735.mp4").exists():
+            path, md, _ = MT.plan("OWN01", 40, 60, "yellow book", tmp, "evidence/S07/S07g/OWNER-APPROVAL.md")
+            self.assertEqual((path.name, md["width_px"], md["height_px"]), ("01_demo_hero__035735.mp4", 1080, 1920))
+            self.assertEqual(md["approval"]["evidence"], "evidence/S07/S07g/OWNER-APPROVAL.md")
 
     @unittest.skipUnless(shutil.which("ffprobe") and (MT.CANONICAL / "test-data/public/RM04.mp4").exists(),
                          "local RM04 media unavailable")
