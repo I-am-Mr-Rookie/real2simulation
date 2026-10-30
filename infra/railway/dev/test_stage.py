@@ -23,6 +23,10 @@ FILES = {
     "Build/simulator/NUMERICS.md": b"synthetic-excluded\n",
     "Build/api/health/app.py": b"synthetic-api\n",
     "Build/api/health/dependencies.py": b"synthetic-shared\n",
+    "Build/api/workspace/jobs.py": b"synthetic-workspace\n",
+    "clips.csv": b"synthetic-clips\n",
+    "evidence/S13/S13h/live/timing.json": b"{}\n",
+    "evidence/S12/excluded.json": b"synthetic-excluded\n",
     "Build/worker/health/app.py": b"synthetic-worker\n",
     **{f"infra/railway/dev/{service}.Dockerfile": b"ARG R2S_SOURCE_REVISION\n"
        for service in ("web", "api", "worker")},
@@ -124,7 +128,8 @@ class StageTests(unittest.TestCase):
                         "web": {"Build/web/src/page.jsx", "Build/web/package.json", "Build/lab/session-service.mjs",
                                 "Build/library/loader.mjs", "Build/simulator/rk4.mjs", "Dockerfile",
                                 "Build/web/library-snapshot/guest.json"},
-                        "api": {"Build/api/health/app.py", "Build/api/health/dependencies.py", "Dockerfile"},
+                        "api": {"Build/api/health/app.py", "Build/api/health/dependencies.py", "Build/api/workspace/jobs.py",
+                                "clips.csv", "evidence/S13/S13h/live/timing.json", "Dockerfile"},
                         "worker": {"Build/worker/health/app.py", "Build/api/health/dependencies.py", "Dockerfile"},
                     }[service]
                     self.assertEqual(set(manifest["files"]), expected)

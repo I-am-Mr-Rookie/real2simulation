@@ -23,7 +23,10 @@ prefixes = {
     "web": ("Build/web/src/", "Build/web/public/", "Build/web/package.json", "Build/web/next.config.js", "Build/lab/session-service.mjs",
             "Build/library/loader.mjs",
             *(f"Build/simulator/{m}.mjs" for m in ("trajectories", "extended-templates", "mystery-g", "replay", "rk4"))),
-    "api": ("Build/api/health/",),
+    # Workspace routers import these packages and read the recorded S13h/S14g replay + clip approval at runtime.
+    "api": ("Build/api/", "Build/agent/", "Build/fitter/", "Build/pipeline/", "Build/real2sim/", "Build/reports/",
+            "contracts/", "clips.csv", "evidence/owner/S02/APPROVAL.md", "evidence/clips/S02c-acquisition.json",
+            "evidence/S13/S13h/live/", "evidence/S14/S14g-fix3-live.json"),
     "worker": ("Build/worker/health/", "Build/api/health/dependencies.py"),
 }[service]
 files = subprocess.check_output(["git", "ls-tree", "-r", "--name-only", revision], cwd=root, text=True).splitlines()

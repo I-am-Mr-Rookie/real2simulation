@@ -6,6 +6,7 @@ import re
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from Build.api.health.dependencies import DependencyHealth
+from Build.api.workspace import analysis, jobs
 
 SERVICE = "api"
 
@@ -35,6 +36,10 @@ def create_app() -> FastAPI:
     async def version():
         return {"service": SERVICE, "revision": revision}
 
+    # Internal owner-scoped routes (WORKSPACE_INTERNAL_TOKEN); analysis resolves scenes from the jobs store.
+    store = jobs.default_store()
+    app.include_router(jobs.create_router(store))
+    app.include_router(analysis.create_router(jobs.scene_resolver(store)))
     return app
 
 

@@ -11,14 +11,16 @@ from urllib.parse import urlsplit
 from unittest.mock import patch
 
 REVISION = "300cd2096f9e32bcdf3433520b36b67f709df0d5"
+API_REVISION = "300cd2096f9e32bcdf3433520b36b67f709df0d5"
 PATHS = ("/health/live", "/health/ready", "/api/version")
 ENDPOINTS = [(service, path) for service in ("api", "worker") for path in PATHS]
+INTERNAL = ("api", "/internal/workspace/jobs/job_" + "0" * 32)
 
 
 def baseline():
     responses = {}
     for service, path in ENDPOINTS:
-        data = {"service": service, "revision": REVISION}
+        data = {"service": service, "revision": API_REVISION if service == "api" else REVISION}
         status = 200
         if path != "/api/version":
             data["status"] = "ok"
@@ -31,6 +33,7 @@ def baseline():
                 data["status"] = "unavailable"
                 status = 503
         responses[(service, path)] = (status, data)
+    responses[INTERNAL] = (401, {"detail": {"code": "UNAUTHORIZED", "message": "synthetic"}})
     return responses
 
 
@@ -45,7 +48,7 @@ def verify(responses):
             body = "Real2Simulation " + {
                 "/": "", "/library": "No demos are published yet",
                 "/sign-in": "Sign in to Real2Simulation",
-                "/workspace/private-check": "Private workspaces remain unavailable",
+                "/workspace/private-check": "Private workspaces require sign-in",
             }[parsed.path]
         else:
             status, data = responses[(service, parsed.path)]
@@ -82,8 +85,13 @@ class VerifyTests(unittest.TestCase):
     def test_baseline_including_statusless_version_and_worker_503(self):
         code, checks = verify(baseline())
         self.assertEqual(code, 0)
-        self.assertEqual(len(checks), 10)
+        self.assertEqual(len(checks), 11)
         self.assertTrue(all(c["pass"] for c in checks))
+
+    def test_internal_workspace_route_must_reject_missing_token(self):
+        for status, data in ((200, {"job": {}}), (404, {"detail": {"code": "NOT_FOUND"}}), (401, {"detail": "other"})):
+            with self.subTest(status=status):
+                self.assert_rejected(INTERNAL, lambda *_: (status, data))
 
     def test_wrong_or_missing_service(self):
         for endpoint in ENDPOINTS:
