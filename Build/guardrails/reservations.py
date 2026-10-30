@@ -107,7 +107,7 @@ def project_ledger(path, source):
         app = event.get("app_id")
         key = event.get("request_id")
         if not key and event.get("idempotency_key"):
-            key = source + ":" + event["stage"] + ":" + event["idempotency_key"]
+            key = source + ":" + event.get("stage", "understand" if provider == "Meta Model API" else "") + ":" + event["idempotency_key"]
         row = next((r for r in rows if key and r["request_id"] == key), None)
         if row is None and app in apps:
             row = apps[app]
@@ -213,6 +213,49 @@ def project(root, receipt, journal):
             headroom_usd(state[provider]["credit_headroom_usd"]) - outstanding))
     state["sources"] = [*sorted(sources), "evidence/S20/runtime/receipt.json", "evidence/S20/runtime/reservations.json"]
     return state, paths
+
+
+def reserve_meta(root, ledger, stage, key, amount, *, max_calls, cap_usd):
+    """Reserve Meta globally before POST, retaining liabilities even if transport crashes."""
+    try:
+        root = repository_root(root)
+        runtime = root / "evidence/S20/runtime"
+        ledger, amount = Path(ledger).resolve(), usd(amount)
+        if amount <= 0 or stage not in ("understand", "record_muse") or not isinstance(key, str) or not key.strip():
+            raise ValueError("Invalid Meta reservation")
+        with exclusive(runtime / "admission.lock"):
+            receipt = read_json(runtime / "receipt.json")
+            journal = read_json(runtime / "reservations.json")
+            validate_journal(journal)
+            if ledger.exists():
+                journal["ledgers"] = sorted(set(journal["ledgers"]) | {str(ledger)})
+            state, paths = project(root, receipt, journal)
+            source = ledger.relative_to(root).as_posix() if ledger.is_relative_to(root) else str(ledger)
+            local = project_ledger(ledger, source) if ledger.exists() else []
+            request_id = "meta:" + stage + ":" + key
+            prior = [r for r in state["Meta Model API"]["requests"] if r.get("stage") == stage]
+            if (any(r["request_id"] == request_id for r in state["Meta Model API"]["requests"])
+                    or len(prior) >= max_calls or len(local) >= max_calls
+                    or sum((liability_usd(r) for r in prior), Decimal(0)) + amount > usd(cap_usd)
+                    or sum((liability_usd(r) for r in local), Decimal(0)) + amount > usd(cap_usd)):
+                raise ReconstructionPaused("Meta call count or reservation cap reached")
+            write_json(runtime / "snapshot.json", state)
+            require_reconstruction(runtime / "snapshot.json", candidate_modal_usd=0, candidate_meta_usd=amount)
+            row = {"request_id": request_id, "provider": "Meta Model API", "stage": stage,
+                   "utc": datetime.now(timezone.utc).isoformat(), "idempotency_key": key,
+                   "reserved_usd": str(amount), "billed_usd": None}
+            journal["requests"].append(row)
+            journal["ledgers"] = sorted(str(p) for p in paths | {ledger})
+            write_json(runtime / "reservations.json", journal)
+            ledger.parent.mkdir(parents=True, exist_ok=True)
+            with ledger.open("a", encoding="utf-8") as stream:
+                stream.write(json.dumps(row) + "\n")
+                stream.flush()
+                import os
+                os.fsync(stream.fileno())
+            return request_id
+    except (OSError, UnicodeError, ValueError, TypeError, KeyError, AttributeError, OverflowError):
+        raise ReconstructionPaused("Meta admission state unavailable or invalid") from None
 
 
 def reserve_gpu(root, ledger, stage, key, amount, *, max_jobs, cap_usd):

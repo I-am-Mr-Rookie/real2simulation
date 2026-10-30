@@ -83,6 +83,8 @@ def smoke():
 
 @app.local_entrypoint()
 def main(out: str = ""):
+    from Build.guardrails.standalone import admit_standalone
+    admit_standalone("gpu-runtime")
     t = time.time()
     r = smoke.remote()
     r["client_launch_unix"], r["client_return_unix"] = t, time.time()

@@ -336,6 +336,8 @@ def main(clip: str = "ST03", first: int = FIRST, last: int = LAST, prompt: str =
         return
     with path.open("rb") as stream:
         metadata["source_sha256"] = hashlib.file_digest(stream, "sha256").hexdigest()
+    from Build.guardrails.standalone import admit_standalone
+    admit_standalone("modal-track:" + clip)
     result = json.loads(track.remote(frames, metadata, frame_map, prompt, object_id, masks, chunk))
     result["frame_sha256"] = [sha for _, sha in frames]
     result["frame_map"] = frame_map

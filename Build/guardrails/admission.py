@@ -75,8 +75,8 @@ def require_reconstruction(state_path, *, candidate_modal_usd, candidate_meta_us
         meta = _provider(state, "Meta Model API")
         modal = _provider(state, "Modal")
         meta_candidate, modal_candidate = usd(candidate_meta_usd), usd(candidate_modal_usd)
-        if modal_candidate <= 0:
-            raise ValueError("New reconstruction requires a positive all-in bound")
+        if modal_candidate + meta_candidate <= 0:
+            raise ValueError("New paid work requires a positive all-in bound")
         accounting = meta_snapshot(meta["historical_usd"], meta["requests"], meta_candidate)
         committed = usd(modal["historical_usd"]) + sum(
             (liability_usd(row) for row in modal["requests"]), Decimal(0))

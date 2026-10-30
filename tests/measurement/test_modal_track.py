@@ -76,8 +76,10 @@ class ModalTrackTest(unittest.TestCase):
         frames, fmap = [(b"x", "0" * 64)], [(76, 2.5)]
         remote = mock.Mock(return_value=json.dumps({"stages": ["tracked"]}))
         with mock.patch.object(MT, "_frames", return_value=(frames, fmap)) as grab, \
+             mock.patch("Build.guardrails.standalone.admit_standalone") as admission, \
              mock.patch.object(MT.track, "remote", remote):
             MT.main(out=str(dest))
+            admission.assert_called_once_with("modal-track:ST03")
             with self.assertRaises(FileExistsError):
                 MT.main(out=str(dest))
         grab.assert_called_once_with(MT.CLIP, 58, 76)

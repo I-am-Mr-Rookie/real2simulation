@@ -10,6 +10,7 @@ import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from uuid import uuid4
 
 import httpx
 from dotenv import dotenv_values
@@ -17,6 +18,9 @@ from dotenv import dotenv_values
 from Build.agent import muse
 from Build.agent.tools import scene_context
 from contracts.agent.validate import AgentContractError
+from Build.guardrails.accounting import liability_usd, usd
+from Build.guardrails.admission import ReconstructionPaused
+from Build.guardrails.reservations import reserve_meta, project_ledger
 
 ROOT = Path(__file__).parents[2]
 ENV = Path(r"C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/.env")
@@ -35,10 +39,13 @@ def ledger() -> list[dict]:
 def reserve(body: dict) -> float:
     """Worst-case USD for one call; refuse if it would break the call or dollar cap."""
     worst = (len(json.dumps(body)) // 2) * IN_USD + muse.MAX_OUTPUT_TOKENS * OUT_USD  # chars/2 over-counts tokens
-    rows = ledger()
-    spent = sum(r["est_usd"] for r in rows)
-    if len(rows) >= MAX_CALLS or spent + worst > MAX_USD:
-        raise SystemExit(f"budget guard: {len(rows)} calls, ${spent:.4f} spent, next worst ${worst:.4f}")
+    try:
+        rows = project_ledger(LEDGER, str(LEDGER.resolve())) if LEDGER.exists() else []
+        spent = sum(liability_usd(r) for r in rows)
+    except (OSError, ValueError, KeyError, TypeError):
+        raise SystemExit("SPEND_PAUSED: invalid Meta ledger") from None
+    if len(rows) >= MAX_CALLS or spent + usd(worst) > usd(MAX_USD):
+        raise SystemExit(f"SPEND_PAUSED: budget guard: {len(rows)} calls, ${spent:.4f} spent, next worst ${worst:.4f}")
     return worst
 
 
@@ -46,7 +53,12 @@ def main(name: str, scene_dir: str = "test-data/synthetic/scene/room-v1") -> Non
     root = ROOT / scene_dir
     context = scene_context(json.loads((root / "scene.json").read_text(encoding="utf-8")), root)
     body = muse.build_request(context)
-    worst = reserve(body)
+    try:
+        worst = reserve(body)
+        request_id = reserve_meta(ROOT, LEDGER, "record_muse", uuid4().hex, worst,
+                                  max_calls=MAX_CALLS, cap_usd=MAX_USD)
+    except (ReconstructionPaused, OSError, ValueError, KeyError, TypeError):
+        raise SystemExit("SPEND_PAUSED: Meta admission unavailable or budget paused") from None
     env = dotenv_values(ENV)
     started = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
     try:
@@ -58,7 +70,7 @@ def main(name: str, scene_dir: str = "test-data/synthetic/scene/room-v1") -> Non
     usage = reply.get("usage") or {}
     tin, tout = usage.get("input_tokens"), usage.get("output_tokens")
     est = tin * IN_USD + tout * OUT_USD if tin is not None and tout is not None else worst  # unknown usage -> keep worst case
-    row = {"utc": started, "rid": "S14b-orch16", "fixture": name, "provider": "Meta Model API",
+    row = {"request_id": request_id, "stage": "record_muse", "utc": started, "rid": "S14b-orch16", "fixture": name, "provider": "Meta Model API",
            "model": reply.get("model", body["model"]), "http": r.status_code if r is not None else None,
            "input_tokens": tin, "output_tokens": tout,
            "reasoning_tokens": (usage.get("output_tokens_details") or {}).get("reasoning_tokens"),

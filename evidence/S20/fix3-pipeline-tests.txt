@@ -1,0 +1,60 @@
+test_examples_validate_and_schema_is_valid (test_contracts.SchemaTests.test_examples_validate_and_schema_is_valid) ... ok
+test_invalid_documents_rejected (test_contracts.SchemaTests.test_invalid_documents_rejected) ... ok
+test_versioned_and_limits_match_policy (test_contracts.SchemaTests.test_versioned_and_limits_match_policy) ... ok
+test_happy_path_projects_to_ready_shell_job (test_contracts.StageEventTests.test_happy_path_projects_to_ready_shell_job) ... ok
+test_retryable_failure_retries_with_same_key (test_contracts.StageEventTests.test_retryable_failure_retries_with_same_key) ... ok
+test_sequence_violations (test_contracts.StageEventTests.test_sequence_violations) ... ok
+test_terminal_failures_project_to_failed_and_block_retry (test_contracts.StageEventTests.test_terminal_failures_project_to_failed_and_block_retry) ... ok
+test_resume_duplicate_conflict_gap (test_contracts.UploadTests.test_resume_duplicate_conflict_gap) ... ok
+test_measured_failure_stops (test_e2e.E2ETest.test_measured_failure_stops) ... ok
+test_viewable (test_e2e.E2ETest.test_viewable) ... ok
+test_budget_guard (test_gpu_stages.GpuStages.test_budget_guard) ... ok
+test_jobrunner_retry_cannot_duplicate_reserved_dispatch (test_gpu_stages.GpuStages.test_jobrunner_retry_cannot_duplicate_reserved_dispatch)
+Failed dispatch retains its liability; automatic same-attempt retry must pause. ... ok
+test_reconstruct_errors_readable (test_gpu_stages.GpuStages.test_reconstruct_errors_readable) ... ok
+test_reconstruct_validated_output (test_gpu_stages.GpuStages.test_reconstruct_validated_output) ... ok
+test_sam_call_cli_reuse_retry_and_bad_input (test_gpu_stages.GpuStages.test_sam_call_cli_reuse_retry_and_bad_input)
+Parameterized S07b CLI: clean raw reused (no 2nd dispatch); errored raw moved aside + redispatched; bad input not retried. ... ok
+test_segment_validates_and_rejects (test_gpu_stages.GpuStages.test_segment_validates_and_rejects) ... ok
+test_crash_mid_stage_resumes_with_one_bounded_retry (test_jobs.LifecycleTests.test_crash_mid_stage_resumes_with_one_bounded_retry) ... ok
+test_crash_with_recorded_output_reuses_it (test_jobs.LifecycleTests.test_crash_with_recorded_output_reuses_it) ... ok
+test_crashed_worker_lease_expires (test_jobs.LifecycleTests.test_crashed_worker_lease_expires) ... ok
+test_happy_path_dispatches_each_stage_once (test_jobs.LifecycleTests.test_happy_path_dispatches_each_stage_once) ... ok
+test_live_lease_blocks_duplicate_paid_dispatch (test_jobs.LifecycleTests.test_live_lease_blocks_duplicate_paid_dispatch) ... ok
+test_never_retry_code_is_terminal_even_if_flagged_retryable (test_jobs.LifecycleTests.test_never_retry_code_is_terminal_even_if_flagged_retryable) ... ok
+test_paid_stage_retries_bounded_at_two (test_jobs.LifecycleTests.test_paid_stage_retries_bounded_at_two) ... ok
+test_retries_are_bounded_then_terminal_and_frozen (test_jobs.LifecycleTests.test_retries_are_bounded_then_terminal_and_frozen) ... ok
+test_retryable_paid_failure_retries_once_with_backoff (test_jobs.LifecycleTests.test_retryable_paid_failure_retries_once_with_backoff) ... ok
+test_user_retry_new_job_reuses_outputs_without_paid_redispatch (test_jobs.LifecycleTests.test_user_retry_new_job_reuses_outputs_without_paid_redispatch) ... ok
+test_nonzero_start_is_not_rebased (test_keyframes.KeyframeTests.test_nonzero_start_is_not_rebased) ... ok
+test_refuses_to_mix_with_existing_frames (test_keyframes.KeyframeTests.test_refuses_to_mix_with_existing_frames) ... ok
+test_rejects_bad_provenance (test_keyframes.KeyframeTests.test_rejects_bad_provenance) ... ok
+test_rejects_over_duration_and_non_video (test_keyframes.KeyframeTests.test_rejects_over_duration_and_non_video) ... ok
+test_vfr_keyframes_keep_original_times (test_keyframes.KeyframeTests.test_vfr_keyframes_keep_original_times) ... ok
+test_after_revision_returns_only_new_rows_and_bad_sequence_raises (test_progress.ProgressTests.test_after_revision_returns_only_new_rows_and_bad_sequence_raises) ... ok
+test_cli_reads_append_only_jsonl (test_progress.ProgressTests.test_cli_reads_append_only_jsonl) ... invalid events: ['event 0: revision must be 1']
+ok
+test_never_retry_failure_is_terminal_and_redacted (test_progress.ProgressTests.test_never_retry_failure_is_terminal_and_redacted) ... ok
+test_retryable_error_out_of_attempts_is_not_retried (test_progress.ProgressTests.test_retryable_error_out_of_attempts_is_not_retried) ... ok
+test_retryable_failure_marked_then_retry_attempt_shown (test_progress.ProgressTests.test_retryable_failure_marked_then_retry_attempt_shown) ... ok
+test_schema_rejects_unsafe_or_malformed_rows (test_progress.ProgressTests.test_schema_rejects_unsafe_or_malformed_rows) ... ok
+test_success_rows_ordered_and_job_ready (test_progress.ProgressTests.test_success_rows_ordered_and_job_ready) ... ok
+test_budget_guard_stops_before_call (test_understand.UnderstandTest.test_budget_guard_stops_before_call) ... ok
+test_jobrunner_forwards_key_and_reuses_output (test_understand.UnderstandTest.test_jobrunner_forwards_key_and_reuses_output) ... ok
+test_numbers_rejected_never_measurements (test_understand.UnderstandTest.test_numbers_rejected_never_measurements) ... ok
+test_sample_caps_and_keeps_ends (test_understand.UnderstandTest.test_sample_caps_and_keeps_ends) ... ok
+test_transport_error_and_skips_fall_back (test_understand.UnderstandTest.test_transport_error_and_skips_fall_back) ... ok
+test_video_fails_then_explicit_keyframe_fallback (test_understand.UnderstandTest.test_video_fails_then_explicit_keyframe_fallback) ... ok
+test_video_ok_single_call_forwards_key (test_understand.UnderstandTest.test_video_ok_single_call_forwards_key) ... ok
+test_content_type_sniff_rejects_session (test_uploads.UploadTests.test_content_type_sniff_rejects_session) ... ok
+test_create_limits (test_uploads.UploadTests.test_create_limits) ... ok
+test_expired_session_cannot_resume (test_uploads.UploadTests.test_expired_session_cannot_resume) ... ok
+test_gap_conflict_misaligned_length_rejected_with_resume_point (test_uploads.UploadTests.test_gap_conflict_misaligned_length_rejected_with_resume_point) ... ok
+test_interrupted_upload_resumes_after_restart (test_uploads.UploadTests.test_interrupted_upload_resumes_after_restart) ... ok
+test_unauthorized_and_unknown_rejected_without_disclosure (test_uploads.UploadTests.test_unauthorized_and_unknown_rejected_without_disclosure) ... ok
+test_whole_file_hash_mismatch_rejects (test_uploads.UploadTests.test_whole_file_hash_mismatch_rejects) ... ok
+
+----------------------------------------------------------------------
+Ran 52 tests in 242.715s
+
+OK

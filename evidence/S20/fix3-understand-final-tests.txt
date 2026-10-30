@@ -1,0 +1,12 @@
+test_budget_guard_stops_before_call (test_understand.UnderstandTest.test_budget_guard_stops_before_call) ... ok
+test_jobrunner_forwards_key_and_reuses_output (test_understand.UnderstandTest.test_jobrunner_forwards_key_and_reuses_output) ... ok
+test_numbers_rejected_never_measurements (test_understand.UnderstandTest.test_numbers_rejected_never_measurements) ... ok
+test_sample_caps_and_keeps_ends (test_understand.UnderstandTest.test_sample_caps_and_keeps_ends) ... ok
+test_transport_error_and_skips_fall_back (test_understand.UnderstandTest.test_transport_error_and_skips_fall_back) ... ok
+test_video_fails_then_explicit_keyframe_fallback (test_understand.UnderstandTest.test_video_fails_then_explicit_keyframe_fallback) ... ok
+test_video_ok_single_call_forwards_key (test_understand.UnderstandTest.test_video_ok_single_call_forwards_key) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 427.793s
+
+OK

@@ -15,6 +15,9 @@ from pathlib import Path
 from Build.agent import muse
 from Build.agent.record_muse import IN_USD, OUT_USD
 from Build.pipeline.jobs import StageError
+from Build.guardrails.admission import ReconstructionPaused
+from Build.guardrails.reservations import reserve_meta, project_ledger
+from Build.guardrails.accounting import liability_usd, usd
 from contracts.agent.validate import AgentContractError, validate_response
 
 MAX_FRAMES = 4  # S13c risk: PD04 gave 600 JPEGs; cap before any paid call
@@ -116,18 +119,23 @@ def run(key, manifest_path, scene_id, post, out_dir, video_path=None, cap=MAX_FR
 
 # --- live: python -m Build.pipeline.understand KEY MANIFEST SCENE_ID OUT_DIR LEDGER [VIDEO] ---------------
 ENV = Path(r"C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/.env")
+ROOT = Path(__file__).resolve().parents[2]
 MAX_CALLS, MAX_USD = 6, 1.0  # S13e contract cap, counted over the whole ledger file
 # shortcut: assumed worst-case tokens per media item (provider tokenization unknown); replace with billed usage.
 IMAGE_TOKENS, VIDEO_TOKENS = 3000, 60000
 
 
 def reserve(body, ledger):
-    rows = [json.loads(x) for x in ledger.read_text(encoding="utf-8").splitlines()] if ledger.exists() else []
+    ledger = Path(ledger)
+    try:
+        rows = project_ledger(ledger, str(ledger.resolve())) if ledger.exists() else []
+    except (OSError, ValueError, KeyError, TypeError):
+        raise StageError("SPEND_PAUSED", "Invalid Meta ledger", False) from None
     parts = body["input"][0]["content"]
     media = sum(IMAGE_TOKENS if p["type"] == "input_image" else VIDEO_TOKENS for p in parts if p["type"] != "input_text")
     worst = (len(parts[0]["text"]) // 2 + media) * IN_USD + muse.MAX_OUTPUT_TOKENS * OUT_USD
-    spent = sum(r["est_usd"] for r in rows)
-    if len(rows) >= MAX_CALLS or spent + worst > MAX_USD:
+    spent = sum(liability_usd(r) for r in rows)
+    if len(rows) >= MAX_CALLS or spent + usd(worst) > usd(MAX_USD):
         raise StageError("SPEND_PAUSED", f"budget guard: {len(rows)} calls, USD {spent:.4f}, next worst USD {worst:.4f}", False)
     return worst
 
@@ -137,7 +145,12 @@ def live_post(ledger, rid="S13e-orch27"):
     from dotenv import dotenv_values
 
     def post(body, key):
-        worst = reserve(body, ledger)
+        try:
+            worst = reserve(body, ledger)
+            request_id = reserve_meta(ROOT, ledger, "understand", key, worst,
+                                      max_calls=MAX_CALLS, cap_usd=MAX_USD)
+        except (ReconstructionPaused, OSError, ValueError, KeyError, TypeError):
+            raise StageError("SPEND_PAUSED", "Meta admission unavailable or budget paused", False) from None
         env = dotenv_values(ENV)  # key by NAME only; never printed or stored
         started = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
         r = httpx.post(env["MODEL_API_BASE_URL"].rstrip("/") + "/responses", json=body, timeout=180,
@@ -147,7 +160,7 @@ def live_post(ledger, rid="S13e-orch27"):
         u = reply.get("usage") or {}
         tin, tout = u.get("input_tokens"), u.get("output_tokens")
         est = tin * IN_USD + tout * OUT_USD if tin is not None and tout is not None else worst
-        row = {"utc": started, "rid": rid, "idempotency_key": key, "provider": "Meta Model API",
+        row = {"request_id": request_id, "stage": "understand", "utc": started, "rid": rid, "idempotency_key": key, "provider": "Meta Model API",
                "model": reply.get("model", body["model"]), "http": r.status_code, "input_tokens": tin,
                "output_tokens": tout, "reserved_usd": round(worst, 6), "est_usd": round(est, 6), "billed_usd": None}
         with ledger.open("a", encoding="utf-8") as fh:
