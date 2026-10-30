@@ -8,6 +8,7 @@
   --r2s-ink: #1c1a16;
   --r2s-muted: #5a554b;
   --r2s-border: #cfc5b2;
+  --r2s-border-strong: #8f877a; /* >=3:1 on bg/surface for control/state borders (WCAG 1.4.11); --r2s-border stays for dividers */
   --r2s-accent: #b23a0e;
   --r2s-accent-ink: #ffffff;
   --r2s-chart-1: #1c1a16;

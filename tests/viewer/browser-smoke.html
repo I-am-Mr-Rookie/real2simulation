@@ -4,7 +4,7 @@
 <script type="importmap">{"imports":{"three":"/Build/web/node_modules/three/build/three.module.js"}}</script>
 <div id="host" style="width:320px;height:240px"></div>
 <div id="host2" style="width:100%;height:300px"></div>
-<pre id="out">PENDING</pre>
+<pre id="out" style="white-space: pre-wrap; overflow-wrap: anywhere">PENDING</pre>
 <script type="module">
 import * as THREE from 'three';
 import { createViewerAdapter } from '/Build/web/src/viewer/adapter.mjs';
@@ -94,7 +94,8 @@ try {
   const z0 = c2.toDataURL(); btns[0].click(); await frame(); out.layout.clickZoomChangedPixels = c2.toDataURL() !== z0;
   out.layoutOk = out.layout.scrollW <= out.layout.viewportW && out.layout.canvasCssW <= hostW + 0.5 && out.layout.mode === (hostW < 480 ? 'compact' : 'full')
     && btns.length === 3 && out.layout.buttons.every((b) => b.w >= 44 && b.h >= 44 && b.left >= 0 && b.right <= out.layout.viewportW && b.hit) && out.layout.clickZoomChangedPixels;
-  ac2.abort(); await frame();
+  // ?keep leaves the full-width mount on screen for visual chrome checks (default CDP run unchanged)
+  if (!new URLSearchParams(location.search).has('keep')) { ac2.abort(); await frame(); }
   out.ok = states.join() === 'loading,ready' && out.litBefore > 0 && out.orbitChangedPixels && out.overlaysOk && out.budgetOk && out.pauseOk && out.layoutOk && !out.afterDispose.canvasInDom && !out.afterDispose.bannerInDom && !out.afterDispose.labelsInDom && out.afterDispose.hostPosition === '' && out.afterDispose.geometries === 0 && out.afterDispose.contextLost;
 } catch (e) { out.ok = false; out.error = String(e && e.message || e); }
 document.getElementById('out').textContent = JSON.stringify(out);

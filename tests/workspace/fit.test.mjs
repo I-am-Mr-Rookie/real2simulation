@@ -2,11 +2,24 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
-import { fitView, renderFit, parseFit } from '../../Build/web/src/workspace/fit-view.mjs';
+import { fitView, renderFit, parseFit, pm } from '../../Build/web/src/workspace/fit-view.mjs';
 
 // REAL Build/fitter.handle output on observations from the REAL Build/instruments (evidence/S15/fit_fixtures.py); SYNTHETIC settings.
 const FIX = JSON.parse(readFileSync(new URL('./fixtures/fit-output.json', import.meta.url), 'utf8'));
 const input = { times: FIX.request.times, output: FIX.output };
+
+test('UI-e display rounding: value to uncertainty 2 sig figs, unit superscript; raw text untouched', () => {
+  assert.equal(pm(1.887124302, 0.1415784327, 'm/s^2'), '1.89 \u00b1 0.14 m/s\u00b2');
+  assert.equal(pm(0.5, 0.001, 's'), '0.5000 \u00b1 0.0010 s');
+  assert.equal(pm(123.456, 25, 'm'), '123 \u00b1 25 m');
+  assert.equal(pm(2, 0, 'm'), '2 \u00b1 0 m');
+  const v = fitView({ phase: 'fit.done' }, input), g = FIX.output.gravity;
+  assert.equal(v.rows[0].display, pm(g.value, g.uncertainty, g.unit));
+  assert.ok(renderFit(html, v).includes('title="' + v.rows[0].text + '"'));
+  const out = renderFit(html, v); // provenance kept: common source once in caption, every other source still printed
+  assert.ok(out.includes('Source: ' + v.source + ' unless noted'));
+  for (const r of v.rows) assert.ok(out.includes(r.evidence));
+});
 const html = (tag, props, ...kids) => '<' + tag + Object.entries(props ?? {}).map(([k, v]) => ' ' + k + '="' + v + '"').join('') + '>' + kids.flat().join('') + '</' + tag + '>';
 const num = (x) => String(Number(x.toPrecision(10)));
 const done = { phase: 'fit.done' };

@@ -3,24 +3,25 @@
 .ws {
   --ws-sans: var(--r2s-font-sans, "Instrument Sans", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif);
   --ws-mono: var(--r2s-font-mono, "Space Mono", ui-monospace, "Cascadia Mono", Consolas, monospace);
-  --ws-bg: var(--r2s-bg, #f4f0e6); --ws-surface: var(--r2s-surface, #fffdf7); --ws-ink: var(--r2s-ink, #1c1a16);
-  --ws-muted: var(--r2s-muted, #5a554b); --ws-border: var(--r2s-border, #cbc3b2); --ws-accent: var(--r2s-accent, #b8430f);
-  --ws-accent-ink: var(--r2s-accent-ink, #ffffff); --ws-warn: var(--r2s-warn, #7a4d00); --ws-danger: var(--r2s-danger, #9f1d16);
-  --ws-ok: var(--r2s-ok, #2c6136); --ws-shadow: var(--r2s-shadow, 4px 4px 0 var(--ws-ink)); --ws-radius: var(--r2s-radius, 6px);
-  --ws-focus: var(--r2s-focus, var(--ws-accent)); --ws-chart-2: #8c8576; --ws-chart-3: #d9d2c3;
+  --ws-bg: var(--r2s-bg, #f3eee3); --ws-surface: var(--r2s-surface, #fffcf5); --ws-ink: var(--r2s-ink, #1c1a16);
+  --ws-muted: var(--r2s-muted, #5a554b); --ws-border: var(--r2s-border, #cfc5b2); --ws-border-strong: var(--r2s-border-strong, #8f877a); --ws-accent: var(--r2s-accent, #b23a0e);
+  --ws-accent-ink: var(--r2s-accent-ink, #ffffff); --ws-warn: var(--r2s-warn, #8a5300); --ws-danger: var(--r2s-danger, #a3191b);
+  --ws-ok: var(--r2s-ok, #1d6a3a); --ws-shadow: var(--r2s-shadow, 4px 4px 0 var(--ws-ink)); --ws-radius: var(--r2s-radius, 6px);
+  --ws-focus: var(--r2s-focus, #1c1a16); --ws-chart-2: var(--r2s-chart-2, #8f877a); --ws-chart-3: #d9d2c3;
   --ws-s1: var(--r2s-space-1, .25rem); --ws-s2: var(--r2s-space-2, .5rem); --ws-s3: var(--r2s-space-3, .75rem); --ws-s4: var(--r2s-space-4, 1rem);
   display: grid; gap: var(--ws-s4); grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
   grid-template-areas: "nav nav" "side side" "viewport panel" "viewport job"; align-items: start;
+  grid-template-rows: auto auto auto 1fr; /* tall viewer's extra height goes below the job card, not between panel and job */
   font-family: var(--ws-sans); color: var(--ws-ink); background: var(--ws-bg); padding: var(--ws-s4); line-height: 1.45;
 }
 @media (max-width: 860px) {
-  .ws { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nav" "viewport" "panel" "job" "side"; padding: var(--ws-s3); }
+  .ws { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "nav" "viewport" "panel" "job" "side"; padding: var(--ws-s3); }
   .ws-host { min-height: 16rem; }
 }
 .ws *, .ws *::before, .ws *::after { box-sizing: border-box; }
 .ws h2 { margin: 0 0 var(--ws-s2); font-size: 1.05rem; letter-spacing: -.01em; }
 .ws h3 { margin: 0 0 var(--ws-s1); font-size: .95rem; }
-.ws :focus-visible { outline: 3px solid var(--ws-focus); outline-offset: 2px; }
+.ws :focus-visible { outline: 3px solid var(--ws-focus); outline-offset: 3px; } /* same as global focus token/offset */
 
 /* Stage rail */
 .ws-stages { grid-area: nav; border-bottom: 1px solid var(--ws-ink); padding-bottom: var(--ws-s2); }
@@ -39,9 +40,15 @@
 .ws-host { position: relative; width: 100%; min-height: 22rem; aspect-ratio: 4 / 3; background: #15140f; border: 1px solid var(--ws-ink);
   border-radius: var(--ws-radius); box-shadow: var(--ws-shadow); overflow: hidden; }
 .ws-host[data-viewer-status="loading"] { background: repeating-linear-gradient(135deg, #15140f 0 12px, #1e1c16 12px 24px); }
-/* Truth banner (SYNTHETIC / SCALE_UNVERIFIED): loud on purpose, never softened. */
-.ws-banner { margin: 0 0 var(--ws-s2); padding: var(--ws-s2) var(--ws-s3); border: 2px solid var(--ws-ink); border-left-width: 8px; border-radius: var(--ws-radius);
-  background: #ffe9a8; color: #1c1a16; font-weight: 600; font-size: .85rem; }
+/* No scene / error: paper state-card instead of a dark slab (dashed drop-canvas pattern: Mobbin Krea 7d34af9b, Luma 964adcd3). */
+.ws-host:is([data-viewer-status="empty"], [data-viewer-status="error"]) { display: grid; place-items: center; aspect-ratio: auto; min-height: 12rem;
+  background: var(--ws-surface); border: 1.5px dashed var(--ws-border-strong); box-shadow: none; }
+.ws-host:is([data-viewer-status="empty"], [data-viewer-status="error"]):empty::before { content: "Empty \00b7  no scene"; padding: .2rem .5rem; font: 700 .72rem/1.3 var(--ws-mono);
+  letter-spacing: .06em; text-transform: uppercase; color: var(--ws-muted); background: var(--ws-bg); border: 1px solid currentColor; border-radius: 3px; }
+.ws-host[data-viewer-status="error"]:empty::before { content: "Error \00b7  scene not shown"; color: var(--ws-danger); }
+/* Truth banner (SYNTHETIC / SCALE_UNVERIFIED): wording/role unchanged; warn-tinted to the paper palette, still bordered + bold. */
+.ws-banner { margin: 0 0 var(--ws-s2); padding: var(--ws-s2) var(--ws-s3); border: 1px solid var(--ws-warn); border-left-width: 4px; border-radius: var(--ws-radius);
+  background: color-mix(in srgb, var(--ws-warn) 14%, var(--ws-surface)); color: var(--ws-ink); font-weight: 600; font-size: .85rem; }
 .ws-status { margin: var(--ws-s2) 0 0; font-size: .85rem; color: var(--ws-muted); font-family: var(--ws-mono); }
 .ws-error { color: var(--ws-danger); font-weight: 600; }
 .ws-job .ws-error { border: 1px solid var(--ws-danger); border-left-width: 4px; border-radius: var(--ws-radius); padding: var(--ws-s2); background: #fdecea; }
@@ -52,7 +59,8 @@
   min-height: 44px; padding-inline: 1rem; cursor: pointer; border: 1px solid var(--ws-ink); border-radius: var(--ws-radius);
   background: var(--ws-surface); transition: transform .08s ease, box-shadow .08s ease, background-color .12s ease; }
 .ws-chip:hover:not(:disabled), .ws-back:hover:not(:disabled), .ws-nav:hover:not(:disabled) { background: #f1ebdd; }
-.ws-submit, .ws-retry { background: var(--ws-accent); color: var(--ws-accent-ink); font-weight: 700; box-shadow: 3px 3px 0 var(--ws-ink); }
+/* .ws prefix: outranks ".ws button { color: ink }", which left ink-on-accent text (~3.3:1, fails AA) */
+.ws .ws-submit, .ws .ws-retry { background: var(--ws-accent); color: var(--ws-accent-ink); font-weight: 700; box-shadow: 3px 3px 0 var(--ws-ink); }
 .ws-submit:hover:not(:disabled), .ws-retry:hover:not(:disabled) { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ws-ink); }
 .ws-submit:active:not(:disabled), .ws-retry:active:not(:disabled), .ws-chip:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--ws-ink); }
 .ws-submit[aria-disabled="true"] { background: var(--ws-surface); color: var(--ws-muted); box-shadow: none; border-style: dashed; }
@@ -67,7 +75,8 @@
 .ws-timeline li::marker, .ws-events li::marker { font-family: var(--ws-mono); color: var(--ws-muted); }
 .ws-timeline li[data-status="current"] { font-weight: 700; }
 .ws-timeline li[data-status="todo"] { color: var(--ws-muted); }
-.ws-timeline li[data-status="failed"] { font-weight: 700; color: var(--ws-danger); text-decoration: underline wavy; }
+.ws-timeline li[data-status="failed"] { font-weight: 700; color: var(--ws-danger); text-decoration: underline 2px; text-underline-offset: .2em; }
+.ws-timeline li[data-status="failed"]::before { content: "\2715\00a0"; }
 .ws-inflight { margin: 0; font-family: var(--ws-mono); font-size: .8rem; }
 .ws-events { font-size: .8rem; font-family: var(--ws-mono); font-variant-numeric: tabular-nums; color: var(--ws-muted); }
 .ws-failure { border: 1px solid var(--ws-danger); border-left-width: 6px; border-radius: var(--ws-radius); padding: var(--ws-s2) var(--ws-s3); background: #fdf1ef; }
