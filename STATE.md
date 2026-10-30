@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+Oct30 ~20:20Z: S04o-orch158 nonterminal blocker resolved by controller. (1) The in-app browser is not available inside worker chats (cua 'Browser is
+not available: iab'), so the signed-in round trip, screenshots and 375px check are deferred to S15o (controller or owner session). (2) Real defect: S15n
+controller.mjs routes do not match the S13i API (chunk PUT path, POST /jobs absent, progress path). Controller extended S04o Owns to
+Build/web/src/workspace/controller.mjs + tests/workspace/controller.test.mjs for this fix only. Web DEV 3f707632 SUCCESS before the fix.
+
 Oct30 ~20:12Z: ACCEPTED S25f-orch157 DONE (MIT LICENSE, text equals installed react/LICENSE after copyright normalise; README/ATTRIBUTION
 say MIT covers own code/docs only; checklist LICENSE row closed (Q18); Q19 A applied: PD02/RM02/ST03 public short demo snippets with on-screen
 credit, other clips unchanged, PJ03 blocked; visibility PENDING S25d; timebox PASS; diff within Owns). Note for S25d: Koushik asked how to
