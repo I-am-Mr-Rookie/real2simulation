@@ -1,5 +1,14 @@
 # Real2Simulation — STATE
 
+Oct30 ~12:00Z army: ACCEPTED S19d-orch142 DONE (dev web redeploy aa539357 SUCCESS = first live S04k snapshot staging proof; /library 3
+playable/setup + 15 UNAVAILABLE; artifacts sha-match, immutable cache; PWA manifest/sw 200, SW activated; replay scrub/play + 375px PASS;
+gaps: cards render no credit/licence line, verify.py stale /workspace/private-check text -> S04m), S14i-orch143 DONE (workspace analysis
+routers; 7+53 tests fresh; scene resolver stub -> S13i), S15n-orch144 DONE (controller + upload control; workspace 85/85 fresh), S25a-orch147
+DONE (README/ATTRIBUTION draft; judging URL PENDING S23; no LICENSE -> Q18), S24a-orch146 DONE draft scope (3:00 script v2, check_script
+PASS; public clip frames need owner go-ahead -> Q19, plots-only fallback). S04n-orch145 Owns extended by controller: Build/web/src/proxy.js
+(matcher + /api/workspace/:path*, else Clerk auth() throws -> 401 for all) and tests/web-private/repository.test.mjs (pinned regex).
+Dispatched S13i-orch148 (Opus high, dl 12:20:50Z, thread 01a18ca6-5e3d; receipt DISPATCH-orch148.json). Next RID orch149.
+
 Oct30 ~11:47Z army: controller decision (owner delegated) relaxed S23 dep for DRAFT docs since S21 fully DONE: dispatched S24a-orch146
 (Opus high, draft 3-min script, deploy beats PENDING S23) and S25a-orch147 (Opus med, README/ATTRIBUTION, judging URL PENDING S23),
 dl 12:15Z. Receipt DISPATCH-orch146.json. S02f/S18c not re-dispatched (no new lead). Next RID orch148.
@@ -1264,6 +1273,11 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
 
+- [ ] Q18 [S25a, Oct30 orch] Project LICENSE for the public repo (needed before submission; repo goes public only with your go-ahead). Options:
+  A (recommended) MIT; B Apache-2.0; C other (name it). Reply "Q18 A/B/C". Default if silent: no licence file, README says PENDING.
+- [ ] Q19 [S24a, Oct30 orch] The demo video would show frames of PD02/RM02/ST03 (licensed; your S02 approval covers local pipeline only and
+  holds public raw-media redistribution). A (recommended) allow short frames with credit lines per ATTRIBUTION.md; B plots/overlays only, no
+  clip frames. Reply "Q19 A" or "Q19 B". Default if silent: B.
 - [x] Q17 ANSWERED (Koushik, Oct30): key-only $100 credit, Muse Open only, no account/dashboard -> S16e-orch108 live calls. [S16e, Oct30 orch] Baseten is not signed in inside the ChatGPT in-app browser, so the hackathon credit balance
   cannot be confirmed and no live Spark Open search call was made. Action: sign in to Baseten once in the in-app browser
   (whatever account holds the event credit), then reply "baseten signed in". Agent will only read the credit page, then

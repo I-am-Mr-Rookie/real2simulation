@@ -1,15 +1,16 @@
 # Runs checklist
 
-Updated Oct 30, 17:53 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 17:54 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **196 / 235** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **196 / 235** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
 
 ## Reviews for Koushik
 
-None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
+- [ ] Q18 [S25a, Oct30 orch] Project LICENSE for the public repo (needed before submission; repo goes public only with your go-ahead). Options:
+- [ ] Q19 [S24a, Oct30 orch] The demo video would show frames of PD02/RM02/ST03 (licensed; your S02 approval covers local pipeline only and
 
 ## Ready now
 
