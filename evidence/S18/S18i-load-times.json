@@ -1,0 +1,493 @@
+{
+  "schema": "S18i-load-times/1",
+  "measured_at": "2026-10-30T11:21:26Z",
+  "label": "measured (local wall-clock timing; not deployed, browser-rendered or real-network latency)",
+  "conditions": {
+    "machine": {
+      "platform": "Windows-11-10.0.26200-SP0",
+      "processor": "Intel64 Family 6 Model 126 Stepping 5, GenuineIntel",
+      "cpu_count": 4,
+      "python": "3.14.5",
+      "node": "v24.18.0"
+    },
+    "transport": "in-process load_guest(); local HTTP uvicorn 127.0.0.1 + Node fetch + Build/library/loader.mjs",
+    "open_definition": "deep-link open = that rep's GET /api/library/manifest + loadLibraryEntry (artifact GET, bytes/sha256/schema/trace validation); unavailable entries do no GET",
+    "cold": "fresh Python process (import + first load_guest); first HTTP request after server start. OS file cache NOT flushed.",
+    "warm_reps": 5,
+    "cold_runs": 3,
+    "target_ms": 3000.0,
+    "p95": "nearest-rank over n reps (small n: p95 is near the max sample)"
+  },
+  "in_process": {
+    "cold": [
+      {
+        "import_ms": 2025.21,
+        "first_load_guest_ms": 5108.2
+      },
+      {
+        "import_ms": 2006.95,
+        "first_load_guest_ms": 5773.62
+      },
+      {
+        "import_ms": 1846.5,
+        "first_load_guest_ms": 5069.64
+      }
+    ],
+    "warm_load_guest": {
+      "n": 5,
+      "median_ms": 6115.28,
+      "p95_ms": 8007.78,
+      "max_ms": 8007.78
+    }
+  },
+  "http": {
+    "server_startup_ms": 2634.63,
+    "cold_manifest_ms": 4229.71,
+    "entries": {
+      "rm02-s06d-descriptor": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.05,
+          "p95_ms": 5747.63,
+          "max_ms": 5747.63
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.06,
+          "p95_ms": 1.51,
+          "max_ms": 1.51
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-free-fall-baseline-short": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.01,
+          "p95_ms": 5747.6,
+          "max_ms": 5747.6
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.04,
+          "max_ms": 0.04
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-free-fall-upward-launch": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.0,
+          "p95_ms": 5747.6,
+          "max_ms": 5747.6
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.05,
+          "max_ms": 0.05
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-free-fall-tiny-height": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.01,
+          "p95_ms": 5747.6,
+          "max_ms": 5747.6
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.03,
+          "max_ms": 0.03
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-free-fall-low-gravity-long-horizon": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.01,
+          "p95_ms": 5747.6,
+          "max_ms": 5747.6
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.05,
+          "max_ms": 0.05
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-projectile-baseline-short": {
+        "availability": "playable",
+        "can_mount": true,
+        "opens_demo": true,
+        "open": {
+          "n": 5,
+          "median_ms": 8964.56,
+          "p95_ms": 9980.08,
+          "max_ms": 9980.08
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 4232.49,
+          "p95_ms": 5217.34,
+          "max_ms": 5217.34
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-projectile-zero-horizontal": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.03,
+          "p95_ms": 5747.61,
+          "max_ms": 5747.61
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.04,
+          "p95_ms": 0.1,
+          "max_ms": 0.1
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-projectile-tiny-height": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.01,
+          "p95_ms": 5747.6,
+          "max_ms": 5747.6
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.01,
+          "p95_ms": 0.04,
+          "max_ms": 0.04
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-projectile-low-gravity-long-horizon": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.0,
+          "p95_ms": 5747.6,
+          "max_ms": 5747.6
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.01,
+          "p95_ms": 0.06,
+          "max_ms": 0.06
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-pendulum-short-small-angle": {
+        "availability": "playable",
+        "can_mount": true,
+        "opens_demo": true,
+        "open": {
+          "n": 5,
+          "median_ms": 9057.28,
+          "p95_ms": 10451.08,
+          "max_ms": 10451.08
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 4595.28,
+          "p95_ms": 5590.95,
+          "max_ms": 5590.95
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-pendulum-two-period-horizon": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.08,
+          "p95_ms": 5747.63,
+          "max_ms": 5747.63
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.05,
+          "p95_ms": 0.09,
+          "max_ms": 0.09
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-pendulum-initial-angular-velocity": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.02,
+          "p95_ms": 5747.6,
+          "max_ms": 5747.6
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.03,
+          "max_ms": 0.03
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-pendulum-zero-answer-equilibrium": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.02,
+          "p95_ms": 5747.6,
+          "max_ms": 5747.6
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.03,
+          "max_ms": 0.03
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "rm04-s06f-descriptor": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.02,
+          "p95_ms": 5747.6,
+          "max_ms": 5747.6
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.07,
+          "max_ms": 0.07
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "simulated-mystery-g": {
+        "availability": "metadata-only",
+        "can_mount": false,
+        "opens_demo": true,
+        "open": {
+          "n": 5,
+          "median_ms": 9427.47,
+          "p95_ms": 15387.54,
+          "max_ms": 15387.54
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 4582.97,
+          "p95_ms": 11184.05,
+          "max_ms": 11184.05
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "apollo": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.01,
+          "p95_ms": 5747.62,
+          "max_ms": 5747.62
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.03,
+          "p95_ms": 0.06,
+          "max_ms": 0.06
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "bounce": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.0,
+          "p95_ms": 5747.61,
+          "max_ms": 5747.61
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.03,
+          "max_ms": 0.03
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      },
+      "rm05-scene": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 4462.0,
+          "p95_ms": 5747.61,
+          "max_ms": 5747.61
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.02,
+          "max_ms": 0.02
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 4461.99,
+          "p95_ms": 5747.59,
+          "max_ms": 5747.59
+        },
+        "under_3s_p95": false
+      }
+    }
+  },
+  "summary": {
+    "entries_total": 18,
+    "demos_openable": 3,
+    "demos_open_under_3s_p95": 0,
+    "openable_ids": [
+      "simulated-projectile-baseline-short",
+      "simulated-pendulum-short-small-angle",
+      "simulated-mystery-g"
+    ],
+    "unavailable_entries": 15,
+    "six_demo_target_met": false
+  }
+}

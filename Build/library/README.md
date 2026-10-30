@@ -37,6 +37,12 @@ cache/precompute only with an explicit authority/custody invalidation design if
 the library grows. The existing validator's numeric/fitter imports are offline
 helpers; provider/GPU/guardrail imports and process/network calls are tested absent.
 
+## Load times (S18i)
+
+`python -B -m Build.library.load_times` writes [S18i-load-times.json](../../evidence/S18/S18i-load-times.json)
+(local HTTP + loader.mjs). Measured Oct30: 0/3 openable demos open < 3 s (~9 s median) because every
+request re-runs full load_guest (~4.5 s). See Run-System/Runs/S18i-orch132/REPORT.md.
+
 ## Apollo and Mystery-g (S18e)
 
 - [Apollo 15 — UNAVAILABLE / Moon result not measured](../../evidence/S18/Apollo-UNAVAILABLE.md).
