@@ -1,35 +1,103 @@
-# Meta Global AI Developer Hackathon: Real2Simulation
+# Real2Simulation
 
-**Private source repository:** [I-am-Mr-Rookie/real2simulation](https://github.com/I-am-Mr-Rookie/real2simulation). The normal `main` branch contains the project source; local input videos are excluded and remain recoverable from the original private backup release. See [GitHub Backup.md](GitHub%20Backup.md) for cloning, media recovery and history details. Sync is by explicit commit/push, not an automatic background service.
+Turn a short, licensed physics video into a reconstructed scene, a fitted motion model and a
+simulated prediction, then compare the prediction with held-out frames of the same clip.
+Built solo by Koushik Sadhak Jeet (indie developer track) for the Meta Global AI Developer Hackathon.
 
-Koushik Sadhak Jeet · solo · indie developer track · building Oct 27 – Nov 4, 2026
-**Submission due Nov 4, 9:00 PM ET = Nov 5, 8:00 AM Asia/Dhaka.** Plan stop-work: Nov 4, 6:00 PM Dhaka (Koushik's finals start Nov 5). Nothing submitted yet.
+- **Judging URL:** PENDING S23 (not yet deployed or approved).
+- **Frozen judging revision:** PENDING S23.
+- **Demo video:** PENDING.
+- Railway **dev** services (development only, not the judging build): web-dev-cd80.up.railway.app,
+  api-dev-6091.up.railway.app, worker-dev-984d.up.railway.app.
 
-## Start here
+## Results (honest summary)
 
-0. [START.md](START.md) and [RUNS.md](RUNS.md): how to start runs, and the run checklist.
-1. [tasks for the owner.md](tasks%20for%20the%20owner.md): what only Koushik can do, as a checklist.
-2. [final plan.html](08%20Real2Simulation/final%20plan.html): the approved build plan, its checkpoints and the Executor handoff.
-3. [Event Rules and Participant Guide.md](Event%20Rules%20and%20Participant%20Guide.md): rules, rubric, prizes, dates in ET and Dhaka time.
+All numbers live in [BENCHMARK.md](BENCHMARK.md); none are written here by hand. Every number there is a
+JSON pointer into sha256-pinned evidence, checked by `python Build/benchmark/manifest.py check`.
 
-## Folder map
-
-| Path | Purpose |
+| Class | What it covers |
 |---|---|
-| [01 Research](01%20Research/) | Event research from the application phase (dates, selection). Still useful for event facts. |
-| [07 Project Reselection](07%20Project%20Reselection/Project%20Shortlist%20and%20Winner%20Patterns.md) | Why AttemptLens was dropped: idea shortlist, winner patterns, rubric re-rank |
-| [08 Real2Simulation](08%20Real2Simulation/) | [Concept page](08%20Real2Simulation/Real2Simulation%20Concept.html), [concept notes and AWS status](08%20Real2Simulation/Concept%20Notes.md), [final plan](08%20Real2Simulation/final%20plan.html) |
-| [Build Notes.pdf](Build%20Notes.pdf) | Koushik's handwritten notes on build tools, skills, and model lanes |
-| [archive](archive/) | Everything from the AttemptLens phase: application, AttemptLens plan, review pack, VM and Run System workspace, teammates' test data, harness specs. Reference only. |
-| `.env` | Local secrets (gitignored). Never print or commit. |
+| **Measured** | Real runs on licensed clips: image-space fit precision, floor-normal consistency, ST03 prefix-to-suffix prediction error (diagnostic only), GPU timings, Modal billed cost, Meta API tokens/latency. |
+| **Simulated** | Fitter/lab synthetic cases and the spend-cap regression (zero provider calls, not spend). Never mixed into measured rows. |
+| **UNAVAILABLE** | Any metre, m/s^2 or gravity error vs truth (no calibrated scale or capture clock); metric scene scale; bounce and pendulum prediction error; Gate RS median; Meta dollar cost. |
 
-## Current state (Oct 27)
+Gates, as recorded in BENCHMARK.md:
 
-- Sign-in: the Clerk dev instance uses shared Google credentials and email OTP (passwords optional); no custom Google OAuth client. Production Google is deferred to S22 if time allows. Judges use guest access and the demo account. Google and OTP sign-in are untested end to end; see [Concept Notes](08%20Real2Simulation/Concept%20Notes.md#google-sign-in-setup-status-oct-27).
-- Direction approved: Real2Sim + virtual lab + Mystery-g. Name: Real2Simulation.
-- Credit forms submitted; Baseten and Meta Model API keys are in `.env`. Koushik reports a live muse-spark-1.3 test returned HTTP 200 with `pong` (44 tokens) and that all Meta Model API tasks, including billing, are complete. Billing details have not been independently verified; an alert does not stop billing.
-- Modal and Fireworks credential fields are populated in local `.env`; Modal token authentication and Fireworks authenticated model listing passed on Oct 27. GPU execution and inference remain untested. Clerk and Railway will be managed through their CLIs, and Railway also through its plugin. Koushik reports GitHub CLI and plugin authenticated; no independent authentication check has been made.
-- Railway **dev** deploys are approved. Judging and other deploys still require separate approval; see [decisions log](DECISIONS_LOG.md).
-- The Run System will run on Koushik's PC; the AWS VM stays stopped.
-- AWS GPU quota: two us-east-2 requests pending.
-- Pivot (Oct 27): Koushik films nothing. The demo and benchmarks use licensed public clips (NASA, Wikimedia Commons, Pexels, Pixabay); prediction vs reality uses held-out frames of those clips. Owner work is about 4 hours in total.
+- **Gate M: NOT_MET_INPUT_READINESS** — no calibrated scale or capture clock, so no metric claim.
+- **Gate RS: NOT_MET** — no category reaches 80% scored coverage.
+- **Gate A: MET_AMENDED_Q16** — labelled "scale unverified, not setup-validated"; never plain MET.
+
+Physical or calibrated accuracy is **not claimed** anywhere. One run per measurement; no variance claim.
+
+## Architecture
+
+| Part | Where | Role |
+|---|---|---|
+| Web app | [Build/web](Build/web/) (Next.js 16, React 19, three.js, Clerk) | Viewer, virtual lab, library, private workspace, About page ([About.jsx](Build/web/src/about/About.jsx) renders generated [about.json](Build/web/src/about/about.json)). Hosted on Railway dev. |
+| API | [Build/api/health](Build/api/health/) (FastAPI) | Health/readiness probes over Postgres, Redis and S3-compatible storage; dev-only I/O guard. |
+| Worker | [Build/worker/health](Build/worker/health/) (FastAPI) | Worker health process; readiness stays 503 without a job heartbeat. |
+| GPU jobs | [Build/gpu](Build/gpu/), [Build/reconstruction](Build/reconstruction/), [Build/pipeline](Build/pipeline/) | Modal GPU jobs: SAM 3.1 segmentation/tracking and scene reconstruction, with per-job cost logs and ledgers. |
+| Fitter / simulator / prediction | [Build/fitter](Build/fitter/), [Build/simulator](Build/simulator/) (Rapier), [Build/real2sim](Build/real2sim/), [Build/lab](Build/lab/) | Fit motion parameters, simulate, predict the held-out suffix. Numbers come only from fitter/simulator output. |
+| Guardrails | [Build/guardrails](Build/guardrails/) | Spend admission, reservations, settlement and failover; routine Meta stop and GPU caps (see [API_BUDGET.md](API_BUDGET.md)). |
+| Library | [Build/library](Build/library/) | Static snapshot of licensed clips and simulated examples with credits ([credits.py](Build/library/credits.py)). |
+| Agent | [Build/agent](Build/agent/), [Build/sidebar-tools](Build/sidebar-tools/) | Muse-based interview/spec agent with traced tool numbers; sidebar library search. |
+| Benchmark | [Build/benchmark](Build/benchmark/) | Manifest, leakage check, About data generator. |
+
+Muse appears only as the Meta model family used by the agent; it is not a separate service.
+
+## Run locally
+
+Prerequisites: Python 3.11+ and Node.js >= 20.9. Copy [.env.example](.env.example) to `.env` and fill your
+own keys (never commit `.env`). From the repository root:
+
+```powershell
+# Benchmark evidence check and tests (no network, no keys)
+python Build/benchmark/manifest.py check
+python -m unittest Build/benchmark/test_manifest.py Build/benchmark/test_about.py
+
+# API health service
+python -m pip install -r Build/api/health/requirements-test.txt
+python -m uvicorn Build.api.health.app:app --host 127.0.0.1 --port 8001
+python -m unittest Build.api.health.test_health Build.api.health.test_dependencies -v
+
+# Worker health service
+python -m pip install -r Build/worker/health/requirements.txt
+python -m uvicorn Build.worker.health.app:app --host 127.0.0.1 --port 8002
+
+# Web app
+cd Build/web
+npm install
+npm run dev
+```
+
+Railway dev setup: [infra/railway/dev/README.md](infra/railway/dev/README.md). GPU jobs need your own Modal
+account and stay within the guardrail caps.
+
+## Meta model usage (exact evidence)
+
+| Model | Route | Use | Evidence |
+|---|---|---|---|
+| `muse-wonder-1.0` | Meta Model API | Agent interview/spec calls (S14g); HTTP 200, tokens measured, billed USD null | [Build/agent/muse.py](Build/agent/muse.py), [S14g-fix3-ledger.jsonl](evidence/S14/S14g-fix3-ledger.jsonl) |
+| `meta-models/muse-spark-open-1026` (Muse Open) | Baseten | **One** sidebar call (S16e): HTTP 200, 1,176 tokens; dollar cost UNKNOWN | [S16e-orch108-live.json](evidence/S16/S16e-orch108-live.json), [S16h-CHECKPOINT.md](evidence/S16/S16h-CHECKPOINT.md) |
+| `facebook/sam3.1` | Modal GPU | Segmentation/tracking on licensed scenes | [raw-result.json](evidence/S13/S13h/live/segment/raw-result.json), [SAM licence](evidence/S05/upstream/sam_license.txt) |
+
+- **Open-weight bonus: NOT claimed.** The sidebar Meta Spark fallback is an explicit-config refusal, not a
+  working route (S16h).
+- Meta dollar cost is UNAVAILABLE (tokens measured; pricing unverified).
+
+## Event work only
+
+All code, evidence and generated assets in this repository were created during the event window
+(Oct 27 – Nov 4, 2026). No prior project code, private data or personal files are included. The demo shows only
+event work.
+
+## Licences and attribution
+
+- Footage and third-party libraries: [ATTRIBUTION.md](ATTRIBUTION.md); clip licence ledger: [clips.csv](clips.csv).
+- Only NASA public domain, Wikimedia Commons (CC BY / CC BY-SA / PD / CC0), Pexels and Pixabay clips are used.
+- Project source licence: PENDING (no LICENSE file yet; owner decision before publication).
+
+## Development controls
+
+Run system and owner checklists: [START.md](START.md), [RUNS.md](RUNS.md), [QUEUE.md](QUEUE.md),
+[DECISIONS_LOG.md](DECISIONS_LOG.md), [JUDGE_RUBRIC.md](JUDGE_RUBRIC.md), [GitHub Backup.md](GitHub%20Backup.md).
