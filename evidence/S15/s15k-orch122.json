@@ -1,0 +1,103 @@
+{
+  "run": "S15k-orch122",
+  "url": "https://web-dev-cd80.up.railway.app",
+  "deployment": {
+    "id": "e4cc427a-6b36-49c2-b269-278d90c42b8e",
+    "status": "SUCCESS",
+    "sourceRevision": "27a119726e20e79330771e95db2f8ef2f71a52ef",
+    "service": "web only"
+  },
+  "browser": "ChatGPT in-app browser (iab), not Chrome",
+  "loopback": "Not observed on Railway: signed-in /workspace redirects to own fixture scene (no hang); deploy logs show only start/Ready/Clerk telemetry; logged-out /workspace 404 in 0.36s",
+  "stages": [
+    {
+      "stage": "deploy",
+      "result": "PASS",
+      "note": "stage.py web + railway up --service web; provider SUCCESS 09:40:58Z"
+    },
+    {
+      "stage": "sign-in",
+      "result": "PASS",
+      "note": "/sign-in Clerk form (browser-saved credentials prefilled, Continue only; no auth setting changed) -> /library signed in (avatar menu)"
+    },
+    {
+      "stage": "workspace (own fixture)",
+      "result": "PASS",
+      "url": "/workspace -> /workspace/dev-fixture-cffb56aa0833c144007dab668500e115e86079648601d9aeb3db86b933f3e715",
+      "note": "labelled FIXTURE/SYNTHETIC empty scene, 5-stage rail, viewport EMPTY"
+    },
+    {
+      "stage": "logged-out 404",
+      "result": "PASS",
+      "note": "curl /workspace, /workspace/x, own fixture URL all 404"
+    },
+    {
+      "stage": "other-scene 404",
+      "result": "PASS",
+      "note": "signed-in: dev-fixture-000..0, not-a-scene, ..%2Flibrary all 'Page unavailable', no [data-private-content]"
+    },
+    {
+      "stage": "/library, /lab, /, /sign-in",
+      "result": "PASS",
+      "note": "200; unaffected"
+    },
+    {
+      "stage": "375px",
+      "result": "PASS",
+      "note": "workspace, library, lab scrollWidth=375 (no horizontal scroll); desktop screenshots saved"
+    },
+    {
+      "stage": "upload",
+      "result": "NOT-WIRED",
+      "note": "no file input/button on page; banner says No uploads are enabled; PrivateWorkspace passes only state/adapter/audience"
+    },
+    {
+      "stage": "interview",
+      "result": "NOT-WIRED",
+      "note": "stage rail item is a non-interactive <li data-status=todo>; no interview/onAction props, no web->agent route"
+    },
+    {
+      "stage": "run",
+      "result": "NOT-WIRED",
+      "note": "no run props; Railway has no Python bridge; /lab Run trial is local_lab_disabled on Railway"
+    },
+    {
+      "stage": "fit",
+      "result": "NOT-WIRED",
+      "note": "no fit props/endpoint"
+    },
+    {
+      "stage": "report",
+      "result": "NOT-WIRED",
+      "note": "no report props/endpoint"
+    }
+  ],
+  "checks": {
+    "node --test tests/workspace/*.test.mjs": "79 pass",
+    "infra/railway/dev/verify.py": "9 pass, 1 stale: web /workspace/private-check expects old text 'Private workspaces remain unavailable' (now 404 page 'Private workspaces require sign-in and scene ownership.')"
+  },
+  "screenshots": "evidence/S15/s15k-orch122/*.png",
+  "resume": {
+    "original_window": "2026-10-30T09:37:43Z..10:07:43Z (stalled on Claude 5h quota; first walk 09:44-09:48Z)",
+    "resume_issued_at": "2026-10-30T10:53:46Z",
+    "resume_deadline_at": "2026-10-30T11:23:46Z",
+    "redeploy": {
+      "id": "da4b03e9-659e-4966-8f12-8003199f7be5",
+      "status": "SUCCESS",
+      "sourceRevision": "67e299aa54ed7c2554137d04df655139ed556dba",
+      "includes": "S04i workspace, S09k viewer replay, S18k playable traces; S04j (/library manifest wiring) NOT included"
+    },
+    "rewalk": {
+      "own fixture workspace": "PASS (signed in as Koushik Sadhak; zero buttons/inputs; No uploads are enabled)",
+      "other-scene 404": "PASS",
+      "logged-out /workspace, /workspace/x, own URL": "404 (0.25-0.30s)",
+      "/,/library,/lab,/sign-in": "200",
+      "/library": "still EMPTY/NOT CONNECTED (pre-S04j)",
+      "375px workspace/library/lab": "scrollWidth 375",
+      "upload/interview/run/fit/report": "NOT-WIRED (unchanged: PrivateWorkspace still passes only state/adapter/audience)",
+      "tests": "tests/workspace 79 pass",
+      "verify.py": "9/10; only stale private-check text fails",
+      "browser note": "in-app browser CDP intermittently timed out (screenshots, tabs 2/3); recovered via js_reset + new tab. r2-workspace-desktop.png (11:04Z, new deploy) valid; r2-workspace-375.png is only 5.8 KB (likely partial render) - workspace-375.png from the first walk is the valid 375px shot; 375 scrollWidth numbers were measured by DOM on the new deploy"
+    }
+  }
+}

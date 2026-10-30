@@ -1,0 +1,14 @@
+{
+  "id": "S15k-orch122",
+  "status": "PARTIAL",
+  "issued_at": "2026-10-30T10:53:46+00:00",
+  "deadline_at": "2026-10-30T11:23:46+00:00",
+  "implementation_cutoff_at": "2026-10-30T11:18:46+00:00",
+  "resume_issued_at": "2026-10-30T10:53:46+00:00",
+  "resume_deadline_at": "2026-10-30T11:23:46+00:00",
+  "work_stopped_at": "2026-10-30T11:23:46+00:00",
+  "reported_at": "2026-10-30T11:23:58+00:00",
+  "note": "Controller-approved resume window after quota stall; check.py evaluates the resume window (issued_at/deadline_at below mirror it). Original window kept in original_*.",
+  "original_issued_at": "2026-10-30T09:37:43+00:00",
+  "original_deadline_at": "2026-10-30T10:07:43+00:00"
+}
