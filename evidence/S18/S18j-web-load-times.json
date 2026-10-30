@@ -1,0 +1,597 @@
+{
+  "schema": "S18j-web-load-times/1",
+  "measured_at": "2026-10-30T11:32:12Z",
+  "label": "measured (local wall-clock timing of next start on 127.0.0.1; not deployed, browser-rendered or real-network latency)",
+  "conditions": {
+    "transport": "next start (production build) + R2S_GUEST_SNAPSHOT staged via load_guest dump; Node fetch + Build/library/loader.mjs",
+    "open_definition": "warm open = rep's GET /api/library/manifest + loadLibraryEntry; cold open = first manifest GET after server start + first entry load (approximation: entry load follows the cold manifest, so artifact GET is the first for that object)",
+    "warm_reps": 5,
+    "cold_runs": 3,
+    "target_ms": 3000.0,
+    "p95": "nearest-rank over n reps (small n: p95 is near the max sample)"
+  },
+  "http": {
+    "server_startup_ms": [
+      1339.36,
+      791.4,
+      524.45
+    ],
+    "cold_manifest_ms": [
+      1007.2,
+      701.46,
+      503.61
+    ],
+    "entries": {
+      "rm02-s06d-descriptor": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 15.33,
+          "p95_ms": 21.81,
+          "max_ms": 21.81
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.05,
+          "p95_ms": 0.94,
+          "max_ms": 0.94
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 702.38,
+          "p95_ms": 1008.15,
+          "max_ms": 1008.15
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-free-fall-baseline-short": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.99,
+          "p95_ms": 21.77,
+          "max_ms": 21.77
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.04,
+          "max_ms": 0.04
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.5,
+          "p95_ms": 1007.24,
+          "max_ms": 1007.24
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-free-fall-upward-launch": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 15.03,
+          "p95_ms": 21.77,
+          "max_ms": 21.77
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.01,
+          "p95_ms": 0.08,
+          "max_ms": 0.08
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.54,
+          "p95_ms": 1007.28,
+          "max_ms": 1007.28
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-free-fall-tiny-height": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.98,
+          "p95_ms": 21.77,
+          "max_ms": 21.77
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.01,
+          "p95_ms": 0.03,
+          "max_ms": 0.03
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.49,
+          "p95_ms": 1007.23,
+          "max_ms": 1007.23
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-free-fall-low-gravity-long-horizon": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.98,
+          "p95_ms": 21.77,
+          "max_ms": 21.77
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.01,
+          "p95_ms": 0.03,
+          "max_ms": 0.03
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.5,
+          "p95_ms": 1007.24,
+          "max_ms": 1007.24
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-projectile-baseline-short": {
+        "availability": "playable",
+        "can_mount": true,
+        "opens_demo": true,
+        "open": {
+          "n": 5,
+          "median_ms": 31.04,
+          "p95_ms": 56.25,
+          "max_ms": 56.25
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 15.75,
+          "p95_ms": 41.31,
+          "max_ms": 41.31
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 733.61,
+          "p95_ms": 1048.51,
+          "max_ms": 1048.51
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-projectile-zero-horizontal": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 15.0,
+          "p95_ms": 21.8,
+          "max_ms": 21.8
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.04,
+          "p95_ms": 0.06,
+          "max_ms": 0.06
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.52,
+          "p95_ms": 1007.26,
+          "max_ms": 1007.26
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-projectile-tiny-height": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.97,
+          "p95_ms": 21.77,
+          "max_ms": 21.77
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.03,
+          "max_ms": 0.03
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.48,
+          "p95_ms": 1007.22,
+          "max_ms": 1007.22
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-projectile-low-gravity-long-horizon": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.96,
+          "p95_ms": 21.77,
+          "max_ms": 21.77
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.01,
+          "p95_ms": 0.1,
+          "max_ms": 0.1
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.52,
+          "p95_ms": 1007.22,
+          "max_ms": 1007.22
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-pendulum-short-small-angle": {
+        "availability": "playable",
+        "can_mount": true,
+        "opens_demo": true,
+        "open": {
+          "n": 5,
+          "median_ms": 31.47,
+          "p95_ms": 43.02,
+          "max_ms": 43.02
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 16.18,
+          "p95_ms": 23.64,
+          "max_ms": 23.64
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 728.5,
+          "p95_ms": 1030.85,
+          "max_ms": 1030.85
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-pendulum-two-period-horizon": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 15.0,
+          "p95_ms": 21.8,
+          "max_ms": 21.8
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.04,
+          "p95_ms": 0.06,
+          "max_ms": 0.06
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.51,
+          "p95_ms": 1007.26,
+          "max_ms": 1007.26
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-pendulum-initial-angular-velocity": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.97,
+          "p95_ms": 21.78,
+          "max_ms": 21.78
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.02,
+          "p95_ms": 0.02,
+          "max_ms": 0.02
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.48,
+          "p95_ms": 1007.22,
+          "max_ms": 1007.22
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-pendulum-zero-answer-equilibrium": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.96,
+          "p95_ms": 21.77,
+          "max_ms": 21.77
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.01,
+          "p95_ms": 0.02,
+          "max_ms": 0.02
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.48,
+          "p95_ms": 1007.22,
+          "max_ms": 1007.22
+        },
+        "under_3s_cold_max": true
+      },
+      "rm04-s06f-descriptor": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.96,
+          "p95_ms": 21.77,
+          "max_ms": 21.77
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.01,
+          "p95_ms": 0.02,
+          "max_ms": 0.02
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.48,
+          "p95_ms": 1007.22,
+          "max_ms": 1007.22
+        },
+        "under_3s_cold_max": true
+      },
+      "simulated-mystery-g": {
+        "availability": "metadata-only",
+        "can_mount": false,
+        "opens_demo": true,
+        "open": {
+          "n": 5,
+          "median_ms": 29.75,
+          "p95_ms": 37.71,
+          "max_ms": 37.71
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 14.97,
+          "p95_ms": 15.95,
+          "max_ms": 15.95
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 717.28,
+          "p95_ms": 1022.01,
+          "max_ms": 1022.01
+        },
+        "under_3s_cold_max": true
+      },
+      "apollo": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.98,
+          "p95_ms": 21.78,
+          "max_ms": 21.78
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.03,
+          "p95_ms": 0.04,
+          "max_ms": 0.04
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.49,
+          "p95_ms": 1007.24,
+          "max_ms": 1007.24
+        },
+        "under_3s_cold_max": true
+      },
+      "bounce": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.97,
+          "p95_ms": 21.77,
+          "max_ms": 21.77
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.01,
+          "p95_ms": 0.02,
+          "max_ms": 0.02
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.48,
+          "p95_ms": 1007.22,
+          "max_ms": 1007.22
+        },
+        "under_3s_cold_max": true
+      },
+      "rm05-scene": {
+        "availability": "unavailable",
+        "can_mount": false,
+        "opens_demo": false,
+        "open": {
+          "n": 5,
+          "median_ms": 14.97,
+          "p95_ms": 21.77,
+          "max_ms": 21.77
+        },
+        "entry_only": {
+          "n": 5,
+          "median_ms": 0.01,
+          "p95_ms": 0.02,
+          "max_ms": 0.02
+        },
+        "manifest_get": {
+          "n": 5,
+          "median_ms": 14.95,
+          "p95_ms": 21.76,
+          "max_ms": 21.76
+        },
+        "under_3s_p95": true,
+        "cold_open": {
+          "n": 3,
+          "median_ms": 701.48,
+          "p95_ms": 1007.22,
+          "max_ms": 1007.22
+        },
+        "under_3s_cold_max": true
+      }
+    }
+  },
+  "summary": {
+    "entries_total": 18,
+    "demos_openable": 3,
+    "demos_open_under_3s_p95": 3,
+    "openable_ids": [
+      "simulated-projectile-baseline-short",
+      "simulated-pendulum-short-small-angle",
+      "simulated-mystery-g"
+    ],
+    "unavailable_entries": 15,
+    "six_demo_target_met": false
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "schema": "S18j-checkpoint/1",
+  "run": "S18j-orch139",
+  "decided_at": "2026-10-30T11:40:00Z",
+  "fallback_spec": "QUEUE S18j / final plan: minimum viable library = 4 public clips plus Mystery-g; drop any clip whose licence is not verified.",
+  "decision": "FALLBACK_NOT_MET_HONEST_CUT",
+  "minimum_library_now": [
+    "simulated-projectile-baseline-short",
+    "simulated-pendulum-short-small-angle",
+    "simulated-mystery-g"
+  ],
+  "public_clip_demos_openable": 0,
+  "public_clip_target": 4,
+  "six_demo_target_met": false,
+  "web_route_timing": "evidence/S18/S18j-web-load-times.json (3/3 openable open <3 s warm p95 and cold max; measured local next start, not deployed)",
+  "clip_use_boundary": "evidence/owner/S02/APPROVAL.md: RM02,RM04,RM05,PD02,PD03,PD04,PD06,PJ03,ST03,BN01 approved for LOCAL pipeline work only; public raw media redistribution held; clips.csv owner_approved=NO for all 23.",
+  "items": [
+    {
+      "id": "simulated-projectile-baseline-short",
+      "decision": "KEEP",
+      "availability": "playable",
+      "why": "SIMULATED synthetic trace; opens <3s (warm p95 56 ms, cold max 1049 ms)",
+      "restore": null
+    },
+    {
+      "id": "simulated-pendulum-short-small-angle",
+      "decision": "KEEP",
+      "availability": "playable",
+      "why": "SIMULATED synthetic trace; opens <3s (warm p95 43 ms, cold max 1031 ms)",
+      "restore": null
+    },
+    {
+      "id": "simulated-mystery-g",
+      "decision": "KEEP",
+      "availability": "metadata-only",
+      "why": "Earth-g practice shape (S18l); blind challenge is /lab per-session hidden g; opens <3s (warm p95 38 ms, cold max 1022 ms)",
+      "restore": null
+    },
+    {
+      "id": "simulated-free-fall-baseline-short",
+      "decision": "CUT",
+      "availability": "unavailable",
+      "why": "Trace withheld: same accepted record supplies the Mystery-g setup.",
+      "restore": "Controller/reviewer decision: S18l already labels library Mystery-g as non-blind Earth-g practice, so withholding may no longer protect anything; re-enable only via Build/library change + test after review."
+    },
+    {
+      "id": "simulated-free-fall-upward-launch / tiny-height / low-gravity-long-horizon",
+      "decision": "CUT",
+      "availability": "unavailable",
+      "why": "No complete preserved accepted setup with parameter JSON pointers.",
+      "restore": "Preserve accepted S10/S11 lab setup with parameter pointers, then regenerate via existing free_fall.py."
+    },
+    {
+      "id": "simulated-projectile-zero-horizontal / tiny-height / low-gravity-long-horizon",
+      "decision": "CUT",
+      "availability": "unavailable",
+      "why": "Same: no preserved accepted setup.",
+      "restore": "Same path via projectile.py."
+    },
+    {
+      "id": "simulated-pendulum-two-period-horizon / initial-angular-velocity / zero-answer-equilibrium",
+      "decision": "CUT",
+      "availability": "unavailable",
+      "why": "Same: no preserved accepted setup.",
+      "restore": "Same path via pendulum.py."
+    },
+    {
+      "id": "rm02-s06d-descriptor",
+      "decision": "CUT",
+      "availability": "unavailable",
+      "why": "Declared PLY bytes absent from accepted local evidence; no verified render bundle. Display-only, SCALE_UNVERIFIED.",
+      "restore": "Retrieve/commit accepted PLY bytes (S06d) within size limits + verified render bundle; still display-only, no physics claim."
+    },
+    {
+      "id": "rm04-s06f-descriptor",
+      "decision": "CUT",
+      "availability": "unavailable",
+      "why": "Same as RM02 (S06f).",
+      "restore": "Same as RM02."
+    },
+    {
+      "id": "rm05-scene",
+      "decision": "CUT",
+      "availability": "unavailable",
+      "why": "No accepted scene-v1 viewer descriptor; RM05 is ISS, not an Earth room.",
+      "restore": "Accepted S06 scene-v1 descriptor for RM05."
+    },
+    {
+      "id": "apollo",
+      "decision": "CUT",
+      "availability": "unavailable",
+      "why": "AP15 NOT_TRACKABLE (S02e); Moon result not measured.",
+      "restore": "A licensed trackable lunar drop clip with measured result; none known."
+    },
+    {
+      "id": "bounce",
+      "decision": "CUT",
+      "availability": "unavailable",
+      "why": "No accepted complete bounce record (S18c PARTIAL).",
+      "restore": "Accepted bounce fit/record (BN01 local-only approved)."
+    }
+  ],
+  "not_done": [
+    "no Build/web edit",
+    "no deploy",
+    "no GPU/API spend",
+    "no clip approval inferred"
+  ]
+}
