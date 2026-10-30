@@ -1,0 +1,108 @@
+{
+ "schema": "gate-checkpoint/1",
+ "gate": "A",
+ "run": "S14h-orch115",
+ "base_main": "d3a1343c98bb17692f15f8047acfd209c68b2ca5",
+ "fix7_commit": "3b07b4eefe12b3f1543ce74f05512c738c39ee2b",
+ "verdict": "MET_AMENDED_Q16",
+ "label": "scale unverified, not setup-validated",
+ "never_plain_met": true,
+ "amendment": {
+  "owner_answer": "Q16=A (Oct30)",
+  "meaning": "numeric-contract validation on recorded scenes accepted for Gate A, labelled verbatim; production setup-validator result shown alongside; not plain MET"
+ },
+ "counts": {
+  "numeric_contract_valid_specs": {
+   "value": "10/10",
+   "required": 9,
+   "source": "evidence/S14/S14g-fix7-offline.json",
+   "pointer": "/summary/numeric_contract_valid_specs"
+  },
+  "setup_validator_valid_specs": {
+   "value": "0/10",
+   "shown_alongside": true,
+   "reason": "absent authoritative bundles",
+   "source": "evidence/S14/S14g-fix7-offline.json",
+   "pointer": "/summary/setup_validator_valid_specs"
+  },
+  "replay_turns_shown_unchanged": {
+   "value": "30/30",
+   "source": "evidence/S14/S14g-fix7-offline.json",
+   "pointer": "/summary/live_turns_shown_unchanged"
+  },
+  "replay_tool_only_fallbacks": {
+   "value": 0,
+   "source": "evidence/S14/S14g-fix7-offline.json",
+   "pointer": "/summary/live_turns_fallback_tool_only"
+  },
+  "oracle_flagged_shown_inventions": {
+   "value": 0,
+   "source": "evidence/S14/S14g-fix7-offline.json",
+   "pointer": "/summary/invented_shown_oracle"
+  },
+  "oracle_corpus": {
+   "value": "84/84",
+   "source": "evidence/S14/S14g-fix7-offline.json",
+   "pointer": "/summary/oracle_self_check"
+  },
+  "agent_suite_fix7": {
+   "value": "59 tests OK",
+   "source": "evidence/S14/S14g-fix7-unittest.txt"
+  },
+  "s14h_rerun": {
+   "replay": "30/30 unchanged, 0 fallback, 0 invented, numeric 10/10, setup 0/10, oracle 84/84",
+   "source": "evidence/S14/S14h-replay.json",
+   "agent_suite": "60 tests OK (59 + 1 S14h fallback test)",
+   "suite_source": "evidence/S14/S14h-unittest.txt"
+  },
+  "spend_usd": 0,
+  "network_denied": true
+ },
+ "review": {
+  "verdict": "CLEAR",
+  "reviewer": "R-A recheck5 (Sol/high, cross-vendor)",
+  "path": "evidence/reviews/R-A/RECHECK-fix7.md",
+  "sha256": "81b1df1e44a4d985b51207ce1b7c992b0ea8e7e2571fc678849079d84cbbb5ef",
+  "report": "Run-System/Runs/R-A-recheck5-orch109/REPORT.md",
+  "machine_evidence": "evidence/reviews/R-A/recheck-fix7/results.json"
+ },
+ "fallback": {
+  "path": "Build/agent/tools.py safe_reply -> tool_backed (also trial.tool_only, muse.ask_user template chips)",
+  "code_owned": true,
+  "logged": "safe_reply returns non-empty issues list on every fallback; check_trial/understand_with_retry return rejected issues",
+  "proof": "tests/agent/test_reply.py::SafeReplyTests::test_fallback_card_is_code_owned_and_model_invariant"
+ },
+ "known_limits": [
+  {
+   "id": "P2-unitless-one",
+   "status": "OPEN",
+   "example": "The duration is one. / Elapsed time in seconds. It is one.",
+   "note": "pronoun 'one' allowed; clause split detaches unit"
+  },
+  {
+   "id": "P2-count-nouns",
+   "status": "OPEN",
+   "example": "The sphere completes a single oscillation.",
+   "note": "count nouns are not unit words"
+  },
+  {
+   "id": "P2-unlisted-units",
+   "status": "PARTLY_CLOSED_S14h",
+   "closed": "micro/nanosecond(s) now unit words",
+   "still_open": "other unlisted units/abbreviations (e.g. us, µs, fortnight)"
+  },
+  {
+   "id": "P3-conservative-refusal",
+   "status": "OPEN",
+   "note": "legit prose like 'in seconds is <q>' refused; live fallback rate unmeasured"
+  }
+ ],
+ "not_claimed": [
+  "calibrated scale",
+  "setup-validation success",
+  "physical evidence",
+  "live model run in S14h",
+  "universal natural-language guarantee"
+ ],
+ "inputs_scope": "recorded-scene fixtures, synthetic interview answers, synthetic-room trial tools"
+}

@@ -1,0 +1,11 @@
+{
+ "refused": {
+  "Elapsed time in seconds. It is one. Tool result: ": false,
+  "The duration is one. Tool result: ": false,
+  "The sphere completes a single oscillation. Tool result: ": false,
+  "The elapsed time is one microsecond. Tool result: ": true,
+  "The elapsed time is a few nanoseconds. Tool result: ": true,
+  "Time in microseconds: ": false
+ },
+ "matches_expected": true
+}

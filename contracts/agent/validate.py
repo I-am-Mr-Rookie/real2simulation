@@ -51,7 +51,7 @@ _INVISIBLE = dict.fromkeys(i for i in range(0x110000) if unicodedata.category(ch
 # S14g-fix6 (R-A F1-R3): no bare label binding ("one whole minute: <q>" launders an amount); only "in" opens a label.
 CITE = "\ue000"  # placeholder for a cited quantity in a visible run; model text may not contain private-use chars
 _UNIT = (r"(?:(?:centi|milli|kilo)?(?:metres?|meters?)|(?:kilo)?grams?|newtons?|joules?|watts?|hertz|pascals?|"
-         r"(?:milli)?seconds?|secs?|minutes?|hours?|days?|degrees?|radians?|revolutions?|inch(?:es)?|foot|feet|"
+         r"(?:milli|micro|nano)?seconds?|secs?|minutes?|hours?|days?|degrees?|radians?|revolutions?|inch(?:es)?|foot|feet|"
          r"yards?|miles?|pounds?|lbs?|gees?|kg|cm|mm|km|ft|hz|pa|ms|min|hr|rad|deg|m|s|g|n|j|w|h)")
 _LINK = rf"(?:{_UNIT}|per|squared|cubed|or)"
 _GAP = rf"[^\w.!?;{CITE}]*"  # spaces/symbols only: a word or sentence end breaks the binding
