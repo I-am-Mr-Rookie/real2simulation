@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 30, 17:54 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 17:58 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **196 / 235** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
+Progress: **197 / 235** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
 
 ## Reviews for Koushik
 
@@ -19,9 +19,9 @@ Progress: **196 / 235** runs done · 0 in progress · 0 blocked · 0 waiting for
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
-- [ ] **S04n** — Codex (native Claude) · Opus 5.5, effort medium — Web BFF proxy /api/workspace/[...path] (Clerk auth, capped body, private-network forward) (30 min)
 - [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
-- …and 2 more ready in this lane
+- [ ] **S22b** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture logged-out guest library walkthrough (30 min)
+- …and 1 more ready in this lane
 
 **CLAUDE**
 - [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
@@ -76,7 +76,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (15/18)</summary>
+<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (16/18)</summary>
 
 - [x] **S04a** — Codex · GPT-6.1 Sol, effort medium — Define shell interfaces and fixture mount points (30 min)
 - [x] **S04b** — Codex · GPT-6.1 Sol, effort medium — Create Next.js shell and isolated route layout (30 min)
@@ -92,7 +92,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S04j** — Codex (native Claude) · Opus 5.5, effort high — Wire guest library page to manifest and simulated replay (30 min)
 - [x] **S04k** — Codex (native Claude) · Opus 5.5, effort high — Serve guest library from build-time snapshot (30 min)
 - [x] **S04l** — Codex (native Claude) · Opus 5.5, effort medium — Polish guest library page copy and UI (30 min)
-- [ ] **S04n** — Codex (native Claude) · Opus 5.5, effort medium — Web BFF proxy /api/workspace/[...path] (Clerk auth, capped body, private-network forward) (30 min)
+- [x] **S04n** — Codex (native Claude) · Opus 5.5, effort medium — Web BFF proxy /api/workspace/[...path] (Clerk auth, capped body, private-network forward) (30 min)
 - [ ] **S04m** — Codex (native Claude) · Opus 5.5, effort high — Mount workspace routers, extend API image (+jsonschema pin), set var names, deploy API to dev (30 min)
 - [ ] **S04o** — Codex (native Claude) · Opus 5.5, effort medium — PrivateWorkspace mounts controller; deploy web to dev (30 min)
 - [x] **R-W** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor review: private workspace auth boundary and proxy (15 min)
