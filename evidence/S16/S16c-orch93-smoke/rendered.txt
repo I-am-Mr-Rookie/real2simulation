@@ -1,0 +1,2 @@
+SYNTHETIC LOCAL EVIDENCE ONLY; NOT CALIBRATED OR PHYSICAL.
+Synthetic local rebuild tool results: simulator duration 0.452 ± 2e-06 s (simulated) simulator drop 1.00211 ± 3e-06 m (simulated) fitter gravity 9.81 ± 3.8e-05 m/s^2 (simulated).

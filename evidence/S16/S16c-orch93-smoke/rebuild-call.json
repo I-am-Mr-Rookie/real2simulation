@@ -1,0 +1,140 @@
+{
+  "schema_version": "sidebar-tools/1.0.0",
+  "id": "rebuild_smoke",
+  "scene_id": "synthetic-room-v1",
+  "tool": "scene.rebuild",
+  "arguments": {
+    "spec": {
+      "schema_version": "1.0.0",
+      "experiment_id": "synthetic-spec",
+      "template": "free_fall",
+      "scene": {
+        "scene_id": "synthetic-room-v1",
+        "schema_version": "1.0.0",
+        "coordinate_system": "right-handed-y-up-metres",
+        "scale_status": "calibrated",
+        "constraints": {
+          "bounds_m": {
+            "min": [
+              -10,
+              -1,
+              -10
+            ],
+            "max": [
+              10,
+              10,
+              10
+            ]
+          },
+          "allowed_surface_ids": [
+            "floor"
+          ],
+          "collision_obstacle_ids": [],
+          "clearance": {
+            "value": 0.01,
+            "unit": "m",
+            "uncertainty": null,
+            "source": {
+              "label": "synthetic",
+              "evidence": "test_experiment_schema.py:authored-fixture"
+            }
+          }
+        }
+      },
+      "environment": {
+        "gravity": {
+          "value": 9.81,
+          "unit": "m/s^2",
+          "uncertainty": null,
+          "source": {
+            "label": "synthetic",
+            "evidence": "test_experiment_schema.py:authored-fixture"
+          }
+        },
+        "gravity_direction": [
+          0,
+          -1,
+          0
+        ],
+        "air_resistance": "neglected"
+      },
+      "body": {
+        "mass": {
+          "value": 0.1,
+          "unit": "kg",
+          "uncertainty": null,
+          "source": {
+            "label": "synthetic",
+            "evidence": "test_experiment_schema.py:authored-fixture"
+          }
+        },
+        "radius": {
+          "value": 0.02,
+          "unit": "m",
+          "uncertainty": null,
+          "source": {
+            "label": "synthetic",
+            "evidence": "test_experiment_schema.py:authored-fixture"
+          }
+        }
+      },
+      "placement": {
+        "origin": {
+          "value": [
+            0,
+            2,
+            0
+          ],
+          "unit": "m",
+          "source": {
+            "label": "synthetic",
+            "evidence": "test_experiment_schema.py:authored-fixture"
+          }
+        },
+        "surface_id": null
+      },
+      "parameters": {
+        "drop_height": {
+          "value": 1,
+          "unit": "m",
+          "uncertainty": null,
+          "source": {
+            "label": "synthetic",
+            "evidence": "test_experiment_schema.py:authored-fixture"
+          }
+        },
+        "initial_vertical_velocity": {
+          "value": 0,
+          "unit": "m/s",
+          "uncertainty": null,
+          "source": {
+            "label": "synthetic",
+            "evidence": "test_experiment_schema.py:authored-fixture"
+          }
+        }
+      },
+      "simulation": {
+        "duration": {
+          "value": 0.5,
+          "unit": "s",
+          "uncertainty": null,
+          "source": {
+            "label": "synthetic",
+            "evidence": "test_experiment_schema.py:authored-fixture"
+          }
+        },
+        "time_step": {
+          "value": 0.001,
+          "unit": "s",
+          "uncertainty": null,
+          "source": {
+            "label": "synthetic",
+            "evidence": "test_experiment_schema.py:authored-fixture"
+          }
+        },
+        "seed": 42
+      }
+    },
+    "spec_sha256": "c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79ab9ac4f1853b0d5fb"
+  }
+}

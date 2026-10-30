@@ -1,0 +1,147 @@
+{
+  "schema_version": "1.0.0",
+  "id": "synthetic-room-v1",
+  "label": "SYNTHETIC integration fixture \u2014 NOT reconstruction or physics evidence",
+  "synthetic": true,
+  "coordinates": {
+    "handedness": "right",
+    "up": "+Y",
+    "length_unit": "m",
+    "camera_forward": "-Z",
+    "quaternion_order": "xyzw"
+  },
+  "provenance": {
+    "method": "synthetic",
+    "sources": [],
+    "models": [],
+    "evidence": "S05a authored geometric fixture; no footage, model, fitter or simulator used"
+  },
+  "scale": {
+    "status": "calibrated",
+    "metres_per_source_unit": 1,
+    "evidence": "Synthetic authored dimensions only; not a calibration measurement"
+  },
+  "gravity": {
+    "status": "assumed",
+    "direction": [
+      0,
+      -1,
+      0
+    ],
+    "magnitude_m_s2": 9.81,
+    "evidence": "synthetic test"
+  },
+  "bounds_m": {
+    "min": [
+      -10,
+      -1,
+      -10
+    ],
+    "max": [
+      10,
+      10,
+      10
+    ]
+  },
+  "assets": [
+    {
+      "id": "points",
+      "path": "points.ply",
+      "format": "ply-ascii-xyzrgb",
+      "sha256": "5644bcc95346de0f41fb62d1c7e3189bd15edd7e8e2faa1e97ea88b7e9f68e6f",
+      "bytes": 418
+    }
+  ],
+  "render": {
+    "kind": "points",
+    "asset_id": "points",
+    "mobile_asset_id": "points",
+    "point_count": 8
+  },
+  "surfaces": [
+    {
+      "id": "floor",
+      "origin_m": [
+        0,
+        0,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "extent_m": [
+        2,
+        2
+      ],
+      "role": "floor"
+    },
+    {
+      "id": "table",
+      "origin_m": [
+        0,
+        0.75,
+        0
+      ],
+      "normal": [
+        0,
+        1,
+        0
+      ],
+      "extent_m": [
+        1,
+        0.6
+      ],
+      "role": "table"
+    }
+  ],
+  "colliders": [],
+  "camera_path": [
+    {
+      "time_s": 0,
+      "pose": {
+        "position_m": [
+          0,
+          1,
+          3
+        ],
+        "rotation_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "vertical_fov_deg": 50
+    },
+    {
+      "time_s": 1,
+      "pose": {
+        "position_m": [
+          0.25,
+          1,
+          3
+        ],
+        "rotation_xyzw": [
+          0,
+          0,
+          0,
+          1
+        ]
+      },
+      "vertical_fov_deg": 50
+    }
+  ],
+  "labels": [
+    {
+      "id": "fixture-warning",
+      "text": "SYNTHETIC \u2014 no accuracy or performance claim",
+      "position_m": [
+        0,
+        0.75,
+        0
+      ]
+    }
+  ]
+}

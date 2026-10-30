@@ -1,0 +1,8 @@
+{
+  "time_resolution_s": 1e-06,
+  "time_uncertainty_s": 2e-06,
+  "time_bias_s": 0,
+  "distance_resolution_m": 1e-06,
+  "distance_uncertainty_m": 3e-06,
+  "distance_bias_m": 0
+}

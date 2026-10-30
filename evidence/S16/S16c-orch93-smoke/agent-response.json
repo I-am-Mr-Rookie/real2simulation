@@ -1,0 +1,48 @@
+{
+  "schema_version": "agent-response/1.0.0",
+  "scene_id": "synthetic-room-v1",
+  "segments": [
+    {
+      "type": "text",
+      "text": "Synthetic local rebuild tool results:"
+    },
+    {
+      "type": "text",
+      "text": " simulator duration "
+    },
+    {
+      "type": "number",
+      "ref": {
+        "tool_output_id": "c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79a-sim",
+        "quantity": "duration"
+      }
+    },
+    {
+      "type": "text",
+      "text": " simulator drop "
+    },
+    {
+      "type": "number",
+      "ref": {
+        "tool_output_id": "c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79a-sim",
+        "quantity": "drop"
+      }
+    },
+    {
+      "type": "text",
+      "text": " fitter gravity "
+    },
+    {
+      "type": "number",
+      "ref": {
+        "tool_output_id": "c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79a-fit",
+        "quantity": "gravity"
+      }
+    },
+    {
+      "type": "text",
+      "text": "."
+    }
+  ],
+  "questions": []
+}

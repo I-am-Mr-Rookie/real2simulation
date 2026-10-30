@@ -1,0 +1,32 @@
+{
+  "schema_version": "sidebar-tools/1.0.0",
+  "id": "patch_smoke",
+  "scene_id": "synthetic-room-v1",
+  "tool": "spec.patch",
+  "arguments": {
+    "base_spec_sha256": "9cf41e7a2f29bf1407dacf7c46a21fffade2221fd36b7099dfed65aac32cc7e1",
+    "patch": {
+      "simulation": {
+        "duration": {
+          "value": 0.5,
+          "unit": "s",
+          "uncertainty": null,
+          "source": {
+            "label": "synthetic",
+            "evidence": "test_experiment_schema.py:authored-fixture"
+          }
+        },
+        "time_step": {
+          "value": 0.001,
+          "unit": "s",
+          "uncertainty": null,
+          "source": {
+            "label": "synthetic",
+            "evidence": "test_experiment_schema.py:authored-fixture"
+          }
+        },
+        "seed": 42
+      }
+    }
+  }
+}

@@ -56,6 +56,13 @@ class SearchArguments(TypedDict):
     licenses: list[str]
 
 
+class CompletedRebuildPayload(TypedDict):
+    job_id: str
+    spec_sha256: str
+    state: Literal["completed"]
+    output_sha256: dict[str, str]
+
+
 class SidebarContractError(ValueError):
     """Untrusted wire input failed validation; no execution is authorized."""
 
@@ -101,7 +108,9 @@ PAYLOAD_SCHEMAS = {
     "spec.patch": _object({"spec": {"type": "object"}, "spec_sha256": SHA,
                             "rebuild_required": {"const": True}}),
     "scene.rebuild": _object({"job_id": ID, "spec_sha256": SHA,
-                               "state": {"const": "queued"}}),
+        "state": {"enum": ["queued", "completed"]},
+        "output_sha256": {"type": "object", "additionalProperties": SHA}},
+        ["job_id", "spec_sha256", "state"]),
     "library.search": _object({"query": {**TEXT, "maxLength": 256},
         "items": {"type": "array", "maxItems": 20, "items": LIBRARY_ITEM}}),
 }
@@ -129,6 +138,13 @@ def spec_sha256(spec: dict[str, Any]) -> str:
     """Digest of a numerically validated snapshot; not scene-fit or source authentication."""
     validate(spec)
     return hashlib.sha256(json.dumps(spec, sort_keys=True, separators=(",", ":"),
+                                    ensure_ascii=False, allow_nan=False).encode("utf-8")).hexdigest()
+
+
+def output_sha256(output: dict[str, Any]) -> str:
+    """Hash the normalized S14 receipt, without adding fields to its strict shape."""
+    output = validate_tool_output(output)
+    return hashlib.sha256(json.dumps(output, sort_keys=True, separators=(",", ":"),
                                     ensure_ascii=False, allow_nan=False).encode("utf-8")).hexdigest()
 
 
@@ -196,6 +212,12 @@ def validate_result(result: Any, call: Any, *, base_spec=None) -> ToolResult:
         elif call["tool"] == "scene.rebuild":
             if payload["spec_sha256"] != call["arguments"]["spec_sha256"]:
                 raise SidebarContractError("rebuild result spec_sha256 mismatch")
+            if payload["state"] == "completed":
+                expected = {output["id"]: output_sha256(output) for output in result["tool_outputs"]}
+                if not expected or payload.get("output_sha256") != expected:
+                    raise SidebarContractError("completed rebuild requires matching numeric output SHA256 receipts")
+            elif "output_sha256" in payload:
+                raise SidebarContractError("queued acknowledgment cannot claim completed output SHA256 receipts")
         else:
             args, items = call["arguments"], payload["items"]
             if payload["query"] != args["query"] or len(items) > args["limit"]:

@@ -1,8 +1,9 @@
-# Sidebar tools v1 — S16a, offline contracts only
+# Sidebar tools v1 — S16a contracts, S16b patch, S16c local rebuild
 
 `contracts.py` exports Python TypedDicts, Draft 2020-12 schema dictionaries,
 `validate_call`, `validate_result`, `spec_sha256`, and the reused strict `parse_json`.
-No dispatch, file writes, network, models, provider wiring or rebuild execution.
+The contract validators do not dispatch, write files or execute rebuilds.
+`rebuild.py` supplies the separate, local-only execution boundary described below.
 Import by file path (existing directory convention contains a hyphen).
 
 ## Wire envelope
@@ -64,24 +65,81 @@ unchanged; returned specs do not alias them. `tool_outputs` is always empty.
 `rebuild_required: true` is a **handoff**, not a rebuild call or job receipt.
 This function has no dispatcher/callback, file writes or network calls: rejected
 patches cannot start a rebuild, and accepted patches do not start one either.
-S16c owns persistence/rebuild plumbing, including rechecking the trusted current
-digest at commit/admission time, serialization and existing resource/budget gates.
+S16c owns process-local spec storage/rebuild plumbing, including rechecking the
+trusted current digest at commit/admission time and serialization. It admits no
+GPU, paid, remote or physical jobs; their resource/budget gates are not bypassed.
 Preflight does not authenticate rights/provenance or prove simulator accuracy.
 
 ### `scene.rebuild`
 
 Arguments: `{spec_sha256, spec}`. Existing experiment validation, digest and scene-id
-binding are mandatory. Success payload: `{job_id, spec_sha256, state: "queued"}`.
-This is an acknowledgment contract, **not** evidence that any worker started/completed.
-The future dispatcher must compare the digest against its trusted persisted current spec
-and perform scene-bundle `validate_setup`, budget/auth/resource gates before admission.
-This contract checks numeric inputs only; it does not authenticate a caller or grant spend.
+binding are mandatory. Legacy acknowledgment payload:
+`{job_id, spec_sha256, state: "queued"}`. Queued is **not** completion evidence.
+S16c local completion payload (`CompletedRebuildPayload`):
+`{job_id, spec_sha256, state: "completed", output_sha256: {output_id: sha256, ...}}`.
+Completed requires nonempty S14 numeric outputs and an exact matching hash map.
+The digest uses normalized `validate_tool_output` JSON, sorted keys, compact
+separators, UTF-8, `ensure_ascii=False`, `allow_nan=False`. `output_sha256(output)`
+is exported for independent verification. No hash field is added to the strict
+S14 output shape; the correlated payload carries the receipts instead.
 
 `tool_outputs` may carry already-code-built fitter/simulator receipts, validated with
 `contracts.agent.validate.validate_tool_output`; unique output ids are mandatory.
-They do not imply the queued rebuild completed. Empty is normal. Never source these
+They do not imply a queued rebuild completed. Empty is normal for queued only. Never source these
 receipts from a model or from patched inputs. S14 rendering still separately validates
 every number reference. Source/job ownership remains a caller trust boundary.
+
+#### S16c local execution boundary
+
+```python
+from importlib import import_module
+
+RebuildSession = import_module("Build.sidebar-tools.rebuild").RebuildSession
+session = RebuildSession(current_spec, scene_path=trusted_scene_json,
+                         instruments=explicit_instrument_settings,
+                         scratch_dir=existing_private_scratch_directory)
+patched = session.handle(validated_patch_call)
+completed = session.handle(rebuild_call_for_patched_digest)
+# completed["tool_outputs"] goes to existing S14 validate_response/render, never
+# concatenate numbers or hashes into model-authored free-text segments.
+```
+
+The host owns the session, paths, instrument settings and initial spec; never
+construct these from a model's request. This is a code API, not an authenticated
+HTTP endpoint. One lock serializes patch commit, rebuild admission, execution and
+receipt publication. `current_spec` is a defensive snapshot. Only S16b's successful
+scene-bundle-validated patch can mark a revision rebuildable. A raw valid spec or
+forged success envelope does not grant admission; rebuild arguments must match
+the internal current digest. Bundle metadata drift rejects the session; assets
+and setup preflight are rechecked, including on cached requests.
+
+The handler calls `Build.lab.pipeline.run_lab`, which uses the existing validated
+setup exporter, Node RK4 simulator, synthetic instruments and `Build.fitter.api`.
+It supports the existing synthetic free-fall/projectile lab only. Other templates
+and physical scenes return `not_ready` without starting compute. No provider, GPU,
+network, automatic retry, install or spend path is exposed. Temporary spec files
+are confined to the caller's scratch directory and removed after execution.
+Keep the trusted bundle immutable during execution; the host still owns filesystem
+access and cross-process coordination (the session lock is process-local).
+
+Simulator quantities reuse actual lab instrument observations, including their
+explicit uncertainty/source; fitter gravity reuses `fit_tool_output`. Evidence
+binds outputs to job/spec and visibly says synthetic/not calibrated. No input
+parameter is converted into an asserted measurement. Each output validates as
+S14 `agent-tool-output/1.0.0`; model numeric refs are still separately checked.
+
+Malformed/stale patch calls raise `SidebarContractError` without state changes.
+Valid but unadmitted rebuilds return correlated `not_ready`/`stale_spec` errors.
+Local execution failures return a sanitized `internal_error`, no numbers, and
+retain the accepted revision for an **explicit caller retry**. A completed
+revision caches its original job/outputs; repeated rebuild requests (even with a
+new call id) return the same receipt without rerunning. Returned objects do not
+alias the cache. A subsequent accepted patch invalidates the cache. State is
+in-memory only: restart requires a fresh validated patch; durable jobs, server
+wiring and provider/search integration are not claimed by S16c.
+
+SHA-256 detects receipt/content mismatches, not forgery by an attacker who can
+replace both content and digest. Trusted host custody remains mandatory.
 
 ### `library.search`
 
@@ -123,7 +181,8 @@ Codes: invalid_request, stale_spec, not_found, not_ready, budget_blocked, intern
 malformed pre-envelope transport errors are not this correlated-result contract. Never
 return stack traces/secrets as issues; caller owns safe human-readable errors.
 
-This completes S16a contract scope, not S16b-g integration or parent S16/Gate A/RS.
+S16a-c local contract/application/rebuild scope does not complete S16d-h,
+parent S16, real-scene integration or Gate A/RS.
 No Baseten/Fireworks/Meta call, dependency install, search engine, public upload or spend.
 
 ## Checks

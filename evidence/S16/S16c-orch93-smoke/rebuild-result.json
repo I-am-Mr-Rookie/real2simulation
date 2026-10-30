@@ -1,0 +1,63 @@
+{
+  "schema_version": "sidebar-tools/1.0.0",
+  "call_id": "rebuild_smoke",
+  "scene_id": "synthetic-room-v1",
+  "tool": "scene.rebuild",
+  "status": "ok",
+  "payload": {
+    "job_id": "rebuild_smoke",
+    "spec_sha256": "c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79ab9ac4f1853b0d5fb",
+    "state": "completed",
+    "output_sha256": {
+      "c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79a-sim": "c139bb245d1dc327b0b63cea7d31560e5cd5083189a8a2dc960750e6b9cd795b",
+      "c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79a-fit": "22927f0d7d18b9a51da790002dfcab1a38d4a62b612e34d241ff1c5d0fd07a86"
+    }
+  },
+  "tool_outputs": [
+    {
+      "schema_version": "agent-tool-output/1.0.0",
+      "id": "c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79a-sim",
+      "tool": "simulator",
+      "status": "ok",
+      "quantities": {
+        "duration": {
+          "value": 0.45199999999999996,
+          "unit": "s",
+          "uncertainty": 2e-06,
+          "source": {
+            "label": "simulated",
+            "evidence": "synthetic light gate; resolution_s=1e-06; rebuild rebuild_smoke; spec c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79ab9ac4f1853b0d5fb; synthetic, not calibrated"
+          },
+          "error": -5.551115123125783e-17
+        },
+        "drop": {
+          "value": 1.002111,
+          "unit": "m",
+          "uncertainty": 3e-06,
+          "source": {
+            "label": "simulated",
+            "evidence": "synthetic ruler; resolution_m=1e-06; rebuild rebuild_smoke; spec c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79ab9ac4f1853b0d5fb; synthetic, not calibrated"
+          },
+          "error": -1.1999999860456967e-07
+        }
+      }
+    },
+    {
+      "schema_version": "agent-tool-output/1.0.0",
+      "id": "c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79a-fit",
+      "tool": "fitter",
+      "status": "ok",
+      "quantities": {
+        "gravity": {
+          "value": 9.809998671982237,
+          "unit": "m/s^2",
+          "uncertainty": 3.836977468658165e-05,
+          "source": {
+            "label": "simulated",
+            "evidence": "synthetic virtual-lab fit; rebuild rebuild_smoke; spec c735d6b5ca8c08df7faa4d5fc4338161b14506086dcfe79ab9ac4f1853b0d5fb; synthetic, not calibrated"
+          }
+        }
+      }
+    }
+  ]
+}
