@@ -7,8 +7,8 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "da4b03e9-659e-4966-8f12-8003199f7be5",
-      "previousDeploymentId": "e4cc427a-6b36-49c2-b269-278d90c42b8e",
+      "deploymentId": "aa539357-ca0f-4ecb-a6f5-523979e37295",
+      "previousDeploymentId": "da4b03e9-659e-4966-8f12-8003199f7be5",
       "sourceRevision": "67e299aa54ed7c2554137d04df655139ed556dba",
       "verifiedUtc": "2026-10-30T11:08:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
@@ -34,8 +34,7 @@
     "Dev only, not judging/production readiness",
     "Worker HTTP sidecar only: readiness503, no consumer heartbeat",
     "Clerk dev instance configured; Google/email OTP/guest owner-verified (S01b E2); S04h agent-verified guest, /lab render, health and Clerk widget + Google hand-off only",
-    "Web da4b03e9 = main 67e299a (S04i workspace mounted; S09k/S18k included, /library still empty pre-S04j; owner-only labelled fixture scene; upload/interview/run/fit/report NOT wired, see evidence/S15/s15k-orch122.json); /lab Run trial returns local_lab_disabled on Railway (no Python bridge)",
+    "Web aa539357 = main 7dde2c9 (S04k snapshot-served /library: 3 playable/setup cards + UNAVAILABLE placeholders, simulated replay; PWA assets; upload/interview/run/fit/report NOT wired); /lab Run trial returns local_lab_disabled on Railway (no Python bridge)",
     "Direct dependencies pinned; transitive versions and base image tags not locked"
   ]
 }
-

@@ -1,0 +1,61 @@
+{
+  "run": "S19d-orch142",
+  "source_revision": "7dde2c925445d3bce59e9ca2ecd0d55bbdddfe93",
+  "deployment": {
+    "id": "aa539357-ca0f-4ecb-a6f5-523979e37295",
+    "previous": "da4b03e9-659e-4966-8f12-8003199f7be5",
+    "status": "SUCCESS",
+    "issued": "2026-10-30T11:38Z"
+  },
+  "pwa": {
+    "manifest": "/pwa/manifest.webmanifest 200 application/manifest+json (linked from HTML)",
+    "root_manifest_paths_404": [
+      "/manifest.webmanifest",
+      "/sw.js"
+    ],
+    "sw": "/pwa/sw.js 200, Service-Worker-Allowed=/, no-cache",
+    "icons": "192/512/maskable PNG + svg all 200",
+    "theme_color": "#155a92",
+    "display": "standalone",
+    "in_browser_sw_activation": "activated, scope https://web-dev-cd80.up.railway.app/, script /pwa/sw.js, secure context (CDP, in-app browser)"
+  },
+  "library": {
+    "manifest": "/api/library/manifest 200 application/json",
+    "cards": "3 playable/setup (projectile baseline-short, pendulum short-small-angle, Mystery-g setup-only) + 15 UNAVAILABLE with reasons; all labelled SIMULATED/UNAVAILABLE/SCALE_UNVERIFIED",
+    "credits": "source.description 'Project-authored virtual-lab simulation; no external footage' is in manifest but NOT rendered on the cards; credit/license fields empty",
+    "artifacts": [
+      {
+        "id": "projectile",
+        "status": 200,
+        "ms": 416,
+        "cache": "public, max-age=31536000, immutable",
+        "sha256_match": true,
+        "bytes": 16858
+      },
+      {
+        "id": "pendulum",
+        "status": 200,
+        "ms": 389,
+        "cache": "public, max-age=31536000, immutable",
+        "sha256_match": true,
+        "bytes": 21552
+      },
+      {
+        "id": "mystery-g",
+        "status": 200,
+        "ms": 255,
+        "cache": "public, max-age=31536000, immutable",
+        "sha256_match": true,
+        "bytes": 141
+      }
+    ]
+  },
+  "walkthrough": {
+    "desktop_1280": "scrollWidth 1265<=1280; projectile replay opened: SVG path, Play checkbox, time slider (max 0.2 s, 201 samples); scrub 0.1->t=0.100 s; play advanced 0.1->0.17->0.2 s; replay so short (0.2 s) a distinct paused state could not be observed (second click restarted and ran to end)",
+    "mobile_375": "scrollWidth 360 (15px scrollbar) <= 375 -> no horizontal scroll; pendulum replay opened (251 samples, max 0.25 s, sha 5fa710edd773), still no h-scroll; pendulum scrub verified via keyboard (Home 0.000, +5 steps 0.013, End 0.250 s); play ran to 0.250 s",
+    "open_timing": "pendulum replay click->controls visible 1.2 s at 375px; projectile first open ~1.6 s click call (tool overhead included; CDP intermittently timed out)",
+    "mystery_g": "setup-only card text present; answer withheld; links to /lab"
+  },
+  "verify_py": "9/10 (only stale /workspace/private-check text, outside Owns, same as S15k)",
+  "tests": "node --test tests/pwa/*.test.mjs: 52 pass 0 fail"
+}
