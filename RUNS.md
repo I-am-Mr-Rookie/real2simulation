@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 05:19 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 05:42 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **214 / 251** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 1 open reviews
+Progress: **217 / 251** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 1 open reviews
 
 ## Reviews for Koushik
 
@@ -24,9 +24,8 @@ Progress: **214 / 251** runs done · 0 in progress · 0 blocked · 0 waiting for
 
 **CLAUDE**
 - [~] **S07g** — Codex (native Claude) · Opus 5.5, effort high — Owner clips: register in clips.csv and measure g on 01_demo_hero with the real pipeline (30 min) *(partial: resume it)*
+- [ ] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min)
 - [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
-- [~] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min) *(partial: resume it)*
-- …and 1 more ready in this lane
 
 ## Waiting for Koushik
 
@@ -126,7 +125,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (12/16)</summary>
+<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (13/16)</summary>
 
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [x] **S02g** — Codex · GPT-6.1 Sol, effort high — Verify original FF01/FF02 calibration sources (30 min)
@@ -140,7 +139,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)
 - [x] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min)
 - [~] **S07g** — Codex (native Claude) · Opus 5.5, effort high — Owner clips: register in clips.csv and measure g on 01_demo_hero with the real pipeline (30 min) *(partial: resume it)*
-- [ ] **S07i** — Codex (native Claude) · Opus 5.5, effort high — OWN01 measured g from the real SAM 3.1 track; prepare one batched track for OWN02-OWN12 (30 min)
+- [x] **S07i** — Codex (native Claude) · Opus 5.5, effort high — OWN01 measured g from the real SAM 3.1 track; prepare one batched track for OWN02-OWN12 (30 min)
 - [ ] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min)
 - [x] **R-M** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
 - [x] **R-M2** — Codex (native Claude) · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min)
@@ -262,7 +261,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (19/24)</summary>
+<details><summary><b>S15</b> — Workspace UI (21/24)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -278,7 +277,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint workspace accessibility and evidence (30 min)
 - [x] **S15m** — Codex (native Claude) · Opus 5.5, effort high — Plan end-to-end workspace wiring (upload to report) (30 min)
 - [x] **S15n** — Codex (native Claude) · Opus 5.5, effort high — Workspace controller: reduce() state + fetch adapters + upload control (30 min)
-- [~] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min) *(partial: resume it)*
+- [x] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min)
 - [x] **S15p** — Codex (native Claude) · Opus 5.5, effort medium — Wire workspace run (browser simulator), honest instruments and API report shape (30 min)
 - [x] **S15q** — Codex (native Claude) · Opus 5.5, effort medium — Fix live workspace spec 422 + surface errors and RECORDED labels (S15o controller walk defects) (30 min)
 - [x] **S15r** — Codex (native Claude) · Opus 5.5, effort high — Owner Q20=A: labelled what-if Run on Q16 recorded scenes (API artifact + simulator mode + labels) (30 min)
@@ -286,7 +285,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15t** — Codex (native Claude) · Opus 5.5, effort high — Fix live Fit display rejection and report 422 on DEV (30 min)
 - [x] **S15u** — Codex (native Claude) · Sonnet 5.5, effort medium — Fit view polish: 375px overflow, truthful what-if source note, compact residuals (30 min)
 - [ ] **S15v** — Codex (native Claude) · Opus 5.5, effort high — Product: accept 30 fps phone clips, ask for a known size, report uncertainty instead of failing (30 min)
-- [ ] **S15w** — Codex (native Claude) · Opus 5.5, effort high — One UI pass: myfront 1.2.0 round-3 + make-interfaces-feel-better (30 min)
+- [x] **S15w** — Codex (native Claude) · Opus 5.5, effort high — One UI pass: myfront 1.2.0 round-3 + make-interfaces-feel-better (30 min)
 - [x] **S15x** — Codex (native Claude) · Sonnet 5.5, effort medium — Propose 6 Mobbin references for the owner to pick 3 (20 min)
 
 </details>

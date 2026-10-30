@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "bec439d2-582a-4c87-bb3b-4e34ccd5c177",
-      "previousDeploymentId": "b1805418-6caa-44db-8f15-133918341eff",
-      "redeployNote": "S15u-orch166: stage.py web + railway up (fit view 375px wrap, truthful what-if note, compact residuals, sig figs)",
-      "sourceRevision": "35805e6af742e4355e12f073dc494794572c68df",
-      "verifiedUtc": "2026-10-30T21:14:23Z",
+      "deploymentId": "1f827ca0-2cf6-4ace-99ac-f9f9f6e689ee",
+      "previousDeploymentId": "bec439d2-582a-4c87-bb3b-4e34ccd5c177",
+      "redeployNote": "S15w-orch169: stage.py web + railway up (UI pass: myfront round-3 texture/forms + make-interfaces-feel-better details; CSS only)",
+      "sourceRevision": "3c0b2b5563ff116a7786481d457576dfb94cc72f",
+      "verifiedUtc": "2026-10-30T23:17:13Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080

@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T23:45Z — controller: accept S15w + S07i DONE; S15o DONE (controller walk); S15v dispatched; OWN02-OWN11 batch running
+
+- S15w-orch169 DONE (Opus high): CSS-only UI pass (myfront round-3 texture/forms, make-interfaces-feel-better details). Timebox PASS; rebased; web tests 117/117 fresh. Web DEV 1f827ca0-2cf6-4ace-99ac-f9f9f6e689ee (prev bec439d2, src 3c0b2b55 pre-rebase) recorded in deployments.json; verify.py exit 0. Full round-3 v2 recolour waits for Q21.
+- S15o DONE (controller-walk exception): in-app browser 375px walk on DEV after S15u+S15w: RM04 upload -> interview (1.5 m, at rest) -> Run -> Fit -> Open report all PASS; scrollWidth == clientWidth (360) at every stage; verbatim Q20 what-if label on fit table and sandboxed report; no paid call. Screens evidence/S15/s15o/controller/16-375-fit-after-S15w.png, 17-375-report-after-S15w.png. Viewer still LOAD_FAILED (optional S13j).
+- S07i-orch170 DONE (Opus high): OWN01 g = 10.96 +/- 0.77 m/s^2 (1 sigma, MEASURED, user-declared 0.2028 m scale, phone clock unverified) vs local 9.79 (+1.17, 1.5 sigma); held-out frames f52-54 FAIL (-2.1/-16.9/-36.1 px); only 8 fall frames (SAM lost book f55+). Not Gate M. Measurement tests 86 OK fresh. Batch mode in modal_track.py; OWN12 excluded (no free fall).
+- Modal re-read 23:36Z in-app browser: cycle usage $0.80 (OWN01 job ~ $0.02), spend $0, credits header $129.20. Receipt refreshed; batch OWN02-OWN11 (reservation $0.40, last job of the 2-job/$1 standalone envelope) started 23:37Z. First attempt died client-side on a Windows charmap print before admission (no reservation recorded); rerun with PYTHONUTF8=1.
+- S15v-orch171 dispatched (Opus high, thread 01a18f2f-f116-7681-b23c-7860e41b096f, deadline 00:10:23Z / 06:10 Dhaka): owner phone clips accepted by checksum, known-size interview, stored OWN01 g +/- u shown as labelled RECORDED replay instead of failure. S07g dep treated as met via S07i.
+
 ## 2026-10-30T23:20Z — orch: S07g PARTIAL accepted; controller ran real SAM 3.1 on OWN01; S07i dispatched
 
 - S07g-orch167 (Opus high): TIMEBOX PASS; 12 owner clips OWN01-OWN12 in clips.csv (PRIVATE_PROCESSING_ONLY, public pending), sha256/PTS evidence, owner approval receipt, modal_track --approval; measurement tests 82 OK (1 skip) fresh; ff-merged; PARTIAL because S20 GPU admission state was missing (worker correctly refused to fabricate). Colour DIAGNOSTIC only: 10.73 ± 0.41 vs 9.79 (miss; causes listed).
