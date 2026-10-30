@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+OWNER Q17 ANSWERED (Oct30 ~13:28 Dhaka, chat annotation): organizers sent a Baseten API key (in .env) with $100 credit that can
+only call Meta Muse Open; it is not tied to any account, so no dashboard/billing page exists. Credit = owner-confirmed;
+balance unobservable. DISPATCHED S16e-orch108 Sol medium (<=3 small live calls, exact pinned model, no browser sign-in,
+tokens measured / dollars estimated; thread 01a18bb6-61d2-7c63-846c-bf28ede2dccd, deadline 2026-10-30T07:58:55+00:00).
+ACCEPTED S14g-fix7-orch105 DONE (07:28Z; timing PASS; 59 agent tests OK, oracle 84/84; merged 3b07b4e): clause rule (unit
+clause may hold no amount word) + strict "in <units>" binding; replay 30/30 shown, 0 fallback, MET_AMENDED_Q16.
+DISPATCHED R-A-recheck5-orch107 Sol high (thread 01a18bb5-d700-7a32-bd3f-aa54e60c9f56, deadline 2026-10-30T07:58:14+00:00).
+
 ACCEPTED S20-fix4-orch87 DONE (Oct30 07:26Z; timing PASS; worker thread later systemError, no callback; rebased; guardrails 91,
 pipeline 53, measurement 81, agent 52, aws 7 OK; merged incl. cherry-picked fix3 WIP): global Meta reservation, standalone
 Modal guards, one-use parent->child GPU reservation handoff, hash-bound settlement (no manual reset). DISPATCHED
@@ -1160,7 +1168,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
 
-- [ ] Q17 [S16e, Oct30 orch] Baseten is not signed in inside the ChatGPT in-app browser, so the hackathon credit balance
+- [x] Q17 ANSWERED (Koushik, Oct30): key-only $100 credit, Muse Open only, no account/dashboard -> S16e-orch108 live calls. [S16e, Oct30 orch] Baseten is not signed in inside the ChatGPT in-app browser, so the hackathon credit balance
   cannot be confirmed and no live Spark Open search call was made. Action: sign in to Baseten once in the in-app browser
   (whatever account holds the event credit), then reply "baseten signed in". Agent will only read the credit page, then
   make <=3 small calls with exact model meta-models/muse-spark-open-1026. Alternative: reply "skip Baseten" -> S16 uses the
