@@ -1,0 +1,120 @@
+{
+ "check_set": "S22b guest library (GATE_D_CHECKLIST §1 L1-L7)",
+ "run": "S22b-orch149",
+ "label": "DEV pre-candidate rehearsal QA; NOT Gate D of record; no judging-candidate claim",
+ "utc": "2026-10-30T11:55Z-12:03Z",
+ "web": "https://web-dev-cd80.up.railway.app",
+ "web_deploy": "aa539357 (main 7dde2c9 per deployments.json limits; sourceRevision field 67e299a)",
+ "api": "https://api-dev-6091.up.railway.app",
+ "caveat": "IAB session was SIGNED IN as owner (Clerk user menu + Private workspace link visible after hydration); not signed out because sign-out would alter the shared owner session. Guest behaviour proven separately with cookie-less curl (HTTP 200 /library, /workspace 404). Browser results are therefore 'guest-equivalent', not a fresh logged-out profile.",
+ "results": {
+  "L1": {
+   "result": "PASS (caveat)",
+   "detail": "/library 200 text/html, 2.9s cold curl, 2.3s IAB reload; no sign-in redirect; 3 playable/setup + 14 UNAVAILABLE cards; 'PUBLIC · NO ACCOUNT NEEDED'; SIMULATED/SCALE_UNVERIFIED labels on every demo",
+   "shots": [
+    "S22b-L1-library-1280.jpg",
+    "S22b-L1-library-375.jpg"
+   ]
+  },
+  "L2": {
+   "result": "PASS on web / FAIL on api",
+   "detail": "web /api/library/manifest 200 application/json 0.27s (8681 B, parses, hrefs under /api/library/artifacts/). API host /api/library/manifest = 404 (NOT-DEPLOYED on api service; guest is served by web snapshot)"
+  },
+  "L3": {
+   "result": "PASS",
+   "detail": "3/3 artifacts sha256+bytes == declared: projectile 13e00f7f…(16858) pendulum 5fa710ed…(21552) mystery-g record eae05f93…(141)"
+  },
+  "L4": {
+   "result": "PASS",
+   "detail": "Projectile (201 samples) and pendulum (251 samples) open, play, scrub (t=0.1 set OK) at 1280 and 375; 'SIMULATED trajectory — simulator output, not a measurement'; network during open+play = same-origin /api/library/* + Clerk only, no Modal/Meta/Baseten/Fireworks. Replay lasts only 0.20 s / 0.25 s wall (trace length)",
+   "shots": [
+    "S22b-L4-projectile-open-1280.jpg",
+    "S22b-L4-projectile-playing-1280.jpg",
+    "S22b-L4-projectile-scrub0.1-1280.jpg",
+    "S22b-L4-pendulum-open-1280.jpg",
+    "S22b-L4-pendulum-playing-1280.jpg",
+    "S22b-L4-pendulum-end-1280.jpg",
+    "S22b-L4-projectile-open-375.jpg",
+    "S22b-L4-projectile-played-375.jpg",
+    "S22b-L4-pendulum-played-375.jpg"
+   ]
+  },
+  "L5": {
+   "result": "PASS",
+   "detail": "RM02, RM04, RM05, Apollo 15, Bounce, free-fall baseline + 8 other cases show UNAVAILABLE with reason; no invented geometry/viewer"
+  },
+  "L6": {
+   "result": "PASS (with design note)",
+   "detail": "Mystery-g card 'SETUP ONLY'; manifest/artifact have answer_visibility=withheld-until-fit, no answer/g field in any guest response. Card text itself says practice record uses Earth g (recoverable) - not blind test; blind path is /lab",
+   "shots": [
+    "S22b-M-lab-1280.jpg"
+   ]
+  },
+  "L7": {
+   "result": "PARTIAL",
+   "detail": "No leak/stack trace: web returns 400 {status:error,error:{code:invalid_artifact_id}} for deadbeef and ..%2Fmanifest.json (checklist expects 404 artifact_not_found); api host returns 404 for both"
+  },
+  "Mystery_lab": {
+   "result": "FAIL (functional)",
+   "detail": "/lab Mystery-g mode: Run trial -> raw 'local_lab_disabled' text (3.3s); Fit & reveal stays disabled. Mystery-g practice not runnable on dev (no Python bridge). No answer disclosed",
+   "shots": [
+    "S22b-M-lab-run-1280.jpg",
+    "S22b-M-lab-fit-1280.jpg",
+    "S22b-M-lab-375.jpg"
+   ]
+  },
+  "responsive": {
+   "result": "PASS",
+   "detail": "375px: scrollWidth 360 <= 375 on /library, /lab; no horizontal overflow"
+  },
+  "console": {
+   "result": "FAIL (P3)",
+   "detail": "Console error 'Clerk: Failed to load Clerk JS (failed_to_load_clerk_js)' on first load of /library (transient: later loads fetched clerk.browser.js fine); Clerk dev-keys warning on every load"
+  }
+ },
+ "network_nonstatic_requests": [
+  "/library",
+  "/api/library/manifest",
+  "/api/library/artifacts/13e00f7f…",
+  "clerk.accounts.dev (clerk-js, ui, v1/environment, v1/client; token redacted)",
+  "img.clerk.com avatar",
+  "/?_rsc,/lab?_rsc,/sign-in?_rsc prefetches"
+ ],
+ "defects": [
+  {
+   "id": "D1",
+   "sev": "P2",
+   "text": "/lab Run trial shows raw 'local_lab_disabled'; Mystery-g blind path unusable on dev; guest-facing copy needed or hide control"
+  },
+  {
+   "id": "D2",
+   "sev": "P2",
+   "text": "API service has no /api/library/* routes (404); only web serves guest library; checklist L2/L7 as written fail on API host"
+  },
+  {
+   "id": "D3",
+   "sev": "P3",
+   "text": "Invalid artifact id returns 400 invalid_artifact_id on web, checklist expects 404 artifact_not_found"
+  },
+  {
+   "id": "D4",
+   "sev": "P3",
+   "text": "Replays last 0.20-0.25 s real time; play is effectively instantaneous - add speed/slow-mo or loop for demo watchability"
+  },
+  {
+   "id": "D5",
+   "sev": "P3",
+   "text": "Transient Clerk JS load failure console error on first load; dev-keys warning"
+  },
+  {
+   "id": "D6",
+   "sev": "P3",
+   "text": "Desktop 1280 card grid fills only ~60% width (2 cols left-aligned, blank right) - layout polish"
+  },
+  {
+   "id": "D7",
+   "sev": "P3",
+   "text": "Mystery-g card shows Earth-g baseline and says answer recoverable from repo; acceptable if labelled 'practice' but judge may read as spoiler"
+  }
+ ]
+}
