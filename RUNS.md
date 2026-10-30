@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 30, 15:14 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 15:26 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **164 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **166 / 218** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -14,16 +14,16 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- [ ] **S14h** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint Gate A and template-card fallback (30 min)
+- Nothing ready yet: check dependencies and retry holds below.
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
+- [ ] **S04i** — Codex · GPT-6.1 Sol, effort high — Connect private scene repository and mount workspace route (30 min)
 - [ ] **S16g** — Codex · GPT-6.1 Sol, effort medium — Test patch safety and search failures (30 min)
-- [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
-- …and 2 more ready in this lane
+- …and 3 more ready in this lane
 
 **CLAUDE**
-- Nothing ready yet: check dependencies and retry holds below.
+- [~] **S17f** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint report accessibility and fallback evidence (30 min) *(partial: resume it)*
 
 ## Waiting for Koushik
 
@@ -74,7 +74,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (10/10)</summary>
+<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (10/11)</summary>
 
 - [x] **S04a** — Codex · GPT-6.1 Sol, effort medium — Define shell interfaces and fixture mount points (30 min)
 - [x] **S04b** — Codex · GPT-6.1 Sol, effort medium — Create Next.js shell and isolated route layout (30 min)
@@ -86,6 +86,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S04g1** — Codex · GPT-6.1 Sol, effort medium — Harden dev deployment verifier semantic checks (15 min)
 - [x] **S04g2** — Codex · GPT-6.1 Sol, effort medium — Preserve staging destination guards under Python optimization (15 min)
 - [x] **S04h** — Codex (native Claude) · Sonnet 5.5, effort high — Verify sign-in, guest route and dev health (30 min)
+- [ ] **S04i** — Codex · GPT-6.1 Sol, effort high — Connect private scene repository and mount workspace route (30 min)
 
 </details>
 
@@ -228,7 +229,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S14</b> — Scene-understanding and interview agent (8/9)</summary>
+<details><summary><b>S14</b> — Scene-understanding and interview agent (9/9)</summary>
 
 - [x] **S14a** — Codex (native Claude) · Opus 5.5, effort high — Define scene, question and tool-output contracts (30 min)
 - [x] **S14b** — Codex (native Claude) · Opus 5.5, effort high — Integrate Muse Wonder scene understanding (30 min)
@@ -237,7 +238,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S14e** — Codex (native Claude) · Opus 5.5, effort high — Connect Muse Spark trial check (30 min)
 - [x] **S14f** — Codex (native Claude) · Opus 5.5, effort high — Enforce tool-only numbers in replies (30 min)
 - [x] **S14g** — Codex (native Claude) · Opus 5.5, effort high — Run Gate A fixture and thirty-turn suite (30 min)
-- [ ] **S14h** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint Gate A and template-card fallback (30 min)
+- [x] **S14h** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint Gate A and template-card fallback (30 min)
 - [x] **R-A** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate A tool-number enforcement (15 min)
 
 </details>
@@ -283,14 +284,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S18</b> — Demo library with licensed footage (4/10)</summary>
+<details><summary><b>S18</b> — Demo library with licensed footage (5/10)</summary>
 
 - [x] **S18a** — Codex · GPT-6.1 Sol, effort medium — Define library manifest and immutable artifact format (30 min)
 - [x] **S18b** — Codex · GPT-6.1 Sol, effort medium — Precompute free-fall demos (30 min)
 - [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
 - [x] **S18d** — Codex · GPT-6.1 Sol, effort medium — Precompute pendulum and scene demos (30 min)
 - [x] **S18e** — Codex · GPT-6.1 Sol, effort medium — Prepare Apollo and Mystery-g entries (30 min)
-- [ ] **S18f** — Codex · GPT-6.1 Sol, effort medium — Implement guest manifest and artifact endpoint (30 min)
+- [x] **S18f** — Codex · GPT-6.1 Sol, effort medium — Implement guest manifest and artifact endpoint (30 min)
 - [ ] **S18g** — Codex · GPT-6.1 Sol, effort medium — Implement library loading integration (30 min)
 - [ ] **S18h** — Codex · GPT-6.1 Sol, effort medium — Verify licences and approved clip list (30 min)
 - [ ] **S18i** — Codex · GPT-6.1 Sol, effort medium — Measure library load times (30 min)
