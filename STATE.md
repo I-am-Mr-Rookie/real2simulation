@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+Oct30 ~20:05Z OWNER REPLIES (from RUNS.md Reviews): Q18 = "My choice: MIT licenced" -> ANSWERED, MIT for code/docs (clips keep own
+licences); added QUEUE S25f (Sonnet med) to add LICENSE + update README/ATTRIBUTION/checklist; public visibility still needs S25d go-ahead.
+Q19: Koushik replied "What do you mean???" -> question reworded in plain words (which 3 clips, who made them, what A/B mean); still open,
+default B. (RUNS view shows only the first line of a question, which is why the old Q19 was cut off; Q19 now one line.) Dispatched S25f-orch157 (Sonnet med, thread
+01a18e68-9855, dl 20:32:48Z). Running: S04m-orch156, S25f-orch157. Next RID orch158.
+
 Oct30 ~19:56Z: ACCEPTED S25c-orch155 DONE (secret scan: 351 branches/1,158 commits/6,166 blobs + 3,675 tracked files; regex + in-process
 exact .env value match; verdict PASS, 0 real secrets; only false positives = empty .env.example Modal names and public model IDs/URLs;
 358 binary/>8MB blobs, reflog, stashes not scanned; re-run scan.py before S25d. Controller re-checked: no .env credential value in the scan
@@ -1324,11 +1330,9 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
 
-- [ ] Q18 [S25a, Oct30 orch] Project LICENSE for the public repo (needed before submission; repo goes public only with your go-ahead). Options:
-  A (recommended) MIT; B Apache-2.0; C other (name it). Reply "Q18 A/B/C". Default if silent: no licence file, README says PENDING.
-- [ ] Q19 [S24a, Oct30 orch] The demo video would show frames of PD02/RM02/ST03 (licensed; your S02 approval covers local pipeline only and
-  holds public raw-media redistribution). A (recommended) allow short frames with credit lines per ATTRIBUTION.md; B plots/overlays only, no
-  clip frames. Reply "Q19 A" or "Q19 B". Default if silent: B.
+- [x] Q18 ANSWERED (Koushik, Oct31 via RUNS.md: "My choice: MIT licenced") -> MIT for project code/docs; third-party clips keep their own
+  licences (ATTRIBUTION.md). LICENSE file added by S25f. Repo stays private until S25d go-ahead.
+- [ ] Q19 [S24a, Oct30 orch; REWORDED Oct31 after Koushik asked "What do you mean???"] May the PUBLIC demo video show a few seconds of three stock videos made by other people? They are free Pexels clips: PD02 "Foucault Pendulum Swing in Grand Hall" (Alexandre Henry Alves), RM02 "Tracking shot of empty classroom" (Andy Barbour), ST03 "Woman dropping apple on ground" (Roman Odintsov). The Pexels licence allows reuse with credit, but your Oct28 approval (Q7) only let the app process them privately on this computer, so showing them publicly needs your yes. A (recommended): yes, show short snippets with the creator's name on screen and in ATTRIBUTION.md - judges see the real video next to our result. B: no, the video shows only our own charts/3D overlays, never the original footage. Reply "Q19 A" or "Q19 B". Default if silent: B.
 - [x] Q17 ANSWERED (Koushik, Oct30): key-only $100 credit, Muse Open only, no account/dashboard -> S16e-orch108 live calls. [S16e, Oct30 orch] Baseten is not signed in inside the ChatGPT in-app browser, so the hackathon credit balance
   cannot be confirmed and no live Spark Open search call was made. Action: sign in to Baseten once in the in-app browser
   (whatever account holds the event credit), then reply "baseten signed in". Agent will only read the credit page, then

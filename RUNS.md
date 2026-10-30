@@ -1,16 +1,15 @@
 # Runs checklist
 
-Updated Oct 31, 01:52 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 02:03 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **203 / 236** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 2 open reviews
+Progress: **203 / 237** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 1 open reviews
 
 ## Reviews for Koushik
 
-- [ ] Q18 [S25a, Oct30 orch] Project LICENSE for the public repo (needed before submission; repo goes public only with your go-ahead). Options:
-- [ ] Q19 [S24a, Oct30 orch] The demo video would show frames of PD02/RM02/ST03 (licensed; your S02 approval covers local pipeline only and
+- [ ] Q19 [S24a, Oct30 orch; REWORDED Oct31 after Koushik asked "What do you mean???"] May the PUBLIC demo video show a few seconds of three stock videos made by other people? They are free Pexels clips: PD02 "Foucault Pendulum Swing in Grand Hall" (Alexandre Henry Alves), RM02 "Tracking shot of empty classroom" (Andy Barbour), ST03 "Woman dropping apple on ground" (Roman Odintsov). The Pexels licence allows reuse with credit, but your Oct28 approval (Q7) only let the app process them privately on this computer, so showing them publicly needs your yes. A (recommended): yes, show short snippets with the creator's name on screen and in ATTRIBUTION.md - judges see the real video next to our result. B: no, the video shows only our own charts/3D overlays, never the original footage. Reply "Q19 A" or "Q19 B". Default if silent: B.
 
 ## Ready now
 
@@ -21,7 +20,7 @@ Progress: **203 / 236** runs done · 0 in progress · 0 blocked · 1 waiting for
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [ ] **S04m** — Codex (native Claude) · Opus 5.5, effort high — Mount workspace routers, extend API image (+jsonschema pin), set var names, deploy API to dev (30 min)
 - [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
-- …and 2 more ready in this lane
+- …and 3 more ready in this lane
 
 **CLAUDE**
 - [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
@@ -387,13 +386,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S25</b> — README, attribution and public repo (3/5)</summary>
+<details><summary><b>S25</b> — README, attribution and public repo (3/6)</summary>
 
 - [x] **S25a** — Codex · GPT-6.1 Sol, effort medium — Write setup, architecture and Meta usage README (30 min)
 - [x] **S25b** — Codex · GPT-6.1 Sol, effort medium — Write footage attribution and public-package checklist (30 min)
 - [x] **S25c** — Codex · GPT-6.1 Sol, effort medium — Scan tracked files and full Git history (30 min)
 - [ ] **S25d** — Authorize public repository visibility (10 min)
 - [ ] **S25e** — Codex · GPT-6.1 Sol, effort medium — Make approved repo public and verify anonymous links (20 min)
+- [ ] **S25f** — Codex (native Claude) · Sonnet 5.5, effort medium — Add MIT LICENSE (owner Q18) and update README/ATTRIBUTION/checklist (30 min)
 
 </details>
 
