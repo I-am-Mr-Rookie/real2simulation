@@ -1,0 +1,38 @@
+{
+ "captured_at": "2026-10-30T05:16:49.609Z",
+ "target": "https://web-dev-cd80.up.railway.app (Railway dev, existing deploy, no new deploy)",
+ "browser": "ChatGPT in-app browser, viewport 375x812, reset after",
+ "pages": {
+  "/library": {
+   "innerWidth": 375,
+   "scrollWidth": 360,
+   "hscroll": false,
+   "banner": true,
+   "manifestLink": false
+  },
+  "/lab": {
+   "innerWidth": 375,
+   "scrollWidth": 360,
+   "hscroll": false,
+   "banner": true,
+   "manifestLink": false
+  },
+  "/": {
+   "innerWidth": 375,
+   "scrollWidth": 360,
+   "hscroll": false,
+   "banner": true,
+   "manifestLink": false
+  }
+ },
+ "banner_text": "Development build. Synthetic lab results are not calibrated measurements. No uploads are enabled.",
+ "pwa_asset_http": {
+  "/pwa/manifest.webmanifest": 404,
+  "/pwa/sw.js": 404,
+  "/pwa/icon-192.png": 404,
+  "/pwa/icon-512.png": 404,
+  "/pwa/icon-maskable-512.png": 404
+ },
+ "local_unit_tests": "node --test tests/pwa/*.test.mjs: 52 pass 0 fail",
+ "note": "No screenshot file saved (REPL has no fs); /library viewed at 375 visually."
+}
