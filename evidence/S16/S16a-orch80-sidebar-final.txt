@@ -1,0 +1,28 @@
+test_all_requests_and_results_roundtrip_without_mutation (test_contracts.ContractsTest.test_all_requests_and_results_roundtrip_without_mutation) ... ok
+test_all_source_and_provenance_fields_required (test_contracts.ContractsTest.test_all_source_and_provenance_fields_required) ... ok
+test_digest_canonicalizes_mapping_order (test_contracts.ContractsTest.test_digest_canonicalizes_mapping_order) ... ok
+test_empty_patch (test_contracts.ContractsTest.test_empty_patch) ... ok
+test_error_shape_and_no_numbers_on_errors (test_contracts.ContractsTest.test_error_shape_and_no_numbers_on_errors) ... ok
+test_existing_agent_numeric_contract_reused (test_contracts.ContractsTest.test_existing_agent_numeric_contract_reused) ... ok
+test_exported_schemas_are_valid_draft202012 (test_contracts.ContractsTest.test_exported_schemas_are_valid_draft202012) ... ok
+test_invalid_patch_rejected_by_existing_experiment_validator (test_contracts.ContractsTest.test_invalid_patch_rejected_by_existing_experiment_validator) ... ok
+test_invalid_result_spec_uses_sidebar_error (test_contracts.ContractsTest.test_invalid_result_spec_uses_sidebar_error) ... ok
+test_nonfinite_bool_unknown_fields_wrong_version (test_contracts.ContractsTest.test_nonfinite_bool_unknown_fields_wrong_version) ... ok
+test_patch_cannot_change_identity_scene_or_template (test_contracts.ContractsTest.test_patch_cannot_change_identity_scene_or_template) ... ok
+test_patch_is_section_replacement_not_partial_deep_merge (test_contracts.ContractsTest.test_patch_is_section_replacement_not_partial_deep_merge) ... ok
+test_patch_requires_trusted_base (test_contracts.ContractsTest.test_patch_requires_trusted_base) ... ok
+test_patch_result_hash_checks_actual_snapshot_not_python_numeric_equality (test_contracts.ContractsTest.test_patch_result_hash_checks_actual_snapshot_not_python_numeric_equality) ... ok
+test_patch_result_must_be_exact_candidate (test_contracts.ContractsTest.test_patch_result_must_be_exact_candidate) ... ok
+test_rebuild_result_cannot_claim_completion_or_change_digest (test_contracts.ContractsTest.test_rebuild_result_cannot_claim_completion_or_change_digest) ... ok
+test_result_correlation (test_contracts.ContractsTest.test_result_correlation) ... ok
+test_search_filters_duplicates_query_limit_and_synthetic_label (test_contracts.ContractsTest.test_search_filters_duplicates_query_limit_and_synthetic_label) ... ok
+test_stale_patch_and_cross_scene_calls (test_contracts.ContractsTest.test_stale_patch_and_cross_scene_calls) ... ok
+test_unsafe_licenses_urls_and_paths_rejected (test_contracts.ContractsTest.test_unsafe_licenses_urls_and_paths_rejected) ... ok
+test_valid_changed_patch_for_all_experiment_templates (test_contracts.ContractsTest.test_valid_changed_patch_for_all_experiment_templates) ... ok
+test_wire_parser_reuses_duplicate_key_and_nonfinite_rejection (test_contracts.ContractsTest.test_wire_parser_reuses_duplicate_key_and_nonfinite_rejection) ... ok
+test_zero_search_results_and_every_canonical_license (test_contracts.ContractsTest.test_zero_search_results_and_every_canonical_license) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 14.519s
+
+OK
