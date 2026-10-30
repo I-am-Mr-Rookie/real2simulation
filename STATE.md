@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+S16e-orch103 BLOCKED on owner action (Oct30 ~07:17Z): Baseten is NOT signed in inside the ChatGPT in-app browser (redirects
+to "Sign in to Baseten"); credited balance unverifiable; 0 inference requests. Controller resource_stop exception receipt
+Run-System/Runs/ORCH-20261029-1654/EXCEPTION-S16e-orch103.md. Owner question Q17 added. S16f-h wait on S16e.
+
 ACCEPTED S16d-orch98 DONE (Oct30 07:10Z; timing PASS; 72 sidebar-tools tests OK; merged): offline Baseten library-search
 adapter, exact pinned model ID, fail-closed unavailable results, no live call. QUEUE S16d -> DONE. DISPATCHED S16e-orch103
 Sol medium: verify Baseten credit read-only first; only if confirmed, <=3 small live requests, cost recorded; no model
@@ -1135,6 +1139,11 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
 
+- [ ] Q17 [S16e, Oct30 orch] Baseten is not signed in inside the ChatGPT in-app browser, so the hackathon credit balance
+  cannot be confirmed and no live Spark Open search call was made. Action: sign in to Baseten once in the in-app browser
+  (whatever account holds the event credit), then reply "baseten signed in". Agent will only read the credit page, then
+  make <=3 small calls with exact model meta-models/muse-spark-open-1026. Alternative: reply "skip Baseten" -> S16 uses the
+  Fireworks/Meta Spark fallback path (S16f/S16h) and drops the open-weight bonus claim if both open providers fail.
 - [x] Q15 ANSWERED A (Koushik, Oct29: "A"). Applied: S12a deps unlocked; constraints in DECISIONS_LOG. [S12 unlock, Oct29 orch] Bottleneck: S12a (prediction) waits on step S07, and S07 is
   incomplete only because S02f (licensed calibrated Earth-fall clips) is PARTIAL with no lead.
   S12 gates S16, S18 (demo library), S21 (benchmark), S24 (video), S25. Options: A (recommended)
