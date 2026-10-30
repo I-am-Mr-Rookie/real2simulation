@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+Oct30 ~20:12Z: ACCEPTED S25f-orch157 DONE (MIT LICENSE, text equals installed react/LICENSE after copyright normalise; README/ATTRIBUTION
+say MIT covers own code/docs only; checklist LICENSE row closed (Q18); Q19 A applied: PD02/RM02/ST03 public short demo snippets with on-screen
+credit, other clips unchanged, PJ03 blocked; visibility PENDING S25d; timebox PASS; diff within Owns). Note for S25d: Koushik asked how to
+authorize; controller advised waiting until S23 deploy URL + video exist and a fresh scan, then a one-line go-ahead naming repo/account, push main only.
+Running: S04o-orch158. Next RID orch159.
+
 Oct30 ~20:10Z: ACCEPTED S04m-orch156 DONE (api app mounts jobs + analysis routers on one store; requirements +numpy/jsonschema pins;
 api.Dockerfile build-time import smoke; stage.py api allowlist = traced import closure + runtime data; verify.py stale texts fixed + internal
 route 401 check; Railway DEV: WORKSPACE_INTERNAL_TOKEN (api+web, names only), WORKSPACE_API_URL, WORKSPACE_UPLOAD_DIR=/tmp; REDIS_URL

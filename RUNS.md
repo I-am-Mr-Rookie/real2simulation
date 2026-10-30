@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 02:08 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 02:09 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **204 / 237** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **205 / 237** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -20,7 +20,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
 - [ ] **S22c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 1 (30 min)
-- …and 2 more ready in this lane
+- …and 1 more ready in this lane
 
 **CLAUDE**
 - [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
@@ -387,14 +387,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S25</b> — README, attribution and public repo (3/6)</summary>
+<details><summary><b>S25</b> — README, attribution and public repo (4/6)</summary>
 
 - [x] **S25a** — Codex · GPT-6.1 Sol, effort medium — Write setup, architecture and Meta usage README (30 min)
 - [x] **S25b** — Codex · GPT-6.1 Sol, effort medium — Write footage attribution and public-package checklist (30 min)
 - [x] **S25c** — Codex · GPT-6.1 Sol, effort medium — Scan tracked files and full Git history (30 min)
 - [ ] **S25d** — Authorize public repository visibility (10 min)
 - [ ] **S25e** — Codex · GPT-6.1 Sol, effort medium — Make approved repo public and verify anonymous links (20 min)
-- [ ] **S25f** — Codex (native Claude) · Sonnet 5.5, effort medium — Add MIT LICENSE (owner Q18) and update README/ATTRIBUTION/checklist (30 min)
+- [x] **S25f** — Codex (native Claude) · Sonnet 5.5, effort medium — Add MIT LICENSE (owner Q18) and update README/ATTRIBUTION/checklist (30 min)
 
 </details>
 
