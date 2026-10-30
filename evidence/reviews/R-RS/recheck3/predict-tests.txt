@@ -1,0 +1,10 @@
+test_committed_st03_prediction (test_predict.PredictTests.test_committed_st03_prediction) ... ok
+test_prediction_identical_whatever_the_heldout_values (test_predict.PredictTests.test_prediction_identical_whatever_the_heldout_values) ... ok
+test_projectile_never_reads_heldout_and_is_hashed_before_scoring (test_predict.PredictTests.test_projectile_never_reads_heldout_and_is_hashed_before_scoring) ... ok
+test_synthetic_bounce_reflects_with_restitution_without_reading_heldout (test_predict.PredictTests.test_synthetic_bounce_reflects_with_restitution_without_reading_heldout) ... ok
+test_trace_is_immutable_and_tamper_or_reseal_refused (test_predict.PredictTests.test_trace_is_immutable_and_tamper_or_reseal_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.049s
+
+OK

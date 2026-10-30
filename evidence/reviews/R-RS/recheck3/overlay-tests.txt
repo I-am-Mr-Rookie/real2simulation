@@ -1,0 +1,13 @@
+test_committed_overlays_validate_against_sources (test_overlay.CommittedEvidenceTest.test_committed_overlays_validate_against_sources) ... ok
+test_build_refuses_prediction_from_other_boundary (test_overlay.OverlayTest.test_build_refuses_prediction_from_other_boundary) ... ok
+test_rejects_misaligned_timebase (test_overlay.OverlayTest.test_rejects_misaligned_timebase) ... ok
+test_rejects_mutated_trace_and_gate_claim (test_overlay.OverlayTest.test_rejects_mutated_trace_and_gate_claim) ... ok
+test_rejects_other_clip_or_source (test_overlay.OverlayTest.test_rejects_other_clip_or_source) ... ok
+test_roundtrip_returns_immutable_traces (test_overlay.OverlayTest.test_roundtrip_returns_immutable_traces) ... ok
+test_continuation_tracks_synthetic_truth_without_reading_suffix (test_overlay.PendulumTest.test_continuation_tracks_synthetic_truth_without_reading_suffix) ... ok
+test_frequency_record_required (test_overlay.PendulumTest.test_frequency_record_required) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.128s
+
+OK

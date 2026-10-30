@@ -1,0 +1,21 @@
+test_exact_truth_scores_zero_and_loader_runs_after_checks (test_score.ScoreTests.test_exact_truth_scores_zero_and_loader_runs_after_checks) ... ok
+test_f1_overlay_forged_suffix_hash_refused (test_score.ScoreTests.test_f1_overlay_forged_suffix_hash_refused) ... ok
+test_f1_wrong_clip_wrong_training_and_precommitted_subset_refused_before_read (test_score.ScoreTests.test_f1_wrong_clip_wrong_training_and_precommitted_subset_refused_before_read) ... ok
+test_f1r_metadata_only_relabel_refused_before_read (test_score.ScoreTests.test_f1r_metadata_only_relabel_refused_before_read) ... ok
+test_f2_one_synthetic_projectile_aliased_three_times_is_shortfall (test_score.ScoreTests.test_f2_one_synthetic_projectile_aliased_three_times_is_shortfall) ... ok
+test_f2r_nonpublic_synthetic_fixtures_labelled_image_derived_are_shortfall (test_score.ScoreTests.test_f2r_nonpublic_synthetic_fixtures_labelled_image_derived_are_shortfall) ... ok
+test_f3_wrong_record_object_is_unscored_shortfall (test_score.ScoreTests.test_f3_wrong_record_object_is_unscored_shortfall) ... ok
+test_f4_nonfinite_observations_and_metrics_rejected (test_score.ScoreTests.test_f4_nonfinite_observations_and_metrics_rejected) ... ok
+test_gate_needs_every_category (test_score.ScoreTests.test_gate_needs_every_category) ... ok
+test_pts_mismatch_low_coverage_and_rms (test_score.ScoreTests.test_pts_mismatch_low_coverage_and_rms) ... ok
+test_tampered_seal_or_uncommitted_prediction_never_reads_suffix (test_score.ScoreTests.test_tampered_seal_or_uncommitted_prediction_never_reads_suffix) ... ok
+test_f2a_only_positive_scoped_grant_in_authoritative_block (test_score.TrackingEvidenceTests.test_f2a_only_positive_scoped_grant_in_authoritative_block) ... ok
+test_f2l_finite_licence_allowlist (test_score.TrackingEvidenceTests.test_f2l_finite_licence_allowlist) ... ok
+test_f2r2_known_public_id_true_sha_synthetic_observations_are_shortfall (test_score.TrackingEvidenceTests.test_f2r2_known_public_id_true_sha_synthetic_observations_are_shortfall) ... ok
+test_f2r2_real_evidence_rechecked_and_not_transplantable (test_score.TrackingEvidenceTests.test_f2r2_real_evidence_rechecked_and_not_transplantable) ... ok
+test_f2r2_wrong_source_tracker_payload_and_mutated_real_record_refused (test_score.TrackingEvidenceTests.test_f2r2_wrong_source_tracker_payload_and_mutated_real_record_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 1.393s
+
+OK

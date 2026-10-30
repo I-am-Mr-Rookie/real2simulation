@@ -1,0 +1,12 @@
+test_committed_st03_record (test_boundary.BoundaryTests.test_committed_st03_record) ... ok
+test_fitter_never_sees_suffix (test_boundary.BoundaryTests.test_fitter_never_sees_suffix) ... ok
+test_frozen_prefix_and_suffix_detect_tampering (test_boundary.BoundaryTests.test_frozen_prefix_and_suffix_detect_tampering) ... ok
+test_invalid_or_leaking_splits_rejected (test_boundary.BoundaryTests.test_invalid_or_leaking_splits_rejected) ... ok
+test_outputs_say_gate_m_not_met_and_no_g (test_boundary.BoundaryTests.test_outputs_say_gate_m_not_met_and_no_g) ... ok
+test_split_keeps_suffix_values_out_of_boundary (test_boundary.BoundaryTests.test_split_keeps_suffix_values_out_of_boundary) ... ok
+test_untracked_suffix_identities_are_sealed (test_boundary.BoundaryTests.test_untracked_suffix_identities_are_sealed) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.006s
+
+OK

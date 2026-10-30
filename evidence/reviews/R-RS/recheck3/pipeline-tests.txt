@@ -1,0 +1,13 @@
+test_budget_guard (test_gpu_stages.GpuStages.test_budget_guard) ... ok
+test_jobrunner_retry_and_no_duplicate_dispatch (test_gpu_stages.GpuStages.test_jobrunner_retry_and_no_duplicate_dispatch)
+Failed segment retries once; resumed/duplicate jobs reuse out:<key> so no paid stage dispatches twice. ... ok
+test_reconstruct_errors_readable (test_gpu_stages.GpuStages.test_reconstruct_errors_readable) ... ok
+test_reconstruct_validated_output (test_gpu_stages.GpuStages.test_reconstruct_validated_output) ... ok
+test_sam_call_cli_reuse_retry_and_bad_input (test_gpu_stages.GpuStages.test_sam_call_cli_reuse_retry_and_bad_input)
+Parameterized S07b CLI: clean raw reused (no 2nd dispatch); errored raw moved aside + redispatched; bad input not retried. ... ok
+test_segment_validates_and_rejects (test_gpu_stages.GpuStages.test_segment_validates_and_rejects) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.646s
+
+OK
