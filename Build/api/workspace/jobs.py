@@ -35,17 +35,48 @@ _JOB = re.compile(r"job_[0-9a-f]{32}")
 # S13h stage name -> (contract stage, result key holding that stage's output sha256). keyframes: manifest bytes.
 _OUT = {"validate": ("validate", "sha256"), "keyframes": ("keyframes", None), "segment": ("segment", "segmentation_sha256"),
         "reconstruct": ("reconstruct", "reconstruction_sha256"), "viewable": ("package", "scene_sha256")}
+# S15v: owner phone clips (OWNER_RECORDED, PRIVATE_PROCESSING_ONLY in clips.csv). Hashes + the stored S07i result are a
+# tracked copy (the API image ships Build/, not evidence/S07); tests/api-workspace re-derives it from the evidence files.
+OWNER_CLIPS = Path(__file__).with_name("owner_clips.json")
+SCALE_LABEL = "user-declared, not verified"
+
+
+@functools.cache
+def owner_clips(root=ROOT):
+    """{sha256: clip_id} for 30 fps clips.csv rows with status OWNER_RECORDED and a PRIVATE_PROCESSING_ONLY owner grant."""
+    with open(root / "clips.csv", encoding="utf-8", newline="") as f:
+        rows = {r["clip_id"]: r for r in csv.DictReader(f)
+                if r["status"] == "OWNER_RECORDED" and r["owner_approved"].startswith("PRIVATE_PROCESSING_ONLY")
+                and r["file_fps"] == "30/1"}
+    clips = json.loads(OWNER_CLIPS.read_text(encoding="utf-8"))["clips"]
+    return {e["sha256"]: c for c, e in clips.items() if c in rows and re.fullmatch(r"[0-9a-f]{64}", e.get("sha256", ""))}
+
+
+def owner_measurement(clip_id):
+    """Job result for an owner clip: the stored S07i MEASURED result as a labelled RECORDED replay, else an explicit abstain."""
+    e = json.loads(OWNER_CLIPS.read_text(encoding="utf-8"))["clips"].get(clip_id, {})
+    base = {"clip_id": clip_id, "input_label": "OWNER_RECORDED / RECORDED",
+            "scale": {"reference": e.get("scale_reference"), "value_m": e.get("scale_value_m"), "label": SCALE_LABEL}}
+    m = e.get("measurement")
+    if not m:
+        return {**base, "status": "abstain", "label": "UNCERTAIN: no measurement",
+                "message": "No stored measurement for this clip and tracking does not run in the product yet; "
+                           "g is not reported (abstain, not an error)."}
+    return {**base, "status": "recorded", "label": "RECORDED replay of a MEASURED result", **m,
+            "caveat": f"Held-out prediction FAILS (RMSE {m['held_out_rmse_px']} px >> 2 px): a MEASURED value with a "
+                      "failed held-out check, not a validated measurement."}
 
 
 @functools.cache
 def approved_shas(root=ROOT):
-    """{sha256: clip_id} for clips.csv rows that the S02 owner grant approves; hashes come from the tracked registry."""
+    """{sha256: clip_id} for clips.csv rows that the S02 owner grant approves (tracked registry hashes) + owner_clips()."""
     with open(root / "clips.csv", encoding="utf-8", newline="") as f:
         listed = {r["clip_id"] for r in csv.DictReader(f)}
     grant = (root / APPROVAL).read_text(encoding="utf-8")
     files = json.loads((root / REGISTRY).read_text(encoding="utf-8"))["files"]
     return {e["sha256"]: e["clip_id"] for e in files
-            if e.get("clip_id") in listed and approved(e["clip_id"], grant) and re.fullmatch(r"[0-9a-f]{64}", e.get("sha256", ""))}
+            if e.get("clip_id") in listed and approved(e["clip_id"], grant) and re.fullmatch(r"[0-9a-f]{64}", e.get("sha256", ""))
+            } | owner_clips(root)
 
 
 def load_recording(input_sha256, rec=RECORDING):
@@ -162,7 +193,7 @@ def _upload_error(exc: UploadError):
     return error(422, exc.code, str(exc), decision=exc.decision, committed_bytes=exc.committed_bytes)
 
 
-def create_router(store=None, uploads=None, shas=None, recording=RECORDING, understood=UNDERSTOOD) -> APIRouter:
+def create_router(store=None, uploads=None, shas=None, recording=RECORDING, understood=UNDERSTOOD, owners=owner_clips) -> APIRouter:
     store = store if store is not None else default_store()
     uploads = uploads or UploadService(os.environ.get("WORKSPACE_UPLOAD_DIR") or Path(tempfile.gettempdir()) / "r2s-uploads")
     shas = approved_shas if shas is None else shas
@@ -199,6 +230,8 @@ def create_router(store=None, uploads=None, shas=None, recording=RECORDING, unde
         session = call(uploads.complete, owner, upload_id)
         job_id = session["job_id"]
         runner, prov = recorded_runner(store, session["sha256"], recording, understood)
+        if (clip := owners().get(session["sha256"])) is not None:  # S15v: no in-product tracking; replay or abstain
+            prov["measurement"] = owner_measurement(clip)
         store.set(f"job:{job_id}:provenance", json.dumps(prov))
         store.set(f"job:{job_id}:input", session["sha256"])
         store.set(f"job:{job_id}:owner", owner)  # last: owned() never sees an owner without provenance

@@ -1,0 +1,110 @@
+{
+ "_note": "S15v: tracked copy of evidence/S07/S07g/clips-sha256.json hashes + S07i stored result (API image ships Build/, not evidence/S07). tests/api-workspace re-derives it.",
+ "clips": {
+  "OWN01": {
+   "sha256": "6644eec656023d413d46368f2da7570d32767367d40daa5cef177f92bd9aafaa",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028,
+   "measurement": {
+    "source": "evidence/S07/S07i/result-own01.json",
+    "source_sha256": "37e671f03703a860d97c020575ccdbf77335a9dbf301500e9adeb75f1842a82c",
+    "measured_label": "MEASURED (owner clip OWN01, user-declared scale 0.2028 m, phone clock not externally verified)",
+    "g": 10.96,
+    "u": 0.77,
+    "unit": "m/s^2",
+    "held_out_rmse_px": 23.0
+   }
+  },
+  "OWN02": {
+   "sha256": "f796b320db7fbf43e0bbe447b42dca5024e34f47992f118e3431bb99968a68a1",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  },
+  "OWN03": {
+   "sha256": "d80951dbad85f38da6b0568260029cdadfd353706a058ec40d6753fa3f9723e7",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  },
+  "OWN04": {
+   "sha256": "e4a2ba304a2fe3d50d91dc755d1b204a16e6196dcffeb3028f8a42c3b8a8d4c4",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  },
+  "OWN05": {
+   "sha256": "e0cda2e50582b2d1a366d5f83f49211a6cd995d3fd7ffe1cd46bb011eb8b5632",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  },
+  "OWN06": {
+   "sha256": "ed224c39ef210a157e07ed048cc1a96dc2d548c81afe7c60d17e99859f44e064",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  },
+  "OWN07": {
+   "sha256": "5990e309ba4bd999ee1acca540fc93b5cabfdee2d3d7d4fe9a28ad1c60a695f8",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  },
+  "OWN08": {
+   "sha256": "a11eb37f032aef1e4236c7188a24514714297b95d849f9a0f9d16d3c088d1af0",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  },
+  "OWN09": {
+   "sha256": "09fb00f65dfccc056d92bf6e669794335b5e3294697cd04fc33ffad1cf501873",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  },
+  "OWN10": {
+   "sha256": "f3cc9e5c9602c9ba52cc9bce04bcbf77a2cb85751c998874b6cdeecaf3af4f75",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  },
+  "OWN11": {
+   "sha256": "3def2d63062a91d1ec5a3ed61824145aceac3372984ed5c3688f4eb12ca58996",
+   "r_frame_rate": "30/1",
+   "width": 478,
+   "height": 850,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  },
+  "OWN12": {
+   "sha256": "956f1f2062dcf49d9ab1a026be158fd051b72ffde841e5b4f2b07ba3b8ba45b8",
+   "r_frame_rate": "30/1",
+   "width": 1080,
+   "height": 1920,
+   "scale_reference": "book cover horizontal edge in fall plane",
+   "scale_value_m": 0.2028
+  }
+ }
+}

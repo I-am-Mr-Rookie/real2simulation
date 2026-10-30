@@ -28,6 +28,11 @@ Q16_LABEL = "scale unverified, not setup-validated"
 # Owner Q20=A: Run on a Q16 scene is only a labelled what-if; this exact label travels with run/fit/report numbers.
 WHAT_IF_LABEL = "SIMULATED what-if of your described setup; scale unverified; not measured from the clip"
 _NO_BUNDLE = "$.scene: invalid authoritative bundle:"
+# S15v: one free-text question for an object of known size; its answer is user-declared scale, never verified.
+KNOWN_SIZE = {"id": "known_size", "kind": "free_text", "chips": [], "prompt": [{"type": "text", "text":
+              "Name one object of known size in the fall plane and its length with units, e.g. book cover edge in cm."}]}
+_LENGTH = re.compile(r"(\d+(?:\.\d+)?)\s*(mm|cm|m)\b", re.I)
+SCALE_LABEL_USER = "user-declared, not verified"
 # The exact answers_to_spec code with Gate A's spec_only stand-in (numeric validate()) as validate_setup; no global patch.
 _numeric_answers_to_spec = types.FunctionType(
     interview.answers_to_spec.__code__,
@@ -37,6 +42,18 @@ _numeric_answers_to_spec = types.FunctionType(
 
 def _no_scenes(owner: str, scene_id: str):
     return None  # shortcut: no scene store until S13i injects one; every scene is NOT_FOUND
+
+
+def user_scale(answer: Any) -> dict[str, Any] | None:
+    """known_size answer {text: 'book cover edge, 20.28 cm'} -> labelled user-declared scale, or an abstain (never an error)."""
+    if answer is None:
+        return None
+    text = answer.get("text") if isinstance(answer, dict) else None
+    m = _LENGTH.search(text) if isinstance(text, str) else None
+    if not m or float(m[1]) <= 0:
+        return {"status": "abstain", "label": "UNCERTAIN: no usable known size; metric scale unknown"}
+    length_m = float(m[1]) / {"mm": 1000, "cm": 100, "m": 1}[m[2].lower()]
+    return {"status": "declared", "object": text.strip()[:200], "length_m": length_m, "label": SCALE_LABEL_USER}
 
 
 def _scene(scenes: SceneResolver, owner: str, scene_id: str):
@@ -79,9 +96,12 @@ def create_router(scenes: SceneResolver = _no_scenes) -> APIRouter:
     def questions(scene_id: str, owner: str = Depends(require_owner)):
         base_spec, _, _ = _scene(scenes, owner, scene_id)
         try:
-            return interview.questions(scene_id, base_spec.get("template"))
+            out = interview.questions(scene_id, base_spec.get("template"))
         except AgentContractError as exc:
             raise error(422, "INVALID_INPUT", "no interview for this scene", errors=list(exc.issues))
+        if len(out.get("questions", [])) < 3:  # web parseQuestions allows at most 3
+            out = {**out, "questions": [*out["questions"], KNOWN_SIZE]}
+        return out
 
     @router.post("/scenes/{scene_id}/spec")
     def spec(scene_id: str, body: Any = Body(...), owner: str = Depends(require_owner)):
@@ -89,6 +109,9 @@ def create_router(scenes: SceneResolver = _no_scenes) -> APIRouter:
         answers = body.get("answers") if isinstance(body, dict) else None
         if not isinstance(answers, dict):
             raise error(422, "INVALID_INPUT", "body must be {answers: {...}}", ok=False, errors=["answers: expected object"])
+        answers = dict(answers)
+        scale = user_scale(answers.pop(KNOWN_SIZE["id"], None))
+        extra = {"user_scale": scale} if scale else {}
         try:
             validated = interview.answers_to_spec(base_spec, scene, root, answers)
         except AgentContractError as exc:  # invalid answers never fall back to default numbers
@@ -100,8 +123,8 @@ def create_router(scenes: SceneResolver = _no_scenes) -> APIRouter:
             except AgentContractError as exc2:  # answers_to_spec wraps validate()'s ValueError
                 raise error(422, "INVALID_INPUT", "spec did not validate", ok=False, errors=list(exc2.issues))
             return {"ok": True, "spec": validated, "validated_setup": _what_if_artifact(validated), "label": Q16_LABEL,
-                    "setup_validated": False, "what_if_label": WHAT_IF_LABEL}
-        return {"ok": True, "spec": validated, "validated_setup": _s10_artifact(validated, scene)}
+                    "setup_validated": False, "what_if_label": WHAT_IF_LABEL, **extra}
+        return {"ok": True, "spec": validated, "validated_setup": _s10_artifact(validated, scene), **extra}
 
     @router.post("/fit")
     def fit(body: Any = Body(...)):

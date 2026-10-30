@@ -13,7 +13,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from Build.agent import interview
-from Build.api.workspace.analysis import WHAT_IF_LABEL, create_router
+from Build.api.workspace.analysis import KNOWN_SIZE, WHAT_IF_LABEL, create_router
 from Build.fitter.api import handle
 from Build.reports.render import _fmt
 from Build.instruments.synthetic import ruler_observation, stopwatch_observation
@@ -75,14 +75,24 @@ class AnalysisRouterTests(unittest.TestCase):
     def test_questions_owner_scoped_and_from_interview(self):
         r = self.get_q()
         self.assertEqual(r.status_code, 200, r.text)
-        self.assertEqual(r.json(), interview.questions(SCENE, "free_fall"))
+        base = interview.questions(SCENE, "free_fall")  # S15v: + one known-size question (web allows <= 3)
+        self.assertEqual(r.json(), {**base, "questions": [*base["questions"], KNOWN_SIZE]})
+        self.assertLessEqual(len(r.json()["questions"]), 3)
         self.assertEqual(self.code(self.get_q({**AUTH, "x-workspace-owner": "user_other"}), 404), "NOT_FOUND")
         self.assertEqual(self.code(self.get_q(scene="bad%20id"), 404), "NOT_FOUND")
 
     def test_spec_validates_via_interview_and_never_defaults(self):
         url = f"/internal/workspace/scenes/{SCENE}/spec"
+        # S15v: known-size answer -> user-declared scale (labelled), stripped before answers_to_spec; junk -> abstain, not 422.
+        r = self.client.post(url, headers=AUTH, json={"answers": {**ANSWERS, "known_size": {"text": "book cover edge, 20.28 cm"}}})
+        self.assertEqual(r.status_code, 200, r.text)
+        self.assertEqual(r.json()["user_scale"], {"status": "declared", "object": "book cover edge, 20.28 cm",
+                                                  "length_m": 0.2028, "label": "user-declared, not verified"})
+        r = self.client.post(url, headers=AUTH, json={"answers": {**ANSWERS, "known_size": {"text": "a book"}}})
+        self.assertEqual((r.status_code, r.json()["user_scale"]["status"]), (200, "abstain"))
         r = self.client.post(url, headers=AUTH, json={"answers": ANSWERS})
         self.assertEqual(r.status_code, 200, r.text)
+        self.assertNotIn("user_scale", r.json())
         spec, scene = setup("free_fall")
         expected = interview.answers_to_spec(spec, scene, BUNDLE, ANSWERS)
         artifact = {"artifact_version": "s10-validated-setup-v1", "validation": "validate_setup",

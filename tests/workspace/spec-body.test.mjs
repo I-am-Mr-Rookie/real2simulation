@@ -81,3 +81,31 @@ test('RECORDED provenance stage labels and UTC render in the job panel', () => {
   assert.match(aside, /understand: RECORDED S14g-fix3 @ 2026-10-29T00:00:00Z/);
 });
 
+
+// S15v: owner phone clip -> stored MEASURED result replay (or abstain) in the job panel; known-size answer -> labelled scale.
+test('owner clip measurement renders g ± u with labels and caveat, or an abstain message', () => {
+  const { ctl } = walk(json(200, {}));
+  const panel = (measurement) => strings(renderWorkspace(h, layoutOf(ctl.state, { audience: 'signed-in' }), { status: 'empty', error: null }, null, undefined,
+    undefined, undefined, undefined, undefined, undefined, undefined, undefined, { label: 'RECORDED S13h-orch46', measurement })
+    .children.find((c) => c?.props['data-slot'] === 'job-status')).join('|');
+  const scale = { reference: 'book cover horizontal edge in fall plane', value_m: 0.2028, label: 'user-declared, not verified' };
+  const rec = panel({ clip_id: 'OWN01', input_label: 'OWNER_RECORDED / RECORDED', status: 'recorded', label: 'RECORDED replay of a MEASURED result',
+    g: 10.96, u: 0.77, unit: 'm/s^2', measured_label: 'MEASURED (owner clip OWN01)', source: 'evidence/S07/S07i/result-own01.json',
+    caveat: 'Held-out prediction FAILS (RMSE 23 px >> 2 px)', scale });
+  assert.match(rec, /g = 10\.96 ± 0\.77 m\/s\^2/);
+  assert.match(rec, /source evidence\/S07\/S07i\/result-own01\.json/);
+  assert.match(rec, /Held-out prediction FAILS/);
+  assert.match(rec, /= 0\.2028 m \(user-declared, not verified\)/);
+  const ab = panel({ clip_id: 'OWN02', input_label: 'OWNER_RECORDED / RECORDED', status: 'abstain', label: 'UNCERTAIN: no measurement', message: 'g is not reported (abstain, not an error).', scale });
+  assert.match(ab, /UNCERTAIN: no measurement/);
+  assert.match(ab, /abstain, not an error/);
+  assert.doesNotMatch(ab, /g = /);
+});
+
+test('known-size user_scale joins the verbatim spec label', async () => {
+  const { ctl } = walk(json(200, { ok: true, spec: { t: 1 }, validated_setup: { t: 1 }, label: 'scale unverified, not setup-validated',
+    user_scale: { status: 'declared', object: 'book cover edge, 20.28 cm', length_m: 0.2028, label: 'user-declared, not verified' } }));
+  await answer(ctl);
+  assert.equal(ctl.snapshot().specLabel, 'scale unverified, not setup-validated; scale book cover edge, 20.28 cm = 0.2028 m (user-declared, not verified)');
+});
+

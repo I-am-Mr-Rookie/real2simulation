@@ -19,7 +19,7 @@ from fastapi import FastAPI
 from fastapi.testclient import TestClient
 
 from Build.api.workspace import analysis
-from Build.api.workspace.jobs import (LABEL, RECORDING, UNDERSTAND_LABEL, UNDERSTOOD, approved_shas, create_router,
+from Build.api.workspace.jobs import (LABEL, OWNER_CLIPS, RECORDING, UNDERSTAND_LABEL, UNDERSTOOD, approved_shas, create_router, owner_clips,
                                       load_recording, load_understanding, recorded_runner, scene_resolver, shell_scene)
 from Build.pipeline.jobs import MemoryStore
 from Build.pipeline.uploads import UploadService
@@ -160,7 +160,8 @@ class JobsRouterTests(unittest.TestCase):
         rm04 = json.loads(self.und.read_text(encoding="utf-8"))["specs"][0]
         q = self.client.get(f"/internal/workspace/scenes/{job_id}/questions", headers=AUTH)
         self.assertEqual(q.status_code, 200, q.text)
-        self.assertEqual(q.json(), analysis.interview.questions(job_id, rm04["spec"]["template"]))
+        base = analysis.interview.questions(job_id, rm04["spec"]["template"])
+        self.assertEqual(q.json(), {**base, "questions": [*base["questions"], analysis.KNOWN_SIZE]})
         for path in ("questions", "spec"):
             r = (self.client.get if path == "questions" else self.client.post)(
                 f"/internal/workspace/scenes/{job_id}/{path}", headers=OTHER_AUTH,
@@ -191,6 +192,45 @@ class JobsRouterTests(unittest.TestCase):
         self.assertEqual(out["job"]["status"], "failed")
         self.assertEqual(out["job"]["error"]["code"], "DEPENDENCY_UNAVAILABLE")
         self.assertEqual(out["provenance"]["recorded_stages"], [])
+        self.assertNotIn("measurement", out["provenance"])  # not an owner clip
+
+    def owner_app(self, clip):
+        app = FastAPI()
+        self.store = MemoryStore()
+        app.include_router(create_router(self.store, UploadService(self.tmp / "up"), lambda: {BLOB_SHA: clip},
+                                         self.tmp / "absent", self.und, owners=lambda: {BLOB_SHA: clip}))
+        return TestClient(app)
+
+    def test_owner_clip_recorded_measurement_or_abstain(self):  # S15v
+        out = self.finish(self.owner_app("OWN01"))
+        m = out["provenance"]["measurement"]
+        self.assertEqual((m["status"], m["g"], m["u"], m["unit"]), ("recorded", 10.96, 0.77, "m/s^2"))
+        self.assertEqual((m["input_label"], m["source"]), ("OWNER_RECORDED / RECORDED", "evidence/S07/S07i/result-own01.json"))
+        self.assertTrue(m["measured_label"].startswith("MEASURED"))
+        self.assertIn("Held-out prediction FAILS", m["caveat"])
+        self.assertEqual(m["scale"], {"reference": "book cover horizontal edge in fall plane", "value_m": 0.2028,
+                                      "label": "user-declared, not verified"})
+        c = self.owner_app("OWN02")
+        out = self.finish(c)
+        self.assertEqual((out["provenance"]["measurement"]["status"], out["provenance"]["measurement"]["label"]),
+                         ("abstain", "UNCERTAIN: no measurement"))
+        doc = c.get(f"/internal/workspace/jobs/{out['job']['job_id']}", headers=AUTH).json()  # persists for polling
+        self.assertEqual(doc["provenance"]["measurement"]["status"], "abstain")
+
+    def test_owner_clips_match_evidence_and_are_approved(self):  # tracked copy must equal the S07g/S07i evidence
+        reg = json.loads((ROOT / "evidence/S07/S07g/clips-sha256.json").read_text(encoding="utf-8"))
+        clips = json.loads(OWNER_CLIPS.read_text(encoding="utf-8"))["clips"]
+        self.assertEqual({c: e["sha256"] for c, e in clips.items()}, {c: reg[c]["sha256"] for c in clips})
+        self.assertTrue(all(e["r_frame_rate"] == "30/1" and e["height"] > e["width"] for e in clips.values()))  # 30 fps portrait
+        m = clips["OWN01"]["measurement"]
+        raw = (ROOT / m["source"]).read_bytes()
+        res = json.loads(raw)
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), m["source_sha256"])
+        self.assertEqual((m["g"], m["u"]), (round(res["result"]["g"], 2), round(res["result"]["u_total"], 2)))
+        self.assertEqual(m["held_out_rmse_px"], round(res["mask_centroid"]["held_out"]["rmse_px"], 1))
+        shas = approved_shas()
+        self.assertEqual(shas.get(clips["OWN01"]["sha256"]), "OWN01")
+        self.assertEqual(owner_clips(), {e["sha256"]: c for c, e in clips.items()})
 
     def test_real_rm04_recording_and_approval(self):
         rec = load_recording(RM04_SHA)

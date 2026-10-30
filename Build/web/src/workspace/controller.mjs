@@ -140,7 +140,10 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
       const d = r.data;
       const ok = d?.ok === true && !!d.spec && !!d.validated_setup;
       // S14j: recorded scenes carry a verbatim label (e.g. 'scale unverified, not setup-validated'); shown through run/fit/report.
-      const label = [d?.label, d?.validated_setup?.label].find((x) => typeof x === 'string' && x) ?? null;
+      // S15v: known-size answer comes back as user_scale (declared or abstain); it travels in the same verbatim label.
+      const us = d?.user_scale;
+      const scale = us?.status === 'declared' ? 'scale ' + us.object + ' = ' + us.length_m + ' m (' + us.label + ')' : typeof us?.label === 'string' ? us.label : null;
+      const label = [[d?.label, d?.validated_setup?.label].find((x) => typeof x === 'string' && x), scale].filter(Boolean).join('; ') || null;
       const whatIfLabel = d?.validated_setup?.what_if === true && typeof d.validated_setup.label === 'string' ? d.validated_setup.label : null;
       if (ok) patch({ validatedSetup: d.validated_setup, specLabel: label, whatIfLabel });
       return dispatch({ type: 'INTERVIEW_SPEC', spec: ok ? d.spec : null },

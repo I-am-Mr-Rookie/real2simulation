@@ -54,7 +54,19 @@ export function renderProvenance(h, p) {
   return h('div', { className: 'ws-provenance', 'data-executor': String(p.executor ?? ''), 'aria-label': 'Job provenance' },
     h('p', null, String(p.label ?? 'Provenance') + (p.live === false ? ' (not a live run)' : '')),
     labels.length ? h('ul', null, ...labels.map(([s, l]) => h('li', { key: s }, s + ': ' + String(l) + (s === 'understand' && utc ? ' @ ' + utc : '')))) : null,
-    typeof p.note === 'string' ? h('p', { className: 'ws-note' }, p.note) : null);
+    typeof p.note === 'string' ? h('p', { className: 'ws-note' }, p.note) : null,
+    p.measurement && typeof p.measurement === 'object' ? renderMeasurement(h, p.measurement) : null);
+}
+
+// S15v: owner phone clip result from jobs.owner_measurement: stored MEASURED g ± u as a labelled RECORDED replay, or an abstain. Text only.
+function renderMeasurement(h, m) {
+  const s = (v) => String(v ?? '');
+  const scale = m.scale?.value_m != null ? 'Scale: ' + s(m.scale.reference) + ' = ' + s(m.scale.value_m) + ' m (' + s(m.scale.label) + ')' : null;
+  return h('div', { className: 'ws-measurement', 'data-status': s(m.status), role: 'status', 'aria-label': 'Clip result' },
+    h('p', null, s(m.clip_id) + ' — ' + s(m.input_label) + ' — ' + s(m.label)),
+    m.status === 'recorded' ? h('p', null, h('strong', null, 'g = ' + s(m.g) + ' ± ' + s(m.u) + ' ' + s(m.unit)), ' (' + s(m.measured_label) + '; source ' + s(m.source) + ')') : null,
+    m.status === 'recorded' ? h('p', { className: 'ws-note' }, s(m.caveat)) : h('p', { className: 'ws-note' }, s(m.message)),
+    scale ? h('p', { className: 'ws-note' }, scale) : null);
 }
 
 // S15d: interview panel. Chips are toggle buttons, free text a labelled textarea; everything is text (no raw HTML). Reports { type, ... }
