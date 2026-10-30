@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+Oct30 ~09:57Z: ACCEPTED S18g-orch120 DONE (Build/library/loader.mjs metadata loading + validated viewer-request boundary; all 18 entries
+canMount=false because no render bytes/traces; library 73 OK incl. stdin-driven loader.test.mjs via test_loader.py - running it
+standalone waits on stdin). Controller added QUEUE rows S18k (Sol med: publish hashed simulator traces / RM02-RM04 PLY if bytes match)
+and S09k (Opus med: viewer simulated-trace replay). Dispatched S18k-orch123 + S09k-orch124 (dl 10:23Z). S18h (licences) waits for
+S18k to avoid catalogue write races. Next RID orch125.
+
 Oct30 ~09:40Z: ACCEPTED S04i-orch118 DONE (narrowed by controller receipt to local implementation: workspace mounted, owner-only labelled
 dev repository, workspace-only clerkMiddleware, 404 fail-closed; web-private 18 + workspace 79 + pwa 52 pass, next build PASS; loopback
 self-proxy found = 127.0.0.1 vs localhost host mismatch, not SDK; real-key signed-in HTTP moved to S15k). ACCEPTED S16h-orch121 DONE
