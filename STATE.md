@@ -1,5 +1,14 @@
 # Real2Simulation — STATE
 
+Oct30 ~21:20Z: S15o-orch161 PARTIAL accepted as evidence (IAB unavailable in worker chats; RM04 sha verified; logged-out checks PASS). Root cause:
+the ChatGPT in-app browser is bound to the CONTROLLER chat session (cua inventory codexSessionId = controller), so workers cannot use it.
+CONTROLLER EXCEPTION: the controller ran the signed-in DEV walk itself (no code changes); see evidence/S15/s15o/controller/WALK-controller.md.
+PASS: LIVE notice, RM04 upload (4 chunks + complete 200), job ready, questions 200, 375px no horizontal scroll, no secrets visible.
+FAIL: P1 POST spec 422 for answers 1.5 m / at rest (likely web-to-answers_to_spec body shape mismatch) and the UI stalls silently at 'All
+questions answered'; P2 RECORDED stage labels not shown; P2 scene viewport LOAD_FAILED (no RM04 geometry on dev, cf. S13j); P3 nav shows
+'Sign in' while signed in, footer says 'No uploads are enabled'. Added QUEUE S15q (Opus med) for these. Future browser walks (S15o
+re-walk, S22c-e, S24c-d captures) must run in the controller chat or a chat with the IAB open; record that exception each time.
+
 Oct30 ~20:36Z: Dispatched S15o-orch161 (Sonnet high, live dev walk in the in-app browser: RM04 upload -> spec with the Q16 label -> Run, which is
 expected to fail honestly pending Q20), thread 01a18e85-e88b, dl 21:04:46Z. Next RID orch162.
 
