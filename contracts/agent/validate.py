@@ -45,16 +45,17 @@ _NUMBER_WORDS = re.compile(
     r"hertz|kg|cm|mm|km|m|s|g|n|(?:milli)?seconds?|minutes?|hours?|degrees?|radians?|rad|deg|ms|min|hr|h))\b", re.I)
 _INVISIBLE = dict.fromkeys(i for i in range(0x110000) if unicodedata.category(chr(i)) == "Cf")
 # S14g-fix5 (R-A F1-R2): STRUCTURAL unit rule, no per-phrase list. A unit word in visible text is allowed only when
-# bound to a cited quantity: right after it ("<q> metres per second") or as a label before it ("in metres: <q>"),
-# or names a unit with no amount ("in metres per second"). Any other unit word ("a full second", "one-second delay",
+# bound to a cited quantity right after it ("<q> metres per second") or inside an amount-free "in <units>" phrase
+# ("in metres per second", "in metres: <q>"). Any other unit word ("a full second", "one-second delay",
 # "a second look") is refused -> tool-only fallback.
+# S14g-fix6 (R-A F1-R3): no bare label binding ("one whole minute: <q>" launders an amount); only "in" opens a label.
 CITE = "\ue000"  # placeholder for a cited quantity in a visible run; model text may not contain private-use chars
 _UNIT = (r"(?:(?:centi|milli|kilo)?(?:metres?|meters?)|(?:kilo)?grams?|newtons?|joules?|watts?|hertz|pascals?|"
          r"(?:milli)?seconds?|secs?|minutes?|hours?|days?|degrees?|radians?|revolutions?|inch(?:es)?|foot|feet|"
          r"yards?|miles?|pounds?|lbs?|gees?|kg|cm|mm|km|ft|hz|pa|ms|min|hr|rad|deg|m|s|g|n|j|w|h)")
 _LINK = rf"(?:{_UNIT}|per|squared|cubed|or)"
 _GAP = rf"[^\w.!?;{CITE}]*"  # spaces/symbols only: a word or sentence end breaks the binding
-_BOUND = re.compile(rf"(?:{CITE}|\bin\b)(?:{_GAP}\b{_LINK}\b)*|(?:\b{_LINK}\b{_GAP})+[:=]{_GAP}{CITE}", re.I)
+_BOUND = re.compile(rf"(?:{CITE}|\bin\b)(?:{_GAP}\b{_LINK}\b)*", re.I)
 _UNIT_WORD = re.compile(rf"(?<![\w'’.]){_UNIT}(?![\w'’])", re.I)  # not "it's"/"e.g."
 
 

@@ -23,8 +23,8 @@ TIME = {"second", "seconds", "minute", "minutes", "hour", "hours", "degree", "de
         "millisecond", "milliseconds", "ms", "min", "hr", "h", "radian", "radians", "rad", "deg"}
 MORE = {"as", "the", "larger", "smaller", "greater", "bigger", "more", "less"}
 # S14g-fix5 (R-A F1-R2): structural unit binding, independent of contracts.agent. Every unit token must be bound to a
-# cited quantity (CITE) directly after it or a label chain ending in ":"/"=" right before it, or name a unit with no
-# amount ("in metres per second"). Else: invented.
+# cited quantity (CITE) directly after it, or sit in an amount-free "in <units>" phrase ("in metres per second",
+# "in metres: <q>"). Else: invented. fix6 (R-A F1-R3): bare label chains ("one whole minute: <q>") no longer bind.
 CITE = "\ue000"  # what visible()/visible_strings put where a trusted quantity was rendered
 ALL_UNITS = UNITS | TIME | set("""millimeter millimeters kilometer kilometers centigram milligram milligrams pascal
 pascals sec secs day days revolution revolutions inch inches foot feet yard yards mile miles pound pounds lb lbs gee gees
@@ -62,12 +62,7 @@ def _bound(toks: list[str], i: int) -> bool:
     j = i - 1  # "<q> metres per second" / "in metres per second": only link words back (a word or "." breaks it)
     while j >= 0 and toks[j] in LINK:
         j -= 1
-    if j >= 0 and toks[j] in (CITE, "in"):
-        return True
-    j = i + 1  # "in metres: <q>": link words, then ":" or "=", then the citation
-    while j < len(toks) and toks[j] in LINK:
-        j += 1
-    return j + 1 < len(toks) and toks[j] in (":", "=") and toks[j + 1] == CITE
+    return j >= 0 and toks[j] in (CITE, "in")
 
 
 def visible(shown: str, rendered_quantities) -> str:

@@ -1,5 +1,5 @@
 {
- "_note": "S14g-fix adversarial visible-text corpus: all R-A probes (evidence/reviews/R-A/probe.py) + split-token + benign controls. Each case: text segments; null = a cited tool quantity. invented = expected verdict on the VISIBLE text. fix5: ANY unit word must be bound to a cited quantity (right after it, or a label ending in : or = right before it, or a unit named after \"in\" with no amount); unbound unit words, incl. benign-looking ones, are invented=true (fail-closed).",
+ "_note": "S14g-fix adversarial visible-text corpus: all R-A probes (evidence/reviews/R-A/probe.py) + split-token + benign controls. Each case: text segments; null = a cited tool quantity. invented = expected verdict on the VISIBLE text. fix5/fix6: ANY unit word must be bound to a cited quantity right after it, or sit in an amount-free \"in <units>\" phrase (optionally then : or = and a citation); fix6 (R-A F1-R3) removed bare label chains (\"one whole minute: <q>\"). Unbound unit words, incl. benign-looking ones, are invented=true (fail-closed).",
  "cases": [
   [
    "ra-one-metre",
@@ -407,6 +407,88 @@
     "It fell in one full second."
    ],
    true
+  ],
+  [
+   "ra6-whole-minute-label",
+   [
+    "The period is one whole minute: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra6-full-second-label",
+   [
+    "The elapsed time is a full second: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra6-full-radian-equals",
+   [
+    "The angle is one full radian = ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra6-full-metre-label",
+   [
+    "The distance is one full metre: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra6-full-second-label-duration",
+   [
+    "The elapsed time is a full second: ",
+    null,
+    ""
+   ],
+   true
+  ],
+  [
+   "ra6-full-second-comma",
+   [
+    "The elapsed time is a full second, ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra6-full-second-period",
+   [
+    "The elapsed time is a full second. ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra6-one-more-minute",
+   [
+    "The period is one more minute. ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra6-in-whole-minutes-label",
+   [
+    "The period in whole minutes: ",
+    null
+   ],
+   true
+  ],
+  [
+   "benign6-in-label-equals",
+   [
+    "Drop time in seconds = ",
+    null,
+    "."
+   ],
+   false
   ]
  ]
 }

@@ -1,0 +1,4124 @@
+{
+ "summary": {
+  "gate_a": "MET_AMENDED_Q16",
+  "gate_a_label": "scale unverified, not setup-validated",
+  "amendment": "owner Q16=A (Oct30): numeric-contract validation on recorded scenes accepted, labelled verbatim; not plain MET; final clearance needs the R-A recheck",
+  "distinct_recorded_scenes": 10,
+  "numeric_contract_valid_specs": 10,
+  "setup_validator_valid_specs": 0,
+  "required_valid_specs": 9,
+  "numeric_contract_cases": {
+   "RM02": true,
+   "RM04": true,
+   "RM05": true,
+   "PD02": true,
+   "PD03": true,
+   "PD04": true,
+   "PD06": true,
+   "PJ03": true,
+   "ST03": true,
+   "BN01": true
+  },
+  "setup_validator_cases": {
+   "RM02": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ],
+   "RM04": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ],
+   "RM05": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ],
+   "PD02": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ],
+   "PD03": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ],
+   "PD04": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ],
+   "PD06": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ],
+   "PJ03": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ],
+   "ST03": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ],
+   "BN01": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  },
+  "live_turns_replayed": 30,
+  "live_turns_shown_unchanged": 30,
+  "live_turns_fallback_tool_only": 0,
+  "invented_shown_oracle": 0,
+  "oracle_self_check": {
+   "corpus_cases": 66,
+   "oracle_agrees": true
+  },
+  "network_denied": true,
+  "spend_usd": 0,
+  "scope": "offline replay of saved fix3 responses under the fix6 unit rule (no bare label binding); a refused saved reply is shown as the code-owned tool-only fallback (live retries not replayable offline); synthetic interview answers; turn tool outputs are synthetic-room-v1, not physical evidence"
+ },
+ "numeric_contract_specs": [
+  {
+   "case_id": "RM02",
+   "scene_id": "rm02",
+   "synthetic": false,
+   "source_sha256": "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720",
+   "licence": "Pexels",
+   "source_url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+   "valid": true,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "779952ad237f0339139625e8a5adbf77aa7362ed66f2ced18a494c9e0830c9c3",
+   "scene_sha256": "d36cf8786346e2fdf9d86f569054f92064967728d86af6097509eb21f9af2b1a",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "rm02",
+    "label": "Tracking shot of empty classroom",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 2,
+     "time_s": 6.041667,
+     "time_source": "pts"
+    },
+    {
+     "index": 5,
+     "time_s": 15.166667,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"pencil_launch\", \"rationale\": [{\"text\": \"the pencil resting on the papers could be launched from the table edge across the classroom floor\", \"type\": \"text\"}], \"template\": \"projectile\"}, {\"id\": \"paper_drop\", \"rationale\": [{\"text\": \"the loose papers on the table could be released above the floor for a drop observation, with scale and gravity unknown\", \"type\": \"text\"}], \"template\": \"free_fall\"}, {\"id\": \"table_edge_roll\", \"rationale\": [{\"text\": \"the pencil could roll along the flat table top and off the edge, with scale and gravity unknown\", \"type\": \"text\"}], \"template\": \"projectile\"}], \"questions\": [{\"chips\": [{\"id\": \"move_pencil\", \"label\": [{\"text\": \"use the pencil\", \"type\": \"text\"}]}, {\"id\": \"move_paper\", \"label\": [{\"text\": \"use the papers\", \"type\": \"text\"}]}, {\"id\": \"observe_only\", \"label\": [{\"text\": \"observe only\", \"type\": \"text\"}]}], \"id\": \"movable_object\", \"kind\": \"free_text\", \"prompt\": [{\"text\": \"Which visible item may be moved for an experiment while the classroom furniture stays still?\", \"type\": \"text\"}]}], \"scene_id\": \"rm02\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"the white table tops with blue edges and metal legs in the empty classroom\", \"type\": \"text\"}, {\"text\": \"the green padded chairs with metal frames beside the tables\", \"type\": \"text\"}, {\"text\": \"the papers and the yellow pencil resting on the foreground table\", \"type\": \"text\"}, {\"text\": \"the open laptop, the lidded cup, and the glasses on the larger white table\", \"type\": \"text\"}, {\"text\": \"the light floor, the radiators, and the closed window blinds along the wall\", \"type\": \"text\"}, {\"text\": \"the scene is real rather than synthetic, and scale and gravity are unknown\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "pencil_launch",
+      "rationale": [
+       {
+        "text": "the pencil resting on the papers could be launched from the table edge across the classroom floor",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     },
+     {
+      "id": "paper_drop",
+      "rationale": [
+       {
+        "text": "the loose papers on the table could be released above the floor for a drop observation, with scale and gravity unknown",
+        "type": "text"
+       }
+      ],
+      "template": "free_fall"
+     },
+     {
+      "id": "table_edge_roll",
+      "rationale": [
+       {
+        "text": "the pencil could roll along the flat table top and off the edge, with scale and gravity unknown",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "move_pencil",
+        "label": [
+         {
+          "text": "use the pencil",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "move_paper",
+        "label": [
+         {
+          "text": "use the papers",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "observe_only",
+        "label": [
+         {
+          "text": "observe only",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "movable_object",
+      "kind": "chips_and_free_text",
+      "prompt": [
+       {
+        "text": "Which visible item may be moved for an experiment while the classroom furniture stays still?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "rm02",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "the white table tops with blue edges and metal legs in the empty classroom",
+      "type": "text"
+     },
+     {
+      "text": "the green padded chairs with metal frames beside the tables",
+      "type": "text"
+     },
+     {
+      "text": "the papers and the yellow pencil resting on the foreground table",
+      "type": "text"
+     },
+     {
+      "text": "the open laptop, the lidded cup, and the glasses on the larger white table",
+      "type": "text"
+     },
+     {
+      "text": "the light floor, the radiators, and the closed window blinds along the wall",
+      "type": "text"
+     },
+     {
+      "text": "the scene is real rather than synthetic, and scale and gravity are unknown",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "projectile",
+   "answers": {
+    "launch_height": {
+     "text": "0.8"
+    },
+    "horizontal_speed": {
+     "text": "2 m/s"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "projectile",
+    "scene": {
+     "scene_id": "rm02",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "estimated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -2,
+        0,
+        -2
+       ],
+       "max": [
+        2,
+        3,
+        2
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "launch_height": {
+      "value": 0.8,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:launch_height:free-text"
+      }
+     },
+     "horizontal_speed": {
+      "value": 2.0,
+      "unit": "m/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:horizontal_speed:free-text"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "RM04",
+   "scene_id": "rm04",
+   "synthetic": false,
+   "source_sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+   "licence": "Pexels License",
+   "source_url": "https://www.pexels.com/video/an-empty-classroom-8342689/",
+   "valid": true,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "f3636f781e558e0c6ae3a93451d7c1c8fee254250701d7f8425adbb09e9a4281",
+   "scene_sha256": "9381c8145573e0e65d8474c18250c9ab8e2630b345797ad2c15f583e8d1a55ca",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "rm04",
+    "label": "An Empty Classroom",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 2,
+     "time_s": 6.08,
+     "time_source": "pts"
+    },
+    {
+     "index": 3,
+     "time_s": 9.12,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"drop_from_table\", \"rationale\": \t\t[{\"text\": \"The table edge and the open floor below could support a drop, with gravity unknown and scale unverified so no height or timing claim can be made yet.\", \"type\": \"text\"} ], \"template\": \"free_fall\"}, {\"id\": \"launch_across_table\", \"rationale\": [{\"text\": \"The broad flat top of the table and the clear space beyond it could support a launch toward the floor, with gravity unknown and scale unverified so no range claim can be made yet.\", \"type\": \"text\"}], \"template\": \"projectile\"}, {\"id\": \"swing_over_table\", \"rationale\": [{\"text\": \"The open space above the table could support a suspended swing clear of the tabletop and the stool, with gravity unknown and scale unverified so no period claim can be made yet.\", \"type\": \"text\"}], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [{\"id\": \"bring_ball\", \"label\": \t\t[{\"text\": \"Bring a small ball\", \"type\": \"text\"}]}, {\"id\": \"bring_string_and_mass\", \"label\": [{\"text\": \"Bring string and a hanging mass\", \"type\": \"text\"}]}, {\"id\": \"bring_ramp_and_ball\", \"label\": [{\"text\": \"Bring a ramp and a ball\", \"type\": \"text\"}]}], \"id\": \"available_props\", \"kind\": \"chips\", \"prompt\": [{\"text\": \"The room appears empty of movable experiment props, so what could you bring to place on the table?\", \"type\": \"text\"}]}], \"scene_id\": \"rm04\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"A real classroom interior is visible, and it is not described as synthetic. A white board with writing and drawings hangs on the back wall, above a low blue cabinet. A white rectangular table stands in the middle of the room on a smooth grey floor, with a dark stool tucked beneath it. Additional white tabletops appear in the foreground as the view widens. A tall dark open shelving unit stands against the back wall, holding boxes and other stored items, and a red display board covered with pictures hangs on the side wall. The open floor around the table is clear. Scale is unverified and gravity\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "drop_from_table",
+      "rationale": [
+       {
+        "text": "The table edge and the open floor below could support a drop, with gravity unknown and scale unverified so no height or timing claim can be made yet.",
+        "type": "text"
+       }
+      ],
+      "template": "free_fall"
+     },
+     {
+      "id": "launch_across_table",
+      "rationale": [
+       {
+        "text": "The broad flat top of the table and the clear space beyond it could support a launch toward the floor, with gravity unknown and scale unverified so no range claim can be made yet.",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     },
+     {
+      "id": "swing_over_table",
+      "rationale": [
+       {
+        "text": "The open space above the table could support a suspended swing clear of the tabletop and the stool, with gravity unknown and scale unverified so no period claim can be made yet.",
+        "type": "text"
+       }
+      ],
+      "template": "pendulum"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "bring_ball",
+        "label": [
+         {
+          "text": "Bring a small ball",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "bring_string_and_mass",
+        "label": [
+         {
+          "text": "Bring string and a hanging mass",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "bring_ramp_and_ball",
+        "label": [
+         {
+          "text": "Bring a ramp and a ball",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "available_props",
+      "kind": "chips",
+      "prompt": [
+       {
+        "text": "The room appears empty of movable experiment props, so what could you bring to place on the table?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "rm04",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "A real classroom interior is visible, and it is not described as synthetic. A white board with writing and drawings hangs on the back wall, above a low blue cabinet. A white rectangular table stands in the middle of the room on a smooth grey floor, with a dark stool tucked beneath it. Additional white tabletops appear in the foreground as the view widens. A tall dark open shelving unit stands against the back wall, holding boxes and other stored items, and a red display board covered with pictures hangs on the side wall. The open floor around the table is clear. Scale is unverified and gravity",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "free_fall",
+   "answers": {
+    "drop_height": {
+     "text": "1.5 m"
+    },
+    "initial_vertical_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "free_fall",
+    "scene": {
+     "scene_id": "rm04",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "estimated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -2,
+        0,
+        -2
+       ],
+       "max": [
+        2,
+        3,
+        2
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "drop_height": {
+      "value": 1.5,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:drop_height:free-text"
+      }
+     },
+     "initial_vertical_velocity": {
+      "value": 0.0,
+      "unit": "m/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:initial_vertical_velocity:chip:at-rest"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "RM05",
+   "scene_id": "rm05",
+   "synthetic": false,
+   "source_sha256": "53b9f050e8e8c62ac698236ed6107fd6c51636ed3fc79ba6b41caefcdf3ffbcf",
+   "licence": "PD-USGov-NASA",
+   "source_url": "https://images.nasa.gov/details/Step_Inside_the_Station-4K-Clean",
+   "valid": true,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "22eef92dff2756e009af95d2038cef02fdc63a8220c0ba34750cd92db81e7878",
+   "scene_sha256": "426247b04b44ffa9e49b058254a330453ce1d1fae68b0188d1eccab591dd863e",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "rm05",
+    "label": "Step Inside the Station (4K Clean)",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 89.683,
+     "time_source": "ffmpeg-seek(container duration)"
+    },
+    {
+     "index": 1,
+     "time_s": 448.417,
+     "time_source": "ffmpeg-seek(container duration)"
+    },
+    {
+     "index": 2,
+     "time_s": 807.15,
+     "time_source": "ffmpeg-seek(container duration)"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"floating_object_drift\", \"rationale\": [{\"text\": \"The person and loose equipment appear to float inside the module, so gravity is unknown and a falling or swinging motion may not behave as expected\", \"type\": \"text\"}], \"template\": \"projectile\"}], \"questions\": [{\"chips\": [{\"id\": \"intended_template\", \"label\": [{\"text\": \"Projectile\", \"type\": \"text\"}]}, {\"id\": \"intended_template\", \"label\": [{\"text\": \"Free fall\", \"type\": \"text\"}]}, {\"id\": \"need_help\", \"label\": [{\"text\": \"Help me choose\", \"type\": \"text\"}]}], \"id\": \"clarify_gravity_and_intent\", \"kind\": \"chips\", \"prompt\": [{\"text\": \"Gravity is unknown, scale is unverified, and this looks like a floating station interior \\u000eDid you want to test drifting motion here, or were you hoping for falling or swinging motion under gravity?\", \"type\": \"text\"}]}], \"scene_id\": \"rm05\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"The scene shows the interior of a space station module with hatchways, wall panels, cables, stored bags, equipment racks, and a person floating while holding equipment. Gravity is unknown and scale is unverified; no usable falling, swinging, launching, or rolling surface is confirmed.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "floating_object_drift",
+      "rationale": [
+       {
+        "text": "The person and loose equipment appear to float inside the module, so gravity is unknown and a falling or swinging motion may not behave as expected",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "intended_template",
+        "label": [
+         {
+          "text": "Projectile",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "intended_template",
+        "label": [
+         {
+          "text": "Free fall",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "need_help",
+        "label": [
+         {
+          "text": "Help me choose",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "clarify_gravity_and_intent",
+      "kind": "chips",
+      "prompt": [
+       {
+        "text": "Gravity is unknown, scale is unverified, and this looks like a floating station interior \u000eDid you want to test drifting motion here, or were you hoping for falling or swinging motion under gravity?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "rm05",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "The scene shows the interior of a space station module with hatchways, wall panels, cables, stored bags, equipment racks, and a person floating while holding equipment. Gravity is unknown and scale is unverified; no usable falling, swinging, launching, or rolling surface is confirmed.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "projectile",
+   "answers": {
+    "launch_height": {
+     "text": "0.8"
+    },
+    "horizontal_speed": {
+     "text": "2 m/s"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "projectile",
+    "scene": {
+     "scene_id": "rm05",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "estimated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -2,
+        0,
+        -2
+       ],
+       "max": [
+        2,
+        3,
+        2
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "launch_height": {
+      "value": 0.8,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:launch_height:free-text"
+      }
+     },
+     "horizontal_speed": {
+      "value": 2.0,
+      "unit": "m/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:horizontal_speed:free-text"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "PD02",
+   "scene_id": "pd02",
+   "synthetic": false,
+   "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+   "licence": "Pexels License",
+   "source_url": "https://www.pexels.com/video/foucault-pendulum-swing-in-grand-hall-35640361/",
+   "valid": true,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "aea0165a61f31ff61d4da3c37ba0c85db96dbb9fbe4cb4323dfd2fb54fbc7983",
+   "scene_sha256": "90bcf0a10a0cb2cda6827fd6062a696b3784b4667f31935179a7d7fba81c8326",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "pd02",
+    "label": "Foucault Pendulum Swing in Grand Hall",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 1,
+     "time_s": 8.333333,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"pendulum_swing_tracking\", \"rationale\": [\n  {\"text\": \"A golden spherical bob is visible swinging back and forth above the patterned floor, consistent with pendulum motion.\" , \"type\": \"text\"}\n], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [{\"id\": \"floor_markings\", \"label\": \n \t[{\"text\": \"Use the floor markings\", \"type\": \"text\"}, {\"text\": \"Use the bob only\", \"type\": \"text\"}]}, {\"id\": \"glass_platform\", \"label\": \n \t[{\"text\": \"Use the glass platform edge\", \"type\": \"text\"}, {\"text\": \"Use the bob only\", \"type\": \"text\"}]}] ,\"id\": \"reference_choice\", \"kind\": \"free_text\", \"prompt\": [{\"text\": \"What reference should be used when tracking the swing of the bob?\", \"type\": \"text\"}]}], \"scene_id\": \"pd02\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"Scale is unverified and gravity is unknown. A golden spherical bob suspended above a patterned marble floor swings across the view. A clear raised platform sits at the center of the floor pattern, surrounded by a railing and tiled hall floor beyond. The bob moves from side to side over the platform and floor markings.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "pendulum_swing_tracking",
+      "rationale": [
+       {
+        "text": "A golden spherical bob is visible swinging back and forth above the patterned floor, consistent with pendulum motion.",
+        "type": "text"
+       }
+      ],
+      "template": "pendulum"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "floor_markings",
+        "label": [
+         {
+          "text": "Use the floor markings",
+          "type": "text"
+         },
+         {
+          "text": "Use the bob only",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "glass_platform",
+        "label": [
+         {
+          "text": "Use the glass platform edge",
+          "type": "text"
+         },
+         {
+          "text": "Use the bob only",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "reference_choice",
+      "kind": "chips_and_free_text",
+      "prompt": [
+       {
+        "text": "What reference should be used when tracking the swing of the bob?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "pd02",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "Scale is unverified and gravity is unknown. A golden spherical bob suspended above a patterned marble floor swings across the view. A clear raised platform sits at the center of the floor pattern, surrounded by a railing and tiled hall floor beyond. The bob moves from side to side over the platform and floor markings.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "pendulum",
+   "answers": {
+    "length": {
+     "text": "0.75 m"
+    },
+    "release_angle": {
+     "text": "0.1 rad"
+    },
+    "initial_angular_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "pendulum",
+    "scene": {
+     "scene_id": "pd02",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "estimated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -2,
+        0,
+        -2
+       ],
+       "max": [
+        2,
+        3,
+        2
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "length": {
+      "value": 0.75,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:length:free-text"
+      }
+     },
+     "release_angle": {
+      "value": 0.1,
+      "unit": "rad",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:release_angle:free-text"
+      }
+     },
+     "initial_angular_velocity": {
+      "value": 0.0,
+      "unit": "rad/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:initial_angular_velocity:chip:at-rest"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "PD03",
+   "scene_id": "pd03",
+   "synthetic": false,
+   "source_sha256": "ae1f5d36576555579d4b80cb17928a44bb28f0511260cbf5a5963d009bce1c08",
+   "licence": "Pexels License",
+   "source_url": "https://www.pexels.com/video/a-swinging-pendulum-6613341/",
+   "valid": true,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "856781f5c13f18129ddaac64fcb463184f6cabae5b552d6b886b200cf2836f87",
+   "scene_sha256": "8cc326cb5593d3e67fb9b1d2df3d79a69f7243a1f229a93095186892da8d109c",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "pd03",
+    "label": "A Swinging Pendulum",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 10,
+     "time_s": 30.03,
+     "time_source": "pts"
+    },
+    {
+     "index": 19,
+     "time_s": 57.057,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"pendulum_swing_on_cradle\", \"rationale\": [{\"text\": \"A metal ball hangs from thin lines on a framed cradle and is seen displaced from the resting cluster in the keyframes.\", \"type\": \"text\"}, {\"text\": \"The repeated swinging and contact between the balls can support a pendulum study, though the interactions are between the balls and not an isolated swing.\", \"type\": \"text\"}, {\"text\": \"Scale and gravity are unknown, so any result would remain qualitative until those are provided.\", \"type\": \"text\"}], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [{\"id\": \"isolated_swing\", \"label\": [{\"text\": \"Use the outer ball swinging alone\", \"type\": \"text\"}]}, {\"id\": \"collisions\", \"label\": [{\"text\": \"Focus on the ball collisions\", \"type\": \"text\"}]}, {\"id\": \"unsure\", \"label\": [{\"text\": \"Not sure yet\", \"type\": \"text\"}]}], \"id\": \"swing_focus\", \"kind\": \"free_text\", \"prompt\": [{\"text\": \"Should the experiment follow the outer ball swinging alone, or the collisions among the clustered balls?\", \"type\": \"text\"}]}], \"scene_id\": \"pd03\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"A light wooden table surface fills the background, showing visible grain and knots.\", \"type\": \"text\"}, {\"text\": \"A black framed cradle with a flat base sits on the table, holding shiny metal balls suspended by thin lines.\", \"type\": \"text\"}, {\"text\": \"The metal balls rest together in a cluster, with an outer ball seen swinging away from and back toward the group across the keyframes.\", \"type\": \"text\"}, {\"text\": \"Scale and gravity are unknown, and this is described as a real video clip rather than a synthetic scene.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "pendulum_swing_on_cradle",
+      "rationale": [
+       {
+        "text": "A metal ball hangs from thin lines on a framed cradle and is seen displaced from the resting cluster in the keyframes.",
+        "type": "text"
+       },
+       {
+        "text": "The repeated swinging and contact between the balls can support a pendulum study, though the interactions are between the balls and not an isolated swing.",
+        "type": "text"
+       },
+       {
+        "text": "Scale and gravity are unknown, so any result would remain qualitative until those are provided.",
+        "type": "text"
+       }
+      ],
+      "template": "pendulum"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "isolated_swing",
+        "label": [
+         {
+          "text": "Use the outer ball swinging alone",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "collisions",
+        "label": [
+         {
+          "text": "Focus on the ball collisions",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "unsure",
+        "label": [
+         {
+          "text": "Not sure yet",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "swing_focus",
+      "kind": "chips_and_free_text",
+      "prompt": [
+       {
+        "text": "Should the experiment follow the outer ball swinging alone, or the collisions among the clustered balls?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "pd03",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "A light wooden table surface fills the background, showing visible grain and knots.",
+      "type": "text"
+     },
+     {
+      "text": "A black framed cradle with a flat base sits on the table, holding shiny metal balls suspended by thin lines.",
+      "type": "text"
+     },
+     {
+      "text": "The metal balls rest together in a cluster, with an outer ball seen swinging away from and back toward the group across the keyframes.",
+      "type": "text"
+     },
+     {
+      "text": "Scale and gravity are unknown, and this is described as a real video clip rather than a synthetic scene.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "pendulum",
+   "answers": {
+    "length": {
+     "text": "0.75 m"
+    },
+    "release_angle": {
+     "text": "0.1 rad"
+    },
+    "initial_angular_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "pendulum",
+    "scene": {
+     "scene_id": "pd03",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "estimated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -2,
+        0,
+        -2
+       ],
+       "max": [
+        2,
+        3,
+        2
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "length": {
+      "value": 0.75,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:length:free-text"
+      }
+     },
+     "release_angle": {
+      "value": 0.1,
+      "unit": "rad",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:release_angle:free-text"
+      }
+     },
+     "initial_angular_velocity": {
+      "value": 0.0,
+      "unit": "rad/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:initial_angular_velocity:chip:at-rest"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "PD04",
+   "scene_id": "pd04",
+   "synthetic": false,
+   "source_sha256": "b51517e260e620b306a91f8b2dbd1cc8c2fa8d74250cc05e5210cfe7f8f4315a",
+   "licence": "CC-BY-SA-4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Blocked-pendulum-slow-motion.webm",
+   "valid": true,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "73f6fbe25509afb1acedcb7278ac1b03bf0b07361886e103ad7a20b8a56011b0",
+   "scene_sha256": "34cd576353ae2fb6e2470120c298024368e691391c235e3afdc57e7ceac5e5c8",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "pd04",
+    "label": "Blocked-pendulum-slow-motion",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 300,
+     "time_s": 10.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 599,
+     "time_s": 19.967,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"blocked_pendulum_swing\", \"rationale\": \t\t[{\"text\": \"The ball swings from release toward the pole and beyond the pole after passing the low point, with the string interacting with the pole hardware. This suits a pendulum study comparing the blocked and unblocked parts of the motion.\", \"type\": \"text\"}], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [], \"id\": \"release_reference\", \"kind\": \"free_text\", \"prompt\": \t[{\"text\": \"How should the release position of the ball be marked for tracking?\", \"type\": \"text\"}]}], \"scene_id\": \"pd04\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"The white table surface sits below a green board. A vertical black pole stands on the table, with a yellow ball suspended by a thin string from the top of the pole. A hand holds the ball aside at the start, then the ball hangs near the base of the pole, then it swings to the opposite side. A clamp is visible partway up the pole and may block the string during the swing. Scale and gravity are unknown.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "blocked_pendulum_swing",
+      "rationale": [
+       {
+        "text": "The ball swings from release toward the pole and beyond the pole after passing the low point, with the string interacting with the pole hardware. This suits a pendulum study comparing the blocked and unblocked parts of the motion.",
+        "type": "text"
+       }
+      ],
+      "template": "pendulum"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [],
+      "id": "release_reference",
+      "kind": "free_text",
+      "prompt": [
+       {
+        "text": "How should the release position of the ball be marked for tracking?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "pd04",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "The white table surface sits below a green board. A vertical black pole stands on the table, with a yellow ball suspended by a thin string from the top of the pole. A hand holds the ball aside at the start, then the ball hangs near the base of the pole, then it swings to the opposite side. A clamp is visible partway up the pole and may block the string during the swing. Scale and gravity are unknown.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "pendulum",
+   "answers": {
+    "length": {
+     "text": "0.75 m"
+    },
+    "release_angle": {
+     "text": "0.1 rad"
+    },
+    "initial_angular_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "pendulum",
+    "scene": {
+     "scene_id": "pd04",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "estimated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -2,
+        0,
+        -2
+       ],
+       "max": [
+        2,
+        3,
+        2
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "length": {
+      "value": 0.75,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:length:free-text"
+      }
+     },
+     "release_angle": {
+      "value": 0.1,
+      "unit": "rad",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:release_angle:free-text"
+      }
+     },
+     "initial_angular_velocity": {
+      "value": 0.0,
+      "unit": "rad/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:initial_angular_velocity:chip:at-rest"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "PD06",
+   "scene_id": "pd06",
+   "synthetic": false,
+   "source_sha256": "7acc8013f60cd476d82e3acebc63d8846fe6e4db4201e031fd9efa8dc307eed4",
+   "licence": "CC-BY-SA-4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Foucault_pendulum_utexas_motion.webm",
+   "valid": true,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "976e40fa7a4dc4618d6791d81de7d349499fd89d042dd908ff77ed60b146e908",
+   "scene_sha256": "e1737586b629fd7002b0c0747dd6fe170f1daed7298a4229dfd98be753f3e73c",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "pd06",
+    "label": "Foucault pendulum utexas motion",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 140,
+     "time_s": 4.766,
+     "time_source": "pts"
+    },
+    {
+     "index": 279,
+     "time_s": 9.498,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"pendulum_motion\", \"rationale\": [\n        {\n          \"text\": \"The bob moves back and forth above the marked circular floor, matching a pendulum setup\"\n        , \"type\": \"text\"}\n      ], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [{\"id\": \"track_bob\", \"label\": [\n        {\n          \"text\": \"Track the bob swing\"\n        , \"type\": \"text\"}\n      ]}, {\"id\": \"track_rotation\", \"label\": [\n        {\n          \"text\": \"Track swing plane change\"\n        , \"type\": \"text\"}\n      ]}], \"id\": \"clarify_goal\", \"kind\": \"free_text\", \"prompt\": [\n        {\n          \"text\": \"Should the analysis follow the bob swing, the swing plane change over time, or both?\"\n        , \"type\": \"text\"}\n      ]}], \"scene_id\": \"pd06\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"The view looks down into a circular pit enclosed by curved metal railings, with a dark floor marked by white ticks arranged in a circle and a metallic spherical bob swinging above the floor; scale and gravity are unknown\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "pendulum_motion",
+      "rationale": [
+       {
+        "text": "The bob moves back and forth above the marked circular floor, matching a pendulum setup",
+        "type": "text"
+       }
+      ],
+      "template": "pendulum"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "track_bob",
+        "label": [
+         {
+          "text": "Track the bob swing",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "track_rotation",
+        "label": [
+         {
+          "text": "Track swing plane change",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "clarify_goal",
+      "kind": "chips_and_free_text",
+      "prompt": [
+       {
+        "text": "Should the analysis follow the bob swing, the swing plane change over time, or both?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "pd06",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "The view looks down into a circular pit enclosed by curved metal railings, with a dark floor marked by white ticks arranged in a circle and a metallic spherical bob swinging above the floor; scale and gravity are unknown",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "pendulum",
+   "answers": {
+    "length": {
+     "text": "0.75 m"
+    },
+    "release_angle": {
+     "text": "0.1 rad"
+    },
+    "initial_angular_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "pendulum",
+    "scene": {
+     "scene_id": "pd06",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "estimated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -2,
+        0,
+        -2
+       ],
+       "max": [
+        2,
+        3,
+        2
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "length": {
+      "value": 0.75,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:length:free-text"
+      }
+     },
+     "release_angle": {
+      "value": 0.1,
+      "unit": "rad",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:release_angle:free-text"
+      }
+     },
+     "initial_angular_velocity": {
+      "value": 0.0,
+      "unit": "rad/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:initial_angular_velocity:chip:at-rest"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "PJ03",
+   "scene_id": "pj03",
+   "synthetic": false,
+   "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+   "licence": "CC-BY-SA-4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ballistische_Kurve.webm",
+   "valid": true,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "aa4f2ff34a9697cb134de0359e6f130a29ef1e4faf612f10a54af5568173fec6",
+   "scene_sha256": "b2956892e4ae7231a8622b56ce2eeea178e640eaec76726f3db7b89c76156897",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "pj03",
+    "label": "Ballistische Kurve",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 7.341,
+     "time_source": "ffmpeg-seek(container duration)"
+    },
+    {
+     "index": 1,
+     "time_s": 36.703,
+     "time_source": "ffmpeg-seek(container duration)"
+    },
+    {
+     "index": 2,
+     "time_s": 66.065,
+     "time_source": "ffmpeg-seek(container duration)"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"projectile_before_board\", \"rationale\": [{\"text\": \"The dotted arc in front of the gridded board suggests a thrown object following a curved path that could be tracked against the board.\", \"type\": \"text\"}, {\"text\": \"Scale and gravity are unknown, and the scene says scale is unverified, so the path can be described in image terms without claiming physical sizes or timing.\", \"type\": \"text\"}], \"template\": \"projectile\"}], \"questions\": [{\"chips\": [{\"id\": \"board_grid\", \"label\": [{\"text\": \"the board grid\", \"type\": \"text\"}]}, {\"id\": \"video_timing\", \"label\": [{\"text\": \"the video timing\", \"type\": \"text\"}]}, {\"id\": \"neither_yet\", \"label\": [{\"text\": \"neither yet\", \"type\": \"text\"}]}], \"id\": \"calibration_source\", \"kind\": \"free_text\", \"prompt\": [{\"text\": \"What should be used to calibrate the board grid and the timing for tracking the throw?\", \"type\": \"text\"}]}], \"scene_id\": \"pj03\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"The large gridded chalkboard mounted on the wall, with faint markings across the surface and a light patch toward the lower side\", \"type\": \"text\"}, {\"text\": \"The arc of pale dots curving up and then down in front of the chalkboard\", \"type\": \"text\"}, {\"text\": \"The person partly visible at the side, looking toward the chalkboard\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "projectile_before_board",
+      "rationale": [
+       {
+        "text": "The dotted arc in front of the gridded board suggests a thrown object following a curved path that could be tracked against the board.",
+        "type": "text"
+       },
+       {
+        "text": "Scale and gravity are unknown, and the scene says scale is unverified, so the path can be described in image terms without claiming physical sizes or timing.",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "board_grid",
+        "label": [
+         {
+          "text": "the board grid",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "video_timing",
+        "label": [
+         {
+          "text": "the video timing",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "neither_yet",
+        "label": [
+         {
+          "text": "neither yet",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "calibration_source",
+      "kind": "chips_and_free_text",
+      "prompt": [
+       {
+        "text": "What should be used to calibrate the board grid and the timing for tracking the throw?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "pj03",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "The large gridded chalkboard mounted on the wall, with faint markings across the surface and a light patch toward the lower side",
+      "type": "text"
+     },
+     {
+      "text": "The arc of pale dots curving up and then down in front of the chalkboard",
+      "type": "text"
+     },
+     {
+      "text": "The person partly visible at the side, looking toward the chalkboard",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "projectile",
+   "answers": {
+    "launch_height": {
+     "text": "0.8"
+    },
+    "horizontal_speed": {
+     "text": "2 m/s"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "projectile",
+    "scene": {
+     "scene_id": "pj03",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "estimated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -2,
+        0,
+        -2
+       ],
+       "max": [
+        2,
+        3,
+        2
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "launch_height": {
+      "value": 0.8,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:launch_height:free-text"
+      }
+     },
+     "horizontal_speed": {
+      "value": 2.0,
+      "unit": "m/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:horizontal_speed:free-text"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "ST03",
+   "scene_id": "st03",
+   "synthetic": false,
+   "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+   "licence": "Pexels License",
+   "source_url": "https://www.pexels.com/video/woman-dropping-apple-on-ground-12723966/",
+   "valid": true,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "723d5b1115868fe9668678eaedee38260b399abb99018d339843dde949c88047",
+   "scene_sha256": "a7bd56cecf9b67ba3bd2dc0f1de81e2e4d4479f005bed0b760d35e7aade9b551",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "st03",
+    "label": "Woman dropping apple on ground",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 3,
+     "time_s": 9.009,
+     "time_source": "pts"
+    },
+    {
+     "index": 6,
+     "time_s": 18.018,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"apple-drop\", \"rationale\": [{\"text\": \"The woman is holding the apple raised above the ground, so releasing it from rest fits a vertical fall toward the surface below.\" , \"type\": \"text\"}], \"template\": \"free_fall\"}], \"questions\": [{\"chips\": [{\"id\": \"grass\", \"label\": [{\"text\": \"The grass\", \"type\": \"text\"}]}, {\"id\": \"mat\", \"label\": [{\"text\": \"The mat\", \"type\": \"text\"}]}, {\"id\": \"cushion\", \"label\": [{\"text\": \"A cushion\", \"type\": \"text\"}]}], \"id\": \"landing-surface\", \"kind\": \"chips\", \"prompt\": [{\"text\": \"Where should the apple land when it is released?\", \"type\": \"text\"}]}], \"scene_id\": \"st03\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"A woman kneeling outdoors on grass beside a tree, holding a green apple raised in her hand above a picnic mat with cushions and bowls of fruit, with the grassy ground below as the landing surface. Scale is unverified and gravity is unknown.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "apple-drop",
+      "rationale": [
+       {
+        "text": "The woman is holding the apple raised above the ground, so releasing it from rest fits a vertical fall toward the surface below.",
+        "type": "text"
+       }
+      ],
+      "template": "free_fall"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "grass",
+        "label": [
+         {
+          "text": "The grass",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "mat",
+        "label": [
+         {
+          "text": "The mat",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "cushion",
+        "label": [
+         {
+          "text": "A cushion",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "landing-surface",
+      "kind": "chips",
+      "prompt": [
+       {
+        "text": "Where should the apple land when it is released?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "st03",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "A woman kneeling outdoors on grass beside a tree, holding a green apple raised in her hand above a picnic mat with cushions and bowls of fruit, with the grassy ground below as the landing surface. Scale is unverified and gravity is unknown.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "free_fall",
+   "answers": {
+    "drop_height": {
+     "text": "1.5 m"
+    },
+    "initial_vertical_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "free_fall",
+    "scene": {
+     "scene_id": "st03",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "estimated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -2,
+        0,
+        -2
+       ],
+       "max": [
+        2,
+        3,
+        2
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "drop_height": {
+      "value": 1.5,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:drop_height:free-text"
+      }
+     },
+     "initial_vertical_velocity": {
+      "value": 0.0,
+      "unit": "m/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:initial_vertical_velocity:chip:at-rest"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  },
+  {
+   "case_id": "BN01",
+   "scene_id": "bn01",
+   "synthetic": false,
+   "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+   "licence": "CC-BY-SA-4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bouncy_ball_240fps.webm",
+   "valid": true,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "20f2a11ea5708bb7c6697b704a52a225ca78abdc34b42657be940d5d36ad9a14",
+   "scene_sha256": "b464f6c291b32213c9ae4f3343d626c83f3ce82f5bcf4f3c8dac4fcc56c8a84a",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "bn01",
+    "label": "Bouncy ball 240fps",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.007,
+     "time_source": "pts"
+    },
+    {
+     "index": 4920,
+     "time_s": 20.565,
+     "time_source": "pts"
+    },
+    {
+     "index": 9839,
+     "time_s": 41.207,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"bouncing_ball_drop\", \"rationale\": \t\t[{\"text\": \"The person appears to hold the ball before release, and the ball is later visible on the tiled floor near the stairs, suggesting a drop and bounce that could be explored as a falling motion.\", \"type\": \"text\"}], \"template\": \"free_fall\"}], \"questions\": [{\"chips\": [], \"id\": \"target_motion\", \"kind\": \"free_text\", \"prompt\": \t\t[{\"text\": \"Should the analysis follow the ball falling and bouncing on the tiled floor, or another motion visible in the clip?\", \"type\": \"text\"}]}], \"scene_id\": \"bn01\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"A person stands indoors against the wall holding the red ball, with the tiled floor, the table and chairs, and the large windows visible in the background. The view shifts to show the stairs and handrail above the tiled floor. The red ball then rests on the tiled floor at the base of the stairs near the wall. Scale and gravity are unknown.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "bouncing_ball_drop",
+      "rationale": [
+       {
+        "text": "The person appears to hold the ball before release, and the ball is later visible on the tiled floor near the stairs, suggesting a drop and bounce that could be explored as a falling motion.",
+        "type": "text"
+       }
+      ],
+      "template": "free_fall"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [],
+      "id": "target_motion",
+      "kind": "free_text",
+      "prompt": [
+       {
+        "text": "Should the analysis follow the ball falling and bouncing on the tiled floor, or another motion visible in the clip?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "bn01",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "A person stands indoors against the wall holding the red ball, with the tiled floor, the table and chairs, and the large windows visible in the background. The view shifts to show the stairs and handrail above the tiled floor. The red ball then rests on the tiled floor at the base of the stairs near the wall. Scale and gravity are unknown.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "free_fall",
+   "answers": {
+    "drop_height": {
+     "text": "1.5 m"
+    },
+    "initial_vertical_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "spec": {
+    "schema_version": "1.0.0",
+    "experiment_id": "synthetic-spec",
+    "template": "free_fall",
+    "scene": {
+     "scene_id": "bn01",
+     "schema_version": "1.0.0",
+     "coordinate_system": "right-handed-y-up-metres",
+     "scale_status": "estimated",
+     "constraints": {
+      "bounds_m": {
+       "min": [
+        -2,
+        0,
+        -2
+       ],
+       "max": [
+        2,
+        3,
+        2
+       ]
+      },
+      "allowed_surface_ids": [
+       "floor"
+      ],
+      "collision_obstacle_ids": [],
+      "clearance": {
+       "value": 0.01,
+       "unit": "m",
+       "uncertainty": null,
+       "source": {
+        "label": "synthetic",
+        "evidence": "test_experiment_schema.py:authored-fixture"
+       }
+      }
+     }
+    },
+    "environment": {
+     "gravity": {
+      "value": 9.81,
+      "unit": "m/s^2",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "gravity_direction": [
+      0,
+      -1,
+      0
+     ],
+     "air_resistance": "neglected"
+    },
+    "body": {
+     "mass": {
+      "value": 0.1,
+      "unit": "kg",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "radius": {
+      "value": 0.02,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     }
+    },
+    "placement": {
+     "origin": {
+      "value": [
+       0,
+       2,
+       0
+      ],
+      "unit": "m",
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "surface_id": null
+    },
+    "parameters": {
+     "drop_height": {
+      "value": 1.5,
+      "unit": "m",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:drop_height:free-text"
+      }
+     },
+     "initial_vertical_velocity": {
+      "value": 0.0,
+      "unit": "m/s",
+      "uncertainty": null,
+      "source": {
+       "label": "assumed",
+       "evidence": "user-input:initial_vertical_velocity:chip:at-rest"
+      }
+     }
+    },
+    "simulation": {
+     "duration": {
+      "value": 1,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "time_step": {
+      "value": 0.001,
+      "unit": "s",
+      "uncertainty": null,
+      "source": {
+       "label": "synthetic",
+       "evidence": "test_experiment_schema.py:authored-fixture"
+      }
+     },
+     "seed": 42
+    }
+   }
+  }
+ ],
+ "setup_validator_specs": [
+  {
+   "case_id": "RM02",
+   "scene_id": "rm02",
+   "synthetic": false,
+   "source_sha256": "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720",
+   "licence": "Pexels",
+   "source_url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+   "valid": false,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "779952ad237f0339139625e8a5adbf77aa7362ed66f2ced18a494c9e0830c9c3",
+   "scene_sha256": "d36cf8786346e2fdf9d86f569054f92064967728d86af6097509eb21f9af2b1a",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "rm02",
+    "label": "Tracking shot of empty classroom",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 2,
+     "time_s": 6.041667,
+     "time_source": "pts"
+    },
+    {
+     "index": 5,
+     "time_s": 15.166667,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"pencil_launch\", \"rationale\": [{\"text\": \"the pencil resting on the papers could be launched from the table edge across the classroom floor\", \"type\": \"text\"}], \"template\": \"projectile\"}, {\"id\": \"paper_drop\", \"rationale\": [{\"text\": \"the loose papers on the table could be released above the floor for a drop observation, with scale and gravity unknown\", \"type\": \"text\"}], \"template\": \"free_fall\"}, {\"id\": \"table_edge_roll\", \"rationale\": [{\"text\": \"the pencil could roll along the flat table top and off the edge, with scale and gravity unknown\", \"type\": \"text\"}], \"template\": \"projectile\"}], \"questions\": [{\"chips\": [{\"id\": \"move_pencil\", \"label\": [{\"text\": \"use the pencil\", \"type\": \"text\"}]}, {\"id\": \"move_paper\", \"label\": [{\"text\": \"use the papers\", \"type\": \"text\"}]}, {\"id\": \"observe_only\", \"label\": [{\"text\": \"observe only\", \"type\": \"text\"}]}], \"id\": \"movable_object\", \"kind\": \"free_text\", \"prompt\": [{\"text\": \"Which visible item may be moved for an experiment while the classroom furniture stays still?\", \"type\": \"text\"}]}], \"scene_id\": \"rm02\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"the white table tops with blue edges and metal legs in the empty classroom\", \"type\": \"text\"}, {\"text\": \"the green padded chairs with metal frames beside the tables\", \"type\": \"text\"}, {\"text\": \"the papers and the yellow pencil resting on the foreground table\", \"type\": \"text\"}, {\"text\": \"the open laptop, the lidded cup, and the glasses on the larger white table\", \"type\": \"text\"}, {\"text\": \"the light floor, the radiators, and the closed window blinds along the wall\", \"type\": \"text\"}, {\"text\": \"the scene is real rather than synthetic, and scale and gravity are unknown\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "pencil_launch",
+      "rationale": [
+       {
+        "text": "the pencil resting on the papers could be launched from the table edge across the classroom floor",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     },
+     {
+      "id": "paper_drop",
+      "rationale": [
+       {
+        "text": "the loose papers on the table could be released above the floor for a drop observation, with scale and gravity unknown",
+        "type": "text"
+       }
+      ],
+      "template": "free_fall"
+     },
+     {
+      "id": "table_edge_roll",
+      "rationale": [
+       {
+        "text": "the pencil could roll along the flat table top and off the edge, with scale and gravity unknown",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "move_pencil",
+        "label": [
+         {
+          "text": "use the pencil",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "move_paper",
+        "label": [
+         {
+          "text": "use the papers",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "observe_only",
+        "label": [
+         {
+          "text": "observe only",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "movable_object",
+      "kind": "chips_and_free_text",
+      "prompt": [
+       {
+        "text": "Which visible item may be moved for an experiment while the classroom furniture stays still?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "rm02",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "the white table tops with blue edges and metal legs in the empty classroom",
+      "type": "text"
+     },
+     {
+      "text": "the green padded chairs with metal frames beside the tables",
+      "type": "text"
+     },
+     {
+      "text": "the papers and the yellow pencil resting on the foreground table",
+      "type": "text"
+     },
+     {
+      "text": "the open laptop, the lidded cup, and the glasses on the larger white table",
+      "type": "text"
+     },
+     {
+      "text": "the light floor, the radiators, and the closed window blinds along the wall",
+      "type": "text"
+     },
+     {
+      "text": "the scene is real rather than synthetic, and scale and gravity are unknown",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "projectile",
+   "answers": {
+    "launch_height": {
+     "text": "0.8"
+    },
+    "horizontal_speed": {
+     "text": "2 m/s"
+    }
+   },
+   "why": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  },
+  {
+   "case_id": "RM04",
+   "scene_id": "rm04",
+   "synthetic": false,
+   "source_sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+   "licence": "Pexels License",
+   "source_url": "https://www.pexels.com/video/an-empty-classroom-8342689/",
+   "valid": false,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "f3636f781e558e0c6ae3a93451d7c1c8fee254250701d7f8425adbb09e9a4281",
+   "scene_sha256": "9381c8145573e0e65d8474c18250c9ab8e2630b345797ad2c15f583e8d1a55ca",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "rm04",
+    "label": "An Empty Classroom",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 2,
+     "time_s": 6.08,
+     "time_source": "pts"
+    },
+    {
+     "index": 3,
+     "time_s": 9.12,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"drop_from_table\", \"rationale\": \t\t[{\"text\": \"The table edge and the open floor below could support a drop, with gravity unknown and scale unverified so no height or timing claim can be made yet.\", \"type\": \"text\"} ], \"template\": \"free_fall\"}, {\"id\": \"launch_across_table\", \"rationale\": [{\"text\": \"The broad flat top of the table and the clear space beyond it could support a launch toward the floor, with gravity unknown and scale unverified so no range claim can be made yet.\", \"type\": \"text\"}], \"template\": \"projectile\"}, {\"id\": \"swing_over_table\", \"rationale\": [{\"text\": \"The open space above the table could support a suspended swing clear of the tabletop and the stool, with gravity unknown and scale unverified so no period claim can be made yet.\", \"type\": \"text\"}], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [{\"id\": \"bring_ball\", \"label\": \t\t[{\"text\": \"Bring a small ball\", \"type\": \"text\"}]}, {\"id\": \"bring_string_and_mass\", \"label\": [{\"text\": \"Bring string and a hanging mass\", \"type\": \"text\"}]}, {\"id\": \"bring_ramp_and_ball\", \"label\": [{\"text\": \"Bring a ramp and a ball\", \"type\": \"text\"}]}], \"id\": \"available_props\", \"kind\": \"chips\", \"prompt\": [{\"text\": \"The room appears empty of movable experiment props, so what could you bring to place on the table?\", \"type\": \"text\"}]}], \"scene_id\": \"rm04\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"A real classroom interior is visible, and it is not described as synthetic. A white board with writing and drawings hangs on the back wall, above a low blue cabinet. A white rectangular table stands in the middle of the room on a smooth grey floor, with a dark stool tucked beneath it. Additional white tabletops appear in the foreground as the view widens. A tall dark open shelving unit stands against the back wall, holding boxes and other stored items, and a red display board covered with pictures hangs on the side wall. The open floor around the table is clear. Scale is unverified and gravity\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "drop_from_table",
+      "rationale": [
+       {
+        "text": "The table edge and the open floor below could support a drop, with gravity unknown and scale unverified so no height or timing claim can be made yet.",
+        "type": "text"
+       }
+      ],
+      "template": "free_fall"
+     },
+     {
+      "id": "launch_across_table",
+      "rationale": [
+       {
+        "text": "The broad flat top of the table and the clear space beyond it could support a launch toward the floor, with gravity unknown and scale unverified so no range claim can be made yet.",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     },
+     {
+      "id": "swing_over_table",
+      "rationale": [
+       {
+        "text": "The open space above the table could support a suspended swing clear of the tabletop and the stool, with gravity unknown and scale unverified so no period claim can be made yet.",
+        "type": "text"
+       }
+      ],
+      "template": "pendulum"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "bring_ball",
+        "label": [
+         {
+          "text": "Bring a small ball",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "bring_string_and_mass",
+        "label": [
+         {
+          "text": "Bring string and a hanging mass",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "bring_ramp_and_ball",
+        "label": [
+         {
+          "text": "Bring a ramp and a ball",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "available_props",
+      "kind": "chips",
+      "prompt": [
+       {
+        "text": "The room appears empty of movable experiment props, so what could you bring to place on the table?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "rm04",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "A real classroom interior is visible, and it is not described as synthetic. A white board with writing and drawings hangs on the back wall, above a low blue cabinet. A white rectangular table stands in the middle of the room on a smooth grey floor, with a dark stool tucked beneath it. Additional white tabletops appear in the foreground as the view widens. A tall dark open shelving unit stands against the back wall, holding boxes and other stored items, and a red display board covered with pictures hangs on the side wall. The open floor around the table is clear. Scale is unverified and gravity",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "free_fall",
+   "answers": {
+    "drop_height": {
+     "text": "1.5 m"
+    },
+    "initial_vertical_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "why": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  },
+  {
+   "case_id": "RM05",
+   "scene_id": "rm05",
+   "synthetic": false,
+   "source_sha256": "53b9f050e8e8c62ac698236ed6107fd6c51636ed3fc79ba6b41caefcdf3ffbcf",
+   "licence": "PD-USGov-NASA",
+   "source_url": "https://images.nasa.gov/details/Step_Inside_the_Station-4K-Clean",
+   "valid": false,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "22eef92dff2756e009af95d2038cef02fdc63a8220c0ba34750cd92db81e7878",
+   "scene_sha256": "426247b04b44ffa9e49b058254a330453ce1d1fae68b0188d1eccab591dd863e",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "rm05",
+    "label": "Step Inside the Station (4K Clean)",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 89.683,
+     "time_source": "ffmpeg-seek(container duration)"
+    },
+    {
+     "index": 1,
+     "time_s": 448.417,
+     "time_source": "ffmpeg-seek(container duration)"
+    },
+    {
+     "index": 2,
+     "time_s": 807.15,
+     "time_source": "ffmpeg-seek(container duration)"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"floating_object_drift\", \"rationale\": [{\"text\": \"The person and loose equipment appear to float inside the module, so gravity is unknown and a falling or swinging motion may not behave as expected\", \"type\": \"text\"}], \"template\": \"projectile\"}], \"questions\": [{\"chips\": [{\"id\": \"intended_template\", \"label\": [{\"text\": \"Projectile\", \"type\": \"text\"}]}, {\"id\": \"intended_template\", \"label\": [{\"text\": \"Free fall\", \"type\": \"text\"}]}, {\"id\": \"need_help\", \"label\": [{\"text\": \"Help me choose\", \"type\": \"text\"}]}], \"id\": \"clarify_gravity_and_intent\", \"kind\": \"chips\", \"prompt\": [{\"text\": \"Gravity is unknown, scale is unverified, and this looks like a floating station interior \\u000eDid you want to test drifting motion here, or were you hoping for falling or swinging motion under gravity?\", \"type\": \"text\"}]}], \"scene_id\": \"rm05\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"The scene shows the interior of a space station module with hatchways, wall panels, cables, stored bags, equipment racks, and a person floating while holding equipment. Gravity is unknown and scale is unverified; no usable falling, swinging, launching, or rolling surface is confirmed.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "floating_object_drift",
+      "rationale": [
+       {
+        "text": "The person and loose equipment appear to float inside the module, so gravity is unknown and a falling or swinging motion may not behave as expected",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "intended_template",
+        "label": [
+         {
+          "text": "Projectile",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "intended_template",
+        "label": [
+         {
+          "text": "Free fall",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "need_help",
+        "label": [
+         {
+          "text": "Help me choose",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "clarify_gravity_and_intent",
+      "kind": "chips",
+      "prompt": [
+       {
+        "text": "Gravity is unknown, scale is unverified, and this looks like a floating station interior \u000eDid you want to test drifting motion here, or were you hoping for falling or swinging motion under gravity?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "rm05",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "The scene shows the interior of a space station module with hatchways, wall panels, cables, stored bags, equipment racks, and a person floating while holding equipment. Gravity is unknown and scale is unverified; no usable falling, swinging, launching, or rolling surface is confirmed.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "projectile",
+   "answers": {
+    "launch_height": {
+     "text": "0.8"
+    },
+    "horizontal_speed": {
+     "text": "2 m/s"
+    }
+   },
+   "why": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  },
+  {
+   "case_id": "PD02",
+   "scene_id": "pd02",
+   "synthetic": false,
+   "source_sha256": "5639a80463d61fe43622c3ade521b5c3fb24d8b28c4e937c5dd3df0dbd81016d",
+   "licence": "Pexels License",
+   "source_url": "https://www.pexels.com/video/foucault-pendulum-swing-in-grand-hall-35640361/",
+   "valid": false,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "aea0165a61f31ff61d4da3c37ba0c85db96dbb9fbe4cb4323dfd2fb54fbc7983",
+   "scene_sha256": "90bcf0a10a0cb2cda6827fd6062a696b3784b4667f31935179a7d7fba81c8326",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "pd02",
+    "label": "Foucault Pendulum Swing in Grand Hall",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 1,
+     "time_s": 8.333333,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"pendulum_swing_tracking\", \"rationale\": [\n  {\"text\": \"A golden spherical bob is visible swinging back and forth above the patterned floor, consistent with pendulum motion.\" , \"type\": \"text\"}\n], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [{\"id\": \"floor_markings\", \"label\": \n \t[{\"text\": \"Use the floor markings\", \"type\": \"text\"}, {\"text\": \"Use the bob only\", \"type\": \"text\"}]}, {\"id\": \"glass_platform\", \"label\": \n \t[{\"text\": \"Use the glass platform edge\", \"type\": \"text\"}, {\"text\": \"Use the bob only\", \"type\": \"text\"}]}] ,\"id\": \"reference_choice\", \"kind\": \"free_text\", \"prompt\": [{\"text\": \"What reference should be used when tracking the swing of the bob?\", \"type\": \"text\"}]}], \"scene_id\": \"pd02\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"Scale is unverified and gravity is unknown. A golden spherical bob suspended above a patterned marble floor swings across the view. A clear raised platform sits at the center of the floor pattern, surrounded by a railing and tiled hall floor beyond. The bob moves from side to side over the platform and floor markings.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "pendulum_swing_tracking",
+      "rationale": [
+       {
+        "text": "A golden spherical bob is visible swinging back and forth above the patterned floor, consistent with pendulum motion.",
+        "type": "text"
+       }
+      ],
+      "template": "pendulum"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "floor_markings",
+        "label": [
+         {
+          "text": "Use the floor markings",
+          "type": "text"
+         },
+         {
+          "text": "Use the bob only",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "glass_platform",
+        "label": [
+         {
+          "text": "Use the glass platform edge",
+          "type": "text"
+         },
+         {
+          "text": "Use the bob only",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "reference_choice",
+      "kind": "chips_and_free_text",
+      "prompt": [
+       {
+        "text": "What reference should be used when tracking the swing of the bob?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "pd02",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "Scale is unverified and gravity is unknown. A golden spherical bob suspended above a patterned marble floor swings across the view. A clear raised platform sits at the center of the floor pattern, surrounded by a railing and tiled hall floor beyond. The bob moves from side to side over the platform and floor markings.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "pendulum",
+   "answers": {
+    "length": {
+     "text": "0.75 m"
+    },
+    "release_angle": {
+     "text": "0.1 rad"
+    },
+    "initial_angular_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "why": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  },
+  {
+   "case_id": "PD03",
+   "scene_id": "pd03",
+   "synthetic": false,
+   "source_sha256": "ae1f5d36576555579d4b80cb17928a44bb28f0511260cbf5a5963d009bce1c08",
+   "licence": "Pexels License",
+   "source_url": "https://www.pexels.com/video/a-swinging-pendulum-6613341/",
+   "valid": false,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "856781f5c13f18129ddaac64fcb463184f6cabae5b552d6b886b200cf2836f87",
+   "scene_sha256": "8cc326cb5593d3e67fb9b1d2df3d79a69f7243a1f229a93095186892da8d109c",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "pd03",
+    "label": "A Swinging Pendulum",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 10,
+     "time_s": 30.03,
+     "time_source": "pts"
+    },
+    {
+     "index": 19,
+     "time_s": 57.057,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"pendulum_swing_on_cradle\", \"rationale\": [{\"text\": \"A metal ball hangs from thin lines on a framed cradle and is seen displaced from the resting cluster in the keyframes.\", \"type\": \"text\"}, {\"text\": \"The repeated swinging and contact between the balls can support a pendulum study, though the interactions are between the balls and not an isolated swing.\", \"type\": \"text\"}, {\"text\": \"Scale and gravity are unknown, so any result would remain qualitative until those are provided.\", \"type\": \"text\"}], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [{\"id\": \"isolated_swing\", \"label\": [{\"text\": \"Use the outer ball swinging alone\", \"type\": \"text\"}]}, {\"id\": \"collisions\", \"label\": [{\"text\": \"Focus on the ball collisions\", \"type\": \"text\"}]}, {\"id\": \"unsure\", \"label\": [{\"text\": \"Not sure yet\", \"type\": \"text\"}]}], \"id\": \"swing_focus\", \"kind\": \"free_text\", \"prompt\": [{\"text\": \"Should the experiment follow the outer ball swinging alone, or the collisions among the clustered balls?\", \"type\": \"text\"}]}], \"scene_id\": \"pd03\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"A light wooden table surface fills the background, showing visible grain and knots.\", \"type\": \"text\"}, {\"text\": \"A black framed cradle with a flat base sits on the table, holding shiny metal balls suspended by thin lines.\", \"type\": \"text\"}, {\"text\": \"The metal balls rest together in a cluster, with an outer ball seen swinging away from and back toward the group across the keyframes.\", \"type\": \"text\"}, {\"text\": \"Scale and gravity are unknown, and this is described as a real video clip rather than a synthetic scene.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "pendulum_swing_on_cradle",
+      "rationale": [
+       {
+        "text": "A metal ball hangs from thin lines on a framed cradle and is seen displaced from the resting cluster in the keyframes.",
+        "type": "text"
+       },
+       {
+        "text": "The repeated swinging and contact between the balls can support a pendulum study, though the interactions are between the balls and not an isolated swing.",
+        "type": "text"
+       },
+       {
+        "text": "Scale and gravity are unknown, so any result would remain qualitative until those are provided.",
+        "type": "text"
+       }
+      ],
+      "template": "pendulum"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "isolated_swing",
+        "label": [
+         {
+          "text": "Use the outer ball swinging alone",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "collisions",
+        "label": [
+         {
+          "text": "Focus on the ball collisions",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "unsure",
+        "label": [
+         {
+          "text": "Not sure yet",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "swing_focus",
+      "kind": "chips_and_free_text",
+      "prompt": [
+       {
+        "text": "Should the experiment follow the outer ball swinging alone, or the collisions among the clustered balls?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "pd03",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "A light wooden table surface fills the background, showing visible grain and knots.",
+      "type": "text"
+     },
+     {
+      "text": "A black framed cradle with a flat base sits on the table, holding shiny metal balls suspended by thin lines.",
+      "type": "text"
+     },
+     {
+      "text": "The metal balls rest together in a cluster, with an outer ball seen swinging away from and back toward the group across the keyframes.",
+      "type": "text"
+     },
+     {
+      "text": "Scale and gravity are unknown, and this is described as a real video clip rather than a synthetic scene.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "pendulum",
+   "answers": {
+    "length": {
+     "text": "0.75 m"
+    },
+    "release_angle": {
+     "text": "0.1 rad"
+    },
+    "initial_angular_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "why": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  },
+  {
+   "case_id": "PD04",
+   "scene_id": "pd04",
+   "synthetic": false,
+   "source_sha256": "b51517e260e620b306a91f8b2dbd1cc8c2fa8d74250cc05e5210cfe7f8f4315a",
+   "licence": "CC-BY-SA-4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Blocked-pendulum-slow-motion.webm",
+   "valid": false,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "73f6fbe25509afb1acedcb7278ac1b03bf0b07361886e103ad7a20b8a56011b0",
+   "scene_sha256": "34cd576353ae2fb6e2470120c298024368e691391c235e3afdc57e7ceac5e5c8",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "pd04",
+    "label": "Blocked-pendulum-slow-motion",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 300,
+     "time_s": 10.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 599,
+     "time_s": 19.967,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"blocked_pendulum_swing\", \"rationale\": \t\t[{\"text\": \"The ball swings from release toward the pole and beyond the pole after passing the low point, with the string interacting with the pole hardware. This suits a pendulum study comparing the blocked and unblocked parts of the motion.\", \"type\": \"text\"}], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [], \"id\": \"release_reference\", \"kind\": \"free_text\", \"prompt\": \t[{\"text\": \"How should the release position of the ball be marked for tracking?\", \"type\": \"text\"}]}], \"scene_id\": \"pd04\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"The white table surface sits below a green board. A vertical black pole stands on the table, with a yellow ball suspended by a thin string from the top of the pole. A hand holds the ball aside at the start, then the ball hangs near the base of the pole, then it swings to the opposite side. A clamp is visible partway up the pole and may block the string during the swing. Scale and gravity are unknown.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "blocked_pendulum_swing",
+      "rationale": [
+       {
+        "text": "The ball swings from release toward the pole and beyond the pole after passing the low point, with the string interacting with the pole hardware. This suits a pendulum study comparing the blocked and unblocked parts of the motion.",
+        "type": "text"
+       }
+      ],
+      "template": "pendulum"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [],
+      "id": "release_reference",
+      "kind": "free_text",
+      "prompt": [
+       {
+        "text": "How should the release position of the ball be marked for tracking?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "pd04",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "The white table surface sits below a green board. A vertical black pole stands on the table, with a yellow ball suspended by a thin string from the top of the pole. A hand holds the ball aside at the start, then the ball hangs near the base of the pole, then it swings to the opposite side. A clamp is visible partway up the pole and may block the string during the swing. Scale and gravity are unknown.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "pendulum",
+   "answers": {
+    "length": {
+     "text": "0.75 m"
+    },
+    "release_angle": {
+     "text": "0.1 rad"
+    },
+    "initial_angular_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "why": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  },
+  {
+   "case_id": "PD06",
+   "scene_id": "pd06",
+   "synthetic": false,
+   "source_sha256": "7acc8013f60cd476d82e3acebc63d8846fe6e4db4201e031fd9efa8dc307eed4",
+   "licence": "CC-BY-SA-4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Foucault_pendulum_utexas_motion.webm",
+   "valid": false,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "976e40fa7a4dc4618d6791d81de7d349499fd89d042dd908ff77ed60b146e908",
+   "scene_sha256": "e1737586b629fd7002b0c0747dd6fe170f1daed7298a4229dfd98be753f3e73c",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "pd06",
+    "label": "Foucault pendulum utexas motion",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 140,
+     "time_s": 4.766,
+     "time_source": "pts"
+    },
+    {
+     "index": 279,
+     "time_s": 9.498,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"pendulum_motion\", \"rationale\": [\n        {\n          \"text\": \"The bob moves back and forth above the marked circular floor, matching a pendulum setup\"\n        , \"type\": \"text\"}\n      ], \"template\": \"pendulum\"}], \"questions\": [{\"chips\": [{\"id\": \"track_bob\", \"label\": [\n        {\n          \"text\": \"Track the bob swing\"\n        , \"type\": \"text\"}\n      ]}, {\"id\": \"track_rotation\", \"label\": [\n        {\n          \"text\": \"Track swing plane change\"\n        , \"type\": \"text\"}\n      ]}], \"id\": \"clarify_goal\", \"kind\": \"free_text\", \"prompt\": [\n        {\n          \"text\": \"Should the analysis follow the bob swing, the swing plane change over time, or both?\"\n        , \"type\": \"text\"}\n      ]}], \"scene_id\": \"pd06\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"The view looks down into a circular pit enclosed by curved metal railings, with a dark floor marked by white ticks arranged in a circle and a metallic spherical bob swinging above the floor; scale and gravity are unknown\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "pendulum_motion",
+      "rationale": [
+       {
+        "text": "The bob moves back and forth above the marked circular floor, matching a pendulum setup",
+        "type": "text"
+       }
+      ],
+      "template": "pendulum"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "track_bob",
+        "label": [
+         {
+          "text": "Track the bob swing",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "track_rotation",
+        "label": [
+         {
+          "text": "Track swing plane change",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "clarify_goal",
+      "kind": "chips_and_free_text",
+      "prompt": [
+       {
+        "text": "Should the analysis follow the bob swing, the swing plane change over time, or both?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "pd06",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "The view looks down into a circular pit enclosed by curved metal railings, with a dark floor marked by white ticks arranged in a circle and a metallic spherical bob swinging above the floor; scale and gravity are unknown",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "pendulum",
+   "answers": {
+    "length": {
+     "text": "0.75 m"
+    },
+    "release_angle": {
+     "text": "0.1 rad"
+    },
+    "initial_angular_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "why": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  },
+  {
+   "case_id": "PJ03",
+   "scene_id": "pj03",
+   "synthetic": false,
+   "source_sha256": "8a24c5f3ce69edfcce6f0e4ffd5f4cf2449416c9e3982419e17f88aea440dacf",
+   "licence": "CC-BY-SA-4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Ballistische_Kurve.webm",
+   "valid": false,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "aa4f2ff34a9697cb134de0359e6f130a29ef1e4faf612f10a54af5568173fec6",
+   "scene_sha256": "b2956892e4ae7231a8622b56ce2eeea178e640eaec76726f3db7b89c76156897",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "pj03",
+    "label": "Ballistische Kurve",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 7.341,
+     "time_source": "ffmpeg-seek(container duration)"
+    },
+    {
+     "index": 1,
+     "time_s": 36.703,
+     "time_source": "ffmpeg-seek(container duration)"
+    },
+    {
+     "index": 2,
+     "time_s": 66.065,
+     "time_source": "ffmpeg-seek(container duration)"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"projectile_before_board\", \"rationale\": [{\"text\": \"The dotted arc in front of the gridded board suggests a thrown object following a curved path that could be tracked against the board.\", \"type\": \"text\"}, {\"text\": \"Scale and gravity are unknown, and the scene says scale is unverified, so the path can be described in image terms without claiming physical sizes or timing.\", \"type\": \"text\"}], \"template\": \"projectile\"}], \"questions\": [{\"chips\": [{\"id\": \"board_grid\", \"label\": [{\"text\": \"the board grid\", \"type\": \"text\"}]}, {\"id\": \"video_timing\", \"label\": [{\"text\": \"the video timing\", \"type\": \"text\"}]}, {\"id\": \"neither_yet\", \"label\": [{\"text\": \"neither yet\", \"type\": \"text\"}]}], \"id\": \"calibration_source\", \"kind\": \"free_text\", \"prompt\": [{\"text\": \"What should be used to calibrate the board grid and the timing for tracking the throw?\", \"type\": \"text\"}]}], \"scene_id\": \"pj03\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"The large gridded chalkboard mounted on the wall, with faint markings across the surface and a light patch toward the lower side\", \"type\": \"text\"}, {\"text\": \"The arc of pale dots curving up and then down in front of the chalkboard\", \"type\": \"text\"}, {\"text\": \"The person partly visible at the side, looking toward the chalkboard\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "projectile_before_board",
+      "rationale": [
+       {
+        "text": "The dotted arc in front of the gridded board suggests a thrown object following a curved path that could be tracked against the board.",
+        "type": "text"
+       },
+       {
+        "text": "Scale and gravity are unknown, and the scene says scale is unverified, so the path can be described in image terms without claiming physical sizes or timing.",
+        "type": "text"
+       }
+      ],
+      "template": "projectile"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "board_grid",
+        "label": [
+         {
+          "text": "the board grid",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "video_timing",
+        "label": [
+         {
+          "text": "the video timing",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "neither_yet",
+        "label": [
+         {
+          "text": "neither yet",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "calibration_source",
+      "kind": "chips_and_free_text",
+      "prompt": [
+       {
+        "text": "What should be used to calibrate the board grid and the timing for tracking the throw?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "pj03",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "The large gridded chalkboard mounted on the wall, with faint markings across the surface and a light patch toward the lower side",
+      "type": "text"
+     },
+     {
+      "text": "The arc of pale dots curving up and then down in front of the chalkboard",
+      "type": "text"
+     },
+     {
+      "text": "The person partly visible at the side, looking toward the chalkboard",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "projectile",
+   "answers": {
+    "launch_height": {
+     "text": "0.8"
+    },
+    "horizontal_speed": {
+     "text": "2 m/s"
+    }
+   },
+   "why": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  },
+  {
+   "case_id": "ST03",
+   "scene_id": "st03",
+   "synthetic": false,
+   "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+   "licence": "Pexels License",
+   "source_url": "https://www.pexels.com/video/woman-dropping-apple-on-ground-12723966/",
+   "valid": false,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "723d5b1115868fe9668678eaedee38260b399abb99018d339843dde949c88047",
+   "scene_sha256": "a7bd56cecf9b67ba3bd2dc0f1de81e2e4d4479f005bed0b760d35e7aade9b551",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "st03",
+    "label": "Woman dropping apple on ground",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.0,
+     "time_source": "pts"
+    },
+    {
+     "index": 3,
+     "time_s": 9.009,
+     "time_source": "pts"
+    },
+    {
+     "index": 6,
+     "time_s": 18.018,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"apple-drop\", \"rationale\": [{\"text\": \"The woman is holding the apple raised above the ground, so releasing it from rest fits a vertical fall toward the surface below.\" , \"type\": \"text\"}], \"template\": \"free_fall\"}], \"questions\": [{\"chips\": [{\"id\": \"grass\", \"label\": [{\"text\": \"The grass\", \"type\": \"text\"}]}, {\"id\": \"mat\", \"label\": [{\"text\": \"The mat\", \"type\": \"text\"}]}, {\"id\": \"cushion\", \"label\": [{\"text\": \"A cushion\", \"type\": \"text\"}]}], \"id\": \"landing-surface\", \"kind\": \"chips\", \"prompt\": [{\"text\": \"Where should the apple land when it is released?\", \"type\": \"text\"}]}], \"scene_id\": \"st03\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"A woman kneeling outdoors on grass beside a tree, holding a green apple raised in her hand above a picnic mat with cushions and bowls of fruit, with the grassy ground below as the landing surface. Scale is unverified and gravity is unknown.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "apple-drop",
+      "rationale": [
+       {
+        "text": "The woman is holding the apple raised above the ground, so releasing it from rest fits a vertical fall toward the surface below.",
+        "type": "text"
+       }
+      ],
+      "template": "free_fall"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [
+       {
+        "id": "grass",
+        "label": [
+         {
+          "text": "The grass",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "mat",
+        "label": [
+         {
+          "text": "The mat",
+          "type": "text"
+         }
+        ]
+       },
+       {
+        "id": "cushion",
+        "label": [
+         {
+          "text": "A cushion",
+          "type": "text"
+         }
+        ]
+       }
+      ],
+      "id": "landing-surface",
+      "kind": "chips",
+      "prompt": [
+       {
+        "text": "Where should the apple land when it is released?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "st03",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "A woman kneeling outdoors on grass beside a tree, holding a green apple raised in her hand above a picnic mat with cushions and bowls of fruit, with the grassy ground below as the landing surface. Scale is unverified and gravity is unknown.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "free_fall",
+   "answers": {
+    "drop_height": {
+     "text": "1.5 m"
+    },
+    "initial_vertical_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "why": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  },
+  {
+   "case_id": "BN01",
+   "scene_id": "bn01",
+   "synthetic": false,
+   "source_sha256": "b01267b754d5a861fa5b9119761654933763ae2197d96b514da5482b9729969b",
+   "licence": "CC-BY-SA-4.0",
+   "source_url": "https://commons.wikimedia.org/wiki/File:Bouncy_ball_240fps.webm",
+   "valid": false,
+   "bundle_bound": "unavailable: no authoritative scene bundle with known scale for this real clip (validate_setup not run)",
+   "keyframe_manifest_sha256": "20f2a11ea5708bb7c6697b704a52a225ca78abdc34b42657be940d5d36ad9a14",
+   "scene_sha256": "b464f6c291b32213c9ae4f3343d626c83f3ce82f5bcf4f3c8dac4fcc56c8a84a",
+   "scene_context": {
+    "schema_version": "scene-context/clip",
+    "scene_id": "bn01",
+    "label": "Bouncy ball 240fps",
+    "synthetic": false,
+    "scale_status": "unverified",
+    "gravity_status": "unknown",
+    "surfaces": [],
+    "colliders": [],
+    "labels": []
+   },
+   "frames": [
+    {
+     "index": 0,
+     "time_s": 0.007,
+     "time_source": "pts"
+    },
+    {
+     "index": 4920,
+     "time_s": 20.565,
+     "time_source": "pts"
+    },
+    {
+     "index": 9839,
+     "time_s": 41.207,
+     "time_source": "pts"
+    }
+   ],
+   "attempts": 1,
+   "rejected": [],
+   "model_number_attempts": 0,
+   "accepted_text": "{\"candidates\": [{\"id\": \"bouncing_ball_drop\", \"rationale\": \t\t[{\"text\": \"The person appears to hold the ball before release, and the ball is later visible on the tiled floor near the stairs, suggesting a drop and bounce that could be explored as a falling motion.\", \"type\": \"text\"}], \"template\": \"free_fall\"}], \"questions\": [{\"chips\": [], \"id\": \"target_motion\", \"kind\": \"free_text\", \"prompt\": \t\t[{\"text\": \"Should the analysis follow the ball falling and bouncing on the tiled floor, or another motion visible in the clip?\", \"type\": \"text\"}]}], \"scene_id\": \"bn01\", \"schema_version\": \"agent-response/1.0.0\", \"segments\": [{\"text\": \"A person stands indoors against the wall holding the red ball, with the tiled floor, the table and chairs, and the large windows visible in the background. The view shifts to show the stairs and handrail above the tiled floor. The red ball then rests on the tiled floor at the base of the stairs near the wall. Scale and gravity are unknown.\", \"type\": \"text\"}]}",
+   "accepted_response": {
+    "candidates": [
+     {
+      "id": "bouncing_ball_drop",
+      "rationale": [
+       {
+        "text": "The person appears to hold the ball before release, and the ball is later visible on the tiled floor near the stairs, suggesting a drop and bounce that could be explored as a falling motion.",
+        "type": "text"
+       }
+      ],
+      "template": "free_fall"
+     }
+    ],
+    "questions": [
+     {
+      "chips": [],
+      "id": "target_motion",
+      "kind": "free_text",
+      "prompt": [
+       {
+        "text": "Should the analysis follow the ball falling and bouncing on the tiled floor, or another motion visible in the clip?",
+        "type": "text"
+       }
+      ]
+     }
+    ],
+    "scene_id": "bn01",
+    "schema_version": "agent-response/1.0.0",
+    "segments": [
+     {
+      "text": "A person stands indoors against the wall holding the red ball, with the tiled floor, the table and chairs, and the large windows visible in the background. The view shifts to show the stairs and handrail above the tiled floor. The red ball then rests on the tiled floor at the base of the stairs near the wall. Scale and gravity are unknown.",
+      "type": "text"
+     }
+    ]
+   },
+   "invented": [],
+   "template": "free_fall",
+   "answers": {
+    "drop_height": {
+     "text": "1.5 m"
+    },
+    "initial_vertical_velocity": {
+     "chip": "at-rest"
+    }
+   },
+   "why": [
+    "$.scene: invalid authoritative bundle: []: None is not of type 'object'"
+   ]
+  }
+ ],
+ "live_turns": [
+  {
+   "case_id": "turn-00",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity estimate aligns with the simulated drop and duration under quoted uncertainty, shown as 9.81 ± 7.4e-05 m/s^2 (simulated) Limits include synthetic authored settings plus simplified independent timing and position model lacking correlated and calibrated scale effects.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-01",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence from a real bench setup.9.81 ± 7.4e-05 m/s^2 (simulated)Fitted gravity aligns with simulated drop and duration under stated uncertainties, while authored settings plus simplified uncorrelated uncertainty limit broader use.0.2 ± 1e-06 s (simulated)",
+   "invented": null
+  },
+  {
+   "case_id": "turn-02",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "Check finds fitted gravity broadly consistent with simulated drop over simulated duration within reported fit uncertainty. This trial is simulated, not physical evidence, and carries synthetic settings with simplified independent uncertainty, lacking correlated effects and lacking calibration.11.8922 ± 8.3e-05 m/s^2 (simulated)Simulated drop and timing cited here support traceability only to the virtual run.0.237843 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)",
+   "invented": null
+  },
+  {
+   "case_id": "turn-03",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence, and the check concerns internal consistency only.4.94614 ± 5.5e-05 m/s^2 (simulated)Fitted gravity aligns with simulated drop and duration within stated uncertainty, showing consistency between simulator and fitter.0.2 ± 1e-06 s (simulated)Limitations include synthetic authored settings plus simplified independent uncertainty without correlated effects or calibration.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-04",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, lacking physical evidence. The fitted gravity aligns with simulated timing and drop within reported uncertainty, subject to synthetic settings and simplified uncertainty handling. Fitted value cited here:9.81 ± 7.4e-05 m/s^2 (simulated)Simulated duration cited here:0.2 ± 1e-06 s (simulated)Simulated drop cited here:0.1962 ± 1e-06 m (simulated)Limitation is authored synthetic calibration with independent uncertainty only, so result checks internal consistency rather than real-world validity.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-05",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This check covers a simulated run only, not physical evidence. Simulated fall timing near 0.2 ± 1e-06 s (simulated) paired with simulated drop distance yields fitted gravity near 9.81 ± 7.4e-05 m/s^2 (simulated) showing mutual consistency within stated uncertainty, limited by synthetic settings and simplified independent uncertainty lacking correlated effects and calibration.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-06",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "Check shows fitted gravity is consistent with simulated drop and duration from the simulator run, given stated uncertainties.10.984 ± 7.9e-05 m/s^2 (simulated)This trial is simulated, not physical evidence, using synthetic authored settings with simplified independent uncertainty and lack of calibration. Supporting simulated duration is:0.2 ± 1e-06 s (simulated)with related simulated drop also available, showing limits of this virtual check.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-07",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity estimate from the virtual-lab fit is near 12.9702 ± 8.9e-05 m/s^2 (simulated) and is checked against the simulated drop and duration from the simulator run near 0.259405 ± 1e-06 m (simulated) and 0.2 ± 1e-06 s (simulated) Consistency here reflects internal agreement of the synthetic model only, with authored settings and simplified independent uncertainty and no calibrated correlated effects. ",
+   "invented": null
+  },
+  {
+   "case_id": "turn-08",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This check finds the fitted gravity result broadly aligned with the simulated drop timing run within stated uncertainty9.81 ± 7.4e-05 m/s^2 (simulated)This trial is simulated, not physical evidence, with synthetic settings and simplified independent uncertainty lacking correlated effects or calibration",
+   "invented": null
+  },
+  {
+   "case_id": "turn-09",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "Trial is simulated, not physical evidence. Fitted gravity aligns with simulated drop and duration within stated uncertainty, with fitted value near expected free-fall behavior around 9.81 ± 7.4e-05 m/s^2 (simulated)Separate simulated drop and duration support consistency check, while synthetic authored settings and simplified independent uncertainty without correlated effects limit interpretation, and result lacks calibration.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-10",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated and provides no physical evidence. The fitted result is consistent with the simulated run within stated uncertainties, subject to limits described below.13.4483 ± 9.1e-05 m/s^2 (simulated)reflects the simulated drop of0.268966 ± 1e-06 m (simulated)paired with simulated duration of0.2 ± 1e-06 s (simulated)under synthetic authored settings with independent timing and position uncertainty and lacking correlated or calibrated scale treatment, which limits broader use.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-11",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This check concerns a simulated virtual lab trial only, with no physical measurement implied. The fitted gravity value aligns with the simulated drop and duration outputs within the reported fit uncertainty, so internal consistency holds for this synthetic run. Cited fitted value follows.9.39705 ± 7.2e-05 m/s^2 (simulated)Limitations remain because settings are synthetic and authored, uncertainty modeling is simplified and independent without correlated clock or scale effects, and calibration is absent. Thus results illustrate simulation logic alone and cannot support claims about real gravity. Cited simulated duration follows.0.2 ± 1e-06 s (simulated)",
+   "invented": null
+  },
+  {
+   "case_id": "turn-12",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity aligns with simulated drop and duration within stated uncertainty, showing internal consistency.9.81 ± 7.4e-05 m/s^2 (simulated)Limitations include synthetic settings and simplified independent uncertainty lacking correlated effects and lacking calibration.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-13",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence, and reflects a virtual lab fit only.9.81 ± 7.4e-05 m/s^2 (simulated)The fitted gravity aligns with the simulated drop and duration from the simulator run within stated uncertainty, supporting internal consistency.0.1962 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limitations include synthetic instrument settings and simplified uncertainty treatment without correlated effects or calibration, so no claim about real gravity follows.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-14",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "Check of simulated free fall trial shows fitted gravity is consistent with simulated drop and duration given reported uncertainties, with no sign of mismatch.5.36851 ± 5.6e-05 m/s^2 (simulated)Simulated duration and drop values support this agreement within stated tolerances.0.2 ± 1e-06 s (simulated)0.10737 ± 1e-06 m (simulated)This outcome is simulated, not physical evidence, limited by synthetic authored settings and simplified independent uncertainties without correlated effects and without calibration.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-15",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity value aligns with the simulated drop over simulated duration cited here as0.275684 ± 1e-06 m (simulated)paired with0.2 ± 1e-06 s (simulated)under synthetic authored settings with independent uncertainty lacking correlated effects and calibration, so agreement reflects internal consistency of the model rather than validation against real motion.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-16",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "Fitted gravity agrees with simulated drop timing within reported uncertainty, showing internal consistency for this virtual check.9.81 ± 7.4e-05 m/s^2 (simulated)This trial is simulated, not physical evidence, with authored settings and simplified independent uncertainty lacking correlated effects and calibration.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-17",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence. Fitted gravity aligns with simulated drop over simulated duration within reported fit uncertainty, subject to synthetic authored settings and simplified independent uncertainty with no correlated effects and no calibration.9.81 ± 7.4e-05 m/s^2 (simulated)Result checks internal consistency only and cannot support claims about real gravity.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-18",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence.4.13627 ± 5.3e-05 m/s^2 (simulated)Fitted gravity aligns with simulated drop and duration within stated uncertainty, limited by synthetic settings and simplified independent uncertainty.0.2 ± 1e-06 s (simulated)0.082725 ± 1e-06 m (simulated)",
+   "invented": null
+  },
+  {
+   "case_id": "turn-19",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated rather than physical evidence, so it cannot support claims about real gravity.14.0372 ± 9.4e-05 m/s^2 (simulated)Fitted gravity with stated uncertainty appears broadly consistent with simulated drop over simulated duration under authored synthetic settings.0.2 ± 1e-06 s (simulated)Limitations include authored settings and simplified independent timing and position uncertainty without correlated clock or scale effects, and lack of calibration.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-20",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "Fitted gravity aligns with simulated drop timing within stated fit uncertainty, showing internal consistency for this virtual trial.9.81 ± 7.4e-05 m/s^2 (simulated)This trial is simulated, not physical evidence, with synthetic settings and simplified independent uncertainty lacking correlated effects and calibration.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-21",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated rather than physical evidence, so it cannot support claims about real gravity and serves only as a virtual-lab check.9.81 ± 7.4e-05 m/s^2 (simulated)Fitted gravity aligns with the simulated drop across the simulated duration within stated uncertainty, while limits include synthetic settings and simplified independent uncertainty lacking correlated effects or calibration.0.1962 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)",
+   "invented": null
+  },
+  {
+   "case_id": "turn-22",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This check concerns a simulated trial and is not physical evidence. The fitted gravity near 9.35657 ± 7.2e-05 m/s^2 (simulated) aligns with the simulated drop near 0.187131 ± 1e-06 m (simulated) and simulated duration near 0.2 ± 1e-06 s (simulated) under synthetic authored settings with idealized independent uncertainty and absent correlated effects or calibration.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-23",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity estimate is consistent with the simulated drop over the simulated duration within quoted uncertainty, with limits from synthetic settings and simplified uncorrelated uncertainty without calibration.6.61065 ± 6.1e-05 m/s^2 (simulated)Consistency here reflects internal agreement of simulator and fitter only, and does not support claims about real gravity.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-24",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated and not physical evidence. Fitted gravity aligns with simulated drop and duration within stated uncertainties.9.81 ± 7.4e-05 m/s^2 (simulated)0.1962 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limitations include synthetic authored settings and simplified independent uncertainty lacking correlated effects and lacking calibration, so inference remains illustrative.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-25",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This check concerns a simulated trial only and provides no physical evidence beyond internal consistency.9.81 ± 7.4e-05 m/s^2 (simulated)The fitted gravity value aligns with the simulated drop observed over the simulated duration within quoted uncertainty, showing expected model agreement.0.1962 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limits include synthetic authored settings with simplified independent uncertainty and absent calibrated correlated effects, so broader claims remain unsupported.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-26",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence, and offers only a consistency check between simulator output and the fitted model.0.2 ± 1e-06 s (simulated)The simulated fall record and the fitted gravity estimate agree under the assumed model within stated uncertainty, subject to important limits.10.6013 ± 7.7e-05 m/s^2 (simulated)0.212025 ± 1e-06 m (simulated)Limits include synthetic authored settings with simplified independent timing and position uncertainty, absent correlated clock and scale effects, and lack of calibration, so no claim about real gravity follows.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-27",
+   "mystery": true,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence, and cannot support claims about real gravity.9.37371 ± 7.2e-05 m/s^2 (simulated)Fitted gravity is consistent with simulated drop and duration within stated uncertainty, showing internal agreement.0.187474 ± 1e-06 m (simulated)Limits include authored settings plus simplified independent uncertainty lacking correlated and calibrated effects.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-28",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence, so it cannot support claims about real gravity.9.81 ± 7.4e-05 m/s^2 (simulated)Fitted gravity is consistent with the simulated drop paired with simulated duration within stated uncertainties.0.1962 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limitation is synthetic authored settings with simplified independent uncertainty and lack of calibration, so broader use is unwarranted.",
+   "invented": null
+  },
+  {
+   "case_id": "turn-29",
+   "mystery": false,
+   "fallback": null,
+   "blocked": [],
+   "render_unchanged": true,
+   "shown": "This trial is simulated, not physical evidence. The fitted gravity value is internally consistent with the simulated drop and duration within stated uncertainty, with no sign of mismatch.9.81 ± 7.4e-05 m/s^2 (simulated)Consistency is supported by the simulated drop paired with the simulated duration:0.1962 ± 1e-06 m (simulated)0.2 ± 1e-06 s (simulated)Limitation: results rely on synthetic settings with simplified independent uncertainty and lack calibration, so they do not validate real-world behavior.",
+   "invented": null
+  }
+ ]
+}
