@@ -27,7 +27,8 @@ Skipped (named): R3 neo-brutalist v2 recolour (olive ground, 3px borders, 8px sh
 - For controller (deployments.json not edited): web {deploymentId 1f827ca0-2cf6-4ace-99ac-f9f9f6e689ee, previousDeploymentId bec439d2-582a-4c87-bb3b-4e34ccd5c177, sourceRevision 3c0b2b5563ff116a7786481d457576dfb94cc72f}. API unchanged. Revision is the code commit; PLAN/REPORT/TIMEBOX commit follows.
 
 ## Not verified / risks
-- Provider status not read via CLI (worktree not railway-linked); liveness inferred from served new CSS. Previous deployment removal not checked.
+- Provider status (Railway app, read-only list_deployments): 1f827ca0 SUCCESS (updated 23:17:13Z); bec439d2 REMOVED. Served new CSS confirms the revision is live.
+- No send_message_to_thread tool in this session: completion line returned as this delegated run's final reply instead.
 - 375px/desktop scrollWidth and visual before/after not measured in a browser (controller's screenshot job). Changes add no widths; nav links grow taller only.
 - Enter animation replays when a main child remounts (route change) — intended, 280ms, off under reduced motion.
 - Communication: silent; one completion line.
