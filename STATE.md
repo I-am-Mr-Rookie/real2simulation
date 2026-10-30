@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+Oct30 ~21:20Z: Dispatched S15r-orch163 (Opus high; Q20=A what-if run + run-failure reason + nav/footer truth + ledger in the api allowlist;
+Owns extended to ShellFrame/AccountNav/stage.py/test_stage.py), thread 01a18eae-9dd0, dl 21:49:08Z. Next RID orch164.
+
 Oct30 ~21:22Z: ACCEPTED S15q-orch162 DONE (root cause proven: web posted answers as an ARRAY, API wants the {id:{chip}|{text}} object; fixed in
 controller.specAnswers, API untouched. Spec errors now visible with Retry; job panel shows RECORDED provenance. Fresh by controller: node 110/110,
 api-workspace 21 OK. Web DEV 4ad6b82c SUCCESS; deployments.json updated). CONTROLLER IAB RE-WALK: upload -> ready -> RECORDED labels -> interview
