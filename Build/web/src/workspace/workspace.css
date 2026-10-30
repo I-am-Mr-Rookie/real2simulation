@@ -125,7 +125,9 @@
 .ws-src { display: block; font-size: .8rem; color: var(--ws-muted); overflow-wrap: anywhere; }
 
 /* S15h: fit + residual chart (two neutrals + one accent) */
-.ws-fit { display: grid; gap: var(--ws-s3); margin-top: var(--ws-s2); }
+.ws-fit { display: grid; gap: var(--ws-s3); margin-top: var(--ws-s2); min-width: 0; }
+.ws-fit > * { min-width: 0; }
+.ws-resid-more summary { cursor: pointer; font-weight: 600; padding: .3rem 0; }
 .ws-fit-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
 .ws-fit-table caption { text-align: left; font-weight: 700; padding-bottom: .3rem; }
 .ws-fit-table th, .ws-fit-table td { border-bottom: 1px solid var(--ws-border); padding: .3rem .35rem; text-align: left; overflow-wrap: anywhere; vertical-align: top; }
@@ -136,7 +138,7 @@
 @media (max-width: 520px) {
   /* 375px: break at word/hyphen boundaries instead of mid-word ("QUANT/ITY"); tighter cells keep the table inside the card */
   .ws-fit-table { font-size: .78rem; }
-  .ws-fit-table th, .ws-fit-table td { overflow-wrap: break-word; hyphens: auto; padding: .25rem .2rem; }
+  .ws-fit-table th, .ws-fit-table td { overflow-wrap: anywhere; hyphens: auto; padding: .25rem .2rem; } /* anywhere (not break-word) lets long numbers shrink min-content: no 375px scroll */
   .ws-fit-table td:first-of-type { font-size: .72rem; }
   .ws-fit-table .ws-tag { font-size: .62rem; padding: 0 .3rem; letter-spacing: 0; }
   .ws-panel { padding: var(--ws-s3); }

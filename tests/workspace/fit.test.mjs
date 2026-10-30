@@ -75,6 +75,37 @@ test('invalid fitter output is rejected, never displayed as numbers', () => {
   assert.equal(renderFit(html, fitView({ phase: 'upload.idle' }, input)), null);
 });
 
+test('S15u: tiny uncertainty gets sensible figures, exact value stays in title', () => {
+  assert.equal(pm(-9.809999999999958, 2e-15, 'm/s^2'), '-9.81 \u00b1 2.0e-15 m/s\u00b2');
+  const m = clone(input); m.output.gravity.value = -9.809999999999958; m.output.gravity.uncertainty = 2e-15;
+  const v = fitView(done, m), out = renderFit(html, v);
+  assert.ok(!v.rows[0].display.includes('9999999'));
+  assert.ok(out.includes('title="' + v.rows[0].text + '"'));
+});
+
+test('S15u: what-if replaces the gravity source note; default path keeps the fitter note', () => {
+  const L = 'SIMULATED what-if of your described setup; scale unverified; not measured from the clip';
+  assert.equal(fitView(done, input, L).rows[0].evidence, L);
+  assert.ok(!renderFit(html, fitView(done, input, L)).includes('synthetic virtual-lab fit'));
+  assert.equal(fitView(done, input).rows[0].evidence, FIX.output.gravity.source.evidence);
+});
+
+test('S15u: residuals show a 10-row head and a native details expand with the rest', () => {
+  const m = clone(input), r = m.output.fit.residuals, t = m.times;
+  while (r.length < 25) { r.push(r[0]); t.push(t[0]); }
+  const v = fitView(done, m), out = renderFit(html, v);
+  assert.equal(out.split('<details').length - 1, 1); assert.match(out, /<summary>Show remaining 15 residuals<\/summary>/);
+  assert.match(out, /first 10 of 25/);
+  assert.equal(out.split('data-label="simulated"').length - 1, v.rows.length + 25); // every row still rendered (head + collapsed rest)
+  assert.equal(renderFit(html, fitView(done, input)).includes('<details'), FIX.output.fit.residuals.length > 10);
+});
+
+test('S15u: 375px CSS lets long numbers wrap and grid children shrink', () => {
+  const css = readFileSync(new URL('../../Build/web/src/workspace/workspace.css', import.meta.url), 'utf8');
+  assert.match(css, /@media \(max-width: 520px\)[^@]*\.ws-fit-table th, \.ws-fit-table td \{ overflow-wrap: anywhere/);
+  assert.match(css, /\.ws-fit > \* \{ min-width: 0; \}/);
+});
+
 test('null gravity (invalid covariance) shows unavailable, no invented number', () => {
   const m = clone(input); m.output.gravity = null;
   assert.match(fitView(done, m).rows[0].text, /unavailable/);

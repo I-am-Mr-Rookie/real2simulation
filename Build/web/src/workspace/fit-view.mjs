@@ -11,9 +11,11 @@ const sup = (u) => u.replace(/\^2\b/g, '\u00b2').replace(/\^3\b/g, '\u00b3');
 const sig = (x) => String(Number(x.toPrecision(4)));
 // Value rounded to the uncertainty's 2 significant figures (1.887124302 ± 0.1415784327 -> 1.89 ± 0.14); u<=0 keeps raw text.
 export const pm = (v, u, unit) => {
-  const d = u > 0 ? Math.min(15, Math.max(0, 1 - Math.floor(Math.log10(u)))) : -1;
-  return (d < 0 ? num(v) + ' \u00b1 ' + num(u) : v.toFixed(d) + ' \u00b1 ' + u.toFixed(d)) + ' ' + sup(unit);
+  const d = u > 0 ? Math.max(0, 1 - Math.floor(Math.log10(u))) : -1;
+  // d > 8: uncertainty is at fitter-noise level; fixed decimals would print binary noise, so use 10 sig figs and exponent form
+  return (d < 0 ? num(v) + ' \u00b1 ' + num(u) : d > 8 ? num(v) + ' \u00b1 ' + u.toExponential(1) : v.toFixed(d) + ' \u00b1 ' + u.toFixed(d)) + ' ' + sup(unit);
 };
+const HEAD = 10;
 
 export function parseFit(input) {
   const o = input?.output, times = input?.times, f = o?.fit;
@@ -32,13 +34,14 @@ export function parseFit(input) {
 
 const row = (name, text, label, evidence, display = text) => ({ name, text, label, evidence, display });
 
-export function fitView(state, input) {
+export function fitView(state, input, whatIf) {
   if (!input || !['fit.done', 'report.open'].includes(state.phase)) return { show: false };
   let p;
   try { p = parseFit(input); } catch (e) { return { show: true, error: 'Fit display rejected: ' + String(e.message).slice(0, 160) }; }
   const { f, g, ms, lf, times, unit } = p, ev = f.source.evidence;
   const rows = [
-    g ? row('Gravity', num(g.value) + ' \u00b1 ' + num(g.uncertainty) + ' ' + g.unit, lab(g.source), g.source.evidence, pm(g.value, g.uncertainty, g.unit)) : row('Gravity', 'unavailable (covariance invalid)', lf, ev),
+    // what-if of a recorded scene: the fitter's 'synthetic virtual-lab fit' note would be untrue there, so show the what-if label
+    g ? row('Gravity', num(g.value) + ' \u00b1 ' + num(g.uncertainty) + ' ' + g.unit, lab(g.source), typeof whatIf === 'string' && whatIf ? whatIf : g.source.evidence, pm(g.value, g.uncertainty, g.unit)) : row('Gravity', 'unavailable (covariance invalid)', lf, ev),
     row('Polynomial degree', String(f.degree), lf, ev), row('Residual RMSE', num(f.rmse) + ' ' + unit, lf, ev, sig(f.rmse) + ' ' + sup(unit)),
     row('Residual sum of squares', num(f.rss) + ' ' + unit + '\u00b2', lf, ev, sig(f.rss) + ' ' + sup(unit) + '\u00b2'), row('Observations', String(f.n), lf, ev), row('Residual degrees of freedom', String(f.dof), lf, ev),
   ];
@@ -58,6 +61,10 @@ export function renderFit(h, v) {
   if (v.error) return h('section', { className: 'ws-fit', 'aria-label': 'Fit results' }, h('p', { className: 'ws-error', role: 'alert' }, v.error));
   const c = v.chart;
   const tag = (l) => h('span', { className: 'ws-tag', 'data-label': l }, l);
+  const head = v.residuals.slice(0, HEAD), rest = v.residuals.slice(HEAD);
+  const resTable = (cap, rs) => h('table', { className: 'ws-fit-table' }, h('caption', null, cap),
+    h('thead', null, h('tr', null, ...['#', 'Time', 'Residual', 'Label'].map((t) => h('th', { key: t, scope: 'col' }, t)))),
+    h('tbody', null, ...rs.map((r) => h('tr', { key: r.n }, h('td', null, r.n), h('td', { className: 'ws-qval', title: r.time }, r.timeDisplay), h('td', { className: 'ws-qval', title: r.residual }, r.residualDisplay), h('td', null, tag(r.label))))));
   return h('section', { className: 'ws-fit', 'aria-label': 'Fit results' },
     // Provenance stated once in the caption; the Source cell repeats it only for rows from a different source.
     h('table', { className: 'ws-fit-table' }, h('caption', null, 'Fit summary', h('span', { className: 'ws-src' }, 'Source: ' + v.source + ' unless noted')),
@@ -69,8 +76,7 @@ export function renderFit(h, v) {
         h('line', { x1: 0, x2: c.width, y1: c.zeroY, y2: c.zeroY, className: 'ws-resid-zero' }),
         ...c.points.map((p) => h('circle', { key: p.n, cx: p.x, cy: p.y, r: 4, className: 'ws-resid-pt' }))),
       h('figcaption', null, 'Residuals vs time (' + v.label + '). Values are in the table below; hover a value for the exact fitter output.')),
-    h('table', { className: 'ws-fit-table' }, h('caption', null, 'Residuals'),
-      h('thead', null, h('tr', null, ...['#', 'Time', 'Residual', 'Label'].map((t) => h('th', { key: t, scope: 'col' }, t)))),
-      h('tbody', null, ...v.residuals.map((r) => h('tr', { key: r.n }, h('td', null, r.n), h('td', { className: 'ws-qval', title: r.time }, r.timeDisplay), h('td', { className: 'ws-qval', title: r.residual }, r.residualDisplay), h('td', null, tag(r.label)))))),
+    resTable('Residuals' + (rest.length ? ' (first ' + HEAD + ' of ' + v.residuals.length + ')' : ''), head),
+    rest.length ? h('details', { className: 'ws-resid-more' }, h('summary', null, 'Show remaining ' + rest.length + ' residuals'), resTable('Remaining residuals', rest)) : null,
     h('p', { className: 'ws-hint' }, v.notice));
 }

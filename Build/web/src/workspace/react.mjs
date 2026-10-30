@@ -22,5 +22,5 @@ export const createWorkspace = (React) => function Workspace({ state, adapter, l
   }, [adapter, loadScene]);
   useEffect(() => { ctl.current.sync(host.current, layout.viewport.request, layout.viewport.key); },
     [layout.viewport.key, adapter, loadScene]); // eslint-disable-line react-hooks/exhaustive-deps -- request is derived from key
-  return renderWorkspace(h, layout, view, host, onAction, interview, template, run && runView(state, run), instruments && instrumentView(state, instruments), fit && fitView(state, fit), navigate && sidebarOf(state, { interview, report }), report !== undefined || state.phase === 'report.open' ? reportView(state, report) : null, provenance, whatIf);
+  return renderWorkspace(h, layout, view, host, onAction, interview, template, run && runView(state, run), instruments && instrumentView(state, instruments), fit && fitView(state, fit, whatIf), navigate && sidebarOf(state, { interview, report }), report !== undefined || state.phase === 'report.open' ? reportView(state, report) : null, provenance, whatIf);
 };
