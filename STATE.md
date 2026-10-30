@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+ACCEPTED S16c-orch93 DONE (Oct30 06:55Z; timing PASS; rebased, 56 sidebar-tools tests OK; merged): local rebuild API calls
+existing lab/simulator/fitter, typed outputs with sha256; process-local session/cache; synthetic only. QUEUE S16c -> DONE.
+DISPATCHED S16d-orch98 Sol medium (Baseten adapter, fake transport, NO live call - live inference is S16e; thread
+01a18b94-db84-7310-ad1d-f2b549c25ce0, deadline 2026-10-30T07:22:15+00:00).
+
 ACCEPTED R-RS-recheck4-orch85 DONE/CLEAR (Oct30 06:49Z; timing PASS; merged; canonical tests/prediction 44/44 OK): F2-R3/F2-C
 closed; P3 nonblocking: registry is a reviewed allowlist, not authenticated storage (controller reviews every admission diff).
 S12e -> DONE as measured shortfall (Gate RS NOT_MET, ST03 7/466, median null). DISPATCHED S12f-orch97 Opus high (code-owned
