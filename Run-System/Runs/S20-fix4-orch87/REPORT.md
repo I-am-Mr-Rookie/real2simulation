@@ -96,4 +96,7 @@ Multi-app envelopes fail closed. N3 journal tamper anchoring and N5 independent-
 coordination remain explicitly unimplemented; no new authority or monthly reset logic.
 
 Communication: silent except mandatory developer runtime/skill/finding updates and
-one authorized controller completion callback; no additional worker/schedule/messages.
+the authorized controller completion callback; no additional worker/schedule/messages.
+Callback delivery failed twice with ActiveTurnNotSteerable { turn_kind: Compact };
+no controller delivery is confirmed. No further retry/poll loop. Code/evidence commit
+fa69667 was created 06:39:29Z, before cutoff/deadline; this note records only delivery.
