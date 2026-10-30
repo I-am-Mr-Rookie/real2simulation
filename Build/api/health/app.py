@@ -37,7 +37,10 @@ def create_app() -> FastAPI:
         return {"service": SERVICE, "revision": revision}
 
     # Internal owner-scoped routes (WORKSPACE_INTERNAL_TOKEN); analysis resolves scenes from the jobs store.
-    store = jobs.default_store()
+    try:
+        store = jobs.default_store()
+    except ValueError:  # malformed REDIS_URL: liveness must not depend on it; readiness reports redis, workspace stays unmounted
+        return app
     app.include_router(jobs.create_router(store))
     app.include_router(analysis.create_router(jobs.scene_resolver(store)))
     return app
