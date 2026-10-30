@@ -1,0 +1,29 @@
+{
+ "run": "S19d-wire-orch91",
+ "target": "local production build (next build --webpack; next start -p 3919)",
+ "browser": "ChatGPT in-app browser",
+ "sw": {
+  "scope": "http://localhost:3919/",
+  "state": "activated",
+  "script": "/pwa/sw.js",
+  "caches": [
+   "r2s-static-v1"
+  ]
+ },
+ "viewport375": {
+  "/": {
+   "iw": 375,
+   "scrollWidth": 360
+  },
+  "/library": {
+   "iw": 375,
+   "scrollWidth": 360
+  },
+  "/lab": {
+   "iw": 375,
+   "scrollWidth": 360
+  },
+  "horizontalScroll": false
+ },
+ "note": "served-asset statuses in s19d-wire-served.json"
+}

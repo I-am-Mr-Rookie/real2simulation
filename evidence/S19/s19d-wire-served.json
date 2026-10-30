@@ -1,0 +1,39 @@
+{
+ "/pwa/manifest.webmanifest": {
+  "status": 200,
+  "type": "application/manifest+json",
+  "swAllowed": null
+ },
+ "/pwa/sw.js": {
+  "status": 200,
+  "type": "application/javascript; charset=UTF-8",
+  "swAllowed": "/"
+ },
+ "/pwa/icon-192.png": {
+  "status": 200,
+  "type": "image/png",
+  "swAllowed": null
+ },
+ "/pwa/icon-512.png": {
+  "status": 200,
+  "type": "image/png",
+  "swAllowed": null
+ },
+ "/pwa/icon-maskable-512.png": {
+  "status": 200,
+  "type": "image/png",
+  "swAllowed": null
+ },
+ "/pwa/icon.svg": {
+  "status": 200,
+  "type": "image/svg+xml",
+  "swAllowed": null
+ },
+ "head": [
+  "<meta name=\"theme-color\" content=\"#f3eee3\"/>",
+  "<link rel=\"manifest\" href=\"/pwa/manifest.webmanifest\"/>",
+  "<link rel=\"icon\" href=\"/pwa/icon.svg\" type=\"image/svg+xml\"/>",
+  "<link rel=\"icon\" href=\"/pwa/icon-192.png\" sizes=\"192x192\" type=\"image/png\"/>",
+  "<link rel=\"apple-touch-icon\" href=\"/pwa/icon-192.png\"/>"
+ ]
+}

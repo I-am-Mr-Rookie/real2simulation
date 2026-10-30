@@ -3,6 +3,7 @@ import { Instrument_Sans, Space_Mono } from 'next/font/google';
 import ShellFrame from '../shell/ShellFrame';
 import AuthProvider from '../auth/AuthProvider';
 import { getClerkConfiguration } from '../auth/server-config';
+import SwRegister from '../pwa/SwRegister';
 
 // Self-hosted by Next at build time; CSS tokens fall back to system faces if unavailable.
 const sans = Instrument_Sans({ subsets: ['latin'], display: 'swap', variable: '--r2s-face-sans' });
@@ -14,12 +15,14 @@ export const dynamic = 'force-dynamic';
 
 export const metadata = {
   title: 'Real2Simulation',
-  description: 'A workbench for testing physical explanations against video.'
+  description: 'A workbench for testing physical explanations against video.',
+  manifest: '/pwa/manifest.webmanifest',
+  icons: { icon: [{ url: '/pwa/icon.svg', type: 'image/svg+xml' }, { url: '/pwa/icon-192.png', sizes: '192x192', type: 'image/png' }], apple: '/pwa/icon-192.png' }
 };
 
 export const viewport = { themeColor: '#f3eee3' };
 
 export default function RootLayout({ children }) {
   const authAvailable = getClerkConfiguration().available;
-  return <html lang="en" className={sans.variable + ' ' + mono.variable}><body><AuthProvider><ShellFrame authAvailable={authAvailable}>{children}</ShellFrame></AuthProvider></body></html>;
+  return <html lang="en" className={sans.variable + ' ' + mono.variable}><body><AuthProvider><ShellFrame authAvailable={authAvailable}>{children}</ShellFrame></AuthProvider><SwRegister /></body></html>;
 }
