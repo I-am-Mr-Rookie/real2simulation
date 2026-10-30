@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+Oct30 ~11:30Z army: ACCEPTED S21b (8 measured precision rows / 8 UNAVAILABLE; no accuracy claim), S21c (held-out: 2 measured, 4 UNAVAILABLE),
+S21d (24 cost rows, billed/estimated/reservation/simulated never summed; Meta cost UNAVAILABLE), S18l (Mystery-g relabelled "Earth-g
+practice shape, not a blind test; play blind in /lab" - /lab already draws server hidden g; library 83), S04k (web /library served from
+build-time verified snapshot, no runtime Python; stage.py + web.Dockerfile updated; infra + web-library 5 pass; build PASS), S18i
+(measured Python API path: 0/3 openable demos <3 s, ~9 s each - pre-S04k path). Dispatched S21c-135, S21d-136 (done), S21e-137,
+S04l-138 (new row: library copy/UI polish), S18j-139 (incl. web-route re-measure). Receipt DISPATCH-orch135.json. Next RID orch140.
+
 ARMY PERIOD (from 10:53Z = 16:53 Dhaka; all Claude/Opus per owner): dispatched S18h-125 S21a-126 S22a-127 S04j-128 R-W-129 R-L-130
 (dl 11:23Z), S21b-131 S18i-132 (dl 11:38Z), S04k-133 S18l-134 (dl 11:42Z); resumed S15k-orch122 (new window to 11:23:46Z).
 Receipt DISPATCH-orch125.json. ACCEPTED (timebox PASS, rebased, fresh tests, ff): S21a DONE (frozen benchmark manifest, leakage check,
