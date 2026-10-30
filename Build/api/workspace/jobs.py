@@ -3,7 +3,8 @@
 Reuses UploadService (S13b), JobRunner/MemoryStore (S13d), progress (S13g), require_owner (S14i) and the
 S02 approval/registry readers (score.approved). Uploads are accepted only for a sha256 of an owner-approved,
 clips.csv-listed clip. The only executor replays evidence/S13/S13h (labelled RECORDED, original UTC
-timestamps): it never imports modal/boto3, launches a process, spends or calls Meta. Not mounted here (S04m).
+timestamps) plus, for understand, the accepted S14g-fix3 spec (S13k): it never imports modal/boto3, launches a
+process, spends or calls Meta. Not mounted here (S04m mounts this and analysis.create_router(scene_resolver(store))).
 """
 import csv
 import functools
@@ -27,6 +28,9 @@ from Build.real2sim.score import APPROVAL, REGISTRY, approved
 ROOT = Path(__file__).resolve().parents[3]
 RECORDING = ROOT / "evidence/S13/S13h/live"
 LABEL = "RECORDED S13h-orch46"
+# S13h never ran understand: that stage replays the accepted live S14g-fix3 Muse spec for the same input (S13k).
+UNDERSTOOD = ROOT / "evidence/S14/S14g-fix3-live.json"
+UNDERSTAND_LABEL = "RECORDED S14g-fix3"
 _JOB = re.compile(r"job_[0-9a-f]{32}")
 # S13h stage name -> (contract stage, result key holding that stage's output sha256). keyframes: manifest bytes.
 _OUT = {"validate": ("validate", "sha256"), "keyframes": ("keyframes", None), "segment": ("segment", "segmentation_sha256"),
@@ -63,18 +67,44 @@ def load_recording(input_sha256, rec=RECORDING):
         return {}  # unreadable recording == no recording
 
 
-def recorded_runner(store, input_sha256, rec=RECORDING):
+def load_understanding(input_sha256, path=UNDERSTOOD):
+    """(spec record, ledger utc | None) for the single valid recorded spec of this exact input, else None.
+
+    utc comes from the sibling ledger's one `spec-<case_id>` call; ambiguous or absent -> None (time not recorded).
+    """
+    try:
+        found = [s for s in json.loads(path.read_text(encoding="utf-8"))["specs"]
+                 if s.get("source_sha256") == input_sha256 and s.get("valid") is True and isinstance(s.get("spec"), dict)]
+        if len(found) != 1:
+            return None
+        ledger = path.with_name(path.name.replace("-live.json", "-ledger.jsonl"))
+        call = f"spec-{found[0]['case_id']}"
+        utcs = [r["utc"] for r in map(json.loads, ledger.read_text(encoding="utf-8").splitlines() if ledger.exists() else [])
+                if r.get("call") == call and r.get("http") == 200]
+        return found[0], (utcs[0].replace("+00:00", "Z") if len(utcs) == 1 else None)
+    except (OSError, KeyError, TypeError, ValueError):
+        return None
+
+
+def recorded_runner(store, input_sha256, rec=RECORDING, understood=UNDERSTOOD):
     """JobRunner whose workers return recorded outputs and whose clock replays the recorded UTC times.
 
     A stage absent from the recording fails DEPENDENCY_UNAVAILABLE (never retried); events from that point carry
-    the actual replay time. S13h did not run understand, so an RM04 replay stops there (no invented output).
+    the actual replay time. understand (not run in S13h) replays the S14g-fix3 spec for the same input, if any;
+    its output_sha256 is sha256 of the recorded accepted model text. Without one the replay stops there.
     """
     rec_stages = load_recording(input_sha256, rec)
+    labels = {s: LABEL for s in rec_stages}
+    understanding = load_understanding(input_sha256, understood) if rec_stages and "understand" not in rec_stages else None
+    if understanding:
+        spec, utc = understanding
+        sha = hashlib.sha256(spec["accepted_text"].encode("utf-8")).hexdigest()
+        rec_stages["understand"], labels["understand"] = (utc, utc, sha), UNDERSTAND_LABEL
     times = []
     for stage in STAGES:  # JobRunner emits started+succeeded per stage, in STAGES order
         if stage not in rec_stages:
             break
-        times += rec_stages[stage][:2]
+        times += rec_stages[stage][:2]  # None (time not recorded) -> actual replay time
     clock = iter(times)
 
     def worker(stage):
@@ -88,8 +118,33 @@ def recorded_runner(store, input_sha256, rec=RECORDING):
     runner = JobRunner(store, {s: worker(s) for s in STAGES}, sleep=lambda s: None, now=lambda: next(clock, None) or _now())
     provenance = {"executor": "recorded", "label": LABEL, "live": False,
                   "recorded_stages": [s for s in STAGES if s in rec_stages],
+                  "stage_labels": {s: labels[s] for s in STAGES if s in labels},
                   "note": "replay of recorded S13h events with their original UTC timestamps; not a live run"}
+    if understanding:
+        provenance["understand"] = {"label": UNDERSTAND_LABEL, "live": False, "case_id": spec["case_id"],
+                                    "source": understood.name, "call": f"spec-{spec['case_id']}",
+                                    "recorded_utc": utc or "time not recorded"}
     return runner, provenance
+
+
+def shell_scene(job_id):
+    """S04g shell scene for a ready replayed job; scene_id is the job_id, which scene_resolver accepts."""
+    return {"scene_id": job_id, "scene_version": "1.0.0", "access": "private", "evidence": "reconstructed"}
+
+
+def scene_resolver(store, understood=UNDERSTOOD):
+    """analysis.SceneResolver: scene_id = a READY job owned by owner -> (recorded base_spec, scene_context, root).
+
+    The recorded scene_context is not an authoritative bundle, so /spec reports that as 422 (never a default).
+    """
+    def resolve(owner, scene_id):
+        if not _JOB.fullmatch(scene_id) or store.get(f"job:{scene_id}:owner") != owner:
+            return None
+        if JobRunner(store, {}).progress(scene_id, 0, shell_scene(scene_id))["job"]["status"] != "ready":
+            return None
+        found = load_understanding(store.get(f"job:{scene_id}:input"), understood)
+        return (found[0]["spec"], found[0]["scene_context"], ROOT) if found else None
+    return resolve
 
 
 def default_store():
@@ -107,7 +162,7 @@ def _upload_error(exc: UploadError):
     return error(422, exc.code, str(exc), decision=exc.decision, committed_bytes=exc.committed_bytes)
 
 
-def create_router(store=None, uploads=None, shas=None, recording=RECORDING) -> APIRouter:
+def create_router(store=None, uploads=None, shas=None, recording=RECORDING, understood=UNDERSTOOD) -> APIRouter:
     store = store if store is not None else default_store()
     uploads = uploads or UploadService(os.environ.get("WORKSPACE_UPLOAD_DIR") or Path(tempfile.gettempdir()) / "r2s-uploads")
     shas = approved_shas if shas is None else shas
@@ -143,16 +198,17 @@ def create_router(store=None, uploads=None, shas=None, recording=RECORDING) -> A
     def complete(upload_id: str, owner: str = Depends(require_owner)):
         session = call(uploads.complete, owner, upload_id)
         job_id = session["job_id"]
-        runner, prov = recorded_runner(store, session["sha256"], recording)
+        runner, prov = recorded_runner(store, session["sha256"], recording, understood)
         store.set(f"job:{job_id}:provenance", json.dumps(prov))
+        store.set(f"job:{job_id}:input", session["sha256"])
         store.set(f"job:{job_id}:owner", owner)  # last: owned() never sees an owner without provenance
         # shortcut: replay runs inline (instant, no I/O beyond the store); a live executor needs a queue worker.
-        return {"upload": session, "job": runner.run(job_id, session["sha256"]), "provenance": prov}
+        return {"upload": session, "job": runner.run(job_id, session["sha256"], shell_scene(job_id)), "provenance": prov}
 
     @router.get("/jobs/{job_id}")
     def job(job_id: str, after: int = Query(0, ge=0), owner: str = Depends(require_owner)):
         prov = owned(owner, job_id)
-        return {**JobRunner(store, {}).progress(job_id, after), "provenance": prov}
+        return {**JobRunner(store, {}).progress(job_id, after, shell_scene(job_id)), "provenance": prov}
 
     return router
 
