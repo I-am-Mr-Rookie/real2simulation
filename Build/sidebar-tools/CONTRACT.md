@@ -172,7 +172,7 @@ optional for backward-compatible S16a-c callers but mandatory in the search proj
 Synthetic sources require a synthetic item/provenance label, and cannot match an external
 licence filter. Clip-backed fixture records also retain a synthetic provenance label.
 
-#### S16d Baseten adapter (offline verified only)
+#### S16d/S16f provider-selectable search adapter
 
 `import_module("Build.sidebar-tools.library_search").search(call, *, manifest_path=None,
 evidence_root=ROOT, environ=None, send=transport)` returns the correlated result above.
@@ -180,13 +180,54 @@ Invalid input raises the same `SidebarContractError` as the existing tools. The 
 loads environment secrets in its existing in-process loader (or passes its mapping as
 `environ`); never put credentials in tool arguments. This module does not auto-load `.env`.
 
-All three names `BASETEN_API_KEY`, `BASETEN_BASE_URL`, `BASETEN_MODEL` must be populated.
+`SIDEBAR_SEARCH_PROVIDER` selects exactly `baseten` or `fireworks`. Omission retains
+the existing Baseten default; blank/unknown values refuse without a request. Merely
+populating Fireworks credentials never selects it. There is **no automatic failover,
+retry, provider chain or Meta API fallback**. To switch after a failure, the trusted
+host must explicitly change this configuration and invoke search again. Tool/model
+arguments cannot select a provider; no global settings or `.env` files are changed.
+
+For Baseten, all three names `BASETEN_API_KEY`, `BASETEN_BASE_URL`, `BASETEN_MODEL` must be populated.
 The model must exactly equal **`meta-models/muse-spark-open-1026`**; mismatches fail closed,
 without echoing the configured value. URL is restricted to
-`https://inference.baseten.co/v1` (optional trailing slash). Every invocation emits one
-INFO record `library.search model=meta-models/muse-spark-open-1026` through the module
-logger; host logging configuration must enable INFO. No prompt, credential, URL,
-provider body or exception text is logged.
+`https://inference.baseten.co/v1` (optional trailing slash).
+
+For Fireworks, set `SIDEBAR_SEARCH_PROVIDER=fireworks` and populate
+`FIREWORKS_API_KEY`, `FIREWORKS_BASE_URL`, `FIREWORKS_MODEL`. URL must be exactly
+`https://api.fireworks.ai/inference/v1` (optional trailing slash). Model must be an
+explicit `accounts/<account>/models/<model>` resource: lowercase account characters
+`a-z0-9_-` (1..64), model characters `a-z0-9_.-` (1..128). There is no default model,
+invented Muse alias, model discovery, availability check or authorization to spend.
+The response must include that exact model ID; missing/different IDs fail closed.
+Baseten retains its previous missing-response-model compatibility, never a different ID.
+
+Each valid wire invocation emits one INFO record
+`library.search provider=<provider> model=<model>` through the module logger; host
+logging configuration must enable INFO. Invalid configuration is never echoed:
+unknown provider/model use `unconfigured`; Baseten logs only its fixed intended pin.
+No query, credential, URL, provider body or exception text is logged.
+
+Search now always emits a code-owned top-level `execution` receipt alongside the
+unchanged payload and empty `tool_outputs`:
+
+```json
+{"provider":"fireworks","model":"accounts/fireworks/models/synthetic-ranker","state":"served","meta_bonus_claimed":false}
+```
+
+This example model is **synthetic test configuration, not an available-model claim**.
+`provider`/`model` describe the validated selection (null when unknown), not proof a
+request was served. `state` is `not_requested` for configuration/catalogue rejection
+or empty local candidates; `failed` for an attempted but unavailable/unusable call;
+`served` only for a validated model response, including an empty ID selection.
+Thus empty local search never claims hosted inference. The schema permits missing
+`execution` only for older contract callers; this adapter always supplies it on
+valid-wire results. Rebuild/patch results cannot carry this search-only receipt.
+
+`meta_bonus_claimed` is always **false**, including on Baseten; it is not a legal
+eligibility verdict. Fireworks success is labelled Fireworks plus its exact configured
+model, **not Muse, Meta API, Llama bonus or open-weight bonus evidence**. A returned
+model identifier alone does not independently establish model identity or bonus
+eligibility. An injected fake transport is still only offline synthetic evidence.
 
 Search reuses `Build.library.validate.validate_file`, current owner/acquisition checks,
 content-addressed artifact hashes, and evidence/numeric pointer checks. Default source
@@ -216,6 +257,9 @@ authorized live invocation, deployed routing and exact pinned model availability
 Request shape follows the [Meta Baseten cookbook](https://github.com/meta-models/meta-oss-cookbook/blob/main/muse-spark/hosted/baseten.md).
 Its current example uses the unpinned alias; this adapter deliberately retains the
 owner-required pinned ID instead. Documentation lookup is not live inference proof.
+Fireworks endpoint, Bearer authentication and chat-completion shape follow its
+[official Chat Completions reference](https://docs.fireworks.ai/api-reference/post-chatcompletions)
+(read Oct30 2026). No hosted-model availability or pricing was inferred from it.
 
 ## Errors and downstream work
 

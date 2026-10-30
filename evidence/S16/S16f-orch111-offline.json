@@ -1,0 +1,301 @@
+{
+  "run": "S16f-orch111",
+  "created_at": "2026-10-30T09:03:45.286563+00:00",
+  "mode": "OFFLINE_SYNTHETIC_FAKE_TRANSPORT",
+  "live_requests": 0,
+  "inference_spend_usd": 0,
+  "fireworks_model_availability_verified": false,
+  "bonus_claimed": false,
+  "cases": [
+    {
+      "provider": "baseten",
+      "synthetic_failure": false,
+      "empty_catalogue": false,
+      "fake_attempts": [
+        {
+          "endpoint": "https://inference.baseten.co/v1/chat/completions",
+          "model": "meta-models/muse-spark-open-1026",
+          "timeout": 15
+        }
+      ],
+      "result": {
+        "schema_version": "sidebar-tools/1.0.0",
+        "call_id": "offline_search",
+        "scene_id": "offline_scene",
+        "tool": "library.search",
+        "status": "ok",
+        "payload": {
+          "query": "synthetic free fall",
+          "items": [
+            {
+              "id": "simulated-free-fall-baseline-short",
+              "title": "SIMULATED free fall: baseline-short (display-only)",
+              "template": "free_fall",
+              "synthetic": true,
+              "source": {
+                "kind": "synthetic",
+                "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+              },
+              "artifact": {
+                "path": "test-data/library-artifacts/objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+                "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+              },
+              "provenance": {
+                "run_id": "S10hi-gate",
+                "evidence": "evidence/S10/acceptance/acceptance.json",
+                "numeric_label": "synthetic"
+              },
+              "availability": "metadata-only",
+              "scale_verified": false,
+              "scale_label": "SCALE_UNVERIFIED",
+              "gates": {
+                "M": "NOT_MET",
+                "RS": "NOT_MET",
+                "R": "NOT_RUN"
+              },
+              "limitations": [
+                "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+                "Gate M: NOT_MET_INPUT_READINESS",
+                "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+                "Pre-contact analytic motion only; no rebound or contact-response claim.",
+                "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+                "Local processing only; no public raw-media redistribution or gate promotion."
+              ]
+            },
+            {
+              "id": "simulated-free-fall-upward-launch",
+              "title": "SIMULATED free fall: upward-launch (display-only)",
+              "template": "free_fall",
+              "synthetic": true,
+              "source": {
+                "kind": "synthetic",
+                "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+              },
+              "artifact": {
+                "path": "test-data/library-artifacts/objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+                "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+              },
+              "provenance": {
+                "run_id": "S10hi-gate",
+                "evidence": "evidence/S10/acceptance/acceptance.json",
+                "numeric_label": "synthetic"
+              },
+              "availability": "metadata-only",
+              "scale_verified": false,
+              "scale_label": "SCALE_UNVERIFIED",
+              "gates": {
+                "M": "NOT_MET",
+                "RS": "NOT_MET",
+                "R": "NOT_RUN"
+              },
+              "limitations": [
+                "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+                "Gate M: NOT_MET_INPUT_READINESS",
+                "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+                "Pre-contact analytic motion only; no rebound or contact-response claim.",
+                "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+                "Local processing only; no public raw-media redistribution or gate promotion."
+              ]
+            }
+          ]
+        },
+        "tool_outputs": [],
+        "execution": {
+          "provider": "baseten",
+          "model": "meta-models/muse-spark-open-1026",
+          "state": "served",
+          "meta_bonus_claimed": false
+        }
+      }
+    },
+    {
+      "provider": "baseten",
+      "synthetic_failure": true,
+      "empty_catalogue": false,
+      "fake_attempts": [
+        {
+          "endpoint": "https://inference.baseten.co/v1/chat/completions",
+          "model": "meta-models/muse-spark-open-1026",
+          "timeout": 15
+        }
+      ],
+      "result": {
+        "schema_version": "sidebar-tools/1.0.0",
+        "call_id": "offline_search",
+        "scene_id": "offline_scene",
+        "tool": "library.search",
+        "status": "error",
+        "payload": {
+          "code": "not_ready",
+          "issues": [
+            "Library search unavailable: baseten request failed or timed out; no automatic provider switch."
+          ]
+        },
+        "tool_outputs": [],
+        "execution": {
+          "provider": "baseten",
+          "model": "meta-models/muse-spark-open-1026",
+          "state": "failed",
+          "meta_bonus_claimed": false
+        }
+      }
+    },
+    {
+      "provider": "fireworks",
+      "synthetic_failure": false,
+      "empty_catalogue": false,
+      "fake_attempts": [
+        {
+          "endpoint": "https://api.fireworks.ai/inference/v1/chat/completions",
+          "model": "accounts/fireworks/models/synthetic-ranker",
+          "timeout": 15
+        }
+      ],
+      "result": {
+        "schema_version": "sidebar-tools/1.0.0",
+        "call_id": "offline_search",
+        "scene_id": "offline_scene",
+        "tool": "library.search",
+        "status": "ok",
+        "payload": {
+          "query": "synthetic free fall",
+          "items": [
+            {
+              "id": "simulated-free-fall-baseline-short",
+              "title": "SIMULATED free fall: baseline-short (display-only)",
+              "template": "free_fall",
+              "synthetic": true,
+              "source": {
+                "kind": "synthetic",
+                "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+              },
+              "artifact": {
+                "path": "test-data/library-artifacts/objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+                "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+              },
+              "provenance": {
+                "run_id": "S10hi-gate",
+                "evidence": "evidence/S10/acceptance/acceptance.json",
+                "numeric_label": "synthetic"
+              },
+              "availability": "metadata-only",
+              "scale_verified": false,
+              "scale_label": "SCALE_UNVERIFIED",
+              "gates": {
+                "M": "NOT_MET",
+                "RS": "NOT_MET",
+                "R": "NOT_RUN"
+              },
+              "limitations": [
+                "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+                "Gate M: NOT_MET_INPUT_READINESS",
+                "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+                "Pre-contact analytic motion only; no rebound or contact-response claim.",
+                "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+                "Local processing only; no public raw-media redistribution or gate promotion."
+              ]
+            },
+            {
+              "id": "simulated-free-fall-upward-launch",
+              "title": "SIMULATED free fall: upward-launch (display-only)",
+              "template": "free_fall",
+              "synthetic": true,
+              "source": {
+                "kind": "synthetic",
+                "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+              },
+              "artifact": {
+                "path": "test-data/library-artifacts/objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+                "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+              },
+              "provenance": {
+                "run_id": "S10hi-gate",
+                "evidence": "evidence/S10/acceptance/acceptance.json",
+                "numeric_label": "synthetic"
+              },
+              "availability": "metadata-only",
+              "scale_verified": false,
+              "scale_label": "SCALE_UNVERIFIED",
+              "gates": {
+                "M": "NOT_MET",
+                "RS": "NOT_MET",
+                "R": "NOT_RUN"
+              },
+              "limitations": [
+                "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+                "Gate M: NOT_MET_INPUT_READINESS",
+                "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+                "Pre-contact analytic motion only; no rebound or contact-response claim.",
+                "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+                "Local processing only; no public raw-media redistribution or gate promotion."
+              ]
+            }
+          ]
+        },
+        "tool_outputs": [],
+        "execution": {
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/synthetic-ranker",
+          "state": "served",
+          "meta_bonus_claimed": false
+        }
+      }
+    },
+    {
+      "provider": "fireworks",
+      "synthetic_failure": true,
+      "empty_catalogue": false,
+      "fake_attempts": [
+        {
+          "endpoint": "https://api.fireworks.ai/inference/v1/chat/completions",
+          "model": "accounts/fireworks/models/synthetic-ranker",
+          "timeout": 15
+        }
+      ],
+      "result": {
+        "schema_version": "sidebar-tools/1.0.0",
+        "call_id": "offline_search",
+        "scene_id": "offline_scene",
+        "tool": "library.search",
+        "status": "error",
+        "payload": {
+          "code": "not_ready",
+          "issues": [
+            "Library search unavailable: fireworks request failed or timed out; no automatic provider switch."
+          ]
+        },
+        "tool_outputs": [],
+        "execution": {
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/synthetic-ranker",
+          "state": "failed",
+          "meta_bonus_claimed": false
+        }
+      }
+    },
+    {
+      "provider": "fireworks",
+      "synthetic_failure": false,
+      "empty_catalogue": true,
+      "fake_attempts": [],
+      "result": {
+        "schema_version": "sidebar-tools/1.0.0",
+        "call_id": "offline_search",
+        "scene_id": "offline_scene",
+        "tool": "library.search",
+        "status": "ok",
+        "payload": {
+          "query": "synthetic free fall",
+          "items": []
+        },
+        "tool_outputs": [],
+        "execution": {
+          "provider": "fireworks",
+          "model": "accounts/fireworks/models/synthetic-ranker",
+          "state": "not_requested",
+          "meta_bonus_claimed": false
+        }
+      }
+    }
+  ]
+}

@@ -52,6 +52,15 @@ def result(request):
 
 
 class ContractsTest(unittest.TestCase):
+    def test_search_execution_receipt_cannot_be_attached_to_patch_or_rebuild(self):
+        for tool in ("spec.patch", "scene.rebuild"):
+            request = call(tool)
+            response = result(request)
+            response["execution"] = {"provider": "fireworks", "model": "synthetic-test-model",
+                                     "state": "served", "meta_bonus_claimed": False}
+            with self.assertRaisesRegex(c.SidebarContractError, "only for library.search"):
+                c.validate_result(response, request, base_spec=fixture())
+
     def test_exported_schemas_are_valid_draft202012(self):
         for schema in [c.CALL_SCHEMA, c.RESULT_SCHEMA, c.ERROR_SCHEMA,
                        *c.ARGUMENT_SCHEMAS.values(), *c.PAYLOAD_SCHEMAS.values()]:

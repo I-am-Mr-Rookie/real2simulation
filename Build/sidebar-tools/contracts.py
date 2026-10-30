@@ -5,7 +5,7 @@ import copy
 import hashlib
 import json
 from pathlib import Path
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, NotRequired, TypedDict
 
 from jsonschema import Draft202012Validator
 
@@ -37,6 +37,7 @@ class ToolResult(TypedDict):
     status: Literal["ok", "error"]
     payload: dict[str, Any]
     tool_outputs: list[dict[str, Any]]
+    execution: NotRequired[dict[str, Any]]
 
 
 class PatchArguments(TypedDict):
@@ -128,7 +129,12 @@ ERROR_SCHEMA = _object({"code": {"enum": ["invalid_request", "stale_spec", "not_
     "issues": {"type": "array", "minItems": 1, "maxItems": 32, "items": TEXT}})
 RESULT_SCHEMA = _object({"schema_version": {"const": VERSION}, "call_id": ID,
     "scene_id": ID, "tool": {"enum": list(TOOLS)}, "status": {"enum": ["ok", "error"]},
-    "payload": {"type": "object"}, "tool_outputs": {"type": "array", "maxItems": 20}})
+    "payload": {"type": "object"}, "tool_outputs": {"type": "array", "maxItems": 20},
+    "execution": _object({"provider": {"enum": ["baseten", "fireworks", None]},
+        "model": {"anyOf": [TEXT, {"type": "null"}]},
+        "state": {"enum": ["not_requested", "failed", "served"]},
+        "meta_bonus_claimed": {"const": False}})},
+    ["schema_version", "call_id", "scene_id", "tool", "status", "payload", "tool_outputs"])
 
 
 def _check(data, schema):
@@ -197,6 +203,16 @@ def validate_result(result: Any, call: Any, *, base_spec=None) -> ToolResult:
             raise SidebarContractError(f"result {field} does not match call")
     payload = result["payload"]
     _check(payload, ERROR_SCHEMA if result["status"] == "error" else PAYLOAD_SCHEMAS[call["tool"]])
+    if "execution" in result:
+        execution = result["execution"]
+        if call["tool"] != "library.search":
+            raise SidebarContractError("execution provenance is only for library.search")
+        if execution["state"] != "not_requested" and (execution["provider"] is None or execution["model"] is None):
+            raise SidebarContractError("attempted search requires provider and model")
+        if ((execution["state"] == "served" and result["status"] != "ok")
+                or (execution["state"] == "failed" and result["status"] != "error")
+                or (execution["state"] == "not_requested" and result["status"] == "ok" and payload["items"])):
+            raise SidebarContractError("execution state does not match search result")
     if result["tool_outputs"] and (result["status"] == "error" or call["tool"] != "scene.rebuild"):
         raise SidebarContractError("only successful rebuild results may carry numeric tool outputs")
     seen = set()
