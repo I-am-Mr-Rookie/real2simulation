@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 30, 15:01 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 15:14 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **160 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **164 / 217** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -14,11 +14,11 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- [~] **S14g** — Codex (native Claude) · Opus 5.5, effort high — Run Gate A fixture and thirty-turn suite (30 min) *(partial: resume it)*
+- [ ] **S14h** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint Gate A and template-card fallback (30 min)
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
-- [ ] **S16f** — Codex · GPT-6.1 Sol, effort medium — Add Fireworks fallback (30 min)
+- [ ] **S16g** — Codex · GPT-6.1 Sol, effort medium — Test patch safety and search failures (30 min)
 - [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
 - …and 2 more ready in this lane
 
@@ -228,7 +228,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S14</b> — Scene-understanding and interview agent (7/9)</summary>
+<details><summary><b>S14</b> — Scene-understanding and interview agent (8/9)</summary>
 
 - [x] **S14a** — Codex (native Claude) · Opus 5.5, effort high — Define scene, question and tool-output contracts (30 min)
 - [x] **S14b** — Codex (native Claude) · Opus 5.5, effort high — Integrate Muse Wonder scene understanding (30 min)
@@ -236,7 +236,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S14d** — Codex (native Claude) · Opus 5.5, effort high — Add bounded validator-retry loop (30 min)
 - [x] **S14e** — Codex (native Claude) · Opus 5.5, effort high — Connect Muse Spark trial check (30 min)
 - [x] **S14f** — Codex (native Claude) · Opus 5.5, effort high — Enforce tool-only numbers in replies (30 min)
-- [~] **S14g** — Codex (native Claude) · Opus 5.5, effort high — Run Gate A fixture and thirty-turn suite (30 min) *(partial: resume it)*
+- [x] **S14g** — Codex (native Claude) · Opus 5.5, effort high — Run Gate A fixture and thirty-turn suite (30 min)
 - [ ] **S14h** — Codex (native Claude) · Opus 5.5, effort high — Checkpoint Gate A and template-card fallback (30 min)
 - [x] **R-A** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate A tool-number enforcement (15 min)
 
@@ -259,14 +259,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S16</b> — Sidebar agent tools and the open-weight component (5/8)</summary>
+<details><summary><b>S16</b> — Sidebar agent tools and the open-weight component (6/8)</summary>
 
 - [x] **S16a** — Codex · GPT-6.1 Sol, effort medium — Define sidebar tool-call and search contracts (30 min)
 - [x] **S16b** — Codex · GPT-6.1 Sol, effort medium — Implement validator-first spec patch tool (30 min)
 - [x] **S16c** — Codex · GPT-6.1 Sol, effort medium — Implement rebuild and tool-output plumbing (30 min)
 - [x] **S16d** — Codex · GPT-6.1 Sol, effort medium — Connect Baseten Spark Open library search (30 min)
 - [x] **S16e** — Codex · GPT-6.1 Sol, effort medium — Verify real dev search inference (30 min)
-- [ ] **S16f** — Codex · GPT-6.1 Sol, effort medium — Add Fireworks fallback (30 min)
+- [x] **S16f** — Codex · GPT-6.1 Sol, effort medium — Add Fireworks fallback (30 min)
 - [ ] **S16g** — Codex · GPT-6.1 Sol, effort medium — Test patch safety and search failures (30 min)
 - [ ] **S16h** — Codex · GPT-6.1 Sol, effort medium — Checkpoint open-weight evidence and fallback claims (30 min)
 
@@ -283,13 +283,13 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S18</b> — Demo library with licensed footage (3/10)</summary>
+<details><summary><b>S18</b> — Demo library with licensed footage (4/10)</summary>
 
 - [x] **S18a** — Codex · GPT-6.1 Sol, effort medium — Define library manifest and immutable artifact format (30 min)
 - [x] **S18b** — Codex · GPT-6.1 Sol, effort medium — Precompute free-fall demos (30 min)
 - [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
 - [x] **S18d** — Codex · GPT-6.1 Sol, effort medium — Precompute pendulum and scene demos (30 min)
-- [ ] **S18e** — Codex · GPT-6.1 Sol, effort medium — Prepare Apollo and Mystery-g entries (30 min)
+- [x] **S18e** — Codex · GPT-6.1 Sol, effort medium — Prepare Apollo and Mystery-g entries (30 min)
 - [ ] **S18f** — Codex · GPT-6.1 Sol, effort medium — Implement guest manifest and artifact endpoint (30 min)
 - [ ] **S18g** — Codex · GPT-6.1 Sol, effort medium — Implement library loading integration (30 min)
 - [ ] **S18h** — Codex · GPT-6.1 Sol, effort medium — Verify licences and approved clip list (30 min)
@@ -307,12 +307,12 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S20</b> — Spend guardrails and GPU failover (3/5)</summary>
+<details><summary><b>S20</b> — Spend guardrails and GPU failover (4/5)</summary>
 
 - [x] **S20a** — Codex · GPT-6.1 Sol, effort medium — Define spend ledger, upload quota and reserve contract (30 min)
 - [x] **S20b** — Codex · GPT-6.1 Sol, effort medium — Implement reconstruction cap and library exemption (30 min)
 - [~] **S20c** — Codex · GPT-6.1 Sol, effort medium — Implement disabled-by-default AWS failover switch (30 min) *(partial: resume it)*
-- [ ] **S20d** — Codex · GPT-6.1 Sol, effort high — Run Gate C simulated-cap regression (30 min)
+- [x] **S20d** — Codex · GPT-6.1 Sol, effort high — Run Gate C simulated-cap regression (30 min)
 - [x] **R-C** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor review: Gate C cap accounting and library exemption (15 min)
 
 </details>
