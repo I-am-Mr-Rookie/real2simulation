@@ -188,6 +188,7 @@ if modal is not None:
     def main(scene: str, out: str, manifest: str):
         from cost_log import scene_log
         frames = load_frames(manifest, scene)  # preflight before any GPU allocation
+        sys.path.insert(0, str(ROOT))  # File-based Modal launchers need the local guardrails package.
         from Build.guardrails.standalone import admit_standalone
         admit_standalone("scene-job:" + scene)
         call = time.time()

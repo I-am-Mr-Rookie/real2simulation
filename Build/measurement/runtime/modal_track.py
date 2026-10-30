@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 import re
 import subprocess
+import sys
 import tempfile
 
 import modal
@@ -336,6 +337,7 @@ def main(clip: str = "ST03", first: int = FIRST, last: int = LAST, prompt: str =
         return
     with path.open("rb") as stream:
         metadata["source_sha256"] = hashlib.file_digest(stream, "sha256").hexdigest()
+    sys.path.insert(0, str(REPO))
     from Build.guardrails.standalone import admit_standalone
     admit_standalone("modal-track:" + clip)
     result = json.loads(track.remote(frames, metadata, frame_map, prompt, object_id, masks, chunk))

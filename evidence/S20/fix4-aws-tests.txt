@@ -1,0 +1,12 @@
+test_all_gates_pass_plans_but_never_launches (test_aws_adapter.AwsAdapter.test_all_gates_pass_plans_but_never_launches) ... ok
+test_bad_values_refuse (test_aws_adapter.AwsAdapter.test_bad_values_refuse) ... ok
+test_default_off_even_with_all_gates (test_aws_adapter.AwsAdapter.test_default_off_even_with_all_gates) ... ok
+test_each_missing_gate_refuses (test_aws_adapter.AwsAdapter.test_each_missing_gate_refuses) ... ok
+test_flag_must_be_exactly_1 (test_aws_adapter.AwsAdapter.test_flag_must_be_exactly_1) ... ok
+test_no_aws_sdk_imported (test_aws_adapter.AwsAdapter.test_no_aws_sdk_imported) ... ok
+test_on_demand_refused (test_aws_adapter.AwsAdapter.test_on_demand_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.002s
+
+OK

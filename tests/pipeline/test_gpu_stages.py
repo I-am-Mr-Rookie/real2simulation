@@ -85,6 +85,28 @@ class GpuStages(unittest.TestCase):
         self.assertEqual((e.exception.code, e.exception.retryable), ("PROCESSING_FAILED", True))
         self.assertIn("FunctionTimeoutError", e.exception.message)
 
+    def test_pipeline_reservation_is_forwarded_to_both_modal_children(self):
+        captured = []
+        original = fake_run(Counter())
+
+        def run(cmd, **kwargs):
+            captured.append(kwargs["env"]["S20_MODAL_REQUEST_ID"])
+            return original(cmd, **kwargs)
+
+        g.reconstruct("reconstruct:handoff", "RM02", "m.json", self.d, self.ledger, run=run)
+
+        def track_run(cmd, **kwargs):
+            captured.append(kwargs["env"]["S20_MODAL_REQUEST_ID"])
+            raw.write_text(sam_raw())
+            return subprocess.CompletedProcess(cmd, 0, "", "")
+
+        raw = self.d / "track-result.json"
+        call = g.sam_call("SYN", 0, 1, "chair", 0, raw, run=track_run)
+        g.segment("segment:handoff", call, self.d / "seg", self.ledger, "chair", 0)
+        rows = [json.loads(line) for line in self.ledger.read_text().splitlines()]
+        self.assertEqual(captured, [row["request_id"] for row in rows])
+        self.assertIsNone(g.DISPATCH_REQUEST_ID.get())
+
     def test_budget_guard(self):
         g.reserve(self.ledger, "reconstruct", "a", 0.5)
         g.reserve(self.ledger, "segment", "b", 0.5)

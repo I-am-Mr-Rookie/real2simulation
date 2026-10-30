@@ -1,0 +1,13 @@
+{"id": "N-CONC", "expect": "<=2 admitted, journal rows == admitted, lock released", "observed": {"results": ["admitted", "admitted", "paused", "paused", "paused", "paused", "paused", "paused"], "journal_rows": 2, "lock_left": false}, "ok": true}
+{"id": "N-STALE", "expect": "paused; lock untouched", "observed": {"result": "paused", "lock": true}, "ok": true}
+{"id": "N-CORRUPT-journal", "expect": "paused, no ledger", "observed": {"result": "paused", "ledger": false}, "ok": true}
+{"id": "N-CORRUPT-receipt-missing", "expect": "paused, no ledger", "observed": {"result": "paused", "ledger": false}, "ok": true}
+{"id": "N-CORRUPT-journal-extra-key", "expect": "paused, no ledger", "observed": {"result": "paused", "ledger": false}, "ok": true}
+{"id": "N-MISSING-LEDGER", "expect": "paused", "observed": "paused", "ok": true}
+{"id": "N-REFILL", "expect": "FINDING if after_reset admits (contract cap refilled by journal reset)", "observed": {"before_reset": ["admitted", "admitted", "paused"], "after_reset": ["admitted", "admitted"]}, "ok": true}
+{"id": "N-REPLAY", "expect": "second identical reservation paused", "observed": ["admitted", "paused"], "ok": true}
+{"id": "N-WORKTREE", "expect": "worktree -> main root", "observed": "C:\\Users\\HP\\AppData\\Local\\Temp\\rc-wt-_5ntceuy\\main", "ok": true}
+{"id": "N-CLONE", "expect": "clone resolves to itself (separate state; admits only with copied receipt+journal)", "observed": "C:\\Users\\HP\\AppData\\Local\\Temp\\rc-wt-_5ntceuy\\clone", "ok": true}
+{"id": "N-UNKNOWN-KEY", "expect": "paused", "observed": "paused", "ok": true}
+{"id": "N-FLOOR", "expect": "headroom 1e-9 -> 0", "observed": "0E-8", "ok": true}
+{"id": "N-META-UNDERSTAND", "expect": "FINDING if every fresh ledger admits (per-file Meta cap, no global reserve)", "observed": {"fresh_ledger_admits_worst_usd": [0.0633, 0.0633, 0.0633, 0.0633], "global_journal_consulted": false}, "ok": true}

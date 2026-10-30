@@ -154,7 +154,7 @@ def project(root, receipt, journal):
             _provider(receipt, name)  # Reject duplicate receipt IDs before merging overlapping event views.
     state = copy.deepcopy(receipt)
     paths = inventory(root) | {Path(p) for p in journal["ledgers"]}
-    projected = list(journal["requests"])
+    projected = copy.deepcopy(journal["requests"])
     sources = set()
     for path in sorted(paths):
         source = path.relative_to(root).as_posix() if path.is_relative_to(root) else str(path)
@@ -185,7 +185,7 @@ def project(root, receipt, journal):
                        and path.is_relative_to((root / r["source"]).parent)]
             sources.add(artifact.relative_to(root).as_posix() + "#sha256=" + hashlib.sha256(artifact.read_bytes()).hexdigest())
             paths.add(artifact)
-        if len(matches) != 1:
+        if len({r["request_id"] for r in matches}) != 1:
             raise ValueError("Scene log needs exactly one originating reservation")
         row = matches[0]
         if "app_ids" not in row:  # JSON envelopes already folded their child scene logs above.
@@ -204,7 +204,20 @@ def project(root, receipt, journal):
                 merged[key] = dict(row)
             else:
                 _costs(merged[key], row)
+                if row.get("app_id"):
+                    if merged[key].get("app_id") not in (None, row["app_id"]):
+                        raise ValueError("Conflicting projected app identity")
+                    merged[key]["app_id"] = row["app_id"]
                 merged[key].pop("settled", None)  # Projection cannot certify final reconciliation.
+        for row in journal["requests"]:
+            if row["provider"] == provider and row.get("settled"):
+                from Build.guardrails.settlement import final_amount
+                amount, app = final_amount(root, row)
+                target = merged[row["request_id"]]
+                if usd(target.get("billed_usd") or 0) > amount or usd(row["billed_usd"]) != amount:
+                    raise ValueError("Settled bill conflicts with observed billing")
+                target.update(settled=True, billed_usd=str(amount), app_id=app,
+                              reconciliation_ref=row["reconciliation_ref"])
         state[provider]["requests"] = list(merged.values())
         reflected = {r["request_id"] for r in receipt[provider]["requests"]}
         outstanding = sum((liability_usd(r) for r in journal["requests"]
@@ -275,11 +288,14 @@ def reserve_gpu(root, ledger, stage, key, amount, *, max_jobs, cap_usd):
             request_id = source + ":" + stage + ":" + key
             state, paths = project(root, receipt, journal)
             local = project_ledger(ledger, source) if ledger.exists() else []
-            prior = [r for r in journal["requests"] if r["provider"] == "Modal"]
-            if (any(r["request_id"] == request_id for r in [*prior, *local])
-                    or len(prior) >= max_jobs or len(local) >= max_jobs
+            ids = {r["request_id"] for r in journal["requests"] if r["provider"] == "Modal"}
+            settled = {r["request_id"] for r in journal["requests"] if r["provider"] == "Modal" and r.get("settled")}
+            prior = [r for r in state["Modal"]["requests"] if r["request_id"] in ids - settled]
+            active_local = [r for r in local if r["request_id"] not in settled]
+            if (request_id in ids or any(r["request_id"] == request_id for r in local)
+                    or len(prior) >= max_jobs or len(active_local) >= max_jobs
                     or sum((liability_usd(r) for r in prior), Decimal(0)) + amount > usd(cap_usd)
-                    or sum((liability_usd(r) for r in local), Decimal(0)) + amount > usd(cap_usd)):
+                    or sum((liability_usd(r) for r in active_local), Decimal(0)) + amount > usd(cap_usd)):
                 raise ReconstructionPaused("GPU job count or all-in reservation cap reached")
             write_json(runtime / "snapshot.json", state)
             require_reconstruction(runtime / "snapshot.json", candidate_modal_usd=amount)
@@ -296,5 +312,35 @@ def reserve_gpu(root, ledger, stage, key, amount, *, max_jobs, cap_usd):
                 stream.flush()
                 import os
                 os.fsync(stream.fileno())
+            return request_id
     except (OSError, UnicodeError, ValueError, TypeError, KeyError, AttributeError, OverflowError):
         raise ReconstructionPaused("GPU admission state unavailable or invalid") from None
+
+
+def claim_gpu(root, request_id, operation):
+    """Consume one durable reservation once; a pipeline child must not reserve a second job."""
+    try:
+        root = repository_root(root)
+        runtime = root / "evidence/S20/runtime"
+        with exclusive(runtime / "admission.lock"):
+            journal = read_json(runtime / "reservations.json")
+            validate_journal(journal)
+            matches = [r for r in journal["requests"] if r["request_id"] == request_id and r["provider"] == "Modal"]
+            stage = "segment" if operation.startswith("modal-track:") else "reconstruct"
+            if len(matches) != 1 or matches[0].get("settled") or matches[0].get("dispatch_operation"):
+                raise ValueError("One unclaimed active reservation required")
+            row = matches[0]
+            if row["stage"] != stage:
+                raise ValueError("Reservation stage does not match launch")
+            state, _ = project(root, read_json(runtime / "receipt.json"), journal)
+            current = next(r for r in state["Modal"]["requests"] if r["request_id"] == request_id)
+            amount = liability_usd(current)
+            state["Modal"]["requests"].remove(current)
+            state["Modal"]["credit_headroom_usd"] = str(headroom_usd(state["Modal"]["credit_headroom_usd"]) + amount)
+            write_json(runtime / "snapshot.json", state)
+            require_reconstruction(runtime / "snapshot.json", candidate_modal_usd=amount)
+            row["dispatch_operation"] = operation
+            write_json(runtime / "reservations.json", journal)
+            return request_id
+    except (OSError, UnicodeError, ValueError, TypeError, KeyError, AttributeError, OverflowError, StopIteration):
+        raise ReconstructionPaused("GPU dispatch reservation unavailable, reused or invalid") from None

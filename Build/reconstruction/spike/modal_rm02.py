@@ -157,6 +157,7 @@ def main():
     def record_guard(state):
         atomic_json(Path(os.environ["RM02_WATCHDOG_RECEIPT"]), state)
 
+    sys.path.insert(0, str(ROOT))
     from Build.guardrails.standalone import admit_standalone
     admit_standalone("spike-rm02")
     phase("remote_creation_started", True, ["preflight_validated", "remote_creation_started"])

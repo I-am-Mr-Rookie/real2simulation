@@ -83,6 +83,7 @@ def smoke():
 
 @app.local_entrypoint()
 def main(out: str = ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
     from Build.guardrails.standalone import admit_standalone
     admit_standalone("gpu-runtime")
     t = time.time()

@@ -1,4 +1,4 @@
-"""S13f segment + reconstruct workers for JobRunner over the EXISTING GPU entry points (unedited).
+"""S13f segment + reconstruct workers for JobRunner over the existing GPU entry points.
 
 reconstruct: documented S06d command `modal run Build/gpu/scene_job.py --scene --out --manifest` (infra/modal/README.md);
 its contracts/scene bundle is re-validated here. segment: the parameterized S07b CLI
@@ -8,6 +8,7 @@ Every paid dispatch first reserves against a JSONL ledger (job count + USD cap) 
 Failures become contract StageErrors: bad input -> INVALID_INPUT (never retried), runtime -> PROCESSING_FAILED (retryable).
 """
 import hashlib
+from contextvars import ContextVar
 import json
 import os
 import subprocess
@@ -32,6 +33,7 @@ MODAL_CMD = ["uv", "run", "--no-project", "--python", "3.11", "--with", "modal==
 TRACK_CMD = ["uv", "run", "--no-project", "--python", "3.12", "--with", "modal==1.6.3", "--env-file", ENV_FILE,
              "modal", "run", "Build/measurement/runtime/modal_track.py"]
 UTF8_ENV = {"PYTHONIOENCODING": "utf-8", "PYTHONUTF8": "1"}
+DISPATCH_REQUEST_ID = ContextVar("modal_request_id", default=None)
 
 
 def _now():
@@ -39,9 +41,9 @@ def _now():
 
 
 def reserve(ledger, stage, key, usd):
-    """Append a reservation row or raise SPEND_PAUSED; rows count even if the job later fails (conservative)."""
+    """Reserve or pause; failed/unreconciled jobs retain their active slot and liability."""
     try:
-        reserve_gpu(ROOT, ledger, stage, key, usd, max_jobs=MAX_JOBS, cap_usd=CAP_USD)
+        return reserve_gpu(ROOT, ledger, stage, key, usd, max_jobs=MAX_JOBS, cap_usd=CAP_USD)
     except ReconstructionPaused as exc:
         raise StageError("SPEND_PAUSED", str(exc), False) from None
 
@@ -62,14 +64,14 @@ def _tail(text, n=300):
 
 def reconstruct(key, scene_id, manifest, out_dir, ledger, run=subprocess.run, cwd=ROOT):
     """reconstruct worker: run scene_job, validate its bundle, write reconstruction.json; returns its sha256."""
-    reserve(ledger, "reconstruct", key, RECONSTRUCT_RESERVE_USD)
+    request_id = reserve(ledger, "reconstruct", key, RECONSTRUCT_RESERVE_USD)
     out_dir = Path(out_dir)
     bundle = out_dir / "bundle"
     cmd = MODAL_CMD + ["--scene", scene_id, "--out", str(bundle), "--manifest", str(manifest)]
     try:
         # Piped Modal CLI on Windows defaults to cp1252 and can die printing Rich glyphs (S13f-orch30 attempt 1).
         proc = run(cmd, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=900,
-                   env={**os.environ, **UTF8_ENV})
+                   env={**os.environ, **UTF8_ENV, "S20_MODAL_REQUEST_ID": request_id})
     except Exception as exc:  # noqa: BLE001 - launcher/timeout failure is a retryable stage failure
         raise StageError("PROCESSING_FAILED", f"reconstruct: launcher {type(exc).__name__}: {exc}"[:300], True)
     if proc.returncode != 0:
@@ -109,7 +111,7 @@ def sam_call(clip, first, last, prompt, object_id, raw_out, run=subprocess.run, 
         cmd = TRACK_CMD + ["--clip", clip, "--first", str(first), "--last", str(last), "--prompt", prompt,
                            "--object-id", str(object_id), "--out", str(raw_out), "--masks"]
         proc = run(cmd, cwd=cwd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=1500,
-                   env={**os.environ, **UTF8_ENV})
+                   env={**os.environ, **UTF8_ENV, **({"S20_MODAL_REQUEST_ID": DISPATCH_REQUEST_ID.get()} if DISPATCH_REQUEST_ID.get() else {})})
         if proc.returncode != 0:
             text = (proc.stderr or "") + (proc.stdout or "")
             raw_out.parent.mkdir(parents=True, exist_ok=True)
@@ -168,13 +170,16 @@ def _seg_doc(key, seg, source):
 
 def segment(key, call, out_dir, ledger, prompt, object_id, frame_map=None):
     """segment worker: call() returns raw S07b result JSON text; writes validated segmentation.json, returns its sha256."""
-    reserve(ledger, "segment", key, SEGMENT_RESERVE_USD)
+    request_id = reserve(ledger, "segment", key, SEGMENT_RESERVE_USD)
+    token = DISPATCH_REQUEST_ID.set(request_id)
     try:
         raw = call()
     except StageError:
         raise
     except Exception as exc:  # noqa: BLE001 - Modal/transport failure is retryable
         raise StageError("PROCESSING_FAILED", f"segment: {type(exc).__name__}: {exc}"[:300], True)
+    finally:
+        DISPATCH_REQUEST_ID.reset(token)
     return _write(out_dir, "segmentation.json", _seg_doc(key, validate_segment(raw, prompt, object_id, frame_map), "live"))
 
 
