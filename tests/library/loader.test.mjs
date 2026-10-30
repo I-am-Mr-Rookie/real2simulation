@@ -3,15 +3,16 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { loadLibraryEntry } from '../../Build/library/loader.mjs';
+import { loadLibraryEntry, validateTrace } from '../../Build/library/loader.mjs';
 import { checkViewerRequest } from '../../Build/web/src/viewer/adapter.mjs';
 import { DEFAULT_LIMITS } from '../../Build/web/src/viewer/artifact-loader.mjs';
 import { SCALE_UNVERIFIED_BANNER } from '../../Build/web/src/viewer/fixture.mjs';
 
-const { manifest, objects } = JSON.parse(readFileSync(0, 'utf8'));
+const { manifest, objects, legacy } = JSON.parse(readFileSync(0, 'utf8'));
 const entries = manifest.demos;
-const example = entries.find((e) => e.artifact?.kind === 'simulation-setup');
-const scene = entries.find((e) => e.artifact?.kind === 'scene-descriptor');
+const example = legacy.setup;
+const scene = legacy.scene;
+const playable = entries.find((e) => e.artifact?.kind === 'simulation-trace');
 const challenge = entries.find((e) => e.artifact?.kind === 'challenge-record');
 const clone = (value) => structuredClone(value);
 const fetchObject = async (href, options) => {
@@ -35,7 +36,7 @@ const replacePayload = (entry, payload) => {
   return [copy, { fetch: async () => new Response(bytes) }];
 };
 
-test('all 18 current entries load without playable/gate promotion or source mutation', async () => {
+test('all 18 current entries load with only verified traces mountable, no gate/source mutation', async () => {
   const before = JSON.stringify(manifest);
   assert.equal(entries.length, 18);
   for (const entry of entries) {
@@ -43,7 +44,7 @@ test('all 18 current entries load without playable/gate promotion or source muta
     const result = await loadLibraryEntry(entry, { fetch: (...args) => { calls++; return fetchObject(...args); } });
     assert.equal(result.label, entry.label);
     assert.equal(result.availability, entry.availability);
-    assert.equal(result.canMount, false);
+    assert.equal(result.canMount, entry.artifact?.kind === 'simulation-trace');
     assert.ok(Object.isFrozen(result));
     if (entry.label === 'UNAVAILABLE') {
       assert.equal(calls, 0);
@@ -75,16 +76,52 @@ test('all 18 current entries load without playable/gate promotion or source muta
   assert.equal(JSON.stringify(manifest), before);
 });
 
-test('projectile and pendulum are setup metadata, not substituted synthetic fixtures', async () => {
+test('projectile trace and pendulum unavailable never substitute synthetic geometry', async () => {
   for (const template of ['projectile', 'pendulum']) {
     const matches = entries.filter((e) => e.id.includes(template));
     assert.ok(matches.length > 0);
     for (const entry of matches) {
       const result = await loadLibraryEntry(entry, { fetch: fetchObject });
-      assert.equal(result.metadata.template, template);
+      if (entry.availability === 'playable') {
+        assert.equal(result.trace.kind, template);
+        assert.equal(result.trace.sha256, entry.artifact.sha256);
+        assert.equal(result.trace.inputProvenance, 'synthetic');
+        assert.ok(Object.isFrozen(result.trace.samples[0].position_m));
+      } else {
+        assert.equal(result.label, 'UNAVAILABLE');
+        assert.equal(result.canMount, false);
+      }
       assert.equal(result.viewerRequest, null);
-      assert.match(result.reason, /no trajectory/);
     }
+  }
+});
+
+test('trace DTO rejects unsafe labels, samples, timing and answer-bearing fields', async () => {
+  const trace = JSON.parse(Buffer.from(objects[playable.artifact.sha256], 'base64'));
+  for (const mutate of [
+    (t) => { t.kind = 'mystery-g'; }, (t) => { t.source = 'measured'; },
+    (t) => { t.inputProvenance = 'image-derived'; }, (t) => { t.label = 'MEASURED'; },
+    (t) => { t.dt_s = 0; }, (t) => { t.samples = []; },
+    (t) => { t.samples = Array(4097).fill(t.samples[0]); },
+    (t) => { t.samples[1].step = 9; }, (t) => { t.samples[1].time_s += 1; },
+    (t) => { t.samples[1].position_m = [0, 1]; },
+    (t) => { t.samples[1].position_m[0] = null; },
+    (t) => { t.seed = 42; }, (t) => { t.sha256 = 'self-hash'; },
+  ]) {
+    const copy = clone(trace); mutate(copy);
+    await assert.rejects(loadLibraryEntry(...replacePayload(playable, copy)), invalid(/trace/));
+  }
+  const sparse = clone(trace); delete sparse.samples[1];
+  assert.throws(() => validateTrace(sparse), invalid(/trace/));
+  const nonfinite = clone(trace); nonfinite.samples[1].position_m[0] = Infinity;
+  assert.throws(() => validateTrace(nonfinite), invalid(/trace/));
+  for (const mutate of [
+    (e) => { e.availability = 'metadata-only'; }, (e) => { e.label = 'SCALE_UNVERIFIED'; },
+    (e) => { e.source.kind = 'clip'; }, (e) => { e.gates.M = 'MET'; },
+    (e) => { e.challenge = { mode: 'mystery-g' }; },
+  ]) {
+    const entry = clone(playable); mutate(entry);
+    await assert.rejects(loadLibraryEntry(entry, { fetch: () => assert.fail('must reject before fetch') }), invalid(/invalid/));
   }
 });
 

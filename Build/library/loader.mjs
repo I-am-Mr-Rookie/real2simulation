@@ -10,6 +10,24 @@ const keysAre = (value, keys) => object(value) && Object.keys(value).length === 
   keys.every((key) => Object.hasOwn(value, key));
 const simulatedBanner = 'SIMULATED — setup metadata only, not a playable replay; SCALE_UNVERIFIED';
 
+export function validateTrace(trace) {
+  if (!keysAre(trace, ['kind', 'source', 'inputProvenance', 'dt_s', 'samples', 'label']) ||
+      !['free-fall', 'projectile', 'pendulum'].includes(trace.kind) || trace.source !== 'simulated' ||
+      trace.inputProvenance !== 'synthetic' || trace.label !== 'SIMULATED' ||
+      !Number.isFinite(trace.dt_s) || trace.dt_s <= 0 || !Array.isArray(trace.samples) ||
+      trace.samples.length < 2 || trace.samples.length > 4096) bad('Simulation trace labels/bounds are invalid');
+  for (let i = 0; i < trace.samples.length; i++) {
+    const sample = trace.samples[i];
+    if (!keysAre(sample, ['step', 'time_s', 'position_m']) || sample.step !== i ||
+        !Number.isFinite(sample.time_s) || sample.time_s !== i * trace.dt_s ||
+        !Array.isArray(sample.position_m) || sample.position_m.length !== 3 ||
+        ![0, 1, 2].every((j) => Object.hasOwn(sample.position_m, j) && Number.isFinite(sample.position_m[j]))) {
+      bad('Simulation trace sample is invalid');
+    }
+  }
+  return trace;
+}
+
 /** One entry from guest-1.0.0. Returns metadata + an exact viewer request, never invented render bytes. */
 export async function loadLibraryEntry(entry, { fetch: fetchImpl = globalThis.fetch, signal } = {}) {
   if (signal?.aborted) throw new DOMException('Library load aborted', 'AbortError');
@@ -25,15 +43,20 @@ export async function loadLibraryEntry(entry, { fetch: fetchImpl = globalThis.fe
   }
   const defaults = entry.defaults;
   if (!['SIMULATED', 'SCALE_UNVERIFIED'].includes(entry.label) || entry.scale_verified !== false ||
-      entry.scale_label !== 'SCALE_UNVERIFIED' || entry.display_only !== true || entry.availability !== 'metadata-only' ||
+      entry.scale_label !== 'SCALE_UNVERIFIED' || entry.display_only !== true ||
+      !['metadata-only', 'playable'].includes(entry.availability) ||
       !object(defaults) || defaults.demo_id !== entry.id || defaults.autoplay !== false ||
       defaults.physics_enabled !== false || defaults.real_scene_prediction !== 'WITHHELD' ||
       !Array.isArray(defaults.parameters) || defaults.parameters.length !== 0) bad('Library safety labels/defaults are invalid');
   const artifact = entry.artifact;
   if (!object(artifact)) bad('Library artifact reference is missing');
-  if (!['simulation-setup', 'scene-descriptor', 'challenge-record'].includes(artifact.kind)) {
+  if (!['simulation-trace', 'simulation-setup', 'scene-descriptor', 'challenge-record'].includes(artifact.kind)) {
     throw new ViewerError('UNSUPPORTED', 'Library artifact kind is unsupported');
   }
+  const playable = artifact.kind === 'simulation-trace';
+  if (playable !== (entry.availability === 'playable') || (playable &&
+      (entry.label !== 'SIMULATED' || entry.source?.kind !== 'synthetic' || entry.challenge ||
+       entry.gates?.M !== 'NOT_MET' || entry.gates?.RS !== 'NOT_MET'))) bad('Library trace safety labels are invalid');
   if (artifact.media_type !== 'application/json' || typeof artifact.sha256 !== 'string' || !/^[a-f0-9]{64}$/.test(artifact.sha256) ||
       artifact.href !== `/api/library/artifacts/${artifact.sha256}`) bad('Library artifact URL/hash is invalid');
   if (!Number.isSafeInteger(artifact.bytes) || artifact.bytes < 1 || artifact.bytes > DEFAULT_LIMITS.manifestBytes) {
@@ -64,7 +87,10 @@ export async function loadLibraryEntry(entry, { fetch: fetchImpl = globalThis.fe
   if (!object(metadata)) bad('Library metadata must be an object');
   let viewerRequest = null;
   let reason;
-  if (artifact.kind === 'scene-descriptor') {
+  if (playable) {
+    validateTrace(metadata);
+    reason = 'Accepted synthetic simulator trace; display-only, not measured physical evidence.';
+  } else if (artifact.kind === 'scene-descriptor') {
     if (entry.label !== 'SCALE_UNVERIFIED' || metadata.synthetic !== false || metadata.scale?.status === 'measured') {
       bad('Scene safety labels disagree');
     }
@@ -95,8 +121,10 @@ export async function loadLibraryEntry(entry, { fetch: fetchImpl = globalThis.fe
     }
   }
   return deepFreeze({ id: entry.id, title: entry.title, label: entry.label, scaleLabel: 'SCALE_UNVERIFIED',
-    availability: 'metadata-only', displayOnly: true, defaults: structuredClone(defaults),
+    availability: entry.availability, displayOnly: true, defaults: structuredClone(defaults),
     source: structuredClone(entry.source), gates: structuredClone(entry.gates), limitations: structuredClone(entry.limitations),
-    banner: entry.label === 'SIMULATED' ? simulatedBanner : SCALE_UNVERIFIED_BANNER,
-    reason, canMount: false, viewerRequest, metadata });
+    banner: playable ? 'SIMULATED — synthetic trace; SCALE_UNVERIFIED' :
+      entry.label === 'SIMULATED' ? simulatedBanner : SCALE_UNVERIFIED_BANNER,
+    reason, canMount: playable, viewerRequest, metadata,
+    ...(playable ? { trace: { ...metadata, sha256: artifact.sha256 } } : {}) });
 }

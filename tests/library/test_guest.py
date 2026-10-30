@@ -28,7 +28,7 @@ class GuestTests(unittest.TestCase):
         self.assertEqual(response.headers["content-type"], "application/json")
         self.assertEqual(len(self.manifest["demos"]), 18)
         self.assertEqual({d["label"] for d in self.manifest["demos"]},
-                         {"SIMULATED", "SCALE_UNVERIFIED", "UNAVAILABLE"})
+                         {"SIMULATED", "UNAVAILABLE"})
         for demo in self.manifest["demos"]:
             with self.subTest(demo=demo["id"]):
                 self.assertNotIn("provenance", demo)
@@ -37,7 +37,8 @@ class GuestTests(unittest.TestCase):
                     continue
                 self.assertTrue(demo["display_only"])
                 self.assertFalse(demo["scale_verified"])
-                self.assertEqual(demo["availability"], "metadata-only")
+                self.assertEqual(demo["availability"], "playable" if demo["artifact"]["kind"] ==
+                                 "simulation-trace" else "metadata-only")
                 self.assertEqual(demo["scale_label"], "SCALE_UNVERIFIED")
                 defaults = demo["defaults"]
                 self.assertFalse(defaults["autoplay"])
@@ -111,6 +112,12 @@ class GuestTests(unittest.TestCase):
         artifacts = ROOT / "test-data/library-artifacts"
         shutil.copytree(artifacts, root / "test-data/library-artifacts")
         paths = {"clips.csv", APPROVAL, REGISTRY, "evidence/S12/S12f-fallback.json"}
+        index = json.loads((artifacts / "playable.json").read_text())
+        for item in index["entries"].values():
+            if "custody" in item:
+                custody = item["custody"]
+                paths.update(p["path"] for p in custody["producers"])
+                paths.add(custody["setup"]["path"])
         fallback = json.loads((ROOT / "evidence/S12/S12f-fallback.json").read_text(encoding="utf-8"))
         paths.add(fallback["gate_rs"]["path"])
         for name in guest.CATALOGUES:
@@ -139,8 +146,7 @@ class GuestTests(unittest.TestCase):
             self.assertEqual(response.status_code, 503)
             self.assertEqual(response.json(), {"error": "library_unavailable"})
             approval.write_bytes(saved)
-            sha = next(d["artifact"]["sha256"] for d in self.manifest["demos"]
-                       if d["label"] == "SCALE_UNVERIFIED")
+            sha = json.loads((root / "test-data/library-artifacts/scenes.json").read_text())["demos"][0]["artifact"]["sha256"]
             path = root / f"test-data/library-artifacts/objects/sha256/{sha}.json"
             original = path.read_bytes()
             path.write_bytes(b"corrupt")

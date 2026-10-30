@@ -8,8 +8,9 @@ from fastapi import FastAPI
 from fastapi.responses import Response
 
 from Build.library.example import safe_defaults
+from Build.library.playable import load_index, load_trace
 from Build.library.validate import (
-    ARTIFACT_BYTES, MANIFEST_BYTES, ROOT, checked_ref, file_under, pointer,
+    ARTIFACT_BYTES, MANIFEST_BYTES, ROOT, checked_ref, file_under,
     require, validate_file,
 )
 
@@ -29,22 +30,36 @@ def load_guest(root=ROOT):
     """
     root = Path(root)
     artifacts = root / "test-data/library-artifacts"
+    index = load_index(root)
     demos, objects = {}, {}
-    for name in CATALOGUES:
-        catalogue = validate_file(file_under(artifacts, name), artifacts, root)
+    catalogues = [validate_file(file_under(artifacts, name), artifacts, root) for name in CATALOGUES]
+    challenge_records = {(d["provenance"]["artifact_evidence"]["sha256"], d["provenance"]["record_pointer"])
+                         for c in catalogues for d in c["demos"] if "challenge" in d}
+    for catalogue in catalogues:
         for demo in catalogue["demos"]:
             artifact = demo["artifact"]
             _, data = checked_ref(artifact, artifacts)
             require(len(data) == artifact["bytes"], "artifact byte count mismatch")
             kind = artifact["kind"]
             if kind == "simulation-record":
-                record = pointer(json.loads(data), demo["provenance"]["record_pointer"])
-                # No gravity, seed, trajectory, diagnostics or audit pointers, even in other demos.
-                data = encode({"source": "simulated", "template": record["template"],
-                               "duration_s": record["duration_s"], "time_step_s": record["time_step_s"],
-                               "display_only": True, "availability": "metadata-only"})
-                kind = "simulation-setup"
-            require(kind in ("simulation-setup", "scene-descriptor", "challenge-record"),
+                provenance = demo["provenance"]
+                if (provenance["artifact_evidence"]["sha256"], provenance["record_pointer"]) in challenge_records:
+                    demos[demo["id"]] = unavailable(demo,
+                        "Trace withheld: this accepted record also supplies the Mystery-g challenge answer.")
+                    continue
+                loaded = load_trace(root, demo, index)
+                if loaded is None:
+                    demos[demo["id"]] = unavailable(demo,
+                        "No complete preserved accepted setup with parameter JSON pointers for this case.")
+                    continue
+                artifact, data = loaded
+                kind = "simulation-trace"
+            if kind == "scene-descriptor":
+                # shortcut: S18k has no accepted local PLY bytes; revalidate a bundle before enabling scenes.
+                demos[demo["id"]] = unavailable(demo,
+                    "Declared PLY bytes are absent from accepted local evidence; no verified render bundle.")
+                continue
+            require(kind in ("simulation-trace", "challenge-record"),
                     "unsupported guest artifact")
             require(len(data) <= ARTIFACT_BYTES, "guest artifact exceeds byte limit")
             sha = hashlib.sha256(data).hexdigest()
@@ -55,9 +70,19 @@ def load_guest(root=ROOT):
                      ("id", "title", "source", "scale_verified", "scale_label", "gates", "limitations")}
             entry.update({"label": "SIMULATED" if demo["source"].get("kind") == "synthetic"
                           else "SCALE_UNVERIFIED", "display_only": True,
-                          "availability": "metadata-only", "defaults": defaults,
+                          "availability": "playable" if kind == "simulation-trace" else "metadata-only", "defaults": defaults,
                           "artifact": {"kind": kind, "media_type": "application/json", "sha256": sha,
                                        "bytes": len(data), "href": f"{PREFIX}/artifacts/{sha}"}})
+            if kind == "simulation-trace":
+                entry["limitations"] = [
+                    "Bounded accepted synthetic trajectory only; no scene-v1 geometry or real-scene physics."
+                    if text == "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled."
+                    else text for text in entry["limitations"]]
+                custody = index["entries"][demo["id"]]["custody"]
+                if custody["produced_trace_sha256"] != custody["accepted_trace_sha256"]:
+                    entry["limitations"].append(
+                        "Regenerated with current accepted simulator; historical trace differs after model update. "
+                        "No historical acceptance error/accuracy claim is inherited.")
             if "challenge" in demo:
                 entry["challenge"] = demo["challenge"].copy()
             if demo["id"] in demos:
@@ -72,10 +97,15 @@ def load_guest(root=ROOT):
                           "availability": "unavailable", "reason": reason, "artifact": None}
     selected = demos["simulated-mystery-g"]["defaults"]
     manifest = {"schema_version": "guest-1.0.0", "audience": "anonymous-guest",
-                "scope": "metadata-only; no raw-media redistribution or playable-asset promise",
+                "scope": "accepted synthetic traces and answer-free challenge metadata; no raw media or real-scene physics",
                 "defaults": selected, "demos": list(demos.values())}
     require(len(encode(manifest)) <= MANIFEST_BYTES, "guest manifest exceeds byte limit")
     return manifest, objects
+
+
+def unavailable(demo, reason):
+    return {"id": demo["id"], "title": demo["title"], "label": "UNAVAILABLE",
+            "availability": "unavailable", "reason": reason, "artifact": None}
 
 
 def artifact_response(artifact_id, objects):

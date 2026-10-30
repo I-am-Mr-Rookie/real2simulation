@@ -232,10 +232,33 @@ loader before exposing a playable demo. No browser/runtime verification here.
 `loader.mjs` exports `loadLibraryEntry(entry, { signal, fetch })`: bounded,
 SHA-verified guest metadata with SIMULATED / SCALE_UNVERIFIED / UNAVAILABLE labels
 and immutable safe defaults. Real descriptors produce the unchanged viewer's
-validated guest/inspect request; current entries cannot mount because the guest
-API exposes metadata, not render assets or trajectories. No app/viewer edits.
+validated guest/inspect request; at the S18g checkpoint entries could not mount
+because the guest API exposed metadata only. No app/viewer edits in that run.
 See [exact one-call wiring and kind mapping](../../evidence/S18/S18g-LOADER-INTERFACE.md).
 The standard library Python suite also runs the Node loader contract tests.
+
+## Bounded playable inputs (S18k)
+
+`python -B -m Build.library.playable` is an **offline**, deterministic export
+using existing simulator functions. `playable.json` records SHA/bytes/sample
+bounds, accepted record identity, parameter JSON pointers and producer hashes.
+The public guest path reads and revalidates stored artifacts; it never starts
+Node, a simulator, a provider or a GPU. Corrupt/missing custody fails closed.
+
+The guest DTO is documented in
+[S18k-TRACE-CONTRACT.md](../../evidence/S18/S18k-TRACE-CONTRACT.md).
+`loadLibraryEntry` verifies trace bytes, then returns `canMount: true` and a
+frozen `trace` (not a scene-v1 bundle), `viewerRequest: null`, no autoplay,
+no editable parameters, and `SCALE_UNVERIFIED`. Actual page/render integration
+belongs to the parallel viewer worker; no deploy or browser proof is claimed.
+
+Current projectile baseline and short-small-angle pendulum are playable. Free-fall baseline is generated locally
+but withheld from guest endpoints because it shares the Mystery-g answer record.
+The pendulum uses the accepted current small-angle model fix; historical and
+regenerated trace hashes differ and no historical accuracy metric is inherited.
+Other cases lack complete preserved setup pointers. Those cases and RM02/RM04 (no
+declared PLY bytes locally) return no-fetch `UNAVAILABLE`, not fixture geometry.
+Mystery-g remains answer-free metadata with server-owned `/lab` reveal.
 
 ## Example custody
 

@@ -1,0 +1,2 @@
+# The trace index pins this producer's exact bytes across Windows checkouts.
+generate-trace.mjs text eol=lf

@@ -1,0 +1,194 @@
+{
+  "checked_at": "2026-10-30T10:16:04.464147+00:00",
+  "public_objects": [
+    {
+      "sha256": "13e00f7fe86c695598ae84773031473ff1385e78fca1531c995d66cdaa951608",
+      "bytes": 16858,
+      "kind": "projectile"
+    },
+    {
+      "sha256": "5fa710edd77321e36880c5fcfbaddf0403b8fcdee4a3973a14970d0b86d6134b",
+      "bytes": 21552,
+      "kind": "pendulum"
+    },
+    {
+      "sha256": "eae05f9332ce9c4de92c1b30c3a31e958f9f7a8a2859bf6507af1752459c77df",
+      "bytes": 141,
+      "kind": "challenge-record"
+    }
+  ],
+  "entries": [
+    {
+      "id": "rm02-s06d-descriptor",
+      "availability": "unavailable",
+      "reason": "Declared PLY bytes are absent from accepted local evidence; no verified render bundle.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-free-fall-baseline-short",
+      "availability": "unavailable",
+      "reason": "Trace withheld: this accepted record also supplies the Mystery-g challenge answer.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-free-fall-upward-launch",
+      "availability": "unavailable",
+      "reason": "No complete preserved accepted setup with parameter JSON pointers for this case.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-free-fall-tiny-height",
+      "availability": "unavailable",
+      "reason": "No complete preserved accepted setup with parameter JSON pointers for this case.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-free-fall-low-gravity-long-horizon",
+      "availability": "unavailable",
+      "reason": "No complete preserved accepted setup with parameter JSON pointers for this case.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-projectile-baseline-short",
+      "availability": "playable",
+      "reason": null,
+      "artifact": {
+        "kind": "simulation-trace",
+        "media_type": "application/json",
+        "sha256": "13e00f7fe86c695598ae84773031473ff1385e78fca1531c995d66cdaa951608",
+        "bytes": 16858,
+        "href": "/api/library/artifacts/13e00f7fe86c695598ae84773031473ff1385e78fca1531c995d66cdaa951608"
+      }
+    },
+    {
+      "id": "simulated-projectile-zero-horizontal",
+      "availability": "unavailable",
+      "reason": "No complete preserved accepted setup with parameter JSON pointers for this case.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-projectile-tiny-height",
+      "availability": "unavailable",
+      "reason": "No complete preserved accepted setup with parameter JSON pointers for this case.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-projectile-low-gravity-long-horizon",
+      "availability": "unavailable",
+      "reason": "No complete preserved accepted setup with parameter JSON pointers for this case.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-pendulum-short-small-angle",
+      "availability": "playable",
+      "reason": null,
+      "artifact": {
+        "kind": "simulation-trace",
+        "media_type": "application/json",
+        "sha256": "5fa710edd77321e36880c5fcfbaddf0403b8fcdee4a3973a14970d0b86d6134b",
+        "bytes": 21552,
+        "href": "/api/library/artifacts/5fa710edd77321e36880c5fcfbaddf0403b8fcdee4a3973a14970d0b86d6134b"
+      }
+    },
+    {
+      "id": "simulated-pendulum-two-period-horizon",
+      "availability": "unavailable",
+      "reason": "No complete preserved accepted setup with parameter JSON pointers for this case.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-pendulum-initial-angular-velocity",
+      "availability": "unavailable",
+      "reason": "No complete preserved accepted setup with parameter JSON pointers for this case.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-pendulum-zero-answer-equilibrium",
+      "availability": "unavailable",
+      "reason": "No complete preserved accepted setup with parameter JSON pointers for this case.",
+      "artifact": null
+    },
+    {
+      "id": "rm04-s06f-descriptor",
+      "availability": "unavailable",
+      "reason": "Declared PLY bytes are absent from accepted local evidence; no verified render bundle.",
+      "artifact": null
+    },
+    {
+      "id": "simulated-mystery-g",
+      "availability": "metadata-only",
+      "reason": null,
+      "artifact": {
+        "kind": "challenge-record",
+        "media_type": "application/json",
+        "sha256": "eae05f9332ce9c4de92c1b30c3a31e958f9f7a8a2859bf6507af1752459c77df",
+        "bytes": 141,
+        "href": "/api/library/artifacts/eae05f9332ce9c4de92c1b30c3a31e958f9f7a8a2859bf6507af1752459c77df"
+      }
+    },
+    {
+      "id": "apollo",
+      "availability": "unavailable",
+      "reason": "Moon result not measured; no approved trackable demo.",
+      "artifact": null
+    },
+    {
+      "id": "bounce",
+      "availability": "unavailable",
+      "reason": "No accepted complete bounce record.",
+      "artifact": null
+    },
+    {
+      "id": "rm05-scene",
+      "availability": "unavailable",
+      "reason": "No accepted scene-v1 viewer descriptor.",
+      "artifact": null
+    }
+  ],
+  "local_trace_artifacts": {
+    "simulated-free-fall-baseline-short": {
+      "artifact": {
+        "bytes": 13378,
+        "kind": "simulation-trace",
+        "media_type": "application/json",
+        "path": "objects/sha256/b88a55d1324f31d3ed7015df7011e0d28f103967ec3185dca8c56cd42e35e85a.json",
+        "sha256": "b88a55d1324f31d3ed7015df7011e0d28f103967ec3185dca8c56cd42e35e85a"
+      },
+      "accepted_trace_sha256": "e0937438699596a866ba76ea421a9cd7d00c2af9d1adf01cb2c991c7f2b452f2",
+      "produced_trace_sha256": "e0937438699596a866ba76ea421a9cd7d00c2af9d1adf01cb2c991c7f2b452f2"
+    },
+    "simulated-pendulum-short-small-angle": {
+      "artifact": {
+        "bytes": 21552,
+        "kind": "simulation-trace",
+        "media_type": "application/json",
+        "path": "objects/sha256/5fa710edd77321e36880c5fcfbaddf0403b8fcdee4a3973a14970d0b86d6134b.json",
+        "sha256": "5fa710edd77321e36880c5fcfbaddf0403b8fcdee4a3973a14970d0b86d6134b"
+      },
+      "accepted_trace_sha256": "9fb5d10cbb9564ca6a0fb301eb30395694268c8bdedea16f2fa0f937fb1dc607",
+      "produced_trace_sha256": "80f4836867273a4ae127ea042ca91b398453b8f1f98b653ac462ef63f993b0bd"
+    },
+    "simulated-projectile-baseline-short": {
+      "artifact": {
+        "bytes": 16858,
+        "kind": "simulation-trace",
+        "media_type": "application/json",
+        "path": "objects/sha256/13e00f7fe86c695598ae84773031473ff1385e78fca1531c995d66cdaa951608.json",
+        "sha256": "13e00f7fe86c695598ae84773031473ff1385e78fca1531c995d66cdaa951608"
+      },
+      "accepted_trace_sha256": "5ed61ad373f366ad191b9125ff896be09a6ca6fbe63b8057b68f11c5faa51f4a",
+      "produced_trace_sha256": "5ed61ad373f366ad191b9125ff896be09a6ca6fbe63b8057b68f11c5faa51f4a"
+    }
+  },
+  "descriptor_sources": {
+    "evidence/S06/S06d/scene-RM02-gpu.json": {
+      "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754"
+    },
+    "evidence/S06/S06f/scene-RM04-gpu.json": {
+      "sha256": "c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76"
+    }
+  },
+  "pendulum_current_full_trace_sha256": "80f4836867273a4ae127ea042ca91b398453b8f1f98b653ac462ef63f993b0bd",
+  "pendulum_accepted_full_trace_sha256": "9fb5d10cbb9564ca6a0fb301eb30395694268c8bdedea16f2fa0f937fb1dc607",
+  "pendulum_model_change_commit": "b37f7b8f03f9a31c6c0b245913509c0b4dfbf0c9"
+}
