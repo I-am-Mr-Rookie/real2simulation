@@ -1,15 +1,15 @@
 # Runs checklist
 
-Updated Oct 31, 02:31 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 02:34 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **207 / 239** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **208 / 239** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 1 open reviews
 
 ## Reviews for Koushik
 
-None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
+- [ ] Q20 [S15p, Oct31 orch] In your private workspace, a real clip (e.g. RM04) now gets through upload, understanding and interview, and the spec is accepted with the label 'scale unverified, not setup-validated' (your Q16 rule). The next step, Run, uses our browser simulator, which today accepts ONLY synthetic test scenes, so Run on a real clip shows 'run failed'. Should Run be allowed on real clips? A: yes, run it as a clearly labelled what-if: 'SIMULATED what-if of your described setup; scale unverified; not measured from the clip' (gives the full upload-to-report demo; the numbers come from the simulator and the fixture/estimated values in the spec, not from the video). B: no, keep the simulator synthetic-only; the real-clip workflow stops after the spec with an honest 'Run needs a setup-validated scene' message, and the demo shows run/fit in the lab (Mystery-g) instead. Reply 'Q20 A' or 'Q20 B'. Default if silent: B.
 
 ## Ready now
 
@@ -24,7 +24,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
-- [ ] **S15p** — Codex (native Claude) · Opus 5.5, effort medium — Wire workspace run (browser simulator), honest instruments and API report shape (30 min)
+- [ ] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min)
 
 ## Waiting for Koushik
 
@@ -257,7 +257,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (12/16)</summary>
+<details><summary><b>S15</b> — Workspace UI (13/16)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -274,7 +274,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15m** — Codex (native Claude) · Opus 5.5, effort high — Plan end-to-end workspace wiring (upload to report) (30 min)
 - [x] **S15n** — Codex (native Claude) · Opus 5.5, effort high — Workspace controller: reduce() state + fetch adapters + upload control (30 min)
 - [ ] **S15o** — Codex (native Claude) · Sonnet 5.5, effort high — Re-walk upload-to-report on dev (successor to S15k) (30 min)
-- [ ] **S15p** — Codex (native Claude) · Opus 5.5, effort medium — Wire workspace run (browser simulator), honest instruments and API report shape (30 min)
+- [x] **S15p** — Codex (native Claude) · Opus 5.5, effort medium — Wire workspace run (browser simulator), honest instruments and API report shape (30 min)
 
 </details>
 

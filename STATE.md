@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+Oct30 ~20:58Z: ACCEPTED S15p-orch160 DONE (controller runs runBrowserSimulation on the API validated_setup verbatim and never forges trust
+fields; fit shape mismatch fixed (API wants {times,positions} and returns top-level gravity; re-enveloped for parseFitReveal, raw fit sent to
+/report); report html shown only in a sandboxed iframe with labels + spec label; instruments honest 'not available'. 106/106 node tests
+fresh by controller; web DEV e6bf5fe2 SUCCESS; deployments.json web updated). STRUCTURAL GAP: the API spec route returns a bare spec, not
+the S10 artifact (Build/simulator/export_validated_setup.py), and the simulator accepts synthetic scenes only, so Run fails honestly for
+recorded RM04. Owner question Q20 (allow labelled what-if run on real clips? default B = no). Next: S15o live walk (find live round-trip
+issues up to spec/run), then a fix row shaped by S15o findings + Q20.
+
 Oct30 ~20:35Z: ACCEPTED S14j-orch159 DONE (spec route: only when every issue is '$.scene: invalid authoritative bundle', reruns
 answers_to_spec with Gate A's numeric validate() as validate_setup and returns 200 + label 'scale unverified, not setup-validated',
 setup_validated:false; other failures still 422; authoritative path unchanged. Fresh by controller: api-workspace 20, pipeline 53 OK. API DEV
@@ -1375,6 +1383,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
 
+- [ ] Q20 [S15p, Oct31 orch] In your private workspace, a real clip (e.g. RM04) now gets through upload, understanding and interview, and the spec is accepted with the label 'scale unverified, not setup-validated' (your Q16 rule). The next step, Run, uses our browser simulator, which today accepts ONLY synthetic test scenes, so Run on a real clip shows 'run failed'. Should Run be allowed on real clips? A: yes, run it as a clearly labelled what-if: 'SIMULATED what-if of your described setup; scale unverified; not measured from the clip' (gives the full upload-to-report demo; the numbers come from the simulator and the fixture/estimated values in the spec, not from the video). B: no, keep the simulator synthetic-only; the real-clip workflow stops after the spec with an honest 'Run needs a setup-validated scene' message, and the demo shows run/fit in the lab (Mystery-g) instead. Reply 'Q20 A' or 'Q20 B'. Default if silent: B.
 - [x] Q18 ANSWERED (Koushik, Oct31 via RUNS.md: "My choice: MIT licenced") -> MIT for project code/docs; third-party clips keep their own
   licences (ATTRIBUTION.md). LICENSE file added by S25f. Repo stays private until S25d go-ahead.
 - [x] Q19 ANSWERED (Koushik, Oct31: "Go with the recommended one" = A): the public demo video may show short snippets of PD02/RM02/ST03 with creator credit on screen + ATTRIBUTION.md. Other clips unchanged; PJ03 blocked; repo visibility still S25d.
