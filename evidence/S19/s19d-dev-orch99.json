@@ -1,0 +1,80 @@
+{
+ "run": "S19d-dev-orch99",
+ "target": "https://web-dev-cd80.up.railway.app",
+ "browser": "ChatGPT in-app browser (iab); CDP via tab capability; not Chrome",
+ "deploy": {
+  "service": "web 49f2938d-1566-480d-94e3-c9f7fefe24c2",
+  "deploymentId": "61d3a805-cbda-4c33-bf30-e9d3da15a7c3",
+  "providerStatus": "SUCCESS",
+  "sourceRevision": "6af57a03f7c66856b189fd7b12a0b270487f1a00",
+  "previousDeployment": "8a9bdc9f (REMOVED)",
+  "stagedFiles": 93,
+  "secrets": "none uploaded or recorded"
+ },
+ "served": {
+  "/": 200,
+  "/library": 200,
+  "/pwa/manifest.webmanifest": {
+   "status": 200,
+   "type": "application/manifest+json",
+   "bytes": 862,
+   "valid": "name,short_name,start_url=/?source=pwa,scope=/,display=standalone,theme_color,icons 192+512 png + maskable + svg"
+  },
+  "/pwa/sw.js": {
+   "status": 200,
+   "serviceWorkerAllowed": "/"
+  },
+  "/pwa/icon-192.png": 200,
+  "/pwa/icon-512.png": 200,
+  "/pwa/icon-maskable-512.png": 200,
+  "htmlManifestLink": true
+ },
+ "serviceWorker": {
+  "scope": "https://web-dev-cd80.up.railway.app/",
+  "state": "activated",
+  "script": "/pwa/sw.js",
+  "caches": [
+   "r2s-static-v1"
+  ],
+  "secureContext": true
+ },
+ "installabilityCriteria": {
+  "https": true,
+  "manifest": true,
+  "icons192_512": true,
+  "serviceWorkerActive": true,
+  "note": "criteria observed only; no install prompt exercised; no real-device install; APK deferred"
+ },
+ "viewport375": {
+  "/": {
+   "iw": 375,
+   "scrollWidth": 375
+  },
+  "/library": {
+   "iw": 375,
+   "scrollWidth": 375
+  },
+  "/lab": {
+   "iw": 375,
+   "scrollWidth": 375
+  },
+  "horizontalScroll": false
+ },
+ "desktop1280": {
+  "/": 1280,
+  "/library": 1280,
+  "/lab": "scrollWidth 1265 <= 1280"
+ },
+ "banners": {
+  "/": "DEVELOPMENT BUILD; Illustration only, not scene evidence; Synthetic lab results are not calibrated measurements. No uploads are enabled.",
+  "/library": "DEVELOPMENT BUILD + synthetic/no-uploads banner",
+  "/lab": "SYNTHETIC LAB · MYSTERY-G + DEVELOPMENT BUILD banner"
+ },
+ "libraryState": "Dev /library honestly EMPTY: 'No demos are published yet… EMPTY · NOT CONNECTED; Viewer not connected'. No per-scene viewer route exists; /lab (synthetic lab) used as the third page. S18c pending. Nothing faked.",
+ "verifyPy": "10/10 checks pass (api/worker/web, worker ready 503 expected)",
+ "limits": [
+  "Dev only; not judging/production",
+  "/lab Run trial returns local_lab_disabled on Railway (known)",
+  "InstallGuidance not mounted (outside Owns)"
+ ]
+}

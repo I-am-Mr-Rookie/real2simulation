@@ -7,9 +7,9 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "8a9bdc9f-afb7-40cc-b690-f0a17a6e030f",
-      "sourceRevision": "45f433563c573c450c109db3214220a545e6cd53",
-      "verifiedUtc": "2026-10-29T15:12:00Z",
+      "deploymentId": "61d3a805-cbda-4c33-bf30-e9d3da15a7c3",
+      "sourceRevision": "6af57a03f7c66856b189fd7b12a0b270487f1a00",
+      "verifiedUtc": "2026-10-30T07:05:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
@@ -33,7 +33,7 @@
     "Dev only, not judging/production readiness",
     "Worker HTTP sidecar only: readiness503, no consumer heartbeat",
     "Clerk dev instance configured; Google/email OTP/guest owner-verified (S01b E2); S04h agent-verified guest, /lab render, health and Clerk widget + Google hand-off only",
-    "Web 8a9bdc9f = run/S04h-orch24 45f4335 (main 73303c1 + stage.py/web.Dockerfile fix, unmerged); /lab Run trial returns local_lab_disabled on Railway (no Python bridge)",
+    "Web 61d3a805 = run/S19d-dev-orch99 6af57a0 (main + PWA public/ + next.config.js staged); /lab Run trial returns local_lab_disabled on Railway (no Python bridge)",
     "Direct dependencies pinned; transitive versions and base image tags not locked"
   ]
 }
