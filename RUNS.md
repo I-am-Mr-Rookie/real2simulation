@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 05:42 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 05:48 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **217 / 251** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 1 open reviews
+Progress: **219 / 252** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 1 open reviews
 
 ## Reviews for Koushik
 
@@ -23,9 +23,10 @@ Progress: **217 / 251** runs done · 0 in progress · 0 blocked · 0 waiting for
 - …and 1 more ready in this lane
 
 **CLAUDE**
-- [~] **S07g** — Codex (native Claude) · Opus 5.5, effort high — Owner clips: register in clips.csv and measure g on 01_demo_hero with the real pipeline (30 min) *(partial: resume it)*
+- [ ] **S07j** — Codex (native Claude) · Opus 5.5, effort high — Fix batch-track CUDA OOM and add an explicit reviewed second standalone GPU envelope (30 min)
 - [ ] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min)
-- [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
+- [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint workspace accessibility and evidence (30 min)
+- …and 1 more ready in this lane
 
 ## Waiting for Koushik
 
@@ -125,7 +126,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (13/16)</summary>
+<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (14/17)</summary>
 
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [x] **S02g** — Codex · GPT-6.1 Sol, effort high — Verify original FF01/FF02 calibration sources (30 min)
@@ -138,8 +139,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S07d** — Codex · GPT-6.1 Sol, effort medium — Detect slow-motion and propagate measurement uncertainty (30 min)
 - [x] **S07e** — Codex · GPT-6.1 Sol, effort high — Run Earth Gate M measurements (30 min)
 - [x] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min)
-- [~] **S07g** — Codex (native Claude) · Opus 5.5, effort high — Owner clips: register in clips.csv and measure g on 01_demo_hero with the real pipeline (30 min) *(partial: resume it)*
+- [x] **S07g** — Codex (native Claude) · Opus 5.5, effort high — Owner clips: register in clips.csv and measure g on 01_demo_hero with the real pipeline (30 min)
 - [x] **S07i** — Codex (native Claude) · Opus 5.5, effort high — OWN01 measured g from the real SAM 3.1 track; prepare one batched track for OWN02-OWN12 (30 min)
+- [ ] **S07j** — Codex (native Claude) · Opus 5.5, effort high — Fix batch-track CUDA OOM and add an explicit reviewed second standalone GPU envelope (30 min)
 - [ ] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min)
 - [x] **R-M** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
 - [x] **R-M2** — Codex (native Claude) · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min)
@@ -261,7 +263,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (21/24)</summary>
+<details><summary><b>S15</b> — Workspace UI (22/24)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -273,7 +275,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15h** — Codex (native Claude) · Sonnet 5.5, effort medium — Build fit table and residual chart (30 min)
 - [x] **S15i** — Codex (native Claude) · Sonnet 5.5, effort medium — Build sidebar and report navigation (30 min)
 - [x] **S15j** — Codex (native Claude) · Sonnet 5.5, effort medium — Stack workspace at 375px (30 min)
-- [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
+- [x] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min)
 - [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint workspace accessibility and evidence (30 min)
 - [x] **S15m** — Codex (native Claude) · Opus 5.5, effort high — Plan end-to-end workspace wiring (upload to report) (30 min)
 - [x] **S15n** — Codex (native Claude) · Opus 5.5, effort high — Workspace controller: reduce() state + fetch adapters + upload control (30 min)

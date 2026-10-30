@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T23:50Z — controller: OWN02-OWN11 batch track run (5/10 tracked, OOM); S07h + S07j dispatched; S07g, S15k closed
+
+- Batch (job 2/2 of the standalone $1 envelope, $0.40 reservation, app ap-7qnUtLNN8xQy534jpuXcQs stopped): OWN02-OWN06 tracked; OWN07-OWN11 CUDA OOM on A10 (per-clip model reload accumulated memory). Modal after: usage $0.89, spend $0. Evidence evidence/S07/S07i/BATCH-RUN.md + track-own02..11.json. The standalone envelope is now exhausted; re-tracking needs S07j's reviewed second envelope (FIX3 N4).
+- S07h-orch172 dispatched (Opus high, thread 01a18f33-8b35-7161-9485-b022b3749a94, deadline 00:14:12Z): frozen-pipeline g +/- u for OWN02-OWN06 + table vs 9.79.
+- S07j-orch173 added + dispatched (Opus high, thread 01a18f34-9f53-7452-b853-06330a8026b3, deadline 00:14:12Z): OOM fix + explicit second standalone envelope (old ledger immutable) + re-track command for OWN07-OWN11. Controller reviews before any run.
+- S07g PARTIAL -> DONE (its g-on-01 objective delivered by S07i). S15k PARTIAL -> DONE (superseded by S15o controller walk).
+
 ## 2026-10-30T23:45Z — controller: accept S15w + S07i DONE; S15o DONE (controller walk); S15v dispatched; OWN02-OWN11 batch running
 
 - S15w-orch169 DONE (Opus high): CSS-only UI pass (myfront round-3 texture/forms, make-interfaces-feel-better details). Timebox PASS; rebased; web tests 117/117 fresh. Web DEV 1f827ca0-2cf6-4ace-99ac-f9f9f6e689ee (prev bec439d2, src 3c0b2b55 pre-rebase) recorded in deployments.json; verify.py exit 0. Full round-3 v2 recolour waits for Q21.

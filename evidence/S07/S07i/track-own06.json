@@ -1,0 +1,776 @@
+{
+ "stages": [
+  "preflight",
+  "checkpoint",
+  "model_loaded",
+  "tracked"
+ ],
+ "gpu": "NVIDIA A10, 23028 MiB, 610.57.04",
+ "preflight_exit": 2,
+ "preflight": {
+  "checks": [
+   {
+    "expected": "4.15.1",
+    "name": "anyio",
+    "observed": "4.15.1",
+    "ok": true
+   },
+   {
+    "expected": "8.5.0",
+    "name": "click",
+    "observed": "8.5.0",
+    "ok": true
+   },
+   {
+    "expected": "4.2.4",
+    "name": "filelock",
+    "observed": "4.2.4",
+    "ok": true
+   },
+   {
+    "expected": "2026.9.0",
+    "name": "fsspec",
+    "observed": "2026.9.0",
+    "ok": true
+   },
+   {
+    "expected": "6.1.1",
+    "name": "ftfy",
+    "observed": "6.1.1",
+    "ok": true
+   },
+   {
+    "expected": "0.16.0",
+    "name": "h11",
+    "observed": "0.16.0",
+    "ok": true
+   },
+   {
+    "expected": "1.7.1",
+    "name": "hf-xet",
+    "observed": "1.7.1",
+    "ok": true
+   },
+   {
+    "expected": "2.16.0",
+    "name": "httpcore2",
+    "observed": "2.16.0",
+    "ok": true
+   },
+   {
+    "expected": "2.16.0",
+    "name": "httpx2",
+    "observed": "2.16.0",
+    "ok": true
+   },
+   {
+    "expected": "2.3.0",
+    "name": "huggingface-hub",
+    "observed": "2.3.0",
+    "ok": true
+   },
+   {
+    "expected": "3.20",
+    "name": "idna",
+    "observed": "3.20",
+    "ok": true
+   },
+   {
+    "expected": "0.1.10",
+    "name": "iopath",
+    "observed": "0.1.10",
+    "ok": true
+   },
+   {
+    "expected": "3.1.6",
+    "name": "jinja2",
+    "observed": "3.1.6",
+    "ok": true
+   },
+   {
+    "expected": "3.0.4",
+    "name": "markupsafe",
+    "observed": "3.0.4",
+    "ok": true
+   },
+   {
+    "expected": "1.3.0",
+    "name": "mpmath",
+    "observed": "1.3.0",
+    "ok": true
+   },
+   {
+    "expected": "3.7",
+    "name": "networkx",
+    "observed": "3.7",
+    "ok": true
+   },
+   {
+    "expected": "1.26.4",
+    "name": "numpy",
+    "observed": "1.26.4",
+    "ok": true
+   },
+   {
+    "expected": "12.8.4.1",
+    "name": "nvidia-cublas-cu12",
+    "observed": "12.8.4.1",
+    "ok": true
+   },
+   {
+    "expected": "12.8.90",
+    "name": "nvidia-cuda-cupti-cu12",
+    "observed": "12.8.90",
+    "ok": true
+   },
+   {
+    "expected": "12.8.93",
+    "name": "nvidia-cuda-nvrtc-cu12",
+    "observed": "12.8.93",
+    "ok": true
+   },
+   {
+    "expected": "12.8.90",
+    "name": "nvidia-cuda-runtime-cu12",
+    "observed": "12.8.90",
+    "ok": true
+   },
+   {
+    "expected": "9.10.2.21",
+    "name": "nvidia-cudnn-cu12",
+    "observed": "9.10.2.21",
+    "ok": true
+   },
+   {
+    "expected": "11.3.3.83",
+    "name": "nvidia-cufft-cu12",
+    "observed": "11.3.3.83",
+    "ok": true
+   },
+   {
+    "expected": "1.13.1.3",
+    "name": "nvidia-cufile-cu12",
+    "observed": "1.13.1.3",
+    "ok": true
+   },
+   {
+    "expected": "10.3.9.90",
+    "name": "nvidia-curand-cu12",
+    "observed": "10.3.9.90",
+    "ok": true
+   },
+   {
+    "expected": "11.7.3.90",
+    "name": "nvidia-cusolver-cu12",
+    "observed": "11.7.3.90",
+    "ok": true
+   },
+   {
+    "expected": "12.5.8.93",
+    "name": "nvidia-cusparse-cu12",
+    "observed": "12.5.8.93",
+    "ok": true
+   },
+   {
+    "expected": "0.7.1",
+    "name": "nvidia-cusparselt-cu12",
+    "observed": "0.7.1",
+    "ok": true
+   },
+   {
+    "expected": "2.27.3",
+    "name": "nvidia-nccl-cu12",
+    "observed": "2.27.3",
+    "ok": true
+   },
+   {
+    "expected": "12.8.93",
+    "name": "nvidia-nvjitlink-cu12",
+    "observed": "12.8.93",
+    "ok": true
+   },
+   {
+    "expected": "12.8.90",
+    "name": "nvidia-nvtx-cu12",
+    "observed": "12.8.90",
+    "ok": true
+   },
+   {
+    "expected": "26.3",
+    "name": "packaging",
+    "observed": "26.3",
+    "ok": true
+   },
+   {
+    "expected": "13.0.0",
+    "name": "pillow",
+    "observed": "13.0.0",
+    "ok": true
+   },
+   {
+    "expected": "4.4.2",
+    "name": "portalocker",
+    "observed": "4.4.2",
+    "ok": true
+   },
+   {
+    "expected": "6.0.3",
+    "name": "pyyaml",
+    "observed": "6.0.3",
+    "ok": true
+   },
+   {
+    "expected": "2026.9.29",
+    "name": "regex",
+    "observed": "2026.9.29",
+    "ok": true
+   },
+   {
+    "expected": "0.8.0",
+    "name": "safetensors",
+    "observed": "0.8.0",
+    "ok": true
+   },
+   {
+    "expected": "84.2.1",
+    "name": "setuptools",
+    "observed": "80.9.0",
+    "ok": false
+   },
+   {
+    "expected": "1.14.0",
+    "name": "sympy",
+    "observed": "1.14.0",
+    "ok": true
+   },
+   {
+    "expected": "1.0.20",
+    "name": "timm",
+    "observed": "1.0.20",
+    "ok": true
+   },
+   {
+    "expected": "2.8.0",
+    "name": "torch",
+    "observed": "2.8.0",
+    "ok": true
+   },
+   {
+    "expected": "0.23.0",
+    "name": "torchvision",
+    "observed": "0.23.0",
+    "ok": true
+   },
+   {
+    "expected": "4.70.1",
+    "name": "tqdm",
+    "observed": "4.70.1",
+    "ok": true
+   },
+   {
+    "expected": "3.4.0",
+    "name": "triton",
+    "observed": "3.4.0",
+    "ok": true
+   },
+   {
+    "expected": "0.10.5",
+    "name": "truststore",
+    "observed": "0.10.5",
+    "ok": true
+   },
+   {
+    "expected": "4.16.0",
+    "name": "typing-extensions",
+    "observed": "4.16.0",
+    "ok": true
+   },
+   {
+    "expected": "0.9.4",
+    "name": "wcwidth",
+    "observed": "0.9.4",
+    "ok": true
+   }
+  ],
+  "dependency_ok": false,
+  "lock": "/root/measurement/runtime/requirements-linux-py312.txt",
+  "manifest": {
+   "build_system": [
+    "setuptools>=61",
+    "wheel"
+   ],
+   "builder": {
+    "async_loading_frames": false,
+    "compile": false,
+    "use_fa3": true,
+    "use_rope_real": true,
+    "warm_up": false
+   },
+   "files": {
+    "README.md": "da3dd047d18ef9a4b33557bf6f8187cf166218dc8aef40f2e18a67cc5249a502",
+    "pyproject.toml": "255f5d8d1db011459878e3de296a6afc84e03a8dda2bfa756a4de304aaff6366",
+    "sam3/__init__.py": "ca3821a125f767e6a35188603b51ef2501b1e7c3d1a90546ac567c5d2a80b9fb",
+    "sam3/assets/bpe_simple_vocab_16e6.txt.gz": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
+    "sam3/model_builder.py": "60cef72b1f7e4a2162d1c3f1ad2c0451bbbdc10e3484433a9aa2d016fed6b448"
+   },
+   "optional_kernels": [
+    "flash-attn-3",
+    "cc_torch"
+   ],
+   "repository": "https://github.com/facebookresearch/sam3",
+   "requirements": {
+    "cuda": ">=12.6",
+    "python": ">=3.12",
+    "torch": ">=2.7"
+   },
+   "revision": "f1647e8d0c1d280991f4d1b7d974c2704537fe66"
+  },
+  "ok": false,
+  "runtime_ok": false,
+  "source": "/opt/sam3",
+  "source_ok": true
+ },
+ "torch": [
+  "2.8.0+cu128",
+  "12.8",
+  true
+ ],
+ "freeze": [
+  "anyio==4.15.1",
+  "click==8.5.0",
+  "einops==0.8.1",
+  "filelock==4.2.4",
+  "fsspec==2026.9.0",
+  "ftfy==6.1.1",
+  "h11==0.16.0",
+  "hf-xet==1.7.1",
+  "httpcore2==2.16.0",
+  "httpx2==2.16.0",
+  "huggingface_hub==2.3.0",
+  "idna==3.20",
+  "iopath==0.1.10",
+  "Jinja2==3.1.6",
+  "MarkupSafe==3.0.4",
+  "mpmath==1.3.0",
+  "networkx==3.7",
+  "numpy==1.26.4",
+  "nvidia-cublas-cu12==12.8.4.1",
+  "nvidia-cuda-cupti-cu12==12.8.90",
+  "nvidia-cuda-nvrtc-cu12==12.8.93",
+  "nvidia-cuda-runtime-cu12==12.8.90",
+  "nvidia-cudnn-cu12==9.10.2.21",
+  "nvidia-cufft-cu12==11.3.3.83",
+  "nvidia-cufile-cu12==1.13.1.3",
+  "nvidia-curand-cu12==10.3.9.90",
+  "nvidia-cusolver-cu12==11.7.3.90",
+  "nvidia-cusparse-cu12==12.5.8.93",
+  "nvidia-cusparselt-cu12==0.7.1",
+  "nvidia-nccl-cu12==2.27.3",
+  "nvidia-nvjitlink-cu12==12.8.93",
+  "nvidia-nvtx-cu12==12.8.90",
+  "packaging==26.3",
+  "pillow==13.0.0",
+  "portalocker==4.4.2",
+  "psutil==7.1.0",
+  "pycocotools==2.0.11",
+  "PyYAML==6.0.3",
+  "regex==2026.9.29",
+  "safetensors==0.8.0",
+  "sam3",
+  "@",
+  "file:///opt/sam3",
+  "setuptools==80.9.0",
+  "sympy==1.14.0",
+  "timm==1.0.20",
+  "torch==2.8.0",
+  "torchvision==0.23.0",
+  "tqdm==4.70.1",
+  "triton==3.4.0",
+  "truststore==0.10.5",
+  "typing_extensions==4.16.0",
+  "uv==0.7.19",
+  "wcwidth==0.9.4",
+  "wheel==0.45.1"
+ ],
+ "checkpoint": {
+  "repo": "facebook/sam3.1",
+  "file": "sam3.1_multiplex.pt",
+  "revision": "daa63191845a41281374e725f4c9e51c7a824460",
+  "bytes": 3502755717,
+  "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+  "download_s": 3.2
+ },
+ "builder_override": "use_fa3=False",
+ "shim": "dropped unsupported offload_state_to_cpu=False kwarg",
+ "requests": [
+  [
+   "start_session",
+   null
+  ],
+  [
+   "add_prompt",
+   1
+  ],
+  [
+   "close_session",
+   null
+  ]
+ ],
+ "stream": [
+  [
+   0,
+   [
+    0
+   ],
+   [
+    [
+     0.4935,
+     0.0901,
+     0.2833,
+     0.1688
+    ]
+   ]
+  ],
+  [
+   1,
+   [
+    0
+   ],
+   [
+    [
+     0.4824,
+     0.125,
+     0.2954,
+     0.1729
+    ]
+   ]
+  ],
+  [
+   2,
+   [
+    0
+   ],
+   [
+    [
+     0.4833,
+     0.1698,
+     0.2935,
+     0.1807
+    ]
+   ]
+  ],
+  [
+   3,
+   [
+    0
+   ],
+   [
+    [
+     0.4852,
+     0.2182,
+     0.2926,
+     0.1885
+    ]
+   ]
+  ],
+  [
+   4,
+   [
+    0
+   ],
+   [
+    [
+     0.487,
+     0.2828,
+     0.2898,
+     0.1802
+    ]
+   ]
+  ],
+  [
+   5,
+   [
+    0
+   ],
+   [
+    [
+     0.488,
+     0.3453,
+     0.287,
+     0.1922
+    ]
+   ]
+  ],
+  [
+   6,
+   [
+    0
+   ],
+   [
+    [
+     0.4889,
+     0.4172,
+     0.2843,
+     0.1932
+    ]
+   ]
+  ],
+  [
+   7,
+   [
+    0
+   ],
+   [
+    [
+     0.4907,
+     0.4984,
+     0.2806,
+     0.1875
+    ]
+   ]
+  ],
+  [
+   8,
+   [
+    0
+   ],
+   [
+    [
+     0.4917,
+     0.5844,
+     0.2787,
+     0.1969
+    ]
+   ]
+  ],
+  [
+   9,
+   [
+    0
+   ],
+   [
+    [
+     0.4935,
+     0.6771,
+     0.2731,
+     0.149
+    ]
+   ]
+  ],
+  [
+   10,
+   [
+    0
+   ],
+   [
+    [
+     0.5259,
+     0.6979,
+     0.2917,
+     0.1391
+    ]
+   ]
+  ],
+  [
+   11,
+   [
+    0
+   ],
+   [
+    [
+     0.5481,
+     0.6891,
+     0.3157,
+     0.1406
+    ]
+   ]
+  ],
+  [
+   12,
+   [
+    0
+   ],
+   [
+    [
+     0.5806,
+     0.676,
+     0.3185,
+     0.1495
+    ]
+   ]
+  ]
+ ],
+ "load_s": 16.2,
+ "peak_vram_bytes": 20333923840,
+ "track_s": 4.3,
+ "record": {
+  "approval": {
+   "evidence": "evidence/S07/S07g/OWNER-APPROVAL.md",
+   "scope": "scene_tracking"
+  },
+  "clip_id": "OWN06",
+  "height_px": 1920,
+  "last_training_frame": 57,
+  "licence": "owner-recorded; all rights reserved; public use pending owner go-ahead ",
+  "motion": "free_fall",
+  "provenance": "owner-recorded (local, not published) (Koushik Sadhak Jeet); local 1080x1920 rendition",
+  "source_sha256": "ed224c39ef210a157e07ed048cc1a96dc2d548c81afe7c60d17e99859f44e064",
+  "width_px": 1080,
+  "frames": [
+   {
+    "frame_index": 45,
+    "pts_s": 1.533008,
+    "x_px": 687.883726028999,
+    "y_px": 338.37337757249765
+   },
+   {
+    "frame_index": 46,
+    "pts_s": 1.566341,
+    "x_px": 683.0735260550236,
+    "y_px": 409.3859580810183
+   },
+   {
+    "frame_index": 47,
+    "pts_s": 1.599674,
+    "x_px": 680.7164599847413,
+    "y_px": 496.4687390893926
+   },
+   {
+    "frame_index": 48,
+    "pts_s": 1.633008,
+    "x_px": 683.9202729817434,
+    "y_px": 606.1444672892566
+   },
+   {
+    "frame_index": 49,
+    "pts_s": 1.666341,
+    "x_px": 684.4097423711856,
+    "y_px": 722.3837543771886
+   },
+   {
+    "frame_index": 50,
+    "pts_s": 1.699674,
+    "x_px": 682.7452822375504,
+    "y_px": 849.2851362383313
+   },
+   {
+    "frame_index": 51,
+    "pts_s": 1.733008,
+    "x_px": 685.4103429619872,
+    "y_px": 996.1355970079037
+   },
+   {
+    "frame_index": 52,
+    "pts_s": 1.766341,
+    "x_px": 683.9841604318591,
+    "y_px": 1145.2764821479307
+   },
+   {
+    "frame_index": 53,
+    "pts_s": 1.799674,
+    "x_px": 681.828963037861,
+    "y_px": 1313.5933940006742
+   },
+   {
+    "frame_index": 54,
+    "pts_s": 1.833008,
+    "x_px": 691.7731425426527,
+    "y_px": 1458.8234452394056
+   },
+   {
+    "frame_index": 55,
+    "pts_s": 1.866341,
+    "x_px": 719.0978556673989,
+    "y_px": 1476.7942391553822
+   },
+   {
+    "frame_index": 56,
+    "pts_s": 1.899674,
+    "x_px": 756.351503245644,
+    "y_px": 1457.237205329689
+   },
+   {
+    "frame_index": 57,
+    "pts_s": 1.933008,
+    "x_px": 794.2781135531136,
+    "y_px": 1446.0108241758242
+   }
+  ],
+  "tracking": {
+   "adapter": "sam3.1-local-multiplex-v1",
+   "object_id": 0,
+   "point_method": "binary_mask_pixel_index_centroid",
+   "missing_frames": []
+  }
+ },
+ "remote_elapsed_s": 23.8,
+ "frame_sha256": [
+  "af97d6864a71065a8315f10fa9f7b779913ab2ed83e707e0ba513993adecb73b",
+  "0f959724c3406c5c7d8d7621eb7b402cc5b10f72ad44eafeb99c49e1463b507f",
+  "25ce50483b9850c28d8c9a065171cce20d858a95c044b0bafcae686efe95a20d",
+  "1a85e8ef27b6f2f3645d73a1a12385722efb27d5d1b70dd871943410acc45a56",
+  "77cae4fc6b9d89543fb2475c4b1cf979719a87565c4ba0aa24c55c6ca0d4b758",
+  "e82e2fb2388ea2f64eba4b50f5f9a6ee09ab64f6da7db41ede844060859f6493",
+  "d41593ca206b9cd733b16dd44badc0ad8136685183d0e3524a3f7a3e869def46",
+  "527f8262001494e6e2252db8b531b999a6fb7d2d6d62bff906a50f8d4afe3222",
+  "74644269608cc42b3143db401d2ac95e12410e3a4fbb42f85da67396d88bc034",
+  "12ae0ff971483aac777805724b18cb5c53658ca5387837a2ac68258ae9e13773",
+  "3d61d3e5e6a6ee2d9754a7a1275409af7eca36910074f26024a1e54fc86ebaee",
+  "0a3a4650b4577d1e71c1835140dac0e3c85bbaad960a692e3dad8502903826a5",
+  "19041eb1311d7e1a0073494945b44c1a34369aeb2392d69910270b103e15e70d"
+ ],
+ "frame_map": [
+  [
+   45,
+   1.533008
+  ],
+  [
+   46,
+   1.566341
+  ],
+  [
+   47,
+   1.599674
+  ],
+  [
+   48,
+   1.633008
+  ],
+  [
+   49,
+   1.666341
+  ],
+  [
+   50,
+   1.699674
+  ],
+  [
+   51,
+   1.733008
+  ],
+  [
+   52,
+   1.766341
+  ],
+  [
+   53,
+   1.799674
+  ],
+  [
+   54,
+   1.833008
+  ],
+  [
+   55,
+   1.866341
+  ],
+  [
+   56,
+   1.899674
+  ],
+  [
+   57,
+   1.933008
+  ]
+ ]
+}
