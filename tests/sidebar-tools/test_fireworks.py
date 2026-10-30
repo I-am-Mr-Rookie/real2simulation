@@ -81,6 +81,35 @@ class FireworksTests(unittest.TestCase):
         self.assertEqual(result["execution"]["provider"], "baseten")
         self.assertFalse(result["execution"]["meta_bonus_claimed"])
 
+    def test_explicit_meta_fallback_refuses_without_dispatch_or_bonus(self):
+        for configured in ({}, {**ENV, **FIREWORKS}):
+            with self.subTest(other_providers_configured=bool(configured)):
+                send = Mock()
+                result = self.search(env={**configured, "SIDEBAR_SEARCH_PROVIDER": "meta"}, send=send)
+                self.assert_unavailable(result)
+                self.assertIn("Meta Spark fallback is not wired", result["payload"]["issues"][0])
+                self.assertIn("open-weight bonus claim dropped", result["payload"]["issues"][0])
+                self.assertEqual(result["execution"], {"provider": None, "model": None,
+                                 "state": "not_requested", "meta_bonus_claimed": False})
+                send.assert_not_called()
+
+    def test_both_open_failures_never_automatically_call_meta_or_claim_bonus(self):
+        for provider in ("baseten", "fireworks"):
+            with self.subTest(provider=provider):
+                send = Mock(side_effect=TimeoutError())
+                result = self.search(env={**ENV, **FIREWORKS, "SIDEBAR_SEARCH_PROVIDER": provider}, send=send)
+                self.assert_unavailable(result)
+                self.assertEqual(result["execution"]["provider"], provider)
+                self.assertEqual(result["execution"]["state"], "failed")
+                self.assertFalse(result["execution"]["meta_bonus_claimed"])
+                send.assert_called_once()
+        send = Mock()
+        result = self.search(env={**ENV, **FIREWORKS, "SIDEBAR_SEARCH_PROVIDER": "meta"}, send=send)
+        self.assert_unavailable(result)
+        self.assertEqual(result["execution"]["state"], "not_requested")
+        self.assertFalse(result["execution"]["meta_bonus_claimed"])
+        send.assert_not_called()
+
     def test_baseten_missing_response_model_retains_legacy_behavior(self):
         body = json.loads(response(self.ids[:1]))
         del body["model"]

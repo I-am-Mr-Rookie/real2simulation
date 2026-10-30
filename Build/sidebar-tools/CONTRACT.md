@@ -271,6 +271,29 @@ Codes: invalid_request, stale_spec, not_found, not_ready, budget_blocked, intern
 malformed pre-envelope transport errors are not this correlated-result contract. Never
 return stack traces/secrets as issues; caller owns safe human-readable errors.
 
+### S16h both-open-provider failure policy (offline)
+
+If Baseten and explicitly selected Fireworks are both unavailable, the only
+permitted further provider is **Muse Spark on the Meta API**, explicitly configured
+by the trusted host, with the open-weight bonus claim dropped. Never silently
+select another provider/model, retry the chain, or infer availability from keys.
+
+**The sidebar Meta Spark adapter is not implemented.** An explicit
+`SIDEBAR_SEARCH_PROVIDER=meta` is therefore a deliberate fail-closed refusal:
+`status=error`, `payload.code=not_ready`, no transport call, no cards or numeric
+outputs, `execution.provider=null`, `model=null`, `state=not_requested`, and
+`meta_bonus_claimed=false`. The readable issue identifies the unwired Meta Spark
+fallback and dropped open-weight bonus claim. Null provenance means no supported
+provider was selected, not a Meta response. Supplying other provider credentials
+cannot bypass this refusal. There are no supported Meta endpoint/model/key
+settings in this adapter yet; this is not evidence of a working Meta route.
+
+An actual Meta fallback requires a separately wired, explicit-config Meta Spark
+adapter and bounded validation/tests before use. Until then, keep search unavailable
+and bonus claims dropped rather than pretending the fallback served anything.
+See `evidence/S16/S16h-CHECKPOINT.md` and `S16h-checkpoint.json` for the single
+historical Baseten live call and the strictly offline Fireworks/safety evidence.
+
 ### S16g offline failure boundary
 
 `validate_call` caps the serialized UTF-8 call at **64 KiB**, before experiment

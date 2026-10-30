@@ -106,6 +106,9 @@ def search(call, *, manifest_path=None, evidence_root=ROOT, environ=None, send=t
         result["payload"] = {"code": "not_ready", "issues": ["Library search unavailable: " + message]}
         return contracts.validate_result(result, call)
 
+    if env.get("SIDEBAR_SEARCH_PROVIDER") == "meta":
+        return unavailable("Meta Spark fallback is not wired; explicit Meta API integration is required. "
+                           "No provider was called; open-weight bonus claim dropped.")
     if provider is None:
         return unavailable("SIDEBAR_SEARCH_PROVIDER must be baseten or fireworks; no provider was called.")
     prefix = provider.upper()

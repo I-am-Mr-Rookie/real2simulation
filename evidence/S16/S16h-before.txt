@@ -1,0 +1,23 @@
+FF
+======================================================================
+FAIL: test_explicit_meta_fallback_refuses_without_dispatch_or_bonus (test_fireworks.FireworksTests.test_explicit_meta_fallback_refuses_without_dispatch_or_bonus) (other_providers_configured=False)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16h-orch121\tests\sidebar-tools\test_fireworks.py", line 90, in test_explicit_meta_fallback_refuses_without_dispatch_or_bonus
+    self.assertIn("Meta Spark fallback is not wired", result["payload"]["issues"][0])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Meta Spark fallback is not wired' not found in 'Library search unavailable: SIDEBAR_SEARCH_PROVIDER must be baseten or fireworks; no provider was called.'
+
+======================================================================
+FAIL: test_explicit_meta_fallback_refuses_without_dispatch_or_bonus (test_fireworks.FireworksTests.test_explicit_meta_fallback_refuses_without_dispatch_or_bonus) (other_providers_configured=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\S16h-orch121\tests\sidebar-tools\test_fireworks.py", line 90, in test_explicit_meta_fallback_refuses_without_dispatch_or_bonus
+    self.assertIn("Meta Spark fallback is not wired", result["payload"]["issues"][0])
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'Meta Spark fallback is not wired' not found in 'Library search unavailable: SIDEBAR_SEARCH_PROVIDER must be baseten or fireworks; no provider was called.'
+
+----------------------------------------------------------------------
+Ran 1 test in 0.696s
+
+FAILED (failures=2)

@@ -1,0 +1,4 @@
+TIMING PASS; controller must separately verify evidence and any exception
+PASS: git diff --check; final suite 103 PASS; 32 checkpoint pointer facts validated
+PASS: AST parse three owned Python files; no live requests or secret reads
+PASS: git diff --cached --check; exactly 12 named owned files; no cache/temp files
