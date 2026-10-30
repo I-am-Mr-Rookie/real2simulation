@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+Oct30 ~21:15Z OWNER REPLY: Q20 = A. Added QUEUE S15r (Opus high, deps S15q because they share controller.mjs/analysis.py): for Q16 recorded
+scenes the API returns a what-if run artifact that is explicitly non-synthetic and labelled, never forging scene.synthetic:true. The browser
+simulator accepts that artifact in a labelled what-if mode, and run/fit/report carry 'SIMULATED what-if of your described setup; scale unverified;
+not measured from the clip'. Synthetic-only behaviour stays for everything else. Also: S25d (public repo go-ahead) now depends on S23 + S24f so
+it is not shown as waiting for Koushik before the deploy URL and video exist (controller advice of Oct31 stands).
+
 Oct30 ~21:08Z: Dispatched S15q-orch162 (Opus med), thread 01a18ea4-04c3, dl 21:37:40Z. Next RID orch163.
 
 Oct30 ~21:06Z: S15o-orch161 PARTIAL accepted as evidence (IAB unavailable in worker chats; RM04 sha verified; logged-out checks PASS). Root cause:
@@ -1397,7 +1403,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
 
-- [ ] Q20 [S15p, Oct31 orch] In your private workspace, a real clip (e.g. RM04) now gets through upload, understanding and interview, and the spec is accepted with the label 'scale unverified, not setup-validated' (your Q16 rule). The next step, Run, uses our browser simulator, which today accepts ONLY synthetic test scenes, so Run on a real clip shows 'run failed'. Should Run be allowed on real clips? A: yes, run it as a clearly labelled what-if: 'SIMULATED what-if of your described setup; scale unverified; not measured from the clip' (gives the full upload-to-report demo; the numbers come from the simulator and the fixture/estimated values in the spec, not from the video). B: no, keep the simulator synthetic-only; the real-clip workflow stops after the spec with an honest 'Run needs a setup-validated scene' message, and the demo shows run/fit in the lab (Mystery-g) instead. Reply 'Q20 A' or 'Q20 B'. Default if silent: B.
+- [x] Q20 ANSWERED (Koushik, Oct31: 'A'): Run is allowed on real clips as a clearly labelled what-if: 'SIMULATED what-if of your described setup; scale unverified; not measured from the clip'. Numbers come from the simulator and spec values, never presented as measured from the video. Implemented by QUEUE S15r.
 - [x] Q18 ANSWERED (Koushik, Oct31 via RUNS.md: "My choice: MIT licenced") -> MIT for project code/docs; third-party clips keep their own
   licences (ATTRIBUTION.md). LICENSE file added by S25f. Repo stays private until S25d go-ahead.
 - [x] Q19 ANSWERED (Koushik, Oct31: "Go with the recommended one" = A): the public demo video may show short snippets of PD02/RM02/ST03 with creator credit on screen + ATTRIBUTION.md. Other clips unchanged; PJ03 blocked; repo visibility still S25d.

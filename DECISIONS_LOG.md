@@ -812,3 +812,4 @@ Gate R FAIL (scale 0/3, orientation 0/3 unmeasured; RM05 ineligible; GPU 3/3 <=2
 
 - 2026-10-31 (Koushik, Q18): MIT licence for the project's own code and docs; third-party clips, models and dependencies keep their own licences. LICENSE file added via S25f.
 - 2026-10-31 (Koushik, Q19 = A): the public demo video may show short PD02/RM02/ST03 snippets with on-screen creator credit and ATTRIBUTION.md entries; supersedes default B for these three clips only. PJ03 stays blocked; repo visibility still needs S25d.
+- 2026-10-31 (Koushik, Q20 = A): workspace Run allowed on real (Q16 scale-unverified) clips only as a labelled what-if: 'SIMULATED what-if of your described setup; scale unverified; not measured from the clip'. Synthetic-only simulator rule stays for all other inputs.
