@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+DISPATCHED S14g-fix3-orch64 Opus high (threadId:01a18b13-ec19-7332-98e3-d9c0ee9ff331,hostId:local, deadline 2026-10-30T05:01:37+00:00); Meta cap $2.50.
+
 S14g-fix-orch61 PARTIAL accepted (Opus high; TIMEBOX PASS; agent 52 OK; ff-merged after controller
 removed 54 __pycache__ files that the CONTROLLER's own 'git add -A -f' WIP commit had forced in — lesson:
 WIP commits must not use -f on '.'). Visible-text check (NFKC, joined runs, multiplier/one+unit) +
