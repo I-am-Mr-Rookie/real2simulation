@@ -18,10 +18,18 @@ def ids_only(clip="SYNTHETIC", shift=0):
     return boundary, sealed, pr.projectile(boundary, sealed)
 
 
+REAL = {"P1": "PJ03", "B1": "BN01", "D1": "PD02"}  # approved licensed public clips (clips.csv + APPROVAL.md)
+SHA = {f["clip_id"]: f["sha256"] for f in json.loads((ROOT / s.REGISTRY).read_text(encoding="utf-8"))["files"]
+       if f.get("clip_id")}
+
+
 def eligible(kind, clip, rms=0.01):
     """Shape of a real image-derived clip score (values illustrative, used only for gate() arithmetic)."""
-    return {"clip_id": clip, "kind": kind, "prediction_sha256": clip * 8, "sealed_frames": 10, "scored_frames": 9,
-            "coverage": 0.9, "normalized_rms": rms, "scored": True, "provenance": "image-derived"}
+    clip = REAL[clip]
+    return {"clip_id": clip, "source_sha256": SHA[clip], "kind": kind, "prediction_sha256": clip * 16,
+            "prediction_commitment": "prediction/v2", "sealed_frames": 10, "scored_frames": 9, "coverage": 0.9,
+            "normalized_rms": rms, "scored": True, "provenance": "image-derived",
+            "input_receipt": s.public_receipt(clip, SHA[clip], kind)}
 
 
 class ScoreTests(unittest.TestCase):
@@ -66,7 +74,7 @@ class ScoreTests(unittest.TestCase):
         boundary, sealed, _ = ids_only()
         never = lambda: self.fail("suffix read before binding check")  # noqa: E731
         for other in (ids_only(clip="SYNTHETIC-other")[2], ids_only(shift=5)[2]):  # wrong clip / wrong training
-            with self.assertRaisesRegex(ValueError, "different clip or training"):
+            with self.assertRaisesRegex(ValueError, "different clip, source, training"):
                 s.score(boundary, sealed, other, other.sha256, never)
         _, _, pred = ids_only()
         short = pr._seal(pred.kind, boundary, pred.model, pred.trace[:1])  # precommitted one-row trace
@@ -80,8 +88,52 @@ class ScoreTests(unittest.TestCase):
             o.build(boundary, [forged], dict(sealed), "synthetic")
         doc = o.build(boundary, [pred], dict(sealed), "synthetic")
         doc["traces"][0]["suffix_identity_sha256"] = "0" * 64
-        with self.assertRaisesRegex(ValueError, "sealed"):
+        with self.assertRaisesRegex(ValueError, "after commitment"):  # seal hash is inside the v2 commitment
             o.validate(doc, boundary.clip_id, boundary.source_sha256, dict(sealed))
+
+    # --- R-RS recheck regressions (evidence/reviews/R-RS/RECHECK.md F1-R, F2-R) ---
+    def test_f1r_metadata_only_relabel_refused_before_read(self):
+        boundary, sealed, target = ids_only(clip="TARGET")
+        never = lambda: self.fail("suffix read before binding check")  # noqa: E731
+        for foreign in (ids_only(clip="FOREIGN")[2], ids_only(clip="TARGET", shift=5)[2]):  # foreign clip / training
+            relabel = dataclasses.replace(foreign, clip_id=target.clip_id, training_sha256=target.training_sha256)
+            with self.assertRaisesRegex(ValueError, "changed after hashing"):
+                pr.check(relabel)
+            with self.assertRaisesRegex(ValueError, "changed after hashing"):
+                s.score(boundary, sealed, relabel, relabel.sha256, never)
+            with self.assertRaises(ValueError):
+                o.build(boundary, [relabel], dict(sealed), "synthetic")
+            fb, fs, _ = ids_only(clip=foreign.clip_id, shift=5 if foreign.clip_id == "TARGET" else 0)
+            doc = o.build(fb, [foreign], dict(fs), "synthetic")
+            doc["clip_id"] = doc["traces"][0]["clip_id"] = target.clip_id
+            doc["traces"][0]["training_sha256"] = target.training_sha256
+            with self.assertRaisesRegex(ValueError, "after commitment"):
+                o.validate(doc, target.clip_id, boundary.source_sha256, dict(sealed))
+        v1 = dataclasses.replace(target, commitment=pr.LEGACY)
+        v1 = dataclasses.replace(v1, sha256=pr.commitment_sha256(v1))
+        pr.check(v1)  # legacy stays audit-readable ...
+        with self.assertRaisesRegex(ValueError, "legacy prediction/v1"):  # ... never newly eligible
+            s.score(boundary, sealed, v1, v1.sha256, never)
+
+    def test_f2r_nonpublic_synthetic_fixtures_labelled_image_derived_are_shortfall(self):
+        results = {}
+        for kind in s.CATEGORIES:
+            boundary, sealed, base = ids_only(clip=f"REVIEW-NONPUBLIC-{kind}")
+            pred = pr._seal(kind, boundary, f"{kind} fixture", base.trace)  # distinct genuine v2 commitments
+            truth = {i: (t, y) for i, t, y, _ in pred.trace}
+            r = s.score(boundary, sealed, pred, pred.sha256, lambda: truth, "image-derived")
+            self.assertEqual((r["scored"], r["normalized_rms"], r["input_receipt"]), (True, 0.0, None))
+            self.assertIn("clips.csv", r["ineligible_reason"])
+            results[kind] = r
+        g = s.gate(results)
+        self.assertEqual((g["status"], g["shortfall"], g["median"]), ("NOT_MET", list(s.CATEGORIES), None))
+        # approved clip id with a non-registry source sha also fails closed
+        boundary, sealed, pred = ids_only(clip="PJ03")
+        r = s.score(boundary, sealed, pred, pred.sha256, lambda: {i: (t, y) for i, t, y, _ in pred.trace})
+        self.assertIn("source sha", r["ineligible_reason"])
+        self.assertEqual(s.gate({"projectile": r})["shortfall"], list(s.CATEGORIES))
+        legacy = eligible("projectile", "P1") | {"prediction_commitment": "prediction/v1"}
+        self.assertIn("projectile", s.gate({"projectile": legacy})["shortfall"])
 
     def test_f2_one_synthetic_projectile_aliased_three_times_is_shortfall(self):
         boundary, sealed, pred = ids_only()

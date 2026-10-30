@@ -91,16 +91,27 @@ class PredictTests(unittest.TestCase):
         self.assertIn("synthetic", pred.model)
 
     def test_committed_st03_prediction(self):
-        rec = json.loads((ROOT / "evidence/S12/prediction-ST03.json").read_text(encoding="utf-8"))
-        self.assertEqual(rec["gate_m"], "NOT_MET")
-        self.assertFalse(rec["suffix_observations_read"])
-        self.assertIsNone(rec["boundary"]["suffix_observation_sha256"])
-        trace = tuple(tuple(r) for r in rec["prediction"]["trace"])
-        self.assertEqual(len(trace), rec["boundary"]["suffix_count"])
-        pr.check(pr.Prediction(**dict(rec["prediction"], trace=trace)))
-        record, suffix, _ = pr.st03_record(ROOT)  # regenerates byte-identical prediction
-        self.assertEqual(pr.projectile(*b.split(record, suffix)).sha256, rec["prediction"]["sha256"])
-        self.assertEqual([r["name"] for r in rec["parameters"] if "abstained" not in r], ["g", "speed"])
+        record, suffix, _ = pr.st03_record(ROOT)
+        boundary, sealed = b.split(record, suffix)
+        regen = pr.projectile(boundary, sealed)  # regenerates byte-identical v2 prediction
+        for name, commitment in (("prediction-ST03.json", pr.LEGACY), ("prediction-ST03-v2.json", pr.COMMITMENT)):
+            rec = json.loads((ROOT / "evidence/S12" / name).read_text(encoding="utf-8"))
+            self.assertEqual(rec["gate_m"], "NOT_MET")
+            self.assertFalse(rec["suffix_observations_read"])
+            self.assertIsNone(rec["boundary"]["suffix_observation_sha256"])
+            trace = tuple(tuple(r) for r in rec["prediction"]["trace"])
+            self.assertEqual(len(trace), rec["boundary"]["suffix_count"])
+            p = pr.Prediction(**dict(rec["prediction"], trace=trace))
+            pr.check(p)
+            self.assertEqual(p.commitment, commitment)
+            # v1 kept untouched (legacy-audited); v2 re-commits the same frozen trace
+            self.assertEqual(pr.commitment_sha256(dataclasses.replace(regen, commitment=commitment)), p.sha256)
+            self.assertEqual(p.trace, regen.trace)
+            self.assertEqual([r["name"] for r in rec["parameters"] if "abstained" not in r], ["g", "speed"])
+        pr.require_v2(p, boundary)
+        with self.assertRaisesRegex(ValueError, "legacy"):
+            pr.require_v2(pr.Prediction(**dict(json.loads((ROOT / "evidence/S12/prediction-ST03.json").read_text(
+                encoding="utf-8"))["prediction"], trace=trace)), boundary)
 
 
 if __name__ == "__main__":

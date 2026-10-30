@@ -108,6 +108,8 @@ def _eligible(category, r, root=ROOT):
     """R-RS F2/F2-R/F4: recompute eligibility, re-deriving the public-input receipt independently."""
     if not isinstance(r, dict) or r.get("kind") != category:
         return False
+    if r.get("prediction_commitment") != "prediction/v2":  # F1-R: legacy v1 results are audit-only
+        return False
     try:
         if r.get("input_receipt") != public_receipt(r.get("clip_id"), r.get("source_sha256"), category, root):
             return False

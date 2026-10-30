@@ -78,13 +78,14 @@ class OverlayTest(unittest.TestCase):
     def test_rejects_mutated_trace_and_gate_claim(self):
         doc = copy.deepcopy(self.doc)
         doc["traces"][0]["trace"][5][2] += 1e-6
-        with self.assertRaisesRegex(OverlayError, "changed after hashing"):
+        with self.assertRaisesRegex(OverlayError, "changed after commitment"):
             self.ok(doc)
         doc = copy.deepcopy(self.doc)
         doc["traces"][0]["trace"][5][1] += 1 / 30  # retimed row: rejected (hash first; alignment is the backstop)
         with self.assertRaises(OverlayError):
             self.ok(doc)
-        for key, value in (("gate_m", "MET"), ("contract_version", "overlay/2.0.0"), ("units", "m")):
+        for key, value in (("gate_m", "MET"), ("contract_version", "overlay/1.0.0"), ("contract_version", "overlay/9"),
+                           ("units", "m")):
             doc = dict(copy.deepcopy(self.doc), **{key: value})
             with self.assertRaises(OverlayError):
                 self.ok(doc)
@@ -92,22 +93,28 @@ class OverlayTest(unittest.TestCase):
     def test_build_refuses_prediction_from_other_boundary(self):
         record, _ = ov.synthetic_pendulum(last=30)
         other, _ = b.split(record)
-        with self.assertRaisesRegex(ValueError, "not made from this clip boundary"):
+        with self.assertRaisesRegex(ValueError, "different clip, source, training"):
             ov.build(other, [self.pred], self.fmap, "synthetic")
 
 
 class CommittedEvidenceTest(unittest.TestCase):
     def test_committed_overlays_validate_against_sources(self):
         record, suffix, _ = pr.st03_record(ROOT)
-        st03 = json.loads((ROOT / "evidence/S12/overlay-ST03.json").read_text(encoding="utf-8"))
-        (trace,) = validate(st03, record["clip_id"], record["source_sha256"], ov.st03_frame_map(ROOT))
-        committed = json.loads((ROOT / "evidence/S12/prediction-ST03.json").read_text(encoding="utf-8"))
-        self.assertEqual(trace.prediction_sha256, committed["prediction"]["sha256"])
-        self.assertEqual([r[:2] for r in trace.rows], [tuple(s) for s in suffix])
-        synth = json.loads((ROOT / "evidence/S12/overlay-pendulum-SYNTHETIC.json").read_text(encoding="utf-8"))
         rec, _ = ov.synthetic_pendulum()
-        validate(synth, rec["clip_id"], rec["source_sha256"], {f["frame_index"]: f["pts_s"] for f in rec["frames"]})
-        self.assertEqual(synth["provenance"], "synthetic")
+        fmap = {f["frame_index"]: f["pts_s"] for f in rec["frames"]}
+        for tag, legacy in (("", True), ("-v2", False)):  # v1 files: legacy-audit only; v2: new evidence
+            st03 = json.loads((ROOT / f"evidence/S12/overlay-ST03{tag}.json").read_text(encoding="utf-8"))
+            if legacy:
+                with self.assertRaisesRegex(OverlayError, "legacy-audit only"):
+                    validate(st03, record["clip_id"], record["source_sha256"], ov.st03_frame_map(ROOT))
+            (trace,) = validate(st03, record["clip_id"], record["source_sha256"], ov.st03_frame_map(ROOT), legacy)
+            committed = json.loads((ROOT / f"evidence/S12/prediction-ST03{tag}.json").read_text(encoding="utf-8"))
+            self.assertEqual(trace.prediction_sha256, committed["prediction"]["sha256"])
+            self.assertEqual(trace.commitment, "prediction/v1" if legacy else "prediction/v2")
+            self.assertEqual([r[:2] for r in trace.rows], [tuple(s) for s in suffix])
+            synth = json.loads((ROOT / f"evidence/S12/overlay-pendulum-SYNTHETIC{tag}.json").read_text(encoding="utf-8"))
+            validate(synth, rec["clip_id"], rec["source_sha256"], fmap, legacy)
+            self.assertEqual(synth["provenance"], "synthetic")
 
 
 if __name__ == "__main__":
