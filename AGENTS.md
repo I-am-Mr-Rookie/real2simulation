@@ -2,6 +2,13 @@
 
 Scope: this event folder. Current phase: **building Real2Simulation** (solo, indie track). Nothing submitted.
 
+## Latest owner vendor preference — Oct31 ~01:50 Dhaka (standing)
+
+Koushik: "Keep the rule of using codex models less and Claude models more." Dispatch Claude
+(Opus/Sonnet, QUEUE effort) for any row Claude can do, even if QUEUE lists Sol; use Codex
+(GPT/Sol) only when necessary (e.g. owner-pinned Sol rows, cross-vendor review of Claude work).
+On 429/quota: record once, no new worker of that vendor until its stated refresh time.
+
 ## Latest owner effort correction — Oct29 ~21:45 Dhaka (Claude 5h quota)
 
 Owner: Claude 5-hour quota drains fast; the earlier "medium -> high" upgrade was a mistake.

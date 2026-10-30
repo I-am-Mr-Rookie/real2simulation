@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+Oct30 ~19:52Z OWNER RULE (standing): "Keep the rule of using codex models less and Claude models more." Claude (Opus/Sonnet, QUEUE effort)
+for every row Claude can do, even where QUEUE lists Sol; Codex only when necessary (owner-pinned Sol rows, cross-vendor review of Claude work).
+Recorded in AGENTS.md and heartbeat prompt (no longer 'until Koushik says otherwise').
+
 Oct30 ~19:48Z: ACCEPTED S25b-orch154 DONE (per-asset ATTRIBUTION table for 10 used/S02e-approved clips + 13 unused listed; raw frames all
 BLOCKED-for-public pending Q19; PJ03 third-party end card unlicensed -> blocked; evidence/release/PUBLIC_PACKAGE_CHECKLIST.md; coverage 23/23 ids and
 links re-checked fresh by controller; worker finished early verified-DONE). Recorded findings (no edit yet): clips.csv RM01-03 'Pexels' vs 'Pexels License';
