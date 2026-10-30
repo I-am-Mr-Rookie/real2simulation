@@ -2,6 +2,7 @@
 import importlib.util
 import inspect
 import json
+import os
 from pathlib import Path
 import shutil
 import sys
@@ -57,7 +58,7 @@ class ModalTrackTest(unittest.TestCase):
         self.assertEqual({k: p.default for k, p in params.items()}, {
             "clip": "ST03", "first": 58, "last": 76, "prompt": "apple", "object_id": 2,
             "out": "evidence/S07/S07b/orch14/result.json", "masks": False, "chunk": 0,
-            "approval": "evidence/owner/S02/APPROVAL.md"})
+            "approval": "evidence/owner/S02/APPROVAL.md", "batch": ""})
         remote = inspect.signature(MT.track.local).parameters
         self.assertEqual((remote["object_id"].default, remote["masks"].default), (2, False))
 
@@ -216,3 +217,71 @@ class ChunkTrackTest(unittest.TestCase):
         merged, chunks = self.run_chunks(_ChunkPredictor(jump_at=8))
         self.assertIn("stopped", chunks[-1])
         self.assertEqual(sum(len(m["outputs"]["out_obj_ids"]) for m in merged), 11)  # frames 0..10 only
+
+
+class BatchTest(unittest.TestCase):
+    """S07i batch path with mocked plan/frames/remote/admission: no media, GPU or network."""
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp())
+        self.addCleanup(shutil.rmtree, self.tmp)
+        (self.tmp / "clip.mp4").write_bytes(b"media")
+        self.jobs = [{"clip": c, "first": 3, "last": 6, "prompt": "yellow book", "object_id": 0,
+                      "out": f"out/{c}.json"} for c in ("OWN02", "OWN03")]
+
+    def run_batch(self, results=None, dry=False):
+        (self.tmp / "b.json").write_text(json.dumps({"clips": self.jobs}))
+        remote = mock.Mock(return_value=json.dumps(results or []))
+        admit = mock.Mock()
+        plan = lambda clip, first, last, prompt, out, approval: (self.tmp / "clip.mp4", {"clip_id": clip},
+                                                                 (self.tmp / out).resolve())
+        frames = lambda path, first, last: ([(b"j", "s")] * (last - first + 1),
+                                            [(first + i, .1 * i) for i in range(last - first + 1)])
+        env = {"S07B_DRY": "1"} if dry else {}
+        with mock.patch.multiple(MT, REPO=self.tmp, plan=plan, _frames=frames,
+                                 track_batch=types.SimpleNamespace(remote=remote)), \
+                mock.patch("Build.guardrails.standalone.admit_standalone", admit), \
+                mock.patch.dict("os.environ", env, clear=False):
+            if not dry:
+                os.environ.pop("S07B_DRY", None)
+            MT.main(batch="b.json", approval="receipt.md")
+        return remote, admit
+
+    def test_one_admission_one_remote_call_per_clip_outputs(self):
+        remote, admit = self.run_batch([{"stages": ["tracked"]}, {"error": "lost"}])
+        admit.assert_called_once_with("modal-track:batch:OWN02,OWN03")
+        remote.assert_called_once()
+        jobs = remote.call_args.args[0]
+        self.assertEqual([j[3:] for j in jobs], [("yellow book", 0)] * 2)
+        self.assertEqual(jobs[0][1]["source_sha256"], __import__("hashlib").sha256(b"media").hexdigest())
+        second = json.loads((self.tmp / "out/OWN03.json").read_text())
+        self.assertEqual((second["error"], second["frame_map"][0]), ("lost", [3, 0.0]))
+
+    def test_dry_run_and_validation_never_admit(self):
+        remote, admit = self.run_batch(dry=True)
+        admit.assert_not_called(), remote.assert_not_called()
+        self.jobs[1]["out"] = self.jobs[0]["out"]
+        with self.assertRaises(ValueError):
+            self.run_batch()
+        self.jobs[1]["object_id"] = -1
+        with self.assertRaises(ValueError):
+            self.run_batch()
+
+    def test_remote_batch_isolates_clip_failures(self):
+        calls = []
+        def one(*args):
+            calls.append(args)
+            return json.dumps({"error": "x"} if len(calls) == 1 else {"stages": ["tracked"]})
+        with mock.patch.object(MT, "track_one", one):
+            out = json.loads(MT.track_batch.local([("f", {}, [], "p", 0), ("f", {}, [], "p", 1)]))
+        self.assertEqual(out, [{"error": "x"}, {"stages": ["tracked"]}])
+        self.assertEqual([c[4] for c in calls], [0, 1])
+
+    def test_committed_fall_windows_plan(self):
+        fixed = json.loads((ROOT / "evidence/S07/S07i/fall-windows.json").read_text())["clips"]
+        self.assertEqual([c["clip"] for c in fixed], [f"OWN{i:02d}" for i in range(2, 12)])  # OWN12 excluded
+        self.assertTrue(all(0 <= c["first"] <= c["last"] - 2 < c["frames"] for c in fixed))
+        self.assertTrue(all(c["last"] - c["first"] < 24 for c in fixed))  # OWN01: 21 frames peaked 16 GiB VRAM
+        self.assertEqual(len({c["out"] for c in fixed}), len(fixed))
+        worst = (300 + MT.BATCH_TIMEOUT_S) * (0.000306 + 2 * 0.0000131 + 16 * 0.00000222)
+        self.assertLessEqual(worst, 0.40)  # Modal list prices 2026-10-31; A10 is the dearer allowed GPU

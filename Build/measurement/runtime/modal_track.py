@@ -3,6 +3,8 @@
 Run: uv run --python 3.12 --with modal==1.6.3 --env-file <root>/.env modal run Build/measurement/runtime/modal_track.py
   Defaults reproduce accepted orch14 ST03 f58-76 "apple" obj 2 (refuses to overwrite existing --out).
   Other approved clips: ... modal_track.py --clip RM04 --first 0 --last 7 --prompt chair --object-id 0 --out evidence/... [--masks]
+  Batch (one container, ONE admit_standalone reservation): ... modal_track.py --batch evidence/S07/S07i/fall-windows.json
+    --approval <receipt>; the JSON "clips" list holds clip/first/last/prompt/object_id/out per clip.
 Ephemeral app only (never deploy). Returns centroids/provenance; masks only as opt-in COCO RLE, never media.
 """
 import csv
@@ -30,6 +32,9 @@ CKPT_REV = "daa63191845a41281374e725f4c9e51c7a824460"
 FIRST, LAST = 58, 76  # continuous unoccluded fall f58-76 (clips.csv); prefix ends at frozen split
 # orch14 run1 (prefix-only stream boxes): obj 0/1 are static ground apples (y~0.82-0.84); obj 2 falls y 0.32->0.77.
 OBJECT_ID = 2
+# Batch worst case = (300 s startup_timeout + this timeout) x (A10 $0.000306 + 2 cores x $0.0000131
+# + 16 GiB x $0.00000222)/s = 1080 x $0.0003677 = $0.397 <= the $0.40 standalone envelope (S07i).
+BATCH_TIMEOUT_S = 780
 
 
 def mask_rle(mask):
@@ -145,12 +150,30 @@ image = (
 app = modal.App("s07b-orch14-sam31-track", image=image)
 
 
-@app.function(
-    gpu=["L4", "A10G"], cpu=2, memory=16384, timeout=1500, startup_timeout=300,
-    retries=0, max_containers=1, scaledown_window=2, single_use_containers=True,
-    secrets=[modal.Secret.from_name("real2simulation-hf-read")],
-)
+GPU_KW = dict(gpu=["L4", "A10G"], cpu=2, memory=16384, timeout=1500, startup_timeout=300,
+              retries=0, max_containers=1, scaledown_window=2, single_use_containers=True,
+              secrets=[modal.Secret.from_name("real2simulation-hf-read")])
+
+
+@app.function(**GPU_KW)
 def track(frames, metadata, frame_map, prompt, object_id=OBJECT_ID, masks=False, chunk=0):
+    return track_one(frames, metadata, frame_map, prompt, object_id, masks, chunk)
+
+
+@app.function(**{**GPU_KW, "timeout": BATCH_TIMEOUT_S})
+def track_batch(jobs, masks=False, chunk=0):
+    """Several clips sequentially in ONE container; a clip's failure stays in its own result."""
+    import gc
+    results = []
+    for frames, metadata, frame_map, prompt, object_id in jobs:
+        results.append(json.loads(track_one(frames, metadata, frame_map, prompt, object_id, masks, chunk)))
+        gc.collect()  # drop the previous predictor before the next clip loads its own
+        if "torch" in sys.modules:
+            sys.modules["torch"].cuda.empty_cache()
+    return json.dumps(results)
+
+
+def track_one(frames, metadata, frame_map, prompt, object_id=OBJECT_ID, masks=False, chunk=0):
     import sys
     import time
     import traceback
@@ -182,7 +205,7 @@ def track(frames, metadata, frame_map, prompt, object_id=OBJECT_ID, masks=False,
                              "bytes": path.stat().st_size, "sha256": digest,
                              "download_s": round(time.monotonic() - t, 1)}
         out["stages"].append("checkpoint")
-        prefix = Path("/tmp/prefix")
+        prefix = Path(tempfile.mkdtemp()) / "prefix"  # per clip: chunk dirs live beside it
         prefix.mkdir()
         for i, (data, sha) in enumerate(frames):
             if hashlib.sha256(data).hexdigest() != sha:
@@ -326,7 +349,9 @@ def plan(clip="ST03", first=FIRST, last=LAST, prompt="apple", out=DEFAULT_OUT, a
 @app.local_entrypoint()
 def main(clip: str = "ST03", first: int = FIRST, last: int = LAST, prompt: str = "apple",
          object_id: int = OBJECT_ID, out: str = DEFAULT_OUT, masks: bool = False, chunk: int = 0,
-         approval: str = APPROVAL):
+         approval: str = APPROVAL, batch: str = ""):
+    if batch:
+        return main_batch(batch, approval, masks, chunk)
     if type(object_id) is not int or object_id < 0:  # fail before frames/GPU, not inside the container
         raise ValueError("nonnegative integer object_id required")
     if chunk:
@@ -348,4 +373,40 @@ def main(clip: str = "ST03", first: int = FIRST, last: int = LAST, prompt: str =
     with dest.open("x") as stream:  # never overwrite accepted evidence
         stream.write(json.dumps(result, indent=1))
     print(json.dumps({k: result.get(k) for k in ("stages", "gpu", "preflight_exit", "checkpoint", "error")})[:3000])
+
+
+def main_batch(batch, approval, masks=False, chunk=0):
+    """Plan + extract EVERY clip before any GPU/admission; then one reservation, one container."""
+    clips = json.loads((REPO / batch).read_text("utf-8"))["clips"]
+    planned, outs = [], set()
+    for job in clips:
+        if type(job["object_id"]) is not int or job["object_id"] < 0:
+            raise ValueError(f"{job['clip']}: nonnegative integer object_id required")
+        if chunk:
+            chunk_spans(job["last"] - job["first"] + 1, chunk)
+        path, metadata, dest = plan(job["clip"], job["first"], job["last"], job["prompt"], job["out"], approval)
+        if dest in outs:
+            raise ValueError(f"duplicate output {dest}")
+        outs.add(dest)
+        frames, frame_map = _frames(path, job["first"], job["last"])
+        planned.append((job, path, metadata, dest, frames, frame_map))
+    if os.environ.get("S07B_DRY"):
+        print(json.dumps([{"clip": j["clip"], "frames": len(f), "pts_s": [m[0][1], m[-1][1]]}
+                          for j, _, _, _, f, m in planned]))
+        return
+    for _, path, metadata, *_ in planned:
+        with path.open("rb") as stream:
+            metadata["source_sha256"] = hashlib.file_digest(stream, "sha256").hexdigest()
+    sys.path.insert(0, str(REPO))
+    from Build.guardrails.standalone import admit_standalone
+    admit_standalone("modal-track:batch:" + ",".join(j["clip"] for j, *_ in planned))
+    results = json.loads(track_batch.remote(
+        [(f, md, m, j["prompt"], j["object_id"]) for j, _, md, _, f, m in planned], masks, chunk))
+    for (job, _, _, dest, frames, frame_map), result in zip(planned, results, strict=True):
+        result["frame_sha256"] = [sha for _, sha in frames]
+        result["frame_map"] = frame_map
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        with dest.open("x") as stream:  # never overwrite accepted evidence
+            stream.write(json.dumps(result, indent=1))
+        print(job["clip"], json.dumps({k: result.get(k) for k in ("stages", "error")})[:1500])
 

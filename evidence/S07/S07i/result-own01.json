@@ -1,0 +1,106 @@
+{
+ "label": "MEASURED (owner clip OWN01, user-declared scale 0.2028 m, phone clock not externally verified)",
+ "track": "evidence/S07/S07g/track-own01.json",
+ "track_sha256": "0295b8ae6b59ec152e3fe7632d26e34b82bfbb05c5bf5eb9a73dadaba07eec98",
+ "missing_frames": [
+  55,
+  56,
+  57,
+  58,
+  59,
+  60
+ ],
+ "mask_centroid": {
+  "g": 10.963940510463221,
+  "u_fit": 0.6695797886805492,
+  "u_timing": 0.06443949190672309,
+  "u_scale": 0.08145419350406648,
+  "u_conditional_total": 0.6775871362165042,
+  "scale": {
+   "widths_px": [
+    289.98,
+    292.032,
+    292.032,
+    292.032,
+    290.952
+   ],
+   "mean_px": 291.4056,
+   "sd_px": 0.9240155842841454,
+   "u_width_px": 2.0422440990244026
+  },
+  "m_per_px": 0.0006959372091682522,
+  "fall_frames": [
+   47,
+   54
+  ],
+  "last_training_frame": 51,
+  "fall_duration_s": 0.23333399999999993,
+  "train_rms_px": 0.8893064204981604,
+  "held_out": {
+   "frames": [
+    52,
+    53,
+    54
+   ],
+   "residuals_px": [
+    -2.105254278787036,
+    -16.883973471894336,
+    -36.06336219545105
+   ],
+   "rmse_px": 23.022212090488257
+  }
+ },
+ "box_centre": {
+  "g": 10.591136803051665,
+  "u_fit": 0.6695797886805492,
+  "u_timing": 0.06442720451113512,
+  "u_scale": 0.07868453005199333,
+  "u_conditional_total": 0.6772586015401441,
+  "scale": {
+   "widths_px": [
+    289.98,
+    292.032,
+    292.032,
+    292.032,
+    290.952
+   ],
+   "mean_px": 291.4056,
+   "sd_px": 0.9240155842841454,
+   "u_width_px": 2.0422440990244026
+  },
+  "m_per_px": 0.0006959372091682522,
+  "fall_frames": [
+   47,
+   54
+  ],
+  "last_training_frame": 51,
+  "fall_duration_s": 0.23333399999999993,
+  "train_rms_px": 0.2313940847180816,
+  "held_out": {
+   "frames": [
+    52,
+    53,
+    54
+   ],
+   "residuals_px": [
+    -7.448352650363912,
+    -17.161369455486096,
+    -41.675690068403284
+   ],
+   "rmse_px": 26.37456920008036
+  }
+ },
+ "result": {
+  "point": "mask_centroid (area-weighted; box centre follows extreme corners under rotation)",
+  "g": 10.963940510463221,
+  "u_model_centroid_vs_box": 0.3728037074115562,
+  "u_total": 0.7733737333436433,
+  "delta_vs_local": 1.173940510463222,
+  "z_vs_local": 1.5179472224738586,
+  "local_g": 9.79,
+  "s07g_diagnostic": [
+   10.73,
+   0.41
+  ]
+ }
+}

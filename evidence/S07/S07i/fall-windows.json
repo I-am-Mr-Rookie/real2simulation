@@ -1,0 +1,115 @@
+{
+ "rule": [
+  "Rule (fixed here, same yellow threshold as the S07g diagnostic, quarter resolution):",
+  "release = first frame (>= 10) > 2 px (= 8 px full-res) below the frames 0-9 median that STARTS a run of",
+  ">= 4 strictly increasing centroids ending > 10 px (40 px full-res) below that median (v1 without the run",
+  "test triggered on hand jitter at OWN03/09/10/11; revised before any tracking);",
+  "fall end = last frame of the strictly increasing centroid run after release;",
+  "window = [release - 6 (>= 5 held frames for the box-width scale), fall end + 2], clipped to the clip."
+ ],
+ "excluded": {
+  "OWN12": "no free fall: book held throughout, camera pans (frame inspection f24-63); colour rule failed"
+ },
+ "clips": [
+  {
+   "clip": "OWN02",
+   "first": 42,
+   "last": 61,
+   "frames": 86,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07i/track-own02.json",
+   "rule": "release f48, increasing run to f59"
+  },
+  {
+   "clip": "OWN03",
+   "first": 40,
+   "last": 59,
+   "frames": 83,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07i/track-own03.json",
+   "rule": "release f46, increasing run to f57"
+  },
+  {
+   "clip": "OWN04",
+   "first": 41,
+   "last": 60,
+   "frames": 83,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07i/track-own04.json",
+   "rule": "release f47, increasing run to f58"
+  },
+  {
+   "clip": "OWN05",
+   "first": 39,
+   "last": 52,
+   "frames": 86,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07i/track-own05.json",
+   "rule": "release f45, increasing run to f50"
+  },
+  {
+   "clip": "OWN06",
+   "first": 45,
+   "last": 57,
+   "frames": 86,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07i/track-own06.json",
+   "rule": "release f51, increasing run to f55"
+  },
+  {
+   "clip": "OWN07",
+   "first": 40,
+   "last": 61,
+   "frames": 83,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07i/track-own07.json",
+   "rule": "release f46, increasing run to f59"
+  },
+  {
+   "clip": "OWN08",
+   "first": 30,
+   "last": 50,
+   "frames": 77,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07i/track-own08.json",
+   "rule": "release f36, increasing run to f48"
+  },
+  {
+   "clip": "OWN09",
+   "first": 4,
+   "last": 24,
+   "frames": 59,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07i/track-own09.json",
+   "rule": "release f10, increasing run to f22"
+  },
+  {
+   "clip": "OWN10",
+   "first": 6,
+   "last": 18,
+   "frames": 86,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07i/track-own10.json",
+   "rule": "release f12, increasing run to f16"
+  },
+  {
+   "clip": "OWN11",
+   "first": 23,
+   "last": 34,
+   "frames": 86,
+   "prompt": "yellow book",
+   "object_id": 0,
+   "out": "evidence/S07/S07i/track-own11.json",
+   "rule": "release f29, increasing run to f32"
+  }
+ ]
+}
