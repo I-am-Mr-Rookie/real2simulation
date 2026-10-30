@@ -1,0 +1,477 @@
+{
+ "schema": "about/1",
+ "generated_by": "Build/benchmark/about.py",
+ "rule": "every value copied from the pinned evidence below; never retyped",
+ "sources": {
+  "errors": {
+   "path": "evidence/S21/S21b-errors.json",
+   "sha256": "2553d314e36de8e3a19b3557693ec7a9a36ed41510a2762d3363f70a708ea6ef"
+  },
+  "predictions": {
+   "path": "evidence/S21/S21c-predictions.json",
+   "sha256": "9cfdbdbd9d0004d371cb8f408bb18cc243e8cca068d2ee09e06668d3d7c08bf3"
+  },
+  "costs": {
+   "path": "evidence/S21/S21d-costs.json",
+   "sha256": "c538f28ac5359f0d1e081eb1193f63c0412d6131ca27f5b75c4b1e347422a4b3"
+  },
+  "gate_a": {
+   "path": "evidence/S14/GATE_A.json",
+   "sha256": "f15c1240451ec1e902ac860573271aa27bd91679050b8aace64c135caa7158fc"
+  }
+ },
+ "gates": {
+  "gate_m": "NOT_MET_INPUT_READINESS",
+  "gate_rs": "NOT_MET",
+  "gate_a": "MET_AMENDED_Q16",
+  "gate_a_label": "scale unverified, not setup-validated"
+ },
+ "gate_a_known_limits": [
+  {
+   "id": "P2-unitless-one",
+   "status": "OPEN",
+   "example": "The duration is one. / Elapsed time in seconds. It is one.",
+   "note": "pronoun 'one' allowed; clause split detaches unit"
+  },
+  {
+   "id": "P2-count-nouns",
+   "status": "OPEN",
+   "example": "The sphere completes a single oscillation.",
+   "note": "count nouns are not unit words"
+  },
+  {
+   "id": "P2-unlisted-units",
+   "status": "PARTLY_CLOSED_S14h",
+   "closed": "micro/nanosecond(s) now unit words",
+   "still_open": "other unlisted units/abbreviations (e.g. us, \u00b5s, fortnight)"
+  },
+  {
+   "id": "P3-conservative-refusal",
+   "status": "OPEN",
+   "note": "legit prose like 'in seconds is <q>' refused; live fallback rate unmeasured"
+  }
+ ],
+ "sections": {
+  "errors": {
+   "summary": {
+    "measured": 8,
+    "unavailable": 8
+   },
+   "rows": [
+    {
+     "id": "gravity_magnitude_error_m_s2",
+     "class": "unavailable",
+     "value": null,
+     "unit": "m/s^2",
+     "reason": "Gate M NOT_MET_INPUT_READINESS: Gate M NOT_MET: no calibrated scale or capture clock",
+     "note": "applies to ST03 and RM02/RM04/RM05; no clip has calibrated g"
+    },
+    {
+     "id": "st03_g_image_relative_uncertainty",
+     "class": "measured",
+     "value": 0.07367405813396816,
+     "unit": "fraction (1-sigma / abs g)",
+     "reason": null,
+     "note": "g = 1.846169545845327 +/- 0.13601480244577022 image-height/s^2 (prefix fit, uncalibrated); precision of the fit, NOT an error vs true g"
+    },
+    {
+     "id": "rm02_gravity_direction_error_vs_truth",
+     "class": "unavailable",
+     "value": null,
+     "unit": "deg",
+     "reason": "no independent ground-truth vertical in evidence; basis: floor normal assumed horizontal; magnitude never assumed",
+     "note": null
+    },
+    {
+     "id": "rm02_gravity_direction_bootstrap_sd",
+     "class": "measured",
+     "value": 0.04393192042834663,
+     "unit": "deg (1 sd)",
+     "reason": null,
+     "note": "n = floor inlier points; precision, not accuracy"
+    },
+    {
+     "id": "rm02_gravity_vs_camera_down_prior",
+     "class": "measured",
+     "value": 11.0526638876659,
+     "unit": "deg",
+     "reason": null,
+     "note": "disagreement between two estimates, not error vs truth; recomputed from pinned vectors"
+    },
+    {
+     "id": "rm04_gravity_direction_error_vs_truth",
+     "class": "unavailable",
+     "value": null,
+     "unit": "deg",
+     "reason": "no independent ground-truth vertical in evidence; basis: floor normal assumed horizontal; magnitude never assumed",
+     "note": null
+    },
+    {
+     "id": "rm04_gravity_direction_bootstrap_sd",
+     "class": "measured",
+     "value": 0.01951263849441864,
+     "unit": "deg (1 sd)",
+     "reason": null,
+     "note": "n = floor inlier points; precision, not accuracy"
+    },
+    {
+     "id": "rm04_gravity_vs_camera_down_prior",
+     "class": "measured",
+     "value": 3.627442796301267,
+     "unit": "deg",
+     "reason": null,
+     "note": "disagreement between two estimates, not error vs truth; recomputed from pinned vectors"
+    },
+    {
+     "id": "rm05_gravity_direction",
+     "class": "unavailable",
+     "value": null,
+     "unit": "deg",
+     "reason": "clip source: not under gravity",
+     "note": null
+    },
+    {
+     "id": "rm02_metric_scale_error",
+     "class": "unavailable",
+     "value": null,
+     "unit": "m per model unit",
+     "reason": "no source-backed known-size object reference; S02d: 'Room; scene-only' - no source-documented object dimension (door/A4/ball) for RM02; no annotated pixel endpoints",
+     "note": "MapAnything's self-reported scaling factor has no reference to compare against"
+    },
+    {
+     "id": "rm02_floor_plane_rms_residual",
+     "class": "measured",
+     "value": 0.008069973438978195,
+     "unit": "model units (not metres)",
+     "reason": null,
+     "note": "geometric fit error in unscaled model units"
+    },
+    {
+     "id": "rm04_metric_scale_error",
+     "class": "unavailable",
+     "value": null,
+     "unit": "m per model unit",
+     "reason": "no source-backed known-size object reference; S02d: 'Room; scene-only' (Pexels empty classroom) - no source-documented desk/door/A4 size; country-specific standard door height not source-backed for this room",
+     "note": "MapAnything's self-reported scaling factor has no reference to compare against"
+    },
+    {
+     "id": "rm04_floor_plane_rms_residual",
+     "class": "measured",
+     "value": 0.00618046335875988,
+     "unit": "model units (not metres)",
+     "reason": null,
+     "note": "geometric fit error in unscaled model units"
+    },
+    {
+     "id": "rm05_metric_scale_error",
+     "class": "unavailable",
+     "value": null,
+     "unit": "m per model unit",
+     "reason": "no source-backed known-size object reference; S02d: 'Hatch/handrail dimensions unverified' - no source-backed ISS hatch/handrail dimension tied to annotated pixels",
+     "note": "MapAnything's self-reported scaling factor has no reference to compare against"
+    },
+    {
+     "id": "rm05_floor_plane_rms_residual",
+     "class": "measured",
+     "value": 0.011544126085937023,
+     "unit": "model units (not metres)",
+     "reason": null,
+     "note": "geometric fit error in unscaled model units"
+    },
+    {
+     "id": "st03_metric_scale_error",
+     "class": "unavailable",
+     "value": null,
+     "unit": "m per image-height",
+     "reason": "positions are image-height fractions, not metres; no calibrated g",
+     "note": null
+    }
+   ]
+  },
+  "predictions": {
+   "summary": {
+    "measured": 2,
+    "simulated": 0,
+    "unavailable": 4
+   },
+   "rows": [
+    {
+     "id": "st03_heldout_normalized_rms",
+     "class": "measured",
+     "value": 0.1981633916341227,
+     "unit": "image-height fraction (scale-free)",
+     "reason": null,
+     "note": "diagnostic only, not gate-scored: 7/466 sealed suffix frames (frames 77-83, all after last training frame 76); tracking re-track repeatability 0.00045112303100769413 (max abs, prefix frames)"
+    },
+    {
+     "id": "st03_heldout_max_abs_error",
+     "class": "measured",
+     "value": 0.3334069487508844,
+     "unit": "image-height fraction (scale-free)",
+     "reason": null,
+     "note": "diagnostic only, not gate-scored: 7/466 sealed suffix frames (frames 77-83, all after last training frame 76)"
+    },
+    {
+     "id": "st03_range_error",
+     "class": "unavailable",
+     "value": null,
+     "unit": "image-height fraction (scale-free)",
+     "reason": "ST03 scored 7/466 sealed frames (coverage < 80%): full f58-542 job hit CUDA OOM on A10G 24 GB; 26 frames is the measured fit. Ballistic prefix fit has no floor: apple is on the ground from f77 (y~0.80-0.82) while prediction leaves the image at f81 (y>1).",
+     "note": "prefix ballistic fit has no floor model, so no predicted landing/range to compare; not gate-scored"
+    },
+    {
+     "id": "bounce_height_error",
+     "class": "unavailable",
+     "value": null,
+     "unit": "image-height fraction (scale-free)",
+     "reason": "BN01 approved, but no prefix tracking and no sourced restitution/floor record; ~26 contiguous frames/job (0.11 s at 240 fps) cannot span its 0.67 s contact-to-contact arc; strict prefix job -> committed prediction -> suffix job not run",
+     "note": null
+    },
+    {
+     "id": "pendulum_period_error",
+     "class": "unavailable",
+     "value": null,
+     "unit": "image-height fraction (scale-free)",
+     "reason": "PD02/03/04/06 approved, but no prefix tracking and no sourced angular-frequency record; ~26 contiguous frames/job (~0.9 s at 30 fps) is far below one period; not run",
+     "note": null
+    },
+    {
+     "id": "gate_rs_median_heldout_error",
+     "class": "unavailable",
+     "value": null,
+     "unit": "image-height fraction (scale-free)",
+     "reason": "Gate RS NOT_MET; S12f VIRTUAL_LAB_ONLY: no measured median (missing category or coverage < 80%): unmeasured",
+     "note": "threshold 0.05; scale-free image-plane agreement only; not calibrated, not physical accuracy"
+    }
+   ]
+  },
+  "costs": {
+   "summary": {
+    "billed": 8,
+    "estimated": 2,
+    "reservation": 1,
+    "measured": 10,
+    "simulated": 2,
+    "unavailable": 1
+   },
+   "rows": [
+    {
+     "id": "rm02_scene_billed_usd",
+     "class": "billed",
+     "scene": "RM02",
+     "value": 0.01134936,
+     "unit": "USD",
+     "reason": null,
+     "note": "Modal billing report (read-only); whole app incl. egress"
+    },
+    {
+     "id": "rm02_scene_estimated_usd",
+     "class": "estimated",
+     "scene": "RM02",
+     "value": 0.01032114,
+     "unit": "USD",
+     "reason": null,
+     "note": "rate x measured container time; NOT billed"
+    },
+    {
+     "id": "rm02_gpu_seconds_billed",
+     "class": "billed",
+     "scene": "RM02",
+     "value": 30.009,
+     "unit": "GPU-s",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "rm02_cold_start_s",
+     "class": "measured",
+     "scene": "RM02",
+     "value": 10.806,
+     "unit": "s",
+     "reason": null,
+     "note": "before function body"
+    },
+    {
+     "id": "rm02_model_load_s",
+     "class": "measured",
+     "scene": "RM02",
+     "value": 19.73,
+     "unit": "s",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "rm02_inference_s",
+     "class": "measured",
+     "scene": "RM02",
+     "value": 1.449,
+     "unit": "s",
+     "reason": null,
+     "note": "GPU forward pass only"
+    },
+    {
+     "id": "rm02_client_round_trip_s",
+     "class": "measured",
+     "scene": "RM02",
+     "value": 39.554,
+     "unit": "s",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "rm04_scene_billed_usd",
+     "class": "billed",
+     "scene": "RM04",
+     "value": 0.00955325,
+     "unit": "USD",
+     "reason": null,
+     "note": "Modal billing report (read-only); whole app incl. egress"
+    },
+    {
+     "id": "rm04_scene_estimated_usd",
+     "class": "estimated",
+     "scene": "RM04",
+     "value": 0.01000701,
+     "unit": "USD",
+     "reason": null,
+     "note": "rate x measured container time; NOT billed"
+    },
+    {
+     "id": "rm04_gpu_seconds_billed",
+     "class": "billed",
+     "scene": "RM04",
+     "value": 25.962,
+     "unit": "GPU-s",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "rm04_cold_start_s",
+     "class": "measured",
+     "scene": "RM04",
+     "value": 11.884,
+     "unit": "s",
+     "reason": null,
+     "note": "before function body"
+    },
+    {
+     "id": "rm04_model_load_s",
+     "class": "measured",
+     "scene": "RM04",
+     "value": 18.807,
+     "unit": "s",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "rm04_inference_s",
+     "class": "measured",
+     "scene": "RM04",
+     "value": 1.506,
+     "unit": "s",
+     "reason": null,
+     "note": "GPU forward pass only"
+    },
+    {
+     "id": "rm04_client_round_trip_s",
+     "class": "measured",
+     "scene": "RM04",
+     "value": 43.642,
+     "unit": "s",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "st03_tracking_billed_usd",
+     "class": "billed",
+     "scene": "ST03",
+     "value": 0.02330591,
+     "unit": "USD",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "st03_tracking_gpu_seconds_billed",
+     "class": "billed",
+     "scene": "ST03",
+     "value": 47.93,
+     "unit": "GPU-s",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "modal_month_to_date_billed_usd",
+     "class": "billed",
+     "scene": "all",
+     "value": 0.59959399,
+     "unit": "USD",
+     "reason": null,
+     "note": "all Modal jobs; read 2026-10-29T15:49:15Z"
+    },
+    {
+     "id": "s06_jobs_billed_usd",
+     "class": "billed",
+     "scene": "S06",
+     "value": 0.05785822,
+     "unit": "USD",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "s06e_reservation_usd",
+     "class": "reservation",
+     "scene": "RM02",
+     "value": 0.3,
+     "unit": "USD",
+     "reason": null,
+     "note": "pre-job hold, NOT spend"
+    },
+    {
+     "id": "meta_s16e_total_tokens",
+     "class": "measured",
+     "scene": "S16e",
+     "value": 1176,
+     "unit": "tokens",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "meta_s16e_latency_s",
+     "class": "measured",
+     "scene": "S16e",
+     "value": 2.523449,
+     "unit": "s",
+     "reason": null,
+     "note": null
+    },
+    {
+     "id": "meta_s16e_cost_usd",
+     "class": "unavailable",
+     "scene": "S16e",
+     "value": null,
+     "unit": "USD",
+     "reason": "unknown; no verified published pricing (Q17)",
+     "note": null
+    },
+    {
+     "id": "s20d_meta_routine_stop_usd",
+     "class": "simulated",
+     "scene": "SIM",
+     "value": 120.0,
+     "unit": "USD",
+     "reason": null,
+     "note": "cap exercised in simulation; NOT spend"
+    },
+    {
+     "id": "s20d_modal_cap_usd",
+     "class": "simulated",
+     "scene": "SIM",
+     "value": 30.0,
+     "unit": "USD",
+     "reason": null,
+     "note": "cap exercised in simulation; NOT spend"
+    }
+   ]
+  }
+ }
+}
