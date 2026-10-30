@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+Oct30 ~12:02Z: ACCEPTED S13i-orch148 DONE (upload/job routes, approved-sha gate, RECORDED S13h-orch46 replay; api-workspace 14/14 fresh,
+pipeline 53 per worker). Finding: S13h never ran understand -> replay stops DEPENDENCY_UNAVAILABLE, job never ready. CONTROLLER DECISION
+(owner delegated; $0, no contract change, no invented output): replay understand from accepted live S14g-fix3 RM04 spec, labelled
+"RECORDED S14g-fix3" (own UTC or "time not recorded"). Added QUEUE S13k (deps S13i; S04m now deps S13k too). Dispatched S13k-orch151
+(Opus med, thread 01a18cae-24dc, dl 12:29:30Z; also provides owner-scoped scene resolver for S14i). Next RID orch152.
+
 Oct30 ~12:00Z: ACCEPTED S04n-orch145 DONE (BFF /api/workspace/[...path]; 15/15 web-private+web-workspace-api fresh; build PASS per worker;
 proxy.js matcher + repository.test.mjs pin under controller-approved Owns extension). Dispatched (Claude, Codex quota low) S22b-orch149
 (Sonnet med, DEV pre-candidate guest library QA, thread 01a18ca9-a88c) and S24b-orch150 (Opus med, script/caption/credit review, thread
