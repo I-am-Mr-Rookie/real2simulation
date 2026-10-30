@@ -1,0 +1,755 @@
+{
+ "label": "SECOND ANALYSIS (v2) \u2014 MEASURED per clip; user-declared scale, phone clock not externally verified; 9.79 comparison only",
+ "rules": "Run-System/Runs/S07k-orch174/PLAN.md (pre-registered v2)",
+ "constants": {
+  "MOVE_PX": 4.0,
+  "STATIC_PX": 6.0,
+  "SCALE_N": 5,
+  "SCALE_MIN": 3,
+  "WIDTH_TOL": 0.1,
+  "DECEL": 0.5,
+  "N_MIN": 8,
+  "held_out_pass_px": 6.0
+ },
+ "rows": [
+  {
+   "clip": "OWN01",
+   "scene": "01 (S07i)",
+   "abstain": "v2 rule: fall window f47-f53 has 7 < 8 frames"
+  },
+  {
+   "clip": "OWN02",
+   "scene": "02_live_check",
+   "g": 7.267091781195077,
+   "u": 3.0707298371438982,
+   "z": -0.8215988877587134,
+   "in_1u": true,
+   "in_2u": true,
+   "g_box": 10.265030256275317,
+   "fall_frames": [
+    46,
+    53
+   ],
+   "n_frames": 8,
+   "held_rmse_px": 20.542344258413443,
+   "held_residuals_px": [
+    7.858731802535694,
+    19.153076055589402,
+    28.93723785986039
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0006867406233491811,
+   "rules": {
+    "scale_frames": [
+     42,
+     44
+    ],
+    "release": 46,
+    "fall_end": 53
+   }
+  },
+  {
+   "clip": "OWN03",
+   "scene": "03_test_clean",
+   "g": 9.556858020288576,
+   "u": 0.6312238469846069,
+   "z": -0.36934913157219224,
+   "in_1u": true,
+   "in_2u": true,
+   "g_box": 8.958859525162286,
+   "fall_frames": [
+    45,
+    56
+   ],
+   "n_frames": 12,
+   "held_rmse_px": 28.85917008880994,
+   "held_residuals_px": [
+    -15.460534138928239,
+    -14.316496810121778,
+    -27.94407785364341,
+    -45.89711438635083
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0006743074882046065,
+   "rules": {
+    "scale_frames": [
+     40,
+     43
+    ],
+    "release": 45,
+    "fall_end": 56
+   }
+  },
+  {
+   "clip": "OWN04",
+   "scene": "04_test_shadow",
+   "g": 10.397759767208594,
+   "u": 0.4576965058604849,
+   "z": 1.327866303165208,
+   "in_1u": false,
+   "in_2u": true,
+   "g_box": 10.605330180871967,
+   "fall_frames": [
+    46,
+    55
+   ],
+   "n_frames": 10,
+   "held_rmse_px": 35.07078862596774,
+   "held_residuals_px": [
+    -6.381717736636611,
+    -22.519263581154082,
+    -32.4162645301202,
+    -57.62970674743113
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0006743074882046065,
+   "rules": {
+    "scale_frames": [
+     41,
+     44
+    ],
+    "release": 46,
+    "fall_end": 55
+   }
+  },
+  {
+   "clip": "OWN05",
+   "scene": "05_repeat_a",
+   "g": 9.621532879984098,
+   "u": 0.7359992075033922,
+   "z": -0.22889578996608426,
+   "in_1u": true,
+   "in_2u": true,
+   "g_box": 9.020342847591717,
+   "fall_frames": [
+    44,
+    52
+   ],
+   "n_frames": 9,
+   "held_rmse_px": 6.518947052617946,
+   "held_residuals_px": [
+    4.011323427452087,
+    9.84342104851194,
+    3.8087213663636206
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0007059314954051797,
+   "rules": {
+    "scale_frames": [
+     39,
+     42
+    ],
+    "release": 44,
+    "fall_end": 52
+   }
+  },
+  {
+   "clip": "OWN06",
+   "scene": "05_repeat_b (sheet partly down)",
+   "abstain": "v2 rule: only 0 tracked scale frames before release f46"
+  }
+ ],
+ "clips": {
+  "OWN01": {
+   "clip": "OWN01",
+   "scene": "01 (S07i)",
+   "track": "evidence/S07/S07g/track-own01.json",
+   "track_sha256": "0295b8ae6b59ec152e3fe7632d26e34b82bfbb05c5bf5eb9a73dadaba07eec98",
+   "abstain": "v2 rule: fall window f47-f53 has 7 < 8 frames"
+  },
+  "OWN02": {
+   "clip": "OWN02",
+   "scene": "02_live_check",
+   "track": "evidence/S07/S07i/track-own02.json",
+   "track_sha256": "fe1539eeacd15074ce2bf5044599885f1b6ba6011607eb0cea7ba0a061308ee5",
+   "rules": {
+    "scale_frames": [
+     42,
+     44
+    ],
+    "release": 46,
+    "fall_end": 53
+   },
+   "label": "MEASURED, SECOND ANALYSIS v2 (owner clip OWN02, user-declared scale 0.2028 m, phone clock not externally verified)",
+   "missing_frames": [],
+   "mask_centroid": {
+    "g": 7.267091781195077,
+    "u_fit": 0.660745666352904,
+    "u_timing": 0.04837336376542851,
+    "u_scale": 0.053120753319518876,
+    "u_conditional_total": 0.6646402277618763,
+    "scale": {
+     "widths_px": [
+      294.94800000000004,
+      296.028,
+      294.94800000000004
+     ],
+     "mean_px": 295.30800000000005,
+     "sd_px": 0.6235382907247866,
+     "u_width_px": 2.032141727340885
+    },
+    "m_per_px": 0.0006867406233491811,
+    "fall_frames": [
+     46,
+     53
+    ],
+    "last_training_frame": 50,
+    "fall_duration_s": 0.233333,
+    "train_rms_px": 2.031913453286276,
+    "held_out": {
+     "frames": [
+      51,
+      52,
+      53
+     ],
+     "residuals_px": [
+      7.858731802535694,
+      19.153076055589402,
+      28.93723785986039
+     ],
+     "rmse_px": 20.542344258413443
+    }
+   },
+   "box_centre": {
+    "g": 10.265030256275317,
+    "u_fit": 0.660745666352904,
+    "u_timing": 0.053690445015927464,
+    "u_scale": 0.07503498737583388,
+    "u_conditional_total": 0.6671564650219939,
+    "scale": {
+     "widths_px": [
+      294.94800000000004,
+      296.028,
+      294.94800000000004
+     ],
+     "mean_px": 295.30800000000005,
+     "sd_px": 0.6235382907247866,
+     "u_width_px": 2.032141727340885
+    },
+    "m_per_px": 0.0006867406233491811,
+    "fall_frames": [
+     46,
+     53
+    ],
+    "last_training_frame": 50,
+    "fall_duration_s": 0.233333,
+    "train_rms_px": 1.7153896247604687,
+    "held_out": {
+     "frames": [
+      51,
+      52,
+      53
+     ],
+     "residuals_px": [
+      -11.983229823984242,
+      -15.439475086653403,
+      -26.09568072797849
+     ],
+     "rmse_px": 18.823387408774263
+    }
+   },
+   "result": {
+    "point": "mask_centroid (area-weighted; box centre follows extreme corners under rotation)",
+    "g": 7.267091781195077,
+    "u_model_centroid_vs_box": 2.9979384750802396,
+    "u_total": 3.0707298371438982,
+    "delta_vs_local": -2.522908218804922,
+    "z_vs_local": -0.8215988877587134,
+    "local_g": 9.79
+   }
+  },
+  "OWN03": {
+   "clip": "OWN03",
+   "scene": "03_test_clean",
+   "track": "evidence/S07/S07i/track-own03.json",
+   "track_sha256": "2e8da0a13c054c9b4ba1e1a1206e51c179be8e70a10c21a365ed2bca9b4fbae0",
+   "rules": {
+    "scale_frames": [
+     40,
+     43
+    ],
+    "release": 45,
+    "fall_end": 56
+   },
+   "label": "MEASURED, SECOND ANALYSIS v2 (owner clip OWN03, user-declared scale 0.2028 m, phone clock not externally verified)",
+   "missing_frames": [],
+   "mask_centroid": {
+    "g": 9.556858020288576,
+    "u_fit": 0.18728666257228394,
+    "u_timing": 0.030859046259501928,
+    "u_scale": 0.06937413145566215,
+    "u_conditional_total": 0.202092416554254,
+    "scale": {
+     "widths_px": [
+      300.996,
+      301.968,
+      300.024,
+      300.024
+     ],
+     "mean_px": 300.753,
+     "sd_px": 0.9306191487391662,
+     "u_width_px": 2.0534149604987304
+    },
+    "m_per_px": 0.0006743074882046065,
+    "fall_frames": [
+     45,
+     56
+    ],
+    "last_training_frame": 52,
+    "fall_duration_s": 0.36666600000000016,
+    "train_rms_px": 3.2362233311364177,
+    "held_out": {
+     "frames": [
+      53,
+      54,
+      55,
+      56
+     ],
+     "residuals_px": [
+      -15.460534138928239,
+      -14.316496810121778,
+      -27.94407785364341,
+      -45.89711438635083
+     ],
+     "rmse_px": 28.85917008880994
+    }
+   },
+   "box_centre": {
+    "g": 8.958859525162286,
+    "u_fit": 0.18728666257228394,
+    "u_timing": 0.029579270127226543,
+    "u_scale": 0.06503320412126959,
+    "u_conditional_total": 0.2004508539193652,
+    "scale": {
+     "widths_px": [
+      300.996,
+      301.968,
+      300.024,
+      300.024
+     ],
+     "mean_px": 300.753,
+     "sd_px": 0.9306191487391662,
+     "u_width_px": 2.0534149604987304
+    },
+    "m_per_px": 0.0006743074882046065,
+    "fall_frames": [
+     45,
+     56
+    ],
+    "last_training_frame": 52,
+    "fall_duration_s": 0.36666600000000016,
+    "train_rms_px": 1.6126704834541332,
+    "held_out": {
+     "frames": [
+      53,
+      54,
+      55,
+      56
+     ],
+     "residuals_px": [
+      -13.422665952689462,
+      -1.3041946152847363,
+      -17.38349731826465,
+      -39.872743868290776
+     ],
+     "rmse_px": 22.769994331754127
+    }
+   },
+   "result": {
+    "point": "mask_centroid (area-weighted; box centre follows extreme corners under rotation)",
+    "g": 9.556858020288576,
+    "u_model_centroid_vs_box": 0.5979984951262907,
+    "u_total": 0.6312238469846069,
+    "delta_vs_local": -0.23314197971142292,
+    "z_vs_local": -0.36934913157219224,
+    "local_g": 9.79
+   }
+  },
+  "OWN04": {
+   "clip": "OWN04",
+   "scene": "04_test_shadow",
+   "track": "evidence/S07/S07i/track-own04.json",
+   "track_sha256": "44acb61fbd2557340d11aa92d981088d248ee5d95e21e58355336909de95bacb",
+   "rules": {
+    "scale_frames": [
+     41,
+     44
+    ],
+    "release": 46,
+    "fall_end": 55
+   },
+   "label": "MEASURED, SECOND ANALYSIS v2 (owner clip OWN04, user-declared scale 0.2028 m, phone clock not externally verified)",
+   "missing_frames": [
+    56,
+    57,
+    58,
+    59,
+    60
+   ],
+   "mask_centroid": {
+    "g": 10.397759767208594,
+    "u_fit": 0.3972920276851138,
+    "u_timing": 0.051715318087964306,
+    "u_scale": 0.07671496243513874,
+    "u_conditional_total": 0.4079223147224399,
+    "scale": {
+     "widths_px": [
+      299.05199999999996,
+      300.996,
+      300.996,
+      301.968
+     ],
+     "mean_px": 300.753,
+     "sd_px": 1.2230731785138815,
+     "u_width_px": 2.09140550826472
+    },
+    "m_per_px": 0.0006743074882046065,
+    "fall_frames": [
+     46,
+     55
+    ],
+    "last_training_frame": 51,
+    "fall_duration_s": 0.30000000000000004,
+    "train_rms_px": 0.5892379580571782,
+    "held_out": {
+     "frames": [
+      52,
+      53,
+      54,
+      55
+     ],
+     "residuals_px": [
+      -6.381717736636611,
+      -22.519263581154082,
+      -32.4162645301202,
+      -57.62970674743113
+     ],
+     "rmse_px": 35.07078862596774
+    }
+   },
+   "box_centre": {
+    "g": 10.605330180871967,
+    "u_fit": 0.3972920276851138,
+    "u_timing": 0.052026022447350516,
+    "u_scale": 0.07824642275383649,
+    "u_conditional_total": 0.408252574943029,
+    "scale": {
+     "widths_px": [
+      299.05199999999996,
+      300.996,
+      300.996,
+      301.968
+     ],
+     "mean_px": 300.753,
+     "sd_px": 1.2230731785138815,
+     "u_width_px": 2.09140550826472
+    },
+    "m_per_px": 0.0006743074882046065,
+    "fall_frames": [
+     46,
+     55
+    ],
+    "last_training_frame": 51,
+    "fall_duration_s": 0.30000000000000004,
+    "train_rms_px": 0.8566959179890111,
+    "held_out": {
+     "frames": [
+      52,
+      53,
+      54,
+      55
+     ],
+     "residuals_px": [
+      -12.238806321083329,
+      -34.193107714007134,
+      -43.57935252277462,
+      -61.9880036834387
+     ],
+     "rmse_px": 42.01377619980426
+    }
+   },
+   "result": {
+    "point": "mask_centroid (area-weighted; box centre follows extreme corners under rotation)",
+    "g": 10.397759767208594,
+    "u_model_centroid_vs_box": 0.20757041366337248,
+    "u_total": 0.4576965058604849,
+    "delta_vs_local": 0.607759767208595,
+    "z_vs_local": 1.327866303165208,
+    "local_g": 9.79
+   }
+  },
+  "OWN05": {
+   "clip": "OWN05",
+   "scene": "05_repeat_a",
+   "track": "evidence/S07/S07i/track-own05.json",
+   "track_sha256": "c33b6a4b0cbbe4a743b5400e6cf6a7a30f9ae7796150813bce038fe4abd110ca",
+   "rules": {
+    "scale_frames": [
+     39,
+     42
+    ],
+    "release": 44,
+    "fall_end": 52
+   },
+   "label": "MEASURED, SECOND ANALYSIS v2 (owner clip OWN05, user-declared scale 0.2028 m, phone clock not externally verified)",
+   "missing_frames": [],
+   "mask_centroid": {
+    "g": 9.621532879984098,
+    "u_fit": 0.41592442635192517,
+    "u_timing": 0.03976965500190792,
+    "u_scale": 0.07543622805072062,
+    "u_conditional_total": 0.4245767049635073,
+    "scale": {
+     "widths_px": [
+      285.012,
+      288.036,
+      288.036,
+      288.036
+     ],
+     "mean_px": 287.28,
+     "sd_px": 1.5120000000000005,
+     "u_width_px": 2.1381150577085415
+    },
+    "m_per_px": 0.0007059314954051797,
+    "fall_frames": [
+     44,
+     52
+    ],
+    "last_training_frame": 49,
+    "fall_duration_s": 0.266667,
+    "train_rms_px": 0.6836384864177477,
+    "held_out": {
+     "frames": [
+      50,
+      51,
+      52
+     ],
+     "residuals_px": [
+      4.011323427452087,
+      9.84342104851194,
+      3.8087213663636206
+     ],
+     "rmse_px": 6.518947052617946
+    }
+   },
+   "box_centre": {
+    "g": 9.020342847591717,
+    "u_fit": 0.41592442635192517,
+    "u_timing": 0.040029238088630036,
+    "u_scale": 0.07072268510999882,
+    "u_conditional_total": 0.4237890589990524,
+    "scale": {
+     "widths_px": [
+      285.012,
+      288.036,
+      288.036,
+      288.036
+     ],
+     "mean_px": 287.28,
+     "sd_px": 1.5120000000000005,
+     "u_width_px": 2.1381150577085415
+    },
+    "m_per_px": 0.0007059314954051797,
+    "fall_frames": [
+     44,
+     52
+    ],
+    "last_training_frame": 49,
+    "fall_duration_s": 0.266667,
+    "train_rms_px": 1.0047912373825099,
+    "held_out": {
+     "frames": [
+      50,
+      51,
+      52
+     ],
+     "residuals_px": [
+      7.479655959497728,
+      9.806309708583312,
+      8.018533990034808
+     ],
+     "rmse_px": 8.493249294242434
+    }
+   },
+   "result": {
+    "point": "mask_centroid (area-weighted; box centre follows extreme corners under rotation)",
+    "g": 9.621532879984098,
+    "u_model_centroid_vs_box": 0.6011900323923811,
+    "u_total": 0.7359992075033922,
+    "delta_vs_local": -0.16846712001590092,
+    "z_vs_local": -0.22889578996608426,
+    "local_g": 9.79
+   }
+  },
+  "OWN06": {
+   "clip": "OWN06",
+   "scene": "05_repeat_b (sheet partly down)",
+   "track": "evidence/S07/S07i/track-own06.json",
+   "track_sha256": "4150ba31297a6e2fe9298e813e0a900f24b2de1993f023dc147711394885f86f",
+   "abstain": "v2 rule: only 0 tracked scale frames before release f46"
+  }
+ },
+ "v1_rows": {
+  "OWN01": {
+   "clip": "OWN01",
+   "scene": "01 (S07i)",
+   "g": 10.963940510463221,
+   "u": 0.7733737333436433,
+   "z": 1.5179472224738586,
+   "in_1u": false,
+   "in_2u": true,
+   "g_box": 10.591136803051665,
+   "fall_frames": [
+    47,
+    54
+   ],
+   "n_frames": 8,
+   "held_rmse_px": 23.022212090488257,
+   "held_residuals_px": [
+    -2.105254278787036,
+    -16.883973471894336,
+    -36.06336219545105
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0006959372091682522
+  },
+  "OWN02": {
+   "clip": "OWN02",
+   "scene": "02_live_check",
+   "g": 9.289396283978423,
+   "u": 0.3184328751766602,
+   "z": -1.5720855321356226,
+   "in_1u": false,
+   "in_2u": true,
+   "g_box": 9.045282802072089,
+   "fall_frames": [
+    47,
+    59
+   ],
+   "n_frames": 13,
+   "held_rmse_px": 39.580716806224345,
+   "held_residuals_px": [
+    -12.630958638553206,
+    -17.764747907124406,
+    -10.70806785503376,
+    -28.255132564584216,
+    -80.28090119517776
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0006860715300612999
+  },
+  "OWN03": {
+   "clip": "OWN03",
+   "scene": "03_test_clean",
+   "g": 9.542294862674295,
+   "u": 0.6303504858871237,
+   "z": -0.3929641411747254,
+   "in_1u": true,
+   "in_2u": true,
+   "g_box": 8.945207623770411,
+   "fall_frames": [
+    45,
+    57
+   ],
+   "n_frames": 13,
+   "held_rmse_px": 87.28466592895197,
+   "held_residuals_px": [
+    -15.460534138928265,
+    -14.316496810121565,
+    -27.9440778536433,
+    -45.89711438635086,
+    -186.4447846918339
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0006732799490060157
+  },
+  "OWN04": {
+   "clip": "OWN04",
+   "scene": "04_test_shadow",
+   "g": 10.38936545092721,
+   "u": 0.45719983371001144,
+   "z": 1.3109485322065337,
+   "in_1u": false,
+   "in_2u": true,
+   "g_box": 10.59676828890678,
+   "fall_frames": [
+    46,
+    55
+   ],
+   "n_frames": 10,
+   "held_rmse_px": 35.07078862596779,
+   "held_residuals_px": [
+    -6.381717736636732,
+    -22.519263581153997,
+    -32.416264530120216,
+    -57.62970674743128
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.000673763106486465
+  },
+  "OWN05": {
+   "clip": "OWN05",
+   "scene": "05_repeat_a",
+   "g": 8.621873488312907,
+   "u": 1.2788792449092994,
+   "z": -0.9133985998575945,
+   "in_1u": true,
+   "in_2u": true,
+   "g_box": 8.497741742003756,
+   "fall_frames": [
+    44,
+    50
+   ],
+   "n_frames": 7,
+   "held_rmse_px": 13.017046822473397,
+   "held_residuals_px": [
+    4.604997256531225,
+    9.640821439061574,
+    19.853943844558064
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0007050832749240681
+  },
+  "OWN06": {
+   "clip": "OWN06",
+   "scene": "05_repeat_b (sheet partly down)",
+   "g": 7.116124373271427,
+   "u": 1.0162273595345013,
+   "z": -2.6311785464557675,
+   "in_1u": false,
+   "in_2u": false,
+   "g_box": 6.325382950753393,
+   "fall_frames": [
+    48,
+    55
+   ],
+   "n_frames": 8,
+   "held_rmse_px": 119.14575627269116,
+   "held_residuals_px": [
+    1.2708317098957056,
+    -31.578784546625595,
+    -203.93209425369392
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0006454619062896254
+  }
+ },
+ "coverage": {
+  "clips": 6,
+  "measured": 4,
+  "abstained": 2,
+  "in_1u": 3,
+  "in_2u": 4,
+  "held_out_pass": 0
+ },
+ "pending": {
+  "OWN07": "05_repeat_c (track file has 0 frames: CUDA OOM, S07j)",
+  "OWN08": "05_repeat_d (track file has 0 frames: CUDA OOM, S07j)",
+  "OWN09": "06 nosheet (track file has 0 frames: CUDA OOM, S07j)",
+  "OWN10": "06 clutter (track file has 0 frames: CUDA OOM, S07j)",
+  "OWN11": "06 lowres (track file has 0 frames: CUDA OOM, S07j)"
+ },
+ "excluded": {
+  "OWN12": "no free fall (S07i)"
+ }
+}
