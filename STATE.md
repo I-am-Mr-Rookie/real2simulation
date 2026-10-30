@@ -1,5 +1,14 @@
 # Real2Simulation — STATE
 
+R-C DONE = CHANGES_REQUIRED (orch60 Opus high; evidence ff-merged). TIMING EXCEPTION (controller):
+worker_timebox check FAILS, work_stopped 04:22:00Z vs deadline 04:21:21Z (39 s overrun, honest
+timestamps); read-only review evidence accepted with this recorded overrun; not a pass on timing.
+Guard modules correct/fail-closed (47 tests, 53 probes) but Gate C NOT met: H1 no callers; H2
+gpu_stages.reserve caps per ledger file (fresh dirs reset), corrupt ledger unmapped; M1 no reservation
+lock (two admissions on one snapshot); M2 AWS liabilities/unknown keys; M3 record_muse est-only
+file cap; L2 ROUND_CEILING headroom. S20c reopened PARTIAL -> S20-fix (Sol high; M3 deferred until
+S14g-fix-orch61 frees Build/agent).
+
 DISPATCHED R-RS-recheck2-orch62 Sol high (threadId:01a18b0b-8a8e-7a01-b5da-2d0658f75199,hostId:local, deadline 2026-10-30T04:52:30+00:00).
 
 S12e-fix2b-orch59 accepted (Opus high; TIMEBOX PASS; prediction 37 OK canonical; ff-merged):
