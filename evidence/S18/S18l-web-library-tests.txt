@@ -1,0 +1,11 @@
+✔ manifest labels: playable SIMULATED, unavailable with reason, mystery answer-free (2.7294ms)
+✔ artifact route: strict id, 404 unknown, immutable verified bytes replay (18189.7879ms)
+✔ broken root fails closed with 503, no data (10.4073ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24863.5479

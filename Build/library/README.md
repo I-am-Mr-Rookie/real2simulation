@@ -258,7 +258,8 @@ The pendulum uses the accepted current small-angle model fix; historical and
 regenerated trace hashes differ and no historical accuracy metric is inherited.
 Other cases lack complete preserved setup pointers. Those cases and RM02/RM04 (no
 declared PLY bytes locally) return no-fetch `UNAVAILABLE`, not fixture geometry.
-Mystery-g remains answer-free metadata with server-owned `/lab` reveal.
+Mystery-g library entry is an Earth-g practice shape, not a blind test (S18l; its g is public via
+repo/sibling traces). The blind challenge is `/lab`, which draws a hidden g per session server-side.
 
 ## Example custody
 

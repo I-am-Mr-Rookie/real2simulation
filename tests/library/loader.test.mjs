@@ -128,7 +128,7 @@ test('trace DTO rejects unsafe labels, samples, timing and answer-bearing fields
 test('Mystery-g keeps answer withheld and Apollo never fetches', async () => {
   const result = await loadLibraryEntry(challenge, { fetch: fetchObject });
   assert.equal(result.metadata.answer_visibility, 'withheld-until-fit');
-  assert.match(result.reason, /server-owned fit/);
+  assert.match(result.reason, /not a blind test.*server draws a hidden g.*server-owned fit/);
   const apollo = await loadLibraryEntry(entries.find((e) => e.id === 'apollo'), {
     fetch: () => assert.fail('Apollo must not fetch'),
   });

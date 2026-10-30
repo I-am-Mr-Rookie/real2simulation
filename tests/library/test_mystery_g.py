@@ -73,6 +73,13 @@ class MysteryGTests(unittest.TestCase):
         self.reject(lambda m: m["demos"][0]["challenge"].update(answer_visibility="visible"), "was expected")
         self.reject(lambda m: m["demos"][0]["gates"].update(M="MET"), "was expected")
 
+    def test_s18l_honest_practice_label_enforced(self):
+        self.assertIn("not a blind test", self.manifest["demos"][0]["title"])
+        self.reject(lambda m: m["demos"][0].update(title="SIMULATED Mystery-g challenge (display-only; answer withheld)"),
+                    "Earth-g practice shape")
+        self.reject(lambda m: m["demos"][0]["limitations"].append("Answer withheld from this artifact."),
+                    "answer secrecy")
+
     def test_stale_source_hash_rejected(self):
         self.reject(lambda m: m["demos"][0]["provenance"]["artifact_evidence"].update(sha256="0" * 64), "sha256 mismatch")
 

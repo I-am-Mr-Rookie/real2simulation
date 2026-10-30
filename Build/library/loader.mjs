@@ -113,7 +113,7 @@ export async function loadLibraryEntry(entry, { fetch: fetchImpl = globalThis.fe
       if (metadata.mode !== 'mystery-g' || metadata.answer_visibility !== 'withheld-until-fit' ||
           entry.challenge?.mode !== 'mystery-g' || entry.challenge?.answer_visibility !== 'withheld-until-fit' ||
           entry.challenge?.target !== '/lab') bad('Challenge answer boundary is invalid');
-      reason = 'Mystery-g setup only; open /lab and reveal only after its server-owned fit.';
+      reason = 'Mystery-g practice shape only (Earth-g baseline; not a blind test). Play blind in /lab: the server draws a hidden g per session and reveals it after its server-owned fit.';
     } else {
       if (!['free_fall', 'projectile', 'pendulum'].includes(metadata.template) || metadata.display_only !== true ||
           metadata.availability !== 'metadata-only') bad('Simulation template/availability is invalid');

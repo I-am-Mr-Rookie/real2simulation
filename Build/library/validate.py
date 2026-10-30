@@ -192,6 +192,13 @@ def challenge_payload(record):
             "duration_s": record["duration_s"], "time_step_s": record["time_step_s"]}
 
 
+# S18l: the library record uses Earth g that public repo/sibling traces reveal; only /lab draws a hidden g.
+CHALLENGE_TITLE = "SIMULATED Mystery-g practice shape (Earth-g baseline; not a blind test - play blind in /lab)"
+CHALLENGE_LIMITATION = ("Library setup is the challenge shape only: its accepted record uses standard Earth g, "
+                        "recoverable from the public repo and sibling traces; it is not a blind test.")
+FALSE_SECRECY = ("answer withheld", "withheld from this artifact")
+
+
 def validate_local_simulation(demo, artifact_root, root):
     """Check original local acceptance bytes, without inventing clip/job custody."""
     artifact, provenance = demo["artifact"], demo["provenance"]
@@ -231,6 +238,10 @@ def validate_local_simulation(demo, artifact_root, root):
         public = load_json(path)
         require(public == challenge_payload(record), "challenge artifact must be answer-free setup projection")
         require(demo["id"] == "simulated-mystery-g", "challenge identity mismatch")
+        require(demo["title"] == CHALLENGE_TITLE and CHALLENGE_LIMITATION in demo["limitations"],
+                "challenge must be labelled Earth-g practice shape, not a blind test")
+        require(not any(bad in line.lower() for line in [demo["title"], *demo["limitations"]] for bad in FALSE_SECRECY),
+                "challenge must not claim library answer secrecy")
         expected = [{"name": name, "value": record[name], "unit": "s", "label": "simulated",
                      "evidence": "artifact", "pointer": "/" + name}
                     for name in ("duration_s", "time_step_s")]

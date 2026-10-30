@@ -4,7 +4,7 @@
   "demos": [
     {
       "id": "simulated-mystery-g",
-      "title": "SIMULATED Mystery-g challenge (display-only; answer withheld)",
+      "title": "SIMULATED Mystery-g practice shape (Earth-g baseline; not a blind test - play blind in /lab)",
       "source": {
         "kind": "synthetic",
         "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
@@ -63,8 +63,8 @@
         "Pre-contact analytic motion only; no rebound or contact-response claim.",
         "Local processing only; no public raw-media redistribution or gate promotion.",
         "Challenge setup projection only; no new Mystery-g session or replay was executed.",
-        "Answer, seed, trajectory and diagnostic/replay hashes are withheld from this artifact.",
-        "Use the existing /lab Mystery-g toggle; reveal only after its server-owned fit.",
+        "Library setup is the challenge shape only: its accepted record uses standard Earth g, recoverable from the public repo and sibling traces; it is not a blind test.",
+        "The blind challenge is /lab Mystery-g: the server draws a hidden g per session and reveals it only after its server-owned fit.",
         "Offline provenance references are audit-only, not guest artifact endpoints.",
         "Gate RS NOT_MET; S12f VIRTUAL_LAB_ONLY; real-scene prediction WITHHELD."
       ],
