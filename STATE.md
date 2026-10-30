@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+S19d-orch69 EARLY INCOMPLETE (checker; finished ~9 min, PARTIAL; deadline long past so no return possible): NOT accepted
+as a run; evidence-only s19d-375-results.json merged (375px pass; dev PWA assets 404, manifest/SW never wired into
+app layout). DISPATCHED S19d-wire-orch91 sonnet medium (thread 01a18b7a-a1ac-76d2-9c90-1d99e8e9d108, deadline 2026-10-30T06:53:51+00:00).
+
 S18a flipped DONE. DISPATCHED S16b-orch89 gpt-6.1-sol medium (thread 01a18b78-dd9f-70c0-b0a9-d750a9b3a35f, deadline 2026-10-30T06:51:50+00:00). DISPATCHED S18b-orch90 gpt-6.1-sol medium (thread 01a18b78-ca2e-7c90-a500-734cba7b0a15, deadline 2026-10-30T06:51:50+00:00).
 
 Accepted ~06:00-06:25Z (TIMING PASS unless noted; ff-merged; fresh suites green):
