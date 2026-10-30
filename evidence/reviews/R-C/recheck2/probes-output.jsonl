@@ -1,0 +1,15 @@
+{"probe": "N-SETTLE-FORGED-ZERO", "expect": "trust boundary: forged self-consistent evidence accepted", "observed": {"settled_usd": "0E-8", "third_admitted": true, "first": [true, "0E-8", "0.50000000"]}, "met": true, "note": "No provider-authenticity anchor; same privilege class as N3 journal tamper"}
+{"probe": "N-SETTLED-FLAG-TAMPER", "expect": "pause", "observed": {"paused": true}, "met": true, "note": ""}
+{"probe": "N-SETTLE-REPLAY", "expect": "pause both", "observed": {"replay_paused": true, "resettle_paused": true}, "met": true, "note": ""}
+{"probe": "N-SETTLE-EVIDENCE-REUSE", "expect": "pause", "observed": {"second_settle_paused": true, "dup_app_then_reserve_paused": true}, "met": true, "note": ""}
+{"probe": "N-SETTLE-CONCURRENT", "expect": "<=1 success, journal settled once", "observed": {"wins": 1, "settled_rows": 1, "lock_left": false}, "met": true, "note": "threads, non-blocking O_EXCL lock: contention pauses (availability)"}
+{"probe": "N-CLAIM-CONCURRENT", "expect": "<=1 claim; later reclaim pauses", "observed": {"wins": 1, "reclaim_paused": true}, "met": true, "note": ""}
+{"probe": "N-CLAIM-FORGED", "expect": "pause all", "observed": {"unknown": true, "wrong_stage": true, "settled": true}, "met": true, "note": ""}
+{"probe": "N-CLAIM-BEARER", "expect": "documented: same-stage id is a bearer token", "observed": {"cross_claim_admitted": true}, "met": true, "note": "No extra slot/$; reserved amount is the parent's bound, not re-validated against the child job"}
+{"probe": "N-STANDALONE", "expect": "pause unless bounded+slot; shares 2-job envelope", "observed": {"no_amount": true, "empty_id": true, "slots_full": true, "after_settle_admitted": true, "next_paused": true}, "met": true, "note": ""}
+{"probe": "N-CORRUPT-JOURNAL", "expect": "pause all", "observed": {"reserve_gpu": true, "claim": true, "settle": true, "reserve_meta": true}, "met": true, "note": ""}
+{"probe": "N-MISSING-RECEIPT", "expect": "pause all", "observed": {"reserve_gpu": true, "claim": true, "settle": true, "reserve_meta": true}, "met": true, "note": ""}
+{"probe": "N-STALE-LOCK", "expect": "pause all", "observed": {"reserve_gpu": true, "claim": true, "settle": true, "reserve_meta": true}, "met": true, "note": ""}
+{"probe": "N-META-GLOBAL", "expect": "3 admitted then pause; replay pause", "observed": {"admitted": [true, true, true, false], "replay_paused": true}, "met": true, "note": ""}
+{"probe": "N-META-PREPOST", "expect": "journal row exists although POST crashed", "observed": {"transport": "crashed", "meta_rows": 1}, "met": true, "note": ""}
+{"probe": "N-WORKTREE", "expect": "main root", "observed": {"worktree": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon\\.worktrees\\R-C-recheck2-orch106", "resolved": "C:\\Users\\HP\\Documents\\Hackathon\\2026-10-26 - Meta Global AI Developer Hackathon"}, "met": true, "note": ""}
