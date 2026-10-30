@@ -39,6 +39,91 @@ def mask_rle(mask):
     counts = np.diff(bounds).tolist()
     return {"size": list(np.shape(mask)), "counts": ([0] + counts) if flat.size and flat[0] else counts}
 
+
+def chunk_spans(n, chunk):
+    """[start, end) spans; consecutive spans share one frame (re-seed); every span >= 3 frames (tracking._context)."""
+    if chunk < 3 or n < 3:
+        raise ValueError("chunk >= 3 and >= 3 frames required")
+    spans, start = [], 0
+    while True:
+        end = min(start + chunk, n)
+        if n - end + 1 < 3:  # a tail shorter than 3 frames joins this span
+            end = n
+        spans.append((start, end))
+        if end == n:
+            return spans
+        start = end - 1
+
+
+def iou(a, b):
+    import numpy as np
+    union = np.logical_or(a, b).sum()
+    return float(np.logical_and(a, b).sum() / union) if union else 0.0
+
+
+MIN_RESEED_IOU = 0.5
+
+
+def track_chunks(predictor, frames_dir, metadata, frame_map, frame_sha, prompt, object_id, chunk,
+                 after_chunk=lambda k: {}):
+    """Memory-bounded long segment: one SAM session per chunk (VRAM grows with session frames). Chunk k+1 starts on
+    chunk k's last frame and keeps the text-prompt object whose mask best overlaps (IoU >= MIN_RESEED_IOU) chunk k's
+    selected last-frame mask. Fails closed: below threshold, the remaining frames stay missing (never filled).
+    Returns (merged per-frame responses holding only the selected object as object_id, per-chunk provenance)."""
+    import shutil
+    import time
+    import numpy as np
+    frames_dir = Path(frames_dir)
+    height, width = metadata["height_px"], metadata["width_px"]
+    selected, chunks, previous = {}, [], None
+    for k, (start, end) in enumerate(chunk_spans(len(frame_map), chunk)):
+        t = time.monotonic()
+        part = frames_dir.parent / f"chunk{k:03d}"
+        part.mkdir()
+        for i in range(start, end):
+            shutil.copyfile(frames_dir / f"{i:05d}.jpg", part / f"{i - start:05d}.jpg")
+        session = predictor.handle_request(request={"type": "start_session", "resource_path": str(part)})["session_id"]
+        try:
+            predictor.handle_request(request={"type": "add_prompt", "session_id": session,
+                                              "frame_index": 0, "text": prompt})
+            rows = [(r["frame_index"], np.asarray(r["outputs"]["out_obj_ids"]),
+                     np.asarray(r["outputs"]["out_binary_masks"]), r["outputs"].get("out_boxes_xywh", []))
+                    for r in predictor.handle_stream_request(request={
+                        "type": "propagate_in_video", "session_id": session,
+                        "propagation_direction": "forward", "start_frame_index": 0})]
+        finally:
+            predictor.handle_request(request={"type": "close_session", "session_id": session})
+        shutil.rmtree(part)
+        if k == 0:
+            chosen, score = object_id, None
+        else:
+            first = next((r for r in rows if r[0] == 0), None)
+            cands = [] if first is None or previous is None else [
+                (iou(m, previous), int(i)) for i, m in zip(first[1], first[2])]
+            score, chosen = max(cands, default=(0.0, None))
+        seal = [[frame_map[i][0], frame_map[i][1], frame_sha[i]] for i in range(start, end)]
+        prov = {"chunk": k, "local_frames": [start, end - 1], "source_frames": [seal[0][0], seal[-1][0]],
+                "pts_s": [seal[0][1], seal[-1][1]], "local_object_id": chosen, "reseed_iou": score,
+                "seal_sha256": hashlib.sha256(json.dumps(seal).encode()).hexdigest()}
+        if chosen is None or (k and score < MIN_RESEED_IOU):
+            prov["stopped"] = "re-seed IoU below threshold; remaining frames missing"
+            chunks.append({**prov, **after_chunk(k), "elapsed_s": round(time.monotonic() - t, 1)})
+            break
+        for local, ids, masks, boxes in rows:
+            hit = np.flatnonzero(ids == chosen)
+            if len(hit) and masks[hit[0]].any():  # overlap frame keeps the earlier chunk's propagated mask
+                selected.setdefault(start + local, (masks[hit[0]].astype(bool), list(boxes[hit[0]])))
+        previous = selected[end - 1][0] if end - 1 in selected else None
+        prov["observed"] = sum(start <= i < end for i in selected)
+        chunks.append({**prov, **after_chunk(k), "elapsed_s": round(time.monotonic() - t, 1)})
+    none_ids, none_masks = np.zeros(0, dtype=np.int64), np.zeros((0, height, width), dtype=bool)
+    merged = [{"frame_index": i, "outputs": {
+        "out_obj_ids": np.array([object_id]) if i in selected else none_ids,
+        "out_binary_masks": selected[i][0][None] if i in selected else none_masks,
+        "out_boxes_xywh": [selected[i][1]] if i in selected else []}} for i in range(len(frame_map))]
+    return merged, chunks
+
+
 image = (
     modal.Image.debian_slim(python_version="3.12")
     .apt_install("git")
@@ -60,11 +145,11 @@ app = modal.App("s07b-orch14-sam31-track", image=image)
 
 
 @app.function(
-    gpu=["L4", "A10G"], cpu=2, memory=16384, timeout=900, startup_timeout=300,
+    gpu=["L4", "A10G"], cpu=2, memory=16384, timeout=1500, startup_timeout=300,
     retries=0, max_containers=1, scaledown_window=2, single_use_containers=True,
     secrets=[modal.Secret.from_name("real2simulation-hf-read")],
 )
-def track(frames, metadata, frame_map, prompt, object_id=OBJECT_ID, masks=False):
+def track(frames, metadata, frame_map, prompt, object_id=OBJECT_ID, masks=False, chunk=0):
     import sys
     import time
     import traceback
@@ -133,25 +218,44 @@ def track(frames, metadata, frame_map, prompt, object_id=OBJECT_ID, masks=False)
         if masks:
             out["masks"] = []
 
-        def logged_stream(request):  # per-frame object ids/boxes for object-id audit; RLE masks opt-in
+        def log(resp):  # per-frame object ids/boxes for object-id audit; RLE masks opt-in
+            o = resp.get("outputs", {})
+            out["stream"].append([resp.get("frame_index"),
+                                  [int(i) for i in o.get("out_obj_ids", [])],
+                                  [[round(float(v), 4) for v in b] for b in o.get("out_boxes_xywh", [])]])
+            if masks:
+                out["masks"].append([resp.get("frame_index"), {
+                    str(int(i)): mask_rle(m) for i, m in
+                    zip(o.get("out_obj_ids", []), o.get("out_binary_masks", []))}])
+
+        def logged_stream(request):
             for resp in stream(request):
-                o = resp.get("outputs", {})
-                out["stream"].append([resp.get("frame_index"),
-                                      [int(i) for i in o.get("out_obj_ids", [])],
-                                      [[round(float(v), 4) for v in b] for b in o.get("out_boxes_xywh", [])]])
-                if masks:
-                    out["masks"].append([resp.get("frame_index"), {
-                        str(int(i)): mask_rle(m) for i, m in
-                        zip(o.get("out_obj_ids", []), o.get("out_binary_masks", []))}])
+                log(resp)
                 yield resp
-        predictor.handle_stream_request = logged_stream
+        if not chunk:  # chunk mode logs the merged selected-object stream instead
+            predictor.handle_stream_request = logged_stream
         out["load_s"] = round(time.monotonic() - t, 1)
         out["stages"].append("model_loaded")
         t = time.monotonic()
-        result = track_training(predictor, prefix, metadata, frame_map, prompt=prompt,
-                                object_id=object_id, execute=True)
+        if chunk:
+            from measurement.tracking import sanitize_responses
+
+            def vram(k):
+                peak = torch.cuda.max_memory_allocated()
+                torch.cuda.empty_cache()
+                torch.cuda.reset_peak_memory_stats()
+                return {"peak_vram_bytes": peak}
+            merged, out["chunks"] = track_chunks(predictor, prefix, metadata, frame_map, [s for _, s in frames],
+                                                 prompt, object_id, chunk, vram)
+            for resp in merged:  # same row format as logged_stream; selected object only, as object_id
+                log(resp)
+            result = sanitize_responses(merged, metadata, frame_map, object_id=object_id)
+            out["peak_vram_bytes"] = max(c["peak_vram_bytes"] for c in out["chunks"])
+        else:
+            result = track_training(predictor, prefix, metadata, frame_map, prompt=prompt,
+                                    object_id=object_id, execute=True)
+            out["peak_vram_bytes"] = torch.cuda.max_memory_allocated()
         out["track_s"] = round(time.monotonic() - t, 1)
-        out["peak_vram_bytes"] = torch.cuda.max_memory_allocated()
         out["record"] = result.training_record()
         out["stages"].append("tracked")
     except BaseException:
@@ -220,9 +324,11 @@ def plan(clip="ST03", first=FIRST, last=LAST, prompt="apple", out=DEFAULT_OUT):
 
 @app.local_entrypoint()
 def main(clip: str = "ST03", first: int = FIRST, last: int = LAST, prompt: str = "apple",
-         object_id: int = OBJECT_ID, out: str = DEFAULT_OUT, masks: bool = False):
+         object_id: int = OBJECT_ID, out: str = DEFAULT_OUT, masks: bool = False, chunk: int = 0):
     if type(object_id) is not int or object_id < 0:  # fail before frames/GPU, not inside the container
         raise ValueError("nonnegative integer object_id required")
+    if chunk:
+        chunk_spans(last - first + 1, chunk)  # validate before frames/GPU
     path, metadata, dest = plan(clip, first, last, prompt, out)
     frames, frame_map = _frames(path, first, last)
     if os.environ.get("S07B_DRY"):
@@ -230,7 +336,7 @@ def main(clip: str = "ST03", first: int = FIRST, last: int = LAST, prompt: str =
         return
     with path.open("rb") as stream:
         metadata["source_sha256"] = hashlib.file_digest(stream, "sha256").hexdigest()
-    result = json.loads(track.remote(frames, metadata, frame_map, prompt, object_id, masks))
+    result = json.loads(track.remote(frames, metadata, frame_map, prompt, object_id, masks, chunk))
     result["frame_sha256"] = [sha for _, sha in frames]
     result["frame_map"] = frame_map
     dest.parent.mkdir(parents=True, exist_ok=True)
