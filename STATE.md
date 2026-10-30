@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-10-30T21:45Z — orch: S15r-orch163 accepted (DONE)
+
+- Opus high, TIMEBOX PASS, rebased on 07825ca5, diff within Owns. Fresh: node 114/114, api-workspace 21, railway-dev 16, pipeline 53. ff-merged 0b0f980c.
+- Q20 what-if: Q16 scenes get a non-synthetic labelled what-if artifact (scale_verified:false); S10 artifact for setup-validated scenes; simulator what-if mode (free_fall/projectile only; ramp/pendulum fail closed with reason); run-failure reason shown; nav/footer truthful; S14g-fix3 ledger staged.
+- DEV: api 81a74b99, web 0144fdf3, both rev 0b0f980c; deployments.json + verify.py/test_verify.py api pin updated by controller; verify.py exit 0.
+- Worker could not message controller (thread tool removed mid-run); final line read from its chat. Next: controller IAB walk of Run/Fit/Report on DEV for S15o.
+
 Oct30 ~21:20Z: Dispatched S15r-orch163 (Opus high; Q20=A what-if run + run-failure reason + nav/footer truth + ledger in the api allowlist;
 Owns extended to ShellFrame/AccountNav/stage.py/test_stage.py), thread 01a18eae-9dd0, dl 21:49:08Z. Next RID orch164.
 

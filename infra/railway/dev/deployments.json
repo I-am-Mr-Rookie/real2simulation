@@ -7,10 +7,10 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "4ad6b82c-7b39-4ef4-96ab-8a674989f883",
-      "previousDeploymentId": "e6bf5fe2-6013-42a6-9337-33888fcc9a1e",
-      "redeployNote": "S15q-orch162: stage.py web + railway up (spec body answers_to_spec shape; visible spec errors + retry; RECORDED provenance in job panel)",
-      "sourceRevision": "7fed014b4e1fbb7660c012baac2c287610594823",
+      "deploymentId": "0144fdf3-5747-4979-ba23-0fd8a2f91a6d",
+      "previousDeploymentId": "4ad6b82c-7b39-4ef4-96ab-8a674989f883",
+      "redeployNote": "S15r-orch163: stage.py web + railway up (Q20 what-if labels on run/fit/report; run failure reason; truthful nav/footer)",
+      "sourceRevision": "0b0f980c5519c6c2394e9f801e6786e91a83746e",
       "verifiedUtc": "2026-10-30T21:14:23Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
@@ -18,9 +18,9 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "a2777e67-be64-4455-9d71-c8c5803c40a0",
-      "previousDeploymentIds": ["3af47dc9-0158-4294-82ad-7b71c27420a8", "d520a4f9-6a77-472b-8a97-12a745f6aca1", "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"],
-      "sourceRevision": "49754d0b7ed031fb5ea21f659423a13fcac7e510",
+      "deploymentId": "81a74b99-ef55-4f69-8459-384ff306b390",
+      "previousDeploymentIds": ["a2777e67-be64-4455-9d71-c8c5803c40a0", "3af47dc9-0158-4294-82ad-7b71c27420a8", "d520a4f9-6a77-472b-8a97-12a745f6aca1", "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"],
+      "sourceRevision": "0b0f980c5519c6c2394e9f801e6786e91a83746e",
       "verifiedUtc": "2026-10-30T20:29:33Z",
       "variableNamesAdded": {"WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
                              "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
