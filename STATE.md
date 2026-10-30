@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+Oct30 ~19:45Z: controller chat reloaded, codex_app thread tools restored. Redispatched errored workers with fresh RIDs/timeboxes: S13k-orch153
+(Opus med, thread 01a18e56-6fc4) and S25b-orch154 (Sonnet med, thread 01a18e57-37ea), dl 20:12:49Z (02:12 Dhaka). Removed empty S13k-orch151 worktree
++ branch (no commits). Receipts DISPATCH-orch153/154.json. Waiting: S13k -> S04m -> S04o -> S15o; S25b -> S25c. Next RID orch155.
+
 Oct30 ~17:50Z wake: ACCEPTED S22b-orch149 DONE (DEV pre-candidate guest library QA, not judging-candidate; caveat: IAB profile was
 signed in as owner, guest behaviour confirmed by cookie-less curl). L1-L6 PASS, L7 PARTIAL (400 vs 404). Defects for S22f: D1 P2 /lab
 raw local_lab_disabled -> Mystery-g unusable on dev; D2 P2 API host lacks /api/library/*; D3-D7 P3 (400 vs 404, 0.2 s replays, Clerk
