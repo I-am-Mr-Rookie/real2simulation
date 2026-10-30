@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 05:48 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 05:56 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **219 / 252** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 1 open reviews
+Progress: **220 / 253** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 1 open reviews
 
 ## Reviews for Koushik
 
@@ -23,10 +23,9 @@ Progress: **219 / 252** runs done · 0 in progress · 0 blocked · 0 waiting for
 - …and 1 more ready in this lane
 
 **CLAUDE**
-- [ ] **S07j** — Codex (native Claude) · Opus 5.5, effort high — Fix batch-track CUDA OOM and add an explicit reviewed second standalone GPU envelope (30 min)
-- [ ] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min)
+- [~] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min) *(partial: resume it)*
 - [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint workspace accessibility and evidence (30 min)
-- …and 1 more ready in this lane
+- [ ] **S15v** — Codex (native Claude) · Opus 5.5, effort high — Product: accept 30 fps phone clips, ask for a known size, report uncertainty instead of failing (30 min)
 
 ## Waiting for Koushik
 
@@ -126,7 +125,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (14/17)</summary>
+<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (15/18)</summary>
 
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [x] **S02g** — Codex · GPT-6.1 Sol, effort high — Verify original FF01/FF02 calibration sources (30 min)
@@ -141,8 +140,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S07f** — Codex · GPT-6.1 Sol, effort high — Evaluate Apollo stretch and record Gate M decision (30 min)
 - [x] **S07g** — Codex (native Claude) · Opus 5.5, effort high — Owner clips: register in clips.csv and measure g on 01_demo_hero with the real pipeline (30 min)
 - [x] **S07i** — Codex (native Claude) · Opus 5.5, effort high — OWN01 measured g from the real SAM 3.1 track; prepare one batched track for OWN02-OWN12 (30 min)
-- [ ] **S07j** — Codex (native Claude) · Opus 5.5, effort high — Fix batch-track CUDA OOM and add an explicit reviewed second standalone GPU envelope (30 min)
-- [ ] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min)
+- [x] **S07j** — Codex (native Claude) · Opus 5.5, effort high — Fix batch-track CUDA OOM and add an explicit reviewed second standalone GPU envelope (30 min)
+- [ ] **S07k** — Codex (native Claude) · Opus 5.5, effort high — Pre-registered fall-window/release rule v2 from SAM tracks; re-measure owner clips (30 min)
+- [~] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min) *(partial: resume it)*
 - [x] **R-M** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
 - [x] **R-M2** — Codex (native Claude) · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min)
 
