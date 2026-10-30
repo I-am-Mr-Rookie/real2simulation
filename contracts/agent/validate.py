@@ -55,8 +55,15 @@ _UNIT = (r"(?:(?:centi|milli|kilo)?(?:metres?|meters?)|(?:kilo)?grams?|newtons?|
          r"yards?|miles?|pounds?|lbs?|gees?|kg|cm|mm|km|ft|hz|pa|ms|min|hr|rad|deg|m|s|g|n|j|w|h)")
 _LINK = rf"(?:{_UNIT}|per|squared|cubed|or)"
 _GAP = rf"[^\w.!?;{CITE}]*"  # spaces/symbols only: a word or sentence end breaks the binding
-_BOUND = re.compile(rf"(?:{CITE}|\bin\b)(?:{_GAP}\b{_LINK}\b)*", re.I)
+# S14g-fix7 (R-A F1-R4): "in <units>" binds only when directly followed (optional ":"/"=") by a CITE or clause end.
+_BOUND = re.compile(rf"{CITE}(?:{_GAP}\b{_LINK}\b)*|\bin\b(?:{_GAP}\b{_LINK}\b)+(?=\s*[:=]?\s*(?:{CITE}|[.!?;]|$))",
+                    re.I)
 _UNIT_WORD = re.compile(rf"(?<![\w'’.]){_UNIT}(?![\w'’])", re.I)  # not "it's"/"e.g."
+# S14g-fix7 (R-A F1-R4): ONE clause rule ends the amount-word whack-a-mole: a clause (split at . ! ? ;) holding any
+# unit word may hold no amount word at all; cited quantities are CITE, not words. Fail-closed: "a drop in seconds" too.
+_CLAUSE = re.compile(r"[^.!?;]+")
+_AMOUNT = re.compile(r"\b(?:one|ones|an?|single|full|whole|half|halves|couple|dozen|several|few|both|once|pair)\b",
+                     re.I)
 
 
 class AgentContractError(ValueError):
@@ -78,6 +85,10 @@ def numeric_issue(text: str) -> str | None:
     if match:
         return f"untraced_number_word {match.group(0)!r}"
     for run in (text, text.translate(_INVISIBLE)):
+        for clause in _CLAUSE.findall(run):
+            amount = _AMOUNT.search(clause) if _UNIT_WORD.search(clause) else None
+            if amount:
+                return f"amount_word_in_unit_clause {amount.group(0)!r}"
         unit = _UNIT_WORD.search(_BOUND.sub(" ", run))
         if unit:
             return f"unbound_unit_word {unit.group(0)!r}"

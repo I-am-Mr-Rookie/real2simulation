@@ -489,6 +489,150 @@
     "."
    ],
    false
+  ],
+  [
+   "ra7-units-before-one",
+   [
+    "The elapsed time in seconds is one: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-one-before-units",
+   [
+    "The elapsed time is one in seconds: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-units-before-full-one",
+   [
+    "The elapsed time in seconds is a full one. Tool result: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-units-before-single-one",
+   [
+    "The delay in minutes is a single one: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-distance-units-before-one",
+   [
+    "The distance in metres is one: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-distance-one-before-units",
+   [
+    "The distance is one in metres: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-units-before-two",
+   [
+    "The elapsed time in seconds is two: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-two-before-units",
+   [
+    "The elapsed time is two in seconds: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-units-before-digit",
+   [
+    "The elapsed time in seconds is 1: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-amount-inside-label",
+   [
+    "The elapsed time in one second: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-modifier-inside-label",
+   [
+    "The elapsed time in whole seconds: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-fix6-closed-control",
+   [
+    "The elapsed time is a full second: ",
+    null
+   ],
+   true
+  ],
+  [
+   "ra7-benign-time-label",
+   [
+    "Elapsed time in seconds = ",
+    null
+   ],
+   false
+  ],
+  [
+   "ra7-benign-distance-label",
+   [
+    "The measured distance in metres: ",
+    null
+   ],
+   false
+  ],
+  [
+   "ra7-benign-one-pronoun",
+   [
+    "This one fits the scene. ",
+    null
+   ],
+   false
+  ],
+  [
+   "ra7-benign-double-check",
+   [
+    "Please double-check the fit. ",
+    null
+   ],
+   false
+  ],
+  [
+   "ra7-label-then-claim",
+   [
+    "Elapsed time in seconds is ",
+    null
+   ],
+   true
+  ],
+  [
+   "benign7-label-sentence-end",
+   [
+    "Report the drop time in seconds. ",
+    null
+   ],
+   false
   ]
  ]
 }

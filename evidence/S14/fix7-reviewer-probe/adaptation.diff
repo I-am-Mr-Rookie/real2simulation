@@ -1,0 +1,53 @@
+diff --git a/evidence/reviews/R-A/recheck-fix6/probe.py b/evidence/S14/fix7-reviewer-probe/recheck-fix6/probe.py
+index 4023fba..8919d77 100644
+--- a/evidence/reviews/R-A/recheck-fix6/probe.py
++++ b/evidence/S14/fix7-reviewer-probe/recheck-fix6/probe.py
+@@ -220,8 +220,8 @@ with patch.object(gate.F4, "production_setup", observe_setup):
+ assert len(setup_calls) == 10 and all(r["bundle_is_none"] and r["real_binding"] for r in setup_calls)
+ assert f3.interview.validate_setup is validate_setup
+ replay["summary"]["scope"] = replay["summary"]["scope"].replace("fix5 structural unit rule",
+-    "fix6 unit rule (no bare label binding)")
+-assert replay["summary"] == read(ROOT / "evidence/S14/S14g-fix6-offline.json")["summary"]
++    "fix7 clause unit rule (no amount word in a unit clause)")
++assert replay["summary"] == read(ROOT / "evidence/S14/S14g-fix7-offline.json")["summary"]
+ summary = replay["summary"]
+ assert summary["gate_a"] == "MET_AMENDED_Q16" and summary["gate_a_label"] == "scale unverified, not setup-validated"
+ assert summary["numeric_contract_valid_specs"] == summary["distinct_recorded_scenes"] == 10
+@@ -249,12 +249,12 @@ for specs_count, turns_count, invention, expected in (
+ # Bounded independent extension: an amount before/after an "in <units>" label is not a pronoun.
+ # These are SYNTHETIC model responses; tools below retain the saved simulator values, not physical evidence.
+ binder_cases = [
+-    ("units-before-one", "The elapsed time in seconds is one: ", "duration", True, True),
+-    ("one-before-units", "The elapsed time is one in seconds: ", "duration", True, True),
+-    ("units-before-full-one", "The elapsed time in seconds is a full one. Tool result: ", "duration", True, True),
+-    ("units-before-single-one", "The delay in minutes is a single one: ", "duration", True, True),
+-    ("distance-units-before-one", "The distance in metres is one: ", "drop", True, True),
+-    ("distance-one-before-units", "The distance is one in metres: ", "drop", True, True),
++    ("units-before-one", "The elapsed time in seconds is one: ", "duration", True, False),
++    ("one-before-units", "The elapsed time is one in seconds: ", "duration", True, False),
++    ("units-before-full-one", "The elapsed time in seconds is a full one. Tool result: ", "duration", True, False),
++    ("units-before-single-one", "The delay in minutes is a single one: ", "duration", True, False),
++    ("distance-units-before-one", "The distance in metres is one: ", "drop", True, False),
++    ("distance-one-before-units", "The distance is one in metres: ", "drop", True, False),
+     ("units-before-two", "The elapsed time in seconds is two: ", "duration", True, False),
+     ("two-before-units", "The elapsed time is two in seconds: ", "duration", True, False),
+     ("units-before-digit", "The elapsed time in seconds is 1: ", "duration", True, False),
+@@ -306,15 +306,15 @@ for name, text, quantity, numeric_claim, expect_accept in binder_cases:
+         assert text in row["shown"] and not row["blocked"]
+         binder_gate_turns.append({"case": name, "text": text, **{k: row[k] for k in
+             ("attempts", "model_reply_shown", "invented", "shown", "blocked")}})
+-assert len(binder_gate_turns) == 6
++assert len(binder_gate_turns) == 0
+ 
+ oracle_tree = ast.parse((ROOT / "evidence/S14/S14g_fix_oracle.py").read_text("utf-8"))
+ imports = [n.module for n in ast.walk(oracle_tree) if isinstance(n, ast.ImportFrom)]
+ assert not any(name and name.startswith("contracts.agent") for name in imports)
+-assert fix.self_check() == {"corpus_cases": 66, "oracle_agrees": True}
++assert fix.self_check() == {"corpus_cases": 84, "oracle_agrees": True}
+ after = snapshot()
+ assert before == after, "protected inputs changed"
+-output = {"verdict": "CHANGES_REQUIRED", "prior_fixes": "F1_R3_CLOSED_PRIOR_FIXES_PRESERVED",
++output = {"verdict": "FIX7_WORKER_RERUN_NOT_A_REVIEW", "prior_fixes": "F1_R3_CLOSED_PRIOR_FIXES_PRESERVED",
+           "binder_probes": binder_results, "binder_surfaces": binder_surfaces, "binder_gate_turns": binder_gate_turns,
+           "exact_prior_cases": results, "visible_surfaces": surfaces,
+           "cite_forgeries": forgeries, "bounded_gap_probes": gap_results, "bounded_gap_surfaces": gap_surfaces,
