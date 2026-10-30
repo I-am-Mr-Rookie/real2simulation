@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+Claude probe orch59 progressing (quota recovered ~03:46Z).
+DISPATCHED R-C-orch60 Opus high (threadId:01a18aef-07a8-72f0-a39b-60ca7faf38ab,hostId:local, deadline 2026-10-30T04:21:21+00:00) from 429 WIP.
+DISPATCHED S14g-fix-orch61 Opus high (threadId:01a18af1-4397-7f03-a1ef-f7f44a8f5f78,hostId:local, deadline 2026-10-30T04:23:39+00:00) from 429 WIP.
+S14g-fix-orch61 Meta cap +$2.00 (prior est $0.97).
+
 CLAUDE PROBE: DISPATCHED S12e-fix2b-orch59 Opus high from orch56 WIP (threadId:01a18aea-630c-7b82-bf7c-26c18c10b090,hostId:local, deadline 2026-10-30T04:16:18+00:00). If 429 again: wait, no churn.
 
 S07-pts-audit-orch58 DONE (Sol medium; TIMEBOX PASS; ff-merged). 23 PTS-bearing files audited: 18 OK,
