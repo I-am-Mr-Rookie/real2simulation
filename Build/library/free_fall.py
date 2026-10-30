@@ -57,7 +57,9 @@ def simulated_demos(root, template):
                 "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
                 "Gate M: " + gate["physical_Gate_M"],
                 "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
-                "Pre-contact analytic motion only; no rebound or contact-response claim.",
+                ("Small-angle analytic reference only; no real-clip pendulum prediction."
+                 if template == "pendulum" else
+                 "Pre-contact analytic motion only; no rebound or contact-response claim."),
                 "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
                 "Local processing only; no public raw-media redistribution or gate promotion.",
             ],

@@ -1,0 +1,1129 @@
+{
+  "manifest": {
+    "manifest_sha256": "8236389bedec3c03c3d7c185299f6c96a43dee7eef6130d8d27a185d4e6653ca",
+    "demos": [
+      {
+        "id": "rm02-s06d-descriptor",
+        "artifact": {
+          "kind": "scene-descriptor",
+          "media_type": "application/json",
+          "path": "objects/sha256/d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754.json",
+          "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754",
+          "bytes": 3370
+        },
+        "provenance": {
+          "run_id": "S06d-orch23",
+          "report": {
+            "path": "Run-System/Runs/S06d-orch23/REPORT.md",
+            "sha256": "41f459f9d8ffd88505c6a5c93b3132c04cd6414927c96eb8293d992e12fef157"
+          },
+          "ledger": {
+            "path": "evidence/S06/S06d/job-ledger.json",
+            "sha256": "c313cf6f8f686a51100801fcdf132874981f68f3b0dcf503c7bd6730647e1e3e"
+          },
+          "app_id": "ap-DwCMDeReYWQYBxl3xvR2IO",
+          "artifact_evidence": {
+            "path": "evidence/S06/S06d/scene-RM02-gpu.json",
+            "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754"
+          },
+          "numeric": [
+            {
+              "name": "function_elapsed_s",
+              "value": 20.955,
+              "unit": "s",
+              "label": "measured",
+              "evidence": "ledger",
+              "pointer": "/jobs/0/function_elapsed_s"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      }
+    ],
+    "defaults": null
+  },
+  "free-fall": {
+    "manifest_sha256": "4cd1a398ff78f818c9f38babba2a808f9e7dcdfe88d9620cf439bef3095a559e",
+    "demos": [
+      {
+        "id": "rm02-s06d-descriptor",
+        "artifact": {
+          "kind": "scene-descriptor",
+          "media_type": "application/json",
+          "path": "objects/sha256/d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754.json",
+          "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754",
+          "bytes": 3370
+        },
+        "provenance": {
+          "run_id": "S06d-orch23",
+          "report": {
+            "path": "Run-System/Runs/S06d-orch23/REPORT.md",
+            "sha256": "41f459f9d8ffd88505c6a5c93b3132c04cd6414927c96eb8293d992e12fef157"
+          },
+          "ledger": {
+            "path": "evidence/S06/S06d/job-ledger.json",
+            "sha256": "c313cf6f8f686a51100801fcdf132874981f68f3b0dcf503c7bd6730647e1e3e"
+          },
+          "app_id": "ap-DwCMDeReYWQYBxl3xvR2IO",
+          "artifact_evidence": {
+            "path": "evidence/S06/S06d/scene-RM02-gpu.json",
+            "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754"
+          },
+          "numeric": [
+            {
+              "name": "function_elapsed_s",
+              "value": 20.955,
+              "unit": "s",
+              "label": "measured",
+              "evidence": "ledger",
+              "pointer": "/jobs/0/function_elapsed_s"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "simulated-free-fall-baseline-short",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/0",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 9.81,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/0/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 0.2,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/0/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.001,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/0/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 201,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/0/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 1.5543122344752192e-15,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/0/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 7.922080705786024e-15,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/0/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "simulated-free-fall-upward-launch",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/1",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 9.81,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/1/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 0.4,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/1/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.002,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/1/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 201,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/1/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 5.773159728050814e-15,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/1/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 2.8317359351282158e-14,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/1/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "simulated-free-fall-tiny-height",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/2",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 9.81,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/2/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 0.02,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/2/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.0001,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/2/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 201,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/2/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 6.661338147750939e-16,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/2/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 3.3951774453368367e-13,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/2/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "simulated-free-fall-low-gravity-long-horizon",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/3",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 3.7,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/3/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 0.35,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/3/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.001,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/3/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 351,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/3/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 1.9984014443252818e-15,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/3/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 4.9757894661071454e-15,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/3/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      }
+    ],
+    "defaults": null
+  },
+  "projectile": {
+    "manifest_sha256": "fe0d81714b51f69b01bf27f6981de96ba512a7dc7bc681c8cf949453a17bda87",
+    "demos": [
+      {
+        "id": "simulated-projectile-baseline-short",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/4",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 9.81,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/4/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 0.2,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/4/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.001,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/4/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 201,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/4/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 1.5582722720639762e-15,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/4/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 5.561909207513163e-15,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/4/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "simulated-projectile-zero-horizontal",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/5",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 9.81,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/5/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 0.4,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/5/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.002,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/5/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 201,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/5/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 1.5543122344752192e-15,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/5/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 1.980520176446507e-15,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/5/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "simulated-projectile-tiny-height",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/6",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 9.81,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/6/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 0.03,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/6/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.0001,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/6/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 301,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/6/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 8.886678698825137e-16,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/6/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 1.0211348682342259e-13,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/6/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "simulated-projectile-low-gravity-long-horizon",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/7",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 3.7,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/7/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 0.4,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/7/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.001,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/7/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 401,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/7/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 8.881784197001252e-16,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/7/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 3.0006027692571796e-15,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/7/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      }
+    ],
+    "defaults": null
+  },
+  "pendulum": {
+    "manifest_sha256": "3742b222ca8b9513fafeface3eb996746810ccdfcd262cb38bf1e9ef32d9ef32",
+    "demos": [
+      {
+        "id": "simulated-pendulum-short-small-angle",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/11",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 9.81,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/11/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 0.25,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/11/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.001,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/11/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 251,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/11/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 5.233543940214051e-06,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/11/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 0.00010467087880428101,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/11/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "simulated-pendulum-two-period-horizon",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/12",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 9.81,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/12/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 4.0,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/12/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.001,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/12/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 4001,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/12/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 0.00035258588988658536,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/12/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 0.004407323623582317,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/12/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "simulated-pendulum-initial-angular-velocity",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/13",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 3.7,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/13/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 1.5,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/13/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.001,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/13/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 1501,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/13/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 1.757878922703132e-05,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/13/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 0.00047576269895382,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/13/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "simulated-pendulum-zero-answer-equilibrium",
+        "artifact": {
+          "kind": "simulation-record",
+          "media_type": "application/json",
+          "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+          "bytes": 22289
+        },
+        "provenance": {
+          "execution": "accepted-local-simulation",
+          "run_id": "S10hi-gate",
+          "report": {
+            "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+            "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+          },
+          "artifact_evidence": {
+            "path": "evidence/S10/acceptance/acceptance.json",
+            "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+          },
+          "record_pointer": "/cases/14",
+          "numeric": [
+            {
+              "name": "gravity_m_s2",
+              "value": 9.81,
+              "unit": "m/s^2",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/14/gravity_m_s2"
+            },
+            {
+              "name": "duration_s",
+              "value": 0.5,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/14/duration_s"
+            },
+            {
+              "name": "time_step_s",
+              "value": 0.001,
+              "unit": "s",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/14/time_step_s"
+            },
+            {
+              "name": "samples",
+              "value": 501,
+              "unit": "samples",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/14/samples"
+            },
+            {
+              "name": "position_error_m",
+              "value": 0.0,
+              "unit": "m",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/14/position_error_m"
+            },
+            {
+              "name": "relative_error",
+              "value": 0.0,
+              "unit": "1",
+              "label": "simulated",
+              "evidence": "artifact",
+              "pointer": "/cases/14/relative_error"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      }
+    ],
+    "defaults": {
+      "demo_id": "simulated-pendulum-short-small-angle",
+      "autoplay": false,
+      "physics_enabled": false,
+      "real_scene_prediction": "WITHHELD",
+      "parameters": [
+        {
+          "name": "gravity_m_s2",
+          "value": 9.81,
+          "unit": "m/s^2",
+          "label": "simulated",
+          "evidence": "artifact",
+          "pointer": "/cases/11/gravity_m_s2"
+        },
+        {
+          "name": "duration_s",
+          "value": 0.25,
+          "unit": "s",
+          "label": "simulated",
+          "evidence": "artifact",
+          "pointer": "/cases/11/duration_s"
+        },
+        {
+          "name": "time_step_s",
+          "value": 0.001,
+          "unit": "s",
+          "label": "simulated",
+          "evidence": "artifact",
+          "pointer": "/cases/11/time_step_s"
+        }
+      ],
+      "fallback_evidence": {
+        "path": "evidence/S12/S12f-fallback.json",
+        "sha256": "a83af728ffe7822f651f9743f3529c1c9ba4ce010c3a9cf0eec067bd315aee8d"
+      }
+    }
+  },
+  "scenes": {
+    "manifest_sha256": "91b01b451ea3104c60cd663e72df51a13ac5a5cef2dfa181ed6385b32553ffa6",
+    "demos": [
+      {
+        "id": "rm02-s06d-descriptor",
+        "artifact": {
+          "kind": "scene-descriptor",
+          "media_type": "application/json",
+          "path": "objects/sha256/d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754.json",
+          "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754",
+          "bytes": 3370
+        },
+        "provenance": {
+          "run_id": "S06d-orch23",
+          "report": {
+            "path": "Run-System/Runs/S06d-orch23/REPORT.md",
+            "sha256": "41f459f9d8ffd88505c6a5c93b3132c04cd6414927c96eb8293d992e12fef157"
+          },
+          "ledger": {
+            "path": "evidence/S06/S06d/job-ledger.json",
+            "sha256": "c313cf6f8f686a51100801fcdf132874981f68f3b0dcf503c7bd6730647e1e3e"
+          },
+          "app_id": "ap-DwCMDeReYWQYBxl3xvR2IO",
+          "artifact_evidence": {
+            "path": "evidence/S06/S06d/scene-RM02-gpu.json",
+            "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754"
+          },
+          "numeric": [
+            {
+              "name": "function_elapsed_s",
+              "value": 20.955,
+              "unit": "s",
+              "label": "measured",
+              "evidence": "ledger",
+              "pointer": "/jobs/0/function_elapsed_s"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      },
+      {
+        "id": "rm04-s06f-descriptor",
+        "artifact": {
+          "kind": "scene-descriptor",
+          "media_type": "application/json",
+          "path": "objects/sha256/c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76.json",
+          "sha256": "c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76",
+          "bytes": 3405
+        },
+        "provenance": {
+          "run_id": "S06f-orch25",
+          "report": {
+            "path": "Run-System/Runs/S06f-orch25/REPORT.md",
+            "sha256": "2c801e1ec5acf72f36c6c44a67c41c49dcc3715e7e006e0418ed14b4118b7f5e"
+          },
+          "ledger": {
+            "path": "evidence/S06/S06f/job-ledger.json",
+            "sha256": "ed4362138550147b6bf64131efa631ec1f4595f0984b6de4e0ee9bfe0a7e5c7c"
+          },
+          "app_id": "ap-yeKuf0FjgU0P0H8mB9lOvt",
+          "artifact_evidence": {
+            "path": "evidence/S06/S06f/scene-RM04-gpu.json",
+            "sha256": "c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76"
+          },
+          "numeric": [
+            {
+              "name": "whole_command_wall_s",
+              "value": 63.3,
+              "unit": "s",
+              "label": "measured",
+              "evidence": "ledger",
+              "pointer": "/jobs/1/whole_command_wall_s"
+            }
+          ]
+        },
+        "scale_label": "SCALE_UNVERIFIED",
+        "availability": "metadata-only"
+      }
+    ],
+    "defaults": {
+      "demo_id": "rm02-s06d-descriptor",
+      "autoplay": false,
+      "physics_enabled": false,
+      "real_scene_prediction": "WITHHELD",
+      "parameters": [],
+      "fallback_evidence": {
+        "path": "evidence/S12/S12f-fallback.json",
+        "sha256": "a83af728ffe7822f651f9743f3529c1c9ba4ce010c3a9cf0eec067bd315aee8d"
+      }
+    }
+  }
+}

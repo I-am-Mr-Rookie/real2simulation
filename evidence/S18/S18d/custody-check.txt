@@ -1,0 +1,5 @@
+VALID manifest: 1 demos; exact bytes and numeric pointers PASS
+VALID free-fall: 5 demos; exact bytes and numeric pointers PASS
+VALID projectile: 4 demos; exact bytes and numeric pointers PASS
+VALID pendulum: 4 demos; exact bytes and numeric pointers PASS
+VALID scenes: 2 demos; exact bytes and numeric pointers PASS

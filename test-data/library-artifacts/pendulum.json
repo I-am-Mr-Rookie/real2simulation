@@ -1,0 +1,430 @@
+{
+  "schema_version": "1.0.0",
+  "audience": "local-processing-only",
+  "demos": [
+    {
+      "id": "simulated-pendulum-short-small-angle",
+      "title": "SIMULATED pendulum: short-small-angle (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/11",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 9.81,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/11/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 0.25,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/11/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/11/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 251,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/11/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 5.233543940214051e-06,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/11/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 0.00010467087880428101,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/11/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Small-angle analytic reference only; no real-clip pendulum prediction.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion.",
+        "SYNTHETIC pendulum; Gate RS NOT_MET; S12f fallback VIRTUAL_LAB_ONLY.",
+        "Real-scene prediction WITHHELD; acceptance summaries are not playable trajectories."
+      ]
+    },
+    {
+      "id": "simulated-pendulum-two-period-horizon",
+      "title": "SIMULATED pendulum: two-period-horizon (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/12",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 9.81,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/12/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 4.0,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/12/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/12/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 4001,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/12/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 0.00035258588988658536,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/12/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 0.004407323623582317,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/12/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Small-angle analytic reference only; no real-clip pendulum prediction.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion.",
+        "SYNTHETIC pendulum; Gate RS NOT_MET; S12f fallback VIRTUAL_LAB_ONLY.",
+        "Real-scene prediction WITHHELD; acceptance summaries are not playable trajectories."
+      ]
+    },
+    {
+      "id": "simulated-pendulum-initial-angular-velocity",
+      "title": "SIMULATED pendulum: initial-angular-velocity (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/13",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 3.7,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/13/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 1.5,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/13/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/13/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 1501,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/13/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 1.757878922703132e-05,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/13/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 0.00047576269895382,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/13/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Small-angle analytic reference only; no real-clip pendulum prediction.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion.",
+        "SYNTHETIC pendulum; Gate RS NOT_MET; S12f fallback VIRTUAL_LAB_ONLY.",
+        "Real-scene prediction WITHHELD; acceptance summaries are not playable trajectories."
+      ]
+    },
+    {
+      "id": "simulated-pendulum-zero-answer-equilibrium",
+      "title": "SIMULATED pendulum: zero-answer-equilibrium (display-only)",
+      "source": {
+        "kind": "synthetic",
+        "description": "Project-authored virtual-lab simulation; no external footage or clip-derived measurements."
+      },
+      "artifact": {
+        "kind": "simulation-record",
+        "media_type": "application/json",
+        "path": "objects/sha256/60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195.json",
+        "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195",
+        "bytes": 22289
+      },
+      "provenance": {
+        "execution": "accepted-local-simulation",
+        "run_id": "S10hi-gate",
+        "report": {
+          "path": "Run-System/Runs/S10hi-gate/REPORT.md",
+          "sha256": "74919c6d128498d614112b84277bfbec7a58081b485c2f55f96954ce99ddeefb"
+        },
+        "artifact_evidence": {
+          "path": "evidence/S10/acceptance/acceptance.json",
+          "sha256": "60e7437f97b45bb4f057248406cdc6443d2635ff3fef3692a1185fb5fcbee195"
+        },
+        "record_pointer": "/cases/14",
+        "numeric": [
+          {
+            "name": "gravity_m_s2",
+            "value": 9.81,
+            "unit": "m/s^2",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/14/gravity_m_s2"
+          },
+          {
+            "name": "duration_s",
+            "value": 0.5,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/14/duration_s"
+          },
+          {
+            "name": "time_step_s",
+            "value": 0.001,
+            "unit": "s",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/14/time_step_s"
+          },
+          {
+            "name": "samples",
+            "value": 501,
+            "unit": "samples",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/14/samples"
+          },
+          {
+            "name": "position_error_m",
+            "value": 0.0,
+            "unit": "m",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/14/position_error_m"
+          },
+          {
+            "name": "relative_error",
+            "value": 0.0,
+            "unit": "1",
+            "label": "simulated",
+            "evidence": "artifact",
+            "pointer": "/cases/14/relative_error"
+          }
+        ]
+      },
+      "label": "simulated",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_RUN"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "SIMULATED virtual-lab output; not measured from RM02 or any real clip.",
+        "Gate M: NOT_MET_INPUT_READINESS",
+        "SCALE_UNVERIFIED; simulated units do not calibrate any real footage.",
+        "Small-angle analytic reference only; no real-clip pendulum prediction.",
+        "Stored acceptance metrics and replay hashes only; no trajectory or playable assets bundled.",
+        "Local processing only; no public raw-media redistribution or gate promotion.",
+        "SYNTHETIC pendulum; Gate RS NOT_MET; S12f fallback VIRTUAL_LAB_ONLY.",
+        "Real-scene prediction WITHHELD; acceptance summaries are not playable trajectories."
+      ]
+    }
+  ],
+  "defaults": {
+    "demo_id": "simulated-pendulum-short-small-angle",
+    "autoplay": false,
+    "physics_enabled": false,
+    "real_scene_prediction": "WITHHELD",
+    "parameters": [
+      {
+        "name": "gravity_m_s2",
+        "value": 9.81,
+        "unit": "m/s^2",
+        "label": "simulated",
+        "evidence": "artifact",
+        "pointer": "/cases/11/gravity_m_s2"
+      },
+      {
+        "name": "duration_s",
+        "value": 0.25,
+        "unit": "s",
+        "label": "simulated",
+        "evidence": "artifact",
+        "pointer": "/cases/11/duration_s"
+      },
+      {
+        "name": "time_step_s",
+        "value": 0.001,
+        "unit": "s",
+        "label": "simulated",
+        "evidence": "artifact",
+        "pointer": "/cases/11/time_step_s"
+      }
+    ],
+    "fallback_evidence": {
+      "path": "evidence/S12/S12f-fallback.json",
+      "sha256": "a83af728ffe7822f651f9743f3529c1c9ba4ce010c3a9cf0eec067bd315aee8d"
+    }
+  }
+}

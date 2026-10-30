@@ -132,8 +132,10 @@ def validate(manifest, artifact_root, evidence_root=ROOT):
             sources = [s for s in payload.get("provenance", {}).get("sources", [])
                        if s.get("clip_id", "").upper() == source["clip_id"]]
             require(len(sources) == 1, "artifact clip mismatch")
-            require(all(sources[0].get(k) == source[field] for k, field in
-                        (("source_url", "source_url"), ("license", "licence"), ("attribution", "attribution"))),
+            # scene_job uses the contract spelling; CSV credit remains verbatim.
+            scene_licence = {"Pexels License": "Pexels"}.get(source["licence"], source["licence"])
+            require(sources[0].get("license") == scene_licence and
+                    all(sources[0].get(k) == source[k] for k in ("source_url", "attribution")),
                     "artifact source metadata mismatch")
             require(payload.get("scale", {}).get("status") != "verified", "v1 only accepts unverified scale")
             require(payload.get("render", {}).get("point_count", 0) <= 2_000_000, "viewer point limit")
@@ -142,6 +144,23 @@ def validate(manifest, artifact_root, evidence_root=ROOT):
             require(demo["label"] == {"simulation-record": "simulated", "fixture-record": "fixture"}[artifact["kind"]], "artifact kind/label mismatch")
             require(payload.get("label") == demo["label"] and payload.get("clip_id") == source["clip_id"], "simulation/fixture identity mismatch")
         require(demo["scale_verified"] is False, "scale verification unsupported by v1")
+    if "defaults" in manifest:
+        defaults = manifest["defaults"]
+        selected = next((d for d in manifest["demos"] if d["id"] == defaults["demo_id"]), None)
+        require(selected is not None, "default demo not found")
+        require(all(p in selected["provenance"]["numeric"] for p in defaults["parameters"]),
+                "default parameters must match selected demo numeric evidence")
+        require(selected["source"].get("kind") == "synthetic" or not defaults["parameters"],
+                "display-only scene defaults cannot expose physics parameters")
+        require(defaults["fallback_evidence"]["path"] == "evidence/S12/S12f-fallback.json",
+                "expected S12f fallback evidence")
+        fallback_path, _ = checked_ref(defaults["fallback_evidence"], root)
+        fallback = load_json(fallback_path)
+        require(fallback["decision"]["tier"] == "VIRTUAL_LAB_ONLY" and
+                fallback["decision"]["real_scene_prediction"] == "WITHHELD" and
+                fallback["gate_rs"]["status"] == "NOT_MET", "review S12f fallback before changing defaults")
+        gate_path, _ = checked_ref(fallback["gate_rs"], root)
+        require(load_json(gate_path)["result"]["status"] == "NOT_MET", "Gate RS must remain NOT_MET")
     return manifest
 
 
@@ -174,9 +193,9 @@ def validate_local_simulation(demo, artifact_root, root):
         record = pointer(payload, record_pointer)
     except (KeyError, IndexError, TypeError, ValueError) as exc:
         raise ValueError("simulation record pointer not found") from exc
-    require(isinstance(record, dict) and record.get("template") in ("free_fall", "projectile") and
+    require(isinstance(record, dict) and record.get("template") in ("free_fall", "projectile", "pendulum") and
             record.get("status") == "passed" and record.get("deterministic") is True,
-            "expected passed deterministic free-fall or projectile simulation")
+            "expected passed deterministic free-fall, projectile or pendulum simulation")
     require(demo["id"] == "simulated-" + record["template"].replace("_", "-") + "-" + record["case"],
             "simulation identity does not match selected case")
     for numeric in provenance["numeric"]:

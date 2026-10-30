@@ -51,13 +51,54 @@ These records use `source.kind: synthetic`, `label: simulated`,
 `artifact.kind: simulation-record` and
 `provenance.execution: accepted-local-simulation`. The original acceptance file
 must declare `source: simulated` and the synthetic four-template scope. A record
-pointer selects a passed deterministic free-fall or projectile case; every numeric
+pointer selects a passed deterministic free-fall, projectile or pendulum case; every numeric
 pointer is confined to that case. Its ID must match the selected template and case.
 The hashed actual run report must identify the original
 evidence path. Clip-backed entries still require the unchanged current approval,
 acquisition, licence, successful app/ledger and clip-identity checks.
 Neither variant proves independent controller acceptance; the evidence checkout
 must be trusted.
+
+## Pendulum and scene display catalogues (S18d)
+
+```powershell
+python -B -m Build.library.pendulum
+python -B -m Build.library.scenes
+python -B -m Build.library.validate test-data/library-artifacts/pendulum.json
+python -B -m Build.library.validate test-data/library-artifacts/scenes.json
+python -B -m unittest discover -s tests/library -t tests/library
+```
+
+`pendulum.json` indexes all four accepted S10hi-gate pendulum cases from the same
+immutable S10 acceptance object used by free-fall/projectile. Numbers retain exact
+JSON pointers into their original case; labels are SIMULATED/SYNTHETIC. This is
+acceptance-summary metadata, not a new simulation, trajectory, fitted real pendulum
+or S12 held-out prediction. S11/S12 fixtures are not relabelled as measured data.
+
+`scenes.json` indexes accepted RM02/S06d and RM04/S06f MapAnything scene descriptors,
+byte-for-byte and content-addressed. Source licence/credit is verbatim `clips.csv`;
+only the scene contract's known `Pexels License` -> `Pexels` spelling is normalized
+for comparison. RM04 selects the successful ledger job, not its failed preflight.
+The `measured` label means reconstruction/job output, never calibrated physics.
+No raw clip, PLY asset, physical fit, collider or calibrated dimensions are bundled.
+RM05's accepted S05 raw reconstruction is not a scene-v1 viewer descriptor: see
+[`RM05-scene-UNAVAILABLE.md`](../../test-data/library-artifacts/RM05-scene-UNAVAILABLE.md).
+
+Both new catalogues expose an optional v1 `defaults` object. Older v1 catalogues
+remain valid unchanged. `demo_id` identifies the initial metadata selection:
+the shortest accepted pendulum horizon (`short-small-angle`), or RM02 for scenes.
+Pendulum `parameters` copy only the recorded gravity/duration/time-step numeric
+entries, with their original units, simulated labels and evidence pointers.
+Scene defaults expose no physics parameters. These are **not executable specs**;
+there is no playback/UI wiring here. Autoplay and physics are fixed OFF, real-scene
+prediction is WITHHELD. The validator rejects unknown demo IDs, fabricated or
+cross-case defaults, executable safety-switch changes, missing/stale fallback
+evidence, and parameters on display-only scene defaults.
+
+Defaults hash-link the actual S12f fallback and its Gate RS record. The validator
+requires `VIRTUAL_LAB_ONLY`, `WITHHELD`, and Gate RS `NOT_MET`; a changed gate/fallback
+needs explicit review rather than silent promotion. SCALE_UNVERIFIED, metadata-only
+availability, Gate M/RS NOT_MET and Gate R NOT_MET/NOT_RUN remain unchanged.
 
 ## Precomputed free-fall display catalogue (S18b)
 

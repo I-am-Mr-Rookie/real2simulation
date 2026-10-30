@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "audience": "local-processing-only",
+  "demos": [
+    {
+      "id": "rm02-s06d-descriptor",
+      "title": "RM02 MapAnything scene (display-only, SCALE_UNVERIFIED)",
+      "source": {
+        "clip_id": "RM02",
+        "sha256": "9825020bbdcf650a272548275f27bb109dd7834d9db9dd3a69a067ff39219720",
+        "source_url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+        "licence": "Pexels",
+        "licence_url": "https://www.pexels.com/license/",
+        "attribution": "Andy Barbour - Tracking shot of empty classroom - Pexels"
+      },
+      "artifact": {
+        "kind": "scene-descriptor",
+        "media_type": "application/json",
+        "path": "objects/sha256/d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754.json",
+        "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754",
+        "bytes": 3370
+      },
+      "provenance": {
+        "run_id": "S06d-orch23",
+        "report": {
+          "path": "Run-System/Runs/S06d-orch23/REPORT.md",
+          "sha256": "41f459f9d8ffd88505c6a5c93b3132c04cd6414927c96eb8293d992e12fef157"
+        },
+        "ledger": {
+          "path": "evidence/S06/S06d/job-ledger.json",
+          "sha256": "c313cf6f8f686a51100801fcdf132874981f68f3b0dcf503c7bd6730647e1e3e"
+        },
+        "app_id": "ap-DwCMDeReYWQYBxl3xvR2IO",
+        "artifact_evidence": {
+          "path": "evidence/S06/S06d/scene-RM02-gpu.json",
+          "sha256": "d00fd4d10b563c7afe721025bbad61d5e59eff06699aee9f67a1796eb8cc3754"
+        },
+        "numeric": [
+          {
+            "name": "function_elapsed_s",
+            "value": 20.955,
+            "unit": "s",
+            "label": "measured",
+            "evidence": "ledger",
+            "pointer": "/jobs/0/function_elapsed_s"
+          }
+        ]
+      },
+      "label": "measured",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_MET"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "Measured means reconstruction/job output, not calibrated physical measurements.",
+        "PLY assets are absent; this descriptor alone is not a playable demo.",
+        "Local processing approval only; no public raw-media redistribution approval.",
+        "Nominal model scale; gravity unknown; physics disabled.",
+        "Display-only descriptor; no physical fit, calibrated dimensions or real-scene prediction.",
+        "S12f fallback VIRTUAL_LAB_ONLY; real-scene prediction WITHHELD."
+      ]
+    },
+    {
+      "id": "rm04-s06f-descriptor",
+      "title": "RM04 MapAnything scene (display-only, SCALE_UNVERIFIED)",
+      "source": {
+        "clip_id": "RM04",
+        "sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+        "source_url": "https://www.pexels.com/video/an-empty-classroom-8342689/",
+        "licence": "Pexels License",
+        "licence_url": "https://www.pexels.com/license/",
+        "attribution": "Pavel Danilyuk - An Empty Classroom - Pexels"
+      },
+      "artifact": {
+        "kind": "scene-descriptor",
+        "media_type": "application/json",
+        "path": "objects/sha256/c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76.json",
+        "sha256": "c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76",
+        "bytes": 3405
+      },
+      "provenance": {
+        "run_id": "S06f-orch25",
+        "report": {
+          "path": "Run-System/Runs/S06f-orch25/REPORT.md",
+          "sha256": "2c801e1ec5acf72f36c6c44a67c41c49dcc3715e7e006e0418ed14b4118b7f5e"
+        },
+        "ledger": {
+          "path": "evidence/S06/S06f/job-ledger.json",
+          "sha256": "ed4362138550147b6bf64131efa631ec1f4595f0984b6de4e0ee9bfe0a7e5c7c"
+        },
+        "app_id": "ap-yeKuf0FjgU0P0H8mB9lOvt",
+        "artifact_evidence": {
+          "path": "evidence/S06/S06f/scene-RM04-gpu.json",
+          "sha256": "c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76"
+        },
+        "numeric": [
+          {
+            "name": "whole_command_wall_s",
+            "value": 63.3,
+            "unit": "s",
+            "label": "measured",
+            "evidence": "ledger",
+            "pointer": "/jobs/1/whole_command_wall_s"
+          }
+        ]
+      },
+      "label": "measured",
+      "scale_verified": false,
+      "scale_label": "SCALE_UNVERIFIED",
+      "gates": {
+        "M": "NOT_MET",
+        "RS": "NOT_MET",
+        "R": "NOT_MET"
+      },
+      "availability": "metadata-only",
+      "limitations": [
+        "Measured means reconstruction/job output, not calibrated physical measurements.",
+        "PLY assets are absent; this descriptor alone is not a playable demo.",
+        "Local processing approval only; no public raw-media redistribution approval.",
+        "Nominal model scale; gravity unknown; physics disabled.",
+        "Display-only descriptor; no physical fit, calibrated dimensions or real-scene prediction.",
+        "S12f fallback VIRTUAL_LAB_ONLY; real-scene prediction WITHHELD."
+      ]
+    }
+  ],
+  "defaults": {
+    "demo_id": "rm02-s06d-descriptor",
+    "autoplay": false,
+    "physics_enabled": false,
+    "real_scene_prediction": "WITHHELD",
+    "parameters": [],
+    "fallback_evidence": {
+      "path": "evidence/S12/S12f-fallback.json",
+      "sha256": "a83af728ffe7822f651f9743f3529c1c9ba4ce010c3a9cf0eec067bd315aee8d"
+    }
+  }
+}
