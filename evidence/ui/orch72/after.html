@@ -1,0 +1,158 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UI-b preview (fixtures)</title><style>body{margin:0;background:#f4f0e6}/* UI-b (orch72): workspace finish. Consumes shared --r2s-* tokens (owned by app/styles.css, UI-a) with local fallbacks;
+   never redefines globals. Local aliases only (--ws-*), scoped to .ws. Structure/areas from S15b/S15j unchanged. */
+.ws {
+  --ws-sans: var(--r2s-font-sans, "Instrument Sans", ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif);
+  --ws-mono: var(--r2s-font-mono, "Space Mono", ui-monospace, "Cascadia Mono", Consolas, monospace);
+  --ws-bg: var(--r2s-bg, #f4f0e6); --ws-surface: var(--r2s-surface, #fffdf7); --ws-ink: var(--r2s-ink, #1c1a16);
+  --ws-muted: var(--r2s-muted, #5a554b); --ws-border: var(--r2s-border, #cbc3b2); --ws-accent: var(--r2s-accent, #b8430f);
+  --ws-accent-ink: var(--r2s-accent-ink, #ffffff); --ws-warn: var(--r2s-warn, #7a4d00); --ws-danger: var(--r2s-danger, #9f1d16);
+  --ws-ok: var(--r2s-ok, #2c6136); --ws-shadow: var(--r2s-shadow, 4px 4px 0 var(--ws-ink)); --ws-radius: var(--r2s-radius, 6px);
+  --ws-focus: var(--r2s-focus, var(--ws-accent)); --ws-chart-2: #8c8576; --ws-chart-3: #d9d2c3;
+  --ws-s1: var(--r2s-space-1, .25rem); --ws-s2: var(--r2s-space-2, .5rem); --ws-s3: var(--r2s-space-3, .75rem); --ws-s4: var(--r2s-space-4, 1rem);
+  display: grid; gap: var(--ws-s4); grid-template-columns: minmax(0, 2fr) minmax(16rem, 1fr);
+  grid-template-areas: "nav nav" "side side" "viewport panel" "viewport job"; align-items: start;
+  font-family: var(--ws-sans); color: var(--ws-ink); background: var(--ws-bg); padding: var(--ws-s4); line-height: 1.45;
+}
+@media (max-width: 860px) {
+  .ws { grid-template-columns: minmax(0, 1fr); grid-template-areas: "nav" "viewport" "panel" "job" "side"; padding: var(--ws-s3); }
+  .ws-host { min-height: 16rem; }
+}
+.ws *, .ws *::before, .ws *::after { box-sizing: border-box; }
+.ws h2 { margin: 0 0 var(--ws-s2); font-size: 1.05rem; letter-spacing: -.01em; }
+.ws h3 { margin: 0 0 var(--ws-s1); font-size: .95rem; }
+.ws :focus-visible { outline: 3px solid var(--ws-focus); outline-offset: 2px; }
+
+/* Stage rail */
+.ws-stages { grid-area: nav; border-bottom: 1px solid var(--ws-ink); padding-bottom: var(--ws-s2); }
+.ws-stages ol { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; margin: 0; padding: 0; list-style: none; font-size: .95rem; counter-reset: ws-stage; }
+.ws-stages li { color: var(--ws-muted); counter-increment: ws-stage; padding-bottom: 2px; border-bottom: 2px solid transparent; }
+.ws-stages li::before { content: counter(ws-stage, decimal-leading-zero) " "; font-family: var(--ws-mono); font-size: .8em; }
+.ws-stages li[data-status="done"] { color: var(--ws-ink); }
+.ws-stages li[aria-current="step"] { color: var(--ws-ink); font-weight: 700; border-bottom-color: var(--ws-accent); }
+
+/* Slots: primary cards get crisp border + hard offset shadow */
+.ws-viewport { grid-area: viewport; min-width: 0; }
+.ws-panel, .ws-job { background: var(--ws-surface); border: 1px solid var(--ws-ink); border-radius: var(--ws-radius); padding: var(--ws-s4); min-width: 0; }
+.ws-panel { grid-area: panel; box-shadow: var(--ws-shadow); }
+.ws-job { grid-area: job; font-size: .9rem; }
+.ws-job > p:first-child { margin: 0 0 var(--ws-s2); font-family: var(--ws-mono); font-size: .8rem; color: var(--ws-muted); overflow-wrap: anywhere; }
+.ws-host { position: relative; width: 100%; min-height: 22rem; aspect-ratio: 4 / 3; background: #15140f; border: 1px solid var(--ws-ink);
+  border-radius: var(--ws-radius); box-shadow: var(--ws-shadow); overflow: hidden; }
+.ws-host[data-viewer-status="loading"] { background: repeating-linear-gradient(135deg, #15140f 0 12px, #1e1c16 12px 24px); }
+/* Truth banner (SYNTHETIC / SCALE_UNVERIFIED): loud on purpose, never softened. */
+.ws-banner { margin: 0 0 var(--ws-s2); padding: var(--ws-s2) var(--ws-s3); border: 2px solid var(--ws-ink); border-left-width: 8px; border-radius: var(--ws-radius);
+  background: #ffe9a8; color: #1c1a16; font-weight: 600; font-size: .85rem; }
+.ws-status { margin: var(--ws-s2) 0 0; font-size: .85rem; color: var(--ws-muted); font-family: var(--ws-mono); }
+.ws-error { color: var(--ws-danger); font-weight: 600; }
+.ws-job .ws-error { border: 1px solid var(--ws-danger); border-left-width: 4px; border-radius: var(--ws-radius); padding: var(--ws-s2); background: #fdecea; }
+
+/* Shared controls: buttons/chips/inputs */
+.ws button { font: inherit; color: var(--ws-ink); }
+.ws-chip, .ws-back, .ws-submit, .ws-retry, .ws-nav {
+  min-height: 44px; padding-inline: 1rem; cursor: pointer; border: 1px solid var(--ws-ink); border-radius: var(--ws-radius);
+  background: var(--ws-surface); transition: transform .08s ease, box-shadow .08s ease, background-color .12s ease; }
+.ws-chip:hover:not(:disabled), .ws-back:hover:not(:disabled), .ws-nav:hover:not(:disabled) { background: #f1ebdd; }
+.ws-submit, .ws-retry { background: var(--ws-accent); color: var(--ws-accent-ink); font-weight: 700; box-shadow: 3px 3px 0 var(--ws-ink); }
+.ws-submit:hover:not(:disabled), .ws-retry:hover:not(:disabled) { transform: translate(-1px, -1px); box-shadow: 4px 4px 0 var(--ws-ink); }
+.ws-submit:active:not(:disabled), .ws-retry:active:not(:disabled), .ws-chip:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--ws-ink); }
+.ws-submit[aria-disabled="true"] { background: var(--ws-surface); color: var(--ws-muted); box-shadow: none; border-style: dashed; }
+.ws-chip:disabled, .ws-back:disabled, .ws-submit:disabled, .ws-retry:disabled, .ws-nav:disabled { cursor: not-allowed; opacity: .55; box-shadow: none; transform: none; }
+.ws input, .ws textarea, .ws select { font: inherit; color: var(--ws-ink); background: #fff; border: 1px solid var(--ws-ink); border-radius: var(--ws-radius); }
+.ws input:disabled, .ws textarea:disabled { background: #efeadf; color: var(--ws-muted); cursor: not-allowed; }
+.ws input[aria-invalid="true"] { border-color: var(--ws-danger); box-shadow: inset 4px 0 0 var(--ws-danger); }
+
+/* S15c: status surface */
+.ws-status-surface { display: grid; gap: var(--ws-s2); margin-block: var(--ws-s2); }
+.ws-timeline, .ws-events { margin: 0; padding-left: 1.25rem; }
+.ws-timeline li::marker, .ws-events li::marker { font-family: var(--ws-mono); color: var(--ws-muted); }
+.ws-timeline li[data-status="current"] { font-weight: 700; }
+.ws-timeline li[data-status="todo"] { color: var(--ws-muted); }
+.ws-timeline li[data-status="failed"] { font-weight: 700; color: var(--ws-danger); text-decoration: underline wavy; }
+.ws-inflight { margin: 0; font-family: var(--ws-mono); font-size: .8rem; }
+.ws-events { font-size: .8rem; font-family: var(--ws-mono); font-variant-numeric: tabular-nums; color: var(--ws-muted); }
+.ws-failure { border: 1px solid var(--ws-danger); border-left-width: 6px; border-radius: var(--ws-radius); padding: var(--ws-s2) var(--ws-s3); background: #fdf1ef; }
+.ws-failure[data-kind="partial"] { border-color: var(--ws-warn); background: #fff6df; }
+.ws-failure h3 { margin: 0 0 var(--ws-s1); }
+.ws-failure p { margin: 0 0 var(--ws-s2); }
+.ws-kept { color: var(--ws-ok); } .ws-lost, .ws-noretry { color: var(--ws-muted); }
+
+/* S15d: interview panel (stray "+" token removed: it invalidated this rule) */
+.ws-interview { display: grid; gap: var(--ws-s3); margin-top: var(--ws-s2); }
+.ws-qa { margin: 0; padding-left: 1.25rem; font-size: .9rem; display: grid; gap: var(--ws-s1); }
+.ws-qa .ws-q { color: var(--ws-muted); }
+.ws-qa .ws-a { margin-left: .25rem; }
+.ws-progress { margin: 0; font-size: .8rem; color: var(--ws-muted); font-family: var(--ws-mono); }
+.ws-question fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: var(--ws-s2); min-width: 0; }
+.ws-question legend { font-weight: 700; margin-bottom: .4rem; padding: 0; }
+.ws-chips { display: flex; flex-wrap: wrap; gap: var(--ws-s2); }
+.ws-chip { border-radius: 999px; }
+.ws-chip[aria-pressed="true"] { background: var(--ws-ink); color: var(--ws-surface); border-color: var(--ws-ink); box-shadow: 2px 2px 0 var(--ws-accent); }
+.ws-chip[aria-pressed="true"]::before { content: "\2713\00a0"; }
+.ws-freetext { display: grid; gap: var(--ws-s1); font-size: .9rem; font-weight: 600; }
+.ws-freetext textarea { width: 100%; font-weight: 400; padding: var(--ws-s2); resize: vertical; min-height: 5rem; }
+.ws-actions { display: flex; flex-wrap: wrap; gap: var(--ws-s2); margin-top: var(--ws-s2); }
+
+/* S15e: template controls */
+.ws-template { display: grid; gap: var(--ws-s3); margin-top: var(--ws-s2); }
+.ws-template fieldset { display: grid; gap: var(--ws-s3); border: 1px solid var(--ws-border); border-radius: var(--ws-radius); padding: var(--ws-s3); margin: 0; min-width: 0; }
+.ws-template legend { font-weight: 700; padding-inline: var(--ws-s1); }
+.ws-field { display: grid; gap: var(--ws-s1); font-size: .9rem; font-weight: 600; }
+.ws-field input { min-height: 44px; width: 100%; font-family: var(--ws-mono); font-weight: 400; padding: .4rem .5rem; }
+.ws-hint { font-size: .8rem; font-weight: 400; color: var(--ws-muted); }
+.ws-accepted { margin: 0; padding-left: 1.2rem; font-size: .9rem; }
+
+/* S15f: run controls */
+.ws-run { display: grid; gap: var(--ws-s2); margin-top: var(--ws-s2); }
+.ws-meter { width: 100%; height: 12px; accent-color: var(--ws-accent); }
+
+/* S15g: instrument controls */
+.ws-instruments { display: grid; gap: var(--ws-s2); margin-top: var(--ws-s2); }
+.ws-trials { margin: 0; padding-left: 1.2rem; display: grid; gap: var(--ws-s2); }
+.ws-trial ul { margin: .2rem 0 0; padding-left: 1rem; font-size: .9rem; }
+.ws-qname { font-weight: 600; } .ws-qval { font-family: var(--ws-mono); font-variant-numeric: tabular-nums; }
+/* Evidence tag (synthetic/simulated/measured): bordered, never colour-only */
+.ws-tag { display: inline-block; border: 1px solid var(--ws-ink); border-radius: 999px; padding: 0 .5rem; font-size: .72rem; font-family: var(--ws-mono);
+  text-transform: uppercase; letter-spacing: .03em; color: var(--ws-ink); background: var(--ws-surface); }
+.ws-src { display: block; font-size: .8rem; color: var(--ws-muted); overflow-wrap: anywhere; }
+
+/* S15h: fit + residual chart (two neutrals + one accent) */
+.ws-fit { display: grid; gap: var(--ws-s3); margin-top: var(--ws-s2); }
+.ws-fit-table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+.ws-fit-table caption { text-align: left; font-weight: 700; padding-bottom: .3rem; }
+.ws-fit-table th, .ws-fit-table td { border-bottom: 1px solid var(--ws-border); padding: .3rem .35rem; text-align: left; overflow-wrap: anywhere; vertical-align: top; }
+.ws-fit-table thead th { font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; color: var(--ws-muted); border-bottom-color: var(--ws-ink); }
+.ws-fit-table tbody th { font-weight: 600; }
+.ws-fit-table td { font-variant-numeric: tabular-nums; }
+.ws-fit-table .ws-tag { white-space: nowrap; }
+@media (max-width: 520px) {
+  /* 375px: break at word/hyphen boundaries instead of mid-word ("QUANT/ITY"); tighter cells keep the table inside the card */
+  .ws-fit-table { font-size: .78rem; }
+  .ws-fit-table th, .ws-fit-table td { overflow-wrap: break-word; hyphens: auto; padding: .25rem .2rem; }
+  .ws-fit-table td:first-of-type { font-size: .72rem; }
+  .ws-fit-table .ws-tag { font-size: .62rem; padding: 0 .3rem; letter-spacing: 0; }
+  .ws-panel { padding: var(--ws-s3); }
+}
+.ws-resid { margin: 0; }
+.ws-resid figcaption { font-size: .8rem; color: var(--ws-muted); }
+.ws-resid-svg { display: block; width: 100%; height: auto; background: #fff; border: 1px solid var(--ws-ink); border-radius: var(--ws-radius);
+  background-image: linear-gradient(var(--ws-chart-3) 1px, transparent 1px); background-size: 100% 25%; }
+.ws-resid-zero { stroke: var(--ws-chart-2); stroke-dasharray: 4 3; }
+.ws-resid-pt { fill: var(--ws-accent); stroke: var(--ws-ink); stroke-width: 1; }
+
+/* S15i: sidebar (opt-in via navigate prop). The empty "side" row collapses when absent. */
+.ws-sidebar { grid-area: side; }
+.ws-sidebar ul { display: flex; flex-wrap: wrap; gap: var(--ws-s2); margin: 0; padding: 0; list-style: none; }
+.ws-sidebar li { display: grid; gap: 2px; min-width: 7rem; }
+.ws-nav { text-align: left; }
+.ws-nav:disabled { cursor: default; }
+.ws-nav[aria-current=page] { font-weight: 700; background: var(--ws-ink); color: var(--ws-surface); box-shadow: 3px 3px 0 var(--ws-accent); }
+.ws-nav[data-destructive] { border-style: dashed; border-color: var(--ws-danger); color: var(--ws-danger); }
+.ws-nav-detail, .ws-nav-note { font-size: .78rem; color: var(--ws-muted); }
+.ws-report article { margin-block: var(--ws-s2); }
+.ws-notice { margin: 0; padding: var(--ws-s2) var(--ws-s3); border: 1px solid var(--ws-ink); border-left-width: 6px; border-radius: var(--ws-radius); background: #ffe9a8; color: #1c1a16; font-size: .85rem; font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ws *, .ws *::before, .ws *::after { transition: none !important; animation: none !important; }
+  .ws-submit:hover:not(:disabled), .ws-retry:hover:not(:disabled), .ws-submit:active:not(:disabled), .ws-retry:active:not(:disabled), .ws-chip:active:not(:disabled) { transform: none; }
+}
+</style></head><body><p style="margin:0;padding:.5rem 1rem;font:600 13px system-ui;background:#1c1a16;color:#fff">PREVIEW HARNESS: real view functions + test fixtures (SYNTHETIC). Not a product route.</p><div class="ws" data-phase="interview.active"><nav class="ws-stages" data-slot="stage-nav" aria-label="Workspace stages"><ol><li data-status="done">Upload</li><li data-status="current" aria-current="step">Interview</li><li data-status="todo">Run</li><li data-status="todo">Fit</li><li data-status="todo">Report</li></ol></nav><section class="ws-viewport" data-slot="viewport" aria-label="Scene viewport"><p class="ws-banner" role="note">SYNTHETIC scene: authored geometry, not reconstruction, measurement or gate evidence</p><div class="ws-host" data-viewer-status="ready"></div><p class="ws-status" role="status" aria-live="polite">Scene loaded.</p></section><section class="ws-panel" data-slot="panel" aria-label="Stage panel"><h2>Scene ready; interview in progress (not a measurement)</h2></section><aside class="ws-job" data-slot="job-status" aria-label="Job status"><p>Job synthetic-job-v1</p><div class="ws-status-surface"><ol class="ws-timeline" aria-label="Job stages"><li data-status="done">Queued</li><li data-status="done">Processing</li><li data-status="done">Scene ready</li></ol></div></aside></div><div class="ws" data-preview="Interview (validated fixture response)" style="display:block"><section class="ws-panel" style="max-width:40rem"><h2>Interview (validated fixture response)</h2><section class="ws-interview" data-status="asking" aria-label="Interview"><p class="ws-progress" role="status" aria-live="polite">Question 1 of 3</p><form class="ws-question"><fieldset><legend>Which object falls?</legend><div class="ws-chips"><button type="button" class="ws-chip" aria-pressed="true">Ball</button><button type="button" class="ws-chip">Block</button></div></fieldset><div class="ws-actions"><button type="submit" class="ws-submit">Next</button></div></form></section></section></div><div class="ws" data-preview="Fit (real fitter output, SYNTHETIC settings)" style="display:block"><section class="ws-panel" style="max-width:40rem"><h2>Fit (real fitter output, SYNTHETIC settings)</h2><section class="ws-fit" aria-label="Fit results"><table class="ws-fit-table"><caption>Fit summary</caption><thead><tr><th scope="col">Quantity</th><th scope="col">Value</th><th scope="col">Label</th><th scope="col">Source</th></tr></thead><tbody><tr><th scope="row">Gravity</th><td class="ws-qval">1.887124302 ± 0.1415784327 m/s^2</td><td><span class="ws-tag" data-label="simulated">simulated</span></td><td class="ws-src">synthetic virtual-lab fit</td></tr><tr><th scope="row">Polynomial degree</th><td class="ws-qval">2</td><td><span class="ws-tag" data-label="simulated">simulated</span></td><td class="ws-src">S11 offline quantity-to-fit adapter</td></tr><tr><th scope="row">Residual RMSE</th><td class="ws-qval">0.02773378666 m</td><td><span class="ws-tag" data-label="simulated">simulated</span></td><td class="ws-src">S11 offline quantity-to-fit adapter</td></tr><tr><th scope="row">Residual sum of squares</th><td class="ws-qval">0.006153303382 m²</td><td><span class="ws-tag" data-label="simulated">simulated</span></td><td class="ws-src">S11 offline quantity-to-fit adapter</td></tr><tr><th scope="row">Observations</th><td class="ws-qval">8</td><td><span class="ws-tag" data-label="simulated">simulated</span></td><td class="ws-src">S11 offline quantity-to-fit adapter</td></tr><tr><th scope="row">Residual degrees of freedom</th><td class="ws-qval">5</td><td><span class="ws-tag" data-label="simulated">simulated</span></td><td class="ws-src">S11 offline quantity-to-fit adapter</td></tr><tr><th scope="row">Selected degree (AIC)</th><td class="ws-qval">2</td><td><span class="ws-tag" data-label="simulated">simulated</span></td><td class="ws-src">S11 offline model selection</td></tr></tbody></table><figure class="ws-resid"><svg viewBox="0 0 640 168" role="img" aria-labelledby="ws-resid-t ws-resid-d" class="ws-resid-svg"><title id="ws-resid-t">Residual chart (simulated)</title><desc id="ws-resid-d">Residuals (observed minus fitted position, m) against time, simulated. 8 points, from -0.03633460517 to 0.03674478875 m.</desc><line x1="0" x2="640" y1="80" y2="80" class="ws-resid-zero"></line><circle cx="24" cy="35.3792523675116" r="4" class="ws-resid-pt"></circle><circle cx="116.39306358381504" cy="151.1962610720839" r="4" class="ws-resid-pt"></circle><circle cx="184.83236994219652" cy="79.12376194932047" r="4" class="ws-resid-pt"></circle><circle cx="270.38150289017335" cy="94.15970311284003" r="4" class="ws-resid-pt"></circle><circle cx="349.0867052023121" cy="8" r="4" class="ws-resid-pt"></circle><circle cx="444.90173410404617" cy="150.9422401858962" r="4" class="ws-resid-pt"></circle><circle cx="523.6069364161849" cy="8.662933132956226" r="4" class="ws-resid-pt"></circle><circle cx="616" cy="112.53584817938746" r="4" class="ws-resid-pt"></circle></svg><figcaption>Residuals vs time (simulated). Exact values are in the table below.</figcaption></figure><table class="ws-fit-table"><caption>Residuals</caption><thead><tr><th scope="col">#</th><th scope="col">Time</th><th scope="col">Residual</th><th scope="col">Label</th></tr></thead><tbody><tr><td>1</td><td>0.28 ± 0.02 s</td><td class="ws-qval">0.02277194369 m</td><td><span class="ws-tag" data-label="simulated">simulated</span></td></tr><tr><td>2</td><td>0.55 ± 0.02 s</td><td class="ws-qval">-0.03633460517 m</td><td><span class="ws-tag" data-label="simulated">simulated</span></td></tr><tr><td>3</td><td>0.75 ± 0.02 s</td><td class="ws-qval">0.0004471830842 m</td><td><span class="ws-tag" data-label="simulated">simulated</span></td></tr><tr><td>4</td><td>1 ± 0.02 s</td><td class="ws-qval">-0.007226323605 m</td><td><span class="ws-tag" data-label="simulated">simulated</span></td></tr><tr><td>5</td><td>1.23 ± 0.02 s</td><td class="ws-qval">0.03674478875 m</td><td><span class="ws-tag" data-label="simulated">simulated</span></td></tr><tr><td>6</td><td>1.51 ± 0.02 s</td><td class="ws-qval">-0.03620496707 m</td><td><span class="ws-tag" data-label="simulated">simulated</span></td></tr><tr><td>7</td><td>1.74 ± 0.02 s</td><td class="ws-qval">0.03640646461 m</td><td><span class="ws-tag" data-label="simulated">simulated</span></td></tr><tr><td>8</td><td>2.01 ± 0.02 s</td><td class="ws-qval">-0.01660448428 m</td><td><span class="ws-tag" data-label="simulated">simulated</span></td></tr></tbody></table><p class="ws-hint">Fit values and residuals are fitter output on simulated observations. They are not gate, real-scene or physical evidence.</p></section></section></div><div class="ws" data-phase="upload.failed"><nav class="ws-stages" data-slot="stage-nav" aria-label="Workspace stages"><ol><li data-status="current" aria-current="step">Upload (needs attention)</li><li data-status="todo">Interview</li><li data-status="todo">Run</li><li data-status="todo">Fit</li><li data-status="todo">Report</li></ol></nav><section class="ws-viewport" data-slot="viewport" aria-label="Scene viewport"><div class="ws-host" data-viewer-status="ready"></div><p class="ws-status" role="status" aria-live="polite">Scene loaded.</p></section><section class="ws-panel" data-slot="panel" aria-label="Stage panel"><h2>Upload failed</h2></section><aside class="ws-job" data-slot="job-status" aria-label="Job status"><p>Job synthetic-job-v1</p><div class="ws-status-surface"><ol class="ws-timeline" aria-label="Job stages"><li data-status="done">Queued</li><li data-status="failed">Failed</li></ol><div class="ws-failure" data-kind="failed" data-stage="upload"><h3>Upload failed</h3><p>Processing failed. A retry starts fresh; it may fail again.</p><p class="ws-lost">Not available: Scene: none was created, nothing to view</p><button type="button" class="ws-retry" data-event="UPLOAD_STARTED">Start a new upload</button></div></div><p class="ws-error" role="alert">PROCESSING_FAILED: SYNTHETIC failure fixture</p></aside></div></body></html>
