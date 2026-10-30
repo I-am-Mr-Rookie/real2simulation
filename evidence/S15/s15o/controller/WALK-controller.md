@@ -47,3 +47,16 @@ Still open P3: nav "Sign in" while signed in (Build/web/src/shell/ShellFrame.jsx
 
 P3 still open: viewer LOAD_FAILED (no RM04 geometry on dev; optional S13j). P3: signed-in nav on /workspace shows no account link/UserButton.
 
+
+
+## Walk after S15s (web d4663452, rev 01db492f), ~22:15Z
+
+| Stage | Result | Evidence |
+|---|---|---|
+| Upload -> interview -> spec -> Run (what-if label) | PASS | — |
+| Fit control appears in run.done; click -> API POST /internal/workspace/fit 200 | PASS (control + call) | API log |
+| Fit display | FAIL (P1): "Fit display rejected: fit output not ok" although /fit returned 200 (API only returns 200 with status ok) -> web parse/reveal contract mismatch (controller.mjs revealBody/fitRequest vs fit_handle output, or fit-view parseFit) | 11-s-fit.png |
+| Open report | FAIL (P1): POST /internal/workspace/report 422; UI shows nothing (no error, no iframe) | API log (screenshot timed out) |
+
+Fix row S15t.
+
