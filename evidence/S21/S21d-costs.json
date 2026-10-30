@@ -1,0 +1,426 @@
+{
+ "schema": "s21d-costs/1",
+ "generated_by": "Build/benchmark/costs.py",
+ "rule": "classes are never summed together; billed only from read-only Modal billing report reads",
+ "manifest_sha256": "884e6c55328433c85e543624869384daa58811a7b3f6e59cc506e42f491d4734",
+ "evidence_sha256": {
+  "gate_rs": "f913897d407139ce78d3f35434e046ddd931f88f0229d9d96c1ff388f41b4d85",
+  "prediction_st03": "651a01edef6d0ccf0b56b3a1d911ed22d819112e67c595903bad94149907bad2",
+  "boundary_st03": "d4b3370fcc3e74029d5b22d479c744e6d522dae928ad3864c6feceb92e5c552b",
+  "training_st03": "c71ce907fd2d5d799a5781eaf3d570ac5543002a8e47535b7758606ac01e5d45",
+  "heldout_track_st03": "e30807fcf5887ad0c43f0b1317a491411c8ce4b34e86c16c7ca290524f028f55",
+  "cost_st03_job": "2766c973c53fd3530ce042cf77bcb1b725b2d79889e178a5f75fa5ece4faa147",
+  "scale_s05d": "da03599d50e8731a380dd2b993f550e8168395b6877ea6e9c74626a4c8df406e",
+  "scene_log_rm02": "8e3d689d24ebe56fbaec358f8bec1625e37f91152903fff1061616caa80c2d26",
+  "scene_log_rm04": "0dd242560f5f1e66491d0c706b8fbe4875b9a43dd6d9201bb0a99c8fa2fdebcc",
+  "checkpoint_s06h": "82b41f7808d45731a9072bc36ce6376a084297111337470d3b4a51aca921ec40",
+  "fitter_s11_analytic": "cb7be2c79bcfea4fbcb53ec0a7e7d90eae7fecd2539d050d2ab10dec525222df",
+  "scene_cost_rm02": "3b9c8f52f29b452d58963b1951b3681128cd3495784c35836c035a7a1f9a9a4c",
+  "scene_cost_rm04": "7cf30556ef899055c55a4ecbf0ad13413121d6bce6c5bf92b364cd830bc95fb9",
+  "meta_s16e": "65afd740c5556d4443d1f80b73df6a30ff5fbcbe53888a8b7af3a010f457bed5",
+  "sim_s20d": "c800b8fc672a3020f80539659b3fd0f5f987be58c5d2a3e09c7d2a267dc619b2"
+ },
+ "gates": {
+  "gate_m": "NOT_MET_INPUT_READINESS",
+  "gate_rs": "NOT_MET"
+ },
+ "summary": {
+  "billed": 8,
+  "estimated": 2,
+  "reservation": 1,
+  "measured": 10,
+  "simulated": 2,
+  "unavailable": 1
+ },
+ "rows": [
+  {
+   "id": "rm02_scene_billed_usd",
+   "class": "billed",
+   "scene": "RM02",
+   "value": 0.01134936,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm02",
+     "pointer": "/cost/billed/total_usd"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "Modal billing report (read-only); whole app incl. egress"
+  },
+  {
+   "id": "rm02_scene_estimated_usd",
+   "class": "estimated",
+   "scene": "RM02",
+   "value": 0.01032114,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm02",
+     "pointer": "/cost/estimated/total_usd"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "rate x measured container time; NOT billed"
+  },
+  {
+   "id": "rm02_gpu_seconds_billed",
+   "class": "billed",
+   "scene": "RM02",
+   "value": 30.009,
+   "unit": "GPU-s",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm02",
+     "pointer": "/gpu_seconds/billed"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "rm02_cold_start_s",
+   "class": "measured",
+   "scene": "RM02",
+   "value": 10.806,
+   "unit": "s",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm02",
+     "pointer": "/timing_s/cold_start_s"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "before function body"
+  },
+  {
+   "id": "rm02_model_load_s",
+   "class": "measured",
+   "scene": "RM02",
+   "value": 19.73,
+   "unit": "s",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm02",
+     "pointer": "/timing_s/model_load_s"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "rm02_inference_s",
+   "class": "measured",
+   "scene": "RM02",
+   "value": 1.449,
+   "unit": "s",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm02",
+     "pointer": "/timing_s/inference_s"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "GPU forward pass only"
+  },
+  {
+   "id": "rm02_client_round_trip_s",
+   "class": "measured",
+   "scene": "RM02",
+   "value": 39.554,
+   "unit": "s",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm02",
+     "pointer": "/timing_s/client_round_trip_s"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "rm04_scene_billed_usd",
+   "class": "billed",
+   "scene": "RM04",
+   "value": 0.00955325,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm04",
+     "pointer": "/cost/billed/total_usd"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "Modal billing report (read-only); whole app incl. egress"
+  },
+  {
+   "id": "rm04_scene_estimated_usd",
+   "class": "estimated",
+   "scene": "RM04",
+   "value": 0.01000701,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm04",
+     "pointer": "/cost/estimated/total_usd"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "rate x measured container time; NOT billed"
+  },
+  {
+   "id": "rm04_gpu_seconds_billed",
+   "class": "billed",
+   "scene": "RM04",
+   "value": 25.962,
+   "unit": "GPU-s",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm04",
+     "pointer": "/gpu_seconds/billed"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "rm04_cold_start_s",
+   "class": "measured",
+   "scene": "RM04",
+   "value": 11.884,
+   "unit": "s",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm04",
+     "pointer": "/timing_s/cold_start_s"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "before function body"
+  },
+  {
+   "id": "rm04_model_load_s",
+   "class": "measured",
+   "scene": "RM04",
+   "value": 18.807,
+   "unit": "s",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm04",
+     "pointer": "/timing_s/model_load_s"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "rm04_inference_s",
+   "class": "measured",
+   "scene": "RM04",
+   "value": 1.506,
+   "unit": "s",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm04",
+     "pointer": "/timing_s/inference_s"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "GPU forward pass only"
+  },
+  {
+   "id": "rm04_client_round_trip_s",
+   "class": "measured",
+   "scene": "RM04",
+   "value": 43.642,
+   "unit": "s",
+   "sources": [
+    {
+     "evidence": "scene_cost_rm04",
+     "pointer": "/timing_s/client_round_trip_s"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "st03_tracking_billed_usd",
+   "class": "billed",
+   "scene": "ST03",
+   "value": 0.02330591,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "cost_st03_job",
+     "pointer": "/cost/billed/total_usd"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "st03_tracking_gpu_seconds_billed",
+   "class": "billed",
+   "scene": "ST03",
+   "value": 47.93,
+   "unit": "GPU-s",
+   "sources": [
+    {
+     "evidence": "cost_st03_job",
+     "pointer": "/gpu_seconds/billed"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "modal_month_to_date_billed_usd",
+   "class": "billed",
+   "scene": "all",
+   "value": 0.59959399,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "checkpoint_s06h",
+     "pointer": "/modal_month_to_date_billed_usd"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "all Modal jobs; read 2026-10-29T15:49:15Z"
+  },
+  {
+   "id": "s06_jobs_billed_usd",
+   "class": "billed",
+   "scene": "S06",
+   "value": 0.05785822,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "checkpoint_s06h",
+     "pointer": "/s06_jobs_billed_usd"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "s06e_reservation_usd",
+   "class": "reservation",
+   "scene": "RM02",
+   "value": 0.3,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "checkpoint_s06h",
+     "pointer": "/jobs/3/reservation_usd"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "pre-job hold, NOT spend"
+  },
+  {
+   "id": "meta_s16e_total_tokens",
+   "class": "measured",
+   "scene": "S16e",
+   "value": 1176,
+   "unit": "tokens",
+   "sources": [
+    {
+     "evidence": "meta_s16e",
+     "pointer": "/usage_measured/total_tokens"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "meta_s16e_latency_s",
+   "class": "measured",
+   "scene": "S16e",
+   "value": 2.523449,
+   "unit": "s",
+   "sources": [
+    {
+     "evidence": "meta_s16e",
+     "pointer": "/latency_seconds_measured"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": null
+  },
+  {
+   "id": "meta_s16e_cost_usd",
+   "class": "unavailable",
+   "scene": "S16e",
+   "value": null,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "meta_s16e",
+     "pointer": "/cost_usd"
+    }
+   ],
+   "reason": "unknown; no verified published pricing (Q17)",
+   "reason_sources": [
+    {
+     "evidence": "meta_s16e",
+     "pointer": "/cost_basis"
+    }
+   ],
+   "note": null
+  },
+  {
+   "id": "s20d_meta_routine_stop_usd",
+   "class": "simulated",
+   "scene": "SIM",
+   "value": 120.0,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "sim_s20d",
+     "pointer": "/meta_routine_stop_usd"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "cap exercised in simulation; NOT spend"
+  },
+  {
+   "id": "s20d_modal_cap_usd",
+   "class": "simulated",
+   "scene": "SIM",
+   "value": 30.0,
+   "unit": "USD",
+   "sources": [
+    {
+     "evidence": "sim_s20d",
+     "pointer": "/modal_cap_usd"
+    }
+   ],
+   "reason": null,
+   "reason_sources": [],
+   "note": "cap exercised in simulation; NOT spend"
+  }
+ ]
+}
