@@ -1,5 +1,34 @@
 # Real2Simulation — STATE
 
+OWNER QUOTA WINDOW (Oct30 ~12:00 Dhaka): Claude 5h quota reset now; next 5h reset 16:49 Dhaka (10:49Z); WEEKLY reset
+18:00 Dhaka (12:00Z). From 16:50 to 18:00 Dhaka run a MAXIMUM-SPEED Claude army: every useful dependency-light Claude
+row/fix/review/UI pass in parallel with isolated Owns (QUEUE effort; owner override allows pulled-forward fixture-first
+work). Until 16:49 keep normal pace. Never fake work/spend; budgets and gates unchanged.
+
+Accepted ~05:35-05:58Z (all TIMING PASS, ff-merged, fresh suites green):
+- S14g-fix3-orch64 DONE (evidence only): Gate A MET at spec-contract scope 10/10 recorded scenes, 0 invented numbers,
+  Meta est $1.186 (billed unknown). Limits: validate() not bundle-bound, synthetic S14c answers, synthetic-room turns.
+  S14g stays PARTIAL pending R-A recheck (orch77).
+- R-RS-recheck3-orch74 CHANGES_REQUIRED: F2-R3 P1 forged tracker JSON accepted (no independent custody registry),
+  F2-C P1 Tracked loader not bound to target boundary -> S12e-fix4 (Opus high).
+- S07-chunktrack-orch67 PARTIAL: chunked modal_track (+3 tests); PD02 439/439 frames but <1.25 periods; BN01 31/176
+  (re-seed fail-closed); PD04 0 detections. Modal billed $0.139, containers [].
+- UI-a-orch71 DONE (tokens, fonts, public shell; Mobbin+myfront), UI-b-orch72 DONE (workspace CSS; workspace 77 OK).
+- S17f-orch68 PARTIAL (report a11y + 4/4 PDFs; S14 pending). S22a-orch70 PARTIAL (Gate D protocol; finding: dev
+  /library has no demos -> S18 is a real Gate D prerequisite).
+- R-C-recheck-orch75 CHANGES_REQUIRED: N1 P1 understand.py Meta path per-ledger/no lock, M3 record_muse, N2 P1
+  standalone Modal CLIs unreserved; N3-N5 P3 -> S20-fix3 (Sol high).
+Owner 05:56Z: 25% Claude quota left, 6 min -> "launch an army". Pulled-forward dispatches (isolated Owns):
+DISPATCHED S12e-fix4-orch76 claude-opus-5-5 high (thread 01a18b51-d564-7230-b351-10931c4b78c5, deadline 2026-10-30T06:09:17+00:00).
+DISPATCHED R-A-recheck-orch77 gpt-6.1-sol high (thread 01a18b52-c37a-7462-b454-9d03194f0d0e, deadline 2026-10-30T06:10:07+00:00).
+DISPATCHED S20-fix3-orch78 gpt-6.1-sol high (thread 01a18b56-9864-7a60-bb27-2531d88e37cd, deadline 2026-10-30T06:14:30+00:00).
+DISPATCHED S18a-orch79 gpt-6.1-sol medium (thread 01a18b57-3809-7583-9942-b19b7b0630c3, deadline 2026-10-30T06:15:09+00:00).
+DISPATCHED S16a-orch80 gpt-6.1-sol medium (thread 01a18b57-ef05-7d61-834a-ef4e56af3d19, deadline 2026-10-30T06:15:52+00:00).
+DISPATCHED UI-d-orch81 claude-opus-5-5 high (thread 01a18b59-9b45-7783-9736-e2d816b4b697, deadline 2026-10-30T06:17:23+00:00).
+DISPATCHED UI-audit-orch82 claude-opus-5-5 high (thread 01a18b59-4414-7ad0-aaeb-f90961cd07b6, deadline 2026-10-30T06:17:23+00:00).
+DISPATCHED S15k-fixture-orch83 claude-sonnet-5-5 high (thread 01a18b5b-07d4-7433-be60-b43f89202b22, deadline 2026-10-30T06:17:24+00:00).
+DISPATCHED S24a-draft-orch84 claude-opus-5-5 high (thread 01a18b5a-069b-7101-a7d3-d0182e7d7578, deadline 2026-10-30T06:17:23+00:00).
+
 S20-fix2-orch65 DONE merged (TIMING PASS; canonical guardrails 64 OK, pipeline 52 OK, aws_adapter 7 OK via Build/gpu
 discovery). Global locked reservation journal wired into gpu_stages + AWS selector; M2/L2 fixed; M3 record_muse deferred
 (needs Build/agent, after S14g). Owns note: tests/pipeline/test_gpu_stages.py caller test touched - accepted.
