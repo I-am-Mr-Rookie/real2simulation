@@ -34,4 +34,3 @@ Fail closed verified for every entry point (reserve_gpu, claim_gpu, settle_gpu, 
 - python -B -m unittest discover -s tests/guardrails -t tests/guardrails -> 91 OK ([log](recheck2/guardrails-tests.txt)).
 - python -B -m unittest discover -s tests/pipeline -t tests/pipeline -> 53 OK ([log](recheck2/pipeline-tests.txt)).
 - Not run: tests/agent, tests/measurement, AWS adapter, real-process (vs thread) concurrency for claim/settle (recheck M1 already proved the lock with 8 processes), canonical runtime journal (absent per fix4; not touched).
-

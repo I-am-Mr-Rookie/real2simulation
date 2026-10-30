@@ -190,4 +190,3 @@ out.write_text("".join(json.dumps(r) + "\n" for r in OUT), encoding="utf-8")
 print(f"{sum(r['met'] for r in OUT)}/{len(OUT)} expectations met")
 for r in OUT:
     print(r["probe"], "MET" if r["met"] else "NOT MET", json.dumps(r["observed"]))
-

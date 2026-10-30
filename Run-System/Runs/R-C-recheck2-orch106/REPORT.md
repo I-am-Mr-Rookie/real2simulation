@@ -23,4 +23,3 @@ evidence/reviews/R-C/RECHECK2.md; evidence/reviews/R-C/recheck2/{probes_recheck2
 
 ## Communication
 Silent; one authorized completion line to controller chat. No canonical controls edited; no real journals, Modal, AWS or Meta touched; secrets not read.
-
