@@ -32,6 +32,42 @@ Success payload: `{spec, spec_sha256, rebuild_required: true}`; spec must exactl
 the validated candidate. `tool_outputs: []`; input values cannot become tool-backed facts.
 No spec persistence/rebuild happens here. S16b owns application and the rebuild handoff.
 
+#### S16b application boundary
+
+`Build/sidebar-tools/spec_patch.py` exports
+`apply_patch(call, *, base_spec, scene, scene_root) -> ToolResult`:
+
+```python
+from importlib import import_module
+
+patch_tool = import_module("Build.sidebar-tools.spec_patch")
+call = patch_tool.contracts.parse_json(request_json)
+try:
+    result = patch_tool.apply_patch(
+        call, base_spec=current_spec, scene=current_scene, scene_root=bundle_root)
+except patch_tool.SidebarContractError as error:
+    # Reject without changing current_spec or scheduling a rebuild.
+    raise
+```
+
+The caller supplies the **trusted current** spec and authoritative scene bundle;
+neither comes from model arguments. The application validates the S16a call,
+applies whole sections to a deep copy, runs existing experiment `validate_setup`
+(including scene assets, bounds, gravity, collision and stability preflight), and
+validates the correlated success result before returning it. Numeric-only
+`validate` is not enough: an otherwise valid spec outside the scene is rejected.
+Both request and scene-preflight rejections raise the existing typed
+`SidebarContractError`; preflight errors retain their original exception as cause.
+No error is converted to success or a queued acknowledgment. Input objects remain
+unchanged; returned specs do not alias them. `tool_outputs` is always empty.
+
+`rebuild_required: true` is a **handoff**, not a rebuild call or job receipt.
+This function has no dispatcher/callback, file writes or network calls: rejected
+patches cannot start a rebuild, and accepted patches do not start one either.
+S16c owns persistence/rebuild plumbing, including rechecking the trusted current
+digest at commit/admission time, serialization and existing resource/budget gates.
+Preflight does not authenticate rights/provenance or prove simulator accuracy.
+
 ### `scene.rebuild`
 
 Arguments: `{spec_sha256, spec}`. Existing experiment validation, digest and scene-id
