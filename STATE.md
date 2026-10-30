@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+R-RS-recheck2-orch62 = CHANGES_REQUIRED (Sol high; evidence ff-merged). TIMING FAIL: stop 05:00:01Z,
+7m31s late (self-reported; controller records exception, review evidence accepted, not timing pass).
+F2-R2 P1: synthetic/foreign observations declared with genuine PJ03/BN01/PD02 id+sha reach MET;
+st03_observations discards tracker clip/source identity. F2-A P2 approval parser substring accepts
+denials; F2-L P2 licence regex accepts invalid ids. F1-R, F1-F4 stay closed. -> S12e-fix3 (Opus high).
+Pattern: 3 of last 4 workers overran deadline (orch60 39s, orch63 159s, orch62 451s) -> prompts now
+carry a hard minute-25 stop rule.
+
 DISPATCHED S20-fix2-orch65 Sol high from orch63 WIP (threadId:01a18b2e-6b4c-7cd1-94c9-8d09f2e2267f,hostId:local, deadline 2026-10-30T05:30:36+00:00).
 
 S20-fix-orch63 PARTIAL, NOT integrated (Sol high; TIMEBOX FAIL: 159 s overrun, self-reported). Unverified
