@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+Oct30 ~09:40Z: ACCEPTED S04i-orch118 DONE (narrowed by controller receipt to local implementation: workspace mounted, owner-only labelled
+dev repository, workspace-only clerkMiddleware, 404 fail-closed; web-private 18 + workspace 79 + pwa 52 pass, next build PASS; loopback
+self-proxy found = 127.0.0.1 vs localhost host mismatch, not SDK; real-key signed-in HTTP moved to S15k). ACCEPTED S16h-orch121 DONE
+(checkpoint: 1 live Baseten call, cost UNKNOWN; Fireworks offline only; SIDEBAR_SEARCH_PROVIDER=meta = explicit refusal, no bonus;
+sidebar-tools 103 OK). S18g asked: controller approved DONE for metadata-only loading + viewer-request boundary; playable asset/replay
+wiring to a follow-up row. Dispatched S15k-orch122 (Sonnet high; Railway dev redeploy + in-app-browser walk; dl 10:07Z). Next RID orch123.
+
 Oct30 ~09:33Z: ACCEPTED S17f-orch119 DONE (Build/reports/checkpoint.py; Gate A label refused unless verbatim; RM02 honest fallback page,
 physics NOT_RUN; reports 48 OK; HTML accessible, PDF untagged print artefact) and S16g-orch116 DONE (64 KiB call cap, no raw-input
 echo, RecursionError -> typed rejection; sidebar-tools 100 OK). S04i nonterminal: clerkMiddleware hang with SYNTHETIC Clerk keys;

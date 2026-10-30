@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 30, 15:30 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 30, 15:38 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **168 / 218** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **170 / 218** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -18,12 +18,12 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CODEX-2**
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
-- [ ] **S04i** — Codex · GPT-6.1 Sol, effort high — Connect private scene repository and mount workspace route (30 min)
-- [ ] **S16h** — Codex · GPT-6.1 Sol, effort medium — Checkpoint open-weight evidence and fallback claims (30 min)
-- …and 3 more ready in this lane
+- [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
+- [ ] **S18g** — Codex · GPT-6.1 Sol, effort medium — Implement library loading integration (30 min)
+- …and 1 more ready in this lane
 
 **CLAUDE**
-- Nothing ready yet: check dependencies and retry holds below.
+- [~] **S15k** — Codex (native Claude) · Sonnet 5.5, effort high — Walk full workflow on dev (30 min) *(partial: resume it)*
 
 ## Waiting for Koushik
 
@@ -74,7 +74,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (10/11)</summary>
+<details><summary><b>S04</b> — App skeleton on Railway with sign-in and guest access (11/11)</summary>
 
 - [x] **S04a** — Codex · GPT-6.1 Sol, effort medium — Define shell interfaces and fixture mount points (30 min)
 - [x] **S04b** — Codex · GPT-6.1 Sol, effort medium — Create Next.js shell and isolated route layout (30 min)
@@ -86,7 +86,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S04g1** — Codex · GPT-6.1 Sol, effort medium — Harden dev deployment verifier semantic checks (15 min)
 - [x] **S04g2** — Codex · GPT-6.1 Sol, effort medium — Preserve staging destination guards under Python optimization (15 min)
 - [x] **S04h** — Codex (native Claude) · Sonnet 5.5, effort high — Verify sign-in, guest route and dev health (30 min)
-- [ ] **S04i** — Codex · GPT-6.1 Sol, effort high — Connect private scene repository and mount workspace route (30 min)
+- [x] **S04i** — Codex · GPT-6.1 Sol, effort high — Connect private scene repository and mount workspace route (30 min)
 
 </details>
 
@@ -260,7 +260,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S16</b> — Sidebar agent tools and the open-weight component (7/8)</summary>
+<details><summary><b>S16</b> — Sidebar agent tools and the open-weight component (8/8)</summary>
 
 - [x] **S16a** — Codex · GPT-6.1 Sol, effort medium — Define sidebar tool-call and search contracts (30 min)
 - [x] **S16b** — Codex · GPT-6.1 Sol, effort medium — Implement validator-first spec patch tool (30 min)
@@ -269,7 +269,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S16e** — Codex · GPT-6.1 Sol, effort medium — Verify real dev search inference (30 min)
 - [x] **S16f** — Codex · GPT-6.1 Sol, effort medium — Add Fireworks fallback (30 min)
 - [x] **S16g** — Codex · GPT-6.1 Sol, effort medium — Test patch safety and search failures (30 min)
-- [ ] **S16h** — Codex · GPT-6.1 Sol, effort medium — Checkpoint open-weight evidence and fallback claims (30 min)
+- [x] **S16h** — Codex · GPT-6.1 Sol, effort medium — Checkpoint open-weight evidence and fallback claims (30 min)
 
 </details>
 
