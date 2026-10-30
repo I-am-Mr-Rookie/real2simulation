@@ -11,4 +11,4 @@ export default async function proxy(request, event) {
 }
 
 // Session context only; every leaf still checks ownership. Guests/library/health bypass this entirely.
-export const config = { matcher: ['/workspace/:path*'] };
+export const config = { matcher: ['/workspace/:path*', '/api/workspace/:path*'] };

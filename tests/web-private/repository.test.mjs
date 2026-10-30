@@ -70,7 +70,7 @@ test('server-only repository and guarded leaf keep owner identity out of client 
   const client = await text('shell/PrivateWorkspace.mjs');
   assert.doesNotMatch(client, /scene-repository|dev-scenes|server-access|ownerId|process\.env/);
   const proxy = await text('proxy.js');
-  assert.match(proxy, /matcher: \['\/workspace\/:path\*'\]/);
+  assert.match(proxy, /matcher: \['\/workspace\/:path\*', '\/api\/workspace\/:path\*'\]/);
   assert.doesNotMatch(proxy, /auth\.protect|redirectToSignIn/);
 });
 
@@ -78,7 +78,7 @@ test('actual Next matcher includes only workspace, never public library or healt
   const source = await readFile(new URL('../../Build/web/src/proxy.js', import.meta.url), 'utf8');
   const matcher = JSON.parse(source.match(/matcher: (\[[^\]]+\])/)[1].replaceAll("'", '"'));
   const { unstable_doesMiddlewareMatch: matches } = require('next/experimental/testing/server');
-  for (const url of ['/workspace', '/workspace/' + sceneId]) assert.equal(matches({ config: { matcher }, url }), true, url);
+  for (const url of ['/workspace', '/workspace/' + sceneId, '/api/workspace/x']) assert.equal(matches({ config: { matcher }, url }), true, url);
   for (const url of ['/', '/library', '/library/scene', '/health/live', '/health/ready',
     '/api/health', '/api/lab', '/sign-in', '/workspace-other', '/icon.svg']) {
     assert.equal(matches({ config: { matcher }, url }), false, url);
