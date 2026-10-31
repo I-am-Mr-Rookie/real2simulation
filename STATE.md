@@ -1,6 +1,8 @@
 # Real2Simulation — STATE
 
-- 2026-10-31T07:24Z controller: accepted S15ad-orch190 DONE. Timebox PASS; diff within Owns (CSS + 1 test + evidence); fresh web tests 142/142; ff-merged. DEV web 4b869e4a SUCCESS (rev 1ea98990 pre-rebase; rebase added only control commits); deployments.json updated (prev 079d2129); verify.py exit 0. Signed-in DEV walk OWN05 at 1280 with right panel open: #ws-panel 714/714 (no overflow, was 275>254), viewport stacked above the result card, labels verbatim (evidence/S15/s15o/controller/28). Next: S15ae.
+- 2026-10-31T07:24Z controller: dispatched S15ae-orch191 (Opus 5.5 medium), thread 01a190d7-795f-7953-bdeb-9b259e861ce9, deadline 07:52:58Z (13:52 Dhaka): left rail as activity bar per owner addendum (toggle current pane, icon click, hover temporary pane, active highlight); web redeploy to DEV.
+
+- 2026-10-31T07:22Z controller: accepted S15ad-orch190 DONE. Timebox PASS; diff within Owns (CSS + 1 test + evidence); fresh web tests 142/142; ff-merged. DEV web 4b869e4a SUCCESS (rev 1ea98990 pre-rebase; rebase added only control commits); deployments.json updated (prev 079d2129); verify.py exit 0. Signed-in DEV walk OWN05 at 1280 with right panel open: #ws-panel 714/714 (no overflow, was 275>254), viewport stacked above the result card, labels verbatim (evidence/S15/s15o/controller/28). Next: S15ae.
 
 - 2026-10-31T07:10Z OWNER (annotation): hover-preview applies to EVERY icon whose pane is not open, including the current (e.g. Home) icon while the sidebar is collapsed; pointer can move into the temporary pane and click options; it closes only when the pointer leaves icon+pane; the current pane's icon keeps a distinct (white/light) highlight. Spec section 6 + QUEUE S15ae updated (not yet dispatched).
 
