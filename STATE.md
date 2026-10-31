@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T01:20Z — controller: dispatch S15l-orch183
+
+- S15l (Sonnet medium, thread 01a18f88-4c92-76a3-9cb7-905a6b53d150, deadline 01:47:15Z / 07:47 Dhaka): workspace accessibility checkpoint (keyboard/focus, live status/errors, 375px) with node-test proof; no deploy (controller deploys + browser check). Not dispatched: S13j (optional GPU; envelope 2 exhausted), S02f/S18c (no new lead), S22c-e (fresh-account captures need account creation approval; controller-browser only).
+
 ## 2026-10-31T01:18Z — controller: accept S20z DONE + S24l DONE
 
 - S20z-orch182 (Sonnet medium; timebox PASS) merged: guest-library guardrail test now checks the real property (page.jsx, LibraryClient.jsx, /api/library routes never touch admission/SPEND_PAUSED/require_reconstruction/ledger/paid/private routes; manifest stays synthetic); tests/guardrails 95/95 OK fresh. Static scan only; transitive library imports not scanned. No leak found.
