@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T00:20Z — controller: accept S07l DONE; S07m added + dispatched
+
+- S07l-orch179 (Opus high; timebox PASS; self-check + measurement 90 OK fresh) merged. Diagnosis from tracks only: the 6 px held-out threshold is miscalibrated (exact quadratic + declared 2 px would give 6.1-9.2 px, median 7.1, from extrapolation leverage); drag REJECTED (0/6 plausible); VFR REJECTED (CFR 33.33 ms); blur/rotation PRESENT 6/6 (box height +22% median); centroid-vs-box-centre drift PRESENT (~11 px); rolling shutter could add up to ~10 px (assumed 20 ms readout); scale not a held-out cause. Recommendation (hypothesis): pre-registered predictive chi-square test with leverage.
+- S07m-orch180 dispatched (Opus high, thread 01a18f52-6752-7fa0-8317-7eca1d2eb927, deadline 00:48:09Z / 06:48 Dhaka): pre-registered v3 test on v1+v2 windows, all owner clips, third-analysis caveat.
+
 ## 2026-10-31T00:20Z — controller: accept S15y DONE + S15v DONE (owner clip DEV walk PASS)
 
 - S15y-orch177 (Opus high; timebox PASS; web 121/121, api 24 OK fresh) merged. DEV api 88eb14d1-5be4-4d6b-a439-800293c2b703 (prev 85c23646) + web 75dcb815-b7a1-44ab-80da-44733b3d048e (prev 20e728a2), revision 6b9e16d9 (pre-rebase; main moved by control commits only); deployments.json + verify pins updated; verify.py exit 0; railway-dev 16 OK.
