@@ -3,6 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { resultChart, renderResultChart } from '../../Build/web/src/workspace/result-chart.mjs';
+import { renderWorkspace } from '../../Build/web/src/workspace/view.mjs';
 
 const clips = JSON.parse(readFileSync(new URL('../../Build/api/workspace/owner_clips.json', import.meta.url), 'utf8')).clips;
 const rec = (id) => ({ clip_id: id, status: 'recorded', ...clips[id].measurement, series: clips[id].series });
@@ -47,4 +48,34 @@ test('abstain or missing series -> no chart; malformed series -> explicit notice
   const bad = rec('OWN05'); bad.series = { ...bad.series, points: bad.series.points.map((p, i) => (i ? p : { ...p, y_px: 'x' })) };
   assert.match(resultChart(bad).error, /malformed/);
   assert.match(resultChart({ ...rec('OWN05'), series: { ...rec('OWN05').series, n_train: 99 } }).error, /malformed/);
+});
+
+test('S15ax: axis ticks carry units and take their values from series points (display rounding only)', () => {
+  for (const id of ['OWN05', 'OWN01']) {
+    const m = rec(id), c = resultChart(m), pts = m.series.points, n = m.series.n_train;
+    const at = [pts[0], pts[n - 1], pts.at(-1)];
+    assert.deepEqual(c.xTicks.map((t) => t.label), at.map((p) => Number(p.t_s.toFixed(3)) + ' s'), id);
+    assert.deepEqual(c.yTicks.map((t) => t.label), at.map((p) => Math.round(p.y_px) + ' px'), id);
+    for (const t of c.xTicks) assert.ok(t.x >= c.plot.left && t.x <= c.plot.right);
+    for (const t of c.yTicks) assert.ok(t.y >= c.plot.top && t.y <= c.plot.bottom);
+    assert.ok(c.splitX > c.plot.left && c.splitX < c.plot.right);
+  }
+});
+
+test('S15ax: at report.owner the chart is the centre-stage hero; the side card keeps g + caveat text, no second chart', () => {
+  const layout = { phase: 'report.owner', stages: [], viewport: { banner: null }, jobStatus: { label: 'Clip result', jobId: 'job_x', surface: null, error: null } };
+  const ws = (phase, m) => renderWorkspace(h, { ...layout, phase }, { status: 'empty' }, null, null, undefined, undefined, undefined, undefined, undefined, undefined, undefined, { label: 'RECORDED', measurement: m });
+  const slot = (tree, s) => find(tree, (n) => n?.props?.['data-slot'] === s)[0];
+  const tree = ws('report.owner', { ...rec('OWN05'), caveat: 'CAVEAT verbatim' }); // caveat is added by jobs.owner_measurement, not owner_clips.json
+  const stage = slot(tree, 'viewport'), panel = slot(tree, 'panel');
+  assert.equal(stage.props['data-hero'], 'result');
+  assert.equal(find(stage, (n) => n?.type === 'svg').length, 1);
+  assert.equal(find(panel, (n) => n?.type === 'svg').length, 0);
+  assert.equal(find(tree, (n) => n?.props?.id === 'ws-rc-t').length, 1); // svg title id stays unique
+  const side = strings(panel).join('|');
+  assert.ok(side.includes('g = 8.62 ± 1.28 m/s²') && side.includes('CAVEAT verbatim'), side);
+  const fail = strings(slot(ws('report.owner', rec('OWN01')), 'viewport')).join('|');
+  assert.match(fail, /Held-out check FAIL/);
+  // abstain: no chart, ordinary empty viewport
+  assert.equal(slot(ws('report.owner', { clip_id: 'OWN02', status: 'abstain', message: 'x' }), 'viewport').props['data-hero'], undefined);
 });

@@ -1,0 +1,38 @@
+
+> real2simulation-web@0.1.0 build
+> next build --webpack
+
+▲ Next.js 16.4.3 (webpack)
+✓ Running next.config.js took 63ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 12.9s
+  Running TypeScript ...
+  Finished TypeScript in 9ms ...
+  Collecting page data using 3 workers ...
+  Generating static pages using 3 workers (0/3) ...
+✓ Generating static pages using 3 workers (3/3) in 2.3s
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)
+┌ ƒ /
+├ ƒ /_not-found
+├ ƒ /api/lab
+├ ƒ /api/library/artifacts/[id]
+├ ƒ /api/library/manifest
+├ ƒ /api/workspace/[...path]
+├ ○ /icon.svg
+├ ƒ /lab
+├ ƒ /library
+├ ƒ /sign-in/[[...sign-in]]
+├ ƒ /sign-up/[[...sign-up]]
+├ ƒ /workspace
+└ ƒ /workspace/[sceneId]
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

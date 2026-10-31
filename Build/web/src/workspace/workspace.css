@@ -455,5 +455,23 @@ body:has(.r2s-shell) .site-footer { display: none; }
 .r2s-chip[data-chip="live"] > summary .r2s-icon { color: var(--r2s-ok); }
 .r2s-chip > p { max-width: 60ch; margin: .35rem 0 0; padding: .4rem .7rem; border: 1px solid var(--r2s-border); border-radius: 10px; background: var(--r2s-surface); line-height: 1.4; }
 @media (max-width: 760px) { .r2s-center > .r2s-chip { margin-left: .75rem; max-width: calc(100% - 1.5rem); } }
+/* S15ax: owner-clip result chart as the centre-stage hero (report.owner, no scene). Static SVG, no motion; theme tokens only. */
+.ws-viewport[data-hero] .ws-host { display: none; }
+.ws-viewport[data-hero] .ws-result-chart { margin: 0; padding: var(--ws-s3); background: var(--ws-surface); border: 1px solid var(--r2s-border, #e2e2e0); border-radius: var(--ws-radius); box-shadow: var(--r2s-shadow-sm); font-size: .95rem; min-width: 0; }
+.ws-viewport[data-hero] .ws-rc-svg { border: 0; }
+.ws-viewport[data-hero] .ws-rc-legend { color: var(--ws-ink); }
+.ws-rc-tick { fill: var(--ws-muted); font: 13px var(--ws-mono); font-variant-numeric: tabular-nums; }
+.ws-rc-splitlabel { fill: var(--ws-ink); }
+.ws-rc-axis { stroke: var(--r2s-border-strong, #85858d); }
+.ws-rc-grid { stroke: var(--ws-chart-3); stroke-dasharray: 1 3; }
+.ws-rc-band { fill: var(--ws-chart-2); fill-opacity: .28; stroke: var(--ws-chart-2); stroke-width: 1; }
+.ws-rc-legend { list-style: none; padding-left: 0; display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; }
+.ws-rc-legend li { display: inline-flex; align-items: center; gap: .45rem; max-width: 100%; }
+.ws-rc-legend li::before { content: ""; flex: none; width: 1.4rem; height: 0; border-top: 2.5px solid var(--ws-ink); }
+.ws-rc-legend li[data-key="pt"]::before { width: .7rem; height: .7rem; border: 1.5px solid var(--ws-ink); border-radius: 50%; background: linear-gradient(90deg, var(--ws-accent) 50%, var(--ws-surface) 50%); }
+.ws-rc-legend li[data-key="pred"]::before { border-top-style: dashed; }
+.ws-rc-legend li[data-key="band"]::before { height: .7rem; border: 1px solid var(--ws-chart-2); background: color-mix(in srgb, var(--ws-chart-2) 28%, transparent); }
+.ws-panel .ws-rc-tick, .ws-job .ws-rc-tick { font-size: 22px; } /* side-card chart is ~1/2 scale: bigger user units keep labels readable */
+@media (max-width: 520px) { .ws-rc-tick { font-size: 26px; } }
 
 

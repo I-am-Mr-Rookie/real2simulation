@@ -1,7 +1,8 @@
 // S15aw: owner-clip result chart. Input = jobs.owner_measurement (status 'recorded' + series from evidence/S15aw/build_series.py).
 // Every displayed number is an API field verbatim; this module computes only chart GEOMETRY (pixel positions, never shown).
 const finite = (x) => typeof x === 'number' && Number.isFinite(x);
-const W = 600, H = 280, L = 12, R = 12, T = 12, B = 12;
+// S15ax: gutters for tick labels (left: y px, bottom: t s); font size is set in CSS (user units, bumped on narrow screens).
+const W = 640, H = 360, L = 120, R = 24, T = 32, B = 48;
 const f2 = (x) => Math.round(x * 100) / 100; // svg coordinate precision only
 
 export function resultChart(m) {
@@ -22,11 +23,16 @@ export function resultChart(m) {
     + [...mod].reverse().map((q) => 'L' + sx(q.t_s) + ' ' + sy(q.y_px + q.band_px)).join(' ') + ' Z';
   const v = m.v3 ?? {}, verdict = v.verdict === 'PASS' || v.verdict === 'FAIL' ? v.verdict : null;
   const held = pts.filter((p) => p.held_out);
+  // S15ax: tick VALUES are series points (first, last fit-prefix, last), rounded for display only; no invented round-number ticks.
+  const tickPts = [pts[0], pts[n - 1], pts.at(-1)];
+  const xTicks = tickPts.map((p, i) => ({ x: sx(p.t_s), label: String(Number(p.t_s.toFixed(3))) + ' s', anchor: ['start', 'middle', 'end'][i] }));
+  const yTicks = tickPts.map((p) => ({ y: sy(p.y_px), label: String(Math.round(p.y_px)) + ' px' }));
   const check = verdict ? 'Held-out check ' + verdict + ': chi2/dof = ' + v.chi2 + '/' + v.dof + ', p = ' + v.p : 'Held-out check: verdict unavailable';
   const summary = pts.length + ' RECORDED track points (frames ' + pts[0].frame + ' to ' + pts.at(-1).frame + '). SIMULATED quadratic fit to the first '
     + n + ' points; its prediction (dashed) is compared with the ' + held.length + ' held-out points. ' + check
     + (finite(m.held_out_rmse_px) ? '; held-out RMSE ' + m.held_out_rmse_px + ' px' : '') + '. Image pixels; scale unverified.';
-  return { error: null, width: W, height: H, verdict, check, summary, label: String(s.label ?? ''), bandNote: String(s.band ?? ''), sigma: s.sigma_px,
+  return { error: null, width: W, height: H, plot: { left: L, right: W - R, top: T, bottom: H - B }, xTicks, yTicks,
+    verdict, check, summary, label: String(s.label ?? ''), bandNote: String(s.band ?? ''), sigma: s.sigma_px,
     fitPath: path(fitPart), predPath: predPart.length ? path(predPart) : null, bandPath: band,
     points: pts.map((p) => ({ ...p, x: sx(p.t_s), y: sy(p.y_px) })), splitX: sx((pts[n - 1].t_s + pts[n].t_s) / 2) };
 }
@@ -38,8 +44,19 @@ export function renderResultChart(h, m) {
   return h('figure', { className: 'ws-result-chart', 'data-verdict': c.verdict ?? 'none' },
     h('svg', { viewBox: '0 0 ' + c.width + ' ' + c.height, role: 'img', 'aria-labelledby': 'ws-rc-t ws-rc-d', className: 'ws-rc-svg' },
       h('title', { id: 'ws-rc-t' }, 'Fit and held-out prediction'), h('desc', { id: 'ws-rc-d' }, c.summary),
+      // S15ax: axes + ticks with units (t in s, image y in px); labels are aria-hidden duplicates of desc/table numbers
+      h('g', { className: 'ws-rc-axes', 'aria-hidden': 'true' },
+        ...c.yTicks.map((t, i) => h('g', { key: 'y' + i },
+          h('line', { x1: c.plot.left, x2: c.plot.right, y1: t.y, y2: t.y, className: 'ws-rc-grid' }),
+          h('text', { x: c.plot.left - 10, y: t.y, textAnchor: 'end', dominantBaseline: 'middle', className: 'ws-rc-tick' }, t.label))),
+        h('line', { x1: c.plot.left, x2: c.plot.right, y1: c.plot.bottom, y2: c.plot.bottom, className: 'ws-rc-axis' }),
+        h('line', { x1: c.plot.left, x2: c.plot.left, y1: c.plot.top, y2: c.plot.bottom, className: 'ws-rc-axis' }),
+        ...c.xTicks.map((t, i) => h('g', { key: 'x' + i },
+          h('line', { x1: t.x, x2: t.x, y1: c.plot.bottom, y2: c.plot.bottom + 6, className: 'ws-rc-axis' }),
+          h('text', { x: t.x, y: c.height - 6, textAnchor: t.anchor, className: 'ws-rc-tick' }, t.label))),
+        h('text', { x: c.splitX + 8, y: c.plot.top - 6, className: 'ws-rc-tick ws-rc-splitlabel' }, 'held out')),
       h('path', { d: c.bandPath, className: 'ws-rc-band' }),
-      h('line', { x1: c.splitX, x2: c.splitX, y1: 0, y2: c.height, className: 'ws-rc-split' }),
+      h('line', { x1: c.splitX, x2: c.splitX, y1: c.plot.top - 20, y2: c.plot.bottom, className: 'ws-rc-split' }),
       h('path', { d: c.fitPath, className: 'ws-rc-fit' }),
       c.predPath ? h('path', { d: c.predPath, className: 'ws-rc-pred' }) : null,
       ...c.points.map((p) => h('circle', { key: p.frame, cx: p.x, cy: p.y, r: 5, className: p.held_out ? 'ws-rc-pt ws-rc-held' : 'ws-rc-pt' }))),

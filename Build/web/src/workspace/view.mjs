@@ -18,16 +18,19 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
   const specError = layout.phase === 'interview.active' ? jobStatus.error : null;
   // S15r: say why run/fit failed, not just 'Run failed.'; S15t: a report 422 leaves fit.done, say it there too
   const stageError = /\.failed$|^fit\.done$/.test(layout.phase) ? jobStatus.error : null;
+  // S15ax: an owner clip has a measurement but no scene: its result chart takes the centre stage; the side card stays text
+  const hero = layout.phase === 'report.owner' && provenance?.measurement ? renderResultChart(h, provenance.measurement) : null;
   return h('div', { className: 'ws', 'data-phase': layout.phase },
     h('nav', { className: 'ws-stages', 'data-slot': 'stage-nav', 'aria-label': 'Workspace stages' },
       h('ol', null, ...stages.map((s) => h('li', { key: s.id, 'data-status': s.status, 'aria-current': s.status === 'current' ? 'step' : undefined, title: s.status === 'skipped' ? 'Not run' : undefined },
         // S15an: skipped = dash icon (CSS) + tooltip; the "(not run)" wording stays in the DOM for screen readers.
         ...(s.status === 'skipped' && s.label.endsWith(' (not run)') ? [s.label.slice(0, -10), h('span', { className: 'r2s-sr' }, ' (not run)')] : [s.label + (s.failed ? ' (needs attention)' : '')]))))),
     sidebar ? renderSidebar(h, sidebar, onAction) : null,
-    h('section', { id: 'ws-viewport', tabIndex: -1, className: 'ws-viewport', 'data-slot': 'viewport', 'aria-label': 'Scene viewport' },
+    h('section', { id: 'ws-viewport', tabIndex: -1, className: 'ws-viewport', 'data-slot': 'viewport', 'data-hero': hero ? 'result' : undefined, 'aria-label': hero ? 'Clip result chart' : 'Scene viewport' },
       viewport.banner ? h('p', { className: 'ws-banner', role: 'note' }, viewport.banner) : null,
+      hero,
       h('div', { className: 'ws-host', ref: hostRef, 'data-viewer-status': view.status }),
-      h('p', { className: 'ws-status', role: 'status', 'aria-live': 'polite' }, VIEWER_STATUS_TEXT[view.status] ?? VIEWER_STATUS_TEXT.error)),
+      h('p', { className: hero ? 'ws-status r2s-sr' : 'ws-status', role: 'status', 'aria-live': 'polite' }, VIEWER_STATUS_TEXT[view.status] ?? VIEWER_STATUS_TEXT.error)),
     h('section', { id: 'ws-panel', tabIndex: -1, className: 'ws-panel', 'data-slot': 'panel', 'aria-label': 'Stage panel' },
       // S15l: tabIndex -1 makes the heading the focus target after a stage change (react.mjs restoreFocus)
       h('h2', { id: 'ws-panel-heading', tabIndex: -1 }, jobStatus.label),
@@ -44,7 +47,7 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
       run?.next ? h('div', { className: 'ws-actions', 'data-slot': 'next-step' },
         h('button', { type: 'button', className: 'ws-submit', 'data-event': run.next.event, disabled: !onAction, onClick: () => onAction?.({ type: run.next.event }) }, run.next.label)) : null,
       report ? renderReport(h, report) : null,
-      layout.phase === 'report.owner' && provenance?.measurement ? renderMeasurement(h, provenance.measurement) : null),
+      layout.phase === 'report.owner' && provenance?.measurement ? renderMeasurement(h, provenance.measurement, !hero) : null),
     h('aside', { id: 'ws-job', tabIndex: -1, className: 'ws-job', 'data-slot': 'job-status', 'aria-label': 'Job status' },
       h('p', null, jobStatus.jobId ? 'Job ' + jobStatus.jobId : 'No job yet'),
       // S15z: at report.owner the stage panel already shows the result card; keep only a one-line pointer here
@@ -65,7 +68,7 @@ export function renderProvenance(h, p, measurementShownElsewhere = false) {
 }
 
 // S15v: owner phone clip result from jobs.owner_measurement: stored MEASURED g ± u as a labelled RECORDED replay, or an abstain. Text only.
-function renderMeasurement(h, m) {
+function renderMeasurement(h, m, chart = true) {
   const s = (v) => String(v ?? '');
   const scale = m.scale?.value_m != null ? 'Scale: ' + s(m.scale.reference) + ' = ' + s(m.scale.value_m) + ' m (' + s(m.scale.label) + ')' : null;
   const us = m.user_scale; // S15y: the interview's known-size answer, declared or abstain
@@ -76,7 +79,7 @@ function renderMeasurement(h, m) {
     m.status === 'recorded' ? h('p', null, h('strong', null, 'g = ' + s(m.g) + ' ± ' + s(m.u) + ' ' + s(m.unit).replace('^2', '²')), ' (' + s(m.measured_label) + ')') : null,
     m.status === 'recorded' ? h('details', { className: 'ws-source' }, h('summary', null, 'Source'), h('code', null, s(m.source))) : null,
     m.status === 'recorded' ? h('p', { className: 'ws-note' }, s(m.caveat)) : h('p', { className: 'ws-note' }, s(m.message)),
-    renderResultChart(h, m),
+    chart ? renderResultChart(h, m) : null,
     scale ? h('p', { className: 'ws-note' }, scale) : null,
     yours ? h('p', { className: 'ws-note', 'data-slot': 'user-scale' }, yours) : null);
 }
