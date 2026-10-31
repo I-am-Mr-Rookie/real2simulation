@@ -4,6 +4,7 @@
 import React from 'react';
 import { createWorkspace } from '../workspace/react.mjs';
 import { createThreeViewer } from '../viewer/three-viewer.mjs';
+import { createArtifactLoader } from '../viewer/artifact-loader.mjs';
 import { createController, API_BASE, browserSimulate } from '../workspace/controller.mjs';
 import { runBrowserSimulation } from '../lab/browser-simulator.mjs';
 import { uploadView, renderUpload } from '../workspace/upload-view.mjs';
@@ -16,6 +17,10 @@ import { icon } from './icons.mjs';
 
 const Workspace = createWorkspace(React);
 const adapter = createThreeViewer();
+// S13m: scene_id is the job id; the API serves the sha-verified RM04 bundle (or 503 -> viewer shows unavailable).
+export const loadScene = createArtifactLoader({
+  bundleUrl: (s) => new URL(`${API_BASE}/scenes/${encodeURIComponent(s.scene_id)}/bundle/`, globalThis.location.origin) });
+export const SCENE_LABEL = 'Scene geometry: Display only, scale unverified, not a measurement.';
 export const UNAVAILABLE_NOTICE = 'Workspace service unavailable: the private API did not answer, so no upload, job or result is shown. Nothing on this page is a measurement.';
 export const LIVE_NOTICE = 'Connected to the private workspace API. Only approved licensed clips are accepted; every result is labelled RECORDED or SIMULATED by the server.';
 export const INSTRUMENTS_UNAVAILABLE = 'Instruments are not available in this build; no reading is shown.';
@@ -155,7 +160,8 @@ export default function PrivateWorkspace({ scene }) {
       ? s.whatIfLabel + '. Run and fit values come from the in-browser simulator on your described setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')
       : 'SIMULATED: run and fit values come from the in-browser simulator on the validated setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')) : null,
     live ? chip('Instruments off', INSTRUMENTS_UNAVAILABLE, 'instruments') : null,
-    React.createElement(Workspace, { state: s.state, adapter, audience: 'signed-in', onAction,
+    live ? React.createElement('p', { role: 'note', 'data-scene-label': '' }, SCENE_LABEL) : null,
+    React.createElement(Workspace, { state: s.state, adapter, loadScene, audience: 'signed-in', onAction,
       run: live ? initialRun() : undefined, instruments: live ? local.instruments : undefined, // interview: rendered in the right panel (S15ac)
       fit: live ? s.fitInput ?? undefined : undefined, report: live && s.report ? s.report : undefined, provenance: live ? s.provenance ?? undefined : undefined,
       whatIf: live ? s.whatIfLabel ?? undefined : undefined })));

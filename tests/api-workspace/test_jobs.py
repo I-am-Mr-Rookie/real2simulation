@@ -101,6 +101,45 @@ class JobsRouterTests(unittest.TestCase):
     def test_auth_required(self):
         self.assertEqual(self.code(self.client.get("/internal/workspace/jobs/job_" + "0" * 32), 401), "UNAUTHORIZED")
 
+    def bundle_client(self, scene_dir):
+        app = FastAPI()
+        self.store = MemoryStore()
+        app.include_router(create_router(self.store, UploadService(self.tmp / "up"), lambda: {BLOB_SHA: "RM04"},
+                                         self.rec, self.und, scene_dir=scene_dir))
+        return TestClient(app)
+
+    def test_rm04_bundle_owner_allowlist_sha_and_missing(self):  # S13m; SYNTHETIC bytes + temp manifest of their shas
+        src = self.tmp / "bundle"
+        src.mkdir()
+        files = {"scene.json": json.dumps({"id": "rm04-synthetic", "schema_version": "1.0.0"}).encode(),
+                 "points.ply": b"SYNTHETIC-ply", "points-mobile.ply": b"SYNTHETIC-mobile"}
+        for name, data in files.items():
+            (src / name).write_bytes(data)
+        shas = {n: {"sha256": hashlib.sha256(d).hexdigest()} for n, d in files.items()} | {"points-mobile.ply": {"sha256": "0" * 64}}
+        (self.tmp / "manifest.json").write_text(json.dumps({"files": shas}), encoding="utf-8")
+        with mock.patch("Build.api.workspace.jobs.BUNDLE_MANIFEST", self.tmp / "manifest.json"):
+            c = self.bundle_client(src)
+            done = self.finish(c)
+            self.assertEqual(done["job"]["status"], "ready")
+            url = f"/internal/workspace/scenes/{done['job']['job_id']}/bundle/"
+            r = c.get(url + "scene.json", headers=AUTH)
+            self.assertEqual(r.status_code, 200, r.text)
+            self.assertEqual(r.headers["cache-control"], "no-store")
+            self.assertEqual(r.headers["x-r2s-source-sha256"], shas["scene.json"]["sha256"])
+            self.assertEqual(r.json(), {"id": done["job"]["job_id"], "schema_version": "1.0.0"})  # bound to the job
+            self.assertEqual(c.get(url + "points.ply", headers=AUTH).content, b"SYNTHETIC-ply")
+            self.assertEqual(self.code(c.get(url + "points.ply", headers=OTHER_AUTH), 404), "NOT_FOUND")
+            for name in ("RM04-mapanything.npz", "RM04-scene-log.json", "SCENE.JSON"):
+                self.assertEqual(self.code(c.get(url + name, headers=AUTH), 404), "NOT_FOUND")
+            self.assertEqual(c.get(url + "..%2F..%2Fmanifest.json", headers=AUTH).status_code, 404)  # traversal never routed
+            self.assertEqual(self.code(c.get(url + "points-mobile.ply", headers=AUTH), 503), "DEPENDENCY_UNAVAILABLE")  # sha mismatch
+            c = self.bundle_client(self.tmp / "missing")
+            url = f"/internal/workspace/scenes/{self.finish(c)['job']['job_id']}/bundle/"
+            self.assertEqual(self.code(c.get(url + "points.ply", headers=AUTH), 503), "DEPENDENCY_UNAVAILABLE")
+            other = self.finish()["job"]["job_id"]  # default client: same blob approved as a non-RM04 clip
+            self.assertEqual(self.code(self.client.get(f"/internal/workspace/scenes/{other}/bundle/scene.json", headers=AUTH), 404),
+                             "NOT_FOUND")
+
     def test_resumable_upload_and_unapproved_sha(self):
         r = self.client.post("/internal/workspace/uploads", headers=AUTH,
                              json={"media_type": "video/mp4", "size_bytes": 10, "sha256": "a" * 64})

@@ -17,7 +17,7 @@ from pathlib import Path
 
 from typing import Any
 
-from fastapi import APIRouter, Body, Depends, Query, Request
+from fastapi import APIRouter, Body, Depends, Query, Request, Response
 
 from Build.api.workspace.auth import error, require_owner
 from Build.pipeline.contracts import STAGES
@@ -41,6 +41,11 @@ OWNER_CLIPS = Path(__file__).with_name("owner_clips.json")
 SCALE_LABEL = "user-declared, not verified"
 # S15y: owner clips have no recording and live execution is off, so no stage runs; that is a no-scene state, not a failure.
 NO_SCENE = "no scene: owner clip, scene reconstruction not run"
+# S13m: RM04 MapAnything display bundle (S13l). Bytes never enter Git; stage.py bakes them into the API image at this
+# same relative path when present. WORKSPACE_SCENE_DIR overrides; served only if sha256 equals the recorded manifest.
+SCENE_DIR = ROOT / "evidence/S13l/reconstruct/bundle"
+BUNDLE_MANIFEST = ROOT / "Build/pipeline/recorded/RM04-S13l-mapanything.json"
+BUNDLE_FILES = ("scene.json", "points.ply", "points-mobile.ply")
 
 
 def owner_job(job_id):
@@ -213,7 +218,8 @@ def _upload_error(exc: UploadError):
     return error(422, exc.code, str(exc), decision=exc.decision, committed_bytes=exc.committed_bytes)
 
 
-def create_router(store=None, uploads=None, shas=None, recording=RECORDING, understood=UNDERSTOOD, owners=owner_clips) -> APIRouter:
+def create_router(store=None, uploads=None, shas=None, recording=RECORDING, understood=UNDERSTOOD, owners=owner_clips,
+                  scene_dir=None) -> APIRouter:
     store = store if store is not None else default_store()
     uploads = uploads or UploadService(os.environ.get("WORKSPACE_UPLOAD_DIR") or Path(tempfile.gettempdir()) / "r2s-uploads")
     shas = approved_shas if shas is None else shas
@@ -270,6 +276,26 @@ def create_router(store=None, uploads=None, shas=None, recording=RECORDING, unde
         if prov.get("executor") == "none":
             return {"kind": "job_progress", "job_id": job_id, "events": [], "job": owner_job(job_id), "provenance": prov}
         return {**JobRunner(store, {}).progress(job_id, after, shell_scene(job_id)), "provenance": prov}
+
+    @router.get("/scenes/{job_id}/bundle/{name}")
+    def bundle(job_id: str, name: str, owner: str = Depends(require_owner)):
+        """S13m: RM04 display-only geometry for a READY recorded job of the approved RM04 clip (scale unverified)."""
+        prov = owned(owner, job_id)
+        if (name not in BUNDLE_FILES or prov.get("executor") != "recorded"
+                or shas().get(store.get(f"job:{job_id}:input")) != "RM04"
+                or JobRunner(store, {}).progress(job_id, 0, shell_scene(job_id))["job"]["status"] != "ready"):
+            raise error(404, "NOT_FOUND", "scene bundle file not found")
+        try:
+            want = json.loads(BUNDLE_MANIFEST.read_text(encoding="utf-8"))["files"][name]["sha256"]
+            data = (Path(scene_dir or os.environ.get("WORKSPACE_SCENE_DIR") or SCENE_DIR) / name).read_bytes()
+        except (OSError, KeyError, TypeError, ValueError):
+            raise error(503, "DEPENDENCY_UNAVAILABLE", "scene bundle is not available on this server") from None
+        if hashlib.sha256(data).hexdigest() != want:
+            raise error(503, "DEPENDENCY_UNAVAILABLE", "scene bundle failed its sha256 check")
+        if name == "scene.json":  # verified bytes, re-bound to this job: the viewer gate requires manifest id == scene_id
+            data = json.dumps({**json.loads(data), "id": job_id}, indent=1).encode("utf-8")
+        return Response(data, media_type="application/json" if name == "scene.json" else "application/octet-stream",
+                        headers={"cache-control": "no-store", "x-r2s-source-sha256": want})
 
     return router
 

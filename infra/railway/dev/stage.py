@@ -9,6 +9,9 @@ import sys
 root = Path(__file__).resolve().parents[3]
 service, destination = sys.argv[1:]
 SNAPSHOT = "Build/web/library-snapshot/guest.json"
+# S13m: RM04 display bundle = gitignored local bytes (never in Git); baked into the api context only when present and
+# sha-equal to the committed recorded manifest. Absent -> the API answers 503 DEPENDENCY_UNAVAILABLE.
+BUNDLE, BUNDLE_MANIFEST = "evidence/S13l/reconstruct/bundle/", "Build/pipeline/recorded/RM04-S13l-mapanything.json"
 # Same one-liner as Build/web/src/app/api/library/guest.mjs GUEST_SCRIPT (guest.py stays the only projection logic).
 GUEST = ('import base64,json,sys;from Build.library.guest import load_guest;m,o=load_guest();'
          'sys.stdout.write(json.dumps({"manifest":m,"objects":{k:base64.b64encode(v).decode() for k,v in o.items()}}))')
@@ -50,6 +53,15 @@ if service == "web":
     for key, value in objects.items():
         if hashlib.sha256(base64.b64decode(value, validate=True)).hexdigest() != key:
             raise ValueError("Guest snapshot object hash mismatch")
+bundle = {}
+if service == "api" and BUNDLE_MANIFEST in files:
+    recorded = json.loads(subprocess.check_output(["git", "show", f"{revision}:{BUNDLE_MANIFEST}"], cwd=root))["files"]
+    for name, entry in recorded.items():
+        if (root / BUNDLE / name).is_file():
+            content = (root / BUNDLE / name).read_bytes()
+            if hashlib.sha256(content).hexdigest() != entry["sha256"]:
+                raise ValueError("RM04 bundle sha256 does not match the recorded manifest")
+            bundle[BUNDLE + name] = content
 # Claim exclusively after validation: a competing creator must never be overwritten.
 target.mkdir(parents=True, exist_ok=False)
 manifest = {"service": service, "source_revision": revision, "files": {}}
@@ -66,5 +78,9 @@ if snapshot is not None:
     (target / SNAPSHOT).parent.mkdir(parents=True, exist_ok=True)
     (target / SNAPSHOT).write_bytes(snapshot)
     manifest["files"][SNAPSHOT] = hashlib.sha256(snapshot).hexdigest()
+for name, content in bundle.items():
+    (target / name).parent.mkdir(parents=True, exist_ok=True)
+    (target / name).write_bytes(content)
+    manifest["files"][name] = hashlib.sha256(content).hexdigest()
 (target / "context-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 print(json.dumps({"service": service, "source_revision": revision, "files": len(manifest["files"]), "destination": str(target)}))

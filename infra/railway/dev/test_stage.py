@@ -45,7 +45,7 @@ class StageTests(unittest.TestCase):
         self.addCleanup(self.temp.cleanup)
         self.target = Path(self.temp.name) / "fresh"
 
-    def stage(self, service="api", *, optimize=0, files=None, snapshot=SNAPSHOT, dirty=False):
+    def stage(self, service="api", *, optimize=0, files=None, snapshot=SNAPSHOT, dirty=False, file=SOURCE):
         files = FILES if files is None else files
         def git(command, **kwargs):
             if command[0] == sys.executable:
@@ -64,7 +64,25 @@ class StageTests(unittest.TestCase):
         with patch.object(sys, "argv", [str(SOURCE), service, str(self.target)]), \
              patch("subprocess.check_output", side_effect=git), redirect_stdout(io.StringIO()):
             exec(compile(SOURCE.read_text(), str(SOURCE), "exec", optimize=optimize),
-                 {"__file__": str(SOURCE), "__name__": "__main__"})
+                 {"__file__": str(file), "__name__": "__main__"})
+
+    def test_api_bakes_only_sha_verified_local_bundle(self):  # S13m: gitignored bytes, never from Git
+        root = Path(self.temp.name) / "repo"
+        bundle = root / "evidence/S13l/reconstruct/bundle"
+        bundle.mkdir(parents=True)
+        (bundle / "points.ply").write_bytes(b"SYNTHETIC-ply")
+        good = {"points.ply": {"sha256": hashlib.sha256(b"SYNTHETIC-ply").hexdigest()},
+                "scene.json": {"sha256": "0" * 64}}  # absent locally -> simply not baked
+        name = "Build/pipeline/recorded/RM04-S13l-mapanything.json"
+        self.stage(files=FILES | {name: json.dumps({"files": good}).encode()}, file=root / "infra/railway/dev/stage.py")
+        manifest = json.loads((self.target / "context-manifest.json").read_text())["files"]
+        self.assertEqual(manifest["evidence/S13l/reconstruct/bundle/points.ply"], good["points.ply"]["sha256"])
+        self.assertFalse((self.target / "evidence/S13l/reconstruct/bundle/scene.json").exists())
+        self.target = Path(self.temp.name) / "mismatch"
+        bad = {"points.ply": {"sha256": "1" * 64}}
+        with self.assertRaisesRegex(ValueError, "sha256"):
+            self.stage(files=FILES | {name: json.dumps({"files": bad}).encode()}, file=root / "infra/railway/dev/stage.py")
+        self.assertFalse(self.target.exists())
 
     def test_existing_destination_untouched_in_both_modes(self):
         self.target.mkdir()
