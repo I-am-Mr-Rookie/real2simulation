@@ -5,7 +5,7 @@ Updated Oct 31, 12:03 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents r
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **234 / 264** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **234 / 264** runs done · 1 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -23,7 +23,11 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - …and 1 more ready in this lane
 
 **CLAUDE**
-- [ ] **S15ab** — Codex (native Claude) · Opus 5.5, effort high — Workspace shell per Q21 owner spec: collapsible left icon rail, center project, top-right toggle for a right agent/tools panel (30 min)
+- Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **S15ab** — Codex (native Claude) · Opus 5.5, effort high — Workspace shell per Q21 owner spec: collapsible left icon rail, center project, top-right toggle for a right agent/tools panel (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -293,7 +297,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15x** — Codex (native Claude) · Sonnet 5.5, effort medium — Propose 6 Mobbin references for the owner to pick 3 (20 min)
 - [x] **S15z** — Codex (native Claude) · Sonnet 5.5, effort medium — Owner clip result card shown once (stage panel or job panel, not both) (30 min)
 - [x] **S15aa** — Codex (native Claude) · Opus 5.5, effort medium — Owner clips OWN02-OWN12 in product: stored frozen-v1 result + v3 predictive-check verdict, or abstain (30 min)
-- [ ] **S15ab** — Codex (native Claude) · Opus 5.5, effort high — Workspace shell per Q21 owner spec: collapsible left icon rail, center project, top-right toggle for a right agent/tools panel (30 min)
+- [~] **S15ab** — Codex (native Claude) · Opus 5.5, effort high — Workspace shell per Q21 owner spec: collapsible left icon rail, center project, top-right toggle for a right agent/tools panel (30 min) *(in progress)*
 - [ ] **S15ac** — Codex (native Claude) · Opus 5.5, effort high — Interview as right-panel agent questions (O1 live preview + O2/P4 question card + P1 waiting state) per Q21 owner spec (30 min)
 
 </details>
