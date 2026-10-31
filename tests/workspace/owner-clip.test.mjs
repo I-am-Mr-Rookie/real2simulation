@@ -6,6 +6,10 @@ import { createController } from '../../Build/web/src/workspace/controller.mjs';
 import { initialInterview, reduceInterview, interviewAnswers } from '../../Build/web/src/workspace/interview.mjs';
 import { layoutOf } from '../../Build/web/src/workspace/layout.mjs';
 import { renderWorkspace } from '../../Build/web/src/workspace/view.mjs';
+import { readFileSync } from 'node:fs';
+
+// S15az: real analysis.owner_live_fit output (fitter run on OWN05 stored points with two different answers)
+const LIVE = JSON.parse(readFileSync(new URL('./fixtures/live-fit-own05.json', import.meta.url), 'utf8'));
 
 const JOB = 'job_' + 'a'.repeat(32);
 const KNOWN_SIZE = { id: 'known_size', kind: 'free_text', chips: [], prompt: [{ type: 'text', text: 'Name one object of known size in the fall plane and its length with units, e.g. book cover edge in cm.' }] };
@@ -17,7 +21,7 @@ const OWN02 = { clip_id: 'OWN02', input_label: 'OWNER_RECORDED / RECORDED', stat
 const h = (type, props, ...children) => ({ type, props: props ?? {}, children: children.flat(Infinity) });
 const strings = (n) => (typeof n === 'string' ? [n] : n?.children?.flatMap(strings) ?? []);
 
-async function ownerWalk(measurement, sizeText) {
+async function ownerWalk(measurement, sizeText, liveFit) {
   const calls = [];
   const routes = [
     [/uploads$/, { upload_id: 'up1', chunk_bytes: 1024, committed_bytes: 0 }],
@@ -26,7 +30,7 @@ async function ownerWalk(measurement, sizeText) {
       provenance: { executor: 'none', label: 'no scene: owner clip, scene reconstruction not run', live: false, recorded_stages: [], stage_labels: {}, measurement } }],
     [/questions$/, { schema_version: 'agent-response/1.0.0', scene_id: JOB, questions: [KNOWN_SIZE] }],
     [/spec$/, { ok: true, owner_clip: true, measurement, user_scale: sizeText ? { status: 'declared', object: sizeText, length_m: 0.2028, label: 'user-declared, not verified' }
-      : { status: 'abstain', label: 'UNCERTAIN: no usable known size; metric scale unknown' } }],
+      : { status: 'abstain', label: 'UNCERTAIN: no usable known size; metric scale unknown' }, ...(liveFit ? { live_fit: liveFit } : {}) }],
   ];
   const f = async (url, init) => {
     calls.push({ url, method: init.method, body: typeof init.body === 'string' ? JSON.parse(init.body) : null });
@@ -51,7 +55,9 @@ async function ownerWalk(measurement, sizeText) {
     undefined, undefined, ctl.snapshot().provenance);
   const all = strings(tree).join('|');
   assert.doesNotMatch(all, /Upload failed|DEPENDENCY_UNAVAILABLE|needs attention|Start a new upload/);
-  assert.deepEqual(layout.stages.map((s) => s.status), ['done', 'done', 'skipped', 'skipped', 'current']);
+  const tree0 = tree.children.find((c) => c?.props['data-slot'] === 'stage-nav');
+  const navStatus = tree0.children[0].children.map((li) => li.props['data-status']);
+  assert.deepEqual(navStatus, liveFit?.status === 'ok' ? ['done', 'done', 'done', 'done', 'current'] : ['done', 'done', 'skipped', 'skipped', 'current']);
   const count = (n) => (n?.props?.className === 'ws-measurement' ? 1 : 0) + (n?.children?.reduce?.((a, c) => a + count(c), 0) ?? 0);
   assert.equal(count(tree), 1); // S15z: result card once, not in both panels
   const panel = strings(tree.children.find((c) => c?.props['data-slot'] === 'panel')).join('|');
@@ -72,4 +78,24 @@ test('owner clip OWN02: abstain result, missing size is an abstain not an error'
   assert.match(panel, /UNCERTAIN: no measurement/);
   assert.match(panel, /UNCERTAIN: no usable known size/);
   assert.doesNotMatch(panel, /g = /);
+});
+
+test('S15az owner clip OWN05: live fitter result after the answer; a different answer changes scale and g; missing points abstain', async () => {
+  const [a, b] = Object.values(LIVE.answers);
+  assert.notEqual(a.g, b.g);
+  for (const f of [a, b]) {
+    const { panel, all } = await ownerWalk(LIVE.measurement, 'book cover edge, 20.28 cm', f);
+    assert.ok(panel.includes('g = ' + f.g.toFixed(2) + ' \u00b1 ' + f.u.toFixed(2) + ' m/s\u00b2')); // display rounding of the fitter output only
+    assert.match(panel, /SIMULATED fit \(fitter, run now\) to RECORDED MEASURED SAM 3\.1 track points/);
+    assert.match(panel, /Fit: done \(run now on the server\)/);
+    assert.ok(panel.includes('rmse = ' + f.rmse_px.toFixed(2) + ' px; dof = ' + f.dof));
+    assert.ok(panel.includes('Held-out residuals (px, ' + f.n_held_out + ' points not fitted): ' + f.held_out_residuals_px.map((v) => v.toFixed(1)).join(', ')));
+    assert.ok(panel.includes('Scale: ' + f.scale.label));
+    assert.match(panel, /Recorded reference \(precomputed, S07m\): \|g = 8\.62 ± 1\.28/);
+    assert.match(all, /Track: RECORDED \(precomputed SAM 3\.1, not run live\)/);
+    assert.doesNotMatch(all, /\u2014/); // no em dashes in visible text
+  }
+  const { panel } = await ownerWalk(LIVE.measurement, 'book cover edge, 20.28 cm', LIVE.missing);
+  assert.match(panel, /Live fit not run: No stored track points/);
+  assert.doesNotMatch(panel, /SIMULATED fit/);
 });

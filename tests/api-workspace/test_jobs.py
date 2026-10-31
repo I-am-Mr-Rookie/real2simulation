@@ -252,12 +252,14 @@ class JobsRouterTests(unittest.TestCase):
         self.assertEqual((m["input_label"], m["source"]), ("OWNER_RECORDED / RECORDED", "evidence/S07/S07m/results.json"))
         self.assertTrue(m["measured_label"].startswith("MEASURED"))
         self.assertIn("Held-out check FAIL: chi2/dof = 12.28/3 = 4.09, p = 0.0065", m["caveat"])  # S15aa: S07m v3, not 6 px
-        for s in ("THIRD, post-hoc", "forking-paths", "Scale user-declared", "phone clock not externally verified"):
+        for s in ("THIRD, post-hoc", "forking-paths", "Scale owner-declared (recorded)", "phone clock not externally verified"):
             self.assertIn(s, m["caveat"])
         self.assertNotIn("6 px", m["caveat"])
         self.assertNotIn(">>", m["caveat"])
-        self.assertEqual(m["scale"], {"reference": "book cover horizontal edge in fall plane", "value_m": 0.2028,
-                                      "label": "user-declared, not verified"})
+        self.assertEqual({k: m["scale"][k] for k in ("reference", "value_m", "label")},  # S15az: + reference_px/source
+                         {"reference": "book cover horizontal edge in fall plane", "value_m": 0.2028,
+                          "label": "owner-declared scale (recorded), not verified"})
+        self.assertNotIn("user-declared", m["measured_label"])  # S15az D6: the owner declared it, not this user
         c = self.owner_app("OWN10")
         out = self.finish(c)
         self.assertEqual((out["provenance"]["measurement"]["status"], out["provenance"]["measurement"]["label"]),
@@ -282,6 +284,13 @@ class JobsRouterTests(unittest.TestCase):
                    json={"answers": {"known_size": {"text": "book cover edge, 20.28 cm"}}}).json()
         self.assertEqual((s["owner_clip"], s["measurement"]["g"], s["measurement"]["u"]), (True, 10.96, 0.77))
         self.assertEqual((s["user_scale"]["status"], s["user_scale"]["length_m"]), ("declared", 0.2028))
+        # S15az (Gate D D1/D6): the route runs the fitter now; a different answer gives a different scale and g
+        s10 = c.post(f"/internal/workspace/scenes/{job_id}/spec", headers=AUTH,
+                     json={"answers": {"known_size": {"text": "book cover edge, 10 cm"}}}).json()
+        lf, lf10 = s["live_fit"], s10["live_fit"]
+        self.assertEqual((lf["status"], lf["stage"], lf["label"]), ("ok", {"track": "recorded", "fit": "done"}, analysis.LIVE_FIT_LABEL))
+        self.assertAlmostEqual(lf["g"] / lf10["g"], 2.028)
+        self.assertAlmostEqual(lf["scale"]["m_per_px"] / lf10["scale"]["m_per_px"], 2.028)
         for other in ("questions", "spec"):  # owner-scoped
             r = (c.get if other == "questions" else c.post)(f"/internal/workspace/scenes/{job_id}/{other}", headers=OTHER_AUTH,
                                                              **({} if other == "questions" else {"json": {"answers": {}}}))

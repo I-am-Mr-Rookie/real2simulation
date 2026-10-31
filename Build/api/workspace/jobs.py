@@ -38,7 +38,8 @@ _OUT = {"validate": ("validate", "sha256"), "keyframes": ("keyframes", None), "s
 # S15v: owner phone clips (OWNER_RECORDED, PRIVATE_PROCESSING_ONLY in clips.csv). Hashes + the stored S07i result are a
 # tracked copy (the API image ships Build/, not evidence/S07); tests/api-workspace re-derives it from the evidence files.
 OWNER_CLIPS = Path(__file__).with_name("owner_clips.json")
-SCALE_LABEL = "user-declared, not verified"
+# S15az (Gate D D6): the stored 0.2028 m is the owner's earlier declaration, not this user's answer.
+SCALE_LABEL = "owner-declared scale (recorded), not verified"
 # S15y: owner clips have no recording and live execution is off, so no stage runs; that is a no-scene state, not a failure.
 NO_SCENE = "no scene: owner clip, scene reconstruction not run"
 # S13m: RM04 MapAnything display bundle (S13l). Bytes never enter Git; stage.py bakes them into the API image at this
@@ -68,7 +69,8 @@ def owner_measurement(clip_id):
     """Job result for an owner clip: stored frozen-v1 MEASURED g ± u + S07m v3 verdict as a RECORDED replay, else an explicit abstain."""
     e = json.loads(OWNER_CLIPS.read_text(encoding="utf-8"))["clips"].get(clip_id, {})
     base = {"clip_id": clip_id, "input_label": "OWNER_RECORDED / RECORDED",
-            "scale": {"reference": e.get("scale_reference"), "value_m": e.get("scale_value_m"), "label": SCALE_LABEL}}
+            "scale": {"reference": e.get("scale_reference"), "value_m": e.get("scale_value_m"), "label": SCALE_LABEL,
+                      "reference_px": e.get("scale_reference_px"), "reference_px_source": e.get("scale_reference_px_source")}}
     m = e.get("measurement")
     if not m:
         return {**base, "status": "abstain", "label": "UNCERTAIN: no measurement",
@@ -76,6 +78,7 @@ def owner_measurement(clip_id):
                            "the product yet; g is not reported (abstain, not an error)."}
     series = {"series": e["series"]} if "series" in e else {}  # S15aw: frozen per-frame chart data (additive field)
     return {**base, "status": "recorded", "label": "RECORDED replay of a MEASURED result", **m,
+            "measured_label": m["measured_label"].replace("user-declared scale", "owner-declared scale (recorded)"),
             "caveat": owner_caveat(m, e.get("scale_value_m")), **series}
 
 
@@ -86,7 +89,7 @@ def owner_caveat(m, scale_m):
             if v["verdict"] == "PASS" else "A MEASURED value with a failed held-out check, not a validated measurement.")
     return (f"Held-out check {v['verdict']}: chi2/dof = {v['chi2']}/{v['dof']} = {v['chi2_per_dof']}, p = {v['p']} "
             "(S07m v3 predictive chi-square; a THIRD, post-hoc analysis chosen after v1/v2 failed, forking-paths caveat). "
-            f"Scale user-declared ({scale_m} m, not verified); phone clock not externally verified. {tail}")
+            f"Scale owner-declared (recorded) ({scale_m} m, not verified); phone clock not externally verified. {tail}")
 
 
 @functools.cache
@@ -258,8 +261,9 @@ def create_router(store=None, uploads=None, shas=None, recording=RECORDING, unde
         clip = owners().get(session["sha256"])
         if clip is not None:  # S15v/S15y: no in-product tracking and no scene; replay the stored result or abstain
             prov = {"executor": "none", "label": NO_SCENE, "live": False, "recorded_stages": [], "stage_labels": {},
-                    "note": "No pipeline stage ran for this owner clip (no recording; live execution is not enabled). "
-                            "Nothing failed; no scene is shown.", "measurement": owner_measurement(clip)}
+                    "note": "Track: RECORDED (precomputed SAM 3.1, not run live); no scene is reconstructed. "
+                            "The fit runs on the server after your known-size answer. Nothing failed.",
+                    "measurement": owner_measurement(clip)}
         else:
             runner, prov = recorded_runner(store, session["sha256"], recording, understood)
         store.set(f"job:{job_id}:provenance", json.dumps(prov))

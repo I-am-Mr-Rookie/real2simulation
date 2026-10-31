@@ -12,7 +12,13 @@ import { renderResultChart } from './result-chart.mjs';
 import { renderSidebar, renderReport } from './navigation.mjs';
 
 export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments, fit, sidebar, report, provenance, whatIf) {
-  const { stages, viewport, jobStatus } = layout;
+  const { viewport } = layout;
+  // S15az (Gate D D1): after the answer the server ran the fitter on the RECORDED track, so Fit is done and Run says what it was.
+  // Overridden here, not in layout.mjs (S15ba owns it); applies only when live_fit came back ok.
+  const liveFit = layout.phase === 'report.owner' && provenance?.measurement?.live_fit?.status === 'ok' ? provenance.measurement.live_fit : null;
+  const stages = liveFit ? layout.stages.map((s) => (s.id === 'fit' ? { ...s, label: 'Fit', status: 'done' }
+    : s.id === 'run' ? { ...s, label: String(liveFit.track_label), status: 'done' } : s)) : layout.stages;
+  const jobStatus = liveFit ? { ...layout.jobStatus, label: 'Clip result (owner clip; no scene; fit run now on RECORDED track points)' } : layout.jobStatus;
   // S15q: a viewer LOAD_FAILED must not hide a job/API error (the live spec 422 was masked this way)
   const errs = [view.error, jobStatus.error].filter((e, i, a) => e && (i === 0 || e !== a[0]));
   const specError = layout.phase === 'interview.active' ? jobStatus.error : null;
@@ -64,7 +70,23 @@ export function renderProvenance(h, p, measurementShownElsewhere = false) {
     h('p', null, dash(p.label ?? 'Provenance') + (p.live === false ? ' (not a live run)' : '')),
     labels.length ? h('ul', null, ...labels.map(([s, l]) => h('li', { key: s }, s + ': ' + dash(l) + (s === 'understand' && utc ? ' @ ' + utc : '')))) : null,
     typeof p.note === 'string' ? h('p', { className: 'ws-note' }, p.note) : null,
-    p.measurement && typeof p.measurement === 'object' ? (measurementShownElsewhere ? h('p', { className: 'ws-note' }, 'Clip result: shown in the stage panel.') : renderMeasurement(h, p.measurement)) : null);
+    // S15az (Gate D D6): no result before the user's known-size answer; the stage panel shows it at report.owner
+    p.measurement && typeof p.measurement === 'object' ? h('p', { className: 'ws-note' }, measurementShownElsewhere ? 'Clip result: shown in the stage panel.' : 'Clip result: shown after you answer the known-size question.') : null);
+}
+
+// S15az: fitter output from analysis.owner_live_fit, shown verbatim (display rounding only); an error status shows its message, no number.
+function renderLiveFit(h, f) {
+  const n = (v, d = 2) => (typeof v === 'number' && Number.isFinite(v) ? v.toFixed(d) : '?');
+  const list = (a) => (Array.isArray(a) ? a.map((v) => n(v, 1)).join(', ') : '');
+  if (f.status !== 'ok') return h('p', { className: 'ws-note', 'data-slot': 'live-fit', 'data-status': 'error' }, 'Live fit not run: ' + String(f.message ?? f.error ?? ''));
+  return h('div', { className: 'ws-live-fit', 'data-slot': 'live-fit', 'data-status': 'ok' },
+    h('p', null, String(f.label)),
+    h('p', { className: 'ws-note' }, String(f.track_label) + ' \u00b7 Fit: done (run now on the server)'),
+    h('p', null, h('strong', null, 'g = ' + n(f.g) + ' \u00b1 ' + n(f.u) + ' m/s\u00b2'), ' (fitter, ' + String(f.fitter) + ')'),
+    h('p', { className: 'ws-note' }, 'Fit residuals (px): ' + list(f.residuals_px) + '; rmse = ' + n(f.rmse_px) + ' px; dof = ' + String(f.dof) + '; points fitted = ' + String(f.n_fit)),
+    h('p', { className: 'ws-note' }, 'Held-out residuals (px, ' + String(f.n_held_out) + ' points not fitted): ' + list(f.held_out_residuals_px)),
+    h('p', { className: 'ws-note', 'data-slot': 'live-scale' }, 'Scale: ' + String(f.scale?.label ?? '')),
+    h('p', { className: 'ws-note' }, String(f.caveat)));
 }
 
 // S15v: owner phone clip result from jobs.owner_measurement: stored MEASURED g ± u as a labelled RECORDED replay, or an abstain. Text only.
@@ -74,9 +96,10 @@ function renderMeasurement(h, m, chart = true) {
   const us = m.user_scale; // S15y: the interview's known-size answer, declared or abstain
   const yours = us?.status === 'declared' ? 'Your known size: ' + s(us.object) + ' = ' + s(us.length_m) + ' m (' + s(us.label) + ')' : us ? s(us.label) : null;
   return h('div', { className: 'ws-measurement', 'data-status': s(m.status), role: 'status', 'aria-label': 'Clip result' },
+    m.live_fit && typeof m.live_fit === 'object' ? renderLiveFit(h, m.live_fit) : null,
     h('p', null, s(m.clip_id) + ' \u00b7 ' + s(m.input_label) + ' \u00b7 ' + s(m.label)),
     // S15an: unit typeset only (m/s^2 -> m/s²; same stored numbers); the long source path sits in a collapsed "Source" detail.
-    m.status === 'recorded' ? h('p', null, h('strong', null, 'g = ' + s(m.g) + ' ± ' + s(m.u) + ' ' + s(m.unit).replace('^2', '²')), ' (' + s(m.measured_label) + ')') : null,
+    m.status === 'recorded' ? h('p', null, 'Recorded reference (precomputed, S07m): ', h('strong', null, 'g = ' + s(m.g) + ' ± ' + s(m.u) + ' ' + s(m.unit).replace('^2', '²')), ' (' + s(m.measured_label) + ')') : null,
     m.status === 'recorded' ? h('details', { className: 'ws-source' }, h('summary', null, 'Source'), h('code', null, s(m.source))) : null,
     m.status === 'recorded' ? h('p', { className: 'ws-note' }, s(m.caveat)) : h('p', { className: 'ws-note' }, s(m.message)),
     chart ? renderResultChart(h, m) : null,

@@ -85,9 +85,14 @@ test('RECORDED provenance stage labels and UTC render in the job panel', () => {
 // S15v: owner phone clip -> stored MEASURED result replay (or abstain) in the job panel; known-size answer -> labelled scale.
 test('owner clip measurement renders g ± u with labels and caveat, or an abstain message', () => {
   const { ctl } = walk(json(200, {}));
-  const panel = (measurement) => strings(renderWorkspace(h, layoutOf(ctl.state, { audience: 'signed-in' }), { status: 'empty', error: null }, null, undefined,
+  // S15az (Gate D D6): before the answer the job panel only points ahead; the result card renders at report.owner
+  const before = strings(renderWorkspace(h, layoutOf(ctl.state, { audience: 'signed-in' }), { status: 'empty', error: null }, null, undefined,
+    undefined, undefined, undefined, undefined, undefined, undefined, undefined, { label: 'RECORDED', measurement: { status: 'recorded', g: 10.96, u: 0.77 } })).join('|');
+  assert.match(before, /Clip result: shown after you answer the known-size question\./);
+  assert.doesNotMatch(before, /g = /);
+  const panel = (measurement) => strings(renderWorkspace(h, { ...layoutOf(ctl.state, { audience: 'signed-in' }), phase: 'report.owner' }, { status: 'empty', error: null }, null, undefined,
     undefined, undefined, undefined, undefined, undefined, undefined, undefined, { label: 'RECORDED S13h-orch46', measurement })
-    .children.find((c) => c?.props['data-slot'] === 'job-status')).join('|');
+    .children.find((c) => c?.props['data-slot'] === 'panel')).join('|');
   const scale = { reference: 'book cover horizontal edge in fall plane', value_m: 0.2028, label: 'user-declared, not verified' };
   const rec = panel({ clip_id: 'OWN01', input_label: 'OWNER_RECORDED / RECORDED', status: 'recorded', label: 'RECORDED replay of a MEASURED result',
     g: 10.96, u: 0.77, unit: 'm/s^2', measured_label: 'MEASURED (owner clip OWN01)', source: 'evidence/S07/S07i/result-own01.json',

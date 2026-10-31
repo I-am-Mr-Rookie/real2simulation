@@ -140,7 +140,8 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
       if (r.error) return failWith(r.error);
       const d = r.data;
       if (state.owner && d?.owner_clip === true) { // S15y: result stage = stored g ± u (or abstain) + the declared scale
-        const measurement = d.measurement && typeof d.measurement === 'object' ? { ...d.measurement, user_scale: d.user_scale ?? null } : null;
+        // S15az: live_fit = fitter run now on the stored track points with this answer's scale (Gate D D1/D6)
+        const measurement = d.measurement && typeof d.measurement === 'object' ? { ...d.measurement, user_scale: d.user_scale ?? null, live_fit: d.live_fit ?? null } : null;
         patch({ provenance: meta.provenance && measurement ? { ...meta.provenance, measurement } : meta.provenance });
         return dispatch({ type: 'OWNER_RESULT', measurement });
       }
