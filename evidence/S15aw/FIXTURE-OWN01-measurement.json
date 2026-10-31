@@ -1,0 +1,336 @@
+{
+ "clip_id": "OWN01",
+ "input_label": "OWNER_RECORDED / RECORDED",
+ "scale": {
+  "reference": "book cover horizontal edge in fall plane",
+  "value_m": 0.2028,
+  "label": "user-declared, not verified"
+ },
+ "status": "recorded",
+ "label": "RECORDED replay of a MEASURED result",
+ "source": "evidence/S07/S07m/results.json",
+ "source_sha256": "fe8bf7f7fd1fc0758deac2413b67ad6de0edb903d70180adc58c47035bc8fdf7",
+ "analysis": "v1 (frozen S07h pipeline)",
+ "measured_label": "MEASURED (owner clip OWN01, user-declared scale 0.2028 m, phone clock not externally verified)",
+ "g": 10.96,
+ "u": 0.77,
+ "unit": "m/s^2",
+ "held_out_rmse_px": 23.0,
+ "v3": {
+  "verdict": "FAIL",
+  "chi2": 12.28,
+  "dof": 3,
+  "chi2_per_dof": 4.09,
+  "p": 0.0065
+ },
+ "caveat": "Held-out check FAIL: chi2/dof = 12.28/3 = 4.09, p = 0.0065 (S07m v3 predictive chi-square; a THIRD, post-hoc analysis chosen after v1/v2 failed, forking-paths caveat). Scale user-declared (0.2028 m, not verified); phone clock not externally verified. A MEASURED value with a failed held-out check, not a validated measurement.",
+ "series": {
+  "label": "RECORDED replay of MEASURED SAM 3.1 track points; curve SIMULATED (quadratic fit to the prefix)",
+  "source": "evidence/S07/S07l/diagnose.py load/held + evidence/S07/S07m v3 sigma (S15aw build_series.py)",
+  "units": {
+   "t": "s",
+   "y": "px (image y, down)"
+  },
+  "sigma_px": 2.0,
+  "n_train": 5,
+  "band": "1-sigma predictive band: sigma_px * sqrt(1 + leverage) (S07m v3 held-out variance)",
+  "points": [
+   {
+    "frame": 47,
+    "t_s": 0.0,
+    "y_px": 301.569513,
+    "held_out": false
+   },
+   {
+    "frame": 48,
+    "t_s": 0.033334,
+    "y_px": 326.242615,
+    "held_out": false
+   },
+   {
+    "frame": 49,
+    "t_s": 0.066667,
+    "y_px": 373.113324,
+    "held_out": false
+   },
+   {
+    "frame": 50,
+    "t_s": 0.1,
+    "y_px": 434.464779,
+    "held_out": false
+   },
+   {
+    "frame": 51,
+    "t_s": 0.133334,
+    "y_px": 513.164734,
+    "held_out": false
+   },
+   {
+    "frame": 52,
+    "t_s": 0.166667,
+    "y_px": 608.295493,
+    "held_out": true
+   },
+   {
+    "frame": 53,
+    "t_s": 0.2,
+    "y_px": 707.923063,
+    "held_out": true
+   },
+   {
+    "frame": 54,
+    "t_s": 0.233334,
+    "y_px": 820.658511,
+    "held_out": true
+   }
+  ],
+  "model": [
+   {
+    "t_s": 0.0,
+    "y_px": 300.933116,
+    "band_px": 2.746429,
+    "prediction": false
+   },
+   {
+    "t_s": 0.005833,
+    "y_px": 304.374201,
+    "band_px": 2.576459,
+    "prediction": false
+   },
+   {
+    "t_s": 0.011667,
+    "y_px": 308.351369,
+    "band_px": 2.457266,
+    "prediction": false
+   },
+   {
+    "t_s": 0.0175,
+    "y_px": 312.864622,
+    "band_px": 2.38308,
+    "prediction": false
+   },
+   {
+    "t_s": 0.023333,
+    "y_px": 317.913958,
+    "band_px": 2.345945,
+    "prediction": false
+   },
+   {
+    "t_s": 0.029167,
+    "y_px": 323.499378,
+    "band_px": 2.336736,
+    "prediction": false
+   },
+   {
+    "t_s": 0.035,
+    "y_px": 329.620882,
+    "band_px": 2.346302,
+    "prediction": false
+   },
+   {
+    "t_s": 0.040833,
+    "y_px": 336.27847,
+    "band_px": 2.366376,
+    "prediction": false
+   },
+   {
+    "t_s": 0.046667,
+    "y_px": 343.472141,
+    "band_px": 2.390071,
+    "prediction": false
+   },
+   {
+    "t_s": 0.0525,
+    "y_px": 351.201896,
+    "band_px": 2.412049,
+    "prediction": false
+   },
+   {
+    "t_s": 0.058333,
+    "y_px": 359.467735,
+    "band_px": 2.428481,
+    "prediction": false
+   },
+   {
+    "t_s": 0.064167,
+    "y_px": 368.269658,
+    "band_px": 2.436937,
+    "prediction": false
+   },
+   {
+    "t_s": 0.07,
+    "y_px": 377.607665,
+    "band_px": 2.436275,
+    "prediction": false
+   },
+   {
+    "t_s": 0.075834,
+    "y_px": 387.481755,
+    "band_px": 2.42658,
+    "prediction": false
+   },
+   {
+    "t_s": 0.081667,
+    "y_px": 397.891929,
+    "band_px": 2.409176,
+    "prediction": false
+   },
+   {
+    "t_s": 0.0875,
+    "y_px": 408.838187,
+    "band_px": 2.386684,
+    "prediction": false
+   },
+   {
+    "t_s": 0.093334,
+    "y_px": 420.320529,
+    "band_px": 2.363144,
+    "prediction": false
+   },
+   {
+    "t_s": 0.099167,
+    "y_px": 432.338955,
+    "band_px": 2.344114,
+    "prediction": false
+   },
+   {
+    "t_s": 0.105,
+    "y_px": 444.893464,
+    "band_px": 2.336695,
+    "prediction": false
+   },
+   {
+    "t_s": 0.110834,
+    "y_px": 457.984058,
+    "band_px": 2.349321,
+    "prediction": false
+   },
+   {
+    "t_s": 0.116667,
+    "y_px": 471.610735,
+    "band_px": 2.391203,
+    "prediction": false
+   },
+   {
+    "t_s": 0.1225,
+    "y_px": 485.773496,
+    "band_px": 2.471371,
+    "prediction": false
+   },
+   {
+    "t_s": 0.128334,
+    "y_px": 500.47234,
+    "band_px": 2.597522,
+    "prediction": false
+   },
+   {
+    "t_s": 0.134167,
+    "y_px": 515.707269,
+    "band_px": 2.77506,
+    "prediction": true
+   },
+   {
+    "t_s": 0.14,
+    "y_px": 531.478281,
+    "band_px": 3.006724,
+    "prediction": true
+   },
+   {
+    "t_s": 0.145834,
+    "y_px": 547.785377,
+    "band_px": 3.292878,
+    "prediction": true
+   },
+   {
+    "t_s": 0.151667,
+    "y_px": 564.628557,
+    "band_px": 3.632216,
+    "prediction": true
+   },
+   {
+    "t_s": 0.1575,
+    "y_px": 582.00782,
+    "band_px": 4.022527,
+    "prediction": true
+   },
+   {
+    "t_s": 0.163334,
+    "y_px": 599.923168,
+    "band_px": 4.461297,
+    "prediction": true
+   },
+   {
+    "t_s": 0.169167,
+    "y_px": 618.374599,
+    "band_px": 4.946078,
+    "prediction": true
+   },
+   {
+    "t_s": 0.175,
+    "y_px": 637.362114,
+    "band_px": 5.474675,
+    "prediction": true
+   },
+   {
+    "t_s": 0.180834,
+    "y_px": 656.885713,
+    "band_px": 6.045206,
+    "prediction": true
+   },
+   {
+    "t_s": 0.186667,
+    "y_px": 676.945396,
+    "band_px": 6.656102,
+    "prediction": true
+   },
+   {
+    "t_s": 0.192501,
+    "y_px": 697.541162,
+    "band_px": 7.306072,
+    "prediction": true
+   },
+   {
+    "t_s": 0.198334,
+    "y_px": 718.673012,
+    "band_px": 7.99406,
+    "prediction": true
+   },
+   {
+    "t_s": 0.204167,
+    "y_px": 740.340946,
+    "band_px": 8.719208,
+    "prediction": true
+   },
+   {
+    "t_s": 0.210001,
+    "y_px": 762.544964,
+    "band_px": 9.480813,
+    "prediction": true
+   },
+   {
+    "t_s": 0.215834,
+    "y_px": 785.285066,
+    "band_px": 10.278302,
+    "prediction": true
+   },
+   {
+    "t_s": 0.221667,
+    "y_px": 808.561251,
+    "band_px": 11.111204,
+    "prediction": true
+   },
+   {
+    "t_s": 0.227501,
+    "y_px": 832.37352,
+    "band_px": 11.979131,
+    "prediction": true
+   },
+   {
+    "t_s": 0.233334,
+    "y_px": 856.721873,
+    "band_px": 12.88176,
+    "prediction": true
+   }
+  ]
+ }
+}

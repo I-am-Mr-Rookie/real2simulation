@@ -69,8 +69,9 @@ def owner_measurement(clip_id):
         return {**base, "status": "abstain", "label": "UNCERTAIN: no measurement",
                 "message": f"No stored measurement for this clip ({e.get('abstain', 'no v1 result')}); tracking does not run in "
                            "the product yet; g is not reported (abstain, not an error)."}
+    series = {"series": e["series"]} if "series" in e else {}  # S15aw: frozen per-frame chart data (additive field)
     return {**base, "status": "recorded", "label": "RECORDED replay of a MEASURED result", **m,
-            "caveat": owner_caveat(m, e.get("scale_value_m"))}
+            "caveat": owner_caveat(m, e.get("scale_value_m")), **series}
 
 
 def owner_caveat(m, scale_m):

@@ -162,6 +162,20 @@
 .ws-resid-zero { stroke: var(--ws-chart-2); stroke-dasharray: 4 3; }
 .ws-resid-pt { fill: var(--ws-accent); stroke: var(--ws-ink); stroke-width: 1; }
 
+/* S15aw: owner-clip fit + held-out prediction chart. Static SVG (no animation, so reduced motion needs nothing); theme tokens only. */
+.ws-result-chart { margin: .5rem 0; }
+.ws-rc-svg { display: block; width: 100%; height: auto; background: var(--ws-surface); border: 1px solid var(--r2s-border-strong, #85858d); border-radius: var(--ws-radius); }
+.ws-rc-band { fill: var(--ws-chart-3); fill-opacity: .55; stroke: none; }
+.ws-rc-split { stroke: var(--ws-muted); stroke-dasharray: 2 4; }
+.ws-rc-fit, .ws-rc-pred { fill: none; stroke: var(--ws-ink); stroke-width: 2.5; }
+.ws-rc-pred { stroke-dasharray: 8 5; }
+.ws-rc-pt { fill: var(--ws-accent); stroke: var(--ws-ink); stroke-width: 1.5; }
+.ws-rc-held { fill: var(--ws-surface); }
+.ws-result-chart { font-size: .85rem; }
+.ws-rc-verdict[data-verdict="FAIL"] { color: var(--ws-danger); }
+.ws-rc-legend { margin: .4rem 0; padding-left: 1.1rem; color: var(--ws-muted); }
+.ws-result-chart details { overflow-x: auto; }
+
 /* S15i: sidebar (opt-in via navigate prop). The empty "side" row collapses when absent. */
 .ws-sidebar { grid-area: side; }
 .ws-sidebar ul { display: flex; flex-wrap: wrap; gap: var(--ws-s2); margin: 0; padding: 0; list-style: none; }

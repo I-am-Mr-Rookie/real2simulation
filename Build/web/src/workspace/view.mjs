@@ -8,6 +8,7 @@ import { renderTemplate } from './template-view.mjs';
 import { renderRun } from './run-view.mjs';
 import { renderInstruments } from './instrument-view.mjs';
 import { renderFit } from './fit-view.mjs';
+import { renderResultChart } from './result-chart.mjs';
 import { renderSidebar, renderReport } from './navigation.mjs';
 
 export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments, fit, sidebar, report, provenance, whatIf) {
@@ -75,6 +76,7 @@ function renderMeasurement(h, m) {
     m.status === 'recorded' ? h('p', null, h('strong', null, 'g = ' + s(m.g) + ' ± ' + s(m.u) + ' ' + s(m.unit).replace('^2', '²')), ' (' + s(m.measured_label) + ')') : null,
     m.status === 'recorded' ? h('details', { className: 'ws-source' }, h('summary', null, 'Source'), h('code', null, s(m.source))) : null,
     m.status === 'recorded' ? h('p', { className: 'ws-note' }, s(m.caveat)) : h('p', { className: 'ws-note' }, s(m.message)),
+    renderResultChart(h, m),
     scale ? h('p', { className: 'ws-note' }, scale) : null,
     yours ? h('p', { className: 'ws-note', 'data-slot': 'user-scale' }, yours) : null);
 }
