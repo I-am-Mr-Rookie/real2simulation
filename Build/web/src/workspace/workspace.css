@@ -332,7 +332,8 @@
 .ws-panel, .ws-job { border-color: var(--r2s-border-strong, #85858d); border-radius: var(--ws-radius); }
 .ws-job { box-shadow: var(--r2s-shadow-sm, 2px 2px 0 #18181b); }
 /* Upload: dropzone-style control */
-.ws-upload { padding: .9rem 1rem; border: 1.5px dashed var(--r2s-border-strong, #85858d); border-radius: var(--ws-radius, 10px); background: var(--sh-surface, #fff); }
+.ws-upload { display: grid; gap: .4rem; } /* S15am: the .ws-drop label is the card; no second dashed box around it */
+.ws-upload > .ws-progress { margin: 0; font-size: .82rem; color: var(--sh-muted, #52525b); }
 .ws-upload .ws-field { display: grid; gap: .4rem; font-weight: 600; }
 .ws-upload input[type="file"] { max-width: 100%; font-size: .9rem; }
 .ws-upload input[type="file"]::file-selector-button { margin-right: .75rem; padding: .45rem .9rem; font: inherit; font-weight: 600; color: var(--r2s-accent-ink, #fff);
@@ -347,4 +348,88 @@
   .r2s-theme { margin-left: auto; }
 }
 @media (prefers-reduced-motion: reduce) { .r2s-themebtn { transition: none; } }
+
+/* ===== S15am: design-direction pass (DESIGN_DIRECTION W1-W4, COLOR_MODES). Overrides only; every colour is a --r2s-* token so all six modes apply. ===== */
+/* W1 full-bleed app: the private shell fills the page under a slim header; no boxed marketing card, no footer. */
+main:has(> .r2s-shell) { width: 100%; max-width: none; margin: 0; padding: 0; min-height: calc(100dvh - 3.25rem); }
+main:has(> .r2s-shell) > * { animation: none; }
+body:has(.r2s-shell) .site-header { width: 100%; padding: .35rem 1rem; border-bottom-color: var(--r2s-border-strong); background: var(--r2s-surface); }
+body:has(.r2s-shell) .site-footer { display: none; }
+.r2s-shell { min-height: calc(100dvh - 3.25rem); }
+.ws { background: transparent; }
+/* H: single-line truncating title (full text in title attribute). */
+.r2s-top h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; overflow-wrap: normal; text-wrap: nowrap; }
+/* Theme menu: palette button opens a level-3 popover listing System + six modes with swatches. */
+.r2s-theme { position: relative; display: block; padding: 0; border: 0; background: none; }
+.r2s-theme > summary { list-style: none; display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; padding: 0; }
+.r2s-theme > summary::-webkit-details-marker { display: none; }
+.r2s-theme[open] > summary { background: var(--sh-ink); color: var(--r2s-accent-ink, #fff); }
+.r2s-theme-menu { position: absolute; right: 0; top: calc(100% + 8px); z-index: 40; display: grid; gap: 2px; min-width: 12rem; padding: .35rem;
+  background: var(--r2s-elevated, var(--sh-surface)); border: 1px solid var(--r2s-border-strong); border-radius: 10px; box-shadow: var(--r2s-shadow-3, 6px 6px 0 var(--r2s-shadow-ink)); }
+.r2s-theme-menu .r2s-themebtn { display: flex; justify-content: flex-start; gap: .6rem; width: 100%; height: 2.5rem; padding: 0 .55rem; font: inherit; font-size: .9rem; color: var(--sh-ink); background: transparent; }
+.r2s-theme-menu .r2s-themebtn:hover { background: var(--sh-bg); }
+.r2s-theme-menu .r2s-themebtn[aria-pressed="true"] { background: var(--r2s-accent-soft); border-color: var(--r2s-border-strong); box-shadow: none; font-weight: 600; }
+.r2s-swatch { flex: none; width: 1.1rem; height: 1.1rem; border: 1.5px solid; border-radius: 50%; box-shadow: inset -.45rem 0 0 currentColor; }
+/* Per-mode shadow levels replace the fixed ink slabs (lit slab on dark modes). */
+.r2s-qcard { box-shadow: var(--r2s-shadow); border-radius: 14px; }
+.ws-panel, .ws-host { box-shadow: var(--r2s-shadow-sm); }
+.r2s-railbtn[aria-current="true"], .r2s-qopt[aria-pressed="true"] { box-shadow: inset 3px 0 0 var(--r2s-accent), var(--r2s-shadow-sm); }
+.r2s-pane[data-mode="temporary"], .r2s-right { box-shadow: var(--r2s-shadow-3); }
+/* Dated left-border callouts -> tinted badges/surfaces (labels unchanged, still bordered + bold). */
+.ws-banner, .ws-notice, .ws-failure, .ws-job .ws-error, .r2s-waiting { border-left-width: 1px; border-radius: 10px; }
+.ws-banner { display: flex; gap: .5rem; align-items: baseline; background: var(--r2s-whatif-bg); color: var(--r2s-whatif-fg); border-color: var(--r2s-whatif-fg); }
+.ws-banner::before, .ws-notice::before { content: ""; flex: none; width: .9em; height: .9em; translate: 0 .1em; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 3l10 18H2zM12 10v5M12 18h.01'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 3l10 18H2zM12 10v5M12 18h.01'/%3E%3C/svg%3E") center / contain no-repeat; }
+.ws-notice { display: flex; gap: .5rem; align-items: baseline; background: var(--r2s-whatif-bg); color: var(--r2s-whatif-fg); border-color: var(--r2s-whatif-fg); font-weight: 600; }
+.ws-job .ws-error, .ws-failure { background: color-mix(in srgb, var(--r2s-danger) 10%, var(--r2s-surface)); }
+.ws-whatif { background: var(--r2s-whatif-bg); color: var(--r2s-whatif-fg); border-radius: 10px; padding: .4rem .65rem; }
+.r2s-waiting { background: var(--r2s-accent-soft); border-color: var(--r2s-accent); }
+.ws-chip:hover:not(:disabled), .ws-back:hover:not(:disabled), .ws-nav:hover:not(:disabled) { background: var(--r2s-accent-soft); }
+.ws-host[data-viewer-status="loading"] { background: repeating-linear-gradient(135deg, var(--r2s-surface) 0 12px, var(--r2s-bg) 12px 24px); }
+/* Stage stepper: compact pills with state icons instead of a plain list. */
+.ws-stages ol { display: flex; flex-wrap: wrap; gap: .35rem; }
+.ws-stages li { display: inline-flex; align-items: center; gap: .35rem; padding: .2rem .65rem; border: 1px solid var(--r2s-border-strong); border-radius: 999px; font-size: .82rem; background: var(--r2s-surface); }
+.ws-stages li[aria-current="step"] { background: var(--r2s-ink); color: var(--r2s-bg); border-color: var(--r2s-ink); font-weight: 700; }
+.ws-stages li[data-status="done"]::before { content: "\2713"; color: var(--r2s-ok); font-weight: 700; }
+/* B1 empty viewport: illustration (>=200px) + existing status text, replacing the dashed box. Variant follows the applied mode's tone. */
+.ws-host[data-viewer-status="empty"] { min-height: 16rem; border: 1px solid var(--r2s-border); background: var(--r2s-surface) no-repeat center 42% / 220px auto;
+  background-image: image-set(url("/images/app/b1-light@1x.webp") 1x, url("/images/app/b1-light@2x.webp") 2x); }
+:root[data-tone="dark"] .ws-host[data-viewer-status="empty"] { background-image: image-set(url("/images/app/b1-dark@1x.webp") 1x, url("/images/app/b1-dark@2x.webp") 2x); }
+.ws-host[data-viewer-status="empty"]:empty::before { align-self: end; margin-bottom: 1rem; color: var(--r2s-muted); background: var(--r2s-bg); border-color: var(--r2s-border-strong); border-radius: 999px; }
+.ws-host[data-viewer-status="error"] { border: 1px solid var(--r2s-danger); background: color-mix(in srgb, var(--r2s-danger) 6%, var(--r2s-surface)); }
+/* B2 dropzone: whole label is the target; native input kept (same id) but visually hidden and still focusable. */
+.ws-drop { position: relative; display: grid; justify-items: center; gap: .35rem; padding: 1.25rem 1rem 1rem; text-align: center; cursor: pointer;
+  background: var(--r2s-surface); border: 1.5px dashed var(--r2s-border-strong); border-radius: 14px; transition: background-color .12s ease, border-color .12s ease, box-shadow .12s ease; }
+.ws-drop:hover, .ws-drop:focus-within { border-style: solid; border-color: var(--r2s-accent); background: var(--r2s-accent-soft); box-shadow: var(--r2s-shadow-sm); }
+.ws-drop[data-disabled] { cursor: not-allowed; opacity: .7; }
+.ws-drop-art { order: -1; width: 132px; height: 132px; background: no-repeat center / contain; background-image: image-set(url("/images/app/b2-light@1x.webp") 1x, url("/images/app/b2-light@2x.webp") 2x); }
+:root[data-tone="dark"] .ws-drop-art { background-image: image-set(url("/images/app/b2-dark@1x.webp") 1x, url("/images/app/b2-dark@2x.webp") 2x); }
+.ws-drop { font-size: 1rem; font-weight: 700; }
+.ws-drop-cta { display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0 1rem; border-radius: 10px; font-weight: 600; background: var(--r2s-ink); color: var(--r2s-bg); box-shadow: var(--r2s-shadow-sm); }
+.ws-drop input[type="file"] { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; opacity: 0; cursor: inherit; }
+.ws-drop .ws-hint { max-width: 36rem; font-weight: 400; font-size: .8rem; color: var(--r2s-muted); }
+.ws-drop:has(input:focus-visible) { outline: 3px solid var(--r2s-focus); outline-offset: 2px; }
+/* B5 agent avatar on the question card; B6 known-size art on that question only. */
+.r2s-qcard-head { align-items: center; }
+.r2s-qcard-head::before { content: ""; flex: none; width: 64px; height: 64px; margin-right: .25rem; background: no-repeat center / contain;
+  background-image: image-set(url("/images/app/b5-light@1x.webp") 1x, url("/images/app/b5-light@2x.webp") 2x); }
+:root[data-tone="dark"] .r2s-qcard-head::before { background-image: image-set(url("/images/app/b5-dark@1x.webp") 1x, url("/images/app/b5-dark@2x.webp") 2x); }
+.r2s-qcard-head h3 { flex: 1; }
+.r2s-qcard[data-qid="known_size"] .r2s-qform legend::before { content: ""; display: block; width: 120px; height: 120px; margin: 0 auto .5rem; background: no-repeat center / contain;
+  background-image: image-set(url("/images/app/b6-light@1x.webp") 1x, url("/images/app/b6-light@2x.webp") 2x); }
+:root[data-tone="dark"] .r2s-qcard[data-qid="known_size"] .r2s-qform legend::before { background-image: image-set(url("/images/app/b6-dark@1x.webp") 1x, url("/images/app/b6-dark@2x.webp") 2x); }
+:root[data-theme="contrast"] .ws-drop, :root[data-theme="contrast"] .r2s-qcard, :root[data-theme="contrast"] .ws-banner, :root[data-theme="contrast"] .ws-notice { border-width: 2px; }
+@media (max-width: 760px) { .ws-drop-art { width: 96px; height: 96px; } .ws-host[data-viewer-status="empty"] { background-size: 200px auto; } body:has(.r2s-shell) .site-header { padding: .25rem .5rem; } }
+@media (prefers-reduced-motion: reduce) { .ws-drop { transition: none; } }
+/* Compact notices: icon + tinted pill-card, one tone per evidence label (text verbatim, never truncated). */
+.r2s-center > p[role="note"] { display: flex; gap: .5rem; align-items: baseline; margin-top: .5rem; padding: .4rem .7rem; font-size: .82rem; line-height: 1.4;
+  border: 1px solid var(--r2s-border); border-radius: 10px; background: var(--r2s-surface); color: var(--r2s-muted); }
+.r2s-center > p[role="note"]::before { content: ""; flex: none; width: .95em; height: .95em; translate: 0 .12em; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM12 11v6M12 7.5h.01'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM12 11v6M12 7.5h.01'/%3E%3C/svg%3E") center / contain no-repeat; }
+.r2s-center > p[data-label="simulated"] { background: var(--r2s-simulated-bg); color: var(--r2s-simulated-fg); border-color: var(--r2s-simulated-fg); font-weight: 600; }
+.r2s-center > p[data-label="what-if"] { background: var(--r2s-whatif-bg); color: var(--r2s-whatif-fg); border-color: var(--r2s-whatif-fg); font-weight: 600; }
+.r2s-center > p[data-instruments] { width: fit-content; border-radius: 999px; }
+/* Tool rows: icon + label + one status line; shortcut stays in aria-keyshortcuts + tooltip, not as visible kbd text. */
+.r2s-tool kbd { display: none; }
+
 

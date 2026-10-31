@@ -75,8 +75,11 @@ test('keys and persisted state', () => {
 
 test('SSR: the real workspace renders inside the shell with jump targets and honest notices', () => {
   const html = renderToStaticMarkup(React.createElement(PrivateWorkspace, { scene: { title: 'Scene X', notice: 'FIXTURE notice' } }));
-  for (const s of ['class="r2s-shell"', 'data-left="auto"', 'id="ws-viewport"', 'id="ws-panel"', 'id="ws-job"', '<h1>Scene X</h1>', 'FIXTURE notice', 'data-slot="viewport"'])
+  for (const s of ['class="r2s-shell"', 'data-left="auto"', 'id="ws-viewport"', 'id="ws-panel"', 'id="ws-job"', '<h1 title="Scene X">Scene X</h1>', 'FIXTURE notice', 'data-slot="viewport"'])
     assert.ok(html.includes(s), s);
   assert.ok(/id="r2s-right"[^>]*hidden/.test(html));
   assert.match(html, /No tools: the private workspace service is not connected/);
+  // S15am: compact theme menu lists System + six modes; dropzone keeps the native #ws-upload-file input.
+  for (const id of ['system', 'paper', 'light', 'dark', 'midnight', 'graphite', 'contrast']) assert.ok(html.includes('data-theme-option="' + id + '"'), id);
+  assert.match(html, /<details class="r2s-theme"><summary[^>]*aria-label="Colour theme"/);
 });

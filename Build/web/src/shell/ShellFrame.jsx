@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import AccountNav from './AccountNav';
+import { THEME_CSS } from './theme.mjs';
 
 export default function ShellFrame({ children, authAvailable = false }) {
   return <>
+    <style dangerouslySetInnerHTML={{ __html: THEME_CSS }} />
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header">
       <Link className="wordmark" href="/"><span className="wordmark-mark" aria-hidden="true">R2S</span>Real2Simulation</Link>

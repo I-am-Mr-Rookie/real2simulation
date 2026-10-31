@@ -11,6 +11,7 @@ export const PATHS = Object.freeze({
   moon: 'M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z', monitor: 'M3 4h18v12H3zM8 20h8M12 16v4',
   upload: 'M12 15V4M7 9l5-5 5 5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4', info: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM12 11v6M12 7.5h.01',
   play: 'M7 4l13 8-13 8z', chart: 'M4 4v16h16M8 15l3-4 3 2 5-6', check: 'M5 12l5 5 9-10', alert: 'M12 3l10 18H2zM12 10v5M12 18h.01',
+  palette: 'M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-1.2-1-1.6-1-2.6 0-.9.7-1.6 1.6-1.6H17a4 4 0 0 0 4-4c0-4.6-4-8.2-9-8.2zM7.5 11h.01M10 7h.01M15 7.5h.01',
 });
 export const icon = (h, name, size = 18) => (PATHS[name] ? h('svg', { className: 'r2s-icon', viewBox: '0 0 24 24', width: size, height: size, 'aria-hidden': true, focusable: 'false' },
   h('path', { d: PATHS[name], fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' })) : null);

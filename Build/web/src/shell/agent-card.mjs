@@ -24,7 +24,7 @@ export function renderQuestionCard(h, s, onAction, refs = {}) {
   const send = (a) => onAction?.(a);
   const asking = v.status === 'asking';
   const n = asking ? s.index + 1 + '/' + s.questions.length : null;
-  return h('section', { className: 'r2s-qcard', 'data-status': v.status, 'aria-labelledby': 'r2s-q-h' },
+  return h('section', { className: 'r2s-qcard', 'data-status': v.status, 'data-qid': asking ? s.questions[s.index]?.id : undefined, 'aria-labelledby': 'r2s-q-h' },
     h('div', { className: 'r2s-qcard-head' },
       h('h3', { id: 'r2s-q-h', ref: refs.cardHead, tabIndex: -1 }, 'Agent question'),
       n ? h('span', { className: 'r2s-qcount', 'aria-hidden': true }, n) : null),
