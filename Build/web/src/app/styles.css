@@ -162,9 +162,9 @@ figcaption span { display: block; font: 400 .85rem/1.5 var(--r2s-font-sans); let
 .art { display: block; max-width: 100%; }
 .art img { display: block; width: 100%; max-width: 100%; height: auto; outline: none; }
 .art-dark { display: none; }
-/* shortcut: dark-family theme ids listed by name (S15am modes); add new dark ids here when theme.mjs gains them */
-:root:is([data-theme="dark"], [data-theme="midnight"], [data-theme="graphite"]) .art-light { display: none; }
-:root:is([data-theme="dark"], [data-theme="midnight"], [data-theme="graphite"]) .art-dark { display: block; }
+/* S15am: every dark palette sets html[data-tone="dark"] */
+:root[data-tone="dark"] .art-light { display: none; }
+:root[data-tone="dark"] .art-dark { display: block; }
 .hero { display: grid; grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); align-items: center; gap: 3rem; }
 .hero > * { min-width: 0; }
 .kicker { margin: 0 0 1rem; font: 700 .78rem/1 var(--r2s-font-mono); letter-spacing: .12em; color: var(--r2s-accent); }

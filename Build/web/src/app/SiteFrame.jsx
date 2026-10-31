@@ -2,11 +2,13 @@ import { createElement as h } from 'react';
 import Link from 'next/link';
 import AccountNav from '../shell/AccountNav';
 import { icon } from '../shell/icons.mjs';
+import { THEME_CSS } from '../shell/theme.mjs';
 import ThemeToggle from './ThemeToggle';
 
 // S15ai: branded public chrome (shell/ShellFrame unchanged; same skip link, nav targets and footer copy).
 export default function SiteFrame({ children, authAvailable = false }) {
   return <>
+    <style dangerouslySetInnerHTML={{ __html: THEME_CSS }} />
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header">
       <Link className="wordmark" href="/"><img className="brand-mark" src="/brand/mark-192.png" width="28" height="28" alt="" />Real2Simulation</Link>
