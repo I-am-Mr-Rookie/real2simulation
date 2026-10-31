@@ -7,10 +7,10 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "1e0f6e0d-f8d2-422f-8f70-d094db31d2b7",
-      "previousDeploymentId": "75dcb815-b7a1-44ab-80da-44733b3d048e",
-      "redeployNote": "controller after S15l-orch183: stage.py web + railway up (workspace a11y: focus restore, live status, aria-describedby)",
-      "sourceRevision": "e281b8705c90d227bb0c30360e772c3b6fe99425",
+      "deploymentId": "0bb4adb0-b11e-464a-a577-b4e90f01ad02",
+      "previousDeploymentId": "1e0f6e0d-f8d2-422f-8f70-d094db31d2b7",
+      "redeployNote": "S15z-orch184: stage.py web + railway up (owner result card once)",
+      "sourceRevision": "9c8481ec72b7aedadccb4a727c8a224926aa7e61",
       "verifiedUtc": "2026-10-31T01:48:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
