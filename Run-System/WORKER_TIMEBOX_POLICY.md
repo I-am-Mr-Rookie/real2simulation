@@ -66,3 +66,11 @@ Separate desktop chats in the same existing project remain mandatory.
 
 Earlier reports remain truthful historical evidence; this rule is prospective,
 not permission to rewrite their timestamps or pretend more work occurred.
+
+## Completion message when the messaging tool is missing (Oct31, from S15ae-orch191)
+
+If the controller-messaging tool (send_message_to_thread) is unavailable when a
+worker finishes, end the chat with the exact completion line as the final answer
+(the app relays it to the controller) and say so in REPORT.md. If that also fails,
+send it as a nonterminal blocker once tooling returns. A line only in REPORT.md is
+not a report.
