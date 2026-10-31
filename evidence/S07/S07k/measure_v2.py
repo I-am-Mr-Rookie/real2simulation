@@ -12,9 +12,18 @@ m = h.m
 from Build.measurement.free_fall import FitAbstention  # noqa: E402
 
 MOVE_PX, STATIC_PX, SCALE_N, SCALE_MIN, WIDTH_TOL, DECEL, N_MIN = 4.0, 6.0, 5, 3, 0.10, 0.5, 8  # PLAN.md, pre-registered
+V2_FROZEN = (4.0, 6.0, 5, 3, 0.10, 0.5, 8)  # orch174 values; orch178 asserts unchanged
+OWN01_06_SHA = "41ce6dd7268c7658f98fef97f5724226b8ea5096e77ead9b3dedf06584a14982"  # orch174 rows+clips (sort_keys)
 TRACKS = {"OWN01": "evidence/S07/S07g/track-own01.json",
-          **{c: f"evidence/S07/S07i/track-own{c[-2:]}.json" for c in h.CLIPS}}
-SCENES = {"OWN01": "01 (S07i)", **h.CLIPS}
+          **{c: f"evidence/S07/S07i/track-own{c[-2:]}.json" for c in h.CLIPS},
+          **{c: f"evidence/S07/S07j/track-own{c[-2:]}.json" for c in h.PENDING}}  # orch178: S07j re-tracks
+SCENES = {"OWN01": "01 (S07i)", **h.CLIPS, **h.PENDING}
+
+
+def first_six_sha(rows, clips):
+    six = list(TRACKS)[:6]
+    return hashlib.sha256(json.dumps([[r for r in rows if r["clip"] in six], {c: clips[c] for c in six}],
+                                     sort_keys=True).encode()).hexdigest()
 
 
 class Abstain(Exception):
@@ -92,8 +101,10 @@ def run_clip(clip):
 
 def run():
     assert {k: getattr(m, k) for k in h.FROZEN} == h.FROZEN, "S07i constants changed"
+    assert (MOVE_PX, STATIC_PX, SCALE_N, SCALE_MIN, WIDTH_TOL, DECEL, N_MIN) == V2_FROZEN, "v2 rule constants changed"
     clips = {c: run_clip(c) for c in TRACKS}
     rows = [{**h.row(c, r), **({"rules": r["rules"]} if "rules" in r else {})} for c, r in clips.items()]
+    assert first_six_sha(rows, clips) == OWN01_06_SHA, "OWN01-OWN06 v2 rows changed"
     v1 = {r["clip"]: r for r in json.loads(h.locate("evidence/S07/S07h/results.json").read_text(encoding="utf-8"))["rows"]}
     meas = [r for r in rows if "g" in r]
     return {"label": "SECOND ANALYSIS (v2) — MEASURED per clip; user-declared scale, phone clock not externally verified; 9.79 comparison only",
@@ -104,14 +115,14 @@ def run():
             "coverage": {"clips": len(rows), "measured": len(meas), "abstained": len(rows) - len(meas),
                          "in_1u": sum(r["in_1u"] for r in meas), "in_2u": sum(r["in_2u"] for r in meas),
                          "held_out_pass": sum(r["held_out_pass"] for r in meas)},
-            "pending": {k: v + " (track file has 0 frames: CUDA OOM, S07j)" for k, v in h.PENDING.items()},
+            "pending": {k: "v1 pending S07h (OWN07-11 v1 not merged)" for k in h.PENDING if k not in v1},
             "excluded": {"OWN12": "no free fall (S07i)"}}
 
 
 def table(out):
     def cell(r):
         if r is None or "abstain" in r:
-            return f"ABSTAIN ({r['abstain']})" if r else "–", "–"
+            return f"ABSTAIN ({r['abstain']})" if r else "pending S07h", "–"
         return (f"{r['g']:.2f} ± {r['u']:.2f} (z {r['z']:+.2f}) f{r['fall_frames'][0]}–{r['fall_frames'][1]} n={r['n_frames']}",
                 f"{r['held_rmse_px']:.1f} {'PASS' if r['held_out_pass'] else 'FAIL'}")
     lines = ["| clip | v1 g ± u, window | v1 held-out px | v2 g ± u, window | v2 held-out px |", "|---|---|---|---|---|"]
@@ -140,7 +151,8 @@ def self_check():  # synthetic frames only; never touches owner data
     except Abstain:
         pass
     assert {k: getattr(m, k) for k in h.FROZEN} == h.FROZEN and m.SCALE_FRAMES == range(40, 45)
-    print("S07k self-check OK (synthetic only)")
+    run()  # orch178: real tracks; asserts v2 constants + OWN01-06 rows byte-identical to orch174; writes nothing
+    print("S07k self-check OK (synthetic rule + OWN01-06 frozen rows)")
 
 
 if __name__ == "__main__":
