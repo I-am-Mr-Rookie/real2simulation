@@ -26,3 +26,11 @@ bounce run (including tracking, floor/restitution provenance, held-out compariso
 and uncertainty), or an explicitly accepted synthetic bounce simulation. Then
 index its original bytes and JSON pointers through a reviewed validator change.
 Do not fill this absence with a newly authored fixture.
+
+## S18c-orch215 re-check (Oct 31)
+
+The simulator still has no bounce output. `Build/simulator/contacts.mjs` only
+detects first sphere-floor touch (it stops at the first contact and keeps the RK4
+positions); restitution is an input, not a post-contact trajectory. Authoring a
+post-bounce path would be new physics outside this run's Owns, so no bounce demo
+is built. Guest manifest still lists bounce as UNAVAILABLE.
