@@ -60,18 +60,27 @@ def owner_clips(root=ROOT):
 
 
 def owner_measurement(clip_id):
-    """Job result for an owner clip: the stored S07i MEASURED result as a labelled RECORDED replay, else an explicit abstain."""
+    """Job result for an owner clip: stored frozen-v1 MEASURED g ± u + S07m v3 verdict as a RECORDED replay, else an explicit abstain."""
     e = json.loads(OWNER_CLIPS.read_text(encoding="utf-8"))["clips"].get(clip_id, {})
     base = {"clip_id": clip_id, "input_label": "OWNER_RECORDED / RECORDED",
             "scale": {"reference": e.get("scale_reference"), "value_m": e.get("scale_value_m"), "label": SCALE_LABEL}}
     m = e.get("measurement")
     if not m:
         return {**base, "status": "abstain", "label": "UNCERTAIN: no measurement",
-                "message": "No stored measurement for this clip and tracking does not run in the product yet; "
-                           "g is not reported (abstain, not an error)."}
+                "message": f"No stored measurement for this clip ({e.get('abstain', 'no v1 result')}); tracking does not run in "
+                           "the product yet; g is not reported (abstain, not an error)."}
     return {**base, "status": "recorded", "label": "RECORDED replay of a MEASURED result", **m,
-            "caveat": f"Held-out prediction FAILS: held-out RMSE {m['held_out_rmse_px']} px exceeds the 6 px pass threshold "
-                      "(S07h: 3 x the declared 2 px). A MEASURED value with a failed held-out check, not a validated measurement."}
+            "caveat": owner_caveat(m, e.get("scale_value_m"))}
+
+
+def owner_caveat(m, scale_m):
+    """S15aa: one caveat for every stored owner result, from the S07m v3 verdict (replaces the miscalibrated S07h 6 px rule)."""
+    v = m["v3"]
+    tail = ("A PASS is conditional on these assumptions and is not accuracy: it can still sit far from the local 9.79 m/s^2."
+            if v["verdict"] == "PASS" else "A MEASURED value with a failed held-out check, not a validated measurement.")
+    return (f"Held-out check {v['verdict']}: chi2/dof = {v['chi2']}/{v['dof']} = {v['chi2_per_dof']}, p = {v['p']} "
+            "(S07m v3 predictive chi-square; a THIRD, post-hoc analysis chosen after v1/v2 failed, forking-paths caveat). "
+            f"Scale user-declared ({scale_m} m, not verified); phone clock not externally verified. {tail}")
 
 
 @functools.cache

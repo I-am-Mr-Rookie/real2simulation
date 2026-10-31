@@ -4,6 +4,7 @@ Upload bytes are a visibly SYNTHETIC mp4-shaped blob; the RM04 replay reads the 
 Replay output is RECORDED (S13h-orch46), not a live run, Gate R or physical evidence.
 """
 import hashlib
+import importlib.util
 import json
 import os
 import shutil
@@ -20,11 +21,14 @@ from fastapi.testclient import TestClient
 
 from Build.api.workspace import analysis
 from Build.api.workspace.jobs import (LABEL, OWNER_CLIPS, RECORDING, UNDERSTAND_LABEL, UNDERSTOOD, approved_shas, create_router, owner_clips,
-                                      load_recording, load_understanding, recorded_runner, scene_resolver, shell_scene)
+                                      load_recording, load_understanding, owner_measurement, recorded_runner, scene_resolver, shell_scene)
 from Build.pipeline.jobs import MemoryStore
 from Build.pipeline.uploads import UploadService
 
 ROOT = Path(__file__).resolve().parents[2]
+_spec = importlib.util.spec_from_file_location("s15aa_sync", ROOT / "evidence/S15aa/sync_owner_measurements.py")
+sync = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(sync)
 TOKEN, OWNER, OTHER = "synthetic-test-token", "user_synthA", "user_synthB"
 AUTH = {"x-workspace-token": TOKEN, "x-workspace-owner": OWNER}
 OTHER_AUTH = {**AUTH, "x-workspace-owner": OTHER}
@@ -206,16 +210,20 @@ class JobsRouterTests(unittest.TestCase):
         out = self.finish(self.owner_app("OWN01"))
         m = out["provenance"]["measurement"]
         self.assertEqual((m["status"], m["g"], m["u"], m["unit"]), ("recorded", 10.96, 0.77, "m/s^2"))
-        self.assertEqual((m["input_label"], m["source"]), ("OWNER_RECORDED / RECORDED", "evidence/S07/S07i/result-own01.json"))
+        self.assertEqual((m["input_label"], m["source"]), ("OWNER_RECORDED / RECORDED", "evidence/S07/S07m/results.json"))
         self.assertTrue(m["measured_label"].startswith("MEASURED"))
-        self.assertIn("held-out RMSE 23.0 px exceeds the 6 px pass threshold", m["caveat"])  # S15y: S07h threshold
+        self.assertIn("Held-out check FAIL: chi2/dof = 12.28/3 = 4.09, p = 0.0065", m["caveat"])  # S15aa: S07m v3, not 6 px
+        for s in ("THIRD, post-hoc", "forking-paths", "Scale user-declared", "phone clock not externally verified"):
+            self.assertIn(s, m["caveat"])
+        self.assertNotIn("6 px", m["caveat"])
         self.assertNotIn(">>", m["caveat"])
         self.assertEqual(m["scale"], {"reference": "book cover horizontal edge in fall plane", "value_m": 0.2028,
                                       "label": "user-declared, not verified"})
-        c = self.owner_app("OWN02")
+        c = self.owner_app("OWN10")
         out = self.finish(c)
         self.assertEqual((out["provenance"]["measurement"]["status"], out["provenance"]["measurement"]["label"]),
                          ("abstain", "UNCERTAIN: no measurement"))
+        self.assertIn("v1 abstain (S07h)", out["provenance"]["measurement"]["message"])
         doc = c.get(f"/internal/workspace/jobs/{out['job']['job_id']}", headers=AUTH).json()  # persists for polling
         self.assertEqual(doc["provenance"]["measurement"]["status"], "abstain")
 
@@ -239,7 +247,7 @@ class JobsRouterTests(unittest.TestCase):
             r = (c.get if other == "questions" else c.post)(f"/internal/workspace/scenes/{job_id}/{other}", headers=OTHER_AUTH,
                                                              **({} if other == "questions" else {"json": {"answers": {}}}))
             self.assertEqual(self.code(r, 404), "NOT_FOUND")
-        c2 = self.owner_app("OWN02")
+        c2 = self.owner_app("OWN10")
         j2 = self.finish(c2)["job"]["job_id"]
         s2 = c2.post(f"/internal/workspace/scenes/{j2}/spec", headers=AUTH, json={"answers": {}}).json()  # no size: abstain, not 422
         self.assertEqual((s2["measurement"]["label"], s2["user_scale"]["status"]), ("UNCERTAIN: no measurement", "abstain"))
@@ -249,12 +257,25 @@ class JobsRouterTests(unittest.TestCase):
         clips = json.loads(OWNER_CLIPS.read_text(encoding="utf-8"))["clips"]
         self.assertEqual({c: e["sha256"] for c, e in clips.items()}, {c: reg[c]["sha256"] for c in clips})
         self.assertTrue(all(e["r_frame_rate"] == "30/1" and e["height"] > e["width"] for e in clips.values()))  # 30 fps portrait
-        m = clips["OWN01"]["measurement"]
-        raw = (ROOT / m["source"]).read_bytes()
-        res = json.loads(raw)
-        self.assertEqual(hashlib.sha256(raw).hexdigest(), m["source_sha256"])
-        self.assertEqual((m["g"], m["u"]), (round(res["result"]["g"], 2), round(res["result"]["u_total"], 2)))
-        self.assertEqual(m["held_out_rmse_px"], round(res["mask_centroid"]["held_out"]["rmse_px"], 1))
+        # S15aa: every stored number/label re-derived from S07m/S07h evidence JSON (v1 only, never v2)
+        self.assertEqual({c: (e.get("measurement"), e.get("abstain")) for c, e in clips.items()},
+                         {c: (sync.measurement_of(c, e["scale_value_m"]) if not sync.abstain_of(c) else None, sync.abstain_of(c))
+                          for c, e in clips.items()})
+        measured = {c for c, e in clips.items() if "measurement" in e}
+        self.assertEqual(measured, {"OWN01", "OWN02", "OWN03", "OWN04", "OWN05", "OWN07", "OWN08", "OWN09"})
+        self.assertEqual({c for c, e in clips.items() if "abstain" in e}, {"OWN06", "OWN10", "OWN11", "OWN12"})
+        s07m = json.loads((ROOT / "evidence/S07/S07m/results.json").read_text(encoding="utf-8"))
+        for c in measured:  # stored values equal the evidence values (rounded as displayed) and are labelled
+            row = next(r for r in s07m["rows"] if r["clip"] == c and r["analysis"] == "v1")
+            m = clips[c]["measurement"]
+            self.assertEqual((m["g"], m["u"], m["v3"]["chi2"], m["v3"]["dof"], m["v3"]["verdict"]),
+                             (round(row["g"], 2), round(row["u"], 2), round(row["chi2"], 2), row["dof"], "PASS" if row["v3_pass"] else "FAIL"))
+            self.assertAlmostEqual(m["v3"]["p"], row["p"], delta=row["p"] * 0.03)
+            self.assertEqual(m["source_sha256"], hashlib.sha256((ROOT / m["source"]).read_bytes()).hexdigest())
+            self.assertTrue(m["measured_label"].startswith("MEASURED") and m["unit"] == "m/s^2")
+            cav = owner_measurement(c)["caveat"]
+            self.assertIn(f"Held-out check {m['v3']['verdict']}", cav)
+            self.assertEqual("not accuracy" in cav, m["v3"]["verdict"] == "PASS")
         shas = approved_shas()
         self.assertEqual(shas.get(clips["OWN01"]["sha256"]), "OWN01")
         self.assertEqual(owner_clips(), {e["sha256"]: c for c, e in clips.items()})
