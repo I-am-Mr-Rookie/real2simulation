@@ -18,6 +18,7 @@ UTC: issued 2026-10-31T10:55:26Z; worktree created 10:56Z; controller HOLD 10:57
 ## Checks (fresh)
 - node --test workspace, shell-workspace, web-private, web-workspace-api: 161 pass, 0 fail (includes new tests/web-private/home-scroll.test.mjs; rerun after the GitHub/hook amendment).
 - npm run build: exit 0 (final CSS).
+- After rebase onto main 1b9ab540 (29 Build/web files changed upstream by parallel runs): node --test same four globs 165 pass, 0 fail; npm run build exit 0. Frames/layout evidence predate the rebase.
 - Playwright headless (codex runtime playwright-core chromium, not Chrome), local next start: frame strips 11 positions at 1280, 390 and 1280 reduced motion: evidence/S15aq/frames/, contact sheets evidence/S15aq/sheet-*.png, logs frames-log.txt.
 - Layout (evidence/S15aq/layout-check.json): scrollWidth equals viewport at 320/390/1000/1280 (an earlier 20px overflow at 320/390 from side-slide rows was fixed with overflow-x: clip on that section); H1 lines scrollWidth equals clientWidth (no overflow), one line each.
 - What I saw: top of page at 1280 identical in layout to reduced motion; mid-scroll frames show the hero lifting, cards in motion as the row leaves, strip half wiped, steps dealing; final frame shows all four CTA buttons at rest.
