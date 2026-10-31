@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T00:09Z — controller: accept S07h DONE (11 clips, frozen v1)
+
+- S07h-orch176 (Opus high; timebox PASS; self-check + measurement 90 OK fresh) merged. Frozen v1, MEASURED (user-declared scale, phone clock unverified): OWN07 (05c) 8.72+/-0.21, OWN08 (05d) 8.82+/-0.27, OWN09 nosheet 6.74+/-1.77 (degraded), OWN10 clutter + OWN11 lowres ABSTAIN (no release detected), OWN12 excluded. 9 measured: 9.79 inside 1u 2/9, 2u 6/9; held-out 0/9. Valid 05 repeats OWN05/07/08 = 8.62/8.72/8.82 (SD 0.10) - repeatable but ~1 m/s^2 low (systematic: impact frame in window, later-fall deficit). Not a validated phone measurement; README evidence/S07/S07h/README.md. S24k script SWAP BLOCK numbers need the final S07h/S07k table.
+
 ## 2026-10-31T00:07Z — controller: S07k merged PARTIAL (OWN07-11 pending); S07k resume dispatched (medium)
 
 - S07k-orch174 (Opus high; timebox PASS; self-check + measurement 90 OK fresh): pre-registered v2 rule (SAM centroid release, static pre-release scale, end before impact/rotation, min 8 frames). v2 on OWN01-OWN06: OWN01 ABSTAIN (7<8 frames), OWN02 7.27+/-3.07, OWN03 9.56+/-0.63, OWN04 10.40+/-0.46, OWN05 9.62+/-0.74, OWN06 ABSTAIN; vs 9.79: 1u 3/4, 2u 4/4; held-out pass 0/4 (OWN05 6.5 px vs 6). Second analysis after seeing v1 (forking-paths caveat). evidence/S07/S07k/README.md.
