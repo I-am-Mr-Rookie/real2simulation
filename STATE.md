@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T01:18Z — controller: accept S20z DONE + S24l DONE
+
+- S20z-orch182 (Sonnet medium; timebox PASS) merged: guest-library guardrail test now checks the real property (page.jsx, LibraryClient.jsx, /api/library routes never touch admission/SPEND_PAUSED/require_reconstruction/ledger/paid/private routes; manifest stays synthetic); tests/guardrails 95/95 OK fresh. Static scan only; transitive library imports not scanned. No leak found.
+- S24l-orch181 (Sonnet medium; timebox PASS) merged: DEMO_SCRIPT_DRAFT v4, SWAP BLOCK + beat 5b use final S07h/S07k/S07m numbers (hero 10.96+/-0.77 fails own check; repeat windows 7.3-9.6 +/- u pass v3, conditional, third analysis; never 'validated'); stopwatch placeholder kept (Q22); 3:00. Risk: beat 5b voiceover ~55 words in 20 s.
+
 ## 2026-10-31T00:52Z — controller: accept S07m DONE; add + dispatch S24l, S20z (Sonnet medium)
 
 - S07m-orch180 (Opus high; timebox PASS; self-check + measurement 90 OK fresh) merged. Pre-registered v3 predictive chi-square (third analysis): PASS v1 OWN05 (8.62+/-1.28); v2 OWN02 (7.27+/-3.07), OWN05 (9.62+/-0.74), OWN07 (9.51+/-0.93), OWN08 (8.82+/-0.27, ~3.6u below 9.79 -> pass is not accuracy). Conditional measurements only: scale user-declared, phone clock, rolling shutter assumed, centroid drift 10-13 px and blur/rotation in every passing window. Disclosed: real run executed twice for a summary-string format fix; rows identical.
