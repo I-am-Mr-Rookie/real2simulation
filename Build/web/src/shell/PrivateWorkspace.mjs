@@ -10,6 +10,7 @@ import { uploadView, renderUpload } from '../workspace/upload-view.mjs';
 import { initialInterview, reduceInterview, interviewAnswers } from '../workspace/interview.mjs';
 import { initialInstruments, reduceInstruments } from '../workspace/instruments.mjs';
 import { initialRun } from '../workspace/runcontrol.mjs';
+import { renderShell, toolsOf, shellKey, initialLeft, LEFT_KEY, NARROW_QUERY } from './workspace-shell.mjs';
 
 const Workspace = createWorkspace(React);
 const adapter = createThreeViewer();
@@ -73,8 +74,40 @@ export default function PrivateWorkspace({ scene }) {
   const onAction = live ? (a) => routeAction(ctl, localRef.current, a).then(setLocal) : undefined;
   const up = uploadView(s);
   const simulated = /^(run|fit)\.|^report\.open$/.test(phase); // run/fit/report numbers are browser-simulated, never recorded (report.owner is the stored owner result)
+  // S15ab shell state: left expanded/collapsed (persisted on wide screens), right panel open/closed with focus in and back.
+  const [left, setLeft] = useState(null);
+  const [right, setRight] = useState(false);
+  const rightToggle = useRef(null);
+  const rightHead = useRef(null);
+  const opened = useRef(false);
+  const narrow = () => globalThis.matchMedia?.(NARROW_QUERY).matches ?? false;
+  useEffect(() => { let v = null; try { v = localStorage.getItem(LEFT_KEY); } catch {} setLeft(initialLeft(v, narrow())); }, []);
+  useEffect(() => {
+    if (right) { opened.current = true; rightHead.current?.focus(); } else if (opened.current) rightToggle.current?.focus();
+  }, [right]);
+  const toggleLeft = () => setLeft((v) => { if (!narrow()) try { localStorage.setItem(LEFT_KEY, v ? 'collapsed' : 'expanded'); } catch {} return !v; });
+  const tools = toolsOf({ live, phase, owner: !!s.state.owner, jobId: s.state.job?.id, uploadStatus: up.show ? up.status : null, hasReport: !!s.report || phase === 'report.owner' });
+  const openTool = (t) => {
+    const el = globalThis.document?.getElementById(t.target);
+    if (!el) return;
+    if (narrow()) { opened.current = false; setRight(false); }
+    el.scrollIntoView?.({ block: 'start', behavior: 'smooth' }); el.focus?.({ preventScroll: true });
+  };
+  const keysRef = useRef(null);
+  keysRef.current = (e) => {
+    const k = shellKey(e, tools);
+    if (!k) return;
+    if (k === 'escape') { if (right) setRight(false); else if (left && narrow()) setLeft(false); else return; }
+    else if (k === 'left') toggleLeft();
+    else if (k === 'right') setRight((v) => !v);
+    else openTool(tools.find((t) => 'tool:' + t.id === k));
+    e.preventDefault();
+  };
+  useEffect(() => { const f = (e) => keysRef.current(e); globalThis.addEventListener('keydown', f); return () => globalThis.removeEventListener('keydown', f); }, []);
+  const on = { toggleLeft, toggleRight: () => setRight((v) => !v), tool: openTool,
+    close: () => { setRight(false); if (narrow()) setLeft(false); }, navigated: () => { if (narrow()) setLeft(false); } };
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
-    React.createElement('h1', null, scene.title),
+    renderShell(React.createElement, { title: scene.title, left, right, tools }, on, { rightToggle, rightHead },
     React.createElement('p', { role: 'note' }, live ? LIVE_NOTICE : api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),
     live ? null : React.createElement('p', { role: 'note' }, scene.notice),
     // the upload error is rendered once, by the workspace job panel (S15n limit: avoid a double alert)
@@ -86,6 +119,6 @@ export default function PrivateWorkspace({ scene }) {
     React.createElement(Workspace, { state: s.state, adapter, audience: 'signed-in', onAction,
       interview: live ? local.interview : undefined, run: live ? initialRun() : undefined, instruments: live ? local.instruments : undefined,
       fit: live ? s.fitInput ?? undefined : undefined, report: live && s.report ? s.report : undefined, provenance: live ? s.provenance ?? undefined : undefined,
-      whatIf: live ? s.whatIfLabel ?? undefined : undefined }));
+      whatIf: live ? s.whatIfLabel ?? undefined : undefined })));
 }
 

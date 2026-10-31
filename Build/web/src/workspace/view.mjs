@@ -21,11 +21,11 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
       h('ol', null, ...stages.map((s) => h('li', { key: s.id, 'data-status': s.status, 'aria-current': s.status === 'current' ? 'step' : undefined },
         s.label + (s.failed ? ' (needs attention)' : ''))))),
     sidebar ? renderSidebar(h, sidebar, onAction) : null,
-    h('section', { className: 'ws-viewport', 'data-slot': 'viewport', 'aria-label': 'Scene viewport' },
+    h('section', { id: 'ws-viewport', tabIndex: -1, className: 'ws-viewport', 'data-slot': 'viewport', 'aria-label': 'Scene viewport' },
       viewport.banner ? h('p', { className: 'ws-banner', role: 'note' }, viewport.banner) : null,
       h('div', { className: 'ws-host', ref: hostRef, 'data-viewer-status': view.status }),
       h('p', { className: 'ws-status', role: 'status', 'aria-live': 'polite' }, VIEWER_STATUS_TEXT[view.status] ?? VIEWER_STATUS_TEXT.error)),
-    h('section', { className: 'ws-panel', 'data-slot': 'panel', 'aria-label': 'Stage panel' },
+    h('section', { id: 'ws-panel', tabIndex: -1, className: 'ws-panel', 'data-slot': 'panel', 'aria-label': 'Stage panel' },
       // S15l: tabIndex -1 makes the heading the focus target after a stage change (react.mjs restoreFocus)
       h('h2', { id: 'ws-panel-heading', tabIndex: -1 }, jobStatus.label),
       whatIf && /^(run|fit|report)\./.test(layout.phase) ? h('p', { className: 'ws-whatif', role: 'note', 'data-label': 'what-if' }, whatIf) : null,
@@ -42,7 +42,7 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
         h('button', { type: 'button', className: 'ws-submit', 'data-event': run.next.event, disabled: !onAction, onClick: () => onAction?.({ type: run.next.event }) }, run.next.label)) : null,
       report ? renderReport(h, report) : null,
       layout.phase === 'report.owner' && provenance?.measurement ? renderMeasurement(h, provenance.measurement) : null),
-    h('aside', { className: 'ws-job', 'data-slot': 'job-status', 'aria-label': 'Job status' },
+    h('aside', { id: 'ws-job', tabIndex: -1, className: 'ws-job', 'data-slot': 'job-status', 'aria-label': 'Job status' },
       h('p', null, jobStatus.jobId ? 'Job ' + jobStatus.jobId : 'No job yet'),
       // S15z: at report.owner the stage panel already shows the result card; keep only a one-line pointer here
       provenance ? renderProvenance(h, provenance, layout.phase === 'report.owner') : null,
