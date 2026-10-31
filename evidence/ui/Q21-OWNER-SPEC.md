@@ -16,3 +16,12 @@ Status: owner-approved direction. Supersedes the R1-R3 default for the private w
 
 Owner screenshots of the Codex app (local, not committed): %TEMP%/codex-clipboard-{08549aeb,5194a10a,d8a8a028,1c4abb49,861396cb,bf47c935,e4ef221e,44777a45}-*.png
 
+## Left rail behaviour (owner addendum, Oct31 ~13:00 Dhaka; Codex desktop app screenshots cab8720c/06d71f3f)
+Owner, verbatim intent: "The toggle sidebar button explicitly toggles the currently opened panel. Clicking on the icon of the panel does the same too, but the toggle sidebar button is kind of universal ... hovering the mouse over other icons ... temporarily opens. Once the mouse hovering moves to other place without clicking, the temporary view is closed. But if the mouse cursor makes a click, then that pane is opened. And the same goes for others also."
+6. Activity-bar model (like VS Code / Codex): the icon rail is ALWAYS visible; each rail icon owns one pane (real content only, e.g. Navigate, This project outline, Clips, Runs & history). Exactly one pane is the "current" pane.
+   - Toggle sidebar button (+ shortcut) shows/hides the CURRENT pane; the rail stays. Collapsed = icons only.
+   - Click an icon: if its pane is current and open -> close it; otherwise make it current and open it (pinned).
+   - Hover an icon whose pane is not open-and-current: after a short intent delay (~150 ms) its pane opens TEMPORARILY as an overlay (does not push the centre). Moving the pointer away from both the icon and the pane closes it after a short grace (~250 ms); moving into the pane keeps it open. Clicking the icon (or inside the pane's pin action) while previewing makes it the current pinned pane.
+   - Keyboard/touch have no hover: focus + Enter/Space = click; Escape closes a temporary pane; touch tap = click. Temporary panes are aria-labelled, do not steal focus, and respect prefers-reduced-motion.
+   - Current pane + open/closed state persist (localStorage); 375px: panes are drawers, no hover preview, no horizontal scroll.
+

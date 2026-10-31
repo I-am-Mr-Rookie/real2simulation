@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 12:55 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 13:02 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **236 / 265** runs done · 1 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **236 / 266** runs done · 1 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -268,7 +268,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (29/30)</summary>
+<details><summary><b>S15</b> — Workspace UI (29/31)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -300,6 +300,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15ab** — Codex (native Claude) · Opus 5.5, effort high — Workspace shell per Q21 owner spec: collapsible left icon rail, center project, top-right toggle for a right agent/tools panel (30 min)
 - [x] **S15ac** — Codex (native Claude) · Opus 5.5, effort high — Interview as right-panel agent questions (O1 live preview + O2/P4 question card + P1 waiting state) per Q21 owner spec (30 min)
 - [~] **S15ad** — Codex (native Claude) · Sonnet 5.5, effort medium — Workspace centre polish after S15ab/S15ac: no overflow and no cramped centre when the right panel is open (30 min) *(in progress)*
+- [ ] **S15ae** — Codex (native Claude) · Opus 5.5, effort medium — Left rail as activity bar per owner addendum (Q21 spec section 6): toggle current pane, icon click toggles/opens, hover temporarily opens, click pins (30 min)
 
 </details>
 
