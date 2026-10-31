@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 2026-10-31T03:47Z controller: CLAUDE 429 recorded once. S15aa-orch185 (Opus medium) turn failed at 02:50Z with "exceeded retry limit, last status: 429 Too Many Requests" after ~2 min; uncommitted partial edits remain in .worktrees/S15aa-orch185 (jobs.py, owner_clips.json, evidence/S15aa/) - not accepted. S15aa back to TODO for resume in the same worktree. No new Claude dispatch until the Claude quota refresh (time not stated; owner may write it in RUNS.md). Codex not substituted (standing rule: Codex only when necessary; Codex quota low).
+
 - 2026-10-31T02:48Z controller: added QUEUE S15aa (OWN02-OWN12 stored frozen-v1 g ± u + S07m v3 verdict in product, or abstain) and dispatched S15aa-orch185 (Opus 5.5 medium), thread 01a18fdb-d2de-7702-b3f4-35a641fe0b3a, deadline 2026-10-31T03:18:29+00:00 (Dhaka 09:18).
 
 - 2026-10-31T02:52Z controller: accepted S15z-orch184 DONE (TIMING PASS; diff within Owns: view.mjs renderProvenance flag + 1 test assertion; fresh node tests 131/131; ff-merged). Web DEV 0bb4adb0 (rev 9c8481ec, prev 1e0f6e0d) recorded in deployments.json; verify.py exit 0. Controller DEV walk with OWN01 PASS: upload -> known-size answer -> report.owner shows exactly one ws-measurement card (g = 10.96 ± 0.77, RECORDED replay of MEASURED, held-out caveat, scale + user-scale lines); job panel shows the one-line pointer; 375px no overflow. Screenshot evidence/S15/s15o/controller/21-375-own01-after-S15z.png.
