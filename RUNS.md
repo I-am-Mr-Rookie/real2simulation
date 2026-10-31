@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 13:52 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 13:53 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **238 / 267** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **238 / 267** runs done · 1 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -23,7 +23,11 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - …and 1 more ready in this lane
 
 **CLAUDE**
-- [ ] **S15af** — Codex (native Claude) · Sonnet 5.5, effort medium — Left rail polish after S15ae DEV walk (Q21 spec section 6) (30 min)
+- Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **S15af** — Codex (native Claude) · Sonnet 5.5, effort medium — Left rail polish after S15ae DEV walk (Q21 spec section 6) (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -297,7 +301,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15ac** — Codex (native Claude) · Opus 5.5, effort high — Interview as right-panel agent questions (O1 live preview + O2/P4 question card + P1 waiting state) per Q21 owner spec (30 min)
 - [x] **S15ad** — Codex (native Claude) · Sonnet 5.5, effort medium — Workspace centre polish after S15ab/S15ac: no overflow and no cramped centre when the right panel is open (30 min)
 - [x] **S15ae** — Codex (native Claude) · Opus 5.5, effort medium — Left rail as activity bar per owner addendum (Q21 spec section 6): toggle current pane, icon click toggles/opens, hover temporarily opens, click pins (30 min)
-- [ ] **S15af** — Codex (native Claude) · Sonnet 5.5, effort medium — Left rail polish after S15ae DEV walk (Q21 spec section 6) (30 min)
+- [~] **S15af** — Codex (native Claude) · Sonnet 5.5, effort medium — Left rail polish after S15ae DEV walk (Q21 spec section 6) (30 min) *(in progress)*
 
 </details>
 
