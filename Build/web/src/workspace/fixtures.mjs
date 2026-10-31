@@ -1,6 +1,6 @@
 // VISIBLY SYNTHETIC fixtures for S15a tests/UI states only. Values are inert structural placeholders
 // (deliberately non-physical), NOT fitter/simulator output and NOT gate, real-scene or physical evidence.
-export const SYNTHETIC_NOTICE = 'SYNTHETIC fixture — not reconstruction, fit or physics evidence';
+export const SYNTHETIC_NOTICE = 'SYNTHETIC fixture: not reconstruction, fit or physics evidence';
 const scene = { scene_id: 'synthetic-room-v1', scene_version: '1.0.0', access: 'private', evidence: 'synthetic' };
 export const job = (revision, status, extra = {}) => ({ contract_version: '1.0.0', kind: 'job', job_id: 'synthetic-job-v1', revision, status, result: null, error: null, ...extra });
 export const jobReady = (revision) => job(revision, 'ready', { result: scene });

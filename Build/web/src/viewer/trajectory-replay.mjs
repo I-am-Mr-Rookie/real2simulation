@@ -4,7 +4,7 @@
 import { ViewerError, abortError, deepFreeze } from './common.mjs';
 
 export const TRACE_LIMITS = Object.freeze({ maxSamples: 4096, maxBodyBytes: 262144, maxAbsM: 1e4 });
-export const SIMULATED_BANNER = 'SIMULATED trajectory — simulator output, not a measurement';
+export const SIMULATED_BANNER = 'SIMULATED trajectory: simulator output, not a measurement';
 const KINDS = ['free-fall', 'projectile', 'pendulum'];
 const KEYS = ['kind', 'source', 'inputProvenance', 'dt_s', 'samples', 'sha256', 'label'];
 const exactKeys = (o, keys) => o && typeof o === 'object' && !Array.isArray(o) &&

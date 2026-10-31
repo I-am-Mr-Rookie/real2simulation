@@ -69,7 +69,7 @@ export function renderFit(h, v) {
     // Provenance stated once in the caption; the Source cell repeats it only for rows from a different source.
     h('table', { className: 'ws-fit-table' }, h('caption', null, 'Fit summary', h('span', { className: 'ws-src' }, 'Source: ' + v.source + ' unless noted')),
       h('thead', null, h('tr', null, ...['Quantity', 'Value', 'Label', 'Source'].map((t) => h('th', { key: t, scope: 'col' }, t)))),
-      h('tbody', null, ...v.rows.map((r) => h('tr', { key: r.name }, h('th', { scope: 'row' }, r.name), h('td', { className: 'ws-qval', title: r.text }, r.display), h('td', null, tag(r.label)), h('td', { className: 'ws-src' }, r.evidence === v.source ? '\u2014' : r.evidence))))),
+      h('tbody', null, ...v.rows.map((r) => h('tr', { key: r.name }, h('th', { scope: 'row' }, r.name), h('td', { className: 'ws-qval', title: r.text }, r.display), h('td', null, tag(r.label)), h('td', { className: 'ws-src' }, r.evidence === v.source ? '\u00b7' : r.evidence))))),
     h('figure', { className: 'ws-resid' },
       h('svg', { viewBox: '0 0 ' + c.width + ' ' + (c.height + 8), role: 'img', 'aria-labelledby': 'ws-resid-t ws-resid-d', className: 'ws-resid-svg' },
         h('title', { id: 'ws-resid-t' }, 'Residual chart (' + v.label + ')'), h('desc', { id: 'ws-resid-d' }, c.desc),

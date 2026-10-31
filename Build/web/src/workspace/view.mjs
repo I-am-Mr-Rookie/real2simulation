@@ -1,3 +1,4 @@
+import { dash } from './display.mjs';
 // S15b: workspace markup as a pure function of (layout, viewer status). h = React.createElement-compatible.
 // The viewport host div has NO children: the viewer owns everything inside it.
 import { VIEWER_STATUS_TEXT } from './layout.mjs';
@@ -56,8 +57,8 @@ export function renderProvenance(h, p, measurementShownElsewhere = false) {
   const labels = p.stage_labels && typeof p.stage_labels === 'object' ? Object.entries(p.stage_labels) : [];
   const utc = typeof p.understand?.recorded_utc === 'string' ? p.understand.recorded_utc : null;
   return h('div', { className: 'ws-provenance', 'data-executor': String(p.executor ?? ''), 'aria-label': 'Job provenance' },
-    h('p', null, String(p.label ?? 'Provenance') + (p.live === false ? ' (not a live run)' : '')),
-    labels.length ? h('ul', null, ...labels.map(([s, l]) => h('li', { key: s }, s + ': ' + String(l) + (s === 'understand' && utc ? ' @ ' + utc : '')))) : null,
+    h('p', null, dash(p.label ?? 'Provenance') + (p.live === false ? ' (not a live run)' : '')),
+    labels.length ? h('ul', null, ...labels.map(([s, l]) => h('li', { key: s }, s + ': ' + dash(l) + (s === 'understand' && utc ? ' @ ' + utc : '')))) : null,
     typeof p.note === 'string' ? h('p', { className: 'ws-note' }, p.note) : null,
     p.measurement && typeof p.measurement === 'object' ? (measurementShownElsewhere ? h('p', { className: 'ws-note' }, 'Clip result: shown in the stage panel.') : renderMeasurement(h, p.measurement)) : null);
 }
@@ -69,7 +70,7 @@ function renderMeasurement(h, m) {
   const us = m.user_scale; // S15y: the interview's known-size answer, declared or abstain
   const yours = us?.status === 'declared' ? 'Your known size: ' + s(us.object) + ' = ' + s(us.length_m) + ' m (' + s(us.label) + ')' : us ? s(us.label) : null;
   return h('div', { className: 'ws-measurement', 'data-status': s(m.status), role: 'status', 'aria-label': 'Clip result' },
-    h('p', null, s(m.clip_id) + ' — ' + s(m.input_label) + ' — ' + s(m.label)),
+    h('p', null, s(m.clip_id) + ' \u00b7 ' + s(m.input_label) + ' \u00b7 ' + s(m.label)),
     // S15an: unit typeset only (m/s^2 -> m/s²; same stored numbers); the long source path sits in a collapsed "Source" detail.
     m.status === 'recorded' ? h('p', null, h('strong', null, 'g = ' + s(m.g) + ' ± ' + s(m.u) + ' ' + s(m.unit).replace('^2', '²')), ' (' + s(m.measured_label) + ')') : null,
     m.status === 'recorded' ? h('details', { className: 'ws-source' }, h('summary', null, 'Source'), h('code', null, s(m.source))) : null,

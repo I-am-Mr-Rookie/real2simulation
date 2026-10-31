@@ -107,7 +107,7 @@ export function interviewView(s) {
     canSubmit: canSubmit(s),
     canBack: s.index > 0 && (s.status === 'asking' || s.status === 'complete'),
     last: !!q && s.index === s.questions.length - 1,
-    answers: s.answers.map((a) => ({ prompt: a.prompt, answer: [a.chipLabel, a.text].filter(Boolean).join(' — ') })),
+    answers: s.answers.map((a) => ({ prompt: a.prompt, answer: [a.chipLabel, a.text].filter(Boolean).join(', ') })),
     error: s.error,
   };
 }

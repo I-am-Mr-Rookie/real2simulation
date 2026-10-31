@@ -9,7 +9,7 @@
   },
   {
     "contract_version": "1.0.0", "kind": "library", "entry_id": "synthetic-room-v1",
-    "label": "SYNTHETIC fixture — not reconstruction or physics evidence",
+    "label": "SYNTHETIC fixture: not reconstruction or physics evidence",
     "scene": {"scene_id": "synthetic-room-v1", "scene_version": "1.0.0", "access": "public-library", "evidence": "synthetic"}
   }
 ]

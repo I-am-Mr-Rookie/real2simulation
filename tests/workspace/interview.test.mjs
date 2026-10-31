@@ -55,7 +55,7 @@ test('walk: chips -> free_text -> chips_and_free_text -> complete, with the answ
     { questionId: 'q-object', chipId: 'block', text: null },
     { questionId: 'q-notes', chipId: null, text: 'dropped from the edge' },
     { questionId: 'q-height', chipId: 'table', text: 'near the wall' }]);
-  assert.deepEqual(interviewView(s).answers.map((a) => a.answer), ['Block', 'dropped from the edge', 'Table — near the wall']);
+  assert.deepEqual(interviewView(s).answers.map((a) => a.answer), ['Block', 'dropped from the edge', 'Table, near the wall']);
   assert.equal(reduceInterview(s, { type: 'Q_SUBMIT' }), s);
 });
 

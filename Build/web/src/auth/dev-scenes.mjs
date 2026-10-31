@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { initialState } from '../workspace/workflow.mjs';
 
-export const FIXTURE_NOTICE = 'FIXTURE / SYNTHETIC — empty private development scene; no reconstruction, measurement or gate evidence. Uploads and live workflow services are not connected.';
+export const FIXTURE_NOTICE = 'FIXTURE / SYNTHETIC: empty private development scene; no reconstruction, measurement or gate evidence. Uploads and live workflow services are not connected.';
 
 export function developmentScenesEnabled(env) {
   const railway = env.RAILWAY_ENVIRONMENT_NAME || env.RAILWAY_ENVIRONMENT;
