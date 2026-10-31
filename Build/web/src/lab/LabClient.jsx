@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { parseFitReveal, plotPoints, sampleRows } from './fit-contract.mjs';
 import BrowserSimulation from './BrowserSimulation.jsx';
+import AppArt from './AppArt.jsx';
 
 const TEMPLATES = [
   ['free_fall', 'Free fall', 'Ballistic drop'],
@@ -82,6 +83,7 @@ export default function LabClient() {
   return <section className="lab" aria-labelledby="lab-title">
     <div className="lab-intro"><p className="eyebrow">Synthetic lab · Mystery-g</p><h1 id="lab-title">Test a motion model</h1>
       <p className="lede">Explore a deterministic, simulated trajectory before connecting a measured video.</p></div>
+    <div className="lab-layout"><div className="lab-left">
     <form className="lab-controls" onSubmit={run}>
       <fieldset><legend>Template</legend><div className="template-grid">
         {TEMPLATES.map(([value, label, hint]) => <label className="template-choice" key={value}><input type="radio" name="template" value={value} checked={template === value} onChange={chooseTemplate} /><span><strong>{label}</strong><small>{hint}</small></span></label>)}
@@ -92,15 +94,18 @@ export default function LabClient() {
       {!ballistic && <p className="field-note">Fit is available only for ballistic templates.</p>}
     </form>
     <p className={`lab-status status-${status}`} role="status" aria-live="polite">{message}</p>
+    </div><div className="lab-right">
+    {!session && <div className="lab-empty"><AppArt id="b4" width={800} height={600} /><p>Set parameters and run</p></div>}
     {session && <div className="lab-results" aria-label="Synthetic trial results">
       <div className="result-heading"><div><p className="eyebrow">Observed trajectory</p><h2>{templateLabel} samples</h2></div><span className="badge">Simulated · {session.units?.position || 'm'}</span></div>
       <p className="field-note">Downward vertical displacement from start (positive down), not distance along the ramp or pendulum arc. The chart uses all finite observations; the table is sampled.</p>
-      <div className="plot-wrap"><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label={`Simulated downward vertical displacement from start over time in ${session.units?.time || 's'} and ${session.units?.position || 'm'}`}><polyline points={plot.points} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time ({session.units?.time || 's'})</text><text x="28" y="18">downward displacement ({session.units?.position || 'm'})</text></svg></div>
+      <div className="plot-wrap lab-chart"><span className="chart-chip">SIMULATED</span><svg className="trajectory-plot" viewBox="0 0 640 220" role="img" aria-label={`Simulated downward vertical displacement from start over time in ${session.units?.time || 's'} and ${session.units?.position || 'm'}`}><polyline points={plot.points} /><line x1="24" y1="190" x2="616" y2="190" /><text x="24" y="213">time ({session.units?.time || 's'})</text><text x="28" y="18">downward displacement ({session.units?.position || 'm'})</text></svg></div>
       <div className="table-wrap"><table><caption>Sampled observations</caption><thead><tr><th scope="col">Time (s)</th><th scope="col">Downward displacement (m)</th></tr></thead><tbody>{rows.map((row, index) => <tr key={`${row.time_s}-${index}`}><td>{row.time_s.toFixed(2)}</td><td>{row.position_m.toFixed(3)}</td></tr>)}</tbody></table></div>
       {fit && <div className="reveal"><p className="eyebrow">Reveal</p><h2>{fit.value.toFixed(3)} ± {fit.uncertainty.toPrecision(3)} {fit.unit}</h2><p>Gravity · source: {fit.source}</p><p>Uncertainty is one standard uncertainty (1σ), not a 95% interval.</p><p>Uncertainty model: {fit.model}. {fit.assumptions.join(' ')}</p></div>}
       {session.mode === 'normal' && session.browserSimulation && <BrowserSimulation payload={session.browserSimulation} />}
       <p className="limitations"><strong>Limits:</strong> {session.limitations?.join(' ') || 'Synthetic observations only; no camera calibration or physical uncertainty.'}</p>
     </div>}
+    </div></div>
   </section>;
 }
 

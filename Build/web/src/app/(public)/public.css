@@ -1,0 +1,5 @@
+/* S15ao: header nav icon targets >= 44x44 and Sign in never wraps (375). Additive to app/styles.css (S15an owns it). */
+.site-header nav a { min-width: 2.75rem; justify-content: center; }
+.site-header nav .nav-cta { white-space: nowrap; }
+/* shortcut: trims the current header select to fit one row at 375; drop if S15an's swatch menu replaces it. */
+@media (max-width: 700px) { .site-header nav { flex-wrap: nowrap; } .site-header .theme-toggle select { max-width: 6.75rem; } }

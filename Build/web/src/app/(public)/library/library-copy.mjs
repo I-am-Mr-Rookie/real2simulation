@@ -12,6 +12,14 @@ export function creditLine(entry) {
 }
 
 const ORDER = { playable: 0, 'metadata-only': 1, unavailable: 2 };
+// L1 chips: the evidence labels always listed (zero counts are honest), plus any other manifest label verbatim.
+export const FILTER_LABELS = ['RECORDED', 'SIMULATED', 'what-if'];
+export function filterChips(demos) {
+  const labels = [...new Set([...FILTER_LABELS, ...demos.map((d) => d.label).filter(Boolean)])];
+  return [['All', demos.length], ...labels.map((l) => [l, demos.filter((d) => d.label === l).length])];
+}
+export const matchesFilter = (entry, filter) => filter === 'All' || entry.label === filter;
+
 export function groupDemos(demos) {
   const sorted = [...demos].sort((a, b) => (ORDER[a.availability] ?? 3) - (ORDER[b.availability] ?? 3));
   return { ready: sorted.filter((d) => d.availability !== 'unavailable'), unavailable: sorted.filter((d) => d.availability === 'unavailable') };

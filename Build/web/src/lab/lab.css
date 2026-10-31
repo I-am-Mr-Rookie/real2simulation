@@ -79,3 +79,14 @@
 @media (max-width: 650px) { .template-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 390px) { .lab-controls, .lab-results { padding: 1rem; box-shadow: var(--r2s-shadow-sm, 3px 3px 0 #1c1a17); } .template-grid { grid-template-columns: 1fr; } .result-heading { display: block; } .lab .badge { display: inline-block; margin-top: .3rem; } }
 @media (prefers-reduced-motion: reduce) { .lab *, .lab *::before { transition: none !important; } .lab button:hover:not(:disabled), .lab button:active:not(:disabled), .template-choice:has(input:checked), .template-choice:active, .mystery-toggle:active { transform: none; } }
+
+/* S15ao LB1: two-column (controls left, chart/viewport right), B4 never-run state, SIMULATED chip pinned on every chart. */
+.lab { max-width: 1120px; }
+.lab-layout { display: grid; gap: 1.25rem; align-items: start; }
+@media (min-width: 900px) { .lab-layout { grid-template-columns: minmax(0, 22rem) minmax(0, 1fr); } .lab-layout .template-grid { grid-template-columns: repeat(2, 1fr); } .lab-left { position: sticky; top: 1rem; } }
+.lab-right > .lab-results { margin-top: 0; }
+.lab-empty { display: grid; justify-items: center; gap: .5rem; padding: 2rem 1rem; text-align: center; border: 1.5px dashed var(--lab-border-strong); border-radius: var(--lab-radius); background: var(--lab-surface); }
+.lab-empty .art img { width: auto; height: 200px; max-width: 100%; object-fit: contain; }
+.lab-empty p { margin: 0; font-weight: 600; }
+.lab-chart { position: relative; }
+.lab-chart > .chart-chip { position: absolute; top: .5rem; left: .5rem; z-index: 1; padding: .15rem .45rem; border: 1px solid currentColor; border-radius: 3px; background: var(--lab-surface); color: var(--lab-accent); font: 700 .7rem/1.3 var(--lab-mono); letter-spacing: .05em; pointer-events: none; }
