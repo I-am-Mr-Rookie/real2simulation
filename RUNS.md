@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 06:19 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 06:50 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **226 / 256** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
+Progress: **227 / 258** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
 
 ## Reviews for Koushik
 
@@ -24,8 +24,9 @@ Progress: **226 / 256** runs done · 0 in progress · 0 blocked · 0 waiting for
 - …and 1 more ready in this lane
 
 **CLAUDE**
-- [ ] **S07m** — Codex (native Claude) · Opus 5.5, effort high — Pre-registered v3 predictive check (chi-square with extrapolation leverage) on all owner clips (30 min)
 - [ ] **S15l** — Codex (native Claude) · Sonnet 5.5, effort medium — Checkpoint workspace accessibility and evidence (30 min)
+- [ ] **S24l** — Codex (native Claude) · Sonnet 5.5, effort medium — Swap final owner-clip numbers (S07h/S07k/S07m) into the 3-min script (30 min)
+- [ ] **S20z** — Codex (native Claude) · Sonnet 5.5, effort medium — Repair stale guardrail test for guest library (admission never consulted) (30 min)
 
 ## Waiting for Koushik
 
@@ -125,7 +126,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (18/20)</summary>
+<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (19/20)</summary>
 
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [x] **S02g** — Codex · GPT-6.1 Sol, effort high — Verify original FF01/FF02 calibration sources (30 min)
@@ -143,7 +144,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S07j** — Codex (native Claude) · Opus 5.5, effort high — Fix batch-track CUDA OOM and add an explicit reviewed second standalone GPU envelope (30 min)
 - [x] **S07k** — Codex (native Claude) · Opus 5.5, effort high — Pre-registered fall-window/release rule v2 from SAM tracks; re-measure owner clips (30 min)
 - [x] **S07l** — Codex (native Claude) · Opus 5.5, effort high — Diagnose why held-out prediction fails on every owner clip (v1 0/9, v2 0/6) (30 min)
-- [ ] **S07m** — Codex (native Claude) · Opus 5.5, effort high — Pre-registered v3 predictive check (chi-square with extrapolation leverage) on all owner clips (30 min)
+- [x] **S07m** — Codex (native Claude) · Opus 5.5, effort high — Pre-registered v3 predictive check (chi-square with extrapolation leverage) on all owner clips (30 min)
 - [x] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min)
 - [x] **R-M** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
 - [x] **R-M2** — Codex (native Claude) · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min)
@@ -346,12 +347,13 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S20</b> — Spend guardrails and GPU failover (5/5)</summary>
+<details><summary><b>S20</b> — Spend guardrails and GPU failover (5/6)</summary>
 
 - [x] **S20a** — Codex · GPT-6.1 Sol, effort medium — Define spend ledger, upload quota and reserve contract (30 min)
 - [x] **S20b** — Codex · GPT-6.1 Sol, effort medium — Implement reconstruction cap and library exemption (30 min)
 - [x] **S20c** — Codex · GPT-6.1 Sol, effort medium — Implement disabled-by-default AWS failover switch (30 min)
 - [x] **S20d** — Codex · GPT-6.1 Sol, effort high — Run Gate C simulated-cap regression (30 min)
+- [ ] **S20z** — Codex (native Claude) · Sonnet 5.5, effort medium — Repair stale guardrail test for guest library (admission never consulted) (30 min)
 - [x] **R-C** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor review: Gate C cap accounting and library exemption (15 min)
 
 </details>
@@ -391,7 +393,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S24</b> — Three-minute demo video (3/11)</summary>
+<details><summary><b>S24</b> — Three-minute demo video (3/12)</summary>
 
 - [x] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min)
 - [x] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
@@ -404,6 +406,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **S24i** — Codex (native Claude) · Sonnet 5.5, effort high — Cut video and align captions (30 min)
 - [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort medium — Check playback and approval-gated public video link (30 min)
 - [x] **S24k** — Codex (native Claude) · Sonnet 5.5, effort medium — Update 3-min script with stopwatch-vs-phone before/after (30 min)
+- [ ] **S24l** — Codex (native Claude) · Sonnet 5.5, effort medium — Swap final owner-clip numbers (S07h/S07k/S07m) into the 3-min script (30 min)
 
 </details>
 

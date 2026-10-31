@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T00:52Z — controller: accept S07m DONE; add + dispatch S24l, S20z (Sonnet medium)
+
+- S07m-orch180 (Opus high; timebox PASS; self-check + measurement 90 OK fresh) merged. Pre-registered v3 predictive chi-square (third analysis): PASS v1 OWN05 (8.62+/-1.28); v2 OWN02 (7.27+/-3.07), OWN05 (9.62+/-0.74), OWN07 (9.51+/-0.93), OWN08 (8.82+/-0.27, ~3.6u below 9.79 -> pass is not accuracy). Conditional measurements only: scale user-declared, phone clock, rolling shutter assumed, centroid drift 10-13 px and blur/rotation in every passing window. Disclosed: real run executed twice for a summary-string format fix; rows identical.
+- S24l-orch181 (thread 01a18f6d-3e05-7d02-a698-e94a6077c4d9) swaps final S07h/S07k/S07m numbers into the script; S20z-orch182 (thread 01a18f6e-25e5-77a3-96d6-8ac1b5833e5c) repairs the stale guest-library guardrail test (asserts obsolete copy + 'no import' though page imports LibraryClient since S04j). Deadlines 01:17Z (07:17 Dhaka).
+
 ## 2026-10-31T00:20Z — controller: accept S07l DONE; S07m added + dispatched
 
 - S07l-orch179 (Opus high; timebox PASS; self-check + measurement 90 OK fresh) merged. Diagnosis from tracks only: the 6 px held-out threshold is miscalibrated (exact quadratic + declared 2 px would give 6.1-9.2 px, median 7.1, from extrapolation leverage); drag REJECTED (0/6 plausible); VFR REJECTED (CFR 33.33 ms); blur/rotation PRESENT 6/6 (box height +22% median); centroid-vs-box-centre drift PRESENT (~11 px); rolling shutter could add up to ~10 px (assumed 20 ms readout); scale not a held-out cause. Recommendation (hypothesis): pre-registered predictive chi-square test with leverage.
