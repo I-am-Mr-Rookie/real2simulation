@@ -1,0 +1,23 @@
+{
+ "contract_version": "1.0.0",
+ "kind": "reconstruction",
+ "stage": "reconstruct",
+ "idempotency_key": "reconstruct:b3fe96a5bf8255d74ef35800d4142855bfa8da9af18d89bd98966131974613bb",
+ "scene_id": "rm04-mapanything-s06d",
+ "synthetic": false,
+ "scene_sha256": "c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76",
+ "point_count": 20000,
+ "app_id": "ap-HyDn6NecaH49gRHPDZhiHh",
+ "timing_s": {
+  "client_round_trip_s": 39.055,
+  "container_boot_s": 5.138,
+  "cold_start_s": 9.189,
+  "model_load_s": 20.014,
+  "cold_start_to_model_ready_s": 29.202,
+  "inference_s": 1.468,
+  "function_s": 22.105,
+  "container_python_alive_s": 26.156
+ },
+ "estimated_usd": 0.01035363,
+ "note": "MapAnything nominal scale, gravity unknown; validated contracts/scene bundle. Not Gate R/physical evidence."
+}

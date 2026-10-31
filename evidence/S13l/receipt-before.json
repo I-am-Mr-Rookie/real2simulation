@@ -1,0 +1,22 @@
+{
+ "schema": "reconstruction-admission/1",
+ "as_of": "2026-10-31T14:34:33+00:00",
+ "paused": false,
+ "coverage_verified": true,
+ "credit_verified": true,
+ "sources": [
+  "Read-only CLI modal billing report --start 2026-10-01 --end 2026-11-01 -r d --json at 2026-10-31T14:33:31Z: Oct cycle total 1.05201277 (evidence/S13l/billing-oct-daily.json); modal app list empty; Starter $30 monthly credit only (+$100 grant not counted); refresh approved by controller for S13l-orch219",
+  "Modal dashboard Usage&billing koushiksadhakjeet, read by controller in ChatGPT in-app browser 2026-10-30T23:55Z (after OWN01 + batch OWN02-11 jobs): cycle Oct1-31 total usage $0.90, credits applied -$0.90, spend $0.00; Starter $30 included monthly credits (+$100 grant not counted); header credits $129.10; earlier screenshot evidence/S07/S07g/modal-usage-preadmission.png",
+  "Meta: owner-reported balance $149.92 of $150 (API_BUDGET.md) -> historical 0.08; all Meta calls ledgered under evidence/S14 (projected separately); credit_headroom 0 is a conservative lower bound because this job makes no Meta call"
+ ],
+ "Meta Model API": {
+  "historical_usd": "0.08",
+  "requests": [],
+  "credit_headroom_usd": "0"
+ },
+ "Modal": {
+  "historical_usd": "1.05201277",
+  "requests": [],
+  "credit_headroom_usd": "28.94798723"
+ }
+}

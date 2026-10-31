@@ -1,0 +1,1 @@
+{"request_id": "evidence/S13l/gpu-ledger-2.jsonl:reconstruct:reconstruct:b3fe96a5bf8255d74ef35800d4142855bfa8da9af18d89bd98966131974613bb", "provider": "Modal", "stage": "reconstruct", "utc": "2026-10-31T14:37:04.344187+00:00", "idempotency_key": "reconstruct:b3fe96a5bf8255d74ef35800d4142855bfa8da9af18d89bd98966131974613bb", "reserved_usd": "0.50000000", "billed_usd": null}

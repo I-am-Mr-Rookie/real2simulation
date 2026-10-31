@@ -1,0 +1,10 @@
+{
+ "app_id": "ap-9SEBfxKkipzckSWGcQRGvt",
+ "cost": {
+  "billed": {
+   "status": "billed",
+   "total_usd": "0.02228421"
+  }
+ },
+ "source": "evidence\\S13l\\settlement\\modal-billing-report-2026-10-30_31-fresh.json"
+}

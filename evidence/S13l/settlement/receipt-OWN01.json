@@ -1,0 +1,16 @@
+{
+ "schema": "modal-settlement/1",
+ "request_id": "evidence/S20/runtime/standalone-gpu-ledger.jsonl:segment:modal-track:OWN01:24e8a04900af4ad49611ad152039ba07",
+ "status": "completed",
+ "containers": [],
+ "billing_final_verified": true,
+ "app_id": "ap-9SEBfxKkipzckSWGcQRGvt",
+ "reviewed_by": "S13l-orch219 worker (anthropic/claude-opus-5-5): fresh per-app hourly rows equal S13j 14:06Z read",
+ "completed_at": "2026-10-31T00:00:00+00:00",
+ "completed_at_basis": "upper bound: every billed row for this app is in hourly interval 2026-10-30T23:00; evidence/S07/S07j RETRACK-RUN/ENVELOPE-2 record the jobs stopped; modal app list empty 14:32:02Z",
+ "billing_read_at": "2026-10-31T14:30:58+00:00",
+ "scene_log": "evidence/S13l/settlement/scene-log-OWN01.json",
+ "scene_log_sha256": "d520c2e53c2591b0aa049f1d02b740dd489f992933301fd8958d23f1fdbce3d4",
+ "billing_report": "evidence/S13l/settlement/modal-billing-report-2026-10-30_31-fresh.json",
+ "billing_report_sha256": "3837014341ecb368d27d043e499887e3d0d02192a67a495583c714d7bc8f6185"
+}

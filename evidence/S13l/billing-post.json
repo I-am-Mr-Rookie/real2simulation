@@ -1,0 +1,34 @@
+[
+ {
+  "object_id": "ap-HyDn6NecaH49gRHPDZhiHh",
+  "description": "s06d-scene-job",
+  "environment": "main",
+  "interval_start": "2026-10-31T14:00:00",
+  "resource": "Network Egress",
+  "cost": "0.00000109"
+ },
+ {
+  "object_id": "ap-HyDn6NecaH49gRHPDZhiHh",
+  "description": "s06d-scene-job",
+  "environment": "main",
+  "interval_start": "2026-10-31T14:00:00",
+  "resource": "Memory",
+  "cost": "0.00092446"
+ },
+ {
+  "object_id": "ap-HyDn6NecaH49gRHPDZhiHh",
+  "description": "s06d-scene-job",
+  "environment": "main",
+  "interval_start": "2026-10-31T14:00:00",
+  "resource": "CPU",
+  "cost": "0.00068324"
+ },
+ {
+  "object_id": "ap-HyDn6NecaH49gRHPDZhiHh",
+  "description": "s06d-scene-job",
+  "environment": "main",
+  "interval_start": "2026-10-31T14:00:00",
+  "resource": "A10G",
+  "cost": "0.00794460"
+ }
+]

@@ -1,0 +1,275 @@
+[
+ {
+  "object_id": "ap-FivSp5aI1fHQKSGQQVYpde",
+  "description": "s05b-rm02-private-probe",
+  "environment": "main",
+  "interval_start": "2026-10-28T00:00:00",
+  "cost": "0.00253783"
+ },
+ {
+  "object_id": "ap-HXf8zry5uWtJx63efPpSdA",
+  "description": "s05b-recovery3-cpu-imports",
+  "environment": "main",
+  "interval_start": "2026-10-28T00:00:00",
+  "cost": "0.00012425"
+ },
+ {
+  "object_id": "ap-r3ct5JcmICM3MYJmqfsnPt",
+  "description": "s05b-recovery5-cpu-imports",
+  "environment": "main",
+  "interval_start": "2026-10-28T00:00:00",
+  "cost": "0.00372211"
+ },
+ {
+  "object_id": "ap-09dwtm6YklGBEUgYEsYgGt",
+  "description": "s07b-orch13-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.01928505"
+ },
+ {
+  "object_id": "ap-2Sbu8Pen5jJhHlNxAhuva6",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02330592"
+ },
+ {
+  "object_id": "ap-4ffnhkGQGjNikZQgCzj9wc",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02359275"
+ },
+ {
+  "object_id": "ap-4ku4C5tfzUI2eVe4WbRzmJ",
+  "description": "s07b-orch13-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02502922"
+ },
+ {
+  "object_id": "ap-7Nyp27Ce848kwxL50Wpe6k",
+  "description": "s07b-orch13-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.01428312"
+ },
+ {
+  "object_id": "ap-Bw9hlYvnFNeSpTJ8O4N0At",
+  "description": "s07b-orch13-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02003173"
+ },
+ {
+  "object_id": "ap-CkS0io0ER7iAn0Be0W8vPH",
+  "description": "s07b-orch13-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02131412"
+ },
+ {
+  "object_id": "ap-DhO27sNHIL7LrJaS9F9Pjo",
+  "description": "s06d-scene-job",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.01380359"
+ },
+ {
+  "object_id": "ap-DwCMDeReYWQYBxl3xvR2IO",
+  "description": "s06d-scene-job",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.00955323"
+ },
+ {
+  "object_id": "ap-Gf1f5xsIuhpOIGFiwLE1zr",
+  "description": "s06a-image-dryrun",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.01564460"
+ },
+ {
+  "object_id": "ap-HT56BJbqGtr7qg1pdadmu0",
+  "description": "s06d-scene-job",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.01134936"
+ },
+ {
+  "object_id": "ap-I8urJxSA6u5zks1vnroxDn",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02260668"
+ },
+ {
+  "object_id": "ap-P1XoVhPesOz0ipMXRWJXgk",
+  "description": "s07b-orch13-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.00330184"
+ },
+ {
+  "object_id": "ap-Pez26JXXUV7H31WyJvvrF8",
+  "description": "s05c-scenes-private-batch",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.06481698"
+ },
+ {
+  "object_id": "ap-RF18BaitIIcCD3miioQy3l",
+  "description": "s07b-orch13-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.01345119"
+ },
+ {
+  "object_id": "ap-RJiTvMGO3RGcMEFJ1DHgqS",
+  "description": "s06d-scene-job",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.01141228"
+ },
+ {
+  "object_id": "ap-TqJhwZi4v9ucIKg16ZKh1E",
+  "description": "s05b-recovery5-rm02-private-probe",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.05715299"
+ },
+ {
+  "object_id": "ap-VxrG31RSO35uNDi9IcVHNH",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.00147352"
+ },
+ {
+  "object_id": "ap-a4oiMCXQ1Oqv0zMFvNvPND",
+  "description": "s07b-orch13-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.01741472"
+ },
+ {
+  "object_id": "ap-c9idzNVYv1w3koKIhkGQyP",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02535615"
+ },
+ {
+  "object_id": "ap-cKH0R4xXlsZqus6i4Sk7wY",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02947896"
+ },
+ {
+  "object_id": "ap-fSQiiTH0CIYD3TbQdeRirP",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02360173"
+ },
+ {
+  "object_id": "ap-jY2WvGtvkoq4Q9VGbqkSAw",
+  "description": "s05b-recovery5-cpu-imports",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.00468054"
+ },
+ {
+  "object_id": "ap-kkF4C0toroJCO2PPeYOoeQ",
+  "description": "s07b-orch13-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.01649885"
+ },
+ {
+  "object_id": "ap-n1kdxs0OPi7hgSfJbAsuDX",
+  "description": "s05b-recovery5-rm02-private-probe",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.05817517"
+ },
+ {
+  "object_id": "ap-sXYt1p0CetXrsY3psSWOL9",
+  "description": "s07b-orch13-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02247174"
+ },
+ {
+  "object_id": "ap-vaD1cV50rPyWL1yzQggQ6g",
+  "description": "s06b-mapanything-runtime",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.01175778"
+ },
+ {
+  "object_id": "ap-xI2mj9VGKy9OOcRAbUQFv8",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.02627982"
+ },
+ {
+  "object_id": "ap-yeKuf0FjgU0P0H8mB9lOvt",
+  "description": "s06d-scene-job",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.00955324"
+ },
+ {
+  "object_id": "ap-ygEqG7VZ0n2krxmdzXuMDh",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-29T00:00:00",
+  "cost": "0.13024987"
+ },
+ {
+  "object_id": "ap-7qnUtLNN8xQy534jpuXcQs",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-30T00:00:00",
+  "cost": "0.10192457"
+ },
+ {
+  "object_id": "ap-9SEBfxKkipzckSWGcQRGvt",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-30T00:00:00",
+  "cost": "0.02228421"
+ },
+ {
+  "object_id": "ap-HTu3CU7IfNE1A9Q6T9EyvL",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-30T00:00:00",
+  "cost": "0.03512343"
+ },
+ {
+  "object_id": "ap-SHTDPOF4taWCluMdzjl8Zc",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-30T00:00:00",
+  "cost": "0.02629499"
+ },
+ {
+  "object_id": "ap-XZl3qSj8FbdV0I07l0chXv",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-30T00:00:00",
+  "cost": "0.02513584"
+ },
+ {
+  "object_id": "ap-aWSShryM8nygn84r9uzF5G",
+  "description": "s07b-orch14-sam31-track",
+  "environment": "main",
+  "interval_start": "2026-10-30T00:00:00",
+  "cost": "0.08793880"
+ }
+]
