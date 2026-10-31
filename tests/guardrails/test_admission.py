@@ -1,6 +1,7 @@
 """Offline synthetic admission + read-only public-library regression. No paid transports."""
 import copy
 import json
+import re
 import tempfile
 import unittest
 from datetime import datetime, timedelta, timezone
@@ -234,9 +235,17 @@ class Admission(unittest.TestCase):
                     self.assertEqual(example["scene"]["access"], "public-library")
                     self.assertEqual(example["scene"]["scene_id"], manifest["id"])
                     self.assertTrue(manifest["synthetic"])
-        page = (ROOT / "Build/web/src/app/(public)/library/page.jsx").read_text()
-        self.assertIn("Guest browsing needs no account", page)
-        self.assertNotRegex(page, r"\b(import|require|fetch|SPEND_PAUSED|require_reconstruction)\b")
+        # Guest path (page, client, /api/library/**) must never reach admission, ledger, paid or private routes.
+        guest = [ROOT / "Build/web/src/app/(public)/library/page.jsx", ROOT / "Build/web/src/app/(public)/library/LibraryClient.jsx",
+                 *(ROOT / "Build/web/src/app/api/library").rglob("*.*js*")]
+        self.assertGreaterEqual(len(guest), 5)
+        forbidden = r"(?i)admission|SPEND_PAUSED|require_reconstruction|reservation|ledger|modal|meta[-_ ]?model|api/workspace|api/lab|owner"
+        for f in guest:
+            with self.subTest(file=f.name):
+                text = f.read_text(encoding="utf-8")
+                self.assertNotRegex(text, forbidden)
+                urls = re.findall(r"fetch\(\s*['\"`]([^'\"`]+)", text)
+                self.assertTrue(all(u.startswith("/api/library/") for u in urls), urls)
 
 
 if __name__ == "__main__":
