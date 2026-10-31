@@ -14,10 +14,11 @@ from Build.measurement.free_fall import FitAbstention  # noqa: E402
 MOVE_PX, STATIC_PX, SCALE_N, SCALE_MIN, WIDTH_TOL, DECEL, N_MIN = 4.0, 6.0, 5, 3, 0.10, 0.5, 8  # PLAN.md, pre-registered
 V2_FROZEN = (4.0, 6.0, 5, 3, 0.10, 0.5, 8)  # orch174 values; orch178 asserts unchanged
 OWN01_06_SHA = "41ce6dd7268c7658f98fef97f5724226b8ea5096e77ead9b3dedf06584a14982"  # orch174 rows+clips (sort_keys)
+RETRACKED = ("OWN07", "OWN08", "OWN09", "OWN10", "OWN11")  # S07j re-tracks (controller fix: S07h no longer exports PENDING)
 TRACKS = {"OWN01": "evidence/S07/S07g/track-own01.json",
-          **{c: f"evidence/S07/S07i/track-own{c[-2:]}.json" for c in h.CLIPS},
-          **{c: f"evidence/S07/S07j/track-own{c[-2:]}.json" for c in h.PENDING}}  # orch178: S07j re-tracks
-SCENES = {"OWN01": "01 (S07i)", **h.CLIPS, **h.PENDING}
+          **{c: f"evidence/S07/S07i/track-own{c[-2:]}.json" for c in h.CLIPS if c not in RETRACKED},
+          **{c: f"evidence/S07/S07j/track-own{c[-2:]}.json" for c in RETRACKED}}
+SCENES = {"OWN01": "01 (S07i)", **h.CLIPS}
 
 
 def first_six_sha(rows, clips):
@@ -115,7 +116,7 @@ def run():
             "coverage": {"clips": len(rows), "measured": len(meas), "abstained": len(rows) - len(meas),
                          "in_1u": sum(r["in_1u"] for r in meas), "in_2u": sum(r["in_2u"] for r in meas),
                          "held_out_pass": sum(r["held_out_pass"] for r in meas)},
-            "pending": {k: "v1 pending S07h (OWN07-11 v1 not merged)" for k in h.PENDING if k not in v1},
+            "pending": {k: "v1 pending S07h (OWN07-11 v1 not merged)" for k in RETRACKED if k not in v1},
             "excluded": {"OWN12": "no free fall (S07i)"}}
 
 

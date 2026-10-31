@@ -213,17 +213,17 @@
   },
   {
    "clip": "OWN09",
-   "scene": "06 nosheet",
+   "scene": "06_robust_nosheet",
    "abstain": "v2 rule: fall window f9-f9 has 1 < 8 frames"
   },
   {
    "clip": "OWN10",
-   "scene": "06 clutter",
+   "scene": "06_robust_clutter",
    "abstain": "v2 rule: no sustained centroid-y release"
   },
   {
    "clip": "OWN11",
-   "scene": "06 lowres",
+   "scene": "06_robust_lowres_messenger (478x850)",
    "abstain": "v2 rule: no sustained centroid-y release"
   }
  ],
@@ -882,21 +882,21 @@
   },
   "OWN09": {
    "clip": "OWN09",
-   "scene": "06 nosheet",
+   "scene": "06_robust_nosheet",
    "track": "evidence/S07/S07j/track-own09.json",
    "track_sha256": "3290ec052994612133fda52642771de178c1cf0eb0a74cd6a4e26c04065d09bf",
    "abstain": "v2 rule: fall window f9-f9 has 1 < 8 frames"
   },
   "OWN10": {
    "clip": "OWN10",
-   "scene": "06 clutter",
+   "scene": "06_robust_clutter",
    "track": "evidence/S07/S07j/track-own10.json",
    "track_sha256": "e1388c08d3c912e8f9331cb5e6121cd7f90d1f5f67d172276cf1ca57095d7ac9",
    "abstain": "v2 rule: no sustained centroid-y release"
   },
   "OWN11": {
    "clip": "OWN11",
-   "scene": "06 lowres",
+   "scene": "06_robust_lowres_messenger (478x850)",
    "track": "evidence/S07/S07j/track-own11.json",
    "track_sha256": "909a2c7da4a4ebede1058cbeab38236cb6037ce33b046574b5a95db5c664585b",
    "abstain": "v2 rule: no sustained centroid-y release"
@@ -1045,6 +1045,91 @@
    ],
    "held_out_pass": false,
    "m_per_px": 0.0006454619062896254
+  },
+  "OWN07": {
+   "clip": "OWN07",
+   "scene": "05_repeat_c",
+   "g": 8.722173770378081,
+   "u": 0.2105999548646679,
+   "z": -5.070401037398637,
+   "in_1u": false,
+   "in_2u": false,
+   "g_box": 8.727829422583984,
+   "fall_frames": [
+    47,
+    59
+   ],
+   "n_frames": 13,
+   "held_rmse_px": 72.96842759838894,
+   "held_residuals_px": [
+    5.123527774556549,
+    3.0666520101514427,
+    0.21420466920102452,
+    -33.971555955361445,
+    -159.47473073132954
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0007085953878406709
+  },
+  "OWN08": {
+   "clip": "OWN08",
+   "scene": "05_repeat_d",
+   "g": 8.822272327849516,
+   "u": 0.27331061082757246,
+   "z": -3.5407614406928665,
+   "in_1u": false,
+   "in_2u": false,
+   "g_box": 8.637262244882292,
+   "fall_frames": [
+    36,
+    48
+   ],
+   "n_frames": 13,
+   "held_rmse_px": 87.80857720881603,
+   "held_residuals_px": [
+    0.4277448380815642,
+    -2.261072765754662,
+    4.1109176159535075,
+    -35.23115015553551,
+    -193.10179221477318
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0006781919162733957
+  },
+  "OWN09": {
+   "clip": "OWN09",
+   "scene": "06_robust_nosheet",
+   "g": 6.73781470682151,
+   "u": 1.7721949933500436,
+   "z": -1.7222626768676477,
+   "in_1u": false,
+   "in_2u": true,
+   "g_box": 6.270734169516834,
+   "fall_frames": [
+    9,
+    22
+   ],
+   "n_frames": 14,
+   "held_rmse_px": 99.47125745389927,
+   "held_residuals_px": [
+    -10.733061790525378,
+    -4.571152180034292,
+    -32.91130132818235,
+    -69.09930864584837,
+    -208.51545036087532
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.00047966122861392097
+  },
+  "OWN10": {
+   "clip": "OWN10",
+   "scene": "06_robust_clutter",
+   "abstain": "StopIteration: "
+  },
+  "OWN11": {
+   "clip": "OWN11",
+   "scene": "06_robust_lowres_messenger (478x850)",
+   "abstain": "StopIteration: "
   }
  },
  "coverage": {
@@ -1055,13 +1140,7 @@
   "in_2u": 5,
   "held_out_pass": 0
  },
- "pending": {
-  "OWN07": "v1 pending S07h (OWN07-11 v1 not merged)",
-  "OWN08": "v1 pending S07h (OWN07-11 v1 not merged)",
-  "OWN09": "v1 pending S07h (OWN07-11 v1 not merged)",
-  "OWN10": "v1 pending S07h (OWN07-11 v1 not merged)",
-  "OWN11": "v1 pending S07h (OWN07-11 v1 not merged)"
- },
+ "pending": {},
  "excluded": {
   "OWN12": "no free fall (S07i)"
  }

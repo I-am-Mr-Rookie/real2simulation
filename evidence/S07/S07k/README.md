@@ -32,15 +32,16 @@ was applied unchanged (mapping commit 42e736a0 before the one real run). Same sc
 | OWN04 | 10.39 ± 0.46 (z +1.31) f46–55 n=10 | 35.1 FAIL | 10.40 ± 0.46 (z +1.33) f46–55 n=10 | 35.1 FAIL |
 | OWN05 | 8.62 ± 1.28 (z −0.91) f44–50 n=7 | 13.0 FAIL | 9.62 ± 0.74 (z −0.23) f44–52 n=9 | 6.5 FAIL |
 | OWN06 | 7.12 ± 1.02 (z −2.63) f48–55 n=8 | 119.1 FAIL | ABSTAIN: 0 tracked scale frames before release f46 | – |
-| OWN07 | pending S07h | – | 9.51 ± 0.93 (z −0.30) f46–54 n=9 | 7.0 FAIL |
-| OWN08 | pending S07h | – | 8.82 ± 0.27 (z −3.54) f36–47 n=12 | 17.8 FAIL |
-| OWN09 | pending S07h | – | ABSTAIN: fall window f9–f9 has 1 < 8 frames | – |
-| OWN10 | pending S07h | – | ABSTAIN: no sustained centroid-y release | – |
-| OWN11 | pending S07h | – | ABSTAIN: no sustained centroid-y release | – |
+| OWN07 | 8.72 ± 0.21 (z -5.07) f47–59 n=13 | 73.0 FAIL | 9.51 ± 0.93 (z -0.30) f46–54 n=9 | 7.0 FAIL |
+| OWN08 | 8.82 ± 0.27 (z -3.54) f36–48 n=13 | 87.8 FAIL | 8.82 ± 0.27 (z -3.54) f36–47 n=12 | 17.8 FAIL |
+| OWN09 | 6.74 ± 1.77 (z -1.72) f9–22 n=14 | 99.5 FAIL | ABSTAIN (v2 rule: fall window f9-f9 has 1 < 8 frames) | – |
+| OWN10 | ABSTAIN (StopIteration: ) | – | ABSTAIN (v2 rule: no sustained centroid-y release) | – |
+| OWN11 | ABSTAIN (StopIteration: ) | – | ABSTAIN (v2 rule: no sustained centroid-y release) | – |
 
 v2 scale frames: OWN02 f42–44, OWN03 f40–43, OWN04 f41–44, OWN05 f39–42, OWN07 f40–44, OWN08 f30–34. u = S07i conditional
 total ⊕ |centroid − box-centre| model term (OWN02's 3.07 is dominated by that term: centroid 7.27 vs box 10.27).
 v1 for OWN07–OWN11: S07h-orch176 had not merged at orch178 start (S07h results.json has OWN01–06 only) → "pending S07h".
+Controller fix at acceptance (2026-10-31T00:12Z): after S07h-orch176 merged, measure_heldout no longer exported PENDING; measure_v2.py now names the S07j re-tracked clips locally (RETRACKED) and the v1 cells above come from the merged S07h results.json. Rerun: every v2 g/u/window/held-out value identical to orch178 (only OWN09-11 scene labels now use S07h names); coverage unchanged.
 
 ## Coverage (11 clips)
 - v2: 11 clips, 6 measured, 5 ABSTAIN. Within 1u of 9.79: 4/6 (OWN02, OWN03, OWN05, OWN07). Within 2u: 5/6 (adds OWN04
