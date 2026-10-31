@@ -7,10 +7,10 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "079d2129-1bc2-43c5-b55b-b27afb5fe885",
-      "previousDeploymentId": "ea2c0708-ab7f-457f-9f96-b3ce0e54ba94",
-      "redeployNote": "S15ac-orch189: stage.py web + railway up (interview as right-panel agent question card, centre waiting state)",
-      "sourceRevision": "0ecb497b85843126b90f94576990e52e8e0f73f0",
+      "deploymentId": "4b869e4a-0238-46f3-b74a-057ca6289989",
+      "previousDeploymentId": "079d2129-1bc2-43c5-b55b-b27afb5fe885",
+      "redeployNote": "S15ad-orch190: stage.py web + railway up (centre container-query stack, wrapped long tokens)",
+      "sourceRevision": "1ea9899087a3d574a09aaff33b45a9a9979b358c",
       "verifiedUtc": "2026-10-31T01:48:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",

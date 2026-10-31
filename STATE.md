@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 2026-10-31T07:24Z controller: accepted S15ad-orch190 DONE. Timebox PASS; diff within Owns (CSS + 1 test + evidence); fresh web tests 142/142; ff-merged. DEV web 4b869e4a SUCCESS (rev 1ea98990 pre-rebase; rebase added only control commits); deployments.json updated (prev 079d2129); verify.py exit 0. Signed-in DEV walk OWN05 at 1280 with right panel open: #ws-panel 714/714 (no overflow, was 275>254), viewport stacked above the result card, labels verbatim (evidence/S15/s15o/controller/28). Next: S15ae.
+
 - 2026-10-31T07:10Z OWNER (annotation): hover-preview applies to EVERY icon whose pane is not open, including the current (e.g. Home) icon while the sidebar is collapsed; pointer can move into the temporary pane and click options; it closes only when the pointer leaves icon+pane; the current pane's icon keeps a distinct (white/light) highlight. Spec section 6 + QUEUE S15ae updated (not yet dispatched).
 
 - 2026-10-31T07:01Z OWNER (chat, Oct31 ~13:00 Dhaka, with Codex screenshots 06d71f3f/cab8720c): left rail should behave like Codex/VS Code activity bar - toggle-sidebar button shows/hides the CURRENT pane (rail stays); clicking an icon toggles/opens its pane; hovering another icon temporarily opens its pane, closes when the pointer leaves without a click, click pins it. Recorded verbatim in evidence/ui/Q21-OWNER-SPEC.md section 6; added QUEUE S15ae (Opus medium, after S15ad because both own Build/web/src/shell + workspace.css).
