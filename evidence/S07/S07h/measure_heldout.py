@@ -1,6 +1,7 @@
-"""S07h: held-out/robustness g on owner clips OWN02-OWN06 with the FROZEN S07i pipeline.
+"""S07h: held-out/robustness g on owner clips OWN02-OWN11 with the FROZEN S07i pipeline.
 evidence/S07/S07i/measure_own01.py is IMPORTED and its constants are untouched; only the per-clip frame rules from the
 fixed fall-windows.json are supplied (pre-registered in Run-System/Runs/S07h-orch172/PLAN.md before any g was computed).
+OWN07-OWN11 (orch176): same rules; only the track paths come from evidence/S07/S07j/fall-windows-own07-11.json (S07j re-track).
 Run from repo root (worktree or canonical): python evidence/S07/S07h/measure_heldout.py [--self-check]"""
 import hashlib, json, math, re, sys
 from pathlib import Path
@@ -11,9 +12,9 @@ import measure_own01 as m  # noqa: E402  frozen S07i record()/window()/assume()/
 from Build.measurement.free_fall import FitAbstention  # noqa: E402  (m put the repo root on sys.path)
 
 CLIPS = {"OWN02": "02_live_check", "OWN03": "03_test_clean", "OWN04": "04_test_shadow",
-         "OWN05": "05_repeat_a", "OWN06": "05_repeat_b (sheet partly down)"}
-PENDING = {"OWN07": "05_repeat_c", "OWN08": "05_repeat_d", "OWN09": "06 nosheet", "OWN10": "06 clutter",
-           "OWN11": "06 lowres"}  # CUDA OOM in the batch track; S07j re-tracks
+         "OWN05": "05_repeat_a", "OWN06": "05_repeat_b (sheet partly down)", "OWN07": "05_repeat_c", "OWN08": "05_repeat_d",
+         "OWN09": "06_robust_nosheet", "OWN10": "06_robust_clutter", "OWN11": "06_robust_lowres_messenger (478x850)"}
+REPEAT_VALID, REPEAT_INVALID = ("OWN05", "OWN07", "OWN08"), "OWN06"  # 05b violates the rule premise (orch172 README)
 HELD_PASS_PX = 3 * m.DETECTION_STD_PX  # pre-registered: held-out RMSE within 3x the declared per-frame error
 FROZEN = {"EDGE_M": 0.2028, "EDGE_U_M": 0.0005, "BOX_EDGE_U_PX": 2.0, "DETECTION_STD_PX": 2.0, "PTS_STD_S": 1e-4,
           "CLOCK_U": 1e-3, "START_PX": 8.0, "G_LOCAL": 9.79}
@@ -81,22 +82,36 @@ def row(clip, r):
 def run():
     assert {k: getattr(m, k) for k in FROZEN} == FROZEN, "S07i constants changed"
     rules = plan(json.loads(locate("evidence/S07/S07i/fall-windows.json").read_text(encoding="utf-8")))
+    s07j = plan(json.loads(locate("evidence/S07/S07j/fall-windows-own07-11.json").read_text(encoding="utf-8")))
+    assert all({**s07j[c], "track": rules[c]["track"]} == rules[c] for c in s07j), "S07j windows differ from S07i beyond track path"
+    rules.update(s07j)  # input-only change: S07j re-tracked OWN07-OWN11 after the S07i batch OOM
     clips = {c: run_clip(c, rules[c]) for c in CLIPS}
     own01 = json.loads(locate("evidence/S07/S07i/result-own01.json").read_text(encoding="utf-8"))
     rows = [row("OWN01", own01)] + [row(c, r) for c, r in clips.items()]
     meas = [r for r in rows if "g" in r]
-    rep = None
-    a, b = (next((r for r in meas if r["clip"] == k), None) for k in ("OWN05", "OWN06"))
-    if a and b:
-        d = a["g"] - b["g"]
-        rep = {"pair": "OWN05 (05a) vs OWN06 (05b)", "diff": d, "u_diff": math.hypot(a["u"], b["u"]),
-               "z_diff": d / math.hypot(a["u"], b["u"]), "pending": "05c/05d (OWN07/OWN08) not tracked (CUDA OOM, S07j)"}
+    rep = repeatability({r["clip"]: r for r in meas})
     return {"label": "MEASURED per clip (user-declared scale, phone clock not externally verified); comparison to local 9.79 only",
             "rules": "Run-System/Runs/S07h-orch172/PLAN.md (pre-registered)", "held_out_pass_px": HELD_PASS_PX,
             "rows": rows, "clips": clips, "repeatability_05": rep,
             "coverage": {"measured": len(meas), "in_1u": sum(r["in_1u"] for r in meas), "in_2u": sum(r["in_2u"] for r in meas),
                          "held_out_pass": sum(r["held_out_pass"] for r in meas)},
-            "pending": PENDING, "excluded": {"OWN12": "no free fall (S07i)"}}
+            "excluded": {"OWN12": "06_robust_frontcover: no free fall (S07i)"}}
+
+
+def repeatability(by):
+    """05a-d spread over the VALID repeats; 05b (OWN06) listed but excluded (rule premise violated)."""
+    v = [by[c] for c in REPEAT_VALID if c in by]
+    out = {"valid": [c for c in REPEAT_VALID if c in by], "abstained": [c for c in REPEAT_VALID if c not in by],
+           "invalid_flagged": {REPEAT_INVALID: by[REPEAT_INVALID]["g"] if REPEAT_INVALID in by else None}}
+    if len(v) < 2:
+        return out
+    g = [r["g"] for r in v]
+    w = [1 / r["u"] ** 2 for r in v]
+    gw = sum(a * b for a, b in zip(g, w)) / sum(w)
+    mean = sum(g) / len(g)
+    return {**out, "g": g, "mean": mean, "sd": math.sqrt(sum((x - mean) ** 2 for x in g) / (len(g) - 1)), "min": min(g),
+            "max": max(g), "weighted_mean": gw, "weighted_u": sum(w) ** -0.5,
+            "chi2_per_dof": sum((x - gw) ** 2 * wi for x, wi in zip(g, w)) / (len(g) - 1)}
 
 
 def table(out):
@@ -118,9 +133,14 @@ def self_check():
     assert t["record"]["frames"][-1]["frame_index"] == 59
     m.self_check()  # frozen S07i window/split check + OWN01 still reproduces
     out = run()
-    assert len(out["rows"]) == 6 and all("g" in r or r["abstain"] for r in out["rows"])
+    assert len(out["rows"]) == 11 and all("g" in r or r["abstain"] for r in out["rows"])
     assert all(5 < r["g"] < 15 for r in out["rows"] if "g" in r), out["rows"]
     assert m.SCALE_FRAMES == range(40, 45), "frozen globals restored"
+    old = json.loads(HERE.joinpath("results-orch172.json").read_text(encoding="utf-8"))  # orch172 output, unchanged snapshot
+    assert [json.dumps(r) for r in out["rows"][:6]] == [json.dumps(r) for r in old["rows"]], "OWN01-06 rows changed"
+    assert all(json.dumps(out["clips"][c]) == json.dumps(old["clips"][c]) for c in old["clips"]), "OWN02-06 clips changed"
+    r = repeatability({"OWN05": {"g": 9.0, "u": 1.0}, "OWN07": {"g": 11.0, "u": 1.0}, "OWN06": {"g": 7.0, "u": 1.0}})
+    assert r["valid"] == ["OWN05", "OWN07"] and r["mean"] == r["weighted_mean"] == 10.0 and r["chi2_per_dof"] == 2.0, r
     print("S07h self-check OK")
 
 
