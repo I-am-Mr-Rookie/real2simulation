@@ -62,3 +62,12 @@ Updated_Instructions_*.pdf
 /Videos for Meta AI Hackathon/
 media/capture/**/*.mp4
 media/capture/**/*.webm
+
+# raw voice-over stays local
+media/narration/takes/
+media/narration/**/*.m4a
+media/narration/**/*.wav
+media/narration/**/*.mp3
+media/narration/**/*.aac
+media/narration/**/*.ogg
+media/narration/**/*.flac
