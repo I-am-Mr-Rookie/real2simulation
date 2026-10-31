@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 20:00 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 20:09 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **256 / 283** runs done · 3 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **256 / 284** runs done · 5 in progress · 1 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -17,8 +17,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - Nothing ready yet: check dependencies and retry holds below.
 
 **CODEX-2**
-- [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
-- [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
 - [~] **S24c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture room rebuild and interview (30 min) *(partial: resume it)*
 
 **CLAUDE**
@@ -27,12 +25,18 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## In progress
 
 - [~] **S15av** — Codex (native Claude) · Opus 5.5, effort high — P1: public /lab works on deployed DEV (no raw local_lab_disabled): serve deterministic lab from a deployed service with public-endpoint guards; friendly errors (30 min) *(in progress)*
+- [~] **S15aw** — Codex (native Claude) · Opus 5.5, effort high — Workspace result chart: tracked points, fit curve + 1-sigma band, held-out prefix prediction vs suffix (owner "y" Oct31; demo shows product, not offline charts) (30 min) *(in progress)*
 - [~] **S13j** — Codex (native Claude) · Opus 5.5, effort high — OPTIONAL/CUT-FIRST: re-capture RM04 geometry bytes into private dev bucket via existing e2e.py under guardrails (30 min) *(in progress)*
+- [~] **S18c** — Codex (native Claude) · Sonnet 5.5, effort medium — Precompute projectile and bounce demos (30 min) *(in progress)*
 - [~] **S22c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 1 (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
 Nothing right now.
+
+## Blocked
+
+- [!] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(blocked: see STATE.md)*
 
 ## All runs by step
 
@@ -130,7 +134,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 <details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (20/21)</summary>
 
-- [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
+- [!] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(blocked: see STATE.md)*
 - [x] **S02g** — Codex · GPT-6.1 Sol, effort high — Verify original FF01/FF02 calibration sources (30 min)
 - [x] **S02h** — Codex · GPT-6.1 Sol, effort high — Resolve RP03 capture mapping and geometric identifiability (30 min)
 - [x] **S02i** — Codex · GPT-6.1 Sol, effort high — Audit RP01 side-view metric trajectory segments (30 min)
@@ -269,7 +273,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (47/48)</summary>
+<details><summary><b>S15</b> — Workspace UI (47/49)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -319,6 +323,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15at** — Codex (native Claude) · Opus 5.5, effort high — Logo v3 from Koushik's pencil sketch (evidence/owner/logo-sketches-2026-10-31/, local only): hatched fixed support line, one pivot, solid string + solid centre bob, dashed strings to hollow ghost bobs left/right; v2 colours; separate small drawing; wordmark lockups keep the "Real2Simulation" text; same filenames (30 min)
 - [x] **S15au** — Codex (native Claude) · Opus 5.5, effort high — Home showcase + header polish after S15aq DEV review: full-width balanced showcase compositions with captions, consistent alignment; header mark 32-36 px with text, 375 px workspace link on one line; icon-only header GitHub link (repo public); check swap/deal motion; 6 themes x 1280/375, reduced motion (30 min)
 - [~] **S15av** — Codex (native Claude) · Opus 5.5, effort high — P1: public /lab works on deployed DEV (no raw local_lab_disabled): serve deterministic lab from a deployed service with public-endpoint guards; friendly errors (30 min) *(in progress)*
+- [~] **S15aw** — Codex (native Claude) · Opus 5.5, effort high — Workspace result chart: tracked points, fit curve + 1-sigma band, held-out prefix prediction vs suffix (owner "y" Oct31; demo shows product, not offline charts) (30 min) *(in progress)*
 
 </details>
 
@@ -350,7 +355,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 - [x] **S18a** — Codex · GPT-6.1 Sol, effort medium — Define library manifest and immutable artifact format (30 min)
 - [x] **S18b** — Codex · GPT-6.1 Sol, effort medium — Precompute free-fall demos (30 min)
-- [~] **S18c** — Codex · GPT-6.1 Sol, effort medium — Precompute projectile and bounce demos (30 min) *(partial: resume it)*
+- [~] **S18c** — Codex (native Claude) · Sonnet 5.5, effort medium — Precompute projectile and bounce demos (30 min) *(in progress)*
 - [x] **S18d** — Codex · GPT-6.1 Sol, effort medium — Precompute pendulum and scene demos (30 min)
 - [x] **S18e** — Codex · GPT-6.1 Sol, effort medium — Prepare Apollo and Mystery-g entries (30 min)
 - [x] **S18f** — Codex · GPT-6.1 Sol, effort medium — Implement guest manifest and artifact endpoint (30 min)
