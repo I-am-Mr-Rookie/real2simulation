@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Real2Simulation">
+  <title>Real2Simulation</title>
+  <circle cx="32" cy="12" r="3" fill="#1c1a16"/>
+  <line x1="32" y1="12" x2="32" y2="46" stroke="#1c1a16" stroke-width="3" stroke-linecap="round"/>
+  <line x1="14" y1="43" x2="16.7692" y2="44.1538" stroke="#1c1a16" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="19.5385" y1="45.3077" x2="22.3077" y2="46.4615" stroke="#1c1a16" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="25.0769" y1="47.6154" x2="27.8462" y2="48.7692" stroke="#1c1a16" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="30.6154" y1="49.9231" x2="32" y2="50.5" stroke="#1c1a16" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="32" y1="50.5" x2="34.7692" y2="49.3462" stroke="#1c1a16" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="37.5385" y1="48.1923" x2="40.3077" y2="47.0385" stroke="#1c1a16" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="43.0769" y1="45.8846" x2="45.8462" y2="44.7308" stroke="#1c1a16" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="48.6154" y1="43.5769" x2="50" y2="43" stroke="#1c1a16" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="14" cy="43" r="6" fill="none" stroke="#1c1a16" stroke-width="3"/>
+  <circle cx="50" cy="43" r="6" fill="none" stroke="#1c1a16" stroke-width="3"/>
+  <circle cx="32" cy="49" r="8.5" fill="#b23a0e"/>
+</svg>

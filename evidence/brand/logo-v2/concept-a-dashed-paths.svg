@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Real2Simulation">
+  <title>Real2Simulation</title>
+  <line x1="18" y1="12" x2="46" y2="12" stroke="#1c1a16" stroke-width="3" stroke-linecap="round"/>
+  <line x1="32" y1="12" x2="29.9915" y2="15.4592" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="28.4851" y1="18.0535" x2="26.4765" y2="21.5127" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="24.9701" y1="24.107" x2="22.9616" y2="27.5662" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="21.4552" y1="30.1606" x2="19.4466" y2="33.6197" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="17.9402" y1="36.2141" x2="15.9317" y2="39.6732" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="14.4253" y1="42.2676" x2="14" y2="43" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="12" x2="34.0085" y2="15.4592" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="35.5149" y1="18.0535" x2="37.5235" y2="21.5127" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="39.0299" y1="24.107" x2="41.0384" y2="27.5662" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="42.5448" y1="30.1606" x2="44.5534" y2="33.6197" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="46.0598" y1="36.2141" x2="48.0683" y2="39.6732" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="49.5747" y1="42.2676" x2="50" y2="43" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="12" x2="32" y2="48" stroke="#1c1a16" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="14" cy="43" r="6" fill="none" stroke="#b23a0e" stroke-width="2.5"/>
+  <circle cx="50" cy="43" r="6" fill="none" stroke="#b23a0e" stroke-width="2.5"/>
+  <circle cx="32" cy="48" r="8" fill="#b23a0e"/>
+</svg>

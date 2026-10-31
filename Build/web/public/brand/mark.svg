@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Real2Simulation">
+  <title>Real2Simulation</title>
+  <line x1="20" y1="12" x2="44" y2="12" stroke="#1c1a16" stroke-width="4" stroke-linecap="round"/>
+  <line x1="32" y1="12" x2="18.17" y2="36.59" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="12" x2="45.83" y2="36.59" stroke="#1c1a16" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="12" x2="32" y2="46" stroke="#1c1a16" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="14" cy="44" r="6" fill="none" stroke="#b23a0e" stroke-width="3"/>
+  <circle cx="50" cy="44" r="6" fill="none" stroke="#b23a0e" stroke-width="3"/>
+  <circle cx="32" cy="49" r="9" fill="#b23a0e"/>
+</svg>
