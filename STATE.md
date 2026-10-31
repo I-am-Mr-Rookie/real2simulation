@@ -1,6 +1,8 @@
 # Real2Simulation — STATE
 
-- 2026-10-31T08:22Z controller: accepted S15af-orch192 DONE. Timebox PASS; diff within Owns; fresh web tests 150/150; ff-merged. DEV web 55ba928c SUCCESS (rev b641fe05; prev fbb52f25); deployments.json updated; verify.py exit 0. Signed-in DEV check: hovering the current icon while collapsed opens the temporary pane below the header - Sidebar toggle stays on top (elementFromPoint), no "Keep open", 0 clipped labels (evidence/S15/s15o/controller/32). Re-planned to start the restyle sooner: S15ah now depends only on S15af (logo integration moved to S15ai, which runs after S15ag lands).
+- 2026-10-31T08:21Z controller: dispatched S15ah-orch194 (Opus 5.5 high), thread 01a1910b-dd59-7282-9789-5739bbab45b1, deadline 08:50:01Z (14:50 Dhaka): workspace modern-SaaS restyle + light/dark tokens + theme toggle + one icon set + less chrome text (evidence labels verbatim); web redeploy to DEV.
+
+- 2026-10-31T08:20Z controller: accepted S15af-orch192 DONE. Timebox PASS; diff within Owns; fresh web tests 150/150; ff-merged. DEV web 55ba928c SUCCESS (rev b641fe05; prev fbb52f25); deployments.json updated; verify.py exit 0. Signed-in DEV check: hovering the current icon while collapsed opens the temporary pane below the header - Sidebar toggle stays on top (elementFromPoint), no "Keep open", 0 clipped labels (evidence/S15/s15o/controller/32). Re-planned to start the restyle sooner: S15ah now depends only on S15af (logo integration moved to S15ai, which runs after S15ag lands).
 
 - 2026-10-31T08:18Z controller: dispatched S15ag-orch193 (GPT-6.1 Sol high, owner-pinned), thread 01a19108-c5b7-7cb0-a305-41e20181ac0f, deadline 08:46:53Z (14:46 Dhaka): logo via image generation; assets to Build/web/public/brand/, BRAND.md.
 
