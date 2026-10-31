@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "7ee86b56-bdb3-409c-a832-795b2ea9a462",
-      "previousDeploymentId": "55ba928c-fd5b-4642-9211-45a17ef1449c",
-      "redeployNote": "S15ah-orch194: stage.py web + railway up (themed tokens light/dark, theme toggle, icon set, workspace SaaS restyle)",
-      "sourceRevision": "a40722fd9342444053a97ee1c16b421cefbad13e",
-      "verifiedUtc": "2026-10-31T01:48:00Z",
+      "deploymentId": "45cbf633-7282-42da-ac7c-bd1eba386867",
+      "previousDeploymentId": "7ee86b56-bdb3-409c-a832-795b2ea9a462",
+      "redeployNote": "S15ai-orch198 stage.py web + railway up: branded public chrome, home hero/features, theme select for all S15am modes, token restyle library/lab; includes S15am",
+      "sourceRevision": "c51a457e4e78adf2fbae4cbb6b5ec0b6ca85abd0",
+      "verifiedUtc": "2026-10-31T09:49:35Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080

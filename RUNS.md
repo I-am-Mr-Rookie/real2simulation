@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 15:44 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 16:06 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **245 / 274** runs done · 1 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **246 / 276** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -23,11 +23,8 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - …and 1 more ready in this lane
 
 **CLAUDE**
-- Nothing ready yet: check dependencies and retry holds below.
-
-## In progress
-
-- [~] **S15ai** — Codex (native Claude) · Opus 5.5, effort medium — Public pages (home, library, lab, about, sign-in chrome) restyled with the S15ah tokens/icons + dark mode; integrate the S15ag logo (header, favicon, PWA icons), S15ak marketing images and S15aj redlines for public pages (30 min) *(in progress)*
+- [ ] **S15an** — Codex (native Claude) · Opus 5.5, effort high — Workspace/chrome design fixes from controller DEV walk 10:00Z (evidence/S15/s15o/controller/35-42): (a) full-bleed private shell not applied on DEV (S15am main:has(>.r2s-shell) no longer matches under S15ai SiteFrame; workspace still a boxed card with ~70px side gutters); (b) two theme controls on workspace pages (header select + palette button) - keep ONE: the swatch menu (System + 6 modes) in the global header on every page, remove the other; (c) 375px: rail renders over the open right drawer and clips its content; (d) header title ellipsizes at ~190px with free space; (e) result card: display m/s^2 as m/s² (formatting only, same number), long source path into a collapsed 'Source' detail, stepper 'Run (not run)'/'Fit (not run)' -> state icon + tooltip; (f) empty viewport after a result: compact strip so the result card is above the fold, EMPTY/NO SCENE label kept; monospace paragraph -> body font; (g) long connection notice -> compact chip with (i) detail (30 min)
+- [ ] **S15ao** — Codex (native Claude) · Opus 5.5, effort high — Public library/lab polish: S15ai skipped redlines: library L1 (filter chips with counts, 16:9 thumbnails, B3 empty-filter state, licence/credit per card kept verbatim), lab LB1 (two-column layout, B4 empty state, SIMULATED chip pinned on every chart), PWA manifest icons -> /brand assets, remove duplicate app/icon.svg link, nav icon targets >= 44px, Sign in no longer wraps at 375; home stays as is (30 min)
 
 ## Waiting for Koushik
 
@@ -268,7 +265,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (38/39)</summary>
+<details><summary><b>S15</b> — Workspace UI (39/41)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -304,11 +301,13 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15af** — Codex (native Claude) · Sonnet 5.5, effort medium — Left rail polish after S15ae DEV walk (Q21 spec section 6) (30 min)
 - [x] **S15ag** — Codex · Sol, effort high — Logo per owner Oct31 direction: generated with the best available image model and a proper prompt (30 min)
 - [x] **S15ah** — Codex (native Claude) · Opus 5.5, effort high — Workspace modern-SaaS restyle + dark mode per evidence/ui/OWNER-UI-DIRECTION-2026-10-31.md (30 min)
-- [~] **S15ai** — Codex (native Claude) · Opus 5.5, effort medium — Public pages (home, library, lab, about, sign-in chrome) restyled with the S15ah tokens/icons + dark mode; integrate the S15ag logo (header, favicon, PWA icons), S15ak marketing images and S15aj redlines for public pages (30 min) *(in progress)*
+- [x] **S15ai** — Codex (native Claude) · Opus 5.5, effort medium — Public pages (home, library, lab, about, sign-in chrome) restyled with the S15ah tokens/icons + dark mode; integrate the S15ag logo (header, favicon, PWA icons), S15ak marketing images and S15aj redlines for public pages (30 min)
 - [x] **S15aj** — Codex (native Claude) · Opus 5.5, effort high — Design direction (designer-led) per owner Oct31 addendum: Mobbin-grounded art direction, colour modes, screen redlines, image briefs (30 min)
 - [x] **S15ak** — Codex · Sol, effort high — Image batch A (marketing: home hero, feature/explainer art, OG card) from S15aj IMAGE_BRIEFS.md (30 min)
 - [x] **S15al** — Codex · Sol, effort high — Image batch B (in-app: empty states, onboarding/question-card art, viewport placeholder, per-mode backgrounds) from S15aj IMAGE_BRIEFS.md (30 min)
 - [x] **S15am** — Codex (native Claude) · Opus 5.5, effort medium — More colour modes + design-direction pass on the workspace (S15aj COLOR_MODES.md + redlines) and in-app images (S15al) (30 min)
+- [ ] **S15an** — Codex (native Claude) · Opus 5.5, effort high — Workspace/chrome design fixes from controller DEV walk 10:00Z (evidence/S15/s15o/controller/35-42): (a) full-bleed private shell not applied on DEV (S15am main:has(>.r2s-shell) no longer matches under S15ai SiteFrame; workspace still a boxed card with ~70px side gutters); (b) two theme controls on workspace pages (header select + palette button) - keep ONE: the swatch menu (System + 6 modes) in the global header on every page, remove the other; (c) 375px: rail renders over the open right drawer and clips its content; (d) header title ellipsizes at ~190px with free space; (e) result card: display m/s^2 as m/s² (formatting only, same number), long source path into a collapsed 'Source' detail, stepper 'Run (not run)'/'Fit (not run)' -> state icon + tooltip; (f) empty viewport after a result: compact strip so the result card is above the fold, EMPTY/NO SCENE label kept; monospace paragraph -> body font; (g) long connection notice -> compact chip with (i) detail (30 min)
+- [ ] **S15ao** — Codex (native Claude) · Opus 5.5, effort high — Public library/lab polish: S15ai skipped redlines: library L1 (filter chips with counts, 16:9 thumbnails, B3 empty-filter state, licence/credit per card kept verbatim), lab LB1 (two-column layout, B4 empty state, SIMULATED chip pinned on every chart), PWA manifest icons -> /brand assets, remove duplicate app/icon.svg link, nav icon targets >= 44px, Sign in no longer wraps at 375; home stays as is (30 min)
 
 </details>
 
