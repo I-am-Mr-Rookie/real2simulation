@@ -1,0 +1,358 @@
+{
+ "fps": 30.0,
+ "label": "MEASURED, SYSTEM-DERIVED fall time / drop height (conditional: user-declared scale, phone clock unverified, rolling shutter assumed)",
+ "local_g_comparison_only": 9.79,
+ "rows": [
+  {
+   "abstain": "impact not in track: track ends f54 still falling",
+   "clip": "OWN01",
+   "fit": {
+    "v1_S07h": {
+     "fall_frames": [
+      47,
+      54
+     ],
+     "g": 10.963940510463221,
+     "u": 0.7733737333436433
+    }
+   },
+   "lower_bound": {
+    "last_tracked_frame": 54,
+    "lower_bound_h_m": 0.3736237873850543,
+    "lower_bound_h_px": 537.0233975958788,
+    "lower_bound_t_s": 0.26666666666666666,
+    "release_frame": 46
+   },
+   "track": "evidence/S07/S07g/track-own01.json",
+   "track_sha256": "0295b8ae6b59ec152e3fe7632d26e34b82bfbb05c5bf5eb9a73dadaba07eec98"
+  },
+  {
+   "centroid_box_drift_px": 5.142118331070492,
+   "clip": "OWN02",
+   "collapse_frame": 60,
+   "fit": {
+    "v1_S07h": {
+     "fall_frames": [
+      47,
+      59
+     ],
+     "g": 9.289396283978423,
+     "u": 0.3184328751766602,
+     "z_g_ht_vs_fit": -0.8987385577815092
+    },
+    "v2_S07k": {
+     "fall_frames": [
+      46,
+      53
+     ],
+     "g": 7.267091781195077,
+     "u": 3.0707298371438982,
+     "z_g_ht_vs_fit": 0.34055905898163075
+    }
+   },
+   "floor_frame": 59,
+   "g_ht": 8.364658060519876,
+   "h_m": 0.9108183221454976,
+   "h_px": 1327.1000215686827,
+   "impact_frame": 59,
+   "label": "MEASURED (conditional: user-declared scale 0.2028 m, phone clock unverified, rolling shutter assumed)",
+   "m_per_px": 0.0006863222871994801,
+   "n_frames": 14,
+   "offset_floor_px": -2.1546581875993525,
+   "offset_static_px": -7.296776518669844,
+   "pts_span_s": 0.466666,
+   "rel_u_g": 0.11697008943805709,
+   "rel_u_h": 0.008518195012813885,
+   "rel_u_t": 0.058329756936041546,
+   "release_frame": 45,
+   "scale_frames": [
+    42,
+    45
+   ],
+   "t_s": 0.4666666666666667,
+   "track": "evidence/S07/S07i/track-own02.json",
+   "track_sha256": "fe1539eeacd15074ce2bf5044599885f1b6ba6011607eb0cea7ba0a061308ee5",
+   "u_g_ht": 0.978414801457775,
+   "u_h_m": 0.007758528089279288,
+   "u_m_per_px": 4.996687941617195e-06,
+   "u_px": 5.86867795425266,
+   "u_t_s": 0.02722055323681939,
+   "y_floor_px": 1607.7653418124007,
+   "y_static_px": 280.66532024371804,
+   "z_vs_local": -1.4567869755817837
+  },
+  {
+   "centroid_box_drift_px": 15.134320813473607,
+   "clip": "OWN03",
+   "collapse_frame": 57,
+   "fit": {
+    "v1_S07h": {
+     "fall_frames": [
+      45,
+      57
+     ],
+     "g": 9.542294862674295,
+     "u": 0.6303504858871237,
+     "z_g_ht_vs_fit": 0.15313150616662685
+    },
+    "v2_S07k": {
+     "fall_frames": [
+      45,
+      56
+     ],
+     "g": 9.556858020288576,
+     "u": 0.6312238469846069,
+     "z_g_ht_vs_fit": 0.14324747226705759
+    }
+   },
+   "floor_frame": 57,
+   "g_ht": 9.768745830955464,
+   "h_m": 0.7814996664764372,
+   "h_px": 1160.7350963446775,
+   "impact_frame": 56,
+   "label": "MEASURED (conditional: user-declared scale 0.2028 m, phone clock unverified, rolling shutter assumed)",
+   "m_per_px": 0.0006732799490060157,
+   "n_frames": 12,
+   "offset_floor_px": -4.960298417689273,
+   "offset_static_px": 10.174022395784334,
+   "pts_span_s": 0.40000000000000013,
+   "rel_u_g": 0.13693933153673862,
+   "rel_u_h": 0.015161200586045255,
+   "rel_u_t": 0.06804872981643104,
+   "release_frame": 44,
+   "scale_frames": [
+    40,
+    44
+   ],
+   "t_s": 0.4,
+   "track": "evidence/S07/S07i/track-own03.json",
+   "track_sha256": "2e8da0a13c054c9b4ba1e1a1206e51c179be8e70a10c21a365ed2bca9b4fbae0",
+   "u_g_ht": 1.3377255240433434,
+   "u_h_m": 0.011848473201376731,
+   "u_m_per_px": 4.943912245408929e-06,
+   "u_px": 15.396352375973358,
+   "u_t_s": 0.027219491926572414,
+   "y_floor_px": 1462.1117015823108,
+   "y_static_px": 301.3766052376334,
+   "z_vs_local": -0.01588828848857857
+  },
+  {
+   "abstain": "impact not in track: track ends f55 still falling",
+   "clip": "OWN04",
+   "fit": {
+    "v1_S07h": {
+     "fall_frames": [
+      46,
+      55
+     ],
+     "g": 10.38936545092721,
+     "u": 0.45719983371001144
+    },
+    "v2_S07k": {
+     "fall_frames": [
+      46,
+      55
+     ],
+     "g": 10.397759767208594,
+     "u": 0.4576965058604849
+    }
+   },
+   "lower_bound": {
+    "last_tracked_frame": 55,
+    "lower_bound_h_m": 0.6152057885742528,
+    "lower_bound_h_px": 913.0891594560935,
+    "lower_bound_t_s": 0.3333333333333333,
+    "release_frame": 45
+   },
+   "track": "evidence/S07/S07i/track-own04.json",
+   "track_sha256": "44acb61fbd2557340d11aa92d981088d248ee5d95e21e58355336909de95bacb"
+  },
+  {
+   "abstain": "impact not in track: track ends f52 still falling",
+   "clip": "OWN05",
+   "fit": {
+    "v1_S07h": {
+     "fall_frames": [
+      44,
+      50
+     ],
+     "g": 8.621873488312907,
+     "u": 1.2788792449092994
+    },
+    "v2_S07k": {
+     "fall_frames": [
+      44,
+      52
+     ],
+     "g": 9.621532879984098,
+     "u": 0.7359992075033922
+    }
+   },
+   "lower_bound": {
+    "last_tracked_frame": 52,
+    "lower_bound_h_m": 0.4086153164880207,
+    "lower_bound_h_px": 579.5277395170456,
+    "lower_bound_t_s": 0.3,
+    "release_frame": 43
+   },
+   "track": "evidence/S07/S07i/track-own05.json",
+   "track_sha256": "c33b6a4b0cbbe4a743b5400e6cf6a7a30f9ae7796150813bce038fe4abd110ca"
+  },
+  {
+   "abstain": "release not in track: fewer than 3 static tracked frames before motion at f46",
+   "clip": "OWN06",
+   "fit": {
+    "v1_S07h": {
+     "fall_frames": [
+      48,
+      55
+     ],
+     "g": 7.116124373271427,
+     "u": 1.0162273595345013
+    }
+   },
+   "track": "evidence/S07/S07i/track-own06.json",
+   "track_sha256": "4150ba31297a6e2fe9298e813e0a900f24b2de1993f023dc147711394885f86f"
+  },
+  {
+   "centroid_box_drift_px": 8.511647338668809,
+   "clip": "OWN07",
+   "collapse_frame": 59,
+   "fit": {
+    "v1_S07h": {
+     "fall_frames": [
+      47,
+      59
+     ],
+     "g": 8.722173770378081,
+     "u": 0.2105999548646679,
+     "z_g_ht_vs_fit": 0.8850289003720002
+    },
+    "v2_S07k": {
+     "fall_frames": [
+      46,
+      54
+     ],
+     "g": 9.507282406436856,
+     "u": 0.9341037082989772,
+     "z_g_ht_vs_fit": 0.21119169341985264
+    }
+   },
+   "floor_frame": 59,
+   "g_ht": 9.8351084028425,
+   "h_m": 0.9234074000446572,
+   "h_px": 1303.1518633766314,
+   "impact_frame": 58,
+   "label": "MEASURED (conditional: user-declared scale 0.2028 m, phone clock unverified, rolling shutter assumed)",
+   "m_per_px": 0.0007085953878406709,
+   "n_frames": 13,
+   "offset_floor_px": -1.2648054191606661,
+   "offset_static_px": 7.246841919508142,
+   "pts_span_s": 0.43333299999999997,
+   "rel_u_g": 0.12605370148643358,
+   "rel_u_h": 0.010317119571919282,
+   "rel_u_t": 0.06281538963934241,
+   "release_frame": 45,
+   "scale_frames": [
+    41,
+    45
+   ],
+   "t_s": 0.43333333333333335,
+   "track": "evidence/S07/S07j/track-own07.json",
+   "track_sha256": "1b6a7b1e103df2297c76bcc1c428f44d123c4f239e70315090e248e3e7c6f3a7",
+   "u_g_ht": 1.2397518186986232,
+   "u_h_m": 0.009526904559855831,
+   "u_m_per_px": 5.446075097505575e-06,
+   "u_px": 8.969288735338372,
+   "u_t_s": 0.02722000217704838,
+   "y_floor_px": 1562.6711945808395,
+   "y_static_px": 259.51933120420813,
+   "z_vs_local": 0.03638502655301779
+  },
+  {
+   "abstain": "release not in track: pre-motion frames f31-f35 not static (y range 8.2 px)",
+   "clip": "OWN08",
+   "fit": {
+    "v1_S07h": {
+     "fall_frames": [
+      36,
+      48
+     ],
+     "g": 8.822272327849516,
+     "u": 0.27331061082757246
+    },
+    "v2_S07k": {
+     "fall_frames": [
+      36,
+      47
+     ],
+     "g": 8.822272327849516,
+     "u": 0.27331061082757246
+    }
+   },
+   "track": "evidence/S07/S07j/track-own08.json",
+   "track_sha256": "351c0118f4b21e8d5a65cf2b6069a8e45b33271e1504921e4a110e5c24fc97f2"
+  },
+  {
+   "centroid_box_drift_px": 10.223026258154789,
+   "clip": "OWN09",
+   "collapse_frame": 22,
+   "fit": {
+    "v1_S07h": {
+     "fall_frames": [
+      9,
+      22
+     ],
+     "g": 6.73781470682151,
+     "u": 1.7721949933500436,
+     "z_g_ht_vs_fit": 1.1038592128524667
+    }
+   },
+   "floor_frame": 22,
+   "g_ht": 9.065985759834131,
+   "h_m": 0.8511953296733158,
+   "h_px": 1325.2204684437543,
+   "impact_frame": 21,
+   "label": "MEASURED (conditional: user-declared scale 0.2028 m, phone clock unverified, rolling shutter assumed)",
+   "m_per_px": 0.0006423046956653935,
+   "n_frames": 13,
+   "offset_floor_px": 10.582933751880091,
+   "offset_static_px": 0.3599074937253022,
+   "pts_span_s": 0.433334,
+   "rel_u_g": 0.12613648493588728,
+   "rel_u_h": 0.011283622193768,
+   "rel_u_t": 0.06281538963934241,
+   "release_frame": 8,
+   "scale_frames": [
+    4,
+    8
+   ],
+   "t_s": 0.43333333333333335,
+   "track": "evidence/S07/S07j/track-own09.json",
+   "track_sha256": "3290ec052994612133fda52642771de178c1cf0eb0a74cd6a4e26c04065d09bf",
+   "u_g_ht": 1.1435515762242865,
+   "u_h_m": 0.009604566513133496,
+   "u_m_per_px": 5.1084774324229496e-06,
+   "u_px": 10.607085644743437,
+   "u_t_s": 0.02722000217704838,
+   "y_floor_px": 1619.5429337518801,
+   "y_static_px": 294.32246530812574,
+   "z_vs_local": -0.633127753237311
+  },
+  {
+   "abstain": "release not in track: no sustained centroid-y motion",
+   "clip": "OWN10",
+   "fit": {},
+   "track": "evidence/S07/S07j/track-own10.json",
+   "track_sha256": "e1388c08d3c912e8f9331cb5e6121cd7f90d1f5f67d172276cf1ca57095d7ac9"
+  },
+  {
+   "abstain": "release not in track: no sustained centroid-y motion",
+   "clip": "OWN11",
+   "fit": {},
+   "track": "evidence/S07/S07j/track-own11.json",
+   "track_sha256": "909a2c7da4a4ebede1058cbeab38236cb6037ce33b046574b5a95db5c664585b"
+  }
+ ],
+ "rules": "Run-System/Runs/S07n-orch186/PLAN.md"
+}
