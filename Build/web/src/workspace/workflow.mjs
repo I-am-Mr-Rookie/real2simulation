@@ -13,7 +13,7 @@ export const PHASES = [
   'interview.active',
   'run.ready', 'run.running', 'run.paused', 'run.done', 'run.failed',
   'fit.running', 'fit.done', 'fit.failed',
-  'report.open',
+  'report.open', 'report.owner',
 ];
 
 // The graph: phase -> event -> handler. Missing entry = illegal transition (state returned unchanged, same reference).
@@ -49,6 +49,11 @@ edge(['upload.queued', 'upload.running'], 'JOB_UPDATE', (s, { job }) => {
   if (j.status === 'failed') return fail(next, 'upload.failed', j.error.code, j.error.message);
   return to(next, `upload.${j.status}`);
 });
+// S15y: an owner clip has no scene (reconstruction not run): straight to the scene-free interview, then its stored result.
+edge(['upload.idle', 'upload.failed', 'upload.cancelled'], 'OWNER_CLIP', (s, { jobId }) =>
+  ID.test(jobId ?? '') ? to(s, 'interview.active', { job: { id: jobId, revision: -1 }, scene: null, owner: { jobId } }) : null);
+edge(['interview.active'], 'OWNER_RESULT', (s, { measurement }) =>
+  s.owner && measurement && typeof measurement === 'object' ? to(s, 'report.owner', { result: measurement }) : null);
 
 // interview: spec accepted only if the injected S08 validator says ok.
 edge(['interview.active'], 'INTERVIEW_SPEC', (s, { spec }, deps) => {

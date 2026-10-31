@@ -39,6 +39,13 @@ _OUT = {"validate": ("validate", "sha256"), "keyframes": ("keyframes", None), "s
 # tracked copy (the API image ships Build/, not evidence/S07); tests/api-workspace re-derives it from the evidence files.
 OWNER_CLIPS = Path(__file__).with_name("owner_clips.json")
 SCALE_LABEL = "user-declared, not verified"
+# S15y: owner clips have no recording and live execution is off, so no stage runs; that is a no-scene state, not a failure.
+NO_SCENE = "no scene: owner clip, scene reconstruction not run"
+
+
+def owner_job(job_id):
+    """Non-failure job state for an owner clip (deliberately NOT the shell job DTO: there is no scene artifact)."""
+    return {"job_id": job_id, "status": "no_scene", "label": NO_SCENE}
 
 
 @functools.cache
@@ -63,8 +70,8 @@ def owner_measurement(clip_id):
                 "message": "No stored measurement for this clip and tracking does not run in the product yet; "
                            "g is not reported (abstain, not an error)."}
     return {**base, "status": "recorded", "label": "RECORDED replay of a MEASURED result", **m,
-            "caveat": f"Held-out prediction FAILS (RMSE {m['held_out_rmse_px']} px >> 2 px): a MEASURED value with a "
-                      "failed held-out check, not a validated measurement."}
+            "caveat": f"Held-out prediction FAILS: held-out RMSE {m['held_out_rmse_px']} px exceeds the 6 px pass threshold "
+                      "(S07h: 3 x the declared 2 px). A MEASURED value with a failed held-out check, not a validated measurement."}
 
 
 @functools.cache
@@ -171,6 +178,9 @@ def scene_resolver(store, understood=UNDERSTOOD):
     def resolve(owner, scene_id):
         if not _JOB.fullmatch(scene_id) or store.get(f"job:{scene_id}:owner") != owner:
             return None
+        prov = json.loads(store.get(f"job:{scene_id}:provenance") or "{}")
+        if prov.get("executor") == "none":  # S15y owner clip: no base spec or scene; analysis asks scene-free questions
+            return {"owner_clip": prov.get("measurement")}, None, None
         if JobRunner(store, {}).progress(scene_id, 0, shell_scene(scene_id))["job"]["status"] != "ready":
             return None
         found = load_understanding(store.get(f"job:{scene_id}:input"), understood)
@@ -229,18 +239,26 @@ def create_router(store=None, uploads=None, shas=None, recording=RECORDING, unde
     def complete(upload_id: str, owner: str = Depends(require_owner)):
         session = call(uploads.complete, owner, upload_id)
         job_id = session["job_id"]
-        runner, prov = recorded_runner(store, session["sha256"], recording, understood)
-        if (clip := owners().get(session["sha256"])) is not None:  # S15v: no in-product tracking; replay or abstain
-            prov["measurement"] = owner_measurement(clip)
+        clip = owners().get(session["sha256"])
+        if clip is not None:  # S15v/S15y: no in-product tracking and no scene; replay the stored result or abstain
+            prov = {"executor": "none", "label": NO_SCENE, "live": False, "recorded_stages": [], "stage_labels": {},
+                    "note": "No pipeline stage ran for this owner clip (no recording; live execution is not enabled). "
+                            "Nothing failed; no scene is shown.", "measurement": owner_measurement(clip)}
+        else:
+            runner, prov = recorded_runner(store, session["sha256"], recording, understood)
         store.set(f"job:{job_id}:provenance", json.dumps(prov))
         store.set(f"job:{job_id}:input", session["sha256"])
         store.set(f"job:{job_id}:owner", owner)  # last: owned() never sees an owner without provenance
+        if clip is not None:
+            return {"upload": session, "job": owner_job(job_id), "provenance": prov}
         # shortcut: replay runs inline (instant, no I/O beyond the store); a live executor needs a queue worker.
         return {"upload": session, "job": runner.run(job_id, session["sha256"], shell_scene(job_id)), "provenance": prov}
 
     @router.get("/jobs/{job_id}")
     def job(job_id: str, after: int = Query(0, ge=0), owner: str = Depends(require_owner)):
         prov = owned(owner, job_id)
+        if prov.get("executor") == "none":
+            return {"kind": "job_progress", "job_id": job_id, "events": [], "job": owner_job(job_id), "provenance": prov}
         return {**JobRunner(store, {}).progress(job_id, after, shell_scene(job_id)), "provenance": prov}
 
     return router

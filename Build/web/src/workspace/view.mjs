@@ -39,7 +39,8 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
       fit ? renderFit(h, fit) : null,
       run?.next ? h('div', { className: 'ws-actions', 'data-slot': 'next-step' },
         h('button', { type: 'button', className: 'ws-submit', 'data-event': run.next.event, disabled: !onAction, onClick: () => onAction?.({ type: run.next.event }) }, run.next.label)) : null,
-      report ? renderReport(h, report) : null),
+      report ? renderReport(h, report) : null,
+      layout.phase === 'report.owner' && provenance?.measurement ? renderMeasurement(h, provenance.measurement) : null),
     h('aside', { className: 'ws-job', 'data-slot': 'job-status', 'aria-label': 'Job status' },
       h('p', null, jobStatus.jobId ? 'Job ' + jobStatus.jobId : 'No job yet'),
       provenance ? renderProvenance(h, provenance) : null,
@@ -62,11 +63,14 @@ export function renderProvenance(h, p) {
 function renderMeasurement(h, m) {
   const s = (v) => String(v ?? '');
   const scale = m.scale?.value_m != null ? 'Scale: ' + s(m.scale.reference) + ' = ' + s(m.scale.value_m) + ' m (' + s(m.scale.label) + ')' : null;
+  const us = m.user_scale; // S15y: the interview's known-size answer, declared or abstain
+  const yours = us?.status === 'declared' ? 'Your known size: ' + s(us.object) + ' = ' + s(us.length_m) + ' m (' + s(us.label) + ')' : us ? s(us.label) : null;
   return h('div', { className: 'ws-measurement', 'data-status': s(m.status), role: 'status', 'aria-label': 'Clip result' },
     h('p', null, s(m.clip_id) + ' — ' + s(m.input_label) + ' — ' + s(m.label)),
     m.status === 'recorded' ? h('p', null, h('strong', null, 'g = ' + s(m.g) + ' ± ' + s(m.u) + ' ' + s(m.unit)), ' (' + s(m.measured_label) + '; source ' + s(m.source) + ')') : null,
     m.status === 'recorded' ? h('p', { className: 'ws-note' }, s(m.caveat)) : h('p', { className: 'ws-note' }, s(m.message)),
-    scale ? h('p', { className: 'ws-note' }, scale) : null);
+    scale ? h('p', { className: 'ws-note' }, scale) : null,
+    yours ? h('p', { className: 'ws-note', 'data-slot': 'user-scale' }, yours) : null);
 }
 
 // S15d: interview panel. Chips are toggle buttons, free text a labelled textarea; everything is text (no raw HTML). Reports { type, ... }

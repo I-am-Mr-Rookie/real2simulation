@@ -67,12 +67,12 @@ export default function PrivateWorkspace({ scene }) {
   const phase = s.state.phase;
   useEffect(() => { // fetch the agent's questions once the job hands over to the interview
     if (api !== 'live' || phase !== 'interview.active' || s.questions) return;
-    ctl.loadQuestions().then((r) => r && setLocal((l) => ({ ...l, interview: reduceInterview(l.interview, { type: 'Q_LOADED', response: r, sceneId: ctl.state.scene?.scene_id }) })));
+    ctl.loadQuestions().then((r) => r && setLocal((l) => ({ ...l, interview: reduceInterview(l.interview, { type: 'Q_LOADED', response: r, sceneId: ctl.state.scene?.scene_id ?? ctl.state.owner?.jobId }) })));
   }, [api, phase, s.questions, ctl]);
   const live = api === 'live';
   const onAction = live ? (a) => routeAction(ctl, localRef.current, a).then(setLocal) : undefined;
   const up = uploadView(s);
-  const simulated = /^(run|fit|report)\./.test(phase); // run/fit/report numbers are browser-simulated, never recorded
+  const simulated = /^(run|fit)\.|^report\.open$/.test(phase); // run/fit/report numbers are browser-simulated, never recorded (report.owner is the stored owner result)
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
     React.createElement('h1', null, scene.title),
     React.createElement('p', { role: 'note' }, live ? LIVE_NOTICE : api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),

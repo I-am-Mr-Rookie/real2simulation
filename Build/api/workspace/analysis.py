@@ -94,7 +94,9 @@ def create_router(scenes: SceneResolver = _no_scenes) -> APIRouter:
 
     @router.get("/scenes/{scene_id}/questions")
     def questions(scene_id: str, owner: str = Depends(require_owner)):
-        base_spec, _, _ = _scene(scenes, owner, scene_id)
+        base_spec, scene, _ = _scene(scenes, owner, scene_id)
+        if scene is None and "owner_clip" in base_spec:  # S15y: no scene, so only the scene-free known-size question
+            return {"schema_version": "agent-response/1.0.0", "scene_id": scene_id, "questions": [KNOWN_SIZE]}
         try:
             out = interview.questions(scene_id, base_spec.get("template"))
         except AgentContractError as exc:
@@ -111,6 +113,9 @@ def create_router(scenes: SceneResolver = _no_scenes) -> APIRouter:
             raise error(422, "INVALID_INPUT", "body must be {answers: {...}}", ok=False, errors=["answers: expected object"])
         answers = dict(answers)
         scale = user_scale(answers.pop(KNOWN_SIZE["id"], None))
+        if scene is None and "owner_clip" in base_spec:  # S15y: stored result (or abstain) + declared scale; no spec, no run
+            return {"ok": True, "owner_clip": True, "measurement": base_spec["owner_clip"],
+                    "user_scale": scale or user_scale({})}
         extra = {"user_scale": scale} if scale else {}
         try:
             validated = interview.answers_to_spec(base_spec, scene, root, answers)

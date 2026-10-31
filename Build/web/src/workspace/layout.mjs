@@ -15,7 +15,9 @@ export const PHASE_LABEL = Object.freeze({
   'run.ready': 'Ready to run', 'run.running': 'Run in progress', 'run.paused': 'Run paused', 'run.done': 'Run finished', 'run.failed': 'Run failed',
   'fit.running': 'Fit in progress', 'fit.done': 'Fit finished', 'fit.failed': 'Fit failed',
   'report.open': 'Report open',
+  'report.owner': 'Clip result (owner clip; no scene, run or fit)',
 });
+export const OWNER_INTERVIEW_LABEL = 'Owner clip: no scene (reconstruction not run); interview in progress (not a measurement)';
 
 export const SYNTHETIC_SCENE_BANNER = 'SYNTHETIC scene: authored geometry, not reconstruction, measurement or gate evidence';
 
@@ -40,10 +42,12 @@ export function layoutOf(state, opts = {}) {
   return {
     slots: SLOTS,
     phase: state.phase,
-    stages: STAGES.map((id, i) => ({ id, label: STAGE_LABEL[id], status: i < cur ? 'done' : i === cur ? 'current' : 'todo', failed: i === cur && failed })),
+    // S15y: an owner clip skips run/fit (no scene); say so instead of marking them done
+    stages: STAGES.map((id, i) => (state.owner && (id === 'run' || id === 'fit') ? { id, label: STAGE_LABEL[id] + ' (not run)', status: 'skipped', failed: false }
+      : { id, label: STAGE_LABEL[id], status: i < cur ? 'done' : i === cur ? 'current' : 'todo', failed: i === cur && failed })),
     viewport: { request, key: request && [sceneKey(request.scene), request.mode, request.audience].join('|'),
       banner: state.scene?.evidence === 'synthetic' ? SYNTHETIC_SCENE_BANNER : null },
-    jobStatus: { label: PHASE_LABEL[state.phase], jobId: state.job?.id ?? null, error: state.error, surface: statusSurface(state, opts.log) },
+    jobStatus: { label: state.owner && state.phase === 'interview.active' ? OWNER_INTERVIEW_LABEL : PHASE_LABEL[state.phase], jobId: state.job?.id ?? null, error: state.error, surface: statusSurface(state, opts.log) },
   };
 }
 

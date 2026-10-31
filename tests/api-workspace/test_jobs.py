@@ -199,6 +199,7 @@ class JobsRouterTests(unittest.TestCase):
         self.store = MemoryStore()
         app.include_router(create_router(self.store, UploadService(self.tmp / "up"), lambda: {BLOB_SHA: clip},
                                          self.tmp / "absent", self.und, owners=lambda: {BLOB_SHA: clip}))
+        app.include_router(analysis.create_router(scene_resolver(self.store, self.und)))
         return TestClient(app)
 
     def test_owner_clip_recorded_measurement_or_abstain(self):  # S15v
@@ -207,7 +208,8 @@ class JobsRouterTests(unittest.TestCase):
         self.assertEqual((m["status"], m["g"], m["u"], m["unit"]), ("recorded", 10.96, 0.77, "m/s^2"))
         self.assertEqual((m["input_label"], m["source"]), ("OWNER_RECORDED / RECORDED", "evidence/S07/S07i/result-own01.json"))
         self.assertTrue(m["measured_label"].startswith("MEASURED"))
-        self.assertIn("Held-out prediction FAILS", m["caveat"])
+        self.assertIn("held-out RMSE 23.0 px exceeds the 6 px pass threshold", m["caveat"])  # S15y: S07h threshold
+        self.assertNotIn(">>", m["caveat"])
         self.assertEqual(m["scale"], {"reference": "book cover horizontal edge in fall plane", "value_m": 0.2028,
                                       "label": "user-declared, not verified"})
         c = self.owner_app("OWN02")
@@ -216,6 +218,31 @@ class JobsRouterTests(unittest.TestCase):
                          ("abstain", "UNCERTAIN: no measurement"))
         doc = c.get(f"/internal/workspace/jobs/{out['job']['job_id']}", headers=AUTH).json()  # persists for polling
         self.assertEqual(doc["provenance"]["measurement"]["status"], "abstain")
+
+    def test_owner_clip_no_scene_job_then_known_size_interview_then_result(self):  # S15y
+        c = self.owner_app("OWN01")
+        out = self.finish(c)
+        job_id = out["job"]["job_id"]
+        self.assertEqual(out["job"], {"job_id": job_id, "status": "no_scene",
+                                      "label": "no scene: owner clip, scene reconstruction not run"})
+        self.assertNotIn("DEPENDENCY_UNAVAILABLE", json.dumps(out))  # no failure anywhere for an owner clip
+        self.assertEqual((out["provenance"]["executor"], out["provenance"]["recorded_stages"]), ("none", []))
+        doc = c.get(f"/internal/workspace/jobs/{job_id}", headers=AUTH).json()
+        self.assertEqual((doc["kind"], doc["job"]["status"], doc["events"]), ("job_progress", "no_scene", []))
+        q = c.get(f"/internal/workspace/scenes/{job_id}/questions", headers=AUTH)
+        self.assertEqual(q.json(), {"schema_version": "agent-response/1.0.0", "scene_id": job_id, "questions": [analysis.KNOWN_SIZE]})
+        s = c.post(f"/internal/workspace/scenes/{job_id}/spec", headers=AUTH,
+                   json={"answers": {"known_size": {"text": "book cover edge, 20.28 cm"}}}).json()
+        self.assertEqual((s["owner_clip"], s["measurement"]["g"], s["measurement"]["u"]), (True, 10.96, 0.77))
+        self.assertEqual((s["user_scale"]["status"], s["user_scale"]["length_m"]), ("declared", 0.2028))
+        for other in ("questions", "spec"):  # owner-scoped
+            r = (c.get if other == "questions" else c.post)(f"/internal/workspace/scenes/{job_id}/{other}", headers=OTHER_AUTH,
+                                                             **({} if other == "questions" else {"json": {"answers": {}}}))
+            self.assertEqual(self.code(r, 404), "NOT_FOUND")
+        c2 = self.owner_app("OWN02")
+        j2 = self.finish(c2)["job"]["job_id"]
+        s2 = c2.post(f"/internal/workspace/scenes/{j2}/spec", headers=AUTH, json={"answers": {}}).json()  # no size: abstain, not 422
+        self.assertEqual((s2["measurement"]["label"], s2["user_scale"]["status"]), ("UNCERTAIN: no measurement", "abstain"))
 
     def test_owner_clips_match_evidence_and_are_approved(self):  # tracked copy must equal the S07g/S07i evidence
         reg = json.loads((ROOT / "evidence/S07/S07g/clips-sha256.json").read_text(encoding="utf-8"))

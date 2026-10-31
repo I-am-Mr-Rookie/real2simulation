@@ -85,13 +85,14 @@ test('illegal events return the same state; every phase/event is reachable and d
   const idle = initialState();
   for (const t of ['JOB_UPDATE', 'RUN_START', 'FIT_START', 'REPORT_OPEN', 'EDIT_SPEC', 'nope']) assert.equal(reduce(idle, { type: t }), idle);
   assert.equal(reduce(idle, undefined), idle);
-  assert.deepEqual(availableEvents(idle).sort(), ['RESET', 'UPLOAD_STARTED']);
+  assert.deepEqual(availableEvents(idle).sort(), ['OWNER_CLIP', 'RESET', 'UPLOAD_STARTED']);
   const seen = new Set(); const snaps = [initialState(), run(initialState(), { type: 'UPLOAD_STARTED', jobId: 'a' }), toInterview(), toRunReady(), toRunDone(), toFitDone(), run(toFitDone(), { type: 'REPORT_OPEN' }),
     run(toRunReady(), { type: 'RUN_START', seed: 1 }), run(toRunReady(), { type: 'RUN_START', seed: 1 }, { type: 'RUN_PAUSE' }), run(toRunReady(), { type: 'RUN_START', seed: 1 }, { type: 'RUN_FAIL' }),
     run(toRunDone(), { type: 'FIT_START', sessionId: 's1' }), run(toRunDone(), { type: 'FIT_START', sessionId: 's1' }, { type: 'FIT_FAIL' }),
     run(initialState(), { type: 'UPLOAD_STARTED', jobId: 'synthetic-job-v1' }, { type: 'JOB_UPDATE', job: job(1, 'running') }),
     run(initialState(), { type: 'UPLOAD_STARTED', jobId: 'synthetic-job-v1' }, { type: 'JOB_UPDATE', job: jobFailed(1) }),
-    run(initialState(), { type: 'UPLOAD_STARTED', jobId: 'synthetic-job-v1' }, { type: 'JOB_UPDATE', job: job(1, 'cancelled') })];
+    run(initialState(), { type: 'UPLOAD_STARTED', jobId: 'synthetic-job-v1' }, { type: 'JOB_UPDATE', job: job(1, 'cancelled') }),
+    run(initialState(), { type: 'OWNER_CLIP', jobId: 'job-own' }, { type: 'OWNER_RESULT', measurement: { status: 'abstain' } })]; // S15y
   for (const s of snaps) seen.add(s.phase);
   assert.deepEqual([...seen].sort(), [...PHASES].sort());
   const doc = readFileSync(new URL('../../Build/web/src/workspace/README.md', import.meta.url), 'utf8');

@@ -25,15 +25,16 @@ run.done / fit.failed --FIT_START--> fit.running --FIT_RESULT--> fit.done | fit.
 fit.done --REPORT_OPEN--> report.open --REPORT_CLOSE--> fit.done
 run.ready/run.done/run.failed/fit.done/fit.failed/report.open --EDIT_SPEC--> interview.active (clears spec, run, fit)
 any --RESET--> upload.idle (abandons scene; never cancels a server job)
+upload.idle/failed/cancelled --OWNER_CLIP--> interview.active (S15y owner clip: no scene; known-size question) --OWNER_RESULT--> report.owner
 ```
 
 ## States
 `upload.idle` `upload.queued` `upload.running` `upload.failed` `upload.cancelled` `interview.active`
-`run.ready` `run.running` `run.paused` `run.done` `run.failed` `fit.running` `fit.done` `fit.failed` `report.open`
+`run.ready` `run.running` `run.paused` `run.done` `run.failed` `fit.running` `fit.done` `fit.failed` `report.open` `report.owner`
 
 ## Events
 `UPLOAD_STARTED` `JOB_UPDATE` `INTERVIEW_SPEC` `RUN_START` `RUN_PAUSE` `RUN_RESUME` `RUN_CANCEL` `RUN_COMPLETE`
-`RUN_FAIL` `FIT_START` `FIT_CANCEL` `FIT_RESULT` `FIT_FAIL` `REPORT_OPEN` `REPORT_CLOSE` `EDIT_SPEC` `RESET`
+`RUN_FAIL` `FIT_START` `FIT_CANCEL` `FIT_RESULT` `FIT_FAIL` `REPORT_OPEN` `REPORT_CLOSE` `EDIT_SPEC` `RESET` `OWNER_CLIP` `OWNER_RESULT`
 
 ## Invariants
 - Job `ready` means an artifact exists, not accuracy or a passed gate; `scene.evidence` is preserved (synthetic stays labelled).

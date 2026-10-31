@@ -116,6 +116,7 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
         if (r.error) return failWith(r.error);
         const job = r.data?.job;
         patch({ upload: { ...meta.upload, approvedClip: typeof r.data?.upload?.sha256 === 'string' ? 'sha256 ' + r.data.upload.sha256.slice(0, 12) : null }, provenance: r.data?.provenance ?? null });
+        if (job?.status === 'no_scene') return dispatch({ type: 'OWNER_CLIP', jobId: job.job_id }); // S15y: nothing to poll
         dispatch({ type: 'UPLOAD_STARTED', jobId: job?.job_id });
         if (state.phase !== 'upload.queued') return failWith({ code: 'PROCESSING_FAILED', message: 'Job response failed validation.' });
         dispatch({ type: 'JOB_UPDATE', job });
@@ -125,7 +126,7 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
 
     async loadQuestions() {
       if (state.phase !== 'interview.active') return null;
-      const r = await call('GET', `scenes/${encodeURIComponent(state.scene?.scene_id ?? '')}/questions`);
+      const r = await call('GET', `scenes/${encodeURIComponent(state.scene?.scene_id ?? state.owner?.jobId ?? '')}/questions`);
       if (r.error) return failWith(r.error);
       patch({ questions: r.data });
       return r.data;
@@ -135,9 +136,14 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
     async submitAnswers(answers) {
       if (state.phase !== 'interview.active') return state;
       const body = { answers: Array.isArray(answers) ? specAnswers(answers) : answers };
-      const r = await call('POST', `scenes/${encodeURIComponent(state.scene?.scene_id ?? '')}/spec`, body);
+      const r = await call('POST', `scenes/${encodeURIComponent(state.scene?.scene_id ?? state.owner?.jobId ?? '')}/spec`, body);
       if (r.error) return failWith(r.error);
       const d = r.data;
+      if (state.owner && d?.owner_clip === true) { // S15y: result stage = stored g ± u (or abstain) + the declared scale
+        const measurement = d.measurement && typeof d.measurement === 'object' ? { ...d.measurement, user_scale: d.user_scale ?? null } : null;
+        patch({ provenance: meta.provenance && measurement ? { ...meta.provenance, measurement } : meta.provenance });
+        return dispatch({ type: 'OWNER_RESULT', measurement });
+      }
       const ok = d?.ok === true && !!d.spec && !!d.validated_setup;
       // S14j: recorded scenes carry a verbatim label (e.g. 'scale unverified, not setup-validated'); shown through run/fit/report.
       // S15v: known-size answer comes back as user_scale (declared or abstain); it travels in the same verbatim label.
