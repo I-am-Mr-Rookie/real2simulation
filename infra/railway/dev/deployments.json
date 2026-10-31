@@ -7,18 +7,18 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "4587d795-1c80-4d68-bfbc-100192c14d87",
-      "previousDeploymentId": "0df9a56c-1c3b-4144-9cd2-dda9907bf153",
-      "redeployNote": "controller stage.py web + railway up: S15au home showcase/header polish + header GitHub link, S15ar em dash sweep",
-      "sourceRevision": "7c7da681557134dee907427913b25826de5ceb28",
-      "verifiedUtc": "2026-10-31T12:07:00Z",
+      "deploymentId": "80c07322-ad62-40db-b6ac-2d50877b1c01",
+      "previousDeploymentId": "4587d795-1c80-4d68-bfbc-100192c14d87",
+      "redeployNote": "S15av lab bridge (api node + /internal/lab/bridge; web production /api/lab) + S15aw result chart",
+      "sourceRevision": "d858b2af9a07f7acb8473fa9c08fe6bfc2f6336c",
+      "verifiedUtc": "2026-10-31T14:35:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "cb272de2-f067-47f8-90ca-54ba2f1c0cb0",
+      "deploymentId": "fb408be3-ccd4-489a-9801-1c8d4b2ac660",
       "previousDeploymentIds": [
         "88eb14d1-5be4-4d6b-a439-800293c2b703",
         "85c23646-2e35-4c25-af0d-cbe38a52c524",
@@ -28,8 +28,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "8c2bd6821979787edc566daed93129a5313146fa",
-      "verifiedUtc": "2026-10-31T00:13:20Z",
+      "sourceRevision": "d858b2af9a07f7acb8473fa9c08fe6bfc2f6336c",
+      "verifiedUtc": "2026-10-31T14:35:00Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -37,7 +37,9 @@
       },
       "url": "https://api-dev-6091.up.railway.app",
       "providerStatus": "SUCCESS",
-      "port": 8080
+      "port": 8080,
+      "previousDeploymentId": "cb272de2-f067-47f8-90ca-54ba2f1c0cb0",
+      "redeployNote": "S15av lab bridge (api node + /internal/lab/bridge; web production /api/lab) + S15aw result chart"
     },
     "worker": {
       "id": "5b5e6ebc-d4f1-46fb-b6de-6b7ff94b89a7",

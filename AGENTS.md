@@ -2,6 +2,14 @@
 
 Scope: this event folder. Current phase: **building Real2Simulation** (solo, indie track). Nothing submitted.
 
+## Standing GPU rule — Oct31 ~20:15 Dhaka (owner, supersedes per-job GPU asks)
+
+Koushik: Modal credits ($120+ left) expire at the end of the hackathon, so saving them is pointless.
+"If the task requires it and it is quite low, then go ahead, just do it." Low-cost GPU work a
+QUEUE row needs runs without asking: within remaining credits, no paid overage, ledger every
+job, stop containers after each session. Guard caps (gpu_stages, settlement) stay as tooling;
+settle stale reservations from real Modal billing instead of asking Koushik.
+
 ## Latest owner vendor preference — Oct31 ~01:50 Dhaka (standing)
 
 Koushik: "Keep the rule of using codex models less and Claude models more." Dispatch Claude
