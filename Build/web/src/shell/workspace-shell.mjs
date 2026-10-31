@@ -22,11 +22,12 @@ export const SECTIONS = Object.freeze([
 export const initialLeft = (stored, narrow) => !narrow && stored !== 'collapsed';
 
 // Tools exist only when the private API answered (live); each maps to a real backend-driven surface already on the page.
-export function toolsOf({ live, phase, owner, jobId, uploadStatus, hasReport }) {
+export function toolsOf({ live, phase, owner, jobId, uploadStatus, hasReport, pending = 0 }) {
   if (!live) return [];
   const label = PHASE_LABEL[phase] ?? phase;
   return [
-    { id: 'agent', label: 'Agent', status: owner && phase === 'interview.active' ? OWNER_INTERVIEW_LABEL : label, target: 'ws-panel', key: '1', icon: 'chat' },
+    { id: 'agent', label: 'Agent', status: (pending ? pending + (pending === 1 ? ' question' : ' questions') + ' waiting. ' : '') + (owner && phase === 'interview.active' ? OWNER_INTERVIEW_LABEL : label),
+      pending, target: pending ? 'r2s-q-h' : 'ws-panel', key: '1', icon: 'chat' },
     { id: 'clips', label: 'Clips', status: uploadStatus || 'Upload an approved licensed clip', target: 'ws-upload-file', key: '2', icon: 'film' },
     { id: 'runs', label: 'Runs & history', status: jobId ? 'Job ' + jobId + ': ' + label : 'No job yet', target: 'ws-job', key: '3', icon: 'history' },
     { id: 'report', label: 'Report', status: hasReport ? 'Report available' : 'No report yet (needs a finished fit or clip result)', target: 'ws-panel', key: '4', icon: 'doc' },
@@ -59,10 +60,11 @@ const navList = (h, label, items, onNav) => h('nav', { className: 'r2s-nav', 'ar
   h('ul', null, ...items.map((it) => h('li', { key: it.id },
     h('a', { href: it.href, title: it.label, 'data-nav': it.id, onClick: onNav }, icon(h, it.icon), h('span', { className: 'r2s-label' }, it.label))))));
 
-// v = { title, left, right, tools }; left null = not yet read (before hydration): wide CSS shows it expanded, narrow keeps the drawer shut.
+// v = { title, left, right, tools, pending, agent }; left null = not yet read (before hydration): wide CSS shows it expanded, narrow keeps the drawer shut.
+// S15ac: agent = the question card element (rendered above Tools); pending > 0 with the panel closed shows a badge on the toggle.
 // on = { toggleLeft, toggleRight, tool, close, navigated }; refs = { rightToggle, rightHead }.
 export function renderShell(h, v, on = {}, refs = {}, ...content) {
-  const { right, tools } = v;
+  const { right, tools, pending = 0 } = v;
   const left = v.left ?? true;
   return h('div', { className: 'r2s-shell', 'data-left': v.left == null ? 'auto' : left ? 'expanded' : 'collapsed', 'data-right': right ? 'open' : 'closed' },
     h('aside', { id: 'r2s-left', className: 'r2s-left', 'aria-label': 'Workspace sidebar' },
@@ -75,12 +77,14 @@ export function renderShell(h, v, on = {}, refs = {}, ...content) {
         h('h1', null, v.title),
         h('button', { type: 'button', ref: refs.rightToggle, className: 'r2s-iconbtn r2s-tools-btn', 'data-toggle': 'right', 'aria-controls': 'r2s-right', 'aria-expanded': right,
           'aria-keyshortcuts': 'Control+J', title: (right ? 'Close' : 'Open') + ' agent and tools (' + SHORTCUT_LABEL.right + ')', onClick: on.toggleRight },
-          icon(h, 'side'), h('span', { className: 'r2s-label' }, 'Agent & tools'))),
+          icon(h, 'side'), h('span', { className: 'r2s-label' }, 'Agent & tools'),
+          pending && !right ? h('span', { className: 'r2s-badge', 'data-badge': pending }, String(pending), h('span', { className: 'r2s-sr' }, pending === 1 ? ' question waiting' : ' questions waiting')) : null)),
       ...content),
     h('aside', { id: 'r2s-right', className: 'r2s-right', 'aria-labelledby': 'r2s-right-h', hidden: !right },
       h('div', { className: 'r2s-right-head' },
         h('h2', { id: 'r2s-right-h', ref: refs.rightHead, tabIndex: -1 }, 'Agent & tools'),
         h('button', { type: 'button', className: 'r2s-iconbtn', 'aria-label': 'Close agent and tools', title: 'Close (Esc)', onClick: on.toggleRight }, icon(h, 'close'))),
+      v.agent ?? null,
       h('h3', { className: 'r2s-nav-h' }, 'Tools'),
       tools.length ? h('ul', { className: 'r2s-tools' }, ...tools.map((t) => h('li', { key: t.id },
         h('button', { type: 'button', className: 'r2s-tool', 'data-tool': t.id, 'aria-keyshortcuts': 'Alt+' + t.key, onClick: () => on.tool?.(t) },

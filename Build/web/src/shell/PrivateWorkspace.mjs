@@ -11,6 +11,7 @@ import { initialInterview, reduceInterview, interviewAnswers } from '../workspac
 import { initialInstruments, reduceInstruments } from '../workspace/instruments.mjs';
 import { initialRun } from '../workspace/runcontrol.mjs';
 import { renderShell, toolsOf, shellKey, initialLeft, LEFT_KEY, NARROW_QUERY } from './workspace-shell.mjs';
+import { renderQuestionCard, renderWaiting, pendingOf, shouldAutoOpen } from './agent-card.mjs';
 
 const Workspace = createWorkspace(React);
 const adapter = createThreeViewer();
@@ -79,36 +80,51 @@ export default function PrivateWorkspace({ scene }) {
   const [right, setRight] = useState(false);
   const rightToggle = useRef(null);
   const rightHead = useRef(null);
+  const cardHead = useRef(null);
   const opened = useRef(false);
+  // S15ac: the interview lives in the right panel; same reducer state, shown in the same phase the centre panel used.
+  const iv = live && phase === 'interview.active' ? local.interview : null;
+  const pending = pendingOf(iv);
+  const round = useRef(null);
+  const userClosed = useRef(false); // the user shut the panel while questions were pending: badge instead of forcing it open again
   const narrow = () => globalThis.matchMedia?.(NARROW_QUERY).matches ?? false;
   useEffect(() => { let v = null; try { v = localStorage.getItem(LEFT_KEY); } catch {} setLeft(initialLeft(v, narrow())); }, []);
   useEffect(() => {
-    if (right) { opened.current = true; rightHead.current?.focus(); } else if (opened.current) rightToggle.current?.focus();
+    if (right) { opened.current = true; (cardHead.current ?? rightHead.current)?.focus(); } else if (opened.current) rightToggle.current?.focus();
   }, [right]);
+  useEffect(() => {
+    const q = iv?.questions ?? null;
+    if (shouldAutoOpen({ asking: pending > 0, newRound: q !== round.current, userClosed: userClosed.current })) setRight(true);
+    round.current = q;
+  }, [iv?.questions, pending]); // eslint-disable-line react-hooks/exhaustive-deps -- a new round = a new questions array
+  const closeRight = () => { if (pending) userClosed.current = true; setRight(false); };
+  const toggleRight = () => (right ? closeRight() : setRight(true));
+  const openCard = () => (right ? cardHead.current?.focus() : setRight(true));
   const toggleLeft = () => setLeft((v) => { if (!narrow()) try { localStorage.setItem(LEFT_KEY, v ? 'collapsed' : 'expanded'); } catch {} return !v; });
-  const tools = toolsOf({ live, phase, owner: !!s.state.owner, jobId: s.state.job?.id, uploadStatus: up.show ? up.status : null, hasReport: !!s.report || phase === 'report.owner' });
+  const tools = toolsOf({ live, phase, owner: !!s.state.owner, jobId: s.state.job?.id, uploadStatus: up.show ? up.status : null, hasReport: !!s.report || phase === 'report.owner', pending });
   const openTool = (t) => {
     const el = globalThis.document?.getElementById(t.target);
     if (!el) return;
-    if (narrow()) { opened.current = false; setRight(false); }
+    if (narrow() && !el.closest?.('#r2s-right')) { opened.current = false; setRight(false); }
     el.scrollIntoView?.({ block: 'start', behavior: 'smooth' }); el.focus?.({ preventScroll: true });
   };
   const keysRef = useRef(null);
   keysRef.current = (e) => {
     const k = shellKey(e, tools);
     if (!k) return;
-    if (k === 'escape') { if (right) setRight(false); else if (left && narrow()) setLeft(false); else return; }
+    if (k === 'escape') { if (right) closeRight(); else if (left && narrow()) setLeft(false); else return; }
     else if (k === 'left') toggleLeft();
-    else if (k === 'right') setRight((v) => !v);
+    else if (k === 'right') toggleRight();
     else openTool(tools.find((t) => 'tool:' + t.id === k));
     e.preventDefault();
   };
   useEffect(() => { const f = (e) => keysRef.current(e); globalThis.addEventListener('keydown', f); return () => globalThis.removeEventListener('keydown', f); }, []);
-  const on = { toggleLeft, toggleRight: () => setRight((v) => !v), tool: openTool,
-    close: () => { setRight(false); if (narrow()) setLeft(false); }, navigated: () => { if (narrow()) setLeft(false); } };
+  const on = { toggleLeft, toggleRight, tool: openTool,
+    close: () => { if (right) closeRight(); if (narrow()) setLeft(false); }, navigated: () => { if (narrow()) setLeft(false); } };
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
-    renderShell(React.createElement, { title: scene.title, left, right, tools }, on, { rightToggle, rightHead },
+    renderShell(React.createElement, { title: scene.title, left, right, tools, pending, agent: iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null }, on, { rightToggle, rightHead },
     React.createElement('p', { role: 'note' }, live ? LIVE_NOTICE : api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),
+    live ? renderWaiting(React.createElement, iv, openCard) : null,
     live ? null : React.createElement('p', { role: 'note' }, scene.notice),
     // the upload error is rendered once, by the workspace job panel (S15n limit: avoid a double alert)
     live ? renderUpload(React.createElement, { ...up, error: null }, (file) => ctl.upload(file)) : null,
@@ -117,7 +133,7 @@ export default function PrivateWorkspace({ scene }) {
       : 'SIMULATED: run and fit values come from the in-browser simulator on the validated setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')) : null,
     live ? React.createElement('p', { role: 'note', 'data-instruments': 'unavailable' }, INSTRUMENTS_UNAVAILABLE) : null,
     React.createElement(Workspace, { state: s.state, adapter, audience: 'signed-in', onAction,
-      interview: live ? local.interview : undefined, run: live ? initialRun() : undefined, instruments: live ? local.instruments : undefined,
+      run: live ? initialRun() : undefined, instruments: live ? local.instruments : undefined, // interview: rendered in the right panel (S15ac)
       fit: live ? s.fitInput ?? undefined : undefined, report: live && s.report ? s.report : undefined, provenance: live ? s.provenance ?? undefined : undefined,
       whatIf: live ? s.whatIfLabel ?? undefined : undefined })));
 }
