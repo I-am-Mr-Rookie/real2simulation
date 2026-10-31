@@ -181,7 +181,7 @@
 
 /* S15ab: Q21 shell. Left nav rail (collapsible), center project, right Agent & tools panel. Same paper/ink tokens and hard shadow. */
 .r2s-shell { --sh-ink: var(--r2s-ink, #1c1a16); --sh-surface: var(--r2s-surface, #fffcf5); --sh-bg: var(--r2s-bg, #f3eee3); --sh-muted: var(--r2s-muted, #5a554b);
-  --sh-radius: var(--r2s-radius, 6px); --sh-left: 14rem;
+  --sh-radius: var(--r2s-radius, 6px); --sh-left: 16rem;
   display: grid; grid-template-columns: var(--sh-left) minmax(0, 1fr) auto; align-items: start; min-width: 0; color: var(--sh-ink);
   font-family: var(--r2s-font-sans, "Instrument Sans", ui-sans-serif, system-ui, "Segoe UI", sans-serif); background: var(--sh-bg); }
 .r2s-shell[data-left="collapsed"] { --sh-left: 3.25rem; }
@@ -194,16 +194,15 @@
 .r2s-railbtn { display: inline-flex; align-items: center; justify-content: center; width: 2.5rem; height: 2.5rem; padding: 0; border: 1px solid transparent; border-radius: var(--sh-radius);
   background: transparent; color: var(--sh-muted); cursor: pointer; transition: background-color .12s ease, border-color .12s ease, color .12s ease; }
 .r2s-railbtn:hover { color: var(--sh-ink); border-color: var(--sh-ink); }
-.r2s-railbtn[aria-current="true"] { background: var(--sh-bg); color: var(--sh-ink); border-color: var(--sh-ink); box-shadow: 2px 2px 0 var(--sh-ink); }
+.r2s-railbtn[aria-current="true"] { background: var(--sh-bg); color: var(--sh-ink); border-color: var(--sh-ink); box-shadow: inset 3px 0 0 var(--sh-ink), 2px 2px 0 var(--sh-ink); }
 .r2s-pane { flex: 1; min-width: 0; padding: .75rem .4rem; overflow-y: auto; background: var(--sh-surface); }
 .r2s-pane[hidden] { display: none; }
-.r2s-pane[data-mode="temporary"] { position: absolute; top: 0; bottom: 0; left: 3.25rem; width: 10.75rem; z-index: 25; border-right: 1px solid var(--sh-ink); box-shadow: 4px 0 0 var(--sh-ink); }
-.r2s-pin { display: block; margin: 0 .5rem .5rem auto; padding: .2rem .5rem; font: 600 .75rem/1.3 inherit; border: 1px solid var(--sh-ink); border-radius: var(--sh-radius); background: var(--sh-bg); color: inherit; cursor: pointer; }
+.r2s-pane[data-mode="temporary"] { position: absolute; top: 3.9rem; bottom: 0; left: 3.25rem; width: 12.75rem; z-index: 25; border-right: 1px solid var(--sh-ink); box-shadow: 4px 0 0 var(--sh-ink); }
 .r2s-right { width: 20rem; border-left: 1px solid var(--sh-ink); padding: .75rem; box-shadow: -4px 0 0 var(--sh-ink); }
 .r2s-right[hidden] { display: none; }
 .r2s-nav + .r2s-nav { margin-top: 1rem; }
 .r2s-nav-h { margin: 0 0 .35rem; padding: 0 .5rem; font: 700 .68rem/1.3 var(--r2s-font-mono, "Space Mono", ui-monospace, monospace); letter-spacing: .08em; text-transform: uppercase; color: var(--sh-muted); }
-.r2s-nav ul, .r2s-tools { list-style: none; margin: 0; padding: 0; display: grid; gap: .3rem; }
+.r2s-nav a { overflow-wrap: anywhere; } .r2s-nav ul, .r2s-tools { list-style: none; margin: 0; padding: 0; display: grid; gap: .3rem; }
 .r2s-nav a { display: flex; align-items: center; gap: .6rem; min-height: 2.5rem; padding: 0 .55rem; border-radius: var(--sh-radius); color: inherit; text-decoration: none;
   border: 1px solid transparent; white-space: nowrap; overflow: hidden; transition: background-color .12s ease, border-color .12s ease; }
 .r2s-nav a:hover { background: var(--sh-bg); border-color: var(--sh-ink); }
@@ -252,7 +251,7 @@
   background: transparent; border: 1px solid transparent; border-radius: var(--sh-radius); cursor: pointer; transition: background-color .12s ease, border-color .12s ease, transform .1s ease; }
 .r2s-qopt:hover { background: var(--sh-bg); border-color: var(--sh-ink); }
 .r2s-qopt:active { transform: scale(.98); }
-.r2s-qopt[aria-pressed="true"] { background: var(--sh-bg); border-color: var(--sh-ink); box-shadow: 2px 2px 0 var(--sh-ink); }
+.r2s-qopt[aria-pressed="true"] { background: var(--sh-bg); border-color: var(--sh-ink); box-shadow: inset 3px 0 0 var(--sh-ink), 2px 2px 0 var(--sh-ink); }
 .r2s-qopt kbd, .r2s-qsubmit kbd { flex: none; display: inline-grid; place-items: center; min-width: 1.4rem; height: 1.4rem; padding: 0 .25rem; border: 1px solid var(--sh-muted); border-radius: 3px;
   font: .72rem/1 var(--r2s-font-mono, "Space Mono", ui-monospace, monospace); color: var(--sh-muted); }
 .r2s-qopt[aria-pressed="true"] kbd { background: var(--sh-ink); border-color: var(--sh-ink); color: var(--r2s-accent-ink, #fff); }

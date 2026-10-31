@@ -101,7 +101,6 @@ export function renderShell(h, v, on = {}, refs = {}, ...content) {
           onClick: () => on.rail?.({ type: 'iconClick', id: p.id }), onPointerEnter: (e) => on.hover?.(p.id, e), onPointerLeave: on.unhover }, icon(h, p.icon)))),
       ...PANES.map((p) => h('div', { key: p.id, id: 'r2s-pane-' + p.id, className: 'r2s-pane', role: 'region', 'aria-label': p.label, hidden: shown !== p.id,
         'data-mode': rail.preview === p.id ? 'temporary' : 'pinned', onPointerEnter: on.paneEnter, onPointerLeave: on.unhover },
-        rail.preview === p.id ? h('button', { type: 'button', className: 'r2s-pin', onClick: () => on.rail?.({ type: 'pin' }) }, 'Keep open') : null,
         navList(h, p.label, p.items, on.navigated)))),
     h('div', { className: 'r2s-center' },
       h('header', { className: 'r2s-top' },

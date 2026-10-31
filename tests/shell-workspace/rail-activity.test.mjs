@@ -56,7 +56,7 @@ test('persisted state: stored pane validated; narrow starts closed; default navi
   assert.deepEqual(initialRail('expanded', 'project', true), S('project', false));
 });
 
-test('render: rail always present; current icon aria-current open/collapsed/preview; panes aria-labelled; temporary has pin', () => {
+test('render: rail always present; current icon aria-current open/collapsed/preview; panes aria-labelled; no Keep-open button', () => {
   for (const rail of [S('project', true), S('project', false), S('project', false, 'navigate'), S('project', false, 'project')]) {
     const tree = renderShell(h, { title: 'T', rail, right: false, tools: [] });
     const btns = find(tree, (n) => n.props['data-pane']);
@@ -67,7 +67,7 @@ test('render: rail always present; current icon aria-current open/collapsed/prev
     assert.deepEqual(panes.filter((p) => !p.props.hidden).map((p) => p.props.id), shownPane(rail) ? ['r2s-pane-' + shownPane(rail)] : []);
     assert.equal(tree.props['data-left'], rail.open ? 'expanded' : 'collapsed');
     assert.deepEqual(panes.filter((p) => p.props['data-mode'] === 'temporary').map((p) => p.props.id), rail.preview ? ['r2s-pane-' + rail.preview] : []);
-    assert.equal(find(tree, (n) => n.props.className === 'r2s-pin').length, rail.preview ? 1 : 0);
+    assert.equal(find(tree, (n) => n.props.className === 'r2s-pin').length, 0); // no Keep-open button; icon click pins
     assert.equal(find(tree, (n) => n.props.tabIndex >= 0 || n.props.autoFocus).length, 0); // nothing steals focus
   }
 });
