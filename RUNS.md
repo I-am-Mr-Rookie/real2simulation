@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 09:46 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 11:18 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **231 / 260** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
+Progress: **232 / 260** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
 
 ## Reviews for Koushik
 
@@ -24,7 +24,7 @@ Progress: **231 / 260** runs done · 0 in progress · 0 blocked · 0 waiting for
 - …and 1 more ready in this lane
 
 **CLAUDE**
-- [ ] **S15aa** — Codex (native Claude) · Opus 5.5, effort medium — Owner clips OWN02-OWN12 in product: stored frozen-v1 result + v3 predictive-check verdict, or abstain (30 min)
+- Nothing ready yet: check dependencies and retry holds below.
 
 ## Waiting for Koushik
 
@@ -264,7 +264,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (26/27)</summary>
+<details><summary><b>S15</b> — Workspace UI (27/27)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -292,7 +292,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15w** — Codex (native Claude) · Opus 5.5, effort high — One UI pass: myfront 1.2.0 round-3 + make-interfaces-feel-better (30 min)
 - [x] **S15x** — Codex (native Claude) · Sonnet 5.5, effort medium — Propose 6 Mobbin references for the owner to pick 3 (20 min)
 - [x] **S15z** — Codex (native Claude) · Sonnet 5.5, effort medium — Owner clip result card shown once (stage panel or job panel, not both) (30 min)
-- [ ] **S15aa** — Codex (native Claude) · Opus 5.5, effort medium — Owner clips OWN02-OWN12 in product: stored frozen-v1 result + v3 predictive-check verdict, or abstain (30 min)
+- [x] **S15aa** — Codex (native Claude) · Opus 5.5, effort medium — Owner clips OWN02-OWN12 in product: stored frozen-v1 result + v3 predictive-check verdict, or abstain (30 min)
 
 </details>
 
