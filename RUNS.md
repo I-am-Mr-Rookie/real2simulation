@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 17:33 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 17:36 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **253 / 281** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **253 / 282** runs done · 2 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,6 +24,11 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - [~] **S15aq** — Codex (native Claude) · Opus 5.5, effort high — Home page: scroll-craft motion layer (resting look unchanged; hero planes, cards stack then fan out, signature card swap, honesty reveal; reduced motion static) + owner copy (H1 two lines "Film Physics" / "Simulate it in 3D", caption C1, cards Film it / Measure it / Remix it, "Guess the gravity." link to Mystery-g, trust line "Every number shows where it came from: measured, simulated or what-if.") + 2-4 showcase sections below the fold using existing art, no invented numbers, no em dashes (30 min) *(partial: resume it)*
+
+## In progress
+
+- [~] **S15ar** — Codex (native Claude) · Sonnet 5.5, effort medium — Remove every visible em dash from the website, replaced intelligently per context (owner: "sometimes use comma, semicolon, big space, line break, whatever it needs"); API-provided strings transformed at display only, label words unchanged (30 min) *(in progress)*
+- [~] **S15au** — Codex (native Claude) · Opus 5.5, effort high — Home showcase + header polish after S15aq DEV review: full-width balanced showcase compositions with captions, consistent alignment; header mark 32-36 px with text, 375 px workspace link on one line; icon-only header GitHub link (repo public); check swap/deal motion; 6 themes x 1280/375, reduced motion (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -264,7 +269,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (44/46)</summary>
+<details><summary><b>S15</b> — Workspace UI (44/47)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -309,9 +314,10 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15ao** — Codex (native Claude) · Opus 5.5, effort high — Public library/lab polish: S15ai skipped redlines: library L1 (filter chips with counts, 16:9 thumbnails, B3 empty-filter state, licence/credit per card kept verbatim), lab LB1 (two-column layout, B4 empty state, SIMULATED chip pinned on every chart), PWA manifest icons -> /brand assets, remove duplicate app/icon.svg link, nav icon targets >= 44px, Sign in no longer wraps at 375; home stays as is (30 min)
 - [x] **S15ap** — Codex (native Claude) · Opus 5.5, effort high — Logo v2 per owner Oct31: simple pendulum in three phases (left ghost, solid rust-orange centre bob, right ghost), dark ink lines (light ink + ember on dark modes), hand-authored SVG by Opus (owner chose Opus over Sol), replaces Build/web/public/brand files under the same names (30 min)
 - [~] **S15aq** — Codex (native Claude) · Opus 5.5, effort high — Home page: scroll-craft motion layer (resting look unchanged; hero planes, cards stack then fan out, signature card swap, honesty reveal; reduced motion static) + owner copy (H1 two lines "Film Physics" / "Simulate it in 3D", caption C1, cards Film it / Measure it / Remix it, "Guess the gravity." link to Mystery-g, trust line "Every number shows where it came from: measured, simulated or what-if.") + 2-4 showcase sections below the fold using existing art, no invented numbers, no em dashes (30 min) *(partial: resume it)*
-- [ ] **S15ar** — Codex (native Claude) · Sonnet 5.5, effort medium — Remove every visible em dash from the website, replaced intelligently per context (owner: "sometimes use comma, semicolon, big space, line break, whatever it needs"); API-provided strings transformed at display only, label words unchanged (30 min)
+- [~] **S15ar** — Codex (native Claude) · Sonnet 5.5, effort medium — Remove every visible em dash from the website, replaced intelligently per context (owner: "sometimes use comma, semicolon, big space, line break, whatever it needs"); API-provided strings transformed at display only, label words unchanged (30 min) *(in progress)*
 - [x] **S15as** — Codex (native Claude) · Sonnet 5.5, effort medium — PWA manifest icons -> new /brand assets (S15ao blocker): Build/web/src/pwa/manifest.mjs icons to /brand/mark-192.png, mark-512.png, icon-maskable-512.png; regenerate public/pwa manifest; update tests/pwa pixel test and sw.js/cache-policy precache lists (30 min)
 - [x] **S15at** — Codex (native Claude) · Opus 5.5, effort high — Logo v3 from Koushik's pencil sketch (evidence/owner/logo-sketches-2026-10-31/, local only): hatched fixed support line, one pivot, solid string + solid centre bob, dashed strings to hollow ghost bobs left/right; v2 colours; separate small drawing; wordmark lockups keep the "Real2Simulation" text; same filenames (30 min)
+- [~] **S15au** — Codex (native Claude) · Opus 5.5, effort high — Home showcase + header polish after S15aq DEV review: full-width balanced showcase compositions with captions, consistent alignment; header mark 32-36 px with text, 375 px workspace link on one line; icon-only header GitHub link (repo public); check swap/deal motion; 6 themes x 1280/375, reduced motion (30 min) *(in progress)*
 
 </details>
 
