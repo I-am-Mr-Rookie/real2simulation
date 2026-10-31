@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Oct 31, 06:04 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 06:05 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -142,7 +142,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S07g** — Codex (native Claude) · Opus 5.5, effort high — Owner clips: register in clips.csv and measure g on 01_demo_hero with the real pipeline (30 min)
 - [x] **S07i** — Codex (native Claude) · Opus 5.5, effort high — OWN01 measured g from the real SAM 3.1 track; prepare one batched track for OWN02-OWN12 (30 min)
 - [x] **S07j** — Codex (native Claude) · Opus 5.5, effort high — Fix batch-track CUDA OOM and add an explicit reviewed second standalone GPU envelope (30 min)
-- [ ] **S07k** — Codex (native Claude) · Opus 5.5, effort high — Pre-registered fall-window/release rule v2 from SAM tracks; re-measure owner clips (30 min)
+- [~] **S07k** — Codex (native Claude) · Opus 5.5, effort high — Pre-registered fall-window/release rule v2 from SAM tracks; re-measure owner clips (30 min) *(partial: resume it)*
 - [~] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min) *(partial: resume it)*
 - [x] **R-M** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
 - [x] **R-M2** — Codex (native Claude) · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min)

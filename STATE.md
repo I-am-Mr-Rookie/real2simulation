@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T00:07Z — controller: S07k merged PARTIAL (OWN07-11 pending); S07k resume dispatched (medium)
+
+- S07k-orch174 (Opus high; timebox PASS; self-check + measurement 90 OK fresh): pre-registered v2 rule (SAM centroid release, static pre-release scale, end before impact/rotation, min 8 frames). v2 on OWN01-OWN06: OWN01 ABSTAIN (7<8 frames), OWN02 7.27+/-3.07, OWN03 9.56+/-0.63, OWN04 10.40+/-0.46, OWN05 9.62+/-0.74, OWN06 ABSTAIN; vs 9.79: 1u 3/4, 2u 4/4; held-out pass 0/4 (OWN05 6.5 px vs 6). Second analysis after seeing v1 (forking-paths caveat). evidence/S07/S07k/README.md.
+- S07k-orch178 dispatched (Opus MEDIUM: mechanical frozen-rule extension, per Koushik's easy-task quota rule; thread 01a18f45-ff7d-7dd1-b02b-99de66ece236; deadline 00:34:39Z / 06:34 Dhaka): v2 on OWN07-OWN11 + full 11-clip table.
+
 ## 2026-10-31T00:06Z — controller: accept S24k DONE; Q22 asked
 
 - S24k-orch175 DONE (Sonnet medium; timebox PASS): media/script/DEMO_SCRIPT_DRAFT.md v3 adds beat 5b (1:38-1:58) stopwatch-vs-phone using only S07i/S07h MEASURED numbers with u and labels; held-out 0/6 FAIL stated; owner-clip shots marked public use pending Koushik's go-ahead; total 180 s; numbers in one SWAP BLOCK for S07k/S07h updates. No stopwatch reading exists in the repo -> placeholder, Q22 asked.
