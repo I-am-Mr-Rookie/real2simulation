@@ -23,6 +23,10 @@ Read/APPLIED installed Ponytail full and Imagegen built-in skill. Reused approve
 - Strict two-RGB-colours assertion FAILED: Lanczos interpolation/overshoot means resampled opaque edge pixels are not exactly the two input colours. This is recorded, not hidden or claimed passing. Alpha/geometry checks are independent and passed. Lossy WebP also changes edge RGB.
 - Git scoped diff and worker_timebox.py check recorded in final verification receipt. Main advanced during this run; compare against recorded base, not moving main. No unrelated changes staged.
 
+## Administrative closeout timing
+
+Asset implementation stopped at the minute-25 cutoff; export/review/evidence were complete and staged before the deadline. Task work ended at the original 09:26:47Z deadline. Main asset/report commit: 19530c55. The commit call was issued near the deadline but its completion was only observed at 09:27:11Z; commit-by-deadline was therefore NOT independently verified. TIMEBOX/verification administrative closure occurred after the deadline under the policy's post-stop-report allowance; this is a timing limitation, not an extension for implementation or generation.
+
 ## Next action / skipped / risks
 
 Controller should schedule a short B1/B5 optical consistency follow-up before whole-batch acceptance; strengthen B1 grid at 120px and bring B5 to the same pen weight / accent ring, review all six modes again. B2/B3/B4/B6 candidates and transparent recovery are reusable. No web code/style/manifest edits, browser/runtime QA, build, integration, deployment, publication, Meta/GPU call, secrets or installs. Generated rights provenance is not copyright/trademark clearance. Direct thread messaging tool unavailable; exact final completion line is the authorized fallback. One mandatory skill notice and tool-required image displays were the only optional-silence exceptions; no duplicated progress chatter.
