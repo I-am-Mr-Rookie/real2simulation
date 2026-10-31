@@ -10,7 +10,7 @@ import { uploadView, renderUpload } from '../workspace/upload-view.mjs';
 import { initialInterview, reduceInterview, interviewAnswers } from '../workspace/interview.mjs';
 import { initialInstruments, reduceInstruments } from '../workspace/instruments.mjs';
 import { initialRun } from '../workspace/runcontrol.mjs';
-import { renderShell, toolsOf, shellKey, initialLeft, LEFT_KEY, NARROW_QUERY } from './workspace-shell.mjs';
+import { renderShell, toolsOf, shellKey, initialRail, railReduce, LEFT_KEY, PANE_KEY, NARROW_QUERY, HOVER_OPEN_MS, HOVER_CLOSE_MS } from './workspace-shell.mjs';
 import { renderQuestionCard, renderWaiting, pendingOf, shouldAutoOpen } from './agent-card.mjs';
 
 const Workspace = createWorkspace(React);
@@ -76,7 +76,7 @@ export default function PrivateWorkspace({ scene }) {
   const up = uploadView(s);
   const simulated = /^(run|fit)\.|^report\.open$/.test(phase); // run/fit/report numbers are browser-simulated, never recorded (report.owner is the stored owner result)
   // S15ab shell state: left expanded/collapsed (persisted on wide screens), right panel open/closed with focus in and back.
-  const [left, setLeft] = useState(null);
+  const [rail, setRail] = useState(null); // S15ae activity bar: { pane, open, preview } via the pure railReduce
   const [right, setRight] = useState(false);
   const rightToggle = useRef(null);
   const rightHead = useRef(null);
@@ -88,7 +88,24 @@ export default function PrivateWorkspace({ scene }) {
   const round = useRef(null);
   const userClosed = useRef(false); // the user shut the panel while questions were pending: badge instead of forcing it open again
   const narrow = () => globalThis.matchMedia?.(NARROW_QUERY).matches ?? false;
-  useEffect(() => { let v = null; try { v = localStorage.getItem(LEFT_KEY); } catch {} setLeft(initialLeft(v, narrow())); }, []);
+  useEffect(() => { let o = null, p = null; try { o = localStorage.getItem(LEFT_KEY); p = localStorage.getItem(PANE_KEY); } catch {} setRail(initialRail(o, p, narrow())); }, []);
+  useEffect(() => { // same LEFT_KEY semantics as S15ab (wide only); the current pane is stored separately
+    if (!rail) return;
+    try { localStorage.setItem(PANE_KEY, rail.pane); if (!narrow()) localStorage.setItem(LEFT_KEY, rail.open ? 'expanded' : 'collapsed'); } catch {}
+  }, [rail?.pane, rail?.open]); // eslint-disable-line react-hooks/exhaustive-deps
+  const send = (e) => setRail((s) => railReduce(s ?? initialRail(null, null, narrow()), e));
+  const timers = useRef({});
+  const stop = (k) => { clearTimeout(timers.current[k]); timers.current[k] = null; };
+  const later = (k, ms, f) => { stop(k); timers.current[k] = setTimeout(f, ms); };
+  useEffect(() => () => { stop('open'); stop('close'); }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // Hover preview: real mouse pointers on wide screens only (touch/pen taps are clicks; narrow panes are drawers).
+  const hover = (id, e) => { if (e?.pointerType !== 'mouse' || narrow()) return; stop('close'); later('open', HOVER_OPEN_MS, () => send({ type: 'hoverEnter', id })); };
+  const unhover = () => { stop('open'); later('close', HOVER_CLOSE_MS, () => send({ type: 'hoverLeave' })); };
+  const closePreview = () => { // Escape: close the temporary pane; if focus was inside it, return focus to its icon
+    const doc = globalThis.document;
+    if (doc?.getElementById('r2s-pane-' + rail.preview)?.contains(doc.activeElement)) doc.querySelector('[data-pane="' + rail.preview + '"]')?.focus();
+    stop('open'); stop('close'); send({ type: 'escape' });
+  };
   useEffect(() => {
     if (right) { opened.current = true; (cardHead.current ?? rightHead.current)?.focus(); } else if (opened.current) rightToggle.current?.focus();
   }, [right]);
@@ -100,7 +117,7 @@ export default function PrivateWorkspace({ scene }) {
   const closeRight = () => { if (pending) userClosed.current = true; setRight(false); };
   const toggleRight = () => (right ? closeRight() : setRight(true));
   const openCard = () => (right ? cardHead.current?.focus() : setRight(true));
-  const toggleLeft = () => setLeft((v) => { if (!narrow()) try { localStorage.setItem(LEFT_KEY, v ? 'collapsed' : 'expanded'); } catch {} return !v; });
+  const toggleLeft = () => send({ type: 'toggle' });
   const tools = toolsOf({ live, phase, owner: !!s.state.owner, jobId: s.state.job?.id, uploadStatus: up.show ? up.status : null, hasReport: !!s.report || phase === 'report.owner', pending });
   const openTool = (t) => {
     const el = globalThis.document?.getElementById(t.target);
@@ -112,17 +129,18 @@ export default function PrivateWorkspace({ scene }) {
   keysRef.current = (e) => {
     const k = shellKey(e, tools);
     if (!k) return;
-    if (k === 'escape') { if (right) closeRight(); else if (left && narrow()) setLeft(false); else return; }
+    if (k === 'escape') { if (rail?.preview) closePreview(); else if (right) closeRight(); else if (rail?.open && narrow()) toggleLeft(); else return; }
     else if (k === 'left') toggleLeft();
     else if (k === 'right') toggleRight();
     else openTool(tools.find((t) => 'tool:' + t.id === k));
     e.preventDefault();
   };
   useEffect(() => { const f = (e) => keysRef.current(e); globalThis.addEventListener('keydown', f); return () => globalThis.removeEventListener('keydown', f); }, []);
-  const on = { toggleLeft, toggleRight, tool: openTool,
-    close: () => { if (right) closeRight(); if (narrow()) setLeft(false); }, navigated: () => { if (narrow()) setLeft(false); } };
+  const on = { toggleLeft, toggleRight, tool: openTool, rail: (e) => { stop('open'); stop('close'); send(e); }, hover, unhover, paneEnter: () => stop('close'),
+    close: () => { if (right) closeRight(); if (narrow() && rail?.open) toggleLeft(); },
+    navigated: () => { if (rail?.preview) send({ type: 'escape' }); else if (narrow() && rail?.open) toggleLeft(); } };
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
-    renderShell(React.createElement, { title: scene.title, left, right, tools, pending, agent: iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null }, on, { rightToggle, rightHead },
+    renderShell(React.createElement, { title: scene.title, rail, right, tools, pending, agent: iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null }, on, { rightToggle, rightHead },
     React.createElement('p', { role: 'note' }, live ? LIVE_NOTICE : api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),
     live ? renderWaiting(React.createElement, iv, openCard) : null,
     live ? null : React.createElement('p', { role: 'note' }, scene.notice),

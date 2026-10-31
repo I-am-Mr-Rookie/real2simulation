@@ -16,7 +16,7 @@ const live = { live: true, phase: 'upload.idle', owner: false, jobId: null, uplo
 
 test('left sidebar: expanded and collapsed both keep every nav link with its accessible name; toggle reports aria-expanded', () => {
   for (const left of [true, false]) {
-    const tree = renderShell(h, { title: 'T', left, right: false, tools: [] });
+    const tree = renderShell(h, { title: 'T', rail: { pane: 'navigate', open: left, preview: null }, right: false, tools: [] });
     assert.equal(tree.props['data-left'], left ? 'expanded' : 'collapsed');
     const [btn] = find(tree, (n) => n.props['data-toggle'] === 'left');
     assert.equal(btn.props['aria-expanded'], left);

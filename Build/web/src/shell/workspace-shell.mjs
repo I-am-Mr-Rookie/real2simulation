@@ -21,6 +21,30 @@ export const SECTIONS = Object.freeze([
 // Narrow screens always start with the drawer closed; wide screens restore the stored choice (default expanded).
 export const initialLeft = (stored, narrow) => !narrow && stored !== 'collapsed';
 
+// S15ae: activity bar (Q21 section 6). The icon rail is always visible; each icon owns one pane of real links already on this page.
+export const PANE_KEY = 'r2s.workspace.pane';
+export const PANES = Object.freeze([
+  { id: 'navigate', label: 'Go to', icon: 'compass', items: NAV },
+  { id: 'project', label: 'This project', icon: 'list', items: SECTIONS },
+]);
+export const HOVER_OPEN_MS = 150;
+export const HOVER_CLOSE_MS = 250;
+// rail = { pane: current pane id, open: current pane pinned open, preview: id shown temporarily as an overlay or null }.
+export const initialRail = (storedOpen, storedPane, narrow) =>
+  ({ pane: PANES.some((p) => p.id === storedPane) ? storedPane : PANES[0].id, open: initialLeft(storedOpen, narrow), preview: null });
+export const shownPane = (s) => s.preview ?? (s.open ? s.pane : null);
+// Pure reducer; hover events arrive already debounced (open after HOVER_OPEN_MS, leave after HOVER_CLOSE_MS). No-ops return s.
+export function railReduce(s, e) {
+  switch (e.type) {
+    case 'toggle': return { ...s, open: !s.open, preview: null };
+    case 'iconClick': return e.id === s.pane && s.open && !s.preview ? { ...s, open: false } : { pane: e.id, open: true, preview: null };
+    case 'hoverEnter': return s.open && e.id === s.pane ? (s.preview ? { ...s, preview: null } : s) : s.preview === e.id ? s : { ...s, preview: e.id };
+    case 'hoverLeave': case 'escape': return s.preview ? { ...s, preview: null } : s;
+    case 'pin': return s.preview ? { pane: s.preview, open: true, preview: null } : s;
+    default: return s;
+  }
+}
+
 // Tools exist only when the private API answered (live); each maps to a real backend-driven surface already on the page.
 export function toolsOf({ live, phase, owner, jobId, uploadStatus, hasReport, pending = 0 }) {
   if (!live) return [];
@@ -51,6 +75,7 @@ const PATHS = {
   panel: 'M4 5h16v14H4zM14 5v14', pulse: 'M3 12h4l2-5 4 10 2-5h6', chat: 'M4 5h16v11H9l-5 4z', film: 'M4 5h16v14H4zM8 5v14M16 5v14M4 9h4M16 9h4M4 15h4M16 15h4',
   history: 'M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4M12 8v4l3 2', doc: 'M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6',
   rail: 'M4 5h16v14H4zM9 5v14', side: 'M4 5h16v14H4zM15 5v14', close: 'M6 6l12 12M18 6L6 18',
+  compass: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM15.5 8.5l-2 5-5 2 2-5z', list: 'M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01',
 };
 const icon = (h, name) => h('svg', { className: 'r2s-icon', viewBox: '0 0 24 24', width: 18, height: 18, 'aria-hidden': true, focusable: 'false' },
   h('path', { d: PATHS[name], fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' }));
@@ -60,15 +85,24 @@ const navList = (h, label, items, onNav) => h('nav', { className: 'r2s-nav', 'ar
   h('ul', null, ...items.map((it) => h('li', { key: it.id },
     h('a', { href: it.href, title: it.label, 'data-nav': it.id, onClick: onNav }, icon(h, it.icon), h('span', { className: 'r2s-label' }, it.label))))));
 
-// v = { title, left, right, tools, pending, agent }; left null = not yet read (before hydration): wide CSS shows it expanded, narrow keeps the drawer shut.
+// v = { title, rail, right, tools, pending, agent }; rail null = not yet read (before hydration): wide CSS shows it expanded, narrow keeps the drawer shut.
 // S15ac: agent = the question card element (rendered above Tools); pending > 0 with the panel closed shows a badge on the toggle.
-// on = { toggleLeft, toggleRight, tool, close, navigated }; refs = { rightToggle, rightHead }.
+// on = { toggleLeft, toggleRight, tool, close, navigated, rail(event), hover(id, pointerEvent), unhover, paneEnter }; refs = { rightToggle, rightHead }.
 export function renderShell(h, v, on = {}, refs = {}, ...content) {
   const { right, tools, pending = 0 } = v;
-  const left = v.left ?? true;
-  return h('div', { className: 'r2s-shell', 'data-left': v.left == null ? 'auto' : left ? 'expanded' : 'collapsed', 'data-right': right ? 'open' : 'closed' },
+  const rail = v.rail ?? initialRail(null, null, false);
+  const left = rail.open;
+  const shown = shownPane(rail);
+  return h('div', { className: 'r2s-shell', 'data-left': v.rail == null ? 'auto' : left ? 'expanded' : 'collapsed', 'data-right': right ? 'open' : 'closed' },
     h('aside', { id: 'r2s-left', className: 'r2s-left', 'aria-label': 'Workspace sidebar' },
-      navList(h, 'Go to', NAV), navList(h, 'This project', SECTIONS, on.navigated)),
+      h('div', { className: 'r2s-rail', role: 'group', 'aria-label': 'Sidebar panes' }, ...PANES.map((p) =>
+        h('button', { key: p.id, type: 'button', className: 'r2s-railbtn', 'data-pane': p.id, 'aria-label': p.label, title: p.label,
+          'aria-current': p.id === rail.pane ? 'true' : undefined, 'aria-expanded': shown === p.id, 'aria-controls': 'r2s-pane-' + p.id,
+          onClick: () => on.rail?.({ type: 'iconClick', id: p.id }), onPointerEnter: (e) => on.hover?.(p.id, e), onPointerLeave: on.unhover }, icon(h, p.icon)))),
+      ...PANES.map((p) => h('div', { key: p.id, id: 'r2s-pane-' + p.id, className: 'r2s-pane', role: 'region', 'aria-label': p.label, hidden: shown !== p.id,
+        'data-mode': rail.preview === p.id ? 'temporary' : 'pinned', onPointerEnter: on.paneEnter, onPointerLeave: on.unhover },
+        rail.preview === p.id ? h('button', { type: 'button', className: 'r2s-pin', onClick: () => on.rail?.({ type: 'pin' }) }, 'Keep open') : null,
+        navList(h, p.label, p.items, on.navigated)))),
     h('div', { className: 'r2s-center' },
       h('header', { className: 'r2s-top' },
         h('button', { type: 'button', className: 'r2s-iconbtn', 'data-toggle': 'left', 'aria-controls': 'r2s-left', 'aria-expanded': left,
