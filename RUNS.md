@@ -1,15 +1,14 @@
 # Runs checklist
 
-Updated Oct 31, 11:18 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 11:24 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **232 / 260** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 2 open reviews
+Progress: **232 / 262** runs done · 1 in progress · 0 blocked · 0 waiting for Koushik · 1 open reviews
 
 ## Reviews for Koushik
 
-- [ ] Q22 (demo script, S24k): what did your stopwatch read for the 01_demo_hero drop (and the drop height, if measured)? The 3-min script has a placeholder [OWNER STOPWATCH READING - not recorded] in beat 5b; reply with the number(s) or "no stopwatch" to drop that half of the before/after.
 - [ ] Q21 (UI refs, S15x): pick 3 of the 6 Mobbin references R1-R6 in evidence/ui/mobbin-S15x/REFERENCES.md for the UI pass (S15w); default R1,R2,R3 (Higgsfield upload/analyzing, Delphi question step, PlanetScale data table) if no reply.
 
 ## Ready now
@@ -25,6 +24,10 @@ Progress: **232 / 260** runs done · 0 in progress · 0 blocked · 0 waiting for
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **S07n** — Codex (native Claude) · Opus 5.5, effort medium — System-derived fall time and drop height (+/- u) for OWN01 from existing tracks (no stopwatch, no tape) (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -124,7 +127,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (19/20)</summary>
+<details><summary><b>S07</b> — Gate M spike: measure g from public free-fall clips (19/21)</summary>
 
 - [~] **S02f** — Codex · GPT-6.1 Sol, effort high — Find licensed calibrated Earth-fall replacements (30 min) *(partial: resume it)*
 - [x] **S02g** — Codex · GPT-6.1 Sol, effort high — Verify original FF01/FF02 calibration sources (30 min)
@@ -143,6 +146,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S07k** — Codex (native Claude) · Opus 5.5, effort high — Pre-registered fall-window/release rule v2 from SAM tracks; re-measure owner clips (30 min)
 - [x] **S07l** — Codex (native Claude) · Opus 5.5, effort high — Diagnose why held-out prediction fails on every owner clip (v1 0/9, v2 0/6) (30 min)
 - [x] **S07m** — Codex (native Claude) · Opus 5.5, effort high — Pre-registered v3 predictive check (chi-square with extrapolation leverage) on all owner clips (30 min)
+- [~] **S07n** — Codex (native Claude) · Opus 5.5, effort medium — System-derived fall time and drop height (+/- u) for OWN01 from existing tracks (no stopwatch, no tape) (30 min) *(in progress)*
 - [x] **S07h** — Codex (native Claude) · Opus 5.5, effort high — Owner clips 02-06: held-out and robustness evaluation with the S07g pipeline (30 min)
 - [x] **R-M** — Codex (native Claude) · Opus 5.5, effort medium — Cross-vendor review: Gate M fitting, timebase and uncertainty (15 min)
 - [x] **R-M2** — Codex (native Claude) · Opus 5.5, effort medium — Review S07f summary-boundary fixes and honest fallback (15 min)
@@ -393,7 +397,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S24</b> — Three-minute demo video (4/12)</summary>
+<details><summary><b>S24</b> — Three-minute demo video (4/13)</summary>
 
 - [x] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min)
 - [x] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
@@ -406,6 +410,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **S24i** — Codex (native Claude) · Sonnet 5.5, effort high — Cut video and align captions (30 min)
 - [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort medium — Check playback and approval-gated public video link (30 min)
 - [x] **S24k** — Codex (native Claude) · Sonnet 5.5, effort medium — Update 3-min script with stopwatch-vs-phone before/after (30 min)
+- [ ] **S24m** — Codex (native Claude) · Sonnet 5.5, effort medium — Script beat 5b: drop the stopwatch half; show the system measuring fall time and drop height itself (Q22) (20 min)
 - [x] **S24l** — Codex (native Claude) · Sonnet 5.5, effort medium — Swap final owner-clip numbers (S07h/S07k/S07m) into the 3-min script (30 min)
 
 </details>
