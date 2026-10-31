@@ -44,20 +44,21 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
       layout.phase === 'report.owner' && provenance?.measurement ? renderMeasurement(h, provenance.measurement) : null),
     h('aside', { className: 'ws-job', 'data-slot': 'job-status', 'aria-label': 'Job status' },
       h('p', null, jobStatus.jobId ? 'Job ' + jobStatus.jobId : 'No job yet'),
-      provenance ? renderProvenance(h, provenance) : null,
+      // S15z: at report.owner the stage panel already shows the result card; keep only a one-line pointer here
+      provenance ? renderProvenance(h, provenance, layout.phase === 'report.owner') : null,
       renderStatus(h, jobStatus.surface, onAction),
       ...errs.map((e, i) => h('p', { key: 'err' + i, className: 'ws-error', role: 'alert' }, e.code + ': ' + e.message))));
 }
 
 // S15q: server job provenance (jobs.py recorded replay) shown verbatim: per-stage RECORDED labels + understand UTC. Text only.
-export function renderProvenance(h, p) {
+export function renderProvenance(h, p, measurementShownElsewhere = false) {
   const labels = p.stage_labels && typeof p.stage_labels === 'object' ? Object.entries(p.stage_labels) : [];
   const utc = typeof p.understand?.recorded_utc === 'string' ? p.understand.recorded_utc : null;
   return h('div', { className: 'ws-provenance', 'data-executor': String(p.executor ?? ''), 'aria-label': 'Job provenance' },
     h('p', null, String(p.label ?? 'Provenance') + (p.live === false ? ' (not a live run)' : '')),
     labels.length ? h('ul', null, ...labels.map(([s, l]) => h('li', { key: s }, s + ': ' + String(l) + (s === 'understand' && utc ? ' @ ' + utc : '')))) : null,
     typeof p.note === 'string' ? h('p', { className: 'ws-note' }, p.note) : null,
-    p.measurement && typeof p.measurement === 'object' ? renderMeasurement(h, p.measurement) : null);
+    p.measurement && typeof p.measurement === 'object' ? (measurementShownElsewhere ? h('p', { className: 'ws-note' }, 'Clip result: shown in the stage panel.') : renderMeasurement(h, p.measurement)) : null);
 }
 
 // S15v: owner phone clip result from jobs.owner_measurement: stored MEASURED g ± u as a labelled RECORDED replay, or an abstain. Text only.

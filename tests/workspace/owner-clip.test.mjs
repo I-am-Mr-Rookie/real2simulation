@@ -52,6 +52,8 @@ async function ownerWalk(measurement, sizeText) {
   const all = strings(tree).join('|');
   assert.doesNotMatch(all, /Upload failed|DEPENDENCY_UNAVAILABLE|needs attention|Start a new upload/);
   assert.deepEqual(layout.stages.map((s) => s.status), ['done', 'done', 'skipped', 'skipped', 'current']);
+  const count = (n) => (n?.props?.className === 'ws-measurement' ? 1 : 0) + (n?.children?.reduce?.((a, c) => a + count(c), 0) ?? 0);
+  assert.equal(count(tree), 1); // S15z: result card once, not in both panels
   const panel = strings(tree.children.find((c) => c?.props['data-slot'] === 'panel')).join('|');
   return { panel, all };
 }
