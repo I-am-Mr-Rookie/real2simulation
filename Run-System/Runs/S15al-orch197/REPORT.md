@@ -25,7 +25,7 @@ Read/APPLIED installed Ponytail full and Imagegen built-in skill. Reused approve
 
 ## Administrative closeout timing
 
-Asset implementation stopped at the minute-25 cutoff; export/review/evidence were complete and staged before the deadline. Task work ended at the original 09:26:47Z deadline. Main asset/report commit: 19530c55. The commit call was issued near the deadline but its completion was only observed at 09:27:11Z; commit-by-deadline was therefore NOT independently verified. TIMEBOX/verification administrative closure occurred after the deadline under the policy's post-stop-report allowance; this is a timing limitation, not an extension for implementation or generation.
+Asset implementation stopped at the minute-25 cutoff; export/review/evidence were complete and staged before the deadline. Task work ended at the original 09:26:47Z deadline. Main asset/report commit: 19530c55, actual Git commit timestamp **09:27:09Z (22 seconds late)**. The commit call was issued near the deadline but completed after it: **commit-by-deadline requirement missed**. TIMEBOX/verification administrative closure occurred after the deadline under the policy's post-stop-report allowance; this is a timing limitation, not an extension for implementation or generation. Fresh worker_timebox.py check: TIMING PASS; it does not validate commit deadlines. Git status clean; base-to-HEAD paths all within Owns; diff --check passed.
 
 ## Next action / skipped / risks
 
