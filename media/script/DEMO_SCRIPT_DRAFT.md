@@ -101,7 +101,7 @@ Models: SAM 3.1 (SAM License) · MapAnything (Apache-2.0 code) · Muse Spark 1.3
 ## PENDING register
 
 - PENDING S23 + Gate D (S22f/S22j) — judging deploy URL and deployed screens (beats 7, 9); needs separate written owner go-ahead. If Gate D fails at freeze: library path only, upload limits stated (QUEUE S22 fallback).
-- PENDING S24c — clip/viewer/fitter captures (beats 1–5).
+- PENDING S24c: captures done, gaps listed in [SHOTS.md](../capture/S24c/SHOTS.md) (no point-cloud viewer, no fit parabola or prediction overlay, DEV /lab disabled).
 - PENDING S24d — workspace interview capture (beat 6).
 - PENDING S24e — /library, /lab, sidebar captures on the deployed build (beat 7).
 - PENDING S24f — edit, end-card, checklist card (beat 8) and final timing.

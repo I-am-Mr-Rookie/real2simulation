@@ -60,3 +60,5 @@ Updated_Instructions_*.pdf
 *cookies*.json
 # Owner-recorded raw drop clips (Oct31, ~460 MB, faces in frames): local only, never commit.
 /Videos for Meta AI Hackathon/
+media/capture/**/*.mp4
+media/capture/**/*.webm
