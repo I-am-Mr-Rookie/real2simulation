@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 20:29 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 20:37 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **258 / 287** runs done · 5 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **259 / 287** runs done · 4 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -28,11 +28,10 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - [~] **S13l** — Codex (native Claude) · Opus 5.5, effort high — Settle the 3 open Modal reservations from real per-app billing (S13j plan 1: bind app ids, modal-settlement/1 receipts), then re-capture RM04 geometry under gpu_stages (reserve <= $0.50) (30 min) *(in progress)*
 - [~] **S18c** — Codex (native Claude) · Sonnet 5.5, effort medium — Precompute projectile and bounce demos (30 min) *(in progress)*
 - [~] **S22c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 1 (30 min) *(in progress)*
-- [~] **S24n** — Codex (native Claude) · Sonnet 5.5, effort medium — Voice-over read sheet: click-to-click segments for Koushik's recording tonight + OWN07 footage approval in the script (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
-Nothing right now.
+- [ ] **S24g** — Record optional voice-over part 1 (30 min)
 
 ## All runs by step
 
@@ -422,7 +421,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S24</b> — Three-minute demo video (5/14)</summary>
+<details><summary><b>S24</b> — Three-minute demo video (6/14)</summary>
 
 - [x] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min)
 - [x] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
@@ -436,7 +435,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort medium — Check playback and approval-gated public video link (30 min)
 - [x] **S24k** — Codex (native Claude) · Sonnet 5.5, effort medium — Update 3-min script with stopwatch-vs-phone before/after (30 min)
 - [x] **S24m** — Codex (native Claude) · Sonnet 5.5, effort medium — Script beat 5b: drop the stopwatch half; show the system measuring fall time and drop height itself (Q22) (20 min)
-- [~] **S24n** — Codex (native Claude) · Sonnet 5.5, effort medium — Voice-over read sheet: click-to-click segments for Koushik's recording tonight + OWN07 footage approval in the script (30 min) *(in progress)*
+- [x] **S24n** — Codex (native Claude) · Sonnet 5.5, effort medium — Voice-over read sheet: click-to-click segments for Koushik's recording tonight + OWN07 footage approval in the script (30 min)
 - [x] **S24l** — Codex (native Claude) · Sonnet 5.5, effort medium — Swap final owner-clip numbers (S07h/S07k/S07m) into the 3-min script (30 min)
 
 </details>
