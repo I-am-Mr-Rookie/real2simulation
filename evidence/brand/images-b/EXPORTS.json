@@ -1,0 +1,437 @@
+{
+  "exports": [
+    {
+      "brief": "b1",
+      "path": "Build/web/public/images/app/b1-light@1x.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 29099
+    },
+    {
+      "brief": "b1",
+      "path": "Build/web/public/images/app/b1-light@1x.webp",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 14326
+    },
+    {
+      "brief": "b1",
+      "path": "Build/web/public/images/app/b1-light@2x.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 67228
+    },
+    {
+      "brief": "b1",
+      "path": "Build/web/public/images/app/b1-light@2x.webp",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 32458
+    },
+    {
+      "brief": "b1",
+      "path": "Build/web/public/images/app/b1-dark@1x.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 29333
+    },
+    {
+      "brief": "b1",
+      "path": "Build/web/public/images/app/b1-dark@1x.webp",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 22076
+    },
+    {
+      "brief": "b1",
+      "path": "Build/web/public/images/app/b1-dark@2x.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 67841
+    },
+    {
+      "brief": "b1",
+      "path": "Build/web/public/images/app/b1-dark@2x.webp",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 51048
+    },
+    {
+      "brief": "b2",
+      "path": "Build/web/public/images/app/b2-light@1x.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 54770
+    },
+    {
+      "brief": "b2",
+      "path": "Build/web/public/images/app/b2-light@1x.webp",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 23028
+    },
+    {
+      "brief": "b2",
+      "path": "Build/web/public/images/app/b2-light@2x.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 153815
+    },
+    {
+      "brief": "b2",
+      "path": "Build/web/public/images/app/b2-light@2x.webp",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 63828
+    },
+    {
+      "brief": "b2",
+      "path": "Build/web/public/images/app/b2-dark@1x.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 51094
+    },
+    {
+      "brief": "b2",
+      "path": "Build/web/public/images/app/b2-dark@1x.webp",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 35600
+    },
+    {
+      "brief": "b2",
+      "path": "Build/web/public/images/app/b2-dark@2x.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 170088
+    },
+    {
+      "brief": "b2",
+      "path": "Build/web/public/images/app/b2-dark@2x.webp",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 94470
+    },
+    {
+      "brief": "b3",
+      "path": "Build/web/public/images/app/b3-light@1x.png",
+      "size": [
+        960,
+        540
+      ],
+      "bytes": 48071
+    },
+    {
+      "brief": "b3",
+      "path": "Build/web/public/images/app/b3-light@1x.webp",
+      "size": [
+        960,
+        540
+      ],
+      "bytes": 20894
+    },
+    {
+      "brief": "b3",
+      "path": "Build/web/public/images/app/b3-light@2x.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "bytes": 139844
+    },
+    {
+      "brief": "b3",
+      "path": "Build/web/public/images/app/b3-light@2x.webp",
+      "size": [
+        1920,
+        1080
+      ],
+      "bytes": 58816
+    },
+    {
+      "brief": "b3",
+      "path": "Build/web/public/images/app/b3-dark@1x.png",
+      "size": [
+        960,
+        540
+      ],
+      "bytes": 51379
+    },
+    {
+      "brief": "b3",
+      "path": "Build/web/public/images/app/b3-dark@1x.webp",
+      "size": [
+        960,
+        540
+      ],
+      "bytes": 33732
+    },
+    {
+      "brief": "b3",
+      "path": "Build/web/public/images/app/b3-dark@2x.png",
+      "size": [
+        1920,
+        1080
+      ],
+      "bytes": 153556
+    },
+    {
+      "brief": "b3",
+      "path": "Build/web/public/images/app/b3-dark@2x.webp",
+      "size": [
+        1920,
+        1080
+      ],
+      "bytes": 82260
+    },
+    {
+      "brief": "b4",
+      "path": "Build/web/public/images/app/b4-light@1x.png",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 65482
+    },
+    {
+      "brief": "b4",
+      "path": "Build/web/public/images/app/b4-light@1x.webp",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 23724
+    },
+    {
+      "brief": "b4",
+      "path": "Build/web/public/images/app/b4-light@2x.png",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 173760
+    },
+    {
+      "brief": "b4",
+      "path": "Build/web/public/images/app/b4-light@2x.webp",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 66112
+    },
+    {
+      "brief": "b4",
+      "path": "Build/web/public/images/app/b4-dark@1x.png",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 56079
+    },
+    {
+      "brief": "b4",
+      "path": "Build/web/public/images/app/b4-dark@1x.webp",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 41596
+    },
+    {
+      "brief": "b4",
+      "path": "Build/web/public/images/app/b4-dark@2x.png",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 176648
+    },
+    {
+      "brief": "b4",
+      "path": "Build/web/public/images/app/b4-dark@2x.webp",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 96298
+    },
+    {
+      "brief": "b5",
+      "path": "Build/web/public/images/app/b5-light@1x.png",
+      "size": [
+        384,
+        384
+      ],
+      "bytes": 35397
+    },
+    {
+      "brief": "b5",
+      "path": "Build/web/public/images/app/b5-light@1x.webp",
+      "size": [
+        384,
+        384
+      ],
+      "bytes": 15600
+    },
+    {
+      "brief": "b5",
+      "path": "Build/web/public/images/app/b5-light@2x.png",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 85213
+    },
+    {
+      "brief": "b5",
+      "path": "Build/web/public/images/app/b5-light@2x.webp",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 37064
+    },
+    {
+      "brief": "b5",
+      "path": "Build/web/public/images/app/b5-dark@1x.png",
+      "size": [
+        384,
+        384
+      ],
+      "bytes": 40592
+    },
+    {
+      "brief": "b5",
+      "path": "Build/web/public/images/app/b5-dark@1x.webp",
+      "size": [
+        384,
+        384
+      ],
+      "bytes": 25252
+    },
+    {
+      "brief": "b5",
+      "path": "Build/web/public/images/app/b5-dark@2x.png",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 99807
+    },
+    {
+      "brief": "b5",
+      "path": "Build/web/public/images/app/b5-dark@2x.webp",
+      "size": [
+        768,
+        768
+      ],
+      "bytes": 54238
+    },
+    {
+      "brief": "b6",
+      "path": "Build/web/public/images/app/b6-light@1x.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 29240
+    },
+    {
+      "brief": "b6",
+      "path": "Build/web/public/images/app/b6-light@1x.webp",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 12292
+    },
+    {
+      "brief": "b6",
+      "path": "Build/web/public/images/app/b6-light@2x.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 79835
+    },
+    {
+      "brief": "b6",
+      "path": "Build/web/public/images/app/b6-light@2x.webp",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 30936
+    },
+    {
+      "brief": "b6",
+      "path": "Build/web/public/images/app/b6-dark@1x.png",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 27824
+    },
+    {
+      "brief": "b6",
+      "path": "Build/web/public/images/app/b6-dark@1x.webp",
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 19962
+    },
+    {
+      "brief": "b6",
+      "path": "Build/web/public/images/app/b6-dark@2x.png",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 81443
+    },
+    {
+      "brief": "b6",
+      "path": "Build/web/public/images/app/b6-dark@2x.webp",
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 46852
+    }
+  ],
+  "total_bytes": 2969900
+}
