@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "80c07322-ad62-40db-b6ac-2d50877b1c01",
-      "previousDeploymentId": "4587d795-1c80-4d68-bfbc-100192c14d87",
-      "redeployNote": "S15av lab bridge (api node + /internal/lab/bridge; web production /api/lab) + S15aw result chart",
-      "sourceRevision": "d858b2af9a07f7acb8473fa9c08fe6bfc2f6336c",
-      "verifiedUtc": "2026-10-31T14:35:00Z",
+      "deploymentId": "48b12313-1b65-4122-8299-08080080bf1b",
+      "previousDeploymentId": "80c07322-ad62-40db-b6ac-2d50877b1c01",
+      "redeployNote": "S15ax result chart as centre-stage hero",
+      "sourceRevision": "e1a76ce659a1f9f0d7f2a89d1f11636ffe680ed2",
+      "verifiedUtc": "2026-10-31T14:50:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
