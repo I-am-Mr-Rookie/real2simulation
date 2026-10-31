@@ -1,6 +1,6 @@
 # S22e Gate D fresh-account run 3 (fixed build)
 
-Date 2026-10-31 ~16:08Z-16:20Z. Route as S22c/S22d: Playwright (codex runtime playwright-core), HEADED bundled Chromium, script %TEMP%/s22e/r.mjs (throwaway). DEV https://web-dev-cd80.up.railway.app (deploy 243368cd / web b7a61913). Two NEW Clerk test accounts (s22e-<w>-<id>+clerk_test@example.com, code 424242), kept. No Google, no Chrome profile, no in-app browser.
+Date 2026-10-31 16:06:46Z-16:10:04Z (TIMEBOX; corrected by controller per S22f D9). Route as S22c/S22d: Playwright (codex runtime playwright-core), HEADED bundled Chromium, script %TEMP%/s22e/r.mjs (throwaway). DEV https://web-dev-cd80.up.railway.app (deploy 243368cd / web b7a61913). Two NEW Clerk test accounts (s22e-<w>-<id>+clerk_test@example.com, code 424242), kept. No Google, no Chrome profile, no in-app browser.
 
 ## Verdict: PASS vs <5 min (scripted). 1280 px: result visible 24 s after page load (incl. sign-up), Report opened. 375 px: PASS on the Agent-panel check.
 | Step (cumulative s) | 1280 | 375 |
