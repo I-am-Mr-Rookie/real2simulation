@@ -1,0 +1,382 @@
+{
+  "exports": [
+    {
+      "file": "Build/web/public/images/marketing/a1-light-line@1x.png",
+      "size": [
+        1600,
+        1000
+      ],
+      "bytes": 183649,
+      "sha256": "c1d57f6d18fd725c1334b94431eb747537651ee9a491c60a3f63e5924c8dc7ae",
+      "source": "a1-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a1-light-line@1x.webp",
+      "size": [
+        1600,
+        1000
+      ],
+      "bytes": 41666,
+      "sha256": "88b415157c644776ece31a5f7a51e035593e418f07a6a90d46c10b40182e92b0",
+      "source": "a1-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a1-light-line@2x.png",
+      "size": [
+        3200,
+        2000
+      ],
+      "bytes": 598988,
+      "sha256": "c8e346fd3a2e7e9e1d42ed1fccb9d2106ad4a16813146307646e19e048eb99af",
+      "source": "a1-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a1-light-line@2x.webp",
+      "size": [
+        3200,
+        2000
+      ],
+      "bytes": 92072,
+      "sha256": "7736cdc3ad38a8aa32386d864d62278e731d16f5be72603018c4b1b4395bab79",
+      "source": "a1-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a2-light-line@1x.png",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 64397,
+      "sha256": "8fe685d5617f1c1643e85d208520891c6b10f73d8fbc29d9657cb98a9e12c433",
+      "source": "a2-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a2-light-line@1x.webp",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 12884,
+      "sha256": "a7ca2dd37f007f44276ecc85abf9184fd61e9e77fb9e54d05a5430ba49a8c3c7",
+      "source": "a2-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a2-light-line@2x.png",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 149141,
+      "sha256": "afd9c270079aaa20a1d487dc28a64dc2b775d040fef75c7c58d432f5090eb435",
+      "source": "a2-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a2-light-line@2x.webp",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 31558,
+      "sha256": "eb3e38f3d04781c9e86f9d21cfaf5d8795f38955a7f00fc4597eacd5e7a76edf",
+      "source": "a2-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a3-light-line@1x.png",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 63761,
+      "sha256": "fc563894abc1905e6cce070e5bc5a96a47ca7a8232b455cee7b2ade517b06cec",
+      "source": "a3-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a3-light-line@1x.webp",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 12908,
+      "sha256": "4c55b223baf9d7a403786987843b13f1488ec75fa6ddb6607e5134925a485640",
+      "source": "a3-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a3-light-line@2x.png",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 148608,
+      "sha256": "4e920b249982d05c4dd0a2ff38d65c125e95672832ec200eae7f08c472b19909",
+      "source": "a3-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a3-light-line@2x.webp",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 31290,
+      "sha256": "dff5da6a7dfc08385b1566264e45011a2c39b4a87dd9d4b28a59456a8a5fdbf0",
+      "source": "a3-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a4-light-line@1x.png",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 86117,
+      "sha256": "db1625085d4768b571e6323b112de3b77cfaff5ac6a1bf707f9ce38743840b21",
+      "source": "a4-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a4-light-line@1x.webp",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 15702,
+      "sha256": "176048eca074f578e257899d1ae293e4bd72460952c88f3c814e27523c6b9c48",
+      "source": "a4-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a4-light-line@2x.png",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 216483,
+      "sha256": "1b720b1b591e64c05d34e552a1ae091f8a1f152dcffa8c586e5fd963233fee48",
+      "source": "a4-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a4-light-line@2x.webp",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 42862,
+      "sha256": "b0d907f73fdf179589fe42382e361701c0216318e11a25165c9a97db16fcb91e",
+      "source": "a4-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a5-light-line@1x.png",
+      "size": [
+        1200,
+        630
+      ],
+      "bytes": 38413,
+      "sha256": "eb4ac6f83a5b6b3d861cb2adbd6ce8196435ad4d4a1537a931bb5414a1bd6c57",
+      "source": "a5-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a5-light-line@1x.webp",
+      "size": [
+        1200,
+        630
+      ],
+      "bytes": 8694,
+      "sha256": "1be3ddaaf9d421d9fffcb415e420f903d8c9636ea01f77ad75cff96d50f66fa9",
+      "source": "a5-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a5-light-line@2x.png",
+      "size": [
+        2400,
+        1260
+      ],
+      "bytes": 106959,
+      "sha256": "6a6cc69f91fda51380203fbcfb24f1fb89af94f05b3a8a6e596f2e4fa8d83da4",
+      "source": "a5-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a5-light-line@2x.webp",
+      "size": [
+        2400,
+        1260
+      ],
+      "bytes": 21986,
+      "sha256": "961ce4477251239becabdeae5705e2894b92f9ef3c462b89d268b503c6e0e1c6",
+      "source": "a5-light-line-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a1-dark-line@1x.png",
+      "size": [
+        1600,
+        1000
+      ],
+      "bytes": 191215,
+      "sha256": "3b3885593daeed618ee07a5e9ed22f35b47dd102ad8ced080383301eb3b3404c",
+      "source": "a1-dark-line"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a1-dark-line@1x.webp",
+      "size": [
+        1600,
+        1000
+      ],
+      "bytes": 38378,
+      "sha256": "6129eb9f5e5c2c448ccd324e199ca9790c95c622bb50c1222adbb649c21c7afd",
+      "source": "a1-dark-line"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a1-dark-line@2x.png",
+      "size": [
+        3200,
+        2000
+      ],
+      "bytes": 605779,
+      "sha256": "6c4012fb574c8688005716376fb6d2863ffca263d0c11bfca02cef7e57277506",
+      "source": "a1-dark-line"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a1-dark-line@2x.webp",
+      "size": [
+        3200,
+        2000
+      ],
+      "bytes": 80294,
+      "sha256": "de2112497eb08df70ba674d5a394376ee6b4453d35aea356e2a3e4a689c24b09",
+      "source": "a1-dark-line"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a2-dark-line@1x.png",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 38076,
+      "sha256": "46ad48fded1e2d56d03222e3c18d33ba468e06f10f888d470d83cdca3051e259",
+      "source": "a2-dark-opaque"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a2-dark-line@1x.webp",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 7830,
+      "sha256": "48abe4486b8525dcef7cf494d0092d3256912cff088a77772324d6d6edf9b880",
+      "source": "a2-dark-opaque"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a2-dark-line@2x.png",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 93273,
+      "sha256": "48b7db1d00ffff52cc4733b0341e52c2e48e7fbf876aa93577f42b33d4a1a7e5",
+      "source": "a2-dark-opaque"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a2-dark-line@2x.webp",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 18726,
+      "sha256": "1a4f1ffde0246eda128c9edd17a12e72a47743b0fcfd881a4b41257182efea26",
+      "source": "a2-dark-opaque"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a3-dark-line@1x.png",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 42408,
+      "sha256": "2d14b01f5607463ee1fd231ede4ddd0b7c62ee61fb540b69a294b15f5d9d8848",
+      "source": "a3-dark-opaque-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a3-dark-line@1x.webp",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 9048,
+      "sha256": "a5e1a1bb39fb947ee0334d22c064d7fdd6286bb86f7e4c9ef7d0350925cd965e",
+      "source": "a3-dark-opaque-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a3-dark-line@2x.png",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 109539,
+      "sha256": "492578631157f4093082016a6c9e21723ac8e3a2a08386ba63dc97bd5153e7bc",
+      "source": "a3-dark-opaque-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a3-dark-line@2x.webp",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 21436,
+      "sha256": "955a315f51cd9200dbf3b97751c6a8ba2156a2431b3510b927ca0269d720556f",
+      "source": "a3-dark-opaque-r2"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a4-dark-line@1x.png",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 75878,
+      "sha256": "2eeb44121b2e07b372c09f957bb75d67bb838e27c3be8403df1beaa7551ca28e",
+      "source": "a4-dark-opaque"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a4-dark-line@1x.webp",
+      "size": [
+        800,
+        600
+      ],
+      "bytes": 15560,
+      "sha256": "0b6eb1a94ad8d3d8393d347d4f3d1d5f304c6e78b5c927067083c2c311af936c",
+      "source": "a4-dark-opaque"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a4-dark-line@2x.png",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 194112,
+      "sha256": "a11ecda4f38e60de841059eea67e5c1ae3fe7d21c523cd271f8c2bf7a8ef1d63",
+      "source": "a4-dark-opaque"
+    },
+    {
+      "file": "Build/web/public/images/marketing/a4-dark-line@2x.webp",
+      "size": [
+        1600,
+        1200
+      ],
+      "bytes": 36638,
+      "sha256": "852c13f9192eebdd62c5bea9bec36bca4b646db6eb51c60c5fdb286ea1c84752",
+      "source": "a4-dark-opaque"
+    }
+  ],
+  "count": 36,
+  "total_bytes": 3546328,
+  "webp_bytes": 539532,
+  "surfaces": {
+    "paper": "#fffcf5",
+    "light": "#ffffff",
+    "dark": "#18181b",
+    "midnight": "#111831",
+    "graphite": "#26282c",
+    "contrast": "#ffffff"
+  },
+  "notes": [
+    "Sizes, decoding and opacity assertions pass; aesthetic acceptance is separate.",
+    "Controller-approved opaque family tiles: A2/A3/A4 transparency waived.",
+    "Palette normalization before sizing; 2x is a Lanczos resample, not native 2x detail."
+  ],
+  "og_blank_left_60_percent": true,
+  "generation_calls": 24
+}
