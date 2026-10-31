@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 20:28 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 20:29 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **258 / 287** runs done · 2 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **258 / 287** runs done · 5 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -20,13 +20,15 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - [~] **S24c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture room rebuild and interview (30 min) *(partial: resume it)*
 
 **CLAUDE**
-- [ ] **S15ax** — Codex (native Claude) · Opus 5.5, effort high — Result chart to the main stage: when an owner-clip result has no scene, show the S15aw chart large in the empty centre stage (axis ticks + units, readable legend), keep the side card as the text summary (30 min)
-- [ ] **S24n** — Codex (native Claude) · Sonnet 5.5, effort medium — Voice-over read sheet: click-to-click segments for Koushik's recording tonight + OWN07 footage approval in the script (30 min)
+- Nothing ready yet: check dependencies and retry holds below.
 
 ## In progress
 
+- [~] **S15ax** — Codex (native Claude) · Opus 5.5, effort high — Result chart to the main stage: when an owner-clip result has no scene, show the S15aw chart large in the empty centre stage (axis ticks + units, readable legend), keep the side card as the text summary (30 min) *(in progress)*
+- [~] **S13l** — Codex (native Claude) · Opus 5.5, effort high — Settle the 3 open Modal reservations from real per-app billing (S13j plan 1: bind app ids, modal-settlement/1 receipts), then re-capture RM04 geometry under gpu_stages (reserve <= $0.50) (30 min) *(in progress)*
 - [~] **S18c** — Codex (native Claude) · Sonnet 5.5, effort medium — Precompute projectile and bounce demos (30 min) *(in progress)*
 - [~] **S22c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 1 (30 min) *(in progress)*
+- [~] **S24n** — Codex (native Claude) · Sonnet 5.5, effort medium — Voice-over read sheet: click-to-click segments for Koushik's recording tonight + OWN07 footage approval in the script (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -246,7 +248,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S13h** — Codex (native Claude) · Opus 5.5, effort high — Measure dev upload-to-scene path (30 min)
 - [x] **S13i** — Codex (native Claude) · Opus 5.5, effort high — API upload + job routes with RECORDED-replay executor (approved-clip sha gate) (30 min)
 - [~] **S13j** — Codex (native Claude) · Opus 5.5, effort high — OPTIONAL/CUT-FIRST: re-capture RM04 geometry bytes into private dev bucket via existing e2e.py under guardrails (30 min) *(partial: resume it)*
-- [ ] **S13l** — Codex (native Claude) · Opus 5.5, effort high — Settle the 3 open Modal reservations from real per-app billing (S13j plan 1: bind app ids, modal-settlement/1 receipts), then re-capture RM04 geometry under gpu_stages (reserve <= $0.50) (30 min)
+- [~] **S13l** — Codex (native Claude) · Opus 5.5, effort high — Settle the 3 open Modal reservations from real per-app billing (S13j plan 1: bind app ids, modal-settlement/1 receipts), then re-capture RM04 geometry under gpu_stages (reserve <= $0.50) (30 min) *(in progress)*
 - [ ] **S13m** — Codex (native Claude) · Opus 5.5, effort high — Show RM04 geometry on DEV: owner-scoped bundle route + PrivateWorkspace loadScene; stage.py bakes the local-only bundle into the private API image (no public URL, nothing in Git) (30 min)
 - [x] **S13k** — Codex (native Claude) · Opus 5.5, effort medium — RM04 replay: stitch recorded S14g-fix3 live understand spec + owner-scoped scene resolver (30 min)
 
@@ -319,7 +321,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15au** — Codex (native Claude) · Opus 5.5, effort high — Home showcase + header polish after S15aq DEV review: full-width balanced showcase compositions with captions, consistent alignment; header mark 32-36 px with text, 375 px workspace link on one line; icon-only header GitHub link (repo public); check swap/deal motion; 6 themes x 1280/375, reduced motion (30 min)
 - [x] **S15av** — Codex (native Claude) · Opus 5.5, effort high — P1: public /lab works on deployed DEV (no raw local_lab_disabled): serve deterministic lab from a deployed service with public-endpoint guards; friendly errors (30 min)
 - [x] **S15aw** — Codex (native Claude) · Opus 5.5, effort high — Workspace result chart: tracked points, fit curve + 1-sigma band, held-out prefix prediction vs suffix (owner "y" Oct31; demo shows product, not offline charts) (30 min)
-- [ ] **S15ax** — Codex (native Claude) · Opus 5.5, effort high — Result chart to the main stage: when an owner-clip result has no scene, show the S15aw chart large in the empty centre stage (axis ticks + units, readable legend), keep the side card as the text summary (30 min)
+- [~] **S15ax** — Codex (native Claude) · Opus 5.5, effort high — Result chart to the main stage: when an owner-clip result has no scene, show the S15aw chart large in the empty centre stage (axis ticks + units, readable legend), keep the side card as the text summary (30 min) *(in progress)*
 
 </details>
 
@@ -434,7 +436,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort medium — Check playback and approval-gated public video link (30 min)
 - [x] **S24k** — Codex (native Claude) · Sonnet 5.5, effort medium — Update 3-min script with stopwatch-vs-phone before/after (30 min)
 - [x] **S24m** — Codex (native Claude) · Sonnet 5.5, effort medium — Script beat 5b: drop the stopwatch half; show the system measuring fall time and drop height itself (Q22) (20 min)
-- [ ] **S24n** — Codex (native Claude) · Sonnet 5.5, effort medium — Voice-over read sheet: click-to-click segments for Koushik's recording tonight + OWN07 footage approval in the script (30 min)
+- [~] **S24n** — Codex (native Claude) · Sonnet 5.5, effort medium — Voice-over read sheet: click-to-click segments for Koushik's recording tonight + OWN07 footage approval in the script (30 min) *(in progress)*
 - [x] **S24l** — Codex (native Claude) · Sonnet 5.5, effort medium — Swap final owner-clip numbers (S07h/S07k/S07m) into the 3-min script (30 min)
 
 </details>
