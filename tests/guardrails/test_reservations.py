@@ -193,6 +193,20 @@ except ReconstructionPaused:
         with self.assertRaises(ReconstructionPaused):
             self.reserve("missing-known-log")
 
+    def test_journal_row_reusing_recorded_reconstruct_key_does_not_break_projection(self):
+        # S13l: a rerun reserves the same manifest key as an older recorded bundle in another directory.
+        directory = self.root / "evidence/S13/live"
+        bundle = directory / "reconstruct/bundle"
+        bundle.mkdir(parents=True)
+        (directory / "gpu-ledger.jsonl").write_text(
+            json.dumps({"stage": "reconstruct", "idempotency_key": "one", "reserved_usd": ".5"}) + "\n")
+        (bundle.parent / "reconstruction.json").write_text(json.dumps({"app_id": "ap-one", "idempotency_key": "one"}))
+        (bundle / "room-scene-log.json").write_text(
+            json.dumps({"app_id": "ap-one", "cost": {"upper_bound": {"total_usd": ".1"}}}))
+        self.reserve("one")  # journal row: stage reconstruct, key "one", no "source"
+        self.reserve("two")  # must project, not KeyError -> SPEND_PAUSED
+        self.assertEqual(len(read_json(self.runtime / "reservations.json")["requests"]), 2)
+
     def test_json_parent_counts_sum_of_child_worst_costs_not_parent_plus_children(self):
         directory = self.root / "evidence/S06/test"
         directory.mkdir(parents=True)

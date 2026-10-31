@@ -182,6 +182,7 @@ def project(root, receipt, journal):
                 raise ValueError("Scene log/artifact app identity mismatch")
             matches = [r for r in projected if r.get("stage") == "reconstruct"
                        and r.get("idempotency_key") == doc["idempotency_key"]
+                       and r.get("source")  # journal copies carry no source; their ledger projection does
                        and path.is_relative_to((root / r["source"]).parent)]
             sources.add(artifact.relative_to(root).as_posix() + "#sha256=" + hashlib.sha256(artifact.read_bytes()).hexdigest())
             paths.add(artifact)
