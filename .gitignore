@@ -62,7 +62,6 @@ Updated_Instructions_*.pdf
 /Videos for Meta AI Hackathon/
 media/capture/**/*.mp4
 media/capture/**/*.webm
-<<<<<<< HEAD
 
 # raw voice-over stays local
 media/narration/takes/
@@ -72,7 +71,5 @@ media/narration/**/*.mp3
 media/narration/**/*.aac
 media/narration/**/*.ogg
 media/narration/**/*.flac
-=======
 # S13l RM04 MapAnything bundle (scene.json, points.ply, points-mobile.ply): local only; shas in Build/pipeline/recorded/.
 /evidence/S13l/reconstruct/bundle/
->>>>>>> 23eb7c15 (S13l: skip sourceless journal copies in reconstruct scene-log fallback (+regression test); ignore S13l bundle)
