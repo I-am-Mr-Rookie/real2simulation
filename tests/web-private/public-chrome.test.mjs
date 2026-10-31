@@ -8,6 +8,7 @@ const pub = (p) => access(new URL('../../Build/web/public' + p, import.meta.url)
 
 test('layout wires brand favicon/apple icons and A5 OG image through SiteFrame', async () => {
   const layout = await src('app/layout.jsx');
+  assert.match(layout, /metadataBase: new URL\(process\.env\.RAILWAY_PUBLIC_DOMAIN/);
   for (const s of ["import SiteFrame from './SiteFrame'", "'/brand/favicon.ico'", "apple: { url: '/brand/mark-192.png'", "openGraph:", "'/images/marketing/a5-light-line@1x.png', width: 1200, height: 630", "manifest: '/pwa/manifest.webmanifest'"]) assert.ok(layout.includes(s), s);
   for (const p of ['/brand/favicon.ico', '/brand/mark-192.png', '/brand/mark-32.png', '/images/marketing/a5-light-line@1x.png']) await pub(p);
 });

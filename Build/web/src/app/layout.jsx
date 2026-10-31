@@ -15,6 +15,8 @@ const mono = Space_Mono({ subsets: ['latin'], weight: ['400', '700'], display: '
 export const dynamic = 'force-dynamic';
 
 export const metadata = {
+  // OG/Twitter image URLs must be absolute; Railway injects RAILWAY_PUBLIC_DOMAIN at runtime (layout is force-dynamic).
+  metadataBase: new URL(process.env.RAILWAY_PUBLIC_DOMAIN ? 'https://' + process.env.RAILWAY_PUBLIC_DOMAIN : 'http://localhost:3000'),
   title: 'Real2Simulation',
   description: 'A workbench for testing physical explanations against video.',
   manifest: '/pwa/manifest.webmanifest',
