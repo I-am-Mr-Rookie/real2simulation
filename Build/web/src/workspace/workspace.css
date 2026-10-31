@@ -18,6 +18,13 @@
   .ws { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "nav" "viewport" "panel" "job" "side"; padding: var(--ws-s3); }
   .ws-host { min-height: 16rem; }
 }
+/* S15ad: stack viewport above stage/job whenever the centre column (not the window) is narrow, e.g. both shell panels open at 1280. */
+.r2s-center { container-type: inline-size; }
+@container (max-width: 56rem) {
+  .ws { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-template-areas: "nav" "viewport" "panel" "job" "side"; }
+  .ws-host { min-height: 16rem; }
+}
+.ws-panel, .ws-job { overflow-wrap: anywhere; } /* long source paths/ids in result and job cards wrap */
 .ws *, .ws *::before, .ws *::after { box-sizing: border-box; }
 .ws h2 { margin: 0 0 var(--ws-s2); font-size: 1.05rem; letter-spacing: -.01em; }
 .ws h3 { margin: 0 0 var(--ws-s1); font-size: .95rem; }
