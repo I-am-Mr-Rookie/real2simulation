@@ -38,10 +38,12 @@ async function proxy(request, context) {
   }
   const headers = { 'x-workspace-owner': userId, 'x-workspace-token': token };
   for (const name of PASS_REQUEST) { const value = request.headers.get(name); if (value) headers[name] = value; }
-  const target = base.replace(/\/+$/, '') + '/internal/workspace/' + segments.map(encodeURIComponent).join('/') + new URL(request.url).search;
+  const probe = method === 'GET' && segments.length === 1 && segments[0] === 'health'; // S15ay: reachability probe; upstream 404 stays server-side
+  const target = base.replace(/\/+$/, '') + '/internal/workspace/' + (probe ? 'jobs/health-probe' : segments.map(encodeURIComponent).join('/') + new URL(request.url).search);
   let upstream;
   try { upstream = await fetch(target, { method, headers, body, cache: 'no-store', redirect: 'manual', signal: request.signal }); }
   catch { return fail(502, 'DEPENDENCY_UNAVAILABLE', 'Workspace API unreachable.'); }
+  if (probe) return upstream.status < 500 && upstream.status !== 401 && upstream.status !== 403 ? Response.json({ status: 'ok' }, { headers: noStore }) : fail(502, 'DEPENDENCY_UNAVAILABLE', 'Workspace API unavailable.');
   const out = { ...noStore }; const type = upstream.headers.get('content-type'); if (type) out['content-type'] = type;
   return new Response(await upstream.arrayBuffer(), { status: upstream.status, headers: out });
 }

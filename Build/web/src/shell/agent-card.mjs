@@ -7,7 +7,8 @@ import { interviewView } from '../workspace/interview.mjs';
 export const pendingOf = (s) => (s?.status === 'asking' ? s.questions.length - s.index : 0);
 
 // Auto-open the panel once per new round of questions, unless the user closed it while questions were pending.
-export const shouldAutoOpen = ({ asking, newRound, userClosed }) => asking && newRound && !userClosed;
+// S15ay: never on narrow screens (the full-screen panel hid the result); the toggle badge shows the waiting question.
+export const shouldAutoOpen = ({ asking, newRound, userClosed, narrow = false }) => asking && newRound && !userClosed && !narrow;
 
 // Keys inside the card: 1..9 pick an option (not while typing), Ctrl/Cmd+Enter continues. Returns a Q_* action or null.
 export function cardKey(e, v) {

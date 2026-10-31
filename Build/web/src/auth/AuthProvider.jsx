@@ -6,7 +6,7 @@ export default function AuthProvider({ children }) {
   if (!config.available) return children;
   return <ClerkProvider publishableKey={config.publishableKey}
     signInUrl="/sign-in" signUpUrl="/sign-up"
-    signInFallbackRedirectUrl="/library" signUpFallbackRedirectUrl="/library">
+    signInFallbackRedirectUrl="/workspace" signUpFallbackRedirectUrl="/workspace">
     {children}
   </ClerkProvider>;
 }

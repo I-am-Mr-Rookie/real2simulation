@@ -19,7 +19,7 @@ test('probe: API JSON answer (even 404) is live; auth, 5xx, non-JSON and network
 test('probe hits the BFF path with same-origin credentials', async () => {
   let seen;
   await probeApi(async (url, init) => { seen = { url, init }; return { status: 404, json: async () => ({}) }; });
-  assert.equal(seen.url, '/api/workspace/jobs/s04o-probe');
+  assert.equal(seen.url, '/api/workspace/health');
   assert.equal(seen.init.credentials, 'same-origin');
 });
 

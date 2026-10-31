@@ -38,6 +38,14 @@ test('signed out or Clerk unavailable -> 401 and no upstream call', async () => 
 });
 
 test('forwards only owner/token/content headers, never cookies; no-store; query kept', async () => {
+  // S15ay: health probe answers 200 even when the upstream probe id is 404; 5xx stays unavailable.
+  globalThis.fetch = async (url) => { state.calls.push({ url }); return new Response('{}', { status: 404 }); };
+  const h = await route.GET(req('/api/workspace/health'), ctx('health'));
+  assert.equal(h.status, 200); assert.match(state.calls[0].url, /\/internal\/workspace\/jobs\/health-probe$/);
+  globalThis.fetch = async () => new Response('{}', { status: 500 });
+  assert.equal((await route.GET(req('/api/workspace/health'), ctx('health'))).status, 502);
+  state.calls = [];
+  globalThis.fetch = async (url, init) => { state.calls.push({ url, init }); return new Response('{"ok":true}', { status: 201, headers: { 'content-type': 'application/json', 'set-cookie': 'x=1' } }); };
   const res = await route.POST(req('/api/workspace/scenes/s1/spec?x=1', { method: 'POST', body: '{"answers":{}}',
     headers: { 'content-type': 'application/json', cookie: '__session=secret', authorization: 'Bearer abc', 'x-workspace-owner': 'user_evil' } }), ctx('scenes', 's1', 'spec'));
   assert.equal(res.status, 201); assert.equal(res.headers.get('cache-control'), 'no-store'); assert.equal(res.headers.get('set-cookie'), null);

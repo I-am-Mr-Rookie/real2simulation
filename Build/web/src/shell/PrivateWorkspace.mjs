@@ -31,7 +31,7 @@ const chip = (label, text, id) => React.createElement('details', { className: 'r
 // Reachable = the BFF forwarded and the API answered with JSON (any 2xx/4xx except auth). 401/403/5xx/network = unavailable.
 export async function probeApi(f = globalThis.fetch, base = API_BASE) {
   try {
-    const res = await f(base + '/jobs/s04o-probe', { credentials: 'same-origin', cache: 'no-store' });
+    const res = await f(base + '/health', { credentials: 'same-origin', cache: 'no-store' });
     const body = await res.json().catch(() => null);
     return body !== null && res.status < 500 && res.status !== 401 && res.status !== 403 ? 'live' : 'unavailable';
   } catch { return 'unavailable'; }
@@ -121,7 +121,7 @@ export default function PrivateWorkspace({ scene }) {
   }, [right]);
   useEffect(() => {
     const q = iv?.questions ?? null;
-    if (shouldAutoOpen({ asking: pending > 0, newRound: q !== round.current, userClosed: userClosed.current })) setRight(true);
+    if (shouldAutoOpen({ asking: pending > 0, newRound: q !== round.current, userClosed: userClosed.current, narrow: narrow() })) setRight(true);
     round.current = q;
   }, [iv?.questions, pending]); // eslint-disable-line react-hooks/exhaustive-deps -- a new round = a new questions array
   const closeRight = () => { if (pending) userClosed.current = true; setRight(false); };

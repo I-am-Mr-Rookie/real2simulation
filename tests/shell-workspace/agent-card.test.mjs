@@ -91,6 +91,7 @@ test('centre waiting state, pending count on the Agent tool, badge only while th
 test('auto-open: once per new round, never after the user closed it with questions pending', () => {
   assert.equal(shouldAutoOpen({ asking: true, newRound: true, userClosed: false }), true);
   assert.equal(shouldAutoOpen({ asking: true, newRound: true, userClosed: true }), false);
+  assert.equal(shouldAutoOpen({ asking: true, newRound: true, userClosed: false, narrow: true }), false);
   assert.equal(shouldAutoOpen({ asking: true, newRound: false, userClosed: false }), false);
   assert.equal(shouldAutoOpen({ asking: false, newRound: true, userClosed: false }), false);
 });
