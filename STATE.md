@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T00:06Z — controller: accept S24k DONE; Q22 asked
+
+- S24k-orch175 DONE (Sonnet medium; timebox PASS): media/script/DEMO_SCRIPT_DRAFT.md v3 adds beat 5b (1:38-1:58) stopwatch-vs-phone using only S07i/S07h MEASURED numbers with u and labels; held-out 0/6 FAIL stated; owner-clip shots marked public use pending Koushik's go-ahead; total 180 s; numbers in one SWAP BLOCK for S07k/S07h updates. No stopwatch reading exists in the repo -> placeholder, Q22 asked.
+
 ## 2026-10-31T00:05Z — controller: S15v merged PARTIAL (DEV walk defect); S15y dispatched
 
 - S15v-orch171 merged (timebox PASS; web 119/119, api 23 OK fresh). DEV api 85c23646-2e35-4c25-af0d-cbe38a52c524 (prev 81a74b99) + web 20e728a2-e0f5-45f1-90b8-4734d2e00bfb (prev 1f827ca0), revision d195f270; deployments.json + verify.py/test_verify.py pin updated; verify.py exit 0; railway-dev tests 16 OK.
@@ -1494,6 +1498,7 @@ Updated 2026-10-28 Asia/Dhaka. **S04g dev skeleton live; API dependencies verifi
   historical balance unknown. Railway ongoing resource charges unknown, not zero.
 
 ## Owner questions (fallback: unanswered in-run questions and orchestrator-mode questions)
+- [ ] Q22 (demo script, S24k): what did your stopwatch read for the 01_demo_hero drop (and the drop height, if measured)? The 3-min script has a placeholder [OWNER STOPWATCH READING - not recorded] in beat 5b; reply with the number(s) or "no stopwatch" to drop that half of the before/after.
 - [ ] Q21 (UI refs, S15x): pick 3 of the 6 Mobbin references R1-R6 in evidence/ui/mobbin-S15x/REFERENCES.md for the UI pass (S15w); default R1,R2,R3 (Higgsfield upload/analyzing, Delphi question step, PlanetScale data table) if no reply.
 
 - [x] Q20 ANSWERED (Koushik, Oct31: 'A'): Run is allowed on real clips as a clearly labelled what-if: 'SIMULATED what-if of your described setup; scale unverified; not measured from the clip'. Numbers come from the simulator and spec values, never presented as measured from the video. Implemented by QUEUE S15r.
