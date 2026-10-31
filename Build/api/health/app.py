@@ -6,6 +6,7 @@ import re
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from Build.api.health.dependencies import DependencyHealth
+from Build.api.lab import create_router as lab_router
 from Build.api.workspace import analysis, jobs
 
 SERVICE = "api"
@@ -36,6 +37,7 @@ def create_app() -> FastAPI:
     async def version():
         return {"service": SERVICE, "revision": revision}
 
+    app.include_router(lab_router())  # internal-token lab bridge; independent of Redis like liveness
     # Internal owner-scoped routes (WORKSPACE_INTERNAL_TOKEN); analysis resolves scenes from the jobs store.
     try:
         store = jobs.default_store()

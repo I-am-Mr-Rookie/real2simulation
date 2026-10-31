@@ -60,6 +60,21 @@ function bridge(request, signal) { return new Promise((resolve, reject) => {
   // Keep the slot until close; an I/O error alone does not prove process exit.
   child.on('error', () => { stopped = true; }); child.on('close', (code) => { if (stopped || code !== 0 || outBytes > MAX_BODY) return finish(reject, new Error('bridge_failed')); try { finish(resolve, JSON.parse(out + decoder.end())); } catch { finish(reject, new Error('bridge_invalid_response')); } }); child.stdin.end(JSON.stringify(request));
 }); }
+// Production web containers ship no Python: the API service runs the same session-bridge.py behind the internal token.
+async function remoteBridge(request, signal) {
+  const base = process.env.WORKSPACE_API_URL, token = process.env.WORKSPACE_INTERNAL_TOKEN;
+  if (!base || !token) throw new Error('lab_unavailable');
+  if (activeBridges >= 4) throw new Error('lab_busy');
+  activeBridges += 1;
+  try {
+    const timeout = AbortSignal.timeout(30000), stop = signal ? AbortSignal.any([signal, timeout]) : timeout;
+    const response = await fetch(base.replace(/\/+$/, '') + '/internal/lab/bridge', { method: 'POST', headers: { 'content-type': 'application/json', 'x-workspace-token': token }, body: JSON.stringify(request), cache: 'no-store', redirect: 'manual', signal: stop });
+    const text = await response.text();
+    if (!response.ok || text.length > MAX_BODY) throw new Error('bridge_failed');
+    return JSON.parse(text);
+  } finally { activeBridges -= 1; }
+}
+const callBridge = (request, signal) => (process.env.NODE_ENV === 'production' ? remoteBridge : bridge)(request, signal);
 export async function handleLab(request, { signal } = {}) {
   try {
     if (signal?.aborted) return fail('lab_request_failed');
@@ -67,7 +82,7 @@ export async function handleLab(request, { signal } = {}) {
     if (request.action === 'start') {
       if (Object.keys(request).some((k) => !['action', 'template', 'mystery'].includes(k)) || !templates.has(request.template) || typeof request.mystery !== 'boolean') return fail('invalid_start_request');
       if (request.mystery && !['free_fall', 'projectile'].includes(request.template)) return fail('mystery_supported_for_ballistic_templates_only');
-      const result = await bridge({ action: 'start', template: request.template, mystery: request.mystery }, signal); if (result.status !== 'ok' || !cleanObs(result.observations)) return fail('lab_start_failed');
+      const result = await callBridge({ action: 'start', template: request.template, mystery: request.mystery }, signal); if (result.status !== 'ok' || !cleanObs(result.observations)) return fail('lab_start_failed');
       if (!request.mystery && (result.source !== 'simulated' || !normalBrowserSetup(result.browserSimulation, request.template))) return fail('lab_start_failed');
       const id = randomUUID(), observationHash = await stableHash(result.observations), session = { id, template: request.template, mystery: request.mystery, observations: result.observations, observationHash, private: result.private, expiresAt: Date.now() + TTL_MS };
       if (request.mystery) session.mysterySession = await createMysteryGSession({ seed: result.private.seed, gravity_m_s2: result.private.gravity_m_s2, privateSetup: result.private.setup, observations: result.observations });
@@ -83,7 +98,7 @@ export async function handleLab(request, { signal } = {}) {
       if (Object.keys(request).some((k) => !['action', 'sessionId'].includes(k)) || typeof request.sessionId !== 'string') return fail('invalid_fit_request');
       const session = sessions.get(request.sessionId); if (!session || session.expiresAt <= Date.now()) return fail('session_not_found_or_expired'); if (!['free_fall', 'projectile'].includes(session.template)) return fail('fit_supported_for_ballistic_templates_only'); if (session.result) return session.result;
       if (!session.inFlightPromise) session.inFlightPromise = (async () => {
-        const fit = await bridge({ action: 'fit', observations: session.observations }, signal);
+        const fit = await callBridge({ action: 'fit', observations: session.observations }, signal);
         assertCurrent(session, signal);
         if (fit.status !== 'ok' || !fit.gravity) return fail('fit_unavailable');
         const handoff = await createTrustedFitterHandoff(fit, session.observations);

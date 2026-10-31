@@ -130,7 +130,8 @@ class StageTests(unittest.TestCase):
                                 "Build/library/loader.mjs", "Build/simulator/rk4.mjs", "Dockerfile",
                                 "Build/web/library-snapshot/guest.json"},
                         "api": {"Build/api/health/app.py", "Build/api/health/dependencies.py", "Build/api/workspace/jobs.py",
-                                "clips.csv", "evidence/S13/S13h/live/timing.json", "evidence/S14/S14g-fix3-ledger.jsonl", "Dockerfile"},
+                                "clips.csv", "evidence/S13/S13h/live/timing.json", "evidence/S14/S14g-fix3-ledger.jsonl", "Dockerfile",
+                                "Build/simulator/rk4.mjs"},  # S15av: API lab bridge spawns the Node simulator
                         "worker": {"Build/worker/health/app.py", "Build/api/health/dependencies.py", "Dockerfile"},
                     }[service]
                     self.assertEqual(set(manifest["files"]), expected)

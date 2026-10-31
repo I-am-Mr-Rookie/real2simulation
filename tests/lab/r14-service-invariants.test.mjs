@@ -146,7 +146,7 @@ test('HTTP parser enforces actual UTF-8 byte cap, inclusive boundary and expecte
   ];
   for (const [body, headers, status, code] of cases) {
     const result = await POST(requestWith(body, headers)); assert.equal(result.status, status);
-    assert.equal(result.headers.get('cache-control'), 'no-store'); assert.deepEqual(await result.json(), error(code));
+    assert.equal(result.headers.get('cache-control'), 'no-store'); assert.deepEqual(withoutMessage(await result.json()), error(code));
   }
 });
 
@@ -160,10 +160,12 @@ test('streamed HTTP JSON preserves split UTF-8 and counts bytes across chunks', 
     const result = await POST(new Request('http://localhost:3000/api/lab', { method: 'POST', duplex: 'half',
       headers: { host: 'localhost:3000', 'content-length': '1' }, body }));
     assert.equal(result.status, oversized ? 413 : 200);
-    assert.deepEqual(await result.json(), error(oversized ? 'request_too_large' : 'unsupported_action'));
+    assert.deepEqual(withoutMessage(await result.json()), error(oversized ? 'request_too_large' : 'unsupported_action'));
   }
   assert.equal(children.length, 0);
 });
+// S15av: the route adds a user-facing error.message; the code envelope is otherwise unchanged.
+function withoutMessage(body) { assert.equal(typeof body.error.message, 'string'); delete body.error.message; return body; }
 
 test('ASCII-escaped current-producer-style output has no Unicode chunk loss', async (t) => {
   const children = transport(t), reply = startReply(['synthetic µs timing']);

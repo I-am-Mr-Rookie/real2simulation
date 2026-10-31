@@ -107,13 +107,15 @@ test('loopback route accepts the UI contract and rejects nonlocal hosts', async 
   assert.equal(oversized.status, 413); assert.equal((await oversized.json()).error.code, 'request_too_large');
 });
 
-test('production route remains disabled', async () => {
+test('production route (S15av) keeps same-origin and schema guards with friendly messages', async () => {
   const previous = process.env.NODE_ENV;
   try {
     process.env.NODE_ENV = 'production';
-    const response = await POST(new Request('http://localhost/api/lab', { method: 'POST', headers: { host: 'localhost' }, body: '{}' }));
-    assert.equal(response.status, 403);
-    assert.equal((await response.json()).error.code, 'local_lab_disabled');
+    const cross = await POST(new Request('http://example.app/api/lab', { method: 'POST', headers: { host: 'example.app', origin: 'https://evil.example' }, body: '{}' }));
+    assert.equal(cross.status, 403); const crossBody = await cross.json();
+    assert.equal(crossBody.error.code, 'local_origin_required'); assert.ok(crossBody.error.message);
+    const invalid = await (await POST(new Request('http://example.app/api/lab', { method: 'POST', headers: { host: 'example.app' }, body: '{}' }))).json();
+    assert.equal(invalid.error.code, 'invalid_request'); assert.match(invalid.error.message, /try again/i);
   } finally { process.env.NODE_ENV = previous; }
 });
 
