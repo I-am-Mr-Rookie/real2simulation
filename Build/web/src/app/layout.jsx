@@ -1,6 +1,6 @@
 import './styles.css';
 import { Instrument_Sans, Space_Mono } from 'next/font/google';
-import ShellFrame from '../shell/ShellFrame';
+import SiteFrame from './SiteFrame';
 import AuthProvider from '../auth/AuthProvider';
 import { getClerkConfiguration } from '../auth/server-config';
 import SwRegister from '../pwa/SwRegister';
@@ -18,7 +18,9 @@ export const metadata = {
   title: 'Real2Simulation',
   description: 'A workbench for testing physical explanations against video.',
   manifest: '/pwa/manifest.webmanifest',
-  icons: { icon: [{ url: '/pwa/icon.svg', type: 'image/svg+xml' }, { url: '/pwa/icon-192.png', sizes: '192x192', type: 'image/png' }], apple: '/pwa/icon-192.png' }
+  icons: { icon: [{ url: '/brand/favicon.ico', sizes: 'any' }, { url: '/brand/mark-32.png', sizes: '32x32', type: 'image/png' }, { url: '/brand/mark-192.png', sizes: '192x192', type: 'image/png' }], apple: { url: '/brand/mark-192.png', sizes: '192x192' } },
+  openGraph: { title: 'Real2Simulation', description: 'A workbench for testing physical explanations against video.', images: [{ url: '/images/marketing/a5-light-line@1x.png', width: 1200, height: 630, alt: 'Real2Simulation: video to a labelled simulation.' }] },
+  twitter: { card: 'summary_large_image', images: ['/images/marketing/a5-light-line@1x.png'] }
 };
 
 export const viewport = { themeColor: [{ media: '(prefers-color-scheme: light)', color: '#f6f6f4' }, { media: '(prefers-color-scheme: dark)', color: '#0c0c10' }] };
@@ -26,5 +28,5 @@ export const viewport = { themeColor: [{ media: '(prefers-color-scheme: light)',
 export default function RootLayout({ children }) {
   const authAvailable = getClerkConfiguration().available;
   // THEME_SCRIPT sets <html data-theme> before first paint (no flash); React must not warn about that pre-hydration attribute.
-  return <html lang="en" className={sans.variable + ' ' + mono.variable} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} /></head><body><AuthProvider><ShellFrame authAvailable={authAvailable}>{children}</ShellFrame></AuthProvider><SwRegister /></body></html>;
+  return <html lang="en" className={sans.variable + ' ' + mono.variable} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} /></head><body><AuthProvider><SiteFrame authAvailable={authAvailable}>{children}</SiteFrame></AuthProvider><SwRegister /></body></html>;
 }
