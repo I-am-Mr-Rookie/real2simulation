@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 15:13 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 15:28 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **242 / 274** runs done · 2 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **243 / 274** runs done · 2 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -27,7 +27,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **S15ak** — Codex · Sol, effort high — Image batch A (marketing: home hero, feature/explainer art, OG card) from S15aj IMAGE_BRIEFS.md (30 min) *(in progress)*
+- [~] **S15ai** — Codex (native Claude) · Opus 5.5, effort medium — Public pages (home, library, lab, about, sign-in chrome) restyled with the S15ah tokens/icons + dark mode; integrate the S15ag logo (header, favicon, PWA icons), S15ak marketing images and S15aj redlines for public pages (30 min) *(in progress)*
 - [~] **S15al** — Codex · Sol, effort high — Image batch B (in-app: empty states, onboarding/question-card art, viewport placeholder, per-mode backgrounds) from S15aj IMAGE_BRIEFS.md (30 min) *(in progress)*
 
 ## Waiting for Koushik
@@ -269,7 +269,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (35/39)</summary>
+<details><summary><b>S15</b> — Workspace UI (36/39)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -305,9 +305,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15af** — Codex (native Claude) · Sonnet 5.5, effort medium — Left rail polish after S15ae DEV walk (Q21 spec section 6) (30 min)
 - [x] **S15ag** — Codex · Sol, effort high — Logo per owner Oct31 direction: generated with the best available image model and a proper prompt (30 min)
 - [x] **S15ah** — Codex (native Claude) · Opus 5.5, effort high — Workspace modern-SaaS restyle + dark mode per evidence/ui/OWNER-UI-DIRECTION-2026-10-31.md (30 min)
-- [ ] **S15ai** — Codex (native Claude) · Opus 5.5, effort medium — Public pages (home, library, lab, about, sign-in chrome) restyled with the S15ah tokens/icons + dark mode; integrate the S15ag logo (header, favicon, PWA icons), S15ak marketing images and S15aj redlines for public pages (30 min)
+- [~] **S15ai** — Codex (native Claude) · Opus 5.5, effort medium — Public pages (home, library, lab, about, sign-in chrome) restyled with the S15ah tokens/icons + dark mode; integrate the S15ag logo (header, favicon, PWA icons), S15ak marketing images and S15aj redlines for public pages (30 min) *(in progress)*
 - [x] **S15aj** — Codex (native Claude) · Opus 5.5, effort high — Design direction (designer-led) per owner Oct31 addendum: Mobbin-grounded art direction, colour modes, screen redlines, image briefs (30 min)
-- [~] **S15ak** — Codex · Sol, effort high — Image batch A (marketing: home hero, feature/explainer art, OG card) from S15aj IMAGE_BRIEFS.md (30 min) *(in progress)*
+- [x] **S15ak** — Codex · Sol, effort high — Image batch A (marketing: home hero, feature/explainer art, OG card) from S15aj IMAGE_BRIEFS.md (30 min)
 - [~] **S15al** — Codex · Sol, effort high — Image batch B (in-app: empty states, onboarding/question-card art, viewport placeholder, per-mode backgrounds) from S15aj IMAGE_BRIEFS.md (30 min) *(in progress)*
 - [ ] **S15am** — Codex (native Claude) · Opus 5.5, effort medium — More colour modes + design-direction pass on the workspace (S15aj COLOR_MODES.md + redlines) and in-app images (S15al) (30 min)
 
