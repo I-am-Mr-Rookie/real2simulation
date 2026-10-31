@@ -12,6 +12,7 @@ import { initialInstruments, reduceInstruments } from '../workspace/instruments.
 import { initialRun } from '../workspace/runcontrol.mjs';
 import { renderShell, toolsOf, shellKey, initialRail, railReduce, LEFT_KEY, PANE_KEY, NARROW_QUERY, HOVER_OPEN_MS, HOVER_CLOSE_MS } from './workspace-shell.mjs';
 import { renderQuestionCard, renderWaiting, pendingOf, shouldAutoOpen } from './agent-card.mjs';
+import { applyTheme, choiceOf, THEME_KEY, DARK_QUERY } from './theme.mjs';
 
 const Workspace = createWorkspace(React);
 const adapter = createThreeViewer();
@@ -89,6 +90,12 @@ export default function PrivateWorkspace({ scene }) {
   const userClosed = useRef(false); // the user shut the panel while questions were pending: badge instead of forcing it open again
   const narrow = () => globalThis.matchMedia?.(NARROW_QUERY).matches ?? false;
   useEffect(() => { let o = null, p = null; try { o = localStorage.getItem(LEFT_KEY); p = localStorage.getItem(PANE_KEY); } catch {} setRail(initialRail(o, p, narrow())); }, []);
+  // S15ah: html data-theme was set pre-paint by THEME_SCRIPT; here only the choice is mirrored and System follows OS changes live.
+  const [theme, setTheme] = useState('system');
+  useEffect(() => { let c = 'system'; try { c = choiceOf(localStorage.getItem(THEME_KEY)); } catch {} setTheme(c); }, []);
+  useEffect(() => { const m = globalThis.matchMedia?.(DARK_QUERY); if (!m || theme !== 'system') return;
+    const f = () => applyTheme('system'); m.addEventListener?.('change', f); return () => m.removeEventListener?.('change', f); }, [theme]);
+  const pickTheme = (c) => { applyTheme(c); setTheme(c); };
   useEffect(() => { // same LEFT_KEY semantics as S15ab (wide only); the current pane is stored separately
     if (!rail) return;
     try { localStorage.setItem(PANE_KEY, rail.pane); if (!narrow()) localStorage.setItem(LEFT_KEY, rail.open ? 'expanded' : 'collapsed'); } catch {}
@@ -136,11 +143,11 @@ export default function PrivateWorkspace({ scene }) {
     e.preventDefault();
   };
   useEffect(() => { const f = (e) => keysRef.current(e); globalThis.addEventListener('keydown', f); return () => globalThis.removeEventListener('keydown', f); }, []);
-  const on = { toggleLeft, toggleRight, tool: openTool, rail: (e) => { stop('open'); stop('close'); send(e); }, hover, unhover, paneEnter: () => stop('close'),
+  const on = { toggleLeft, toggleRight, theme: pickTheme, tool: openTool, rail: (e) => { stop('open'); stop('close'); send(e); }, hover, unhover, paneEnter: () => stop('close'),
     close: () => { if (right) closeRight(); if (narrow() && rail?.open) toggleLeft(); },
     navigated: () => { if (rail?.preview) send({ type: 'escape' }); else if (narrow() && rail?.open) toggleLeft(); } };
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
-    renderShell(React.createElement, { title: scene.title, rail, right, tools, pending, agent: iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null }, on, { rightToggle, rightHead },
+    renderShell(React.createElement, { title: scene.title, rail, right, tools, pending, theme, agent: iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null }, on, { rightToggle, rightHead },
     React.createElement('p', { role: 'note' }, live ? LIVE_NOTICE : api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),
     live ? renderWaiting(React.createElement, iv, openCard) : null,
     live ? null : React.createElement('p', { role: 'note' }, scene.notice),

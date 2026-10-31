@@ -4,6 +4,7 @@ import ShellFrame from '../shell/ShellFrame';
 import AuthProvider from '../auth/AuthProvider';
 import { getClerkConfiguration } from '../auth/server-config';
 import SwRegister from '../pwa/SwRegister';
+import { THEME_SCRIPT } from '../shell/theme.mjs';
 
 // Self-hosted by Next at build time; CSS tokens fall back to system faces if unavailable.
 const sans = Instrument_Sans({ subsets: ['latin'], display: 'swap', variable: '--r2s-face-sans' });
@@ -20,9 +21,10 @@ export const metadata = {
   icons: { icon: [{ url: '/pwa/icon.svg', type: 'image/svg+xml' }, { url: '/pwa/icon-192.png', sizes: '192x192', type: 'image/png' }], apple: '/pwa/icon-192.png' }
 };
 
-export const viewport = { themeColor: '#f3eee3' };
+export const viewport = { themeColor: [{ media: '(prefers-color-scheme: light)', color: '#f6f6f4' }, { media: '(prefers-color-scheme: dark)', color: '#0c0c10' }] };
 
 export default function RootLayout({ children }) {
   const authAvailable = getClerkConfiguration().available;
-  return <html lang="en" className={sans.variable + ' ' + mono.variable}><body><AuthProvider><ShellFrame authAvailable={authAvailable}>{children}</ShellFrame></AuthProvider><SwRegister /></body></html>;
+  // THEME_SCRIPT sets <html data-theme> before first paint (no flash); React must not warn about that pre-hydration attribute.
+  return <html lang="en" className={sans.variable + ' ' + mono.variable} suppressHydrationWarning><head><script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} /></head><body><AuthProvider><ShellFrame authAvailable={authAvailable}>{children}</ShellFrame></AuthProvider><SwRegister /></body></html>;
 }

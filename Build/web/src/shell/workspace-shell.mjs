@@ -1,6 +1,8 @@
 // S15ab: private workspace shell (Q21 owner spec). Left nav collapses to an icon rail, the project owns the center, and the
 // rightmost header button toggles a right Agent & tools panel. Pure render + key mapping (tested); PrivateWorkspace holds state.
 import { PHASE_LABEL, OWNER_INTERVIEW_LABEL } from '../workspace/layout.mjs';
+import { icon } from './icons.mjs';
+import { THEME_OPTIONS } from './theme.mjs';
 
 export const LEFT_KEY = 'r2s.workspace.left';
 export const NARROW_QUERY = '(max-width: 760px)';
@@ -69,17 +71,6 @@ export function shellKey(e, tools = []) {
   return null;
 }
 
-const PATHS = {
-  grid: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z', book: 'M5 4h9a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM5 17a3 3 0 0 1 3-3h9',
-  flask: 'M9 3h6M10 3v6l-5 9a2 2 0 0 0 2 3h10a2 2 0 0 0 2-3l-5-9V3', cube: 'M12 3l8 4.5v9L12 21l-8-4.5v-9zM12 12l8-4.5M12 12v9M12 12L4 7.5',
-  panel: 'M4 5h16v14H4zM14 5v14', pulse: 'M3 12h4l2-5 4 10 2-5h6', chat: 'M4 5h16v11H9l-5 4z', film: 'M4 5h16v14H4zM8 5v14M16 5v14M4 9h4M16 9h4M4 15h4M16 15h4',
-  history: 'M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4M12 8v4l3 2', doc: 'M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6',
-  rail: 'M4 5h16v14H4zM9 5v14', side: 'M4 5h16v14H4zM15 5v14', close: 'M6 6l12 12M18 6L6 18',
-  compass: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM15.5 8.5l-2 5-5 2 2-5z', list: 'M9 6h11M9 12h11M9 18h11M4.5 6h.01M4.5 12h.01M4.5 18h.01',
-};
-const icon = (h, name) => h('svg', { className: 'r2s-icon', viewBox: '0 0 24 24', width: 18, height: 18, 'aria-hidden': true, focusable: 'false' },
-  h('path', { d: PATHS[name], fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' }));
-
 const navList = (h, label, items, onNav) => h('nav', { className: 'r2s-nav', 'aria-label': label },
   h('p', { className: 'r2s-nav-h', 'aria-hidden': true }, label),
   h('ul', null, ...items.map((it) => h('li', { key: it.id },
@@ -108,6 +99,10 @@ export function renderShell(h, v, on = {}, refs = {}, ...content) {
           'aria-keyshortcuts': 'Control+B', title: (left ? 'Collapse' : 'Expand') + ' sidebar (' + SHORTCUT_LABEL.left + ')', 'aria-label': 'Sidebar', onClick: on.toggleLeft },
           icon(h, 'rail')),
         h('h1', null, v.title),
+        // S15ah: theme switch (System + every palette); sits left of the rightmost Agent & tools toggle.
+        h('div', { className: 'r2s-theme', role: 'group', 'aria-label': 'Colour theme' }, ...THEME_OPTIONS.map((t) =>
+          h('button', { key: t.id, type: 'button', className: 'r2s-themebtn', 'data-theme-option': t.id, 'aria-pressed': (v.theme ?? 'system') === t.id,
+            'aria-label': t.label + ' theme', title: t.label, onClick: () => on.theme?.(t.id) }, icon(h, t.icon, 16)))),
         h('button', { type: 'button', ref: refs.rightToggle, className: 'r2s-iconbtn r2s-tools-btn', 'data-toggle': 'right', 'aria-controls': 'r2s-right', 'aria-expanded': right,
           'aria-keyshortcuts': 'Control+J', title: (right ? 'Close' : 'Open') + ' agent and tools (' + SHORTCUT_LABEL.right + ')', onClick: on.toggleRight },
           icon(h, 'side'), h('span', { className: 'r2s-label' }, 'Agent & tools'),
@@ -120,7 +115,7 @@ export function renderShell(h, v, on = {}, refs = {}, ...content) {
       v.agent ?? null,
       h('h3', { className: 'r2s-nav-h' }, 'Tools'),
       tools.length ? h('ul', { className: 'r2s-tools' }, ...tools.map((t) => h('li', { key: t.id },
-        h('button', { type: 'button', className: 'r2s-tool', 'data-tool': t.id, 'aria-keyshortcuts': 'Alt+' + t.key, onClick: () => on.tool?.(t) },
+        h('button', { type: 'button', className: 'r2s-tool', 'data-tool': t.id, 'aria-keyshortcuts': 'Alt+' + t.key, title: t.status, onClick: () => on.tool?.(t) },
           icon(h, t.icon), h('span', { className: 'r2s-tool-text' }, h('strong', null, t.label), h('span', { className: 'r2s-tool-status' }, t.status)),
           h('kbd', null, 'Alt+' + t.key)))))
         : h('p', { className: 'r2s-empty' }, 'No tools: the private workspace service is not connected, so nothing here can act.')),
