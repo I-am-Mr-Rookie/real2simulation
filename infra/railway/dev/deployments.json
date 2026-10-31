@@ -7,27 +7,28 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "20e728a2-e0f5-45f1-90b8-4734d2e00bfb",
-      "previousDeploymentId": "1f827ca0-2cf6-4ace-99ac-f9f9f6e689ee",
-      "redeployNote": "S15v-orch171: stage.py web + railway up (owner phone clips, known-size question, uncertainty/abstain instead of failure)",
-      "sourceRevision": "d195f270e74af29f817835130d0eeac7946245f9",
-      "verifiedUtc": "2026-10-30T23:58:00Z",
+      "deploymentId": "75dcb815-b7a1-44ab-80da-44733b3d048e",
+      "previousDeploymentId": "20e728a2-e0f5-45f1-90b8-4734d2e00bfb",
+      "redeployNote": "S15y-orch177: stage.py web + railway up (owner clip -> interview -> report.owner result card, no upload failure)",
+      "sourceRevision": "6b9e16d9d7821327cd3822acade1f3c48bd7a5c4",
+      "verifiedUtc": "2026-10-31T00:13:20Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "85c23646-2e35-4c25-af0d-cbe38a52c524",
+      "deploymentId": "88eb14d1-5be4-4d6b-a439-800293c2b703",
       "previousDeploymentIds": [
+        "85c23646-2e35-4c25-af0d-cbe38a52c524",
         "81a74b99-ef55-4f69-8459-384ff306b390",
         "a2777e67-be64-4455-9d71-c8c5803c40a0",
         "3af47dc9-0158-4294-82ad-7b71c27420a8",
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "d195f270e74af29f817835130d0eeac7946245f9",
-      "verifiedUtc": "2026-10-30T23:58:00Z",
+      "sourceRevision": "6b9e16d9d7821327cd3822acade1f3c48bd7a5c4",
+      "verifiedUtc": "2026-10-31T00:13:20Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",

@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T00:20Z — controller: accept S15y DONE + S15v DONE (owner clip DEV walk PASS)
+
+- S15y-orch177 (Opus high; timebox PASS; web 121/121, api 24 OK fresh) merged. DEV api 88eb14d1-5be4-4d6b-a439-800293c2b703 (prev 85c23646) + web 75dcb815-b7a1-44ab-80da-44733b3d048e (prev 20e728a2), revision 6b9e16d9 (pre-rebase; main moved by control commits only); deployments.json + verify pins updated; verify.py exit 0; railway-dev 16 OK.
+- Controller DEV walk 375px, owner clip OWN01 (private processing): checksum accepted -> 'Owner clip: no scene (reconstruction not run)' (no failure) -> known-size question -> 'book cover edge, 20.28 cm' = 0.2028 m (user-declared, not verified) -> result card g = 10.96 +/- 0.77 (RECORDED replay of MEASURED; held-out RMSE 23.0 px exceeds the 6 px threshold). No horizontal scroll. Cosmetic: the result card shows in both stage and job panels. Screenshot evidence/S15/s15o/controller/19-375-own01-after-S15y.png. S15v PARTIAL -> DONE (completed by S15y).
+
 ## 2026-10-31T00:15Z — controller: S07l added + dispatched
 
 - S07l (Opus high, thread 01a18f4a-9d73-7562-9e2e-e8eb9a6fd523, deadline 00:39:37Z / 06:39 Dhaka): diagnose held-out failure on all owner clips (impact frames, rotation/perspective, centroid bias, drag, phone timing/rolling shutter, error model, scale) from existing tracks only; one recommended v3 change labelled hypothesis.
