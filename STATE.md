@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 2026-10-31T02:18Z controller: S15l spot check passed -> added QUEUE S15z (owner result card rendered twice on DEV; Sonnet medium, web-only) and dispatched S15z-orch184, thread 01a18fc0-63dc-7122-85f4-887e182e9418, deadline 2026-10-31T02:48:31+00:00 (Dhaka 08:48).
+
 - 2026-10-31T02:20Z controller: S15l DEV spot check PASS on web 1e0f6e0d (in-app browser): skip link is first Tab stop with visible 3px focus ring; nav links keep 3px outline; 2 polite role=status live regions (upload status, scene viewport); stage heading tabindex=-1; 375px viewport no horizontal overflow (scrollWidth=clientWidth=360). Screenshot evidence/S15/s15o/controller/20-s15l-375.png. No owner replies to Q21/Q22 yet; no workers in flight.
 
 ## 2026-10-31T01:55Z — controller: accept S15l DONE; web DEV redeployed
