@@ -17,7 +17,7 @@ test('header has logo mark, wordmark text, icon nav and S15ah theme toggle; foot
   const frame = await src('app/SiteFrame.jsx'), toggle = await src('app/ThemeToggle.jsx');
   for (const s of ['src="/brand/mark-192.png"', '>Real2Simulation</Link>', "icon(h, 'book'", "icon(h, 'flask'", '<ThemeToggle />', 'href="/sign-in"', 'Synthetic lab results are not calibrated measurements. Uploads are limited to approved licensed clips in the signed-in workspace.']) assert.ok(frame.includes(s), s);
   assert.match(toggle, /from '\.\.\/shell\/theme\.mjs'/);
-  assert.match(toggle, /aria-pressed=\{choice === o\.id\}/);
+  assert.match(toggle, /THEME_OPTIONS\.map\(\(o\) => <option key=\{o\.id\} value=\{o\.id\}>/);
 });
 
 test('home keeps honesty labels and serves one picture per theme family with explicit size', async () => {

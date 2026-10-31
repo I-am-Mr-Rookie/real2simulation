@@ -153,7 +153,8 @@ figcaption span { display: block; font: 400 .85rem/1.5 var(--r2s-font-sans); let
 .brand-mark { width: 28px; height: 28px; border-radius: 6px; outline: none; }
 .site-header { border-bottom-color: var(--r2s-border); }
 .site-header nav a .r2s-icon { margin-right: .4rem; flex: none; }
-.theme-toggle { display: inline-flex; gap: 2px; padding: 2px; margin-inline: .25rem; border: 1px solid var(--r2s-border-strong); border-radius: 999px; background: var(--r2s-surface); }
+.theme-toggle { display: inline-flex; align-items: center; gap: .25rem; margin-inline: .25rem; color: var(--r2s-muted); }
+.theme-toggle select { min-height: 2.75rem; max-width: 8.5rem; padding-block: 0; border-radius: 999px; font-size: .9rem; }
 .theme-toggle button { display: inline-grid; place-items: center; width: 2.75rem; height: 2.75rem; min-height: 0; padding: 0; margin: 0; border: 0; border-radius: 999px; background: transparent; color: var(--r2s-muted); box-shadow: none; }
 .theme-toggle button:hover { transform: none; box-shadow: none; color: var(--r2s-ink); background: var(--r2s-bg); }
 .theme-toggle button[aria-pressed="true"] { background: var(--r2s-accent-soft); color: var(--r2s-ink); }

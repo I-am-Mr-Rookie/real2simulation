@@ -7,7 +7,8 @@ import { icon } from '../shell/icons.mjs';
 export default function ThemeToggle() {
   const [choice, setChoice] = useState('system');
   useEffect(() => { try { setChoice(choiceOf(localStorage.getItem(THEME_KEY))); } catch { /* storage blocked: stay on system */ } }, []);
-  return <div className="theme-toggle" role="group" aria-label="Colour theme">
-    {THEME_OPTIONS.map((o) => <button key={o.id} type="button" title={o.label} aria-label={o.label + ' theme'} aria-pressed={choice === o.id} onClick={() => { applyTheme(o.id); setChoice(o.id); }}>{icon(h, o.icon, 16)}</button>)}
-  </div>;
+  // S15am grew THEME_OPTIONS to 7 modes (not all have icons): a native select stays compact at 375px and lists every mode.
+  return <label className="theme-toggle">{icon(h, 'sun', 16)}<select aria-label="Colour theme" value={choice} onChange={(e) => { applyTheme(e.target.value); setChoice(e.target.value); }}>
+    {THEME_OPTIONS.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
+  </select></label>;
 }
