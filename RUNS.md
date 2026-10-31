@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 20:46 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 20:47 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **261 / 288** runs done · 4 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **262 / 288** runs done · 3 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -26,7 +26,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 - [~] **S13m** — Codex (native Claude) · Opus 5.5, effort high — Show RM04 geometry on DEV: owner-scoped bundle route + PrivateWorkspace loadScene; stage.py bakes the local-only bundle into the private API image (no public URL, nothing in Git) (30 min) *(in progress)*
 - [~] **S13n** — Codex (native Claude) · Opus 5.5, effort high — Settle RM04 reservation after its billing hour + guardrails release path for never-dispatched reservations (orphan 0.50 USD) + gpu_stages ENV_FILE space-path fix (30 min) *(in progress)*
-- [~] **S18c** — Codex (native Claude) · Sonnet 5.5, effort medium — Precompute projectile and bounce demos (30 min) *(in progress)*
 - [~] **S22c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 1 (30 min) *(in progress)*
 
 ## Waiting for Koushik
@@ -349,11 +348,11 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S18</b> — Demo library with licensed footage (12/13)</summary>
+<details><summary><b>S18</b> — Demo library with licensed footage (13/13)</summary>
 
 - [x] **S18a** — Codex · GPT-6.1 Sol, effort medium — Define library manifest and immutable artifact format (30 min)
 - [x] **S18b** — Codex · GPT-6.1 Sol, effort medium — Precompute free-fall demos (30 min)
-- [~] **S18c** — Codex (native Claude) · Sonnet 5.5, effort medium — Precompute projectile and bounce demos (30 min) *(in progress)*
+- [x] **S18c** — Codex (native Claude) · Sonnet 5.5, effort medium — Precompute projectile and bounce demos (30 min)
 - [x] **S18d** — Codex · GPT-6.1 Sol, effort medium — Precompute pendulum and scene demos (30 min)
 - [x] **S18e** — Codex · GPT-6.1 Sol, effort medium — Prepare Apollo and Mystery-g entries (30 min)
 - [x] **S18f** — Codex · GPT-6.1 Sol, effort medium — Implement guest manifest and artifact endpoint (30 min)
