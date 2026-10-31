@@ -120,3 +120,9 @@ test('status module stays inside the workspace import boundary', () => {
   const imports = [...readFileSync(new URL('../../Build/web/src/workspace/status.mjs', import.meta.url), 'utf8').matchAll(/from '([^']+)'/g)].map((x) => x[1]);
   assert.deepEqual(imports, ['./workflow.mjs']);
 });
+
+test('S15ba D5: owner clip timeline ends "Clip result ready (no scene)"; scene jobs keep "Scene ready"', () => {
+  const last = (st) => jobTimeline(st).at(-1).label;
+  assert.equal(last({ phase: 'interview.active', owner: { jobId: 'x' } }), 'Clip result ready (no scene)');
+  assert.equal(last({ phase: 'interview.active', owner: null }), 'Scene ready');
+});

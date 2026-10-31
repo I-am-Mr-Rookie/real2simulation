@@ -47,3 +47,10 @@ test('routeAction: Q_* go to the interview reducer, I_MEASURE fails honestly wit
   assert.match(INSTRUMENTS_UNAVAILABLE, /not available in this build/);
 });
 
+
+test('S15ba D7/D8: scene label only with a loaded scene; live title is "Private workspace"', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const src = await readFile(new URL('../../Build/web/src/shell/PrivateWorkspace.mjs', import.meta.url), 'utf8');
+  assert.match(src, /live && s\.state\.scene \? React\.createElement\('p', \{ role: 'note', 'data-scene-label'/);
+  assert.match(src, /title: live \? 'Private workspace' : scene\.title/);
+});

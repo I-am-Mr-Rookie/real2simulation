@@ -35,7 +35,7 @@ export function jobTimeline(state, log = []) {
   const terminal = p === 'upload.failed' || p === 'upload.cancelled';
   let level = p === 'upload.queued' ? 0 : p === 'upload.running' ? 1 : terminal ? 0 : 2;
   if (terminal && sinceStart(log).some((e) => e.outcome === 'applied' && e.jobStatus === 'running')) level = 1;
-  const steps = STEPS.map(([id, label], i) => ({ id, label, status: terminal ? (i <= level ? 'done' : 'todo') : i < level || stage !== 'upload' ? 'done' : i === level ? 'current' : 'todo' }));
+  const steps = STEPS.map(([id, label], i) => ({ id, label: id === 'ready' && state.owner ? 'Clip result ready (no scene)' : label, status: terminal ? (i <= level ? 'done' : 'todo') : i < level || stage !== 'upload' ? 'done' : i === level ? 'current' : 'todo' }));
   return terminal ? [...steps.filter((s) => s.status === 'done'), { id: p.split('.')[1], label: p === 'upload.failed' ? 'Failed' : 'Cancelled', status: 'failed' }] : steps;
 }
 

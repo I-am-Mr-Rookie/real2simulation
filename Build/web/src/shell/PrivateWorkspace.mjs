@@ -150,7 +150,7 @@ export default function PrivateWorkspace({ scene }) {
     close: () => { if (right) closeRight(); if (narrow() && rail?.open) toggleLeft(); },
     navigated: () => { if (rail?.preview) send({ type: 'escape' }); else if (narrow() && rail?.open) toggleLeft(); } };
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
-    renderShell(React.createElement, { title: scene.title, rail, right, tools, pending, agent: iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null }, on, { rightToggle, rightHead },
+    renderShell(React.createElement, { title: live ? 'Private workspace' : scene.title, rail, right, tools, pending, agent: iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null }, on, { rightToggle, rightHead },
     live ? chip('Connected', LIVE_NOTICE, 'live') : React.createElement('p', { role: 'note' }, api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),
     live ? renderWaiting(React.createElement, iv, openCard) : null,
     live ? null : React.createElement('p', { role: 'note' }, scene.notice),
@@ -160,7 +160,7 @@ export default function PrivateWorkspace({ scene }) {
       ? s.whatIfLabel + '. Run and fit values come from the in-browser simulator on your described setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')
       : 'SIMULATED: run and fit values come from the in-browser simulator on the validated setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')) : null,
     live ? chip('Instruments off', INSTRUMENTS_UNAVAILABLE, 'instruments') : null,
-    live ? React.createElement('p', { role: 'note', 'data-scene-label': '' }, SCENE_LABEL) : null,
+    live && s.state.scene ? React.createElement('p', { role: 'note', 'data-scene-label': '' }, SCENE_LABEL) : null,
     React.createElement(Workspace, { state: s.state, adapter, loadScene, audience: 'signed-in', onAction,
       run: live ? initialRun() : undefined, instruments: live ? local.instruments : undefined, // interview: rendered in the right panel (S15ac)
       fit: live ? s.fitInput ?? undefined : undefined, report: live && s.report ? s.report : undefined, provenance: live ? s.provenance ?? undefined : undefined,
