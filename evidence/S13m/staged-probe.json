@@ -1,0 +1,38 @@
+{
+ "stage": "C:\\Users\\HP\\AppData\\Local\\Temp\\s13m-stage-ca644c26",
+ "clip_sha256": "8231fbca041d030f2fc39bd4281af6112e476bf811f548fc9019db53f7cb87ec",
+ "job_status": "ready",
+ "scene_dir": "C:\\Users\\HP\\AppData\\Local\\Temp\\s13m-stage-ca644c26\\evidence\\S13l\\reconstruct\\bundle",
+ "files": {
+  "scene.json": {
+   "status": 200,
+   "cache_control": "no-store",
+   "body_sha256": "df98312d48fa7ccc6e8879f37d5b72e0e37ee0ab4a8518a6b054830e9fbd71a4",
+   "source_sha256_header": "c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76",
+   "manifest_sha256": "c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76",
+   "match": true
+  },
+  "points.ply": {
+   "status": 200,
+   "cache_control": "no-store",
+   "body_sha256": "9f0c0bd9dd308549bbedc5e1702c0bdf16046123439129959e657e51d0e82385",
+   "source_sha256_header": "9f0c0bd9dd308549bbedc5e1702c0bdf16046123439129959e657e51d0e82385",
+   "manifest_sha256": "9f0c0bd9dd308549bbedc5e1702c0bdf16046123439129959e657e51d0e82385",
+   "match": true
+  },
+  "points-mobile.ply": {
+   "status": 200,
+   "cache_control": "no-store",
+   "body_sha256": "e4ce5b06f300e6a88e1f930aa10879b98b1f90922d7c288ebd92346fa2d5e432",
+   "source_sha256_header": "e4ce5b06f300e6a88e1f930aa10879b98b1f90922d7c288ebd92346fa2d5e432",
+   "manifest_sha256": "e4ce5b06f300e6a88e1f930aa10879b98b1f90922d7c288ebd92346fa2d5e432",
+   "match": true
+  }
+ },
+ "other_owner": 404,
+ "missing_dir": [
+  503,
+  "DEPENDENCY_UNAVAILABLE"
+ ],
+ "ok": true
+}
