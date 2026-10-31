@@ -342,34 +342,23 @@
 @media (max-width: 760px) {
   .r2s-pane, .r2s-pane[data-mode="temporary"] { box-shadow: 4px 0 0 var(--r2s-shadow-ink, #18181b); }
   .r2s-shell:is([data-left="expanded"], [data-right="open"]) .r2s-scrim { background: color-mix(in srgb, var(--r2s-shadow-ink, #000) 40%, transparent); }
-  .r2s-themebtn { width: 2rem; height: 2.25rem; }
   .r2s-top { gap: .4rem; flex-wrap: wrap; }
   .r2s-top h1 { order: 5; flex-basis: 100%; font-size: 1rem; } /* visual only: title gets its own row; DOM order (toggle rightmost) unchanged */
-  .r2s-theme { margin-left: auto; }
+  .r2s-shell[data-right="open"] .r2s-right { z-index: 32; } /* S15an: open drawer sits above the rail (rail z 31), never clipped */
 }
-@media (prefers-reduced-motion: reduce) { .r2s-themebtn { transition: none; } }
 
 /* ===== S15am: design-direction pass (DESIGN_DIRECTION W1-W4, COLOR_MODES). Overrides only; every colour is a --r2s-* token so all six modes apply. ===== */
 /* W1 full-bleed app: the private shell fills the page under a slim header; no boxed marketing card, no footer. */
-main:has(> .r2s-shell) { width: 100%; max-width: none; margin: 0; padding: 0; min-height: calc(100dvh - 3.25rem); }
-main:has(> .r2s-shell) > * { animation: none; }
+/* S15an: descendant match: SiteFrame main > section[data-private-content] > .r2s-shell (the S15am child match never fired). */
+main:has(.r2s-shell) { width: 100%; max-width: none; margin: 0; padding: 0; min-height: calc(100dvh - 3.25rem); }
+main:has(.r2s-shell) > * { animation: none; }
 body:has(.r2s-shell) .site-header { width: 100%; padding: .35rem 1rem; border-bottom-color: var(--r2s-border-strong); background: var(--r2s-surface); }
 body:has(.r2s-shell) .site-footer { display: none; }
 .r2s-shell { min-height: calc(100dvh - 3.25rem); }
 .ws { background: transparent; }
 /* H: single-line truncating title (full text in title attribute). */
-.r2s-top h1 { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; overflow-wrap: normal; text-wrap: nowrap; }
-/* Theme menu: palette button opens a level-3 popover listing System + six modes with swatches. */
-.r2s-theme { position: relative; display: block; padding: 0; border: 0; background: none; }
-.r2s-theme > summary { list-style: none; display: inline-grid; place-items: center; width: 2.5rem; height: 2.5rem; padding: 0; }
-.r2s-theme > summary::-webkit-details-marker { display: none; }
-.r2s-theme[open] > summary { background: var(--sh-ink); color: var(--r2s-accent-ink, #fff); }
-.r2s-theme-menu { position: absolute; right: 0; top: calc(100% + 8px); z-index: 40; display: grid; gap: 2px; min-width: 12rem; padding: .35rem;
-  background: var(--r2s-elevated, var(--sh-surface)); border: 1px solid var(--r2s-border-strong); border-radius: 10px; box-shadow: var(--r2s-shadow-3, 6px 6px 0 var(--r2s-shadow-ink)); }
-.r2s-theme-menu .r2s-themebtn { display: flex; justify-content: flex-start; gap: .6rem; width: 100%; height: 2.5rem; padding: 0 .55rem; font: inherit; font-size: .9rem; color: var(--sh-ink); background: transparent; }
-.r2s-theme-menu .r2s-themebtn:hover { background: var(--sh-bg); }
-.r2s-theme-menu .r2s-themebtn[aria-pressed="true"] { background: var(--r2s-accent-soft); border-color: var(--r2s-border-strong); box-shadow: none; font-weight: 600; }
-.r2s-swatch { flex: none; width: 1.1rem; height: 1.1rem; border: 1.5px solid; border-radius: 50%; box-shadow: inset -.45rem 0 0 currentColor; }
+/* S15an: global h1 max-width (16ch marketing) must not cap the app title: it takes all free header space before ellipsizing. */
+.r2s-top h1 { max-width: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; overflow-wrap: normal; text-wrap: nowrap; }
 /* Per-mode shadow levels replace the fixed ink slabs (lit slab on dark modes). */
 .r2s-qcard { box-shadow: var(--r2s-shadow); border-radius: 14px; }
 .ws-panel, .ws-host { box-shadow: var(--r2s-shadow-sm); }
@@ -431,5 +420,26 @@ body:has(.r2s-shell) .site-footer { display: none; }
 .r2s-center > p[data-instruments] { width: fit-content; border-radius: 999px; }
 /* Tool rows: icon + label + one status line; shortcut stays in aria-keyshortcuts + tooltip, not as visible kbd text. */
 .r2s-tool kbd { display: none; }
+/* S15an: skipped stage = dash icon + tooltip ("(not run)" kept for screen readers). */
+.ws-stages li[data-status="skipped"] { color: var(--r2s-muted); border-style: dashed; background: transparent; }
+.ws-stages li[data-status="skipped"]::before { content: "\2013"; background: transparent; }
+.ws-stages li[data-status="done"]::before { color: var(--r2s-surface); } /* S15an: tick was ok-on-ok (invisible) after the later pill rule */
+/* S15an: long source path collapsed under "Source". */
+.ws-source { margin-top: .35rem; font-size: .82rem; color: var(--r2s-muted); }
+.ws-source > summary { width: fit-content; cursor: pointer; }
+.ws-source code { display: block; margin-top: .25rem; overflow-wrap: anywhere; }
+/* S15an: after a result an empty viewport collapses to a strip (EMPTY · NO SCENE label kept) so the result card is above the fold. */
+.ws[data-phase^="report"] .ws-host[data-viewer-status="empty"] { min-height: 4rem; background-size: auto 52px; background-position: 1rem center; }
+.ws[data-phase^="report"] .ws-host[data-viewer-status="empty"]:empty::before { align-self: center; margin-bottom: 0; }
+.ws-status { font-family: inherit; }
+/* S15an: service notices as chips; (i) opens the verbatim wording. */
+.r2s-center > .r2s-chip { display: inline-block; vertical-align: top; max-width: calc(100% - 2rem); margin: .6rem 0 0 1rem; font-size: .82rem; color: var(--r2s-muted); }
+.r2s-chip + .r2s-chip { margin-left: .4rem; }
+.r2s-chip > summary { list-style: none; display: inline-flex; align-items: center; gap: .4rem; min-height: 2rem; padding: .15rem .7rem; border: 1px solid var(--r2s-border); border-radius: 999px; background: var(--r2s-surface); cursor: pointer; }
+.r2s-chip > summary::-webkit-details-marker { display: none; }
+.r2s-chip > summary:hover, .r2s-chip[open] > summary { border-color: var(--r2s-border-strong); color: var(--r2s-ink); }
+.r2s-chip[data-chip="live"] > summary .r2s-icon { color: var(--r2s-ok); }
+.r2s-chip > p { max-width: 60ch; margin: .35rem 0 0; padding: .4rem .7rem; border: 1px solid var(--r2s-border); border-radius: 10px; background: var(--r2s-surface); line-height: 1.4; }
+@media (max-width: 760px) { .r2s-center > .r2s-chip { margin-left: .75rem; max-width: calc(100% - 1.5rem); } }
 
 

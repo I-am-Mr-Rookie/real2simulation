@@ -61,7 +61,7 @@ async function ownerWalk(measurement, sizeText) {
 test('owner clip OWN01: no-scene job, known-size interview, stored g ± u as the result stage', async () => {
   const { panel, all } = await ownerWalk(OWN01, 'book cover edge, 20.28 cm');
   assert.match(panel, /Clip result \(owner clip; no scene, run or fit\)/);
-  assert.match(panel, /g = 10\.96 ± 0\.77 m\/s\^2/);
+  assert.match(panel, /g = 10\.96 ± 0\.77 m\/s²/);
   assert.match(panel, /held-out RMSE 23\.0 px exceeds the 6 px pass threshold/);
   assert.match(panel, /Your known size: book cover edge, 20\.28 cm = 0\.2028 m \(user-declared, not verified\)/);
   assert.match(all, /no scene: owner clip, scene reconstruction not run/);

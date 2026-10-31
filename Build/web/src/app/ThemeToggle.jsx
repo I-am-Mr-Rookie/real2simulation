@@ -1,14 +1,22 @@
 'use client';
 import { createElement as h, useEffect, useState } from 'react';
-import { THEME_KEY, THEME_OPTIONS, choiceOf, applyTheme } from '../shell/theme.mjs';
+import { THEME_KEY, THEME_OPTIONS, DARK_QUERY, choiceOf, applyTheme } from '../shell/theme.mjs';
 import { icon } from '../shell/icons.mjs';
 
-// S15ai: public-header System/Light/Dark switch; reuses the S15ah theme layer (pre-paint script already applied the stored choice).
+// S15an: the ONE theme control on every page (public + workspace): palette button -> System + six COLOR_MODES with swatches.
+// Pre-paint THEME_SCRIPT already applied the stored choice; here it is mirrored and System follows OS changes live.
 export default function ThemeToggle() {
   const [choice, setChoice] = useState('system');
   useEffect(() => { try { setChoice(choiceOf(localStorage.getItem(THEME_KEY))); } catch { /* storage blocked: stay on system */ } }, []);
-  // S15am grew THEME_OPTIONS to 7 modes (not all have icons): a native select stays compact at 375px and lists every mode.
-  return <label className="theme-toggle">{icon(h, 'sun', 16)}<select aria-label="Colour theme" value={choice} onChange={(e) => { applyTheme(e.target.value); setChoice(e.target.value); }}>
-    {THEME_OPTIONS.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}
-  </select></label>;
+  useEffect(() => { const m = globalThis.matchMedia?.(DARK_QUERY); if (!m || choice !== 'system') return;
+    const f = () => applyTheme('system'); m.addEventListener?.('change', f); return () => m.removeEventListener?.('change', f); }, [choice]);
+  const pick = (e, id) => { applyTheme(id); setChoice(id); e.currentTarget.closest('details')?.removeAttribute('open'); };
+  return <details className="theme-menu">
+    <summary aria-label="Colour theme" title="Colour theme">{icon(h, 'palette', 18)}</summary>
+    <div className="theme-menu-list" role="group" aria-label="Colour theme">
+      {THEME_OPTIONS.map((t) => <button key={t.id} type="button" data-theme-option={t.id} aria-pressed={choice === t.id} onClick={(e) => pick(e, t.id)}>
+        {t.tokens ? <span className="theme-swatch" aria-hidden="true" style={{ background: t.tokens.bg, borderColor: t.tokens['border-strong'], color: t.tokens.accent }} /> : icon(h, t.icon, 16)}
+        {t.label}</button>)}
+    </div>
+  </details>;
 }

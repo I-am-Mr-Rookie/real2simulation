@@ -92,8 +92,8 @@ test('owner clip measurement renders g ± u with labels and caveat, or an abstai
   const rec = panel({ clip_id: 'OWN01', input_label: 'OWNER_RECORDED / RECORDED', status: 'recorded', label: 'RECORDED replay of a MEASURED result',
     g: 10.96, u: 0.77, unit: 'm/s^2', measured_label: 'MEASURED (owner clip OWN01)', source: 'evidence/S07/S07i/result-own01.json',
     caveat: 'Held-out prediction FAILS (RMSE 23 px >> 2 px)', scale });
-  assert.match(rec, /g = 10\.96 ± 0\.77 m\/s\^2/);
-  assert.match(rec, /source evidence\/S07\/S07i\/result-own01\.json/);
+  assert.match(rec, /g = 10\.96 ± 0\.77 m\/s²/); // S15an: unit typeset only, same stored numbers
+  assert.match(rec, /Source\|evidence\/S07\/S07i\/result-own01\.json/); // S15an: collapsed Source detail, path verbatim
   assert.match(rec, /Held-out prediction FAILS/);
   assert.match(rec, /= 0\.2028 m \(user-declared, not verified\)/);
   const ab = panel({ clip_id: 'OWN02', input_label: 'OWNER_RECORDED / RECORDED', status: 'abstain', label: 'UNCERTAIN: no measurement', message: 'g is not reported (abstain, not an error).', scale });

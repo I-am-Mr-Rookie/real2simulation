@@ -2,7 +2,6 @@
 // rightmost header button toggles a right Agent & tools panel. Pure render + key mapping (tested); PrivateWorkspace holds state.
 import { PHASE_LABEL, OWNER_INTERVIEW_LABEL } from '../workspace/layout.mjs';
 import { icon } from './icons.mjs';
-import { THEME_OPTIONS } from './theme.mjs';
 
 export const LEFT_KEY = 'r2s.workspace.left';
 export const NARROW_QUERY = '(max-width: 760px)';
@@ -99,14 +98,7 @@ export function renderShell(h, v, on = {}, refs = {}, ...content) {
           'aria-keyshortcuts': 'Control+B', title: (left ? 'Collapse' : 'Expand') + ' sidebar (' + SHORTCUT_LABEL.left + ')', 'aria-label': 'Sidebar', onClick: on.toggleLeft },
           icon(h, 'rail')),
         h('h1', { title: typeof v.title === 'string' ? v.title : undefined }, v.title),
-        // S15am: compact theme menu (System + six COLOR_MODES, swatch icons); native <details> = keyboard/escape-free disclosure, no new state.
-        h('details', { className: 'r2s-theme' },
-          h('summary', { className: 'r2s-iconbtn', 'aria-label': 'Colour theme', title: 'Colour theme' }, icon(h, 'palette', 16)),
-          h('div', { className: 'r2s-theme-menu', role: 'group', 'aria-label': 'Colour theme' }, ...THEME_OPTIONS.map((t) =>
-            h('button', { key: t.id, type: 'button', className: 'r2s-themebtn', 'data-theme-option': t.id, 'aria-pressed': (v.theme ?? 'system') === t.id,
-              'aria-label': t.label + ' theme', title: t.label, onClick: (e) => { on.theme?.(t.id); e?.currentTarget?.closest?.('details')?.removeAttribute('open'); } },
-              t.tokens ? h('span', { className: 'r2s-swatch', 'aria-hidden': true, style: { background: t.tokens.bg, borderColor: t.tokens['border-strong'], color: t.tokens.accent } }) : icon(h, t.icon, 16),
-              h('span', { className: 'r2s-themename' }, t.label))))),
+        // S15an: the theme menu lives once, in the global header (app/ThemeToggle.jsx); none here.
         h('button', { type: 'button', ref: refs.rightToggle, className: 'r2s-iconbtn r2s-tools-btn', 'data-toggle': 'right', 'aria-controls': 'r2s-right', 'aria-expanded': right,
           'aria-keyshortcuts': 'Control+J', title: (right ? 'Close' : 'Open') + ' agent and tools (' + SHORTCUT_LABEL.right + ')', onClick: on.toggleRight },
           icon(h, 'side'), h('span', { className: 'r2s-label' }, 'Agent & tools'),

@@ -79,7 +79,8 @@ test('SSR: the real workspace renders inside the shell with jump targets and hon
     assert.ok(html.includes(s), s);
   assert.ok(/id="r2s-right"[^>]*hidden/.test(html));
   assert.match(html, /No tools: the private workspace service is not connected/);
-  // S15am: compact theme menu lists System + six modes; dropzone keeps the native #ws-upload-file input.
-  for (const id of ['system', 'paper', 'light', 'dark', 'midnight', 'graphite', 'contrast']) assert.ok(html.includes('data-theme-option="' + id + '"'), id);
-  assert.match(html, /<details class="r2s-theme"><summary[^>]*aria-label="Colour theme"/);
+  // S15an: ONE theme control: the global header menu (app/ThemeToggle.jsx); the workspace shell renders none.
+  assert.doesNotMatch(html, /data-theme-option|aria-label="Colour theme"/);
+  // S15an: long service notices are chips; wording verbatim in the detail (fixture mode keeps the plain note).
+  assert.ok(!html.includes('class="r2s-chip"'));
 });

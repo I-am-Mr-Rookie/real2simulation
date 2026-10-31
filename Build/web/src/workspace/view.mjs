@@ -18,8 +18,9 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
   const stageError = /\.failed$|^fit\.done$/.test(layout.phase) ? jobStatus.error : null;
   return h('div', { className: 'ws', 'data-phase': layout.phase },
     h('nav', { className: 'ws-stages', 'data-slot': 'stage-nav', 'aria-label': 'Workspace stages' },
-      h('ol', null, ...stages.map((s) => h('li', { key: s.id, 'data-status': s.status, 'aria-current': s.status === 'current' ? 'step' : undefined },
-        s.label + (s.failed ? ' (needs attention)' : ''))))),
+      h('ol', null, ...stages.map((s) => h('li', { key: s.id, 'data-status': s.status, 'aria-current': s.status === 'current' ? 'step' : undefined, title: s.status === 'skipped' ? 'Not run' : undefined },
+        // S15an: skipped = dash icon (CSS) + tooltip; the "(not run)" wording stays in the DOM for screen readers.
+        ...(s.status === 'skipped' && s.label.endsWith(' (not run)') ? [s.label.slice(0, -10), h('span', { className: 'r2s-sr' }, ' (not run)')] : [s.label + (s.failed ? ' (needs attention)' : '')]))))),
     sidebar ? renderSidebar(h, sidebar, onAction) : null,
     h('section', { id: 'ws-viewport', tabIndex: -1, className: 'ws-viewport', 'data-slot': 'viewport', 'aria-label': 'Scene viewport' },
       viewport.banner ? h('p', { className: 'ws-banner', role: 'note' }, viewport.banner) : null,
@@ -69,7 +70,9 @@ function renderMeasurement(h, m) {
   const yours = us?.status === 'declared' ? 'Your known size: ' + s(us.object) + ' = ' + s(us.length_m) + ' m (' + s(us.label) + ')' : us ? s(us.label) : null;
   return h('div', { className: 'ws-measurement', 'data-status': s(m.status), role: 'status', 'aria-label': 'Clip result' },
     h('p', null, s(m.clip_id) + ' — ' + s(m.input_label) + ' — ' + s(m.label)),
-    m.status === 'recorded' ? h('p', null, h('strong', null, 'g = ' + s(m.g) + ' ± ' + s(m.u) + ' ' + s(m.unit)), ' (' + s(m.measured_label) + '; source ' + s(m.source) + ')') : null,
+    // S15an: unit typeset only (m/s^2 -> m/s²; same stored numbers); the long source path sits in a collapsed "Source" detail.
+    m.status === 'recorded' ? h('p', null, h('strong', null, 'g = ' + s(m.g) + ' ± ' + s(m.u) + ' ' + s(m.unit).replace('^2', '²')), ' (' + s(m.measured_label) + ')') : null,
+    m.status === 'recorded' ? h('details', { className: 'ws-source' }, h('summary', null, 'Source'), h('code', null, s(m.source))) : null,
     m.status === 'recorded' ? h('p', { className: 'ws-note' }, s(m.caveat)) : h('p', { className: 'ws-note' }, s(m.message)),
     scale ? h('p', { className: 'ws-note' }, scale) : null,
     yours ? h('p', { className: 'ws-note', 'data-slot': 'user-scale' }, yours) : null);
