@@ -18,6 +18,9 @@ test('header has logo mark, wordmark text, icon nav and S15ah theme toggle; foot
   for (const s of ['src="/brand/mark.svg"', 'src="/brand/mark-dark.svg"', 'brand-mark art-light', 'brand-mark art-dark', '>Real2Simulation</Link>', "icon(h, 'book'", "icon(h, 'flask'", '<ThemeToggle />', 'href="/sign-in"', 'Synthetic lab results are not calibrated measurements. Uploads are limited to approved licensed clips in the signed-in workspace.']) assert.ok(frame.includes(s), s);
   assert.match(toggle, /from '\.\.\/shell\/theme\.mjs'/);
   assert.match(toggle, /THEME_OPTIONS\.map\(\(t\) => <button key=\{t\.id\} type="button" data-theme-option=\{t\.id\}/);
+  assert.match(frame, /<a className="nav-icon" href=\{REPO_URL\} target="_blank" rel="noopener noreferrer" aria-label="GitHub repository" title="GitHub repository">\{GITHUB_MARK\}<\/a>/);
+  assert.ok(frame.includes('width="34" height="34"') && frame.includes('.brand-mark{width:34px;height:34px}'), 'mark renders at 34 CSS px');
+  assert.ok(frame.includes('content:"Workspace" / ""'), 'phone workspace link is one line; generated text kept out of the accessible name');
 });
 
 test('home keeps honesty labels and serves one picture per theme family with explicit size', async () => {

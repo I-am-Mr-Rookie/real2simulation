@@ -1,0 +1,6 @@
+before paper 1280 reduce {"theme":"paper","sw":1280,"cw":1280,"headerH":80,"mark":28,"wsH":null,"wordmarkFont":"17.6px","gh":null,"labels":true,"emdash":false}
+before paper 375 reduce {"theme":"paper","sw":375,"cw":375,"headerH":80,"mark":28,"wsH":null,"wordmarkFont":"0px","gh":null,"labels":true,"emdash":false}
+before dark 1280 reduce {"theme":"dark","sw":1280,"cw":1280,"headerH":80,"mark":28,"wsH":null,"wordmarkFont":"17.6px","gh":null,"labels":true,"emdash":false}
+before dark 375 reduce {"theme":"dark","sw":375,"cw":375,"headerH":80,"mark":28,"wsH":null,"wordmarkFont":"0px","gh":null,"labels":true,"emdash":false}
+before contrast 1280 reduce {"theme":"contrast","sw":1280,"cw":1280,"headerH":80,"mark":28,"wsH":null,"wordmarkFont":"17.6px","gh":null,"labels":true,"emdash":false}
+before contrast 375 reduce {"theme":"contrast","sw":375,"cw":375,"headerH":80,"mark":28,"wsH":null,"wordmarkFont":"0px","gh":null,"labels":true,"emdash":false}

@@ -14,15 +14,20 @@
 .step { display: grid; gap: .35rem; padding: 1rem 1.1rem; }
 .step .r2s-icon { color: var(--r2s-accent); }
 .step span, .label-row > span:last-child { color: var(--r2s-muted); font-size: .95rem; }
-.agent-art { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; max-width: 720px; }
+/* S15au: each showcase section is a full-width split, copy left and art/cards right */
+.show-split { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 1.5rem 3rem; align-items: center; }
+.show-split .show-line { margin: 0; }
+.honesty-strip { max-width: none; }
+.agent-art { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
 .agent-art figure { margin: 0; }
 .agent-art img { width: 100%; height: auto; border-radius: 8px; }
-.label-list { display: grid; gap: .75rem; margin: 1.5rem 0 0; padding: 0; list-style: none; max-width: 720px; }
-.label-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; padding: .8rem 1rem; }
-.show-cta { padding: 2.5rem 0 1rem; text-align: center; }
-.show-cta .actions { justify-content: center; }
-.gh-link { min-height: 44px; }
-@media (max-width: 900px) { .home-h1 { font-size: clamp(1.6rem, 8.4vw, 3.6rem); } .steps, .agent-art { grid-template-columns: minmax(0, 1fr); } }
+.label-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 0; padding: 0; list-style: none; }
+.label-row { display: grid; justify-items: start; align-content: start; gap: .6rem; padding: 1.1rem 1.2rem; }
+.show-cta { padding: 2.5rem 0 1rem; }
+.show-cta .actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.show-cta .actions > a { justify-content: center; min-height: 44px; }
+@media (max-width: 900px) { .home-h1 { font-size: clamp(1.6rem, 8.4vw, 3.6rem); } .steps, .show-split { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .agent-art, .label-list, .show-cta .actions { grid-template-columns: minmax(0, 1fr); } }
 
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
@@ -30,7 +35,8 @@
     .home-motion .hero-copy { animation: hm-lift-slow linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
     .home-motion .hero-art { animation: hm-lift-fast linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
     .home-motion .honesty-strip { animation: hm-wipe linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
-    .home-motion .step { animation: hm-deal linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+    /* S15au: deal settles as each row fully enters, so a row resting mid-screen is never caught half-dealt */
+    .home-motion .step { animation: hm-deal linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
     .home-motion .agent-art figure:first-child { animation: hm-plane-a linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
     .home-motion .agent-art figure:last-child { animation: hm-plane-b linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
     .home-motion .label-row:nth-child(odd) { animation: hm-from-left linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }

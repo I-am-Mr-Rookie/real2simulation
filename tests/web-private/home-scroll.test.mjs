@@ -9,9 +9,18 @@ test('home copy is the owner-approved text', async () => {
   assert.ok(page.includes('Point your phone at a real experiment. Get a 3D replay, measurements with error bars, and a lab to ask "what if".'));
   for (const t of ["title: 'Film it'", "title: 'Measure it'", "title: 'Remix it'", '<strong>Guess the Gravity</strong>', 'Every number shows where it came from: measured, simulated or what-if.']) assert.ok(page.includes(t), t);
   assert.ok(!page.includes('Guess the gravity'), 'hook is title case without a full stop');
-  assert.ok(page.includes("const REPO_URL = 'https://github.com/I-am-Mr-Rookie/real2simulation';"));
+  assert.ok((await src('MarketingArt.jsx')).includes("export const REPO_URL = 'https://github.com/I-am-Mr-Rookie/real2simulation';"), 'one shared repo constant');
+  assert.ok(page.includes("import MarketingArt, { REPO_URL, GITHUB_MARK } from './MarketingArt';") && !page.includes('const REPO_URL'));
   assert.match(page, /href=\{REPO_URL\} target="_blank" rel="noopener noreferrer">\{GITHUB_MARK\}Explore the code on GitHub</);
   for (const l of ['>RECORDED<', '>SIMULATED<', '>what-if<', 'Illustration only, not scene evidence.']) assert.ok(page.includes(l), l);
+});
+
+test('S15au showcase sections are full-width splits with captioned agent art', async () => {
+  const [page, css] = await Promise.all([src('page.jsx'), src('home/home.css')]);
+  assert.equal(page.match(/className="show show-split /g)?.length, 3);
+  for (const c of ['<figcaption>The agent asks</figcaption>', '<figcaption>Your answer, labelled</figcaption>', "'scale unverified'"]) assert.ok(page.includes(c), c);
+  assert.ok(!/text-align: center/.test(css), 'CTA aligned with the other sections');
+  assert.match(css, /\.label-list \{ display: grid; grid-template-columns: repeat\(2, minmax\(0, 1fr\)\)/);
 });
 
 test('home has no em dash and motion is guarded for reduced motion', async () => {

@@ -1,12 +1,8 @@
 import { createElement as h } from 'react';
 import Link from 'next/link';
 import { icon } from '../../shell/icons.mjs';
-import MarketingArt from './MarketingArt';
+import MarketingArt, { REPO_URL, GITHUB_MARK } from './MarketingArt';
 import './home/home.css';
-
-const REPO_URL = 'https://github.com/I-am-Mr-Rookie/real2simulation';
-// Official GitHub mark, used only for the link to the repository.
-const GITHUB_MARK = <svg className="r2s-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z" /></svg>;
 
 const FEATURES = [
   { id: 'a2', glyph: 'film', title: 'Film it', line: 'A licensed clip of a swing, drop or roll.', alt: 'A phone records a pendulum at three swing positions.' },
@@ -68,24 +64,32 @@ export default function Home() {
       </ol>
     </section>
 
-    <section className="show show-agent" aria-labelledby="agent">
-      <h2 id="agent">The agent asks instead of guessing</h2>
-      <p className="show-line">Missing a scale or a frame rate? It asks you, then labels the answer.</p>
+    <section className="show show-split show-agent" aria-labelledby="agent">
+      <div className="show-copy">
+        <h2 id="agent">The agent asks instead of guessing</h2>
+        <p className="show-line">Missing a scale or a frame rate? It asks you, then labels the answer.</p>
+      </div>
       <div className="agent-art">
-        <figure className="slab"><MarketingArt set="app" id="b5" width={384} height={384} alt="Illustration of the agent asking a question about the clip." /></figure>
-        <figure className="slab"><MarketingArt set="app" id="b6" width={512} height={512} alt="Illustration of the agent using the answer in the analysis." /></figure>
+        <figure className="slab"><MarketingArt set="app" id="b5" width={384} height={384} alt="Illustration of the agent asking a question about the clip." /><figcaption>The agent asks</figcaption></figure>
+        <figure className="slab"><MarketingArt set="app" id="b6" width={512} height={512} alt="Illustration of the agent using the answer in the analysis." /><figcaption>Your answer, labelled</figcaption></figure>
       </div>
     </section>
 
-    <section className="show show-honest" aria-labelledby="honest">
-      <h2 id="honest">Honest by design</h2>
+    <section className="show show-split show-honest" aria-labelledby="honest">
+      <div className="show-copy">
+        <h2 id="honest">Honest by design</h2>
+        <p className="show-line">Every result carries one of these labels.</p>
+      </div>
       <ul className="label-list">
         {LABELS.map(([tone, word, line]) => <li key={word} className="label-row card"><span className="chip" data-tone={tone || undefined}>{word}</span><span>{line}</span></li>)}
       </ul>
     </section>
 
-    <section className="show show-cta" aria-labelledby="cta">
-      <h2 id="cta">See it for yourself</h2>
+    <section className="show show-split show-cta" aria-labelledby="cta">
+      <div className="show-copy">
+        <h2 id="cta">See it for yourself</h2>
+        <p className="show-line">Start with a demo clip, test a what-if in the lab, or read the code.</p>
+      </div>
       <div className="actions">
         <Link className="primary-link" href="/library">{icon(h, 'book', 16)}Try the demo library</Link>
         <Link className="secondary-link" href="/lab">{icon(h, 'flask', 16)}Open the lab</Link>
