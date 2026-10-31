@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 2026-10-31T05:28Z controller: accepted S07n-orch186 DONE (TIMING PASS; evidence-only diff; fresh self-check OK and re-run reproduces results.json unchanged; ff-merged). Result: OWN01 hero ABSTAINS for t/h (track ends f54 still falling; lower bounds t >= 0.267 s, h >= 0.374 m); measured OWN02/03/07/09 t 0.40-0.47 ± 0.027 s, h 0.78-0.92 m, g_ht 8.4-9.8 (± 12-14 %), approximate. Dispatched S24m-orch187 (Sonnet medium), thread 01a1906e-943a-7050-ad63-dfaac54aa57a, deadline 2026-10-31T05:58:47+00:00 (Dhaka 11:58). Optional follow-up if owner wants hero t/h: extend OWN01 SAM track past f54 (GPU; needs a new reviewed envelope).
+
 - 2026-10-31T05:23Z controller: dispatched S07n-orch186 (Opus 5.5 medium), thread 01a1906a-199c-7ed0-b88a-0dea2343e86d, deadline 2026-10-31T05:53:53+00:00 (Dhaka 11:53).
 
 - 2026-10-31T05:25Z owner reply (verbatim gist, chat): Q22 "no, I did not stopwatch it, and I did not measure the height of fall. This is to show the ability of the project. I hope the project will be able to measure or at least approximate them and then conduct the experiment as it should. And the system being able to do that on its own will be a demo showcase." Controller: added S07n (system-derived fall time + drop height +/- u from existing OWN01-09 tracks, no GPU; Opus medium) and S24m (script beat 5b without stopwatch, after S07n; Sonnet medium). Dispatching S07n.
