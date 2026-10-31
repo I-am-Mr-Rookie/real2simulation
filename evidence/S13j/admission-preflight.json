@@ -1,0 +1,36 @@
+{
+ "read_at_utc": "2026-10-31T14:02:05+00:00",
+ "journal": "evidence/S20/runtime/reservations.json (main checkout)",
+ "journal_sha256": "8eeceb14f358409ce17bdb7559b93d4be779bebeb56fb572669804e317698b1b",
+ "modal_requests": 3,
+ "modal_unsettled": 3,
+ "unsettled": [
+  {
+   "request_id": "evidence/S20/runtime/standalone-gpu-ledger.jsonl:segment:modal-track:OWN01:24e8a04900af4ad49611ad152039ba07",
+   "stage": "segment",
+   "utc": "2026-10-30T23:15:50.741033+00:00",
+   "reserved_usd": "0.60000000",
+   "billed_usd": null
+  },
+  {
+   "request_id": "evidence/S20/runtime/standalone-gpu-ledger.jsonl:segment:modal-track:batch:OWN02,OWN03,OWN04,OWN05,OWN06,OWN07,OWN08,OWN09,OWN10,OWN11:004ccb39a68e4e86bcce42e10b61c5d2",
+   "stage": "segment",
+   "utc": "2026-10-30T23:38:22.132441+00:00",
+   "reserved_usd": "0.40000000",
+   "billed_usd": null
+  },
+  {
+   "request_id": "evidence/S20/runtime/standalone-gpu-ledger-2.jsonl:segment:modal-track:batch:OWN07,OWN08,OWN09,OWN10,OWN11:5626a16bf9844ea58231a3b666e21d22",
+   "stage": "segment",
+   "utc": "2026-10-30T23:55:53.997709+00:00",
+   "reserved_usd": "0.40000000",
+   "billed_usd": null
+  }
+ ],
+ "gpu_stages_limits": {
+  "MAX_JOBS": 2,
+  "CAP_USD": "1.0",
+  "RECONSTRUCT_RESERVE_USD": "0.5"
+ },
+ "note": "read-only snapshot; journal not modified by S13j"
+}

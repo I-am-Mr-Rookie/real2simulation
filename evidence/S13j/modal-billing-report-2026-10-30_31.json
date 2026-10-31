@@ -1,0 +1,194 @@
+[
+  {
+    "object_id": "ap-SHTDPOF4taWCluMdzjl8Zc",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "Network Egress",
+    "cost": "0.00525470"
+  },
+  {
+    "object_id": "ap-SHTDPOF4taWCluMdzjl8Zc",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "Memory",
+    "cost": "0.00199112"
+  },
+  {
+    "object_id": "ap-SHTDPOF4taWCluMdzjl8Zc",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "CPU",
+    "cost": "0.00193800"
+  },
+  {
+    "object_id": "ap-SHTDPOF4taWCluMdzjl8Zc",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "A10G",
+    "cost": "0.01711116"
+  },
+  {
+    "object_id": "ap-XZl3qSj8FbdV0I07l0chXv",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "Network Egress",
+    "cost": "0.00491464"
+  },
+  {
+    "object_id": "ap-XZl3qSj8FbdV0I07l0chXv",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "Memory",
+    "cost": "0.00192000"
+  },
+  {
+    "object_id": "ap-XZl3qSj8FbdV0I07l0chXv",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "CPU",
+    "cost": "0.00180119"
+  },
+  {
+    "object_id": "ap-XZl3qSj8FbdV0I07l0chXv",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "A10G",
+    "cost": "0.01650001"
+  },
+  {
+    "object_id": "ap-aWSShryM8nygn84r9uzF5G",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "Network Egress",
+    "cost": "0.00566855"
+  },
+  {
+    "object_id": "ap-aWSShryM8nygn84r9uzF5G",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "Memory",
+    "cost": "0.00789332"
+  },
+  {
+    "object_id": "ap-aWSShryM8nygn84r9uzF5G",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "CPU",
+    "cost": "0.00654367"
+  },
+  {
+    "object_id": "ap-aWSShryM8nygn84r9uzF5G",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T05:00:00",
+    "resource": "A10G",
+    "cost": "0.06783326"
+  },
+  {
+    "object_id": "ap-7qnUtLNN8xQy534jpuXcQs",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "Network Egress",
+    "cost": "0.00529999"
+  },
+  {
+    "object_id": "ap-7qnUtLNN8xQy534jpuXcQs",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "Memory",
+    "cost": "0.00931555"
+  },
+  {
+    "object_id": "ap-7qnUtLNN8xQy534jpuXcQs",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "CPU",
+    "cost": "0.00725348"
+  },
+  {
+    "object_id": "ap-7qnUtLNN8xQy534jpuXcQs",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "A10G",
+    "cost": "0.08005555"
+  },
+  {
+    "object_id": "ap-9SEBfxKkipzckSWGcQRGvt",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "Network Egress",
+    "cost": "0.00501248"
+  },
+  {
+    "object_id": "ap-9SEBfxKkipzckSWGcQRGvt",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "Memory",
+    "cost": "0.00163555"
+  },
+  {
+    "object_id": "ap-9SEBfxKkipzckSWGcQRGvt",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "CPU",
+    "cost": "0.00158064"
+  },
+  {
+    "object_id": "ap-9SEBfxKkipzckSWGcQRGvt",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "A10G",
+    "cost": "0.01405554"
+  },
+  {
+    "object_id": "ap-HTu3CU7IfNE1A9Q6T9EyvL",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "Network Egress",
+    "cost": "0.00532018"
+  },
+  {
+    "object_id": "ap-HTu3CU7IfNE1A9Q6T9EyvL",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "Memory",
+    "cost": "0.00284444"
+  },
+  {
+    "object_id": "ap-HTu3CU7IfNE1A9Q6T9EyvL",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "CPU",
+    "cost": "0.00251441"
+  },
+  {
+    "object_id": "ap-HTu3CU7IfNE1A9Q6T9EyvL",
+    "description": "s07b-orch14-sam31-track",
+    "environment": "main",
+    "interval_start": "2026-10-30T23:00:00",
+    "resource": "A10G",
+    "cost": "0.02444440"
+  }
+]
