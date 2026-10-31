@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Oct 31, 11:49 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 11:54 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -9,7 +9,7 @@ Progress: **234 / 262** runs done · 0 in progress · 0 blocked · 0 waiting for
 
 ## Reviews for Koushik
 
-- [ ] Q21 (UI refs, S15x): pick 3 of the 6 Mobbin references R1-R6 in evidence/ui/mobbin-S15x/REFERENCES.md for the UI pass (S15w); default R1,R2,R3 (Higgsfield upload/analyzing, Delphi question step, PlanetScale data table) if no reply.
+- [ ] Q21 (UI refs, S15x) [partial Oct31: O1+O2 picked; third = right-sidebar agent questions, pick among P1-P4]: pick 3 of the 6 Mobbin references R1-R6 in evidence/ui/mobbin-S15x/REFERENCES.md for the UI pass (S15w); default R1,R2,R3 (Higgsfield upload/analyzing, Delphi question step, PlanetScale data table) if no reply.
 
 ## Ready now
 
