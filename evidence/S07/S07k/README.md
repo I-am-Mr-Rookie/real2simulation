@@ -7,6 +7,8 @@ clock NOT externally verified. Local g = 9.79 m/s² is a comparison only; no rul
 them. The rule was written after reading the v1 failure modes and after seeing the OWN02 y-trace. Pre-registration
 (PLAN commit fee5d1e3, script commit 8517698f, both before the one real run) limits but does not remove that bias. v2 is
 NOT independent confirmation; any agreement with 9.79 here is weaker evidence than a first, blind analysis would be.
+OWN07–OWN11 (orch178) are the closest thing to out-of-sample for v2: the rule was frozen before their tracks existed and
+was applied unchanged (mapping commit 42e736a0 before the one real run). Same scene/operator/phone, so still not independent.
 
 - Script: `python evidence/S07/S07k/measure_v2.py [--self-check]` from repo root. It imports S07h `measure_heldout`
   (locate/_Bytes/row/FROZEN/PENDING) and through it the frozen S07i `measure_own01` (record/run/assume, Build/measurement
@@ -14,8 +16,11 @@ NOT independent confirmation; any agreement with 9.79 here is weaker evidence th
 - Rule (Run-System/Runs/S07k-orch174/PLAN.md): release R = first frame with centroid-y step > 4 px and next step > 4 px;
   scale = up to 5 contiguous frames ending at R−2, ≥3 needed, y range ≤ 6 px; window ends before box-width change > 10 %
   vs scale mean, velocity halving, or SAM gap; ≥ 8 fall frames else ABSTAIN; split ⌊2n/3⌋; held-out PASS iff RMSE ≤ 6 px.
-- Inputs: `evidence/S07/S07g/track-own01.json`, `evidence/S07/S07i/track-own02..06.json` (SHA-256 per clip in results.json).
+- Inputs: `evidence/S07/S07g/track-own01.json`, `evidence/S07/S07i/track-own02..06.json`,
+  `evidence/S07/S07j/track-own07..11.json` (S07j re-track; SHA-256 per clip in results.json).
   No video, frames, Modal, GPU or Meta call.
+- orch178 asserts (run() and `--self-check`): v2 constants equal the orch174 values; OWN01–OWN06 rows+clips SHA-256
+  = 41ce6dd7… (orch174 results.json), i.e. byte-identical. Only the input mapping and the "pending S07h" table cell changed.
 
 ## v1 (S07h) vs v2 (`results.json`)
 
@@ -27,16 +32,37 @@ NOT independent confirmation; any agreement with 9.79 here is weaker evidence th
 | OWN04 | 10.39 ± 0.46 (z +1.31) f46–55 n=10 | 35.1 FAIL | 10.40 ± 0.46 (z +1.33) f46–55 n=10 | 35.1 FAIL |
 | OWN05 | 8.62 ± 1.28 (z −0.91) f44–50 n=7 | 13.0 FAIL | 9.62 ± 0.74 (z −0.23) f44–52 n=9 | 6.5 FAIL |
 | OWN06 | 7.12 ± 1.02 (z −2.63) f48–55 n=8 | 119.1 FAIL | ABSTAIN: 0 tracked scale frames before release f46 | – |
+| OWN07 | pending S07h | – | 9.51 ± 0.93 (z −0.30) f46–54 n=9 | 7.0 FAIL |
+| OWN08 | pending S07h | – | 8.82 ± 0.27 (z −3.54) f36–47 n=12 | 17.8 FAIL |
+| OWN09 | pending S07h | – | ABSTAIN: fall window f9–f9 has 1 < 8 frames | – |
+| OWN10 | pending S07h | – | ABSTAIN: no sustained centroid-y release | – |
+| OWN11 | pending S07h | – | ABSTAIN: no sustained centroid-y release | – |
 
-v2 scale frames: OWN02 f42–44, OWN03 f40–43, OWN04 f41–44, OWN05 f39–42. u = S07i conditional total ⊕ |centroid − box-centre|
-model term (OWN02's 3.07 is dominated by that term: centroid 7.27 vs box 10.27).
+v2 scale frames: OWN02 f42–44, OWN03 f40–43, OWN04 f41–44, OWN05 f39–42, OWN07 f40–44, OWN08 f30–34. u = S07i conditional
+total ⊕ |centroid − box-centre| model term (OWN02's 3.07 is dominated by that term: centroid 7.27 vs box 10.27).
+v1 for OWN07–OWN11: S07h-orch176 had not merged at orch178 start (S07h results.json has OWN01–06 only) → "pending S07h".
 
-## Coverage
-- v2: 6 clips, 4 measured, 2 ABSTAIN (OWN01 short window, OWN06 no static pre-release frames — v1's OWN06 "moving scale
-  frames" failure now abstains instead of reporting). Within 1u of 9.79: 3/4; within 2u: 4/4.
-- **Held-out pass: 0/4 (v1: 0/6).** OWN05 is closest (6.5 px vs 6 px threshold). OWN03/OWN04 held-out residuals still grow
-  monotonically (−15…−46, −6…−58 px): the later-fall deficit is NOT explained by the window rule alone.
-- Pending: OWN07–OWN11 (track files had 0 frames at start; CUDA OOM, S07j). OWN12 excluded (no free fall).
+## Coverage (11 clips)
+- v2: 11 clips, 6 measured, 5 ABSTAIN. Within 1u of 9.79: 4/6 (OWN02, OWN03, OWN05, OWN07). Within 2u: 5/6 (adds OWN04
+  z +1.33; OWN08 z −3.54 is outside 2u). OWN01–06 subset unchanged from orch174 (3/4 at 1u, 4/4 at 2u).
+- **Held-out pass: 0/6 (v1: 0/6 on OWN01–06).** Closest: OWN05 6.5 px, OWN07 7.0 px vs 6 px threshold. OWN08 first three
+  held-out residuals are small (0.4, −2.3, 4.1 px) then −35.2 px at f47 — impact/decel frame survives the window rule.
+- Abstains: OWN01 (7-frame window), OWN06 (no static pre-release frames), OWN09, OWN10, OWN11 (see robustness).
+- OWN12 excluded (no free fall).
+
+## 05a–d repeatability (same scene, four drops)
+- OWN05 (05a) 9.62 ± 0.74, OWN07 (05c) 9.51 ± 0.93, OWN08 (05d) 8.82 ± 0.27; **OWN06 (05b) flagged: sheet partly down,
+  v2 ABSTAIN**. Measured three: mean 9.32, sample SD 0.43 m/s² (n=3; not a precision claim). OWN08's 8.82 disagrees with
+  OWN05/07 beyond its stated u (0.27), so the per-clip u under-states drop-to-drop spread.
+
+## Robustness (S07j re-tracks, rule unchanged)
+- **06 nosheet (OWN09):** centroid fall is clear (y 295→1620 px), but the scale frames f4–f7 include a SAM box-width outlier
+  (f5 = 851 px vs ~315 px) that inflates the scale-mean width; f10 then trips the 10 % width stop → 1-frame window → ABSTAIN.
+  A SAM glitch, not physics; the frozen rule has no outlier rejection and was not changed.
+- **06 clutter (OWN10)** and **06 lowres 478×850 (OWN11):** SAM centroid barely moves (y 195→169 and 73→67 px, constant
+  box width) over the tracked windows, so no release is detected → ABSTAIN. The tracks do not follow a falling book there
+  (likely wrong object or clutter/low-res tracking failure; not verified against frames — no frames viewed in this run).
+- Net: v2 abstains rather than reporting g on all three robustness clips; it does not show robustness to clutter/low-res.
 
 ## What this does and does not show
 - Shows: a track-only rule removes impact frames inside the window for OWN03 and abstains on the two clips v1 should not

@@ -147,6 +147,84 @@
    "clip": "OWN06",
    "scene": "05_repeat_b (sheet partly down)",
    "abstain": "v2 rule: only 0 tracked scale frames before release f46"
+  },
+  {
+   "clip": "OWN07",
+   "scene": "05_repeat_c",
+   "g": 9.507282406436856,
+   "u": 0.9341037082989772,
+   "z": -0.3026618897359675,
+   "in_1u": true,
+   "in_2u": true,
+   "g_box": 8.676042514692861,
+   "fall_frames": [
+    46,
+    54
+   ],
+   "n_frames": 9,
+   "held_rmse_px": 6.967180730414379,
+   "held_residuals_px": [
+    6.218602800454577,
+    -0.25286068116476057,
+    -10.338755373683606
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0007085953878406709,
+   "rules": {
+    "scale_frames": [
+     40,
+     44
+    ],
+    "release": 46,
+    "fall_end": 54
+   }
+  },
+  {
+   "clip": "OWN08",
+   "scene": "05_repeat_d",
+   "g": 8.822272327849516,
+   "u": 0.27331061082757246,
+   "z": -3.5407614406928665,
+   "in_1u": false,
+   "in_2u": false,
+   "g_box": 8.637262244882292,
+   "fall_frames": [
+    36,
+    47
+   ],
+   "n_frames": 12,
+   "held_rmse_px": 17.77237322803,
+   "held_residuals_px": [
+    0.4277448380815642,
+    -2.261072765754662,
+    4.1109176159535075,
+    -35.23115015553551
+   ],
+   "held_out_pass": false,
+   "m_per_px": 0.0006781919162733957,
+   "rules": {
+    "scale_frames": [
+     30,
+     34
+    ],
+    "release": 36,
+    "fall_end": 47
+   }
+  },
+  {
+   "clip": "OWN09",
+   "scene": "06 nosheet",
+   "abstain": "v2 rule: fall window f9-f9 has 1 < 8 frames"
+  },
+  {
+   "clip": "OWN10",
+   "scene": "06 clutter",
+   "abstain": "v2 rule: no sustained centroid-y release"
+  },
+  {
+   "clip": "OWN11",
+   "scene": "06 lowres",
+   "abstain": "v2 rule: no sustained centroid-y release"
   }
  ],
  "clips": {
@@ -587,6 +665,241 @@
    "track": "evidence/S07/S07i/track-own06.json",
    "track_sha256": "4150ba31297a6e2fe9298e813e0a900f24b2de1993f023dc147711394885f86f",
    "abstain": "v2 rule: only 0 tracked scale frames before release f46"
+  },
+  "OWN07": {
+   "clip": "OWN07",
+   "scene": "05_repeat_c",
+   "track": "evidence/S07/S07j/track-own07.json",
+   "track_sha256": "1b6a7b1e103df2297c76bcc1c428f44d123c4f239e70315090e248e3e7c6f3a7",
+   "rules": {
+    "scale_frames": [
+     40,
+     44
+    ],
+    "release": 46,
+    "fall_end": 54
+   },
+   "label": "MEASURED, SECOND ANALYSIS v2 (owner clip OWN07, user-declared scale 0.2028 m, phone clock not externally verified)",
+   "missing_frames": [],
+   "mask_centroid": {
+    "g": 9.507282406436856,
+    "u_fit": 0.41749395248910215,
+    "u_timing": 0.04415304343630034,
+    "u_scale": 0.07307043603040059,
+    "u_conditional_total": 0.4261337586149839,
+    "scale": {
+     "widths_px": [
+      285.012,
+      285.012,
+      286.956,
+      285.984,
+      288.036
+     ],
+     "mean_px": 286.2,
+     "sd_px": 1.3049689651482173,
+     "u_width_px": 2.0834079773294527
+    },
+    "m_per_px": 0.0007085953878406709,
+    "fall_frames": [
+     46,
+     54
+    ],
+    "last_training_frame": 51,
+    "fall_duration_s": 0.266667,
+    "train_rms_px": 0.8494911285520516,
+    "held_out": {
+     "frames": [
+      52,
+      53,
+      54
+     ],
+     "residuals_px": [
+      6.218602800454577,
+      -0.25286068116476057,
+      -10.338755373683606
+     ],
+     "rmse_px": 6.967180730414379
+    }
+   },
+   "box_centre": {
+    "g": 8.676042514692861,
+    "u_fit": 0.41749395248910215,
+    "u_timing": 0.04229625235226532,
+    "u_scale": 0.0666817479974803,
+    "u_conditional_total": 0.42489602121462455,
+    "scale": {
+     "widths_px": [
+      285.012,
+      285.012,
+      286.956,
+      285.984,
+      288.036
+     ],
+     "mean_px": 286.2,
+     "sd_px": 1.3049689651482173,
+     "u_width_px": 2.0834079773294527
+    },
+    "m_per_px": 0.0007085953878406709,
+    "fall_frames": [
+     46,
+     54
+    ],
+    "last_training_frame": 51,
+    "fall_duration_s": 0.266667,
+    "train_rms_px": 0.8720789597599788,
+    "held_out": {
+     "frames": [
+      52,
+      53,
+      54
+     ],
+     "residuals_px": [
+      5.165706423423291,
+      2.1448344495033895,
+      2.4118578604628107
+     ],
+     "rmse_px": 3.516717030027172
+    }
+   },
+   "result": {
+    "point": "mask_centroid (area-weighted; box centre follows extreme corners under rotation)",
+    "g": 9.507282406436856,
+    "u_model_centroid_vs_box": 0.8312398917439943,
+    "u_total": 0.9341037082989772,
+    "delta_vs_local": -0.2827175935631434,
+    "z_vs_local": -0.3026618897359675,
+    "local_g": 9.79
+   }
+  },
+  "OWN08": {
+   "clip": "OWN08",
+   "scene": "05_repeat_d",
+   "track": "evidence/S07/S07j/track-own08.json",
+   "track_sha256": "351c0118f4b21e8d5a65cf2b6069a8e45b33271e1504921e4a110e5c24fc97f2",
+   "rules": {
+    "scale_frames": [
+     30,
+     34
+    ],
+    "release": 36,
+    "fall_end": 47
+   },
+   "label": "MEASURED, SECOND ANALYSIS v2 (owner clip OWN08, user-declared scale 0.2028 m, phone clock not externally verified)",
+   "missing_frames": [],
+   "mask_centroid": {
+    "g": 8.822272327849516,
+    "u_fit": 0.18836554955149123,
+    "u_timing": 0.030688681238552763,
+    "u_scale": 0.0636127642647664,
+    "u_conditional_total": 0.20117146714035156,
+    "scale": {
+     "widths_px": [
+      297.972,
+      299.05199999999996,
+      300.024,
+      299.05199999999996,
+      299.05199999999996
+     ],
+     "mean_px": 299.0304,
+     "sd_px": 0.7260942087635804,
+     "u_width_px": 2.026189171819848
+    },
+    "m_per_px": 0.0006781919162733957,
+    "fall_frames": [
+     36,
+     47
+    ],
+    "last_training_frame": 43,
+    "fall_duration_s": 0.36666599999999994,
+    "train_rms_px": 2.231513212416598,
+    "held_out": {
+     "frames": [
+      44,
+      45,
+      46,
+      47
+     ],
+     "residuals_px": [
+      0.4277448380815642,
+      -2.261072765754662,
+      4.1109176159535075,
+      -35.23115015553551
+     ],
+     "rmse_px": 17.77237322803
+    }
+   },
+   "box_centre": {
+    "g": 8.637262244882292,
+    "u_fit": 0.18836554955149123,
+    "u_timing": 0.03053699233019726,
+    "u_scale": 0.062278753892263235,
+    "u_conditional_total": 0.20073049430712545,
+    "scale": {
+     "widths_px": [
+      297.972,
+      299.05199999999996,
+      300.024,
+      299.05199999999996,
+      299.05199999999996
+     ],
+     "mean_px": 299.0304,
+     "sd_px": 0.7260942087635804,
+     "u_width_px": 2.026189171819848
+    },
+    "m_per_px": 0.0006781919162733957,
+    "fall_frames": [
+     36,
+     47
+    ],
+    "last_training_frame": 43,
+    "fall_duration_s": 0.36666599999999994,
+    "train_rms_px": 2.7777028083809987,
+    "held_out": {
+     "frames": [
+      44,
+      45,
+      46,
+      47
+     ],
+     "residuals_px": [
+      2.3094543990894927,
+      0.9993374153437944,
+      2.150985935288997,
+      -41.47188235481725
+     ],
+     "rmse_px": 20.801899080593536
+    }
+   },
+   "result": {
+    "point": "mask_centroid (area-weighted; box centre follows extreme corners under rotation)",
+    "g": 8.822272327849516,
+    "u_model_centroid_vs_box": 0.18501008296722432,
+    "u_total": 0.27331061082757246,
+    "delta_vs_local": -0.9677276721504828,
+    "z_vs_local": -3.5407614406928665,
+    "local_g": 9.79
+   }
+  },
+  "OWN09": {
+   "clip": "OWN09",
+   "scene": "06 nosheet",
+   "track": "evidence/S07/S07j/track-own09.json",
+   "track_sha256": "3290ec052994612133fda52642771de178c1cf0eb0a74cd6a4e26c04065d09bf",
+   "abstain": "v2 rule: fall window f9-f9 has 1 < 8 frames"
+  },
+  "OWN10": {
+   "clip": "OWN10",
+   "scene": "06 clutter",
+   "track": "evidence/S07/S07j/track-own10.json",
+   "track_sha256": "e1388c08d3c912e8f9331cb5e6121cd7f90d1f5f67d172276cf1ca57095d7ac9",
+   "abstain": "v2 rule: no sustained centroid-y release"
+  },
+  "OWN11": {
+   "clip": "OWN11",
+   "scene": "06 lowres",
+   "track": "evidence/S07/S07j/track-own11.json",
+   "track_sha256": "909a2c7da4a4ebede1058cbeab38236cb6037ce33b046574b5a95db5c664585b",
+   "abstain": "v2 rule: no sustained centroid-y release"
   }
  },
  "v1_rows": {
@@ -735,19 +1048,19 @@
   }
  },
  "coverage": {
-  "clips": 6,
-  "measured": 4,
-  "abstained": 2,
-  "in_1u": 3,
-  "in_2u": 4,
+  "clips": 11,
+  "measured": 6,
+  "abstained": 5,
+  "in_1u": 4,
+  "in_2u": 5,
   "held_out_pass": 0
  },
  "pending": {
-  "OWN07": "05_repeat_c (track file has 0 frames: CUDA OOM, S07j)",
-  "OWN08": "05_repeat_d (track file has 0 frames: CUDA OOM, S07j)",
-  "OWN09": "06 nosheet (track file has 0 frames: CUDA OOM, S07j)",
-  "OWN10": "06 clutter (track file has 0 frames: CUDA OOM, S07j)",
-  "OWN11": "06 lowres (track file has 0 frames: CUDA OOM, S07j)"
+  "OWN07": "v1 pending S07h (OWN07-11 v1 not merged)",
+  "OWN08": "v1 pending S07h (OWN07-11 v1 not merged)",
+  "OWN09": "v1 pending S07h (OWN07-11 v1 not merged)",
+  "OWN10": "v1 pending S07h (OWN07-11 v1 not merged)",
+  "OWN11": "v1 pending S07h (OWN07-11 v1 not merged)"
  },
  "excluded": {
   "OWN12": "no free fall (S07i)"
