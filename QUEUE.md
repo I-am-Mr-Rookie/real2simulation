@@ -295,8 +295,8 @@ prerequisite. Lane/slot/ownership/approval checks still apply.
 | S22b | CODEX-2 | Sonnet 5.5 / medium | S22 | 30 | Capture logged-out guest library walkthrough | S22a | evidence/qa/browser/ | Sol drives browser only; guest can open and run a demo. | DONE |
 | S22c | CODEX-2 | Sonnet 5.5 / medium | S22 | 30 | Capture fresh-account full flow run 1 | S22b | evidence/qa/browser/ | Sol records duration and errors without creating accounts or accepting terms without approval. | DONE |
 | S22d | CODEX-2 | Sonnet 5.5 / medium | S22 | 30 | Capture fresh-account full flow run 2 | S22c | evidence/qa/browser/ | Second independent flow duration and outcome recorded. | DONE |
-| S22e | CODEX-2 | Sonnet 5.5 / medium | S22 | 30 | Capture fresh-account full flow run 3 | S22d | evidence/qa/browser/ | Third independent flow duration and outcome recorded. | IN PROGRESS |
-| S22f | CLAUDE | Opus 5.5 / high | S22 | 30 | Judge Gate D evidence and prioritize defects | S22e | evidence/qa/claude/ | Opus evaluates 3 consecutive <5min runs plus guest success; no claiming from screenshots alone. | TODO |
+| S22e | CODEX-2 | Sonnet 5.5 / medium | S22 | 30 | Capture fresh-account full flow run 3 | S22d | evidence/qa/browser/ | Third independent flow duration and outcome recorded. | DONE |
+| S22f | CLAUDE | Opus 5.5 / high | S22 | 30 | Judge Gate D evidence and prioritize defects | S22e | evidence/qa/claude/ | Opus evaluates 3 consecutive <5min runs plus guest success; no claiming from screenshots alone. | IN PROGRESS |
 | S22g | CODEX-2 | Sonnet 5.5 / medium | S22 | 30 | Capture 375px and auth-boundary QA | S22f | evidence/qa/browser/ | Sol captures browser evidence; source changes go to original owners. | TODO |
 | S22h | CODEX-2 | Sonnet 5.5 / medium | S22 | 30 | Capture retry, spend-cap and report QA | S22g | evidence/qa/browser/ | Sol checks observable outcomes; no terminal/product coding. | TODO |
 | S22i | CODEX-2 | Sonnet 5.5 / medium | S22 | 30 | Recheck approved candidate after owner-lane fixes | S22h | evidence/qa/browser/ | Sol re-runs broken flows; fixes are separate scoped owner-lane tasks. | TODO |

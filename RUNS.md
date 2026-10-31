@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 22:07 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 22:12 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **267 / 289** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **268 / 289** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,7 +24,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **S22e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 3 (30 min) *(in progress)*
+- [~] **S22f** — Codex (native Claude) · Opus 5.5, effort high — Judge Gate D evidence and prioritize defects (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -396,14 +396,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (4/11)</summary>
+<details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (5/11)</summary>
 
 - [x] **S22a** — Codex (native Claude) · Opus 5.5, effort medium — Prepare approved judging-candidate QA checklist (30 min)
 - [x] **S22b** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture logged-out guest library walkthrough (30 min)
 - [x] **S22c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 1 (30 min)
 - [x] **S22d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 2 (30 min)
-- [~] **S22e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 3 (30 min) *(in progress)*
-- [ ] **S22f** — Codex (native Claude) · Opus 5.5, effort high — Judge Gate D evidence and prioritize defects (30 min)
+- [x] **S22e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 3 (30 min)
+- [~] **S22f** — Codex (native Claude) · Opus 5.5, effort high — Judge Gate D evidence and prioritize defects (30 min) *(in progress)*
 - [ ] **S22g** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture 375px and auth-boundary QA (30 min)
 - [ ] **S22h** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture retry, spend-cap and report QA (30 min)
 - [ ] **S22i** — Codex (native Claude) · Sonnet 5.5, effort medium — Recheck approved candidate after owner-lane fixes (30 min)
