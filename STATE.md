@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T00:13Z — controller: accept S07k DONE (v2 on 11 clips)
+
+- S07k-orch178 (Opus medium; timebox PASS) merged. After S07h-orch176 merged, its self-check broke (measure_heldout no longer exports PENDING); controller made a minimal fix in the run branch (local RETRACKED map, v1 cells from merged S07h) and verified every v2 value identical; self-check + measurement 90 OK.
+- v2 (second, pre-registered analysis; forking-paths caveat): measured 6/11 - OWN02 7.27+/-3.07, OWN03 9.56+/-0.63, OWN04 10.40+/-0.46, OWN05 9.62+/-0.74, OWN07 9.51+/-0.93, OWN08 8.82+/-0.27; abstain OWN01/06/09/10/11. 9.79 inside 1u 4/6, 2u 5/6; held-out pass 0/6 (closest OWN05 6.5 px, OWN07 7.0 px vs 6 px).
+
 ## 2026-10-31T00:09Z — controller: accept S07h DONE (11 clips, frozen v1)
 
 - S07h-orch176 (Opus high; timebox PASS; self-check + measurement 90 OK fresh) merged. Frozen v1, MEASURED (user-declared scale, phone clock unverified): OWN07 (05c) 8.72+/-0.21, OWN08 (05d) 8.82+/-0.27, OWN09 nosheet 6.74+/-1.77 (degraded), OWN10 clutter + OWN11 lowres ABSTAIN (no release detected), OWN12 excluded. 9 measured: 9.79 inside 1u 2/9, 2u 6/9; held-out 0/9. Valid 05 repeats OWN05/07/08 = 8.62/8.72/8.82 (SD 0.10) - repeatable but ~1 m/s^2 low (systematic: impact frame in window, later-fall deficit). Not a validated phone measurement; README evidence/S07/S07h/README.md. S24k script SWAP BLOCK numbers need the final S07h/S07k table.
