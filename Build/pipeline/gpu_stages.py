@@ -27,7 +27,8 @@ RECONSTRUCT_RESERVE_USD = 0.5
 SEGMENT_RESERVE_USD = 0.5  # shortcut: assumed bound (L4/A10G x 900 s timeout ~$0.30); replace with S07b billed rate
 BAD_INPUT = ("not an owner-approved", "not allowlisted", "missing from clips.csv", "SHA256 mismatch",
              "need >=2 frames", "not in ")
-ENV_FILE = str(ROOT / ".env") if (ROOT / ".env").exists() else "../../.env"  # main checkout vs .worktrees/<run>
+# Relative to cwd=ROOT (main checkout vs .worktrees/<run>): uv splits --env-file values on spaces.
+ENV_FILE = ".env" if (ROOT / ".env").exists() else "../../.env"
 MODAL_CMD = ["uv", "run", "--no-project", "--python", "3.11", "--with", "modal==1.6.3", "--with", "numpy",
              "--with", "jsonschema", "--env-file", ENV_FILE, "modal", "run", "Build/gpu/scene_job.py"]
 TRACK_CMD = ["uv", "run", "--no-project", "--python", "3.12", "--with", "modal==1.6.3", "--env-file", ENV_FILE,

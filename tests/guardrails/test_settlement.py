@@ -173,6 +173,53 @@ class Settlement(unittest.TestCase):
         with self.assertRaises(ReconstructionPaused):
             claim_gpu(self.root, self.second, "scene-job:x")
 
+    def void(self, request_id, apps=(), rows=()):
+        """S13n: modal-void/1 for a never-dispatched reservation; returns settle_gpu's amount."""
+        now = datetime.now(timezone.utc)
+        hour = now.strftime("%Y-%m-%dT%H:00:00")
+        write_json(self.root / "apps.json", [{"app_id": a, "created_at": now.isoformat()} for a in apps])
+        write_json(self.root / "void-bill.json", [billing_row(app=a) | {"interval_start": hour} for a in rows])
+        proof = {"schema": "modal-void/1", "request_id": request_id, "reviewed_by": "SYNTHETIC reviewer",
+                 "read_at": now.isoformat(), "app_list": "apps.json", "billing_report": "void-bill.json"}
+        for name in ("app_list", "billing_report"):
+            proof[name + "_sha256"] = hashlib.sha256((self.root / proof[name]).read_bytes()).hexdigest()
+        write_json(self.root / "void.json", proof)
+        return settle_gpu(self.root, request_id, self.root / "void.json")
+
+    def test_void_settles_unbound_reservation_at_zero_idempotently(self):
+        # Apps/bills seen since the reservation are all bound to another request (first).
+        self.assertEqual(self.void(self.second, ["ap-synthetic"], ["ap-synthetic"]), 0)
+        journal = read_json(self.runtime / "reservations.json")
+        self.assertEqual(settle_gpu(self.root, self.second, self.root / "void.json"), 0)  # replay: no-op
+        self.assertEqual(read_json(self.runtime / "reservations.json"), journal)
+        row = next(r for r in self.state()["Modal"]["requests"] if r["request_id"] == self.second)
+        self.assertEqual((row["settled"], row["billed_usd"], row["app_id"]), (True, "0", None))
+        self.reserve("third")  # Slot released.
+
+    def test_void_rejects_app_bound_billed_dispatched_or_unexplained_apps(self):
+        original = read_json(self.runtime / "reservations.json")
+        for request_id, apps, rows in ((self.first, [], []), (self.second, ["ap-unknown"], []),
+                                       (self.second, [], ["ap-unknown"])):
+            with self.subTest(request_id=request_id, apps=apps, rows=rows), self.assertRaises(ReconstructionPaused):
+                self.void(request_id, apps, rows)
+            self.assertEqual(read_json(self.runtime / "reservations.json"), original)
+        with self.ledger.open("a") as stream:
+            stream.write(json.dumps({"request_id": self.second, "provider": "Modal", "billed_usd": ".01"}) + "\n")
+        with self.assertRaises(ReconstructionPaused):
+            self.void(self.second)
+
+    def test_dispatched_reservation_cannot_be_voided(self):
+        self.assertEqual(claim_gpu(self.root, self.second, "scene-job:x"), self.second)
+        with self.assertRaises(ReconstructionPaused):
+            self.void(self.second)  # Dispatched: needs real billing settlement, never a void.
+
+    def test_app_bound_after_void_pauses_admission(self):
+        self.void(self.second)
+        with self.ledger.open("a") as stream:
+            stream.write(json.dumps({"request_id": self.second, "app_id": "ap-late", "provider": "Modal"}) + "\n")
+        with self.assertRaises(ReconstructionPaused):
+            self.reserve("third")
+
 
 if __name__ == "__main__":
     unittest.main()

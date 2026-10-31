@@ -48,6 +48,14 @@ def fake_run(calls, rc=0, stderr=""):
 
 
 class GpuStages(unittest.TestCase):
+    def test_env_file_is_space_free_and_relative_to_root_cwd(self):
+        # S13n: uv splits --env-file on spaces, so an absolute path under "...Hackathon/" failed.
+        for cmd in (g.MODAL_CMD, g.TRACK_CMD):
+            env = cmd[cmd.index("--env-file") + 1]
+            self.assertNotIn(" ", env)
+            self.assertFalse(Path(env).is_absolute())
+            self.assertEqual((g.ROOT / env).resolve().name, ".env")
+
     def setUp(self):
         temp = tempfile.TemporaryDirectory()
         self.addCleanup(temp.cleanup)

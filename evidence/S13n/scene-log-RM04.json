@@ -1,0 +1,10 @@
+{
+ "app_id": "ap-HyDn6NecaH49gRHPDZhiHh",
+ "cost": {
+  "billed": {
+   "status": "billed",
+   "total_usd": "0.00955339"
+  }
+ },
+ "source": "evidence/S13n/billing-final.json"
+}

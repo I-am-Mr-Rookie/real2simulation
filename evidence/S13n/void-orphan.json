@@ -1,0 +1,10 @@
+{
+ "schema": "modal-void/1",
+ "request_id": "evidence/S13l/gpu-ledger.jsonl:reconstruct:reconstruct:b3fe96a5bf8255d74ef35800d4142855bfa8da9af18d89bd98966131974613bb",
+ "reviewed_by": "S13n-orch222 worker (anthropic/claude-opus-5-5): attempt-A never dispatched (no dispatch_operation, no app binding); every app/bill since its reservation is RM04's",
+ "read_at": "2026-10-31T14:51:03.909046+00:00",
+ "app_list": "evidence/S13n/app-list-void.json",
+ "app_list_sha256": "faa8100ef6fc7a0a03722bd6d16b997899abd726d8c099c5ebb75f06d4ad7e29",
+ "billing_report": "evidence/S13n/billing-void.json",
+ "billing_report_sha256": "aef27ba174dda7a6a8c586a4500cf0b03d28e22effeffc33d0daea56ecd58f57"
+}

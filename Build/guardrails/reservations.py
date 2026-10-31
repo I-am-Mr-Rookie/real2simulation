@@ -215,7 +215,8 @@ def project(root, receipt, journal):
                 from Build.guardrails.settlement import final_amount
                 amount, app = final_amount(root, row)
                 target = merged[row["request_id"]]
-                if usd(target.get("billed_usd") or 0) > amount or usd(row["billed_usd"]) != amount:
+                if (usd(target.get("billed_usd") or 0) > amount or usd(row["billed_usd"]) != amount
+                        or (app is None and (target.get("app_id") or target.get("app_ids")))):
                     raise ValueError("Settled bill conflicts with observed billing")
                 target.update(settled=True, billed_usd=str(amount), app_id=app,
                               reconciliation_ref=row["reconciliation_ref"])
