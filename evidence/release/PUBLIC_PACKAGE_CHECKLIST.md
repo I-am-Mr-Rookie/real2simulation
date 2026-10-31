@@ -26,7 +26,7 @@ Raw video files stay out of Git (.gitignore test-data/public/**; originals in pr
 | Demo video | PENDING S24/S23 (README marks it PENDING) |
 | Railway dev URLs | Dev only, not the judging build |
 | Local links (BENCHMARK.md, Build/*, API_BUDGET.md, .env.example) | Checked to resolve; see REPORT.md |
-| LICENSE | DONE: MIT, owner Q18 (S25f); [LICENSE](../../LICENSE) covers own code/docs only; repo visibility stays PENDING S25d owner go-ahead |
+| LICENSE | DONE: MIT, owner Q18 (S25f); [LICENSE](../../LICENSE) covers own code/docs only; S25d go-ahead given Oct31; repo PUBLIC since 2026-10-31T11:30Z (section 7) |
 
 ## 3. Private data exclusions (must not enter the public repo)
 archive/ (incl. teammate data), .env and .env.* (only .env.example), owner PDF `Updated_Instructions_10_28_2026_...pdf`, Build Notes.pdf, Hackathon Credit Terms.pdf, modal.fillout.com*.png, .playwright-mcp/, .tmp-* (e.g. .tmp-s19d-ctx/), test-data/private/, uploads/, .worktrees/, credentials/key files. Note: .playwright-mcp/, .tmp-* and the owner PDF are untracked but NOT in .gitignore: add ignores or delete before publication (controller/owner decision).
@@ -46,4 +46,15 @@ Scan the full tracked tree AND git history of the public candidate for key-name 
 | 3 | ATTRIBUTION.md old table listed 9 clips; PJ03 (approved) was missing. | Fixed here (per-asset table). |
 | 4 | PJ03 end card by Mathe-AC Lernwerkstatt Aachen has no recorded licence. | Keep BLOCKED-for-public; do not show PJ03 frames. |
 | 5 | Several rows lack local_path (FF03, FF04, RM01, RM03): unused, no action. | None. |
+| 6 | (S25e) ST01, ST02, ST04, ST05 (Pexels) and RP01-RP03 (Commons CC BY 3.0 / CC BY-SA 4.0) frame sheets are in main but not rows in clips.csv; licences recorded in evidence/clips/shards/STOCK/candidates*.json and calibration-recovery S02f/S02i ATTRIBUTION.md. PJ03 end card itself states CC BY 4.0 (S25e visual check of PJ03-keyframes-48plus.jpg). | Register these IDs in clips.csv; revisit PJ03 and RM04/PD03 BLOCKED-for-public marks. |
+
+## 7. S25e publication status (2026-10-31)
+| Item | State |
+|---|---|
+| S25d owner go-ahead | DONE: [S25D-AUTHORIZATION.md](../owner/S25/S25D-AUTHORIZATION.md) |
+| Full-history scan of main 1b9ab540 | PASS, no real secret/private item: [PUBLICATION_SCAN-2026-10-31.md](PUBLICATION_SCAN-2026-10-31.md) |
+| Push main to origin | DONE: fast-forward 58f1d2ce -> 1b9ab540 at 2026-10-31T11:22Z, no force |
+| Backup release | DELETED after owner Q23 A (release + tag backup-20261028T094623Z, 11:29:42Z); bundle kept at C:/Users/HP/Documents/Hackathon/Backups/real2simulation-backup-20261028T094623Z/ |
+| Public visibility | DONE: PUBLIC at 2026-10-31T11:30Z; remote refs = main only |
+| Logged-out checks | 11:30:12Z: repo page, raw README, raw LICENSE 200; releases [] , tags [], branches [main]. Live judging URL and demo video still PENDING S23/S24 |
 
