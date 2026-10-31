@@ -50,7 +50,7 @@ def run():
     wins = dl.run()["windows"]  # asserts each held RMSE reproduces its pipeline row (<0.05 px)
     srcs = {t: json.loads(dl.h.locate(p).read_text(encoding="utf-8")) for t, p in SRC.items()}
     rows, abst, cov = assemble(wins, srcs)
-    ok = sorted({r["clip"] for r in rows if r["validated_conditional"]})
+    ok = [f"{r['analysis']} {r['clip']}" for r in rows if r["validated_conditional"]]
     return {"label": "THIRD ANALYSIS (v3, pre-registered after seeing v1/v2 fail; forking-paths caveat) - MEASURED owner-clip "
                      "SAM 3.1 tracks; user-declared scale, phone clock unverified, rolling shutter assumed",
             "rules": "Run-System/Runs/S07m-orch180/PLAN.md", "alpha": dl.V3_ALPHA, "detect_px": dl.DETECT_PX,

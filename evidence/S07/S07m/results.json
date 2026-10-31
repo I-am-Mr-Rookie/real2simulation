@@ -1,0 +1,511 @@
+{
+ "label": "THIRD ANALYSIS (v3, pre-registered after seeing v1/v2 fail; forking-paths caveat) - MEASURED owner-clip SAM 3.1 tracks; user-declared scale, phone clock unverified, rolling shutter assumed",
+ "rules": "Run-System/Runs/S07m-orch180/PLAN.md",
+ "alpha": 0.05,
+ "detect_px": 2.0,
+ "rows": [
+  {
+   "clip": "OWN01",
+   "analysis": "v1",
+   "frames": [
+    47,
+    54
+   ],
+   "n": 8,
+   "g": 10.963940510463221,
+   "u": 0.7733737333436433,
+   "z": 1.5179472224738586,
+   "in_1u": false,
+   "in_2u": true,
+   "held_rmse_px": 23.022212090488367,
+   "sigma_px": 2.0,
+   "chi2": 12.277686362690337,
+   "dof": 3,
+   "p": 0.006490007396967188,
+   "v3_pass": false,
+   "impact_in_window": false,
+   "validated_conditional": false,
+   "alongside": {
+    "max_width_change": 0.10481481481481492,
+    "max_height_change": 0.07195696032279775,
+    "height_growth_vs_speed_r": 0.6505638419538001,
+    "centroid_minus_box_offset_range_px": 8.0697767849299,
+    "rs_20ms_assumed_held_rmse_px": 3.752039065922451
+   }
+  },
+  {
+   "clip": "OWN02",
+   "analysis": "v1",
+   "frames": [
+    47,
+    59
+   ],
+   "n": 13,
+   "g": 9.289396283978423,
+   "u": 0.3184328751766602,
+   "z": -1.5720855321356226,
+   "in_1u": false,
+   "in_2u": true,
+   "held_rmse_px": 39.58071680622228,
+   "sigma_px": 3.8376507225397685,
+   "chi2": 26.106623140582947,
+   "dof": 5,
+   "p": 8.508577624923528e-05,
+   "v3_pass": false,
+   "impact_in_window": false,
+   "validated_conditional": false,
+   "alongside": {
+    "max_width_change": 0.2149122807017546,
+    "max_height_change": 0.475582930048394,
+    "height_growth_vs_speed_r": 0.4367204403772267,
+    "centroid_minus_box_offset_range_px": 10.64456830798423,
+    "rs_20ms_assumed_held_rmse_px": 12.945702882047454
+   }
+  },
+  {
+   "clip": "OWN03",
+   "analysis": "v1",
+   "frames": [
+    45,
+    57
+   ],
+   "n": 13,
+   "g": 9.542294862674295,
+   "u": 0.6303504858871237,
+   "z": -0.3929641411747254,
+   "in_1u": true,
+   "in_2u": true,
+   "held_rmse_px": 87.28466592895174,
+   "sigma_px": 4.093534697347342,
+   "chi2": 88.74114642181729,
+   "dof": 5,
+   "p": 1.2351185484392525e-17,
+   "v3_pass": false,
+   "impact_in_window": true,
+   "validated_conditional": false,
+   "alongside": {
+    "max_width_change": 0.08735074961845779,
+    "max_height_change": 0.4353815875792699,
+    "height_growth_vs_speed_r": 0.9216587612810819,
+    "centroid_minus_box_offset_range_px": 23.44400068970367,
+    "rs_20ms_assumed_held_rmse_px": 14.099203865138291
+   }
+  },
+  {
+   "clip": "OWN04",
+   "analysis": "v1",
+   "frames": [
+    46,
+    55
+   ],
+   "n": 10,
+   "g": 10.38936545092721,
+   "u": 0.45719983371001144,
+   "z": 1.3109485322065337,
+   "in_1u": false,
+   "in_2u": true,
+   "held_rmse_px": 35.07078862596858,
+   "sigma_px": 2.0,
+   "chi2": 44.55900902318034,
+   "dof": 4,
+   "p": 4.910298155644165e-09,
+   "v3_pass": false,
+   "impact_in_window": false,
+   "validated_conditional": false,
+   "alongside": {
+    "max_width_change": 0.09543046952150092,
+    "max_height_change": 0.09786898184688253,
+    "height_growth_vs_speed_r": 0.9159595442992214,
+    "centroid_minus_box_offset_range_px": 11.376838420370632,
+    "rs_20ms_assumed_held_rmse_px": 7.734757748643418
+   }
+  },
+  {
+   "clip": "OWN05",
+   "analysis": "v1",
+   "frames": [
+    44,
+    50
+   ],
+   "n": 7,
+   "g": 8.621873488312907,
+   "u": 1.2788792449092994,
+   "z": -0.9133985998575945,
+   "in_1u": true,
+   "in_2u": true,
+   "held_rmse_px": 13.017046822472473,
+   "sigma_px": 2.0,
+   "chi2": 2.3216360610200106,
+   "dof": 3,
+   "p": 0.5083886885907298,
+   "v3_pass": true,
+   "impact_in_window": false,
+   "validated_conditional": true,
+   "alongside": {
+    "max_width_change": 0.02894736842105272,
+    "max_height_change": 0.1599109131403118,
+    "height_growth_vs_speed_r": 0.6036692779927901,
+    "centroid_minus_box_offset_range_px": 13.27818225846022,
+    "rs_20ms_assumed_held_rmse_px": 1.6169631546089422
+   }
+  },
+  {
+   "clip": "OWN06",
+   "analysis": "v1",
+   "frames": [
+    48,
+    55
+   ],
+   "n": 8,
+   "g": 7.116124373271427,
+   "u": 1.0162273595345013,
+   "z": -2.6311785464557675,
+   "in_1u": false,
+   "in_2u": false,
+   "held_rmse_px": 119.14575627268951,
+   "sigma_px": 2.946536747838158,
+   "chi2": 122.33363309215969,
+   "dof": 3,
+   "p": 2.425546703164157e-26,
+   "v3_pass": false,
+   "impact_in_window": true,
+   "validated_conditional": false,
+   "alongside": {
+    "max_width_change": 0.056160359426300155,
+    "max_height_change": 0.18583552824114724,
+    "height_growth_vs_speed_r": 0.9335537248360352,
+    "centroid_minus_box_offset_range_px": 13.954309001074193,
+    "rs_20ms_assumed_held_rmse_px": 2.0831606164424596
+   }
+  },
+  {
+   "clip": "OWN07",
+   "analysis": "v1",
+   "frames": [
+    47,
+    59
+   ],
+   "n": 13,
+   "g": 8.722173770378081,
+   "u": 0.2105999548646679,
+   "z": -5.070401037398637,
+   "in_1u": false,
+   "in_2u": false,
+   "held_rmse_px": 72.96842759838783,
+   "sigma_px": 3.7079754483264598,
+   "chi2": 68.01332097061379,
+   "dof": 5,
+   "p": 2.6534841375616183e-13,
+   "v3_pass": false,
+   "impact_in_window": true,
+   "validated_conditional": false,
+   "alongside": {
+    "max_width_change": 0.1788679245283019,
+    "max_height_change": 0.5117259996625612,
+    "height_growth_vs_speed_r": 0.7917915454297029,
+    "centroid_minus_box_offset_range_px": 16.79455737254648,
+    "rs_20ms_assumed_held_rmse_px": 10.787366124545406
+   }
+  },
+  {
+   "clip": "OWN08",
+   "analysis": "v1",
+   "frames": [
+    36,
+    48
+   ],
+   "n": 13,
+   "g": 8.822272327849516,
+   "u": 0.27331061082757246,
+   "z": -3.5407614406928665,
+   "in_1u": false,
+   "in_2u": false,
+   "held_rmse_px": 87.80857720881673,
+   "sigma_px": 2.82266575199825,
+   "chi2": 167.3046767435957,
+   "dof": 5,
+   "p": 2.742179781221625e-34,
+   "v3_pass": false,
+   "impact_in_window": true,
+   "validated_conditional": false,
+   "alongside": {
+    "max_width_change": 0.07360589425021669,
+    "max_height_change": 0.3248282630029442,
+    "height_growth_vs_speed_r": 0.8108417055490859,
+    "centroid_minus_box_offset_range_px": 11.564431386017304,
+    "rs_20ms_assumed_held_rmse_px": 11.932663665679119
+   }
+  },
+  {
+   "clip": "OWN09",
+   "analysis": "v1",
+   "frames": [
+    9,
+    22
+   ],
+   "n": 14,
+   "g": 6.73781470682151,
+   "u": 1.7721949933500436,
+   "z": -1.7222626768676477,
+   "in_1u": false,
+   "in_2u": true,
+   "held_rmse_px": 99.47125745389934,
+   "sigma_px": 2.6856799278024632,
+   "chi2": 373.11212071255375,
+   "dof": 5,
+   "p": 1.8441553212061703e-78,
+   "v3_pass": false,
+   "impact_in_window": true,
+   "validated_conditional": false,
+   "alongside": {
+    "max_width_change": 0.33890257827994474,
+    "max_height_change": 0.4807434374401227,
+    "height_growth_vs_speed_r": 0.7948969041934254,
+    "centroid_minus_box_offset_range_px": 31.507266599787044,
+    "rs_20ms_assumed_held_rmse_px": 16.501415749952635
+   }
+  },
+  {
+   "clip": "OWN02",
+   "analysis": "v2",
+   "frames": [
+    46,
+    53
+   ],
+   "n": 8,
+   "g": 7.267091781195077,
+   "u": 3.0707298371438982,
+   "z": -0.8215988877587134,
+   "in_1u": true,
+   "in_2u": true,
+   "held_rmse_px": 20.54234425841429,
+   "sigma_px": 3.212737260361372,
+   "chi2": 5.139443065770537,
+   "dof": 3,
+   "p": 0.1618666050026249,
+   "v3_pass": true,
+   "impact_in_window": false,
+   "validated_conditional": true,
+   "alongside": {
+    "max_width_change": 0.08240887480190173,
+    "max_height_change": 0.1776605101143358,
+    "height_growth_vs_speed_r": 0.9273678457214404,
+    "centroid_minus_box_offset_range_px": 10.967863643499015,
+    "rs_20ms_assumed_held_rmse_px": 1.6396048554980023
+   }
+  },
+  {
+   "clip": "OWN03",
+   "analysis": "v2",
+   "frames": [
+    45,
+    56
+   ],
+   "n": 12,
+   "g": 9.556858020288576,
+   "u": 0.6312238469846069,
+   "z": -0.36934913157219224,
+   "in_1u": true,
+   "in_2u": true,
+   "held_rmse_px": 28.859170088809616,
+   "sigma_px": 4.093534697347342,
+   "chi2": 18.5769411805592,
+   "dof": 4,
+   "p": 0.0009515230161742291,
+   "v3_pass": false,
+   "impact_in_window": false,
+   "validated_conditional": false,
+   "alongside": {
+    "max_width_change": 0.04749079809677714,
+    "max_height_change": 0.4353815875792699,
+    "height_growth_vs_speed_r": 0.9656657038331412,
+    "centroid_minus_box_offset_range_px": 19.518267219186555,
+    "rs_20ms_assumed_held_rmse_px": 9.824903548841302
+   }
+  },
+  {
+   "clip": "OWN04",
+   "analysis": "v2",
+   "frames": [
+    46,
+    55
+   ],
+   "n": 10,
+   "g": 10.397759767208594,
+   "u": 0.4576965058604849,
+   "z": 1.327866303165208,
+   "in_1u": false,
+   "in_2u": true,
+   "held_rmse_px": 35.07078862596858,
+   "sigma_px": 2.0,
+   "chi2": 44.55900902318034,
+   "dof": 4,
+   "p": 4.910298155644165e-09,
+   "v3_pass": false,
+   "impact_in_window": false,
+   "validated_conditional": false,
+   "alongside": {
+    "max_width_change": 0.09543046952150092,
+    "max_height_change": 0.09786898184688253,
+    "height_growth_vs_speed_r": 0.9159595442992214,
+    "centroid_minus_box_offset_range_px": 11.376838420370632,
+    "rs_20ms_assumed_held_rmse_px": 7.734757748643418
+   }
+  },
+  {
+   "clip": "OWN05",
+   "analysis": "v2",
+   "frames": [
+    44,
+    52
+   ],
+   "n": 9,
+   "g": 9.621532879984098,
+   "u": 0.7359992075033922,
+   "z": -0.22889578996608426,
+   "in_1u": true,
+   "in_2u": true,
+   "held_rmse_px": 6.518947052617642,
+   "sigma_px": 2.0,
+   "chi2": 3.451684296452985,
+   "dof": 3,
+   "p": 0.3270827814489715,
+   "v3_pass": true,
+   "impact_in_window": false,
+   "validated_conditional": true,
+   "alongside": {
+    "max_width_change": 0.02894736842105272,
+    "max_height_change": 0.22494432071269488,
+    "height_growth_vs_speed_r": 0.8331876374758911,
+    "centroid_minus_box_offset_range_px": 13.27818225846022,
+    "rs_20ms_assumed_held_rmse_px": 3.612459182102911
+   }
+  },
+  {
+   "clip": "OWN07",
+   "analysis": "v2",
+   "frames": [
+    46,
+    54
+   ],
+   "n": 9,
+   "g": 9.507282406436856,
+   "u": 0.9341037082989772,
+   "z": -0.3026618897359675,
+   "in_1u": true,
+   "in_2u": true,
+   "held_rmse_px": 6.967180730414883,
+   "sigma_px": 2.0,
+   "chi2": 3.4699671281403033,
+   "dof": 3,
+   "p": 0.3246782240501276,
+   "v3_pass": true,
+   "impact_in_window": false,
+   "validated_conditional": true,
+   "alongside": {
+    "max_width_change": 0.04264150943396228,
+    "max_height_change": 0.21084540249242156,
+    "height_growth_vs_speed_r": 0.9645091965213972,
+    "centroid_minus_box_offset_range_px": 10.170036825106251,
+    "rs_20ms_assumed_held_rmse_px": 3.545447448018174
+   }
+  },
+  {
+   "clip": "OWN08",
+   "analysis": "v2",
+   "frames": [
+    36,
+    47
+   ],
+   "n": 12,
+   "g": 8.822272327849516,
+   "u": 0.27331061082757246,
+   "z": -3.5407614406928665,
+   "in_1u": false,
+   "in_2u": false,
+   "held_rmse_px": 17.772373228030528,
+   "sigma_px": 2.82266575199825,
+   "chi2": 9.010191780013065,
+   "dof": 4,
+   "p": 0.06084523917737239,
+   "v3_pass": true,
+   "impact_in_window": false,
+   "validated_conditional": true,
+   "alongside": {
+    "max_width_change": 0.07360589425021669,
+    "max_height_change": 0.3248282630029442,
+    "height_growth_vs_speed_r": 0.8480832899135949,
+    "centroid_minus_box_offset_range_px": 11.458675513971912,
+    "rs_20ms_assumed_held_rmse_px": 8.319640388033433
+   }
+  }
+ ],
+ "abstained": [
+  {
+   "analysis": "v1",
+   "clip": "OWN10",
+   "abstain": "StopIteration: "
+  },
+  {
+   "analysis": "v1",
+   "clip": "OWN11",
+   "abstain": "StopIteration: "
+  },
+  {
+   "analysis": "v2",
+   "clip": "OWN01",
+   "abstain": "v2 rule: fall window f47-f53 has 7 < 8 frames"
+  },
+  {
+   "analysis": "v2",
+   "clip": "OWN06",
+   "abstain": "v2 rule: only 0 tracked scale frames before release f46"
+  },
+  {
+   "analysis": "v2",
+   "clip": "OWN09",
+   "abstain": "v2 rule: fall window f9-f9 has 1 < 8 frames"
+  },
+  {
+   "analysis": "v2",
+   "clip": "OWN10",
+   "abstain": "v2 rule: no sustained centroid-y release"
+  },
+  {
+   "analysis": "v2",
+   "clip": "OWN11",
+   "abstain": "v2 rule: no sustained centroid-y release"
+  }
+ ],
+ "coverage": {
+  "v1": {
+   "all_measured": {
+    "n": 9,
+    "in_1u": 2,
+    "in_2u": 6
+   },
+   "v3_pass_only": {
+    "n": 1,
+    "in_1u": 1,
+    "in_2u": 1
+   },
+   "v3_pass": 1,
+   "validated_conditional": 1
+  },
+  "v2": {
+   "all_measured": {
+    "n": 6,
+    "in_1u": 4,
+    "in_2u": 5
+   },
+   "v3_pass_only": {
+    "n": 4,
+    "in_1u": 3,
+    "in_2u": 3
+   },
+   "v3_pass": 4,
+   "validated_conditional": 4
+  }
+ },
+ "bottom_line": "validated (conditional) windows: v1 OWN05, v2 OWN02, v2 OWN05, v2 OWN07, v2 OWN08"
+}
