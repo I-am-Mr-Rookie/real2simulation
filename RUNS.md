@@ -1,15 +1,15 @@
 # Runs checklist
 
-Updated Oct 31, 17:25 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 17:33 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **252 / 281** runs done · 2 in progress · 0 blocked · 0 waiting for Koushik · 1 open reviews
+Progress: **253 / 281** runs done · 0 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
-- [ ] Q23 (S25e, repo public): the GitHub repo has a release "Exact-history backup 2026-10-28" with a 684 MB bundle holding all branches, including 18 raw clip videos. Making the repo public would publish it. A (recommended): delete that release and its tag on GitHub, keep the bundle locally (controller first copies it out of the Temp folder to a safe local folder), then make the repo public. B: keep the backup and leave the repo private. Reply "Q23 A" or "Q23 B".
+None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## Ready now
 
@@ -23,12 +23,7 @@ Progress: **252 / 281** runs done · 2 in progress · 0 blocked · 0 waiting for
 - …and 1 more ready in this lane
 
 **CLAUDE**
-- Nothing ready yet: check dependencies and retry holds below.
-
-## In progress
-
-- [~] **S15aq** — Codex (native Claude) · Opus 5.5, effort high — Home page: scroll-craft motion layer (resting look unchanged; hero planes, cards stack then fan out, signature card swap, honesty reveal; reduced motion static) + owner copy (H1 two lines "Film Physics" / "Simulate it in 3D", caption C1, cards Film it / Measure it / Remix it, "Guess the gravity." link to Mystery-g, trust line "Every number shows where it came from: measured, simulated or what-if.") + 2-4 showcase sections below the fold using existing art, no invented numbers, no em dashes (30 min) *(in progress)*
-- [~] **S25e** — Codex · GPT-6.1 Sol, effort medium — Make approved repo public and verify anonymous links (20 min) *(in progress)*
+- [~] **S15aq** — Codex (native Claude) · Opus 5.5, effort high — Home page: scroll-craft motion layer (resting look unchanged; hero planes, cards stack then fan out, signature card swap, honesty reveal; reduced motion static) + owner copy (H1 two lines "Film Physics" / "Simulate it in 3D", caption C1, cards Film it / Measure it / Remix it, "Guess the gravity." link to Mystery-g, trust line "Every number shows where it came from: measured, simulated or what-if.") + 2-4 showcase sections below the fold using existing art, no invented numbers, no em dashes (30 min) *(partial: resume it)*
 
 ## Waiting for Koushik
 
@@ -313,7 +308,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15an** — Codex (native Claude) · Opus 5.5, effort high — Workspace/chrome design fixes from controller DEV walk 10:00Z (evidence/S15/s15o/controller/35-42): (a) full-bleed private shell not applied on DEV (S15am main:has(>.r2s-shell) no longer matches under S15ai SiteFrame; workspace still a boxed card with ~70px side gutters); (b) two theme controls on workspace pages (header select + palette button) - keep ONE: the swatch menu (System + 6 modes) in the global header on every page, remove the other; (c) 375px: rail renders over the open right drawer and clips its content; (d) header title ellipsizes at ~190px with free space; (e) result card: display m/s^2 as m/s² (formatting only, same number), long source path into a collapsed 'Source' detail, stepper 'Run (not run)'/'Fit (not run)' -> state icon + tooltip; (f) empty viewport after a result: compact strip so the result card is above the fold, EMPTY/NO SCENE label kept; monospace paragraph -> body font; (g) long connection notice -> compact chip with (i) detail (30 min)
 - [x] **S15ao** — Codex (native Claude) · Opus 5.5, effort high — Public library/lab polish: S15ai skipped redlines: library L1 (filter chips with counts, 16:9 thumbnails, B3 empty-filter state, licence/credit per card kept verbatim), lab LB1 (two-column layout, B4 empty state, SIMULATED chip pinned on every chart), PWA manifest icons -> /brand assets, remove duplicate app/icon.svg link, nav icon targets >= 44px, Sign in no longer wraps at 375; home stays as is (30 min)
 - [x] **S15ap** — Codex (native Claude) · Opus 5.5, effort high — Logo v2 per owner Oct31: simple pendulum in three phases (left ghost, solid rust-orange centre bob, right ghost), dark ink lines (light ink + ember on dark modes), hand-authored SVG by Opus (owner chose Opus over Sol), replaces Build/web/public/brand files under the same names (30 min)
-- [~] **S15aq** — Codex (native Claude) · Opus 5.5, effort high — Home page: scroll-craft motion layer (resting look unchanged; hero planes, cards stack then fan out, signature card swap, honesty reveal; reduced motion static) + owner copy (H1 two lines "Film Physics" / "Simulate it in 3D", caption C1, cards Film it / Measure it / Remix it, "Guess the gravity." link to Mystery-g, trust line "Every number shows where it came from: measured, simulated or what-if.") + 2-4 showcase sections below the fold using existing art, no invented numbers, no em dashes (30 min) *(in progress)*
+- [~] **S15aq** — Codex (native Claude) · Opus 5.5, effort high — Home page: scroll-craft motion layer (resting look unchanged; hero planes, cards stack then fan out, signature card swap, honesty reveal; reduced motion static) + owner copy (H1 two lines "Film Physics" / "Simulate it in 3D", caption C1, cards Film it / Measure it / Remix it, "Guess the gravity." link to Mystery-g, trust line "Every number shows where it came from: measured, simulated or what-if.") + 2-4 showcase sections below the fold using existing art, no invented numbers, no em dashes (30 min) *(partial: resume it)*
 - [ ] **S15ar** — Codex (native Claude) · Sonnet 5.5, effort medium — Remove every visible em dash from the website, replaced intelligently per context (owner: "sometimes use comma, semicolon, big space, line break, whatever it needs"); API-provided strings transformed at display only, label words unchanged (30 min)
 - [x] **S15as** — Codex (native Claude) · Sonnet 5.5, effort medium — PWA manifest icons -> new /brand assets (S15ao blocker): Build/web/src/pwa/manifest.mjs icons to /brand/mark-192.png, mark-512.png, icon-maskable-512.png; regenerate public/pwa manifest; update tests/pwa pixel test and sw.js/cache-policy precache lists (30 min)
 - [x] **S15at** — Codex (native Claude) · Opus 5.5, effort high — Logo v3 from Koushik's pencil sketch (evidence/owner/logo-sketches-2026-10-31/, local only): hatched fixed support line, one pivot, solid string + solid centre bob, dashed strings to hollow ghost bobs left/right; v2 colours; separate small drawing; wordmark lockups keep the "Real2Simulation" text; same filenames (30 min)
@@ -435,13 +430,13 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S25</b> — README, attribution and public repo (5/6)</summary>
+<details><summary><b>S25</b> — README, attribution and public repo (6/6)</summary>
 
 - [x] **S25a** — Codex · GPT-6.1 Sol, effort medium — Write setup, architecture and Meta usage README (30 min)
 - [x] **S25b** — Codex · GPT-6.1 Sol, effort medium — Write footage attribution and public-package checklist (30 min)
 - [x] **S25c** — Codex · GPT-6.1 Sol, effort medium — Scan tracked files and full Git history (30 min)
 - [x] **S25d** — Authorize public repository visibility (10 min)
-- [~] **S25e** — Codex · GPT-6.1 Sol, effort medium — Make approved repo public and verify anonymous links (20 min) *(in progress)*
+- [x] **S25e** — Codex · GPT-6.1 Sol, effort medium — Make approved repo public and verify anonymous links (20 min)
 - [x] **S25f** — Codex (native Claude) · Sonnet 5.5, effort medium — Add MIT LICENSE (owner Q18) and update README/ATTRIBUTION/checklist (30 min)
 
 </details>
