@@ -11,11 +11,23 @@ import { instrumentView } from './instruments.mjs';
 import { fitView } from './fit-view.mjs';
 import { sidebarOf, reportView } from './navigation.mjs';
 
+// S15l: after a stage change the focused control may be gone (focus falls to body). Move focus to the panel heading then; never steal
+// it from a control that survived. Returns true when focus moved.
+export function restoreFocus(doc = globalThis.document) {
+  const a = doc?.activeElement;
+  if (a && a !== doc.body && doc.body?.contains?.(a)) return false;
+  const hd = doc?.getElementById?.('ws-panel-heading');
+  hd?.focus?.();
+  return !!hd;
+}
+
 export const createWorkspace = (React) => function Workspace({ state, adapter, loadScene, audience, log, onAction, interview, template, run, instruments, fit, report, navigate, provenance, whatIf }) {
   const { createElement: h, useRef, useEffect, useState } = React;
   const host = useRef(null), ctl = useRef(null);
   const [view, setView] = useState({ status: 'empty', error: null });
   const layout = layoutOf(state, { ...(audience ? { audience } : {}), log });
+  const prevPhase = useRef(layout.phase);
+  useEffect(() => { if (prevPhase.current !== layout.phase) { prevPhase.current = layout.phase; restoreFocus(); } }, [layout.phase]);
   useEffect(() => {
     ctl.current = createViewport({ adapter, loadScene, onStatus: setView });
     return () => ctl.current.destroy();
