@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T00:05Z — controller: S15v merged PARTIAL (DEV walk defect); S15y dispatched
+
+- S15v-orch171 merged (timebox PASS; web 119/119, api 23 OK fresh). DEV api 85c23646-2e35-4c25-af0d-cbe38a52c524 (prev 81a74b99) + web 20e728a2-e0f5-45f1-90b8-4734d2e00bfb (prev 1f827ca0), revision d195f270; deployments.json + verify.py/test_verify.py pin updated; verify.py exit 0; railway-dev tests 16 OK.
+- Controller DEV walk 375px (owner clip OWN01 upload = private processing within Koushik's Oct31 approval; ephemeral DEV upload dir): checksum accepted; OWN01 card shows g = 10.96 +/- 0.77 (RECORDED replay of MEASURED, user-declared scale, held-out fail caveat); no horizontal scroll. FAIL: job still ends 'Upload failed / DEPENDENCY_UNAVAILABLE', interview + known-size question unreachable for owner clips; caveat says '>> 2 px' (pre-registered threshold is 6 px). Screenshot evidence/S15/s15o/controller/18-375-own01-after-S15v.png. S15v -> PARTIAL.
+- S15y added + dispatched (Opus high, thread 01a18f43-c981-7272-bdf0-c176cc160c98, deadline 00:32:08Z / 06:32 Dhaka): owner clip -> non-failure no-scene state -> known-size interview -> result card; RM04 unchanged; redeploy DEV.
+
 ## 2026-10-31T00:00Z — controller: OWN07-OWN11 re-tracked 5/5 (envelope 2); S07h resume dispatched
 
 - Re-track (envelope 2 job 1/1, $0.40 reservation, app ap-HTu3CU7IfNE1A9Q6T9EyvL stopped): OWN07-OWN11 all tracked; load-once fix removed the OOM. Evidence evidence/S07/S07j/RETRACK-RUN.md + track-own07..11.json. Envelope 2 now exhausted; any further GPU job needs a new reviewed envelope.
