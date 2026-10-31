@@ -11,7 +11,7 @@ export default function SiteFrame({ children, authAvailable = false }) {
     <style dangerouslySetInnerHTML={{ __html: THEME_CSS }} />
     <a className="skip-link" href="#main">Skip to content</a>
     <header className="site-header">
-      <Link className="wordmark" href="/"><img className="brand-mark" src="/brand/mark-192.png" width="28" height="28" alt="" />Real2Simulation</Link>
+      <Link className="wordmark" href="/"><img className="brand-mark art-light" src="/brand/mark.svg" width="28" height="28" alt="" /><img className="brand-mark art-dark" src="/brand/mark-dark.svg" width="28" height="28" alt="" />Real2Simulation</Link>
       <nav aria-label="Main navigation">
         <Link href="/library" title="Demo library">{icon(h, 'book', 16)}<span className="nav-label">Demo library</span></Link>
         <Link href="/lab" title="Local simulation lab">{icon(h, 'flask', 16)}<span className="nav-label">Local simulation lab</span></Link>

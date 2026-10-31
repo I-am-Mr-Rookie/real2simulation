@@ -10,8 +10,8 @@ const MAX_ENTRIES = 100; // shortcut: FIFO trim by insertion order, no LRU; upgr
 
 // Public, non-personalised static files only.
 const PRECACHE = [
-  '/pwa/manifest.webmanifest', '/pwa/icon.svg',
-  '/pwa/icon-192.png', '/pwa/icon-512.png', '/pwa/icon-maskable-512.png',
+  '/pwa/manifest.webmanifest', '/brand/mark.svg',
+  '/brand/mark-192.png', '/brand/mark-512.png', '/brand/icon-maskable-512.png',
 ];
 const STATIC_PREFIXES = ['/_next/static/']; // content-hashed build output
 const STATIC_EXACT = new Set(PRECACHE);

@@ -49,9 +49,9 @@ test('committed sw.js is up to date with its sources', () => {
 });
 
 test('install precaches only public static files, skips non-cacheable replies', async () => {
-  const h = harness({ '/pwa/icon.svg': () => res({ headers: { 'cache-control': 'no-store' } }) });
+  const h = harness({ '/brand/mark.svg': () => res({ headers: { 'cache-control': 'no-store' } }) });
   await h.fire('install', {});
-  assert.deepEqual(stored(h).sort(), PRECACHE.filter((p) => p !== '/pwa/icon.svg').map(abs).sort());
+  assert.deepEqual(stored(h).sort(), PRECACHE.filter((p) => p !== '/brand/mark.svg').map(abs).sort());
 });
 
 const NEVER = {
@@ -65,16 +65,16 @@ const NEVER = {
   'private upload video': req('/uploads/user-1/clip.mp4'),
   'signed upload url': req('/api/uploads/abc?sig=1'),
   'upload-looking path under pwa': req('/pwa/uploads/clip.mp4'),
-  'authorization header on allowed path': req('/pwa/icon-192.png', { headers: { authorization: 'Bearer t' } }),
+  'authorization header on allowed path': req('/brand/mark-192.png', { headers: { authorization: 'Bearer t' } }),
   'range request on allowed path': req('/_next/static/chunks/a.js', { headers: { range: 'bytes=0-9' } }),
   'cross-origin static path': { ...req('/x'), url: 'https://cdn.example/_next/static/a.js' },
   'credentialed url': { ...req('/x'), url: 'https://u:p@app.example/_next/static/a.js' },
-  'query on pwa asset': req('/pwa/icon-192.png?user=1'),
+  'query on pwa asset': req('/brand/mark-192.png?user=1'),
   'unlisted pwa file': req('/pwa/sw.js'),
   'static prefix itself': req('/_next/static/'),
   'sign-in': req('/sign-in'),
-  'PUT on allowed path': req('/pwa/icon-192.png', { method: 'PUT' }),
-  'navigation to allowed path': req('/pwa/icon-192.png', { mode: 'navigate' }),
+  'PUT on allowed path': req('/brand/mark-192.png', { method: 'PUT' }),
+  'navigation to allowed path': req('/brand/mark-192.png', { mode: 'navigate' }),
 };
 for (const [name, r] of Object.entries(NEVER)) {
   test('never intercepted/cached: ' + name, async () => {

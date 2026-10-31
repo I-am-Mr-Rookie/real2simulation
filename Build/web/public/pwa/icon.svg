@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Real2Simulation pendulum icon">
-  <rect width="512" height="512" rx="102" fill="#155a92"/>
-  <path d="M134.9 311.8A258.0 258.0 0 0 0 377.1 311.8" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="9.8"/>
-  <path d="M182.3 84.0H329.7M256.0 84.0L377.1 311.8" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="14.7"/>
-  <circle cx="377.1" cy="311.8" r="49.2" fill="#fff"/>
-</svg>

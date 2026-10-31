@@ -15,10 +15,10 @@ export const manifest = {
   categories: ['education', 'science'],
   // No "orientation" member: orientation locking is not claimed or requested.
   icons: [
-    { src: '/pwa/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
-    { src: '/pwa/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
-    { src: '/pwa/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
-    { src: '/pwa/icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }
+    { src: '/brand/mark-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+    { src: '/brand/mark-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+    { src: '/brand/icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+    { src: '/brand/mark.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' }
   ]
 };
 
@@ -45,7 +45,7 @@ export function validateManifest(m) {
   }
   if (!Array.isArray(m.icons) || !m.icons.length) { e.push('icons missing'); return e; }
   for (const i of m.icons) {
-    if (typeof i.src !== 'string' || !i.src.startsWith('/pwa/') || i.src.includes('..')) e.push('icon src must be local /pwa/: ' + i.src);
+    if (typeof i.src !== 'string' || !/^\/(pwa|brand)\//.test(i.src) || i.src.includes('..')) e.push('icon src must be local /pwa/ or /brand/: ' + i.src);
     if (!['image/png', 'image/svg+xml'].includes(i.type)) e.push('icon type invalid: ' + i.src);
     if (!['any', 'maskable'].includes(i.purpose)) e.push('icon purpose must be exactly any|maskable: ' + i.src);
     if (i.type === 'image/png' && !/^\d+x\d+$/.test(i.sizes)) e.push('png icon sizes invalid: ' + i.src);
