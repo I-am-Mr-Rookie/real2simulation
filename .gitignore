@@ -73,3 +73,5 @@ media/narration/**/*.ogg
 media/narration/**/*.flac
 # S13l RM04 MapAnything bundle (scene.json, points.ply, points-mobile.ply): local only; shas in Build/pipeline/recorded/.
 /evidence/S13l/reconstruct/bundle/
+# Owner logo sketch photos (private originals; never commit or upload)
+/evidence/owner/logo-sketches-2026-10-31/
