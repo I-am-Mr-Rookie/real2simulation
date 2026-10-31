@@ -1,0 +1,12 @@
+{
+  "rid": "S15ap-orch204",
+  "controller": "01a1882d-3481-7ce3-8f88-45c942e341cd",
+  "thread": "01a19199-eb29-7411-b26f-9ee525508a04",
+  "model": "anthropic/claude-opus-5-5",
+  "effort": "high",
+  "issued_at": "2026-10-31T10:55:26+00:00",
+  "deadline_at": "2026-10-31T11:25:26+00:00",
+  "project": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
+  "prompt": "Full prompt is the first message of thread 01a19199-eb29-7411-b26f-9ee525508a04 (controller store lost on host restart).",
+  "hold_then_go": "held for owner confirmation, GO sent ~11:03Z"
+}

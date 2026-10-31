@@ -1,0 +1,13 @@
+{
+  "rid": "S15aq-orch205",
+  "controller": "01a1882d-3481-7ce3-8f88-45c942e341cd",
+  "thread": "01a1919a-0035-7f81-92c9-07fc861b48bb",
+  "model": "anthropic/claude-opus-5-5",
+  "effort": "high",
+  "issued_at": "2026-10-31T10:55:26+00:00",
+  "deadline_at": "2026-10-31T11:25:26+00:00",
+  "project": "91e441f8-e40c-4ec4-bea2-de7fa1582d97",
+  "prompt": "Full prompt is the first message of thread 01a1919a-0035-7f81-92c9-07fc861b48bb (controller store lost on host restart).",
+  "hold_then_go": "held for owner confirmation, GO sent ~11:03Z",
+  "go_amendment": "CONTROLLER GO for S15aq-orch205: Koushik confirmed the plan, with three additions (his words where quoted). Proceed now; deadline unchanged.\n(A) Trust line: add exactly \"Every number shows where it came from: measured, simulated or what-if.\" on the home page (near the RECORDED/SIMULATED/what-if chips or the honesty strip).\n(B) Showcase below the fold: \"You can also add some more details at the bottom of the screen or at the later parts of the homepage ... I also want the homepage to be the showcase of the project. This adds elements for scroll craft and also works as the project's advocate.\" So: after the existing hero + feature cards, add 2-4 short showcase sections that each get a different scroll-craft device (never the same twice in a row), e.g. How it works (film, the AI agent asks what it needs, track, fit with error bars, labelled 3D replay, what-if), \"The agent asks instead of guessing\" (use B5/B6 art from Build/web/public/images/app/), \"Honest by design\" (what RECORDED / SIMULATED / what-if / scale unverified mean, using the real label words), and a closing CTA that resolves the page (Try the demo library / Open the lab / Guess the gravity). Use only existing images (A1-A5, B1-B6, brand); no new generated assets. Every claim must match what the product does today; NO numbers at all unless read from existing public data (no owner-clip results, they are private; no invented stats or counters). Less text: short headings, one line each, icons.\n(C) The above-the-fold resting look still follows the earlier rules plus the approved copy changes.\nPriority if time runs short: 1) approved copy changes + trust line, 2) scroll motion on hero/cards incl. stack and swap, 3) showcase sections. Report anything unfinished as PARTIAL at the deadline; the controller will queue the rest. No em dashes anywhere. No reply needed."
+}
