@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 2026-10-31T07:10Z OWNER (annotation): hover-preview applies to EVERY icon whose pane is not open, including the current (e.g. Home) icon while the sidebar is collapsed; pointer can move into the temporary pane and click options; it closes only when the pointer leaves icon+pane; the current pane's icon keeps a distinct (white/light) highlight. Spec section 6 + QUEUE S15ae updated (not yet dispatched).
+
 - 2026-10-31T07:01Z OWNER (chat, Oct31 ~13:00 Dhaka, with Codex screenshots 06d71f3f/cab8720c): left rail should behave like Codex/VS Code activity bar - toggle-sidebar button shows/hides the CURRENT pane (rail stays); clicking an icon toggles/opens its pane; hovering another icon temporarily opens its pane, closes when the pointer leaves without a click, click pins it. Recorded verbatim in evidence/ui/Q21-OWNER-SPEC.md section 6; added QUEUE S15ae (Opus medium, after S15ad because both own Build/web/src/shell + workspace.css).
 
 - 2026-10-31T06:55Z controller: dispatched S15ad-orch190 (Sonnet 5.5 medium), thread 01a190bc-8d41-71d0-9598-71710b58d639, deadline 07:23:37Z (13:23 Dhaka): wrap long tokens in result cards + stack centre when narrow; web redeploy to DEV.
