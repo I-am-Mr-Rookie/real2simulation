@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 2026-10-31T02:20Z controller: S15l DEV spot check PASS on web 1e0f6e0d (in-app browser): skip link is first Tab stop with visible 3px focus ring; nav links keep 3px outline; 2 polite role=status live regions (upload status, scene viewport); stage heading tabindex=-1; 375px viewport no horizontal overflow (scrollWidth=clientWidth=360). Screenshot evidence/S15/s15o/controller/20-s15l-375.png. No owner replies to Q21/Q22 yet; no workers in flight.
+
 ## 2026-10-31T01:55Z — controller: accept S15l DONE; web DEV redeployed
 
 - S15l-orch183 (Sonnet medium; timebox PASS) merged: focus restore on stage transitions, live status/alert regions, aria-describedby for field errors, tests/workspace/a11y.test.mjs; web node suites 131/131 + npm run build exit 0 fresh. Checklist evidence/S15/s15l/A11Y.md; real-browser focus/screen-reader/375px/contrast items marked 'controller browser check'. Risk: some errors may be announced twice (panel + job aside).
