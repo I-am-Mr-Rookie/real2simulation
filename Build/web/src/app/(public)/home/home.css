@@ -1,0 +1,63 @@
+/* S15aq home scroll motion. Resting layout is plain CSS; motion only exists inside the no-preference + scroll-timeline guard. */
+/* shortcut: no IntersectionObserver fallback, browsers without animation-timeline get the static page; add one if Safari/Firefox motion is wanted. */
+.home-h1 { max-width: none; font-size: clamp(1.6rem, 4.6vw, 3.6rem); }
+.home-h1 span { display: block; white-space: nowrap; }
+.trust-line { margin: .75rem 0 0; font-size: .9rem; color: var(--r2s-muted); }
+.mg-hook { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem .6rem; margin: 1.25rem 0 0; padding: .9rem 1.1rem; color: inherit; text-decoration: none; }
+.mg-hook .r2s-icon { color: var(--r2s-accent); flex: none; }
+.mg-hook span { color: var(--r2s-muted); }
+.show { margin: 5rem 0 0; }
+.show-honest { overflow-x: clip; } /* side-slide rows must not widen the page before they enter */
+.show h2 { margin: 0 0 .5rem; font-size: clamp(1.4rem, 3vw, 2.1rem); }
+.show-line { margin: 0 0 1.5rem; color: var(--r2s-muted); }
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+.step { display: grid; gap: .35rem; padding: 1rem 1.1rem; }
+.step .r2s-icon { color: var(--r2s-accent); }
+.step span, .label-row > span:last-child { color: var(--r2s-muted); font-size: .95rem; }
+.agent-art { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; max-width: 720px; }
+.agent-art figure { margin: 0; }
+.agent-art img { width: 100%; height: auto; border-radius: 8px; }
+.label-list { display: grid; gap: .75rem; margin: 1.5rem 0 0; padding: 0; list-style: none; max-width: 720px; }
+.label-row { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; padding: .8rem 1rem; }
+.show-cta { padding: 2.5rem 0 1rem; text-align: center; }
+.show-cta .actions { justify-content: center; }
+.gh-link { min-height: 44px; }
+@media (max-width: 900px) { .home-h1 { font-size: clamp(1.6rem, 8.4vw, 3.6rem); } .steps, .agent-art { grid-template-columns: minmax(0, 1fr); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    /* every keyframe ends (or starts) at identity, so scroll 0 and in-view resting states are unchanged */
+    .home-motion .hero-copy { animation: hm-lift-slow linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+    .home-motion .hero-art { animation: hm-lift-fast linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+    .home-motion .honesty-strip { animation: hm-wipe linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+    .home-motion .step { animation: hm-deal linear both; animation-timeline: view(); animation-range: entry 0% cover 40%; }
+    .home-motion .agent-art figure:first-child { animation: hm-plane-a linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+    .home-motion .agent-art figure:last-child { animation: hm-plane-b linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
+    .home-motion .label-row:nth-child(odd) { animation: hm-from-left linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+    .home-motion .label-row:nth-child(even) { animation: hm-from-right linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+    .home-motion .show-cta { animation: hm-grow linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
+    @media (min-width: 901px) {
+      /* signature: Measure and Remix swap places on an arc while the row leaves, then deck onto card one; reverses on scroll up */
+      .home-motion .feature:nth-child(1) { animation: hm-deck-1 linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+      .home-motion .feature:nth-child(2) { animation: hm-swap-2 linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+      .home-motion .feature:nth-child(3) { animation: hm-swap-3 linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
+      .home-motion .step:nth-child(3n+2) { animation-name: hm-deal-2; }
+      .home-motion .step:nth-child(3n) { animation-name: hm-deal-3; }
+    }
+  }
+}
+@keyframes hm-lift-slow { to { translate: 0 -6vh; opacity: .4; } }
+@keyframes hm-lift-fast { to { translate: 0 -16vh; scale: .96; } }
+@keyframes hm-wipe { from { clip-path: inset(0 100% 0 0 round var(--r2s-radius)); } to { clip-path: inset(0 0 0 0 round var(--r2s-radius)); } }
+@keyframes hm-deal { from { translate: 0 3rem; opacity: 0; } }
+/* desktop deck: cards 2 and 3 start stacked on card 1 and fan out to their columns */
+@keyframes hm-deal-2 { from { translate: calc(-100% - 1rem) .4rem; rotate: -3deg; } }
+@keyframes hm-deal-3 { from { translate: calc(-200% - 2rem) .8rem; rotate: 3deg; } }
+@keyframes hm-plane-a { from { translate: 0 2.5rem; } to { translate: 0 -2.5rem; } }
+@keyframes hm-plane-b { from { translate: 0 -1.5rem; } to { translate: 0 1.5rem; } }
+@keyframes hm-from-left { from { translate: -2.5rem 0; opacity: 0; } }
+@keyframes hm-from-right { from { translate: 2.5rem 0; opacity: 0; } }
+@keyframes hm-grow { from { scale: .92; opacity: 0; } }
+@keyframes hm-swap-2 { 50% { translate: calc(50% + .625rem) -2.5rem; } 70%, to { translate: calc(100% + 1.25rem) 0; } }
+@keyframes hm-swap-3 { 50% { translate: calc(-50% - .625rem) 2.5rem; } 70%, to { translate: calc(-100% - 1.25rem) 0; } }
+@keyframes hm-deck-1 { 0%, 60% { translate: 0 0; } to { translate: calc(100% + 1.25rem) 0; rotate: -4deg; } }
