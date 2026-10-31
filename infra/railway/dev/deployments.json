@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "c74afc74-5845-45be-8cd1-f1ef7b9aeba0",
-      "previousDeploymentId": "48b12313-1b65-4122-8299-08080080bf1b",
-      "redeployNote": "S13m PrivateWorkspace loadScene (RM04 viewer). Note: failed upload e5191744 (21:08 Dhaka) was a controller mistake: stage failed, railway up ran from canonical root; Railway build never started; nothing served",
-      "sourceRevision": "8c2bbf8b42a9748a9216d0b90684de4387e25df5",
-      "verifiedUtc": "2026-10-31T15:20:00Z",
+      "deploymentId": "243368cd-9499-4c36-abfc-e1ed01503f1a",
+      "previousDeploymentId": "c74afc74-5845-45be-8cd1-f1ef7b9aeba0",
+      "redeployNote": "S15ay Gate D P3 fixes (health probe, narrow panel, /workspace redirect)",
+      "sourceRevision": "b7a6191385a9a8c7e353c11add91b6c3fbbadf20",
+      "verifiedUtc": "2026-10-31T16:08:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080

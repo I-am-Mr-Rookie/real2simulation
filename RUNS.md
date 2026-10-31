@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Oct 31, 21:41 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Oct 31, 22:07 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **265 / 289** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **267 / 289** runs done · 1 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,8 +24,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **S15ay** — Codex (native Claude) · Sonnet 5.5, effort medium — Gate D P3 fixes from S22c run 2: drop the leftover /api/workspace/jobs/s04o-probe request (404 on every load); at 375 px do not auto-open the Agent & tools panel over the result after upload; post sign-up/sign-in lands on the private workspace, not /library; diagnose the 33.5 s Report open and fix if it is ours (30 min) *(in progress)*
-- [~] **S22d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 2 (30 min) *(in progress)*
+- [~] **S22e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 3 (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -268,7 +267,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (50/51)</summary>
+<details><summary><b>S15</b> — Workspace UI (51/51)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -320,7 +319,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15av** — Codex (native Claude) · Opus 5.5, effort high — P1: public /lab works on deployed DEV (no raw local_lab_disabled): serve deterministic lab from a deployed service with public-endpoint guards; friendly errors (30 min)
 - [x] **S15aw** — Codex (native Claude) · Opus 5.5, effort high — Workspace result chart: tracked points, fit curve + 1-sigma band, held-out prefix prediction vs suffix (owner "y" Oct31; demo shows product, not offline charts) (30 min)
 - [x] **S15ax** — Codex (native Claude) · Opus 5.5, effort high — Result chart to the main stage: when an owner-clip result has no scene, show the S15aw chart large in the empty centre stage (axis ticks + units, readable legend), keep the side card as the text summary (30 min)
-- [~] **S15ay** — Codex (native Claude) · Sonnet 5.5, effort medium — Gate D P3 fixes from S22c run 2: drop the leftover /api/workspace/jobs/s04o-probe request (404 on every load); at 375 px do not auto-open the Agent & tools panel over the result after upload; post sign-up/sign-in lands on the private workspace, not /library; diagnose the 33.5 s Report open and fix if it is ours (30 min) *(in progress)*
+- [x] **S15ay** — Codex (native Claude) · Sonnet 5.5, effort medium — Gate D P3 fixes from S22c run 2: drop the leftover /api/workspace/jobs/s04o-probe request (404 on every load); at 375 px do not auto-open the Agent & tools panel over the result after upload; post sign-up/sign-in lands on the private workspace, not /library; diagnose the 33.5 s Report open and fix if it is ours (30 min)
 
 </details>
 
@@ -397,13 +396,13 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (3/11)</summary>
+<details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (4/11)</summary>
 
 - [x] **S22a** — Codex (native Claude) · Opus 5.5, effort medium — Prepare approved judging-candidate QA checklist (30 min)
 - [x] **S22b** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture logged-out guest library walkthrough (30 min)
 - [x] **S22c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 1 (30 min)
-- [~] **S22d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 2 (30 min) *(in progress)*
-- [ ] **S22e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 3 (30 min)
+- [x] **S22d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 2 (30 min)
+- [~] **S22e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture fresh-account full flow run 3 (30 min) *(in progress)*
 - [ ] **S22f** — Codex (native Claude) · Opus 5.5, effort high — Judge Gate D evidence and prioritize defects (30 min)
 - [ ] **S22g** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture 375px and auth-boundary QA (30 min)
 - [ ] **S22h** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture retry, spend-cap and report QA (30 min)
