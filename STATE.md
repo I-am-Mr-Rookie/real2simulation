@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T00:15Z — controller: S07l added + dispatched
+
+- S07l (Opus high, thread 01a18f4a-9d73-7562-9e2e-e8eb9a6fd523, deadline 00:39:37Z / 06:39 Dhaka): diagnose held-out failure on all owner clips (impact frames, rotation/perspective, centroid bias, drag, phone timing/rolling shutter, error model, scale) from existing tracks only; one recommended v3 change labelled hypothesis.
+
 ## 2026-10-31T00:13Z — controller: accept S07k DONE (v2 on 11 clips)
 
 - S07k-orch178 (Opus medium; timebox PASS) merged. After S07h-orch176 merged, its self-check broke (measure_heldout no longer exports PENDING); controller made a minimal fix in the run branch (local RETRACKED map, v1 cells from merged S07h) and verified every v2 value identical; self-check + measurement 90 OK.
