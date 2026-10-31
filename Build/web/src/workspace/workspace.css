@@ -179,7 +179,7 @@
   font-family: var(--r2s-font-sans, "Instrument Sans", ui-sans-serif, system-ui, "Segoe UI", sans-serif); background: var(--sh-bg); }
 .r2s-shell[data-left="collapsed"] { --sh-left: 3.25rem; }
 .r2s-shell :focus-visible { outline: 3px solid var(--r2s-focus, #1c1a16); outline-offset: 2px; }
-.r2s-left, .r2s-right { position: sticky; top: 0; max-height: 100vh; overflow-y: auto; background: var(--sh-surface); }
+.r2s-left, .r2s-right { position: sticky; top: 0; height: 100vh; overflow-y: auto; background: var(--sh-surface); }
 .r2s-left { border-right: 1px solid var(--sh-ink); padding: .75rem .4rem; }
 .r2s-right { width: 20rem; border-left: 1px solid var(--sh-ink); padding: .75rem; box-shadow: -4px 0 0 var(--sh-ink); }
 .r2s-right[hidden] { display: none; }
@@ -196,6 +196,7 @@
 .r2s-center { min-width: 0; }
 .r2s-top { display: flex; align-items: center; gap: .6rem; padding: .6rem 1rem; border-bottom: 1px solid var(--sh-ink); background: var(--sh-surface); position: sticky; top: 0; z-index: 5; }
 .r2s-top h1 { flex: 1; min-width: 0; margin: 0; font-size: 1.1rem; letter-spacing: -.01em; text-wrap: balance; overflow-wrap: anywhere; }
+.r2s-tools-btn { margin-left: auto; } /* Q21: the rightmost header control */
 .r2s-center > p[role="note"], .r2s-center > .ws-upload { margin: .75rem 1rem 0; }
 .r2s-iconbtn { display: inline-flex; align-items: center; gap: .4rem; min-height: 2.5rem; min-width: 2.5rem; justify-content: center; padding: 0 .55rem;
   font: inherit; font-weight: 600; color: var(--sh-ink); background: var(--sh-surface); border: 1px solid var(--sh-ink); border-radius: var(--sh-radius); cursor: pointer;
@@ -218,7 +219,7 @@
 /* Narrow: rail and panel become overlay drawers; the center keeps the full width, no horizontal scroll. */
 @media (max-width: 760px) {
   .r2s-shell, .r2s-shell[data-left="collapsed"] { grid-template-columns: minmax(0, 1fr); }
-  .r2s-left, .r2s-right { position: fixed; top: 0; bottom: 0; max-height: none; z-index: 30; }
+  .r2s-left, .r2s-right { position: fixed; top: 0; bottom: 0; height: auto; z-index: 30; }
   .r2s-left { left: 0; width: min(18rem, 85vw); box-shadow: 4px 0 0 var(--sh-ink); }
   .r2s-shell:not([data-left="expanded"]) .r2s-left { display: none; }
   .r2s-right { right: 0; width: min(22rem, 92vw); }
