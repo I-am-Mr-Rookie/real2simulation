@@ -1,0 +1,89 @@
+{
+  "pillow": "12.2.0",
+  "palette": "#2878E8",
+  "files": {
+    "favicon.ico": {
+      "size": [
+        48,
+        48
+      ],
+      "mode": "RGBA",
+      "bytes": 4532,
+      "sha256": "eb4753921e020a7a19881f914af8e712ebe9a4e6542650d1ac2e50398c72924c"
+    },
+    "icon-maskable-512.png": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bytes": 16859,
+      "sha256": "05160f3a4533280d8db92ee42163504be7d6c15c069ba5ad93eceb7acd3b833d"
+    },
+    "mark-1024.png": {
+      "size": [
+        1024,
+        1024
+      ],
+      "mode": "RGBA",
+      "bytes": 46130,
+      "sha256": "af43d83bdb7c416951a1ca5e69dfd6630792dd5767a644291d9107be52ad0963"
+    },
+    "mark-192.png": {
+      "size": [
+        192,
+        192
+      ],
+      "mode": "RGBA",
+      "bytes": 5795,
+      "sha256": "ca87c6fb6a292b0c871cc03cd36a8e0298137196d79643f3f8863614d257bec1"
+    },
+    "mark-32.png": {
+      "size": [
+        32,
+        32
+      ],
+      "mode": "RGBA",
+      "bytes": 867,
+      "sha256": "47b144f59d1a6b2d130f6cfebc986e76363d9edb40c9a5414f70006ce539c12f"
+    },
+    "mark-512.png": {
+      "size": [
+        512,
+        512
+      ],
+      "mode": "RGBA",
+      "bytes": 18756,
+      "sha256": "abb4a09705f5c50986ab1bf0ec68847c4abf9c10e94f4fc9b904c3f56f6d830b"
+    },
+    "wordmark-dark.png": {
+      "size": [
+        924,
+        192
+      ],
+      "mode": "RGBA",
+      "bytes": 17169,
+      "sha256": "65cf501803f6716f78fc80bfe5fa89bad0baaceb323acc53a8a0deb9ece39a59"
+    },
+    "wordmark-light.png": {
+      "size": [
+        924,
+        192
+      ],
+      "mode": "RGBA",
+      "bytes": 17215,
+      "sha256": "a14cb2e183eb580ee1b61e7c0be00ff0053e2443cf03c13cfef81e4a0ef4e60f"
+    }
+  },
+  "contrast": {
+    "light": {
+      "mark": 4.249,
+      "wordmark": 17.739
+    },
+    "dark": {
+      "mark": 4.623,
+      "wordmark": 17.872
+    }
+  },
+  "assertions": "PASS: mark dimensions/alpha/flat fill; ICO 16/32/48 alpha; maskable 80% circle/opaque; light/dark contrast"
+}
