@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "75dcb815-b7a1-44ab-80da-44733b3d048e",
-      "previousDeploymentId": "20e728a2-e0f5-45f1-90b8-4734d2e00bfb",
-      "redeployNote": "S15y-orch177: stage.py web + railway up (owner clip -> interview -> report.owner result card, no upload failure)",
-      "sourceRevision": "6b9e16d9d7821327cd3822acade1f3c48bd7a5c4",
-      "verifiedUtc": "2026-10-31T00:13:20Z",
+      "deploymentId": "1e0f6e0d-f8d2-422f-8f70-d094db31d2b7",
+      "previousDeploymentId": "75dcb815-b7a1-44ab-80da-44733b3d048e",
+      "redeployNote": "controller after S15l-orch183: stage.py web + railway up (workspace a11y: focus restore, live status, aria-describedby)",
+      "sourceRevision": "e281b8705c90d227bb0c30360e772c3b6fe99425",
+      "verifiedUtc": "2026-10-31T01:48:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080

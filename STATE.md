@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-10-31T01:55Z — controller: accept S15l DONE; web DEV redeployed
+
+- S15l-orch183 (Sonnet medium; timebox PASS) merged: focus restore on stage transitions, live status/alert regions, aria-describedby for field errors, tests/workspace/a11y.test.mjs; web node suites 131/131 + npm run build exit 0 fresh. Checklist evidence/S15/s15l/A11Y.md; real-browser focus/screen-reader/375px/contrast items marked 'controller browser check'. Risk: some errors may be announced twice (panel + job aside).
+- Controller deployed web to Railway DEV: stage.py web (111 files, revision e281b870) + railway up -> 1e0f6e0d-f8d2-422f-8f70-d094db31d2b7 SUCCESS (prev 75dcb815 REMOVED); deployments.json updated; verify.py exit 0. Controller browser spot check NOT done: the in-app browser returned 'browser.user is unavailable' (not retried in a loop) - pending next heartbeat.
+
 ## 2026-10-31T01:20Z — controller: dispatch S15l-orch183
 
 - S15l (Sonnet medium, thread 01a18f88-4c92-76a3-9cb7-905a6b53d150, deadline 01:47:15Z / 07:47 Dhaka): workspace accessibility checkpoint (keyboard/focus, live status/errors, 375px) with node-test proof; no deploy (controller deploys + browser check). Not dispatched: S13j (optional GPU; envelope 2 exhausted), S02f/S18c (no new lead), S22c-e (fresh-account captures need account creation approval; controller-browser only).
