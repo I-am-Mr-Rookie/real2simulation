@@ -1,0 +1,1396 @@
+{
+ "label": "DIAGNOSIS \u2014 derived from MEASURED owner-clip SAM 3.1 tracks; ASSUMPTIONS labelled; 9.79 never used",
+ "assumptions": {
+  "rs_readout_s": 0.02,
+  "rho": 1.2,
+  "cd": 1.2,
+  "mass_kg": [
+   0.2,
+   1.0
+  ],
+  "area_m2": [
+   0.004056000000000001,
+   0.06084
+  ]
+ },
+ "thresholds": {
+  "held_pass_px": 6.0,
+  "impact_ratio": 0.5,
+  "shape_tol": 0.05,
+  "offset_tol_px": 3.0,
+  "vfr_tol_s": 0.001
+ },
+ "summary": {
+  "a_impact": {
+   "v1_windows_with_impact": 5,
+   "v1_windows": 9,
+   "v2_windows_with_impact": 0,
+   "v2_windows": 6,
+   "v2_windows_held_accel_below_train": 6,
+   "v1_median_held_rmse_px": 72.96842759838783,
+   "v2_median_held_rmse_px": 19.15735874322241
+  },
+  "b_shape": {
+   "v2_windows_shape_change_gt_5pct": 6,
+   "v2_median_max_width_change": 0.060548346173496914,
+   "v2_median_max_height_change": 0.21789486160255822,
+   "v2_median_height_growth_vs_speed_r": 0.921663695010331,
+   "v2_height_growth_slope_ms_range": [
+    9.705795303069799,
+    22.83472707530688
+   ]
+  },
+  "c_centroid": {
+   "v2_windows_offset_drift_gt_3px": 6,
+   "v2_median_offset_range_px": 11.417756967171272,
+   "v2_box_centre_held_pass": 1
+  },
+  "d_drag": {
+   "v2_cubic_better": 1,
+   "v2_cubic_held_pass": 0,
+   "v2_median_k_per_s": 1.9452693719460719,
+   "v2_required_drag_in_plausible_range": 0
+  },
+  "e_timing": {
+   "clips_vfr": 0,
+   "max_rs_y_held_rmse_px": 9.824903548841302,
+   "max_rs_x_held_rmse_px": 1.1184006952681214,
+   "rs_y_a_ratio_range": [
+    1.0407267566106497,
+    1.0793591007596741
+   ]
+  },
+  "f_noise": {
+   "v2_median_static_sd_px": 0.24367218959540904,
+   "v2_median_train_resid_sd_px": 2.012013813556095,
+   "v2_median_expected_held_declared_px": 7.069020992325758,
+   "v2_expected_declared_gt_threshold": 6,
+   "v2_median_expected_held_empirical_px": 6.400293138610957,
+   "v2_expected_empirical_ge_threshold": 3,
+   "v2_median_observed_over_expected": 1.9926322034890034
+  },
+  "v3_candidate_hypothesis": {
+   "v1_pass": 1,
+   "v2_pass": 4,
+   "v2_p": {
+    "OWN02": 0.1618666050026249,
+    "OWN03": 0.0009515230161742291,
+    "OWN04": 4.910298155644165e-09,
+    "OWN05": 0.3270827814489715,
+    "OWN07": 0.3246782240501276,
+    "OWN08": 0.06084523917737239
+   }
+  },
+  "g_scale": {
+   "v2_median_scale_width_rel_sd": 0.0035805001566951078,
+   "v2_median_g_shift_m_s2_from_width_sd": 0.0359281805391228
+  }
+ },
+ "windows": [
+  {
+   "clip": "OWN01",
+   "analysis": "v1",
+   "g": 10.963940510463221,
+   "frames": [
+    47,
+    54
+   ],
+   "n": 8,
+   "n_train": 5,
+   "held_rmse_px": 23.022212090488367,
+   "a_impact": {
+    "min_step_ratio": 1.047269801321986,
+    "at_frame": 53,
+    "post_window_step_ratio": null,
+    "impact_in_window": false,
+    "accel_px_per_frame2_train_vs_held": [
+     17.614414236202563,
+     8.802344726802403
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.10481481481481492,
+    "max_abs_height_change": 0.07195696032279775,
+    "held_width_change": 0.10481481481481492,
+    "held_height_change": 0.05850706119704119,
+    "aspect_h_over_w_first_last": [
+     0.7437160540608816,
+     0.9076449225394199
+    ],
+    "x_drift_px": 9.225653170909368,
+    "height_growth_vs_speed_slope_s": 0.005458151055466151,
+    "height_growth_vs_speed_r": 0.6505638419538001,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 8.0697767849299,
+    "held_rmse_box_centre_px": 26.37456920008044,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 5.5394679334928005,
+    "cubic_better": true,
+    "k_linear_drag_per_s": 3.2555216299623293,
+    "mean_speed_m_s": 1.6576841644140738,
+    "required_drag_m_s2": 5.396626652896048,
+    "plausible_quadratic_drag_m_s2": [
+     0.008024796357104087,
+     0.6018597267828065
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 3.752039065922451,
+     "a_ratio": 1.0537875519564763
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.572122989211307,
+     "a_ratio": 1.0047641120303663
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.4846151428070607,
+    "train_resid_sd_px": 1.4061169132928109,
+    "expected_held_rmse_px_declared_2px": 9.229245906812421,
+    "expected_held_rmse_px_empirical": 6.488699383253696,
+    "observed_over_expected_empirical": 3.548047263509394
+   },
+   "v3_candidate": {
+    "sigma_px": 2.0,
+    "chi2": 12.277686362690337,
+    "dof": 3,
+    "p": 0.006490007396967188,
+    "pass": false
+   },
+   "g_scale": {
+    "scale_width_mean_px": 291.6,
+    "scale_width_rel_sd": 0.0020286020648339186,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN02",
+   "analysis": "v1",
+   "g": 9.289396283978423,
+   "frames": [
+    47,
+    59
+   ],
+   "n": 13,
+   "n_train": 8,
+   "held_rmse_px": 39.58071680622228,
+   "a_impact": {
+    "min_step_ratio": 0.882299392388897,
+    "at_frame": 59,
+    "post_window_step_ratio": -0.010873847193759193,
+    "impact_in_window": false,
+    "accel_px_per_frame2_train_vs_held": [
+     11.658311248203322,
+     5.924693551482164
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.2149122807017546,
+    "max_abs_height_change": 0.475582930048394,
+    "held_width_change": 0.2149122807017546,
+    "held_height_change": 0.475582930048394,
+    "aspect_h_over_w_first_last": [
+     0.7628474799967004,
+     0.42818802239092096
+    ],
+    "x_drift_px": -89.95113991465178,
+    "height_growth_vs_speed_slope_s": 0.015158644441400967,
+    "height_growth_vs_speed_r": 0.4367204403772267,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 10.64456830798423,
+    "held_rmse_box_centre_px": 30.874296833890057,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 119.13270830632382,
+    "cubic_better": false,
+    "k_linear_drag_per_s": -4.968484541783111,
+    "mean_speed_m_s": 2.366281337308081,
+    "required_drag_m_s2": -11.756832245925068,
+    "plausible_quadratic_drag_m_s2": [
+     0.01635171088445169,
+     1.2263783163338766
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 12.945702882047454,
+     "a_ratio": 1.0790270125800319
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.5148050963862264,
+     "a_ratio": 0.9953027078135357
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.6207076188426418,
+    "train_resid_sd_px": 3.8376507225397685,
+    "expected_held_rmse_px_declared_2px": 7.283016810223174,
+    "expected_held_rmse_px_empirical": 13.97483736201112,
+    "observed_over_expected_empirical": 2.832284611327041
+   },
+   "v3_candidate": {
+    "sigma_px": 3.8376507225397685,
+    "chi2": 26.106623140582947,
+    "dof": 5,
+    "p": 8.508577624923528e-05,
+    "pass": false
+   },
+   "g_scale": {
+    "scale_width_mean_px": 295.48800000000006,
+    "scale_width_rel_sd": 0.0021101983523012322,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN03",
+   "analysis": "v1",
+   "g": 9.542294862674295,
+   "frames": [
+    45,
+    57
+   ],
+   "n": 13,
+   "n_train": 8,
+   "held_rmse_px": 87.28466592895174,
+   "a_impact": {
+    "min_step_ratio": 0.3505774161963249,
+    "at_frame": 57,
+    "post_window_step_ratio": -0.39141474930557557,
+    "impact_in_window": true,
+    "accel_px_per_frame2_train_vs_held": [
+     14.93233410082838,
+     -16.4746584701804
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.08735074961845779,
+    "max_abs_height_change": 0.4353815875792699,
+    "held_width_change": 0.08735074961845779,
+    "held_height_change": 0.4353815875792699,
+    "aspect_h_over_w_first_last": [
+     0.7174692223780582,
+     0.7585498312050493
+    ],
+    "x_drift_px": -35.730957694659196,
+    "height_growth_vs_speed_slope_s": 0.019737321017835256,
+    "height_growth_vs_speed_r": 0.9216587612810819,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 23.44400068970367,
+    "held_rmse_box_centre_px": 69.85641287276424,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 39.954832782069566,
+    "cubic_better": true,
+    "k_linear_drag_per_s": 2.662252140748108,
+    "mean_speed_m_s": 2.254300110559705,
+    "required_drag_m_s2": 6.001515295226271,
+    "plausible_quadratic_drag_m_s2": [
+     0.014840683644407247,
+     1.1130512733305435
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 14.099203865138291,
+     "a_ratio": 1.073770182741853
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.8993839291690147,
+     "a_ratio": 0.9988085186924045
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.19139237805595138,
+    "train_resid_sd_px": 4.093534697347342,
+    "expected_held_rmse_px_declared_2px": 7.283062697787037,
+    "expected_held_rmse_px_empirical": 14.906734928173686,
+    "observed_over_expected_empirical": 5.85538458619694
+   },
+   "v3_candidate": {
+    "sigma_px": 4.093534697347342,
+    "chi2": 88.74114642181729,
+    "dof": 5,
+    "p": 1.2351185484392525e-17,
+    "pass": false
+   },
+   "g_scale": {
+    "scale_width_mean_px": 300.753,
+    "scale_width_rel_sd": 0.0030942971433008683,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN04",
+   "analysis": "v1",
+   "g": 10.38936545092721,
+   "frames": [
+    46,
+    55
+   ],
+   "n": 10,
+   "n_train": 6,
+   "held_rmse_px": 35.07078862596858,
+   "a_impact": {
+    "min_step_ratio": 1.012309930136191,
+    "at_frame": 55,
+    "post_window_step_ratio": null,
+    "impact_in_window": false,
+    "accel_px_per_frame2_train_vs_held": [
+     16.164219121922883,
+     10.675149144617365
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.09543046952150092,
+    "max_abs_height_change": 0.09786898184688253,
+    "held_width_change": 0.09543046952150092,
+    "held_height_change": 0.09786898184688253,
+    "aspect_h_over_w_first_last": [
+     0.7705617350396684,
+     0.98169467601782
+    ],
+    "x_drift_px": 14.157308800369492,
+    "height_growth_vs_speed_slope_s": 0.009705795303069798,
+    "height_growth_vs_speed_r": 0.9159595442992214,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 11.376838420370632,
+    "held_rmse_box_centre_px": 42.013776199805065,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 15.44267032386926,
+    "cubic_better": true,
+    "k_linear_drag_per_s": 1.2891315900472142,
+    "mean_speed_m_s": 2.1363360325935696,
+    "required_drag_m_s2": 2.7540182665725057,
+    "plausible_quadratic_drag_m_s2": [
+     0.01332814085906642,
+     0.9996105644299814
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 7.734757748643418,
+     "a_ratio": 1.0718706775869482
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.3116054819596892,
+     "a_ratio": 1.0012827027145825
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.10388401364086652,
+    "train_resid_sd_px": 0.8333083117494681,
+    "expected_held_rmse_px_declared_2px": 9.082906622317092,
+    "expected_held_rmse_px_empirical": 3.7844307916105593,
+    "observed_over_expected_empirical": 9.267123791433725
+   },
+   "v3_candidate": {
+    "sigma_px": 2.0,
+    "chi2": 44.55900902318034,
+    "dof": 4,
+    "p": 4.910298155644165e-09,
+    "pass": false
+   },
+   "g_scale": {
+    "scale_width_mean_px": 300.753,
+    "scale_width_rel_sd": 0.004066703170089348,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN05",
+   "analysis": "v1",
+   "g": 8.621873488312907,
+   "frames": [
+    44,
+    50
+   ],
+   "n": 7,
+   "n_train": 4,
+   "held_rmse_px": 13.017046822472473,
+   "a_impact": {
+    "min_step_ratio": 1.2180651894538215,
+    "at_frame": 49,
+    "post_window_step_ratio": 1.1778517097772399,
+    "impact_in_window": false,
+    "accel_px_per_frame2_train_vs_held": [
+     15.208989182292251,
+     16.36378871297171
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.02894736842105272,
+    "max_abs_height_change": 0.1599109131403118,
+    "held_width_change": 0.009398496240601517,
+    "held_height_change": 0.1599109131403118,
+    "aspect_h_over_w_first_last": [
+     0.7921882393427109,
+     0.8620732464307883
+    ],
+    "x_drift_px": -61.06557752192634,
+    "height_growth_vs_speed_slope_s": 0.008812983224142285,
+    "height_growth_vs_speed_r": 0.6036692779927901,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 13.27818225846022,
+    "held_rmse_box_centre_px": 5.783115739787618,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 22.01541305339023,
+    "cubic_better": false,
+    "k_linear_drag_per_s": 2.064197358209116,
+    "mean_speed_m_s": 1.1122572093627159,
+    "required_drag_m_s2": 2.295918393215562,
+    "plausible_quadratic_drag_m_s2": [
+     0.003612774888507592,
+     0.27095811663806935
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 1.6169631546089422,
+     "a_ratio": 1.0324572682649729
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.460747626179499,
+     "a_ratio": 0.9876388238830851
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.10176628490248484,
+    "train_resid_sd_px": 0.23309882178635213,
+    "expected_held_rmse_px_declared_2px": 13.576954384843486,
+    "expected_held_rmse_px_empirical": 1.5823860352770318,
+    "observed_over_expected_empirical": 8.226214420676147
+   },
+   "v3_candidate": {
+    "sigma_px": 2.0,
+    "chi2": 2.3216360610200106,
+    "dof": 3,
+    "p": 0.5083886885907298,
+    "pass": true
+   },
+   "g_scale": {
+    "scale_width_mean_px": 287.28000000000003,
+    "scale_width_rel_sd": 0.005263157894736843,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN06",
+   "analysis": "v1",
+   "g": 7.116124373271427,
+   "frames": [
+    48,
+    55
+   ],
+   "n": 8,
+   "n_train": 5,
+   "held_rmse_px": 119.14575627268951,
+   "a_impact": {
+    "min_step_ratio": 0.12374018849883868,
+    "at_frame": 55,
+    "post_window_step_ratio": -1.088267659021251,
+    "impact_in_window": true,
+    "accel_px_per_frame2_train_vs_held": [
+     13.019406191202876,
+     -75.17305896838343
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.056160359426300155,
+    "max_abs_height_change": 0.18583552824114724,
+    "held_width_change": 0.056160359426300155,
+    "held_height_change": 0.18583552824114724,
+    "aspect_h_over_w_first_last": [
+     1.1452874610769346,
+     0.8477507332495334
+    ],
+    "x_drift_px": 35.177582685655466,
+    "height_growth_vs_speed_slope_s": 0.02754040037799819,
+    "height_growth_vs_speed_r": 0.9335537248360352,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 13.954309001074193,
+    "held_rmse_box_centre_px": 106.2140160691363,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 74.66598197951521,
+    "cubic_better": true,
+    "k_linear_drag_per_s": 6.0878401148712324,
+    "mean_speed_m_s": 2.9738322897353093,
+    "required_drag_m_s2": 18.104215508349984,
+    "plausible_quadratic_drag_m_s2": [
+     0.02582637116053526,
+     1.9369778370401447
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 2.0831606164424596,
+     "a_ratio": 1.1421809194306107
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 2.245979616359202,
+     "a_ratio": 1.000392212722084
+    }
+   },
+   "f_noise": {
+    "static_sd_px": null,
+    "train_resid_sd_px": 2.946536747838158,
+    "expected_held_rmse_px_declared_2px": 9.229393614010657,
+    "expected_held_rmse_px_empirical": 13.597373721972614,
+    "observed_over_expected_empirical": 8.762409470305025
+   },
+   "v3_candidate": {
+    "sigma_px": 2.946536747838158,
+    "chi2": 122.33363309215969,
+    "dof": 3,
+    "p": 2.425546703164157e-26,
+    "pass": false
+   },
+   "g_scale": {
+    "scale_width_mean_px": 312.498,
+    "scale_width_rel_sd": 0.02956969777901232,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN07",
+   "analysis": "v1",
+   "g": 8.722173770378081,
+   "frames": [
+    47,
+    59
+   ],
+   "n": 13,
+   "n_train": 8,
+   "held_rmse_px": 72.96842759838783,
+   "a_impact": {
+    "min_step_ratio": 0.47137947021818305,
+    "at_frame": 59,
+    "post_window_step_ratio": -0.042712004387532816,
+    "impact_in_window": true,
+    "accel_px_per_frame2_train_vs_held": [
+     15.005041790365924,
+     -19.828726028990417
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.1788679245283019,
+    "max_abs_height_change": 0.5117259996625612,
+    "held_width_change": 0.1788679245283019,
+    "held_height_change": 0.5117259996625612,
+    "aspect_h_over_w_first_last": [
+     0.734474655924807,
+     0.41610353442273834
+    ],
+    "x_drift_px": -60.687328827688134,
+    "height_growth_vs_speed_slope_s": 0.03577689635300742,
+    "height_growth_vs_speed_r": 0.7917915454297029,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 16.79455737254648,
+    "held_rmse_box_centre_px": 66.62398966535153,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 38.55058047779913,
+    "cubic_better": true,
+    "k_linear_drag_per_s": 2.3080953416239054,
+    "mean_speed_m_s": 2.540665934650469,
+    "required_drag_m_s2": 5.864099208389294,
+    "plausible_quadratic_drag_m_s2": [
+     0.01885061709784584,
+     1.4137962823384378
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 10.787366124545406,
+     "a_ratio": 1.0871200412212778
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 1.682514876782933,
+     "a_ratio": 0.9917192451196674
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.6488710154135867,
+    "train_resid_sd_px": 3.7079754483264598,
+    "expected_held_rmse_px_declared_2px": 7.283016810223174,
+    "expected_held_rmse_px_empirical": 13.502623761028207,
+    "observed_over_expected_empirical": 5.404018425588671
+   },
+   "v3_candidate": {
+    "sigma_px": 3.7079754483264598,
+    "chi2": 68.01332097061379,
+    "dof": 5,
+    "p": 2.6534841375616183e-13,
+    "pass": false
+   },
+   "g_scale": {
+    "scale_width_mean_px": 286.2,
+    "scale_width_rel_sd": 0.004559639990035701,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN08",
+   "analysis": "v1",
+   "g": 8.822272327849516,
+   "frames": [
+    36,
+    48
+   ],
+   "n": 13,
+   "n_train": 8,
+   "held_rmse_px": 87.80857720881673,
+   "a_impact": {
+    "min_step_ratio": 0.2547570746564202,
+    "at_frame": 48,
+    "post_window_step_ratio": -0.36679901699088135,
+    "impact_in_window": true,
+    "accel_px_per_frame2_train_vs_held": [
+     15.225271727116633,
+     -25.67021328761635
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.07360589425021669,
+    "max_abs_height_change": 0.3248282630029442,
+    "held_width_change": 0.07360589425021669,
+    "held_height_change": 0.3248282630029442,
+    "aspect_h_over_w_first_last": [
+     0.8054448068946076,
+     0.7928929308239654
+    ],
+    "x_drift_px": 15.212486482765144,
+    "height_growth_vs_speed_slope_s": 0.013797842797963228,
+    "height_growth_vs_speed_r": 0.8108417055490859,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 11.564431386017304,
+    "held_rmse_box_centre_px": 90.83348213219845,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 45.866848343733224,
+    "cubic_better": true,
+    "k_linear_drag_per_s": 2.188920798401792,
+    "mean_speed_m_s": 2.318310682445698,
+    "required_drag_m_s2": 5.074598469962441,
+    "plausible_quadratic_drag_m_s2": [
+     0.015695447968012678,
+     1.1771585976009507
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 11.932663665679119,
+     "a_ratio": 1.0793591007596741
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 1.7713183052407657,
+     "a_ratio": 0.9976037266143944
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.47057094040831626,
+    "train_resid_sd_px": 2.82266575199825,
+    "expected_held_rmse_px_declared_2px": 7.283062697787033,
+    "expected_held_rmse_px_empirical": 10.27882582334972,
+    "observed_over_expected_empirical": 8.54266612917478
+   },
+   "v3_candidate": {
+    "sigma_px": 2.82266575199825,
+    "chi2": 167.3046767435957,
+    "dof": 5,
+    "p": 2.742179781221625e-34,
+    "pass": false
+   },
+   "g_scale": {
+    "scale_width_mean_px": 299.0304,
+    "scale_width_rel_sd": 0.0024281618483056587,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN09",
+   "analysis": "v1",
+   "g": 6.73781470682151,
+   "frames": [
+    9,
+    22
+   ],
+   "n": 14,
+   "n_train": 9,
+   "held_rmse_px": 99.47125745389934,
+   "a_impact": {
+    "min_step_ratio": 0.4486049691031613,
+    "at_frame": 22,
+    "post_window_step_ratio": -0.014405566789338636,
+    "impact_in_window": true,
+    "accel_px_per_frame2_train_vs_held": [
+     13.737209546459972,
+     -16.596163474453107
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.33890257827994474,
+    "max_abs_height_change": 0.4807434374401227,
+    "held_width_change": 0.33890257827994474,
+    "held_height_change": 0.4807434374401227,
+    "aspect_h_over_w_first_last": [
+     0.7864541528112219,
+     0.34856457121757595
+    ],
+    "x_drift_px": -107.01142163463874,
+    "height_growth_vs_speed_slope_s": 0.036128859216048935,
+    "height_growth_vs_speed_r": 0.7948969041934254,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 31.507266599787044,
+    "held_rmse_box_centre_px": 109.48943289778026,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 112.43708262360242,
+    "cubic_better": false,
+    "k_linear_drag_per_s": -0.4645305324280347,
+    "mean_speed_m_s": 1.6845096635406733,
+    "required_drag_m_s2": -0.7825061708847186,
+    "plausible_quadratic_drag_m_s2": [
+     0.008286620618458885,
+     0.6214965463844162
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.33299999999995,
+     33.33400000000003
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 16.501415749952635,
+     "a_ratio": 1.0800274281475373
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.5171036906657276,
+     "a_ratio": 0.9928834270254768
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.6963741802802695,
+    "train_resid_sd_px": 2.6856799278024632,
+    "expected_held_rmse_px_declared_2px": 6.204620409390957,
+    "expected_held_rmse_px_empirical": 8.331812246567397,
+    "observed_over_expected_empirical": 11.938730075786365
+   },
+   "v3_candidate": {
+    "sigma_px": 2.6856799278024632,
+    "chi2": 373.11212071255375,
+    "dof": 5,
+    "p": 1.8441553212061703e-78,
+    "pass": false
+   },
+   "g_scale": {
+    "scale_width_mean_px": 449.25300000000004,
+    "scale_width_rel_sd": 0.5962551468903038,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN02",
+   "analysis": "v2",
+   "g": 7.267091781195077,
+   "frames": [
+    46,
+    53
+   ],
+   "n": 8,
+   "n_train": 5,
+   "held_rmse_px": 20.54234425841429,
+   "a_impact": {
+    "min_step_ratio": 1.1097339986256223,
+    "at_frame": 53,
+    "post_window_step_ratio": 1.2450459813077677,
+    "impact_in_window": false,
+    "accel_px_per_frame2_train_vs_held": [
+     15.228839721824443,
+     12.25453015953886
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.08240887480190173,
+    "max_abs_height_change": 0.1776605101143358,
+    "held_width_change": 0.08240887480190173,
+    "held_height_change": 0.1776605101143358,
+    "aspect_h_over_w_first_last": [
+     0.7231748348129231,
+     0.9445108719720118
+    ],
+    "x_drift_px": -53.33121159652603,
+    "height_growth_vs_speed_slope_s": 0.01689764556772019,
+    "height_growth_vs_speed_r": 0.9273678457214404,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 10.967863643499015,
+    "held_rmse_box_centre_px": 18.823387408774437,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 90.83690120637525,
+    "cubic_better": false,
+    "k_linear_drag_per_s": 7.631517614272367,
+    "mean_speed_m_s": 1.2067649886767,
+    "required_drag_m_s2": 9.20944826737343,
+    "plausible_quadratic_drag_m_s2": [
+     0.004252808684812085,
+     0.3189606513609063
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 1.6396048554980023,
+     "a_ratio": 1.0407267566106497
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 1.1184006952681214,
+     "a_ratio": 0.9820435278994728
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.8002279331901588,
+    "train_resid_sd_px": 3.212737260361372,
+    "expected_held_rmse_px_declared_2px": 9.229418763796673,
+    "expected_held_rmse_px_empirical": 14.825848776963984,
+    "observed_over_expected_empirical": 1.3855762707044772
+   },
+   "v3_candidate": {
+    "sigma_px": 3.212737260361372,
+    "chi2": 5.139443065770537,
+    "dof": 3,
+    "p": 0.1618666050026249,
+    "pass": true
+   },
+   "g_scale": {
+    "scale_width_mean_px": 295.30800000000005,
+    "scale_width_rel_sd": 0.0021114845880395605,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN03",
+   "analysis": "v2",
+   "g": 9.556858020288576,
+   "frames": [
+    45,
+    56
+   ],
+   "n": 12,
+   "n_train": 8,
+   "held_rmse_px": 28.859170088809616,
+   "a_impact": {
+    "min_step_ratio": 1.0063854730206279,
+    "at_frame": 55,
+    "post_window_step_ratio": 0.3505774161963249,
+    "impact_in_window": false,
+    "accel_px_per_frame2_train_vs_held": [
+     14.93233410082838,
+     13.64750745072005
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.04749079809677714,
+    "max_abs_height_change": 0.4353815875792699,
+    "held_width_change": 0.03582009157015875,
+    "held_height_change": 0.4353815875792699,
+    "aspect_h_over_w_first_last": [
+     0.7174692223780582,
+     0.9933717692277522
+    ],
+    "x_drift_px": -13.312427772062165,
+    "height_growth_vs_speed_slope_s": 0.019164220155019018,
+    "height_growth_vs_speed_r": 0.9656657038331412,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 19.518267219186555,
+    "held_rmse_box_centre_px": 22.769994331754123,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 44.58525164692635,
+    "cubic_better": false,
+    "k_linear_drag_per_s": 2.662252140748108,
+    "mean_speed_m_s": 2.0984593421628346,
+    "required_drag_m_s2": 5.586627875945872,
+    "plausible_quadratic_drag_m_s2": [
+     0.01285972143339002,
+     0.9644791075042511
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 9.824903548841302,
+     "a_ratio": 1.073770182741853
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.54017910667008,
+     "a_ratio": 0.9988085186924045
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.19139237805595138,
+    "train_resid_sd_px": 4.093534697347342,
+    "expected_held_rmse_px_declared_2px": 6.061193756421166,
+    "expected_held_rmse_px_empirical": 12.405853474627557,
+    "observed_over_expected_empirical": 2.3262543079226567
+   },
+   "v3_candidate": {
+    "sigma_px": 4.093534697347342,
+    "chi2": 18.5769411805592,
+    "dof": 4,
+    "p": 0.0009515230161742291,
+    "pass": false
+   },
+   "g_scale": {
+    "scale_width_mean_px": 300.753,
+    "scale_width_rel_sd": 0.0030942971433008683,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN04",
+   "analysis": "v2",
+   "g": 10.397759767208594,
+   "frames": [
+    46,
+    55
+   ],
+   "n": 10,
+   "n_train": 6,
+   "held_rmse_px": 35.07078862596858,
+   "a_impact": {
+    "min_step_ratio": 1.012309930136191,
+    "at_frame": 55,
+    "post_window_step_ratio": null,
+    "impact_in_window": false,
+    "accel_px_per_frame2_train_vs_held": [
+     16.164219121922883,
+     10.675149144617365
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.09543046952150092,
+    "max_abs_height_change": 0.09786898184688253,
+    "held_width_change": 0.09543046952150092,
+    "held_height_change": 0.09786898184688253,
+    "aspect_h_over_w_first_last": [
+     0.7705617350396684,
+     0.98169467601782
+    ],
+    "x_drift_px": 14.157308800369492,
+    "height_growth_vs_speed_slope_s": 0.009705795303069798,
+    "height_growth_vs_speed_r": 0.9159595442992214,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 11.376838420370632,
+    "held_rmse_box_centre_px": 42.013776199805065,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 15.44267032386926,
+    "cubic_better": true,
+    "k_linear_drag_per_s": 1.2891315900472142,
+    "mean_speed_m_s": 2.138062132269783,
+    "required_drag_m_s2": 2.7562434361926824,
+    "plausible_quadratic_drag_m_s2": [
+     0.013349687088920413,
+     1.001226531669031
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 7.734757748643418,
+     "a_ratio": 1.0718706775869482
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.3116054819596892,
+     "a_ratio": 1.0012827027145825
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.10388401364086652,
+    "train_resid_sd_px": 0.8333083117494681,
+    "expected_held_rmse_px_declared_2px": 9.082906622317092,
+    "expected_held_rmse_px_empirical": 3.7844307916105593,
+    "observed_over_expected_empirical": 9.267123791433725
+   },
+   "v3_candidate": {
+    "sigma_px": 2.0,
+    "chi2": 44.55900902318034,
+    "dof": 4,
+    "p": 4.910298155644165e-09,
+    "pass": false
+   },
+   "g_scale": {
+    "scale_width_mean_px": 300.753,
+    "scale_width_rel_sd": 0.004066703170089348,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN05",
+   "analysis": "v2",
+   "g": 9.621532879984098,
+   "frames": [
+    44,
+    52
+   ],
+   "n": 9,
+   "n_train": 6,
+   "held_rmse_px": 6.518947052617642,
+   "a_impact": {
+    "min_step_ratio": 1.0287250442027207,
+    "at_frame": 52,
+    "post_window_step_ratio": null,
+    "impact_in_window": false,
+    "accel_px_per_frame2_train_vs_held": [
+     15.670908994564035,
+     10.241570466107191
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.02894736842105272,
+    "max_abs_height_change": 0.22494432071269488,
+    "held_width_change": 0.016541353383458413,
+    "held_height_change": 0.22494432071269488,
+    "aspect_h_over_w_first_last": [
+     0.7921882393427109,
+     0.8974358974358976
+    ],
+    "x_drift_px": -72.42463646096394,
+    "height_growth_vs_speed_slope_s": 0.015533911005792374,
+    "height_growth_vs_speed_r": 0.8331876374758911,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 13.27818225846022,
+    "held_rmse_box_centre_px": 8.493249294242023,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 9.250171858169386,
+    "cubic_better": false,
+    "k_linear_drag_per_s": -1.9807802913761468,
+    "mean_speed_m_s": 1.4883283566679482,
+    "required_drag_m_s2": -2.94805147598412,
+    "plausible_quadratic_drag_m_s2": [
+     0.006468863026819916,
+     0.48516472701149366
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 3.612459182102911,
+     "a_ratio": 1.0481619630416679
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.27030677517489154,
+     "a_ratio": 0.9921405278779054
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.10176628490248484,
+    "train_resid_sd_px": 0.9668108192521762,
+    "expected_held_rmse_px_declared_2px": 7.069024149236403,
+    "expected_held_rmse_px_empirical": 3.4172045145183323,
+    "observed_over_expected_empirical": 1.907684197688856
+   },
+   "v3_candidate": {
+    "sigma_px": 2.0,
+    "chi2": 3.451684296452985,
+    "dof": 3,
+    "p": 0.3270827814489715,
+    "pass": true
+   },
+   "g_scale": {
+    "scale_width_mean_px": 287.28000000000003,
+    "scale_width_rel_sd": 0.005263157894736843,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN07",
+   "analysis": "v2",
+   "g": 9.507282406436856,
+   "frames": [
+    46,
+    54
+   ],
+   "n": 9,
+   "n_train": 6,
+   "held_rmse_px": 6.967180730414883,
+   "a_impact": {
+    "min_step_ratio": 1.0181519485039314,
+    "at_frame": 53,
+    "post_window_step_ratio": 1.2324328003152596,
+    "impact_in_window": false,
+    "accel_px_per_frame2_train_vs_held": [
+     16.71353874337958,
+     6.622384056317685
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.04264150943396228,
+    "max_abs_height_change": 0.21084540249242156,
+    "held_width_change": 0.04264150943396228,
+    "held_height_change": 0.21084540249242156,
+    "aspect_h_over_w_first_last": [
+     0.7516915613430358,
+     0.9817369596636448
+    ],
+    "x_drift_px": -48.722291394534295,
+    "height_growth_vs_speed_slope_s": 0.02283472707530688,
+    "height_growth_vs_speed_r": 0.9645091965213972,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 10.170036825106251,
+    "held_rmse_box_centre_px": 3.5167170300257546,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 11.285815961506671,
+    "cubic_better": false,
+    "k_linear_drag_per_s": 1.7016179454903515,
+    "mean_speed_m_s": 1.6674352954465046,
+    "required_drag_m_s2": 2.8373378216757783,
+    "plausible_quadratic_drag_m_s2": [
+     0.008119483865290895,
+     0.6089612898968171
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 3.545447448018174,
+     "a_ratio": 1.0563907124501029
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.3479769224254471,
+     "a_ratio": 0.9940076041097444
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.2959520011348667,
+    "train_resid_sd_px": 1.2013618751139403,
+    "expected_held_rmse_px_declared_2px": 7.069017835415113,
+    "expected_held_rmse_px_empirical": 4.246224260984094,
+    "observed_over_expected_empirical": 1.6407943392043518
+   },
+   "v3_candidate": {
+    "sigma_px": 2.0,
+    "chi2": 3.4699671281403033,
+    "dof": 3,
+    "p": 0.3246782240501276,
+    "pass": true
+   },
+   "g_scale": {
+    "scale_width_mean_px": 286.2,
+    "scale_width_rel_sd": 0.0045596399900357,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  },
+  {
+   "clip": "OWN08",
+   "analysis": "v2",
+   "g": 8.822272327849516,
+   "frames": [
+    36,
+    47
+   ],
+   "n": 12,
+   "n_train": 8,
+   "held_rmse_px": 17.772373228030528,
+   "a_impact": {
+    "min_step_ratio": 0.8170885360012301,
+    "at_frame": 47,
+    "post_window_step_ratio": 0.2547570746564202,
+    "impact_in_window": false,
+    "accel_px_per_frame2_train_vs_held": [
+     15.225271727116633,
+     0.4626934359899906
+    ]
+   },
+   "b_shape": {
+    "max_abs_width_change": 0.07360589425021669,
+    "max_abs_height_change": 0.3248282630029442,
+    "held_width_change": 0.07360589425021669,
+    "held_height_change": 0.3248282630029442,
+    "aspect_h_over_w_first_last": [
+     0.8054448068946076,
+     1.018150314056747
+    ],
+    "x_drift_px": -2.2400817923839895,
+    "height_growth_vs_speed_slope_s": 0.013610028901276683,
+    "height_growth_vs_speed_r": 0.8480832899135949,
+    "present": true
+   },
+   "c_centroid": {
+    "offset_range_px": 11.458675513971912,
+    "held_rmse_box_centre_px": 20.801899080594307,
+    "material": true
+   },
+   "d_drag": {
+    "held_rmse_cubic_px": 38.95637957788471,
+    "cubic_better": false,
+    "k_linear_drag_per_s": 2.188920798401792,
+    "mean_speed_m_s": 2.171272584102762,
+    "required_drag_m_s2": 4.75274371834214,
+    "plausible_quadratic_drag_m_s2": [
+     0.013767628548553784,
+     1.0325721411415338
+    ]
+   },
+   "e_timing": {
+    "pts_step_ms_min_max": [
+     33.332999999999835,
+     33.334000000000195
+    ],
+    "vfr": false,
+    "rs_readout_along_y": {
+     "held_rmse_px": 8.319640388033433,
+     "a_ratio": 1.0793591007596741
+    },
+    "rs_readout_along_x": {
+     "held_rmse_px": 0.7667964053102725,
+     "a_ratio": 0.9976037266143944
+    }
+   },
+   "f_noise": {
+    "static_sd_px": 0.47057094040831626,
+    "train_resid_sd_px": 2.82266575199825,
+    "expected_held_rmse_px_declared_2px": 6.061193756421162,
+    "expected_held_rmse_px_empirical": 8.55436201623782,
+    "observed_over_expected_empirical": 2.0775802092891507
+   },
+   "v3_candidate": {
+    "sigma_px": 2.82266575199825,
+    "chi2": 9.010191780013065,
+    "dof": 4,
+    "p": 0.06084523917737239,
+    "pass": true
+   },
+   "g_scale": {
+    "scale_width_mean_px": 299.0304,
+    "scale_width_rel_sd": 0.0024281618483056587,
+    "mask_width": "not computable: tracks store mask centroid + SAM box only",
+    "held_out_px_depends_on_scale": false
+   }
+  }
+ ]
+}
