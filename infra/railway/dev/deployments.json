@@ -7,10 +7,10 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "fbb52f25-e1e1-448e-92fd-d8165b5f762e",
-      "previousDeploymentId": "4b869e4a-0238-46f3-b74a-057ca6289989",
-      "redeployNote": "S15ae-orch191: stage.py web + railway up (left rail activity bar: toggle/click/hover preview/pin)",
-      "sourceRevision": "adaf10dbeb1972790ec9ede9bdbd17054f7e918e",
+      "deploymentId": "55ba928c-fd5b-4642-9211-45a17ef1449c",
+      "previousDeploymentId": "fbb52f25-e1e1-448e-92fd-d8165b5f762e",
+      "redeployNote": "S15af-orch192: stage.py web + railway up (rail polish)",
+      "sourceRevision": "b641fe05ab9a31ff5156db57f712634fd855b25b",
       "verifiedUtc": "2026-10-31T01:48:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
