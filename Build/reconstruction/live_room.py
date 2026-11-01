@@ -26,7 +26,9 @@ from Build.api import gpu as gpu_jobs  # noqa: E402
 from Build.guardrails import daily_cap  # noqa: E402
 
 APP, FALLBACK_GPU, CPU, MEM_GIB, IDLE_S = "r2s-ondemand", "A10G", 2, 16, 900  # ondemand.py + scene_job resources
-ROOM_START_BUDGET_S = 120  # L4 capacity wait must not stall the shared queue indefinitely
+# get() timeout covers queue wait + cold start + inference (A10G room jobs measured 31 to 77 s end to end),
+# so 120 s would cancel healthy cold L4 starts; 240 s still keeps a capacity stall bounded.
+ROOM_START_BUDGET_S = 240
 FRAMES, FRAME_W, MAX_POINTS = 8, 512, 20000
 A4_LONG_M, A4_SD_M = 0.297, 0.002  # ISO 216 A4 long edge 297 mm, +-2 mm tolerance
 # MapAnything output is nominally metric, so a real A4 edge rescales it by about 1. Outside 0.5 to 2 the clicks are not
