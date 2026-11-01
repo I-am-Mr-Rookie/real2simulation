@@ -2,7 +2,7 @@
 
 Offline (no Modal/GPU, existing MapAnything npz):
     python Build/gpu/scene_job.py RM02 <out_dir> --npz <RM02-mapanything.npz>
-One A10G job (frames from a S05 input manifest, already-approved licensed frames only):
+One L4 job (frames from a S05 input manifest, already-approved licensed frames only):
     modal run Build/gpu/scene_job.py --scene RM02 --out <out_dir> --manifest <S05 input.json>
     -> <out_dir>/<scene>-scene-log.json: cold start, GPU seconds, estimated cost; billed via Build/gpu/cost_log.py.
 SAM 3D stays off (sam3d_option default); colliders/surfaces stay empty: no object bounds exist yet.
@@ -163,6 +163,8 @@ if modal is not None:
         import torch
         from mapanything.utils.image import load_images
         t0 = time.time()
+        torch.cuda.reset_peak_memory_stats()
+        gpu_name = torch.cuda.get_device_name(0)
         paths = []
         for i, data in enumerate(frames):
             paths.append(f"/tmp/frame-{i:02}.png")
@@ -180,6 +182,8 @@ if modal is not None:
         np.savez_compressed(buf, **arrays)
         t3 = time.time()
         return {"npz": buf.getvalue(), "function_elapsed_s": t3 - t0,
+                "gpu": "L4" if "L4" in gpu_name else "A10G" if "A10" in gpu_name else gpu_name,
+                "gpu_name": gpu_name,
                 "peak_allocated_bytes": torch.cuda.max_memory_allocated(),
                 "container_start_epoch": CONTAINER_START, "function_start_epoch": t0, "function_end_epoch": t3,
                 "model_load_s": t1 - t0, "inference_s": t2 - t1}
@@ -201,7 +205,7 @@ if modal is not None:
         (out_dir / f"{scene}-scene-log.json").write_text(json.dumps(log, indent=1) + "\n", encoding="utf-8")
         (out_dir / f"{scene}-mapanything.npz").write_bytes(r["npz"])
         sc = build_bundle(scene, out_dir / f"{scene}-mapanything.npz", out_dir,
-                          "S06d/S06e Modal A10G scene_job on S06b runtime image")
+                          f"S06d/S06e Modal {r['gpu']} scene_job on S06b runtime image")
         print(json.dumps({"scene": sc["id"], "points": sc["render"]["point_count"],
                           "timing_s": log["timing_s"], "gpu_seconds": log["gpu_seconds"],
                           "estimated_usd": log["cost"]["estimated"]["total_usd"]}))

@@ -166,6 +166,73 @@ class JobTests(unittest.TestCase):
         self.assertIsNotNone(actual)
         self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
 
+    def test_oom_retries_once_and_ledgers_each_gpu(self):
+        calls = []
+
+        def remote(frames, gpu="L4"):
+            calls.append(gpu)
+            if gpu == "L4":
+                raise RuntimeError("CUDA out of memory")
+            return {**fake_remote(frames), "gpu": gpu}
+
+        d, s = self.run_job(remote)
+        self.assertEqual(calls, ["L4", "A10G"])
+        self.assertEqual((s["state"], s["gpu"]), ("done", "A10G"))
+        rows = self.ledger()
+        self.assertEqual(len(rows), 2)
+        for (_, reserved, actual), device in zip(rows, calls):
+            self.assertEqual(reserved, round(live_room.cost(1440, device, 2, 16)["total_usd"] * 1e8))
+            self.assertTrue(0 < actual <= reserved)
+        self.assertAlmostEqual(s["estimated_usd"], sum(row[2] for row in rows) / 1e8)
+        self.assertEqual(json.loads((d / "cost-log.json").read_text())["gpu"], "A10G")
+        self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
+
+    def test_capacity_then_fallback_failure_has_no_third_attempt(self):
+        remote = mock.Mock(side_effect=[RuntimeError("no GPU capacity"), RuntimeError("CUDA out of memory")])
+        _, s = self.run_job(remote)
+        self.assertEqual(remote.call_count, 2)
+        self.assertEqual(s["state"], "failed")
+        self.assertEqual(len(self.ledger()), 2)
+        self.assertTrue(all(row[2] is not None for row in self.ledger()))
+        self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
+
+    def test_start_budget_cancels_l4_then_runs_a10g(self):
+        from types import SimpleNamespace
+        timeout = type("TimeoutError", (Exception,), {})
+        fn = mock.Mock()
+        fn.spawn.return_value.get.side_effect = timeout("still waiting for capacity")
+        fallback = fn.with_options.return_value.spawn.return_value
+        fallback.get.return_value = {**fake_remote([b"frame"]), "gpu": "A10G"}
+        sdk = SimpleNamespace(Function=SimpleNamespace(from_name=mock.Mock(return_value=fn)),
+                              exception=SimpleNamespace(TimeoutError=timeout))
+        def fallback_options(**kwargs):
+            fn.spawn.return_value.cancel.assert_called_once_with(terminate_containers=True)
+            return fn.with_options.return_value
+        fn.with_options.side_effect = fallback_options
+        with mock.patch.dict("sys.modules", modal=sdk):
+            _, s = self.run_job(live_room.modal_reconstruct)
+        self.assertEqual((s["state"], s["gpu"]), ("done", "A10G"))
+        fn.spawn.return_value.get.assert_called_once_with(timeout=live_room.ROOM_START_BUDGET_S)
+        fallback.get.assert_called_once_with(timeout=540)
+        self.assertEqual(len(self.ledger()), 2)
+        self.assertTrue(all(row[2] > 0 for row in self.ledger()))  # unknown start: conservative timeout upper bound
+        self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
+
+    def test_daily_cap_denies_retry_and_frees_queue(self):
+        remote = mock.Mock(side_effect=RuntimeError("CUDA out of memory"))
+        from Build.guardrails import daily_cap
+        original = daily_cap.reserve
+        def reserve(provider, amount, label, **kwargs):
+            if "A10G" in label:
+                raise daily_cap.CapExceeded("synthetic exhausted cap")
+            return original(provider, amount, label, **kwargs)
+        with mock.patch.object(daily_cap, "reserve", side_effect=reserve):
+            _, s = self.run_job(remote)
+        self.assertEqual((s["state"], s["code"]), ("failed", "DAILY_CAP"))
+        self.assertEqual(remote.call_count, 1)
+        self.assertEqual(len(self.ledger()), 1)
+        self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
+
 
 class ApiTests(unittest.TestCase):
     def setUp(self):

@@ -1,0 +1,13 @@
+{
+  "run": "N30-orch275",
+  "app": "r2s-ondemand",
+  "command": "PYTHONUTF8=1 PYTHONIOENCODING=utf-8 uv run --python 3.12 --with modal==1.6.3 --env-file ../../.env modal deploy Build/gpu/ondemand.py",
+  "exit_code": 0,
+  "modal_reported_deploy_s": 9.155,
+  "functions_created": ["reconstruct", "track"],
+  "deployment_url": "https://modal.com/apps/koushiksadhakjeet/main/deployed/r2s-ondemand",
+  "room_gpu_from_image_spec": "L4",
+  "ondemand_source_modified": false,
+  "railway_deployed": false,
+  "note": "Deployment succeeded. GPU runtime success is separate and recorded in run.json."
+}

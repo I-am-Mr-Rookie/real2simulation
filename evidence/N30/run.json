@@ -1,0 +1,51 @@
+{
+  "run": "N30-orch275",
+  "state": "PARTIAL",
+  "completed_at": "2026-11-01T20:49:16.719167+00:00",
+  "started_at": "2026-11-01T20:32:41.191042+00:00",
+  "wall_s": 995.528,
+  "source": {
+    "clip": "RM02",
+    "license": "Pexels",
+    "url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/"
+  },
+  "app": "r2s-ondemand",
+  "requested_gpu": "L4",
+  "gpu": null,
+  "gpu_name": null,
+  "peak_allocated_bytes": null,
+  "gpu_wall_s": null,
+  "estimated_usd": 0.4085568,
+  "budget_usd": 0.5,
+  "ledger": "evidence/N30/runtime/spend.sqlite3 via daily_cap (local; not committed)",
+  "reservation_id": "7b7c974d42ae475ca27c3ccdb9e6cd14",
+  "reserved_usd": 0.4085568,
+  "ledger_settled_upper_bound_usd": 0.4085568,
+  "ledger_today": {
+    "day": "2026-11-02",
+    "cap_usd": "10",
+    "spent_usd": "0.40855680",
+    "headroom_usd": "9.59144320"
+  },
+  "modal_stats": {
+    "backlog": 1,
+    "runners": 0,
+    "running_inputs": 0
+  },
+  "paid_test_jobs_submitted": 1,
+  "observed_gpu_executions": null,
+  "client_stopped_at_cutoff": true,
+  "remote_cancelled": false,
+  "capacity_evidence": "Modal system log: waiting to be scheduled on a GPU_L4 worker; acquiring more capacity",
+  "labels": {
+    "cost": "MODEL-ESTIMATED full timeout envelope, NOT billed",
+    "telemetry": "NOT MEASURED: no result returned",
+    "scale": "scale unverified"
+  },
+  "limitations": [
+    "Old smoke used blocking remote before start-budget fix; no second smoke submitted",
+    "FunctionCallList API returned UnimplementedError; exact remote call could not be cancelled",
+    "Controller must watch remaining Modal backlog; this input may execute later",
+    "Local cap ledger is not an aggregated provider billing total"
+  ]
+}

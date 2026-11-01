@@ -1,0 +1,13 @@
+{
+  "id": "N30-orch275",
+  "status": "PARTIAL",
+  "issued_at": "2026-11-01T20:24:03+00:00",
+  "deadline_at": "2026-11-01T20:54:03+00:00",
+  "implementation_cutoff_at": "2026-11-01T20:49:03+00:00",
+  "work_stopped_at": "2026-11-01T20:49:17+00:00",
+  "reported_at": "2026-11-01T20:49:30+00:00",
+  "controller_exception": {
+    "reason": "resource_stop",
+    "approval_receipt": "Controller delegation in this chat, source 01a1882d-3481-7ce3-8f88-45c942e341cd: if still queued at cutoff report PARTIAL; updated instruction says end only own client at cutoff, settle reservation at upper bound, check backlog, and leave pending input for controller monitoring."
+  }
+}

@@ -2,7 +2,7 @@
 -> floor plane + gravity (S05d RANSAC) -> scale (MEASURED reference, else MODEL-ESTIMATED, else scale unverified)
 -> lab-scene-v1 scene.json + gravity-aligned room.ply + room.json in the job folder.
 
-Paid call: one reconstruct per job, reserved/settled in Build/guardrails/daily_cap.py and queued in the N04 GPU job
+Paid call: L4, then at most one A10G retry for OOM/no capacity, each reserved/settled in daily_cap and queued in the N04 GPU job
 table (status dot + queue position). Cost from Build/gpu/cost_log.py rates (estimate, not billed).
 """
 import io
@@ -20,11 +20,13 @@ for _p in (ROOT / "Build/reconstruction/spike", ROOT / "Build/gpu", ROOT):
     sys.path.insert(0, str(_p))
 import scene_frame as sf  # noqa: E402  S05d floor RANSAC + known-object scale
 from cost_log import cost, scene_log  # noqa: E402
+from Build.gpu.image_spec import GPU  # noqa: E402
 
 from Build.api import gpu as gpu_jobs  # noqa: E402
 from Build.guardrails import daily_cap  # noqa: E402
 
-APP, GPU, CPU, MEM_GIB, IDLE_S = "r2s-ondemand", "A10G", 2, 16, 900  # Build/gpu/ondemand.py + scene_job resources
+APP, FALLBACK_GPU, CPU, MEM_GIB, IDLE_S = "r2s-ondemand", "A10G", 2, 16, 900  # ondemand.py + scene_job resources
+ROOM_START_BUDGET_S = 120  # L4 capacity wait must not stall the shared queue indefinitely
 FRAMES, FRAME_W, MAX_POINTS = 8, 512, 20000
 A4_LONG_M, A4_SD_M = 0.297, 0.002  # ISO 216 A4 long edge 297 mm, +-2 mm tolerance
 # MapAnything output is nominally metric, so a real A4 edge rescales it by about 1. Outside 0.5 to 2 the clicks are not
@@ -176,34 +178,70 @@ def set_status(job_dir, **fields):
     _write(path, {**old, **fields, "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
 
-def modal_reconstruct(frames):
+def modal_reconstruct(frames, gpu=GPU):
     import modal
-    return modal.Function.from_name(APP, "reconstruct").remote(frames)
+    fn = modal.Function.from_name(APP, "reconstruct")
+    if gpu != GPU:
+        fn = fn.with_options(gpu=gpu)
+    call = fn.spawn(frames)
+    try:
+        return call.get(timeout=ROOM_START_BUDGET_S if gpu == GPU else 300 + 240)
+    except modal.exception.TimeoutError:
+        call.cancel(terminate_containers=True)  # cancel first, so the retry cannot overlap this input
+        if gpu == GPU:
+            raise RuntimeError(f"no GPU capacity/result within {ROOM_START_BUDGET_S}s on {gpu}") from None
+        raise
+
+
+def retry_on_a10g(error):
+    """Only GPU OOM/capacity failures, never auth, input, timeout or arbitrary model errors."""
+    message = str(error).lower()
+    return (type(error).__name__ == "OutOfMemoryError"
+            or any(s in message for s in ("cuda out of memory", "cuda error: out of memory",
+                                          "no gpu capacity", "no capacity", "insufficient gpu capacity")))
 
 
 def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruct, gpu_db=None, cap_db=None):
-    """Background job; every outcome lands in status.json. One reserve -> call -> settle per job."""
+    """Background job; one shared queue entry, a separate cap reservation/settlement per GPU attempt."""
     job_dir = Path(job_dir)
+    attempts = []
     try:
         set_status(job_dir, state="sampling")
         frames = sample_frames(video, duration_s)
-        rid = daily_cap.reserve("Modal", ESTIMATE_USD, f"N08 room {job_dir.name}", path=cap_db)
         jid = gpu_jobs.enqueue(owner, "reconstruct", gpu_db)
         set_status(job_dir, state="reconstructing", gpu_job=jid, frames=len(frames))
-        call, log = time.time(), None
         try:
             gpu_jobs.start(jid, gpu_db)
-            r = remote(frames)
-            log = scene_log(APP, call, time.time(), r, GPU, CPU, MEM_GIB, IDLE_S)
-        finally:  # conservative: upper bound includes the 15 min idle window; failure = round trip + idle
-            actual = (log["cost"]["upper_bound"]["total_usd"] if log
-                      else cost(time.time() - call + IDLE_S, GPU, CPU, MEM_GIB)["total_usd"])
-            daily_cap.settle(rid, actual, path=cap_db)
+            for device in (GPU, FALLBACK_GPU):
+                estimate = cost(300 + 240 + IDLE_S, device, CPU, MEM_GIB)["total_usd"]
+                rid = daily_cap.reserve("Modal", estimate, f"N30 room {job_dir.name} {device}", path=cap_db)
+                call, log = time.time(), None
+                attempt = {"gpu": device, "reservation_id": rid}
+                attempts.append(attempt)
+                try:
+                    r = remote(frames) if device == GPU else remote(frames, gpu=device)
+                    log = scene_log(APP, call, time.time(), r, r.get("gpu", device), CPU, MEM_GIB, IDLE_S)
+                    attempt["state"] = "done"
+                except Exception as e:
+                    attempt.update(state="failed", error=f"{type(e).__name__}: {e}"[:300])
+                    if device != GPU or not retry_on_a10g(e):
+                        raise
+                finally:  # conservative: includes each GPU pool's own 15 minute idle window, also on failure
+                    actual = (log["cost"]["upper_bound"]["total_usd"] if log else
+                              cost(time.time() - call + IDLE_S, device, CPU, MEM_GIB)["total_usd"])
+                    daily_cap.settle(rid, actual, path=cap_db)
+                    attempt.update(estimated_usd=actual, wall_s=round(time.time() - call, 3))
+                    set_status(job_dir, gpu_attempts=attempts)
+                if log:
+                    break
+        finally:
             gpu_jobs.finish(jid, gpu_db)
         (job_dir / "mapanything.npz").write_bytes(r["npz"])
         _write(job_dir / "cost-log.json", log)
         out = finish(job_dir, ref)
-        set_status(job_dir, state="done", timing_s=log["timing_s"], estimated_usd=actual,
+        set_status(job_dir, state="done", timing_s=log["timing_s"], gpu=log["gpu"],
+                   peak_allocated_bytes=r.get("peak_allocated_bytes"), gpu_name=r.get("gpu_name"),
+                   estimated_usd=round(sum(a["estimated_usd"] for a in attempts), 8),
                    scale=out["room"]["scale"]["status"], gravity=out["room"]["gravity"]["status"])
     except daily_cap.CapExceeded as e:
         set_status(job_dir, state="failed", code="DAILY_CAP", error=str(e)[:300])
