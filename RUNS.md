@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 14:25 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 14:27 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **283 / 299** runs done · 3 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **284 / 299** runs done · 4 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -27,7 +27,8 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 - [~] **S15bg** — Codex (native Claude) · Sonnet 5.5, effort medium — R-D F6: no fixture wording announced (role=alert, title, h1) on a live signed-in workspace before the probe resolves (30 min) *(in progress)*
 - [~] **S22k** — Codex (native Claude) · Opus 5.5, effort medium — Revise Gate D decision per R-D (F1-F7): scoped deviations, receipts, disclosure list (30 min) *(in progress)*
-- [~] **S24d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture held-out prediction and reveal (30 min) *(in progress)*
+- [~] **S24e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture Apollo result and Mystery-g (30 min) *(in progress)*
+- [~] **S24f** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture benchmark and Meta model evidence (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -433,14 +434,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S24</b> — Three-minute demo video (8/14)</summary>
+<details><summary><b>S24</b> — Three-minute demo video (9/14)</summary>
 
 - [x] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min)
 - [x] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
 - [~] **S24c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture room rebuild and interview (30 min) *(partial: resume it)*
-- [~] **S24d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture held-out prediction and reveal (30 min) *(in progress)*
-- [ ] **S24e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture Apollo result and Mystery-g (30 min)
-- [ ] **S24f** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture benchmark and Meta model evidence (30 min)
+- [x] **S24d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture held-out prediction and reveal (30 min)
+- [~] **S24e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture Apollo result and Mystery-g (30 min) *(in progress)*
+- [~] **S24f** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture benchmark and Meta model evidence (30 min) *(in progress)*
 - [x] **S24g** — Record optional voice-over part 1 (30 min)
 - [x] **S24h** — Record optional voice-over part 2 (30 min)
 - [ ] **S24i** — Codex (native Claude) · Opus 5.5, effort high — Cut video and align captions (30 min)
