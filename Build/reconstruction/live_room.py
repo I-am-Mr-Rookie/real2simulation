@@ -188,7 +188,7 @@ def modal_reconstruct(frames, gpu=GPU):
     call = fn.spawn(frames)
     try:
         return call.get(timeout=ROOM_START_BUDGET_S if gpu == GPU else 300 + 240)
-    except modal.exception.TimeoutError:
+    except (TimeoutError, modal.exception.TimeoutError):
         call.cancel(terminate_containers=True)  # cancel first, so the retry cannot overlap this input
         if gpu == GPU:
             raise RuntimeError(f"no GPU capacity/result within {ROOM_START_BUDGET_S}s on {gpu}") from None
@@ -204,40 +204,47 @@ def retry_on_a10g(error):
 
 
 def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruct, gpu_db=None, cap_db=None):
-    """Background job; one shared queue entry, a separate cap reservation/settlement per GPU attempt."""
+    """Background job; each GPU attempt joins the shared queue with its own cap reservation."""
     job_dir = Path(job_dir)
     attempts = []
     try:
         set_status(job_dir, state="sampling")
         frames = sample_frames(video, duration_s)
-        jid = gpu_jobs.enqueue(owner, "reconstruct", gpu_db)
-        set_status(job_dir, state="reconstructing", gpu_job=jid, frames=len(frames))
-        try:
-            gpu_jobs.start(jid, gpu_db)
-            for device in (GPU, FALLBACK_GPU):
-                estimate = cost(300 + 240 + IDLE_S, device, CPU, MEM_GIB)["total_usd"]
-                rid = daily_cap.reserve("Modal", estimate, f"N30 room {job_dir.name} {device}", path=cap_db)
-                call, log = time.time(), None
-                attempt = {"gpu": device, "reservation_id": rid}
-                attempts.append(attempt)
+        for device in (GPU, FALLBACK_GPU):
+            estimate = cost(300 + 240 + IDLE_S, device, CPU, MEM_GIB)["total_usd"]
+            rid = daily_cap.reserve("Modal", estimate, f"N30 room {job_dir.name} {device}", path=cap_db)
+            call, log, jid, started = time.time(), None, None, False
+            attempt = {"gpu": device, "reservation_id": rid}
+            attempts.append(attempt)
+            try:
+                jid = gpu_jobs.enqueue(owner, "reconstruct", gpu_db, reservation=rid, cap_db=cap_db)
+                set_status(job_dir, state="reconstructing", gpu_job=jid, frames=len(frames))
+                gpu_jobs.start(jid, gpu_db)
+                started, call = True, time.time()
+                r = remote(frames) if device == GPU else remote(frames, gpu=device)
+                log = scene_log(APP, call, time.time(), r, r.get("gpu", device), CPU, MEM_GIB, IDLE_S)
+                attempt["state"] = "done"
+            except Exception as e:
+                attempt.update(state="failed", error=f"{type(e).__name__}: {e}"[:300])
+                if device != GPU or not retry_on_a10g(e):
+                    raise
+            finally:  # conservative: includes each GPU pool's own 15 minute idle window, also on failure
                 try:
-                    r = remote(frames) if device == GPU else remote(frames, gpu=device)
-                    log = scene_log(APP, call, time.time(), r, r.get("gpu", device), CPU, MEM_GIB, IDLE_S)
-                    attempt["state"] = "done"
-                except Exception as e:
-                    attempt.update(state="failed", error=f"{type(e).__name__}: {e}"[:300])
-                    if device != GPU or not retry_on_a10g(e):
-                        raise
-                finally:  # conservative: includes each GPU pool's own 15 minute idle window, also on failure
-                    actual = (log["cost"]["upper_bound"]["total_usd"] if log else
-                              cost(time.time() - call + IDLE_S, device, CPU, MEM_GIB)["total_usd"])
-                    daily_cap.settle(rid, actual, path=cap_db)
+                    actual = 0
+                    if started:
+                        actual = (log["cost"]["upper_bound"]["total_usd"] if log else
+                                  cost(time.time() - call + IDLE_S, device, CPU, MEM_GIB)["total_usd"])
+                    try:
+                        daily_cap.settle(rid, actual, path=cap_db)
+                    except ValueError:  # already settled by the reaper: never charge twice
+                        pass
                     attempt.update(estimated_usd=actual, wall_s=round(time.time() - call, 3))
                     set_status(job_dir, gpu_attempts=attempts)
-                if log:
-                    break
-        finally:
-            gpu_jobs.finish(jid, gpu_db)
+                finally:
+                    if jid:
+                        gpu_jobs.finish(jid, gpu_db)
+            if log:
+                break
         (job_dir / "mapanything.npz").write_bytes(r["npz"])
         _write(job_dir / "cost-log.json", log)
         out = finish(job_dir, ref)

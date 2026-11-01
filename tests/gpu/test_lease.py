@@ -59,6 +59,72 @@ def test_status_reaps_with_nobody_waiting(tmp_path, quiet):
     assert gpu.status("u1", None, db, now=sec(91))["queue_length"] == 0
 
 
+@pytest.mark.parametrize("renewal", ["start", "heartbeat"])
+def test_status_serializes_with_concurrent_renewal_before_expiry(tmp_path, quiet, monkeypatch, renewal):
+    """Hold a real renewal's write lock while status tries to reap the old, expired snapshot."""
+    from concurrent.futures import ThreadPoolExecutor
+    db, cap = tmp_path / "j.db", tmp_path / "s.db"
+    rid = reserve(cap)
+    jid = gpu.enqueue("u1", "reconstruct", db, T, reservation=rid, cap_db=cap)
+    if renewal == "heartbeat":
+        gpu.start(jid, db, now=T)
+    connected, written, reading, commit = (threading.Event() for _ in range(4))
+    connect = gpu._connect
+
+    class Connection:
+        def __init__(self, con, status):
+            self.con, self.status = con, status
+
+        def execute(self, sql, *args):
+            if self.status and sql == "BEGIN IMMEDIATE":
+                reading.set()  # fixed path blocks here until the renewal commits
+            if not self.status and renewal == "heartbeat" and sql.startswith("UPDATE gpu_jobs SET heartbeat_at"):
+                self.con.execute("BEGIN IMMEDIATE")
+                cursor = self.con.execute(sql, *args)
+                written.set()
+                assert commit.wait(5)
+                self.con.execute("COMMIT")
+                return cursor
+            if not self.status and sql == "COMMIT":
+                written.set()
+                assert commit.wait(5)
+            cursor = self.con.execute(sql, *args)
+            if self.status and sql.startswith("SELECT id, started_at"):
+                reading.set()  # old autocommit path reads the stale row before renewal commits
+            return cursor
+
+        def close(self):
+            self.con.close()
+
+    def wrapped_connect(path=None):
+        con = connect(path)
+        status = threading.current_thread().name.startswith("status")
+        if status:
+            connected.set()
+            assert written.wait(5)
+        return Connection(con, status)
+
+    monkeypatch.setattr(gpu, "_connect", wrapped_connect)
+    with ThreadPoolExecutor(max_workers=1, thread_name_prefix="status") as statuses, \
+            ThreadPoolExecutor(max_workers=1, thread_name_prefix="renewal") as renewals:
+        status = statuses.submit(gpu.status, "u1", None, db, sec(91))
+        try:
+            assert connected.wait(5)
+            renew = renewals.submit(getattr(gpu, renewal), jid, db, now=sec(89))
+            assert written.wait(5) and reading.wait(5)
+        finally:
+            commit.set()
+        renew.result(timeout=5)
+        assert status.result(timeout=5)["queue_length"] == 1
+    with sqlite3.connect(db) as con:
+        started, beat, finished = con.execute(
+            "SELECT started_at, heartbeat_at, finished_at FROM gpu_jobs WHERE id = ?", (jid,)).fetchone()
+    assert started is not None and beat == sec(89).isoformat() and finished is None
+    with sqlite3.connect(cap) as con:
+        assert con.execute("SELECT actual FROM spend WHERE id = ?", (rid,)).fetchone() == (None,)
+    gpu.finish(jid, db, now=sec(92))
+
+
 def test_slow_but_alive_job_is_not_killed(tmp_path, monkeypatch):
     monkeypatch.setattr(gpu, "LEASE_S", 0.3)
     monkeypatch.setattr(gpu, "BEAT_S", 0.05)

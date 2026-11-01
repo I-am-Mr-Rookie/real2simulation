@@ -162,7 +162,7 @@ def check(value: Any, schema: Mapping[str, Any], path: str = "$") -> list[str]:
 
 
 def validate_call(name: Any, raw_args: Any) -> tuple[dict[str, Any] | None, list[str]]:
-    if name not in TOOLS:
+    if not isinstance(name, str) or name not in TOOLS:
         return None, [f"tool {str(name)[:40]!r} is not allowed"]
     try:
         args = json.loads(raw_args or "{}") if isinstance(raw_args, str) else raw_args
@@ -230,7 +230,7 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
 
     N36: if the Meta model fails (API error or timeout, no usable tool call, number guard blocked twice), the
     hidden fallback SOL_MODEL answers this turn only, with the same prompt, tools and guard. Refusals are normal
-    replies; cap (CapExceeded), quota (QuotaLimited) and bad input (ValueError) never reach the fallback."""
+    replies; cap (CapExceeded), quota (QuotaLimited) and bad input never reach the fallback."""
     if not isinstance(text, str) or not text.strip() or len(text) > MAX_TEXT:
         raise ValueError("text must be 1..4000 characters")
     if tier not in ("spark", "open"):
@@ -245,7 +245,7 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
     try:
         result, error = loop(model, items), None
         reason = FALLBACK_STOPS.get(result["stopped"])
-    except QuotaLimited:
+    except (QuotaLimited, ModelInputError):
         raise
     except ModelUnavailable as exc:
         result, error, reason = None, exc, "api_error"
@@ -280,9 +280,15 @@ def _loop(model, items, post, sources, calls, usage, owner, handlers, max_steps)
     for step in range(1, max_steps + 1):
         body = post({"model": model, "instructions": INSTRUCTIONS, "input": items, "tools": TOOL_SPECS,
                      "max_output_tokens": MAX_OUTPUT_TOKENS})
+        reported = body.get("usage")
         for k in usage:
-            usage[k] += int((body.get("usage") or {}).get(k) or 0)
+            count = reported.get(k) if isinstance(reported, Mapping) else None
+            if type(count) is int and count >= 0:
+                usage[k] += count
         result["steps"] = step
+        if any(p.get("type") == "refusal" for i in body.get("output") or () if i.get("type") == "message"
+               for p in i.get("content") or ()):
+            return {**result, "stopped": "refusal", "reply": "I cannot help with that request. I can help with this physics lab."}
         fcalls = [i for i in body.get("output") or () if i.get("type") == "function_call"]
         if not fcalls:
             reply = _message_text(body).replace("\u2014", ", ").strip()
@@ -300,6 +306,7 @@ def _loop(model, items, post, sources, calls, usage, owner, handlers, max_steps)
         items += list(body["output"])  # echo the model's own items (calls, reasoning) as the API expects
         usable = False
         for call in fcalls:
+            rejected = not isinstance(call.get("name"), str) or call["name"] not in TOOLS
             args, issues = validate_call(call.get("name"), call.get("arguments"))
             if issues:
                 output = {"status": "error", "error": {"code": "INVALID_TOOL_CALL", "issues": issues[:8]}}
@@ -322,7 +329,12 @@ def _loop(model, items, post, sources, calls, usage, owner, handlers, max_steps)
                     output = handlers[call["name"]](owner, args)
                 except Exception as exc:  # a tool failure goes back to the model; never a crash or traceback leak
                     output = {"status": "error", "error": {"code": type(exc).__name__}}
+                    rejected = isinstance(exc, PermissionError) or getattr(exc, "status_code", None) in (401, 403)
+            rejected = rejected or (output.get("error") or {}).get("code") in (
+                "PermissionError", "UNAUTHORIZED", "FORBIDDEN", "SECURITY_REJECTED")
             calls.append({"name": str(call.get("name"))[:40], "args": args, "output": output})
+            if rejected:
+                return {**result, "stopped": "tool_rejected", "reply": "That tool request is not allowed. I can help with this physics lab."}
             dumped = json.dumps(output, ensure_ascii=False, default=str)[:20000]
             sources.append(dumped)
             items.append({"type": "function_call_output", "call_id": call.get("call_id"),
@@ -367,6 +379,10 @@ class QuotaLimited(ModelUnavailable):
     """HTTP 402/429 from a model API: a quota or billing limit, never a reason to call the fallback model."""
 
 
+class ModelInputError(ModelUnavailable):
+    """Provider rejected the input; sanitized like availability errors, but never fallback-eligible."""
+
+
 def _send(path: str, data: bytes, content_type: str, timeout: float, key_env: str = "MODEL_API_KEY",
           base_env: str = "MODEL_API_BASE_URL") -> Mapping[str, Any]:
     """Stdlib POST to the Meta Model API or an N36 gateway (key by env name only; no extra dependency)."""
@@ -384,7 +400,9 @@ def _send(path: str, data: bytes, content_type: str, timeout: float, key_env: st
         with urlopen(request, timeout=timeout) as response:
             return json.loads(response.read())
     except HTTPError as exc:
-        raise (QuotaLimited if exc.code in (402, 429) else ModelUnavailable)(f"HTTP {exc.code}") from None
+        error = (QuotaLimited if exc.code in (402, 429) else
+                 ModelInputError if exc.code in (400, 413, 422) else ModelUnavailable)
+        raise error(f"HTTP {exc.code}") from None
     except (URLError, OSError, ValueError) as exc:
         raise ModelUnavailable(type(exc).__name__) from None
 
@@ -413,10 +431,13 @@ def _from_chat(reply: Mapping[str, Any]) -> dict[str, Any]:
     """chat-completions reply -> the Responses-API output items and usage that run_turn reads."""
     m = ((reply.get("choices") or [{}])[0] or {}).get("message") or {}
     out = [{"type": "message", "content": [{"type": "output_text", "text": m["content"]}]}] if m.get("content") else []
+    if m.get("refusal") is not None:
+        out.append({"type": "message", "content": [{"type": "refusal", "refusal": m["refusal"]}]})
     out += [{"type": "function_call", "call_id": c.get("id"), "name": (c.get("function") or {}).get("name"),
              "arguments": (c.get("function") or {}).get("arguments")} for c in m.get("tool_calls") or ()]
-    u = reply.get("usage") or {}
-    return {"output": out, "usage": {"input_tokens": u.get("prompt_tokens", 0), "output_tokens": u.get("completion_tokens", 0)}}
+    u = reply.get("usage")
+    u = u if isinstance(u, Mapping) else {}
+    return {"output": out, "usage": {"input_tokens": u.get("prompt_tokens"), "output_tokens": u.get("completion_tokens")}}
 
 
 def _reserve(provider: str, usd: float, label: str, own_cap: float | None = None) -> str:
@@ -462,8 +483,11 @@ def http_post(body: dict[str, Any]) -> Mapping[str, Any]:
     try:
         reply = _send("/chat/completions" if chat else "/responses", data, "application/json", 90, key_env, base_env)
         reply = _from_chat(reply) if chat else reply
-        u = reply.get("usage") or {}
-        cost = int(u.get("input_tokens") or 0) * pin + int(u.get("output_tokens") or 0) * pout
+        u = reply.get("usage")
+        u = u if isinstance(u, Mapping) else {}
+        counts = (u.get("input_tokens"), u.get("output_tokens"))
+        if all(type(n) is int and n >= 0 for n in counts):
+            cost = counts[0] * pin + counts[1] * pout
         return reply
     finally:  # a failed call keeps its reservation: cost unknown, so it is counted
         daily_cap.settle(rid, cost)

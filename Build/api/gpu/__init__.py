@@ -199,8 +199,10 @@ def modal_stats():
 def status(owner, stats, path=None, now=None):
     con = _connect(path)
     try:
+        con.execute("BEGIN IMMEDIATE")
         dead = _reap(con, now)  # a dead job must not show as queue length
         active = con.execute("SELECT owner FROM gpu_jobs WHERE finished_at IS NULL ORDER BY queued_at, rowid").fetchall()
+        con.execute("COMMIT")
     finally:
         con.close()
     _settle(dead)

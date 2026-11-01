@@ -166,6 +166,15 @@ class JobTests(unittest.TestCase):
         self.assertIsNotNone(actual)
         self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
 
+    def test_settlement_failure_still_finishes_queue_and_keeps_reserved_cost(self):
+        with mock.patch.object(live_room.daily_cap, "settle", side_effect=sqlite3.OperationalError("synthetic locked")):
+            _, s = self.run_job(fake_remote)
+        self.assertEqual((s["state"], s["code"]), ("failed", "ERROR"))
+        self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
+        [(_, reserved, actual)] = self.ledger()
+        self.assertGreater(reserved, 0)
+        self.assertIsNone(actual)
+
     def test_oom_retries_once_and_ledgers_each_gpu(self):
         calls = []
 
@@ -187,6 +196,57 @@ class JobTests(unittest.TestCase):
         self.assertEqual(json.loads((d / "cost-log.json").read_text())["gpu"], "A10G")
         self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
 
+    def test_each_attempt_attaches_its_own_reservation_to_queue(self):
+        seen = []
+        def remote(frames, gpu="L4"):
+            with sqlite3.connect(self.gpu_db) as con:
+                [(rid, cap)] = con.execute("SELECT reservation, cap_db FROM gpu_jobs WHERE finished_at IS NULL").fetchall()
+            with sqlite3.connect(self.cap_db) as con:
+                [(actual,)] = con.execute("SELECT actual FROM spend WHERE id = ?", (rid,)).fetchall()
+            self.assertIsNone(actual)
+            self.assertEqual(cap, str(self.cap_db))
+            seen.append(rid)
+            if gpu == "L4":
+                raise RuntimeError("CUDA out of memory")
+            return {**fake_remote(frames), "gpu": gpu}
+        _, s = self.run_job(remote)
+        self.assertEqual(s["state"], "done", s)
+        self.assertEqual(seen, [a["reservation_id"] for a in s["gpu_attempts"]])
+        self.assertEqual(len(set(seen)), 2)
+
+    def test_reaped_started_attempt_keeps_reservation_once_and_cannot_continue(self):
+        from datetime import datetime, timedelta, timezone
+        from Build.guardrails import daily_cap
+        def remote(frames):
+            future = datetime.now(timezone.utc) + timedelta(seconds=gpu.LEASE_S + 1)
+            self.assertEqual(gpu.status("user_synthA", None, self.gpu_db, now=future)["queue_length"], 0)
+            [(provider, reserved, actual)] = self.ledger()
+            self.assertEqual((provider, actual), ("Modal", reserved))
+            # Repeated status reads and the late runner's settlement cannot refund or double-charge it.
+            gpu.status("user_synthA", None, self.gpu_db, now=future)
+            return fake_remote(frames)
+        with mock.patch.object(gpu, "BEAT_S", 1000), mock.patch.object(daily_cap, "settle", wraps=daily_cap.settle) as settle:
+            _, s = self.run_job(remote)
+        self.assertEqual((s["state"], s["code"]), ("failed", "ERROR"))
+        self.assertEqual(settle.call_count, 2)  # reaper succeeds, late runner is rejected by settle-once
+        [(_, reserved, actual)] = self.ledger()
+        self.assertEqual(actual, reserved)
+
+    def test_reaped_waiting_attempt_refunds_once_and_never_dispatches(self):
+        from datetime import datetime, timedelta, timezone
+        original_start = gpu.start
+        def expired(jid, path):
+            future = datetime.now(timezone.utc) + timedelta(seconds=gpu.LEASE_S + 1)
+            gpu.status("user_synthA", None, path, now=future)
+            return original_start(jid, path, now=future, timeout=0)
+        remote = mock.Mock()
+        with mock.patch.object(gpu, "start", side_effect=expired):
+            _, s = self.run_job(remote)
+        self.assertEqual((s["state"], s["code"]), ("failed", "ERROR"))
+        remote.assert_not_called()
+        [(_, _, actual)] = self.ledger()
+        self.assertEqual(actual, 0)
+
     def test_capacity_then_fallback_failure_has_no_third_attempt(self):
         remote = mock.Mock(side_effect=[RuntimeError("no GPU capacity"), RuntimeError("CUDA out of memory")])
         _, s = self.run_job(remote)
@@ -197,10 +257,16 @@ class JobTests(unittest.TestCase):
         self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
 
     def test_start_budget_cancels_l4_then_runs_a10g(self):
+        self.check_start_budget_cancels_l4_then_runs_a10g(builtin=False)
+
+    def test_builtin_timeout_cancels_l4_then_runs_a10g(self):
+        self.check_start_budget_cancels_l4_then_runs_a10g(builtin=True)
+
+    def check_start_budget_cancels_l4_then_runs_a10g(self, builtin):
         from types import SimpleNamespace
         timeout = type("TimeoutError", (Exception,), {})
         fn = mock.Mock()
-        fn.spawn.return_value.get.side_effect = timeout("still waiting for capacity")
+        fn.spawn.return_value.get.side_effect = (TimeoutError if builtin else timeout)("still waiting for capacity")
         fallback = fn.with_options.return_value.spawn.return_value
         fallback.get.return_value = {**fake_remote([b"frame"]), "gpu": "A10G"}
         sdk = SimpleNamespace(Function=SimpleNamespace(from_name=mock.Mock(return_value=fn)),
@@ -209,8 +275,11 @@ class JobTests(unittest.TestCase):
             fn.spawn.return_value.cancel.assert_called_once_with(terminate_containers=True)
             return fn.with_options.return_value
         fn.with_options.side_effect = fallback_options
-        with mock.patch.dict("sys.modules", modal=sdk):
-            _, s = self.run_job(live_room.modal_reconstruct)
+        def remote(frames, gpu=live_room.GPU):
+            with mock.patch.dict("sys.modules", modal=sdk):
+                return live_room.modal_reconstruct(frames, gpu=gpu)
+        _, s = self.run_job(remote)
+        self.assertEqual(s["state"], "done", s)
         self.assertEqual((s["state"], s["gpu"]), ("done", "A10G"))
         fn.spawn.return_value.get.assert_called_once_with(timeout=live_room.ROOM_START_BUDGET_S)
         fallback.get.assert_called_once_with(timeout=540)

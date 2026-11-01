@@ -1,0 +1,17 @@
+# N40-orch286: DONE
+- Branch: `run/N40-orch286`; base `97d8b84308ba8fed8111d0460cdd1781a2c44d78`. Only Owns plus this run's required report/receipt changed.
+- F1: actual model cost replaces the reservation only for two nonnegative integer counts (not bool, float or string); missing/partial/invalid usage stays conservative, including Baseten normalization.
+- F2: GPU status reaping and active-job read now share BEGIN IMMEDIATE/COMMIT; settlement remains after commit. Deterministic real-SQLite heartbeat/start races covered.
+- F3: Responses and chat structured refusals are terminal before tool execution or number recovery; refusal-only and mixed-tool replies covered.
+- F4: sanitized ModelInputError for provider 400/413/422 propagates without Sol; existing API handles its ModelUnavailable subtype. HTTP 402/429 remain excluded.
+- F5: unallowlisted tools and explicit security rejections are terminal; known-tool malformed arguments remain fallback-eligible. Existing injection assertion updated.
+- Live timeout: catches builtin and Modal TimeoutError, cancels before L4-to-A10G retry; A10G timeouts cancel without another retry.
+- Live reservation: each GPU attempt queues with its own reservation/cap DB; reaped started/waiting attempts settle once, late runners cannot refund/charge again, queue cleanup survives settlement errors.
+- Required checks: 183 passed, 1 deprecation warning (`evidence/N40/pytest.txt`). Exact commands in `evidence/N40/CHECKS.md`.
+- Expanded checks: all agent/reconstruction/N21/GPU/daily-cap tests: 252 passed, 464 subtests passed, 4 deprecation warnings (`pytest-expanded.txt`).
+- Baseline check: 14 selected regressions fail against unpatched base function bodies injected only in memory (`baseline-regressions.txt`); no working-file rollback.
+- Verification: git diff --check PASS; added-line credential-pattern scan PASS (not a full secret audit).
+- Environment: temporary uv CPython 3.11 with existing API test requirements/pytest; expanded suite adds existing python-dotenv 1.0.1. Shared web node_modules junction, no npm install or dependency-file changes.
+- Paid calls: NONE. No deploy, push, live provider/GPU invocation, or credential changes.
+- Skipped: live Modal/provider verification; historical N31 remote inputs were not inspected or cancelled. This patch protects future calls, not existing orphan inputs.
+- Risks: model-controlled empty replies/number-guard failures remain eligible by owner policy; this is not an absolute prompt-injection-proof spending guarantee. No distributed-topology verification.

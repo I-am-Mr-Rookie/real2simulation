@@ -1,0 +1,76 @@
+BASELINE: 97d8b84308ba8fed8111d0460cdd1781a2c44d78
+FFFFFFFFFFFFFF                                                           [100%]
+================================== FAILURES ===================================
+E   AssertionError: assert ('final' == 'refusal'
+
+      - refusal
+      + final)
+C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N40-orch286\tests\agent\test_fallback.py:105: AssertionError: assert ('final' == 'refusal'
+E   AssertionError: assert ('final' == 'refusal'
+
+      - refusal
+      + final)
+C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N40-orch286\tests\agent\test_fallback.py:105: AssertionError: assert ('final' == 'refusal'
+E   AssertionError: assert ('final' == 'tool_rejected'
+
+      - tool_rejected
+      + final)
+C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N40-orch286\tests\agent\test_fallback.py:113: AssertionError: assert ('final' == 'tool_rejected'
+E   AssertionError: assert ('final' == 'tool_rejected'
+
+      - tool_rejected
+      + final)
+C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N40-orch286\tests\agent\test_fallback.py:129: AssertionError: assert ('final' == 'tool_rejected'
+E   Build.agent.core.ModelUnavailable: HTTP 400
+Build/agent/core.py:387: Build.agent.core.ModelUnavailable: HTTP 400
+E   Build.agent.core.ModelUnavailable: HTTP 413
+Build/agent/core.py:387: Build.agent.core.ModelUnavailable: HTTP 413
+E   Build.agent.core.ModelUnavailable: HTTP 422
+Build/agent/core.py:387: Build.agent.core.ModelUnavailable: HTTP 422
+E   assert (60001 > 0 and 0 == 60001)
+C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N40-orch286\tests\agent\test_fallback.py:251: assert (60001 > 0 and 0 == 60001)
+E   assert (125370 > 0 and 0 == 125370)
+C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N40-orch286\tests\agent\test_fallback.py:251: assert (125370 > 0 and 0 == 125370)
+E   assert (58375 > 0 and 0 == 58375)
+C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N40-orch286\tests\agent\test_fallback.py:251: assert (58375 > 0 and 0 == 58375)
+E   assert 0 == 1
+C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N40-orch286\tests\gpu\test_lease.py:118: assert 0 == 1
+E   assert 0 == 1
+C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N40-orch286\tests\gpu\test_lease.py:118: assert 0 == 1
+E   AssertionError: 'failed' != 'done'
+    - failed
+    + done
+     : {'state': 'failed', 'updated_at': '2026-11-01T23:48:03Z', 'gpu_job': '443709042da34327a2e9199eb78f9b4b', 'frames': 2, 'gpu_attempts': [{'gpu': 'L4', 'reservation_id': '7d1a0f683c814137b0d7d6dd36bbd309', 'state': 'failed', 'error': 'TimeoutError: still waiting for capacity', 'estimated_usd': 0.255348, 'wall_s': 0.01}], 'code': 'ERROR', 'error': 'TimeoutError: still waiting for capacity'}
+C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\unittest\case.py:703: AssertionError: 'failed' != 'done'
+E   AssertionError: 'failed' != 'done'
+    - failed
+    + done
+     : {'state': 'failed', 'updated_at': '2026-11-01T23:48:03Z', 'gpu_job': '3df1b6fc854942c59ae1955239a3055b', 'frames': 2, 'gpu_attempts': [{'gpu': 'L4', 'reservation_id': '22c658fafb9d48b198f8b67bbce6d35b', 'state': 'failed', 'error': 'ValueError: not enough values to unpack (expected 1, got 0)', 'estimated_usd': 0.25534828, 'wall_s': 0.012}], 'code': 'ERROR', 'error': 'ValueError: not enough values to unpack (expected 1, got 0)'}
+C:\Users\HP\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\unittest\case.py:703: AssertionError: 'failed' != 'done'
+============================== warnings summary ===============================
+..\..\..\..\..\AppData\Local\uv\cache\archive-v0\fBTuRlHF_iEmT1eD\Lib\site-packages\_pytest\config\__init__.py:1507
+  C:\Users\HP\AppData\Local\uv\cache\archive-v0\fBTuRlHF_iEmT1eD\Lib\site-packages\_pytest\config\__init__.py:1507: PytestAssertRewriteWarning: Module already imported so cannot be rewritten; anyio
+    self._mark_plugins_for_rewrite(hook, disable_autoload)
+
+..\..\..\..\..\AppData\Local\uv\cache\archive-v0\fBTuRlHF_iEmT1eD\Lib\site-packages\starlette\testclient.py:45
+  C:\Users\HP\AppData\Local\uv\cache\archive-v0\fBTuRlHF_iEmT1eD\Lib\site-packages\starlette\testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/agent/test_fallback.py::test_structured_refusal_is_terminal_before_tools_or_number_guard[refusal-only-responses]
+FAILED tests/agent/test_fallback.py::test_structured_refusal_is_terminal_before_tools_or_number_guard[refusal-only-chat]
+FAILED tests/agent/test_fallback.py::test_unallowlisted_tool_is_terminal_without_fallback[call_fallback]
+FAILED tests/agent/test_fallback.py::test_security_rejected_known_tool_is_terminal[failure0]
+FAILED tests/agent/test_fallback.py::test_provider_input_and_quota_errors_are_sanitized_without_fallback[spark-400]
+FAILED tests/agent/test_fallback.py::test_provider_input_and_quota_errors_are_sanitized_without_fallback[spark-413]
+FAILED tests/agent/test_fallback.py::test_provider_input_and_quota_errors_are_sanitized_without_fallback[spark-422]
+FAILED tests/agent/test_fallback.py::test_unknown_or_invalid_usage_keeps_full_reservation[None-muse-spark-1.3]
+FAILED tests/agent/test_fallback.py::test_unknown_or_invalid_usage_keeps_full_reservation[None-gpt-6.1-sol]
+FAILED tests/agent/test_fallback.py::test_unknown_or_invalid_usage_keeps_full_reservation[None-meta-models/muse-spark-open-1026]
+FAILED tests/gpu/test_lease.py::test_status_serializes_with_concurrent_renewal_before_expiry[start]
+FAILED tests/gpu/test_lease.py::test_status_serializes_with_concurrent_renewal_before_expiry[heartbeat]
+FAILED tests/reconstruction/test_live_room.py::JobTests::test_builtin_timeout_cancels_l4_then_runs_a10g
+FAILED tests/reconstruction/test_live_room.py::JobTests::test_each_attempt_attaches_its_own_reservation_to_queue
+14 failed, 110 deselected, 2 warnings in 1.37s
+EXPECTED BASELINE FAILURE: baseline bodies injected only in memory; working files unchanged.

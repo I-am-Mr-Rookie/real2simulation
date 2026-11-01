@@ -62,13 +62,15 @@ def test_l4_budget_cancels_before_retry_choice(monkeypatch):
     assert live_room.retry_on_a10g(error.value)
 
 
-def test_a10g_timeout_cancels_without_another_retry(monkeypatch):
+@pytest.mark.parametrize("builtin", [False, True])
+def test_a10g_timeout_cancels_without_another_retry(monkeypatch, builtin):
     fn = Mock()
     timeout = type("TimeoutError", (Exception,), {})
     call = fn.with_options.return_value.spawn.return_value
-    call.get.side_effect = timeout("still queued")
+    error = TimeoutError if builtin else timeout
+    call.get.side_effect = error("still queued")
     monkeypatch.setitem(sys.modules, "modal", SimpleNamespace(
         Function=SimpleNamespace(from_name=Mock(return_value=fn)), exception=SimpleNamespace(TimeoutError=timeout)))
-    with pytest.raises(timeout):
+    with pytest.raises(error):
         live_room.modal_reconstruct([b"frame"], gpu="A10G")
     call.cancel.assert_called_once_with(terminate_containers=True)
