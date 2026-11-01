@@ -1,5 +1,19 @@
 # Real2Simulation — STATE
 
+## Controller — Nov 1 ~17:45 Dhaka: wave 1 accepted (N02 N03 N04 N05 N10 DONE)
+
+Workers ended with their report line as final answer (controller messaging not used); controller polled and accepted.
+- N02: Build/measurement/hosted_sam.py; full ST03 hosted track 543/543 frames, moving apple auto-picked, point prompt agrees (<=2 px).
+  Gate RS rerun: NOT_MET (ballistic prediction vs apple at rest after landing; RMS 111.5 H); prefix re-track within tol. $0.22.
+- N03: Build/api/storage (files + projects, 1 GB, 20/day Dhaka, Range preview); BFF streams uploads. Added python-multipart to API requirements.
+- N04: Build/gpu/ondemand.py deployed (Modal r2s-ondemand, scaledown 900 s, max 1); /workspace/gpu/status; Build/guardrails/daily_cap.py.
+  Warm-up showed red->yellow->green->red. ~$0.36 Modal est. DEV API lacks Modal token -> status source "jobs" until N11.
+- N05: Build/agent/core.py + /workspace/agent/turn, /transcribe; physics-only, injection-safe number guard; live smoke ok, ~$0.03.
+- N10: Build/web/src/lab-editor (three + TransformControls + Rapier 0.21.0), mounted at /lab toggle; free-fall trace fits g -9.81.
+Checks after merge: node 371/371; pytest 51 (agent, storage, gpu, daily cap, health) + hosted_sam 4; npm run build OK.
+Follow-ups folded into wave 2: wire daily_cap before every paid call (agent, hosted SAM, Modal); hosted_sam uses requests (not in API reqs);
+agent tool handlers real (N07/N08/N12); browser voice must send WAV PCM16 (N09); Railway volume + Modal token (N11).
+
 ## Controller — Nov 1 ~17:20 Dhaka: owner correction on the final video
 
 Koushik: "No. I will prepare the voiceovers and then Claude Code will record everything and prepare the video. I think it is good

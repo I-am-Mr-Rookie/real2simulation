@@ -3,6 +3,8 @@
 ## Meta Model API usage — Nov 1 2026 (controller)
 N01 hosted SAM 3.1 test: 4 calls x 90 video frames = 360 frames at $0.20/1k = ~$0.07 (usage.video_frames_processed;
 price from Meta docs). 2 file uploads (no listed fee). Evidence: evidence/N01/SAM31-HOSTED-TEST.md.
+Wave 1 (Nov 1 11:00-11:30Z): N02 sam-3.1 2 x 543 frames $0.2172; N05 muse-spark-1.3(+contributor) + voice ~$0.029;
+N04 one Modal A10G warm-up ~$0.36 est (cost_log rates, not yet billed). Running Meta total today ~$0.32; Modal ~$0.36.
 Product guard (owner Nov 1): global paid-call cap $10/day, $20/day Thu Nov 5 to Sun Nov 8; ledger every call.
 
 ## CURRENT — successor accepts unpaid evidence; no new paid reservation
