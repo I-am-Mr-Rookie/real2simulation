@@ -1,7 +1,7 @@
 // N09: pure logic of the live workspace (WAV encoder, GPU dot, quota, job 404 handling, agent mode storage, chat history).
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { encodeWav, toWav16k, gpuDot, quotaView, jobsState, historyOf, readAgentMode, writeAgentMode, AGENT_MODES, UPLOAD_QUESTION, TIPS,
+import { encodeWav, toWav16k, gpuDot, quotaView, jobsState, historyOf, readAgentMode, writeAgentMode, apiErrorText, AGENT_MODES, UPLOAD_QUESTION, TIPS,
   questionAnswer, recommendedIndex, fmtBytes, shouldPoll } from '../../Build/web/src/workspace/live.mjs';
 
 test('encodeWav writes a mono PCM16 16 kHz RIFF header and clamped samples', () => {
@@ -31,6 +31,9 @@ test('gpuDot maps N04 status to red/yellow/green with queue position, unknown ot
   assert.deepEqual(gpuDot({ state: 'red', queue_length: 0, your_position: null }), { tone: 'red', label: 'GPU sleeping', detail: 'Queue empty' });
   assert.deepEqual(gpuDot({ state: 'yellow', queue_length: 3, your_position: 2 }), { tone: 'yellow', label: 'GPU starting', detail: 'Your job: 2 of 3 in queue' });
   assert.equal(gpuDot({ state: 'green', queue_length: 1, your_position: null }).detail, '1 job in queue');
+  // N26: warm-idle window (green, nothing queued): no minutes are claimed because the API sends none
+  assert.deepEqual(gpuDot({ state: 'green', queue_length: 0, your_position: null }), { tone: 'green', label: 'GPU on, idle', detail: 'Queue empty' });
+  assert.equal(gpuDot({ state: 'green', queue_length: 2, your_position: 1 }).label, 'GPU running');
   for (const bad of [null, {}, { state: 'blue' }, { status: 'error' }]) assert.equal(gpuDot(bad).tone, 'unknown');
   assert.equal(shouldPoll({ visibilityState: 'hidden' }), false); assert.equal(shouldPoll({ visibilityState: 'visible' }), true);
 });
@@ -51,14 +54,30 @@ test('jobsState: 404 is not available yet, errors stay errors, lists pass throug
   assert.deepEqual(jobsState(200, { jobs: [{ id: 'b' }] }, 'experiments').items, [{ id: 'b' }]);
 });
 
-test('agent mode: default unset (first run), persisted, bad values ignored; contributor shows the training con', () => {
+test('agent mode (N26): undecided until the user is known, new user always unset, per user, bad values ignored', () => {
   const m = new Map(), s = { getItem: (k) => m.get(k) ?? null, setItem: (k, v) => m.set(k, v) };
-  assert.equal(readAgentMode(s), null);
-  writeAgentMode(s, 'contributor'); assert.equal(readAgentMode(s), 'contributor');
-  m.set('r2s.agent.mode', 'evil'); assert.equal(readAgentMode(s), null);
-  assert.equal(readAgentMode({ getItem() { throw new Error('blocked'); } }), null);
+  assert.equal(readAgentMode(s), undefined); assert.equal(readAgentMode(s, ''), undefined); // user (session) not known yet: decide nothing
+  assert.equal(writeAgentMode(s, 'contributor'), false); assert.equal(m.size, 0); // never writes a mode for an unknown user
+  assert.equal(readAgentMode(s, 'u1'), null);
+  writeAgentMode(s, 'contributor', 'u1'); assert.equal(readAgentMode(s, 'u1'), 'contributor');
+  assert.equal(readAgentMode(s, 'u2'), null); // a new account in the same browser still sees the choice card
+  m.set('r2s.agent.mode', 'standard'); assert.equal(readAgentMode(s, 'u2'), null); // the old global key is ignored
+  m.set('r2s.agent.mode.u2', 'evil'); assert.equal(readAgentMode(s, 'u2'), null);
+  assert.equal(readAgentMode({ getItem() { throw new Error('blocked'); } }, 'u1'), null);
   assert.equal(AGENT_MODES[0].id, 'standard');
   assert.ok(AGENT_MODES[1].cons.some((c) => /train/.test(c)));
+});
+
+test('apiErrorText shows the server message (detail.message) and the reset time in local time (N26)', () => {
+  const msg = 'Daily upload limit reached: 20 uploads per day. It resets at 2026-11-01T18:00:00Z (midnight Dhaka time). Deleting a file frees storage.';
+  const r = { status: 429, body: { detail: { code: 'QUOTA_UPLOADS', message: msg, reason: 'daily_upload_limit', reset_at: '2026-11-01T18:00:00Z' } } };
+  assert.equal(apiErrorText(r, 'Upload failed', (iso) => 'LOCAL(' + iso + ')'), msg.replace('2026-11-01T18:00:00Z', 'LOCAL(2026-11-01T18:00:00Z)'));
+  assert.match(apiErrorText(r, 'Upload failed'), /^Daily upload limit reached: 20 uploads per day\. It resets at (?!2026-11-01T18:00:00Z).+ \(midnight Dhaka time\)/);
+  assert.equal(apiErrorText({ status: 400, body: { error: { message: 'Bad' } } }, 'x'), 'Bad');
+  assert.equal(apiErrorText({ status: 400, body: { detail: { error: { message: 'Nested' } } } }, 'x'), 'Nested');
+  assert.equal(apiErrorText({ status: 500, body: null }, 'Upload failed'), 'Upload failed (500).');
+  assert.equal(apiErrorText(null, 'Upload failed'), 'Upload failed (network).');
+  assert.equal(apiErrorText({ status: 429, body: { detail: { message: 'm', reset_at: 'not a date' } } }, 'x'), 'm');
 });
 
 test('upload question, tips and chat history', () => {

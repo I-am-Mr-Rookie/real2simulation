@@ -1,0 +1,71 @@
+signed_up true
+contributor_card_first_load_ms 2020
+legacy_global_key_was_set standard
+card_text Choose how the agent runs
+
+You can change this later in the agent panel. Standard is the default.
+
+Standard
+Default
+Muse Spark 1.3
+Your prompts are not used to train Meta models
+Same physics tools and answers
+Costs more per message, so the daily budget runs out sooner
+Contributor
+Muse Spark 1.3 cont
+mode_keys ["r2s.agent.mode.dev-fix..standard","r2s.agent.mode..standard"]
+card_not_shown_again_after_choice true
+gpu_dot GPU on, idle Queue empty
+seeded {"no_size":{"label":"scale unverified: no known size given, so results are in pixels; no metric value","curve":true,"reason":null,"q":[2328.2029314072506,"px/s^2","scale unverified: no known size given, so results are in pixels; no metric value"]},"typed_size":{"label":"scale assumed (user size): ap
+sample_row SAMPLE (RECORDED): falling appleSAMPLE Nov 1, 14:52 UTC
+done
+Open
+processing_sample_card SAMPLE (RECORDED): falling apple
+SAMPLE
+Done
+
+vertical acceleration (g if only gravity acts)
+2330 +/- 110 px/s^2 1 sigma
+
+scale unverified
+playback clock
+free fall
+scale unverified: no known size given, so results are in pixels; no metric value
+playback timestamps; capture clock unverified (slow mot
+card_no_size Measurement af10d5
+Done
+
+vertical acceleration (g if only gravity acts)
+2330 +/- 110 px/s^2 1 sigma
+
+scale unverified
+playback clock
+free fall
+scale unverified: no known size given, so results are in pixels; no metric value
+playback timestamps; capture clock unverified (slow motion would change ever
+chart_no_size {"curve":1,"band":1,"pts":19}
+card_typed_size Measurement b9b805
+Done
+
+vertical acceleration (g if only gravity acts)
+2.74 +/- 0.42 m/s^2 1 sigma
+
+scale assumed (user size)
+playback clock
+free fall
+scale assumed (user size): apple diameter 8 cm
+playback timestamps; capture clock unverified (slow motion would change every time-based value)
+MEASU
+chart_typed_size {"curve":1,"band":1,"pts":19}
+card_abstain Measurement 1f6583
+Done
+
+No value reported. No fit: moving segment has 1 frames; need 5. The object barely moved: click the falling object itself, or type its name
+
+scale unverified
+playback clock
+scale unverified: no known size given, so results are in pixels; no metric value
+playback timestamps; c
+chart_abstain {"curve":0,"band":0,"pts":5}
+upload_error_text tiny.mp4: Daily upload limit reached: 20 uploads per day. It resets at Nov 2, 12:00 AM GMT+6 (midnight Dhaka time). Deleting a file frees storage but does not give back an upload.
+browser_tz Asia/Dhaka

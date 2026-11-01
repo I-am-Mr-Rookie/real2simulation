@@ -14,7 +14,7 @@ export function shortWhen(iso) {
 
 // Job item -> readable name: its title or name, else "Experiment acdb8a".
 export function jobName(item, kind) {
-  const t = item?.title || item?.name;
+  const t = item?.sample?.title || item?.title || item?.name; // N26: the seeded sample row carries its own SAMPLE title
   if (t && !/^[0-9a-f]{16,}$/i.test(t)) return String(t);
   return (KIND[kind] ?? 'Job') + ' ' + shortId(item?.id ?? item?.job_id ?? t);
 }

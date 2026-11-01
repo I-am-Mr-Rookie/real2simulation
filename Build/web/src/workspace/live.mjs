@@ -1,9 +1,14 @@
 // N09: pure logic for the live product workspace (agent mode, new project, quota, GPU dot, voice WAV). Node-testable, no DOM.
 
 export const AGENT_MODE_KEY = 'r2s.agent.mode';
-// shortcut: the agent mode is stored per browser (localStorage) and sent with every turn; move to a per-user API field if users switch devices often.
-export const readAgentMode = (s) => { try { const v = s?.getItem(AGENT_MODE_KEY); return v === 'standard' || v === 'contributor' ? v : null; } catch { return null; } };
-export const writeAgentMode = (s, mode) => { try { s?.setItem(AGENT_MODE_KEY, mode); return true; } catch { return false; } };
+// shortcut: the agent mode is stored per browser AND per user (localStorage key + server-verified scene id) and sent with every turn; move to a per-user API field if users switch devices often.
+// N26: undefined = user not known yet (decide nothing, never default to Standard), null = this user never chose (show the choice card once).
+// The old global key is ignored on purpose: it cannot be attributed to a user, so a new account in the same browser still sees the card.
+export const readAgentMode = (s, userKey) => {
+  if (!userKey) return undefined;
+  try { const v = s?.getItem(AGENT_MODE_KEY + '.' + userKey); return v === 'standard' || v === 'contributor' ? v : null; } catch { return null; }
+};
+export const writeAgentMode = (s, mode, userKey) => { if (!userKey) return false; try { s?.setItem(AGENT_MODE_KEY + '.' + userKey, mode); return true; } catch { return false; } };
 export const AGENT_MODES = Object.freeze([
   { id: 'standard', title: 'Standard', model: 'Muse Spark 1.3',
     pros: ['Your prompts are not used to train Meta models', 'Same physics tools and answers'], cons: ['Costs more per message, so the daily budget runs out sooner'] },
@@ -46,15 +51,25 @@ export function gpuDot(s) {
   if (!s || !GPU_LABEL[s.state]) return { tone: 'unknown', label: 'GPU status unavailable', detail: '' };
   const n = Number(s.queue_length) || 0;
   const detail = s.your_position ? 'Your job: ' + s.your_position + ' of ' + n + ' in queue' : n ? n + (n === 1 ? ' job' : ' jobs') + ' in queue' : 'Queue empty';
-  return { tone: s.state, label: GPU_LABEL[s.state], detail };
+  // N26: green with an empty queue is the warm-idle window; the API sends no idle time, so no minutes are shown.
+  return { tone: s.state, label: s.state === 'green' && !n && !s.your_position ? 'GPU on, idle' : GPU_LABEL[s.state], detail };
 }
 export const GPU_POLL_MS = 10_000;
 export const shouldPoll = (doc) => (doc?.visibilityState ?? 'visible') === 'visible';
 
+// N26: API errors are { detail: { code, message, reason?, reset_at? } } (FastAPI) or { error: { message } }. An ISO reset_at inside the message is shown in local time.
+const localTime = (iso) => new Date(iso).toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', timeZoneName: 'short' });
+export function apiErrorText(r, fallback, fmt = localTime) {
+  const msg = r?.body?.error?.message || r?.body?.detail?.message || r?.body?.detail?.error?.message;
+  if (!msg) return fallback + ' (' + (r?.status ?? 'network') + ').';
+  const at = r?.body?.detail?.reset_at;
+  return at && !Number.isNaN(new Date(at).getTime()) ? msg.split(at).join(fmt(at)) : msg;
+}
+
 // N07/N08 job lists: 404 means the endpoint is not deployed yet, 405 means the server has no list route (N08 rooms); never an error or an empty success.
 export function jobsState(status, body, key) {
   if (status === 404 || status === 405) return { state: 'unavailable', items: [] };
-  if (status < 200 || status >= 300) return { state: 'error', items: [], message: body?.error?.message || 'Request failed (' + status + ').' };
+  if (status < 200 || status >= 300) return { state: 'error', items: [], message: apiErrorText({ status, body }, 'Request failed') };
   const items = Array.isArray(body?.[key]) ? body[key] : Array.isArray(body?.jobs) ? body.jobs : Array.isArray(body) ? body : [];
   return { state: 'ok', items };
 }

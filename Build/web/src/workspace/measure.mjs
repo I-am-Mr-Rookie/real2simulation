@@ -47,11 +47,16 @@ export function niceTicks(lo, hi, n = 5) {
 export function chartGeom(result, axis = 'y', W = 360, H = 230, pad = 44) {
   const tr = result?.trajectory, t = tr?.t_s, v = tr?.[axis];
   if (!Array.isArray(t) || !Array.isArray(v) || t.length < 2) return null;
-  const fit = polyFit(t, v, degreeOf(result?.fit?.[axis]));
-  const N = 48, t0 = Math.min(...t), t1 = Math.max(...t);
-  const ts = Array.from({ length: N + 1 }, (_, i) => t0 + ((t1 - t0) * i) / N);
-  const hi = fit ? ts.map((x) => fit.at(x) + fit.sd(x)) : [], lo = fit ? ts.map((x) => fit.at(x) - fit.sd(x)) : [];
-  const vmin = Math.min(...v, ...lo), vmax = Math.max(...v, ...hi), span = vmax - vmin || 1;
+  // N26: the server curve (fitter coefficients + full covariance) wins; the browser refit only serves results without one (recorded samples).
+  // An abstained result (fit null) gets dots only, never a made-up line.
+  const sc = result?.curve, N = 48, t0 = Math.min(...t), t1 = Math.max(...t);
+  const server = sc?.axis === axis && sc.unit === (tr.unit || 'px') && Array.isArray(sc.t_s) && sc.t_s.length >= 2 && sc.value?.length === sc.t_s.length;
+  const fit = server || !result?.fit ? null : polyFit(t, v, degreeOf(result.fit[axis]));
+  const ts = server ? sc.t_s : Array.from({ length: N + 1 }, (_, i) => t0 + ((t1 - t0) * i) / N);
+  const mid = server ? sc.value : fit ? ts.map(fit.at) : [];
+  const sd = server ? (sc.band_1sigma?.length === ts.length ? sc.band_1sigma : null) : fit ? ts.map(fit.sd) : null;
+  const hi = sd ? mid.map((m, i) => m + sd[i]) : [], lo = sd ? mid.map((m, i) => m - sd[i]) : [];
+  const vmin = Math.min(...v, ...mid, ...lo), vmax = Math.max(...v, ...mid, ...hi), span = vmax - vmin || 1;
   const xt = niceTicks(t0, t1, 5), yt = niceTicks(vmin, vmax, 4);
   const xa = xt.values[0], xb = xt.values.at(-1), ya = yt.values[0], yb = yt.values.at(-1);
   const L = pad + 10, R = W - 12, T = 12, B = H - pad + 6; // plot box; room on the left and bottom for labels
@@ -64,10 +69,24 @@ export function chartGeom(result, axis = 'y', W = 360, H = 230, pad = 44) {
     xTicks: xt.values.map((x, i) => ({ x: +X(x).toFixed(1), label: xt.labels[i] })),
     yTicks: yt.values.map((u, i) => ({ y: +Y(u).toFixed(1), label: yt.labels[i] })),
     points: t.map((x, i) => ({ cx: +X(x).toFixed(1), cy: +Y(v[i]).toFixed(1) })),
-    curve: fit ? path(ts, ts.map(fit.at)) : null,
-    band: fit ? path(ts, hi) + ' ' + path([...ts].reverse(), [...lo].reverse()).replace(/^M/, 'L') + ' Z' : null,
+    curve: mid.length ? path(ts, mid) : null,
+    band: sd ? path(ts, hi) + ' ' + path([...ts].reverse(), [...lo].reverse()).replace(/^M/, 'L') + ' Z' : null,
     ticks: { t0: +t0.toFixed(3), t1: +t1.toFixed(3), vmin: +vmin.toPrecision(3), vmax: +vmax.toPrecision(3) },
   };
+}
+
+// N26: the scale tag of a result card. A typed size is "scale assumed (user size)" (never MEASURED); only a MEASURED label gets the green tag.
+export function scaleTag(result) {
+  const l = result?.quantity?.label ?? result?.label ?? '';
+  if (/^scale assumed \(user size\)/.test(l)) return { text: 'scale assumed (user size)', tone: 'warn' };
+  return /MEASURED/.test(l) ? { text: 'MEASURED', tone: 'ok' } : { text: 'scale unverified', tone: 'warn' };
+}
+
+// N26: label lines of a result card. The abstain label repeats its "No fit" reason (shown in the card text), and a short label that
+// the longer one extends ("scale assumed (user size)" vs "...: ball diameter 6 cm") is shown once, in its longer form.
+export function labelsOf(result) {
+  const all = [...new Set([result?.quantity?.label, result?.reason ? result.label?.split('. No fit: ')[0] : result?.label, result?.clock, result?.track?.label].filter(Boolean))];
+  return all.filter((l) => !all.some((o) => o !== l && o.startsWith(l + ':')));
 }
 
 // value +/- u with u at 2 significant figures and the value at the same decimal place.

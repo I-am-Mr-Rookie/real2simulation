@@ -102,12 +102,13 @@ function RoomTools({ id, room, onReload }) {
     const rc = [p.y, p.x], next = [...clicks, { rc, left: (100 * p.x) / el.naturalWidth, top: (100 * p.y) / el.naturalHeight }];
     setClicks(next);
     if (tool === 'object') send('/objects', { view, point: rc }, (r) => 'Added ' + r.object.id + ': ' + r.object.size.map((v) => v.toFixed(2)).join(' x ') + ' m box proxy, ' + r.object.labels.geometry + ', scale ' + r.object.labels.scale + '. ' + r.object.labels.caveat + '.');
-    else if (next.length === 2) send('/scale', { reference: { view, p0: next[0].rc, p1: next[1].rc } }, (r) => 'A4 scale applied: ' + r.room.scale.status + '.');
+    else if (next.length === 2) send('/scale', { reference: { view, p0: next[0].rc, p1: next[1].rc } }, (r) => (r.room.scale.reference_rejected ? 'A4 scale not applied: ' + r.room.scale.reference_rejected.reason : 'A4 scale applied: ' + r.room.scale.status + '.'));
   };
   const sc = room.scale ?? {};
   return <div className="le-panel le-room">
     <h3>Your room</h3>
     <p>Geometry {room.labels?.geometry ?? 'MODEL-ESTIMATED'}. Scale <strong>{sc.status}</strong>{sc.sd != null ? ': ' + sc.metres_per_model_unit.toFixed(3) + ' +/- ' + sc.sd.toFixed(3) + ' m per unit' : ''}. Gravity {room.gravity?.status}{room.gravity?.uncertainty_deg != null ? ' +/- ' + room.gravity.uncertainty_deg + ' deg' : ''}.</p>
+    {sc.reference_rejected && <p className="le-rejected" role="status">A4 scale not applied: {sc.reference_rejected.reason}</p>}
     <div className="le-bar" role="group" aria-label="Room tools">
       <button type="button" aria-pressed={tool === 'a4'} disabled={busy} onClick={() => pickTool('a4')}>Mark the A4 sheet</button>
       <button type="button" aria-pressed={tool === 'object'} disabled={busy} onClick={() => pickTool('object')}>Add a real object</button>

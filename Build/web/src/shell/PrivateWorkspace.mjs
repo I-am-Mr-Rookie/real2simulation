@@ -109,7 +109,7 @@ export default function PrivateWorkspace({ scene }) {
   // S15ab shell state: left expanded/collapsed (persisted on wide screens), right panel open/closed with focus in and back.
   const [rail, setRail] = useState(null); // S15ae activity bar: { pane, open, preview } via the pure railReduce
   const [right, setRight] = useState(false);
-  const L = Live.useLive(live, () => setRight(true));
+  const L = Live.useLive(live, () => setRight(true), scene?.sceneId);
   const rightToggle = useRef(null);
   const rightHead = useRef(null);
   const cardHead = useRef(null);

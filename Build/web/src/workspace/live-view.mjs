@@ -1,9 +1,9 @@
 // N09: live product workspace (agent mode screen, new project, files, agent chat + voice, GPU dot, job views).
 // React is injected like workspace/react.mjs. Every number shown comes from an API response (quota, sizes, queue) or the browser upload progress.
 import { API_BASE } from './controller.mjs';
-import { AGENT_MODES, UPLOAD_QUESTION, LIMITS, TIPS, projectTitle, fmtBytes, quotaView, gpuDot, GPU_POLL_MS, shouldPoll, jobsState,
+import { AGENT_MODES, UPLOAD_QUESTION, LIMITS, TIPS, projectTitle, fmtBytes, quotaView, gpuDot, GPU_POLL_MS, shouldPoll, jobsState, apiErrorText,
   historyOf, questionAnswer, recommendedIndex, readAgentMode, writeAgentMode, toWav16k, VOICE_MAX_S } from './live.mjs';
-import { chartGeom, fmtPm, SIZE_UNITS, naturalPoint, experimentBody, jobView, POLL_MS, jobsFromToolCalls, shareable } from './measure.mjs';
+import { chartGeom, fmtPm, SIZE_UNITS, naturalPoint, experimentBody, jobView, POLL_MS, jobsFromToolCalls, shareable, scaleTag, labelsOf } from './measure.mjs';
 import { groupJobs, jobName, shortWhen } from './projects.mjs';
 
 const ACCEPT = 'video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm';
@@ -13,7 +13,7 @@ async function call(path, init = {}) {
   const body = await res.json().catch(() => null);
   return { status: res.status, ok: res.ok, body };
 }
-const errText = (r, fallback) => r?.body?.error?.message || r?.body?.detail?.error?.message || fallback + ' (' + (r?.status ?? 'network') + ').';
+const errText = apiErrorText;
 
 // XHR because fetch has no upload progress.
 function uploadXhr(file, projectId, onPct) {
@@ -31,7 +31,7 @@ function uploadXhr(file, projectId, onPct) {
 export const createLive = (React) => {
   const { createElement: h, useState, useEffect, useRef, useCallback } = React;
 
-  function useLive(enabled, openAgent) {
+  function useLive(enabled, openAgent, userKey) {
     const [mode, setModeState] = useState(undefined); // undefined = not read yet (SSR), null = first run
     const [files, setFiles] = useState({ items: [], quota: null, error: null, loaded: false });
     const [up, setUp] = useState(null);
@@ -50,8 +50,9 @@ export const createLive = (React) => {
     const trackedRef = useRef(tracked); trackedRef.current = tracked;
     const push = (m) => setMsgs((list) => [...list, { id: Date.now() + Math.random(), ...m }]);
 
-    useEffect(() => { setModeState(readAgentMode(globalThis.localStorage)); }, []);
-    const setMode = (m) => { writeAgentMode(globalThis.localStorage, m); setModeState(m); };
+    // N26: decided only once the user is known (the server-verified scene id of this account); the old global key is never read.
+    useEffect(() => { setModeState(readAgentMode(globalThis.localStorage, userKey)); }, [userKey]);
+    const setMode = (m) => { writeAgentMode(globalThis.localStorage, m, userKey); setModeState(m); };
 
     const loadFiles = useCallback(async () => {
       try { const r = await call('/files'); setFiles(r.ok ? { items: r.body?.files ?? [], quota: r.body?.quota ?? null, error: null, loaded: true } : (f) => ({ ...f, error: errText(r, 'Could not load files'), loaded: true })); }
@@ -255,7 +256,8 @@ export const createLive = (React) => {
   function JobRow({ L, it, kind }) {
     const st = String(it.status ?? it.state ?? 'unknown'), when = shortWhen(it.created ?? it.created_at);
     return h('li', { className: 'lv-jobrow', title: it.id },
-      h('span', { className: 'lv-jobname' }, h('strong', null, jobName(it, kind)), when ? h('small', { className: 'lv-muted' }, ' ' + when) : null),
+      h('span', { className: 'lv-jobname' }, h('strong', null, jobName(it, kind)), it.sample ? h('span', { className: 'lv-tag', 'data-tone': 'warn', style: { marginLeft: 6 } }, 'SAMPLE') : null,
+        when ? h('small', { className: 'lv-muted' }, ' ' + when) : null),
       h('span', { className: 'lv-tag', 'data-tone': st === 'done' ? 'ok' : st === 'failed' || st === 'error' ? 'warn' : undefined }, st),
       kind === 'experiment' && it.id && !L.tracked['experiment:' + it.id] ? h('button', { type: 'button', className: 'lv-btn lv-sm', onClick: () => L.track('experiment', it.id) }, 'Open') : null,
       kind === 'room' && it.id && st === 'done' ? h('a', { className: 'lv-btn lv-sm', href: '/lab?editor=1&room=' + encodeURIComponent(it.id) }, 'Open lab') : null,
@@ -324,7 +326,8 @@ export const createLive = (React) => {
         ...g.points.map((p, i) => h('circle', { key: i, cx: p.cx, cy: p.cy, r: 2.6, className: 'lv-pt' })),
         h('text', { x: (b.L + b.R) / 2, y: g.H - 4, textAnchor: 'middle', className: 'lv-axis-label' }, g.xLabel),
         h('text', { x: 11, y: (b.T + b.B) / 2, textAnchor: 'middle', transform: 'rotate(-90 11 ' + (b.T + b.B) / 2 + ')', className: 'lv-axis-label' }, g.yLabel)),
-      h('figcaption', { className: 'lv-muted' }, 'Dots: MEASURED track, ' + g.points.length + ' frames. Line: fitted curve. Band: 1 sigma of the fit.'));
+      h('figcaption', { className: 'lv-muted' }, g.curve ? 'Dots: MEASURED track, ' + g.points.length + ' frames. Line: fitted curve.' + (g.band ? ' Band: 1 sigma of the fit.' : ' No 1 sigma band for this fit.')
+        : 'Dots: tracked positions, ' + g.points.length + ' frames. No fitted curve.'));
   }
 
   function Share({ L, id }) {
@@ -339,14 +342,13 @@ export const createLive = (React) => {
   }
 
   function Result({ L, id, result }) {
-    const q = result?.quantity;
-    const measured = /MEASURED/.test(q?.label ?? result?.label ?? '');
+    const q = result?.quantity, tag = scaleTag(result);
     return h('div', { className: 'lv-result' },
       q ? h('p', { className: 'lv-qty' }, h('span', { className: 'lv-muted lv-block' }, q.name), h('strong', null, fmtPm(q.value, q.uncertainty) + ' ' + q.unit), h('small', { className: 'lv-muted' }, ' 1 sigma'))
-        : h('p', null, 'No value reported. ' + (result?.label || '')),
-      h('div', { className: 'lv-row' }, h('span', { className: 'lv-tag', 'data-tone': measured ? 'ok' : 'warn' }, measured ? 'MEASURED' : 'scale unverified'),
+        : h('p', { role: 'status' }, 'No value reported. ' + (result?.reason ? 'No fit: ' + result.reason : result?.label || '')),
+      h('div', { className: 'lv-row' }, h('span', { className: 'lv-tag', 'data-tone': tag.tone }, tag.text),
         h('span', { className: 'lv-tag', 'data-tone': 'warn' }, 'playback clock'), result?.motion ? h('span', { className: 'lv-tag' }, String(result.motion).replace(/_/g, ' ')) : null),
-      h('ul', { className: 'lv-labels lv-muted' }, ...[q?.label ?? result?.label, result?.clock, result?.track?.label].filter(Boolean).map((t) => h('li', { key: t }, t))),
+      h('ul', { className: 'lv-labels lv-muted' }, ...labelsOf(result).map((t) => h('li', { key: t }, t))),
       h(Chart, { result }),
       h('div', { className: 'lv-row' }, h('a', { className: 'lv-btn lv-primary', href: '/lab?editor=1&experiment=' + encodeURIComponent(id) }, '3D replay, redo with changes')),
       shareable(result) ? h(Share, { L, id }) : h('p', { className: 'lv-muted' }, 'Guess the Gravity needs a known size, so the value is in m/s^2.'));
@@ -356,8 +358,10 @@ export const createLive = (React) => {
   function JobCard({ L, kind, id }) {
     const j = L.tracked[kind + ':' + id] ?? { state: 'queued', step: 'Queued' };
     const g = j.gpu ? gpuDot(j.gpu) : L.gpu;
+    const sample = kind === 'experiment' ? L.jobs?.experiments?.items?.find((x) => x.id === id)?.sample : null;
     return h('div', { className: 'lv-jobcard', 'data-state': j.state },
-      h('div', { className: 'lv-row lv-between' }, h('strong', { title: id }, jobName({ id }, kind === 'experiment' ? 'experiment' : 'room').replace(/^Experiment/, 'Measurement').replace(/^Room/, 'Room lab')), h('span', { className: 'lv-tag', role: 'status' }, j.step)),
+      h('div', { className: 'lv-row lv-between' }, h('strong', { title: id }, sample ? sample.title : jobName({ id }, kind === 'experiment' ? 'experiment' : 'room').replace(/^Experiment/, 'Measurement').replace(/^Room/, 'Room lab')),
+        sample ? h('span', { className: 'lv-tag', 'data-tone': 'warn' }, 'SAMPLE') : null, h('span', { className: 'lv-tag', role: 'status' }, j.step)),
       !j.terminal ? h(React.Fragment, null, h('progress', { 'aria-label': j.step }),
         h('p', { className: 'lv-muted' }, (kind === 'experiment' ? 'Hosted model, no GPU wait. Backup ' : '') + g.label + (g.detail ? '. ' + g.detail : '') + '.')) : null,
       j.error ? h('p', { className: 'ws-error', role: 'alert' }, j.error) : null,
@@ -370,6 +374,7 @@ export const createLive = (React) => {
   function Centre({ L }) {
     const [firstDone, setFirstDone] = useState(false);
     const q = quotaView(L.files.quota);
+    if (L.mode === undefined) return h('div', { className: 'lv-wrap' }, h('p', { className: 'lv-muted', role: 'status' }, 'Loading your settings.'));
     if (L.mode === null && !firstDone) return h('div', { className: 'lv-wrap' }, h(ModeScreen, { L, onDone: () => setFirstDone(true) }));
     return h('div', { className: 'lv-wrap' },
       h('section', { className: 'lv-card', 'aria-labelledby': 'lv-proj-h', id: 'lv-project' },

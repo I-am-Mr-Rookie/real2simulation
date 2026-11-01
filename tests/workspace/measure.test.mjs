@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { polyFit, chartGeom, niceTicks, fmtPm, knownSizeText, naturalPoint, experimentBody, jobView, jobsFromToolCalls, shareable, trajectoryScene } from '../../Build/web/src/workspace/measure.mjs';
+import { polyFit, chartGeom, niceTicks, fmtPm, knownSizeText, naturalPoint, experimentBody, jobView, jobsFromToolCalls, shareable, trajectoryScene, scaleTag, labelsOf } from '../../Build/web/src/workspace/measure.mjs';
 import { validateScene } from '../../Build/web/src/lab-editor/scene.mjs';
 
 const res = JSON.parse(readFileSync(new URL('../../evidence/N07/live-st03.json', import.meta.url))).result;
@@ -64,4 +64,31 @@ test('redo scene validates and starts at the first track point', () => {
   assert.equal(s.objects.length, 1); assert.deepEqual(s.objects[0].position, t.track[0]);
   assert.ok(Math.min(...t.track.map((p) => p[1])) > 0); assert.equal(t.metric, false); assert.match(t.note, /Scale unverified/);
   assert.ok(t.scene.objects[0].velocity[1] < 0);
+});
+
+// N26: server curve + abstain + scale tag
+test('chart draws the server curve and band when the result carries one, a browser refit otherwise, dots only on abstain', () => {
+  const t = [0, 0.1, 0.2, 0.3], tr = { unit: 'px', t_s: t, x: [0, 0, 0, 0], y: [0, -1, -4, -9] };
+  const curve = { axis: 'y', unit: 'px', t_s: [0, 0.3], value: [0, -9], band_1sigma: [0.5, 0.5], label: 'x' };
+  const server = chartGeom({ trajectory: tr, fit: { y: { model: 'constant_acceleration' } }, curve });
+  assert.match(server.curve, /^M[\d. ]+L[\d. ]+$/); assert.ok(server.band); // exactly the 2 server points, not 49 refit points
+  assert.equal(chartGeom({ trajectory: tr, fit: { y: { model: 'constant_acceleration' } }, curve: { ...curve, band_1sigma: null } }).band, null);
+  assert.ok(chartGeom({ trajectory: tr, fit: { y: { model: 'constant_acceleration' } }, curve: { ...curve, unit: 'm' } }).curve.split('L').length > 40); // unit mismatch: refit
+  const abstain = chartGeom({ status: 'abstain', trajectory: tr, fit: null, reason: 'r' });
+  assert.equal(abstain.curve, null); assert.equal(abstain.band, null); assert.equal(abstain.points.length, 4);
+});
+
+test('scaleTag: typed size is "scale assumed (user size)", never MEASURED; no size is scale unverified', () => {
+  assert.deepEqual(scaleTag({ quantity: { label: 'scale assumed (user size)' }, label: 'scale assumed (user size): ball 6 cm' }), { text: 'scale assumed (user size)', tone: 'warn' });
+  assert.deepEqual(scaleTag({ label: 'scale assumed (user size): ball 6 cm. No fit: too short' }), { text: 'scale assumed (user size)', tone: 'warn' });
+  assert.equal(scaleTag({ quantity: { label: 'scale unverified: pixels only' } }).text, 'scale unverified');
+  assert.deepEqual(scaleTag({ quantity: { label: 'MEASURED (known size)' } }), { text: 'MEASURED', tone: 'ok' });
+  assert.equal(scaleTag(null).text, 'scale unverified');
+});
+
+test('labelsOf shows the typed-size label once in its long form and drops the abstain reason repeat', () => {
+  const typed = { quantity: { label: 'scale assumed (user size)' }, label: 'scale assumed (user size): ball diameter 6 cm', clock: 'playback timestamps' };
+  assert.deepEqual(labelsOf(typed), ['scale assumed (user size): ball diameter 6 cm', 'playback timestamps']);
+  assert.deepEqual(labelsOf({ label: 'scale unverified: pixels. No fit: too short', reason: 'too short' }), ['scale unverified: pixels']);
+  assert.deepEqual(labelsOf({ quantity: { label: 'q' }, label: 'q' }), ['q']);
 });

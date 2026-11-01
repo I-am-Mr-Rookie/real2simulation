@@ -1,0 +1,4 @@
+✔ illegal events return the same state; every phase/event is reachable and documented (0.956ms)
+ℹ tests 212
+ℹ suites 0
+ℹ pass 212

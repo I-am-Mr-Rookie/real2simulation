@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { shortId, shortWhen, jobName, isSample, projectName, groupJobs } from '../../Build/web/src/workspace/projects.mjs';
 
 test('long ids become short readable names', () => {
+  assert.equal(jobName({ id: 'a'.repeat(32), sample: { title: 'SAMPLE (RECORDED): falling apple' } }, 'experiment'), 'SAMPLE (RECORDED): falling apple'); // N26
   assert.equal(shortId('acdb8a00edca4ba8b60f264f505719da'), 'acdb8a');
   assert.equal(shortId('room-1'), 'room-1');
   assert.equal(jobName({ id: 'acdb8a00edca4ba8b60f264f505719da' }, 'experiment'), 'Experiment acdb8a');

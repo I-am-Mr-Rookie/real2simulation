@@ -1,0 +1,85 @@
+{
+ "start_utc": "2026-11-01T14:52:42.592Z",
+ "steps": [
+  {
+   "k": "signed_up",
+   "v": true
+  },
+  {
+   "k": "contributor_card_first_load_ms",
+   "v": "2020"
+  },
+  {
+   "k": "legacy_global_key_was_set",
+   "v": "standard"
+  },
+  {
+   "k": "card_text",
+   "v": "Choose how the agent runs\n\nYou can change this later in the agent panel. Standard is the default.\n\nStandard\nDefault\nMuse Spark 1.3\nYour prompts are not used to train Meta models\nSame physics tools and answers\nCosts more per message, so the daily budget runs out sooner\nContributor\nMuse Spark 1.3 contributor\nMuch cheaper per message, so more turns fit in the daily budget\nSame physics tools and answers\nMeta may train on your prompts and the agent replies\nDo not type anything private\nContinue"
+  },
+  {
+   "k": "mode_keys",
+   "v": "[\"r2s.agent.mode.dev-fix..standard\",\"r2s.agent.mode..standard\"]"
+  },
+  {
+   "k": "card_not_shown_again_after_choice",
+   "v": "true"
+  },
+  {
+   "k": "gpu_dot",
+   "v": "GPU on, idle Queue empty"
+  },
+  {
+   "k": "seeded",
+   "v": "{\"no_size\":{\"label\":\"scale unverified: no known size given, so results are in pixels; no metric value\",\"curve\":true,\"reason\":null,\"q\":[2328.2029314072506,\"px/s^2\",\"scale unverified: no known size given, so results are in pixels; no metric value\"]},\"typed_size\":{\"label\":\"scale assumed (user size): apple diameter 8 cm\",\"curve\":true,\"reason\":null,\"q\":[2.7390622722438245,\"m/s^2\",\"scale assumed (user size)\"]},\"abstain\":{\"label\":\"scale unverified: no known size given, so results are in pixels; no metric value. No fit: moving segment has 1 frames; need 5. The object barely moved: click the falling ob"
+  },
+  {
+   "k": "sample_row",
+   "v": "SAMPLE (RECORDED): falling appleSAMPLE Nov 1, 14:52 UTC\ndone\nOpen"
+  },
+  {
+   "k": "processing_sample_card",
+   "v": "SAMPLE (RECORDED): falling apple\nSAMPLE\nDone\n\nvertical acceleration (g if only gravity acts)\n2330 +/- 110 px/s^2 1 sigma\n\nscale unverified\nplayback clock\nfree fall\nscale unverified: no known size given, so results are in pixels; no metric value\nplayback timestamps; capture clock unverified (slow motion would change every time-based value)\nMEASURED: hosted SAM 3.1 box centres in image pixels\n-800\n-600\n-400\n-200\n0\n200\n0.0\n0.2\n0.4\n0.6\n0.8\ntime (s)\ny position (px)\nDOTS: MEASURED TRACK, 19 FRAMES. LINE: FITTED CURVE. BAND: 1 SIGMA OF THE FIT.\n3D replay, redo with changes\n\nGuess the Gravity needs a "
+  },
+  {
+   "k": "card_no_size",
+   "v": "Measurement af10d5\nDone\n\nvertical acceleration (g if only gravity acts)\n2330 +/- 110 px/s^2 1 sigma\n\nscale unverified\nplayback clock\nfree fall\nscale unverified: no known size given, so results are in pixels; no metric value\nplayback timestamps; capture clock unverified (slow motion would change every time-based value)\nMEASURED: hosted SAM 3.1 box centres in image pixels\n-800\n-600\n-400\n-200\n0\n200\n0.0\n0.2\n0.4\n0.6\n0.8\ntime (s)\ny position (px)\nDOTS: MEASURED TRACK, 19 FRAMES. LINE: FITTED CURVE. BAND: 1 SIGMA OF THE FIT.\n3D replay, redo with changes\n\nGuess the Gravity needs a known size, so the va"
+  },
+  {
+   "k": "chart_no_size",
+   "v": "{\"curve\":1,\"band\":1,\"pts\":19}"
+  },
+  {
+   "k": "card_typed_size",
+   "v": "Measurement b9b805\nDone\n\nvertical acceleration (g if only gravity acts)\n2.74 +/- 0.42 m/s^2 1 sigma\n\nscale assumed (user size)\nplayback clock\nfree fall\nscale assumed (user size): apple diameter 8 cm\nplayback timestamps; capture clock unverified (slow motion would change every time-based value)\nMEASURED: hosted SAM 3.1 box centres in image pixels\n-0.8\n-0.6\n-0.4\n-0.2\n0.0\n0.2\n0.0\n0.2\n0.4\n0.6\n0.8\ntime (s)\ny position (m)\nDOTS: MEASURED TRACK, 19 FRAMES. LINE: FITTED CURVE. BAND: 1 SIGMA OF THE FIT.\n3D replay, redo with changes\nShare as Guess the Gravity"
+  },
+  {
+   "k": "chart_typed_size",
+   "v": "{\"curve\":1,\"band\":1,\"pts\":19}"
+  },
+  {
+   "k": "card_abstain",
+   "v": "Measurement 1f6583\nDone\n\nNo value reported. No fit: moving segment has 1 frames; need 5. The object barely moved: click the falling object itself, or type its name\n\nscale unverified\nplayback clock\nscale unverified: no known size given, so results are in pixels; no metric value\nplayback timestamps; capture clock unverified (slow motion would change every time-based value)\n0.0\n0.2\n0.4\n0.6\n0.00\n0.05\n0.10\n0.15\ntime (s)\ny position (px)\nDOTS: TRACKED POSITIONS, 5 FRAMES. NO FITTED CURVE.\n3D replay, redo with changes\n\nGuess the Gravity needs a known size, so the value is in m/s^2."
+  },
+  {
+   "k": "chart_abstain",
+   "v": "{\"curve\":0,\"band\":0,\"pts\":5}"
+  },
+  {
+   "k": "upload_error_text",
+   "v": "tiny.mp4: Daily upload limit reached: 20 uploads per day. It resets at Nov 2, 12:00 AM GMT+6 (midnight Dhaka time). Deleting a file frees storage but does not give back an upload."
+  },
+  {
+   "k": "browser_tz",
+   "v": "Asia/Dhaka"
+  }
+ ],
+ "fails": [
+  "429 /api/workspace/files"
+ ],
+ "mocked": [
+  "POST /api/workspace/files -> 429 (body shape from tests/api-storage)",
+  "GET /api/workspace/gpu/status -> green, queue 0"
+ ],
+ "end_utc": "2026-11-01T14:53:13.607Z"
+}
