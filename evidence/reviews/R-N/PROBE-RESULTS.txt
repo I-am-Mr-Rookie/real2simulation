@@ -1,0 +1,7 @@
+CAP_BYPASS: full $10 ledger still allowed 3 mocked live transports; ledger unchanged
+DAILY_RACE: 2 Store connections admitted uploads 20 and 21; cap is 20
+STORAGE_RACE: 2 Store connections admitted 8 bytes each with 10 remaining; exceeded cap by 6
+MEDIA_PROBE: missing ffprobe accepts corrupt MP4 magic as video/mp4 with no duration enforcement
+NUMBER_GUARD: sign/unit substitution accepted; ask_user bypass returns invented 12345
+ROUTING: agent auth fails closed, but BFF upstream /internal/workspace/agent/turn returns 404
+TRANSCRIPTION: consumed all 6 MB before rejecting 4 MB input cap
