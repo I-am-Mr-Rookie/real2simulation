@@ -1,0 +1,22 @@
+{
+ "job_id": "345d4a016c0f4bcbaf3241d9b55774d7",
+ "state": "done",
+ "file_id": "58ce503e1dbe4f8c997f1b9f039ad854",
+ "project_id": null,
+ "updated_at": "2026-11-01T11:48:50Z",
+ "gpu_job": "a9c64e90a15c49ab868cd8f397ce75b8",
+ "frames": 8,
+ "timing_s": {
+  "client_round_trip_s": 51.345,
+  "container_boot_s": 14.266,
+  "cold_start_s": 18.386,
+  "model_load_s": 19.117,
+  "cold_start_to_model_ready_s": 37.504,
+  "inference_s": 2.086,
+  "function_s": 22.252,
+  "container_python_alive_s": 26.372
+ },
+ "estimated_usd": 0.34982866,
+ "scale": "scale unverified",
+ "gravity": "MODEL-ESTIMATED"
+}

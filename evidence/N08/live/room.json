@@ -1,0 +1,76 @@
+{
+ "schema": "n08-room/1",
+ "views": 8,
+ "points": 20000,
+ "floor": {
+  "status": "FIT",
+  "inliers": 6549.0,
+  "inlier_fraction": 0.10915,
+  "rms_residual": 0.008774,
+  "p95_abs_residual": 0.017363,
+  "normal_bootstrap_std_deg": 0.012136
+ },
+ "gravity": {
+  "status": "MODEL-ESTIMATED",
+  "method": "RANSAC floor plane normal (S05d)",
+  "uncertainty_deg": 0.0121,
+  "angle_to_camera_down_deg": 10.57
+ },
+ "scale": {
+  "status": "scale unverified",
+  "metres_per_model_unit": 1.0,
+  "sd": null,
+  "evidence": "MapAnything nominal metric output; no reference object and no model scale uncertainty"
+ },
+ "labels": {
+  "input": "RECORDED",
+  "geometry": "MODEL-ESTIMATED (MapAnything)",
+  "scale": "scale unverified"
+ },
+ "camera_positions_m": [
+  [
+   0.93,
+   1.2089,
+   0.0205
+  ],
+  [
+   0.7676,
+   1.1991,
+   0.0122
+  ],
+  [
+   0.438,
+   1.1453,
+   -0.0197
+  ],
+  [
+   0.1108,
+   1.1151,
+   -0.1394
+  ],
+  [
+   -0.2623,
+   1.1041,
+   -0.0793
+  ],
+  [
+   -0.5332,
+   1.0947,
+   0.0466
+  ],
+  [
+   -0.6956,
+   1.0748,
+   0.0667
+  ],
+  [
+   -0.7554,
+   1.0669,
+   0.0924
+  ]
+ ],
+ "model_grid_hw": [
+  294,
+  518
+ ]
+}

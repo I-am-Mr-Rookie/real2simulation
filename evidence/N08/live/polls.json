@@ -1,0 +1,70 @@
+{
+ "wall_s": 77.1,
+ "polls": [
+  {
+   "t_s": 28.7,
+   "state": "sampling",
+   "gpu": {
+    "state": "yellow",
+    "queue_length": 1,
+    "your_position": 1,
+    "source": "modal+jobs"
+   }
+  },
+  {
+   "t_s": 36.9,
+   "state": "reconstructing",
+   "gpu": {
+    "state": "green",
+    "queue_length": 1,
+    "your_position": 1,
+    "source": "modal+jobs"
+   }
+  },
+  {
+   "t_s": 45.0,
+   "state": "reconstructing",
+   "gpu": {
+    "state": "green",
+    "queue_length": 1,
+    "your_position": 1,
+    "source": "modal+jobs"
+   }
+  },
+  {
+   "t_s": 53.1,
+   "state": "reconstructing",
+   "gpu": {
+    "state": "green",
+    "queue_length": 1,
+    "your_position": 1,
+    "source": "modal+jobs"
+   }
+  },
+  {
+   "t_s": 64.1,
+   "state": "reconstructing",
+   "gpu": {
+    "state": "green",
+    "queue_length": 1,
+    "your_position": 1,
+    "source": "modal+jobs"
+   }
+  },
+  {
+   "t_s": 72.0,
+   "state": "reconstructing",
+   "gpu": {
+    "state": "green",
+    "queue_length": 0,
+    "your_position": null,
+    "source": "modal+jobs"
+   }
+  },
+  {
+   "t_s": 77.1,
+   "state": "done",
+   "gpu": null
+  }
+ ]
+}

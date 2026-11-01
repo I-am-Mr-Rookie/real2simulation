@@ -1,0 +1,15 @@
+{
+ "ledger": "Build/guardrails/daily_cap.py spend.sqlite3 in worktree R2S_DATA_DIR .n08-data (uncommitted)",
+ "rows": [
+  {
+   "day": "2026-11-01",
+   "provider": "Modal",
+   "label": "N08 room 345d4a016c0f4bcbaf3241d9b55774d7",
+   "reserved_usd": 0.5295168,
+   "actual_usd": 0.34982866,
+   "reserved_at": "2026-11-01T11:47:54.765202+00:00",
+   "settled_at": "2026-11-01T11:48:46.338675+00:00",
+   "basis": "cost_log upper bound incl. 900 s idle window, estimate not billed"
+  }
+ ]
+}

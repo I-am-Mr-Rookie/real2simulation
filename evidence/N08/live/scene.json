@@ -1,0 +1,17 @@
+{
+ "version": "lab-scene-v1",
+ "label": "SIMULATED",
+ "units": "m",
+ "gravity": [
+  0,
+  -9.81,
+  0
+ ],
+ "room": {
+  "kind": "ply",
+  "floor_y": 0,
+  "source": "room.ply",
+  "scale_verified": false
+ },
+ "objects": []
+}
