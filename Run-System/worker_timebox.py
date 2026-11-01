@@ -12,15 +12,20 @@ def timestamp(value):
     return value.astimezone(timezone.utc)
 
 
-def issue(run_id, now=None):
+WINDOWS = (30, 60)  # Koushik Nov 1: integration runs may get 60 minutes
+
+
+def issue(run_id, now=None, minutes=30):
+    if minutes not in WINDOWS:
+        raise ValueError("Window must be 30 or 60 minutes")
     start = now or datetime.now(timezone.utc)
     if start.tzinfo is None:
         raise ValueError("Dispatch clock must include timezone")
     start = start.astimezone(timezone.utc).replace(microsecond=0)
-    deadline = start + timedelta(minutes=30)
+    deadline = start + timedelta(minutes=minutes)
     return {"id": run_id, "issued_at": start.isoformat(),
             "deadline_at": deadline.isoformat(),
-            "implementation_cutoff_at": (start + timedelta(minutes=25)).isoformat(),
+            "implementation_cutoff_at": (deadline - timedelta(minutes=5)).isoformat(),
             "deadline_dhaka": deadline.astimezone(timezone(timedelta(hours=6))).isoformat()}
 
 
@@ -28,8 +33,8 @@ def check(receipt, now=None):
     start, deadline, stopped, reported = (
         timestamp(receipt[key]) for key in
         ("issued_at", "deadline_at", "work_stopped_at", "reported_at"))
-    if deadline - start != timedelta(minutes=30):
-        raise ValueError("Each new worker requires a full 30-minute dispatch window")
+    if deadline - start not in tuple(timedelta(minutes=m) for m in WINDOWS):
+        raise ValueError("Each new worker requires a full 30- or 60-minute dispatch window")
     if not start <= stopped <= deadline:
         raise ValueError("Work stop must be within the original dispatch window")
     if not stopped <= reported <= (now or datetime.now(timezone.utc)):
@@ -48,12 +53,12 @@ def check(receipt, now=None):
 
 if __name__ == "__main__":
     try:
-        action, value = sys.argv[1:]
+        action, value, *rest = sys.argv[1:]
         if action == "issue":
-            print(json.dumps(issue(value), indent=2))
+            print(json.dumps(issue(value, minutes=int(rest[0]) if rest else 30), indent=2))
         elif action == "check":
             print(check(json.loads(Path(value).read_text(encoding="utf-8-sig"))))
         else:
-            raise ValueError("Use issue <ID> or check <TIMEBOX.json>")
+            raise ValueError("Use issue <ID> [30|60] or check <TIMEBOX.json>")
     except (ValueError, KeyError, TypeError) as exc:
         sys.exit(str(exc))
