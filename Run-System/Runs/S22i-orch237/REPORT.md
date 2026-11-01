@@ -1,0 +1,7 @@
+# S22i-orch237 REPORT
+Lane/model: CODEX-2, anthropic/claude-sonnet-5-5 medium (OpenCodex-managed; not polled). UTC 2026-11-01T07:13:12Z start, work stopped 07:24Z.
+Result: DONE. Gate D streak 3/3 PASS (21.2 s, 19.5 s, 21.5 s home to report; fit executed server-side; Report body rendered with fitter g 8.62 +/- 1.29 and caveats). All listed defects FIXED (D5, D6, D7, D8, O1, O2, retry same-file, Try again, plain non-approved message, reload note, divider); RM04 points + "Display only, scale unverified, not a measurement." PASS. Details: C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/evidence/qa/browser/S22i/RUN.md
+New findings (P3, proposed rows only): Runs/Agent subtitle says "Scene ready" for the no-scene OWN05 job; a role=alert node reads "Private development fixture".
+Ponytail: reused S22h lib.mjs (signup/answer) and the S22g Playwright route; one timed script for the streak and one for all defects; no new tooling, no code touched; 4 throwaway accounts kept; ran 4 fresh accounts + 1 DOM check; screenshots copied only from CSS-hidden-video runs (no owner frames, no emails).
+Skipped/unverified: print/download (no control, as S22h), spend cap live, non-dev judging env (D2), logged-out library/sidebar (D11), RM04 interview answers, 3D orbit. Risks: only DEV and headed Chromium; streak is the same clip/answer each time.
+Communication compliance: silent, one final line.
