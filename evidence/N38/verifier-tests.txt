@@ -1,20 +1,20 @@
 test_baseline_including_statusless_version_and_worker_503 (test_verify.VerifyTests.test_baseline_including_statusless_version_and_worker_503) ... FAIL
-test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) ... 
+test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) ...
   test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) (endpoint=('api', '/health/live')) ... FAIL
   test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) (endpoint=('api', '/health/ready')) ... FAIL
   test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) (endpoint=('api', '/api/version')) ... FAIL
   test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) (endpoint=('worker', '/health/live')) ... FAIL
   test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) (endpoint=('worker', '/health/ready')) ... FAIL
   test_http_codes_remain_exact (test_verify.VerifyTests.test_http_codes_remain_exact) (endpoint=('worker', '/api/version')) ... FAIL
-test_internal_workspace_route_must_reject_missing_token (test_verify.VerifyTests.test_internal_workspace_route_must_reject_missing_token) ... 
+test_internal_workspace_route_must_reject_missing_token (test_verify.VerifyTests.test_internal_workspace_route_must_reject_missing_token) ...
   test_internal_workspace_route_must_reject_missing_token (test_verify.VerifyTests.test_internal_workspace_route_must_reject_missing_token) (status=200) ... FAIL
   test_internal_workspace_route_must_reject_missing_token (test_verify.VerifyTests.test_internal_workspace_route_must_reject_missing_token) (status=404) ... FAIL
   test_internal_workspace_route_must_reject_missing_token (test_verify.VerifyTests.test_internal_workspace_route_must_reject_missing_token) (status=401) ... FAIL
-test_non_object_json_fails_closed (test_verify.VerifyTests.test_non_object_json_fails_closed) ... 
+test_non_object_json_fails_closed (test_verify.VerifyTests.test_non_object_json_fails_closed) ...
   test_non_object_json_fails_closed (test_verify.VerifyTests.test_non_object_json_fails_closed) (value=None) ... FAIL
   test_non_object_json_fails_closed (test_verify.VerifyTests.test_non_object_json_fails_closed) (value=[]) ... FAIL
   test_non_object_json_fails_closed (test_verify.VerifyTests.test_non_object_json_fails_closed) (value='ok') ... FAIL
-test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) ... 
+test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) ...
   test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) (service='api', name='redis', missing=False) ... FAIL
   test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) (service='api', name='redis', missing=True) ... FAIL
   test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) (service='api', name='bucket', missing=False) ... FAIL
@@ -33,7 +33,7 @@ test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness
   test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) (service='worker', dependencies=None) ... FAIL
   test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) (service='worker', dependencies={}) ... FAIL
   test_readiness_dependencies_remain_exact (test_verify.VerifyTests.test_readiness_dependencies_remain_exact) (service='worker', dependencies={'redis': 'ok', 'bucket': 'ok', 'heartbeat': 'unavailable', 'unexpected': 'ok'}) ... FAIL
-test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) ... 
+test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) ...
   test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/live'), value='WRONG-STATUS') ... FAIL
   test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/live'), value=None) ... FAIL
   test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('api', '/health/live'), value='OK') ... FAIL
@@ -50,7 +50,7 @@ test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missi
   test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/ready'), value=None) ... FAIL
   test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/ready'), value='OK') ... FAIL
   test_wrong_or_missing_health_status (test_verify.VerifyTests.test_wrong_or_missing_health_status) (endpoint=('worker', '/health/ready'), value='ok') ... FAIL
-test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) ... 
+test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) ...
   test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) (endpoint=('api', '/health/live'), value='0000000000000000000000000000000000000000') ... FAIL
   test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) (endpoint=('api', '/health/live'), value=None) ... FAIL
   test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) (endpoint=('api', '/health/ready'), value='0000000000000000000000000000000000000000') ... FAIL
@@ -63,7 +63,7 @@ test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_re
   test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) (endpoint=('worker', '/health/ready'), value=None) ... FAIL
   test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) (endpoint=('worker', '/api/version'), value='0000000000000000000000000000000000000000') ... FAIL
   test_wrong_or_missing_revision (test_verify.VerifyTests.test_wrong_or_missing_revision) (endpoint=('worker', '/api/version'), value=None) ... FAIL
-test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) ... 
+test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) ...
   test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/live'), value='WRONG-SERVICE') ... FAIL
   test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/live'), value=None) ... FAIL
   test_wrong_or_missing_service (test_verify.VerifyTests.test_wrong_or_missing_service) (endpoint=('api', '/health/ready'), value='WRONG-SERVICE') ... FAIL
