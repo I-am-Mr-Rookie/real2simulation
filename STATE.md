@@ -1,5 +1,17 @@
 # Real2Simulation — STATE
 
+## Controller — Nov 1 ~19:05 Dhaka: N21 N14 N15 N16 accepted; N22 added
+
+- N21: R-N fixes (one GPU queue across reconstruct+track, ffprobe fail-closed 503, quota race in one transaction, signed number guard,
+  transcription cap before buffering); start_room_build wired; legacy approved-clips uploader removed. Deferred items listed in its REPORT.
+- N14: room object click -> hosted SAM 3.1 box -> MapAnything points -> gravity-aligned box proxy (MODEL-ESTIMATED); SAM 3D Objects gate
+  fails (no licence receipt, A10G memory). RM02 chair 0.87 x 0.56 x 0.47 m nominal (scale unverified). ~$0.35.
+- N15: fit_equation tool, allowlisted grammar, LM fit with 1 sigma + AIC vs built-ins; 24 tests.
+- N16: Guess the Gravity public share (/guess/<token>), revocable token, no video or identity stored.
+Controller: removed a duplicate import; added pillow to API requirements (object_lift). Checks: pytest 171 pass; node 384/384; build OK.
+New N22 (Opus high): wire the UI for both modes (start, result view with fit band + 3D replay, A4 click, open room in lab, object click, share).
+N13 QA now also depends on N22. N11 (DEV infra + deploy) still running.
+
 ## Controller — Nov 1 ~18:25 Dhaka: wave 2 accepted (N07 N08 N09 N12 N19 DONE)
 
 - N07 Mode B live: ST03 via API, 543/543 frames, free fall 2330 +/- 106 px/s^2, scale unverified (no known size). Agent tools list_files,

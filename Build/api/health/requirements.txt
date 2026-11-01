@@ -6,3 +6,4 @@ boto3==1.43.120
 numpy==2.2.6
 jsonschema==4.23.0
 python-multipart==0.0.20
+pillow==11.3.0

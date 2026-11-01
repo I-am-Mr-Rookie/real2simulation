@@ -7,6 +7,7 @@ Wave 1 (Nov 1 11:00-11:30Z): N02 sam-3.1 2 x 543 frames $0.2172; N05 muse-spark-
 N04 one Modal A10G warm-up ~$0.36 est (cost_log rates, not yet billed). Running Meta total today ~$0.32; Modal ~$0.36.
 Wave 2 (11:45-12:00Z): N07 sam-3.1 543 frames $0.1086; N08 one Modal A10G reconstruct ~$0.35 est; N12 Muse Spark 12 turns + 1 muse-image ~$0.92 est.
 Running today ~ Meta $1.35 est, Modal ~$0.71 est (not billed yet).
+Wave 3 (12:30Z): N14 one Modal reconstruct ~$0.35 est + 2 sam-3.1 images $0.005. Running today ~ Meta $1.36, Modal ~$1.06 (est).
 Product guard (owner Nov 1): global paid-call cap $10/day, $20/day Thu Nov 5 to Sun Nov 8; ledger every call.
 
 ## CURRENT — successor accepts unpaid evidence; no new paid reservation

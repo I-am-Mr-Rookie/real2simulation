@@ -15,7 +15,6 @@ from Build.api.experiment.share import create_router as share_router
 from Build.api.room import create_router as room_router
 from Build.api.agent import handlers as agent_handlers, lab_handlers, equation_handlers
 from Build.api.room.objects import create_router as room_objects_router
-from Build.api.agent import handlers as agent_handlers, lab_handlers
 from Build.api.workspace import analysis, jobs
 
 SERVICE = "api"
