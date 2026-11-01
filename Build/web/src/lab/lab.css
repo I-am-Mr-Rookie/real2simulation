@@ -90,3 +90,6 @@
 .lab-empty p { margin: 0; font-weight: 600; }
 .lab-chart { position: relative; }
 .lab-chart > .chart-chip { position: absolute; top: .5rem; left: .5rem; z-index: 1; padding: .15rem .45rem; border: 1px solid currentColor; border-radius: 3px; background: var(--lab-surface); color: var(--lab-accent); font: 700 .7rem/1.3 var(--lab-mono); letter-spacing: .05em; pointer-events: none; }
+
+/* The editor is a full workspace: drop the page's top padding so it sits right under the header. */
+main:has(.lab-toggle-editor) { padding-top: 0.75rem; }
