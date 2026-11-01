@@ -1,0 +1,7 @@
+Installed 37 packages in 2.68s
+{"utc": "2026-11-01T11:11:27.015696+00:00", "unix": 1793531487.0156963, "note": "before", "runners_backlog": [0, 0], "state": "red", "queue_length": 0, "your_position": null, "source": "modal+jobs"}
+{"utc": "2026-11-01T11:11:31.399517+00:00", "unix": 1793531491.3995175, "note": "starting", "runners_backlog": [1, 1], "state": "green", "queue_length": 1, "your_position": 1, "source": "modal+jobs"}
+{"utc": "2026-11-01T11:11:36.074630+00:00", "unix": 1793531496.0746307, "note": "returned (warm, idle)", "runners_backlog": [1, 0], "state": "green", "queue_length": 0, "your_position": null, "source": "modal+jobs"}
+{"utc": "2026-11-01T11:26:41.392744+00:00", "unix": 1793532401.3927448, "note": "idle check 1 (905 s)", "runners_backlog": [1, 0], "state": "green", "queue_length": 0, "your_position": null, "source": "modal+jobs"}
+{"utc": "2026-11-01T11:27:44.034630+00:00", "unix": 1793532464.0346305, "note": "idle check 2 (965 s)", "runners_backlog": [0, 0], "state": "red", "queue_length": 0, "your_position": null, "source": "modal+jobs"}
+DONE ['red', 'green'] red 977.0051190853119 0.35926432

@@ -1,0 +1,24 @@
+✓ Created objects.
+├── ✓ Uploaded C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI 
+│   Developer Hackathon\.worktrees\N04-orch252\Build\gpu\ondemand.py
+├── ✓ Uploaded PythonPackage:modal_image
+├── ✓ Uploaded PythonPackage:ondemand, PythonPackage:scene_job, 
+│   PythonPackage:runtime, PythonPackage:image_spec, PythonPackage:modal_image,
+│   PythonPackage:modal_track
+├── ✓ Uploaded PythonPackage:image_spec
+├── ✓ Uploaded C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI 
+│   Developer Hackathon\.worktrees\N04-orch252\Build\measurement
+├── ✓ Uploaded C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI 
+│   Developer 
+│   Hackathon\.worktrees\N04-orch252\Build\measurement\runtime\requirements-lin
+│   ux-py312.txt
+├── ✓ Created Function reconstruct.
+├── ✓ Uploaded C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI 
+│   Developer 
+│   Hackathon\.worktrees\N04-orch252\Build\measurement\runtime\resolve_imports.
+│   py
+└── ✓ Created Function track.
+✓ App deployed in 10.554s! 🎉
+
+View Deployment: 
+https://modal.com/apps/<workspace>/main/deployed/r2s-ondemand

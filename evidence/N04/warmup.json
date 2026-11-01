@@ -1,0 +1,104 @@
+{
+ "label": "MEASURED (Modal stats + job table); cost MODEL-ESTIMATED upper bound, not billed",
+ "result": {
+  "warmup": true,
+  "container_start_epoch": 1793531489.3380466,
+  "function_epoch": 1793531489.3544571
+ },
+ "final_state": "red",
+ "gpu_seconds_upper": 977.0051190853119,
+ "estimated_usd": {
+  "total_usd": 0.35926432,
+  "by_resource_usd": {
+   "A10G": 0.29896357,
+   "CPU": 0.02559753,
+   "Memory": 0.03470322
+  }
+ },
+ "reserved_usd": "0.50",
+ "ledger_today": {
+  "day": "2026-11-01",
+  "cap_usd": "10",
+  "spent_usd": "0.35926432",
+  "headroom_usd": "9.64073568"
+ },
+ "log": [
+  {
+   "utc": "2026-11-01T11:11:27.015696+00:00",
+   "unix": 1793531487.0156963,
+   "note": "before",
+   "runners_backlog": [
+    0,
+    0
+   ],
+   "state": "red",
+   "queue_length": 0,
+   "your_position": null,
+   "source": "modal+jobs"
+  },
+  {
+   "utc": "2026-11-01T11:11:31.399517+00:00",
+   "unix": 1793531491.3995175,
+   "note": "starting",
+   "runners_backlog": [
+    1,
+    1
+   ],
+   "state": "green",
+   "queue_length": 1,
+   "your_position": 1,
+   "source": "modal+jobs"
+  },
+  {
+   "utc": "2026-11-01T11:11:36.074630+00:00",
+   "unix": 1793531496.0746307,
+   "note": "returned (warm, idle)",
+   "runners_backlog": [
+    1,
+    0
+   ],
+   "state": "green",
+   "queue_length": 0,
+   "your_position": null,
+   "source": "modal+jobs"
+  },
+  {
+   "utc": "2026-11-01T11:26:41.392744+00:00",
+   "unix": 1793532401.3927448,
+   "note": "idle check 1 (905 s)",
+   "runners_backlog": [
+    1,
+    0
+   ],
+   "state": "green",
+   "queue_length": 0,
+   "your_position": null,
+   "source": "modal+jobs"
+  },
+  {
+   "utc": "2026-11-01T11:27:44.034630+00:00",
+   "unix": 1793532464.0346305,
+   "note": "idle check 2 (965 s)",
+   "runners_backlog": [
+    0,
+    0
+   ],
+   "state": "red",
+   "queue_length": 0,
+   "your_position": null,
+   "source": "modal+jobs"
+  }
+ ],
+ "states_logged_with_first_rule": [
+  "red",
+  "green"
+ ],
+ "states_recomputed_corrected_rule": [
+  "red",
+  "yellow",
+  "green",
+  "green",
+  "red"
+ ],
+ "note": "First rule called a booting container green (Modal counts it in num_total_runners); corrected rule recomputed from the same raw runners/backlog samples."
+}
