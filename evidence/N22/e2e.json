@@ -1,0 +1,59 @@
+{
+ "start_utc": "2026-11-01T13:21:59.305Z",
+ "steps": [
+  {
+   "k": "signed_up",
+   "v": true,
+   "utc": "2026-11-01T13:22:44.510Z"
+  },
+  {
+   "k": "mode_saved",
+   "v": true,
+   "utc": "2026-11-01T13:22:48.087Z"
+  },
+  {
+   "k": "project_room",
+   "v": true,
+   "utc": "2026-11-01T13:22:49.018Z"
+  },
+  {
+   "k": "uploaded_rm02",
+   "v": true,
+   "utc": "2026-11-01T13:22:50.015Z"
+  },
+  {
+   "k": "room_progress",
+   "v": "Room lab\nSampling frames\n\nGPU running. Queue empty.",
+   "utc": "2026-11-01T13:22:54.507Z"
+  },
+  {
+   "k": "room_done",
+   "v": "Room lab\nDone\nOpen my lab\nscale unverified\ngravity MODEL-ESTIMATED",
+   "utc": "2026-11-01T13:24:05.510Z"
+  },
+  {
+   "k": "lab_room",
+   "v": "Your room: 20000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply.",
+   "utc": "2026-11-01T13:24:08.972Z"
+  },
+  {
+   "k": "view_dims",
+   "v": "518x294x518x294",
+   "utc": "2026-11-01T13:24:11.074Z"
+  },
+  {
+   "k": "a4",
+   "v": "A4 scale applied: MEASURED. Gravity [0, -9.81, 0] m/s^2, room room.ply. | Your room\n\nGeometry MODEL-ESTIMATED (MapAnything). Scale MEASURED: 0.102 +/- 0.005 m per unit. Gravity MODEL-ESTIMATED +/- 0.0101 deg.\n\nMark the A4 sheet\nAdd a real object\nView \n1\n2\n3\n4\n5\n6\n7\n8",
+   "utc": "2026-11-01T13:24:12.612Z"
+  },
+  {
+   "k": "object",
+   "v": "Added room-object-1: 0.17 x 0.08 x 0.01 m box proxy, MODEL-ESTIMATED (SAM 3.1 box + MapAnything points, box proxy), scale MEASURED. visible surface only; the hidden back is not observed, so depth size is a lower bound. Gravity [0, -9.81, 0] m/s^2, room room.ply.",
+   "utc": "2026-11-01T13:24:16.907Z"
+  }
+ ],
+ "fails": [
+  "405 /api/workspace/rooms"
+ ],
+ "end_utc": "2026-11-01T13:24:18.745Z"
+}

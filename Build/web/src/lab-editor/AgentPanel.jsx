@@ -16,7 +16,7 @@ async function call(path, init = {}) {
   return body;
 }
 
-export default function AgentPanel({ scene, onScene }) {
+export default function AgentPanel({ scene, onScene, load = true }) {
   const [text, setText] = useState(EXAMPLES[0]);
   const [busy, setBusy] = useState(false);
   const [log, setLog] = useState([]);
@@ -24,6 +24,7 @@ export default function AgentPanel({ scene, onScene }) {
   const [question, setQuestion] = useState(null);
   const [report, setReport] = useState(null);
   useEffect(() => {
+    if (!load) return; // N22: a live room or experiment scene is open; do not replace it with the saved project scene
     call('/lab/scene').then((b) => b.scene.objects.length && onScene(validateScene(b.scene), 'Scene loaded from the project.')).catch(() => {});
     call('/lab/report').then((b) => setReport(b.markdown)).catch(() => {});
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

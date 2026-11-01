@@ -51,9 +51,9 @@ export function gpuDot(s) {
 export const GPU_POLL_MS = 10_000;
 export const shouldPoll = (doc) => (doc?.visibilityState ?? 'visible') === 'visible';
 
-// N07/N08 job lists: 404 means the endpoint is not deployed yet; never shown as an error or as an empty success.
+// N07/N08 job lists: 404 means the endpoint is not deployed yet, 405 means the server has no list route (N08 rooms); never an error or an empty success.
 export function jobsState(status, body, key) {
-  if (status === 404) return { state: 'unavailable', items: [] };
+  if (status === 404 || status === 405) return { state: 'unavailable', items: [] };
   if (status < 200 || status >= 300) return { state: 'error', items: [], message: body?.error?.message || 'Request failed (' + status + ').' };
   const items = Array.isArray(body?.[key]) ? body[key] : Array.isArray(body?.jobs) ? body.jobs : Array.isArray(body) ? body : [];
   return { state: 'ok', items };

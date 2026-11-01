@@ -20,4 +20,9 @@
 .le-panel h3, .le-panel p { margin: 0; }
 .le-panel textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospace; }
 .le-danger { color: #b91c1c; }
+.le-room select { min-height: 44px; margin-left: 4px; font: inherit; }
+.le-view { position: relative; justify-self: start; max-width: 100%; line-height: 0; }
+.le-view img { display: block; max-width: 100%; height: auto; border-radius: 8px; }
+.le-view[data-tool] img { cursor: crosshair; outline: 2px solid #2563eb; }
+.le-mark { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 2px #2563eb; pointer-events: none; }
 @media (max-width: 640px) { .le-panels { grid-template-columns: 1fr; } .le-stage { height: 52vh; } }

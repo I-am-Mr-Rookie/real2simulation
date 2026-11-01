@@ -45,6 +45,7 @@ test('quotaView and fmtBytes use only API numbers', () => {
 
 test('jobsState: 404 is not available yet, errors stay errors, lists pass through', () => {
   assert.deepEqual(jobsState(404, null, 'rooms'), { state: 'unavailable', items: [] });
+  assert.deepEqual(jobsState(405, null, 'rooms'), { state: 'unavailable', items: [] });
   assert.equal(jobsState(502, { error: { message: 'down' } }, 'rooms').message, 'down');
   assert.deepEqual(jobsState(200, { rooms: [{ id: 'a' }] }, 'rooms').items, [{ id: 'a' }]);
   assert.deepEqual(jobsState(200, { jobs: [{ id: 'b' }] }, 'experiments').items, [{ id: 'b' }]);

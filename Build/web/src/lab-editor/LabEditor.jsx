@@ -9,6 +9,7 @@ import { defaultScene, makeObject, validateScene, parseScene, sceneJson, fitterR
 import { createPhysics, loadRapier, movingStart, upQuat } from './physics.mjs';
 import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
+import { naturalPoint, trajectoryScene } from '../workspace/measure.mjs';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981 };
@@ -54,6 +55,57 @@ function objectMesh(o) {
   return g;
 }
 
+// N22: live sources. ?room=<job> = room.ply + scene.json from the room job; ?experiment=<id> = the measured track as a lab scene.
+const WS = '/api/workspace';
+const LIVE_ID = /^[A-Za-z0-9_-]{1,64}$/;
+async function getJson(path, init) {
+  const r = await fetch(WS + path, { cache: 'no-store', ...init, headers: init?.body ? { 'content-type': 'application/json' } : undefined });
+  const b = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(b?.error?.message ?? b?.detail?.error?.message ?? b?.detail?.message ?? 'HTTP ' + r.status);
+  return b;
+}
+
+// "Mark the A4 sheet" (two clicks on its long edge) and "Add a real object" (one click) on a model view PNG.
+function RoomTools({ id, room, onReload }) {
+  const [view, setView] = useState(0);
+  const [tool, setTool] = useState(null); // 'a4' | 'object'
+  const [clicks, setClicks] = useState([]);
+  const [busy, setBusy] = useState(false);
+  const [note, setNote] = useState('');
+  const [bust, setBust] = useState(0);
+  const pickTool = (t) => { setTool(tool === t ? null : t); setClicks([]); setNote(t === 'a4' ? 'Click both ends of the A4 sheet long edge (29.7 cm).' : 'Click a real object, for example a chair or table.'); };
+  const send = async (path, body, done) => {
+    setBusy(true);
+    try { const r = await getJson('/rooms/' + id + path, { method: 'POST', body: JSON.stringify(body) }); setTool(null); setClicks([]); setBust((b) => b + 1); await onReload(done(r)); setNote(''); }
+    catch (e) { setNote('Not applied: ' + e.message); setClicks([]); }
+    setBusy(false);
+  };
+  const click = (e) => {
+    if (!tool || busy) return;
+    const el = e.currentTarget, p = naturalPoint(e.nativeEvent.offsetX, e.nativeEvent.offsetY, el.clientWidth, el.clientHeight, el.naturalWidth, el.naturalHeight);
+    if (!p) return;
+    const rc = [p.y, p.x], next = [...clicks, { rc, left: (100 * p.x) / el.naturalWidth, top: (100 * p.y) / el.naturalHeight }];
+    setClicks(next);
+    if (tool === 'object') send('/objects', { view, point: rc }, (r) => 'Added ' + r.object.id + ': ' + r.object.size.map((v) => v.toFixed(2)).join(' x ') + ' m box proxy, ' + r.object.labels.geometry + ', scale ' + r.object.labels.scale + '. ' + r.object.labels.caveat + '.');
+    else if (next.length === 2) send('/scale', { reference: { view, p0: next[0].rc, p1: next[1].rc } }, (r) => 'A4 scale applied: ' + r.room.scale.status + '.');
+  };
+  const sc = room.scale ?? {};
+  return <div className="le-panel le-room">
+    <h3>Your room</h3>
+    <p>Geometry {room.labels?.geometry ?? 'MODEL-ESTIMATED'}. Scale <strong>{sc.status}</strong>{sc.sd != null ? ': ' + sc.metres_per_model_unit.toFixed(3) + ' +/- ' + sc.sd.toFixed(3) + ' m per unit' : ''}. Gravity {room.gravity?.status}{room.gravity?.uncertainty_deg != null ? ' +/- ' + room.gravity.uncertainty_deg + ' deg' : ''}.</p>
+    <div className="le-bar" role="group" aria-label="Room tools">
+      <button type="button" aria-pressed={tool === 'a4'} disabled={busy} onClick={() => pickTool('a4')}>Mark the A4 sheet</button>
+      <button type="button" aria-pressed={tool === 'object'} disabled={busy} onClick={() => pickTool('object')}>Add a real object</button>
+      <label>View <select value={view} onChange={(e) => { setView(Number(e.target.value)); setClicks([]); }}>{Array.from({ length: room.views || 1 }, (_, i) => <option key={i} value={i}>{i + 1}</option>)}</select></label>
+    </div>
+    {note && <p role="status">{busy ? 'Working: ' : ''}{note}</p>}
+    <div className="le-view" data-tool={tool ?? undefined}>
+      <img src={WS + '/rooms/' + id + '/views/' + view + '.png?v=' + bust} alt={'Room view ' + (view + 1) + (tool ? '. Click to ' + (tool === 'a4' ? 'mark the A4 sheet' : 'add an object') : '')} onClick={click} />
+      {clicks.map((c, i) => <span key={i} className="le-mark" style={{ left: c.left + '%', top: c.top + '%' }} aria-hidden="true" />)}
+    </div>
+  </div>;
+}
+
 export default function LabEditor({ initialScene }) {
   const host = useRef(null);
   const api = useRef(null);
@@ -65,6 +117,7 @@ export default function LabEditor({ initialScene }) {
   const [jsonText, setJsonText] = useState('');
   const [message, setMessage] = useState('Add an object, then press Play. Everything here is SIMULATED.');
   const [plyName, setPlyName] = useState(null);
+  const [src, setSrc] = useState(null); // N22 live source: { kind: 'room', id, room } | { kind: 'experiment', id }
   const sceneRef = useRef(scene);
   sceneRef.current = scene;
 
@@ -163,6 +216,11 @@ export default function LabEditor({ initialScene }) {
     };
   }, []);
 
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search), room = p.get('room'), exp = p.get('experiment');
+    if (room && LIVE_ID.test(room)) loadRoom(room); else if (exp && LIVE_ID.test(exp)) loadExperiment(exp);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Rebuild room and object meshes from the scene JSON whenever it changes (not while a run is live).
   useEffect(() => {
     const a = api.current;
@@ -220,6 +278,40 @@ export default function LabEditor({ initialScene }) {
     try { const s = parseScene(text); stop(); setSelected(null); setScene(s); setMessage('Scene loaded: ' + s.objects.length + ' objects.'); }
     catch (e) { setMessage('Scene rejected: ' + e.message); }
   };
+  const showPly = (bytes) => {
+    const { positions, colors } = decodePlyXyzRgb(bytes, plyCount(bytes));
+    const a = api.current;
+    if (a.state.points) { a.room.remove(a.state.points); a.state.points.geometry.dispose(); }
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(colors, 3, true));
+    a.state.points = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.02, vertexColors: true }));
+    a.room.add(a.state.points);
+    return positions.length / 3;
+  };
+  const loadRoom = async (id, note) => {
+    try {
+      const r = await getJson('/rooms/' + id + '/result');
+      const res = await fetch(WS + '/rooms/' + id + '/room.ply', { cache: 'no-store' });
+      if (!res.ok) throw new Error('room.ply HTTP ' + res.status);
+      const n = showPly(new Uint8Array(await res.arrayBuffer()));
+      stop(); setSelected(null); setScene(validateScene(r.scene)); setPlyName('room.ply'); setSrc({ kind: 'room', id, room: r.room });
+      setMessage(note ?? 'Your room: ' + n + ' points, ' + r.scene.objects.length + ' objects. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.');
+    } catch (e) { setMessage('Room not loaded: ' + e.message); }
+  };
+  const loadExperiment = async (id) => {
+    try {
+      const t = trajectoryScene((await getJson('/experiments/' + id)).experiment.result);
+      if (!t) throw new Error('this experiment has no finished track yet');
+      const a = api.current;
+      if (a.state.track) a.three.remove(a.state.track);
+      const geo = new THREE.BufferGeometry().setFromPoints(t.track.map((q) => new THREE.Vector3(...q)));
+      a.state.track = new THREE.Group().add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0x111827 })), new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.025, color: 0x4f46e5 })));
+      a.three.add(a.state.track);
+      stop(); setSelected(null); setScene(validateScene(t.scene)); setSrc({ kind: 'experiment', id });
+      setMessage('Dots and line: your measured track. ' + t.note);
+    } catch (e) { setMessage('Experiment not loaded: ' + e.message); }
+  };
   const loadFile = async (e) => {
     const f = e.target.files?.[0];
     e.target.value = '';
@@ -228,17 +320,10 @@ export default function LabEditor({ initialScene }) {
     if (/\.json$/i.test(f.name)) { applyJson(await f.text()); return; }
     try {
       const bytes = new Uint8Array(await f.arrayBuffer());
-      const { positions, colors } = decodePlyXyzRgb(bytes, plyCount(bytes));
-      const a = api.current;
-      if (a.state.points) { a.room.remove(a.state.points); a.state.points.geometry.dispose(); }
-      const geo = new THREE.BufferGeometry();
-      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-      geo.setAttribute('color', new THREE.BufferAttribute(colors, 3, true));
-      a.state.points = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.02, vertexColors: true }));
-      a.room.add(a.state.points);
+      const n = showPly(bytes);
       setPlyName(f.name);
       edit((s) => ({ ...s, room: { kind: 'ply', floor_y: s.room.floor_y ?? 0, source: f.name.slice(0, 200), scale_verified: false } }));
-      setMessage('Room loaded: ' + positions.length / 3 + ' points. Scale unverified.');
+      setMessage('Room loaded: ' + n + ' points. Scale unverified.');
     } catch (err) { setMessage('Room rejected: ' + err.message); }
   };
 
@@ -252,6 +337,7 @@ export default function LabEditor({ initialScene }) {
     <div className="le-stage">
       <div ref={host} className="le-canvas" data-testid="lab-editor-canvas" />
       <span className="le-chip">SIMULATED</span>
+      {src?.kind === 'experiment' && <span className="le-chip le-warn">Track MEASURED, ball what-if</span>}
       {scene.room.kind === 'ply' && !scene.room.scale_verified && <span className="le-chip le-warn">Room scale unverified</span>}
       <span className="le-time" aria-live="off">t = {time.toFixed(2)} s</span>
     </div>
@@ -284,7 +370,8 @@ export default function LabEditor({ initialScene }) {
         <button type="button" onClick={() => applyJson(jsonText)}>Apply JSON</button>
       </div>
     </div>
-    <AgentPanel scene={scene} onScene={(s, msg) => { stop(); setSelected(null); setScene(s); setMessage(msg); }} />
+    {src?.kind === 'room' && <RoomTools id={src.id} room={src.room} onReload={(note) => loadRoom(src.id, note)} />}
+    <AgentPanel scene={scene} load={!src && !/[?&](room|experiment)=/.test(window.location.search)} onScene={(s, msg) => { stop(); setSelected(null); setScene(s); setMessage(msg); }} />
   </section>;
 }
 

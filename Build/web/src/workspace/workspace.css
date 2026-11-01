@@ -516,6 +516,7 @@ body:has(.r2s-shell) .site-footer { display: none; }
 .lv-jobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: .75rem; align-items: start; }
 .lv-job h4 { margin: 0 0 .3rem; }
 .lv-job ul { margin: 0; padding-left: 1rem; }
+.lv-job li { overflow-wrap: anywhere; }
 .lv-sample-h { margin: 1rem 1rem 0; font-size: 1rem; color: var(--sh-muted, #5a554b); }
 .lv-gpu { display: inline-flex; align-items: center; gap: .4rem; margin-left: auto; font-size: .82rem; white-space: nowrap; }
 .lv-gpu small { color: var(--sh-muted, #5a554b); font-variant-numeric: tabular-nums; }
@@ -542,5 +543,35 @@ body:has(.r2s-shell) .site-footer { display: none; }
 .lv-compose .lv-row { justify-content: flex-end; }
 @media (max-width: 760px) { .lv-wrap { padding: .75rem; } .lv-gpu-text small { display: none; } }
 @media (prefers-reduced-motion: reduce) { .lv-btn, .lv-mode { transition: none; } .lv-gpu[data-tone="yellow"] .lv-dot { animation: none; } }
+/* N22: Mode B measure panel, result chart, job cards */
+.lv-measure, .lv-jobcard { display: grid; gap: .6rem; margin-top: .6rem; padding: .8rem; border: 1px dashed var(--r2s-border-strong, #85858d); border-radius: calc(var(--sh-radius, 6px) + 2px); }
+.lv-measure p, .lv-jobcard p, .lv-result p { margin: 0; }
+.lv-still { position: relative; justify-self: start; max-width: 100%; line-height: 0; }
+.lv-still video { display: block; max-width: 100%; max-height: 60vh; width: auto; height: auto; cursor: crosshair; border-radius: var(--sh-radius, 6px); background: #000; }
+.lv-mark { position: absolute; width: 1.1rem; height: 1.1rem; margin: -.55rem 0 0 -.55rem; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 2px var(--r2s-accent, #4f46e5); pointer-events: none; }
+.lv-field { display: grid; gap: .2rem; font-size: .9rem; }
+.lv-field input, .lv-field select, .lv-share input { min-height: 2.25rem; padding: .3rem .5rem; border: 1px solid var(--r2s-border-strong, #85858d); border-radius: var(--sh-radius, 6px); background: var(--sh-surface, #fffcf5); color: inherit; font: inherit; }
+.lv-size { display: flex; flex-wrap: wrap; gap: .5rem; align-items: end; margin: 0; padding: .6rem; border: 1px solid var(--r2s-border, #c9c4b8); border-radius: var(--sh-radius, 6px); }
+.lv-size .lv-field:first-of-type { flex: 1 1 10rem; }
+.lv-num input { width: 6rem; }
+.lv-size p { flex-basis: 100%; font-size: .85rem; }
+.lv-jobcard progress { width: 100%; height: .5rem; accent-color: var(--r2s-accent, #4f46e5); }
+.lv-jobcard[data-state="failed"] { border-color: var(--r2s-danger, #a3191b); }
+.lv-jobcard[data-state="done"] { border-style: solid; }
+.lv-result { display: grid; gap: .6rem; }
+.lv-qty strong { font: 700 1.35rem/1.2 var(--r2s-font-mono, ui-monospace, monospace); font-variant-numeric: tabular-nums; }
+.lv-labels { margin: 0; padding-left: 1.1rem; font-size: .85rem; }
+.lv-tag[data-tone="warn"] { color: var(--r2s-warn, #8a5a00); }
+.lv-tag[data-tone="ok"] { color: var(--r2s-ok, #1d6a3a); }
+.lv-chart { margin: 0; }
+.lv-chart svg { display: block; width: 100%; max-width: 32rem; height: auto; border: 1px solid var(--r2s-border, #c9c4b8); border-radius: var(--sh-radius, 6px); }
+.lv-chart text { font: 10px var(--r2s-font-mono, ui-monospace, monospace); fill: currentColor; opacity: .75; }
+.lv-band { fill: var(--r2s-accent, #4f46e5); opacity: .18; }
+.lv-curve { fill: none; stroke: var(--r2s-accent, #4f46e5); stroke-width: 1.8; }
+.lv-pt { fill: var(--sh-ink, #18181b); }
+.lv-chart figcaption { font-size: .8rem; margin-top: .25rem; }
+.lv-share input { flex: 1 1 14rem; min-width: 0; font-family: var(--r2s-font-mono, ui-monospace, monospace); font-size: .8rem; }
+.lv-sm { min-height: 1.8rem; padding: .1rem .5rem; font-size: .8rem; }
+.lv-msg .lv-jobcard { margin-top: .4rem; }
 
 
