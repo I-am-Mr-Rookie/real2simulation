@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 02:25 Dhaka (controller)
+- Dispatched N30-orch275 (Sol high, L4 room GPU), N34-orch276 (Sol high, rapier in api image + DEV deploy of N28/N29), N35-orch277 (Sonnet high, GPU lease), N36-orch278 (Opus high 60, model tiers + Sol fallback). Due 02:54 / 03:24 Dhaka. Next: N31 after N30, N33 after N36, N37 after N35+N36, N38 after N34, N32 after N31, N39 after N31.
+
+## 2026-11-02 Dhaka (controller)
+- Koushik: "Go" (freeze lifted). New decision: virtual lab = simplified room with main lab-relevant elements, clutter dropped, chosen automatically (row N39 added, after N31).
+- Infra rows N30, N34, N38 moved to GPT-6.1 Sol to save Koushik's Claude quota for study.
+
 ## 2026-11-02 Dhaka (controller)
 - Koushik N36 decision: Sol fallback fires on Meta API error/timeout, no usable tool call, or number guard blocking twice; not on off-topic refusals, cap/quota limits or bad user input. Sol answers only the failed turn, same physics-only prompt and number guard, $2/day cap. Freeze stays on.
 

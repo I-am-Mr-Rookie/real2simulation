@@ -1,0 +1,7 @@
+{
+ "id": "N35-orch277",
+ "model": "anthropic/claude-sonnet-5-5",
+ "effort": "high",
+ "minutes": 30,
+ "prompt": "Run N35-orch277. Read Run-System/WORKER_CONTRACT.md first and follow it. Model anthropic/claude-sonnet-5-5/high.\nTimebox: issued 2026-11-01T20:24:22+00:00; deadline 2026-11-01T20:54:22+00:00 (Dhaka 2026-11-02T02:54:22+06:00); cutoff 2026-11-01T20:49:22+00:00.\nTask N35: GPU queue crash recovery. Today a crashed GPU job can hold the single queue for up to 30 minutes. Read Build/gpu/ondemand.py, Build/api/gpu/, tests/gpu/test_ondemand.py.\nDo: give each running job a lease with a heartbeat (the job runner refreshes it every ~20 s); if the lease is not refreshed for about 90 s, the job is marked failed with a plain reason (\"GPU job stopped responding\"), its daily_cap reservation is settled or released correctly (no double charge, no free run), and the next queued job starts. Never run the same job twice. Keep the existing 15-minute scale-to-zero. Smallest change in the existing queue code.\nTests: a killed job frees the queue within the lease; a slow but alive job is not killed; no double run; cap reservation released.\nChecks: uv pytest tests/gpu tests/guardrails/test_daily_cap.py (see WORKER_CONTRACT). No paid calls, no deploy. A cross-vendor review (N37) follows.\nOwns: Build/gpu/ondemand.py; Build/api/gpu/; tests/gpu/test_ondemand.py; tests/gpu/test_lease.py; evidence/N35/."
+}

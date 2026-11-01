@@ -1,0 +1,7 @@
+{
+ "id": "N30-orch275",
+ "model": "gpt-6.1-sol",
+ "effort": "high",
+ "minutes": 30,
+ "prompt": "Run N30-orch275. Read Run-System/WORKER_CONTRACT.md first and follow it. Model gpt-6.1-sol/high.\nTimebox: issued 2026-11-01T20:24:03+00:00; deadline 2026-11-01T20:54:03+00:00 (Dhaka 2026-11-02T02:54:03+06:00); cutoff 2026-11-01T20:49:03+00:00.\nTask N30: switch the room rebuild GPU (MapAnything) from A10G to L4, keep A10G as a fallback. Read Run-System/PLAN-NOV1.md \"Owner decisions (Nov 2)\", Build/gpu/image_spec.py, Build/gpu/ondemand.py, Build/gpu/scene_job.py. Measured peak was 7.78 GB on 8 frames at 518x392 bf16, so L4 24 GB should fit.\nDo: set the room job GPU to \"L4\"; if the L4 job fails with OOM or no capacity, retry once on A10G and record which GPU ran in the job result. Update the cost estimate per GPU used by the daily cap (Modal list prices; cite the source in a comment). Tests for the fallback choice and cost.\nLive: deploy the Modal app (modal deploy, the existing r2s-ondemand app) and run ONE test room job on evidence clip RM02 (Pexels) through the existing path; record peak GPU memory, wall time, GPU type and estimated cost in evidence/N30/run.json; ledger it under daily_cap. At most $0.50.\nChecks: tests/gpu, tests/reconstruction/test_live_room.py with uv (see WORKER_CONTRACT). No Railway deploy.\nOwns: Build/gpu/; tests/gpu/; evidence/N30/."
+}

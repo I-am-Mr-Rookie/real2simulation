@@ -86,4 +86,8 @@ write it under "Reviews for Koushik" (STATE Owner questions -> RUNS.md) and keep
 - N36 fallback rule (Koushik, Nov 2): GPT-6.1 Sol fires for any of these failures on a Meta model: an API error or timeout, a reply
   with no usable tool call, or the number guard blocking the answer twice. It does not fire for off-topic refusals, cap or quota limits,
   or bad user input. Sol answers only that failed turn, under the same physics-only prompt and number guard. Sol limit $2/day.
-- Dispatch freeze (Nov 1 23:35) still applies: rows below wait for Koushik's go.
+- Virtual lab is a simplified room, not a carbon copy (Koushik, Nov 2): keep the main elements (floor, walls, tables, chairs, balls,
+  ramps, pendulums and other lab-relevant objects); drop personal items and clutter. The system/agent picks the elements automatically
+  (detect -> keep lab-relevant -> box for physics + SF3D shape on top); collisions come from the kept elements plus floor and walls.
+  The raw point cloud is at most an optional faint backdrop.
+- Dispatch freeze lifted by Koushik ("Go", Nov 2). To save Koushik's Claude quota for study, infra rows N30, N34, N38 run on GPT-6.1 Sol.
