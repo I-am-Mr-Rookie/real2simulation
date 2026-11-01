@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 19:53 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 20:20 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **308 / 320** runs done · 2 in progress · 0 blocked · 2 waiting for Koushik · 0 open reviews
+Progress: **309 / 322** runs done · 2 in progress · 0 blocked · 3 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -20,15 +20,16 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - Nothing ready yet: check dependencies and retry holds below.
 
 **CLAUDE**
-- Nothing ready yet: check dependencies and retry holds below.
+- [ ] **N17** — Codex (native Claude) · Sonnet 5.5, effort medium — New 3-min demo script + read sheet for the owner's voice-over (30 min)
 
 ## In progress
 
-- [~] **N13** — Codex (native Claude) · Sonnet 5.5, effort high — End-to-end QA on DEV: both modes, 3 fresh accounts (60 min) *(in progress)*
 - [~] **N24** — Codex (native Claude) · Opus 5.5, effort high — Product polish pass: coherent live-product copy, lab workspace layout, room camera framing, chart axes, projects list (60 min) *(in progress)*
+- [~] **N25** — Codex (native Claude) · Opus 5.5, effort medium — Backend fixes for N13 QA findings (F1 pixel fit, F2 sample row, F4 assumed scale, F5 guard retry, F6 A4 plausibility, F8 429 reason, F9 poll race) (60 min) *(in progress)*
 
 ## Waiting for Koushik
 
+- [ ] **S23a** — Authorize frozen judging promotion (10 min)
 - [ ] **S26a** — Submit approved project on Cerebral Valley (30 min)
 - [ ] **N06** — Film new owner clips (room, pendulum, ramp, optional spin) (30 min)
 
@@ -47,7 +48,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (18/24)</summary>
+<details><summary><b>N</b> —  (19/26)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -61,7 +62,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N10** — Codex (native Claude) · Opus 5.5, effort high — Lab editor: place, move, rotate, resize objects with live physics (60 min)
 - [x] **N11** — Codex (native Claude) · Sonnet 5.5, effort high — DEV infra for live mode + sample project on every new account (60 min)
 - [x] **N12** — Codex (native Claude) · Opus 5.5, effort high — Agent-run experiments in the lab + lab report (Muse Image illustration) (60 min)
-- [~] **N13** — Codex (native Claude) · Sonnet 5.5, effort high — End-to-end QA on DEV: both modes, 3 fresh accounts (60 min) *(in progress)*
+- [x] **N13** — Codex (native Claude) · Sonnet 5.5, effort high — End-to-end QA on DEV: both modes, 3 fresh accounts (60 min)
 - [x] **N14** — Codex (native Claude) · Opus 5.5, effort medium — Stretch: click an object in the room -> SAM 3.1 cut-out -> SAM 3D Objects -> lab object (60 min)
 - [x] **N15** — Codex (native Claude) · Opus 5.5, effort high — Stretch: agent-proposed equation fitted in a sandbox (e.g. flywheel) (60 min)
 - [x] **N16** — Codex (native Claude) · Sonnet 5.5, effort medium — Guess the Gravity share link (30 min)
@@ -73,6 +74,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N22** — Codex (native Claude) · Opus 5.5, effort high — Live UI wiring: Mode B start + result view, Mode A start/A4 click/open in lab, object click, share button (60 min)
 - [x] **N23** — Codex (native Claude) · Opus 5.5, effort high — DEV: make Meta Model API reachable (api region or egress), rooms list route, redeploy, DEV smoke both modes (60 min)
 - [~] **N24** — Codex (native Claude) · Opus 5.5, effort high — Product polish pass: coherent live-product copy, lab workspace layout, room camera framing, chart axes, projects list (60 min) *(in progress)*
+- [~] **N25** — Codex (native Claude) · Opus 5.5, effort medium — Backend fixes for N13 QA findings (F1 pixel fit, F2 sample row, F4 assumed scale, F5 guard retry, F6 A4 plausibility, F8 429 reason, F9 poll race) (60 min) *(in progress)*
+- [ ] **N26** — Codex (native Claude) · Sonnet 5.5, effort medium — Web fixes for N13 findings (F3 contributor race, F8 quota message, F1/F4 result display) from evidence/N25/WEB_TODO.md, then DEV redeploy smoke (30 min)
 
 </details>
 

@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-01 20:20 Dhaka (controller)
+- Accepted N13-orch267 (QA on DEV, 5 accounts): 2 P1, 4 P2, 4 P3 in evidence/N13/FINDINGS.md. Both modes, share, files, quotas, isolation, 375 px pass. Paid about $1.2 (estimate).
+- Dispatched N25-orch269 (Opus medium, 60 min, due 21:18 Dhaka): backend fixes F1/F2/F4/F5/F6/F8/F9. Added N26 (Sonnet medium, web fixes after N24+N25).
+
 ## Controller — Nov 1 ~19:50 Dhaka: N22 + N23 accepted; both live modes work on DEV
 
 - N23: Railway egress (any region) gets 0 models from the Meta Model API; Modal us-east lists all 9. Fix: Modal app r2s-meta-proxy
