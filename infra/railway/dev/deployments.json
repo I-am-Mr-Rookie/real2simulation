@@ -7,19 +7,20 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "1efdd9cb-47d5-42a3-a4ed-4ff314885210",
-      "previousDeploymentId": "f0e30fd5-2053-4d19-8203-b3466da927b3",
-      "redeployNote": "N34: N28/N29 lab editor and mobile timer separation",
-      "sourceRevision": "38f5ec6972c082cefab716f2b733c6ddeca37c86",
-      "verifiedUtc": "2026-11-01T20:33:32Z",
+      "deploymentId": "1ff87810-a9a7-4527-9358-7a9b9482e66b",
+      "previousDeploymentId": "1efdd9cb-47d5-42a3-a4ed-4ff314885210",
+      "redeployNote": "controller: N36 tier UI + lab gap fix",
+      "sourceRevision": "a932d0f724ac55fdc3872abe179af595f8b1a858",
+      "verifiedUtc": "2026-11-01T21:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "e5f1df87-3181-4683-9cbb-d6c4deb009b1",
+      "deploymentId": "eac25189-f407-4f4a-8615-676168f41e62",
       "previousDeploymentIds": [
+        "e5f1df87-3181-4683-9cbb-d6c4deb009b1",
         "e0619429-4553-4fde-b5a9-36b117cc134e",
         "20fa6b1f-e9ee-4ab1-90ac-152e95775ce1",
         "cd0230fa-f498-426d-a78a-35597ad703a7",
@@ -33,8 +34,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "db6060d2a994f8f1f36f2507a64b07ecdf7a0c72",
-      "verifiedUtc": "2026-11-01T20:33:32Z",
+      "sourceRevision": "a932d0f724ac55fdc3872abe179af595f8b1a858",
+      "verifiedUtc": "2026-11-01T21:00Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -50,7 +51,7 @@
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "cd0230fa-f498-426d-a78a-35597ad703a7",
-      "redeployNote": "N34: Rapier 0.21.0, actual-engine reports, frame.mjs and hash-verified shared SAMPLE bundle; initial build failed safely on missing frame.mjs",
+      "redeployNote": "controller: N30 L4 + N35 lease + N36 tiers/fallback",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {

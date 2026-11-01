@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 03:02 Dhaka (controller)
+- Accepted N34 (rapier in api image, report engine banner, 375 chip fix; DEV smoke: agent g 9.809993 +/- 0.014 on Rapier), N35 (GPU job lease 90 s + heartbeat, reaper settles cap once), N30 (L4 primary + bounded A10G retry, per-GPU reservations; live L4 smoke never got capacity in 16 min, $0.4086 reserved and settled conservatively; no GPU/memory measurement yet), N36 (tiers Contributor / Spark / Muse Open, hidden Sol fallback via Merge, $2/day Sol cap; edits to workspace/live*.mjs accepted as task-required). Controller spend review of N30: correct; changed ROOM_START_BUDGET_S 120 -> 240 because get() covers cold start + inference, not only queue wait.
+- Main green: node 407/407, python 284, build ok. DEV api eac25189 + web 1ff87810 (a932d0f7); verify.py exit 0; /, /workspace, /lab?editor=1 200. Deployed now because Modal r2s-ondemand already ran L4 and the old DEV api had no fallback.
+- Open: live_room.py does not pass reservation to gpu_jobs.enqueue (N35), so a reaped room job keeps its reservation at full estimate (conservative). N34 smoke: report-only second turn re-added a ball. N30's queued RM02 smoke input may still run later on L4 (cost already ledgered).
+- Dispatched N31-orch279 (Opus high 60, SF3D, first live L4 room job on N06_room), N33-orch280 (Opus high 60, lab kit + delete key + undo/redo), N37-orch281 (Sol high, review N35/N36), N38-orch282 (Sol high, DB to US). Due 03:31 to 04:01 Dhaka.
+
 ## 2026-11-02 Dhaka (controller)
 - N06 room clip received: Videos for Meta AI Hackathon/N06_room.mp4, 1920x1080 landscape, 30 fps, 48.3 s, 96.6 MB. Shows walls, door, window, two tables, chairs, sofa, shelves; A4 sheet on the desk (not the floor). Clutter and a laptop screen with text in view, no faces seen in sampled frames. PRIVATE owner clip; not for public use without Koushik's go-ahead. Pendulum/ramp/spin clips still open (N06 stays TODO for them).
 - Koushik decision: the room lab is a simple shell (floor, walls, windows, doors, main furniture) at average detail; equipment comes from the editor/agent kit. N39 updated, N06_room is its test clip.
