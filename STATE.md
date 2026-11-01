@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 06:10 Dhaka (controller)
+- Accepted N40 (Sol): N37 F1 to F5 fixed (missing or invalid usage keeps the reservation; status reaping under BEGIN IMMEDIATE; refusals, provider 400/413/422 and rejected tool attempts are terminal and never call Sol); live_room catches builtin and Modal TimeoutError, cancels the L4 input, then retries on A10G; each GPU attempt is queued with its reservation so a reaped job settles once. Controller (Claude) cross-vendor review of the core.py and gpu diff: correct. No paid calls. Python 372 passed.
+- Not covered: N31's two orphan L4 room inputs were not cancelled (future calls are protected).
+
 ## 2026-11-02 05:45 Dhaka (controller)
 - Accepted N31 (Stable Fast 3D: own Modal app r2s-sf3d, L4 with A10G fallback, scale to zero after 60 s idle instead of 900 because a warm GPU per click costs more than the job; SF3D mesh fitted into the measured box is the physics shape: trimesh for fixed, convex hull for movable; box fallback with reason; caption MODEL-GENERATED shape / Powered by Stability AI). Rebase conflicts with N33 in LabEditor.jsx, physics.mjs, scene.mjs resolved by the controller (kit kinds + shape key + mesh collider combined). Main green: node 413/413, python 292, build ok.
 - N31 live on N06_room (private, nothing committed): L4 had no capacity twice (240 s each); A10G room job: peak 8.03 GB, inference 2.1 s, 39.2 s round trip. SF3D on A10G: cold load 130.8 s, inference 1.5 s, peak 6.46 GB, 1796 triangles; ball contact on the mesh 0.03 to 0.14 m vs box 0.144 m. Spend $1.4967 (cap $1.50), ledgered in the worker's local ledger (no canonical local ledger exists; DEV ledger is on Railway). Two queued L4 room inputs may still run later.
