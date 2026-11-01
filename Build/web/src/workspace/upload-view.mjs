@@ -21,7 +21,8 @@ export function renderUpload(h, v, onFile) {
       h('span', { className: 'ws-drop-art', 'aria-hidden': true }),
       h('span', { className: 'ws-drop-cta', 'aria-hidden': true }, 'Drop a clip or browse'),
       h('input', { id: 'ws-upload-file', type: 'file', accept: ACCEPT, disabled: off, 'aria-describedby': 'ws-upload-hint ws-upload-status',
-        onChange: (e) => { const file = e.target.files?.[0]; if (file) onFile(file); } }),
+        // S15bd: clear the input so re-picking the same file after an error fires change again
+        onChange: (e) => { const file = e.target.files?.[0]; e.target.value = ''; if (file) onFile(file); } }),
       h('span', { id: 'ws-upload-hint', className: 'ws-hint' }, 'Only approved licensed clips listed in clips.csv are accepted; other files are rejected by checksum.')),
     v.upload && v.disabled ? h('progress', { className: 'ws-meter', max: 100, value: v.percent, 'aria-label': 'Upload progress' }) : null,
     h('p', { id: 'ws-upload-status', className: 'ws-progress', role: 'status', 'aria-live': 'polite' }, v.status),

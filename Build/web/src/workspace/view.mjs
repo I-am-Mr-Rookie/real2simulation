@@ -61,7 +61,18 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
       // S15z: at report.owner the stage panel already shows the result card; keep only a one-line pointer here
       provenance ? renderProvenance(h, provenance, layout.phase === 'report.owner') : null,
       renderStatus(h, jobStatus.surface, onAction),
-      ...errs.map((e, i) => h('p', { key: 'err' + i, className: 'ws-error', role: 'alert' }, e.code + ': ' + e.message))));
+      ...errs.map((e, i) => renderError(h, e, i, layout.phase, onAction))));
+}
+
+export const NOT_APPROVED = 'This clip is not on the approved list. Try a demo clip from the library; your own videos cannot be processed in this build.';
+// S15bd: upload-stage errors only. Non-allowlisted clip: plain words, code kept small. Service down: visible "Try again" (re-runs the last upload).
+function renderError(h, e, i, phase, onAction) {
+  const key = 'err' + i, up = phase === 'upload.idle';
+  if (up && e.code === 'INVALID_INPUT') return h('p', { key, className: 'ws-error', role: 'alert' }, NOT_APPROVED + ' ', h('small', { className: 'ws-code' }, e.code));
+  if (up && e.code === 'DEPENDENCY_UNAVAILABLE') return h('div', { key, className: 'ws-failure', 'data-stage': 'upload' },
+    h('p', { className: 'ws-error', role: 'alert' }, e.code + ': ' + e.message),
+    h('button', { type: 'button', className: 'ws-retry', 'data-event': 'UPLOAD_RETRY', disabled: !onAction, onClick: () => onAction?.({ type: 'UPLOAD_RETRY' }) }, 'Try again'));
+  return h('p', { key, className: 'ws-error', role: 'alert' }, e.code + ': ' + e.message);
 }
 
 // S15q: server job provenance (jobs.py recorded replay) shown verbatim: per-stage RECORDED labels + understand UTC. Text only.
@@ -103,6 +114,8 @@ function renderMeasurement(h, m, chart = true) {
   const yours = us?.status === 'declared' ? 'Your known size: ' + s(us.object) + ' = ' + s(us.length_m) + ' m (' + s(us.label) + ')' : us ? s(us.label) : null;
   return h('div', { className: 'ws-measurement', 'data-status': s(m.status), role: 'status', 'aria-label': 'Clip result' },
     m.live_fit && typeof m.live_fit === 'object' ? renderLiveFit(h, m.live_fit) : null,
+    m.live_fit && m.status === 'recorded' ? h('hr', { className: 'ws-divider' }) : null,
+    m.live_fit && m.status === 'recorded' ? h('h4', { className: 'ws-subhead' }, 'Recorded reference (not affected by your scale)') : null,
     h('p', null, s(m.clip_id) + ' \u00b7 ' + s(m.input_label) + ' \u00b7 ' + s(m.label)),
     // S15an: unit typeset only (m/s^2 -> m/s²; same stored numbers); the long source path sits in a collapsed "Source" detail.
     m.status === 'recorded' ? h('p', null, 'Recorded reference (precomputed, S07m): ', h('strong', null, 'g = ' + s(m.g) + ' ± ' + s(m.u) + ' ' + s(m.unit).replace('^2', '²')), ' (' + s(m.measured_label) + ')') : null,

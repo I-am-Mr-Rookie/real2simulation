@@ -55,6 +55,7 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
   const patch = (m) => { Object.assign(meta, m); onChange?.(snap()); };
   const dispatch = (event, deps) => set(reduce(state, event, deps));
   const failWith = (error) => { set({ ...state, error }); return null; };
+  let lastFile = null; // S15bd: kept only so "Try again" can re-run the last upload
 
   async function call(method, path, body, headers = {}) {
     let res;
@@ -91,10 +92,12 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
     get state() { return state; },
     snapshot: snap,
     dispatch,
+    retryUpload() { return lastFile ? this.upload(lastFile) : null; },
 
     // file: File/Blob with name, type, size. Bytes go up in policy-sized chunks; the server decides approval by sha256.
     async upload(file) {
       if (meta.busy) return null;
+      lastFile = file;
       patch({ busy: true, upload: { name: file?.name ?? 'upload', committed: 0, total: file?.size ?? 0 }, events: [], report: null });
       try {
         // shortcut: whole file in memory (crypto.subtle has no streaming hash); fine for approved short clips, upgrade to chunked hashing if large uploads are allowed.

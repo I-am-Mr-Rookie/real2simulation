@@ -52,6 +52,7 @@ export async function routeAction(ctl, local, a) {
     if (answers) await ctl.submitAnswers(answers);
     return local;
   }
+  if (t === 'UPLOAD_RETRY') { await ctl.retryUpload(); return local; }
   if (t.startsWith('I_')) {
     let instruments = reduceInstruments(local.instruments, a, ctl.state);
     // shortcut: no instrument service exists in this build; a measure request fails honestly instead of inventing a reading.
@@ -63,6 +64,17 @@ export async function routeAction(ctl, local, a) {
   else if (t === 'REPORT_OPEN') await ctl.openReport();
   else if (t) ctl.dispatch(a); // remaining graph edges (cancel, close, reset, retry) are pure reducer moves
   return local;
+}
+
+export const SESSION_KEY = 'r2s-ws-interview';
+export const SESSION_RESET = 'Your earlier session was reset by the page reload. Upload the clip again to start over.';
+// S15bd: sessionStorage holds only a flag (no session data). Flag set during the interview; idle with flag = reloaded mid-interview.
+export function sessionNote(storage, phase) {
+  try {
+    if (phase === 'interview.active') storage.setItem(SESSION_KEY, '1');
+    else if (phase !== 'upload.idle') storage.removeItem(SESSION_KEY);
+    return phase === 'upload.idle' && storage.getItem(SESSION_KEY) === '1';
+  } catch { return false; }
 }
 
 export default function PrivateWorkspace({ scene }) {
@@ -80,6 +92,8 @@ export default function PrivateWorkspace({ scene }) {
     if (api !== 'live' || phase !== 'interview.active' || s.questions) return;
     ctl.loadQuestions().then((r) => r && setLocal((l) => ({ ...l, interview: reduceInterview(l.interview, { type: 'Q_LOADED', response: r, sceneId: ctl.state.scene?.scene_id ?? ctl.state.owner?.jobId }) })));
   }, [api, phase, s.questions, ctl]);
+  const [resetNote, setResetNote] = useState(false);
+  useEffect(() => setResetNote(sessionNote(globalThis.sessionStorage, phase)), [phase]);
   const live = api === 'live';
   const onAction = live ? (a) => routeAction(ctl, localRef.current, a).then((l) => {
     if (shouldCloseOnFinish({ action: a, interview: l.interview, narrow: narrow() })) { opened.current = false; setRight(false); }
@@ -159,6 +173,7 @@ export default function PrivateWorkspace({ scene }) {
     live ? null : React.createElement('p', { role: 'note' }, scene.notice),
     // the upload error is rendered once, by the workspace job panel (S15n limit: avoid a double alert)
     live ? renderUpload(React.createElement, { ...up, error: null }, (file) => ctl.upload(file)) : null,
+    live && resetNote ? React.createElement('p', { role: 'note', className: 'ws-note', 'data-slot': 'session-reset' }, SESSION_RESET) : null,
     live && simulated ? React.createElement('p', { role: 'note', 'data-label': s.whatIfLabel ? 'what-if' : 'simulated' }, s.whatIfLabel
       ? s.whatIfLabel + '. Run and fit values come from the in-browser simulator on your described setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')
       : 'SIMULATED: run and fit values come from the in-browser simulator on the validated setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')) : null,
