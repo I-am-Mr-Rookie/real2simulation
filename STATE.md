@@ -1,6 +1,10 @@
 # Real2Simulation — STATE
 
 ## 2026-11-02 Dhaka (controller)
+- N06 room clip received: Videos for Meta AI Hackathon/N06_room.mp4, 1920x1080 landscape, 30 fps, 48.3 s, 96.6 MB. Shows walls, door, window, two tables, chairs, sofa, shelves; A4 sheet on the desk (not the floor). Clutter and a laptop screen with text in view, no faces seen in sampled frames. PRIVATE owner clip; not for public use without Koushik's go-ahead. Pendulum/ramp/spin clips still open (N06 stays TODO for them).
+- Koushik decision: the room lab is a simple shell (floor, walls, windows, doors, main furniture) at average detail; equipment comes from the editor/agent kit. N39 updated, N06_room is its test clip.
+
+## 2026-11-02 Dhaka (controller)
 - Koushik: SF3D objects must be real physics objects, not decoration on boxes. N31/N39 updated: mesh scaled into the measured box, decimated (1 to 3k triangles), Rapier trimesh (static) or convex hull (movable), category mass/friction MODEL-ESTIMATED; box only as failure fallback.
 
 ## 2026-11-02 02:25 Dhaka (controller)

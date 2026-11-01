@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Nov 02, 02:30 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 02, 02:46 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -91,7 +91,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [~] **N36** — Codex (native Claude) · Opus 5.5, effort high — Agent model tiers: contributor Muse Spark 1.3; standard Muse Open (Baseten) or Muse Spark 1.3 standard (user choice); hidden GPT-6.1 Sol fallback (Merge gateway) only for the failed turn, with its own daily cap (60 min) *(in progress)*
 - [ ] **N37** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review of N35 and N36 spend/queue code (30 min)
 - [ ] **N38** — Codex · GPT-6.1 Sol, effort high — Move DEV Postgres and Redis to the US region next to the api: backup, restore, verify, keep SG until verified (30 min)
-- [ ] **N39** — Codex (native Claude) · Opus 5.5, effort high — Room -> simplified lab: auto-detect main elements (hosted SAM 3.1 text prompts on keyframes, lab-relevant allowlist), keep them as SF3D physics objects (box fallback), drop clutter, floor and wall planes; collisions from kept elements; point cloud optional backdrop (60 min)
+- [ ] **N39** — Codex (native Claude) · Opus 5.5, effort high — Room -> simple lab shell: floor and wall planes with windows/doors as wall features, main furniture (tables, chairs, sofa, shelves) detected with hosted SAM 3.1 text prompts on keyframes and kept as SF3D physics objects (box fallback), all clutter and personal items dropped, no equipment detection (equipment comes from the N33 kit); point cloud optional backdrop (60 min)
 
 </details>
 

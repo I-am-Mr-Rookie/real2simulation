@@ -95,4 +95,8 @@ write it under "Reviews for Koushik" (STATE Owner questions -> RUNS.md) and keep
   (about 1 to 3k triangles) and used as a Rapier trimesh collider for static room objects (table, chair) and a convex hull for movable
   ones; mass and friction from the object category, labelled MODEL-ESTIMATED. The measured box is only the fallback when SF3D fails
   (reason shown). Label "MODEL-GENERATED shape" + "Powered by Stability AI" stays.
+- Room lab content (Koushik, Nov 2, with N06_room.mp4): the room becomes a simple lab shell: floor, walls, windows, doors, and the
+  main furniture (tables, chairs, sofa, shelves) with average detail and real measurements; nothing else. Personal items and clutter
+  are dropped. Physics equipment is not expected in home rooms: users add it with the editor or the agent from the standard lab kit
+  (N33). N39 must not try to detect equipment in the clip; windows and doors are wall features.
 - Dispatch freeze lifted by Koushik ("Go", Nov 2). To save Koushik's Claude quota for study, infra rows N30, N34, N38 run on GPT-6.1 Sol.
