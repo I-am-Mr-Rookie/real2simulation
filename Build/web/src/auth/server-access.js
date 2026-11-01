@@ -1,6 +1,6 @@
 import 'server-only';
 import { auth } from '@clerk/nextjs/server';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { getClerkConfiguration } from './server-config';
 import { authorizePrivateScene } from './access.mjs';
 import { developmentScenesEnabled, fixtureSceneId } from './dev-scenes.mjs';
@@ -25,6 +25,8 @@ export async function requirePrivateScene(sceneId) {
 
 export async function requireOwnFixtureSceneId() {
   const identity = await readIdentity();
+  // S15bc: a verified logged-out visitor goes to sign-in; config/auth failure and other users stay uniform 404.
+  if (identity && identity.isAuthenticated !== true) redirect('/sign-in');
   if (identity?.isAuthenticated !== true || !fixtureSceneId(identity.userId)) notFound();
   return fixtureSceneId(identity.userId);
 }

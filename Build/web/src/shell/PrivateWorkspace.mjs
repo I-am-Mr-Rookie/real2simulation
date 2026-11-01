@@ -12,7 +12,7 @@ import { initialInterview, reduceInterview, interviewAnswers } from '../workspac
 import { initialInstruments, reduceInstruments } from '../workspace/instruments.mjs';
 import { initialRun } from '../workspace/runcontrol.mjs';
 import { renderShell, toolsOf, shellKey, initialRail, railReduce, LEFT_KEY, PANE_KEY, NARROW_QUERY, HOVER_OPEN_MS, HOVER_CLOSE_MS } from './workspace-shell.mjs';
-import { renderQuestionCard, renderWaiting, pendingOf, shouldAutoOpen } from './agent-card.mjs';
+import { renderQuestionCard, renderWaiting, pendingOf, shouldAutoOpen, shouldCloseOnFinish } from './agent-card.mjs';
 import { icon } from './icons.mjs';
 
 const Workspace = createWorkspace(React);
@@ -81,7 +81,10 @@ export default function PrivateWorkspace({ scene }) {
     ctl.loadQuestions().then((r) => r && setLocal((l) => ({ ...l, interview: reduceInterview(l.interview, { type: 'Q_LOADED', response: r, sceneId: ctl.state.scene?.scene_id ?? ctl.state.owner?.jobId }) })));
   }, [api, phase, s.questions, ctl]);
   const live = api === 'live';
-  const onAction = live ? (a) => routeAction(ctl, localRef.current, a).then(setLocal) : undefined;
+  const onAction = live ? (a) => routeAction(ctl, localRef.current, a).then((l) => {
+    if (shouldCloseOnFinish({ action: a, interview: l.interview, narrow: narrow() })) { opened.current = false; setRight(false); }
+    setLocal(l);
+  }) : undefined;
   const up = uploadView(s);
   const simulated = /^(run|fit)\.|^report\.open$/.test(phase); // run/fit/report numbers are browser-simulated, never recorded (report.owner is the stored owner result)
   // S15ab shell state: left expanded/collapsed (persisted on wide screens), right panel open/closed with focus in and back.

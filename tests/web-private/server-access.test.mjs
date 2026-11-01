@@ -24,7 +24,8 @@ const hooks = registerHooks({ resolve(specifier, context, next) {
     }`);
     if (specifier === 'next/navigation') return source(`export function notFound() {
       throw Object.assign(new Error('Not found'), { digest: 'NEXT_HTTP_ERROR_FALLBACK;404' });
-    }`);
+    }
+    export function redirect(url) { throw Object.assign(new Error('redirect'), { digest: 'NEXT_REDIRECT;replace;' + url + ';307;' }); }`);
     if (specifier === './server-config') return source('export const getClerkConfiguration = () => ({ available: globalThis.__S04I_AUTH_TEST__.available });');
     if (specifier === './scene-repository') return { url: new URL('./scene-repository.js', facadeUrl).href, shortCircuit: true };
   }
@@ -70,6 +71,12 @@ test('actual facade uniformly throws Next 404 for guest, other owner, unknown, m
 });
 
 test('actual facade denies even the owner outside development, without reading a session', async () => {
+  for (const identity of [{ isAuthenticated: false, userId: null }, {}]) {
+    state.identity = identity;
+    await assert.rejects(() => requireOwnFixtureSceneId(), { digest: /^NEXT_REDIRECT;replace;\/sign-in;/ });
+  }
+  state.identity = null; // unverifiable identity stays a uniform 404, never a sign-in hint
+  await denied(() => requireOwnFixtureSceneId());
   state.identity = { isAuthenticated: true, userId: 'user_owner' };
   const before = state.calls.length;
   process.env.NODE_ENV = 'production';

@@ -4,7 +4,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { initialInterview, reduceInterview } from '../../Build/web/src/workspace/interview.mjs';
-import { renderQuestionCard, renderWaiting, pendingOf, shouldAutoOpen, cardKey } from '../../Build/web/src/shell/agent-card.mjs';
+import { renderQuestionCard, renderWaiting, pendingOf, shouldAutoOpen, shouldCloseOnFinish, cardKey } from '../../Build/web/src/shell/agent-card.mjs';
 import { renderShell, toolsOf } from '../../Build/web/src/shell/workspace-shell.mjs';
 import { routeAction } from '../../Build/web/src/shell/PrivateWorkspace.mjs';
 
@@ -96,3 +96,10 @@ test('auto-open: once per new round, never after the user closed it with questio
   assert.equal(shouldAutoOpen({ asking: false, newRound: true, userClosed: false }), false);
 });
 
+
+test('S15bc: Finish closes the panel on narrow screens only', () => {
+  const done = { status: 'complete' };
+  assert.equal(shouldCloseOnFinish({ action: { type: 'Q_SUBMIT' }, interview: done, narrow: true }), true);
+  assert.equal(shouldCloseOnFinish({ action: { type: 'Q_SUBMIT' }, interview: done, narrow: false }), false);
+  assert.equal(shouldCloseOnFinish({ action: { type: 'Q_SUBMIT' }, interview: { status: 'asking' }, narrow: true }), false);
+});

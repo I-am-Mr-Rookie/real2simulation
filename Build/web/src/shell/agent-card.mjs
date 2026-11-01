@@ -10,6 +10,9 @@ export const pendingOf = (s) => (s?.status === 'asking' ? s.questions.length - s
 // S15ay: never on narrow screens (the full-screen panel hid the result); the toggle badge shows the waiting question.
 export const shouldAutoOpen = ({ asking, newRound, userClosed, narrow = false }) => asking && newRound && !userClosed && !narrow;
 
+// S15bc: Finish on the last question closes the panel on narrow screens so the result card is visible; desktop keeps it open.
+export const shouldCloseOnFinish = ({ action, interview, narrow = false }) => narrow && action?.type === 'Q_SUBMIT' && interview?.status === 'complete';
+
 // Keys inside the card: 1..9 pick an option (not while typing), Ctrl/Cmd+Enter continues. Returns a Q_* action or null.
 export function cardKey(e, v) {
   if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') return { type: 'Q_SUBMIT' };
