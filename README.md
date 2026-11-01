@@ -101,3 +101,7 @@ event work.
 
 Run system and owner checklists: [START.md](START.md), [RUNS.md](RUNS.md), [QUEUE.md](QUEUE.md),
 [DECISIONS_LOG.md](DECISIONS_LOG.md), [JUDGE_RUBRIC.md](JUDGE_RUBRIC.md), [GitHub Backup.md](GitHub%20Backup.md).
+
+## Credits
+
+Powered by Stability AI: room objects use Stable Fast 3D under the [Stability AI Community License](LICENSES/Stability-AI-Community-License.md) ([NOTICE](NOTICE)). Its outputs are not used to train models.
