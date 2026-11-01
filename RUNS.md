@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 17:36 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 17:44 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **296 / 316** runs done · 0 in progress · 0 blocked · 2 waiting for Koushik · 0 open reviews
+Progress: **296 / 316** runs done · 5 in progress · 0 blocked · 2 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -14,16 +14,21 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- [ ] **N19** — Codex · GPT-6.1 Sol, effort high — Cross-vendor security/spend review of N03, N04, N05 (30 min)
+- Nothing ready yet: check dependencies and retry holds below.
 
 **CODEX-2**
 - Nothing ready yet: check dependencies and retry holds below.
 
 **CLAUDE**
-- [ ] **N07** — Codex (native Claude) · Opus 5.5, effort high — Mode B live pipeline: upload -> hosted SAM track -> scale -> fit -> 3D replay (60 min)
-- [ ] **N08** — Codex (native Claude) · Opus 5.5, effort high — Mode A live pipeline: room video -> MapAnything on demand -> scaled room + floor/gravity (60 min)
-- [ ] **N09** — Codex (native Claude) · Opus 5.5, effort high — Workspace UI: mode chooser, agent chat + voice, files panel, GPU status dot, contributor onboarding (60 min)
-- …and 1 more ready in this lane
+- Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **N07** — Codex (native Claude) · Opus 5.5, effort high — Mode B live pipeline: upload -> hosted SAM track -> scale -> fit -> 3D replay (60 min) *(in progress)*
+- [~] **N08** — Codex (native Claude) · Opus 5.5, effort high — Mode A live pipeline: room video -> MapAnything on demand -> scaled room + floor/gravity (60 min) *(in progress)*
+- [~] **N09** — Codex (native Claude) · Opus 5.5, effort high — Workspace UI: mode chooser, agent chat + voice, files panel, GPU status dot, contributor onboarding (60 min) *(in progress)*
+- [~] **N12** — Codex (native Claude) · Opus 5.5, effort high — Agent-run experiments in the lab + lab report (Muse Image illustration) (60 min) *(in progress)*
+- [~] **N19** — Codex · GPT-6.1 Sol, effort high — Cross-vendor security/spend review of N03, N04, N05 (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -53,12 +58,12 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N04** — Codex (native Claude) · Opus 5.5, effort high — On-demand Modal GPU service, job queue, GPU status and daily spend cap (60 min)
 - [x] **N05** — Codex (native Claude) · Opus 5.5, effort high — Agent core: Muse Spark 1.3 tool agent, physics-only, contributor mode, voice transcription (60 min)
 - [ ] **N06** — Film new owner clips (room, pendulum, ramp, optional spin) (30 min)
-- [ ] **N07** — Codex (native Claude) · Opus 5.5, effort high — Mode B live pipeline: upload -> hosted SAM track -> scale -> fit -> 3D replay (60 min)
-- [ ] **N08** — Codex (native Claude) · Opus 5.5, effort high — Mode A live pipeline: room video -> MapAnything on demand -> scaled room + floor/gravity (60 min)
-- [ ] **N09** — Codex (native Claude) · Opus 5.5, effort high — Workspace UI: mode chooser, agent chat + voice, files panel, GPU status dot, contributor onboarding (60 min)
+- [~] **N07** — Codex (native Claude) · Opus 5.5, effort high — Mode B live pipeline: upload -> hosted SAM track -> scale -> fit -> 3D replay (60 min) *(in progress)*
+- [~] **N08** — Codex (native Claude) · Opus 5.5, effort high — Mode A live pipeline: room video -> MapAnything on demand -> scaled room + floor/gravity (60 min) *(in progress)*
+- [~] **N09** — Codex (native Claude) · Opus 5.5, effort high — Workspace UI: mode chooser, agent chat + voice, files panel, GPU status dot, contributor onboarding (60 min) *(in progress)*
 - [x] **N10** — Codex (native Claude) · Opus 5.5, effort high — Lab editor: place, move, rotate, resize objects with live physics (60 min)
 - [ ] **N11** — Codex (native Claude) · Sonnet 5.5, effort high — DEV infra for live mode + sample project on every new account (60 min)
-- [ ] **N12** — Codex (native Claude) · Opus 5.5, effort high — Agent-run experiments in the lab + lab report (Muse Image illustration) (60 min)
+- [~] **N12** — Codex (native Claude) · Opus 5.5, effort high — Agent-run experiments in the lab + lab report (Muse Image illustration) (60 min) *(in progress)*
 - [ ] **N13** — Codex (native Claude) · Sonnet 5.5, effort high — End-to-end QA on DEV: both modes, 3 fresh accounts (60 min)
 - [ ] **N14** — Codex (native Claude) · Opus 5.5, effort medium — Stretch: click an object in the room -> SAM 3.1 cut-out -> SAM 3D Objects -> lab object (60 min)
 - [ ] **N15** — Codex (native Claude) · Opus 5.5, effort high — Stretch: agent-proposed equation fitted in a sandbox (e.g. flywheel) (60 min)
@@ -66,7 +71,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **N17** — Codex (native Claude) · Sonnet 5.5, effort medium — New 3-min demo script + read sheet for the owner's voice-over (30 min)
 - [ ] **N18** — Record new voice-overs from the N17 read sheet (click to click) (30 min)
 - [ ] **N20** — Codex · Claude Code CLI, Opus 5.5, effort high — Claude Code records the product walkthrough and edits the final demo video (60 min)
-- [ ] **N19** — Codex · GPT-6.1 Sol, effort high — Cross-vendor security/spend review of N03, N04, N05 (30 min)
+- [~] **N19** — Codex · GPT-6.1 Sol, effort high — Cross-vendor security/spend review of N03, N04, N05 (30 min) *(in progress)*
 
 </details>
 
