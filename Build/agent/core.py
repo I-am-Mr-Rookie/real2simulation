@@ -17,7 +17,7 @@ import wave
 from typing import Any, Callable, Mapping, Sequence
 
 MODEL, CONTRIBUTOR_MODEL, VOICE_MODEL = "muse-spark-1.3", "muse-spark-1.3-contributor", "muse-voice-transcribe-1.0"
-MAX_STEPS, MAX_OUTPUT_TOKENS = 6, 1200
+MAX_STEPS, MAX_OUTPUT_TOKENS = 6, 4000  # 1200 truncated tool calls in N12 live runs
 MAX_TEXT, MAX_HISTORY = 4000, 20
 MAX_AUDIO_BYTES, MAX_AUDIO_S = 4_000_000, 60.0
 # USD per token (in, out) and per audio second: estimates from public listings, matched to N05 live usage; not billing.

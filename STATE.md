@@ -1,5 +1,17 @@
 # Real2Simulation — STATE
 
+## Controller — Nov 1 ~18:25 Dhaka: wave 2 accepted (N07 N08 N09 N12 N19 DONE)
+
+- N07 Mode B live: ST03 via API, 543/543 frames, free fall 2330 +/- 106 px/s^2, scale unverified (no known size). Agent tools list_files,
+  start_experiment_track, fit(trajectory_id) real. Paid paths (hosted SAM, agent Meta calls) now reserve/settle on daily_cap.
+- N08 Mode A live: RM02 room via API in 77 s (Modal 51 s), floor/gravity fitted, lab-scene-v1 scene; A4 reference -> MEASURED; rescale endpoint.
+- N09 workspace UI: contributor first-run screen, upload question card + filming tips, files panel with quota, agent chat + voice (WAV 16 kHz),
+  GPU dot, experiment/room progress; BFF agent path fixed.
+- N12 agent lab: lab_add_object/lab_run/write_report; ball g 9.81 +/- 0.014 SIMULATED, pendulum T 1.8255 s; report + muse-image illustration.
+- N19 (Sol) review: 3 P1 + 4 P2; P1 cap bypass fixed by N07; remaining P1 two GPU pools, ffprobe missing in image -> N21 + N11.
+Controller merge fix: agent router now gets N07 + N12 handlers together (N12 had replaced N07's); MAX_OUTPUT_TOKENS 1200 -> 4000 (N12 finding).
+Checks: node 381/381; pytest 81 + 18 subtests; npm run build OK. Next: N11 DEV infra/deploy, N21 fixes, N14/N15/N16 stretch.
+
 ## Controller — Nov 1 ~17:45 Dhaka: wave 1 accepted (N02 N03 N04 N05 N10 DONE)
 
 Workers ended with their report line as final answer (controller messaging not used); controller polled and accepted.
