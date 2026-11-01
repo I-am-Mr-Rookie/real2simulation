@@ -9,7 +9,7 @@ from fastapi.testclient import TestClient
 
 from Build.api import gpu
 
-T0 = datetime(2026, 11, 1, 11, 0, tzinfo=timezone.utc)
+T0 = datetime.now(timezone.utc)  # real time: status()/start() reap jobs whose heartbeat is older than the lease
 
 
 def test_status_states_and_positions(tmp_path):
