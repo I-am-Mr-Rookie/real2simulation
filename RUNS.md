@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 18:50 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 18:51 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **305 / 318** runs done · 1 in progress · 0 blocked · 2 waiting for Koushik · 0 open reviews
+Progress: **305 / 318** runs done · 2 in progress · 0 blocked · 2 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -20,11 +20,12 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 - Nothing ready yet: check dependencies and retry holds below.
 
 **CLAUDE**
-- [ ] **N22** — Codex (native Claude) · Opus 5.5, effort high — Live UI wiring: Mode B start + result view, Mode A start/A4 click/open in lab, object click, share button (60 min)
+- Nothing ready yet: check dependencies and retry holds below.
 
 ## In progress
 
 - [~] **N11** — Codex (native Claude) · Sonnet 5.5, effort high — DEV infra for live mode + sample project on every new account (60 min) *(in progress)*
+- [~] **N22** — Codex (native Claude) · Opus 5.5, effort high — Live UI wiring: Mode B start + result view, Mode A start/A4 click/open in lab, object click, share button (60 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -69,7 +70,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **N20** — Codex · Claude Code CLI, Opus 5.5, effort high — Claude Code records the product walkthrough and edits the final demo video (60 min)
 - [x] **N19** — Codex · GPT-6.1 Sol, effort high — Cross-vendor security/spend review of N03, N04, N05 (30 min)
 - [x] **N21** — Codex (native Claude) · Opus 5.5, effort high — Fix R-N security/spend findings + wave-2 integration gaps (30 min)
-- [ ] **N22** — Codex (native Claude) · Opus 5.5, effort high — Live UI wiring: Mode B start + result view, Mode A start/A4 click/open in lab, object click, share button (60 min)
+- [~] **N22** — Codex (native Claude) · Opus 5.5, effort high — Live UI wiring: Mode B start + result view, Mode A start/A4 click/open in lab, object click, share button (60 min) *(in progress)*
 
 </details>
 
