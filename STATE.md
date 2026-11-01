@@ -1,5 +1,17 @@
 # Real2Simulation — STATE
 
+## Controller — Nov 1 ~19:50 Dhaka: N22 + N23 accepted; both live modes work on DEV
+
+- N23: Railway egress (any region) gets 0 models from the Meta Model API; Modal us-east lists all 9. Fix: Modal app r2s-meta-proxy
+  (token-gated passthrough, scales to zero) as MODEL_API_BASE_URL on DEV; api moved to us-east4 (volume migrated). rooms list route added.
+  DEV smoke: Mode B ST03 done (150 frames, $0.03), agent turn answered, Mode A RM02 done in 27 s. api 20fa6b1f.
+- N22: UI for both modes (first-frame click, known size, progress card, fit curve + 1 sigma band, share, redo in 3D lab; Build my lab,
+  open room in editor, A4 two-click scale, add real object; agent job cards). Local e2e both modes.
+- Controller: web redeployed fca5a968 (N22 UI + proxy body cap 201mb). Checks: node 389/389, pytest 177, build OK.
+- Seen in screenshots, for N24 polish: room tiny in the 3D view, stale footer "Uploads are limited to approved licensed clips", lab page is
+  a long form not a workspace, chart axis labels, SAMPLE project not on Projects card. infra test_verify.py has 71 pre-existing subtest fails.
+Next: N13 QA on DEV (Sonnet high) and N24 polish (Opus high) in parallel.
+
 ## Controller — Nov 1 ~19:25 Dhaka: N11 merged (PARTIAL, infra done); Meta API blocked from Railway SG region -> N23
 
 N11: api image has ffprobe/node/modal; volume /data (R2S_DATA_DIR); Meta + Modal keys set by name; SAMPLE project seeding; DEV api cd0230fa,

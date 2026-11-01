@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "53b1b733-908d-4728-b4d2-52fb2cbeaf6d",
-      "previousDeploymentId": "af881dce-a332-4c01-a70a-d1975d0f6b10",
-      "redeployNote": "N11 web redeploy from the same commit",
-      "sourceRevision": "032922d351f9ee27155d6f16d775edbbbe5164a7",
-      "verifiedUtc": "2026-11-01T12:45Z",
+      "deploymentId": "fca5a968-8bf5-49a0-bb6a-9c432217abe3",
+      "previousDeploymentId": "53b1b733-908d-4728-b4d2-52fb2cbeaf6d",
+      "redeployNote": "controller: N22 live UI + proxy body cap",
+      "sourceRevision": "c1f00c1c9eceeeddb6d5375d074bbefd19ea993d",
+      "verifiedUtc": "2026-11-01T13:49Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
