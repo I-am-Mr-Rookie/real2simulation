@@ -1,0 +1,58 @@
+{
+ "steps": [
+  {
+   "name": "mode_chip_and_settings",
+   "ok": true,
+   "sec": 2.3,
+   "note": "chip=Standard mode settings_text=Agent Standard mode Agent mode Standard Default Muse Spark 1.3 Your prompts are not used to train Meta models Same physics tools and answers Costs more per message, so the daily budget runs out sooner Contributor Muse Spark 1.3 contributor Much cheaper per message, so more turns fit in the daily budget Same physics tools and answers Meta may train on your prompts and the agent replies Do not type anything private Save Ask about a physics experiment, or start a new project. Physics questions only"
+  },
+  {
+   "name": "close_mode_settings",
+   "ok": true,
+   "sec": 0,
+   "note": "ok"
+  },
+  {
+   "name": "agent_physics_question",
+   "ok": true,
+   "sec": 5.3,
+   "note": "Gravitational pull grows with mass while inertia also grows with mass, so free fall acceleration is the same without air. In air, drag depends on shape and speed, so dense balls of similar shape fall nearly together because drag is small compared to weight."
+  },
+  {
+   "name": "agent_offtopic_refuses",
+   "ok": true,
+   "sec": 3.4,
+   "note": "Sorry I cannot help with that, but I can help with lab videos, tracking, virtual experiments, fitting and reports."
+  },
+  {
+   "name": "agent_voice_input",
+   "ok": true,
+   "sec": 15.5,
+   "note": "transcript: What is the acceleration due to gravity on Earth? What is the acceleration due to gravity on Earth?"
+  },
+  {
+   "name": "mobile_375_overflow",
+   "ok": true,
+   "sec": 12.8,
+   "note": "/workspace scrollW=360 clientW=360 wide= ; /lab?editor=1 scrollW=360 clientW=360 wide= ; /library scrollW=360 clientW=360 wide= ; / scrollW=360 clientW=360 wide=LI.label-row card,LI.label-row card"
+  }
+ ],
+ "posts": [
+  {
+   "path": "/api/workspace/agent/turn",
+   "status": 200,
+   "body": "{\"model\":\"muse-spark-1.3\",\"reply\":\"Gravitational pull grows with mass while inertia also grows with mass, so free fall acceleration is the same without air. In air, drag depends on shape and speed, so dense balls of similar shape fall nearly together because drag is small compared to weight.\",\"question\":null,\"tool_calls\":[],\"usage\":{\"input_tokens\":1830,\"output_tokens\":1110},\"steps\":1,\"stopped\":\"final\"}"
+  },
+  {
+   "path": "/api/workspace/agent/turn",
+   "status": 200,
+   "body": "{\"model\":\"muse-spark-1.3\",\"reply\":\"Sorry I cannot help with that, but I can help with lab videos, tracking, virtual experiments, fitting and reports.\",\"question\":null,\"tool_calls\":[],\"usage\":{\"input_tokens\":1906,\"output_tokens\":563},\"steps\":1,\"stopped\":\"final\"}"
+  },
+  {
+   "path": "/api/workspace/agent/transcribe",
+   "status": 200,
+   "body": "{\"model\":\"muse-voice-transcribe-1.0\",\"text\":\"What is the acceleration due to gravity on Earth? What is the acceleration due to gravity on Earth?\",\"seconds\":6.72}"
+  }
+ ],
+ "end": "2026-11-01T14:04:26.966Z"
+}

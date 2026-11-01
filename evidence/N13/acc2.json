@@ -1,0 +1,275 @@
+{
+ "acc": "2",
+ "start_utc": "2026-11-01T13:57:55.631Z",
+ "steps": [
+  {
+   "name": "signup",
+   "ok": true,
+   "sec": 9.4,
+   "note": ""
+  },
+  {
+   "name": "contributor_screen",
+   "ok": false,
+   "sec": 31.7,
+   "note": "locator.waitFor: Timeout 30000ms exceeded."
+  },
+  {
+   "name": "sample_project_visible",
+   "ok": false,
+   "sec": 1.7,
+   "note": "no SAMPLE project text anywhere on /workspace"
+  },
+  {
+   "name": "gpu_dot_present",
+   "ok": true,
+   "sec": 0,
+   "note": "red GPU sleeping Queue empty"
+  },
+  {
+   "name": "new_project_question_card",
+   "ok": true,
+   "sec": 1.1,
+   "note": "What are you uploading? 1 My experiment Measure it: tracking, fit with uncertainty, 3D replay Recommended 2 Room video Build a virtual lab with physics Other Continue Ctrl+Enter"
+  },
+  {
+   "name": "upload_st03",
+   "ok": true,
+   "sec": 2.4,
+   "note": "ST03-trim.mp4 401 KB, 4.0 s Preview Measure this experiment Build my lab Download Delete"
+  },
+  {
+   "name": "modeB1_click_no_size",
+   "ok": true,
+   "sec": 22.7,
+   "note": "19s job: Measurement Done No value reported. scale unverified playback clock MEASURED: hosted SAM 3.1 box centres in image pixels 3D replay, redo with changes Guess the Gravity needs a known size, so the value is in m/s^2."
+  },
+  {
+   "name": "modeB1_fit_band_and_labels",
+   "ok": false,
+   "sec": 0.1,
+   "note": "chart parts band=0 curve=0 pts=0"
+  },
+  {
+   "name": "modeB2_typed_name_known_size",
+   "ok": true,
+   "sec": 41.8,
+   "note": "41s job: Measurement Done vertical acceleration (g if only gravity acts) 2.70 +/- 0.30 m/s^2 1 sigma MEASURED playback clock free fall MEASURED playback timestamps; capture clock unverified (slow motion would change every time-based value) MEASURED: hosted SAM 3.1 box centres in image pixels 0 s 0.701 s y (m) max 0.00508 min -0.78 DOTS: MEASURED TRACK, 19 FRAMES. LINE: FITTED CURVE. BAND: 1 SIGMA OF THE FIT. 3D replay, redo w"
+  },
+  {
+   "name": "share_link",
+   "ok": true,
+   "sec": 0.9,
+   "note": "https://web-dev-cd80.up.railway.app/guess/<token>"
+  },
+  {
+   "name": "share_logged_out_open",
+   "ok": true,
+   "sec": 1.6,
+   "note": "leaks_answer_before_guess=false text=Skip to content Real2Simulation Demo library Local simulation lab PUBLIC · NO ACCOUNT NEEDED Guess the Gravity Loading DEVELOPMENT BUILD Synthetic lab results are not calibrated measurements. Uploads "
+  },
+  {
+   "name": "share_revoke",
+   "ok": true,
+   "sec": 4.4,
+   "note": "http=200 Skip to content Real2Simulation Demo library Local simulation lab Sign in PUBLIC · NO ACCOUNT NEEDED Guess the Gravity This challenge does not exist or was with"
+  },
+  {
+   "name": "redo_in_3d",
+   "ok": true,
+   "sec": 5.9,
+   "note": "Dots and line: your measured track. Track MEASURED in metres from your known size. The ball is SIMULATED: edit it and press Play to redo with changes. Gravity [0, -9.81, 0] m/s^2. | time t = 0.86 s"
+  },
+  {
+   "name": "modeA_new_project_upload",
+   "ok": true,
+   "sec": 3.3,
+   "note": "ok"
+  },
+  {
+   "name": "modeA_build_lab",
+   "ok": true,
+   "sec": 30.9,
+   "note": "31s Room lab Done Open my lab scale unverified gravity MODEL-ESTIMATED"
+  },
+  {
+   "name": "modeA_open_editor",
+   "ok": true,
+   "sec": 4.5,
+   "note": "Your room: 20000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply."
+  },
+  {
+   "name": "A4_click_wiring",
+   "ok": true,
+   "sec": 3.8,
+   "note": "RM02 has no A4 sheet (wiring only): A4 scale applied: MEASURED. Gravity [0, -9.81, 0] m/s^2, room room.ply."
+  },
+  {
+   "name": "add_real_object",
+   "ok": true,
+   "sec": 5.9,
+   "note": "Added room-object-1: 2.30 x 1.02 x 1.76 m box proxy, MODEL-ESTIMATED (SAM 3.1 box + MapAnything points, box proxy), scale MEASURED. visible surface only; the hidden back is not observed, so depth size is a lower bound. Gravity [0, -9.81, 0] m/s^2, room room.ply."
+  },
+  {
+   "name": "agent_editor_drop_ball_measure_g",
+   "ok": true,
+   "sec": 16,
+   "note": "Agent: SIMULATED drop done from 1.2 m with 5 cm ball. SIMULATED g 9.81 ± 0.014 m/s^2 from degree-2 fit. (tools: lab_add_object, lab_run)"
+  },
+  {
+   "name": "agent_physics_question",
+   "ok": false,
+   "sec": 30.1,
+   "note": "locator.fill: Timeout 30000ms exceeded."
+  },
+  {
+   "name": "agent_offtopic_refuses",
+   "ok": false,
+   "sec": 30.1,
+   "note": "locator.fill: Timeout 30000ms exceeded."
+  },
+  {
+   "name": "agent_voice_input",
+   "ok": false,
+   "sec": 30.1,
+   "note": "locator.fill: Timeout 30000ms exceeded."
+  },
+  {
+   "name": "files_preview",
+   "ok": true,
+   "sec": 1.6,
+   "note": "video 1280x720 6.0s"
+  },
+  {
+   "name": "files_download",
+   "ok": true,
+   "sec": 2.4,
+   "note": "RM02-trim.mp4 292379 bytes"
+  },
+  {
+   "name": "files_delete",
+   "ok": true,
+   "sec": 1.5,
+   "note": "quota 686 KB of 1.0 GB used. 18 of 20 uploads left today. -> 401 KB of 1.0 GB used. 18 of 20 uploads left today."
+  },
+  {
+   "name": "mobile_375_workspace_top",
+   "ok": true,
+   "sec": 3.6,
+   "note": "shot"
+  }
+ ],
+ "fails": [],
+ "posts": [
+  {
+   "utc": "2026-11-01T13:58:42.601Z",
+   "path": "/api/workspace/projects",
+   "status": 201,
+   "body": "{\"project\":{\"id\":\"207dece54d1546ef8ce300209e232e11\",\"user\":\"user_3LVa2xnbEZcauu3J8qkFod7b8Nt\",\"mode\":\"experiment\",\"title\":\"Experiment 2026-11-01 13:58\",\"created\":\"2026-11-01T13:58:42Z\"}}"
+  },
+  {
+   "utc": "2026-11-01T13:58:49.101Z",
+   "path": "/api/workspace/experiments",
+   "status": 202,
+   "body": "{\"experiment\":{\"id\":\"3fef954a2e124f75a1d2d3c6dce0b45a\",\"project_id\":\"207dece54d1546ef8ce300209e232e11\",\"file_id\":\"244d087f812d47aaa784d798e86f052b\",\"status\":\"running\",\"request\":{\"file_id\":\"244d087f812d47aaa784d798e86f052b\",\"target_text\":null,\"point\":[359,410],\"known_size\":null},\"result\":null,\"error\":null,\"created\":\"2026-11-01T13:58:48Z\",\"updated\":\"2026-11-01T13:58:48Z\"}}"
+  },
+  {
+   "utc": "2026-11-01T13:59:10.245Z",
+   "path": "/api/workspace/experiments",
+   "status": 202,
+   "body": "{\"experiment\":{\"id\":\"d30a478a305049a78aa5b59fd3a9578b\",\"project_id\":\"207dece54d1546ef8ce300209e232e11\",\"file_id\":\"244d087f812d47aaa784d798e86f052b\",\"status\":\"queued\",\"request\":{\"file_id\":\"244d087f812d47aaa784d798e86f052b\",\"target_text\":\"apple\",\"point\":null,\"known_size\":\"apple width 8 cm\"},\"result\":null,\"error\":null,\"created\":\"2026-11-01T13:59:10Z\",\"updated\":\"2026-11-01T13:59:10Z\"}}"
+  },
+  {
+   "utc": "2026-11-01T13:59:51.174Z",
+   "path": "/api/workspace/experiments/d30a478a305049a78aa5b59fd3a9578b/share",
+   "status": 201,
+   "body": "{\"token\":\"QQ0LD6QMOr1-5PA-KZnEVjZKEPyxq0rx\",\"path\":\"/guess/QQ0LD6QMOr1-5PA-KZnEVjZKEPyxq0rx\"}"
+  },
+  {
+   "utc": "2026-11-01T14:00:06.858Z",
+   "path": "/api/workspace/projects",
+   "status": 201,
+   "body": "{\"project\":{\"id\":\"3f5eea4050ee4ace99b0bdb7248c9713\",\"user\":\"user_3LVa2xnbEZcauu3J8qkFod7b8Nt\",\"mode\":\"room\",\"title\":\"Room 2026-11-01 14:00\",\"created\":\"2026-11-01T14:00:06Z\"}}"
+  },
+  {
+   "utc": "2026-11-01T14:00:09.423Z",
+   "path": "/api/workspace/rooms",
+   "status": 202,
+   "body": "{\"job\":{\"job_id\":\"1886821b61b84e2aa933ee5060d97325\",\"state\":\"queued\",\"file_id\":\"96942ed2681845a79dba29adbd62b1ca\",\"project_id\":\"3f5eea4050ee4ace99b0bdb7248c9713\",\"created_at\":\"2026-11-01T14:00:09Z\",\"updated_at\":\"2026-11-01T14:00:09Z\"}}"
+  },
+  {
+   "utc": "2026-11-01T14:00:48.806Z",
+   "path": "/api/workspace/rooms/1886821b61b84e2aa933ee5060d97325/scale",
+   "status": 200,
+   "body": "{\"scene\":{\"version\":\"lab-scene-v1\",\"label\":\"SIMULATED\",\"units\":\"m\",\"gravity\":[0,-9.81,0],\"room\":{\"kind\":\"ply\",\"floor_y\":0,\"source\":\"room.ply\",\"scale_verified\":true},\"objects\":[]},\"room\":{\"schema\":\"n08-room/1\",\"views\":8,\"points\":20000,\"floor\":{\"status\":\"FIT\",\"inliers\":2411.0,\"inlier_fraction\":0.040183,\"rms_residual\":0.011364,\"p95_abs_residual\":0.01888,\"normal_bootstrap_std_deg\":0.058961},\"gravity\":{\"status\":\"MODEL-ESTIMATED\",\"method\":\"RANSAC floor plane normal (S05d)\",\"uncertainty_deg\":0.059,\"angle_to_camera_down_deg\":33.486},\"scale\":{\"status\":\"MEASURED\",\"metres_per_model_unit\":3.742204759363589,\"sd\":0.1782000448178556,\"reference\":{\"source\":\"A4 sheet long edge, ISO 216 297 mm\",\"view\":3,\"p0\":["
+  },
+  {
+   "utc": "2026-11-01T14:00:53.590Z",
+   "path": "/api/workspace/rooms/1886821b61b84e2aa933ee5060d97325/objects",
+   "status": 200,
+   "body": "{\"object\":{\"id\":\"room-object-1\",\"kind\":\"block\",\"position\":[0.8444,1.651,-5.8067],\"size\":[2.3029,1.0158,1.7636],\"rotation\":[0,0.330462,0,0.943819],\"fixed\":true,\"sensor\":false,\"view\":3,\"point\":[215,320],\"sam_box\":[112,172,517,293],\"size_sd_m\":[0.4276,0.1873,0.3276],\"points\":28988,\"sam_cost_usd\":0.0025,\"created_at\":\"2026-11-01T14:00:53Z\",\"labels\":{\"geometry\":\"MODEL-ESTIMATED (SAM 3.1 box + MapAnything points, box proxy)\",\"scale\":\"MEASURED\",\"caveat\":\"visible surface only; the hidden back is not observed, so depth size is a lower bound\"}},\"scene\":{\"version\":\"lab-scene-v1\",\"label\":\"SIMULATED\",\"units\":\"m\",\"gravity\":[0,-9.81,0],\"room\":{\"kind\":\"ply\",\"floor_y\":0,\"source\":\"room.ply\",\"scale_verified\":tr"
+  },
+  {
+   "utc": "2026-11-01T14:00:56.992Z",
+   "path": "/api/workspace/agent/lab/scene",
+   "status": 200,
+   "body": "{\"scene\":{\"version\":\"lab-scene-v1\",\"label\":\"SIMULATED\",\"units\":\"m\",\"gravity\":[0,-9.81,0],\"room\":{\"kind\":\"ply\",\"floor_y\":0,\"source\":\"room.ply\",\"scale_verified\":true},\"objects\":[{\"id\":\"room-object-1\",\"kind\":\"block\",\"position\":[0.8444,1.651,-5.8067],\"rotation\":[0,0.33046209282598876,0,0.9438192651165094],\"size\":[2.3029,1.0158,1.7636],\"velocity\":[0,0,0],\"mass\":1,\"friction\":0.5,\"restitution\":0.3,\"fixed\":true,\"sensor\":false,\"params\":{}}]}}"
+  },
+  {
+   "utc": "2026-11-01T14:01:11.748Z",
+   "path": "/api/workspace/agent/turn",
+   "status": 200,
+   "body": "{\"model\":\"muse-spark-1.3\",\"reply\":\"SIMULATED drop done from 1.2 m with 5 cm ball.\\n\\nSIMULATED g 9.81 ± 0.014 m/s^2 from degree-2 fit.\",\"question\":null,\"tool_calls\":[{\"name\":\"lab_add_object\",\"args\":{\"kind\":\"ball\",\"params\":{\"height_m\":1.2,\"radius_m\":0.025}},\"output\":{\"status\":\"ok\",\"label\":\"SIMULATED\",\"object\":{\"id\":\"ball-1\",\"kind\":\"ball\",\"position\":[0,1.2,0],\"rotation\":[0,0,0,1],\"size\":[0.05,0.05,0.05],\"velocity\":[0,0,0],\"mass\":1,\"friction\":0.5,\"restitution\":0.3,\"fixed\":false,\"sensor\":true,\"params\":{}},\"objects_in_scene\":2}},{\"name\":\"lab_run\",\"args\":{},\"output\":{\"status\":\"ok\",\"label\":\"SIMULATED\",\"engine\":\"server RK4 (Build/simulator/rk4.mjs), dt 1/120 s, no contacts except the floor stop\",\"re"
+  }
+ ],
+ "gpu": [
+  {
+   "utc": "2026-11-01T13:58:09.487Z",
+   "v": "unknown|Checking GPU"
+  },
+  {
+   "utc": "2026-11-01T13:58:11.505Z",
+   "v": "red|GPU sleeping Queue empty"
+  },
+  {
+   "utc": "2026-11-01T13:59:07.908Z",
+   "v": "red|GPU sleeping"
+  },
+  {
+   "utc": "2026-11-01T13:59:09.915Z",
+   "v": "red|GPU sleeping Queue empty"
+  },
+  {
+   "utc": "2026-11-01T14:00:17.478Z",
+   "v": "green|GPU running Your job: 1 of 1 in queue"
+  },
+  {
+   "utc": "2026-11-01T14:00:27.546Z",
+   "v": "green|GPU running Your job: 1 of 2 in queue"
+  },
+  {
+   "utc": "2026-11-01T14:00:37.629Z",
+   "v": "green|GPU running Your job: 1 of 3 in queue"
+  },
+  {
+   "utc": "2026-11-01T14:01:16.029Z",
+   "v": "green|GPU running 1 job in queue"
+  },
+  {
+   "utc": "2026-11-01T14:01:26.106Z",
+   "v": "green|GPU running Queue empty"
+  },
+  {
+   "utc": "2026-11-01T14:03:14.715Z",
+   "v": "green|GPU running"
+  },
+  {
+   "utc": "2026-11-01T14:03:16.724Z",
+   "v": "green|GPU running Queue empty"
+  }
+ ],
+ "notes": {
+  "quota_before_delete": "686 KB of 1.0 GB used. 18 of 20 uploads left today."
+ },
+ "end_utc": "2026-11-01T14:03:26.418Z"
+}

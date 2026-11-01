@@ -1,0 +1,58 @@
+{
+ "ids_seen_own_accounts": 6,
+ "steps": [],
+ "list_experiments": {
+  "status": 200,
+  "body": "{\"experiments\":[{\"id\":\"1f6d494f215045fca09130139f12f77d\",\"project_id\":\"72405dbf2cbb47f3819529ae4477eda3\",\"file_id\":\"sample\",\"status\":\"done\",\"request\":{\"file_id\":\"sample\",\"target_text\":\"apple\",\"point\":null,\"known_size\":null},\"result\":null,\"error\":null,\"created\":\"2026-11-01T14:05:09Z\",\"updated\":\"2026-11-01T14:05:09Z\"}]}"
+ },
+ "list_rooms": {
+  "status": 200,
+  "body": "{\"rooms\":[]}"
+ },
+ "list_files": {
+  "status": 200,
+  "body": "{\"files\":[],\"quota\":{\"storage_bytes_used\":0,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1073741824,\"uploads_today\":0,\"uploads_daily_limit\":20,\"uploads_remaining_today\":20,\"uploads_reset_at\":\"2026-11-01T18:00:00Z\"}}"
+ },
+ "list_projects": {
+  "status": 200,
+  "body": "{\"projects\":[{\"id\":\"72405dbf2cbb47f3819529ae4477eda3\",\"user\":\"user_3LVasT5ub4MMpVPuFdtpuz5CJDD\",\"mode\":\"room\",\"title\":\"SAMPLE (RECORDED): classroom room and falling apple\",\"created\":\"2026-11-01T14:05:09Z\"}]}"
+ },
+ "cross": [
+  {
+   "from_acc": 1,
+   "kind": "experiments",
+   "status": 404,
+   "body": "{\"detail\":{\"code\":\"NOT_FOUND\",\"message\":\"experiment not found\"}}"
+  },
+  {
+   "from_acc": 1,
+   "kind": "experiments",
+   "status": 404,
+   "body": "{\"detail\":{\"code\":\"NOT_FOUND\",\"message\":\"experiment not found\"}}"
+  },
+  {
+   "from_acc": 2,
+   "kind": "experiments",
+   "status": 404,
+   "body": "{\"detail\":{\"code\":\"NOT_FOUND\",\"message\":\"experiment not found\"}}"
+  },
+  {
+   "from_acc": 2,
+   "kind": "experiments",
+   "status": 404,
+   "body": "{\"detail\":{\"code\":\"NOT_FOUND\",\"message\":\"experiment not found\"}}"
+  },
+  {
+   "from_acc": 3,
+   "kind": "experiments",
+   "status": 404,
+   "body": "{\"detail\":{\"code\":\"NOT_FOUND\",\"message\":\"experiment not found\"}}"
+  },
+  {
+   "from_acc": 3,
+   "kind": "experiments",
+   "status": 404,
+   "body": "{\"detail\":{\"code\":\"NOT_FOUND\",\"message\":\"experiment not found\"}}"
+  }
+ ]
+}
