@@ -1,6 +1,9 @@
 # Real2Simulation — STATE
 
 ## 2026-11-02 Dhaka (controller)
+- Koushik N36 decision: Sol fallback fires on Meta API error/timeout, no usable tool call, or number guard blocking twice; not on off-topic refusals, cap/quota limits or bad user input. Sol answers only the failed turn, same physics-only prompt and number guard, $2/day cap. Freeze stays on.
+
+## 2026-11-02 Dhaka (controller)
 - Koushik decisions (Nov 2, via approved side chat): GPU L4 for MapAnything (A10G fallback); Stable Fast 3D for clicked room objects on its own on-demand Modal L4 function; licence accepted and registered (receipt evidence/owner/S06/SF3D-LICENCE.md); flywheel + lab kit; crash recovery for the GPU queue; agent model tiers with hidden GPT-6.1 Sol fallback via Merge gateway; DB move to US; Koushik makes the demo video himself (N20 now his).
 - Added rows N30 to N38 (TODO). Dispatch freeze still on: no workers until Koushik says go.
 - Koushik is filming the N06 room video now.

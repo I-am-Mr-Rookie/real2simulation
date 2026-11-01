@@ -83,4 +83,7 @@ write it under "Reviews for Koushik" (STATE Owner questions -> RUNS.md) and keep
 - Region: N23 showed Meta API returns 0 models from Railway egress in both SG and US, so the Modal relay stays. Move Postgres/Redis to the
   US region next to the api, safely (backup, restore, verify, keep SG until verified).
 - Demo video: Koushik makes it himself after the product is built (N20 is his row now).
+- N36 fallback rule (Koushik, Nov 2): GPT-6.1 Sol fires for any of these failures on a Meta model: an API error or timeout, a reply
+  with no usable tool call, or the number guard blocking the answer twice. It does not fire for off-topic refusals, cap or quota limits,
+  or bad user input. Sol answers only that failed turn, under the same physics-only prompt and number guard. Sol limit $2/day.
 - Dispatch freeze (Nov 1 23:35) still applies: rows below wait for Koushik's go.
