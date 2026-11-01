@@ -27,7 +27,7 @@ const RANGES = { angle_deg: [-179, 179], stiffness: [0.01, 1e5], damping: [0, 1e
 // Standard mass set (brass, 8400 kg/m^3): mass and cylinder size follow params.grams.
 export const MASS_SET = [10, 20, 50, 100, 200, 500, 1000];
 const massSize = (g) => { const d = Math.cbrt((4 * g / 1000) / (Math.PI * 8400)); return [d, d, d]; };
-const OBJECT_KEYS = new Set(['id', 'kind', 'position', 'rotation', 'size', 'velocity', 'mass', 'friction', 'restitution', 'fixed', 'sensor', 'params']);
+const OBJECT_KEYS = new Set(['id', 'kind', 'position', 'rotation', 'size', 'velocity', 'mass', 'friction', 'restitution', 'fixed', 'sensor', 'params', 'shape']);
 const SCENE_KEYS = new Set(['version', 'label', 'units', 'gravity', 'room', 'objects']);
 
 export class SceneError extends Error {}
@@ -35,6 +35,27 @@ const bad = (m) => { throw new SceneError(m); };
 const num = (v, name, lo = -1e4, hi = 1e4) => (typeof v === 'number' && Number.isFinite(v) && v >= lo && v <= hi ? v : bad(name + ' must be a finite number in [' + lo + ', ' + hi + ']'));
 const vec = (v, n, name, lo, hi) => (Array.isArray(v) && v.length === n ? v.map((x, i) => num(x, name + '[' + i + ']', lo, hi)) : bad(name + ' must be an array of ' + n + ' numbers'));
 export const MAX_ROOM_BOXES = 400;
+export const MAX_MESH_VERTICES = 4000, MAX_MESH_TRIANGLES = 6000;
+const GLB_URL = /^\/api\/workspace\/rooms\/[A-Za-z0-9_-]{1,64}\/objects\/room-object-\d{1,4}\.glb$/;
+
+// N31: block shape. mesh = Stable Fast 3D model fitted into the unit box [-0.5, 0.5]^3 (scaled by size); it is the
+// object's collider too. box = SF3D failed, the measured box stays and fallback_reason says why.
+function shapeOf(s, at) {
+  if (!s || typeof s !== 'object' || Array.isArray(s)) bad(at + ' must be an object');
+  const keys = s.type === 'box' ? ['type', 'fallback_reason'] : s.type === 'mesh' ? ['type', 'label', 'credit', 'category', 'glb', 'quarter_turns', 'vertices', 'indices'] : bad(at + '.type must be mesh or box');
+  for (const k of Object.keys(s)) if (!keys.includes(k)) bad(at + ': unknown field ' + k);
+  if (s.type === 'box') return { type: 'box', fallback_reason: typeof s.fallback_reason === 'string' ? s.fallback_reason.slice(0, 300) : bad(at + '.fallback_reason must be a string') };
+  if (s.label !== 'MODEL-GENERATED shape' || s.credit !== 'Powered by Stability AI') bad(at + ' needs label MODEL-GENERATED shape and credit Powered by Stability AI');
+  if (typeof s.glb !== 'string' || !GLB_URL.test(s.glb)) bad(at + '.glb must be a room object mesh URL');
+  if (typeof s.category !== 'string' || !/^[a-z]{1,20}$/.test(s.category)) bad(at + '.category must be a lowercase word');
+  if (![0, 1, 2, 3].includes(s.quarter_turns)) bad(at + '.quarter_turns must be 0..3');
+  const v = s.vertices, f = s.indices, n = Array.isArray(v) ? v.length / 3 : 0;
+  if (!Number.isInteger(n) || n < 4 || n > MAX_MESH_VERTICES) bad(at + '.vertices must be 4..' + MAX_MESH_VERTICES + ' xyz triples');
+  v.forEach((x, i) => num(x, at + '.vertices[' + i + ']', -0.5001, 0.5001));
+  if (!Array.isArray(f) || f.length < 3 || f.length % 3 || f.length > 3 * MAX_MESH_TRIANGLES) bad(at + '.indices must be 1..' + MAX_MESH_TRIANGLES + ' triangles');
+  f.forEach((x, i) => (Number.isInteger(x) && x >= 0 && x < n) || bad(at + '.indices[' + i + '] must be a vertex index'));
+  return { type: 'mesh', label: s.label, credit: s.credit, category: s.category, glb: s.glb, quarter_turns: s.quarter_turns, vertices: v.slice(), indices: f.slice() };
+}
 
 // N29: room.collision = static box proxy of the room point cloud (MODEL-ESTIMATED), built by physics.mjs roomProxy.
 function collision(c) {
@@ -115,6 +136,7 @@ export function validateScene(input) {
     }
     if (o.kind === 'cradle') params.count = Math.round(params.count);
     const bool = (k, dflt) => (o[k] === undefined ? dflt : typeof o[k] === 'boolean' ? o[k] : bad(at + '.' + k + ' must be boolean'));
+    if (o.shape !== undefined && o.kind !== 'block') bad(at + '.shape is only for blocks');
     return {
       id: o.id, kind: o.kind,
       position: vec(o.position ?? [0, 1, 0], 3, at + '.position', -1000, 1000),
@@ -127,6 +149,7 @@ export function validateScene(input) {
       fixed: bool('fixed', d.fixed ?? false),
       sensor: bool('sensor', o.kind !== 'ramp'),
       params,
+      ...(o.shape !== undefined && { shape: shapeOf(o.shape, at + '.shape') }),
     };
   });
   return { version: SCENE_VERSION, label: 'SIMULATED', units: 'm', gravity, room: outRoom, objects: out };

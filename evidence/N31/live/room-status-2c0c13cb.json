@@ -1,0 +1,22 @@
+{
+ "job_id": "2c0c13cb78664882af662b5664c5cc40",
+ "state": "failed",
+ "file_id": "3ddbec416b83409f826ccdaff89e339d",
+ "project_id": null,
+ "created_at": "2026-11-01T22:37:31Z",
+ "updated_at": "2026-11-01T22:41:40Z",
+ "gpu_job": "edf08a9499354d32bc166a89f2c78339",
+ "frames": 8,
+ "gpu_attempts": [
+  {
+   "gpu": "L4",
+   "reservation_id": "60f279140d404b48a6e074010b396228",
+   "state": "failed",
+   "error": "TimeoutError: ",
+   "estimated_usd": 0.32502178,
+   "wall_s": 245.586
+  }
+ ],
+ "code": "ERROR",
+ "error": "TimeoutError: "
+}

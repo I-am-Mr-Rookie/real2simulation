@@ -1,0 +1,73 @@
+{
+ "utc": "2026-11-01T22:58:34Z",
+ "http": 200,
+ "seconds": 145.2,
+ "object": {
+  "id": "room-object-3",
+  "kind": "block",
+  "position": [
+   -0.2078,
+   0.0786,
+   0.0284
+  ],
+  "size": [
+   0.6815,
+   0.0758,
+   0.29
+  ],
+  "rotation": [
+   0,
+   0.318435,
+   0,
+   0.947945
+  ],
+  "fixed": true,
+  "sensor": false,
+  "mass": 25.0,
+  "friction": 0.5,
+  "view": 0,
+  "point": [
+   100,
+   215
+  ],
+  "sam_box": [
+   0,
+   85,
+   481,
+   289
+  ],
+  "size_sd_m": [
+   0.0256,
+   0.064,
+   0.0257
+  ],
+  "points": 25472,
+  "sam_cost_usd": 0.0025,
+  "sf3d": {
+   "gpu": "A10G",
+   "gpu_name": "NVIDIA A10",
+   "wall_s": 141.535,
+   "model_load_s": 130.753,
+   "inference_s": 1.497,
+   "peak_allocated_bytes": 6463960064,
+   "estimated_usd": 0.07410833
+  },
+  "created_at": "2026-11-01T22:58:34Z",
+  "labels": {
+   "geometry": "MODEL-ESTIMATED (SAM 3.1 box + MapAnything points, measured box)",
+   "shape": "MODEL-GENERATED shape, Powered by Stability AI (Stable Fast 3D), fitted to the box",
+   "mass_friction": "MODEL-ESTIMATED from category table",
+   "scale": "scale unverified",
+   "caveat": "visible surface only; the hidden back is not observed, so depth size is a lower bound"
+  }
+ },
+ "shape": {
+  "type": "mesh",
+  "label": "MODEL-GENERATED shape",
+  "credit": "Powered by Stability AI",
+  "category": "table",
+  "glb": "/api/workspace/rooms/453c6903fccb4f73b702919e65fadc45/objects/room-object-3.glb",
+  "quarter_turns": 0
+ },
+ "error": null
+}

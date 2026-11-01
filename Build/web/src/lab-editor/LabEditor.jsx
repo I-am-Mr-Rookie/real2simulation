@@ -12,6 +12,7 @@ import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
 import { naturalPoint, trajectoryScene } from '../workspace/measure.mjs';
 import { robustBounds, fitDistance, FRAME_Q } from './frame.mjs';
+import { colliderGeometry, loadShapeGlb, captionSprite, SHAPE_LABEL, SHAPE_CREDIT } from './sf3d-shape.mjs';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981, flywheel: 0x8b5cf6, atwood: 0x0ea5e9,
@@ -63,11 +64,18 @@ function objectMesh(o) {
   g.quaternion.fromArray(o.rotation);
   const mat = new THREE.MeshStandardMaterial({ color: COLORS[o.kind], roughness: 0.6 });
   if (o.kind !== 'ball' && o.kind !== 'block' && o.kind !== 'ramp' && o.kind !== 'pendulum' && o.kind !== 'spring') return kitMesh(o, g, mat);
-  const geo = o.kind === 'ball' || o.kind === 'pendulum' ? new THREE.SphereGeometry(0.5, 24, 16) : new THREE.BoxGeometry(1, 1, 1);
+  const sf3d = o.shape?.type === 'mesh';
+  const geo = sf3d ? colliderGeometry(o.shape) : o.kind === 'ball' || o.kind === 'pendulum' ? new THREE.SphereGeometry(0.5, 24, 16) : new THREE.BoxGeometry(1, 1, 1);
   const body = new THREE.Mesh(geo, mat);
   body.scale.fromArray(o.kind === 'ball' || o.kind === 'pendulum' ? Array(3).fill(Math.max(...o.size)) : o.size);
   body.userData.id = o.id;
   g.add(body);
+  if (sf3d) {
+    loadShapeGlb(o.shape, body, o.id);
+    const cap = captionSprite([SHAPE_LABEL, SHAPE_CREDIT]);
+    cap.position.set(0, -o.size[1] / 2 - 0.08, 0);
+    g.add(cap);
+  }
   if (o.kind === 'pendulum' || o.kind === 'spring') {
     g.updateMatrixWorld();
     body.position.copy(g.worldToLocal(new THREE.Vector3(...movingStart(o))));
@@ -161,7 +169,7 @@ function RoomTools({ id, room, onReload }) {
     if (!p) return;
     const rc = [p.y, p.x], next = [...clicks, { rc, left: (100 * p.x) / el.naturalWidth, top: (100 * p.y) / el.naturalHeight }];
     setClicks(next);
-    if (tool === 'object') send('/objects', { view, point: rc }, (r) => 'Added ' + r.object.id + ': ' + r.object.size.map((v) => v.toFixed(2)).join(' x ') + ' m box proxy, ' + r.object.labels.geometry + ', scale ' + r.object.labels.scale + '. ' + r.object.labels.caveat + '.');
+    if (tool === 'object') send('/objects', { view, point: rc }, (r) => 'Added ' + r.object.id + ': ' + r.object.size.map((v) => v.toFixed(2)).join(' x ') + ' m, ' + r.object.labels.geometry + ', shape ' + (r.object.labels.shape ?? 'box') + (r.object.shape?.fallback_reason ? ' (' + r.object.shape.fallback_reason + ')' : '') + ', scale ' + r.object.labels.scale + '. ' + r.object.labels.caveat + '.');
     else if (next.length === 2) send('/scale', { reference: { view, p0: next[0].rc, p1: next[1].rc } }, (r) => (r.room.scale.reference_rejected ? 'A4 scale not applied: ' + r.room.scale.reference_rejected.reason : 'A4 scale applied: ' + r.room.scale.status + '.'));
   };
   const sc = room.scale ?? {};
@@ -533,6 +541,7 @@ export default function LabEditor({ initialScene }) {
           <label><input type="checkbox" checked={sel.sensor} disabled={live} onChange={(e) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === sel.id ? { ...o, sensor: e.target.checked } : o)) }))} /> Record trajectory sensor</label>
           {sel.kind !== 'pendulum' && sel.kind !== 'spring' && <label><input type="checkbox" checked={sel.fixed} disabled={live} onChange={(e) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === sel.id ? { ...o, fixed: e.target.checked } : o)) }))} /> Fixed in place</label>}
           <p>Size {sel.size.map((v) => v.toFixed(2)).join(' x ')} m, mass {sel.mass} kg</p>
+          {sel.shape && <p>{sel.shape.type === 'mesh' ? SHAPE_LABEL + ', ' + SHAPE_CREDIT + '. Collider: ' + (sel.fixed ? 'mesh' : 'convex hull') + '. Mass and friction MODEL-ESTIMATED (' + sel.shape.category + ').' : 'Measured box shape. ' + sel.shape.fallback_reason}</p>}
           {selTrace && <p>Sensor: {selTrace.samples.length} samples{selTrace.truncated ? ' (cap reached)' : ''}</p>}
           <button type="button" className="le-danger" disabled={live} onClick={removeSelected}>Delete</button>
         </>}

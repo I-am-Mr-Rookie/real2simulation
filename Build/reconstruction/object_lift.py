@@ -5,6 +5,8 @@ SAM 3D Objects stays off (Build/gpu/sam3d_option.gate: no owner licence receipt,
 The click view is the room job's own MapAnything view image (model grid pixels), so SAM pixels = point-map pixels.
 Masks are not decoded (same as hosted_sam): object points = SAM box x depth band around the clicked surface.
 Paid call: one sam-3.1 image call, reserved/settled on Build/guardrails/daily_cap.py ($2.50 per 1k images).
+N31: those object pixels also form the RGBA cut-out for Stable Fast 3D (Build/gpu/sf3d.py); its unit-scale mesh is
+turned to face the camera (quarter turns), fitted into the measured box and stored as the object's shape (physics too).
 """
 import base64
 import io
@@ -19,6 +21,12 @@ from Build.reconstruction import live_room
 USD_PER_IMAGE = 2.50 / 1000
 WINDOW = 2  # click depth = median of the valid points in a (2*WINDOW+1)^2 pixel window
 _LOCK = threading.Lock()
+# Typical values per category (fixed, kg, friction): MODEL-ESTIMATED, not measured. Static room furniture -> trimesh.
+CATEGORIES = {"desk": (True, 30.0, 0.5), "table": (True, 25.0, 0.5), "chair": (True, 6.0, 0.5), "sofa": (True, 40.0, 0.8),
+              "shelf": (True, 20.0, 0.5), "cabinet": (True, 30.0, 0.5), "bed": (True, 50.0, 0.8),
+              "box": (False, 1.0, 0.5), "ball": (False, 0.4, 0.6), "book": (False, 0.5, 0.4), "bottle": (False, 0.5, 0.3),
+              "other": (False, 1.0, 0.5)}
+MAX_TRIANGLES = 6000  # SF3D remesh targets about 2k; scene JSON stays well under 512 KiB
 
 
 def view_png(npz, view):
@@ -117,18 +125,77 @@ def lift(npz, view, point, box, room):
         sd = np.hypot(sd, size * rel)
     c = m + vt[0] * (lo[0] + hi[0]) / 2 + vt[1] * (lo[2] + hi[2]) / 2
     yaw = float(np.arctan2(-vt[0, 1], vt[0, 0]))  # about +Y: local x -> (cos, 0, -sin) = main axis
+    mask = np.zeros(h * w, bool)
+    idx = np.flatnonzero(sel)
+    if room["floor"]["status"] == "FIT":
+        idx = idx[((pts[idx] - origin) @ rot.T * k)[:, 1] > 2 * room["floor"]["p95_abs_residual"] * k]
+    mask[idx] = True
     return {"position": [round(float(x), 4) for x in (c[0], (lo[1] + hi[1]) / 2, c[1])],
             "size": [round(float(s), 4) for s in size], "size_sd": [round(float(s), 4) for s in sd],
             "rotation": [0, round(float(np.sin(yaw / 2)), 6), 0, round(float(np.cos(yaw / 2)), 6)],
-            "points": len(q), "focal_px": round(float(fx), 2)}
+            "points": len(q), "focal_px": round(float(fx), 2),
+            "camera": [round(float(x), 4) for x in (v["pose"][:3, 3] - origin) @ rot.T * k],  # room frame
+            "mask": mask.reshape(h, w)}  # object pixels (box x depth band, floor dropped): the SF3D cut-out
 
 
-def to_scene(scene, proxy):
-    """Append the proxy as a fixed lab-scene-v1 block; returns (scene, object). Metadata stays out of the scene."""
+def crop_rgba(npz, view, box, mask, pad=8):
+    """PNG of the view inside the SAM box (+pad), alpha = the object's pixels. Input for SF3D."""
+    from PIL import Image
+    v = live_room.load_views(npz)[view]
+    h, w = mask.shape
+    x1, y1, x2, y2 = (int(round(b)) for b in box)
+    x1, y1, x2, y2 = max(0, x1 - pad), max(0, y1 - pad), min(w, x2 + pad + 1), min(h, y2 + pad + 1)
+    rgb = np.clip(v["rgb"].reshape(h, w, 3) * 255 + 0.5, 0, 255).astype(np.uint8)
+    rgba = np.dstack([rgb, mask.astype(np.uint8) * 255])[y1:y2, x1:x2]
+    buf = io.BytesIO()
+    Image.fromarray(rgba, "RGBA").save(buf, "PNG")
+    return buf.getvalue()
+
+
+def fit_mesh(vertices, faces, proxy):
+    """SF3D mesh (unit scale, glTF +Y up, front +Z) -> unit-box shape in the object's local frame.
+
+    Turns the mesh by quarter turns about +Y so its front faces the camera, then the client and physics scale the
+    unit box [-0.5, 0.5]^3 to the measured size. Returns (quarter_turns, flat vertices, flat indices)."""
+    v, f = np.asarray(vertices, float), np.asarray(faces, np.int64)
+    if v.ndim != 2 or v.shape[1] != 3 or f.ndim != 2 or f.shape[1] != 3 or not len(f) or f.min() < 0 or f.max() >= len(v):
+        raise ValueError("SF3D returned a malformed mesh")
+    if len(f) > MAX_TRIANGLES:
+        raise ValueError(f"SF3D mesh has {len(f)} triangles (> {MAX_TRIANGLES})")
+    qy, qw = proxy["rotation"][1], proxy["rotation"][3]
+    yaw = 2 * np.arctan2(qy, qw)
+    d = np.subtract(proxy["camera"], proxy["position"])
+    dx = d[0] * np.cos(yaw) - d[2] * np.sin(yaw)  # camera direction in the box's local x/z
+    dz = d[0] * np.sin(yaw) + d[2] * np.cos(yaw)
+    turns = int(np.round(np.arctan2(dx, dz) / (np.pi / 2))) % 4  # R_y(turns*90 deg) takes +Z toward the camera
+    a = turns * np.pi / 2
+    v = np.column_stack([v[:, 0] * np.cos(a) + v[:, 2] * np.sin(a), v[:, 1], -v[:, 0] * np.sin(a) + v[:, 2] * np.cos(a)])
+    lo, hi = v.min(0), v.max(0)
+    if np.any(hi - lo < 1e-6):
+        raise ValueError("SF3D mesh is flat")
+    unit = (v - (lo + hi) / 2) / (hi - lo)
+    return turns, [round(float(x), 4) for x in unit.ravel()], [int(i) for i in f.ravel()]
+
+
+def mesh_shape(category, glb_url, turns, vertices, indices):
+    """lab-scene-v1 shape of an SF3D object (Build/web/src/lab-editor/scene.mjs validates the same fields).
+    Collider (physics.mjs meshCollider): trimesh while the object is fixed, convex hull when movable."""
+    return {"type": "mesh", "label": "MODEL-GENERATED shape", "credit": "Powered by Stability AI", "category": category,
+            "glb": glb_url, "quarter_turns": turns,
+            "vertices": vertices, "indices": indices}
+
+
+def to_scene(scene, proxy, shape=None, category="other"):
+    """Append the object as a lab-scene-v1 block; shape = SF3D mesh shape, or the box fallback with its reason.
+    Returns (scene, object). Mass/friction from the category (MODEL-ESTIMATED); other metadata stays out of the scene."""
     used = {o.get("id") for o in scene.get("objects", [])}
     n = 1
     while f"room-object-{n}" in used:
         n += 1
+    fixed, mass, friction = CATEGORIES[category]
     obj = {"id": f"room-object-{n}", "kind": "block", "position": proxy["position"], "size": proxy["size"],
-           "rotation": proxy["rotation"], "fixed": True, "sensor": False}  # solid: lab objects collide with it
+           "rotation": proxy["rotation"], "fixed": fixed, "sensor": False,  # solid: lab objects collide with it
+           "mass": mass, "friction": friction}
+    if shape:
+        obj["shape"] = shape
     return {**scene, "objects": [*scene.get("objects", []), obj]}, obj

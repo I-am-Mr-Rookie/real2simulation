@@ -1,0 +1,35 @@
+{
+ "job_id": "453c6903fccb4f73b702919e65fadc45",
+ "state": "done",
+ "file_id": "88ea3c63bd7d43a58ff67a1a69b7b82e",
+ "project_id": null,
+ "created_at": "2026-11-01T22:48:44Z",
+ "updated_at": "2026-11-01T22:49:27Z",
+ "gpu_job": "241db73fb91146ebaae41e908a186f05",
+ "frames": 8,
+ "gpu_attempts": [
+  {
+   "gpu": "A10G",
+   "reservation_id": "eec1704464f544c6ab17c26975f40ff4",
+   "state": "done",
+   "estimated_usd": 0.34537633,
+   "wall_s": 39.25
+  }
+ ],
+ "timing_s": {
+  "client_round_trip_s": 39.237,
+  "container_boot_s": 6.548,
+  "cold_start_s": 10.314,
+  "model_load_s": 18.453,
+  "cold_start_to_model_ready_s": 28.767,
+  "inference_s": 2.075,
+  "function_s": 21.834,
+  "container_python_alive_s": 25.601
+ },
+ "gpu": "A10G",
+ "peak_allocated_bytes": 8033104896,
+ "gpu_name": "NVIDIA A10",
+ "estimated_usd": 0.34537633,
+ "scale": "scale unverified",
+ "gravity": "MODEL-ESTIMATED"
+}

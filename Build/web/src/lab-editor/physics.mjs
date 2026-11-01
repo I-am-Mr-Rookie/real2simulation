@@ -111,6 +111,13 @@ export function roomProxy(positions, gravity = [0, -9.81, 0], floorY = 0, maxBox
   return null;
 }
 
+// N31: SF3D mesh shape (unit box, scaled by size): fixed -> trimesh, movable -> convex hull. null = use the box.
+export function meshCollider(R, o) {
+  if (o.shape?.type !== 'mesh') return null;
+  const v = new Float32Array(o.shape.vertices.map((x, i) => x * o.size[i % 3]));
+  return o.fixed ? R.ColliderDesc.trimesh(v, new Uint32Array(o.shape.indices)) : R.ColliderDesc.convexHull(v);
+}
+
 export function createPhysics(R, sceneInput) {
   const scene = validateScene(sceneInput);
   const v3 = ([x, y, z]) => ({ x, y, z });
@@ -185,8 +192,8 @@ export function createPhysics(R, sceneInput) {
       continue;
     }
     const half = o.size.map((s) => s / 2);
-    const shape = o.kind === 'ball' || o.kind === 'pendulum' || o.kind === 'launcher' ? R.ColliderDesc.ball(Math.max(...half))
-      : o.kind === 'mass' ? R.ColliderDesc.cylinder(half[1], half[0]) : R.ColliderDesc.cuboid(...half);
+    const shape = meshCollider(R, o) ?? (o.kind === 'ball' || o.kind === 'pendulum' || o.kind === 'launcher' ? R.ColliderDesc.ball(Math.max(...half))
+      : o.kind === 'mass' ? R.ColliderDesc.cylinder(half[1], half[0]) : R.ColliderDesc.cuboid(...half));
     shape.setMass(o.mass).setFriction(o.friction).setRestitution(o.restitution);
     const jointed = o.kind === 'pendulum' || o.kind === 'spring';
     const start = movingStart(o);

@@ -1,0 +1,61 @@
+{
+ "utc": "2026-11-01T22:53:09Z",
+ "http": 200,
+ "seconds": 179.0,
+ "object": {
+  "id": "room-object-1",
+  "kind": "block",
+  "position": [
+   0.0379,
+   0.0876,
+   -0.1241
+  ],
+  "size": [
+   0.1425,
+   0.0221,
+   0.1021
+  ],
+  "rotation": [
+   0,
+   -0.852193,
+   0,
+   0.523227
+  ],
+  "fixed": true,
+  "sensor": false,
+  "mass": 25.0,
+  "friction": 0.5,
+  "view": 0,
+  "point": [
+   210,
+   410
+  ],
+  "sam_box": [
+   381,
+   177,
+   436,
+   217
+  ],
+  "size_sd_m": [
+   0.01,
+   0.0024,
+   0.0073
+  ],
+  "points": 2197,
+  "sam_cost_usd": 0.0025,
+  "sf3d": null,
+  "created_at": "2026-11-01T22:53:09Z",
+  "labels": {
+   "geometry": "MODEL-ESTIMATED (SAM 3.1 box + MapAnything points, measured box)",
+   "shape": "box fallback",
+   "mass_friction": "MODEL-ESTIMATED from category table",
+   "scale": "scale unverified",
+   "caveat": "visible surface only; the hidden back is not observed, so depth size is a lower bound"
+  }
+ },
+ "shape": {
+  "type": "box",
+  "fallback_reason": "SF3D failed: ModuleNotFoundError: No module named 'sf3d.system'; 'sf3d' is not a package"
+ },
+ "error": null
+}
