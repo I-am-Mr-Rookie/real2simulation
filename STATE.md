@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-01 21:25 Dhaka (controller)
+- N27 PARTIAL (DEV recheck): fixed F1 (reason path), F2, F4, F10, chart axes, dark mode, 375 px; still open F3 (contributor card skipped 1 of 2 fresh accounts) and F5 (agent now asks clarifying questions for a fully specified drop prompt, 0/2 ran); F6 not checked (selector). About $0.4. Worker wrote evidence in the main checkout (no worktree); controller committed evidence/N27.
+- Dispatched N28-orch273 (Opus high, 60, due 22:18): agent move/resize/remove tools, act with defaults, panel layout, F3. N29-orch274 (Opus high, 60, due 22:18): room collision proxy, one Rapier engine for agent + Play, tighter framing, A4 rescale keeps objects. Both are PLAN Tier 2 scope (owner Nov 1).
+
 ## 2026-11-01 21:05 Dhaka (controller)
 - Accepted N26 (web side of N13 fixes: F1 F2 F3 F4 F6 F8 F10). Main green: node 398/398, build ok. DEV web f0e30fd5 (b192d00f), api e0619429; verify.py exit 0; /, /workspace, /lab, /library 200.
 - Koushik (Nov 1): S23a not approved yet; project not ready. Ask again at freeze Nov 4 10:00 Dhaka. Only S23b waits on it.
