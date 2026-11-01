@@ -10,7 +10,13 @@ QUEUE row needs runs without asking: within remaining credits, no paid overage, 
 job, stop containers after each session. Guard caps (gpu_stages, settlement) stay as tooling;
 settle stale reservations from real Modal billing instead of asking Koushik.
 
-## Latest owner vendor preference — Oct31 ~01:50 Dhaka (standing)
+## Latest owner vendor update — Nov01 ~13:15 Dhaka (standing; Codex quota reset)
+
+Koushik: Codex quota is reset. Rows whose QUEUE model is a Codex model (GPT-6.1 Sol etc.) go to
+Codex again with their QUEUE effort; do not reroute them to Claude. Claude rows stay Claude.
+Supersedes the Oct31 "use Codex only when necessary" line below for routing; 429 rule unchanged.
+
+## Older owner vendor preference — Oct31 ~01:50 Dhaka (superseded for routing by Nov01)
 
 Koushik: "Keep the rule of using codex models less and Claude models more." Dispatch Claude
 (Opus/Sonnet, QUEUE effort) for any row Claude can do, even if QUEUE lists Sol; use Codex

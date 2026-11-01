@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "4a5e6bad-9615-4ffe-892b-eb2951c26949",
-      "previousDeploymentId": "5d26756d-0dc5-489b-9e1e-0ce9258a1220",
-      "redeployNote": "S15bb u breakdown + no-scene viewport hidden; S15bc narrow Finish close + logged-out sign-in redirect",
-      "sourceRevision": "42f52f35437b2006fa0e329ed2e12f93a29bc9e6",
-      "verifiedUtc": "2026-11-01T06:58:00Z",
+      "deploymentId": "45fbd535-a7d6-4907-8d49-9875c71787e8",
+      "previousDeploymentId": "4a5e6bad-9615-4ffe-892b-eb2951c26949",
+      "redeployNote": "S15bd upload retry, plain not-approved copy, session-reset note, recorded-reference divider",
+      "sourceRevision": "a011e275d938aee71c73b967d43ee3337848c409",
+      "verifiedUtc": "2026-11-01T07:13:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
