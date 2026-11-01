@@ -26,7 +26,8 @@ def _base():
 
 
 def _headers():
-    return {"Authorization": f"Bearer {os.environ['MODEL_API_KEY']}"}
+    # N23: Railway egress cannot see Meta models; MODEL_PROXY_TOKEN set means the base URL is Build/gpu/meta_proxy.py
+    return {"Authorization": f"Bearer {os.environ['MODEL_API_KEY']}", "X-R2S-Proxy": os.environ.get("MODEL_PROXY_TOKEN", "")}
 
 
 def _post(path, data, content_type, timeout):

@@ -276,7 +276,8 @@ def _send(path: str, data: bytes, content_type: str, timeout: float) -> Mapping[
         raise ModelUnavailable("MODEL_API_KEY is not set")
     base = os.environ.get("MODEL_API_BASE_URL", "https://api.meta.ai/v1").rstrip("/")
     request = Request(base + path, data=data, method="POST",
-                      headers={"Authorization": "Bearer " + key, "Content-Type": content_type})
+                      headers={"Authorization": "Bearer " + key, "Content-Type": content_type,
+                               "X-R2S-Proxy": os.environ.get("MODEL_PROXY_TOKEN", "")})  # N23 US proxy gate
     try:
         with urlopen(request, timeout=timeout) as response:
             return json.loads(response.read())

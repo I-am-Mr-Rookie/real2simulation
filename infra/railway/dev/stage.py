@@ -30,6 +30,7 @@ prefixes = {
     "api": ("Build/api/", "Build/agent/", "Build/fitter/", "Build/pipeline/", "Build/real2sim/", "Build/reports/",
             # N11 live product: on-demand Modal client, daily cap, hosted SAM, room pipeline, SAMPLE project result.
             "Build/gpu/", "Build/guardrails/", "Build/measurement/", "Build/reconstruction/", "evidence/N07/live-st03.json",
+            "evidence/S05/upstream/revisions.json",  # N23: Build/gpu/image_spec.py reads it when a room job starts
             # N12 lab bridge Build/web/src/lab-editor/agent-run.mjs and its three imports (rk4.mjs is listed below).
             *(f"Build/web/src/lab-editor/{m}.mjs" for m in ("agent-run", "scene", "physics")),
             "contracts/", "clips.csv", "evidence/owner/S02/APPROVAL.md", "evidence/clips/S02c-acquisition.json",
