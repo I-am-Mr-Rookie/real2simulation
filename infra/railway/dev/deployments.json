@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "6d9e95cf-8fd6-4c0c-8214-66f92e7b1ca4",
-      "previousDeploymentId": "302c1fa9-5cc6-464f-897e-6c6367dec104",
-      "redeployNote": "S15bf owner-clip chips, validated owner spec, legacy u rule",
-      "sourceRevision": "e0213a0cdfe22c6939464df4aef0de1d28d96b5f",
-      "verifiedUtc": "2026-11-01T08:26Z",
+      "deploymentId": "af881dce-a332-4c01-a70a-d1975d0f6b10",
+      "previousDeploymentId": "6d9e95cf-8fd6-4c0c-8214-66f92e7b1ca4",
+      "redeployNote": "S15bg neutral workspace heading until probe resolves",
+      "sourceRevision": "7cd9481dbd6ceb01cc2b180bfca854a7cc7f3f1b",
+      "verifiedUtc": "2026-11-01T09:07Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080

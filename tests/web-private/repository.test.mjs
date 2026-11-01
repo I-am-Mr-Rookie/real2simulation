@@ -51,10 +51,11 @@ test('fixture states do not persist mutations or contain fabricated artifacts/nu
   assert.match(next.notice, /FIXTURE.*SYNTHETIC/);
 });
 
-test('public S15 React interface mounts all workspace slots with a visible honest fixture notice', () => {
+test('public S15 React interface mounts all workspace slots; fixture notice waits for the probe (S15bg)', () => {
   const { ownerId, access, ...scene } = readDevelopmentScene(sceneId, owner, env);
   const html = renderToStaticMarkup(React.createElement(PrivateWorkspace, { scene }));
-  assert.ok(html.includes(FIXTURE_NOTICE));
+  // S15bg: first paint (api = checking) is neutral; the fixture notice renders only once the probe reports fixture mode.
+  assert.ok(!html.includes(FIXTURE_NOTICE));
   for (const slot of ['stage-nav', 'viewport', 'panel', 'job-status']) assert.ok(html.includes(`data-slot="${slot}"`));
   assert.ok(html.includes('data-phase="upload.idle"'));
   assert.ok(html.includes('Waiting for an upload'));
