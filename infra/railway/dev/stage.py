@@ -28,6 +28,10 @@ prefixes = {
             *(f"Build/simulator/{m}.mjs" for m in ("trajectories", "extended-templates", "mystery-g", "replay", "rk4"))),
     # Workspace routers import these packages and read the recorded S13h/S14g replay + clip approval at runtime.
     "api": ("Build/api/", "Build/agent/", "Build/fitter/", "Build/pipeline/", "Build/real2sim/", "Build/reports/",
+            # N11 live product: on-demand Modal client, daily cap, hosted SAM, room pipeline, SAMPLE project result.
+            "Build/gpu/", "Build/guardrails/", "Build/measurement/", "Build/reconstruction/", "evidence/N07/live-st03.json",
+            # N12 lab bridge Build/web/src/lab-editor/agent-run.mjs and its three imports (rk4.mjs is listed below).
+            *(f"Build/web/src/lab-editor/{m}.mjs" for m in ("agent-run", "scene", "physics")),
             "contracts/", "clips.csv", "evidence/owner/S02/APPROVAL.md", "evidence/clips/S02c-acquisition.json",
             "evidence/S13/S13h/live/", "evidence/S14/S14g-fix3-live.json", "evidence/S14/S14g-fix3-ledger.jsonl",
             # S15av lab bridge: Python setup/validation/instruments plus the Node simulator it spawns.
