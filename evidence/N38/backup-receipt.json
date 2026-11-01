@@ -1,0 +1,9 @@
+{
+  "observed_utc": "2026-11-01T21:09:27.639143+00:00",
+  "path": "evidence/N38/private/postgres-before.dump",
+  "bytes": 885,
+  "sha256": "3f19ef8cdbe9926bd07d5ff45921de8d6971d0060fa7339fa22ffa59fd9a0d6d",
+  "remote_pg_restore_list": "pass",
+  "local_format_and_transfer_checksum": "pass",
+  "restore_drill": "not run"
+}

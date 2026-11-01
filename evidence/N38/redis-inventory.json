@@ -1,0 +1,17 @@
+{
+  "db0": {
+    "keyspace": {
+      "keys": 228,
+      "expires": 0,
+      "avg_ttl": 0,
+      "subexpiry": 0
+    },
+    "categories": {
+      "job_provenance": 69,
+      "job_input": 69,
+      "job_owner": 69,
+      "idempotency_output": 6,
+      "job_events": 15
+    }
+  }
+}
