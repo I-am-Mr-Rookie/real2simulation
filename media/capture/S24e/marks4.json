@@ -1,0 +1,16 @@
+{
+ "beat6-rm04-run": {
+  "upload_started": 14.2,
+  "q1": 36,
+  "typed1": 37.6,
+  "q2": 41.6,
+  "chip2": 43.8,
+  "q3": 47.5,
+  "chip3": 49.2,
+  "sent3": 49.7,
+  "result": 61.7,
+  "run_clicked": 62,
+  "run_done": 77,
+  "run_scrolled": 80.3
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "beat6-rm04-interview": {
+  "upload_started": 15,
+  "q1": 28.2,
+  "typed1": 30.9,
+  "sent1": 31.1,
+  "q2": 37.9,
+  "typed2": 40.8,
+  "sent2": 40.9,
+  "q3": 47.8,
+  "typed3": 50.6,
+  "sent3": 50.8,
+  "after": 58
+ },
+ "lab": {
+  "lab": 4.2,
+  "mystery_on": 5.9,
+  "trial": 10.1,
+  "reveal": 15.3
+ }
+}

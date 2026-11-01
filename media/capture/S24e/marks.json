@@ -1,0 +1,30 @@
+{
+ "beat6-own05": {
+  "workspace_ready": 13.8,
+  "upload_started": 13.8,
+  "agent_question": 21.2,
+  "chip_selected": 24.1,
+  "answer_sent": 24.5,
+  "result": 28.2
+ },
+ "beat6-rm04": {
+  "workspace_ready": 13.2,
+  "upload_started": 13.2,
+  "q1": 30.4,
+  "a1": 31,
+  "q2": 38,
+  "a2": 38.8,
+  "q3": 45.8,
+  "a3": 46.6,
+  "after": 54.6
+ },
+ "beat7-sidebar": {},
+ "beat7": {
+  "library": 4.7,
+  "library_scrolled": 7.4,
+  "lab": 11.8,
+  "lab_scrolled": 14.4,
+  "home": 17.7,
+  "home_end": 23.6
+ }
+}
