@@ -1,0 +1,12 @@
+# N37-orch281 REPORT: DONE
+- Read-only security/spend review of main a932d0f724ac55fdc3872abe179af595f8b1a858, N35/N36 reports and pricing, daily_cap and caller paths.
+- Deliverable: evidence/reviews/R-N37/REVIEW.md; supporting pytest.txt, node.txt, probes.json.
+- Findings: P1 missing-usage settlement bypass; P2 status/reaper race; P2 structured refusal fallback; P2 upstream bad-input fallback; P2 rejected routing-tool fallback (conditional injection scenario, no live attack claim).
+- Smallest fixes and exact file:line references in REVIEW.md. No application, test or config code changed.
+- Python: 154 passed, 464 subtests passed; one third-party deprecation warning.
+- Node: 41 passed after linking existing canonical node_modules; no install. Initial missing-React attempt recovered.
+- Offline assert probes passed: refusal formats, HTTP 400, 200 missing-usage calls, actual concurrent start/status, both cap races, client model/tier tampering, fake-credential hygiene.
+- Cap admission itself serialized correctly: 10 x $0.20 Sol and 40 x $0.25 mixed-provider reservations admitted at $2/$10; settlement flaw still prevents full cap sign-off.
+- Minimal Sol request estimate allows 35 concurrent reservations, not a fixed ten; live_room missing rid conservatively retains spend on crash, not a demonstrated current free run.
+- Paid calls: 0; cost: $0. No deploy, push, real credential reads or live-provider requests.
+- Skipped: live injection/models, browser/build, infrastructure logs/topology, remote cancellation and invoices. Risks: findings remain unfixed; static/offline review is not end-to-end billing assurance.
