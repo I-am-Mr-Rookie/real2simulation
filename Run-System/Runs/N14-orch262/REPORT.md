@@ -1,0 +1,11 @@
+# N14-orch262 REPORT: DONE
+Path chosen: box proxy, not mesh. SAM 3D Objects gate fails (sam3d_option.gate: no owner licence receipt; A10G 23 GB < 32 GB), so click -> hosted SAM 3.1 image point prompt -> box -> MapAnything points (SAM box x depth band +-half the visible size, floor points dropped) -> gravity-aligned box (p5-p95 extents, PCA yaw) -> lab-scene-v1 "block", fixed, solid. Label MODEL-ESTIMATED; scale label copied from room.json.
+Changed: Build/reconstruction/object_lift.py; Build/api/room/objects.py (POST /internal/workspace/rooms/{id}/objects {view, point:[row,col]}, GET .../views/{view}.png = click image on the model grid); Build/api/health/app.py (import + mount); tests/reconstruction/test_object_lift.py; evidence/N14/live_run.py + live/*.json.
+Checks: python -m unittest tests.reconstruction.test_object_lift tests.reconstruction.test_live_room: 11 OK. Lab validator (agent-run.mjs validate) accepts the block (rotation, size, fixed). No web change, no build/deploy.
+Live run RM02 (Pexels): room job done 76.5 s; click view 4 [215,320] on the green chair -> HTTP 200 in 6.4 s, SAM box [252,100,459,293], 15625 points, proxy 0.87 x 0.56 x 0.47 m (sd 0.03/0.06/0.07 boundary sensitivity only), scale unverified. evidence/N14/live/object-v4-215-320.json (run1 = earlier depth band, superseded: 1.07 x 0.94 x 0.75 m).
+Paid calls (all via daily_cap):
+- 2026-11-01T12:31Z Modal r2s-ondemand reconstruct A10G, 1 job, est $0.3491 (upper bound incl. 15 min idle)
+- 2026-11-01T12:32:53Z Meta sam-3.1 image, 1 image, $0.0025
+- 2026-11-01T12:34:15Z Meta sam-3.1 image, 1 image, $0.0025. Total about $0.354.
+Skipped: mask decoding (one_bit payload format undocumented here; hosted_sam does not decode either), mesh kind, UI click wiring (N09/N10 own the UI; BFF proxy already forwards /api/workspace/*).
+Risks: box + depth band includes nearby clutter (chair proxy width 0.87 m likely includes desk/radiator parts); visible surface only, depth is a lower bound; RM02 scale unverified so metres are nominal MapAnything units. object_lift reruns live_room.analyse under a lock and patches live_room._frame to read rot/origin (shortcut comment; upgrade: N08 saves rot/origin in room.json). RM02 view PNGs kept local only.

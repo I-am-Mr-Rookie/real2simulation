@@ -14,6 +14,8 @@ from Build.api.experiment import create_router as experiment_router
 from Build.api.experiment.share import create_router as share_router
 from Build.api.room import create_router as room_router
 from Build.api.agent import handlers as agent_handlers, lab_handlers, equation_handlers
+from Build.api.room.objects import create_router as room_objects_router
+from Build.api.agent import handlers as agent_handlers, lab_handlers
 from Build.api.workspace import analysis, jobs
 
 SERVICE = "api"
@@ -52,6 +54,7 @@ def create_app() -> FastAPI:
     app.include_router(experiment_router())  # N07 Mode B experiments; N03 SQLite + one worker thread, no Redis
     app.include_router(share_router())  # N16 Guess the Gravity share (owner) + public token reads; N03 SQLite
     app.include_router(room_router())  # N08 room video -> lab scene jobs; files under R2S_DATA_DIR, no Redis
+    app.include_router(room_objects_router())  # N14 click object -> SAM 3.1 box -> box proxy in the room scene
     # Internal owner-scoped routes (WORKSPACE_INTERNAL_TOKEN); analysis resolves scenes from the jobs store.
     try:
         store = jobs.default_store()

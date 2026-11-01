@@ -1,0 +1,93 @@
+{
+ "utc": "2026-11-01T12:32:53Z",
+ "http": 200,
+ "seconds": 5.5,
+ "body": {
+  "object": {
+   "id": "room-object-1",
+   "kind": "block",
+   "position": [
+    -0.07,
+    0.459,
+    -1.9032
+   ],
+   "size": [
+    1.0656,
+    0.9446,
+    0.7534
+   ],
+   "rotation": [
+    0,
+    -0.901885,
+    0,
+    0.431977
+   ],
+   "fixed": true,
+   "sensor": false,
+   "view": 4,
+   "point": [
+    215,
+    320
+   ],
+   "sam_box": [
+    252,
+    100,
+    459,
+    293
+   ],
+   "size_sd_m": [
+    0.108,
+    0.0075,
+    0.0708
+   ],
+   "points": 23026,
+   "sam_cost_usd": 0.0025,
+   "created_at": "2026-11-01T12:32:53Z",
+   "labels": {
+    "geometry": "MODEL-ESTIMATED (SAM 3.1 box + MapAnything points, box proxy)",
+    "scale": "scale unverified",
+    "caveat": "visible surface only; the hidden back is not observed, so depth size is a lower bound"
+   }
+  },
+  "scene": {
+   "version": "lab-scene-v1",
+   "label": "SIMULATED",
+   "units": "m",
+   "gravity": [
+    0,
+    -9.81,
+    0
+   ],
+   "room": {
+    "kind": "ply",
+    "floor_y": 0,
+    "source": "room.ply",
+    "scale_verified": false
+   },
+   "objects": [
+    {
+     "id": "room-object-1",
+     "kind": "block",
+     "position": [
+      -0.07,
+      0.459,
+      -1.9032
+     ],
+     "size": [
+      1.0656,
+      0.9446,
+      0.7534
+     ],
+     "rotation": [
+      0,
+      -0.901885,
+      0,
+      0.431977
+     ],
+     "fixed": true,
+     "sensor": false
+    }
+   ]
+  }
+ }
+}
