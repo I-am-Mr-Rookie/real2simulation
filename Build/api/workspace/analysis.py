@@ -30,9 +30,18 @@ Q16_LABEL = "scale unverified, not setup-validated"
 # Owner Q20=A: Run on a Q16 scene is only a labelled what-if; this exact label travels with run/fit/report numbers.
 WHAT_IF_LABEL = "SIMULATED what-if of your described setup; scale unverified; not measured from the clip"
 _NO_BUNDLE = "$.scene: invalid authoritative bundle:"
-# S15v: one free-text question for an object of known size; its answer is user-declared scale, never verified.
-KNOWN_SIZE = {"id": "known_size", "kind": "free_text", "chips": [], "prompt": [{"type": "text", "text":
+# S15v/S15bf: known-size question, chips (labels only; the standard length applies only if the user picks the chip) + free text.
+# Its answer is user-declared scale, never verified.
+# chip id -> (label: no digits, web parseQuestions rejects untraced numerals; object; standard length m)
+_SIZE_CHIPS = {"a4_short_edge": ("A four paper, short edge", "A4 paper short edge", 0.21),
+               "card_long_edge": ("Bank card, long edge", "bank card long edge", 0.0856)}
+_chip = lambda cid, text: {"id": cid, "label": [{"type": "text", "text": text}]}
+KNOWN_SIZE = {"id": "known_size", "kind": "chips_and_free_text", "chips": [_chip(k, v[0]) for k, v in _SIZE_CHIPS.items()],
+              "prompt": [{"type": "text", "text":
               "Name one object of known size in the fall plane and its length with units, e.g. book cover edge in cm."}]}
+OWNER_SIZE_CHIP = _chip("owner_recorded", "the length recorded with this clip (owner-declared)")
+OWNER_SPEC_LABEL = "scale user-declared, not verified; not setup-validated"
+MAX_LENGTH_M = 10.0
 _LENGTH = re.compile(r"(\d+(?:\.\d+)?)\s*(mm|cm|m)\b", re.I)
 SCALE_LABEL_USER = "user-declared, not verified"
 # S15az (Gate D D1/D6): owner clips get a fit run now on the stored track points; numbers come only from Build/fitter/core.py.
@@ -60,6 +69,29 @@ def user_scale(answer: Any) -> dict[str, Any] | None:
         return {"status": "abstain", "label": "UNCERTAIN: no usable known size; metric scale unknown"}
     length_m = float(m[1]) / {"mm": 1000, "cm": 100, "m": 1}[m[2].lower()]
     return {"status": "declared", "object": text.strip()[:200], "length_m": length_m, "label": SCALE_LABEL_USER}
+
+
+def owner_spec(answer: Any, m: Mapping[str, Any]) -> dict[str, Any]:
+    """S15bf (R-D F1): known_size answer -> validated owner spec {object, length_m}; unusable or out-of-range -> 422."""
+    a = answer if isinstance(answer, dict) else {}
+    rec = (m.get("scale") or {}) if isinstance(m, dict) else {}
+    scale = user_scale(a) if isinstance(a.get("text"), str) and a["text"].strip() else None
+    if scale is None or scale["status"] != "declared":
+        if _LENGTH.search(str(a.get("text") or "")):  # a typed length of 0 is nonsense, not "no answer"
+            scale = {"length_m": 0.0}
+        elif a.get("chip") in _SIZE_CHIPS:
+            _, obj, length = _SIZE_CHIPS[a["chip"]]
+            scale = {"status": "declared", "object": obj, "length_m": length, "label": SCALE_LABEL_USER}
+        elif a.get("chip") == OWNER_SIZE_CHIP["id"] and rec.get("value_m"):
+            scale = {"status": "declared", "object": str(rec.get("reference") or "owner-declared reference")[:200],
+                     "length_m": float(rec["value_m"]), "label": SCALE_LABEL_USER}
+        else:
+            raise error(422, "INVALID_INPUT", "spec did not validate", ok=False,
+                        errors=["known_size: name an object and its length with units (mm, cm or m), or choose an option"])
+    if not 0 < scale["length_m"] <= MAX_LENGTH_M:
+        raise error(422, "INVALID_INPUT", "spec did not validate", ok=False,
+                    errors=[f"known_size: length must be above 0 and at most {MAX_LENGTH_M:g} m"])
+    return scale
 
 
 def _scene(scenes: SceneResolver, owner: str, scene_id: str):
@@ -128,6 +160,10 @@ def _u_total(u_fit, g, mpp, length_m, m):
         return {"u": math.sqrt(sum(v * v for v in terms.values())), "u_fit": u_fit, "u_terms": terms, "u_rule": "quadrature",
                 "u_label": "fit scatter combined in quadrature with the recorded S07m budget terms (" + str(b.get("source")) + ")"}
     if isinstance(m.get("u"), (int, float)):
+        rec_len = (m.get("scale") or {}).get("value_m")
+        if not rec_len or not math.isclose(length_m, rec_len, rel_tol=1e-9):  # R-D F5: old total is for the recorded scale only
+            return {"u": u_fit, "u_fit": u_fit, "u_terms": None, "u_rule": "fit_only_legacy",
+                    "u_label": "fit residual scatter only; combined uncertainty unavailable for this older job at this scale"}
         return {"u": float(m["u"]), "u_fit": u_fit, "u_terms": None, "u_rule": "recorded_total",
                 "u_label": "uncertainty from the recorded S07m budget"}
     return {"u": u_fit, "u_fit": u_fit, "u_terms": None, "u_rule": "fit_only",
@@ -167,7 +203,9 @@ def create_router(scenes: SceneResolver = _no_scenes) -> APIRouter:
     def questions(scene_id: str, owner: str = Depends(require_owner)):
         base_spec, scene, _ = _scene(scenes, owner, scene_id)
         if scene is None and "owner_clip" in base_spec:  # S15y: no scene, so only the scene-free known-size question
-            return {"schema_version": "agent-response/1.0.0", "scene_id": scene_id, "questions": [KNOWN_SIZE]}
+            rec = (base_spec["owner_clip"] or {}).get("scale") or {}
+            q = {**KNOWN_SIZE, "chips": [OWNER_SIZE_CHIP, *KNOWN_SIZE["chips"]]} if rec.get("value_m") else KNOWN_SIZE
+            return {"schema_version": "agent-response/1.0.0", "scene_id": scene_id, "questions": [q]}
         try:
             out = interview.questions(scene_id, base_spec.get("template"))
         except AgentContractError as exc:
@@ -183,11 +221,15 @@ def create_router(scenes: SceneResolver = _no_scenes) -> APIRouter:
         if not isinstance(answers, dict):
             raise error(422, "INVALID_INPUT", "body must be {answers: {...}}", ok=False, errors=["answers: expected object"])
         answers = dict(answers)
-        scale = user_scale(answers.pop(KNOWN_SIZE["id"], None))
-        if scene is None and "owner_clip" in base_spec:  # S15y: stored result (or abstain) + declared scale; no spec, no run
-            scale = scale or user_scale({})
-            return {"ok": True, "owner_clip": True, "measurement": base_spec["owner_clip"],
-                    "user_scale": scale, "live_fit": owner_live_fit(base_spec["owner_clip"], scale)}
+        size = answers.pop(KNOWN_SIZE["id"], None)
+        if scene is None and "owner_clip" in base_spec:  # S15y/S15bf: validated owner spec first, then stored result + live fit
+            m = base_spec["owner_clip"]
+            scale = owner_spec(size, m)
+            spec_doc = {"kind": "owner_clip_scale", "object": scale["object"], "length_m": scale["length_m"], "unit": "m",
+                        "label": SCALE_LABEL_USER}
+            return {"ok": True, "owner_clip": True, "spec": spec_doc, "setup_validated": False, "label": OWNER_SPEC_LABEL,
+                    "measurement": m, "user_scale": scale, "live_fit": owner_live_fit(m, scale)}
+        scale = user_scale(size)
         extra = {"user_scale": scale} if scale else {}
         try:
             validated = interview.answers_to_spec(base_spec, scene, root, answers)

@@ -279,9 +279,20 @@ class JobsRouterTests(unittest.TestCase):
         doc = c.get(f"/internal/workspace/jobs/{job_id}", headers=AUTH).json()
         self.assertEqual((doc["kind"], doc["job"]["status"], doc["events"]), ("job_progress", "no_scene", []))
         q = c.get(f"/internal/workspace/scenes/{job_id}/questions", headers=AUTH)
-        self.assertEqual(q.json(), {"schema_version": "agent-response/1.0.0", "scene_id": job_id, "questions": [analysis.KNOWN_SIZE]})
+        ks = q.json()["questions"][0]  # S15bf: chips (recorded answer first) plus free text
+        self.assertEqual((ks["kind"], [c["id"] for c in ks["chips"]]), ("chips_and_free_text", ["owner_recorded", "a4_short_edge", "card_long_edge"]))
+        self.assertFalse(any(ch.isdigit() for c in ks["chips"] for seg in c["label"] for ch in seg["text"]))  # labels only
         s = c.post(f"/internal/workspace/scenes/{job_id}/spec", headers=AUTH,
                    json={"answers": {"known_size": {"text": "book cover edge, 20.28 cm"}}}).json()
+        self.assertEqual((s["spec"]["object"], s["spec"]["length_m"], s["spec"]["unit"], s["setup_validated"], s["label"]),
+                         ("book cover edge, 20.28 cm", 0.2028, "m", False, analysis.OWNER_SPEC_LABEL))
+        for bad in ({}, {"text": "a book"}, {"text": "book, 0 cm"}, {"text": "pole, 12 m"}, {"chip": "nope"}):  # S15bf: 422, no result
+            r = c.post(f"/internal/workspace/scenes/{job_id}/spec", headers=AUTH, json={"answers": {"known_size": bad}})
+            self.assertEqual((self.code(r, 422), "owner_clip" in r.text), ("INVALID_INPUT", False), bad)
+        a4 = c.post(f"/internal/workspace/scenes/{job_id}/spec", headers=AUTH, json={"answers": {"known_size": {"chip": "a4_short_edge"}}}).json()
+        self.assertEqual((a4["spec"]["object"], a4["spec"]["length_m"]), ("A4 paper short edge", 0.21))
+        rec = c.post(f"/internal/workspace/scenes/{job_id}/spec", headers=AUTH, json={"answers": {"known_size": {"chip": "owner_recorded"}}}).json()
+        self.assertEqual(rec["spec"]["length_m"], rec["measurement"]["scale"]["value_m"])
         self.assertEqual((s["owner_clip"], s["measurement"]["g"], s["measurement"]["u"]), (True, 10.96, 0.77))
         self.assertEqual((s["user_scale"]["status"], s["user_scale"]["length_m"]), ("declared", 0.2028))
         # S15az (Gate D D1/D6): the route runs the fitter now; a different answer gives a different scale and g
@@ -297,8 +308,9 @@ class JobsRouterTests(unittest.TestCase):
             self.assertEqual(self.code(r, 404), "NOT_FOUND")
         c2 = self.owner_app("OWN10")
         j2 = self.finish(c2)["job"]["job_id"]
-        s2 = c2.post(f"/internal/workspace/scenes/{j2}/spec", headers=AUTH, json={"answers": {}}).json()  # no size: abstain, not 422
-        self.assertEqual((s2["measurement"]["label"], s2["user_scale"]["status"]), ("UNCERTAIN: no measurement", "abstain"))
+        s2 = c2.post(f"/internal/workspace/scenes/{j2}/spec", headers=AUTH,
+                     json={"answers": {"known_size": {"text": "book cover edge, 20.28 cm"}}}).json()  # abstain measurement, valid spec
+        self.assertEqual((s2["measurement"]["label"], s2["user_scale"]["status"]), ("UNCERTAIN: no measurement", "declared"))
 
     def test_owner_clips_match_evidence_and_are_approved(self):  # tracked copy must equal the S07g/S07i evidence
         reg = json.loads((ROOT / "evidence/S07/S07g/clips-sha256.json").read_text(encoding="utf-8"))

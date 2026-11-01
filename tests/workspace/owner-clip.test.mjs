@@ -12,7 +12,9 @@ import { readFileSync } from 'node:fs';
 const LIVE = JSON.parse(readFileSync(new URL('./fixtures/live-fit-own05.json', import.meta.url), 'utf8'));
 
 const JOB = 'job_' + 'a'.repeat(32);
-const KNOWN_SIZE = { id: 'known_size', kind: 'free_text', chips: [], prompt: [{ type: 'text', text: 'Name one object of known size in the fall plane and its length with units, e.g. book cover edge in cm.' }] };
+const KNOWN_SIZE = { id: 'known_size', kind: 'chips_and_free_text', prompt: [{ type: 'text', text: 'Name one object of known size in the fall plane and its length with units, e.g. book cover edge in cm.' }],
+  chips: [{ id: 'owner_recorded', label: [{ type: 'text', text: 'the length recorded with this clip (owner-declared)' }] },
+    { id: 'a4_short_edge', label: [{ type: 'text', text: 'A four paper, short edge' }] }, { id: 'card_long_edge', label: [{ type: 'text', text: 'Bank card, long edge' }] }] };
 const OWN01 = { clip_id: 'OWN01', input_label: 'OWNER_RECORDED / RECORDED', status: 'recorded', label: 'RECORDED replay of a MEASURED result',
   g: 10.96, u: 0.77, unit: 'm/s^2', measured_label: 'MEASURED (owner clip OWN01)', source: 'evidence/S07/S07i/result-own01.json',
   caveat: 'Held-out prediction FAILS: held-out RMSE 23.0 px exceeds the 6 px pass threshold (S07h: 3 x the declared 2 px).',
@@ -21,16 +23,18 @@ const OWN02 = { clip_id: 'OWN02', input_label: 'OWNER_RECORDED / RECORDED', stat
 const h = (type, props, ...children) => ({ type, props: props ?? {}, children: children.flat(Infinity) });
 const strings = (n) => (typeof n === 'string' ? [n] : n?.children?.flatMap(strings) ?? []);
 
-async function ownerWalk(measurement, sizeText, liveFit) {
+async function ownerWalk(measurement, sizeText, liveFit, { chip = null, noSpec = false } = {}) {
   const calls = [];
+  const spec = noSpec ? {} : { spec: { kind: 'owner_clip_scale', object: sizeText ?? 'A4 paper short edge', length_m: 0.2028, unit: 'm', label: 'user-declared, not verified' },
+    setup_validated: false, label: 'scale user-declared, not verified; not setup-validated' };
   const routes = [
     [/uploads$/, { upload_id: 'up1', chunk_bytes: 1024, committed_bytes: 0 }],
     [/chunks\/\d+$/, { committed_bytes: 4 }],
     [/complete$/, { upload: { sha256: 'f'.repeat(64), job_id: JOB }, job: { job_id: JOB, status: 'no_scene', label: 'no scene: owner clip, scene reconstruction not run' },
       provenance: { executor: 'none', label: 'no scene: owner clip, scene reconstruction not run', live: false, recorded_stages: [], stage_labels: {}, measurement } }],
     [/questions$/, { schema_version: 'agent-response/1.0.0', scene_id: JOB, questions: [KNOWN_SIZE] }],
-    [/spec$/, { ok: true, owner_clip: true, measurement, user_scale: sizeText ? { status: 'declared', object: sizeText, length_m: 0.2028, label: 'user-declared, not verified' }
-      : { status: 'abstain', label: 'UNCERTAIN: no usable known size; metric scale unknown' }, ...(liveFit ? { live_fit: liveFit } : {}) }],
+    [/spec$/, { ok: true, owner_clip: true, ...spec, measurement, user_scale: { status: 'declared', object: sizeText ?? 'A4 paper short edge', length_m: 0.2028, label: 'user-declared, not verified' },
+      ...(liveFit ? { live_fit: liveFit } : {}) }],
   ];
   const f = async (url, init) => {
     calls.push({ url, method: init.method, body: typeof init.body === 'string' ? JSON.parse(init.body) : null });
@@ -46,9 +50,11 @@ async function ownerWalk(measurement, sizeText, liveFit) {
   assert.match(layoutOf(ctl.state).jobStatus.label, /^Owner clip: no scene \(reconstruction not run\)/);
   let iv = reduceInterview(initialInterview(), { type: 'Q_LOADED', response: await ctl.loadQuestions(), sceneId: ctl.state.owner.jobId });
   assert.deepEqual(iv.questions.map((q) => q.id), ['known_size']);
-  iv = reduceInterview(reduceInterview(iv, { type: 'Q_TEXT', text: sizeText ?? 'none' }), { type: 'Q_SUBMIT' });
+  assert.equal(iv.questions[0].chips.length, 3); // S15bf: chips plus free text
+  iv = reduceInterview(reduceInterview(iv, chip ? { type: 'Q_CHIP', chipId: chip } : { type: 'Q_TEXT', text: sizeText }), { type: 'Q_SUBMIT' });
   await ctl.submitAnswers(interviewAnswers(iv));
-  assert.deepEqual(calls.at(-1).body, { answers: { known_size: { text: sizeText ?? 'none' } } });
+  assert.deepEqual(calls.at(-1).body, { answers: { known_size: chip ? { chip } : { text: sizeText } } });
+  if (noSpec) return { phase: ctl.state.phase };
   assert.equal(ctl.state.phase, 'report.owner');
   const layout = layoutOf(ctl.state, { audience: 'signed-in' });
   const tree = renderWorkspace(h, layout, { status: 'empty', error: null }, null, undefined, undefined, undefined, undefined, undefined, undefined,
@@ -74,10 +80,15 @@ test('owner clip OWN01: no-scene job, known-size interview, stored g ± u as the
 });
 
 test('owner clip OWN02: abstain result, missing size is an abstain not an error', async () => {
-  const { panel } = await ownerWalk(OWN02, null);
+  const { panel } = await ownerWalk(OWN02, null, undefined, { chip: 'a4_short_edge' }); // S15bf: a chip answer, sent as the chip id only
   assert.match(panel, /UNCERTAIN: no measurement/);
-  assert.match(panel, /UNCERTAIN: no usable known size/);
+  assert.match(panel, /A4 paper short edge/);
   assert.doesNotMatch(panel, /g = /);
+});
+
+test('S15bf R-D F1: an owner reply without a validated spec never reaches the owner result stage', async () => {
+  const { phase } = await ownerWalk(OWN01, 'book cover edge, 20.28 cm', undefined, { noSpec: true });
+  assert.notEqual(phase, 'report.owner');
 });
 
 test('S15az owner clip OWN05: live fitter result after the answer; a different answer changes scale and g; missing points abstain', async () => {

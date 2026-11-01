@@ -83,6 +83,10 @@ class LiveFitTest(unittest.TestCase):
         # no budget -> recorded total is the headline, labelled; never the fit-only u
         nb = owner_live_fit({k: v for k, v in rec.items() if k != "u_budget"}, user_scale({"text": "20.28 cm"}))
         self.assertEqual((nb["u"], nb["u_rule"], nb["u_label"]), (rec["u"], "recorded_total", "uncertainty from the recorded S07m budget"))
+        # R-D F5: legacy job (no budget) at a different scale never pairs the rescaled g with the old-scale total u
+        nb2 = owner_live_fit({k: v for k, v in rec.items() if k != "u_budget"}, user_scale({"text": "40.56 cm"}))
+        self.assertEqual((nb2["u"], nb2["u_rule"]), (nb2["u_fit"], "fit_only_legacy"))
+        self.assertIn("combined uncertainty unavailable for this older job", nb2["u_label"])
 
     def test_s15bb_budget_rederived_from_s07(self):
         import importlib.util

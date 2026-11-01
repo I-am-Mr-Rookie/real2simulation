@@ -142,7 +142,8 @@ export function createController({ fetch: f = globalThis.fetch, base = API_BASE,
       const r = await call('POST', `scenes/${encodeURIComponent(state.scene?.scene_id ?? state.owner?.jobId ?? '')}/spec`, body);
       if (r.error) return failWith(r.error);
       const d = r.data;
-      if (state.owner && d?.owner_clip === true) { // S15y: result stage = stored g ± u (or abstain) + the declared scale
+      // S15y/S15bf: result stage only after the API returned a validated owner spec (object + length in m, user-declared)
+      if (state.owner && d?.owner_clip === true && d.setup_validated === false && d.spec?.length_m > 0) {
         // S15az: live_fit = fitter run now on the stored track points with this answer's scale (Gate D D1/D6)
         const measurement = d.measurement && typeof d.measurement === 'object' ? { ...d.measurement, user_scale: d.user_scale ?? null, live_fit: d.live_fit ?? null } : null;
         patch({ provenance: meta.provenance && measurement ? { ...meta.provenance, measurement } : meta.provenance });
