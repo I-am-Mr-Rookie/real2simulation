@@ -13,7 +13,7 @@ from Build.api.agent import create_router as agent_router
 from Build.api.experiment import create_router as experiment_router
 from Build.api.experiment.share import create_router as share_router
 from Build.api.room import create_router as room_router
-from Build.api.agent import handlers as agent_handlers, lab_handlers
+from Build.api.agent import handlers as agent_handlers, lab_handlers, equation_handlers
 from Build.api.workspace import analysis, jobs
 
 SERVICE = "api"
@@ -46,7 +46,7 @@ def create_app() -> FastAPI:
 
     app.include_router(lab_router())  # internal-token lab bridge; independent of Redis like liveness
     app.include_router(storage_router())  # N03 files/quotas/projects; SQLite + disk under R2S_DATA_DIR, no Redis
-    app.include_router(agent_router(handlers={**agent_handlers.HANDLERS, **lab_handlers.HANDLERS}))  # N05 agent turn + transcription; N12 lab tools
+    app.include_router(agent_router(handlers={**agent_handlers.HANDLERS, **lab_handlers.HANDLERS, **equation_handlers.HANDLERS}))  # N05 agent turn + transcription; N12 lab tools; N15 fit_equation
     app.include_router(lab_handlers.create_router())  # N12 editor scene/run/report for the agent lab; disk only
     app.include_router(gpu_router())  # N04 GPU status dot; SQLite job table + Modal stats, independent of Redis
     app.include_router(experiment_router())  # N07 Mode B experiments; N03 SQLite + one worker thread, no Redis

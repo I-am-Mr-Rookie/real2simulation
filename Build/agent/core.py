@@ -61,9 +61,18 @@ TOOLS: dict[str, tuple[str, dict[str, Any]]] = {
                        "properties": {"times": _NUMS, "positions": _NUMS, "time_sigma_s": {"type": "number"},
                                       "position_sigma_m": {"type": "number"}}}}),
     "write_report": ("Write the experiment report from the latest results.", {}),
+    "fit_equation": ("Fit your own equation y(t) to a measured trajectory (trajectory_id) and compare it by AIC with "
+                     "the built-in line and parabola. Grammar: t, your parameter names, numbers, pi, + - * / ^ "
+                     "(numeric exponent up to 10), sin cos exp sqrt log. axis x or y (default y).", {
+        "trajectory_id": _ID, "equation": {"type": "string", "maxLength": 200},
+        "parameters": {"type": "array", "minItems": 1, "maxItems": 8,
+                       "items": {"type": "string", "pattern": r"^[A-Za-z][A-Za-z0-9]{0,15}$", "maxLength": 16}},
+        "initial_guess": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"type": "number"}},
+        "axis": {"type": "string", "enum": ["x", "y"]}}),
 }
 REQUIRED = {"ask_user": ["question", "options"], "start_experiment_track": ["file_id", "target"],
-            "start_room_build": ["file_id"], "lab_add_object": ["kind", "params"]}
+            "start_room_build": ["file_id"], "lab_add_object": ["kind", "params"],
+            "fit_equation": ["trajectory_id", "equation", "parameters", "initial_guess"]}
 
 
 def _schema(name: str) -> dict[str, Any]:

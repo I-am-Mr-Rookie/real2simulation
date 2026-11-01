@@ -1,0 +1,49 @@
+{
+ "label": "SIMULATED fixture (tests/fitter/test_proposed.py), true A=0.12 g=0.3 w=4.4 p=0.2, noise sigma 0.002",
+ "equation": "A*exp(-g*t)*cos(w*t + p)",
+ "converged": true,
+ "iterations": 7,
+ "n": 200,
+ "k": 4,
+ "parameters": {
+  "A": {
+   "value": 0.12000390451395548,
+   "sigma_1": 0.000597064873232682
+  },
+  "g": {
+   "value": 0.298120104326066,
+   "sigma_1": 0.002461490981872965
+  },
+  "w": {
+   "value": 4.400433615164659,
+   "sigma_1": 0.0024692729326946323
+  },
+  "p": {
+   "value": 0.20020800479278184,
+   "sigma_1": 0.004894785880817283
+  }
+ },
+ "rss": 0.000807555809729862,
+ "rmse": 0.0020094225659749395,
+ "aic": -2475.963151517446,
+ "comparison": [
+  {
+   "model": "proposed: A*exp(-g*t)*cos(w*t + p)",
+   "k": 4,
+   "aic": -2475.963151517446
+  },
+  {
+   "model": "built-in line (degree 1)",
+   "k": 2,
+   "aic": -1243.9424121115446
+  },
+  {
+   "model": "built-in parabola (degree 2)",
+   "k": 3,
+   "aic": -1243.0319438167858
+  }
+ ],
+ "best_by_aic": "proposed: A*exp(-g*t)*cos(w*t + p)",
+ "delta_aic_vs_best_builtin": -1232.0207394059014,
+ "uncertainty": "1 sigma from s^2 (J^T J)^-1; Gaussian iid residuals, local linearisation, clock and scale held fixed"
+}
