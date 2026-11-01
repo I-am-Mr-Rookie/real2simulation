@@ -7,18 +7,18 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "243368cd-9499-4c36-abfc-e1ed01503f1a",
-      "previousDeploymentId": "c74afc74-5845-45be-8cd1-f1ef7b9aeba0",
-      "redeployNote": "S15ay Gate D P3 fixes (health probe, narrow panel, /workspace redirect)",
-      "sourceRevision": "b7a6191385a9a8c7e353c11add91b6c3fbbadf20",
-      "verifiedUtc": "2026-10-31T16:08:00Z",
+      "deploymentId": "5d26756d-0dc5-489b-9e1e-0ce9258a1220",
+      "previousDeploymentId": "243368cd-9499-4c36-abfc-e1ed01503f1a",
+      "redeployNote": "S15az live-fit result card + S15ba D5/D7/D8 labels",
+      "sourceRevision": "b1206c07d3c62261159c9bfb6363350f569552c3",
+      "verifiedUtc": "2026-10-31T16:38:00Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "a0a27f13-a58d-4097-9957-3179e35a569d",
+      "deploymentId": "885a1368-b3e2-4407-8368-3b3bbc87dac1",
       "previousDeploymentIds": [
         "88eb14d1-5be4-4d6b-a439-800293c2b703",
         "85c23646-2e35-4c25-af0d-cbe38a52c524",
@@ -28,8 +28,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "baf5dec0f85bc423aca509c260917f55c5be89e2",
-      "verifiedUtc": "2026-10-31T15:12:00Z",
+      "sourceRevision": "b1206c07d3c62261159c9bfb6363350f569552c3",
+      "verifiedUtc": "2026-10-31T16:38:00Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -38,8 +38,8 @@
       "url": "https://api-dev-6091.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080,
-      "previousDeploymentId": "fb408be3-ccd4-489a-9801-1c8d4b2ac660",
-      "redeployNote": "S13m owner-scoped sha-verified RM04 bundle route; stage.py bakes local RM04 bundle into private api image"
+      "previousDeploymentId": "a0a27f13-a58d-4097-9957-3179e35a569d",
+      "redeployNote": "S15az owner-clip live fit (POST spec returns live_fit) + D6 relabel"
     },
     "worker": {
       "id": "5b5e6ebc-d4f1-46fb-b6de-6b7ff94b89a7",
