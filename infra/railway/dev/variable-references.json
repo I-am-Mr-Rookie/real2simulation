@@ -10,7 +10,12 @@
     "BUCKET_NAME": "${{real2simulation-dev.BUCKET}}",
     "BUCKET_REGION": "${{real2simulation-dev.REGION}}",
     "BUCKET_ACCESS_KEY_ID": "${{real2simulation-dev.ACCESS_KEY_ID}}",
-    "BUCKET_SECRET_ACCESS_KEY": "${{real2simulation-dev.SECRET_ACCESS_KEY}}"
+    "BUCKET_SECRET_ACCESS_KEY": "${{real2simulation-dev.SECRET_ACCESS_KEY}}",
+    "R2S_DATA_DIR": "/data (api-volume 053fb364-df41-4521-bc26-bc238439cbc7, N11)",
+    "MODEL_API_KEY": "name only: set via railway CLI stdin from the canonical .env (N11); value not recorded",
+    "MODEL_API_BASE_URL": "name only: set via railway CLI stdin from the canonical .env (N11); value not recorded",
+    "MODAL_TOKEN_ID": "name only: set via railway CLI stdin from the canonical .env (N11); value not recorded",
+    "MODAL_TOKEN_SECRET": "name only: set via railway CLI stdin from the canonical .env (N11); value not recorded"
   },
   "worker": {
     "R2S_ENVIRONMENT": "development",
