@@ -7,7 +7,7 @@ from urllib.request import urlopen
 
 revision = "300cd2096f9e32bcdf3433520b36b67f709df0d5"
 # S04m/S14j redeployed only the API (deployments.json api.sourceRevision).
-revisions = {"api": "e0213a0cdfe22c6939464df4aef0de1d28d96b5f", "worker": revision}
+revisions = {"api": "032922d351f9ee27155d6f16d775edbbbe5164a7", "worker": revision}
 checks = []
 for service, host, paths in (
     ("api", "api-dev-6091.up.railway.app", ("/health/live", "/health/ready", "/api/version", "/internal/workspace/jobs/job_" + "0" * 32)),

@@ -7,19 +7,20 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "af881dce-a332-4c01-a70a-d1975d0f6b10",
-      "previousDeploymentId": "6d9e95cf-8fd6-4c0c-8214-66f92e7b1ca4",
-      "redeployNote": "S15bg neutral workspace heading until probe resolves",
-      "sourceRevision": "7cd9481dbd6ceb01cc2b180bfca854a7cc7f3f1b",
-      "verifiedUtc": "2026-11-01T09:07Z",
+      "deploymentId": "53b1b733-908d-4728-b4d2-52fb2cbeaf6d",
+      "previousDeploymentId": "af881dce-a332-4c01-a70a-d1975d0f6b10",
+      "redeployNote": "N11 web redeploy from the same commit",
+      "sourceRevision": "032922d351f9ee27155d6f16d775edbbbe5164a7",
+      "verifiedUtc": "2026-11-01T12:45Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "81159cc9-10d6-4170-be2e-765ef4650e04",
+      "deploymentId": "cd0230fa-f498-426d-a78a-35597ad703a7",
       "previousDeploymentIds": [
+        "81159cc9-10d6-4170-be2e-765ef4650e04",
         "88eb14d1-5be4-4d6b-a439-800293c2b703",
         "85c23646-2e35-4c25-af0d-cbe38a52c524",
         "81a74b99-ef55-4f69-8459-384ff306b390",
@@ -28,18 +29,23 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "e0213a0cdfe22c6939464df4aef0de1d28d96b5f",
-      "verifiedUtc": "2026-11-01T08:26Z",
+      "sourceRevision": "032922d351f9ee27155d6f16d775edbbbe5164a7",
+      "verifiedUtc": "2026-11-01T12:45Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
-        "REDIS_URL": "unchanged existing reference ${{Redis.REDIS_URL}}"
+        "REDIS_URL": "unchanged existing reference ${{Redis.REDIS_URL}}",
+        "MODEL_API_KEY": "name only, from canonical .env via CLI stdin",
+        "MODEL_API_BASE_URL": "name only, from canonical .env via CLI stdin",
+        "MODAL_TOKEN_ID": "name only, from canonical .env via CLI stdin",
+        "MODAL_TOKEN_SECRET": "name only, from canonical .env via CLI stdin",
+        "R2S_DATA_DIR": "/data"
       },
       "url": "https://api-dev-6091.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "e32e910f-6596-4ce7-94da-cca664d8f149",
-      "redeployNote": "S15bf owner-clip chips, validated owner spec, legacy u rule"
+      "redeployNote": "N11 live-product api: ffmpeg/ffprobe, modal==1.6.3, node, /data volume api-volume 053fb364-df41-4521-bc26-bc238439cbc7 (R2S_DATA_DIR=/data), SAMPLE project seeding"
     },
     "worker": {
       "id": "5b5e6ebc-d4f1-46fb-b6de-6b7ff94b89a7",
@@ -50,6 +56,7 @@
     }
   },
   "limits": [
+    "N11 api cd0230fa and web 53b1b733 = 032922d: files persist on the /data volume; Modal/Meta tokens present by name only, not exercised by verify.py; uploads dir WORKSPACE_UPLOAD_DIR still /tmp for the legacy route",
     "S04m api 8bf100cc = 54d1575: workspace routers mounted (verify.py: health OK, /internal/workspace 401 without token); authenticated web->api private-network call NOT verified; uploads on ephemeral /tmp",
     "Dev only, not judging/production readiness",
     "Worker HTTP sidecar only: readiness503, no consumer heartbeat",
