@@ -30,12 +30,14 @@ CROSSING_SIGMA_S = DT / math.sqrt(12)  # one-step quantization of an interpolate
 _PROJECT = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
 # Agent params (SI names) -> scene fields. height_m is the centre height above the floor (anchor for pendulum/spring).
 PARAMS = {
-    "ball": {"radius_m", "mass_kg", "height_m", "x_m", "z_m", "velocity_x_m_s", "velocity_y_m_s", "velocity_z_m_s", "restitution", "friction"},
+    "ball": {"radius_m", "diameter_m", "mass_kg", "height_m", "x_m", "z_m", "velocity_x_m_s", "velocity_y_m_s", "velocity_z_m_s", "restitution", "friction"},
     "block": {"size_m", "mass_kg", "height_m", "x_m", "z_m", "velocity_x_m_s", "velocity_y_m_s", "velocity_z_m_s", "friction"},
     "ramp": {"length_m", "angle_deg", "height_m", "x_m", "z_m", "friction"},
     "pendulum": {"length_m", "angle_deg", "mass_kg", "radius_m", "height_m", "x_m", "z_m"},
     "spring": {"rest_length_m", "stiffness_n_per_m", "damping_n_s_per_m", "stretch_m", "mass_kg", "height_m", "x_m", "z_m"},
 }
+# N28 lab_update_object extras: relative moves (left = -x, up = +y, toward the viewer = +z) and a turn about the vertical axis.
+UPDATE_EXTRA = {"dx_m", "dy_m", "dz_m", "yaw_deg"}
 
 
 class LabError(ValueError):
@@ -105,6 +107,8 @@ def make_object(kind: str, params: dict[str, float], scene: dict[str, Any]) -> d
             o[field] = p[k]
     if "radius_m" in p:
         o["size"] = [2 * p["radius_m"]] * 3
+    if "diameter_m" in p:
+        o["size"] = [p["diameter_m"]] * 3
     if "size_m" in p:
         o["size"] = [p["size_m"]] * 3
     if any(k.startswith("velocity_") for k in p):
@@ -117,6 +121,59 @@ def make_object(kind: str, params: dict[str, float], scene: dict[str, Any]) -> d
     if kind == "ramp":
         a = math.radians(p.get("angle_deg", 15.0)) / 2
         o.update(fixed=True, sensor=False, rotation=[0, 0, math.sin(a), math.cos(a)], size=[p.get("length_m", 1.2), 0.05, 0.4])
+    return o
+
+
+def _find(scene: dict[str, Any], ref: Any) -> dict[str, Any]:
+    """Object by exact id, else by kind when exactly one object of that kind exists (the model rarely keeps ids)."""
+    objs = scene["objects"]
+    hit = [o for o in objs if o["id"] == ref] or [o for o in objs if o["kind"] == ref]
+    if len(hit) != 1:
+        listed = ", ".join(f"{o['id']} ({o['kind']})" for o in objs) or "none"
+        raise LabError(f"no single object matches {str(ref)[:40]!r}; objects in the scene: {listed}")
+    return hit[0]
+
+
+def _qmul(a: list[float], b: list[float]) -> list[float]:
+    ax, ay, az, aw = a
+    bx, by, bz, bw = b
+    return [aw * bx + ax * bw + ay * bz - az * by, aw * by - ax * bz + ay * bw + az * bx,
+            aw * bz + ax * by - ay * bx + az * bw, aw * bw - ax * bx - ay * by - az * bz]
+
+
+def update_object(o: dict[str, Any], p: dict[str, float], scene: dict[str, Any]) -> dict[str, Any]:
+    """Apply agent params to a copy of a scene object; absolute values override, d*_m values move relative."""
+    allowed = PARAMS[o["kind"]] | UPDATE_EXTRA
+    unknown = sorted(set(p) - allowed)
+    if unknown or not p:
+        raise LabError(f"unknown or no params {unknown} for {o['kind']}; allowed: {sorted(allowed)}")
+    o = json.loads(json.dumps(o))
+    floor = scene.get("room", {}).get("floor_y", 0) or 0
+    pos = o.get("position") or [0.0, 1.0, 0.0]
+    pos = [p.get("x_m", pos[0]), floor + p["height_m"] if "height_m" in p else pos[1], p.get("z_m", pos[2])]
+    o["position"] = [pos[0] + p.get("dx_m", 0.0), pos[1] + p.get("dy_m", 0.0), pos[2] + p.get("dz_m", 0.0)]
+    for k, field in (("mass_kg", "mass"), ("friction", "friction"), ("restitution", "restitution")):
+        if k in p:
+            o[field] = p[k]
+    for k, scale in (("radius_m", 2), ("diameter_m", 1), ("size_m", 1)):
+        if k in p:
+            o["size"] = [scale * p[k]] * 3
+    if any(k.startswith("velocity_") for k in p):
+        v = o.get("velocity") or [0.0, 0.0, 0.0]
+        o["velocity"] = [p.get(f"velocity_{a}_m_s", v[i]) for i, a in enumerate("xyz")]
+    names = {"pendulum": (("length_m", "length"), ("angle_deg", "angle_deg")),
+             "spring": (("rest_length_m", "rest_length"), ("stiffness_n_per_m", "stiffness"),
+                        ("damping_n_s_per_m", "damping"), ("stretch_m", "stretch"))}.get(o["kind"], ())
+    o["params"] = {**(o.get("params") or {}), **{k: p[a] for a, k in names if a in p}}
+    if o["kind"] == "ramp":
+        size = o.get("size") or [1.2, 0.05, 0.4]
+        o["size"] = [p.get("length_m", size[0]), size[1], size[2]]
+        if "angle_deg" in p:
+            a = math.radians(p["angle_deg"]) / 2
+            o["rotation"] = [0, 0, math.sin(a), math.cos(a)]  # tilt replaces any earlier yaw
+    if "yaw_deg" in p:
+        a = math.radians(p["yaw_deg"]) / 2
+        o["rotation"] = _qmul([0, math.sin(a), 0, math.cos(a)], o.get("rotation") or [0, 0, 0, 1])
     return o
 
 
@@ -194,6 +251,28 @@ def lab_add_object(owner: str, args: dict[str, Any]) -> dict[str, Any]:
     return {"status": "ok", "label": "SIMULATED", "object": added, "objects_in_scene": len(scene["objects"])}
 
 
+def lab_update_object(owner: str, args: dict[str, Any]) -> dict[str, Any]:
+    try:
+        scene = load_scene(owner)
+        old = _find(scene, args.get("id") or args.get("kind"))
+        new = update_object(old, args.get("params") or {}, scene)
+        scene = save_scene(owner, {**scene, "objects": [new if o is old else o for o in scene["objects"]]})
+    except (LabError, subprocess.TimeoutExpired) as exc:
+        return _err(exc)
+    return {"status": "ok", "label": "SIMULATED", "object": next(o for o in scene["objects"] if o["id"] == old["id"])}
+
+
+def lab_remove_object(owner: str, args: dict[str, Any]) -> dict[str, Any]:
+    try:
+        scene = load_scene(owner)
+        gone = _find(scene, args.get("id") or args.get("kind"))
+        scene = save_scene(owner, {**scene, "objects": [o for o in scene["objects"] if o is not gone]})
+    except (LabError, subprocess.TimeoutExpired) as exc:
+        return _err(exc)
+    return {"status": "ok", "label": "SIMULATED", "removed": gone["id"],
+            "objects": [{"id": o["id"], "kind": o["kind"]} for o in scene["objects"]]}
+
+
 def lab_run(owner: str, args: dict[str, Any]) -> dict[str, Any]:
     try:
         scene = load_scene(owner)
@@ -227,7 +306,8 @@ def write_report(owner: str, args: dict[str, Any]) -> dict[str, Any]:
             "conclusion": rep["conclusion"], "illustration": bool(image)}
 
 
-HANDLERS = {"lab_add_object": lab_add_object, "lab_run": lab_run, "write_report": write_report}
+HANDLERS = {"lab_add_object": lab_add_object, "lab_update_object": lab_update_object,
+            "lab_remove_object": lab_remove_object, "lab_run": lab_run, "write_report": write_report}
 
 
 def create_router() -> APIRouter:

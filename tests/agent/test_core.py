@@ -110,6 +110,9 @@ def test_ask_user_needs_one_recommended_option():
         {"label": "Room video", "recommended": True}, {"label": "My experiment", "recommended": False}]}
     out = core.run_turn("new project", Fake(call("ask_user", good)))
     assert out["stopped"] == "ask_user" and out["question"] == good
+    flipped = {**good, "options": good["options"][::-1]}
+    out = core.run_turn("new project", Fake(call("ask_user", flipped)))
+    assert out["question"]["options"][0] == {"label": "Room video", "recommended": True}  # recommended first (N28)
     bad = {**good, "options": [{**o, "recommended": True} for o in good["options"]]}
     out = core.run_turn("new project", Fake(call("ask_user", bad), say("Which one?")))
     assert out["stopped"] == "final" and out["tool_calls"][0]["output"]["status"] == "error"

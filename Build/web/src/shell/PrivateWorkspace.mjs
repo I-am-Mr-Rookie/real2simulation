@@ -39,6 +39,14 @@ export async function probeApi(f = globalThis.fetch, base = API_BASE) {
   } catch { return 'unavailable'; }
 }
 
+// N28 F3: a fresh sign-up session can answer 401/5xx for its first seconds; one failed probe used to hide the whole live
+// centre (and its first-run agent mode card) for the page's life. Retry with backoff before reporting unavailable.
+export async function probeUntilLive(f = globalThis.fetch, waits = [1000, 2000, 4000], sleep = (ms) => new Promise((r) => setTimeout(r, ms))) {
+  let s = await probeApi(f);
+  for (const ms of waits) { if (s === 'live') break; await sleep(ms); s = await probeApi(f); }
+  return s;
+}
+
 // Host side of onAction: workflow events go to the controller, Q_* to the interview reducer, I_* to the instrument reducer.
 // Returns the next {interview, instruments}; side effects are controller calls only.
 export async function routeAction(ctl, local, a) {
@@ -90,7 +98,7 @@ export default function PrivateWorkspace({ scene }) {
   const localRef = useRef(local);
   localRef.current = local;
   const ctl = useMemo(() => createController({ onChange: setSnap, simulate: browserSimulate(runBrowserSimulation) }), []);
-  useEffect(() => { let on = true; probeApi().then((s) => on && setApi(s)); return () => { on = false; }; }, []);
+  useEffect(() => { let on = true; probeUntilLive().then((s) => on && setApi(s)); return () => { on = false; }; }, []);
   const s = snap ?? ctl.snapshot();
   const phase = s.state.phase;
   useEffect(() => { // fetch the agent's questions once the job hands over to the interview

@@ -1,7 +1,8 @@
 // S04o: PrivateWorkspace host wiring. Probe decides live vs honest-unavailable; onAction routes to controller/reducers.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { workspaceHeading, probeApi, routeAction, UNAVAILABLE_NOTICE, INSTRUMENTS_UNAVAILABLE } from '../../Build/web/src/shell/PrivateWorkspace.mjs';
+import { workspaceHeading, probeApi, probeUntilLive, routeAction, UNAVAILABLE_NOTICE, INSTRUMENTS_UNAVAILABLE } from '../../Build/web/src/shell/PrivateWorkspace.mjs';
+import { readAgentMode, writeAgentMode } from '../../Build/web/src/workspace/live.mjs';
 import { createController } from '../../Build/web/src/workspace/controller.mjs';
 import { initialInterview } from '../../Build/web/src/workspace/interview.mjs';
 import { initialInstruments } from '../../Build/web/src/workspace/instruments.mjs';
@@ -60,4 +61,21 @@ test('heading: no fixture wording while checking or live', () => {
   assert.equal(workspaceHeading('checking', scene), 'Workspace');
   assert.equal(workspaceHeading('live', scene), 'Private workspace');
   assert.equal(workspaceHeading('unavailable', scene), scene.title);
+});
+
+test('N28 F3 slow session: probe retries 401/5xx until live, so the first-run mode card is shown once', async () => {
+  const answers = [res(401, { error: {} }), res(502, { error: {} }), res(200, { ok: true })];
+  const waited = [];
+  let n = 0;
+  const f = (...a) => answers[Math.min(n++, answers.length - 1)](...a);
+  assert.equal(await probeUntilLive(f, [1000, 2000, 4000], async (ms) => { waited.push(ms); }), 'live');
+  assert.deepEqual(waited, [1000, 2000]); // stops retrying once live
+  assert.equal(await probeUntilLive(res(401, {}), [1, 1], async () => {}), 'unavailable'); // honest after the retries
+  // Mode decision: unknown user = decide nothing (no Standard default); fresh user = card (null); chosen = card never again.
+  const m = new Map(), s = { getItem: (k) => m.get(k) ?? null, setItem: (k, v) => m.set(k, v) };
+  assert.equal(readAgentMode(s, undefined), undefined);
+  assert.equal(readAgentMode(s, 'dev-fixture-a'), null);
+  assert.equal(writeAgentMode(s, 'standard', 'dev-fixture-a'), true);
+  assert.equal(readAgentMode(s, 'dev-fixture-a'), 'standard');
+  assert.equal(readAgentMode(s, 'dev-fixture-b'), null); // a second fresh account in the same browser still sees it
 });

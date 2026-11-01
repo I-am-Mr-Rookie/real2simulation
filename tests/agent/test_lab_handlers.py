@@ -42,6 +42,25 @@ def test_bad_inputs_are_errors_not_crashes():
     assert h.load_scene("u2")["objects"] == []  # owners are isolated
 
 
+def test_update_and_remove_by_id_or_kind():
+    h.lab_add_object("u1", {"kind": "ball", "params": {"diameter_m": 0.05, "height_m": 1.2}})
+    h.lab_add_object("u1", {"kind": "ramp", "params": {}})
+    ball = h.lab_update_object("u1", {"id": "ball", "params": {"dx_m": -0.3, "diameter_m": 0.1, "yaw_deg": 90}})["object"]
+    assert ball["id"] == "ball-1" and ball["size"] == [0.1] * 3
+    assert abs(ball["position"][0] + 0.3) < 1e-9 and abs(ball["position"][1] - 1.2) < 1e-9
+    assert abs(ball["rotation"][1] - math.sin(math.pi / 4)) < 1e-6  # quarter turn about +y
+    ramp = h.lab_update_object("u1", {"id": "ramp-1", "params": {"angle_deg": 30, "length_m": 2}})["object"]
+    assert ramp["size"][0] == 2 and abs(ramp["rotation"][2] - math.sin(math.radians(15))) < 1e-6
+    bad = h.lab_update_object("u1", {"id": "ball", "params": {"speed": 3}})
+    assert "unknown" in bad["error"]["detail"]
+    assert "objects in the scene: ball-1 (ball), ramp-1 (ramp)" in h.lab_remove_object("u1", {"id": "spring"})["error"]["detail"]
+    assert "size" in h.lab_update_object("u1", {"id": "ball", "params": {"diameter_m": -1}})["error"]["detail"]  # editor validateScene
+    assert "objects in the scene" in h.lab_remove_object("u1", {})["error"]["detail"]
+    args, issues = core.validate_call("lab_remove_object", json.dumps({"kind": "ramp"}))  # live run 2 shape
+    assert issues == [] and h.lab_remove_object("u1", args)["objects"] == [{"id": "ball-1", "kind": "ball"}]
+    assert [o["id"] for o in h.load_scene("u1")["objects"]] == ["ball-1"]
+
+
 def test_report_has_sections_labels_and_no_em_dash():
     h.lab_add_object("u1", {"kind": "ball", "params": {"radius_m": 0.025, "height_m": 1.2}})
     h.lab_run("u1", {})

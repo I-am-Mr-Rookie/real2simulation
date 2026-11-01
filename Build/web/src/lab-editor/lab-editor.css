@@ -22,7 +22,7 @@
 .le-file:focus-within, .le-top button:focus-visible { outline: 2px solid var(--r2s-focus, var(--le-accent)); outline-offset: 1px; }
 .le-work { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 8px; min-height: 0; }
 .lab-editor[data-side='open'] .le-work { grid-template-columns: 270px minmax(0, 1fr) 340px; }
-.le-side { display: grid; gap: 8px; align-content: start; min-width: 0; max-height: calc(100vh - 150px); overflow-y: auto; overscroll-behavior: contain; }
+.le-side { display: grid; gap: 8px; align-content: start; min-width: 0; max-height: calc(100vh - 150px); overflow-y: auto; overscroll-behavior: contain; scrollbar-gutter: stable; }
 .le-stage { position: relative; height: calc(100vh - 150px); min-height: 420px; border-radius: 12px; overflow: hidden; border: 1px solid var(--le-border); background: var(--le-bg); }
 .le-canvas, .le-canvas canvas { width: 100%; height: 100%; display: block; touch-action: none; }
 .le-chips { position: absolute; top: 10px; left: 10px; display: flex; flex-wrap: wrap; gap: 6px; pointer-events: none; }
@@ -41,8 +41,11 @@
 .le-panel button { min-height: 36px; padding: 0 12px; border: 1px solid var(--le-strong); border-radius: 8px; background: var(--le-surface); color: var(--le-ink); font: inherit; cursor: pointer; }
 .le-panel button[aria-pressed='true'] { background: var(--le-ink); color: var(--le-surface); }
 .le-panel button:disabled { opacity: .5; cursor: default; }
-.le-agent form input { flex: 1; min-width: 160px; min-height: 36px; padding: 0 10px; border: 1px solid var(--le-strong); border-radius: 8px; font: inherit; background: var(--le-bg); color: var(--le-ink); }
-.le-log { max-height: 260px; overflow-y: auto; font-size: 14px; display: grid; gap: 6px; }
+.le-send { display: flex; gap: 6px; padding-top: 8px; border-top: 1px solid var(--le-border); }
+.le-send input { flex: 1; min-width: 0; min-height: 36px; padding: 0 10px; border: 1px solid var(--le-strong); border-radius: 8px; font: inherit; background: var(--le-bg); color: var(--le-ink); }
+.le-suggest button { border-radius: 999px; font-size: 13px; text-align: left; }
+.le-log { min-height: 120px; max-height: min(48vh, 420px); overflow-y: auto; overscroll-behavior: contain; font-size: 14px; line-height: 1.45; display: flex; flex-direction: column; gap: 8px; padding: 8px; border: 1px solid var(--le-border); border-radius: 8px; background: var(--le-bg); overflow-wrap: anywhere; }
+.le-log .le-muted { color: var(--le-muted); }
 .le-report { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; max-height: 420px; overflow-y: auto; }
 .le-panel .le-danger { color: var(--r2s-danger, #b91c1c); }
 .le-room select { min-height: 36px; margin-left: 4px; font: inherit; background: var(--le-surface); color: var(--le-ink); border: 1px solid var(--le-strong); border-radius: 6px; }

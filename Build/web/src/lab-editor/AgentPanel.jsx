@@ -1,7 +1,7 @@
 'use client';
 
 // N12 "Ask the agent": syncs the editor scene with the project, sends a turn, applies agent edits live, shows the report.
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { validateScene, sceneJson } from './scene.mjs';
 
 const BASE = '/api/workspace/agent';
@@ -23,6 +23,9 @@ export default function AgentPanel({ scene, onScene, load = true }) {
   const [history, setHistory] = useState([]);
   const [question, setQuestion] = useState(null);
   const [report, setReport] = useState(null);
+  const logRef = useRef(null);
+  // N28: last answer always in view; rerun when the turn ends (busy false), after the scene/report reloads settle.
+  useEffect(() => { const el = logRef.current; if (el) el.scrollTop = el.scrollHeight; }, [log, question, busy]);
   useEffect(() => {
     if (!load) return; // N22: a live room or experiment scene is open; do not replace it with the saved project scene
     call('/lab/scene').then((b) => b.scene.objects.length && onScene(validateScene(b.scene), 'Scene loaded from the project.')).catch(() => {});
@@ -48,20 +51,21 @@ export default function AgentPanel({ scene, onScene, load = true }) {
 
   return <div className="le-panel le-agent">
     <h3>Ask the agent</h3>
-    <div className="le-bar" role="group" aria-label="Examples">
-      {EXAMPLES.map((x) => <button key={x} type="button" onClick={() => setText(x)} disabled={busy}>{x}</button>)}
-    </div>
-    <form onSubmit={(e) => { e.preventDefault(); ask(text); }} className="le-bar">
-      <input aria-label="Message to the agent" value={text} onChange={(e) => setText(e.target.value)} maxLength={4000} disabled={busy} />
-      <button type="submit" disabled={busy || !text.trim()}>{busy ? 'Working...' : 'Ask'}</button>
-      <button type="button" onClick={() => ask('Write the lab report.')} disabled={busy}>Write report</button>
-    </form>
-    <div className="le-log" aria-live="polite">
+    <div className="le-log" aria-live="polite" ref={logRef} tabIndex={0} aria-label="Conversation">
+      {!log.length && <p className="le-muted">Ask for an experiment, or to add, move, resize or remove objects.</p>}
       {log.map((m, i) => <p key={i}><strong>{m.who}:</strong> {m.text}{m.tools?.length ? <small> (tools: {m.tools.join(', ')})</small> : null}</p>)}
     </div>
     {question && <div className="le-bar" role="group" aria-label="Agent question">
       {question.options.map((o) => <button key={o.label} type="button" onClick={() => ask(o.label)}>{o.label}{o.recommended ? ' (recommended)' : ''}</button>)}
     </div>}
+    <div className="le-bar le-suggest" role="group" aria-label="Suggestions">
+      {EXAMPLES.map((x) => <button key={x} type="button" onClick={() => setText(x)} disabled={busy}>{x}</button>)}
+      <button type="button" onClick={() => ask('Write the lab report.')} disabled={busy}>Write report</button>
+    </div>
+    <form onSubmit={(e) => { e.preventDefault(); ask(text); }} className="le-send">
+      <input aria-label="Message to the agent" value={text} onChange={(e) => setText(e.target.value)} maxLength={4000} disabled={busy} />
+      <button type="submit" disabled={busy || !text.trim()}>{busy ? 'Working...' : 'Ask'}</button>
+    </form>
     {report && <details open><summary>Lab report (SIMULATED)</summary><pre className="le-report">{report}</pre></details>}
   </div>;
 }
