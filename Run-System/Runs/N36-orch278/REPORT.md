@@ -1,0 +1,11 @@
+# N36-orch278 REPORT: DONE
+- Tiers: Contributor = muse-spark-1.3-contributor; Standard = user picks Muse Spark 1.3 or Muse Open (Baseten meta-models/muse-spark-open-1026). Per user (localStorage mode 'standard'|'open'|'contributor'), sent as {contributor, tier}; API Turn.tier is Literal spark|open (sol -> 422).
+- Fallback (Build/agent/core.py run_turn): gpt-6.1-sol via Merge /responses answers only the failed turn on ModelUnavailable (API error/timeout), no usable tool call (empty reply or invalid tool calls twice), or number guard blocked twice. Never on refusals, ask_user, CapExceeded, QuotaLimited (HTTP 402/429), ValueError. Same INSTRUCTIONS, TOOL_SPECS, guard; carries tool calls already run (no repeat side effects). Reply has answered_by + fallback reason; UI shows "Answered by fallback model".
+- Spend: _reserve() books Merge/Baseten rows in the daily_cap ledger (same global cap) plus Sol's own $2/day on provider key "Merge", one BEGIN IMMEDIATE txn; settle via daily_cap.settle. MODEL_PROXY_TOKEN never sent to gateways.
+- Ids/pricing: Merge + Baseten GET /models; Sol 2.10/10.50 per 1M ($2/$10 OpenAI + 5% Merge Pro). evidence/N36/PRICING.md.
+- Checks: python -m pytest tests/agent 99 passed (23 new in tests/agent/test_fallback.py); node --test tests/shell-workspace/*.test.mjs + tests/workspace/live.test.mjs 41 passed; npm run build exit 0. (uv run pytest lacked pytest in its env; used system Python 3.14 with PYTHONPATH=.)
+- Live (evidence/N36/live-turns.json, isolated ledger), 4 turns, 2026-11-01 20:37-20:40 UTC, total ledgered $0.0837:
+  forced fallback Sol 3 calls $0.0275 (settled at draft price; $0.0107 at cited price); Spark 3 calls $0.0175; Muse Open 6 calls $0.0378; Contributor 3 calls $0.0009. All final, lab tools used, SIMULATED labels kept.
+- Outside Owns (task said "extend the existing mode card/chip", which lives here, not shell/): Build/web/src/workspace/live.mjs, live-view.mjs. Controller: accept or re-home.
+- Risks for N37: _reserve uses daily_cap private helpers (_connect/_spent/_units) because reserve() rejects non-Meta/Modal providers; cleaner is adding Merge/Baseten to daily_cap.PROVIDERS + a per-provider cap arg. Meta "Spark" lab reply said g 10.16 (lab output, not N36). Sol reservation upper bound ~$0.20/call, so the $2 cap admits about 10 concurrent calls before settle frees headroom. No deploy.
+

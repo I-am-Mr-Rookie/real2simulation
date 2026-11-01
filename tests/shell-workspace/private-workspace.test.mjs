@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { workspaceHeading, probeApi, probeUntilLive, routeAction, UNAVAILABLE_NOTICE, INSTRUMENTS_UNAVAILABLE } from '../../Build/web/src/shell/PrivateWorkspace.mjs';
-import { readAgentMode, writeAgentMode } from '../../Build/web/src/workspace/live.mjs';
+import { readAgentMode, writeAgentMode, agentTier, modeLabel, STANDARD_MODELS } from '../../Build/web/src/workspace/live.mjs';
 import { createController } from '../../Build/web/src/workspace/controller.mjs';
 import { initialInterview } from '../../Build/web/src/workspace/interview.mjs';
 import { initialInstruments } from '../../Build/web/src/workspace/instruments.mjs';
@@ -78,4 +78,17 @@ test('N28 F3 slow session: probe retries 401/5xx until live, so the first-run mo
   assert.equal(writeAgentMode(s, 'standard', 'dev-fixture-a'), true);
   assert.equal(readAgentMode(s, 'dev-fixture-a'), 'standard');
   assert.equal(readAgentMode(s, 'dev-fixture-b'), null); // a second fresh account in the same browser still sees it
+});
+
+test('N36 tiers: Standard picks Muse Spark 1.3 or Muse Open per user; the fallback model is never a choice', () => {
+  const m = new Map(), s = { getItem: (k) => m.get(k) ?? null, setItem: (k, v) => m.set(k, v) };
+  writeAgentMode(s, 'open', 'u1'); writeAgentMode(s, 'contributor', 'u2');
+  assert.equal(readAgentMode(s, 'u1'), 'open'); assert.equal(readAgentMode(s, 'u2'), 'contributor');
+  m.set('r2s.agent.mode.u3', 'sol'); assert.equal(readAgentMode(s, 'u3'), null);
+  assert.deepEqual(agentTier('open'), { contributor: false, tier: 'open' });
+  assert.deepEqual(agentTier('standard'), { contributor: false, tier: 'spark' });
+  assert.deepEqual(agentTier('contributor'), { contributor: true, tier: 'spark' });
+  assert.deepEqual([modeLabel('open'), modeLabel('standard'), modeLabel('contributor')], ['Standard: Muse Open', 'Standard mode', 'Contributor mode']);
+  assert.deepEqual(STANDARD_MODELS.map((x) => x.id), ['standard', 'open']);
+  assert.ok(!JSON.stringify(STANDARD_MODELS).match(/sol|gpt|fallback/i));
 });

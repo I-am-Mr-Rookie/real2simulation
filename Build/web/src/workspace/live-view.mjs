@@ -2,7 +2,7 @@
 // React is injected like workspace/react.mjs. Every number shown comes from an API response (quota, sizes, queue) or the browser upload progress.
 import { API_BASE } from './controller.mjs';
 import { AGENT_MODES, UPLOAD_QUESTION, LIMITS, TIPS, projectTitle, fmtBytes, quotaView, gpuDot, GPU_POLL_MS, shouldPoll, jobsState, apiErrorText,
-  historyOf, questionAnswer, recommendedIndex, readAgentMode, writeAgentMode, toWav16k, VOICE_MAX_S } from './live.mjs';
+  historyOf, questionAnswer, recommendedIndex, readAgentMode, writeAgentMode, toWav16k, VOICE_MAX_S, STANDARD_MODELS, agentTier, modeLabel } from './live.mjs';
 import { chartGeom, fmtPm, SIZE_UNITS, naturalPoint, experimentBody, jobView, POLL_MS, jobsFromToolCalls, shareable, scaleTag, labelsOf } from './measure.mjs';
 import { groupJobs, jobName, shortWhen } from './projects.mjs';
 
@@ -119,11 +119,11 @@ export const createLive = (React) => {
       push({ role: 'user', text: t }); setDraft(''); setBusy(true);
       try {
         const r = await call('/agent/turn', { method: 'POST', headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ text: t, contributor: mode === 'contributor', history }) });
+          body: JSON.stringify({ text: t, ...agentTier(mode), history }) });
         if (r.ok) {
           const jobs = jobsFromToolCalls(r.body?.tool_calls);
           jobs.forEach((j) => track(j.kind, j.id));
-          push({ role: 'assistant', text: r.body?.reply || '', question: r.body?.question ?? null, model: r.body?.model, jobs });
+          push({ role: 'assistant', text: r.body?.reply || '', question: r.body?.question ?? null, model: r.body?.model, jobs, fallback: Boolean(r.body?.answered_by) });
         } else push({ role: 'error', text: errText(r, 'The agent did not answer') });
       } catch { push({ role: 'error', text: 'The agent did not answer (network).' }); }
       finally { setBusy(false); }
@@ -190,12 +190,16 @@ export const createLive = (React) => {
       h('h2', { id: 'lv-modes-h' }, settings ? 'Agent mode' : 'Choose how the agent runs'),
       settings ? null : h('p', { className: 'lv-muted' }, 'You can change this later in the agent panel. Standard is the default.'),
       h('div', { className: 'lv-modegrid', role: 'radiogroup', 'aria-label': 'Agent mode' }, ...AGENT_MODES.map((m) =>
-        h('label', { key: m.id, className: 'lv-mode', 'data-on': pick === m.id },
-          h('input', { type: 'radio', name: 'lv-mode' + (settings ? '-s' : ''), value: m.id, checked: pick === m.id, onChange: () => setPick(m.id) }),
+        h('label', { key: m.id, className: 'lv-mode', 'data-on': (pick === 'contributor') === (m.id === 'contributor') },
+          h('input', { type: 'radio', name: 'lv-mode' + (settings ? '-s' : ''), value: m.id, checked: (pick === 'contributor') === (m.id === 'contributor'), onChange: () => setPick(m.id) }),
           h('span', { className: 'lv-mode-h' }, h('strong', null, m.title), m.id === 'standard' ? h('span', { className: 'lv-tag' }, 'Default') : null),
           h('span', { className: 'lv-muted' }, m.model),
           h('ul', { className: 'lv-pros', 'aria-label': 'Pros' }, ...m.pros.map((p) => h('li', { key: p }, p))),
           h('ul', { className: 'lv-cons', 'aria-label': 'Cons' }, ...m.cons.map((p) => h('li', { key: p }, p)))))),
+      pick === 'contributor' ? null : h('div', { className: 'lv-modegrid', role: 'radiogroup', 'aria-label': 'Standard model' }, ...STANDARD_MODELS.map((m) =>
+        h('label', { key: m.id, className: 'lv-mode', 'data-on': pick === m.id },
+          h('input', { type: 'radio', name: 'lv-std' + (settings ? '-s' : ''), value: m.id, checked: pick === m.id, onChange: () => setPick(m.id) }),
+          h('strong', null, m.label)))),
       h('button', { type: 'button', className: 'lv-btn lv-primary', onClick: () => { L.setMode(pick); onDone?.(); } }, settings ? 'Save' : 'Continue'));
   }
 
@@ -225,12 +229,13 @@ export const createLive = (React) => {
     return h('section', { className: 'lv-chat', 'aria-labelledby': 'lv-chat-h' },
       h('div', { className: 'lv-chat-head' }, h('h3', { id: 'lv-chat-h' }, 'Agent'),
         h('button', { type: 'button', className: 'lv-chip', 'aria-expanded': settings, onClick: () => setSettings(!settings), title: 'Change agent mode' },
-          L.mode === 'contributor' ? 'Contributor mode' : 'Standard mode')),
+          modeLabel(L.mode))),
       settings ? h(ModeScreen, { L, settings: true, onDone: () => setSettings(false) }) : null,
       h('ol', { className: 'lv-msgs', 'aria-live': 'polite', 'aria-label': 'Conversation' },
         L.msgs.length ? null : h('li', { className: 'lv-muted lv-empty' }, 'Ask about a physics experiment, or start a new project. Physics questions only.'),
         ...L.msgs.map((m) => h('li', { key: m.id, className: 'lv-msg', 'data-role': m.role },
           m.question ? h(QuestionCard, { msg: m, onAnswer: L.answer }) : h('p', { role: m.role === 'error' ? 'alert' : undefined }, m.text),
+          m.fallback ? h('small', { className: 'lv-muted lv-block' }, 'Answered by fallback model') : null,
           ...(m.jobs ?? []).map((j) => h(JobCard, { key: j.kind + j.id, L, kind: j.kind, id: j.id })),
           m.tips ? h('ul', { className: 'lv-tips' }, ...m.tips.map((t) => h('li', { key: t }, t))) : null)),
         L.busy ? h('li', { className: 'lv-msg lv-muted', 'data-role': 'assistant' }, h('span', { className: 'r2s-pulse', 'aria-hidden': true }), ' Thinking') : null,

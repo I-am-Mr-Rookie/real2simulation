@@ -6,11 +6,15 @@ export const AGENT_MODE_KEY = 'r2s.agent.mode';
 // The old global key is ignored on purpose: it cannot be attributed to a user, so a new account in the same browser still sees the card.
 export const readAgentMode = (s, userKey) => {
   if (!userKey) return undefined;
-  try { const v = s?.getItem(AGENT_MODE_KEY + '.' + userKey); return v === 'standard' || v === 'contributor' ? v : null; } catch { return null; }
+  try { const v = s?.getItem(AGENT_MODE_KEY + '.' + userKey); return v === 'standard' || v === 'open' || v === 'contributor' ? v : null; } catch { return null; }
 };
 export const writeAgentMode = (s, mode, userKey) => { if (!userKey) return false; try { s?.setItem(AGENT_MODE_KEY + '.' + userKey, mode); return true; } catch { return false; } };
+// N36: stored mode 'standard' | 'open' | 'contributor'; 'open' is the Standard tier on Muse Open. The fallback model is never a choice.
+export const STANDARD_MODELS = Object.freeze([{ id: 'standard', label: 'Muse Spark 1.3' }, { id: 'open', label: 'Muse Open (hosted on Baseten)' }]);
+export const agentTier = (mode) => ({ contributor: mode === 'contributor', tier: mode === 'open' ? 'open' : 'spark' });
+export const modeLabel = (mode) => (mode === 'contributor' ? 'Contributor mode' : mode === 'open' ? 'Standard: Muse Open' : 'Standard mode');
 export const AGENT_MODES = Object.freeze([
-  { id: 'standard', title: 'Standard', model: 'Muse Spark 1.3',
+  { id: 'standard', title: 'Standard', model: 'Muse Spark 1.3 or Muse Open, your pick',
     pros: ['Your prompts are not used to train Meta models', 'Same physics tools and answers'], cons: ['Costs more per message, so the daily budget runs out sooner'] },
   { id: 'contributor', title: 'Contributor', model: 'Muse Spark 1.3 contributor',
     pros: ['Much cheaper per message, so more turns fit in the daily budget', 'Same physics tools and answers'],

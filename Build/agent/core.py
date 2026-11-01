@@ -17,6 +17,10 @@ import wave
 from typing import Any, Callable, Mapping, Sequence
 
 MODEL, CONTRIBUTOR_MODEL, VOICE_MODEL = "muse-spark-1.3", "muse-spark-1.3-contributor", "muse-voice-transcribe-1.0"
+# N36: ids from the Baseten and Merge gateway GET /models (2026-11-01). Sol is never user-selectable: TIERS omits it.
+OPEN_MODEL, SOL_MODEL = "meta-models/muse-spark-open-1026", "gpt-6.1-sol"
+TIERS = {"contributor": CONTRIBUTOR_MODEL, "spark": MODEL, "open": OPEN_MODEL}
+SOL_CAP_USD = 2  # Sol's own daily cap (provider key "Merge"), on top of the global daily cap
 MAX_STEPS, MAX_OUTPUT_TOKENS = 6, 4000  # 1200 truncated tool calls in N12 live runs
 CORRECTION = ("Check failed: your draft shows numbers that no tool output or user message contains. Rewrite it without"
               " any number you did not get from a tool, or call the tool that produces the number first"
@@ -26,7 +30,13 @@ TRY_NEXT = ("Try again in plain words, for example 'drop a ball in the lab and m
 MAX_TEXT, MAX_HISTORY = 4000, 20
 MAX_AUDIO_BYTES, MAX_AUDIO_S = 4_000_000, 60.0
 # USD per token (in, out) and per audio second: estimates from public listings, matched to N05 live usage; not billing.
-PRICE_PER_TOKEN = {MODEL: (1.0e-6, 5.0e-6), CONTRIBUTOR_MODEL: (0.1e-6, 0.2e-6)}
+# Muse Open: Baseten GET /models "pricing" for meta-models/muse-spark-open-1026. Sol: see evidence/N36/PRICING.md.
+PRICE_PER_TOKEN = {MODEL: (1.0e-6, 5.0e-6), CONTRIBUTOR_MODEL: (0.1e-6, 0.2e-6), OPEN_MODEL: (1.25e-6, 4.25e-6),
+                   SOL_MODEL: (2.1e-6, 10.5e-6)}  # $2/$10 per 1M (OpenAI + Merge docs) + 5% Merge Pro gateway fee
+# model -> (ledger provider, key env, base-url env, own daily cap); every other model is the Meta Model API
+GATEWAYS = {SOL_MODEL: ("Merge", "MERGE_API_KEY", "MERGE_BASE_URL", SOL_CAP_USD),
+            OPEN_MODEL: ("Baseten", "BASETEN_API_KEY", "BASETEN_BASE_URL", None)}
+FALLBACK_STOPS = {"unbacked_numbers": "number_guard", "no_tool_call": "no_usable_tool_call"}  # + "api_error"
 VOICE_USD_PER_S = 0.0001
 INSTRUCTIONS = (
     "You are the lab assistant of Real2Simulation, a physics lab. Help only with this lab: uploading room or "
@@ -207,17 +217,58 @@ def clean_history(history: Any) -> list[dict[str, str]]:
 
 
 def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, owner: str = "anon",
-             contributor: bool = False, history: Any = (), handlers: Mapping[str, Callable] | None = None,
-             max_steps: int = MAX_STEPS) -> dict[str, Any]:
-    """One user turn: model <-> allowlisted tools until a message, an ask_user question, or the step cap."""
+             contributor: bool = False, tier: str = "spark", history: Any = (),
+             handlers: Mapping[str, Callable] | None = None, max_steps: int = MAX_STEPS) -> dict[str, Any]:
+    """One user turn: model <-> allowlisted tools until a message, an ask_user question, or the step cap.
+
+    N36: if the Meta model fails (API error or timeout, no usable tool call, number guard blocked twice), the
+    hidden fallback SOL_MODEL answers this turn only, with the same prompt, tools and guard. Refusals are normal
+    replies; cap (CapExceeded), quota (QuotaLimited) and bad input (ValueError) never reach the fallback."""
     if not isinstance(text, str) or not text.strip() or len(text) > MAX_TEXT:
         raise ValueError("text must be 1..4000 characters")
+    if tier not in ("spark", "open"):
+        raise ValueError("tier must be spark or open")
     handlers = {**DEFAULT_HANDLERS, **(handlers or {})}
-    model = CONTRIBUTOR_MODEL if contributor else MODEL
+    model = TIERS["contributor" if contributor else tier]
     history = clean_history(history)
     items: list[Any] = [*history, {"role": "user", "content": text}]
-    calls, usage, retried = [], {"input_tokens": 0, "output_tokens": 0}, False
+    calls, usage = [], {"input_tokens": 0, "output_tokens": 0}
     sources = [text] + [h["content"] for h in history if h["role"] == "user"]
+    loop = lambda m, its: _loop(m, its, post, sources, calls, usage, owner, handlers, max_steps)
+    try:
+        result, error = loop(model, items), None
+        reason = FALLBACK_STOPS.get(result["stopped"])
+    except QuotaLimited:
+        raise
+    except ModelUnavailable as exc:
+        result, error, reason = None, exc, "api_error"
+    if reason is None:
+        return result
+    from Build.guardrails.daily_cap import CapExceeded
+    try:
+        sol = loop(SOL_MODEL, _carry(items))
+    except (ModelUnavailable, CapExceeded):  # Sol down or over its cap: the Meta outcome stands
+        if error is not None:
+            raise error from None
+        return result
+    return {**sol, "model": model, "answered_by": SOL_MODEL, "fallback": reason}
+
+
+def _carry(items: list[Any]) -> list[Any]:
+    """Fallback input: user/history messages plus tool calls already run (so side effects are not repeated);
+    the failed model's drafts, reasoning items and the guard correction are dropped."""
+    keep = []
+    for i in items:
+        if i.get("type") == "function_call":
+            keep.append({"type": "function_call", "call_id": i.get("call_id"), "name": i.get("name"),
+                         "arguments": i.get("arguments")})
+        elif i.get("type") == "function_call_output" or ("type" not in i and i.get("content") != CORRECTION):
+            keep.append(i)
+    return keep
+
+
+def _loop(model, items, post, sources, calls, usage, owner, handlers, max_steps) -> dict[str, Any]:
+    retried, bad_steps = False, 0
     result = {"model": model, "reply": "", "question": None, "tool_calls": calls, "usage": usage, "steps": 0}
     for step in range(1, max_steps + 1):
         body = post({"model": model, "instructions": INSTRUCTIONS, "input": items, "tools": TOOL_SPECS,
@@ -236,8 +287,11 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
                 return {**result, "stopped": "unbacked_numbers", "reply": (
                     "I drafted an answer with numbers that did not come from a tool output, so I am not showing it. "
                     + TRY_NEXT)}
-            return {**result, "stopped": "final", "reply": reply or "I have no answer for that yet."}
+            if not reply:
+                return {**result, "stopped": "no_tool_call", "reply": "I have no answer for that yet. " + TRY_NEXT}
+            return {**result, "stopped": "final", "reply": reply}
         items += list(body["output"])  # echo the model's own items (calls, reasoning) as the API expects
+        usable = False
         for call in fcalls:
             args, issues = validate_call(call.get("name"), call.get("arguments"))
             if issues:
@@ -256,6 +310,7 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
                     calls.append({"name": "ask_user", "args": args, "output": None})
                     return {**result, "stopped": "ask_user", "reply": args["question"], "question": args}
             else:
+                usable = True
                 try:
                     output = handlers[call["name"]](owner, args)
                 except Exception as exc:  # a tool failure goes back to the model; never a crash or traceback leak
@@ -265,6 +320,9 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
             sources.append(dumped)
             items.append({"type": "function_call_output", "call_id": call.get("call_id"),
                           "output": json.dumps({"untrusted_data": dumped})})
+        bad_steps += not usable
+        if bad_steps >= 2:  # invalid tool calls twice (one corrective round already went back to the model)
+            return {**result, "stopped": "no_tool_call", "reply": "I could not run a valid tool for that. " + TRY_NEXT}
     return {**result, "stopped": "step_cap",
             "reply": "I stopped after the step limit for one message. Tell me which step to continue with."}
 
@@ -298,37 +356,105 @@ class ModelUnavailable(RuntimeError):
     """Meta Model API unreachable, unauthorised or misconfigured (message carries no secret)."""
 
 
-def _send(path: str, data: bytes, content_type: str, timeout: float) -> Mapping[str, Any]:
-    """Stdlib POST to the Meta Model API (MODEL_API_KEY by name only; no extra dependency on the API image)."""
+class QuotaLimited(ModelUnavailable):
+    """HTTP 402/429 from a model API: a quota or billing limit, never a reason to call the fallback model."""
+
+
+def _send(path: str, data: bytes, content_type: str, timeout: float, key_env: str = "MODEL_API_KEY",
+          base_env: str = "MODEL_API_BASE_URL") -> Mapping[str, Any]:
+    """Stdlib POST to the Meta Model API or an N36 gateway (key by env name only; no extra dependency)."""
     from urllib.error import HTTPError, URLError
     from urllib.request import Request, urlopen
-    key = os.environ.get("MODEL_API_KEY")
-    if not key:
-        raise ModelUnavailable("MODEL_API_KEY is not set")
-    base = os.environ.get("MODEL_API_BASE_URL", "https://api.meta.ai/v1").rstrip("/")
-    request = Request(base + path, data=data, method="POST",
-                      headers={"Authorization": "Bearer " + key, "Content-Type": content_type,
-                               "X-R2S-Proxy": os.environ.get("MODEL_PROXY_TOKEN", "")})  # N23 US proxy gate
+    key, meta = os.environ.get(key_env), key_env == "MODEL_API_KEY"
+    base = os.environ.get(base_env, "https://api.meta.ai/v1" if meta else "").rstrip("/")
+    if not key or not base:
+        raise ModelUnavailable(f"{key_env} or {base_env} is not set")
+    headers = {"Authorization": "Bearer " + key, "Content-Type": content_type}
+    if meta:  # N23 US proxy gate; this token never goes to a third-party gateway
+        headers["X-R2S-Proxy"] = os.environ.get("MODEL_PROXY_TOKEN", "")
+    request = Request(base + path, data=data, method="POST", headers=headers)
     try:
         with urlopen(request, timeout=timeout) as response:
             return json.loads(response.read())
     except HTTPError as exc:
-        raise ModelUnavailable(f"HTTP {exc.code}") from None
+        raise (QuotaLimited if exc.code in (402, 429) else ModelUnavailable)(f"HTTP {exc.code}") from None
     except (URLError, OSError, ValueError) as exc:
         raise ModelUnavailable(type(exc).__name__) from None
 
 
-def http_post(body: dict[str, Any]) -> Mapping[str, Any]:
-    """Live Responses API transport; reserves an upper bound on the daily cap, settles from reported usage."""
-    from Build.guardrails import daily_cap
-    data = json.dumps(body).encode()
-    if not os.environ.get("MODEL_API_KEY"):  # nothing can be sent or billed: fail without a cap row
-        raise ModelUnavailable("MODEL_API_KEY is not set")
-    pin, pout = PRICE_PER_TOKEN.get(body.get("model"), PRICE_PER_TOKEN[MODEL])
-    cost = len(data) * pin + int(body.get("max_output_tokens") or MAX_OUTPUT_TOKENS) * pout  # tokens <= bytes
-    rid = daily_cap.reserve("Meta Model API", cost, str(body.get("model")))
+def _to_chat(body: Mapping[str, Any]) -> dict[str, Any]:
+    """Responses-API request -> chat-completions request (Baseten serves /chat/completions only)."""
+    msgs: list[dict[str, Any]] = [{"role": "system", "content": body["instructions"]}]
+    for i in body["input"]:
+        if i.get("type") == "function_call":
+            if not msgs[-1].get("tool_calls"):
+                msgs.append({"role": "assistant", "content": None, "tool_calls": []})
+            msgs[-1]["tool_calls"].append({"id": i["call_id"], "type": "function",
+                                           "function": {"name": i["name"], "arguments": i["arguments"]}})
+        elif i.get("type") == "function_call_output":
+            msgs.append({"role": "tool", "tool_call_id": i["call_id"], "content": i["output"]})
+        elif i.get("type") == "message":
+            msgs.append({"role": "assistant", "content": "".join(p.get("text", "") for p in i.get("content") or ())})
+        elif i.get("role") in ("user", "assistant"):
+            msgs.append({"role": i["role"], "content": i["content"]})
+    tools = [{"type": "function", "function": {k: t[k] for k in ("name", "description", "parameters")}}
+             for t in body.get("tools") or ()]
+    return {"model": body["model"], "messages": msgs, "tools": tools, "max_tokens": body.get("max_output_tokens")}
+
+
+def _from_chat(reply: Mapping[str, Any]) -> dict[str, Any]:
+    """chat-completions reply -> the Responses-API output items and usage that run_turn reads."""
+    m = ((reply.get("choices") or [{}])[0] or {}).get("message") or {}
+    out = [{"type": "message", "content": [{"type": "output_text", "text": m["content"]}]}] if m.get("content") else []
+    out += [{"type": "function_call", "call_id": c.get("id"), "name": (c.get("function") or {}).get("name"),
+             "arguments": (c.get("function") or {}).get("arguments")} for c in m.get("tool_calls") or ()]
+    u = reply.get("usage") or {}
+    return {"output": out, "usage": {"input_tokens": u.get("prompt_tokens", 0), "output_tokens": u.get("completion_tokens", 0)}}
+
+
+def _reserve(provider: str, usd: float, label: str, own_cap: float | None = None) -> str:
+    """daily_cap.reserve, also for providers it does not list (Merge, Baseten): same ledger and global cap, plus an
+    optional per-provider daily cap, both checked in one BEGIN IMMEDIATE transaction. Settle with daily_cap.settle."""
+    from datetime import datetime, timezone
+    from Build.guardrails import daily_cap as dc
+    if provider in dc.PROVIDERS and own_cap is None:
+        return dc.reserve(provider, usd, label)
+    now = datetime.now(timezone.utc)
+    day, amount = dc.dhaka_day(now), dc._units(usd)
+    con = dc._connect(dc.default_path())
     try:
-        reply = _send("/responses", data, "application/json", 90)
+        con.execute("BEGIN IMMEDIATE")
+        mine = con.execute("SELECT COALESCE(SUM(COALESCE(actual, reserved)), 0) FROM spend WHERE day = ? AND provider = ?",
+                           (day.isoformat(), provider)).fetchone()[0]
+        if (dc._spent(con, day) + amount > int(dc.cap_for(day) / dc.UNIT)
+                or own_cap is not None and mine + amount > dc._units(own_cap)):
+            con.execute("ROLLBACK")
+            raise dc.CapExceeded(f"daily cap reached for {provider} on {day} (Dhaka)")
+        rid = uuid.uuid4().hex
+        con.execute("INSERT INTO spend VALUES (?, ?, ?, ?, ?, NULL, ?, NULL)",
+                    (rid, day.isoformat(), provider, str(label)[:200], amount, now.isoformat()))
+        con.execute("COMMIT")
+        return rid
+    finally:
+        con.close()
+
+
+def http_post(body: dict[str, Any]) -> Mapping[str, Any]:
+    """Live transport (Meta Responses API, or the N36 Merge/Baseten gateway for their models); reserves an upper
+    bound on the daily cap, settles from reported usage."""
+    from Build.guardrails import daily_cap
+    model = body.get("model")
+    provider, key_env, base_env, own_cap = GATEWAYS.get(model, ("Meta Model API", "MODEL_API_KEY", "MODEL_API_BASE_URL", None))
+    chat = model == OPEN_MODEL
+    data = json.dumps(_to_chat(body) if chat else body).encode()
+    if not os.environ.get(key_env):  # nothing can be sent or billed: fail without a cap row
+        raise ModelUnavailable(f"{key_env} is not set")
+    pin, pout = PRICE_PER_TOKEN.get(model, PRICE_PER_TOKEN[MODEL])
+    cost = len(data) * pin + int(body.get("max_output_tokens") or MAX_OUTPUT_TOKENS) * pout  # tokens <= bytes
+    rid = _reserve(provider, cost, str(model), own_cap)
+    try:
+        reply = _send("/chat/completions" if chat else "/responses", data, "application/json", 90, key_env, base_env)
+        reply = _from_chat(reply) if chat else reply
         u = reply.get("usage") or {}
         cost = int(u.get("input_tokens") or 0) * pin + int(u.get("output_tokens") or 0) * pout
         return reply
