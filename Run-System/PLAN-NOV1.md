@@ -69,4 +69,18 @@ Koushik is away. Continue all work and dispatch new rows of this plan. Anything 
 (new spend beyond the caps above, judging/production deploy, public posts or submission, account/billing/terms changes,
 publishing private clips, destructive actions, or a product-direction choice not covered here) is PAUSED, not guessed:
 write it under "Reviews for Koushik" (STATE Owner questions -> RUNS.md) and keep working on everything else.
-
+## Owner decisions (Nov 2, binding)
+- GPU for room rebuild (MapAnything): L4 (measured peak 7.78 GB on 8 frames at 518x392 bf16, fits 24 GB); A10G kept as fallback.
+- Clicked room objects: Stable Fast 3D (stabilityai/stable-fast-3d) on its own on-demand Modal L4 function: SAM 3.1 crop -> textured 3D model.
+  The measured box stays for physics and collisions; the SF3D model is drawn on top, labelled "MODEL-GENERATED shape" plus "Powered by Stability AI".
+  On failure keep the box and show the reason. Every job ledgered under the daily GPU cap; scale to zero when idle. Replaces the blocked SAM 3D Objects path.
+- Licence: Stability AI Community License accepted and registered by Koushik; receipt and duties in evidence/owner/S06/SF3D-LICENCE.md.
+- Lab apparatus: add a flywheel and a standard physics-lab kit (controller chooses the set).
+- GPU queue: a crashed job must free the queue in minutes, not 30.
+- Agent models: user picks a tier. Contributor: Muse Spark 1.3 contributor (cheapest). Standard: Muse Open (Baseten) or Muse Spark 1.3
+  standard, user-selectable. GPT-6.1 Sol (Merge gateway, MERGE_API_KEY, $20 credit) is never user-selectable: it is a hidden fallback
+  only for the turn that failed on a Meta model. Spend code: cross-vendor review required.
+- Region: N23 showed Meta API returns 0 models from Railway egress in both SG and US, so the Modal relay stays. Move Postgres/Redis to the
+  US region next to the api, safely (backup, restore, verify, keep SG until verified).
+- Demo video: Koushik makes it himself after the product is built (N20 is his row now).
+- Dispatch freeze (Nov 1 23:35) still applies: rows below wait for Koushik's go.

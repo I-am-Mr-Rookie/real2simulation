@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 Dhaka (controller)
+- Koushik decisions (Nov 2, via approved side chat): GPU L4 for MapAnything (A10G fallback); Stable Fast 3D for clicked room objects on its own on-demand Modal L4 function; licence accepted and registered (receipt evidence/owner/S06/SF3D-LICENCE.md); flywheel + lab kit; crash recovery for the GPU queue; agent model tiers with hidden GPT-6.1 Sol fallback via Merge gateway; DB move to US; Koushik makes the demo video himself (N20 now his).
+- Added rows N30 to N38 (TODO). Dispatch freeze still on: no workers until Koushik says go.
+- Koushik is filming the N06 room video now.
+
 ## 2026-11-02 00:10 Dhaka (controller)
 - Accepted N28 (agent lab_update_object/lab_remove_object, act-with-defaults prompt, scrolling agent panel, F3 /health probe retry; 5/6 live turns acted, about $0.10) and N29 (room collision proxy from the point cloud, agent lab_run on the same Rapier world with labelled RK4 fallback, dense-core framing, A4 rescale keeps objects). Main green: node 406/406, python 183, build ok. NOT deployed (dispatch freeze).
 - Open for after the freeze: DEV api image lacks @dimforge/rapier3d-compat, so DEV agent runs would use the RK4 fallback until infra installs it; lab_report.py banner still says RK4; .le-time overlaps wrapped chips at 375 px; flywheel not a lab kind.
