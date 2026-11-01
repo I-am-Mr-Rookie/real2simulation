@@ -1,0 +1,113 @@
+{
+  "checked_utc": "2026-11-01T07:57:11.586747+00:00",
+  "recorded_g": 8.62,
+  "recorded_u_rounded": 1.28,
+  "recorded_u_unrounded": 1.2788792449092994,
+  "results": {
+    "20.28 cm": {
+      "status": "ok",
+      "label": "SIMULATED fit (fitter, run now) to RECORDED MEASURED SAM 3.1 track points",
+      "track_label": "Track: RECORDED (precomputed SAM 3.1, not run live)",
+      "stage": {
+        "track": "recorded",
+        "fit": "done"
+      },
+      "fitter": "Build/fitter/core.py fit_least_squares(degree 2) + jacobian_covariance (OLS, RSS/dof)",
+      "g": 8.621873619319475,
+      "u": 1.2874051062222112,
+      "u_fit": 0.14791816768625382,
+      "u_terms": {
+        "fit": 0.14791816768625382,
+        "detection": 1.26914672209091,
+        "clock": 0.0702029717161303,
+        "centroid_vs_box": 0.12413174630915158,
+        "scale": 0.06679500970676652
+      },
+      "u_rule": "quadrature",
+      "u_label": "fit scatter combined in quadrature with the recorded S07m budget terms (evidence/S07/S07h/results.json clips.OWN05 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total})",
+      "unit": "m/s^2",
+      "coefficients": [
+        0.24393699446868658,
+        0.2500673870877243,
+        4.310936809659737
+      ],
+      "residuals_px": [
+        0.05212079165361692,
+        -0.1563662840828713,
+        0.156368629565421,
+        -0.05212313713616661
+      ],
+      "rmse_px": 0.11654930443547104,
+      "rmse_m": 8.217696526148414e-05,
+      "dof": 1,
+      "n_fit": 4,
+      "held_out_residuals_px": [
+        4.604997328343757,
+        9.640820599565927,
+        19.853942190438033
+      ],
+      "n_held_out": 3,
+      "scale": {
+        "length_m": 0.2028,
+        "reference_px": 287.62559999999996,
+        "m_per_px": 0.0007050832749240681,
+        "source": "evidence/S07/S07h/results.json clips.OWN05.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+        "label": "user-declared scale 0.2028 m over a RECORDED 287.6 px reference; scale unverified"
+      },
+      "caveat": "Held-out points (3) were excluded from this fit and only score it. Few fitted points (dof = 1); held-out residuals are a check, not an uncertainty term. Scale unverified; not a validated measurement."
+    },
+    "10 cm": {
+      "status": "ok",
+      "label": "SIMULATED fit (fitter, run now) to RECORDED MEASURED SAM 3.1 track points",
+      "track_label": "Track: RECORDED (precomputed SAM 3.1, not run live)",
+      "stage": {
+        "track": "recorded",
+        "fit": "done"
+      },
+      "fitter": "Build/fitter/core.py fit_least_squares(degree 2) + jacobian_covariance (OLS, RSS/dof)",
+      "g": 4.2514169720510075,
+      "u": 0.6350844502877578,
+      "u_fit": 0.07293795250803362,
+      "u_terms": {
+        "fit": 0.07293795250803362,
+        "detection": 0.6258119931414744,
+        "clock": 0.034616849958644134,
+        "centroid_vs_box": 0.061208947884197035,
+        "scale": 0.03777302899404455
+      },
+      "u_rule": "quadrature",
+      "u_label": "fit scatter combined in quadrature with the recorded S07m budget terms (evidence/S07/S07h/results.json clips.OWN05 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total})",
+      "unit": "m/s^2",
+      "coefficients": [
+        0.12028451403781387,
+        0.12330739008270511,
+        2.1257084860255038
+      ],
+      "residuals_px": [
+        0.0521207916536699,
+        -0.15636628408289208,
+        0.15636862956548161,
+        -0.05212313713613968
+      ],
+      "rmse_px": 0.11654930443550124,
+      "rmse_m": 4.052118602638335e-05,
+      "dof": 1,
+      "n_fit": 4,
+      "held_out_residuals_px": [
+        4.60499732834387,
+        9.640820599566155,
+        19.8539421904386
+      ],
+      "n_held_out": 3,
+      "scale": {
+        "length_m": 0.1,
+        "reference_px": 287.62559999999996,
+        "m_per_px": 0.00034767419868050696,
+        "source": "evidence/S07/S07h/results.json clips.OWN05.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+        "label": "user-declared scale 0.1 m over a RECORDED 287.6 px reference; scale unverified"
+      },
+      "caveat": "Held-out points (3) were excluded from this fit and only score it. Few fitted points (dof = 1); held-out residuals are a check, not an uncertainty term. Scale unverified; not a validated measurement."
+    }
+  },
+  "checks": "direct fitter, quadrature, held-out exclusion and perturbation, recorded-scale floor, scale ratio PASS"
+}

@@ -1,0 +1,202 @@
+{
+  "20.28 cm": {
+    "current_budget": {
+      "status": "ok",
+      "label": "SIMULATED fit (fitter, run now) to RECORDED MEASURED SAM 3.1 track points",
+      "track_label": "Track: RECORDED (precomputed SAM 3.1, not run live)",
+      "stage": {
+        "track": "recorded",
+        "fit": "done"
+      },
+      "fitter": "Build/fitter/core.py fit_least_squares(degree 2) + jacobian_covariance (OLS, RSS/dof)",
+      "g": 8.621873619319475,
+      "u": 1.2874051062222112,
+      "u_fit": 0.14791816768625382,
+      "u_terms": {
+        "fit": 0.14791816768625382,
+        "detection": 1.26914672209091,
+        "clock": 0.0702029717161303,
+        "centroid_vs_box": 0.12413174630915158,
+        "scale": 0.06679500970676652
+      },
+      "u_rule": "quadrature",
+      "u_label": "fit scatter combined in quadrature with the recorded S07m budget terms (evidence/S07/S07h/results.json clips.OWN05 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total})",
+      "unit": "m/s^2",
+      "coefficients": [
+        0.24393699446868658,
+        0.2500673870877243,
+        4.310936809659737
+      ],
+      "residuals_px": [
+        0.05212079165361692,
+        -0.1563662840828713,
+        0.156368629565421,
+        -0.05212313713616661
+      ],
+      "rmse_px": 0.11654930443547104,
+      "rmse_m": 8.217696526148414e-05,
+      "dof": 1,
+      "n_fit": 4,
+      "held_out_residuals_px": [
+        4.604997328343757,
+        9.640820599565927,
+        19.853942190438033
+      ],
+      "n_held_out": 3,
+      "scale": {
+        "length_m": 0.2028,
+        "reference_px": 287.62559999999996,
+        "m_per_px": 0.0007050832749240681,
+        "source": "evidence/S07/S07h/results.json clips.OWN05.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+        "label": "user-declared scale 0.2028 m over a RECORDED 287.6 px reference; scale unverified"
+      },
+      "caveat": "Held-out points (3) were excluded from this fit and only score it. Few fitted points (dof = 1); held-out residuals are a check, not an uncertainty term. Scale unverified; not a validated measurement."
+    },
+    "old_job_no_budget": {
+      "status": "ok",
+      "label": "SIMULATED fit (fitter, run now) to RECORDED MEASURED SAM 3.1 track points",
+      "track_label": "Track: RECORDED (precomputed SAM 3.1, not run live)",
+      "stage": {
+        "track": "recorded",
+        "fit": "done"
+      },
+      "fitter": "Build/fitter/core.py fit_least_squares(degree 2) + jacobian_covariance (OLS, RSS/dof)",
+      "g": 8.621873619319475,
+      "u": 1.28,
+      "u_fit": 0.14791816768625382,
+      "u_terms": null,
+      "u_rule": "recorded_total",
+      "u_label": "uncertainty from the recorded S07m budget",
+      "unit": "m/s^2",
+      "coefficients": [
+        0.24393699446868658,
+        0.2500673870877243,
+        4.310936809659737
+      ],
+      "residuals_px": [
+        0.05212079165361692,
+        -0.1563662840828713,
+        0.156368629565421,
+        -0.05212313713616661
+      ],
+      "rmse_px": 0.11654930443547104,
+      "rmse_m": 8.217696526148414e-05,
+      "dof": 1,
+      "n_fit": 4,
+      "held_out_residuals_px": [
+        4.604997328343757,
+        9.640820599565927,
+        19.853942190438033
+      ],
+      "n_held_out": 3,
+      "scale": {
+        "length_m": 0.2028,
+        "reference_px": 287.62559999999996,
+        "m_per_px": 0.0007050832749240681,
+        "source": "evidence/S07/S07h/results.json clips.OWN05.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+        "label": "user-declared scale 0.2028 m over a RECORDED 287.6 px reference; scale unverified"
+      },
+      "caveat": "Held-out points (3) were excluded from this fit and only score it. Few fitted points (dof = 1); held-out residuals are a check, not an uncertainty term. Scale unverified; not a validated measurement."
+    }
+  },
+  "40.56 cm": {
+    "current_budget": {
+      "status": "ok",
+      "label": "SIMULATED fit (fitter, run now) to RECORDED MEASURED SAM 3.1 track points",
+      "track_label": "Track: RECORDED (precomputed SAM 3.1, not run live)",
+      "stage": {
+        "track": "recorded",
+        "fit": "done"
+      },
+      "fitter": "Build/fitter/core.py fit_least_squares(degree 2) + jacobian_covariance (OLS, RSS/dof)",
+      "g": 17.24374723863895,
+      "u": 2.574546958037049,
+      "u_fit": 0.29583633537250764,
+      "u_terms": {
+        "fit": 0.29583633537250764,
+        "detection": 2.53829344418182,
+        "clock": 0.1404059434322606,
+        "centroid_vs_box": 0.24826349261830316,
+        "scale": 0.12841612950342288
+      },
+      "u_rule": "quadrature",
+      "u_label": "fit scatter combined in quadrature with the recorded S07m budget terms (evidence/S07/S07h/results.json clips.OWN05 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total})",
+      "unit": "m/s^2",
+      "coefficients": [
+        0.48787398893737316,
+        0.5001347741754486,
+        8.621873619319475
+      ],
+      "residuals_px": [
+        0.05212079165361692,
+        -0.1563662840828713,
+        0.156368629565421,
+        -0.05212313713616661
+      ],
+      "rmse_px": 0.11654930443547104,
+      "rmse_m": 0.00016435393052296828,
+      "dof": 1,
+      "n_fit": 4,
+      "held_out_residuals_px": [
+        4.604997328343757,
+        9.640820599565927,
+        19.853942190438033
+      ],
+      "n_held_out": 3,
+      "scale": {
+        "length_m": 0.4056,
+        "reference_px": 287.62559999999996,
+        "m_per_px": 0.0014101665498481362,
+        "source": "evidence/S07/S07h/results.json clips.OWN05.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+        "label": "user-declared scale 0.4056 m over a RECORDED 287.6 px reference; scale unverified"
+      },
+      "caveat": "Held-out points (3) were excluded from this fit and only score it. Few fitted points (dof = 1); held-out residuals are a check, not an uncertainty term. Scale unverified; not a validated measurement."
+    },
+    "old_job_no_budget": {
+      "status": "ok",
+      "label": "SIMULATED fit (fitter, run now) to RECORDED MEASURED SAM 3.1 track points",
+      "track_label": "Track: RECORDED (precomputed SAM 3.1, not run live)",
+      "stage": {
+        "track": "recorded",
+        "fit": "done"
+      },
+      "fitter": "Build/fitter/core.py fit_least_squares(degree 2) + jacobian_covariance (OLS, RSS/dof)",
+      "g": 17.24374723863895,
+      "u": 1.28,
+      "u_fit": 0.29583633537250764,
+      "u_terms": null,
+      "u_rule": "recorded_total",
+      "u_label": "uncertainty from the recorded S07m budget",
+      "unit": "m/s^2",
+      "coefficients": [
+        0.48787398893737316,
+        0.5001347741754486,
+        8.621873619319475
+      ],
+      "residuals_px": [
+        0.05212079165361692,
+        -0.1563662840828713,
+        0.156368629565421,
+        -0.05212313713616661
+      ],
+      "rmse_px": 0.11654930443547104,
+      "rmse_m": 0.00016435393052296828,
+      "dof": 1,
+      "n_fit": 4,
+      "held_out_residuals_px": [
+        4.604997328343757,
+        9.640820599565927,
+        19.853942190438033
+      ],
+      "n_held_out": 3,
+      "scale": {
+        "length_m": 0.4056,
+        "reference_px": 287.62559999999996,
+        "m_per_px": 0.0014101665498481362,
+        "source": "evidence/S07/S07h/results.json clips.OWN05.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+        "label": "user-declared scale 0.4056 m over a RECORDED 287.6 px reference; scale unverified"
+      },
+      "caveat": "Held-out points (3) were excluded from this fit and only score it. Few fitted points (dof = 1); held-out residuals are a check, not an uncertainty term. Scale unverified; not a validated measurement."
+    }
+  }
+}
