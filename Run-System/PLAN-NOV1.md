@@ -45,3 +45,27 @@ Wave 3: N13 end-to-end QA; stretch N14 SAM 3D Objects, N15 agent-proposed equati
 N17 new demo script + read sheet for the owner's voice-over; N18 freeze + judging deploy (needs S23a).
 Owner: N06 film new clips (guide: media/owner-clips/FILMING_GUIDE.md).
 
+
+## Owner decisions (Nov 1, binding for every row)
+- Users upload their OWN videos; no approved-list gate in the private workspace. Two modes: Room -> virtual lab; My experiment -> measure.
+- No fixed experiment dictionary: the agent handles any physics experiment it can within the tool allowlist; off-topic requests refused.
+- Live processing is the product (no replay-only). Hosted Meta SAM 3.1 = default tracker; Modal GPU = backup and room reconstruction.
+- Modal on demand: wakes on a job, sleeps after 15 idle min, one GPU + simple queue with position; red/yellow/green dot in private workspace only.
+- Paid-call cap: $10/day global; $20/day Thu Nov 5 to Sun Nov 8 (Dhaka). Low-cost GPU/API work needs no owner ask (credits expire at event end).
+- Sign-up open to anyone; per user 20 uploads/day, 1 GB storage, file manager (upload, preview, download, delete), any device.
+- Contributor mode asked at account creation with pros (much cheaper Muse Spark 1.3 contributor) and cons (Meta trains on prompts); changeable.
+- Agent: Muse Spark 1.3, physics-only, ask-back questions with recommended options; voice typing via muse-voice-transcribe-1.0.
+- Muse Image: lab-report illustrations; image -> SAM 3.1 cut-out -> 3D object (stretch). SAM 3D Objects room object -> lab object (stretch).
+- Sample project on every new account. "Guess the Gravity" share challenge. Imperfect clips are fine with clear caveats and uncertainty.
+- Licensing: any licence permitting reuse; never no-licence, YouTube, NC or ND. Owner and user footage fine (owner clips private except OWN07 snippets).
+- Final demo video: Koushik edits it himself in the Claude desktop app; agents only supply script, read sheet and captures (N17).
+- Earlier UI decisions stay (collapsible icon rail with hover-temporary panes, top-right tools button, dark mode + colour modes,
+  pendulum logo with wordmark, scroll-craft homepage, GitHub button, no em dashes, myfront + make-interfaces-feel-better, Mobbin refs).
+- Run system: save quota; lean WORKER_CONTRACT.md; 30 or 60 min runs; cross-vendor review only for security/spend code.
+
+## Owner away rule (Nov 1 ~17:10 Dhaka)
+Koushik is away. Continue all work and dispatch new rows of this plan. Anything that genuinely needs his supervision
+(new spend beyond the caps above, judging/production deploy, public posts or submission, account/billing/terms changes,
+publishing private clips, destructive actions, or a product-direction choice not covered here) is PAUSED, not guessed:
+write it under "Reviews for Koushik" (STATE Owner questions -> RUNS.md) and keep working on everything else.
+

@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+## Controller — Nov 1 ~17:10 Dhaka: owner away; wave 1 running
+
+Koushik: "I am going away for now... if any decision needs my supervision, pause them. All other works will continue... kickstart
+newer workers based on the newer plan. Make sure the goals and features this session discussed are saved properly."
+Saved: Run-System/PLAN-NOV1.md -> "Owner decisions (Nov 1)" + "Owner away rule". Supervision items pause and go to Owner questions.
+Wave 1 dispatched 10:55Z, due 17:55 Dhaka: N02-orch250, N03-orch251 (Opus medium), N04-orch252, N05-orch253, N10-orch254 (Opus high).
+Heartbeat real2sim-orchestrator-wake set ACTIVE with the Nov 1 plan prompt. Pushed 00ec2329 after scan (only model-name/base-URL noise).
+
 ## Controller — Nov 1 ~16:45 Dhaka: owner GO on live-product pivot; run system made lean
 
 Owner replies (Nov 1, annotations on the plan message), recorded verbatim in meaning:
