@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-01 23:32 Dhaka (controller)
+- Claude 429: N28-orch273 and N29-orch274 stopped about 22:02 Dhaka with "usage limit, try again at 11:30 PM" (partial edits kept in worktrees). Limit reset 23:30; both resumed in their threads with new 60-min timeboxes, due about 00:32 Dhaka Nov 2.
+
 ## 2026-11-01 21:25 Dhaka (controller)
 - N27 PARTIAL (DEV recheck): fixed F1 (reason path), F2, F4, F10, chart axes, dark mode, 375 px; still open F3 (contributor card skipped 1 of 2 fresh accounts) and F5 (agent now asks clarifying questions for a fully specified drop prompt, 0/2 ran); F6 not checked (selector). About $0.4. Worker wrote evidence in the main checkout (no worktree); controller committed evidence/N27.
 - Dispatched N28-orch273 (Opus high, 60, due 22:18): agent move/resize/remove tools, act with defaults, panel layout, F3. N29-orch274 (Opus high, 60, due 22:18): room collision proxy, one Rapier engine for agent + Play, tighter framing, A4 rescale keeps objects. Both are PLAN Tier 2 scope (owner Nov 1).
