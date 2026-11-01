@@ -6,6 +6,7 @@ const noStore = { 'cache-control': 'no-store' };
 const JSON_CAP = 1_000_000;
 const CHUNK_CAP = 8_388_608; // contracts/jobs/policy.json upload.chunk_bytes
 const FILE_CAP = 200 * 1024 * 1024 + 1_048_576; // N03: 200 MB file + multipart overhead; the API enforces exact limits
+const AUDIO_CAP = 4 * 1024 * 1024; // N05 transcribe: 4 MB WAV
 const PASS_REQUEST = ['content-type', 'x-chunk-sha256', 'range'];
 const PASS_RESPONSE = ['content-type', 'content-length', 'content-range', 'accept-ranges', 'content-disposition'];
 const fail = (status, code, message) => Response.json({ status: 'error', error: { code, message } }, { status, headers: noStore });
@@ -43,13 +44,16 @@ async function proxy(request, context) {
   const method = request.method;
   let body; const fileUpload = method === 'POST' && segments.length === 1 && segments[0] === 'files';
   if (method !== 'GET' && method !== 'DELETE') {
-    try { body = fileUpload ? streamCapped(request, FILE_CAP) : await readCapped(request, method === 'PUT' && segments[0] === 'uploads' ? CHUNK_CAP : JSON_CAP); }
+    const cap = method === 'PUT' && segments[0] === 'uploads' ? CHUNK_CAP : segments.join('/') === 'agent/transcribe' ? AUDIO_CAP : JSON_CAP;
+    try { body = fileUpload ? streamCapped(request, FILE_CAP) : await readCapped(request, cap); }
     catch { return fail(413, 'INVALID_INPUT', 'Request body too large.'); }
   }
   const headers = { 'x-workspace-owner': userId, 'x-workspace-token': token };
   for (const name of PASS_REQUEST) { const value = request.headers.get(name); if (value) headers[name] = value; }
   const probe = method === 'GET' && segments.length === 1 && segments[0] === 'health'; // S15ay: reachability probe; upstream 404 stays server-side
-  const target = base.replace(/\/+$/, '') + '/internal/workspace/' + (probe ? 'jobs/health-probe' : segments.map(encodeURIComponent).join('/') + new URL(request.url).search);
+  // N09: the N05 agent router is mounted at /workspace/agent (not under /internal/workspace); same owner token gate.
+  const prefix = segments[0] === 'agent' ? '/workspace/' : '/internal/workspace/';
+  const target = base.replace(/\/+$/, '') + prefix + (probe ? 'jobs/health-probe' : segments.map(encodeURIComponent).join('/') + new URL(request.url).search);
   let upstream;
   try { upstream = await fetch(target, { method, headers, body, cache: 'no-store', redirect: 'manual', signal: request.signal, ...(fileUpload && body ? { duplex: 'half' } : {}) }); }
   catch { return fail(502, 'DEPENDENCY_UNAVAILABLE', 'Workspace API unreachable.'); }

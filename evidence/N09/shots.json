@@ -1,0 +1,67 @@
+{
+ "start_utc": "2026-11-01T11:55:16.275Z",
+ "steps": [
+  {
+   "k": "signed_up",
+   "v": true,
+   "utc": "2026-11-01T11:55:29.594Z"
+  },
+  {
+   "k": "first_run_screen",
+   "v": true,
+   "utc": "2026-11-01T11:55:31.933Z"
+  },
+  {
+   "k": "contributor_selectable",
+   "v": "Contributor\nMuse Spark 1.3 contributor\nMuch cheaper per message, so more turns fit in the daily budget\nSame physics tools and answers\nMeta may train on your prompts and the agent replies\nDo not type anything private",
+   "utc": "2026-11-01T11:55:32.147Z"
+  },
+  {
+   "k": "mode_saved",
+   "v": "standard",
+   "utc": "2026-11-01T11:55:32.336Z"
+  },
+  {
+   "k": "gpu_dot",
+   "v": "red",
+   "utc": "2026-11-01T11:55:32.341Z"
+  },
+  {
+   "k": "project_created",
+   "v": "Room 2026-11-01 11:55",
+   "utc": "2026-11-01T11:55:33.317Z"
+  },
+  {
+   "k": "uploaded",
+   "v": "22 KB of 1.0 GB used. 19 of 20 uploads left today.",
+   "utc": "2026-11-01T11:55:33.689Z"
+  },
+  {
+   "k": "preview_metadata_loaded",
+   "v": true,
+   "utc": "2026-11-01T11:55:33.902Z"
+  },
+  {
+   "k": "jobs",
+   "v": "Processing\nExperiments\n\nNot available yet: this processing service is not deployed on this server.\n\nRooms\n\nNot available yet: this processing service is not deployed on this server.\n\nRefresh",
+   "utc": "2026-11-01T11:55:33.907Z"
+  },
+  {
+   "k": "agent_turn",
+   "v": "What are you uploading? Room video\n\nRoom video\n\nFilming tips for room video:\n\nWalk slowly around the room for 20 to 60 s, holding the phone steady.\nKeep the floor in view most of the time.\nUse even light; avoid pointing at bright windows.\nLay an A4 sheet flat on the floor for scale; without it, scale is MODEL-ESTIMATED.\nMove the camera sideways, not only by turning on the spot.\n\nHow do I measure g with a falling ball?\n\nThe agent did not answer (502).",
+   "utc": "2026-11-01T11:55:34.917Z"
+  },
+  {
+   "k": "mobile_question_card",
+   "v": "What are you dropping?\n1\nA ball\nRecommended\n2\nA coin\n3\nSomething else\nOther\nContinue",
+   "utc": "2026-11-01T11:55:40.652Z"
+  }
+ ],
+ "fails": [
+  "404 /api/workspace/experiments",
+  "404 /api/workspace/rooms",
+  "502 /api/workspace/agent/turn"
+ ],
+ "status": "ok",
+ "end_utc": "2026-11-01T11:55:40.695Z"
+}

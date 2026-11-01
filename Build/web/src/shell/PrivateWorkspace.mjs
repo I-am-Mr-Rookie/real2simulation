@@ -14,15 +14,17 @@ import { initialRun } from '../workspace/runcontrol.mjs';
 import { renderShell, toolsOf, shellKey, initialRail, railReduce, LEFT_KEY, PANE_KEY, NARROW_QUERY, HOVER_OPEN_MS, HOVER_CLOSE_MS } from './workspace-shell.mjs';
 import { renderQuestionCard, renderWaiting, pendingOf, shouldAutoOpen, shouldCloseOnFinish } from './agent-card.mjs';
 import { icon } from './icons.mjs';
+import { createLive } from '../workspace/live-view.mjs';
 
 const Workspace = createWorkspace(React);
+const Live = createLive(React); // N09 live product: agent mode, projects, files, agent chat, GPU dot, job views
 const adapter = createThreeViewer();
 // S13m: scene_id is the job id; the API serves the sha-verified RM04 bundle (or 503 -> viewer shows unavailable).
 export const loadScene = createArtifactLoader({
   bundleUrl: (s) => new URL(`${API_BASE}/scenes/${encodeURIComponent(s.scene_id)}/bundle/`, globalThis.location.origin) });
 export const SCENE_LABEL = 'Scene geometry: Display only, scale unverified, not a measurement.';
 export const UNAVAILABLE_NOTICE = 'Workspace service unavailable: the private API did not answer, so no upload, job or result is shown. Nothing on this page is a measurement.';
-export const LIVE_NOTICE = 'Connected to the private workspace API. Only approved licensed clips are accepted; every result is labelled RECORDED or SIMULATED by the server.';
+export const LIVE_NOTICE = 'Connected to the private workspace API. Upload your own videos in Files; the sample pipeline below accepts only approved licensed clips. Every result is labelled RECORDED or SIMULATED by the server.';
 export const INSTRUMENTS_UNAVAILABLE = 'Instruments are not available in this build; no reading is shown.';
 // S15an: long service notices collapse to a chip; full wording stays verbatim in the (i) detail.
 const chip = (label, text, id) => React.createElement('details', { className: 'r2s-chip', 'data-chip': id },
@@ -107,6 +109,7 @@ export default function PrivateWorkspace({ scene }) {
   // S15ab shell state: left expanded/collapsed (persisted on wide screens), right panel open/closed with focus in and back.
   const [rail, setRail] = useState(null); // S15ae activity bar: { pane, open, preview } via the pure railReduce
   const [right, setRight] = useState(false);
+  const L = Live.useLive(live, () => setRight(true));
   const rightToggle = useRef(null);
   const rightHead = useRef(null);
   const cardHead = useRef(null);
@@ -170,8 +173,12 @@ export default function PrivateWorkspace({ scene }) {
     close: () => { if (right) closeRight(); if (narrow() && rail?.open) toggleLeft(); },
     navigated: () => { if (rail?.preview) send({ type: 'escape' }); else if (narrow() && rail?.open) toggleLeft(); } };
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
-    renderShell(React.createElement, { title: workspaceHeading(api, scene), rail, right, tools, pending, agent: iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null }, on, { rightToggle, rightHead },
+    renderShell(React.createElement, { title: workspaceHeading(api, scene), rail, right, tools, pending,
+      status: live ? React.createElement(Live.Dot, { L }) : null,
+      agent: React.createElement(React.Fragment, null, live ? React.createElement(Live.Chat, { L }) : null, iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null) }, on, { rightToggle, rightHead },
     live ? chip('Connected', LIVE_NOTICE, 'live') : React.createElement('p', { role: 'note' }, api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),
+    live ? React.createElement(Live.Centre, { L }) : null,
+    live ? React.createElement('h2', { className: 'lv-sample-h' }, 'Sample pipeline') : null,
     live ? renderWaiting(React.createElement, iv, openCard) : null,
     live || api === 'checking' ? null : React.createElement('p', { role: 'note' }, scene.notice),
     // the upload error is rendered once, by the workspace job panel (S15n limit: avoid a double alert)
