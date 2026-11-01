@@ -5,12 +5,12 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
-import { defaultScene, makeObject, validateScene, parseScene, sceneJson, fitterRequest, KINDS, MAX_OBJECTS } from './scene.mjs';
-import { createPhysics, loadRapier, movingStart, upQuat } from './physics.mjs';
+import { defaultScene, makeObject, validateScene, parseScene, sceneJson, fitterRequest, keepAdded, KINDS, MAX_OBJECTS } from './scene.mjs';
+import { createPhysics, loadRapier, movingStart, upQuat, roomProxy } from './physics.mjs';
 import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
 import { naturalPoint, trajectoryScene } from '../workspace/measure.mjs';
-import { robustBounds, fitDistance } from './frame.mjs';
+import { robustBounds, fitDistance, FRAME_Q } from './frame.mjs';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981 };
@@ -257,13 +257,22 @@ export default function LabEditor({ initialScene }) {
     if (!a || run === 'playing' || run === 'paused') return;
     a.gizmo.detach();
     for (const c of [...a.objects.children]) { a.objects.remove(c); c.traverse((m) => { m.geometry?.dispose(); m.material?.dispose(); }); }
-    for (const c of [...a.room.children]) if (c !== a.state.points) a.room.remove(c);
+    for (const c of [...a.room.children]) if (c !== a.state.points) { a.room.remove(c); c.traverse((m) => { m.geometry?.dispose(); m.material?.dispose(); }); }
     if (scene.room.kind !== 'none') {
       const size = a.state.gridSize ?? 10, dark = isDark();
       const grid = new THREE.GridHelper(size, 20, dark ? 0x52525b : 0x9ca3af, dark ? 0x2a2a2e : 0xd1d5db);
       grid.quaternion.fromArray(upQuat(scene.gravity));
       grid.position.set(a.state.gridAt?.[0] ?? 0, scene.room.floor_y, a.state.gridAt?.[2] ?? 0);
       a.room.add(grid);
+    }
+    const proxy = scene.room.collision;
+    if (proxy?.enabled) { // N29: show the MODEL-ESTIMATED collision boxes so contacts are visible
+      const mat = new THREE.LineBasicMaterial({ color: 0xb45309, transparent: true, opacity: 0.45 });
+      for (const [x, y, z, hx, hy, hz] of proxy.boxes) {
+        const box = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(2 * hx, 2 * hy, 2 * hz)), mat);
+        box.position.set(x, y, z); box.quaternion.fromArray(proxy.rotation);
+        a.room.add(box);
+      }
     }
     if (a.state.points) a.state.points.visible = scene.room.kind === 'ply';
     for (const o of scene.objects) a.objects.add(objectMesh(o));
@@ -274,7 +283,7 @@ export default function LabEditor({ initialScene }) {
 
   // N24: fit the camera to the loaded room or track (robust bounding box, keeps the current viewing direction).
   const frameTo = (positions) => {
-    const a = api.current, b = robustBounds(positions);
+    const a = api.current, b = robustBounds(positions, FRAME_Q);
     if (!a || !b) return null;
     const c = new THREE.Vector3(...b.center), dir = a.camera.position.clone().sub(a.orbit.target);
     if (dir.lengthSq() < 1e-9) dir.set(0.6, 0.45, 0.8);
@@ -330,7 +339,7 @@ export default function LabEditor({ initialScene }) {
     try { const s = parseScene(text); stop(); setSelected(null); setScene(s); setMessage('Scene loaded: ' + s.objects.length + ' objects.'); }
     catch (e) { setMessage('Scene rejected: ' + e.message); }
   };
-  const showPly = (bytes) => {
+  const showPly = (bytes, gravity, floorY) => {
     const { positions, colors } = decodePlyXyzRgb(bytes, plyCount(bytes));
     const a = api.current;
     if (a.state.points) { a.room.remove(a.state.points); a.state.points.geometry.dispose(); }
@@ -342,15 +351,18 @@ export default function LabEditor({ initialScene }) {
     a.state.points = new THREE.Points(geo, new THREE.PointsMaterial({ size: b ? Math.max(0.004, b.radius / 70) : 0.02, vertexColors: true }));
     if (b) { a.state.gridSize = Math.max(4, Math.ceil(b.radius * 3)); a.state.gridAt = b.center; }
     a.room.add(a.state.points);
-    return positions.length / 3;
+    return { n: positions.length / 3, collision: roomProxy(positions, gravity, floorY) };
   };
   const loadRoom = async (id, note) => {
     try {
       const r = await getJson('/rooms/' + id + '/result');
       const res = await fetch(WS + '/rooms/' + id + '/room.ply', { cache: 'no-store' });
       if (!res.ok) throw new Error('room.ply HTTP ' + res.status);
-      const n = showPly(new Uint8Array(await res.arrayBuffer()));
-      stop(); setSelected(null); setScene(validateScene(r.scene)); setPlyName('room.ply'); setSrc({ kind: 'room', id, room: r.room });
+      const { n, collision } = showPly(new Uint8Array(await res.arrayBuffer()), r.scene.gravity, r.scene.room?.floor_y ?? 0);
+      // A4 rescale reloads the same room: keep objects the user added, positions scaled with the room.
+      const k = src?.id === id ? r.room.scale.metres_per_model_unit / src.room.scale.metres_per_model_unit : NaN;
+      const next = validateScene({ ...r.scene, room: { ...r.scene.room, ...(collision && { collision }) }, objects: keepAdded(sceneRef.current.objects, r.scene.objects, k) });
+      stop(); setSelected(null); setScene(next); setPlyName('room.ply'); setSrc({ kind: 'room', id, room: r.room });
       setMessage(note ?? 'Your room: ' + n + ' points, ' + r.scene.objects.length + ' objects. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.');
     } catch (e) { setMessage('Room not loaded: ' + e.message); }
   };
@@ -376,9 +388,9 @@ export default function LabEditor({ initialScene }) {
     if (/\.json$/i.test(f.name)) { applyJson(await f.text()); return; }
     try {
       const bytes = new Uint8Array(await f.arrayBuffer());
-      const n = showPly(bytes);
+      const { n, collision } = showPly(bytes, scene.gravity, scene.room.floor_y ?? 0);
       setPlyName(f.name);
-      edit((s) => ({ ...s, room: { kind: 'ply', floor_y: s.room.floor_y ?? 0, source: f.name.slice(0, 200), scale_verified: false } }));
+      edit((s) => ({ ...s, room: { kind: 'ply', floor_y: s.room.floor_y ?? 0, source: f.name.slice(0, 200), scale_verified: false, ...(collision && { collision }) } }));
       setMessage('Room loaded: ' + n + ' points. Scale unverified.');
     } catch (err) { setMessage('Room rejected: ' + err.message); }
   };
@@ -421,6 +433,11 @@ export default function LabEditor({ initialScene }) {
           <button type="button" className="le-danger" disabled={live} onClick={() => { edit((s) => ({ ...s, objects: s.objects.filter((o) => o.id !== sel.id) })); setSelected(null); }}>Delete</button>
         </>}
       </div>
+      {scene.room.collision && <div className="le-panel">
+        <h3>Room</h3>
+        <label><input type="checkbox" checked={scene.room.collision.enabled} disabled={live} onChange={(e) => edit((s) => ({ ...s, room: { ...s.room, collision: { ...s.room.collision, enabled: e.target.checked } } }))} /> Room collisions</label>
+        <p>{scene.room.collision.boxes.length} static boxes from the room point cloud. MODEL-ESTIMATED collision proxy: surfaces stop objects in Play and in agent runs.</p>
+      </div>}
       <details className="le-panel le-json">
         <summary>Scene JSON (lab-scene-v1)</summary>
         <textarea aria-label="Scene JSON" value={jsonText} onChange={(e) => setJsonText(e.target.value)} spellCheck={false} rows={12} />
@@ -433,6 +450,7 @@ export default function LabEditor({ initialScene }) {
           <span className="le-chip">SIMULATED</span>
           {src?.kind === 'experiment' && <span className="le-chip le-warn">Track MEASURED, ball what-if</span>}
           {scene.room.kind === 'ply' && !scene.room.scale_verified && <span className="le-chip le-warn">Room scale unverified</span>}
+          {scene.room.collision?.enabled && <span className="le-chip le-warn">MODEL-ESTIMATED collision proxy</span>}
         </div>
         <span className="le-time" aria-live="off">t = {time.toFixed(2)} s</span>
         <p className="le-status" role="status">{message} Gravity [{scene.gravity.join(', ')}] m/s^2{plyName ? ', room ' + plyName : ''}.</p>

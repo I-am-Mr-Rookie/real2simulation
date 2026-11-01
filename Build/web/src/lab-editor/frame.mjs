@@ -1,5 +1,7 @@
 // N24: auto-frame the loaded room. Robust bounds (quantiles drop stray reconstruction points) and the camera distance
 // that fits the bounding sphere in a perspective view. Pure, Node-testable.
+// N29: camera framing uses the dense core (10th to 90th percentile per axis) so sparse far points do not shrink the room.
+export const FRAME_Q = 0.1;
 export function robustBounds(positions, q = 0.02) {
   const n = Math.floor((positions?.length ?? 0) / 3);
   if (!n) return null;

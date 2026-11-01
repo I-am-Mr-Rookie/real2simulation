@@ -18,6 +18,26 @@ export class SceneError extends Error {}
 const bad = (m) => { throw new SceneError(m); };
 const num = (v, name, lo = -1e4, hi = 1e4) => (typeof v === 'number' && Number.isFinite(v) && v >= lo && v <= hi ? v : bad(name + ' must be a finite number in [' + lo + ', ' + hi + ']'));
 const vec = (v, n, name, lo, hi) => (Array.isArray(v) && v.length === n ? v.map((x, i) => num(x, name + '[' + i + ']', lo, hi)) : bad(name + ' must be an array of ' + n + ' numbers'));
+export const MAX_ROOM_BOXES = 400;
+
+// N29: room.collision = static box proxy of the room point cloud (MODEL-ESTIMATED), built by physics.mjs roomProxy.
+function collision(c) {
+  if (!c || typeof c !== 'object' || Array.isArray(c)) bad('room.collision must be an object');
+  for (const k of Object.keys(c)) if (!['enabled', 'label', 'rotation', 'cell', 'boxes'].includes(k)) bad('unknown room.collision field ' + k);
+  if (c.label !== undefined && c.label !== 'MODEL-ESTIMATED') bad('room.collision.label must be MODEL-ESTIMATED');
+  const q = vec(c.rotation ?? [0, 0, 0, 1], 4, 'room.collision.rotation', -1.0001, 1.0001), qn = Math.hypot(...q);
+  if (qn < 1e-6) bad('room.collision.rotation must be a unit quaternion');
+  if (!Array.isArray(c.boxes) || c.boxes.length > MAX_ROOM_BOXES) bad('room.collision.boxes must be an array of at most ' + MAX_ROOM_BOXES);
+  return {
+    enabled: c.enabled === undefined ? true : typeof c.enabled === 'boolean' ? c.enabled : bad('room.collision.enabled must be boolean'),
+    label: 'MODEL-ESTIMATED', rotation: q.map((x) => x / qn), cell: num(c.cell ?? 0.1, 'room.collision.cell', 1e-4, 100),
+    boxes: c.boxes.map((x, i) => {
+      const v = vec(x, 6, 'room.collision.boxes[' + i + ']', -1000, 1000);
+      for (let a = 3; a < 6; a += 1) num(v[a], 'room.collision.boxes[' + i + '] half size', 1e-4, 500);
+      return v;
+    }),
+  };
+}
 
 export function defaultScene() {
   return { version: SCENE_VERSION, label: 'SIMULATED', units: 'm', gravity: [0, -9.81, 0], room: { kind: 'plane', floor_y: 0 }, objects: [] };
@@ -43,12 +63,15 @@ export function validateScene(input) {
   const gravity = vec(input.gravity ?? [0, -9.81, 0], 3, 'gravity', -100, 100);
   const room = input.room ?? { kind: 'none' };
   if (!room || typeof room !== 'object' || !ROOMS.includes(room.kind)) bad('room.kind must be one of ' + ROOMS.join(', '));
-  for (const k of Object.keys(room)) if (!['kind', 'floor_y', 'source', 'scale_verified'].includes(k)) bad('unknown room field ' + k);
+  for (const k of Object.keys(room)) if (!['kind', 'floor_y', 'source', 'scale_verified', 'collision'].includes(k)) bad('unknown room field ' + k);
   const outRoom = { kind: room.kind };
   if (room.kind !== 'none') outRoom.floor_y = num(room.floor_y ?? 0, 'room.floor_y');
   if (room.kind === 'ply') {
     outRoom.source = typeof room.source === 'string' && room.source.length <= 200 ? room.source : bad('room.source must be a string');
     outRoom.scale_verified = room.scale_verified === true;
+    if (room.collision !== undefined) outRoom.collision = collision(room.collision);
+  } else if (room.collision !== undefined) {
+    bad('room.collision needs room.kind ply');
   }
   const objects = input.objects ?? [];
   if (!Array.isArray(objects)) bad('objects must be an array');
@@ -99,6 +122,15 @@ export function parseScene(text) {
   return validateScene(raw);
 }
 export const sceneJson = (scene) => JSON.stringify(validateScene(scene), null, 2);
+
+// N29: after an A4 rescale the server room scene replaces the editor scene; keep objects the user added, with their
+// positions scaled by k = new / old metres per model unit (the room is scaled about its floor origin).
+export function keepAdded(currentObjects, serverObjects, k) {
+  if (!Number.isFinite(k) || k <= 0) return serverObjects;
+  const ids = new Set(serverObjects.map((o) => o.id));
+  const kept = currentObjects.filter((o) => !ids.has(o.id)).map((o) => ({ ...o, position: o.position.map((v) => v * k) }));
+  return [...serverObjects, ...kept].slice(0, MAX_OBJECTS);
+}
 
 // Sensor trace -> Build/fitter fit_observations request (one axis, simulated quantities, zero declared sigma).
 export function fitterRequest(trace, axis = 1, degree = 2) {

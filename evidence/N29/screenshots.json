@@ -1,0 +1,42 @@
+{
+  "start_utc": "2026-11-01T17:46:59.451Z",
+  "steps": [
+    {
+      "k": "chip",
+      "v": "MODEL-ESTIMATED collision proxy"
+    },
+    {
+      "k": "collisions_checked_on_load",
+      "v": true
+    },
+    {
+      "k": "chip_after_toggle_off",
+      "v": 0
+    },
+    {
+      "k": "chip_after_toggle_on",
+      "v": 1
+    },
+    {
+      "k": "room_panel",
+      "v": "Room\n Room collisions\n\n63 static boxes from the room point cloud. MODEL-ESTIMATED collision proxy: surfaces stop objects in Play and in agent runs."
+    },
+    {
+      "k": "time",
+      "v": "t = 2.62 s"
+    },
+    {
+      "k": "scrollWidth_375",
+      "v": 360
+    },
+    {
+      "k": "status",
+      "v": "Paused. Resume, reset, or export the SIMULATED sensor traces. Gravity [0, -9.81, 0] m/s^2, room points-mobile.ply."
+    }
+  ],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "end_utc": "2026-11-01T17:47:15.556Z"
+}
