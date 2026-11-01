@@ -10,6 +10,7 @@ import { renderInstruments } from './instrument-view.mjs';
 import { renderFit } from './fit-view.mjs';
 import { renderResultChart } from './result-chart.mjs';
 import { renderSidebar, renderReport } from './navigation.mjs';
+import { OWNER_FIT_LABEL } from './layout.mjs';
 
 export function renderWorkspace(h, layout, view, hostRef, onAction, interview, template, run, instruments, fit, sidebar, report, provenance, whatIf) {
   const { viewport } = layout;
@@ -18,7 +19,7 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
   const liveFit = layout.phase === 'report.owner' && provenance?.measurement?.live_fit?.status === 'ok' ? provenance.measurement.live_fit : null;
   const stages = liveFit ? layout.stages.map((s) => (s.id === 'fit' ? { ...s, label: 'Fit', status: 'done' }
     : s.id === 'run' ? { ...s, label: String(liveFit.track_label), status: 'done' } : s)) : layout.stages;
-  const jobStatus = liveFit ? { ...layout.jobStatus, label: 'Clip result (owner clip; no scene; fit run now on RECORDED track points)' } : layout.jobStatus;
+  const jobStatus = liveFit ? { ...layout.jobStatus, label: OWNER_FIT_LABEL } : layout.jobStatus;
   // S15q: a viewer LOAD_FAILED must not hide a job/API error (the live spec 422 was masked this way)
   const errs = [view.error, jobStatus.error].filter((e, i, a) => e && (i === 0 || e !== a[0]));
   const specError = layout.phase === 'interview.active' ? jobStatus.error : null;

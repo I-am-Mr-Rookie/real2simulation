@@ -15,8 +15,9 @@ export const PHASE_LABEL = Object.freeze({
   'run.ready': 'Ready to run', 'run.running': 'Run in progress', 'run.paused': 'Run paused', 'run.done': 'Run finished', 'run.failed': 'Run failed',
   'fit.running': 'Fit in progress', 'fit.done': 'Fit finished', 'fit.failed': 'Fit failed',
   'report.open': 'Report open',
-  'report.owner': 'Clip result (owner clip; no scene, run or fit)',
+  'report.owner': 'Clip result (owner clip; no scene; fit not run)',
 });
+export const OWNER_FIT_LABEL = 'Clip result (owner clip; no scene; fit run now on RECORDED track points)';
 export const OWNER_INTERVIEW_LABEL = 'Owner clip: no scene (reconstruction not run); interview in progress (not a measurement)';
 
 export const SYNTHETIC_SCENE_BANNER = 'SYNTHETIC scene: authored geometry, not reconstruction, measurement or gate evidence';

@@ -56,6 +56,11 @@ test('tools: only real backend-driven features, none when the API is not connect
   assert.deepEqual(find(tree, (n) => n.props['data-tool']).map((n) => n.props['aria-keyshortcuts']), ['Alt+1', 'Alt+2', 'Alt+3', 'Alt+4']);
   assert.match(toolsOf({ ...live, phase: 'interview.active', owner: true }).find((t) => t.id === 'agent').status, /Owner clip: no scene/);
   assert.equal(toolsOf({ ...live, jobId: 'j1', phase: 'run.done' })[2].status, 'Job j1: Run finished');
+  // S15be: no-scene owner clips never say "Scene ready"; fit wording only with a live fit
+  const own = (o) => toolsOf({ ...live, jobId: 'j1', owner: true, ...o }).map((t) => t.status).join('|');
+  assert.doesNotMatch(own({ phase: 'interview.active' }), /Scene ready/);
+  assert.match(own({ phase: 'report.owner' }), /fit not run/);
+  assert.match(own({ phase: 'report.owner', liveFit: true }), /fit run now on RECORDED track points/);
 });
 
 test('keys and persisted state', () => {

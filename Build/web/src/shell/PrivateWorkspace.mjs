@@ -145,7 +145,7 @@ export default function PrivateWorkspace({ scene }) {
   const toggleRight = () => (right ? closeRight() : setRight(true));
   const openCard = () => (right ? cardHead.current?.focus() : setRight(true));
   const toggleLeft = () => send({ type: 'toggle' });
-  const tools = toolsOf({ live, phase, owner: !!s.state.owner, jobId: s.state.job?.id, uploadStatus: up.show ? up.status : null, hasReport: !!s.report || phase === 'report.owner', pending });
+  const tools = toolsOf({ live, phase, owner: !!s.state.owner, jobId: s.state.job?.id, uploadStatus: up.show ? up.status : null, hasReport: !!s.report || phase === 'report.owner', pending, liveFit: s.provenance?.measurement?.live_fit?.status === 'ok' });
   const openTool = (t) => {
     const el = globalThis.document?.getElementById(t.target);
     if (!el) return;

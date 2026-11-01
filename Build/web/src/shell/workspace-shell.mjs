@@ -1,6 +1,6 @@
 // S15ab: private workspace shell (Q21 owner spec). Left nav collapses to an icon rail, the project owns the center, and the
 // rightmost header button toggles a right Agent & tools panel. Pure render + key mapping (tested); PrivateWorkspace holds state.
-import { PHASE_LABEL, OWNER_INTERVIEW_LABEL } from '../workspace/layout.mjs';
+import { PHASE_LABEL, OWNER_INTERVIEW_LABEL, OWNER_FIT_LABEL } from '../workspace/layout.mjs';
 import { icon } from './icons.mjs';
 
 export const LEFT_KEY = 'r2s.workspace.left';
@@ -47,11 +47,12 @@ export function railReduce(s, e) {
 }
 
 // Tools exist only when the private API answered (live); each maps to a real backend-driven surface already on the page.
-export function toolsOf({ live, phase, owner, jobId, uploadStatus, hasReport, pending = 0 }) {
+export function toolsOf({ live, phase, owner, jobId, uploadStatus, hasReport, pending = 0, liveFit = false }) {
   if (!live) return [];
-  const label = PHASE_LABEL[phase] ?? phase;
+  // S15be: no-scene owner clips never say "Scene ready"; fit wording only when the server fit actually ran
+  const label = owner && phase === 'interview.active' ? OWNER_INTERVIEW_LABEL : owner && phase === 'report.owner' && liveFit ? OWNER_FIT_LABEL : PHASE_LABEL[phase] ?? phase;
   return [
-    { id: 'agent', label: 'Agent', status: (pending ? pending + (pending === 1 ? ' question' : ' questions') + ' waiting. ' : '') + (owner && phase === 'interview.active' ? OWNER_INTERVIEW_LABEL : label),
+    { id: 'agent', label: 'Agent', status: (pending ? pending + (pending === 1 ? ' question' : ' questions') + ' waiting. ' : '') + label,
       pending, target: pending ? 'r2s-q-h' : 'ws-panel', key: '1', icon: 'chat' },
     { id: 'clips', label: 'Clips', status: uploadStatus || 'Upload an approved licensed clip', target: 'ws-upload-file', key: '2', icon: 'film' },
     { id: 'runs', label: 'Runs & history', status: jobId ? 'Job ' + jobId + ': ' + label : 'No job yet', target: 'ws-job', key: '3', icon: 'history' },
