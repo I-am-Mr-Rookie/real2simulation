@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Checklist card</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;width:1920px;height:1080px;background:#f6f6f4;color:#18181b;font:28px "Instrument Sans",system-ui,sans-serif;display:flex;flex-direction:column;justify-content:center;padding:0 140px;box-sizing:border-box}
+h1{font-size:54px;margin:0 0 8px}.sub{color:#52525b;font-size:26px;margin-bottom:36px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.c{background:#fff;border:1px solid #85858d;border-radius:10px;box-shadow:4px 4px 0 #18181b;padding:20px 26px;opacity:0;transform:translateY(10px);animation:in .5s forwards}
+.c b{display:block;font:700 22px "Space Mono",monospace;color:#52525b;margin-bottom:6px}.c span{font:700 34px "Space Mono",monospace}.c i{display:block;font-style:normal;color:#52525b;font-size:21px;margin-top:6px}
+.no span{color:#b91c1c}.am span{color:#92400e}
+@keyframes in{to{opacity:1;transform:none}}
+.c:nth-child(1){animation-delay:.3s}.c:nth-child(2){animation-delay:.9s}.c:nth-child(3){animation-delay:1.5s}.c:nth-child(4){animation-delay:2.1s}.c:nth-child(5){animation-delay:2.7s}.c:nth-child(6){animation-delay:3.3s}.c:nth-child(7){animation-delay:3.9s}.c:nth-child(8){animation-delay:4.5s}
+.f{margin-top:28px;font:22px "Space Mono",monospace;color:#52525b}
+</style></head><body>
+<h1>What it cost. What is not proven.</h1><div class="sub">Source: BENCHMARK.md and the gate files it cites</div>
+<div class="g">
+<div class="c"><b>Modal billed (BENCHMARK, read 2026-10-29T15:49:15Z)</b><span>$0.599594</span><i>modal_month_to_date_billed_usd</i></div>
+<div class="c"><b>Modal billed, later report (S13l, 2026-10-28 to 10-30)</b><span>$1.052013</span><i>evidence/S13l/billing-oct-daily.json, sum of rows</i></div>
+<div class="c no"><b>Gate M</b><span>✗ NOT_MET_INPUT_READINESS</span><i>no calibrated scale or capture clock</i></div>
+<div class="c no"><b>Gate RS</b><span>✗ NOT_MET</span><i>ST03: 7 of 466 sealed frames scored, diagnostic only</i></div>
+<div class="c am"><b>Gate A</b><span>MET_AMENDED_Q16</span><i>scale unverified, not setup-validated</i></div>
+<div class="c no"><b>Metric scale</b><span>UNVERIFIED</span><i>RM02, RM04, RM05: abstained</i></div>
+<div class="c"><b>Meta Model API (S16e call)</b><span>1176 tokens · 2.52345 s</span><i>dollar cost UNAVAILABLE (pricing unverified)</i></div>
+<div class="c"><b>Meta SAM 3.1</b><span>on Modal A10G</span><i>ST03 tracking billed $0.0233059, 47.93 GPU-s</i></div>
+</div><div class="f">Physical or calibrated accuracy is not claimed.</div></body></html>

@@ -1,0 +1,15 @@
+{
+ "beat8-card": {
+  "first_row": 2.8,
+  "all_rows_visible": 7.6,
+  "end": 10.7
+ },
+ "beat9-close": {
+  "repo_top": 7.4,
+  "repo_readme": 11.9,
+  "benchmark_top": 16.3,
+  "benchmark_gates": 20.7,
+  "dev_home_hero": 28.8,
+  "end": 31.1
+ }
+}
