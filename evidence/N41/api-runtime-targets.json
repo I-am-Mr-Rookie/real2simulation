@@ -1,0 +1,4 @@
+{
+  "postgres_points_to_us_service": true,
+  "redis_points_to_us_service": true
+}

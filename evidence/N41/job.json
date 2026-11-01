@@ -1,0 +1,7 @@
+{
+  "label": "MEASURED",
+  "http_status": 200,
+  "job_id_matches": true,
+  "events": 12,
+  "provenance_present": true
+}

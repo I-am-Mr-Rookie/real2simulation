@@ -1,0 +1,23 @@
+{
+  "label": "MEASURED",
+  "observed_utc": "2026-11-01T23:28:09.182814+00:00",
+  "databases": {
+    "db0": {
+      "keys": 228,
+      "nonexpiring": 228,
+      "categories": {
+        "job_events": 15,
+        "job_input": 69,
+        "job_owner": 69,
+        "job_provenance": 69,
+        "idempotency_output": 6
+      },
+      "types": {
+        "list": 15,
+        "string": 213
+      },
+      "every_key_dump_sha256_matches": true,
+      "checked_dump_payloads": 228
+    }
+  }
+}

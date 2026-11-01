@@ -1,5 +1,17 @@
 # Railway dev handoff (S04f/S04g)
 
+## N41 dependency region cutover
+
+API, Postgres-gMg1 and Redis-oYZk now use us-east4-eqdc4a with their persistent
+volumes. API DATABASE_URL/REDIS_URL and the health-only worker REDIS_URL use the
+new services through Railway references. Singapore Postgres/Redis are retained,
+not moved or deleted. All 228 durable Redis keys were copied and every key's
+type and DUMP SHA256 matched; the destination was synchronously saved.
+PostgreSQL restored the retained N38 archive and has zero non-system tables.
+Receipts, observed latency ranges, the fence incident and safe rollback:
+[N41 operations](../../../evidence/N41/OPERATIONS.md). Do not blindly repoint
+to the SG snapshot after new US writes; reconcile those writes first.
+
 ## Verifier regression (S04g1)
 
 `python -m unittest discover -s infra/railway/dev -p test_verify.py -v`

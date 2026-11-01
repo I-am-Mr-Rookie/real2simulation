@@ -3,7 +3,7 @@
   "environmentId": "c5823a28-5118-49d8-b4d6-9851fa8ccc45",
   "environmentName": "dev",
   "sourceRevision": "300cd2096f9e32bcdf3433520b36b67f709df0d5",
-  "verifiedUtc": "2026-11-01T20:33:32Z",
+  "verifiedUtc": "2026-11-01T23:30:33.027729+00:00",
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
@@ -18,7 +18,7 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "eac25189-f407-4f4a-8615-676168f41e62",
+      "deploymentId": "2af55a1d-aa27-4917-930a-2e140ce0dc16",
       "previousDeploymentIds": [
         "e5f1df87-3181-4683-9cbb-d6c4deb009b1",
         "e0619429-4553-4fde-b5a9-36b117cc134e",
@@ -35,7 +35,7 @@
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
       "sourceRevision": "a932d0f724ac55fdc3872abe179af595f8b1a858",
-      "verifiedUtc": "2026-11-01T21:00Z",
+      "verifiedUtc": "2026-11-01T23:30:33.027729+00:00",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -50,19 +50,38 @@
       "url": "https://api-dev-6091.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080,
-      "previousDeploymentId": "cd0230fa-f498-426d-a78a-35597ad703a7",
-      "redeployNote": "controller: N30 L4 + N35 lease + N36 tiers/fallback",
+      "previousDeploymentId": "5df506cd-affc-44c6-a83a-d527b46e6766",
+      "redeployNote": "N41: same known-good build; DATABASE_URL/REDIS_URL references point to preserved-data US services",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {
       "id": "5b5e6ebc-d4f1-46fb-b6de-6b7ff94b89a7",
-      "deploymentId": "533e73fe-909c-42fc-b2cb-aec983c79891",
+      "deploymentId": "26b002d3-6381-4517-a6e1-8dcc795a1965",
       "url": "https://worker-dev-984d.up.railway.app",
       "providerStatus": "SUCCESS",
-      "port": 8080
+      "port": 8080,
+      "verifiedUtc": "2026-11-01T23:30:33.027729+00:00"
+    }
+  },
+  "dependencyServices": {
+    "region": "us-east4-eqdc4a",
+    "postgres": {
+      "id": "de49f552-c641-45c9-8111-1d714c18f396",
+      "name": "Postgres-gMg1"
+    },
+    "redis": {
+      "id": "c5fb2c8e-9daf-4e4c-85b7-6641c2c81fb3",
+      "name": "Redis-oYZk"
+    },
+    "receipt": "evidence/N41/provider-final.json",
+    "retainedSingapore": {
+      "postgres": "33692dd8-74ea-4bd1-a95f-fb9a41d9272e",
+      "redis": "eee6243b-85a7-426a-97a0-46db3f6adefb",
+      "action": "remove after Koushik confirms; reconcile post-cutover writes before rollback"
     }
   },
   "limits": [
+    "N41 supersedes the N23 dependency-region note: API/Postgres/Redis and persistent volumes now US East; worker health sidecar stays SG but references US Redis; bucket stays SG",
     "N23 api 20fa6b1f = 436d84b in us-east4: Meta Model API reached only through Modal app r2s-meta-proxy (us-east); Postgres/Redis/bucket stay in SG (cross-region latency)",
     "N11 api cd0230fa and web 53b1b733 = 032922d: files persist on the /data volume; Modal/Meta tokens present by name only, not exercised by verify.py; uploads dir WORKSPACE_UPLOAD_DIR still /tmp for the legacy route",
     "S04m api 8bf100cc = 54d1575: workspace routers mounted (verify.py: health OK, /internal/workspace 401 without token); authenticated web->api private-network call NOT verified; uploads on ephemeral /tmp",

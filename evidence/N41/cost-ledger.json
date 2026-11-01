@@ -1,0 +1,24 @@
+{
+  "operations": [
+    {
+      "utc": "2026-11-01T22:43:18.339Z",
+      "provider": "Railway",
+      "operation": "Redis template deployment and persistent volume",
+      "service_id": "c5fb2c8e-9daf-4e4c-85b7-6641c2c81fb3",
+      "units": "one additional running singleton",
+      "cost_usd": null
+    },
+    {
+      "utc": "2026-11-01T22:43:26.699Z",
+      "provider": "Railway",
+      "operation": "PostgreSQL template deployment and persistent volume",
+      "service_id": "de49f552-c641-45c9-8111-1d714c18f396",
+      "units": "one additional running singleton",
+      "cost_usd": null
+    }
+  ],
+  "cost_note": "Ordinary Railway compute, storage, deployment and network usage; exact incremental billing unavailable. Retained Singapore services continue accruing usage until owner-approved removal.",
+  "paid_model_calls": 0,
+  "gpu_jobs": 0,
+  "purchases": 0
+}

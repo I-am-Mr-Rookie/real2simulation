@@ -1,0 +1,55 @@
+{
+  "label": "MEASURED",
+  "observed_utc": "2026-11-01T22:45:35.093259+00:00",
+  "uncertainty": "7 samples, observed range only; not a confidence interval",
+  "region": "us-east4-eqdc4a",
+  "deployment_id": "5df506cd-affc-44c6-a83a-d527b46e6766",
+  "postgres": {
+    "samples_ms": [
+      214.081,
+      213.836,
+      213.969,
+      213.83,
+      213.973,
+      427.739,
+      214.348
+    ],
+    "median_ms": 213.973,
+    "min_ms": 213.83,
+    "max_ms": 427.739
+  },
+  "table_row_counts": {},
+  "postgres_version": "18.6 (Debian 18.6-1.pgdg13+2)",
+  "redis": {
+    "samples_ms": [
+      1714.073,
+      244.322,
+      244.283,
+      244.994,
+      244.118,
+      244.227,
+      244.113
+    ],
+    "median_ms": 244.283,
+    "min_ms": 244.113,
+    "max_ms": 1714.073
+  },
+  "redis_dbsize": 228,
+  "redis_keyspace": {
+    "db0": {
+      "keys": 228,
+      "expires": 0,
+      "avg_ttl": 0,
+      "subexpiry": 0
+    }
+  },
+  "redis_scan": {
+    "scanned": 101,
+    "types": {
+      "string": 93,
+      "list": 8
+    },
+    "nonexpiring": 101,
+    "complete": false
+  }
+}

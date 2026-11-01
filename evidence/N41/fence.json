@@ -1,0 +1,18 @@
+{
+  "label": "MEASURED",
+  "api_stop_acknowledged_utc": "2026-11-01T22:57:59.062484+00:00",
+  "method": "Railway deployment stop; original region and volume retained",
+  "first_stop_acknowledged_utc": "2026-11-01T22:48:54Z",
+  "first_copy_destination_keys": 0,
+  "first_pause_auto_expiry_ms": 600000,
+  "first_api_removed_provider_utc": "2026-11-01T22:48:53.842Z",
+  "final_api_removed_provider_utc": "2026-11-01T22:57:57.985Z",
+  "us_api_success_provider_utc": "2026-11-01T23:00:16.024Z",
+  "maintenance_provider_span_seconds": 682.182,
+  "final_cutover_provider_span_seconds": 138.039,
+  "final_source_write_fence_started_utc": "2026-11-01T22:59:48.269186+00:00",
+  "final_source_write_pause_auto_expiry_approximately_utc": "2026-11-01T23:09:48.269186Z",
+  "source_explicitly_unpaused": true,
+  "exact_http_outage": "not continuously sampled; provider status span is not an HTTP outage measurement",
+  "network_interruption": "chat stopped after cutover request; resumed 2026-11-01T23:26:58Z"
+}

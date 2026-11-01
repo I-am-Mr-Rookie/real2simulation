@@ -1,0 +1,11 @@
+test_binary_copy_restores_without_replace_and_saves (test_redis_region_copy.CopyTests.test_binary_copy_restores_without_replace_and_saves) ... ok
+test_database_selection_overrides_path_and_query (test_redis_region_copy.CopyTests.test_database_selection_overrides_path_and_query) ... ok
+test_expiring_missing_and_active_lease_keys_rejected (test_redis_region_copy.CopyTests.test_expiring_missing_and_active_lease_keys_rejected) ... ok
+test_fence_is_explicit_write_only_not_ignored_keyword (test_redis_region_copy.CopyTests.test_fence_is_explicit_write_only_not_ignored_keyword) ... ok
+test_nonempty_target_is_never_modified (test_redis_region_copy.CopyTests.test_nonempty_target_is_never_modified) ... ok
+test_type_and_every_dump_checksum_must_match (test_redis_region_copy.CopyTests.test_type_and_every_dump_checksum_must_match) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.064s
+
+OK

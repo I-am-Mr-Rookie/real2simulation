@@ -1,0 +1,18 @@
+# N41-orch283 DONE
+- DEV API/Postgres/Redis volumes are us-east4; new Postgres de49f552-c641-45c9-8111-1d714c18f396, Redis c5fb2c8e-9daf-4e4c-85b7-6641c2c81fb3.
+- API deployment 2af55a1d-aa27-4917-930a-2e140ce0dc16 SUCCESS; same known-good build, only Railway dependency references changed.
+- Copied all db0 228 durable keys: inputs/owners/provenance 69 each, event lists 15, idempotency outputs 6; no TTLs.
+- Every key/type/DUMP SHA256 matched before cutover and again at 23:28 UTC; destination synchronous SAVE passed.
+- Restored checksum-checked N38 PostgreSQL archive transactionally; zero non-system tables verified. Original private backup retained in N38 worktree.
+- Write fences: API deployment stop plus server WRITE pause. Final provider stop-to-success 138.039 s; total incident span 682.182 s, not continuously sampled HTTP downtime.
+- Initial CLI zero-replica/redis-py fence failures caused maintenance delay; corrected and regression-tested. Network 502 interrupted chat after cutover; resumed under new timebox.
+- Source pause expired automatically; explicit UNPAUSE passed. Worker references US Redis, temporary migration reference removed, redeployment 26b002d3-6381-4517-a6e1-8dcc795a1965 SUCCESS.
+- Checks: six offline copy safety tests pass; live verify.py exits 0, 11/11 checks; authenticated preserved job GET 200 with 12 events; runtime US-target assertions pass.
+- MEASURED seven-sample medians: PostgreSQL N38 214.226 ms -> 0.255 ms; Redis 227.270 ms -> 0.239 ms. Observed ranges, not confidence intervals.
+- Evidence/scripts: evidence/N41/OPERATIONS.md, copy.json, redis-final.json, before.json, after.json, fence.json, provider-final.json.
+- SG Postgres 33692dd8-74ea-4bd1-a95f-fb9a41d9272e: remove after Koushik confirms.
+- SG Redis eee6243b-85a7-426a-97a0-46db3f6adefb: remove after Koushik confirms. Both original deployment/volume identities retained.
+- Rollback: fence writes, reconcile any post-cutover US writes, restore API/worker SG references and redeploy known-good builds; never blindly discard new US jobs.
+- Paid model/GPU calls: 0. Two additional Railway services/volumes incur normal usage, exact incremental cost unavailable; cost-ledger.json records them.
+- Skipped: new uploads, paid inference, full application suite and web build; no app code changed.
+- Risks: retained SG resources continue billing; rollback after new US writes requires reconciliation. No secrets, Redis keys/values or owner identifiers exported.

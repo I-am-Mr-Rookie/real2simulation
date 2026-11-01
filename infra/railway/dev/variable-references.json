@@ -4,8 +4,8 @@
   "environmentName": "dev",
   "api": {
     "R2S_ENVIRONMENT": "development",
-    "DATABASE_URL": "${{Postgres.DATABASE_URL}}",
-    "REDIS_URL": "${{Redis.REDIS_URL}}",
+    "DATABASE_URL": "${{Postgres-gMg1.DATABASE_URL}}",
+    "REDIS_URL": "${{Redis-oYZk.REDIS_URL}}",
     "BUCKET_ENDPOINT": "${{real2simulation-dev.ENDPOINT}}",
     "BUCKET_NAME": "${{real2simulation-dev.BUCKET}}",
     "BUCKET_REGION": "${{real2simulation-dev.REGION}}",
@@ -19,7 +19,7 @@
   },
   "worker": {
     "R2S_ENVIRONMENT": "development",
-    "REDIS_URL": "${{Redis.REDIS_URL}}",
+    "REDIS_URL": "${{Redis-oYZk.REDIS_URL}}",
     "BUCKET_ENDPOINT": "${{real2simulation-dev.ENDPOINT}}",
     "BUCKET_NAME": "${{real2simulation-dev.BUCKET}}",
     "BUCKET_REGION": "${{real2simulation-dev.REGION}}",

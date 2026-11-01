@@ -1,0 +1,239 @@
+{
+  "observed_utc": "2026-11-01T23:31:44.680878+00:00",
+  "services": [
+    {
+      "service": {
+        "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
+        "name": "api",
+        "state": "live"
+      },
+      "latestDeployment": {
+        "createdAt": "2026-11-01T22:59:59.578Z",
+        "id": "2af55a1d-aa27-4917-930a-2e140ce0dc16",
+        "status": "SUCCESS",
+        "url": null
+      },
+      "regions": {
+        "us-east4-eqdc4a": {
+          "numReplicas": 1
+        }
+      },
+      "volumes": [
+        {
+          "id": "053fb364-df41-4521-bc26-bc238439cbc7",
+          "mountPath": "/data",
+          "name": "api-volume",
+          "region": "us-east4-eqdc4a",
+          "sizeMB": 50000,
+          "state": "live"
+        }
+      ],
+      "variableNames": [
+        "BASETEN_API_KEY",
+        "BASETEN_BASE_URL",
+        "BUCKET_ACCESS_KEY_ID",
+        "BUCKET_ENDPOINT",
+        "BUCKET_NAME",
+        "BUCKET_REGION",
+        "BUCKET_SECRET_ACCESS_KEY",
+        "DATABASE_URL",
+        "MERGE_API_KEY",
+        "MERGE_BASE_URL",
+        "MODAL_TOKEN_ID",
+        "MODAL_TOKEN_SECRET",
+        "MODEL_API_BASE_URL",
+        "MODEL_API_KEY",
+        "MODEL_PROXY_TOKEN",
+        "R2S_DATA_DIR",
+        "R2S_ENVIRONMENT",
+        "REDIS_URL",
+        "WORKSPACE_INTERNAL_TOKEN",
+        "WORKSPACE_UPLOAD_DIR"
+      ]
+    },
+    {
+      "service": {
+        "id": "de49f552-c641-45c9-8111-1d714c18f396",
+        "name": "Postgres-gMg1",
+        "state": "live"
+      },
+      "latestDeployment": {
+        "createdAt": "2026-11-01T22:44:28.630Z",
+        "id": "d430f0be-b267-40b7-af23-7d7d57fbf16b",
+        "status": "SUCCESS",
+        "url": null
+      },
+      "regions": {
+        "us-east4-eqdc4a": {
+          "numReplicas": 1
+        }
+      },
+      "volumes": [
+        {
+          "id": "c5c21c8c-5928-435d-808a-5bcd3019f006",
+          "mountPath": "/var/lib/postgresql/data",
+          "name": "postgres-volume-k3aN",
+          "region": "us-east4-eqdc4a",
+          "sizeMB": 50000,
+          "state": "live"
+        }
+      ],
+      "variableNames": [
+        "DATABASE_URL",
+        "PGDATA",
+        "PGDATABASE",
+        "PGHOST",
+        "PGPASSWORD",
+        "PGPORT",
+        "PGUSER",
+        "POSTGRES_DB",
+        "POSTGRES_PASSWORD",
+        "POSTGRES_USER",
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS",
+        "SSL_CERT_DAYS"
+      ]
+    },
+    {
+      "service": {
+        "id": "c5fb2c8e-9daf-4e4c-85b7-6641c2c81fb3",
+        "name": "Redis-oYZk",
+        "state": "live"
+      },
+      "latestDeployment": {
+        "createdAt": "2026-11-01T22:44:29.176Z",
+        "id": "06b72cbd-bf7a-4a04-a578-a6692b951a64",
+        "status": "SUCCESS",
+        "url": null
+      },
+      "regions": {
+        "us-east4-eqdc4a": {
+          "numReplicas": 1
+        }
+      },
+      "volumes": [
+        {
+          "id": "6c09510c-c460-4959-a165-99e45ddbce44",
+          "mountPath": "/data",
+          "name": "redis-volume-quGK",
+          "region": "us-east4-eqdc4a",
+          "sizeMB": 50000,
+          "state": "live"
+        }
+      ],
+      "variableNames": [
+        "REDISHOST",
+        "REDISPASSWORD",
+        "REDISPORT",
+        "REDISUSER",
+        "REDIS_PASSWORD",
+        "REDIS_URL"
+      ]
+    },
+    {
+      "service": {
+        "id": "33692dd8-74ea-4bd1-a95f-fb9a41d9272e",
+        "name": "Postgres",
+        "state": "live"
+      },
+      "latestDeployment": {
+        "createdAt": "2026-10-27T20:12:36.292Z",
+        "id": "87bc293e-5f47-4dd8-a697-aa3f03ba1b85",
+        "status": "SUCCESS",
+        "url": null
+      },
+      "regions": {
+        "asia-southeast1-eqsg3a": {
+          "numReplicas": 1
+        }
+      },
+      "volumes": [
+        {
+          "id": "0d2650de-180f-4290-9269-ccb1e7129869",
+          "mountPath": "/var/lib/postgresql/data",
+          "name": "postgres-volume",
+          "region": "asia-southeast1-eqsg3a",
+          "sizeMB": 50000,
+          "state": "live"
+        }
+      ],
+      "variableNames": [
+        "DATABASE_URL",
+        "PGDATA",
+        "PGDATABASE",
+        "PGHOST",
+        "PGPASSWORD",
+        "PGPORT",
+        "PGUSER",
+        "POSTGRES_DB",
+        "POSTGRES_PASSWORD",
+        "POSTGRES_USER",
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS",
+        "SSL_CERT_DAYS"
+      ]
+    },
+    {
+      "service": {
+        "id": "eee6243b-85a7-426a-97a0-46db3f6adefb",
+        "name": "Redis",
+        "state": "live"
+      },
+      "latestDeployment": {
+        "createdAt": "2026-10-27T20:12:39.011Z",
+        "id": "b71bfa73-3b7c-4e3a-bb5c-24480a6c0949",
+        "status": "SUCCESS",
+        "url": null
+      },
+      "regions": {
+        "asia-southeast1-eqsg3a": {
+          "numReplicas": 1
+        }
+      },
+      "volumes": [
+        {
+          "id": "203a6b98-e02f-4333-bcc6-cc7fcc6e11e3",
+          "mountPath": "/data",
+          "name": "redis-volume",
+          "region": "asia-southeast1-eqsg3a",
+          "sizeMB": 50000,
+          "state": "live"
+        }
+      ],
+      "variableNames": [
+        "REDISHOST",
+        "REDISPASSWORD",
+        "REDISPORT",
+        "REDISUSER",
+        "REDIS_PASSWORD",
+        "REDIS_URL"
+      ]
+    },
+    {
+      "service": {
+        "id": "5b5e6ebc-d4f1-46fb-b6de-6b7ff94b89a7",
+        "name": "worker",
+        "state": "live"
+      },
+      "latestDeployment": {
+        "createdAt": "2026-11-01T23:29:39.558Z",
+        "id": "26b002d3-6381-4517-a6e1-8dcc795a1965",
+        "status": "SUCCESS",
+        "url": null
+      },
+      "regions": {
+        "asia-southeast1-eqsg3a": {
+          "numReplicas": 1
+        }
+      },
+      "volumes": [],
+      "variableNames": [
+        "BUCKET_ACCESS_KEY_ID",
+        "BUCKET_ENDPOINT",
+        "BUCKET_NAME",
+        "BUCKET_REGION",
+        "BUCKET_SECRET_ACCESS_KEY",
+        "R2S_ENVIRONMENT",
+        "REDIS_URL"
+      ]
+    }
+  ]
+}
