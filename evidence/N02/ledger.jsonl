@@ -1,0 +1,2 @@
+{"utc": "2026-11-01T11:00:32+00:00", "model": "sam-3.1", "call": "apple", "prompt": "apple", "seconds": 28.5, "video_frames_processed": 543, "cost_usd": 0.1086, "frames": 543, "travel_px": {"0": 55.056788863863105, "1": 55.12939324897382, "2": 688.058863760943}, "moving_id": 2, "missing": 0}
+{"utc": "2026-11-01T11:01:16+00:00", "model": "sam-3.1", "call": "point", "prompt": "<0f>1<|point;x=151;y=433;w=720;h=1366|>", "seconds": 43.7, "video_frames_processed": 543, "cost_usd": 0.1086, "frames": 543, "travel_px": {"1": 687.0656809941827}, "moving_id": 1, "missing": 0}

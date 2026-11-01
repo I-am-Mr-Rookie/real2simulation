@@ -1,0 +1,126 @@
+{
+  "run": "N02-orch250",
+  "gate": "RS",
+  "gate_m": "NOT_MET",
+  "limitations": [
+    "Gate M NOT_MET: no calibrated scale or capture clock",
+    "positions are image-height fractions, not metres; no calibrated g",
+    "no physical-accuracy claim",
+    "hosted points are box centres; orch14 prefix points are mask centroids",
+    "hosted artifact has no accepted-tracking custody entry (evidence/S12/accepted-tracking.json); controller review needed before it can be gate-eligible"
+  ],
+  "tracker": {
+    "model": "sam-3.1 (Meta Model API, hosted)",
+    "prompt": "apple",
+    "frames_returned": 543,
+    "moving_object_id": 2,
+    "travel_px": {
+      "0": 55.056788863863105,
+      "1": 55.12939324897382,
+      "2": 688.058863760943
+    },
+    "missing_frames": 0,
+    "video_frames_processed": 543,
+    "response": "evidence/N02/resp-apple.json"
+  },
+  "prefix_retrack": {
+    "frames": 19,
+    "max_abs": 0.0013455037446437057,
+    "tolerance": 0.002,
+    "within_tolerance": true
+  },
+  "committed_prediction_score": {
+    "clip_id": "ST03",
+    "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051",
+    "kind": "projectile",
+    "prediction_sha256": "b9c092b5d5cb27bc0878ddd39a20538fd3f4cc2c864a1b89f6a08c417ffc7cc1",
+    "prediction_commitment": "prediction/v2",
+    "training_sha256": "eb4f9cbcf28f01d9ec12536612923691331f00a1428c8075051ed3d47471ed68",
+    "suffix_identity_sha256": "aee71c42f900f9b96dc2ad2f9cf15cdcdb467cefec502100a8cc06776d27115c",
+    "sealed_frames": 466,
+    "scored_frames": 466,
+    "coverage": 1.0,
+    "normalized_rms": 111.51853332511004,
+    "normalized_rms_first5_diagnostic": 0.1331782600747823,
+    "max_abs": 243.4314289658402,
+    "scored": true,
+    "provenance": "image-derived",
+    "input_receipt": {
+      "clip_id": "ST03",
+      "category": "projectile",
+      "experiment": "free_fall",
+      "licence": "Pexels License",
+      "approval_ref": "evidence/owner/S02/APPROVAL.md",
+      "approval_sha256": "d0152d2f065109b1326ae68907dc665dd55ebad3df864ac6dcd2862bc55566b8",
+      "registry_ref": "evidence/clips/S02c-acquisition.json",
+      "source_sha256": "7239da801ff407cf5ff047fceb82351724ad35985be298ffcb0e4ba1a53df051"
+    },
+    "ineligible_reason": "observations did not come through the accepted tracking-evidence path (Tracked)",
+    "observations_sha256": "12582fee183fa5693b0140d67aa5e9d3ba23fde20a325fabbc161fa69445cf3b",
+    "gate_m": "NOT_MET"
+  },
+  "gate_rs": {
+    "per_category_normalized_rms": {
+      "projectile": null,
+      "bounce": null,
+      "pendulum": null
+    },
+    "input_receipts": {
+      "projectile": null,
+      "bounce": null,
+      "pendulum": null
+    },
+    "median": null,
+    "threshold": 0.05,
+    "status": "NOT_MET",
+    "shortfall": [
+      "projectile",
+      "bounce",
+      "pendulum"
+    ],
+    "gate_m": "NOT_MET"
+  },
+  "display_decision": {
+    "tier": "VIRTUAL_LAB_ONLY",
+    "real_scene_prediction": "WITHHELD",
+    "error_label": "unmeasured",
+    "reason": "no measured median (missing category or coverage < 80%): unmeasured"
+  },
+  "display_decision_projectile_only_diagnostic": {
+    "tier": "VIRTUAL_LAB_ONLY",
+    "real_scene_prediction": "WITHHELD",
+    "error_label": "measured",
+    "reason": "measured median 111.51853332511004 > 0.1"
+  },
+  "hosted_only_fit": {
+    "training_frames": 19,
+    "selected_degree": 2,
+    "aic_criterion": "AIC",
+    "coefficients_image_height": [
+      0.34779722317965467,
+      0.1739267732624622,
+      0.9184059424938754
+    ],
+    "rmse_image_height": 0.008221504448441766,
+    "covariance_valid": true,
+    "noise_model": "Gaussian iid residuals; clock and scale held fixed",
+    "playback_accel_px_s2": 2509.0850348932677,
+    "playback_accel_sigma_px_s2": 188.75443052159062,
+    "accel_label": "pixels per playback second squared; not g (scale and capture clock unverified)",
+    "suffix_frames": 466,
+    "suffix_rms": 110.99124981944443,
+    "suffix_rms_first5": 0.13265071899611955,
+    "suffix_rms_until_impact": 0.04051373661749205,
+    "impact_suffix_frames": 2,
+    "max_abs": 242.26443836274055
+  },
+  "measurement_free_fall_fitter": {
+    "abstained": [
+      "metric_use_not_approved",
+      "not_earth_free_fall",
+      "continuous_segment_unverified",
+      "scale_unverified",
+      "capture_timebase_unverified"
+    ]
+  }
+}
