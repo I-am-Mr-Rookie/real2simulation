@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 12:34 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 12:48 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **272 / 293** runs done · 3 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **273 / 293** runs done · 2 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -25,7 +25,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## In progress
 
 - [~] **S15bb** — Codex (native Claude) · Opus 5.5, effort high — Live-fit uncertainty honesty + D7 remainder: owner-clip live fit u today is OLS scatter only (OWN05 8.62 +- 0.15, dof 1) vs recorded 8.62 +- 1.28; combine the fitter u with the existing S07m scale/clock/held-out terms (evidence/S07/S07m/results.json) by the same rule S07m used, or show the recorded total as the headline u; hide the empty 3D viewport placeholder when an owner clip has no scene (30 min) *(in progress)*
-- [~] **S15bc** — Codex (native Claude) · Sonnet 5.5, effort medium — S22g O1+O2: at narrow widths close the Agent & tools panel (or scroll to the result) after the interview Finish so the result card is visible; logged-out /workspace goes to sign-in instead of a bare 404 (30 min) *(in progress)*
 - [~] **S22h** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture retry, spend-cap and report QA (30 min) *(in progress)*
 
 ## Waiting for Koushik
@@ -269,7 +268,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (53/55)</summary>
+<details><summary><b>S15</b> — Workspace UI (54/55)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -325,7 +324,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15az** — Codex (native Claude) · Opus 5.5, effort high — Gate D D1+D6 (S22f): owner-clip live fit server-side; after the interview answer run the existing Build/fitter core (fit_least_squares/select_model, as Build/real2sim/boundary.py fit_prefix) on stored RECORDED prefix points (held-out excluded) in Build/api/workspace; Fit stage done; scale from the user's answer (or labelled owner-declared); result shown after the answer (30 min)
 - [x] **S15ba** — Codex (native Claude) · Sonnet 5.5, effort medium — Gate D D5/D7/D8 (S22f): no-scene owner-clip job timeline ends 'Clip result ready (no scene)' not 'Scene ready'; render the scene-geometry label and viewer only when a scene is loaded; header 'Private workspace' when live (fixture wording only in fixture mode) (30 min)
 - [~] **S15bb** — Codex (native Claude) · Opus 5.5, effort high — Live-fit uncertainty honesty + D7 remainder: owner-clip live fit u today is OLS scatter only (OWN05 8.62 +- 0.15, dof 1) vs recorded 8.62 +- 1.28; combine the fitter u with the existing S07m scale/clock/held-out terms (evidence/S07/S07m/results.json) by the same rule S07m used, or show the recorded total as the headline u; hide the empty 3D viewport placeholder when an owner clip has no scene (30 min) *(in progress)*
-- [~] **S15bc** — Codex (native Claude) · Sonnet 5.5, effort medium — S22g O1+O2: at narrow widths close the Agent & tools panel (or scroll to the result) after the interview Finish so the result card is visible; logged-out /workspace goes to sign-in instead of a bare 404 (30 min) *(in progress)*
+- [x] **S15bc** — Codex (native Claude) · Sonnet 5.5, effort medium — S22g O1+O2: at narrow widths close the Agent & tools panel (or scroll to the result) after the interview Finish so the result card is visible; logged-out /workspace goes to sign-in instead of a bare 404 (30 min)
 
 </details>
 
