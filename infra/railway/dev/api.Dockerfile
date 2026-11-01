@@ -1,3 +1,6 @@
+FROM node:22-bookworm-slim AS physics
+RUN npm install --prefix /physics --omit=dev --ignore-scripts --no-audit --no-fund @dimforge/rapier3d-compat@0.21.0
+
 FROM python:3.12-slim
 # S15av: the lab bridge spawns Build/lab/simulate.mjs; copy only the Node runtime binary.
 COPY --from=node:22-bookworm-slim /usr/local/bin/node /usr/local/bin/node
@@ -10,8 +13,10 @@ COPY Build/api/health/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt modal==1.6.3
 # Context is only stage.py's allowlisted committed files.
 COPY . /app
+COPY --from=physics /physics/node_modules /app/Build/web/node_modules
 # Build-time import smoke: the image fails to build if any mounted router cannot import.
 RUN python -B -c "import Build.api.health.app, modal" && node --version && ffprobe -version | head -n 1
+RUN node --input-type=module -e "import { loadRapier } from './Build/web/src/lab-editor/physics.mjs'; await loadRapier();"
 ARG R2S_SOURCE_REVISION
 ENV RAILWAY_GIT_COMMIT_SHA=$R2S_SOURCE_REVISION
 CMD ["sh", "-c", "exec python -m uvicorn Build.api.health.app:app --host 0.0.0.0 --port ${PORT:-8080}"]
