@@ -1,0 +1,93 @@
+{
+ "start_utc": "2026-11-01T12:44:09.737Z",
+ "steps": [
+  {
+   "k": "signed_up",
+   "v": true,
+   "utc": "2026-11-01T12:44:18.864Z"
+  },
+  {
+   "k": "sample_projects",
+   "v": {
+    "status": 200,
+    "count": 1,
+    "titles": [
+     "SAMPLE (RECORDED): classroom room and falling apple"
+    ]
+   },
+   "utc": "2026-11-01T12:44:19.494Z"
+  },
+  {
+   "k": "sample_experiment",
+   "v": {
+    "status": 200,
+    "n": 1,
+    "state": "done"
+   },
+   "utc": "2026-11-01T12:44:19.580Z"
+  },
+  {
+   "k": "sample_files_empty",
+   "v": true,
+   "utc": "2026-11-01T12:44:19.657Z"
+  },
+  {
+   "k": "rooms_list",
+   "v": 405,
+   "utc": "2026-11-01T12:44:19.744Z"
+  },
+  {
+   "k": "gpu_dot",
+   "v": "green",
+   "utc": "2026-11-01T12:44:21.360Z"
+  },
+  {
+   "k": "gpu_api",
+   "v": {
+    "status": 200,
+    "body": {
+     "state": "green",
+     "queue_length": 0,
+     "your_position": null,
+     "source": "modal+jobs"
+    }
+   },
+   "utc": "2026-11-01T12:44:22.469Z"
+  },
+  {
+   "k": "uploaded",
+   "v": {
+    "name": "st03-n11-5s.mp4",
+    "size": 374617,
+    "dur": 5.005,
+    "quota": 1
+   },
+   "utc": "2026-11-01T12:44:23.393Z"
+  },
+  {
+   "k": "experiment_started",
+   "v": {
+    "status": 0
+   },
+   "utc": "2026-11-01T12:44:23.393Z"
+  },
+  {
+   "k": "experiment_done",
+   "v": {},
+   "utc": "2026-11-01T12:44:23.393Z"
+  },
+  {
+   "k": "agent_turn",
+   "v": "In one sentence, what do I need to film to measure g?\n\nThe agent did not answer (502).",
+   "utc": "2026-11-01T12:44:26.640Z"
+  }
+ ],
+ "fails": [
+  "405 /api/workspace/rooms",
+  "405 /api/workspace/rooms",
+  "405 /api/workspace/rooms",
+  "502 /api/workspace/agent/turn"
+ ],
+ "status": "ok",
+ "end_utc": "2026-11-01T12:44:26.711Z"
+}
