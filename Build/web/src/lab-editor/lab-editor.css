@@ -13,6 +13,9 @@
 .le-time { position: absolute; bottom: 8px; left: 8px; font: 12px ui-monospace, monospace; background: #fffc; color: #111827; padding: 2px 6px; border-radius: 4px; }
 .le-status { margin: 0; font-size: 14px; overflow-wrap: anywhere; }
 .le-panels { display: grid; grid-template-columns: 1fr 1.4fr; gap: 10px; }
+.le-agent form input { flex: 1; min-width: 200px; min-height: 44px; padding: 0 10px; border: 1px solid #cbd5e1; border-radius: 8px; font: inherit; }
+.le-log { max-height: 220px; overflow-y: auto; font-size: 14px; }
+.le-report { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; max-height: 420px; overflow-y: auto; }
 .le-panel { border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; display: grid; gap: 8px; align-content: start; min-width: 0; }
 .le-panel h3, .le-panel p { margin: 0; }
 .le-panel textarea { width: 100%; box-sizing: border-box; font: 12px ui-monospace, monospace; }

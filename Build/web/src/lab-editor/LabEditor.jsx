@@ -7,6 +7,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
 import { defaultScene, makeObject, validateScene, parseScene, sceneJson, fitterRequest, KINDS, MAX_OBJECTS } from './scene.mjs';
 import { createPhysics, loadRapier, movingStart, upQuat } from './physics.mjs';
+import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
 import './lab-editor.css';
 
@@ -283,6 +284,7 @@ export default function LabEditor({ initialScene }) {
         <button type="button" onClick={() => applyJson(jsonText)}>Apply JSON</button>
       </div>
     </div>
+    <AgentPanel scene={scene} onScene={(s, msg) => { stop(); setSelected(null); setScene(s); setMessage(msg); }} />
   </section>;
 }
 
