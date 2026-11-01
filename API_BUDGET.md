@@ -1,5 +1,10 @@
 # Real2Simulation — API and compute budget
 
+## Meta Model API usage — Nov 1 2026 (controller)
+N01 hosted SAM 3.1 test: 4 calls x 90 video frames = 360 frames at $0.20/1k = ~$0.07 (usage.video_frames_processed;
+price from Meta docs). 2 file uploads (no listed fee). Evidence: evidence/N01/SAM31-HOSTED-TEST.md.
+Product guard (owner Nov 1): global paid-call cap $10/day, $20/day Thu Nov 5 to Sun Nov 8; ledger every call.
+
 ## CURRENT — successor accepts unpaid evidence; no new paid reservation
 
 S07b custody d58c7c9 and S05b diagnostic6 8fca36f accepted by scoped verified FF.

@@ -1,5 +1,28 @@
 # Real2Simulation — STATE
 
+## Controller — Nov 1 ~16:45 Dhaka: owner GO on live-product pivot; run system made lean
+
+Owner replies (Nov 1, annotations on the plan message), recorded verbatim in meaning:
+- Voice typing for prompts via muse-voice-transcribe-1.0: yes. Muse Image for report images, image -> 3D stretch: yes.
+- Hosted Meta SAM 3.1 is the DEFAULT tracker; Modal GPU is the BACKUP, not the default.
+- Modal on demand: wakes on a job, sleeps after 15 idle min, simple queue, red/yellow/green status dot only in the private workspace.
+- Contributor mode: asked at account creation with pros (much cheaper) and cons (Meta trains on prompts); per-user, changeable.
+- Global paid cap $10/day; $20/day during judging Thu Nov 5 to Sun Nov 8 (Dhaka dates).
+- Sign-up open to anyone, limited by quotas (20 uploads/day, 1 GB/user, file manager).
+- Final video: owner makes it himself in the Claude desktop app. Agent video-edit rows dropped; agents supply script, read sheet, captures only.
+- Owner films room/pendulum/ramp/spin clips tonight: owner row N06, guide media/owner-clips/FILMING_GUIDE.md.
+- "Go" on PLAN-NOV1. Run system: "save as much usage and quota as possible; change or redo the run system as needed".
+- Licensing: any licence that permits reuse; never no-licence, YouTube, NC or ND. Owner and user footage fine.
+
+Facts: Meta Model API lists muse-spark-1.3(-contributor), muse-image-1.0, muse-wonder-1.0 (reasoning/agentic model, NOT video gen),
+muse-voice-transcribe-1.0, sam-3.1. N01 (controller) hosted SAM 3.1 test: ST03 3 s, 90/90 frames tracked in ~8 s, stable IDs,
+dropped apple clean parabola (R^2 0.996 quick check, pixels only); ~$0.07 total. Evidence evidence/N01/SAM31-HOSTED-TEST.md.
+
+Run system changes (commit f2ae25b3): Run-System/WORKER_CONTRACT.md (workers skip STATE/QUEUE/RUNS/old reports; report <= 20 lines),
+Run-System/dispatch.py (lean prompt), worker_timebox.py accepts 30 or 60 min, AGENTS.md cut from 26 KB to 4 KB
+(old copy Run-System/history/AGENTS-until-2026-11-01.md). Cross-vendor reviews only for security/spend code (N19).
+QUEUE: new section "Nov 1 pivot" N01-N19; S24j, S24c, S13j removed (superseded); S23a now also depends on N13.
+
 - 2026-11-01T10:05Z controller: Owner replies on the pivot plan (Koushik, ~16:00 Dhaka): likes room object -> SAM 3.1 cut-out -> SAM 3D Objects lab object, and a sample project on every new account; agent = Meta Muse (Spark 1.3 via Meta Model API, Muse Open via Baseten); wants Meta image generation (e.g. lab report images, image -> SAM 3.1 -> 3D object) and a user-selectable cheaper "contributor" mode for Muse Spark 1.3 to stretch usage limits; 60-minute runs APPROVED for integration work; GPU must be on-demand, not pre-warmed: wakes on a GPU task, sleeps after 15 idle minutes, simple queue for parallel jobs, red/yellow/green GPU status dot (sleeping/starting/running) shown only in the private workspace; frugal but not over-cut. Video v1 judged poor; owner wants the final video made with native Claude Code. Controller fact check: MODEL_API key (api.meta.ai) /models lists muse-spark-1.3, muse-spark-1.3-contributor, muse-spark-1.2(-contributor), muse-spark-1.1, muse-image-1.0, muse-wonder-1.0, muse-voice-transcribe-1.0, sam-3.1 (listing only; no calls made, pricing/terms unread). Claude Code 2.1.312 installed locally. No dispatch until the plan is final.
 
 - 2026-11-01T09:40Z controller: Accepted S22l-orch248 DONE (Sonnet medium; timebox PASS; Owns OK; ff-merged): Gate D retest on DEV 3/3 fresh flows PASS 3.1-3.8 (3.6 N/A) with per-flow UTC and run.json; S15bf chips + validated spec PASS; S15bg announcer PASS; invalid answer gives plain 422 and re-answer works after Back; guest SIMULATED replay PASS. API /version e0213a0c; web build SHA not observable. P3: U1 no input after an invalid answer until Back, U2 code-prefixed alert, V1 expose web build SHA. Headless Chromium hits a Clerk bot challenge; headed used. Gate D of record now waits only on S23 (judging URL). Stray worker directory "C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon" (copies of S22l test output) left in place: recursive delete is blocked by policy; Koushik may delete it. Accepted S24i-orch249 DONE (Opus high; timebox PASS; Owns OK; ff-merged): demo-v1.mp4 1920x1080 176.3 s, -16.4 LUFS, TP -1.8 dBTP, burned captions + srt, synthesized pad (no licensed track downloaded), build.py reproducible; skipped zooms/crossfades, OWN07 cut-in; b08-01 "under a dollar" still pending owner. Files copied to canonical media/edit/S24i/ (gitignored). Koushik's Nov 1 ~15:15 Dhaka direction: product pivot to live uploads + live Modal GPU + room-to-virtual-lab and own-experiment modes; plan under discussion; no new dispatch until he approves the plan.

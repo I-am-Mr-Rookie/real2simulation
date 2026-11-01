@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 16:27 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 16:53 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **290 / 299** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
+Progress: **291 / 314** runs done · 0 in progress · 0 blocked · 2 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -14,18 +14,21 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## Ready now
 
 **CODEX-1**
-- [~] **S13j** — Codex (native Claude) · Opus 5.5, effort high — OPTIONAL/CUT-FIRST: re-capture RM04 geometry bytes into private dev bucket via existing e2e.py under guardrails (30 min) *(partial: resume it)*
+- Nothing ready yet: check dependencies and retry holds below.
 
 **CODEX-2**
-- [~] **S24c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture room rebuild and interview (30 min) *(partial: resume it)*
-- [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort medium — Check playback and approval-gated public video link (30 min)
+- Nothing ready yet: check dependencies and retry holds below.
 
 **CLAUDE**
-- Nothing ready yet: check dependencies and retry holds below.
+- [ ] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
+- [ ] **N03** — Codex (native Claude) · Opus 5.5, effort medium — User storage, files API and quotas (60 min)
+- [ ] **N04** — Codex (native Claude) · Opus 5.5, effort high — On-demand Modal GPU service, job queue, GPU status and daily spend cap (60 min)
+- …and 2 more ready in this lane
 
 ## Waiting for Koushik
 
-- [ ] **S23a** — Authorize frozen judging promotion (10 min)
+- [ ] **S26a** — Submit approved project on Cerebral Valley (30 min)
+- [ ] **N06** — Film new owner clips (room, pendulum, ramp, optional spin) (30 min)
 
 ## All runs by step
 
@@ -39,6 +42,29 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **F-CODEX-2-2** — Codex · GPT-6.1 Sol, effort medium — Review owned-module test coverage gaps (15 min)
 - [x] **F-CLAUDE-1** — Codex (native Claude) · Opus 5.5, effort medium — Document owned-module edge cases (15 min)
 - [x] **F-CLAUDE-2** — Codex (native Claude) · Opus 5.5, effort medium — Review owned-module test coverage gaps (15 min)
+
+</details>
+
+<details><summary><b>N</b> —  (1/18)</summary>
+
+- [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
+- [ ] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
+- [ ] **N03** — Codex (native Claude) · Opus 5.5, effort medium — User storage, files API and quotas (60 min)
+- [ ] **N04** — Codex (native Claude) · Opus 5.5, effort high — On-demand Modal GPU service, job queue, GPU status and daily spend cap (60 min)
+- [ ] **N05** — Codex (native Claude) · Opus 5.5, effort high — Agent core: Muse Spark 1.3 tool agent, physics-only, contributor mode, voice transcription (60 min)
+- [ ] **N06** — Film new owner clips (room, pendulum, ramp, optional spin) (30 min)
+- [ ] **N07** — Codex (native Claude) · Opus 5.5, effort high — Mode B live pipeline: upload -> hosted SAM track -> scale -> fit -> 3D replay (60 min)
+- [ ] **N08** — Codex (native Claude) · Opus 5.5, effort high — Mode A live pipeline: room video -> MapAnything on demand -> scaled room + floor/gravity (60 min)
+- [ ] **N09** — Codex (native Claude) · Opus 5.5, effort high — Workspace UI: mode chooser, agent chat + voice, files panel, GPU status dot, contributor onboarding (60 min)
+- [ ] **N10** — Codex (native Claude) · Opus 5.5, effort high — Lab editor: place, move, rotate, resize objects with live physics (60 min)
+- [ ] **N11** — Codex (native Claude) · Sonnet 5.5, effort high — DEV infra for live mode + sample project on every new account (60 min)
+- [ ] **N12** — Codex (native Claude) · Opus 5.5, effort high — Agent-run experiments in the lab + lab report (Muse Image illustration) (60 min)
+- [ ] **N13** — Codex (native Claude) · Sonnet 5.5, effort high — End-to-end QA on DEV: both modes, 3 fresh accounts (60 min)
+- [ ] **N14** — Codex (native Claude) · Opus 5.5, effort medium — Stretch: click an object in the room -> SAM 3.1 cut-out -> SAM 3D Objects -> lab object (60 min)
+- [ ] **N15** — Codex (native Claude) · Opus 5.5, effort high — Stretch: agent-proposed equation fitted in a sandbox (e.g. flywheel) (60 min)
+- [ ] **N16** — Codex (native Claude) · Sonnet 5.5, effort medium — Guess the Gravity share link (30 min)
+- [ ] **N17** — Codex (native Claude) · Sonnet 5.5, effort medium — New 3-min demo script + read sheet for the owner's voice-over (30 min)
+- [ ] **N19** — Codex · GPT-6.1 Sol, effort high — Cross-vendor security/spend review of N03, N04, N05 (30 min)
 
 </details>
 
@@ -229,7 +255,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S13</b> — Upload and reconstruction job pipeline (13/14)</summary>
+<details><summary><b>S13</b> — Upload and reconstruction job pipeline (13/13)</summary>
 
 - [x] **S13a** — Codex (native Claude) · Opus 5.5, effort high — Define resumable upload and job-stage contracts (30 min)
 - [x] **S13b** — Codex (native Claude) · Opus 5.5, effort high — Implement bucket upload validation (30 min)
@@ -240,7 +266,6 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S13g** — Codex (native Claude) · Opus 5.5, effort medium — Stream job progress to shell integration interface (30 min)
 - [x] **S13h** — Codex (native Claude) · Opus 5.5, effort high — Measure dev upload-to-scene path (30 min)
 - [x] **S13i** — Codex (native Claude) · Opus 5.5, effort high — API upload + job routes with RECORDED-replay executor (approved-clip sha gate) (30 min)
-- [~] **S13j** — Codex (native Claude) · Opus 5.5, effort high — OPTIONAL/CUT-FIRST: re-capture RM04 geometry bytes into private dev bucket via existing e2e.py under guardrails (30 min) *(partial: resume it)*
 - [x] **S13l** — Codex (native Claude) · Opus 5.5, effort high — Settle the 3 open Modal reservations from real per-app billing (S13j plan 1: bind app ids, modal-settlement/1 receipts), then re-capture RM04 geometry under gpu_stages (reserve <= $0.50) (30 min)
 - [x] **S13m** — Codex (native Claude) · Opus 5.5, effort high — Show RM04 geometry on DEV: owner-scoped bundle route + PrivateWorkspace loadScene; stage.py bakes the local-only bundle into the private API image (no public URL, nothing in Git) (30 min)
 - [x] **S13n** — Codex (native Claude) · Opus 5.5, effort high — Settle RM04 reservation after its billing hour + guardrails release path for never-dispatched reservations (orphan 0.50 USD) + gpu_stages ENV_FILE space-path fix (30 min)
@@ -427,18 +452,16 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S24</b> — Three-minute demo video (12/14)</summary>
+<details><summary><b>S24</b> — Three-minute demo video (12/12)</summary>
 
 - [x] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min)
 - [x] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
-- [~] **S24c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture room rebuild and interview (30 min) *(partial: resume it)*
 - [x] **S24d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture held-out prediction and reveal (30 min)
 - [x] **S24e** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture Apollo result and Mystery-g (30 min)
 - [x] **S24f** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture benchmark and Meta model evidence (30 min)
 - [x] **S24g** — Record optional voice-over part 1 (30 min)
 - [x] **S24h** — Record optional voice-over part 2 (30 min)
 - [x] **S24i** — Codex (native Claude) · Opus 5.5, effort high — Cut video and align captions (30 min)
-- [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort medium — Check playback and approval-gated public video link (30 min)
 - [x] **S24k** — Codex (native Claude) · Sonnet 5.5, effort medium — Update 3-min script with stopwatch-vs-phone before/after (30 min)
 - [x] **S24m** — Codex (native Claude) · Sonnet 5.5, effort medium — Script beat 5b: drop the stopwatch half; show the system measuring fall time and drop height itself (Q22) (20 min)
 - [x] **S24n** — Codex (native Claude) · Sonnet 5.5, effort medium — Voice-over read sheet: click-to-click segments for Koushik's recording tonight + OWN07 footage approval in the script (30 min)
