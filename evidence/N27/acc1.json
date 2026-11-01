@@ -1,0 +1,251 @@
+{
+ "acc": "1",
+ "start_utc": "2026-11-01T15:06:13.562Z",
+ "steps": [
+  {
+   "name": "signup",
+   "ok": true,
+   "sec": 7.2,
+   "note": ""
+  },
+  {
+   "name": "contributor_screen",
+   "ok": false,
+   "sec": 31.6,
+   "note": "locator.waitFor: Timeout 30000ms exceeded."
+  },
+  {
+   "name": "sample_project_visible",
+   "ok": true,
+   "sec": 1.6,
+   "note": "SAMPLE"
+  },
+  {
+   "name": "gpu_dot_present",
+   "ok": true,
+   "sec": 0.1,
+   "note": "red GPU sleeping Queue empty"
+  },
+  {
+   "name": "new_project_question_card",
+   "ok": true,
+   "sec": 1,
+   "note": "What are you uploading? 1 My experiment Measure it: tracking, fit with uncertainty, 3D replay Recommended 2 Room video Build a virtual lab with physics Other Continue Ctrl+Enter"
+  },
+  {
+   "name": "upload_st03",
+   "ok": true,
+   "sec": 2.5,
+   "note": "ST03-trim.mp4 401 KB, 4.0 s Preview Measure this experiment Build my lab Download Delete"
+  },
+  {
+   "name": "modeB1_click_no_size",
+   "ok": true,
+   "sec": 22.7,
+   "note": "19s job: Measurement 159a8b Done No value reported. No fit: moving segment has 2 frames; need 5. The object barely moved: click the falling object itself, or type its name scale unverified playback clock scale unverified: no known size given, so results are in pixels; no metric value playback timestamps; capture clock unverified (slow motion would change every time-based value) MEASURED: hosted SAM 3.1 box centres in image pixels -80 -60 -40 -20 0 0 1 2 3 4 time (s) y position (px) DOTS: TRACKED POSITIONS, 120 FRAMES. NO FITTED CURVE. 3D replay, redo with changes Guess the Gravity needs a known size, so the value is in m/s^2."
+  },
+  {
+   "name": "modeB1_fit_band_and_labels",
+   "ok": false,
+   "sec": 0.1,
+   "note": "chart parts band=0 curve=0 pts=120"
+  },
+  {
+   "name": "modeB2_typed_name_known_size",
+   "ok": true,
+   "sec": 11.7,
+   "note": "11s job: Measurement 876442 Done vertical acceleration (g if only gravity acts) 2.70 +/- 0.40 m/s^2 1 sigma scale assumed (user size) playback clock free fall scale assumed (user size): apple width 8 cm playback timestamps; capture clock unverified (slow motion would change every time-based value) MEASURED: hosted SAM 3.1 box centres in image pixels -0.8 -0.6 -0.4 -0.2 0.0 0.2 0.0 0.2 0.4 0.6 0.8 time (s) y position (m) DOTS: MEASURED TRACK, 19 FRAMES. LINE: FITTED CURVE. BAND: 1 SIGMA OF THE FIT. 3D replay, redo with changes Share as Guess the Gravity"
+  },
+  {
+   "name": "share_link",
+   "ok": true,
+   "sec": 0.5,
+   "note": "https://web-dev-cd80.up.railway.app/guess/<token>"
+  },
+  {
+   "name": "share_logged_out_open",
+   "ok": true,
+   "sec": 3.9,
+   "note": "leaks_answer_before_guess=false text=Skip to content Real2Simulation Demo library Local simulation lab PUBLIC · NO ACCOUNT NEEDED Guess the Gravity What vertical acceleration (g, in m/s^2) does this object have? Watch the replay, then gu"
+  },
+  {
+   "name": "share_revoke",
+   "ok": true,
+   "sec": 6.4,
+   "note": "http=200 Skip to content Real2Simulation Demo library Local simulation lab Sign in PUBLIC · NO ACCOUNT NEEDED Guess the Gravity This challenge does not exist or was with"
+  },
+  {
+   "name": "redo_in_3d",
+   "ok": true,
+   "sec": 11.3,
+   "note": "Dots and line: your measured track. Track MEASURED in metres from your known size. The ball is SIMULATED: edit it and press Play to redo with changes. Gravity [0, -9.81, 0] m/s^2. | time t = 1.27 s"
+  },
+  {
+   "name": "modeA_new_project_upload",
+   "ok": true,
+   "sec": 4.5,
+   "note": "ok"
+  },
+  {
+   "name": "modeA_build_lab",
+   "ok": true,
+   "sec": 31.1,
+   "note": "31s Room lab 04ece1 Done Open my lab scale unverified gravity MODEL-ESTIMATED"
+  },
+  {
+   "name": "modeA_open_editor",
+   "ok": true,
+   "sec": 4.5,
+   "note": "Your room: 20000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply."
+  },
+  {
+   "name": "A4_click_wiring",
+   "ok": false,
+   "sec": 0.2,
+   "note": "locator.selectOption: Error: strict mode violation: getByLabel('View') resolved to 3 elements:"
+  },
+  {
+   "name": "add_real_object",
+   "ok": false,
+   "sec": 0.2,
+   "note": "locator.selectOption: Error: strict mode violation: getByLabel('View') resolved to 3 elements:"
+  },
+  {
+   "name": "agent_editor_drop_ball_measure_g",
+   "ok": true,
+   "sec": 18,
+   "note": "Agent: How should I interpret the ball size for the drop? (tools: ask_user, ask_user)"
+  },
+  {
+   "name": "agent_editor_drop_ball_2",
+   "ok": true,
+   "sec": 6.8,
+   "note": "Agent: Should ball size be interpreted as diameter or radius? (tools: ask_user)"
+  },
+  {
+   "name": "lab_layout_desktop",
+   "ok": true,
+   "sec": 0.2,
+   "note": "scrollW=1280 clientW=1280"
+  },
+  {
+   "name": "chart_axes_text",
+   "ok": true,
+   "sec": 4.3,
+   "note": "-0.8 | -0.6 | -0.4 | -0.2 | 0.0 | 0.2 | 0.0 | 0.2 | 0.4 | 0.6 | 0.8 | time (s) | y position (m) | -80 | -60 | -40 | -20 | 0 | 0 | 1 | 2 | 3 | 4 | time (s) | y position (px)"
+  },
+  {
+   "name": "gpu_label_now",
+   "ok": true,
+   "sec": 0,
+   "note": "green GPU on, idle Queue empty"
+  },
+  {
+   "name": "dark_result_and_lab",
+   "ok": true,
+   "sec": 8.7,
+   "note": "dark=dark/dark"
+  },
+  {
+   "name": "mobile_fresh",
+   "ok": true,
+   "sec": 8.7,
+   "note": "lab sw=375 ws sw=375"
+  }
+ ],
+ "fails": [],
+ "posts": [
+  {
+   "utc": "2026-11-01T15:06:56.478Z",
+   "path": "/api/workspace/projects",
+   "status": 201,
+   "body": "{\"project\":{\"id\":\"735a5956179240198151d83fe1cf8930\",\"user\":\"user_3LViLWmIwzdt4QGaE3E5VKjcp7m\",\"mode\":\"experiment\",\"title\":\"Experiment 2026-11-01 15:06\",\"created\":\"2026-11-01T15:06:56Z\"}}"
+  },
+  {
+   "utc": "2026-11-01T15:07:02.674Z",
+   "path": "/api/workspace/experiments",
+   "status": 202,
+   "body": "{\"experiment\":{\"id\":\"159a8bc2aa594442b191dfc373ae8f44\",\"project_id\":\"735a5956179240198151d83fe1cf8930\",\"file_id\":\"0e4709f094aa4e1db9b8935e8a224eb0\",\"status\":\"running\",\"request\":{\"file_id\":\"0e4709f094aa4e1db9b8935e8a224eb0\",\"target_text\":null,\"point\":[359,410],\"known_size\":null},\"result\":null,\"error\":null,\"created\":\"2026-11-01T15:07:02Z\",\"updated\":\"2026-11-01T15:07:02Z\"}}"
+  },
+  {
+   "utc": "2026-11-01T15:07:24.314Z",
+   "path": "/api/workspace/experiments",
+   "status": 202,
+   "body": "{\"experiment\":{\"id\":\"87644241813d42018477e91be9b2eb47\",\"project_id\":\"735a5956179240198151d83fe1cf8930\",\"file_id\":\"0e4709f094aa4e1db9b8935e8a224eb0\",\"status\":\"queued\",\"request\":{\"file_id\":\"0e4709f094aa4e1db9b8935e8a224eb0\",\"target_text\":\"apple\",\"point\":null,\"known_size\":\"apple width 8 cm\"},\"result\":null,\"error\":null,\"created\":\"2026-11-01T15:07:24Z\",\"updated\":\"2026-11-01T15:07:24Z\"}}"
+  },
+  {
+   "utc": "2026-11-01T15:07:35.211Z",
+   "path": "/api/workspace/experiments/87644241813d42018477e91be9b2eb47/share",
+   "status": 201,
+   "body": "{\"token\":\"7_v6wzU6J_d0JX52CBDEmXX2DVQJPOAx\",\"path\":\"/guess/7_v6wzU6J_d0JX52CBDEmXX2DVQJPOAx\"}"
+  },
+  {
+   "utc": "2026-11-01T15:08:00.907Z",
+   "path": "/api/workspace/projects",
+   "status": 201,
+   "body": "{\"project\":{\"id\":\"37d2da8714e04fa1a5912bae550d8f23\",\"user\":\"user_3LViLWmIwzdt4QGaE3E5VKjcp7m\",\"mode\":\"room\",\"title\":\"Room 2026-11-01 15:08\",\"created\":\"2026-11-01T15:08:00Z\"}}"
+  },
+  {
+   "utc": "2026-11-01T15:08:03.685Z",
+   "path": "/api/workspace/rooms",
+   "status": 202,
+   "body": "{\"job\":{\"job_id\":\"04ece195980f4016adef81bec737c56d\",\"state\":\"queued\",\"file_id\":\"1db47aa6fb124392bc9cb99fa5fc66c4\",\"project_id\":\"37d2da8714e04fa1a5912bae550d8f23\",\"created_at\":\"2026-11-01T15:08:03Z\",\"updated_at\":\"2026-11-01T15:08:03Z\"}}"
+  },
+  {
+   "utc": "2026-11-01T15:08:42.443Z",
+   "path": "/api/workspace/agent/lab/scene",
+   "status": 200,
+   "body": "{\"scene\":{\"version\":\"lab-scene-v1\",\"label\":\"SIMULATED\",\"units\":\"m\",\"gravity\":[0,-9.81,0],\"room\":{\"kind\":\"ply\",\"floor_y\":0,\"source\":\"room.ply\",\"scale_verified\":false},\"objects\":[]}}"
+  },
+  {
+   "utc": "2026-11-01T15:08:59.547Z",
+   "path": "/api/workspace/agent/turn",
+   "status": 200,
+   "body": "{\"model\":\"muse-spark-1.3\",\"reply\":\"How should I interpret the ball size for the drop?\",\"question\":{\"options\":[{\"label\":\"Use 5 cm as diameter\",\"recommended\":true},{\"label\":\"Use 5 cm as radius\",\"recommended\":false}],\"question\":\"How should I interpret the ball size for the drop?\"},\"tool_calls\":[{\"name\":\"ask_user\",\"args\":{\"options\":[{\"label\":\"Diameter 5 cm, radius 0.025 m\",\"recommended\":true},{\"label\":\"Radius 5 cm\",\"recommended\":false}],\"question\":\"For the SIMULATED ball, should I use 5 cm as diameter?\"},\"output\":{\"status\":\"error\",\"error\":{\"code\":\"UNBACKED_NUMBERS\",\"message\":\"Check failed: your draft shows numbers that no tool output or user message contains. Rewrite it without any number you di"
+  },
+  {
+   "utc": "2026-11-01T15:09:01.782Z",
+   "path": "/api/workspace/agent/lab/scene",
+   "status": 200,
+   "body": "{\"scene\":{\"version\":\"lab-scene-v1\",\"label\":\"SIMULATED\",\"units\":\"m\",\"gravity\":[0,-9.81,0],\"room\":{\"kind\":\"ply\",\"floor_y\":0,\"source\":\"room.ply\",\"scale_verified\":false},\"objects\":[]}}"
+  },
+  {
+   "utc": "2026-11-01T15:09:07.576Z",
+   "path": "/api/workspace/agent/turn",
+   "status": 200,
+   "body": "{\"model\":\"muse-spark-1.3\",\"reply\":\"Should ball size be interpreted as diameter or radius?\",\"question\":{\"options\":[{\"label\":\"Use as diameter\",\"recommended\":true},{\"label\":\"Use as radius\",\"recommended\":false}],\"question\":\"Should ball size be interpreted as diameter or radius?\"},\"tool_calls\":[{\"name\":\"ask_user\",\"args\":{\"options\":[{\"label\":\"Use as diameter\",\"recommended\":true},{\"label\":\"Use as radius\",\"recommended\":false}],\"question\":\"Should ball size be interpreted as diameter or radius?\"},\"output\":null}],\"usage\":{\"input_tokens\":1874,\"output_tokens\":1571},\"steps\":1,\"stopped\":\"ask_user\"}"
+  }
+ ],
+ "gpu": [
+  {
+   "utc": "2026-11-01T15:06:25.429Z",
+   "v": "red|GPU sleeping Queue empty"
+  },
+  {
+   "utc": "2026-11-01T15:07:59.885Z",
+   "v": "unknown|Checking GPU"
+  },
+  {
+   "utc": "2026-11-01T15:08:01.902Z",
+   "v": "red|GPU sleeping Queue empty"
+  },
+  {
+   "utc": "2026-11-01T15:08:09.977Z",
+   "v": "green|GPU running Your job: 1 of 1 in queue"
+  },
+  {
+   "utc": "2026-11-01T15:09:10.661Z",
+   "v": "green|GPU on, idle Queue empty"
+  },
+  {
+   "utc": "2026-11-01T15:09:26.807Z",
+   "v": "unknown|Checking GPU"
+  },
+  {
+   "utc": "2026-11-01T15:09:28.821Z",
+   "v": "green|GPU on, idle"
+  }
+ ],
+ "notes": {},
+ "end_utc": "2026-11-01T15:09:29.764Z"
+}

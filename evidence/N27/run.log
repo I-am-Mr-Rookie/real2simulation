@@ -1,0 +1,25 @@
+[a1] PASS signup 7.2s 
+[a1] FAIL contributor_screen 31.6s locator.waitFor: Timeout 30000ms exceeded.
+[a1] PASS sample_project_visible 1.6s SAMPLE
+[a1] PASS gpu_dot_present 0.1s red GPU sleeping Queue empty
+[a1] PASS new_project_question_card 1s What are you uploading? 1 My experiment Measure it: tracking, fit with uncertainty, 3D replay Recommended 2 Room video Build a virtual lab w
+[a1] PASS upload_st03 2.5s ST03-trim.mp4 401 KB, 4.0 s Preview Measure this experiment Build my lab Download Delete
+[a1] PASS modeB1_click_no_size 22.7s 19s job: Measurement 159a8b Done No value reported. No fit: moving segment has 2 frames; need 5. The object barely moved: click the falling 
+[a1] FAIL modeB1_fit_band_and_labels 0.1s chart parts band=0 curve=0 pts=120
+[a1] PASS modeB2_typed_name_known_size 11.7s 11s job: Measurement 876442 Done vertical acceleration (g if only gravity acts) 2.70 +/- 0.40 m/s^2 1 sigma scale assumed (user size) playba
+[a1] PASS share_link 0.5s https://web-dev-cd80.up.railway.app/guess/<token>
+[a1] PASS share_logged_out_open 3.9s leaks_answer_before_guess=false text=Skip to content Real2Simulation Demo library Local simulation lab PUBLIC · NO ACCOUNT NEEDED Guess the 
+[a1] PASS share_revoke 6.4s http=200 Skip to content Real2Simulation Demo library Local simulation lab Sign in PUBLIC · NO ACCOUNT NEEDED Guess the Gravity This challen
+[a1] PASS redo_in_3d 11.3s Dots and line: your measured track. Track MEASURED in metres from your known size. The ball is SIMULATED: edit it and press Play to redo wit
+[a1] PASS modeA_new_project_upload 4.5s ok
+[a1] PASS modeA_build_lab 31.1s 31s Room lab 04ece1 Done Open my lab scale unverified gravity MODEL-ESTIMATED
+[a1] PASS modeA_open_editor 4.5s Your room: 20000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply.
+[a1] FAIL A4_click_wiring 0.2s locator.selectOption: Error: strict mode violation: getByLabel('View') resolved to 3 elements:
+[a1] FAIL add_real_object 0.2s locator.selectOption: Error: strict mode violation: getByLabel('View') resolved to 3 elements:
+[a1] PASS agent_editor_drop_ball_measure_g 18s Agent: How should I interpret the ball size for the drop? (tools: ask_user, ask_user)
+[a1] PASS agent_editor_drop_ball_2 6.8s Agent: Should ball size be interpreted as diameter or radius? (tools: ask_user)
+[a1] PASS lab_layout_desktop 0.2s scrollW=1280 clientW=1280
+[a1] PASS chart_axes_text 4.3s -0.8 | -0.6 | -0.4 | -0.2 | 0.0 | 0.2 | 0.0 | 0.2 | 0.4 | 0.6 | 0.8 | time (s) | y position (m) | -80 | -60 | -40 | -20 | 0 | 0 | 1 | 2 | 3 
+[a1] PASS gpu_label_now 0s green GPU on, idle Queue empty
+[a1] PASS dark_result_and_lab 8.7s dark=dark/dark
+[a1] PASS mobile_fresh 8.7s lab sw=375 ws sw=375
