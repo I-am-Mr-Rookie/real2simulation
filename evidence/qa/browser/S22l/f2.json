@@ -1,0 +1,236 @@
+{
+ "mode": "f2",
+ "steps": {
+  "home": {
+   "utc": "2026-11-01T09:23:40.151Z",
+   "ms": 2789
+  },
+  "signup_page": {
+   "utc": "2026-11-01T09:23:40.974Z",
+   "ms": 3612
+  },
+  "signed_up": {
+   "utc": "2026-11-01T09:23:47.143Z",
+   "ms": 9781
+  },
+  "workspace": {
+   "utc": "2026-11-01T09:23:49.185Z",
+   "ms": 11823
+  },
+  "uploaded": {
+   "utc": "2026-11-01T09:23:49.605Z",
+   "ms": 12243
+  },
+  "interview_ready": {
+   "utc": "2026-11-01T09:23:52.707Z",
+   "ms": 15345
+  },
+  "fit_shown": {
+   "utc": "2026-11-01T09:23:55.482Z",
+   "ms": 18120
+  },
+  "report": {
+   "utc": "2026-11-01T09:23:58.392Z",
+   "ms": 21030
+  }
+ },
+ "alerts": {},
+ "notes": {},
+ "start_utc": "2026-11-01T09:23:37.362Z",
+ "api": [
+  {
+   "m": "POST",
+   "status": 200,
+   "path": "/api/workspace/uploads",
+   "setup_validated": null,
+   "excerpt": "{\"contract_version\":\"1.0.0\",\"kind\":\"upload_session\",\"upload_id\":\"up_6250d6979fc580e25a8816852ead0886\",\"job_id\":null,\"media_type\":\"video/mp4\",\"size_bytes\":6175195,\"sha256\":\"e0cda2e50582b2d1a366d5f83f49211a6cd995d3fd7ffe1cd46bb011eb8b5632\",\"chunk_bytes\":8388608,"
+  },
+  {
+   "m": "PUT",
+   "status": 200,
+   "path": "/api/workspace/uploads/up_<id>/chunks/0",
+   "setup_validated": null,
+   "excerpt": "{\"contract_version\":\"1.0.0\",\"kind\":\"chunk_ack\",\"upload_id\":\"up_6250d6979fc580e25a8816852ead0886\",\"offset\":0,\"length\":6175195,\"chunk_sha256\":\"e0cda2e50582b2d1a366d5f83f49211a6cd995d3fd7ffe1cd46bb011eb8b5632\",\"committed_bytes\":6175195,\"duplicate\":false}"
+  },
+  {
+   "m": "POST",
+   "status": 200,
+   "path": "/api/workspace/uploads/up_<id>/complete",
+   "setup_validated": null,
+   "excerpt": "{\"upload\":{\"contract_version\":\"1.0.0\",\"kind\":\"upload_session\",\"upload_id\":\"up_6250d6979fc580e25a8816852ead0886\",\"job_id\":\"job_71fab684022fc18a861c0549af5b5150\",\"media_type\":\"video/mp4\",\"size_bytes\":6175195,\"sha256\":\"e0cda2e50582b2d1a366d5f83f49211a6cd995d3fd7f"
+  },
+  {
+   "m": "POST",
+   "status": 200,
+   "path": "/api/workspace/scenes/<id>/spec",
+   "setup_validated": null,
+   "excerpt": "{\"ok\":true,\"owner_clip\":true,\"spec\":{\"kind\":\"owner_clip_scale\",\"object\":\"book cover horizontal edge 20.28 cm\",\"length_m\":0.2028,\"unit\":\"m\",\"label\":\"user-declared, not verified\"},\"setup_validated\":false,\"label\":\"scale user-declared, not verified; not setup-vali"
+  }
+ ],
+ "account_alias": "s22l-f2-***",
+ "title_home": "Real2Simulation",
+ "workspace_path": "/workspace/dev-fixtur<id>",
+ "version": {
+  "/api/workspace/version": "404 {\"detail\":\"Not Found\"}",
+  "/api/version": "404 <!DOCTYPE html><html lang=\"en\" class=\"__variable_3f4a4b __variable_353f1a\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/><link rel=\"preload\" href=\"/"
+ },
+ "web_build": null,
+ "probe_before": {
+  "title": "Real2Simulation",
+  "alerts": [],
+  "live": [
+   "polite: ",
+   "polite: No file uploaded yet.",
+   "polite: No scene yet. The viewport appears when an upload produces a scene."
+  ]
+ },
+ "job_id": "dev-fixture-ddcb45dbeb4bb9156846e07b94ccb75960fefb06a6b0b890a15a069c896c63a9",
+ "question_panel": {
+  "q": "AGENT QUESTION\n1/1\n\nQuestion 1 of 1\n\nName one object of known size in the fall plane and its length with units, e.g. book cover edge in cm.\n1\nthe length recorded with this clip (owner-declared)\n2\nA four paper, short edge\n3\nBank card, long edge\nOther (your own answer)\nFinish\nCtrl+Enter",
+  "buttons": [
+   "1\nthe length recorded with this clip (owner-declared)",
+   "2\nA four paper, short edge",
+   "3\nBank card, long edge",
+   "Finish\nCtrl+Enter"
+  ]
+ },
+ "g_line": "g = 8.62 ± 1.29 m/s² (fitter, Build/fitter/core.py fit_least_squares(degree 2) + jacobian_covariance (OLS, RSS/dof))",
+ "lines": [
+  "Track: RECORDED (precomputed SAM 3.1, not run live)",
+  "HELD-OUT CHECK PASS: CHI2/DOF = 2.32/3, P = 0.51",
+  "SIMULATED prediction over the held-out points (dashed)",
+  "1-sigma predictive band: sigma_px * sqrt(1 + leverage) (S07m v3 held-out variance), sigma 2 px",
+  "No scene yet. The viewport appears when an upload produces a scene.",
+  "Clip result (owner clip; no scene; fit run now on RECORDED track points)",
+  "Track: RECORDED (precomputed SAM 3.1, not run live) · Fit: done (run now on the server)",
+  "Uncertainty: fit 0.15, detection 1.27, clock 0.07, centroid vs box 0.12, scale 0.07 (quadrature); fit scatter combined in quadrature with the recorded S07m budget terms (evidence/S07/S07h/results.json clips.OWN05 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total})",
+  "Fit residuals (px): 0.1, -0.2, 0.2, -0.1; rmse = 0.12 px; dof = 1; points fitted = 4",
+  "Held-out residuals (px, 3 points not fitted): 4.6, 9.6, 19.9",
+  "Scale: user-declared scale 0.2028 m over a RECORDED 287.6 px reference; scale unverified",
+  "Held-out points (3) were excluded from this fit and only score it. Few fitted points (dof = 1); held-out residuals are a check, not an uncertainty term. Scale unverified; not a validated measurement.",
+  "Held-out check PASS: chi2/dof = 2.32/3 = 0.77, p = 0.51 (S07m v3 predictive chi-square; a THIRD, post-hoc analysis chosen after v1/v2 failed, forking-paths caveat). Scale owner-declared (recorded) (0.2028 m, not verified); phone clock not externally verified. A PASS is conditional on these assumptions and is not accuracy: it can still sit far from the local 9.79 m/s^2.",
+  "Scale: book cover horizontal edge in fall plane = 0.2028 m (owner-declared scale (recorded), not verified)",
+  "Your known size: book cover horizontal edge 20.28 cm = 0.2028 m (user-declared, not verified)",
+  "no scene: owner clip, scene reconstruction not run (not a live run)",
+  "Track: RECORDED (precomputed SAM 3.1, not run live); no scene is reconstructed. The fit runs on the server after your known-size answer. Nothing failed.",
+  "Clip result ready (no scene)",
+  "Clip result (owner clip; no scene; fit run now on RECORDED track points)",
+  "Job job_71fab684022fc18a861c0549af5b5150: Clip result (owner clip; no scene; fit run now on RECORDED track points)"
+ ],
+ "probe_after": {
+  "title": "Real2Simulation",
+  "alerts": [],
+  "live": [
+   "polite: ",
+   "polite: No scene yet. The viewport appears when an upload produces a scene."
+  ]
+ },
+ "report_lines": [
+  "HELD-OUT CHECK PASS: CHI2/DOF = 2.32/3, P = 0.51",
+  "SIMULATED prediction over the held-out points (dashed)",
+  "1-sigma predictive band: sigma_px * sqrt(1 + leverage) (S07m v3 held-out variance), sigma 2 px",
+  "SIMULATED fit (fitter, run now) to RECORDED MEASURED SAM 3.1 track points",
+  "g = 8.62 ± 1.29 m/s² (fitter, Build/fitter/core.py fit_least_squares(degree 2) + jacobian_covariance (OLS, RSS/dof))",
+  "Held-out residuals (px, 3 points not fitted): 4.6, 9.6, 19.9",
+  "Held-out points (3) were excluded from this fit and only score it. Few fitted points (dof = 1); held-out residuals are a check, not an uncertainty term. Scale unverified; not a validated measurement.",
+  "Recorded reference (precomputed, S07m): g = 8.62 ± 1.28 m/s² (MEASURED (owner clip OWN05, owner-declared scale (recorded) 0.2028 m, phone clock not externally verified))",
+  "Held-out check PASS: chi2/dof = 2.32/3 = 0.77, p = 0.51 (S07m v3 predictive chi-square; a THIRD, post-hoc analysis chosen after v1/v2 failed, forking-paths caveat). Scale owner-declared (recorded) (0.2028 m, not verified); phone clock not externally verified. A PASS is conditional on these assumptions and is not accuracy: it can still sit far from the local 9.79 m/s^2.",
+  "Your known size: book cover horizontal edge 20.28 cm = 0.2028 m (user-declared, not verified)"
+ ],
+ "probe_report": {
+  "title": "Real2Simulation",
+  "alerts": [],
+  "live": [
+   "polite: ",
+   "polite: No scene yet. The viewport appears when an upload produces a scene."
+  ]
+ },
+ "end_utc": "2026-11-01T09:23:58.552Z",
+ "total_ms": 21190,
+ "console_errors": [
+  "Failed to load resource: the server responded with a status of 404 ()",
+  "Failed to load resource: the server responded with a status of 404 ()"
+ ],
+ "failed_requests": [
+  {
+   "status": "failed",
+   "path": "/lab"
+  },
+  {
+   "status": "failed",
+   "path": "/library"
+  },
+  {
+   "status": "failed",
+   "path": "/sign-in"
+  },
+  {
+   "status": "failed",
+   "path": "/sign-in"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/"
+  },
+  {
+   "status": "failed",
+   "path": "/sign-in"
+  },
+  {
+   "status": "failed",
+   "path": "/lab"
+  },
+  {
+   "status": "failed",
+   "path": "/"
+  },
+  {
+   "status": "failed",
+   "path": "/workspace"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/c/1-sfbx3xe3uvr3hrejzxif7ozxom-ul46isqhez4f2g77oqxwtrppsm/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/library"
+  }
+ ]
+}

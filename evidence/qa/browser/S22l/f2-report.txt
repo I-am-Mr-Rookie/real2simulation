@@ -1,0 +1,92 @@
+Skip to content
+Real2Simulation
+Demo library
+Local simulation lab
+Private workspace
+
+GO TO
+
+Private workspace
+Demo library
+Local simulation lab
+Private workspace
+Agent & tools
+Connected
+Instruments off
+Upload
+Interview
+Track: RECORDED (precomputed SAM 3.1, not run live)
+Fit
+Report
+346 px
+443 px
+681 px
+0 s
+0.1 s
+0.2 s
+held out
+HELD-OUT CHECK PASS: CHI2/DOF = 2.32/3, P = 0.51
+RECORDED track points (filled: fit prefix; hollow: held out)
+SIMULATED fit to the prefix (solid)
+SIMULATED prediction over the held-out points (dashed)
+1-sigma predictive band: sigma_px * sqrt(1 + leverage) (S07m v3 held-out variance), sigma 2 px
+
+y axis: image y in pixels (down); x axis: time in s. Scale unverified. RECORDED replay of MEASURED SAM 3.1 track points; curve SIMULATED (quadratic fit to the prefix)
+
+Show data table
+
+No scene yet. The viewport appears when an upload produces a scene.
+
+Clip result (owner clip; no scene; fit run now on RECORDED track points)
+
+SIMULATED fit (fitter, run now) to RECORDED MEASURED SAM 3.1 track points
+
+Track: RECORDED (precomputed SAM 3.1, not run live) · Fit: done (run now on the server)
+
+g = 8.62 ± 1.29 m/s² (fitter, Build/fitter/core.py fit_least_squares(degree 2) + jacobian_covariance (OLS, RSS/dof))
+
+Uncertainty: fit 0.15, detection 1.27, clock 0.07, centroid vs box 0.12, scale 0.07 (quadrature); fit scatter combined in quadrature with the recorded S07m budget terms (evidence/S07/S07h/results.json clips.OWN05 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total})
+
+Fit residuals (px): 0.1, -0.2, 0.2, -0.1; rmse = 0.12 px; dof = 1; points fitted = 4
+
+Held-out residuals (px, 3 points not fitted): 4.6, 9.6, 19.9
+
+Scale: user-declared scale 0.2028 m over a RECORDED 287.6 px reference; scale unverified
+
+Held-out points (3) were excluded from this fit and only score it. Few fitted points (dof = 1); held-out residuals are a check, not an uncertainty term. Scale unverified; not a validated measurement.
+
+Recorded reference (not affected by your scale)
+
+OWN05 · OWNER_RECORDED / RECORDED · RECORDED replay of a MEASURED result
+
+Recorded reference (precomputed, S07m): g = 8.62 ± 1.28 m/s² (MEASURED (owner clip OWN05, owner-declared scale (recorded) 0.2028 m, phone clock not externally verified))
+
+Source
+
+Held-out check PASS: chi2/dof = 2.32/3 = 0.77, p = 0.51 (S07m v3 predictive chi-square; a THIRD, post-hoc analysis chosen after v1/v2 failed, forking-paths caveat). Scale owner-declared (recorded) (0.2028 m, not verified); phone clock not externally verified. A PASS is conditional on these assumptions and is not accuracy: it can still sit far from the local 9.79 m/s^2.
+
+Scale: book cover horizontal edge in fall plane = 0.2028 m (owner-declared scale (recorded), not verified)
+
+Your known size: book cover horizontal edge 20.28 cm = 0.2028 m (user-declared, not verified)
+
+Job job_71fab684022fc18a861c0549af5b5150
+
+no scene: owner clip, scene reconstruction not run (not a live run)
+
+Track: RECORDED (precomputed SAM 3.1, not run live); no scene is reconstructed. The fit runs on the server after your known-size answer. Nothing failed.
+
+Clip result: shown in the stage panel.
+
+Queued
+Processing
+Clip result ready (no scene)
+Agent & tools
+TOOLS
+Agent
+Clip result (owner clip; no scene; fit run now on RECORDED track points)
+Clips
+Upload an approved licensed clip
+Runs & history
+Job job_71fab684022fc18a861c0549af5b5150: Clip result (owner clip; no scene; fit run now on RECORDED track points)
+Report
+Report available

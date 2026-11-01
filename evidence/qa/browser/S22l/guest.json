@@ -1,0 +1,84 @@
+{
+ "mode": "guest",
+ "steps": {
+  "library": {
+   "utc": "2026-11-01T09:12:44.650Z",
+   "ms": 2028
+  },
+  "card_open": {
+   "utc": "2026-11-01T09:12:49.809Z",
+   "ms": 7186
+  }
+ },
+ "alerts": {},
+ "notes": {
+  "library_text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nSign in\n\nPUBLIC · NO ACCOUNT NEEDED\n\nDemo library\n\nSimulated trajectories and honest placeholders. Nothing here is a calibrated measurement.\n\nAll\n18\nRECORDED\n0\nSIMULATED\n3\nwhat-if\n0\nUNAVAILABLE\n15\n\n2 playable\n1 practice setup\n15 unavailable\n\nReady to open\nSIMULATED · PLAYABLE\nSCALE_UNVERIFIED\n\nsimulated-projectile-baseline-short\n\nSI",
+  "url": "/library",
+  "simulated_label": true,
+  "play_button": 1,
+  "frames_differ": true,
+  "snap": [
+   "179:|174:|589:|263:|146:",
+   "179:|174:|589:|263:|146:|2827:68.4",
+   "179:|174:|589:|263:|146:|2827:68.4"
+  ],
+  "body_excerpt": [
+   "Simulated trajectories and honest placeholders. Nothing here is a calibrated measurement.",
+   "SIMULATED",
+   "SIMULATED · PLAYABLE",
+   "simulated-projectile-baseline-short",
+   "SIMULATED projectile: baseline-short (display-only)",
+   "Credit: SIMULATED · project-authored, no external footage."
+  ]
+ },
+ "start_utc": "2026-11-01T09:12:42.622Z",
+ "end_utc": "2026-11-01T09:12:53.053Z",
+ "total_ms": 10430,
+ "console_errors": [],
+ "failed_requests": [
+  {
+   "status": "failed",
+   "path": "/sign-in"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+  },
+  {
+   "status": "failed",
+   "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/c/1-6vt27wk2tgpldtbqbrbdrqe4fq-zpowk6npo7akb62cfuadw5xvga/probe"
+  }
+ ]
+}

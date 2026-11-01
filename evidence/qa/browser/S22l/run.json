@@ -1,0 +1,533 @@
+{
+ "run": "S22l-orch248",
+ "target": "https://web-dev-cd80.up.railway.app",
+ "api_version": {
+  "url": "https://api-dev-6091.up.railway.app/api/version",
+  "revision": "e0213a0cdfe22c6939464df4aef0de1d28d96b5f",
+  "note": "S15bf commit; ancestor of main 7cd9481d"
+ },
+ "web_build": "not observable (no version endpoint on web; HTML has no buildId)",
+ "flows": [
+  {
+   "flow": "f1",
+   "account_alias": "s22l-f1-***",
+   "job_id": "job_273488660a53eb7693e9ea126bc13320",
+   "start_utc": "2026-11-01T09:23:06.665Z",
+   "end_utc": "2026-11-01T09:23:27.679Z",
+   "total_ms": 21014,
+   "step_ms": {
+    "home": 2420,
+    "signup_page": 3470,
+    "signed_up": 9721,
+    "workspace": 11730,
+    "uploaded": 12261,
+    "interview_ready": 15311,
+    "fit_shown": 17989,
+    "report": 20795
+   },
+   "step_utc": {
+    "home": "2026-11-01T09:23:09.085Z",
+    "signup_page": "2026-11-01T09:23:10.135Z",
+    "signed_up": "2026-11-01T09:23:16.386Z",
+    "workspace": "2026-11-01T09:23:18.395Z",
+    "uploaded": "2026-11-01T09:23:18.926Z",
+    "interview_ready": "2026-11-01T09:23:21.976Z",
+    "fit_shown": "2026-11-01T09:23:24.654Z",
+    "report": "2026-11-01T09:23:27.460Z"
+   },
+   "chips": [
+    "1 the length recorded with this clip (owner-declared)",
+    "2 A four paper, short edge",
+    "3 Bank card, long edge"
+   ],
+   "spec_response": "{\"ok\":true,\"owner_clip\":true,\"spec\":{\"kind\":\"owner_clip_scale\",\"object\":\"book cover horizontal edge 20.28 cm\",\"length_m\":0.2028,\"unit\":\"m\",\"label\":\"user-declared, not verified\"},\"setup_validated\":false,\"label\":\"scale user-declared, not verified; not setup-vali",
+   "setup_validated_false": true,
+   "g_line": "g = 8.62 ± 1.29 m/s²",
+   "alerts": {
+    "before": [],
+    "after": [],
+    "report": []
+   },
+   "live_after": [
+    "polite: ",
+    "polite: No scene yet. The viewport appears when an upload produces a scene."
+   ],
+   "title": {
+    "before": "Real2Simulation",
+    "after": "Real2Simulation",
+    "report": "Real2Simulation"
+   },
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "Failed to load resource: the server responded with a status of 404 ()"
+   ],
+   "failed_requests": [
+    {
+     "status": "failed",
+     "path": "/"
+    },
+    {
+     "status": "failed",
+     "path": "/lab"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/sign-in"
+    },
+    {
+     "status": "failed",
+     "path": "/"
+    },
+    {
+     "status": "failed",
+     "path": "/library"
+    },
+    {
+     "status": "failed",
+     "path": "/lab"
+    },
+    {
+     "status": "failed",
+     "path": "/sign-in"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/library"
+    },
+    {
+     "status": "failed",
+     "path": "/workspace"
+    },
+    {
+     "status": "failed",
+     "path": "/"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/c/1-xicqs7iett4ria3sihg56y3ypq-n7agztxk5tlpyn7krxhxljugqy/probe"
+    }
+   ],
+   "items": {
+    "3.1": "PASS",
+    "3.2": "PASS",
+    "3.3": "PASS",
+    "3.4": "PASS",
+    "3.5": "PASS",
+    "3.6": "N/A (not in signed-in UI)",
+    "3.7": "PASS",
+    "3.8": "PASS",
+    "S15bg": "PASS"
+   }
+  },
+  {
+   "flow": "f2",
+   "account_alias": "s22l-f2-***",
+   "job_id": "job_71fab684022fc18a861c0549af5b5150",
+   "start_utc": "2026-11-01T09:23:37.362Z",
+   "end_utc": "2026-11-01T09:23:58.552Z",
+   "total_ms": 21190,
+   "step_ms": {
+    "home": 2789,
+    "signup_page": 3612,
+    "signed_up": 9781,
+    "workspace": 11823,
+    "uploaded": 12243,
+    "interview_ready": 15345,
+    "fit_shown": 18120,
+    "report": 21030
+   },
+   "step_utc": {
+    "home": "2026-11-01T09:23:40.151Z",
+    "signup_page": "2026-11-01T09:23:40.974Z",
+    "signed_up": "2026-11-01T09:23:47.143Z",
+    "workspace": "2026-11-01T09:23:49.185Z",
+    "uploaded": "2026-11-01T09:23:49.605Z",
+    "interview_ready": "2026-11-01T09:23:52.707Z",
+    "fit_shown": "2026-11-01T09:23:55.482Z",
+    "report": "2026-11-01T09:23:58.392Z"
+   },
+   "chips": [
+    "1 the length recorded with this clip (owner-declared)",
+    "2 A four paper, short edge",
+    "3 Bank card, long edge"
+   ],
+   "spec_response": "{\"ok\":true,\"owner_clip\":true,\"spec\":{\"kind\":\"owner_clip_scale\",\"object\":\"book cover horizontal edge 20.28 cm\",\"length_m\":0.2028,\"unit\":\"m\",\"label\":\"user-declared, not verified\"},\"setup_validated\":false,\"label\":\"scale user-declared, not verified; not setup-vali",
+   "setup_validated_false": true,
+   "g_line": "g = 8.62 ± 1.29 m/s²",
+   "alerts": {
+    "before": [],
+    "after": [],
+    "report": []
+   },
+   "live_after": [
+    "polite: ",
+    "polite: No scene yet. The viewport appears when an upload produces a scene."
+   ],
+   "title": {
+    "before": "Real2Simulation",
+    "after": "Real2Simulation",
+    "report": "Real2Simulation"
+   },
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "Failed to load resource: the server responded with a status of 404 ()"
+   ],
+   "failed_requests": [
+    {
+     "status": "failed",
+     "path": "/lab"
+    },
+    {
+     "status": "failed",
+     "path": "/library"
+    },
+    {
+     "status": "failed",
+     "path": "/sign-in"
+    },
+    {
+     "status": "failed",
+     "path": "/sign-in"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/"
+    },
+    {
+     "status": "failed",
+     "path": "/sign-in"
+    },
+    {
+     "status": "failed",
+     "path": "/lab"
+    },
+    {
+     "status": "failed",
+     "path": "/"
+    },
+    {
+     "status": "failed",
+     "path": "/workspace"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/c/1-sfbx3xe3uvr3hrejzxif7ozxom-ul46isqhez4f2g77oqxwtrppsm/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/library"
+    }
+   ],
+   "items": {
+    "3.1": "PASS",
+    "3.2": "PASS",
+    "3.3": "PASS",
+    "3.4": "PASS",
+    "3.5": "PASS",
+    "3.6": "N/A (not in signed-in UI)",
+    "3.7": "PASS",
+    "3.8": "PASS",
+    "S15bg": "PASS"
+   }
+  },
+  {
+   "flow": "f3",
+   "account_alias": "s22l-f3-***",
+   "job_id": "job_0c7936ad6cbb04ca0e6754108f64b02c",
+   "start_utc": "2026-11-01T09:24:05.546Z",
+   "end_utc": "2026-11-01T09:24:26.772Z",
+   "total_ms": 21226,
+   "step_ms": {
+    "home": 2727,
+    "signup_page": 3559,
+    "signed_up": 9972,
+    "workspace": 11988,
+    "uploaded": 12471,
+    "interview_ready": 15662,
+    "fit_shown": 18289,
+    "report": 21060
+   },
+   "step_utc": {
+    "home": "2026-11-01T09:24:08.273Z",
+    "signup_page": "2026-11-01T09:24:09.105Z",
+    "signed_up": "2026-11-01T09:24:15.519Z",
+    "workspace": "2026-11-01T09:24:17.534Z",
+    "uploaded": "2026-11-01T09:24:18.017Z",
+    "interview_ready": "2026-11-01T09:24:21.208Z",
+    "fit_shown": "2026-11-01T09:24:23.835Z",
+    "report": "2026-11-01T09:24:26.606Z"
+   },
+   "chips": [
+    "1 the length recorded with this clip (owner-declared)",
+    "2 A four paper, short edge",
+    "3 Bank card, long edge"
+   ],
+   "spec_response": "{\"ok\":true,\"owner_clip\":true,\"spec\":{\"kind\":\"owner_clip_scale\",\"object\":\"book cover horizontal edge 20.28 cm\",\"length_m\":0.2028,\"unit\":\"m\",\"label\":\"user-declared, not verified\"},\"setup_validated\":false,\"label\":\"scale user-declared, not verified; not setup-vali",
+   "setup_validated_false": true,
+   "g_line": "g = 8.62 ± 1.29 m/s²",
+   "alerts": {
+    "before": [],
+    "after": [],
+    "report": []
+   },
+   "live_after": [
+    "polite: ",
+    "polite: No scene yet. The viewport appears when an upload produces a scene."
+   ],
+   "title": {
+    "before": "Real2Simulation",
+    "after": "Real2Simulation",
+    "report": "Real2Simulation"
+   },
+   "console_errors": [
+    "Failed to load resource: the server responded with a status of 404 ()",
+    "Failed to load resource: the server responded with a status of 404 ()"
+   ],
+   "failed_requests": [
+    {
+     "status": "failed",
+     "path": "/library"
+    },
+    {
+     "status": "failed",
+     "path": "/library"
+    },
+    {
+     "status": "failed",
+     "path": "/lab"
+    },
+    {
+     "status": "failed",
+     "path": "/"
+    },
+    {
+     "status": "failed",
+     "path": "/library"
+    },
+    {
+     "status": "failed",
+     "path": "/lab"
+    },
+    {
+     "status": "failed",
+     "path": "/lab"
+    },
+    {
+     "status": "failed",
+     "path": "/library"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/sign-up"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/library"
+    },
+    {
+     "status": "failed",
+     "path": "/workspace"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    },
+    {
+     "status": "failed",
+     "path": "/workspace/dev-fixture-87625eae4308511a7efe97a8f114b006e0fe00a74da0afd4668c54bdfcf2d1ed"
+    },
+    {
+     "status": "failed",
+     "path": "/"
+    },
+    {
+     "status": "failed",
+     "path": "/ins_3LHWnymdMlpMzl1agaLWNkGGDS7/probe"
+    }
+   ],
+   "items": {
+    "3.1": "PASS",
+    "3.2": "PASS",
+    "3.3": "PASS",
+    "3.4": "PASS",
+    "3.5": "PASS",
+    "3.6": "N/A (not in signed-in UI)",
+    "3.7": "PASS",
+    "3.8": "PASS",
+    "S15bg": "PASS"
+   }
+  }
+ ],
+ "negative": {
+  "start_utc": "2026-11-01T09:22:14.776Z",
+  "end_utc": "2026-11-01T09:22:42.891Z",
+  "account_alias": "s22l-neg-***",
+  "job_id": "job_a84a9f788b822b2676d86ff27e490653",
+  "api": [
+   [
+    "POST",
+    200,
+    "/api/workspace/uploads"
+   ],
+   [
+    "PUT",
+    200,
+    "/api/workspace/uploads/up_<id>/chunks/0"
+   ],
+   [
+    "POST",
+    200,
+    "/api/workspace/uploads/up_<id>/complete"
+   ],
+   [
+    "POST",
+    422,
+    "/api/workspace/scenes/<id>/spec"
+   ],
+   [
+    "POST",
+    200,
+    "/api/workspace/scenes/<id>/spec"
+   ]
+  ],
+  "alerts_after_invalid": [
+   "INVALID_INPUT: spec did not validate: known_size: length must be above 0 and at most 10 m",
+   "INVALID_INPUT: spec did not validate: known_size: length must be above 0 and at most 10 m"
+  ],
+  "buttons_after_invalid": [
+   "Agent & tools",
+   "Retry",
+   "Back",
+   "Agent\nOwner clip: no scene (reconstruction not run); interview in progress (not a measurement)",
+   "Clips\nUpload an approved licensed clip",
+   "Runs & history\nJob job_a84a9f788b822b2676d86ff27e490653: Owner clip: no scene (reconstruction not run); interview in progress (not a measurement)",
+   "Report\nNo report yet (needs a finished fit or clip result)"
+  ],
+  "reopen": [
+   "Back -> textarea 1"
+  ],
+  "reanswer_g": "g = 8.62 ± 1.29 m/s²",
+  "console_errors": [
+   "Failed to load resource: the server responded with a status of 404 ()",
+   "Failed to load resource: the server responded with a status of 404 ()",
+   "Failed to load resource: the server responded with a status of 422 ()"
+  ]
+ },
+ "guest": {
+  "start_utc": "2026-11-01T09:12:42.622Z",
+  "end_utc": "2026-11-01T09:12:53.053Z",
+  "notes": {
+   "library_text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nSign in\n\nPUBLIC · NO ACCOUNT NEEDED\n\nDemo library\n\nSimulated trajectories and honest placeholders. Nothing here is a calibrated measurement.\n\nAll\n18\nRECORDED\n0\nSIMULATED\n3\nwhat-if\n0\nUNAVAILABLE\n15\n\n2 playable\n1 practice setup\n15 unavailable\n\nReady to open\nSIMULATED · PLAYABLE\nSCALE_UNVERIFIED\n\nsimulated-projectile-baseline-short\n\nSI",
+   "url": "/library",
+   "simulated_label": true,
+   "play_button": 1,
+   "frames_differ": true,
+   "snap": [
+    "179:|174:|589:|263:|146:",
+    "179:|174:|589:|263:|146:|2827:68.4",
+    "179:|174:|589:|263:|146:|2827:68.4"
+   ],
+   "body_excerpt": [
+    "Simulated trajectories and honest placeholders. Nothing here is a calibrated measurement.",
+    "SIMULATED",
+    "SIMULATED · PLAYABLE",
+    "simulated-projectile-baseline-short",
+    "SIMULATED projectile: baseline-short (display-only)",
+    "Credit: SIMULATED · project-authored, no external footage."
+   ]
+  },
+  "console_errors": []
+ }
+}
