@@ -2,8 +2,11 @@
 
 reconstruct(frames): S06d MapAnything room reconstruction (Build/gpu/scene_job.py body, unchanged).
 track(...): S07b SAM 3.1 backup tracker (Build/measurement/runtime/modal_track.py track_one, unchanged).
-Each: min_containers=0, max_containers=1 (one GPU; Modal queues extra calls), scaledown_window=900 (sleep after
-15 idle minutes). Empty frames to reconstruct = warm-up only (no model load, no output).
+Each: min_containers=0, max_containers=1, scaledown_window=900 (sleep after 15 idle minutes). Modal pools are
+per function, so callers MUST go through Build/api/gpu enqueue -> start (blocks until head of the one shared
+queue) -> remote -> finish: at most one job of either kind runs at a time. Residual: the other function's
+container may still be warm-idle (billed) up to 900 s after its job; callers reserve that idle window.
+Empty frames to reconstruct = warm-up only (no model load, no output).
 
 Deploy: uv run --python 3.12 --with modal==1.6.3 --env-file .env modal deploy Build/gpu/ondemand.py
 Paid callers reserve/settle via Build/guardrails/daily_cap.py; status: Build/api/gpu (GET .../gpu/status).

@@ -6,7 +6,7 @@ const noStore = { 'cache-control': 'no-store' };
 const JSON_CAP = 1_000_000;
 const CHUNK_CAP = 8_388_608; // contracts/jobs/policy.json upload.chunk_bytes
 const FILE_CAP = 200 * 1024 * 1024 + 1_048_576; // N03: 200 MB file + multipart overhead; the API enforces exact limits
-const AUDIO_CAP = 4 * 1024 * 1024; // N05 transcribe: 4 MB WAV
+const AUDIO_CAP = 4_000_000; // N05 transcribe: same byte limit as Build/agent/core.py MAX_AUDIO_BYTES
 const PASS_REQUEST = ['content-type', 'x-chunk-sha256', 'range'];
 const PASS_RESPONSE = ['content-type', 'content-length', 'content-range', 'accept-ranges', 'content-disposition'];
 const fail = (status, code, message) => Response.json({ status: 'error', error: { code, message } }, { status, headers: noStore });

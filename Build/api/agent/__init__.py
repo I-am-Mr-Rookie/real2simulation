@@ -33,9 +33,16 @@ def create_router(post: Callable = core.http_post, post_file: Callable = core.ht
 
     @router.post("/transcribe")
     async def transcribe(request: Request, owner: str = Depends(require_owner)):
-        audio = await request.body()  # shortcut: full body read before the 4 MB check; add a streaming cap if abused
+        declared = request.headers.get("content-length", "")
+        if declared.isdigit() and int(declared) > core.MAX_AUDIO_BYTES:
+            raise error(413, "AUDIO_TOO_LARGE", "audio exceeds 4 MB")
+        audio = bytearray()
+        async for chunk in request.stream():  # cap while reading: never buffer more than the limit
+            audio += chunk
+            if len(audio) > core.MAX_AUDIO_BYTES:
+                raise error(413, "AUDIO_TOO_LARGE", "audio exceeds 4 MB")
         try:
-            return await run_in_threadpool(core.transcribe, audio, post_file)
+            return await run_in_threadpool(core.transcribe, bytes(audio), post_file)
         except ValueError as exc:
             raise error(422, "BAD_AUDIO", str(exc)) from None
         except core.ModelUnavailable as exc:

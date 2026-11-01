@@ -7,7 +7,7 @@ import { createThreeViewer } from '../viewer/three-viewer.mjs';
 import { createArtifactLoader } from '../viewer/artifact-loader.mjs';
 import { createController, API_BASE, browserSimulate } from '../workspace/controller.mjs';
 import { runBrowserSimulation } from '../lab/browser-simulator.mjs';
-import { uploadView, renderUpload } from '../workspace/upload-view.mjs';
+import { uploadView } from '../workspace/upload-view.mjs';
 import { initialInterview, reduceInterview, interviewAnswers } from '../workspace/interview.mjs';
 import { initialInstruments, reduceInstruments } from '../workspace/instruments.mjs';
 import { initialRun } from '../workspace/runcontrol.mjs';
@@ -24,7 +24,7 @@ export const loadScene = createArtifactLoader({
   bundleUrl: (s) => new URL(`${API_BASE}/scenes/${encodeURIComponent(s.scene_id)}/bundle/`, globalThis.location.origin) });
 export const SCENE_LABEL = 'Scene geometry: Display only, scale unverified, not a measurement.';
 export const UNAVAILABLE_NOTICE = 'Workspace service unavailable: the private API did not answer, so no upload, job or result is shown. Nothing on this page is a measurement.';
-export const LIVE_NOTICE = 'Connected to the private workspace API. Upload your own videos in Files; the sample pipeline below accepts only approved licensed clips. Every result is labelled RECORDED or SIMULATED by the server.';
+export const LIVE_NOTICE = 'Connected to the private workspace API. Upload any video of your own in Files and the agent handles it live. Sample projects are recorded replays in the Library. Every result is labelled by the server.';
 export const INSTRUMENTS_UNAVAILABLE = 'Instruments are not available in this build; no reading is shown.';
 // S15an: long service notices collapse to a chip; full wording stays verbatim in the (i) detail.
 const chip = (label, text, id) => React.createElement('details', { className: 'r2s-chip', 'data-chip': id },
@@ -151,7 +151,8 @@ export default function PrivateWorkspace({ scene }) {
   const toggleRight = () => (right ? closeRight() : setRight(true));
   const openCard = () => (right ? cardHead.current?.focus() : setRight(true));
   const toggleLeft = () => send({ type: 'toggle' });
-  const tools = toolsOf({ live, phase, owner: !!s.state.owner, jobId: s.state.job?.id, uploadStatus: up.show ? up.status : null, hasReport: !!s.report || phase === 'report.owner', pending, liveFit: s.provenance?.measurement?.live_fit?.status === 'ok' });
+  // N21: the legacy approved-clip uploader is gone from the live workspace, so its rail shortcut goes too
+  const tools = toolsOf({ live, phase, owner: !!s.state.owner, jobId: s.state.job?.id, uploadStatus: up.show ? up.status : null, hasReport: !!s.report || phase === 'report.owner', pending, liveFit: s.provenance?.measurement?.live_fit?.status === 'ok' }).filter((t) => !(live && t.target === 'ws-upload-file'));
   const openTool = (t) => {
     const el = globalThis.document?.getElementById(t.target);
     if (!el) return;
@@ -178,11 +179,8 @@ export default function PrivateWorkspace({ scene }) {
       agent: React.createElement(React.Fragment, null, live ? React.createElement(Live.Chat, { L }) : null, iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null) }, on, { rightToggle, rightHead },
     live ? chip('Connected', LIVE_NOTICE, 'live') : React.createElement('p', { role: 'note' }, api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),
     live ? React.createElement(Live.Centre, { L }) : null,
-    live ? React.createElement('h2', { className: 'lv-sample-h' }, 'Sample pipeline') : null,
     live ? renderWaiting(React.createElement, iv, openCard) : null,
     live || api === 'checking' ? null : React.createElement('p', { role: 'note' }, scene.notice),
-    // the upload error is rendered once, by the workspace job panel (S15n limit: avoid a double alert)
-    live ? renderUpload(React.createElement, { ...up, error: null }, (file) => ctl.upload(file)) : null,
     live && resetNote ? React.createElement('p', { role: 'note', className: 'ws-note', 'data-slot': 'session-reset' }, SESSION_RESET) : null,
     live && simulated ? React.createElement('p', { role: 'note', 'data-label': s.whatIfLabel ? 'what-if' : 'simulated' }, s.whatIfLabel
       ? s.whatIfLabel + '. Run and fit values come from the in-browser simulator on your described setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')

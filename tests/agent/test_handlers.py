@@ -39,7 +39,7 @@ def test_fit_schema_accepts_trajectory_id_and_router_uses_real_handlers():
     args, issues = core.validate_call("fit", json.dumps({"trajectory_id": "abc123"}))
     assert not issues and args == {"trajectory_id": "abc123"}
     assert core.DEFAULT_HANDLERS["fit"]("u", {})["status"] == "error"
-    assert set(handlers.HANDLERS) == {"list_files", "start_experiment_track", "fit"}
+    assert set(handlers.HANDLERS) == {"list_files", "start_experiment_track", "fit", "start_room_build"}
 
 
 def test_agent_transport_settles_reported_usage_on_daily_cap(tmp_path, monkeypatch):

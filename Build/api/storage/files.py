@@ -40,16 +40,19 @@ CREATE INDEX IF NOT EXISTS files_user ON files (user, dhaka_day);
 
 
 def video_seconds(path):
-    """Container duration via ffprobe; None when ffprobe is not installed (size-only limits then apply)."""
+    """Container duration via ffprobe; fails closed (503) when ffprobe is missing, 415 when unreadable."""
     exe = shutil.which("ffprobe")
     if not exe:
-        return None
-    out = subprocess.run([exe, "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
-                         capture_output=True, text=True, timeout=30)
+        raise error(503, "VALIDATOR_UNAVAILABLE", "video validation is unavailable; try again later")
     try:
-        return float(out.stdout.strip())
-    except ValueError:
+        out = subprocess.run([exe, "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
+                             capture_output=True, text=True, timeout=30)
+        seconds = float(out.stdout.strip())
+    except (ValueError, subprocess.TimeoutExpired):
+        seconds = float("nan")
+    if not 0 < seconds < float("inf"):
         raise error(415, "UNSUPPORTED_MEDIA", "file is not a readable video") from None
+    return seconds
 
 
 def _sniff(media_type, head):
@@ -102,19 +105,26 @@ class Store:
     def add(self, user, name, media_type, tmp, duration, project_id=None):
         """Atomic quota check + insert + move into place; tmp is removed on any refusal by the caller."""
         size = tmp.stat().st_size
-        with self.lock:
-            self.check_daily(user)
-            q = self.quota(user)
-            if size > q["storage_bytes_remaining"]:
-                raise error(413, "QUOTA_STORAGE", "storage limit reached (1 GB per user)", quota=q)
-            file_id, now = uuid.uuid4().hex, self.now()
-            dest = self.path(user, file_id)
-            dest.parent.mkdir(exist_ok=True)
-            os.replace(tmp, dest)
-            self.db.execute("INSERT INTO files (id, user, project_id, name, media_type, size, duration_s, created,"
-                            " dhaka_day) VALUES (?,?,?,?,?,?,?,?,?)",
-                            (file_id, user, project_id, name, media_type, size, duration,
-                             now.strftime("%Y-%m-%dT%H:%M:%SZ"), self._day()))
+        file_id, now = uuid.uuid4().hex, self.now()
+        dest = self.path(user, file_id)
+        with self.lock:  # thread lock for this connection; BEGIN IMMEDIATE serializes other connections/processes
+            self.db.execute("BEGIN IMMEDIATE")
+            try:
+                self.check_daily(user)
+                q = self.quota(user)
+                if size > q["storage_bytes_remaining"]:
+                    raise error(413, "QUOTA_STORAGE", "storage limit reached (1 GB per user)", quota=q)
+                self.db.execute("INSERT INTO files (id, user, project_id, name, media_type, size, duration_s,"
+                                " created, dhaka_day) VALUES (?,?,?,?,?,?,?,?,?)",
+                                (file_id, user, project_id, name, media_type, size, duration,
+                                 now.strftime("%Y-%m-%dT%H:%M:%SZ"), self._day()))
+                dest.parent.mkdir(exist_ok=True)
+                os.replace(tmp, dest)
+                self.db.execute("COMMIT")
+            except BaseException:
+                self.db.execute("ROLLBACK")
+                dest.unlink(missing_ok=True)  # no unaccounted bytes on disk
+                raise
         return self.get(user, file_id)
 
     def get(self, user, file_id):
@@ -175,7 +185,7 @@ def create_router(store=None, probe=video_seconds) -> APIRouter:
                     if not _sniff(media_type, f.read(16)):
                         raise error(415, "UNSUPPORTED_MEDIA", "file content does not match its type")
                 duration = probe(tmp) if media_type.startswith("video/") else None
-                if duration is not None and duration > MAX_SECONDS:
+                if duration is not None and duration > MAX_SECONDS:  # video probe never returns None (fails closed)
                     raise error(422, "VIDEO_TOO_LONG", f"video is {duration:.1f} s; limit is 120 s")
                 record = db().add(owner, name, media_type, tmp, duration, project_id)
             finally:

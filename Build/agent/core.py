@@ -146,16 +146,17 @@ def _fit(owner: str, args: dict) -> dict:
 DEFAULT_HANDLERS: dict[str, Callable[[str, dict], dict]] = {n: _unavailable(n) for n in TOOLS if n != "ask_user"}
 DEFAULT_HANDLERS["fit"] = _fit
 
-_NUMBER = re.compile(r"(?<![A-Za-z_])-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?")
+_NUMBER = re.compile(r"(?<![A-Za-z_\d.])-?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?")  # "2-5" is a range, not -5
 _NAMES = re.compile(r"\b[23]D\b|\b(?:SAM|Spark) \d+(?:\.\d+)?|\bA4\b", re.IGNORECASE)  # product words, not results
 
 
 def unbacked_numbers(reply: str, sources: Sequence[str]) -> list[str]:
-    """Numbers in reply that no source contains (rounding of a source value to the reply's decimals is allowed)."""
-    known = [abs(float(m)) for s in sources for m in _NUMBER.findall(s)]
+    """Numbers in reply that no source contains (rounding of a source value to the reply's decimals is allowed).
+    Signed: a source -9.81 does not back +9.81. Units/labels are not matched (see N21 REPORT deferral)."""
+    known = [float(m) for s in sources for m in _NUMBER.findall(s)]
     bad = []
     for token in _NUMBER.findall(_NAMES.sub(" ", reply)):
-        value = abs(float(token))
+        value = float(token)
         decimals = len(token.split(".")[1]) if "." in token and "e" not in token.lower() else 0
         if not any(k == value or round(k, decimals) == value for k in known):
             bad.append(token)
@@ -207,6 +208,11 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
             if issues:
                 output = {"status": "error", "error": {"code": "INVALID_TOOL_CALL", "issues": issues[:8]}}
             elif call["name"] == "ask_user":
+                shown = " ".join([args["question"], *(o["label"] for o in args["options"])])
+                if unbacked_numbers(shown, sources):  # questions and options are visible text too
+                    return {**result, "stopped": "unbacked_numbers", "reply": (
+                        "I drafted a question with numbers that did not come from a tool output, so I am not "
+                        "showing it. Tell me what you want to do next.")}
                 calls.append({"name": "ask_user", "args": args, "output": None})
                 return {**result, "stopped": "ask_user", "reply": args["question"], "question": args}
             else:

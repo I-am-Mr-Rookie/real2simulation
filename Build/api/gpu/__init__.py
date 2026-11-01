@@ -10,6 +10,7 @@ unfinished job (1 = running or next), null when the caller has none.
 """
 import os
 import sqlite3
+import time
 import uuid
 from datetime import datetime, timezone
 from pathlib import Path
@@ -61,8 +62,31 @@ def _mark(column, jid, path, now):
         con.close()
 
 
-def start(jid, path=None, now=None):
-    _mark("started_at", jid, path, now)
+def start(jid, path=None, now=None, timeout=1800.0, poll=1.0):
+    """Block until jid is the oldest unfinished job of ANY kind, then mark it started: one GPU queue for
+    reconstruct and track (two Modal functions, but never two jobs dispatched at once). TimeoutError when stuck."""
+    # shortcut: a crashed process leaves its job unfinished and blocks the queue until timeout; add a lease if seen
+    deadline = time.monotonic() + timeout
+    while True:
+        con = _connect(path)
+        try:
+            con.execute("BEGIN IMMEDIATE")
+            head = con.execute("SELECT id FROM gpu_jobs WHERE finished_at IS NULL ORDER BY queued_at, rowid"
+                               " LIMIT 1").fetchone()
+            ok = head is not None and head[0] == jid and con.execute(
+                "UPDATE gpu_jobs SET started_at = ? WHERE id = ? AND started_at IS NULL", (_now(now), jid)).rowcount == 1
+            con.execute("COMMIT")
+            known = con.execute("SELECT 1 FROM gpu_jobs WHERE id = ? AND finished_at IS NULL AND started_at IS NULL",
+                                (jid,)).fetchone()
+        finally:
+            con.close()
+        if ok:
+            return
+        if not known:
+            raise ValueError("unknown job or started_at already set")
+        if time.monotonic() >= deadline:
+            raise TimeoutError("GPU queue busy; job not started")
+        time.sleep(poll)
 
 
 def finish(jid, path=None, now=None):
@@ -85,7 +109,7 @@ def modal_stats():
 def status(owner, stats, path=None):
     con = _connect(path)
     try:
-        active = con.execute("SELECT owner FROM gpu_jobs WHERE finished_at IS NULL ORDER BY queued_at, id").fetchall()
+        active = con.execute("SELECT owner FROM gpu_jobs WHERE finished_at IS NULL ORDER BY queued_at, rowid").fetchall()
     finally:
         con.close()
     owners = [o for (o,) in active]
