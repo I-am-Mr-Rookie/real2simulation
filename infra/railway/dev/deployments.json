@@ -7,18 +7,18 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "302c1fa9-5cc6-464f-897e-6c6367dec104",
-      "previousDeploymentId": "45fbd535-a7d6-4907-8d49-9875c71787e8",
-      "redeployNote": "S15be no-scene owner labels and report.owner copy",
-      "sourceRevision": "6fb80fa659c6ebf5988d629ce730d7231e64475c",
-      "verifiedUtc": "2026-11-01T07:55Z",
+      "deploymentId": "6d9e95cf-8fd6-4c0c-8214-66f92e7b1ca4",
+      "previousDeploymentId": "302c1fa9-5cc6-464f-897e-6c6367dec104",
+      "redeployNote": "S15bf owner-clip chips, validated owner spec, legacy u rule",
+      "sourceRevision": "e0213a0cdfe22c6939464df4aef0de1d28d96b5f",
+      "verifiedUtc": "2026-11-01T08:26Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "e32e910f-6596-4ce7-94da-cca664d8f149",
+      "deploymentId": "81159cc9-10d6-4170-be2e-765ef4650e04",
       "previousDeploymentIds": [
         "88eb14d1-5be4-4d6b-a439-800293c2b703",
         "85c23646-2e35-4c25-af0d-cbe38a52c524",
@@ -28,8 +28,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "42f52f35437b2006fa0e329ed2e12f93a29bc9e6",
-      "verifiedUtc": "2026-11-01T06:58:00Z",
+      "sourceRevision": "e0213a0cdfe22c6939464df4aef0de1d28d96b5f",
+      "verifiedUtc": "2026-11-01T08:26Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -38,8 +38,8 @@
       "url": "https://api-dev-6091.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080,
-      "previousDeploymentId": "885a1368-b3e2-4407-8368-3b3bbc87dac1",
-      "redeployNote": "S15bb live-fit headline u from recorded S07 budget"
+      "previousDeploymentId": "e32e910f-6596-4ce7-94da-cca664d8f149",
+      "redeployNote": "S15bf owner-clip chips, validated owner spec, legacy u rule"
     },
     "worker": {
       "id": "5b5e6ebc-d4f1-46fb-b6de-6b7ff94b89a7",

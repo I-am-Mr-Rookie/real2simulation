@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 14:18 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 14:25 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **282 / 299** runs done · 4 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **283 / 299** runs done · 3 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -25,7 +25,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **S15bf** — Codex (native Claude) · Opus 5.5, effort medium — R-D F1+F5: owner-clip known-size chips + free text, validated owner spec before live fit; legacy jobs without u_budget never pair rescaled g with old-scale u (30 min) *(in progress)*
 - [~] **S15bg** — Codex (native Claude) · Sonnet 5.5, effort medium — R-D F6: no fixture wording announced (role=alert, title, h1) on a live signed-in workspace before the probe resolves (30 min) *(in progress)*
 - [~] **S22k** — Codex (native Claude) · Opus 5.5, effort medium — Revise Gate D decision per R-D (F1-F7): scoped deviations, receipts, disclosure list (30 min) *(in progress)*
 - [~] **S24d** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture held-out prediction and reveal (30 min) *(in progress)*
@@ -271,7 +270,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S15</b> — Workspace UI (57/59)</summary>
+<details><summary><b>S15</b> — Workspace UI (58/59)</summary>
 
 - [x] **S15a** — Codex (native Claude) · Sonnet 5.5, effort high — Define workspace states and consume module contracts (30 min)
 - [x] **S15b** — Codex (native Claude) · Sonnet 5.5, effort high — Build workspace layout and viewport mount (30 min)
@@ -330,7 +329,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S15bc** — Codex (native Claude) · Sonnet 5.5, effort medium — S22g O1+O2: at narrow widths close the Agent & tools panel (or scroll to the result) after the interview Finish so the result card is visible; logged-out /workspace goes to sign-in instead of a bare 404 (30 min)
 - [x] **S15bd** — Codex (native Claude) · Sonnet 5.5, effort medium — S22h P2/P3 upload UX: re-picking the same file after an error retries (reset the file input); visible retry in the DEPENDENCY_UNAVAILABLE box; plain-language copy for the non-allowlisted 422 (keep the code visible small); after a reload mid-interview say the session reset instead of a silent blank state; a visible separator between the live fit and the recorded reference in the report (30 min)
 - [x] **S15be** — Codex (native Claude) · Sonnet 5.5, effort medium — S22i P3 leftovers: Agent/Runs subtitle says 'Scene ready; interview in progress' for no-scene owner clips; report.owner layout copy still says 'no scene, run or fit' although the fit now runs; a role=alert node reads 'Private development fixture' on signed-in pages (30 min)
-- [~] **S15bf** — Codex (native Claude) · Opus 5.5, effort medium — R-D F1+F5: owner-clip known-size chips + free text, validated owner spec before live fit; legacy jobs without u_budget never pair rescaled g with old-scale u (30 min) *(in progress)*
+- [x] **S15bf** — Codex (native Claude) · Opus 5.5, effort medium — R-D F1+F5: owner-clip known-size chips + free text, validated owner spec before live fit; legacy jobs without u_budget never pair rescaled g with old-scale u (30 min)
 - [~] **S15bg** — Codex (native Claude) · Sonnet 5.5, effort medium — R-D F6: no fixture wording announced (role=alert, title, h1) on a live signed-in workspace before the probe resolves (30 min) *(in progress)*
 
 </details>
