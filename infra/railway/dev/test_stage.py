@@ -111,6 +111,21 @@ class StageTests(unittest.TestCase):
                 self.stage(optimize=optimize)
             self.assertEqual(self.target.read_bytes(), b"keep-existing-file")
 
+    def test_worktree_uses_only_hash_verified_shared_bundle(self):
+        bundle = Path(self.temp.name) / "repo/evidence/S13l/reconstruct/bundle"
+        bundle.mkdir(parents=True)
+        (bundle / "points.ply").write_bytes(b"SYNTHETIC-shared")
+        recorded = {"files": {"points.ply": {"sha256": hashlib.sha256(b"SYNTHETIC-shared").hexdigest()}}}
+        files = FILES | {"Build/pipeline/recorded/RM04-S13l-mapanything.json": json.dumps(recorded).encode()}
+        source = Path(self.temp.name) / "worktree/infra/railway/dev/stage.py"
+        self.stage(files=files, file=source)
+        self.assertEqual((self.target / "evidence/S13l/reconstruct/bundle/points.ply").read_bytes(), b"SYNTHETIC-shared")
+        (bundle / "points.ply").write_bytes(b"tampered")
+        self.target = Path(self.temp.name) / "mismatch"
+        with self.assertRaisesRegex(ValueError, "sha256"):
+            self.stage(files=files, file=source)
+        self.assertFalse(self.target.exists())
+
     def test_competing_destination_creation_is_not_overwritten(self):
         original_mkdir = Path.mkdir
         def competing_mkdir(path, *args, **kwargs):

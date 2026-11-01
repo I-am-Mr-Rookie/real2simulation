@@ -11,7 +11,7 @@ from urllib.parse import urlsplit
 from unittest.mock import patch
 
 REVISION = "300cd2096f9e32bcdf3433520b36b67f709df0d5"
-API_REVISION = "8c2bd6821979787edc566daed93129a5313146fa"
+API_REVISION = "db6060d2a994f8f1f36f2507a64b07ecdf7a0c72"
 PATHS = ("/health/live", "/health/ready", "/api/version")
 ENDPOINTS = [(service, path) for service in ("api", "worker") for path in PATHS]
 INTERNAL = ("api", "/internal/workspace/jobs/job_" + "0" * 32)
