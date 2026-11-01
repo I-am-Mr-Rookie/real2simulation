@@ -20,6 +20,9 @@ MODEL, CONTRIBUTOR_MODEL, VOICE_MODEL = "muse-spark-1.3", "muse-spark-1.3-contri
 MAX_STEPS, MAX_OUTPUT_TOKENS = 6, 1200
 MAX_TEXT, MAX_HISTORY = 4000, 20
 MAX_AUDIO_BYTES, MAX_AUDIO_S = 4_000_000, 60.0
+# USD per token (in, out) and per audio second: estimates from public listings, matched to N05 live usage; not billing.
+PRICE_PER_TOKEN = {MODEL: (1.0e-6, 5.0e-6), CONTRIBUTOR_MODEL: (0.1e-6, 0.2e-6)}
+VOICE_USD_PER_S = 0.0001
 INSTRUCTIONS = (
     "You are the lab assistant of Real2Simulation, a physics lab. Help only with this lab: uploading room or "
     "experiment videos, tracking, the virtual lab (ball, block, ramp, pendulum, spring, flywheel), running "
@@ -50,7 +53,9 @@ TOOLS: dict[str, tuple[str, dict[str, Any]]] = {
         "params": {"type": "object", "maxProperties": 12,
                    "propertyNames": {"pattern": r"^[a-z][a-z0-9_]{0,31}$"}, "additionalProperties": {"type": "number"}}}),
     "lab_run": ("Run the physics engine on the current virtual lab.", {}),
-    "fit": ("Fit a trajectory (times in s, positions in m, one sigma for each) with uncertainty.", {
+    "fit": ("Re-fit a measured trajectory by trajectory_id (from start_experiment_track) with uncertainty; raw "
+            "trajectory arrays are only for simulated lab runs.", {
+        "trajectory_id": _ID,
         "trajectory": {"type": "object", "additionalProperties": False,
                        "required": ["times", "positions", "time_sigma_s", "position_sigma_m"],
                        "properties": {"times": _NUMS, "positions": _NUMS, "time_sigma_s": {"type": "number"},
@@ -58,7 +63,7 @@ TOOLS: dict[str, tuple[str, dict[str, Any]]] = {
     "write_report": ("Write the experiment report from the latest results.", {}),
 }
 REQUIRED = {"ask_user": ["question", "options"], "start_experiment_track": ["file_id", "target"],
-            "start_room_build": ["file_id"], "lab_add_object": ["kind", "params"], "fit": ["trajectory"]}
+            "start_room_build": ["file_id"], "lab_add_object": ["kind", "params"]}
 
 
 def _schema(name: str) -> dict[str, Any]:
@@ -127,6 +132,8 @@ def _unavailable(name: str) -> Callable[[str, dict], dict]:
 
 def _fit(owner: str, args: dict) -> dict:
     from Build.fitter.api import handle  # existing fitter; it re-validates and never raises
+    if "trajectory" not in args:
+        return {"status": "error", "error": {"code": "NO_TRAJECTORY", "detail": "pass trajectory_id or trajectory"}}
     t = args["trajectory"]
     # shortcut: the existing fitter adapter accepts only SIMULATED quantities (lab_run output); N07 overrides "fit" for MEASURED
     q = lambda v, u, s: {"value": v, "unit": u, "uncertainty": abs(s),
@@ -265,12 +272,37 @@ def _send(path: str, data: bytes, content_type: str, timeout: float) -> Mapping[
 
 
 def http_post(body: dict[str, Any]) -> Mapping[str, Any]:
-    """Live Responses API transport."""
-    return _send("/responses", json.dumps(body).encode(), "application/json", 90)
+    """Live Responses API transport; reserves an upper bound on the daily cap, settles from reported usage."""
+    from Build.guardrails import daily_cap
+    data = json.dumps(body).encode()
+    if not os.environ.get("MODEL_API_KEY"):  # nothing can be sent or billed: fail without a cap row
+        raise ModelUnavailable("MODEL_API_KEY is not set")
+    pin, pout = PRICE_PER_TOKEN.get(body.get("model"), PRICE_PER_TOKEN[MODEL])
+    cost = len(data) * pin + int(body.get("max_output_tokens") or MAX_OUTPUT_TOKENS) * pout  # tokens <= bytes
+    rid = daily_cap.reserve("Meta Model API", cost, str(body.get("model")))
+    try:
+        reply = _send("/responses", data, "application/json", 90)
+        u = reply.get("usage") or {}
+        cost = int(u.get("input_tokens") or 0) * pin + int(u.get("output_tokens") or 0) * pout
+        return reply
+    finally:  # a failed call keeps its reservation: cost unknown, so it is counted
+        daily_cap.settle(rid, cost)
 
 
 def http_post_file(audio: bytes) -> Mapping[str, Any]:
     """Live one-shot transcription: POST /asr/transcribe, multipart 'request' (JSON) + 'audio' parts."""
+    from Build.guardrails import daily_cap
+    if not os.environ.get("MODEL_API_KEY"):
+        raise ModelUnavailable("MODEL_API_KEY is not set")
+    cost = len(audio) / 32000 * VOICE_USD_PER_S  # PCM16 mono 16 kHz upper bound on seconds
+    rid = daily_cap.reserve("Meta Model API", cost, VOICE_MODEL)
+    try:
+        return _send_audio(audio)
+    finally:
+        daily_cap.settle(rid, cost)
+
+
+def _send_audio(audio: bytes) -> Mapping[str, Any]:
     request = json.dumps({"model": VOICE_MODEL, "mode": "PUSH_TO_TALK", "audioEncoding": "WAV"})  # live-probed N05
     boundary = uuid.uuid4().hex
     data = (f'--{boundary}\r\nContent-Disposition: form-data; name="request"\r\nContent-Type: application/json\r\n\r\n'

@@ -3,14 +3,18 @@
 Network only in upload() and track(); parsing and selection are pure. Points are box centres in source
 pixels (x right, y down), not mask centroids, metric positions or centres of mass. Masks are not decoded.
 Missing object on a frame stays missing. Output plugs into the S07a record shape (tracking.TrainingTrack).
+Transport is stdlib urllib (no requests on the API image); every track() call reserves/settles the global daily cap.
 """
+import json
 import math
 import os
 import re
-
-import requests
+import uuid
+from urllib.error import HTTPError
+from urllib.request import Request, urlopen
 
 USD_PER_FRAME = 0.20 / 1000  # sam-3.1 price, $0.20 per 1k video frames processed
+MAX_FRAMES = 3600  # default reservation: 120 s upload limit at 30 fps
 _FRAME = re.compile(r"<(\d+)f>")
 _OBJECT = re.compile(r"(\d+)<\|box;([^|]*)\|>")
 # Mask payloads may contain "|" and ">", so a mask ends only where the next object or the line ends.
@@ -25,13 +29,23 @@ def _headers():
     return {"Authorization": f"Bearer {os.environ['MODEL_API_KEY']}"}
 
 
+def _post(path, data, content_type, timeout):
+    request = Request(f"{_base()}{path}", data=data, method="POST", headers={**_headers(), "Content-Type": content_type})
+    try:
+        with urlopen(request, timeout=timeout) as response:
+            return json.loads(response.read())
+    except HTTPError as exc:  # status only; the body may echo request details
+        raise RuntimeError(f"Meta Model API HTTP {exc.code} on {path}") from None
+
+
 def upload(path, timeout=300):
     """POST /files (purpose user_data) -> file id."""
-    with open(path, "rb") as f:
-        r = requests.post(f"{_base()}/files", headers=_headers(), data={"purpose": "user_data"},
-                          files={"file": f}, timeout=timeout)
-    r.raise_for_status()
-    return r.json()["id"]
+    b = uuid.uuid4().hex
+    with open(path, "rb") as f:  # uploads are capped at 200 MB by N03, so one in-memory body is fine
+        data = (f'--{b}\r\nContent-Disposition: form-data; name="purpose"\r\n\r\nuser_data\r\n--{b}\r\n'
+                f'Content-Disposition: form-data; name="file"; filename="{os.path.basename(path)}"\r\n'
+                f'Content-Type: application/octet-stream\r\n\r\n').encode() + f.read() + f"\r\n--{b}--\r\n".encode()
+    return _post("/files", data, f"multipart/form-data; boundary={b}", timeout)["id"]
 
 
 def box_prompt(object_id, box, width, height, frame=0):
@@ -47,14 +61,24 @@ def point_prompt(object_id, points, width, height, frame=0):
     return f"<{frame}f>{int(object_id)}{tokens}"
 
 
-def track(file_id, prompt, timeout=900):
-    """One sam-3.1 call: prompt is a noun phrase or a box/point prompt. Returns the raw response JSON."""
+def track(file_id, prompt, timeout=900, max_frames=MAX_FRAMES, cap_path=None):
+    """One sam-3.1 call: prompt is a noun phrase or a box/point prompt. Returns the raw response JSON.
+
+    Reserves max_frames x price on the daily cap first (raises CapExceeded before any spend); settles the billed
+    video_frames_processed, or the full reservation when the call fails (cost unknown, so count it).
+    """
+    from Build.guardrails import daily_cap
+    cost = max_frames * USD_PER_FRAME
+    rid = daily_cap.reserve("Meta Model API", cost, f"sam-3.1 track {max_frames} frames", path=cap_path)
     body = {"model": "sam-3.1", "metadata": {"mask_encoding": "one_bit"},
             "input": [{"type": "message", "role": "user", "content": [
                 {"type": "input_text", "text": prompt}, {"type": "input_video", "file_id": file_id}]}]}
-    r = requests.post(f"{_base()}/responses", headers=_headers(), json=body, timeout=timeout)
-    r.raise_for_status()
-    return r.json()
+    try:
+        response = _post("/responses", json.dumps(body).encode(), "application/json", timeout)
+        cost = int((response.get("usage") or {}).get("video_frames_processed") or 0) * USD_PER_FRAME
+        return response
+    finally:
+        daily_cap.settle(rid, cost, path=cap_path)
 
 
 def output_text(response):

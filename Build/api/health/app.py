@@ -10,6 +10,7 @@ from Build.api.gpu import create_router as gpu_router
 from Build.api.lab import create_router as lab_router
 from Build.api.storage import create_router as storage_router
 from Build.api.agent import create_router as agent_router
+from Build.api.experiment import create_router as experiment_router
 from Build.api.workspace import analysis, jobs
 
 SERVICE = "api"
@@ -44,6 +45,7 @@ def create_app() -> FastAPI:
     app.include_router(storage_router())  # N03 files/quotas/projects; SQLite + disk under R2S_DATA_DIR, no Redis
     app.include_router(agent_router())  # N05 owner-gated agent turn + transcription; no Redis dependency
     app.include_router(gpu_router())  # N04 GPU status dot; SQLite job table + Modal stats, independent of Redis
+    app.include_router(experiment_router())  # N07 Mode B experiments; N03 SQLite + one worker thread, no Redis
     # Internal owner-scoped routes (WORKSPACE_INTERNAL_TOKEN); analysis resolves scenes from the jobs store.
     try:
         store = jobs.default_store()

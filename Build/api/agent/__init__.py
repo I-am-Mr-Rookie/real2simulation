@@ -19,6 +19,8 @@ class Turn(BaseModel):
 
 def create_router(post: Callable = core.http_post, post_file: Callable = core.http_post_file,
                   handlers: Mapping[str, Callable] | None = None) -> APIRouter:
+    from Build.api.agent.handlers import HANDLERS
+    handlers = HANDLERS if handlers is None else handlers
     router = APIRouter(prefix="/workspace/agent")
 
     @router.post("/turn")
