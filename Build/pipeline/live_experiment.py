@@ -7,16 +7,21 @@ Times are the container's playback timestamps; slow motion or frame-rate convers
 """
 import json
 import math
+import re
 import shutil
 import statistics
 import subprocess
 
-from Build.api.workspace.analysis import SCALE_LABEL_USER, user_scale
+from Build.api.workspace.analysis import user_scale
 from Build.fitter import FitError, jacobian_covariance, select_model
 from Build.measurement import hosted_sam
 
 TRACK_LABEL = "MEASURED: hosted SAM 3.1 box centres in image pixels"
 NO_SCALE = "scale unverified: no known size given, so results are in pixels; no metric value"
+USER_SCALE = "scale assumed (user size)"
+# A typed size with no stated tolerance ("apple width 8 cm") gets this relative 1 sigma: everyday objects vary ~10%.
+SIZE_REL_DEFAULT = 0.10
+_TOL = re.compile(r"(?:\+/-|\u00b1|plus or minus)\s*(\d+(?:\.\d+)?)\s*(mm|cm|m)\b", re.IGNORECASE)
 CLOCK = "playback timestamps; capture clock unverified (slow motion would change every time-based value)"
 MIN_POINTS = 5
 
@@ -105,21 +110,52 @@ def _axis(t, v):
     fit = next(c for c in sel.candidates if c.degree == sel.selected_degree)
     out = {"model": "constant_acceleration" if fit.degree == 2 else "constant_velocity", "aic": list(sel.aic),
            "rmse_px": fit.rmse, "n": fit.n}
+    cov = jacobian_covariance(fit, parameter_index=fit.degree)
     if fit.degree == 2:
-        cov = jacobian_covariance(fit, parameter_index=2)
         out["accel_px_s2"] = 2 * fit.coefficients[2]
         out["accel_sigma_px_s2"] = 2 * cov.standard_error if cov.valid else None
+    out["_coef"], out["_cov"] = fit.coefficients, cov.covariance if cov.valid else None
     return out
 
 
+def _curve(t, axis_fit, k, n=48):
+    """Fitted curve and 1 sigma band (fitter coefficients + covariance) on n+1 even times, in the trajectory unit."""
+    coef, cov = axis_fit.pop("_coef"), axis_fit.pop("_cov")
+    ts = [t[0] + (t[-1] - t[0]) * i / n for i in range(n + 1)]
+    value = [k * sum(c * x ** j for j, c in enumerate(coef)) for x in ts]
+    band = None
+    if cov:
+        band = [k * math.sqrt(max(0.0, sum(x ** i * cov[i][j] * x ** j for i in range(len(coef))
+                                           for j in range(len(coef))))) for x in ts]
+    return {"t_s": ts, "value": value, "band_1sigma": band}
+
+
+def _size_rel(known_size, length_m):
+    """Relative 1 sigma of a typed size: its stated tolerance ('8 cm +/- 0.5 cm'), else SIZE_REL_DEFAULT."""
+    m = _TOL.search(known_size or "")
+    if m:
+        return float(m[1]) / {"mm": 1000, "cm": 100, "m": 1}[m[2].lower()] / length_m, "stated tolerance"
+    return SIZE_REL_DEFAULT, f"default {SIZE_REL_DEFAULT:.0%} because no tolerance was typed"
+
+
 def _quantity(name, a_px, s_px, mpp, scale_rel):
-    """1 sigma = fitter standard error (iid residuals) combined with the scale spread; clock held fixed."""
+    """1 sigma = fitter standard error (iid residuals) combined with the scale error (box spread + size); clock fixed."""
     if mpp is None:
         return {"name": name, "value": a_px, "unit": "px/s^2", "uncertainty": s_px, "label": NO_SCALE}
     v = a_px * mpp
     u = abs(v) * math.hypot(s_px / a_px, scale_rel) if s_px is not None and a_px else None
-    return {"name": name, "value": v, "unit": "m/s^2", "uncertainty": u, "label": "MEASURED",
-            "uncertainty_note": "1 sigma: fitter residuals + tracked box size spread; known-size error not included"}
+    return {"name": name, "value": v, "unit": "m/s^2", "uncertainty": u, "label": USER_SCALE,
+            "uncertainty_note": "1 sigma: fitter residuals + tracked box size spread + typed size error"}
+
+
+def _abstain(frames, label, reason):
+    """No fit, but the pixel track still goes out (dots on the chart) with the reason; no value is invented."""
+    _, t0, x0, y0 = frames[0][:4] if frames else (0, 0.0, 0.0, 0.0)
+    return {"status": "abstain", "label": f"{label}. No fit: {reason}", "reason": reason, "units": "px",
+            "clock": CLOCK, "fit": None,
+            "trajectory": {"axes": "x right, y up, origin at the first tracked point", "unit": "px",
+                           "t_s": [f[1] - t0 for f in frames], "x": [f[2] - x0 for f in frames],
+                           "y": [y0 - f[3] for f in frames], "frame": [f[0] for f in frames]}}
 
 
 def analyse(track, known_size=None, segment=None):
@@ -128,11 +164,16 @@ def analyse(track, known_size=None, segment=None):
     segment = (first_frame, last_frame) overrides the automatic moving segment (re-fit without a new SAM call).
     """
     frames = track["frames"]
+    label = NO_SCALE
+    if known_size:
+        s = user_scale({"text": known_size})
+        label = f"{USER_SCALE}: {known_size.strip()[:80]}" if s["status"] == "declared" else s["label"]
     if len(frames) < MIN_POINTS:
-        return {"status": "abstain", "reason": f"only {len(frames)} tracked frames; need {MIN_POINTS}"}
+        return _abstain(frames, label, f"only {len(frames)} tracked frames; need {MIN_POINTS}")
     seg = [f for f in frames if segment[0] <= f[0] <= segment[1]] if segment else moving_segment(frames)
     if len(seg) < MIN_POINTS:
-        return {"status": "abstain", "reason": f"moving segment has {len(seg)} frames; need {MIN_POINTS}"}
+        return _abstain(frames, label, f"moving segment has {len(seg)} frames; need {MIN_POINTS}. The object barely"
+                        " moved: click the falling object itself, or type its name")
     t0, x0, y0 = seg[0][1], seg[0][2], seg[0][3]
     t = [f[1] - t0 for f in seg]
     xs, ys = [f[2] - x0 for f in seg], [y0 - f[3] for f in seg]  # y up from here on
@@ -140,12 +181,15 @@ def analyse(track, known_size=None, segment=None):
     if scale and scale["status"] == "declared":
         sizes = [max(f[4], f[5]) for f in seg]
         ref = statistics.median(sizes)
-        mpp, scale_rel = scale["length_m"] / ref, statistics.pstdev(sizes) / ref
-        scale = {**scale, "reference_px": ref, "metres_per_px": mpp, "relative_sigma": scale_rel,
+        size_rel, size_basis = _size_rel(known_size, scale["length_m"])
+        box_rel = statistics.pstdev(sizes) / ref
+        mpp, scale_rel = scale["length_m"] / ref, math.hypot(box_rel, size_rel)
+        scale = {**scale, "label": USER_SCALE, "reference_px": ref, "metres_per_px": mpp, "relative_sigma": scale_rel,
+                 "box_relative_sigma": box_rel, "size_relative_sigma": size_rel, "size_sigma_basis": size_basis,
                  "method": "known size / median longest side of the tracked box (motion blur inflates boxes)"}
-        unit, label = "m", f"MEASURED, scale {SCALE_LABEL_USER}"
+        unit = "m"
     else:
-        mpp, scale_rel, unit, label = None, 0.0, "px", NO_SCALE
+        mpp, scale_rel, unit = None, 0.0, "px"
         scale = scale or {"status": "abstain", "label": NO_SCALE}
     result = {"status": "ok", "label": label, "clock": CLOCK, "units": unit, "scale": scale, "fit": None,
               "segment": {"first_frame": seg[0][0], "last_frame": seg[-1][0], "frames": len(seg), "duration_s": t[-1]}}
@@ -157,7 +201,11 @@ def analyse(track, known_size=None, segment=None):
         try:
             fx, fy = _axis(t, xs), _axis(t, ys)
         except FitError as exc:
-            return {**result, "status": "abstain", "reason": f"fitter rejected the track: {exc}"}
+            return {**_abstain(frames, label, f"fitter rejected the track: {exc}"), "scale": scale}
+        k = mpp or 1.0
+        result["curve"] = {"axis": "y", "unit": unit, **_curve(t, fy, k),
+                           "label": "fitted curve and 1 sigma band from the fitter (residual noise; scale held fixed)"}
+        fx.pop("_coef"), fx.pop("_cov")
         result["fit"] = {"x": fx, "y": fy, "model_selection": "AIC over degree 1 and 2 per axis (Build/fitter)"}
         ax = fx.get("accel_px_s2", 0.0)
         if fy["model"] == "constant_acceleration" and abs(ax) < 0.1 * abs(fy["accel_px_s2"]):  # drag/perspective

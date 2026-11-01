@@ -24,7 +24,8 @@ TOKEN = "synthetic-test-token"
 A = {"x-workspace-token": TOKEN, "x-workspace-owner": "user_synthA"}
 B = {**A, "x-workspace-owner": "user_synthB"}
 H = W = 96  # >=96 rows: one floor row + one wall row stays under S05d's 3% plane support
-A4_REF = {"view": 0, "p0": [60, 20], "p1": [60, 80]}  # floor row: model distance 3 * 60 / 95
+A4_REF = {"view": 0, "p0": [60, 40], "p1": [60, 50]}  # floor row: model distance 3 * 10 / 95, a plausible A4 edge
+WIDE_REF = {"view": 0, "p0": [60, 20], "p1": [60, 80]}  # model distance 3 * 60 / 95: far too long for A4
 
 
 def synthetic_npz(msf=None):
@@ -82,7 +83,7 @@ class AnalyseTests(unittest.TestCase):
     def test_a4_reference_is_measured_with_uncertainty(self):
         pts, _, room, scene = live_room.analyse(synthetic_npz(), A4_REF)
         s = room["scale"]
-        expected = 0.297 / (3 * 60 / 95)
+        expected = 0.297 / (3 * 10 / 95)
         self.assertEqual(s["status"], "MEASURED")
         self.assertAlmostEqual(s["metres_per_model_unit"], expected, delta=expected * 0.01)
         self.assertGreater(s["sd"], 0)
@@ -90,9 +91,19 @@ class AnalyseTests(unittest.TestCase):
         self.assertTrue(scene["room"]["scale_verified"])
 
     def test_user_size_and_model_estimate(self):
-        s = live_room.analyse(synthetic_npz(), {**A4_REF, "length_m": 1.0, "length_sd_m": 0.01})[2]["scale"]
+        s = live_room.analyse(synthetic_npz(), {**WIDE_REF, "length_m": 1.0, "length_sd_m": 0.01})[2]["scale"]
         self.assertAlmostEqual(s["metres_per_model_unit"], 1.0 / (180 / 95), delta=0.01)
         self.assertEqual(s["reference"]["source"], "user-given size")
+
+    def test_implausible_a4_clicks_rejected_not_measured(self):
+        """N25 F6: two clicks that cannot be one A4 edge are not applied and never labelled MEASURED."""
+        _, _, room, scene = live_room.analyse(synthetic_npz(), WIDE_REF)
+        s = room["scale"]
+        self.assertEqual((s["status"], s["metres_per_model_unit"]), ("scale unverified", 1.0))
+        self.assertAlmostEqual(s["reference_rejected"]["metres_per_model_unit"], 0.297 / (180 / 95), places=3)
+        self.assertIn("not applied", s["reference_rejected"]["reason"])
+        self.assertNotIn("\u2014", s["reference_rejected"]["reason"])
+        self.assertFalse(scene["room"]["scale_verified"])
         m = live_room.analyse(synthetic_npz(msf=(1.0, 1.1)))[2]["scale"]
         self.assertEqual(m["status"], "MODEL-ESTIMATED")
         self.assertAlmostEqual(m["sd"], 0.05 / 1.05, places=6)

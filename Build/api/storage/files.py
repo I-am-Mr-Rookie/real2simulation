@@ -91,7 +91,10 @@ class Store:
     def check_daily(self, user):
         q = self.quota(user)
         if q["uploads_remaining_today"] <= 0:
-            raise error(429, "QUOTA_UPLOADS", "daily upload limit reached (20 per Dhaka day)", quota=q)
+            raise error(429, "QUOTA_UPLOADS",
+                        f"Daily upload limit reached: {MAX_DAILY} uploads per day. It resets at {q['uploads_reset_at']}"
+                        " (midnight Dhaka time). Deleting a file frees storage but does not give back an upload.",
+                        reason="daily_upload_limit", reset_at=q["uploads_reset_at"], quota=q)
 
     def path(self, user, file_id):
         return self.root / "files" / user / file_id

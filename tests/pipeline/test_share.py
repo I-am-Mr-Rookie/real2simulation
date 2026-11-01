@@ -46,7 +46,7 @@ def test_share_view_hides_answer_then_reveal_and_revoke(tmp_path, monkeypatch):
     blob = json.dumps(v.json())
     assert "quantity" not in blob and "alice" not in blob and "private-name" not in blob and "file_id" not in blob
     r = c.post(f"/public/guess/{tok}/reveal", json={"guess": 10}).json()
-    assert abs(r["quantity"]["value"] - 9.81) < 0.2 and r["quantity"]["label"].startswith("MEASURED")
+    assert abs(r["quantity"]["value"] - 9.81) < 0.2 and r["quantity"]["label"] == "scale assumed (user size)"
     assert abs(r["difference"] - (10 - r["quantity"]["value"])) < 1e-9
     for bad in ("x", None, -1, 1e9, True):
         assert c.post(f"/public/guess/{tok}/reveal", json={"guess": bad}).status_code == 422

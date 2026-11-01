@@ -18,6 +18,11 @@ from typing import Any, Callable, Mapping, Sequence
 
 MODEL, CONTRIBUTOR_MODEL, VOICE_MODEL = "muse-spark-1.3", "muse-spark-1.3-contributor", "muse-voice-transcribe-1.0"
 MAX_STEPS, MAX_OUTPUT_TOKENS = 6, 4000  # 1200 truncated tool calls in N12 live runs
+CORRECTION = ("Check failed: your draft shows numbers that no tool output or user message contains. Rewrite it without"
+              " any number you did not get from a tool, or call the tool that produces the number first"
+              " (for example lab_add_object then lab_run for a drop).")
+TRY_NEXT = ("Try again in plain words, for example 'drop a ball in the lab and measure g', or ask me to run the"
+            " measurement or fit and I will report its numbers.")
 MAX_TEXT, MAX_HISTORY = 4000, 20
 MAX_AUDIO_BYTES, MAX_AUDIO_S = 4_000_000, 60.0
 # USD per token (in, out) and per audio second: estimates from public listings, matched to N05 live usage; not billing.
@@ -194,7 +199,7 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
     model = CONTRIBUTOR_MODEL if contributor else MODEL
     history = clean_history(history)
     items: list[Any] = [*history, {"role": "user", "content": text}]
-    calls, usage = [], {"input_tokens": 0, "output_tokens": 0}
+    calls, usage, retried = [], {"input_tokens": 0, "output_tokens": 0}, False
     sources = [text] + [h["content"] for h in history if h["role"] == "user"]
     result = {"model": model, "reply": "", "question": None, "tool_calls": calls, "usage": usage, "steps": 0}
     for step in range(1, max_steps + 1):
@@ -207,9 +212,13 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
         if not fcalls:
             reply = _message_text(body).replace("\u2014", ", ").strip()
             if unbacked_numbers(reply, sources):
+                if not retried:  # N25 F5: one corrective retry before giving up; the guard itself is unchanged
+                    retried = True
+                    items += [*(body.get("output") or ()), {"role": "user", "content": CORRECTION}]
+                    continue
                 return {**result, "stopped": "unbacked_numbers", "reply": (
                     "I drafted an answer with numbers that did not come from a tool output, so I am not showing it. "
-                    "Ask me to run the measurement or fit and I will report its numbers.")}
+                    + TRY_NEXT)}
             return {**result, "stopped": "final", "reply": reply or "I have no answer for that yet."}
         items += list(body["output"])  # echo the model's own items (calls, reasoning) as the API expects
         for call in fcalls:
@@ -218,12 +227,16 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
                 output = {"status": "error", "error": {"code": "INVALID_TOOL_CALL", "issues": issues[:8]}}
             elif call["name"] == "ask_user":
                 shown = " ".join([args["question"], *(o["label"] for o in args["options"])])
-                if unbacked_numbers(shown, sources):  # questions and options are visible text too
+                if unbacked_numbers(shown, sources) and not retried:  # questions and options are visible text too
+                    retried = True
+                    output = {"status": "error", "error": {"code": "UNBACKED_NUMBERS", "message": CORRECTION}}
+                elif unbacked_numbers(shown, sources):
                     return {**result, "stopped": "unbacked_numbers", "reply": (
                         "I drafted a question with numbers that did not come from a tool output, so I am not "
-                        "showing it. Tell me what you want to do next.")}
-                calls.append({"name": "ask_user", "args": args, "output": None})
-                return {**result, "stopped": "ask_user", "reply": args["question"], "question": args}
+                        "showing it. " + TRY_NEXT)}
+                else:
+                    calls.append({"name": "ask_user", "args": args, "output": None})
+                    return {**result, "stopped": "ask_user", "reply": args["question"], "question": args}
             else:
                 try:
                     output = handlers[call["name"]](owner, args)

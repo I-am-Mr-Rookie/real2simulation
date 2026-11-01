@@ -87,9 +87,22 @@ def test_step_cap():
 
 def test_invented_numbers_are_replaced():
     out = core.run_turn("what is g here?", Fake(say("Your g is 9.81 m/s^2.")))
-    assert out["stopped"] == "unbacked_numbers" and "9.81" not in out["reply"]
+    assert out["stopped"] == "unbacked_numbers" and "9.81" not in out["reply"] and "Try again" in out["reply"]
+    assert out["steps"] == 2  # N25 F5: one corrective retry, then the guard gives up
     assert core.unbacked_numbers("g = 9.81", ['{"g": 9.8123}']) == []
     assert core.unbacked_numbers("SAM 3.1 tracks it, then a 3D replay with an A4 sheet.", []) == []
+
+
+def test_unbacked_draft_retries_once_with_correction():
+    """N25 F5: a draft with invented numbers gets one corrective retry; a clean second draft is shown."""
+    fake = Fake(say("Your g is 9.81 m/s^2."), say("I can measure g once you run the drop in the lab."))
+    out = core.run_turn("what is g here?", fake)
+    assert out["stopped"] == "final" and out["reply"].startswith("I can measure g")
+    assert fake.requests[1]["input"][-1] == {"role": "user", "content": core.CORRECTION}
+    q = {"question": "Use 12345 frames?", "options": [{"label": "yes", "recommended": True}, {"label": "no", "recommended": False}]}
+    fake = Fake(call("ask_user", q, "q1"), say("Which object should I track?"))
+    out = core.run_turn("check my clip", fake)
+    assert out["stopped"] == "final" and "UNBACKED_NUMBERS" in fake.requests[1]["input"][-1]["output"]
 
 
 def test_ask_user_needs_one_recommended_option():

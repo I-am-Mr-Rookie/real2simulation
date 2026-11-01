@@ -94,6 +94,9 @@ class StorageTests(unittest.TestCase):
             self.assertEqual(self.up(name="p.png", data=PNG).status_code, 201)
         r = self.up(name="p.png", data=PNG)
         self.assertEqual((r.status_code, r.json()["detail"]["code"]), (429, "QUOTA_UPLOADS"))
+        d = r.json()["detail"]  # N25 F8: plain reason and reset time in the body
+        self.assertEqual((d["reason"], d["reset_at"]), ("daily_upload_limit", "2026-11-01T18:00:00Z"))
+        self.assertIn("resets at 2026-11-01T18:00:00Z", d["message"])
         q = r.json()["detail"]["quota"]
         self.assertEqual((q["uploads_remaining_today"], q["uploads_reset_at"]), (0, "2026-11-01T18:00:00Z"))
         first = self.c.get("/internal/workspace/files", headers=A).json()["files"][0]["id"]

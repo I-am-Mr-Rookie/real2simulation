@@ -1,0 +1,14 @@
+# N25-orch269 REPORT: DONE (backend fixes for N13 DEV QA, local only)
+- F1: B1 runs ended in `analyse` abstain (acc3.json: track.label present, no label/quantity/trajectory; click [359,410]), which dropped everything. Abstain now keeps the pixel trajectory, a label and a plain reason. Every fit adds `curve` (fitted y, 1 sigma band from fitter covariance). No-size px value + sigma were already in the payload (N23).
+- F2: experiments list rows carry `sample` {title SAMPLE (RECORDED), label, source} for the seeded row; GET already returns its recorded result.
+- F4: typed size -> label "scale assumed (user size)", not MEASURED; sigma adds size error: stated "+/- x unit" or default 10% (SIZE_REL_DEFAULT, documented in code).
+- F5: unbacked numbers (answer or ask_user) get one corrective retry; give-up text says what to try. Guard unchanged.
+- F6: A4 clicks implying a rescale outside 0.5x to 2x of MapAnything metric are rejected (not applied), `scale.reference_rejected` with reason; passing pairs stay MEASURED.
+- F8: 429 body: plain message with reset time, `reason`, `reset_at`. Web errText ignores `detail.message`: see WEB_TODO.
+- F9: likely cause: get/list read the shared SQLite connection without store.lock while the job thread writes. Now locked. Not reproduced live.
+- Web changes needed: evidence/N25/WEB_TODO.md (5 items). Build/web/src untouched.
+- Checks (python -m pytest per dir; dirs share basenames so one combined run errors at collection): agent 75, api-storage 13, pipeline 67, reconstruction 13, fitter 89, n21 7, api-workspace 32 passed. Build/api/health 15 passed, 1 failed: pre-existing missing psycopg locally (same with changes stashed).
+- New/updated tests: test_live_experiment (3 new), test_core (retry), test_sample (list label), test_storage (429 body), test_live_room (A4 reject; fixture made a plausible A4 pair).
+- Paid calls: none. No deploy.
+- Skipped: F3, F7, F10 (not in task); room user-typed size (non-A4) still labelled MEASURED.
+- Risks: the 0.5x to 2x A4 band assumes MapAnything metric output is roughly right; F9 fix is reasoned, not reproduced; F1 UI shows the reason only after WEB_TODO item 2.

@@ -27,6 +27,9 @@ from Build.guardrails import daily_cap  # noqa: E402
 APP, GPU, CPU, MEM_GIB, IDLE_S = "r2s-ondemand", "A10G", 2, 16, 900  # Build/gpu/ondemand.py + scene_job resources
 FRAMES, FRAME_W, MAX_POINTS = 8, 512, 20000
 A4_LONG_M, A4_SD_M = 0.297, 0.002  # ISO 216 A4 long edge 297 mm, +-2 mm tolerance
+# MapAnything output is nominally metric, so a real A4 edge rescales it by about 1. Outside 0.5 to 2 the clicks are not
+# on one A4 edge (a 210 mm short-edge click gives 1.41, still inside), so the clicked scale is rejected, not applied.
+A4_FACTOR_RANGE = (0.5, 2.0)
 CLICK_SD_PX = 2.0  # assumed 1-sigma click error per reference endpoint, on the model grid
 ESTIMATE_USD = cost(300 + 240 + IDLE_S, GPU, CPU, MEM_GIB)["total_usd"]  # timeout + startup + idle: worst case
 
@@ -77,6 +80,13 @@ def scale_of(views, ref):
             raise ValueError("reference p0 and p1 must be [row, col]")
         r["pixel_sd_rel"] = np.sqrt(2) * CLICK_SD_PX / max(float(np.hypot(*np.subtract(r["p0"], r["p1"]))), 1.0)
         e = sf.known_object_scale(views, r)
+        lo, hi = A4_FACTOR_RANGE
+        if a4 and not lo <= e["metres_per_model_unit"] <= hi:
+            return {**scale_of(views, None), "reference_rejected": {
+                "source": "scale from A4 clicks", "metres_per_model_unit": e["metres_per_model_unit"],
+                "reason": (f"The two clicks are {e['model_length']:.3g} model units apart, which would rescale the"
+                           f" room by {e['metres_per_model_unit']:.3g}x. A real A4 edge (297 mm or 210 mm) should"
+                           f" give {lo:g}x to {hi:g}x, so this scale was not applied. Click both ends of one A4 edge.")}}
         return {"status": "MEASURED", "metres_per_model_unit": e["metres_per_model_unit"], "sd": e["sd"],
                 "reference": {k: e[k] for k in ("source", "view", "p0", "p1", "length_m", "length_sd_m")}}
     msf = [v["msf"] for v in views]

@@ -90,11 +90,22 @@ def _row(r):
 
 
 def get(store, owner, eid):
-    store.db.execute(_SCHEMA)
-    row = store.db.execute("SELECT * FROM experiments WHERE id=? AND user=?", (str(eid), owner)).fetchone()
+    # N25 F9: the job thread writes on this same shared connection; reading outside the lock raced it (404/500 polls)
+    with store.lock:
+        store.db.execute(_SCHEMA)
+        row = store.db.execute("SELECT * FROM experiments WHERE id=? AND user=?", (str(eid), owner)).fetchone()
     if not row:
         raise error(404, "NOT_FOUND", "experiment not found")
     return {"experiment": _row(row)}
+
+
+def _list_row(r):
+    """List rows drop the heavy result; the seeded sample keeps its SAMPLE / RECORDED label so it is never a bare hash."""
+    row = {**_row(r), "result": None, "sample": None}
+    if r["file_id"] == "sample" and r["result"]:
+        s = json.loads(r["result"]).get("sample") or {}
+        row["sample"] = {"label": s.get("label"), "source": s.get("source"), "title": "SAMPLE (RECORDED): falling apple"}
+    return row
 
 
 def refit(store, owner, eid, known_size=None, segment=None):
@@ -118,10 +129,11 @@ def create_router(store=None, run=None, submit=None) -> APIRouter:
 
     @router.get("/experiments")
     def list_experiments(project_id: str | None = None, owner: str = Depends(require_owner)):
-        db().db.execute(_SCHEMA)
-        rows = db().db.execute("SELECT * FROM experiments WHERE user=? AND (? IS NULL OR project_id=?)"
-                               " ORDER BY created DESC, id", (owner, project_id, project_id))
-        return {"experiments": [{**_row(r), "result": None} for r in rows]}
+        with db().lock:
+            db().db.execute(_SCHEMA)
+            rows = db().db.execute("SELECT * FROM experiments WHERE user=? AND (? IS NULL OR project_id=?)"
+                                   " ORDER BY created DESC, id", (owner, project_id, project_id)).fetchall()
+        return {"experiments": [_list_row(r) for r in rows]}
 
     @router.get("/experiments/{experiment_id}")
     def get_experiment(experiment_id: str, owner: str = Depends(require_owner)):

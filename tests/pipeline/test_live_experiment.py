@@ -39,9 +39,43 @@ def test_recorded_apple_segment_and_labels():
     q = px["quantity"]
     assert q["unit"] == "px/s^2" and q["value"] > 0 and q["uncertainty"] > 0 and "scale unverified" in q["label"]
     m = le.analyse(track, "apple width 8 cm")
-    assert m["quantity"]["unit"] == "m/s^2" and m["quantity"]["label"] == "MEASURED"
+    assert m["quantity"]["unit"] == "m/s^2" and m["quantity"]["label"] == "scale assumed (user size)"
     assert m["scale"]["status"] == "declared" and m["quantity"]["uncertainty"] > 0
     assert len(m["trajectory"]["t_s"]) == m["segment"]["frames"] and m["trajectory"]["unit"] == "m"
+
+
+def test_no_size_result_carries_pixel_value_curve_and_band():
+    """N25 F1: without a known size the payload still has the px value, sigma, fitted curve and 1 sigma band."""
+    r = le.analyse(apple_track())
+    q, c = r["quantity"], r["curve"]
+    assert q["unit"] == "px/s^2" and q["uncertainty"] > 0 and r["label"] == le.NO_SCALE
+    assert c["unit"] == "px" and len(c["t_s"]) == len(c["value"]) == len(c["band_1sigma"]) == 49
+    assert all(b > 0 for b in c["band_1sigma"]) and "_coef" not in r["fit"]["y"] and "_cov" not in r["fit"]["x"]
+    # the curve is the fitter's own polynomial: its second difference gives back the reported acceleration
+    h = c["t_s"][1] - c["t_s"][0]
+    assert (c["value"][2] - 2 * c["value"][1] + c["value"][0]) / h ** 2 == pytest.approx(-q["value"], rel=1e-6)
+    assert c["value"][0] == pytest.approx(0, abs=3 * c["band_1sigma"][0] + 5)
+
+
+def test_abstain_keeps_pixel_track_and_says_why():
+    """N25 F1: a click on a still object gives no fit, but the dots and a plain reason still come back."""
+    still = {"frames": [[k, k / 30, 200.0 + (k % 2) * 0.5, 300.0, 20, 20] for k in range(40)]}
+    r = le.analyse(still)
+    assert r["status"] == "abstain" and "quantity" not in r and r["units"] == "px"
+    assert len(r["trajectory"]["t_s"]) == 40 and r["label"].startswith(le.NO_SCALE) and "click" in r["reason"]
+    assert le.analyse({"frames": []})["trajectory"]["t_s"] == []
+
+
+def test_typed_size_is_assumed_scale_with_size_error_in_sigma():
+    """N25 F4: typed size -> 'scale assumed (user size)'; default 10% size error, or the stated tolerance."""
+    track = fall_track(n_fall=20)
+    for frame in track["frames"]:  # small fit noise so the size term dominates the 1 sigma
+        frame[3] += 0.3 * ((frame[0] * 7) % 3 - 1)
+    d = le.analyse(track, "ball diameter 5 cm")
+    t = le.analyse(track, "ball diameter 5 cm +/- 0.1 cm")
+    assert d["label"].startswith("scale assumed (user size)") and "MEASURED" not in d["quantity"]["label"]
+    assert d["scale"]["size_relative_sigma"] == le.SIZE_REL_DEFAULT and t["scale"]["size_relative_sigma"] == pytest.approx(0.02)
+    assert d["quantity"]["uncertainty"] >= 0.1 * d["quantity"]["value"] > t["quantity"]["uncertainty"]
 
 
 def test_synthetic_drop_recovers_g_and_skips_rest_frames():

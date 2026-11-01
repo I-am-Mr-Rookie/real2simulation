@@ -68,6 +68,13 @@ class SampleTests(unittest.TestCase):
         self.assertIn("SAMPLE / RECORDED", e["result"]["sample"]["label"])
         self.assertEqual(e["result"]["fit"]["y"]["model"], "constant_acceleration")
         self.assertNotIn("cost_usd", e["result"])
+        app = FastAPI()  # N25 F2: the experiments list labels the seeded row SAMPLE instead of a bare hash
+        app.include_router(experiment.create_router(self.store))
+        rows = TestClient(app).get("/internal/workspace/experiments", headers=A).json()["experiments"]
+        s = next(x for x in rows if x["file_id"] == "sample")
+        self.assertIsNone(s["result"])
+        self.assertTrue(s["sample"]["title"].startswith("SAMPLE (RECORDED)"))
+        self.assertIn("SAMPLE / RECORDED", s["sample"]["label"])
         job = next((self.store.root / "rooms" / "user_synthA").iterdir()).name
         r = self.c.get(f"/internal/workspace/rooms/{job}/result", headers=A).json()
         self.assertEqual(r["room"]["labels"]["scale"], "scale unverified")
