@@ -1,0 +1,12 @@
+# N10-orch254 REPORT: DONE
+
+- What: Build/web/src/lab-editor/ (scene.mjs lab-scene-v1 schema, validate/parse/export, fitterRequest; physics.mjs Rapier world from the scene: gravity vector, floor perpendicular to gravity, ball/block/ramp/pendulum (spherical joint)/spring (spring joint), per-object sensor traces lab-trace-v1, 120 Hz, 12000-sample cap; LabEditor.jsx three + OrbitControls + TransformControls move/rotate/resize, select by click, play/pause/reset, export/import scene JSON (file or textarea, strict validation), PLY room via viewer decodePlyXyzRgb with "Room scale unverified" chip, export traces + fitter requests; SIMULATED chip; 50-object cap; Rapier lazy-loaded on first Play).
+- Mounted at public /lab behind a "Open 3D lab editor" toggle (or /lab?editor=1), dynamic import with ssr:false. This touched Build/web/src/app/(public)/lab/page.jsx (outside Owns, task asked for the mount).
+- Dependency: @dimforge/rapier3d-compat 0.21.0 (exact). Installed in canonical Build/web node_modules; package.json + new package-lock.json (none existed before) committed here; canonical package.json restored and its untracked lock removed so ff-merge is clean.
+- Checks: node --test tests/lab-editor/lab-editor.test.mjs 5/5 pass (schema round-trip, rejects bad edits incl. 51 objects/unknown fields/NaN, floor orientation, headless free fall -> Build/fitter handle gives gravity -9.80999 m/s^2 (f32), pendulum/spring/ramp motion). npm run build green.
+- Screenshots (headed Playwright Chromium 1248 over raw CDP, evidence/N10/shoot.mjs, local next start): evidence/N10/lab-editor-375.png (run paused at t=1.05 s, scrollWidth 375), evidence/N10/lab-editor-desktop.png (5 objects, scrollWidth 1265 = no overflow; physics clock showed t=0.00 s in that pass, likely rAF throttling of the headed window under CDP emulation; 375 pass proves the loop runs), screenshots.json, 0 console errors.
+- PNGs stay on disk in the worktree (evidence/N10/*.png, about 80 KB each) and are not committed (contract: no media binaries).
+- Paid calls: none.
+- Skipped: flywheel, numeric property editor (agent edits JSON), touch-pinch tuning, Railway DEV deploy, signed-in check (public route).
+- Risks: desktop screenshot does not show motion; spring is a Rapier spring joint (distance spring, can swing); trace fitter request uses one axis with zero declared sigma (fitter floors with residual RSS); PLY room has no collision mesh, only the gravity-perpendicular floor plane.
+

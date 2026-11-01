@@ -1,0 +1,15 @@
+{
+  "375": {
+    "status": "Paused. Resume, reset, or export the SIMULATED sensor traces. Gravity [0, -9.81, 0] m/s^2.",
+    "time": "t = 1.05 s",
+    "scrollW": 375,
+    "objects": 5
+  },
+  "desktop": {
+    "status": "Paused. Resume, reset, or export the SIMULATED sensor traces. Gravity [0, -9.81, 0] m/s^2.",
+    "time": "t = 0.00 s",
+    "scrollW": 1265,
+    "objects": 5
+  },
+  "console_errors": []
+}
