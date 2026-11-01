@@ -1,3 +1,4 @@
+> Revised by S22k per R-D review: see evidence/qa/claude/S22k-GATE-D-DECISION-REV.md (3.4 and streak PARTIAL; verdict of record there).
 # S22j final Gate D decision and freeze recommendation
 
 Judge: S22j-orch238, anthropic/claude-opus-5-5/high, 2026-11-01 07:22Z-07:52Z, from main 341bc50c. Read-only: no product
