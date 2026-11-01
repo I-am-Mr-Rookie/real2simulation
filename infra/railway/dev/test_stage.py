@@ -24,6 +24,8 @@ FILES = {
     "Build/api/health/app.py": b"synthetic-api\n",
     "Build/api/health/dependencies.py": b"synthetic-shared\n",
     "Build/api/workspace/jobs.py": b"synthetic-workspace\n",
+    **{f"Build/web/src/lab-editor/{name}.mjs": b"synthetic-bridge\n"
+       for name in ("agent-run", "scene", "physics", "frame")},
     "clips.csv": b"synthetic-clips\n",
     "evidence/S13/S13h/live/timing.json": b"{}\n",
     "evidence/S14/S14g-fix3-ledger.jsonl": b"{}\n",
@@ -52,7 +54,8 @@ class StageTests(unittest.TestCase):
                 self.assertEqual(command[1:3], ["-B", "-c"])
                 self.assertIn("load_guest()", command[3])
                 return snapshot
-            if command[1] == "rev-parse": return REVISION + "\n"
+            if command[1] == "rev-parse":
+                return str(Path(self.temp.name) / "repo" / ".git") if command[2] == "--git-common-dir" else REVISION + "\n"
             if command[1] == "ls-tree": return "\n".join(files)
             if command[1] == "diff":
                 if dirty: raise subprocess.CalledProcessError(1, command)
@@ -146,10 +149,12 @@ class StageTests(unittest.TestCase):
                     expected = {
                         "web": {"Build/web/src/page.jsx", "Build/web/package.json", "Build/lab/session-service.mjs",
                                 "Build/library/loader.mjs", "Build/simulator/rk4.mjs", "Dockerfile",
-                                "Build/web/library-snapshot/guest.json"},
+                                "Build/web/library-snapshot/guest.json",
+                                *(f"Build/web/src/lab-editor/{name}.mjs" for name in ("agent-run", "scene", "physics", "frame"))},
                         "api": {"Build/api/health/app.py", "Build/api/health/dependencies.py", "Build/api/workspace/jobs.py",
                                 "clips.csv", "evidence/S13/S13h/live/timing.json", "evidence/S14/S14g-fix3-ledger.jsonl", "Dockerfile",
-                                "Build/simulator/rk4.mjs"},  # S15av: API lab bridge spawns the Node simulator
+                                "Build/simulator/rk4.mjs",
+                                *(f"Build/web/src/lab-editor/{name}.mjs" for name in ("agent-run", "scene", "physics", "frame"))},
                         "worker": {"Build/worker/health/app.py", "Build/api/health/dependencies.py", "Dockerfile"},
                     }[service]
                     self.assertEqual(set(manifest["files"]), expected)

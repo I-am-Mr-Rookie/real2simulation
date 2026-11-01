@@ -32,7 +32,7 @@ prefixes = {
             "Build/gpu/", "Build/guardrails/", "Build/measurement/", "Build/reconstruction/", "evidence/N07/live-st03.json",
             "evidence/S05/upstream/revisions.json",  # N23: Build/gpu/image_spec.py reads it when a room job starts
             # N12 lab bridge Build/web/src/lab-editor/agent-run.mjs and its three imports (rk4.mjs is listed below).
-            *(f"Build/web/src/lab-editor/{m}.mjs" for m in ("agent-run", "scene", "physics")),
+            *(f"Build/web/src/lab-editor/{m}.mjs" for m in ("agent-run", "scene", "physics", "frame")),
             "contracts/", "clips.csv", "evidence/owner/S02/APPROVAL.md", "evidence/clips/S02c-acquisition.json",
             "evidence/S13/S13h/live/", "evidence/S14/S14g-fix3-live.json", "evidence/S14/S14g-fix3-ledger.jsonl",
             # S15av lab bridge: Python setup/validation/instruments plus the Node simulator it spawns.
@@ -61,9 +61,14 @@ if service == "web":
 bundle = {}
 if service == "api" and BUNDLE_MANIFEST in files:
     recorded = json.loads(subprocess.check_output(["git", "show", f"{revision}:{BUNDLE_MANIFEST}"], cwd=root))["files"]
+    bundle_root = root
+    if not (root / BUNDLE).is_dir():
+        # Worktrees share the canonical checkout's ignored, hash-verified display bundle.
+        common = subprocess.check_output(["git", "rev-parse", "--git-common-dir"], cwd=root, text=True).strip()
+        bundle_root = (root / common).resolve().parent
     for name, entry in recorded.items():
-        if (root / BUNDLE / name).is_file():
-            content = (root / BUNDLE / name).read_bytes()
+        if (bundle_root / BUNDLE / name).is_file():
+            content = (bundle_root / BUNDLE / name).read_bytes()
             if hashlib.sha256(content).hexdigest() != entry["sha256"]:
                 raise ValueError("RM04 bundle sha256 does not match the recorded manifest")
             bundle[BUNDLE + name] = content
