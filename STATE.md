@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-01 21:05 Dhaka (controller)
+- Accepted N26 (web side of N13 fixes: F1 F2 F3 F4 F6 F8 F10). Main green: node 398/398, build ok. DEV web f0e30fd5 (b192d00f), api e0619429; verify.py exit 0; /, /workspace, /lab, /library 200.
+- Koushik (Nov 1): S23a not approved yet; project not ready. Ask again at freeze Nov 4 10:00 Dhaka. Only S23b waits on it.
+- Dispatched N27-orch272 (Sonnet medium, 30 min, due 21:33): DEV recheck of the N13 findings.
+
 ## 2026-11-01 20:45 Dhaka (controller)
 - Accepted N24 (SaaS polish: lab workspace + auto-frame, chart axes, projects card with SAMPLE, copy, theme), N25 (backend fixes F1 F2 F4 F5 F6 F8 F9), N17 (DEMO-SCRIPT-NOV1 + READ-SHEET-NOV1, V01 to V19, 2:22 spoken). Main green: node 394/394, python 182, build ok.
 - Dispatched N26-orch271 (Sonnet high, 60 min, due 21:35 Dhaka): web side of N25 WEB_TODO + F3 contributor race + F10 dot label. DEV redeploy after N26.

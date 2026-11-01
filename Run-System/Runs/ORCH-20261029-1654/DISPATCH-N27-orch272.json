@@ -1,0 +1,7 @@
+{
+ "id": "N27-orch272",
+ "model": "anthropic/claude-sonnet-5-5",
+ "effort": "medium",
+ "minutes": 30,
+ "prompt": "Run N27-orch272. Read Run-System/WORKER_CONTRACT.md first and follow it. Model anthropic/claude-sonnet-5-5/medium.\nTimebox: issued 2026-11-01T15:03:30+00:00; deadline 2026-11-01T15:33:30+00:00 (Dhaka 2026-11-01T21:33:30+06:00); cutoff 2026-11-01T15:28:30+00:00.\nTask N27: quick DEV recheck of the N13 findings after the N24/N25/N26 deploy (web f0e30fd5, api e0619429). Read evidence/N13/FINDINGS.md and the N25/N26 REPORTs. On https://web-dev-cd80.up.railway.app with ONE fresh +clerk_test@example.com account (code 424242), headed Playwright Chromium (reuse evidence/N13/qa.mjs and qa2.mjs, fix the agent-drawer selector), check each of F1 to F10: contributor card on first load after sign-up; SAMPLE project visible and named; Mode B ST03 with no size shows reason or pixel fit with band; typed size shows \"scale assumed (user size)\" with wider sigma; agent \"Drop a 5 cm ball from 1.2 m and measure g\" in the lab editor 2 times; A4 implausible clicks on RM02 rejected with reason; lab editor layout and room auto-frame; chart axes; GPU dot label; dark mode on result card and lab. Desktop 1280 and 375 px screenshots.\nWrite evidence/N27/RECHECK.md: per finding FIXED / STILL OPEN / NOT CHECKED with screenshot names, plus any new visual or functional problem ranked P1 to P3. Paid calls at most 2 Mode B jobs, 1 Mode A job, 4 agent turns (about $0.6); report the estimate. No code changes, no deploy.\nOwns: evidence/N27/."
+}

@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 20:35 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 21:04 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **312 / 322** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **313 / 323** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,7 +24,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **N26** — Codex (native Claude) · Sonnet 5.5, effort high — Web fixes for N13 findings (F3 contributor race, F8 quota message, F1/F4 result display) from evidence/N25/WEB_TODO.md, then DEV redeploy smoke (60 min) *(in progress)*
+- [~] **N27** — Codex (native Claude) · Sonnet 5.5, effort medium — DEV recheck of N13 findings after N24/N25/N26 deploy (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -48,7 +48,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (22/26)</summary>
+<details><summary><b>N</b> —  (23/27)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -75,7 +75,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N23** — Codex (native Claude) · Opus 5.5, effort high — DEV: make Meta Model API reachable (api region or egress), rooms list route, redeploy, DEV smoke both modes (60 min)
 - [x] **N24** — Codex (native Claude) · Opus 5.5, effort high — Product polish pass: coherent live-product copy, lab workspace layout, room camera framing, chart axes, projects list (60 min)
 - [x] **N25** — Codex (native Claude) · Opus 5.5, effort medium — Backend fixes for N13 QA findings (F1 pixel fit, F2 sample row, F4 assumed scale, F5 guard retry, F6 A4 plausibility, F8 429 reason, F9 poll race) (60 min)
-- [~] **N26** — Codex (native Claude) · Sonnet 5.5, effort high — Web fixes for N13 findings (F3 contributor race, F8 quota message, F1/F4 result display) from evidence/N25/WEB_TODO.md, then DEV redeploy smoke (60 min) *(in progress)*
+- [x] **N26** — Codex (native Claude) · Sonnet 5.5, effort high — Web fixes for N13 findings (F3 contributor race, F8 quota message, F1/F4 result display) from evidence/N25/WEB_TODO.md, then DEV redeploy smoke (60 min)
+- [~] **N27** — Codex (native Claude) · Sonnet 5.5, effort medium — DEV recheck of N13 findings after N24/N25/N26 deploy (30 min) *(in progress)*
 
 </details>
 
