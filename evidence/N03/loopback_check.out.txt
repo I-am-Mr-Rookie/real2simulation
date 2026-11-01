@@ -1,0 +1,1 @@
+{"upload":201,"size":5000000,"range":206,"content_range":"bytes 4999990-4999999/5000000","tail_ok":true,"uploads_remaining_today":19}
