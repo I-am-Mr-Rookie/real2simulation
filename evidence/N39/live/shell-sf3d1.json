@@ -1,0 +1,662 @@
+{
+ "http": 200,
+ "seconds": 189.6,
+ "dry": false,
+ "sam_calls": [],
+ "shell": {
+  "schema": "n39-shell/1",
+  "keyframes": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7
+  ],
+  "sam_calls": 72,
+  "sam_cost_usd": 0.18,
+  "floor": "FIT",
+  "yaw_deg": 43.0,
+  "walls": [
+   {
+    "axis": 0,
+    "side": -1,
+    "plane": -2.017,
+    "support": 0.0516,
+    "status": "FIT",
+    "p95_residual": 0.0464,
+    "span": [
+     -1.9773,
+     0.5756
+    ],
+    "height": 1.8525
+   },
+   {
+    "axis": 0,
+    "side": 1,
+    "plane": 1.9919,
+    "support": 0.1768,
+    "status": "FIT",
+    "p95_residual": 0.0471,
+    "span": [
+     -1.9773,
+     0.5756
+    ],
+    "height": 1.8525
+   },
+   {
+    "axis": 1,
+    "side": -1,
+    "plane": -1.9773,
+    "support": 0.0524,
+    "status": "FIT",
+    "p95_residual": 0.0456,
+    "span": [
+     -2.017,
+     1.9919
+    ],
+    "height": 1.8525
+   },
+   {
+    "axis": 1,
+    "side": 1,
+    "plane": 0.5756,
+    "support": 0.0902,
+    "status": "FIT",
+    "p95_residual": 0.044,
+    "span": [
+     -2.017,
+     1.9919
+    ],
+    "height": 1.8525
+   }
+  ],
+  "openings": [
+   {
+    "wall": 3,
+    "noun": "door",
+    "view": 1,
+    "along": [
+     1.5971,
+     1.9898
+    ],
+    "y": [
+     0.0,
+     1.2278
+    ]
+   },
+   {
+    "wall": 1,
+    "noun": "door",
+    "view": 1,
+    "along": [
+     -0.2358,
+     -0.1643
+    ],
+    "y": [
+     0.0,
+     1.0467
+    ]
+   },
+   {
+    "wall": 2,
+    "noun": "door",
+    "view": 2,
+    "along": [
+     0.9183,
+     1.5737
+    ],
+    "y": [
+     0.0,
+     1.0446
+    ]
+   },
+   {
+    "wall": 2,
+    "noun": "window",
+    "view": 3,
+    "along": [
+     -1.2619,
+     -0.1655
+    ],
+    "y": [
+     0.1215,
+     0.8764
+    ]
+   }
+  ],
+  "kept": [
+   {
+    "id": "room-object-1",
+    "category": "table",
+    "views": [
+     5,
+     5
+    ],
+    "points": 28683,
+    "size_m": [
+     0.4523,
+     1.2597,
+     0.0982
+    ],
+    "size_sd_m": [
+     0.0192,
+     0.0108,
+     0.0273
+    ],
+    "clutter_px_masked": 33,
+    "shape": "mesh",
+    "fallback_reason": null,
+    "sf3d": {
+     "gpu": "A10G",
+     "wall_s": 154.812,
+     "inference_s": 1.198,
+     "estimated_usd": 0.07899072
+    },
+    "reason": "main furniture (table), 2 view(s), box reaches the floor"
+   },
+   {
+    "id": "room-object-2",
+    "category": "table",
+    "views": [
+     0,
+     0,
+     7,
+     7
+    ],
+    "points": 25472,
+    "size_m": [
+     0.6815,
+     0.0939,
+     0.29
+    ],
+    "size_sd_m": [
+     0.0256,
+     0.064,
+     0.0257
+    ],
+    "clutter_px_masked": 1297,
+    "shape": "mesh",
+    "fallback_reason": null,
+    "sf3d": {
+     "gpu": "A10G",
+     "wall_s": 6.18,
+     "inference_s": 0.548,
+     "estimated_usd": 0.02433578
+    },
+    "reason": "main furniture (table), 4 view(s), box reaches the floor"
+   },
+   {
+    "id": "room-object-3",
+    "category": "sofa",
+    "views": [
+     3
+    ],
+    "points": 17314,
+    "size_m": [
+     0.8022,
+     0.2503,
+     0.3306
+    ],
+    "size_sd_m": [
+     0.0498,
+     0.0152,
+     0.0252
+    ],
+    "clutter_px_masked": 0,
+    "shape": "mesh",
+    "fallback_reason": null,
+    "sf3d": {
+     "gpu": "A10G",
+     "wall_s": 5.63,
+     "inference_s": 0.547,
+     "estimated_usd": 0.02413331
+    },
+    "reason": "main furniture (sofa), 1 view(s), box reaches the floor"
+   },
+   {
+    "id": "room-object-4",
+    "category": "cabinet",
+    "views": [
+     1,
+     1,
+     1,
+     6,
+     6
+    ],
+    "points": 15951,
+    "size_m": [
+     0.3804,
+     0.793,
+     0.2965
+    ],
+    "size_sd_m": [
+     0.0389,
+     0.1477,
+     0.0275
+    ],
+    "clutter_px_masked": 866,
+    "shape": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+    "sf3d": null,
+    "reason": "main furniture (cabinet), 5 view(s), box reaches the floor"
+   },
+   {
+    "id": "room-object-5",
+    "category": "cabinet",
+    "views": [
+     4,
+     4,
+     4
+    ],
+    "points": 15131,
+    "size_m": [
+     0.4914,
+     0.5942,
+     0.2499
+    ],
+    "size_sd_m": [
+     0.039,
+     0.0376,
+     0.0148
+    ],
+    "clutter_px_masked": 3117,
+    "shape": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+    "sf3d": null,
+    "reason": "main furniture (cabinet), 3 view(s), box reaches the floor"
+   },
+   {
+    "id": "room-object-6",
+    "category": "sofa",
+    "views": [
+     7
+    ],
+    "points": 6775,
+    "size_m": [
+     1.1029,
+     0.2232,
+     0.2333
+    ],
+    "size_sd_m": [
+     0.0167,
+     0.0079,
+     0.0134
+    ],
+    "clutter_px_masked": 0,
+    "shape": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+    "sf3d": null,
+    "reason": "main furniture (sofa), 1 view(s), box reaches the floor"
+   },
+   {
+    "id": "room-object-7",
+    "category": "chair",
+    "views": [
+     1
+    ],
+    "points": 5503,
+    "size_m": [
+     0.2927,
+     0.6498,
+     0.2446
+    ],
+    "size_sd_m": [
+     0.0234,
+     0.0152,
+     0.0239
+    ],
+    "clutter_px_masked": 0,
+    "shape": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+    "sf3d": null,
+    "reason": "main furniture (chair), 1 view(s), box reaches the floor"
+   },
+   {
+    "id": "room-object-8",
+    "category": "shelf",
+    "views": [
+     6,
+     6,
+     1,
+     1
+    ],
+    "points": 2982,
+    "size_m": [
+     0.5465,
+     1.1813,
+     0.1794
+    ],
+    "size_sd_m": [
+     0.0159,
+     0.0088,
+     0.0136
+    ],
+    "clutter_px_masked": 966,
+    "shape": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+    "sf3d": null,
+    "reason": "main furniture (shelf), 4 view(s), box reaches the floor"
+   },
+   {
+    "id": "room-object-9",
+    "category": "chair",
+    "views": [
+     1
+    ],
+    "points": 1629,
+    "size_m": [
+     0.5401,
+     0.1551,
+     0.2942
+    ],
+    "size_sd_m": [
+     0.0164,
+     0.0103,
+     0.0116
+    ],
+    "clutter_px_masked": 0,
+    "shape": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+    "sf3d": null,
+    "reason": "main furniture (chair), 1 view(s), box reaches the floor"
+   }
+  ],
+  "dropped": 23,
+  "dropped_reasons": {
+   "no reconstructed points": 5,
+   "too small for main furniture": 5,
+   "same item seen in another view": 10,
+   "overlaps a larger detected item": 3
+  },
+  "detections": {
+   "furniture": 32,
+   "features": 4
+  },
+  "labels": {
+   "geometry": "MODEL-ESTIMATED",
+   "scale": "scale unverified",
+   "shape": "MODEL-GENERATED shape, Powered by Stability AI (mesh items only)",
+   "note": "only floor, walls and main furniture; clutter dropped; dense collision boxes off by default"
+  },
+  "created_at": "2026-11-01T23:50:18Z"
+ },
+ "error": null,
+ "scene_objects": [
+  {
+   "id": "wall-1-1",
+   "position": [
+    -1.9824,
+    0.9263,
+    0.8903
+   ],
+   "size": [
+    0.08,
+    1.8525,
+    2.5529
+   ]
+  },
+  {
+   "id": "wall-2-1",
+   "position": [
+    0.7314,
+    0.9263,
+    -2.195
+   ],
+   "size": [
+    0.08,
+    1.8525,
+    1.7415
+   ]
+  },
+  {
+   "id": "wall-2-2",
+   "position": [
+    1.3496,
+    1.4496,
+    -1.5321
+   ],
+   "size": [
+    0.08,
+    0.8058,
+    0.0715
+   ]
+  },
+  {
+   "id": "wall-2-3",
+   "position": [
+    1.6263,
+    0.9263,
+    -1.2353
+   ],
+   "size": [
+    0.08,
+    1.8525,
+    0.7399
+   ]
+  },
+  {
+   "id": "wall-3-1",
+   "position": [
+    -2.5748,
+    0.9263,
+    -0.3573
+   ],
+   "size": [
+    0.7551,
+    1.8525,
+    0.08
+   ]
+  },
+  {
+   "id": "wall-3-2",
+   "position": [
+    -1.8978,
+    0.0607,
+    -0.9886
+   ],
+   "size": [
+    1.0964,
+    0.1215,
+    0.08
+   ]
+  },
+  {
+   "id": "wall-3-3",
+   "position": [
+    -1.8978,
+    1.3644,
+    -0.9886
+   ],
+   "size": [
+    1.0964,
+    0.9761,
+    0.08
+   ]
+  },
+  {
+   "id": "wall-3-4",
+   "position": [
+    -1.1005,
+    0.9263,
+    -1.7321
+   ],
+   "size": [
+    1.0838,
+    1.8525,
+    0.08
+   ]
+  },
+  {
+   "id": "wall-3-5",
+   "position": [
+    -0.4645,
+    1.4486,
+    -2.3251
+   ],
+   "size": [
+    0.6554,
+    0.8079,
+    0.08
+   ]
+  },
+  {
+   "id": "wall-3-6",
+   "position": [
+    -0.0719,
+    0.9263,
+    -2.6912
+   ],
+   "size": [
+    0.4182,
+    1.8525,
+    0.08
+   ]
+  },
+  {
+   "id": "wall-4-1",
+   "position": [
+    0.2663,
+    0.9263,
+    0.5934
+   ],
+   "size": [
+    3.6141,
+    1.8525,
+    0.08
+   ]
+  },
+  {
+   "id": "wall-4-2",
+   "position": [
+    1.7315,
+    1.5402,
+    -0.7729
+   ],
+   "size": [
+    0.3927,
+    0.6247,
+    0.08
+   ]
+  },
+  {
+   "id": "room-object-1",
+   "position": [
+    0.8985,
+    0.6298,
+    -0.0513
+   ],
+   "size": [
+    0.4523,
+    1.2597,
+    0.0982
+   ]
+  },
+  {
+   "id": "room-object-2",
+   "position": [
+    -0.2078,
+    0.0469,
+    0.0284
+   ],
+   "size": [
+    0.6815,
+    0.0939,
+    0.29
+   ]
+  },
+  {
+   "id": "room-object-3",
+   "position": [
+    -1.605,
+    0.1251,
+    -0.6786
+   ],
+   "size": [
+    0.8022,
+    0.2503,
+    0.3306
+   ]
+  },
+  {
+   "id": "room-object-4",
+   "position": [
+    0.9313,
+    0.3965,
+    -1.2824
+   ],
+   "size": [
+    0.3804,
+    0.793,
+    0.2965
+   ]
+  },
+  {
+   "id": "room-object-5",
+   "position": [
+    -0.7206,
+    0.2971,
+    1.5119
+   ],
+   "size": [
+    0.4914,
+    0.5942,
+    0.2499
+   ]
+  },
+  {
+   "id": "room-object-6",
+   "position": [
+    -0.7267,
+    0.1116,
+    -0.2003
+   ],
+   "size": [
+    1.1029,
+    0.2232,
+    0.2333
+   ]
+  },
+  {
+   "id": "room-object-7",
+   "position": [
+    1.4762,
+    0.3249,
+    -1.0394
+   ],
+   "size": [
+    0.2927,
+    0.6498,
+    0.2446
+   ]
+  },
+  {
+   "id": "room-object-8",
+   "position": [
+    1.021,
+    0.5907,
+    -1.6254
+   ],
+   "size": [
+    0.5465,
+    1.1813,
+    0.1794
+   ]
+  },
+  {
+   "id": "room-object-9",
+   "position": [
+    0.769,
+    0.0775,
+    -2.1107
+   ],
+   "size": [
+    0.5401,
+    0.1551,
+    0.2942
+   ]
+  }
+ ]
+}

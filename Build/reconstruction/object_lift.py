@@ -9,6 +9,7 @@ N31: those object pixels also form the RGBA cut-out for Stable Fast 3D (Build/gp
 turned to face the camera (quarter turns), fitted into the measured box and stored as the object's shape (physics too).
 """
 import base64
+import functools
 import io
 import json
 import threading
@@ -43,18 +44,29 @@ def view_png(npz, view):
 
 def sam_box(png, point, width, height, cap_path=None, timeout=300):
     """One hosted sam-3.1 image call with a positive point [row, col]. Returns (box x1,y1,x2,y2, raw response)."""
-    from Build.guardrails import daily_cap
     row, col = point
-    prompt = hosted_sam.point_prompt(1, [(col, row, True)], width, height)
+    resp = _sam_image(png, hosted_sam.point_prompt(1, [(col, row, True)], width, height), "N14 sam-3.1 image point prompt",
+                      cap_path, timeout)
+    return pick_box(hosted_sam.output_text(resp), point), resp
+
+
+def sam_text(png, noun, width, height, cap_path=None, timeout=300):
+    """N39: one hosted sam-3.1 image call with a noun prompt -> every box found (x1, y1, x2, y2), maybe none."""
+    text = hosted_sam.output_text(_sam_image(png, noun, f"N39 sam-3.1 image text prompt {noun}", cap_path, timeout))
+    frames, _ = hosted_sam.parse(text if hosted_sam._FRAME.search(text) else "<0f>" + text)
+    return [b for f in frames.values() for b in f.values()]
+
+
+def _sam_image(png, prompt, purpose, cap_path, timeout):
+    from Build.guardrails import daily_cap
     body = {"model": "sam-3.1", "metadata": {"mask_encoding": "one_bit"}, "input": [{"type": "message", "role": "user",
             "content": [{"type": "input_text", "text": prompt}, {"type": "input_image",
                          "image_url": "data:image/png;base64," + base64.b64encode(png).decode()}]}]}
-    rid = daily_cap.reserve("Meta Model API", USD_PER_IMAGE, "N14 sam-3.1 image point prompt", path=cap_path)
+    rid = daily_cap.reserve("Meta Model API", USD_PER_IMAGE, purpose, path=cap_path)
     try:  # billed or failed, one image is counted (a failed call's cost is unknown, so count it)
-        resp = hosted_sam._post("/responses", json.dumps(body).encode(), "application/json", timeout)
+        return hosted_sam._post("/responses", json.dumps(body).encode(), "application/json", timeout)
     finally:
         daily_cap.settle(rid, USD_PER_IMAGE, path=cap_path)
-    return pick_box(hosted_sam.output_text(resp), point), resp
 
 
 def pick_box(text, point):
@@ -67,6 +79,7 @@ def pick_box(text, point):
     return min(boxes, key=lambda b: (b[2] - b[0]) * (b[3] - b[1]))
 
 
+@functools.lru_cache(maxsize=2)  # N39: the shell lifts many detections of one room; analyse once per npz
 def _room_frame(npz):
     """(rot, origin) of N08's gravity-aligned lab frame: rerun live_room.analyse (seeded) and read _frame's output."""
     got, real = {}, live_room._frame

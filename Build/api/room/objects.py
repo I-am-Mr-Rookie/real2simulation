@@ -6,6 +6,9 @@ Labels: geometry MODEL-ESTIMATED; scale from room.json (MEASURED, MODEL-ESTIMATE
 N31: optional "category" (object_lift.CATEGORIES, default "other") sets fixed/mass/friction (MODEL-ESTIMATED). The object's
 RGBA cut-out goes to Stable Fast 3D (Build/gpu/sf3d.py, L4, daily_cap); the mesh (GLB at GET .../objects/{id}.glb) is the
 object's shape and collider. On any SF3D failure the measured box stays, with the reason in shape.fallback_reason.
+N39: POST /internal/workspace/rooms/{id}/shell {sf3d?: true} -> simple lab shell (Build/reconstruction/room_shell.py):
+walls with window/door openings + main furniture only (hosted SAM 3.1 noun prompts), written into scene.json; the
+kept list, dropped count and wall fits go to room.json "shell". Rerunning replaces the previous shell objects.
 """
 import json
 import time
@@ -18,10 +21,11 @@ from Build.api.storage.files import _default
 from Build.api.workspace.auth import error, require_owner
 from Build.gpu import sf3d
 from Build.guardrails import daily_cap
-from Build.reconstruction import live_room, object_lift
+from Build.reconstruction import live_room, object_lift, room_shell
 
 
-def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generate_remote) -> APIRouter:
+def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generate_remote,
+                  detect=object_lift.sam_text) -> APIRouter:
     db = (lambda: store) if store else _default
     router = APIRouter(prefix="/internal/workspace", dependencies=[Depends(require_owner)])
 
@@ -104,5 +108,27 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
         f = d / "objects.json"
         live_room._write(f, [*(json.loads(f.read_text(encoding="utf-8")) if f.exists() else []), record])
         return {"object": record, "scene": scene}
+
+    @router.post("/rooms/{job_id}/shell")
+    def build_shell(job_id: str, payload: dict = Body(default={}), owner: str = Depends(require_owner)):
+        d = done_dir(owner, job_id)
+        room = json.loads((d / "room.json").read_text(encoding="utf-8"))
+        scene = json.loads((d / "scene.json").read_text(encoding="utf-8"))
+        scene["objects"] = [o for o in scene.get("objects", []) if not str(o.get("id", "")).startswith(("wall-", "room-object-"))]
+        try:
+            scene, shell, glbs = room_shell.build((d / "mapanything.npz").read_bytes(), room, scene, detect,
+                                                  generate if payload.get("sf3d", True) else None,
+                                                  lambda oid: f"/api/workspace/rooms/{job_id}/objects/{oid}.glb")
+        except daily_cap.CapExceeded as e:
+            raise error(429, "DAILY_CAP", str(e)[:300]) from None
+        except (RuntimeError, ValueError, KeyError, OSError) as e:
+            raise error(502, "SHELL_FAILED", f"{type(e).__name__}: {e}"[:300]) from None
+        (d / "objects").mkdir(exist_ok=True)
+        for oid, glb in glbs.items():
+            (d / "objects" / f"{oid}.glb").write_bytes(glb)
+        shell["created_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        live_room._write(d / "scene.json", scene)
+        live_room._write(d / "room.json", {**room, "shell": shell})
+        return {"shell": shell, "scene": scene}
 
     return router

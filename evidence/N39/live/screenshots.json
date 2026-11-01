@@ -1,0 +1,24 @@
+{
+  "start_utc": "2026-11-01T23:50:51.928Z",
+  "objects": 22,
+  "steps": [
+    {
+      "k": "time",
+      "v": "t = 1.57 s"
+    },
+    {
+      "k": "scrollWidth_375",
+      "v": 360
+    },
+    {
+      "k": "status",
+      "v": "Paused. Resume, reset, or export the SIMULATED sensor traces. Gravity [0, -9.81, 0] m/s^2."
+    }
+  ],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "glb_requests": 6,
+  "end_utc": "2026-11-01T23:51:01.291Z"
+}

@@ -62,7 +62,7 @@ function objectMesh(o) {
   g.userData.id = o.id;
   g.position.fromArray(o.position);
   g.quaternion.fromArray(o.rotation);
-  const mat = new THREE.MeshStandardMaterial({ color: COLORS[o.kind], roughness: 0.6 });
+  const mat = new THREE.MeshStandardMaterial({ color: COLORS[o.kind], roughness: 0.6, ...(String(o.id).startsWith('wall-') && { transparent: true, opacity: 0.3 }) }); // N39: see through shell walls
   if (o.kind !== 'ball' && o.kind !== 'block' && o.kind !== 'ramp' && o.kind !== 'pendulum' && o.kind !== 'spring') return kitMesh(o, g, mat);
   const sf3d = o.shape?.type === 'mesh';
   const geo = sf3d ? colliderGeometry(o.shape) : o.kind === 'ball' || o.kind === 'pendulum' ? new THREE.SphereGeometry(0.5, 24, 16) : new THREE.BoxGeometry(1, 1, 1);
@@ -180,6 +180,7 @@ function RoomTools({ id, room, onReload }) {
     <div className="le-bar" role="group" aria-label="Room tools">
       <button type="button" aria-pressed={tool === 'a4'} disabled={busy} onClick={() => pickTool('a4')}>Mark the A4 sheet</button>
       <button type="button" aria-pressed={tool === 'object'} disabled={busy} onClick={() => pickTool('object')}>Add a real object</button>
+      <button type="button" disabled={busy} onClick={() => { setNote('Finding walls, windows, doors and main furniture (hosted SAM 3.1, then Stable Fast 3D). This can take a few minutes.'); send('/shell', {}, (r) => 'Lab shell built: ' + r.shell.walls.filter((w) => w.status === 'FIT').length + ' walls, ' + r.shell.openings.length + ' openings, ' + r.shell.kept.length + ' furniture kept, ' + r.shell.dropped + ' detections dropped. Geometry MODEL-ESTIMATED, scale ' + r.shell.labels.scale + '.'); }}>Build lab shell</button>
       <label>View <select value={view} onChange={(e) => { setView(Number(e.target.value)); setClicks([]); }}>{Array.from({ length: room.views || 1 }, (_, i) => <option key={i} value={i}>{i + 1}</option>)}</select></label>
     </div>
     {note && <p role="status">{busy ? 'Working: ' : ''}{note}</p>}
@@ -202,6 +203,7 @@ export default function LabEditor({ initialScene }) {
   const [jsonText, setJsonText] = useState('');
   const [message, setMessage] = useState('Add an object, then press Play. Everything here is SIMULATED.');
   const [plyName, setPlyName] = useState(null);
+  const [backdrop, setBackdrop] = useState(true); // N39: room point cloud is an optional backdrop (off for shell rooms)
   const [src, setSrc] = useState(null); // N22 live source: { kind: 'room', id, room } | { kind: 'experiment', id }
   const [side, setSide] = useState(true); // N24: inspector + scene JSON panel (collapsible)
   const [tone, setTone] = useState('light');
@@ -346,12 +348,12 @@ export default function LabEditor({ initialScene }) {
         a.room.add(box);
       }
     }
-    if (a.state.points) a.state.points.visible = scene.room.kind === 'ply';
+    if (a.state.points) a.state.points.visible = scene.room.kind === 'ply' && backdrop;
     for (const o of scene.objects) a.objects.add(objectMesh(o));
     const g = a.objects.children.find((c) => c.userData.id === selected);
     if (g) { a.gizmo.attach(g); a.gizmo.setMode(mode); }
     setJsonText(sceneJson(scene));
-  }, [scene, selected, mode, run, tone]);
+  }, [scene, selected, mode, run, tone, backdrop]);
 
   // N24: fit the camera to the loaded room or track (robust bounding box, keeps the current viewing direction).
   const frameTo = (positions) => {
@@ -462,9 +464,12 @@ export default function LabEditor({ initialScene }) {
       const { n, collision } = showPly(new Uint8Array(await res.arrayBuffer()), r.scene.gravity, r.scene.room?.floor_y ?? 0);
       // A4 rescale reloads the same room: keep objects the user added, positions scaled with the room.
       const k = src?.id === id ? r.room.scale.metres_per_model_unit / src.room.scale.metres_per_model_unit : NaN;
-      const next = validateScene({ ...r.scene, room: { ...r.scene.room, ...(collision && { collision }) }, objects: keepAdded(sceneRef.current.objects, r.scene.objects, k) });
-      stop(); setSelected(null); setScene(next); setPlyName('room.ply'); setSrc({ kind: 'room', id, room: r.room });
-      setMessage(note ?? 'Your room: ' + n + ' points, ' + r.scene.objects.length + ' objects. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.');
+      // N39: dense collision boxes are optional (off by default); the shell walls and furniture are the lab.
+      const next = validateScene({ ...r.scene, room: { ...r.scene.room, ...(collision && { collision: { ...collision, enabled: false } }) }, objects: keepAdded(sceneRef.current.objects, r.scene.objects, k) });
+      const sh = r.room.shell;
+      stop(); setSelected(null); setScene(next); setPlyName('room.ply'); setSrc({ kind: 'room', id, room: r.room }); setBackdrop(!sh);
+      setMessage(note ?? (sh ? 'Your room as a lab shell: floor, ' + sh.walls.filter((w) => w.status === 'FIT').length + ' walls, ' + sh.openings.length + ' openings, ' + sh.kept.length + ' furniture kept, ' + sh.dropped + ' detections dropped. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.'
+        : 'Your room: ' + n + ' points, ' + r.scene.objects.length + ' objects. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.'));
     } catch (e) { setMessage('Room not loaded: ' + e.message); }
   };
   const loadExperiment = async (id) => {
@@ -550,6 +555,7 @@ export default function LabEditor({ initialScene }) {
         <h3>Room</h3>
         <label><input type="checkbox" checked={scene.room.collision.enabled} disabled={live} onChange={(e) => edit((s) => ({ ...s, room: { ...s.room, collision: { ...s.room.collision, enabled: e.target.checked } } }))} /> Room collisions</label>
         <p>{scene.room.collision.boxes.length} static boxes from the room point cloud. MODEL-ESTIMATED collision proxy: surfaces stop objects in Play and in agent runs.</p>
+        <label><input type="checkbox" checked={backdrop} onChange={(e) => setBackdrop(e.target.checked)} /> Point cloud backdrop</label>
       </div>}
       <details className="le-panel le-json">
         <summary>Scene JSON (lab-scene-v1)</summary>

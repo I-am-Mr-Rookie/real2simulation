@@ -1,0 +1,37 @@
+{
+ "label": "SIMULATED (Rapier); table geometry MODEL-ESTIMATED, scale unverified",
+ "table": "room-object-2",
+ "table_top_y": 0.0938,
+ "table_size": [
+  0.6815,
+  0.0939,
+  0.29
+ ],
+ "objects_in_scene": 21,
+ "walls": 12,
+ "ball_radius": 0.02,
+ "drop_from_y": 0.39385,
+ "seconds": 3,
+ "sf3d_mesh": {
+  "first_contact_y": 0.0756,
+  "end": [
+   0.3102,
+   0.0198,
+   -1.164
+  ],
+  "horizontal_shift": 1.3001,
+  "landed_on_table": true,
+  "rests_on_table": false
+ },
+ "measured_box": {
+  "first_contact_y": 0.1191,
+  "end": [
+   -0.2078,
+   0.1138,
+   0.0284
+  ],
+  "horizontal_shift": 0,
+  "landed_on_table": true,
+  "rests_on_table": true
+ }
+}
