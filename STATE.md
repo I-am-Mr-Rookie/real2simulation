@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-01 20:45 Dhaka (controller)
+- Accepted N24 (SaaS polish: lab workspace + auto-frame, chart axes, projects card with SAMPLE, copy, theme), N25 (backend fixes F1 F2 F4 F5 F6 F8 F9), N17 (DEMO-SCRIPT-NOV1 + READ-SHEET-NOV1, V01 to V19, 2:22 spoken). Main green: node 394/394, python 182, build ok.
+- Dispatched N26-orch271 (Sonnet high, 60 min, due 21:35 Dhaka): web side of N25 WEB_TODO + F3 contributor race + F10 dot label. DEV redeploy after N26.
+- Note for N18: the read sheet's V07/V14 numbers must be re-read from live cards; 2.70 +/- 0.30 (N13 F4) is now relabelled scale assumed.
+
 ## 2026-11-01 20:20 Dhaka (controller)
 - Accepted N13-orch267 (QA on DEV, 5 accounts): 2 P1, 4 P2, 4 P3 in evidence/N13/FINDINGS.md. Both modes, share, files, quotas, isolation, 375 px pass. Paid about $1.2 (estimate).
 - Dispatched N25-orch269 (Opus medium, 60 min, due 21:18 Dhaka): backend fixes F1/F2/F4/F5/F6/F8/F9. Added N26 (Sonnet medium, web fixes after N24+N25).
