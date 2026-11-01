@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## Controller — Nov 1 ~17:20 Dhaka: owner correction on the final video
+
+Koushik: "No. I will prepare the voiceovers and then Claude Code will record everything and prepare the video. I think it is good
+to let Claude Code handle video editing stuff." Supersedes the 16:45 note that he edits the video himself.
+QUEUE: N18 (Koushik, voice-overs from the N17 read sheet) and N20 (Claude Code CLI, Opus high: capture + full edit, <=3:00, no public upload).
+PLAN-NOV1 owner decisions updated.
+
 ## Controller — Nov 1 ~17:10 Dhaka: owner away; wave 1 running
 
 Koushik: "I am going away for now... if any decision needs my supervision, pause them. All other works will continue... kickstart

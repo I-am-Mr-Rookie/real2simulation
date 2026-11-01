@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 17:11 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 17:30 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **291 / 314** runs done · 5 in progress · 0 blocked · 2 waiting for Koushik · 0 open reviews
+Progress: **291 / 316** runs done · 5 in progress · 0 blocked · 2 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -50,7 +50,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (1/18)</summary>
+<details><summary><b>N</b> —  (1/20)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [~] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min) *(in progress)*
@@ -69,6 +69,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [ ] **N15** — Codex (native Claude) · Opus 5.5, effort high — Stretch: agent-proposed equation fitted in a sandbox (e.g. flywheel) (60 min)
 - [ ] **N16** — Codex (native Claude) · Sonnet 5.5, effort medium — Guess the Gravity share link (30 min)
 - [ ] **N17** — Codex (native Claude) · Sonnet 5.5, effort medium — New 3-min demo script + read sheet for the owner's voice-over (30 min)
+- [ ] **N18** — Record new voice-overs from the N17 read sheet (click to click) (30 min)
+- [ ] **N20** — Codex · Claude Code CLI, Opus 5.5, effort high — Claude Code records the product walkthrough and edits the final demo video (60 min)
 - [ ] **N19** — Codex · GPT-6.1 Sol, effort high — Cross-vendor security/spend review of N03, N04, N05 (30 min)
 
 </details>

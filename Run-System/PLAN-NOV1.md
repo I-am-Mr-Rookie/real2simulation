@@ -58,7 +58,8 @@ Owner: N06 film new clips (guide: media/owner-clips/FILMING_GUIDE.md).
 - Muse Image: lab-report illustrations; image -> SAM 3.1 cut-out -> 3D object (stretch). SAM 3D Objects room object -> lab object (stretch).
 - Sample project on every new account. "Guess the Gravity" share challenge. Imperfect clips are fine with clear caveats and uncertainty.
 - Licensing: any licence permitting reuse; never no-licence, YouTube, NC or ND. Owner and user footage fine (owner clips private except OWN07 snippets).
-- Final demo video: Koushik edits it himself in the Claude desktop app; agents only supply script, read sheet and captures (N17).
+- Final demo video (owner correction Nov 1 ~17:20): Koushik records the voice-overs (N18, click to click); Claude Code (local CLI)
+  records the screen captures and edits the video (N20: trims, loudness, music, zooms, captions). Agents also supply script + read sheet (N17).
 - Earlier UI decisions stay (collapsible icon rail with hover-temporary panes, top-right tools button, dark mode + colour modes,
   pendulum logo with wordmark, scroll-craft homepage, GitHub button, no em dashes, myfront + make-interfaces-feel-better, Mobbin refs).
 - Run system: save quota; lean WORKER_CONTRACT.md; 30 or 60 min runs; cross-vendor review only for security/spend code.
