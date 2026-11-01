@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Nov 02, 02:28 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 02, 02:30 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -83,7 +83,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N28** — Codex (native Claude) · Opus 5.5, effort high — Lab agent: move/resize/remove tools, act with stated defaults, panel layout, contributor-card race (F3) (60 min)
 - [x] **N29** — Codex (native Claude) · Opus 5.5, effort high — Room collisions (proxy colliders from the point cloud), one Rapier engine for agent and Play, tighter room framing, A4 rescale keeps objects (60 min)
 - [~] **N30** — Codex · GPT-6.1 Sol, effort high — Room rebuild GPU A10G -> L4 (A10G fallback); one test room job with peak memory, time, cost (30 min) *(in progress)*
-- [ ] **N31** — Codex (native Claude) · Opus 5.5, effort high — Stable Fast 3D on-demand Modal L4: SAM 3.1 crop -> textured model over the measured box, MODEL-GENERATED shape + Powered by Stability AI, failure keeps box with reason (60 min)
+- [ ] **N31** — Codex (native Claude) · Opus 5.5, effort high — Stable Fast 3D on-demand Modal L4: SAM 3.1 crop -> textured model scaled into the measured box, decimated to average detail, used as the physics shape (trimesh static, convex hull movable), MODEL-GENERATED shape + Powered by Stability AI; failure falls back to the box with reason (60 min)
 - [ ] **N32** — Codex (native Claude) · Sonnet 5.5, effort medium — SF3D licence duties: licence copy, NOTICE (exact text), footer/About and README credit (30 min)
 - [ ] **N33** — Codex (native Claude) · Opus 5.5, effort high — Lab kit: flywheel (axle, moment of inertia) plus standard apparatus (pulley/Atwood, cart and track, projectile launcher, collision balls, mass set, ruler/protractor/stopwatch probes); agent tools can add and edit them (60 min)
 - [~] **N34** — Codex · GPT-6.1 Sol, effort high — DEV readiness: rapier3d-compat in the api image, lab_report banner engine text, 375 px time/chip overlap; deploy N28/N29 to DEV and smoke (30 min) *(in progress)*
@@ -91,7 +91,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [~] **N36** — Codex (native Claude) · Opus 5.5, effort high — Agent model tiers: contributor Muse Spark 1.3; standard Muse Open (Baseten) or Muse Spark 1.3 standard (user choice); hidden GPT-6.1 Sol fallback (Merge gateway) only for the failed turn, with its own daily cap (60 min) *(in progress)*
 - [ ] **N37** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review of N35 and N36 spend/queue code (30 min)
 - [ ] **N38** — Codex · GPT-6.1 Sol, effort high — Move DEV Postgres and Redis to the US region next to the api: backup, restore, verify, keep SG until verified (30 min)
-- [ ] **N39** — Codex (native Claude) · Opus 5.5, effort high — Room -> simplified lab: auto-detect main elements (hosted SAM 3.1 text prompts on keyframes, lab-relevant allowlist), keep them as box + SF3D shape, drop clutter, floor and wall planes; collisions from kept elements; point cloud optional backdrop (60 min)
+- [ ] **N39** — Codex (native Claude) · Opus 5.5, effort high — Room -> simplified lab: auto-detect main elements (hosted SAM 3.1 text prompts on keyframes, lab-relevant allowlist), keep them as SF3D physics objects (box fallback), drop clutter, floor and wall planes; collisions from kept elements; point cloud optional backdrop (60 min)
 
 </details>
 

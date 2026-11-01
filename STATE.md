@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 Dhaka (controller)
+- Koushik: SF3D objects must be real physics objects, not decoration on boxes. N31/N39 updated: mesh scaled into the measured box, decimated (1 to 3k triangles), Rapier trimesh (static) or convex hull (movable), category mass/friction MODEL-ESTIMATED; box only as failure fallback.
+
 ## 2026-11-02 02:25 Dhaka (controller)
 - Dispatched N30-orch275 (Sol high, L4 room GPU), N34-orch276 (Sol high, rapier in api image + DEV deploy of N28/N29), N35-orch277 (Sonnet high, GPU lease), N36-orch278 (Opus high 60, model tiers + Sol fallback). Due 02:54 / 03:24 Dhaka. Next: N31 after N30, N33 after N36, N37 after N35+N36, N38 after N34, N32 after N31, N39 after N31.
 

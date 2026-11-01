@@ -90,4 +90,9 @@ write it under "Reviews for Koushik" (STATE Owner questions -> RUNS.md) and keep
   ramps, pendulums and other lab-relevant objects); drop personal items and clutter. The system/agent picks the elements automatically
   (detect -> keep lab-relevant -> box for physics + SF3D shape on top); collisions come from the kept elements plus floor and walls.
   The raw point cloud is at most an optional faint backdrop.
+- 3D objects are real lab objects (Koushik, Nov 2, replaces "box for physics + SF3D on top"): the SF3D mesh is the object's physics
+  shape too. Size and position come from the measured box (SF3D output is unit-scale); the mesh is decimated to average detail
+  (about 1 to 3k triangles) and used as a Rapier trimesh collider for static room objects (table, chair) and a convex hull for movable
+  ones; mass and friction from the object category, labelled MODEL-ESTIMATED. The measured box is only the fallback when SF3D fails
+  (reason shown). Label "MODEL-GENERATED shape" + "Powered by Stability AI" stays.
 - Dispatch freeze lifted by Koushik ("Go", Nov 2). To save Koushik's Claude quota for study, infra rows N30, N34, N38 run on GPT-6.1 Sol.
