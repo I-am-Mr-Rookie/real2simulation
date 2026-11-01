@@ -1,6 +1,7 @@
 """N08 room jobs: /internal/workspace/rooms (browser /api/workspace/rooms via the BFF proxy).
 
-POST /rooms {file_id, project_id?, reference?} -> 202 {job}; background thread runs Build/reconstruction/live_room.
+GET /rooms -> {rooms: [status...]} owner's jobs newest first; POST /rooms {file_id, project_id?, reference?} -> 202 {job};
+background thread runs Build/reconstruction/live_room.
 GET /rooms/{id} -> status (+ GPU dot/queue position while reconstructing); GET /rooms/{id}/result -> scene + room;
 GET /rooms/{id}/room.ply; POST /rooms/{id}/scale {reference} -> CPU-only rescale of the saved reconstruction.
 Job files: R2S_DATA_DIR/rooms/<owner>/<job_id>/ (status.json, scene.json, room.json, room.ply, mapanything.npz).
@@ -8,6 +9,7 @@ Job files: R2S_DATA_DIR/rooms/<owner>/<job_id>/ (status.json, scene.json, room.j
 import json
 import re
 import threading
+import time
 import uuid
 
 from fastapi import APIRouter, Body, Depends
@@ -41,6 +43,14 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
         return ref
 
     # shortcut: in-process thread; a server restart marks nothing failed, upgrade to a worker queue if jobs get lost
+    @router.get("/rooms")
+    def list_rooms(owner: str = Depends(require_owner)):
+        base = db().root / "rooms" / owner
+        jobs = [read(d, "status.json") for d in (base.iterdir() if base.is_dir() else ())
+                if _ID.fullmatch(d.name) and (d / "status.json").exists()]
+        jobs.sort(key=lambda s: s.get("created_at") or s.get("updated_at") or "", reverse=True)
+        return {"rooms": [{**s, "id": s.get("job_id")} for s in jobs]}
+
     @router.post("/rooms", status_code=202)
     def start(payload: dict = Body(...), owner: str = Depends(require_owner)):
         rec = db().get(owner, str(payload.get("file_id", "")))
@@ -52,7 +62,8 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
         job_id = uuid.uuid4().hex
         d = db().root / "rooms" / owner / job_id
         d.mkdir(parents=True)
-        live_room.set_status(d, job_id=job_id, state="queued", file_id=rec["id"], project_id=project_id)
+        live_room.set_status(d, job_id=job_id, state="queued", file_id=rec["id"], project_id=project_id,
+                             created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
         threading.Thread(target=live_room.run_job, daemon=True,
                          args=(d, db().path(owner, rec["id"]), rec["duration_s"], owner, ref_of(payload), remote)).start()
         return {"job": read(d, "status.json")}

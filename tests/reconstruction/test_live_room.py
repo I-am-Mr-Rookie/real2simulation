@@ -195,6 +195,21 @@ class ApiTests(unittest.TestCase):
         bad = self.c.post(f"{url}/{job}/scale", headers=A, json={"reference": {**A4_REF, "view": 9}})
         self.assertEqual(bad.status_code, 422)
 
+    def test_list_rooms_newest_first_and_isolated(self):
+        url = "/internal/workspace/rooms"
+        self.assertEqual(self.c.get(url, headers=A).json(), {"rooms": []})
+        first = self.c.post(url, headers=A, json={"file_id": self.file["id"]}).json()["job"]["job_id"]
+        time.sleep(1.1)  # created_at has 1 s resolution
+        second = self.c.post(url, headers=A, json={"file_id": self.file["id"]}).json()["job"]["job_id"]
+        rooms = self.c.get(url, headers=A).json()["rooms"]
+        self.assertEqual([r["id"] for r in rooms], [second, first])
+        self.assertEqual(self.c.get(url, headers=B).json(), {"rooms": []})
+        self.assertEqual(self.c.get(url).status_code, 401)
+        for _ in range(100):  # let background jobs finish before the temp dir is removed
+            if all(r["state"] in ("done", "failed") for r in self.c.get(url, headers=A).json()["rooms"]):
+                break
+            time.sleep(0.1)
+
 
 if __name__ == "__main__":
     unittest.main()
