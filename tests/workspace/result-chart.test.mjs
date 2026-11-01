@@ -76,6 +76,6 @@ test('S15ax: at report.owner the chart is the centre-stage hero; the side card k
   assert.ok(side.includes('g = 8.62 ± 1.28 m/s²') && side.includes('CAVEAT verbatim'), side);
   const fail = strings(slot(ws('report.owner', rec('OWN01')), 'viewport')).join('|');
   assert.match(fail, /Held-out check FAIL/);
-  // abstain: no chart, ordinary empty viewport
-  assert.equal(slot(ws('report.owner', { clip_id: 'OWN02', status: 'abstain', message: 'x' }), 'viewport').props['data-hero'], undefined);
+  // abstain: no chart and (S15bb D7) no empty viewport placeholder either, since an owner clip has no scene
+  assert.equal(slot(ws('report.owner', { clip_id: 'OWN02', status: 'abstain', message: 'x' }), 'viewport'), undefined);
 });

@@ -3,6 +3,7 @@
 Every number comes from existing modules (interview/validate_setup, fitter.api.handle, reports.number_entry);
 this file adds routing, auth and error mapping only. No model, GPU or paid call; no storage.
 """
+import math
 import re
 import types
 from pathlib import Path
@@ -97,16 +98,40 @@ def owner_live_fit(m: Any, scale: Any) -> dict[str, Any]:
     except FitError as exc:
         return {"status": "error", "error": str(exc), "message": "The fitter rejected the stored points; g is not reported."}
     held_res = [y - p / mpp for (_, y), p in zip(held, fit.predict([t for t, _ in held]))] if held else []
+    u = _u_total(g.uncertainty, g.value, mpp, length_m, m)
     return {"status": "ok", "label": LIVE_FIT_LABEL, "track_label": TRACK_LABEL, "stage": {"track": "recorded", "fit": "done"},
             "fitter": "Build/fitter/core.py fit_least_squares(degree 2) + jacobian_covariance (OLS, RSS/dof)",
-            "g": g.value, "u": g.uncertainty, "unit": "m/s^2", "coefficients": list(fit.coefficients),
+            "g": g.value, **u, "unit": "m/s^2", "coefficients": list(fit.coefficients),
             "residuals_px": [r / mpp for r in fit.residuals], "rmse_px": fit.rmse / mpp, "rmse_m": fit.rmse,
             "dof": fit.dof, "n_fit": fit.n, "held_out_residuals_px": held_res, "n_held_out": len(held),
             "scale": {"length_m": length_m, "reference_px": ref_px, "m_per_px": mpp, "source": ref.get("reference_px_source"),
                       "label": f"{who} {length_m} m over a RECORDED {ref_px:.1f} px reference; scale unverified"},
             "caveat": f"Held-out points ({len(held)}) were excluded from this fit and only score it. "
-                      f"Few fitted points (dof = {fit.dof}); the uncertainty is the fit's residual scatter only (no scale or "
-                      "clock uncertainty), so it is not comparable to the recorded reference u; not a validated measurement."}
+                      f"Few fitted points (dof = {fit.dof}); held-out residuals are a check, not an uncertainty term. "
+                      "Scale unverified; not a validated measurement."}
+
+
+_U_TERMS = ("detection", "clock", "centroid_vs_box")  # S07h terms linear in m/px (g, detection px and clock all scale with m/px)
+
+
+def _u_total(u_fit, g, mpp, length_m, m):
+    """S15bb: headline u = S07h/S07m rule (quadrature of detection, clock, scale, centroid vs box) plus the live fit scatter.
+
+    Recorded terms are rescaled to this m/px; the scale term is recomputed as S07h defined it, g * hypot(width rel u, edge u / length).
+    No recorded budget -> the recorded total u is the headline (never the smaller fit-only u); no recorded u -> fit only, said so.
+    """
+    b = m.get("u_budget")
+    if isinstance(b, dict) and b.get("m_per_px"):
+        k = mpp / b["m_per_px"]
+        terms = {"fit": u_fit, **{t: b[t] * k for t in _U_TERMS},
+                 "scale": abs(g) * math.hypot(b["scale_rel_width"], b["edge_u_m"] / length_m)}
+        return {"u": math.sqrt(sum(v * v for v in terms.values())), "u_fit": u_fit, "u_terms": terms, "u_rule": "quadrature",
+                "u_label": "fit scatter combined in quadrature with the recorded S07m budget terms (" + str(b.get("source")) + ")"}
+    if isinstance(m.get("u"), (int, float)):
+        return {"u": float(m["u"]), "u_fit": u_fit, "u_terms": None, "u_rule": "recorded_total",
+                "u_label": "uncertainty from the recorded S07m budget"}
+    return {"u": u_fit, "u_fit": u_fit, "u_terms": None, "u_rule": "fit_only",
+            "u_label": "fit residual scatter only; no recorded budget for this clip, so u understates the uncertainty"}
 
 
 def _s10_artifact(spec: Mapping[str, Any], scene: Mapping[str, Any]) -> dict[str, Any]:

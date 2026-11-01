@@ -26,13 +26,15 @@ export function renderWorkspace(h, layout, view, hostRef, onAction, interview, t
   const stageError = /\.failed$|^fit\.done$/.test(layout.phase) ? jobStatus.error : null;
   // S15ax: an owner clip has a measurement but no scene: its result chart takes the centre stage; the side card stays text
   const hero = layout.phase === 'report.owner' && provenance?.measurement ? renderResultChart(h, provenance.measurement) : null;
+  // S15bb (Gate D D7): an owner clip has no scene, so no empty 3D viewport placeholder; scene jobs (no measurement) keep it
+  const noViewport = !hero && !viewport.request && provenance?.measurement;
   return h('div', { className: 'ws', 'data-phase': layout.phase },
     h('nav', { className: 'ws-stages', 'data-slot': 'stage-nav', 'aria-label': 'Workspace stages' },
       h('ol', null, ...stages.map((s) => h('li', { key: s.id, 'data-status': s.status, 'aria-current': s.status === 'current' ? 'step' : undefined, title: s.status === 'skipped' ? 'Not run' : undefined },
         // S15an: skipped = dash icon (CSS) + tooltip; the "(not run)" wording stays in the DOM for screen readers.
         ...(s.status === 'skipped' && s.label.endsWith(' (not run)') ? [s.label.slice(0, -10), h('span', { className: 'r2s-sr' }, ' (not run)')] : [s.label + (s.failed ? ' (needs attention)' : '')]))))),
     sidebar ? renderSidebar(h, sidebar, onAction) : null,
-    h('section', { id: 'ws-viewport', tabIndex: -1, className: 'ws-viewport', 'data-slot': 'viewport', 'data-hero': hero ? 'result' : undefined, 'aria-label': hero ? 'Clip result chart' : 'Scene viewport' },
+    noViewport ? null : h('section', { id: 'ws-viewport', tabIndex: -1, className: 'ws-viewport', 'data-slot': 'viewport', 'data-hero': hero ? 'result' : undefined, 'aria-label': hero ? 'Clip result chart' : 'Scene viewport' },
       viewport.banner ? h('p', { className: 'ws-banner', role: 'note' }, viewport.banner) : null,
       hero,
       h('div', { className: 'ws-host', ref: hostRef, 'data-viewer-status': view.status }),
@@ -83,6 +85,10 @@ function renderLiveFit(h, f) {
     h('p', null, String(f.label)),
     h('p', { className: 'ws-note' }, String(f.track_label) + ' \u00b7 Fit: done (run now on the server)'),
     h('p', null, h('strong', null, 'g = ' + n(f.g) + ' \u00b1 ' + n(f.u) + ' m/s\u00b2'), ' (fitter, ' + String(f.fitter) + ')'),
+    // S15bb: headline u = fit scatter + recorded S07m budget terms; one line says what it is made of (values from the server)
+    h('p', { className: 'ws-note', 'data-slot': 'live-u' }, 'Uncertainty: ' + (f.u_terms && typeof f.u_terms === 'object'
+      ? Object.entries(f.u_terms).map(([k, v]) => k.replace(/_/g, ' ') + ' ' + n(v)).join(', ') + ' (' + String(f.u_rule) + '); '
+      : '') + String(f.u_label ?? '')),
     h('p', { className: 'ws-note' }, 'Fit residuals (px): ' + list(f.residuals_px) + '; rmse = ' + n(f.rmse_px) + ' px; dof = ' + String(f.dof) + '; points fitted = ' + String(f.n_fit)),
     h('p', { className: 'ws-note' }, 'Held-out residuals (px, ' + String(f.n_held_out) + ' points not fitted): ' + list(f.held_out_residuals_px)),
     h('p', { className: 'ws-note', 'data-slot': 'live-scale' }, 'Scale: ' + String(f.scale?.label ?? '')),

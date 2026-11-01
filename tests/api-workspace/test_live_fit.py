@@ -64,6 +64,38 @@ class LiveFitTest(unittest.TestCase):
         for c, (px, _src) in derived.items():
             self.assertAlmostEqual(clips[c]["scale_reference_px"], px)
 
+    def test_s15bb_headline_u_uses_recorded_s07m_budget(self):
+        import math
+        rec = owner_measurement("OWN05")
+        a = fit("OWN05", "book cover edge, 20.28 cm")
+        self.assertGreaterEqual(a["u"], rec["u"])  # never the smaller fit-only u (was 0.148 vs recorded 1.28)
+        self.assertEqual(set(a["u_terms"]), {"fit", "detection", "clock", "scale", "centroid_vs_box"})
+        self.assertAlmostEqual(a["u"], math.sqrt(sum(v * v for v in a["u_terms"].values())))
+        self.assertEqual(a["u_terms"]["fit"], a["u_fit"])
+        b = rec["u_budget"]  # at the recorded scale every recorded term is reproduced exactly
+        for t in ("detection", "clock", "scale", "centroid_vs_box"):
+            self.assertAlmostEqual(a["u_terms"][t], b[t])
+        self.assertAlmostEqual(math.hypot(b["total"], a["u_fit"]), a["u"])
+        # a different declared length rescales every term with m/px (scale term recomputed with the new length)
+        h = fit("OWN05", "book cover edge, 10 cm")
+        self.assertAlmostEqual(h["u_terms"]["detection"] * 2.028, a["u_terms"]["detection"])
+        self.assertGreater(h["u_terms"]["scale"] / h["g"], a["u_terms"]["scale"] / a["g"])  # 0.5 mm edge reading is relatively larger
+        # no budget -> recorded total is the headline, labelled; never the fit-only u
+        nb = owner_live_fit({k: v for k, v in rec.items() if k != "u_budget"}, user_scale({"text": "20.28 cm"}))
+        self.assertEqual((nb["u"], nb["u_rule"], nb["u_label"]), (rec["u"], "recorded_total", "uncertainty from the recorded S07m budget"))
+
+    def test_s15bb_budget_rederived_from_s07(self):
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("aub", ROOT / "evidence/S15bb/add_u_budget.py")
+        aub = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(aub)
+        clips = json.loads(OWNER_CLIPS.read_text(encoding="utf-8"))["clips"]
+        derived = aub.budgets()
+        for c, e in clips.items():
+            if "series" in e:
+                self.assertEqual(e["u_budget"], derived[c])
+                self.assertEqual(round(derived[c]["total"], 2), e["measurement"]["u"])  # matches the recorded S07m u
+
 
 if __name__ == "__main__":
     unittest.main()

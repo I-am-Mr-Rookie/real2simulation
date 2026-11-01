@@ -99,3 +99,31 @@ test('S15az owner clip OWN05: live fitter result after the answer; a different a
   assert.match(panel, /Live fit not run: No stored track points/);
   assert.doesNotMatch(panel, /SIMULATED fit/);
 });
+
+test('S15bb OWN05 live fit: headline u is the recorded S07m budget plus fit scatter, never the fit-only u; breakdown shown', async () => {
+  const a = LIVE.answers['book cover edge, 20.28 cm'];
+  assert.ok(a.u >= LIVE.measurement.u, a.u + ' < recorded ' + LIVE.measurement.u); // 1.29 >= 1.28 (fit-only was 0.15)
+  assert.ok(a.u > a.u_fit);
+  assert.ok(Math.abs(Math.hypot(...Object.values(a.u_terms)) - a.u) < 1e-12); // terms sum in quadrature to the headline
+  const { panel, all } = await ownerWalk(LIVE.measurement, 'book cover edge, 20.28 cm', a);
+  assert.ok(panel.includes('g = ' + a.g.toFixed(2) + ' \u00b1 ' + a.u.toFixed(2) + ' m/s\u00b2'));
+  assert.ok(panel.includes('Uncertainty: fit ' + a.u_terms.fit.toFixed(2) + ', detection ' + a.u_terms.detection.toFixed(2)));
+  assert.match(panel, /centroid vs box \d\.\d\d, scale \d\.\d\d \(quadrature\); fit scatter combined in quadrature with the recorded S07m budget terms/);
+  assert.match(panel, /scale unverified/i);
+  assert.match(panel, /held-out residuals are a check, not an uncertainty term/);
+  assert.doesNotMatch(all, /\u2014/);
+});
+
+test('S15bb D7: owner clip (no scene) renders no empty 3D viewport placeholder; a scene job (RM04) keeps its viewport', () => {
+  const vp = (t) => t.children.find((c) => c?.props?.id === 'ws-viewport');
+  const blank = { status: 'empty', error: null };
+  const own = { phase: 'interview.active', stages: [], viewport: { request: null, key: null, banner: null }, jobStatus: { label: 'Owner clip', error: null } };
+  for (const m of [LIVE.measurement, OWN02]) {
+    const t = renderWorkspace(h, own, blank, null, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, { measurement: m });
+    assert.equal(vp(t), undefined);
+    assert.doesNotMatch(strings(t).join('|'), /No scene yet/);
+  }
+  const rm04 = { ...own, viewport: { request: { kind: 'viewer', scene: { id: 'RM04' } }, key: 'RM04|inspect|signed-in', banner: null } };
+  const t = renderWorkspace(h, rm04, blank, null, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, { executor: 'recorded' });
+  assert.equal(vp(t)?.props['data-slot'], 'viewport');
+});

@@ -335,7 +335,19 @@
     ]
    },
    "scale_reference_px": 291.4056,
-   "scale_reference_px_source": "evidence/S07/S07i/result-own01.json mask_centroid.m_per_px (px = scale_value_m / m_per_px)"
+   "scale_reference_px_source": "evidence/S07/S07i/result-own01.json mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+   "u_budget": {
+    "m_per_px": 0.0006959372091682522,
+    "g": 10.963940510463221,
+    "detection": 0.6695797886805492,
+    "clock": 0.06443949190672309,
+    "scale": 0.08145419350406648,
+    "centroid_vs_box": 0.3728037074115562,
+    "total": 0.7733737333436433,
+    "scale_rel_width": 0.007008252755006776,
+    "edge_u_m": 0.0005,
+    "source": "evidence/S07/S07i/result-own01.json mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total}"
+   }
   },
   "OWN02": {
    "sha256": "f796b320db7fbf43e0bbe447b42dca5024e34f47992f118e3431bb99968a68a1",
@@ -701,7 +713,19 @@
     ]
    },
    "scale_reference_px": 295.596,
-   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN02.mask_centroid.m_per_px (px = scale_value_m / m_per_px)"
+   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN02.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+   "u_budget": {
+    "m_per_px": 0.0006860715300612999,
+    "g": 9.289396283978423,
+    "detection": 0.19055275900762142,
+    "clock": 0.030882404127684678,
+    "scale": 0.06740939915707697,
+    "centroid_vs_box": 0.24411348190633397,
+    "total": 0.3184328751766602,
+    "scale_rel_width": 0.006824923661776637,
+    "edge_u_m": 0.0005,
+    "source": "evidence/S07/S07h/results.json clips.OWN02 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total}"
+   }
   },
   "OWN03": {
    "sha256": "d80951dbad85f38da6b0568260029cdadfd353706a058ec40d6753fa3f9723e7",
@@ -1067,7 +1091,19 @@
     ]
    },
    "scale_reference_px": 301.212,
-   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN03.mask_centroid.m_per_px (px = scale_value_m / m_per_px)"
+   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN03.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+   "u_budget": {
+    "m_per_px": 0.0006732799490060157,
+    "g": 9.542294862674295,
+    "detection": 0.1870012669767543,
+    "clock": 0.030812021897148795,
+    "scale": 0.07006932033328181,
+    "centroid_vs_box": 0.5970872389038835,
+    "total": 0.6303504858871237,
+    "scale_rel_width": 0.006916749589423571,
+    "edge_u_m": 0.0005,
+    "source": "evidence/S07/S07h/results.json clips.OWN03 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total}"
+   }
   },
   "OWN04": {
    "sha256": "e4a2ba304a2fe3d50d91dc755d1b204a16e6196dcffeb3028f8a42c3b8a8d4c4",
@@ -1415,7 +1451,19 @@
     ]
    },
    "scale_reference_px": 300.996,
-   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN04.mask_centroid.m_per_px (px = scale_value_m / m_per_px)"
+   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN04.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+   "u_budget": {
+    "m_per_px": 0.000673763106486465,
+    "g": 10.38936545092721,
+    "detection": 0.39697128600506665,
+    "clock": 0.05167356729295249,
+    "scale": 0.0758906533980735,
+    "centroid_vs_box": 0.20740283797957026,
+    "total": 0.45719983371001144,
+    "scale_rel_width": 0.006875992216944854,
+    "edge_u_m": 0.0005,
+    "source": "evidence/S07/S07h/results.json clips.OWN04 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total}"
+   }
   },
   "OWN05": {
    "sha256": "e0cda2e50582b2d1a366d5f83f49211a6cd995d3fd7ffe1cd46bb011eb8b5632",
@@ -1745,7 +1793,19 @@
     ]
    },
    "scale_reference_px": 287.62559999999996,
-   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN05.mask_centroid.m_per_px (px = scale_value_m / m_per_px)"
+   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN05.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+   "u_budget": {
+    "m_per_px": 0.0007050832749240681,
+    "g": 8.621873488312907,
+    "detection": 1.26914672209091,
+    "clock": 0.0702029717161303,
+    "scale": 0.06679500869183806,
+    "centroid_vs_box": 0.12413174630915158,
+    "total": 1.2788792449092994,
+    "scale_rel_width": 0.007344374449699689,
+    "edge_u_m": 0.0005,
+    "source": "evidence/S07/S07h/results.json clips.OWN05 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total}"
+   }
   },
   "OWN06": {
    "sha256": "ed224c39ef210a157e07ed048cc1a96dc2d548c81afe7c60d17e99859f44e064",
@@ -2122,7 +2182,19 @@
     ]
    },
    "scale_reference_px": 286.2,
-   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN07.mask_centroid.m_per_px (px = scale_value_m / m_per_px)"
+   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN07.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+   "u_budget": {
+    "m_per_px": 0.0007085953878406709,
+    "g": 8.722173770378081,
+    "detection": 0.1968086420391924,
+    "clock": 0.033058242819211235,
+    "scale": 0.06703630052084562,
+    "centroid_vs_box": 0.005655652205902584,
+    "total": 0.2105999548646679,
+    "scale_rel_width": 0.007279552681095223,
+    "edge_u_m": 0.0005,
+    "source": "evidence/S07/S07h/results.json clips.OWN07 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total}"
+   }
   },
   "OWN08": {
    "sha256": "a11eb37f032aef1e4236c7188a24514714297b95d849f9a0f9d16d3c088d1af0",
@@ -2488,7 +2560,19 @@
     ]
    },
    "scale_reference_px": 299.0304,
-   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN08.mask_centroid.m_per_px (px = scale_value_m / m_per_px)"
+   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN08.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+   "u_budget": {
+    "m_per_px": 0.0006781919162733957,
+    "g": 8.822272327849516,
+    "detection": 0.18836554955149123,
+    "clock": 0.030688681238552763,
+    "scale": 0.0636127642647664,
+    "centroid_vs_box": 0.18501008296722432,
+    "total": 0.27331061082757246,
+    "scale_rel_width": 0.006775863496888103,
+    "edge_u_m": 0.0005,
+    "source": "evidence/S07/S07h/results.json clips.OWN08 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total}"
+   }
   },
   "OWN09": {
    "sha256": "09fb00f65dfccc056d92bf6e669794335b5e3294697cd04fc33ffad1cf501873",
@@ -2860,7 +2944,19 @@
     ]
    },
    "scale_reference_px": 422.7984,
-   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN09.mask_centroid.m_per_px (px = scale_value_m / m_per_px)"
+   "scale_reference_px_source": "evidence/S07/S07h/results.json clips.OWN09.mask_centroid.m_per_px (px = scale_value_m / m_per_px)",
+   "u_budget": {
+    "m_per_px": 0.00047966122861392097,
+    "g": 6.73781470682151,
+    "detection": 0.09839291900851257,
+    "clock": 0.01913494489279716,
+    "scale": 1.7065941384813996,
+    "centroid_vs_box": 0.4670805373046756,
+    "total": 1.7721949933500436,
+    "scale_rel_width": 0.2532740006151654,
+    "edge_u_m": 0.0005,
+    "source": "evidence/S07/S07h/results.json clips.OWN09 mask_centroid.{u_fit,u_timing,u_scale,m_per_px} + result.{u_model_centroid_vs_box,u_total}"
+   }
   },
   "OWN10": {
    "sha256": "f3cc9e5c9602c9ba52cc9bce04bcbf77a2cb85751c998874b6cdeecaf3af4f75",
