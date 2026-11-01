@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 00:10 Dhaka (controller)
+- Accepted N28 (agent lab_update_object/lab_remove_object, act-with-defaults prompt, scrolling agent panel, F3 /health probe retry; 5/6 live turns acted, about $0.10) and N29 (room collision proxy from the point cloud, agent lab_run on the same Rapier world with labelled RK4 fallback, dense-core framing, A4 rescale keeps objects). Main green: node 406/406, python 183, build ok. NOT deployed (dispatch freeze).
+- Open for after the freeze: DEV api image lacks @dimforge/rapier3d-compat, so DEV agent runs would use the RK4 fallback until infra installs it; lab_report.py banner still says RK4; .le-time overlaps wrapped chips at 375 px; flywheel not a lab kind.
+
 ## 2026-11-01 23:36 Dhaka (controller)
 - DISPATCH FREEZE (Koushik): no new workers of any vendor; he needs his Claude quota for study. Running N28-orch273 and N29-orch274 may finish; controller only verifies and accepts them (tests, build, merge). No deploy or redispatch until Koushik lifts the freeze. Heartbeat prompt updated to match.
 
