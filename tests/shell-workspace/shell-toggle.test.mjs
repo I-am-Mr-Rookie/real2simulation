@@ -80,9 +80,10 @@ test('keys and persisted state', () => {
 
 test('SSR: the real workspace renders inside the shell with jump targets and honest notices', () => {
   const html = renderToStaticMarkup(React.createElement(PrivateWorkspace, { scene: { title: 'Scene X', notice: 'FIXTURE notice' } }));
-  for (const s of ['class="r2s-shell"', 'data-left="auto"', 'id="ws-viewport"', 'id="ws-panel"', 'id="ws-job"', '<h1 title="Scene X">Scene X</h1>', 'FIXTURE notice', 'data-slot="viewport"'])
+  for (const s of ['class="r2s-shell"', 'data-left="auto"', 'id="ws-viewport"', 'id="ws-panel"', 'id="ws-job"', '<h1 title="Workspace">Workspace</h1>', 'data-slot="viewport"'])
     assert.ok(html.includes(s), s);
   assert.ok(/id="r2s-right"[^>]*hidden/.test(html));
+  assert.ok(!html.includes('Scene X') && !html.includes('FIXTURE notice')); // S15bg: first paint (probe pending) is neutral
   assert.match(html, /No tools: the private workspace service is not connected/);
   // S15an: ONE theme control: the global header menu (app/ThemeToggle.jsx); the workspace shell renders none.
   assert.doesNotMatch(html, /data-theme-option|aria-label="Colour theme"/);

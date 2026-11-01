@@ -1,7 +1,7 @@
 // S04o: PrivateWorkspace host wiring. Probe decides live vs honest-unavailable; onAction routes to controller/reducers.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { probeApi, routeAction, UNAVAILABLE_NOTICE, INSTRUMENTS_UNAVAILABLE } from '../../Build/web/src/shell/PrivateWorkspace.mjs';
+import { workspaceHeading, probeApi, routeAction, UNAVAILABLE_NOTICE, INSTRUMENTS_UNAVAILABLE } from '../../Build/web/src/shell/PrivateWorkspace.mjs';
 import { createController } from '../../Build/web/src/workspace/controller.mjs';
 import { initialInterview } from '../../Build/web/src/workspace/interview.mjs';
 import { initialInstruments } from '../../Build/web/src/workspace/instruments.mjs';
@@ -52,5 +52,12 @@ test('S15ba D7/D8: scene label only with a loaded scene; live title is "Private 
   const { readFile } = await import('node:fs/promises');
   const src = await readFile(new URL('../../Build/web/src/shell/PrivateWorkspace.mjs', import.meta.url), 'utf8');
   assert.match(src, /live && s\.state\.scene \? React\.createElement\('p', \{ role: 'note', 'data-scene-label'/);
-  assert.match(src, /title: live \? 'Private workspace' : scene\.title/);
+  assert.match(src, /title: workspaceHeading\(api, scene\)/);
+});
+
+test('heading: no fixture wording while checking or live', () => {
+  const scene = { title: 'Private development fixture' };
+  assert.equal(workspaceHeading('checking', scene), 'Workspace');
+  assert.equal(workspaceHeading('live', scene), 'Private workspace');
+  assert.equal(workspaceHeading('unavailable', scene), scene.title);
 });

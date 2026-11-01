@@ -1,0 +1,42 @@
+{
+ "mode": "live",
+ "before": {
+  "title": "Real2Simulation",
+  "h1": "Workspace",
+  "live": [
+   {
+    "role": "status",
+    "live": "polite",
+    "text": "No scene yet. The viewport appears when an upload produces a scene."
+   }
+  ],
+  "fixtureWording": false,
+  "section": "fixture"
+ },
+ "after": {
+  "title": "Real2Simulation",
+  "h1": "Private workspace",
+  "live": [
+   {
+    "role": "status",
+    "live": "polite",
+    "text": ""
+   },
+   {
+    "role": "status",
+    "live": "polite",
+    "text": "No file uploaded yet."
+   },
+   {
+    "role": "status",
+    "live": "polite",
+    "text": "No scene yet. The viewport appears when an upload produces a scene."
+   }
+  ],
+  "fixtureWording": false,
+  "section": "live"
+ },
+ "pageErrors": [
+  "Failed to load resource: the server responded with a status of 404 (Not Found)"
+ ]
+}

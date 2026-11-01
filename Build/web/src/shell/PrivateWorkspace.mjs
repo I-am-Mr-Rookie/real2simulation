@@ -77,6 +77,9 @@ export function sessionNote(storage, phase) {
   } catch { return false; }
 }
 
+// S15bg: fixture wording only once the probe reports the service unavailable; never while checking or live (the route announcer reads the h1).
+export const workspaceHeading = (api, scene) => api === 'live' ? 'Private workspace' : api === 'checking' ? 'Workspace' : scene.title;
+
 export default function PrivateWorkspace({ scene }) {
   const { useState, useEffect, useMemo, useRef } = React;
   const [api, setApi] = useState('checking');
@@ -167,10 +170,10 @@ export default function PrivateWorkspace({ scene }) {
     close: () => { if (right) closeRight(); if (narrow() && rail?.open) toggleLeft(); },
     navigated: () => { if (rail?.preview) send({ type: 'escape' }); else if (narrow() && rail?.open) toggleLeft(); } };
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
-    renderShell(React.createElement, { title: live ? 'Private workspace' : scene.title, rail, right, tools, pending, agent: iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null }, on, { rightToggle, rightHead },
+    renderShell(React.createElement, { title: workspaceHeading(api, scene), rail, right, tools, pending, agent: iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null }, on, { rightToggle, rightHead },
     live ? chip('Connected', LIVE_NOTICE, 'live') : React.createElement('p', { role: 'note' }, api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),
     live ? renderWaiting(React.createElement, iv, openCard) : null,
-    live ? null : React.createElement('p', { role: 'note' }, scene.notice),
+    live || api === 'checking' ? null : React.createElement('p', { role: 'note' }, scene.notice),
     // the upload error is rendered once, by the workspace job panel (S15n limit: avoid a double alert)
     live ? renderUpload(React.createElement, { ...up, error: null }, (file) => ctl.upload(file)) : null,
     live && resetNote ? React.createElement('p', { role: 'note', className: 'ws-note', 'data-slot': 'session-reset' }, SESSION_RESET) : null,
