@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 05:45 Dhaka (controller)
+- Accepted N31 (Stable Fast 3D: own Modal app r2s-sf3d, L4 with A10G fallback, scale to zero after 60 s idle instead of 900 because a warm GPU per click costs more than the job; SF3D mesh fitted into the measured box is the physics shape: trimesh for fixed, convex hull for movable; box fallback with reason; caption MODEL-GENERATED shape / Powered by Stability AI). Rebase conflicts with N33 in LabEditor.jsx, physics.mjs, scene.mjs resolved by the controller (kit kinds + shape key + mesh collider combined). Main green: node 413/413, python 292, build ok.
+- N31 live on N06_room (private, nothing committed): L4 had no capacity twice (240 s each); A10G room job: peak 8.03 GB, inference 2.1 s, 39.2 s round trip. SF3D on A10G: cold load 130.8 s, inference 1.5 s, peak 6.46 GB, 1796 triangles; ball contact on the mesh 0.03 to 0.14 m vs box 0.144 m. Spend $1.4967 (cap $1.50), ledgered in the worker's local ledger (no canonical local ledger exists; DEV ledger is on Railway). Two queued L4 room inputs may still run later.
+- Found by N31: with modal 1.6.x, get(timeout) raises builtin TimeoutError, so live_room neither cancels L4 nor retries A10G. Fixed in N40.
+- N41 (DB move) stopped by a desktop network error (502, chatgpt.com DNS); its first Redis copy failed safely before writing; DEV verify.py exit 0. Resumed in its own thread with a new 60 min timebox, due 06:27 Dhaka.
+- Dispatched N32-orch284 (Sonnet medium 30, licence duties, due 06:01), N39-orch285 (Opus high 60, simple room shell on N06_room, A10G, $2 cap, due 06:32), N40-orch286 (Sol high 60, N37 fixes + live_room timeout/reservation bugs, due 06:35). N39 excludes live_room.py (N40 owns it).
+
 ## 2026-11-02 05:05 Dhaka (controller)
 - Accepted N33 (lab kit: flywheel, Atwood, cart and track, launcher, collision balls, mass set, ruler/protractor/photogate probes; Delete/Backspace removes the selected object; undo/redo with Ctrl+Z, Ctrl+Shift+Z/Ctrl+Y and toolbar; agent can add and edit kit objects). Kit physics checked against textbook formulas within 1 to 5%. Paid: 2 Muse Spark turns, about $0.037. Known limits: Rapier cradle passes about 0.6 of impact speed (reported with a note); agent can stack new apparatus at x 0.
 - Main green: node 410/410, python 288, build ok. DEV deploy held until N41 (DB move, owns infra/railway/dev/ and fences Redis writes) finishes.
