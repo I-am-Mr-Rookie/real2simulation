@@ -35,7 +35,32 @@ PARAMS = {
     "ramp": {"length_m", "angle_deg", "height_m", "x_m", "z_m", "friction"},
     "pendulum": {"length_m", "angle_deg", "mass_kg", "radius_m", "height_m", "x_m", "z_m"},
     "spring": {"rest_length_m", "stiffness_n_per_m", "damping_n_s_per_m", "stretch_m", "mass_kg", "height_m", "x_m", "z_m"},
+    # N33 lab kit and probes
+    "flywheel": {"radius_m", "mass_kg", "moment_of_inertia_kg_m2", "hanging_mass_kg", "string_length_m", "height_m", "x_m", "z_m"},
+    "atwood": {"mass1_kg", "mass2_kg", "pulley_radius_m", "string_length_m", "height_m", "x_m", "z_m"},
+    "cart": {"track_length_m", "angle_deg", "mass_kg", "friction", "velocity_x_m_s", "height_m", "x_m", "z_m"},
+    "launcher": {"angle_deg", "speed_m_s", "diameter_m", "mass_kg", "height_m", "x_m", "z_m"},
+    "cradle": {"count", "length_m", "angle_deg", "diameter_m", "mass_kg", "restitution", "height_m", "x_m", "z_m"},
+    "mass": {"mass_kg", "height_m", "x_m", "z_m"},
+    "ruler": {"length_m", "height_m", "x_m", "z_m"},
+    "protractor": {"height_m", "x_m", "z_m"},
+    "photogate": {"height_m", "x_m", "z_m"},
 }
+# Agent param -> scene params field, per kind (mass_kg of kind mass becomes params.grams).
+SCENE_PARAMS = {
+    "pendulum": (("length_m", "length"), ("angle_deg", "angle_deg")),
+    "spring": (("rest_length_m", "rest_length"), ("stiffness_n_per_m", "stiffness"), ("damping_n_s_per_m", "damping"), ("stretch_m", "stretch")),
+    "flywheel": (("radius_m", "radius"), ("moment_of_inertia_kg_m2", "inertia"), ("hanging_mass_kg", "hang_mass"), ("string_length_m", "hang_length")),
+    "atwood": (("mass1_kg", "m1"), ("mass2_kg", "m2"), ("pulley_radius_m", "radius"), ("string_length_m", "hang_length")),
+    "cart": (("track_length_m", "length"), ("angle_deg", "angle_deg")),
+    "launcher": (("angle_deg", "angle_deg"), ("speed_m_s", "speed")),
+    "cradle": (("count", "count"), ("length_m", "length"), ("angle_deg", "angle_deg")),
+    "ruler": (("length_m", "length"),),
+}
+# Default centre height above the floor (anchor / axle / launch point) when height_m is not given.
+HEIGHTS = {"flywheel": lambda p: p.get("string_length_m", 0.4) + 0.4, "atwood": lambda p: p.get("string_length_m", 0.5) + 0.6,
+           "cart": lambda p: 0.4, "launcher": lambda p: 0.1, "cradle": lambda p: p.get("length_m", 0.5) + 0.3,
+           "ruler": lambda p: 0.5, "photogate": lambda p: 0.5}
 # N28 lab_update_object extras: relative moves (left = -x, up = +y, toward the viewer = +z) and a turn about the vertical axis.
 UPDATE_EXTRA = {"dx_m", "dy_m", "dz_m", "yaw_deg"}
 
@@ -100,10 +125,10 @@ def make_object(kind: str, params: dict[str, float], scene: dict[str, Any]) -> d
         n += 1
     floor = scene.get("room", {}).get("floor_y", 0) or 0
     anchor = p.get("length_m", 0.8) + 0.5 if kind == "pendulum" else p.get("rest_length_m", 0.4) + p.get("stretch_m", 0.15) + 0.6
-    height = p.get("height_m", anchor if kind in ("pendulum", "spring") else 1.0)
+    height = p.get("height_m", anchor if kind in ("pendulum", "spring") else HEIGHTS[kind](p) if kind in HEIGHTS else 1.0)
     o: dict[str, Any] = {"id": f"{kind}-{n}", "kind": kind, "position": [p.get("x_m", 0.0), floor + height, p.get("z_m", 0.0)]}
     for k, field in (("mass_kg", "mass"), ("friction", "friction"), ("restitution", "restitution")):
-        if k in p:
+        if k in p and kind != "mass":
             o[field] = p[k]
     if "radius_m" in p:
         o["size"] = [2 * p["radius_m"]] * 3
@@ -113,11 +138,17 @@ def make_object(kind: str, params: dict[str, float], scene: dict[str, Any]) -> d
         o["size"] = [p["size_m"]] * 3
     if any(k.startswith("velocity_") for k in p):
         o["velocity"] = [p.get(f"velocity_{a}_m_s", 0.0) for a in "xyz"]
-    if kind == "pendulum":
-        o["params"] = {k: p[a] for a, k in (("length_m", "length"), ("angle_deg", "angle_deg")) if a in p}
-    if kind == "spring":
-        o["params"] = {k: p[a] for a, k in (("rest_length_m", "rest_length"), ("stiffness_n_per_m", "stiffness"),
-                                             ("damping_n_s_per_m", "damping"), ("stretch_m", "stretch")) if a in p}
+    if kind in SCENE_PARAMS:
+        o["params"] = {k: p[a] for a, k in SCENE_PARAMS[kind] if a in p}
+    if kind == "mass" and "mass_kg" in p:
+        o["params"] = {"grams": p["mass_kg"] * 1000}
+    if kind in ("flywheel", "atwood", "cart", "launcher", "cradle", "ruler", "protractor", "photogate"):
+        o["fixed"] = True
+    if kind == "cradle":
+        o.setdefault("restitution", 1.0)
+        o["friction"] = 0.0
+    if kind == "cart":
+        o.setdefault("friction", 0.01)
     if kind == "ramp":
         a = math.radians(p.get("angle_deg", 15.0)) / 2
         o.update(fixed=True, sensor=False, rotation=[0, 0, math.sin(a), math.cos(a)], size=[p.get("length_m", 1.2), 0.05, 0.4])
@@ -153,7 +184,7 @@ def update_object(o: dict[str, Any], p: dict[str, float], scene: dict[str, Any])
     pos = [p.get("x_m", pos[0]), floor + p["height_m"] if "height_m" in p else pos[1], p.get("z_m", pos[2])]
     o["position"] = [pos[0] + p.get("dx_m", 0.0), pos[1] + p.get("dy_m", 0.0), pos[2] + p.get("dz_m", 0.0)]
     for k, field in (("mass_kg", "mass"), ("friction", "friction"), ("restitution", "restitution")):
-        if k in p:
+        if k in p and o["kind"] != "mass":
             o[field] = p[k]
     for k, scale in (("radius_m", 2), ("diameter_m", 1), ("size_m", 1)):
         if k in p:
@@ -161,10 +192,9 @@ def update_object(o: dict[str, Any], p: dict[str, float], scene: dict[str, Any])
     if any(k.startswith("velocity_") for k in p):
         v = o.get("velocity") or [0.0, 0.0, 0.0]
         o["velocity"] = [p.get(f"velocity_{a}_m_s", v[i]) for i, a in enumerate("xyz")]
-    names = {"pendulum": (("length_m", "length"), ("angle_deg", "angle_deg")),
-             "spring": (("rest_length_m", "rest_length"), ("stiffness_n_per_m", "stiffness"),
-                        ("damping_n_s_per_m", "damping"), ("stretch_m", "stretch"))}.get(o["kind"], ())
-    o["params"] = {**(o.get("params") or {}), **{k: p[a] for a, k in names if a in p}}
+    o["params"] = {**(o.get("params") or {}), **{k: p[a] for a, k in SCENE_PARAMS.get(o["kind"], ()) if a in p}}
+    if o["kind"] == "mass" and "mass_kg" in p:
+        o["params"]["grams"] = p["mass_kg"] * 1000
     if o["kind"] == "ramp":
         size = o.get("size") or [1.2, 0.05, 0.4]
         o["size"] = [p.get("length_m", size[0]), size[1], size[2]]
@@ -200,7 +230,10 @@ def measure(trace: dict[str, Any], scene: dict[str, Any]) -> dict[str, Any]:
     samples, kind = trace["samples"], trace["kind"]
     base = {"object_id": trace["object_id"], "kind": kind, "samples": len(samples), "label": "SIMULATED",
             "duration_s": samples[-1]["t"] if samples else 0}
-    if kind in ("ball", "block"):
+    o = next((x for x in scene["objects"] if x["id"] == trace["object_id"]), None)
+    if kind in KIT and o:
+        return {**base, **_measure_kit(trace, o, scene)}
+    if kind in ("ball", "block", "mass", "launcher"):
         if len(samples) < 4:
             return {**base, "status": "error", "error": "too few samples before floor contact"}
         q = lambda v, u, s: {"value": v, "unit": u, "uncertainty": s, "source": {"label": "simulated", "evidence": "N12 lab_run"}}
@@ -209,10 +242,13 @@ def measure(trace: dict[str, Any], scene: dict[str, Any]) -> dict[str, Any]:
         if fit.get("status") != "ok" or not fit.get("gravity"):
             return {**base, "status": "error", "error": "fit failed", "fit": fit.get("error")}
         g = fit["gravity"]
-        return {**base, "status": "ok", "ended": trace.get("ended"),
+        out = {**base, "status": "ok", "ended": trace.get("ended"),
                 "drop_height_m": samples[0]["p"][1] - samples[-1]["p"][1],
                 "g": _q(abs(g["value"]), g["uncertainty"], "m/s^2", "Build/fitter degree-2 fit of height vs time"),
                 "rmse_m": fit["fit"].get("rmse"), "declared_position_sigma_m": POSITION_SIGMA_M}
+        if kind == "launcher" and o:
+            out.update(_launch(samples, o, scene))
+        return out
     axis = 0 if kind == "pendulum" else 1
     t = _crossings(samples, axis)
     if len(t) < 3:
@@ -224,7 +260,6 @@ def measure(trace: dict[str, Any], scene: dict[str, Any]) -> dict[str, Any]:
            "period": _q(2 * half, 2 * cov.standard_error if cov.valid else None, "s",
                         "Build/fitter linear fit of mid-line crossing times vs crossing index"),
            "declared_crossing_sigma_s": CROSSING_SIGMA_S}
-    o = next((x for x in scene["objects"] if x["id"] == trace["object_id"]), None)
     g_abs = math.hypot(*scene["gravity"])
     if kind == "pendulum" and o:
         L, a = o["params"]["length"], math.radians(o["params"]["angle_deg"])
@@ -233,6 +268,87 @@ def measure(trace: dict[str, Any], scene: dict[str, Any]) -> dict[str, Any]:
                                        "label": "THEORY", "unit": "s"}
     if kind == "spring" and o:
         out["undamped_period_s"] = {"value": 2 * math.pi * math.sqrt(o["mass"] / o["params"]["stiffness"]), "label": "THEORY", "unit": "s"}
+    return out
+
+
+KIT = ("flywheel", "atwood", "cart", "cradle", "ruler", "protractor", "photogate")
+
+
+def _accel(samples: list[dict[str, Any]], values: list[float]) -> dict[str, Any] | None:
+    """Build/fitter degree-2 fit of one coordinate vs time; returns the fitted acceleration (value, sigma)."""
+    if len(samples) < 4:
+        return None
+    q = lambda v, u, s: {"value": v, "unit": u, "uncertainty": s, "source": {"label": "simulated", "evidence": "N33 lab_run"}}
+    fit = fit_handle({"times": [q(s["t"], "s", 0) for s in samples], "positions": [q(v, "m", POSITION_SIGMA_M) for v in values], "degree": 2})
+    return fit.get("gravity") if fit.get("status") == "ok" else None
+
+
+def _launch(samples: list[dict[str, Any]], o: dict[str, Any], scene: dict[str, Any]) -> dict[str, Any]:
+    """Range back to the launch height, interpolated from the trace, plus the fitted horizontal speed."""
+    y0, p0 = samples[0]["p"][1], samples[0]["p"]
+    flat = lambda p: math.hypot(p[0] - p0[0], p[2] - p0[2])
+    hit = next((i for i in range(1, len(samples)) if samples[i]["p"][1] < y0 <= samples[i - 1]["p"][1] and i > 2), None)
+    g_abs, a, v = math.hypot(*scene["gravity"]), math.radians(o["params"]["angle_deg"]), o["params"]["speed"]
+    fit = fit_least_squares([s["t"] for s in samples], [flat(s["p"]) for s in samples], 1)
+    out = {"horizontal_speed": _q(fit.coefficients[1], None, "m/s", "Build/fitter linear fit of horizontal distance vs time"),
+           "theory_range_m": {"value": v * v * math.sin(2 * a) / g_abs, "label": "THEORY", "unit": "m"}}
+    if hit is not None:
+        s0, s1 = samples[hit - 1], samples[hit]
+        f = (s0["p"][1] - y0) / (s0["p"][1] - s1["p"][1])
+        out["range_m"] = _q(flat(s0["p"]) + f * (flat(s1["p"]) - flat(s0["p"])), POSITION_SIGMA_M, "m",
+                            "trace interpolated back to the launch height")
+    return out
+
+
+def _measure_kit(trace: dict[str, Any], o: dict[str, Any], scene: dict[str, Any]) -> dict[str, Any]:
+    s, kind, P = trace["samples"], trace["kind"], o["params"]
+    g_abs = math.hypot(*scene["gravity"])
+    if kind in ("ruler", "protractor", "photogate"):
+        if not s:
+            return {"status": "error", "error": "the probe saw nothing; put it next to a moving object"}
+        unit = trace.get("units", {}).get("value")
+        vals = [x["value"] for x in s]
+        if kind == "photogate":
+            return {"status": "ok", "target": trace.get("target"), "gate_times_s": [round(v, 6) for v in vals[:20]],
+                    "intervals_s": [round(b - a, 6) for a, b in zip(vals, vals[1:])][:20], "time_sigma_s": CROSSING_SIGMA_S}
+        return {"status": "ok", "target": trace.get("target"), "unit": unit, "start": vals[0], "end": vals[-1],
+                "min": min(vals), "max": max(vals), "reading_sigma": POSITION_SIGMA_M if kind == "ruler" else None}
+    if kind == "cradle":
+        # Exit speed of the last ball: Build/fitter linear fit of x over the 7 samples around its fastest step.
+        if len(s) < 10:
+            return {"status": "error", "error": "too few samples"}
+        steps = [abs(b["p"][0] - a["p"][0]) for a, b in zip(s, s[1:])]
+        i = max(3, min(len(s) - 4, steps.index(max(steps))))
+        win = s[i - 3:i + 4]
+        fit = fit_least_squares([x["t"] for x in win], [x["p"][0] for x in win], 1)
+        a = math.radians(P["angle_deg"])
+        v, vi = abs(fit.coefficients[1]), math.sqrt(2 * g_abs * P["length"] * (1 - math.cos(a)))
+        return {"status": "ok", "exit_speed": _q(v, None, "m/s", "Build/fitter linear fit of the last ball x vs time at its fastest"),
+                "theory_impact_speed_m_s": {"value": vi, "label": "THEORY", "unit": "m/s"}, "transfer_ratio": round(v / vi, 3),
+                "note": "the engine's contact solver does not transfer momentum fully elastically along a touching row; ideal is 1"}
+    if kind == "cart":
+        d = [b - a for a, b in zip(s[0]["p"], s[-1]["p"])] if len(s) > 1 else [1, 0, 0]
+        n = math.hypot(*d) or 1
+        acc = _accel(s, [sum((x["p"][i] - s[0]["p"][i]) * d[i] / n for i in range(3)) for x in s])
+        if not acc:
+            return {"status": "error", "error": "fit failed"}
+        a = math.radians(P["angle_deg"])
+        return {"status": "ok", "ended": trace.get("ended"), "acceleration": _q(abs(acc["value"]), acc["uncertainty"], "m/s^2", "Build/fitter degree-2 fit of distance along the track vs time"),
+                "theory_acceleration_m_s2": {"value": g_abs * (math.sin(a) - o["friction"] * math.cos(a)), "label": "THEORY", "unit": "m/s^2"}}
+    acc = _accel(s, [x["p"][1] for x in s])
+    if not acc:
+        return {"status": "error", "error": "too few samples or fit failed"}
+    a, sa = abs(acc["value"]), acc["uncertainty"]
+    out = {"status": "ok", "ended": trace.get("ended"), "acceleration": _q(a, sa, "m/s^2", "Build/fitter degree-2 fit of height vs time")}
+    if kind == "atwood":
+        out["theory_acceleration_m_s2"] = {"value": g_abs * abs(P["m1"] - P["m2"]) / (P["m1"] + P["m2"]), "label": "THEORY", "unit": "m/s^2"}
+    if kind == "flywheel" and a > 0:
+        m, r = P["hang_mass"], P["radius"]
+        set_i = P["inertia"] or 0.5 * o["mass"] * r * r
+        out["angular_acceleration"] = _q(a / r, sa / r, "rad/s^2", "fitted acceleration / radius")
+        out["moment_of_inertia"] = _q(m * r * r * (g_abs / a - 1), m * r * r * g_abs * sa / (a * a), "kg m^2", "I = m r^2 (g / a - 1) from the fitted a")
+        out["scene_moment_of_inertia_kg_m2"] = {"value": set_i, "label": "SIMULATED", "unit": "kg m^2"}
+        out["theory_acceleration_m_s2"] = {"value": m * g_abs * r * r / (m * r * r + set_i), "label": "THEORY", "unit": "m/s^2"}
     return out
 
 

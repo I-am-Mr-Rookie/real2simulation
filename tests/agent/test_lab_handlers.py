@@ -34,7 +34,7 @@ def test_pendulum_period_matches_large_angle_theory():
 
 
 def test_bad_inputs_are_errors_not_crashes():
-    assert h.lab_add_object("u1", {"kind": "flywheel", "params": {}})["status"] == "error"
+    assert h.lab_add_object("u1", {"kind": "trebuchet", "params": {}})["status"] == "error"  # N33 added flywheel
     assert "unknown params" in h.lab_add_object("u1", {"kind": "ball", "params": {"speed": 3}})["error"]["detail"]
     assert "size" in h.lab_add_object("u1", {"kind": "ball", "params": {"radius_m": -1}})["error"]["detail"]
     assert h.lab_run("u1", {})["error"]["code"] == "EMPTY_SCENE"

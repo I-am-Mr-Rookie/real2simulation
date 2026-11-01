@@ -1,5 +1,5 @@
 // Rapier world built from a validated lab-scene-v1. RAPIER is passed in so Node tests and the browser share this code.
-import { validateScene } from './scene.mjs';
+import { validateScene, PROBES } from './scene.mjs';
 import { robustBounds } from './frame.mjs';
 
 export const DT = 1 / 120;
@@ -37,6 +37,30 @@ export function movingStart(o) {
   if (o.kind === 'spring') return add(o.position, qrot(o.rotation, [0, -(o.params.rest_length + o.params.stretch), 0]));
   return o.position;
 }
+
+// N33 kit layout in scene coordinates (shared with the editor meshes). Strings and axles use scene y as vertical and
+// the object's yaw only. shortcut: tilted gravity bends nothing here; upgrade if kit objects must follow a room tilt.
+export function kitParts(o) {
+  const P = o.params, at = (v) => add(o.position, qrot(o.rotation, v));
+  if (o.kind === 'flywheel') return [{ p: o.position, r: P.radius, role: 'disc' }, { p: at([P.radius, -P.hang_length, 0]), r: 0.025, role: 'hang' }];
+  if (o.kind === 'atwood') return [{ p: at([-P.radius, -P.hang_length, 0]), r: 0.03, role: 'm1' }, { p: at([P.radius, -P.hang_length, 0]), r: 0.03, role: 'm2' }];
+  if (o.kind === 'cart') {
+    const a = (P.angle_deg * Math.PI) / 180, tilt = [0, 0, Math.sin(a / 2), Math.cos(a / 2)];
+    const q = qmul(o.rotation, tilt), h = o.size[1] / 2 + 0.02;
+    return [{ p: o.position, q, role: 'track', size: [P.length, 0.04, 0.2] }, { p: add(o.position, qrot(q, [P.length / 2 - o.size[0], h, 0])), q, role: 'cart', size: o.size }];
+  }
+  if (o.kind === 'cradle') {
+    const d = Math.max(...o.size) + 0.005, n = P.count, a = (P.angle_deg * Math.PI) / 180;
+    return Array.from({ length: n }, (_, i) => {
+      const anchor = at([(i - (n - 1) / 2) * d, 0, 0]);
+      return { anchor, p: i === 0 ? add(anchor, qrot(o.rotation, [-P.length * Math.sin(a), -P.length * Math.cos(a), 0])) : add(anchor, [0, -P.length, 0]), role: 'bob' };
+    });
+  }
+  return [];
+}
+const qmul = ([ax, ay, az, aw], [bx, by, bz, bw]) => [aw * bx + ax * bw + ay * bz - az * by, aw * by - ax * bz + ay * bw + az * bx, aw * bz + ax * by - ay * bx + az * bw, aw * bw - ax * bx - ay * by - az * bz];
+const sub = (a, b) => a.map((v, i) => v - b[i]);
+const dot = (a, b) => a.reduce((s, v, i) => s + v * b[i], 0);
 
 // N29: coarse static collision proxy of a room point cloud. Gravity-aligned voxel grid; cells with enough points are
 // occupied; the floor slab is left to the floor plane; occupied cells merge greedily into boxes. The grid coarsens
@@ -107,15 +131,70 @@ export function createPhysics(R, sceneInput) {
     }
   }
   const moving = new Map();
+  const pre = []; // N33 string constraints: velocity projections before each world.step (inextensible, can go slack)
+  const gy = scene.gravity[1];
+  const v3a = (b) => { const v = b.linvel(); return [v.x, v.y, v.z]; };
+  const hanger = (p, r, mass) => {
+    const b = world.createRigidBody(R.RigidBodyDesc.dynamic().setTranslation(...p).lockRotations().setCcdEnabled(true));
+    world.createCollider(R.ColliderDesc.ball(r).setMass(mass).setFriction(0.5).setRestitution(0.1), b);
+    return b;
+  };
   for (const o of scene.objects) {
+    if (PROBES.includes(o.kind)) { moving.set(o.id, { o, body: null }); continue; }
+    if (['flywheel', 'atwood', 'cart', 'cradle'].includes(o.kind)) {
+      const parts = kitParts(o), P = o.params, bodies = [];
+      if (o.kind === 'flywheel') {
+        const I = P.inertia || 0.5 * o.mass * P.radius ** 2;
+        const disc = world.createRigidBody(R.RigidBodyDesc.dynamic().setTranslation(...o.position).setRotation(q4(o.rotation)).lockTranslations()
+          .setAdditionalMassProperties(o.mass, v3([0, 0, 0]), v3([I / 2, I / 2, I]), q4([0, 0, 0, 1])).enabledRotations(false, false, true));
+        const m = hanger(parts[1].p, 0.025, P.hang_mass), r = P.radius;
+        bodies.push(disc, m);
+        pre.push(() => { // rim speed w r must equal the mass's downward string speed while the string is taut
+          const w = disc.angvel().z, v = v3a(m), vy = v[1] + gy * DT;
+          if (vy >= w * r) return;
+          const u = (P.hang_mass * vy + (I / r) * w) / (P.hang_mass + I / (r * r));
+          m.setLinvel(v3([0, u - gy * DT, 0]), true); disc.setAngvel(v3([0, 0, u / r]), true);
+        });
+      } else if (o.kind === 'atwood') {
+        const [b1, b2] = [hanger(parts[0].p, 0.03, P.m1), hanger(parts[1].p, 0.03, P.m2)];
+        bodies.push(b1, b2);
+        pre.push(() => {
+          const y1 = v3a(b1)[1] + gy * DT, y2 = v3a(b2)[1] + gy * DT;
+          if (y1 + y2 >= 0) return; // string would shorten: slack
+          const u = (P.m1 * y1 - P.m2 * y2) / (P.m1 + P.m2);
+          b1.setLinvel(v3([0, u - gy * DT, 0]), true); b2.setLinvel(v3([0, -u - gy * DT, 0]), true);
+        });
+      } else if (o.kind === 'cart') {
+        const [tr, ct] = parts;
+        const track = world.createRigidBody(R.RigidBodyDesc.fixed().setTranslation(...tr.p).setRotation(q4(tr.q)));
+        world.createCollider(R.ColliderDesc.cuboid(...tr.size.map((s) => s / 2)).setFriction(o.friction).setRestitution(0), track);
+        const cart = world.createRigidBody(R.RigidBodyDesc.dynamic().setTranslation(...ct.p).setRotation(q4(ct.q)).setLinvel(...o.velocity).setCcdEnabled(true));
+        world.createCollider(R.ColliderDesc.cuboid(...o.size.map((s) => s / 2)).setMass(o.mass).setFriction(o.friction).setRestitution(0), cart);
+        bodies.push(track, cart);
+      } else {
+        for (const pt of parts) {
+          const anchor = world.createRigidBody(R.RigidBodyDesc.fixed().setTranslation(...pt.anchor));
+          const bob = world.createRigidBody(R.RigidBodyDesc.dynamic().setTranslation(...pt.p).setCcdEnabled(true));
+          world.createCollider(R.ColliderDesc.ball(Math.max(...o.size) / 2).setMass(o.mass).setFriction(o.friction).setRestitution(o.restitution), bob);
+          world.createImpulseJoint(R.JointData.spherical(v3([0, 0, 0]), v3(sub(pt.anchor, pt.p))), anchor, bob, true);
+          bodies.push(bob);
+        }
+      }
+      // Traced part: the hanging mass, mass 1, the cart, the last cradle ball.
+      moving.set(o.id, { o, body: bodies[o.kind === 'flywheel' || o.kind === 'cart' ? 1 : o.kind === 'atwood' ? 0 : bodies.length - 1], parts: bodies });
+      continue;
+    }
     const half = o.size.map((s) => s / 2);
-    const shape = o.kind === 'ball' || o.kind === 'pendulum' ? R.ColliderDesc.ball(Math.max(...half)) : R.ColliderDesc.cuboid(...half);
+    const shape = o.kind === 'ball' || o.kind === 'pendulum' || o.kind === 'launcher' ? R.ColliderDesc.ball(Math.max(...half))
+      : o.kind === 'mass' ? R.ColliderDesc.cylinder(half[1], half[0]) : R.ColliderDesc.cuboid(...half);
     shape.setMass(o.mass).setFriction(o.friction).setRestitution(o.restitution);
     const jointed = o.kind === 'pendulum' || o.kind === 'spring';
     const start = movingStart(o);
+    const a = (o.params.angle_deg * Math.PI) / 180; // launcher: fires along its local +x, tilted up by angle_deg
+    const vel = o.kind === 'launcher' ? qrot(o.rotation, [o.params.speed * Math.cos(a), o.params.speed * Math.sin(a), 0]) : o.velocity;
     // Jointed moving parts start unrotated so the joint anchor below is in world-aligned local axes.
-    const desc = (!jointed && o.fixed ? R.RigidBodyDesc.fixed() : R.RigidBodyDesc.dynamic())
-      .setTranslation(...start).setRotation(q4(jointed ? [0, 0, 0, 1] : o.rotation)).setLinvel(...o.velocity).setCcdEnabled(true);
+    const desc = (!jointed && o.kind !== 'launcher' && o.fixed ? R.RigidBodyDesc.fixed() : R.RigidBodyDesc.dynamic())
+      .setTranslation(...start).setRotation(q4(jointed ? [0, 0, 0, 1] : o.rotation)).setLinvel(...vel).setCcdEnabled(true);
     const body = world.createRigidBody(desc);
     world.createCollider(shape, body);
     if (jointed) {
@@ -133,19 +212,42 @@ export function createPhysics(R, sceneInput) {
   let t = 0;
   const traces = new Map(scene.objects.filter((o) => o.sensor).map((o) => [o.id, []]));
   const pose = (b) => { const p = b.translation(), q = b.rotation(); return { p: [p.x, p.y, p.z], q: [q.x, q.y, q.z, q.w] }; };
+  // Probes read the nearest non-probe moving part at the start: ruler = distance along its axis, protractor = angle
+  // from straight down about its centre, photogate = interpolated times the part crosses its horizontal beam plane.
+  const bodiesOf = [...moving.values()].filter((m) => m.body && !(m.o.fixed && ['ball', 'block', 'mass', 'ramp'].includes(m.o.kind)));
+  const probes = [...moving.values()].filter((m) => !m.body).map((m) => {
+    const near = bodiesOf.map((b) => [Math.hypot(...sub(pose(b.body).p, m.o.position)), b]).sort((x, y) => x[0] - y[0])[0]?.[1];
+    return { ...m, target: near ?? null, last: null };
+  });
+  const reading = (pr, p) => {
+    const o = pr.o, d = sub(p, o.position);
+    if (o.kind === 'ruler') return dot(d, qrot(o.rotation, [1, 0, 0])) + o.params.length / 2;
+    if (o.kind === 'protractor') { const x = dot(d, qrot(o.rotation, [1, 0, 0])), y = dot(d, qrot(o.rotation, [0, 1, 0])); return (Math.atan2(x, -y) * 180) / Math.PI; }
+    return dot(d, qrot(o.rotation, [0, 1, 0])); // photogate: signed distance to the beam plane
+  };
   const record = () => {
-    for (const [id, s] of traces) if (s.length < MAX_SAMPLES) s.push({ t: Number(t.toFixed(9)), p: pose(moving.get(id).body).p });
+    for (const pr of probes) {
+      const s = traces.get(pr.o.id);
+      if (!s || !pr.target || s.length >= MAX_SAMPLES) continue;
+      const p = pose(pr.target.body).p, v = reading(pr, p);
+      if (pr.o.kind !== 'photogate') s.push({ t: Number(t.toFixed(9)), p, value: v });
+      else if (pr.last && pr.last.v * v < 0) { const f = pr.last.v / (pr.last.v - v), te = pr.last.t + f * DT; s.push({ t: Number(te.toFixed(9)), p: p.map((x, i) => pr.last.p[i] + f * (x - pr.last.p[i])), value: te }); }
+      pr.last = { t, p, v };
+    }
+    for (const [id, s] of traces) if (moving.get(id).body && s.length < MAX_SAMPLES) s.push({ t: Number(t.toFixed(9)), p: pose(moving.get(id).body).p });
   };
   record();
   return {
     scene,
     get time() { return t; },
-    step(n = 1) { for (let i = 0; i < n; i++) { world.step(); t += DT; record(); } },
-    poses() { return Object.fromEntries([...moving].map(([id, { body }]) => [id, pose(body)])); },
+    step(n = 1) { for (let i = 0; i < n; i++) { for (const f of pre) f(); world.step(); t += DT; record(); } },
+    poses() { return Object.fromEntries([...moving].filter(([, m]) => m.body).map(([id, { body, parts }]) => [id, parts ? { ...pose(body), parts: parts.map(pose) } : pose(body)])); },
     trace(id) {
       const samples = traces.get(id);
       if (!samples) return null;
-      return { version: 'lab-trace-v1', label: 'SIMULATED', object_id: id, kind: moving.get(id).o.kind, frame: 'scene', units: { t: 's', p: 'm' },
+      const { o } = moving.get(id), pr = probes.find((x) => x.o.id === id);
+      const units = { t: 's', p: 'm', ...(pr ? { value: o.kind === 'protractor' ? 'deg' : o.kind === 'photogate' ? 's' : 'm' } : {}) };
+      return { version: 'lab-trace-v1', label: 'SIMULATED', object_id: id, kind: o.kind, frame: 'scene', units, ...(pr ? { target: pr.target?.o.id ?? null } : {}),
         dt: DT, gravity: scene.gravity, truncated: samples.length >= MAX_SAMPLES, samples: samples.slice() };
     },
     traces() { return [...traces.keys()].map((id) => this.trace(id)); },

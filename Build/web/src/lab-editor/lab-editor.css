@@ -72,3 +72,15 @@
   .le-status { font-size: 12px; max-height: 24%; }
 }
 @media (prefers-reduced-motion: reduce) { .le-top button { transition: none; } }
+
+/* N33 compact Add menu */
+.lab-editor .le-add { position: relative; }
+.lab-editor .le-add > summary { list-style: none; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; padding: 6px 10px; border: 1px solid var(--r2s-line, #d1d5db); border-radius: 8px; background: var(--r2s-surface, #fff); }
+.lab-editor .le-add > summary::-webkit-details-marker { display: none; }
+.lab-editor .le-add > summary.le-off { opacity: 0.5; pointer-events: none; }
+.lab-editor .le-menu { position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; width: min(92vw, 420px); max-height: 70vh; overflow: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; border: 1px solid var(--r2s-line, #d1d5db); border-radius: 10px; background: var(--r2s-surface, #fff); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); }
+.lab-editor .le-menu-g { display: flex; flex-direction: column; gap: 2px; }
+.lab-editor .le-menu-h { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.7; padding: 2px 6px; }
+.lab-editor .le-menu button { display: flex; align-items: center; justify-content: flex-start; gap: 8px; text-align: left; padding: 6px; border: 0; border-radius: 6px; background: transparent; color: inherit; cursor: pointer; min-height: 32px; }
+.lab-editor .le-menu button:hover, .lab-editor .le-menu button:focus-visible { background: var(--r2s-hover, rgba(0, 0, 0, 0.06)); }
+@media (max-width: 480px) { .lab-editor .le-menu { grid-template-columns: 1fr; width: 80vw; } }

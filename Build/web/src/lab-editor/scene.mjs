@@ -1,7 +1,9 @@
 // lab-scene-v1: the editable lab scene JSON. The editor and the agent read and write this same shape.
 export const SCENE_VERSION = 'lab-scene-v1';
 export const MAX_OBJECTS = 50;
-export const KINDS = ['ball', 'block', 'ramp', 'pendulum', 'spring'];
+// N33 lab kit: flywheel, atwood, cart, launcher, cradle, mass; probes ruler, protractor, photogate (no body, write traces).
+export const KINDS = ['ball', 'block', 'ramp', 'pendulum', 'spring', 'flywheel', 'atwood', 'cart', 'launcher', 'cradle', 'mass', 'ruler', 'protractor', 'photogate'];
+export const PROBES = ['ruler', 'protractor', 'photogate'];
 const ROOMS = ['none', 'plane', 'ply'];
 const DEFAULTS = {
   ball: { size: [0.1, 0.1, 0.1], params: {} },
@@ -9,8 +11,22 @@ const DEFAULTS = {
   ramp: { size: [1.2, 0.05, 0.4], fixed: true, rotation: [0, 0, 0.2588190451, 0.9659258263], params: {} },
   pendulum: { size: [0.1, 0.1, 0.1], fixed: true, params: { length: 0.8, angle_deg: 30 } },
   spring: { size: [0.15, 0.15, 0.15], fixed: true, params: { rest_length: 0.4, stiffness: 40, damping: 0.2, stretch: 0.15 } },
+  // inertia 0 = solid disc (m r^2 / 2); hang_mass hangs from the rim on a string of hang_length below the axle.
+  flywheel: { size: [0.3, 0.3, 0.04], fixed: true, params: { radius: 0.15, inertia: 0, hang_mass: 0.05, hang_length: 0.4 } },
+  atwood: { size: [0.05, 0.05, 0.05], fixed: true, params: { radius: 0.05, m1: 0.2, m2: 0.15, hang_length: 0.5 } },
+  cart: { size: [0.1, 0.05, 0.08], fixed: true, friction: 0.01, params: { length: 1.5, angle_deg: 10 } },
+  launcher: { size: [0.05, 0.05, 0.05], fixed: true, params: { angle_deg: 45, speed: 3 } },
+  cradle: { size: [0.05, 0.05, 0.05], fixed: true, friction: 0, restitution: 1, params: { count: 5, length: 0.5, angle_deg: 30 } },
+  mass: { size: [0.025, 0.025, 0.025], params: { grams: 100 } },
+  ruler: { size: [1, 0.01, 0.03], fixed: true, params: { length: 1 } },
+  protractor: { size: [0.2, 0.1, 0.01], fixed: true, params: {} },
+  photogate: { size: [0.02, 0.15, 0.15], fixed: true, params: {} },
 };
-const PARAM_KEYS = { ball: [], block: [], ramp: [], pendulum: ['length', 'angle_deg'], spring: ['rest_length', 'stiffness', 'damping', 'stretch'] };
+const PARAM_KEYS = Object.fromEntries(Object.entries(DEFAULTS).map(([k, d]) => [k, Object.keys(d.params)]));
+const RANGES = { angle_deg: [-179, 179], stiffness: [0.01, 1e5], damping: [0, 1e4], stretch: [-50, 50], inertia: [0, 1e3], count: [1, 10], grams: [1, 1e4], speed: [0, 100] };
+// Standard mass set (brass, 8400 kg/m^3): mass and cylinder size follow params.grams.
+export const MASS_SET = [10, 20, 50, 100, 200, 500, 1000];
+const massSize = (g) => { const d = Math.cbrt((4 * g / 1000) / (Math.PI * 8400)); return [d, d, d]; };
 const OBJECT_KEYS = new Set(['id', 'kind', 'position', 'rotation', 'size', 'velocity', 'mass', 'friction', 'restitution', 'fixed', 'sensor', 'params']);
 const SCENE_KEYS = new Set(['version', 'label', 'units', 'gravity', 'room', 'objects']);
 
@@ -50,7 +66,7 @@ export function makeObject(kind, scene, at = [0, 1, 0]) {
   let n = 1; while (used.has(kind + '-' + n)) n += 1;
   const d = DEFAULTS[kind];
   return { id: kind + '-' + n, kind, position: [...at], rotation: [...(d.rotation ?? [0, 0, 0, 1])], size: [...d.size], velocity: [0, 0, 0],
-    mass: 1, friction: 0.5, restitution: 0.3, fixed: d.fixed ?? false, sensor: kind !== 'ramp', params: { ...d.params } };
+    mass: kind === 'mass' ? d.params.grams / 1000 : 1, friction: d.friction ?? 0.5, restitution: d.restitution ?? 0.3, fixed: d.fixed ?? false, sensor: kind !== 'ramp', params: { ...d.params } };
 }
 
 // Strict validation at the trust boundary (imported files and agent edits). Returns a normalized copy.
@@ -94,19 +110,20 @@ export function validateScene(input) {
     for (const k of Object.keys(given)) if (!PARAM_KEYS[o.kind].includes(k)) bad(at + '.params: unknown field ' + k);
     const params = {};
     for (const k of PARAM_KEYS[o.kind]) {
-      const [lo, hi] = k === 'angle_deg' ? [-179, 179] : k === 'stiffness' ? [0.01, 1e5] : k === 'damping' ? [0, 1e4] : k === 'stretch' ? [-50, 50] : [0.01, 50];
+      const [lo, hi] = RANGES[k] ?? [0.001, 50];
       params[k] = num(given[k] ?? d.params[k], at + '.params.' + k, lo, hi);
     }
+    if (o.kind === 'cradle') params.count = Math.round(params.count);
     const bool = (k, dflt) => (o[k] === undefined ? dflt : typeof o[k] === 'boolean' ? o[k] : bad(at + '.' + k + ' must be boolean'));
     return {
       id: o.id, kind: o.kind,
       position: vec(o.position ?? [0, 1, 0], 3, at + '.position', -1000, 1000),
       rotation: q.map((x) => x / qn),
-      size: vec(o.size ?? d.size, 3, at + '.size', 0.005, 50),
+      size: o.kind === 'mass' ? massSize(params.grams) : vec(o.size ?? d.size, 3, at + '.size', 0.005, 50),
       velocity: vec(o.velocity ?? [0, 0, 0], 3, at + '.velocity', -100, 100),
-      mass: num(o.mass ?? 1, at + '.mass', 1e-4, 1e4),
-      friction: num(o.friction ?? 0.5, at + '.friction', 0, 10),
-      restitution: num(o.restitution ?? 0.3, at + '.restitution', 0, 1),
+      mass: o.kind === 'mass' ? params.grams / 1000 : num(o.mass ?? 1, at + '.mass', 1e-4, 1e4),
+      friction: num(o.friction ?? d.friction ?? 0.5, at + '.friction', 0, 10),
+      restitution: num(o.restitution ?? d.restitution ?? 0.3, at + '.restitution', 0, 1),
       fixed: bool('fixed', d.fixed ?? false),
       sensor: bool('sensor', o.kind !== 'ramp'),
       params,

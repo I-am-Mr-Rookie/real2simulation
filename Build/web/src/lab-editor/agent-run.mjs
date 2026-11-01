@@ -10,7 +10,9 @@ import { integrateRK4 } from '../../../simulator/rk4.mjs';
 export const ENGINE = 'Rapier (same world as the editor Play, room collision proxy included), dt 1/120 s';
 export const FALLBACK_ENGINE = 'FALLBACK server RK4 (Build/simulator/rk4.mjs, Rapier failed to load), dt 1/120 s, no contacts except the floor stop';
 
-const traced = (scene) => scene.objects.filter((o) => o.sensor && o.kind !== 'ramp' && !(o.fixed && (o.kind === 'ball' || o.kind === 'block')));
+const traced = (scene) => scene.objects.filter((o) => o.sensor && o.kind !== 'ramp' && !(o.fixed && ['ball', 'block', 'mass'].includes(o.kind)));
+const FREE = ['ball', 'block', 'mass', 'launcher'];
+const STRUNG = ['flywheel', 'atwood', 'cart']; // constant acceleration until the mass lands or the cart leaves the track
 
 // Free-flight steps satisfy p[n+1] - 2 p[n] + p[n-1] = g dt^2; the first step that breaks it is the first contact.
 export function firstContact(samples, g) {
@@ -31,10 +33,11 @@ export function simulateRapier(R, sceneInput, durationS = 10) {
     sim.step(steps);
     const traces = traced(scene).map((o) => {
       const t = sim.trace(o.id);
-      const hit = o.kind === 'ball' || o.kind === 'block' ? firstContact(t.samples, scene.gravity) : -1;
+      const s = t.samples, acc = s.length > 3 ? [0, 1, 2].map((i) => (s[3].p[i] - 2 * s[2].p[i] + s[1].p[i]) / (DT * DT)) : scene.gravity;
+      const hit = FREE.includes(o.kind) ? firstContact(s, scene.gravity) : STRUNG.includes(o.kind) ? firstContact(s, acc) : -1;
       // shortcut: floor test uses scene y as up (room jobs and the agent use gravity -y); tilted gravity reports surface_contact.
       // samples[hit] is the last free-flight sample; the next one is the first after the contact impulse.
-      const onFloor = hit >= 0 && scene.room.kind !== 'none' && t.samples[hit + 1].p[1] - Math.max(...o.size) / 2 <= scene.room.floor_y + 0.02;
+      const onFloor = hit >= 0 && scene.room.kind !== 'none' && t.samples[hit + 1].p[1] - (FREE.includes(o.kind) ? Math.max(...o.size) / 2 : 0.03) <= scene.room.floor_y + 0.02;
       return { ...t, engine: ENGINE, ended: hit < 0 ? 'duration' : onFloor ? 'floor_contact' : 'surface_contact', samples: hit < 0 ? t.samples : t.samples.slice(0, hit + 1) };
     });
     return { status: 'ok', label: 'SIMULATED', engine: ENGINE, scene, traces };
@@ -54,7 +57,8 @@ export function simulateRK4(sceneInput, durationS = 10) {
   const steps = Math.round(dur / DT), g = scene.gravity, gAbs = Math.hypot(...g);
   const floor = scene.room.kind === 'none' ? -Infinity : scene.room.floor_y;
   const traces = [];
-  for (const o of traced(scene)) {
+  // shortcut: the RK4 fallback has no strings, contacts or probes; N33 kit objects other than mass are left out of it.
+  for (const o of traced(scene).filter((x) => !['flywheel', 'atwood', 'cart', 'launcher', 'cradle', 'ruler', 'protractor', 'photogate'].includes(x.kind))) {
     let pos;
     if (o.kind === 'pendulum') {
       const L = o.params.length;

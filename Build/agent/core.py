@@ -71,13 +71,20 @@ TOOLS: dict[str, tuple[str, dict[str, Any]]] = {
         "file_id": _ID, "target": {"type": "string", "maxLength": 80}}),
     "start_room_build": ("Reconstruct an uploaded room video into a 3D virtual lab.", {"file_id": _ID}),
     "lab_add_object": ("Add an object to the virtual lab; params are SI numbers such as mass_kg, diameter_m (ball "
-                       "size as people say it), height_m above the floor, x_m.", {
-        "kind": {"type": "string", "enum": ["ball", "block", "ramp", "pendulum", "spring", "flywheel"]},
+                       "size as people say it), height_m above the floor, x_m. Kit params: flywheel radius_m, mass_kg, "
+                       "moment_of_inertia_kg_m2 (0 = solid disc), hanging_mass_kg, string_length_m; atwood mass1_kg, "
+                       "mass2_kg, pulley_radius_m, string_length_m; cart track_length_m, angle_deg (incline), friction; "
+                       "launcher angle_deg, speed_m_s; cradle count, length_m, angle_deg; mass mass_kg (standard mass); "
+                       "probes ruler (length_m), protractor, photogate read the nearest moving object. lab_run then "
+                       "reports fitted acceleration, moment of inertia, range, gate times with uncertainty.", {
+        "kind": {"type": "string", "enum": ["ball", "block", "ramp", "pendulum", "spring", "flywheel", "atwood", "cart",
+                                            "launcher", "cradle", "mass", "ruler", "protractor", "photogate"]},
         "params": {"type": "object", "maxProperties": 12,
                    "propertyNames": {"pattern": r"^[a-z][a-z0-9_]{0,31}$"}, "additionalProperties": {"type": "number"}}}),
     "lab_update_object": ("Move, turn, resize or re-parameterise one lab object by id or by kind (when only one of "
                           "that kind exists). Params are SI numbers: absolute x_m, z_m, height_m, diameter_m, size_m, "
-                          "mass_kg, length_m, angle_deg; relative dx_m, dy_m, dz_m (left is negative dx_m); yaw_deg.", {
+                          "mass_kg, length_m, angle_deg, and the kit params of lab_add_object; relative dx_m, dy_m, dz_m "
+                          "(left is negative dx_m); yaw_deg.", {
         "id": {"type": "string", "maxLength": 64}, "kind": {"type": "string", "maxLength": 32},
         "params": {"type": "object", "maxProperties": 12,
                    "propertyNames": {"pattern": r"^[a-z][a-z0-9_]{0,31}$"}, "additionalProperties": {"type": "number"}}}),

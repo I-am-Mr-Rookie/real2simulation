@@ -1,0 +1,93 @@
+{
+  "start_utc": "2026-11-01T22:52:11.369Z",
+  "steps": [
+    {
+      "k": "menu_items",
+      "v": 20
+    },
+    {
+      "k": "ids_after_add",
+      "v": [
+        "atwood-1",
+        "flywheel-1",
+        "cart-1",
+        "launcher-1",
+        "cradle-1",
+        "mass-1",
+        "photogate-1"
+      ]
+    },
+    {
+      "k": "ids_after_delete_key",
+      "v": [
+        "atwood-1",
+        "flywheel-1",
+        "cart-1",
+        "launcher-1",
+        "cradle-1",
+        "mass-1"
+      ]
+    },
+    {
+      "k": "ids_after_undo",
+      "v": [
+        "atwood-1",
+        "flywheel-1",
+        "cart-1",
+        "launcher-1",
+        "cradle-1",
+        "mass-1",
+        "photogate-1"
+      ]
+    },
+    {
+      "k": "ids_after_redo",
+      "v": [
+        "atwood-1",
+        "flywheel-1",
+        "cart-1",
+        "launcher-1",
+        "cradle-1",
+        "mass-1"
+      ]
+    },
+    {
+      "k": "ids_after_undo_button",
+      "v": [
+        "atwood-1",
+        "flywheel-1",
+        "cart-1",
+        "launcher-1",
+        "cradle-1",
+        "mass-1",
+        "photogate-1"
+      ]
+    },
+    {
+      "k": "time",
+      "v": "t = 0.96 s"
+    },
+    {
+      "k": "scrollWidth_375",
+      "v": 360
+    },
+    {
+      "k": "menu_box_375",
+      "v": {
+        "x": 69.5,
+        "y": 192.984375,
+        "width": 300,
+        "height": 568.390625
+      }
+    },
+    {
+      "k": "status",
+      "v": "Paused. Resume, reset, or export the SIMULATED sensor traces. Gravity [0, -9.81, 0] m/s^2."
+    }
+  ],
+  "console_errors": [
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)",
+    "Failed to load resource: the server responded with a status of 401 (Unauthorized)"
+  ],
+  "end_utc": "2026-11-01T22:52:20.662Z"
+}

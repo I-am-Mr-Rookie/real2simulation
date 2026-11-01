@@ -5,16 +5,23 @@ import { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
-import { defaultScene, makeObject, validateScene, parseScene, sceneJson, fitterRequest, keepAdded, KINDS, MAX_OBJECTS } from './scene.mjs';
-import { createPhysics, loadRapier, movingStart, upQuat, roomProxy } from './physics.mjs';
+import { defaultScene, makeObject, validateScene, parseScene, sceneJson, fitterRequest, keepAdded, MAX_OBJECTS, MASS_SET } from './scene.mjs';
+import { createPhysics, loadRapier, movingStart, upQuat, roomProxy, kitParts } from './physics.mjs';
+import { emptyHistory, record, undo, redo, removeObject, typing } from './history.mjs';
 import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
 import { naturalPoint, trajectoryScene } from '../workspace/measure.mjs';
 import { robustBounds, fitDistance, FRAME_Q } from './frame.mjs';
 import './lab-editor.css';
 
-const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981 };
-const LABELS = { ball: 'Ball', block: 'Block', ramp: 'Ramp', pendulum: 'Pendulum', spring: 'Spring' };
+const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981, flywheel: 0x8b5cf6, atwood: 0x0ea5e9,
+  cart: 0xef4444, launcher: 0xe4572e, cradle: 0x94a3b8, mass: 0xb8860b, ruler: 0xfacc15, protractor: 0x22c55e, photogate: 0xf97316 };
+const LABELS = { ball: 'Ball', block: 'Block', ramp: 'Ramp', pendulum: 'Pendulum', spring: 'Spring', flywheel: 'Flywheel', atwood: 'Atwood machine',
+  cart: 'Cart and track', launcher: 'Projectile launcher', cradle: 'Collision balls', mass: 'Mass', ruler: 'Ruler', protractor: 'Protractor', photogate: 'Photogate timer' };
+// N33: compact Add menu, grouped. Mass set entries carry grams.
+const MENU = [['Basics', ['ball', 'block', 'ramp', 'pendulum', 'spring']], ['Apparatus', ['flywheel', 'atwood', 'cart', 'launcher', 'cradle']],
+  ['Mass set', MASS_SET.map((g) => ['mass', g])], ['Probes', ['ruler', 'protractor', 'photogate']]];
+const ADD_Y = { ramp: 0.35, atwood: 1.6, cart: 0.4, launcher: 0.1, cradle: 0.9, mass: 1, ruler: 0.5, photogate: 0.5, protractor: 1.3 };
 const MAX_STEPS_PER_FRAME = 8;
 // N24: compact icon toolbar (inline 24px stroke paths, same style as shell/icons.mjs).
 const ICONS = {
@@ -23,6 +30,10 @@ const ICONS = {
   play: 'M7 4l13 8-13 8z', pause: 'M8 5v14M16 5v14', reset: 'M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4',
   traces: 'M4 4v16h16M8 15l3-4 3 2 5-6', download: 'M12 4v11M7 10l5 5 5-5M4 20h16', upload: 'M12 15V4M7 9l5-5 5 5M4 20h16',
   panel: 'M4 5h16v14H4zM9 5v14', frame: 'M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5',
+  flywheel: 'M12 4a8 8 0 1 0 0 16a8 8 0 1 0 0-16zM12 11v2M20 12v9', atwood: 'M12 3a3 3 0 1 0 0 6a3 3 0 1 0 0-6zM9 6v10M15 6v6M7 16h4v4H7zM13 12h4v4h-4z',
+  cart: 'M3 19L21 11M8 15l7-3-1-2-7 3z', launcher: 'M4 20h8M7 20l3-5M10 15l8-8M15 6h4v4', cradle: 'M3 4h18M6 4v11M10 4v11M14 4v11M18 4v11M6 15h12',
+  mass: 'M8 9h8l2 11H6zM10 9V5h4v4', ruler: 'M3 9h18v6H3zM7 9v3M11 9v3M15 9v3M19 9v3', protractor: 'M3 17a9 9 0 0 1 18 0zM12 17l5-6',
+  photogate: 'M5 4v16M19 4v16M5 12h14', trash: 'M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13', add: 'M12 5v14M5 12h14', undo: 'M9 6l-5 5 5 5M4 11h11a5 5 0 0 1 0 10h-3', redo: 'M15 6l5 5-5 5M20 11H9a5 5 0 0 0 0 10h3',
 };
 const Ico = ({ n }) => <svg className="le-ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d={ICONS[n]} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 const isDark = () => typeof document !== 'undefined' && document.documentElement.dataset.tone === 'dark';
@@ -51,6 +62,7 @@ function objectMesh(o) {
   g.position.fromArray(o.position);
   g.quaternion.fromArray(o.rotation);
   const mat = new THREE.MeshStandardMaterial({ color: COLORS[o.kind], roughness: 0.6 });
+  if (o.kind !== 'ball' && o.kind !== 'block' && o.kind !== 'ramp' && o.kind !== 'pendulum' && o.kind !== 'spring') return kitMesh(o, g, mat);
   const geo = o.kind === 'ball' || o.kind === 'pendulum' ? new THREE.SphereGeometry(0.5, 24, 16) : new THREE.BoxGeometry(1, 1, 1);
   const body = new THREE.Mesh(geo, mat);
   body.scale.fromArray(o.kind === 'ball' || o.kind === 'pendulum' ? Array(3).fill(Math.max(...o.size)) : o.size);
@@ -67,6 +79,54 @@ function objectMesh(o) {
     g.userData.line = line;
   }
   g.userData.body = body;
+  return g;
+}
+
+// N33 kit meshes; moving parts follow physics poses (userData.parts), strings follow userData.links.
+function kitMesh(o, g, mat) {
+  const mesh = (geo, m = mat) => { const x = new THREE.Mesh(geo, m); g.add(x); return x; };
+  const local = (p) => { g.updateMatrixWorld(); return g.worldToLocal(new THREE.Vector3(...p)); };
+  const dark = new THREE.MeshStandardMaterial({ color: 0x374151 });
+  const parts = kitParts(o), P = o.params;
+  g.userData.parts = []; g.userData.links = [];
+  const link = (from, i) => {
+    const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints([from, g.userData.parts[i].position.clone()]), new THREE.LineBasicMaterial({ color: 0x111827 }));
+    g.add(line); g.userData.links.push([line, i]);
+  };
+  if (o.kind === 'flywheel' || o.kind === 'atwood') {
+    const r = P.radius;
+    const disc = mesh(new THREE.CylinderGeometry(r, r, o.kind === 'flywheel' ? o.size[2] : 0.02, 32).rotateX(Math.PI / 2), o.kind === 'flywheel' ? mat : dark);
+    mesh(new THREE.BoxGeometry(0.02, 0.02, 0.12), dark);
+    if (o.kind === 'flywheel') { g.userData.parts.push(disc); mesh(new THREE.BoxGeometry(0.02, 0.06, 0.02), dark).position.set(0.6 * r, 0, o.size[2] / 2 + 0.01); disc.add(g.children.at(-1)); }
+    for (const pt of o.kind === 'flywheel' ? parts.slice(1) : parts) {
+      const m = mesh(o.kind === 'flywheel' ? new THREE.SphereGeometry(pt.r, 16, 12) : new THREE.BoxGeometry(2 * pt.r, 2 * pt.r, 2 * pt.r));
+      m.position.copy(local(pt.p)); g.userData.parts.push(m);
+    }
+    (o.kind === 'flywheel' ? [[new THREE.Vector3(r, 0, 0), 1]] : [[new THREE.Vector3(-r, 0, 0), 0], [new THREE.Vector3(r, 0, 0), 1]]).forEach(([f, i]) => link(f, i));
+  } else if (o.kind === 'cart') {
+    for (const pt of parts) {
+      const m = mesh(new THREE.BoxGeometry(...pt.size), pt.role === 'track' ? new THREE.MeshStandardMaterial({ color: 0x9ca3af }) : mat);
+      m.position.copy(local(pt.p)); m.quaternion.copy(g.quaternion.clone().invert().multiply(new THREE.Quaternion(...pt.q))); g.userData.parts.push(m);
+    }
+  } else if (o.kind === 'cradle') {
+    const d = Math.max(...o.size);
+    mesh(new THREE.BoxGeometry((P.count + 1) * d, 0.02, 0.04), dark);
+    parts.forEach((pt, i) => { const m = mesh(new THREE.SphereGeometry(d / 2, 20, 14)); m.position.copy(local(pt.p)); g.userData.parts.push(m); link(local(pt.anchor), i); });
+  } else if (o.kind === 'launcher') {
+    const a = (P.angle_deg * Math.PI) / 180, barrel = mesh(new THREE.CylinderGeometry(0.03, 0.03, 0.2, 16), dark);
+    barrel.rotation.z = a - Math.PI / 2; barrel.position.set(-0.1 * Math.cos(a), -0.1 * Math.sin(a), 0);
+    g.userData.body = mesh(new THREE.SphereGeometry(Math.max(...o.size) / 2, 20, 14));
+  } else if (o.kind === 'mass') {
+    mesh(new THREE.CylinderGeometry(0.5, 0.5, 1, 24)).scale.fromArray(o.size);
+  } else if (o.kind === 'ruler') {
+    mesh(new THREE.BoxGeometry(P.length, o.size[1], o.size[2]));
+  } else if (o.kind === 'protractor') {
+    mesh(new THREE.RingGeometry(0.08, 0.1, 32, 1, Math.PI, Math.PI), new THREE.MeshStandardMaterial({ color: COLORS.protractor, side: THREE.DoubleSide }));
+  } else {
+    for (const z of [-1, 1]) mesh(new THREE.BoxGeometry(0.02, 0.15, 0.02)).position.set(0, 0.075, (z * o.size[2]) / 2);
+    mesh(new THREE.BoxGeometry(0.004, 0.004, o.size[2]), new THREE.MeshBasicMaterial({ color: 0xef4444 }));
+  }
+  g.traverse((m) => { m.userData.id = o.id; });
   return g;
 }
 
@@ -215,12 +275,16 @@ export default function LabEditor({ initialScene }) {
           const p = poses[g.userData.id];
           if (!p) continue;
           const o = state.sim.scene.objects.find((x) => x.id === g.userData.id);
-          if (o.kind === 'pendulum' || o.kind === 'spring') {
+          if (p.parts && g.userData.parts) {
+            g.updateMatrixWorld();
+            const gi = g.quaternion.clone().invert();
+            g.userData.parts.forEach((m, i) => { m.position.copy(g.worldToLocal(new THREE.Vector3(...p.parts[i].p))); m.quaternion.copy(gi.clone().multiply(new THREE.Quaternion(...p.parts[i].q))); });
+            for (const [line, i] of g.userData.links) { const pos = line.geometry.attributes.position; pos.setXYZ(1, ...g.userData.parts[i].position.toArray()); pos.needsUpdate = true; }
+          } else if (o.kind === 'pendulum' || o.kind === 'spring' || o.kind === 'launcher') {
             g.updateMatrixWorld();
             g.userData.body.position.copy(g.worldToLocal(new THREE.Vector3(...p.p)));
-            const pos = g.userData.line.geometry.attributes.position;
-            pos.setXYZ(1, ...g.userData.body.position.toArray());
-            pos.needsUpdate = true;
+            const pos = g.userData.line?.geometry.attributes.position;
+            if (pos) { pos.setXYZ(1, ...g.userData.body.position.toArray()); pos.needsUpdate = true; }
           } else {
             g.position.fromArray(p.p);
             g.quaternion.fromArray(p.q);
@@ -305,12 +369,41 @@ export default function LabEditor({ initialScene }) {
   const edit = (fn) => {
     try { setScene((s) => validateScene(fn(structuredClone(s)))); } catch (e) { setMessage(e.message); }
   };
-  const addObject = (kind) => {
+  const addObject = (kind, grams) => {
     if (scene.objects.length >= MAX_OBJECTS) { setMessage('At most ' + MAX_OBJECTS + ' objects.'); return; }
-    const o = makeObject(kind, scene, [((scene.objects.length % 5) - 2) * 0.6, kind === 'ramp' ? 0.35 : 1.2, 0]);
+    const o = makeObject(kind, scene, [((scene.objects.length % 5) - 2) * 0.6, ADD_Y[kind] ?? 1.2, 0]);
+    if (grams) o.params.grams = grams;
     edit((s) => ({ ...s, objects: [...s.objects, o] }));
     setSelected(o.id);
   };
+  // N33 undo/redo: every scene change (toolbar, gizmo, inspector, keyboard, agent) is recorded unless it is an undo/redo.
+  const hist = useRef(emptyHistory()), prevScene = useRef(scene), replaying = useRef(false), addMenu = useRef(null);
+  const [, setHistTick] = useState(0);
+  useEffect(() => {
+    if (prevScene.current === scene) return;
+    if (!replaying.current) hist.current = record(hist.current, prevScene.current);
+    replaying.current = false; prevScene.current = scene; setHistTick((n) => n + 1);
+  }, [scene]);
+  const travel = (fn, verb) => {
+    const r = fn(hist.current, scene);
+    if (!r) return;
+    stop(); replaying.current = true; hist.current = r.history; setScene(r.scene);
+    setSelected((id) => (r.scene.objects.some((o) => o.id === id) ? id : null)); setMessage(verb + '. SIMULATED.');
+  };
+  const removeSelected = () => {
+    if (!selected || run === 'playing' || run === 'paused') return;
+    edit((s) => removeObject(s, selected)); setMessage('Deleted ' + selected + '. Ctrl+Z undoes it.'); setSelected(null);
+  };
+  useEffect(() => {
+    const onKey = (e) => {
+      if (typing(e.target)) return;
+      const k = e.key.toLowerCase();
+      if ((e.ctrlKey || e.metaKey) && (k === 'z' || k === 'y')) { e.preventDefault(); travel(k === 'y' || e.shiftKey ? redo : undo, k === 'y' || e.shiftKey ? 'Redone' : 'Undone'); }
+      else if (e.key === 'Delete' || e.key === 'Backspace') { if (selected) { e.preventDefault(); removeSelected(); } }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  });
   const stop = () => {
     const st = api.current?.state;
     if (st) { st.playing = false; st.sim?.free(); st.sim = null; }
@@ -403,8 +496,19 @@ export default function LabEditor({ initialScene }) {
     <div className="le-top" role="toolbar" aria-label="Lab tools">
       <button type="button" className="le-icon-btn" aria-pressed={side} aria-label={(side ? 'Hide' : 'Show') + ' inspector and scene JSON'} title="Inspector and scene JSON" onClick={() => setSide((v) => !v)}><Ico n="panel" /></button>
       <strong className="le-title">{title}</strong>
-      <div className="le-group" role="group" aria-label="Add objects">
-        {KINDS.map((k) => <button key={k} type="button" title={'Add a ' + LABELS[k].toLowerCase()} aria-label={'Add ' + LABELS[k]} onClick={() => addObject(k)} disabled={live}><Ico n={k} /><span className="le-lbl">{LABELS[k]}</span></button>)}
+      <details className="le-add" ref={addMenu}>
+        <summary className={live ? 'le-off' : ''} title="Add an object or probe" aria-label="Add an object or probe"><Ico n="add" /><span>Add</span></summary>
+        <div className="le-menu" role="menu" aria-label="Lab kit">
+          {MENU.map(([group, items]) => <div key={group} className="le-menu-g" role="group" aria-label={group}><span className="le-menu-h">{group}</span>
+            {items.map((it) => { const [k, g] = Array.isArray(it) ? it : [it]; const label = g ? (g >= 1000 ? g / 1000 + ' kg' : g + ' g') + ' mass' : LABELS[k];
+              return <button key={label} type="button" role="menuitem" disabled={live} onClick={() => { addObject(k, g); addMenu.current.open = false; }}><Ico n={k} /><span>{label}</span></button>; })}
+          </div>)}
+        </div>
+      </details>
+      <div className="le-group" role="group" aria-label="Edit history">
+        <button type="button" className="le-icon-btn" onClick={() => travel(undo, 'Undone')} disabled={!hist.current.past.length} aria-label="Undo" title="Undo (Ctrl+Z)"><Ico n="undo" /></button>
+        <button type="button" className="le-icon-btn" onClick={() => travel(redo, 'Redone')} disabled={!hist.current.future.length} aria-label="Redo" title="Redo (Ctrl+Shift+Z)"><Ico n="redo" /></button>
+        <button type="button" className="le-icon-btn" onClick={removeSelected} disabled={!sel || live} aria-label="Delete selected" title="Delete selected (Delete key)"><Ico n="trash" /></button>
       </div>
       <div className="le-group" role="group" aria-label="Simulation">
         {run !== 'playing' ? <button type="button" className="le-primary" onClick={play} disabled={run === 'loading' || !scene.objects.length}><Ico n="play" /><span>{run === 'paused' ? 'Resume' : 'Play'}</span></button> : <button type="button" className="le-primary" onClick={pause}><Ico n="pause" /><span>Pause</span></button>}
@@ -430,7 +534,7 @@ export default function LabEditor({ initialScene }) {
           {sel.kind !== 'pendulum' && sel.kind !== 'spring' && <label><input type="checkbox" checked={sel.fixed} disabled={live} onChange={(e) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === sel.id ? { ...o, fixed: e.target.checked } : o)) }))} /> Fixed in place</label>}
           <p>Size {sel.size.map((v) => v.toFixed(2)).join(' x ')} m, mass {sel.mass} kg</p>
           {selTrace && <p>Sensor: {selTrace.samples.length} samples{selTrace.truncated ? ' (cap reached)' : ''}</p>}
-          <button type="button" className="le-danger" disabled={live} onClick={() => { edit((s) => ({ ...s, objects: s.objects.filter((o) => o.id !== sel.id) })); setSelected(null); }}>Delete</button>
+          <button type="button" className="le-danger" disabled={live} onClick={removeSelected}>Delete</button>
         </>}
       </div>
       {scene.room.collision && <div className="le-panel">

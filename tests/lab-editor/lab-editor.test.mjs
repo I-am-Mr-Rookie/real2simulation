@@ -15,7 +15,7 @@ test('every kind round-trips through JSON', () => {
   const s = defaultScene();
   for (const k of KINDS) s.objects.push(makeObject(k, s));
   const back = parseScene(sceneJson(s));
-  assert.deepEqual(back.objects.map((o) => o.id), ['ball-1', 'block-1', 'ramp-1', 'pendulum-1', 'spring-1']);
+  assert.deepEqual(back.objects.map((o) => o.id), KINDS.map((k) => k + '-1'));
   assert.equal(back.label, 'SIMULATED');
   assert.deepEqual(parseScene(sceneJson(back)), back);
 });
