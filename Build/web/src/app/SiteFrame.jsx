@@ -29,6 +29,6 @@ export default function SiteFrame({ children, authAvailable = false }) {
       </nav>
     </header>
     <main id="main">{children}</main>
-    <footer className="site-footer"><strong>Development build</strong><span>Synthetic lab results are not calibrated measurements. Uploads are limited to approved licensed clips in the signed-in workspace.</span></footer>
+    <footer className="site-footer"><strong>Development build</strong><span>Sign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.</span></footer>
   </>;
 }

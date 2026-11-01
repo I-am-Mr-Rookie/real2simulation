@@ -12,9 +12,9 @@ export default function LabPage() {
   const [editor, setEditor] = useState(false);
   useEffect(() => { if (new URLSearchParams(window.location.search).has('editor')) setEditor(true); }, []);
   return <>
-    <p style={{ maxWidth: 1100, margin: '12px auto 0', padding: '0 12px' }}>
-      <button type="button" aria-pressed={editor} onClick={() => setEditor((v) => !v)} style={{ minHeight: 44, padding: '0 14px' }}>
-        {editor ? 'Back to synthetic trial' : 'Open 3D lab editor'}
+    <p style={{ maxWidth: editor ? 1680 : 1100, margin: '8px auto 0', padding: '0 16px', display: 'flex', justifyContent: 'flex-end' }}>
+      <button type="button" aria-pressed={editor} onClick={() => setEditor((v) => !v)} style={{ minHeight: 36, padding: '0 12px' }}>
+        {editor ? 'Template trials' : 'Open 3D lab editor'}
       </button>
     </p>
     {editor ? <LabEditor /> : <LabClient />}

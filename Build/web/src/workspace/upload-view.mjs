@@ -7,7 +7,7 @@ export function uploadView(snapshot) {
   const { state, busy = false, upload = null } = snapshot;
   const show = ['upload.idle', 'upload.failed', 'upload.cancelled'].includes(state.phase);
   const status = busy ? (upload ? 'Uploading ' + upload.name + ': ' + pct(upload) + '%' : 'Preparing upload')
-    : upload?.approvedClip ? 'Approved clip ' + upload.approvedClip + ' accepted' : 'No file uploaded yet.';
+    : upload?.approvedClip ? 'Clip ' + upload.approvedClip + ' accepted' : 'No file uploaded yet.';
   return { show, disabled: busy, upload, percent: pct(upload), status, error: show && state.error ? state.error : null };
 }
 
@@ -23,7 +23,7 @@ export function renderUpload(h, v, onFile) {
       h('input', { id: 'ws-upload-file', type: 'file', accept: ACCEPT, disabled: off, 'aria-describedby': 'ws-upload-hint ws-upload-status',
         // S15bd: clear the input so re-picking the same file after an error fires change again
         onChange: (e) => { const file = e.target.files?.[0]; e.target.value = ''; if (file) onFile(file); } }),
-      h('span', { id: 'ws-upload-hint', className: 'ws-hint' }, 'Only approved licensed clips listed in clips.csv are accepted; other files are rejected by checksum.')),
+      h('span', { id: 'ws-upload-hint', className: 'ws-hint' }, 'Upload your own video (mp4, mov or webm). Results show MEASURED or scale unverified labels with uncertainty.')),
     v.upload && v.disabled ? h('progress', { className: 'ws-meter', max: 100, value: v.percent, 'aria-label': 'Upload progress' }) : null,
     h('p', { id: 'ws-upload-status', className: 'ws-progress', role: 'status', 'aria-live': 'polite' }, v.status),
     v.error ? h('p', { className: 'ws-error', role: 'alert' }, v.error.code + ': ' + v.error.message) : null);

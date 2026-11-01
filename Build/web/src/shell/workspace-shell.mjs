@@ -54,7 +54,7 @@ export function toolsOf({ live, phase, owner, jobId, uploadStatus, hasReport, pe
   return [
     { id: 'agent', label: 'Agent', status: (pending ? pending + (pending === 1 ? ' question' : ' questions') + ' waiting. ' : '') + label,
       pending, target: pending ? 'r2s-q-h' : 'ws-panel', key: '1', icon: 'chat' },
-    { id: 'clips', label: 'Clips', status: uploadStatus || 'Upload an approved licensed clip', target: 'ws-upload-file', key: '2', icon: 'film' },
+    { id: 'clips', label: 'Clips', status: uploadStatus || 'Upload your own video', target: 'ws-upload-file', key: '2', icon: 'film' },
     { id: 'runs', label: 'Runs & history', status: jobId ? 'Job ' + jobId + ': ' + label : 'No job yet', target: 'ws-job', key: '3', icon: 'history' },
     { id: 'report', label: 'Report', status: hasReport ? 'Report available' : 'No report yet (needs a finished fit or clip result)', target: 'ws-panel', key: '4', icon: 'doc' },
   ];

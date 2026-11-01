@@ -4,6 +4,7 @@ import { API_BASE } from './controller.mjs';
 import { AGENT_MODES, UPLOAD_QUESTION, LIMITS, TIPS, projectTitle, fmtBytes, quotaView, gpuDot, GPU_POLL_MS, shouldPoll, jobsState,
   historyOf, questionAnswer, recommendedIndex, readAgentMode, writeAgentMode, toWav16k, VOICE_MAX_S } from './live.mjs';
 import { chartGeom, fmtPm, SIZE_UNITS, naturalPoint, experimentBody, jobView, POLL_MS, jobsFromToolCalls, shareable } from './measure.mjs';
+import { groupJobs, jobName, shortWhen } from './projects.mjs';
 
 const ACCEPT = 'video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm';
 const TRACK_KEY = 'r2s.tracked.jobs';
@@ -58,8 +59,10 @@ export const createLive = (React) => {
     }, []);
     const loadJobs = useCallback(async () => {
       const one = async (path, key) => { try { const r = await call(path); return jobsState(r.status, r.body, key); } catch { return jobsState(0, null, key); } };
+      // Projects first: the first projects list seeds the SAMPLE project and its jobs on the server.
+      const projects = await one('/projects', 'projects');
       const [experiments, rooms] = await Promise.all([one('/experiments', 'experiments'), one('/rooms', 'rooms')]);
-      setJobs({ experiments, rooms });
+      setJobs({ experiments, rooms, projects });
     }, []);
     useEffect(() => { if (enabled) { loadFiles(); loadJobs(); } }, [enabled, loadFiles, loadJobs]);
 
@@ -248,19 +251,33 @@ export const createLive = (React) => {
       h('span', { className: 'lv-dot', 'aria-hidden': true }), h('span', { className: 'lv-gpu-text' }, d.label, d.detail ? h('small', null, ' ' + d.detail) : null));
   }
 
-  const JOB_TITLES = { experiments: 'Experiments', rooms: 'Rooms' };
-  function Jobs({ L }) {
-    if (!L.jobs) return h('p', { className: 'lv-muted' }, 'Checking job services.');
-    return h('div', { className: 'lv-jobs' }, ...Object.entries(L.jobs).map(([k, j]) => h('div', { key: k, className: 'lv-job', 'data-state': j.state },
-      h('h4', null, JOB_TITLES[k]),
-      j.state === 'unavailable' ? h('p', { className: 'lv-muted' }, 'No saved list on this server yet. Jobs you start here show above.')
-        : j.state === 'error' ? h('p', { className: 'ws-error', role: 'alert' }, j.message)
-        : j.items.length ? h('ul', null, ...j.items.slice(0, 20).map((it, i) => h('li', { key: it.id ?? i },
-          h('span', null, it.title || it.name || it.id || 'Job'), ' ', h('span', { className: 'lv-tag' }, String(it.status ?? it.state ?? 'unknown')),
-          k === 'experiments' && it.id && !L.tracked['experiment:' + it.id] ? h('button', { type: 'button', className: 'lv-btn lv-sm', onClick: () => L.track('experiment', it.id) }, 'Open') : null,
-          Number.isFinite(it.progress) ? h('progress', { max: 1, value: it.progress, 'aria-label': 'Progress' }) : null)))
-        : h('p', { className: 'lv-muted' }, 'No jobs yet.'))),
-      h('button', { type: 'button', className: 'lv-btn', onClick: L.loadJobs }, 'Refresh'));
+  // N24: projects (SAMPLE labelled) with their experiments and rooms under each; short readable names instead of raw ids.
+  function JobRow({ L, it, kind }) {
+    const st = String(it.status ?? it.state ?? 'unknown'), when = shortWhen(it.created ?? it.created_at);
+    return h('li', { className: 'lv-jobrow', title: it.id },
+      h('span', { className: 'lv-jobname' }, h('strong', null, jobName(it, kind)), when ? h('small', { className: 'lv-muted' }, ' ' + when) : null),
+      h('span', { className: 'lv-tag', 'data-tone': st === 'done' ? 'ok' : st === 'failed' || st === 'error' ? 'warn' : undefined }, st),
+      kind === 'experiment' && it.id && !L.tracked['experiment:' + it.id] ? h('button', { type: 'button', className: 'lv-btn lv-sm', onClick: () => L.track('experiment', it.id) }, 'Open') : null,
+      kind === 'room' && it.id && st === 'done' ? h('a', { className: 'lv-btn lv-sm', href: '/lab?editor=1&room=' + encodeURIComponent(it.id) }, 'Open lab') : null,
+      Number.isFinite(it.progress) ? h('progress', { max: 1, value: it.progress, 'aria-label': 'Progress' }) : null);
+  }
+  function Projects({ L }) {
+    if (!L.jobs) return h('p', { className: 'lv-muted' }, 'Loading projects.');
+    const { experiments: e, rooms: r, projects: p } = L.jobs;
+    const err = [e, r, p].find((j) => j?.state === 'error');
+    const groups = groupJobs(p?.items ?? [], e?.items ?? [], r?.items ?? []);
+    return h('div', { className: 'lv-projects' },
+      err ? h('p', { className: 'ws-error', role: 'alert' }, err.message) : null,
+      groups.length ? h('ul', { className: 'lv-plist' }, ...groups.map((g) => h('li', { key: g.id ?? 'none', className: 'lv-pgroup', 'data-sample': g.sample || undefined },
+        h('div', { className: 'lv-row lv-phead' }, h('strong', null, g.name),
+          g.sample ? h('span', { className: 'lv-tag', 'data-tone': 'warn' }, 'SAMPLE') : null, g.sample ? h('span', { className: 'lv-tag' }, 'RECORDED') : null,
+          g.mode ? h('small', { className: 'lv-muted' }, g.mode === 'room' ? 'Room lab' : 'Experiment') : null),
+        g.experiments.length || g.rooms.length ? h('ul', { className: 'lv-jobs' },
+          ...g.rooms.slice(0, 20).map((it, i) => h(JobRow, { key: 'r' + (it.id ?? i), L, it, kind: 'room' })),
+          ...g.experiments.slice(0, 20).map((it, i) => h(JobRow, { key: 'e' + (it.id ?? i), L, it, kind: 'experiment' })))
+          : h('p', { className: 'lv-muted' }, 'No rooms or experiments yet.'))))
+        : h('p', { className: 'lv-muted' }, 'No projects yet.'),
+      h('button', { type: 'button', className: 'lv-btn lv-sm', onClick: L.loadJobs }, 'Refresh'));
   }
 
   // N22 Mode B: first frame still (a paused <video> seeked to 0, no server call), click the object or type its name, optional known size.
@@ -295,12 +312,18 @@ export const createLive = (React) => {
   function Chart({ result }) {
     const g = chartGeom(result);
     if (!g) return null;
+    const b = g.box;
     return h('figure', { className: 'lv-chart' },
-      h('svg', { viewBox: '0 0 ' + g.W + ' ' + g.H, role: 'img', 'aria-label': 'Tracked ' + g.axis + ' position over time with the fitted curve and its 1 sigma band' },
+      h('svg', { viewBox: '0 0 ' + g.W + ' ' + g.H, role: 'img', 'aria-label': 'Tracked ' + g.yLabel + ' against ' + g.xLabel + ' with the fitted curve and its 1 sigma band' },
+        ...g.yTicks.map((t) => h('g', { key: 'y' + t.label }, h('line', { x1: b.L, x2: b.R, y1: t.y, y2: t.y, className: 'lv-grid' }),
+          h('text', { x: b.L - 6, y: t.y + 3.5, textAnchor: 'end', className: 'lv-tick' }, t.label))),
+        ...g.xTicks.map((t) => h('g', { key: 'x' + t.label }, h('line', { x1: t.x, x2: t.x, y1: b.T, y2: b.B, className: 'lv-grid' }),
+          h('text', { x: t.x, y: b.B + 14, textAnchor: 'middle', className: 'lv-tick' }, t.label))),
+        h('path', { d: 'M' + b.L + ' ' + b.T + 'V' + b.B + 'H' + b.R, className: 'lv-axis' }),
         g.band ? h('path', { d: g.band, className: 'lv-band' }) : null, g.curve ? h('path', { d: g.curve, className: 'lv-curve' }) : null,
         ...g.points.map((p, i) => h('circle', { key: i, cx: p.cx, cy: p.cy, r: 2.6, className: 'lv-pt' })),
-        h('text', { x: g.pad, y: g.H - 8 }, g.ticks.t0 + ' s'), h('text', { x: g.W - g.pad, y: g.H - 8, textAnchor: 'end' }, g.ticks.t1 + ' s'),
-        h('text', { x: 4, y: 14 }, g.axis + ' (' + g.unit + ') max ' + g.ticks.vmax), h('text', { x: g.W / 2, y: g.H - 8, textAnchor: 'middle' }, 'min ' + g.ticks.vmin)),
+        h('text', { x: (b.L + b.R) / 2, y: g.H - 4, textAnchor: 'middle', className: 'lv-axis-label' }, g.xLabel),
+        h('text', { x: 11, y: (b.T + b.B) / 2, textAnchor: 'middle', transform: 'rotate(-90 11 ' + (b.T + b.B) / 2 + ')', className: 'lv-axis-label' }, g.yLabel)),
       h('figcaption', { className: 'lv-muted' }, 'Dots: MEASURED track, ' + g.points.length + ' frames. Line: fitted curve. Band: 1 sigma of the fit.'));
   }
 
@@ -334,7 +357,7 @@ export const createLive = (React) => {
     const j = L.tracked[kind + ':' + id] ?? { state: 'queued', step: 'Queued' };
     const g = j.gpu ? gpuDot(j.gpu) : L.gpu;
     return h('div', { className: 'lv-jobcard', 'data-state': j.state },
-      h('div', { className: 'lv-row lv-between' }, h('strong', null, kind === 'experiment' ? 'Measurement' : 'Room lab'), h('span', { className: 'lv-tag', role: 'status' }, j.step)),
+      h('div', { className: 'lv-row lv-between' }, h('strong', { title: id }, jobName({ id }, kind === 'experiment' ? 'experiment' : 'room').replace(/^Experiment/, 'Measurement').replace(/^Room/, 'Room lab')), h('span', { className: 'lv-tag', role: 'status' }, j.step)),
       !j.terminal ? h(React.Fragment, null, h('progress', { 'aria-label': j.step }),
         h('p', { className: 'lv-muted' }, (kind === 'experiment' ? 'Hosted model, no GPU wait. Backup ' : '') + g.label + (g.detail ? '. ' + g.detail : '') + '.')) : null,
       j.error ? h('p', { className: 'ws-error', role: 'alert' }, j.error) : null,
@@ -354,7 +377,8 @@ export const createLive = (React) => {
           h('button', { type: 'button', className: 'lv-btn lv-primary', onClick: L.newProject }, 'New project')),
         L.project ? h('div', null, h('p', { className: 'lv-muted' }, (L.project.mode === 'room' ? 'Room video: virtual lab' : 'My experiment: measurement') + '. Accepted: ' + LIMITS),
           h('ul', { className: 'lv-tips' }, ...TIPS[L.project.mode].map((t) => h('li', { key: t }, t))))
-          : h('p', { className: 'lv-muted' }, 'Start a new project and the agent asks what you are uploading, then shows filming tips.')),
+          : h('p', { className: 'lv-muted' }, 'Start a new project and the agent asks what you are uploading, then shows filming tips.'),
+        h(Projects, { L })),
       h('section', { className: 'lv-card', 'aria-labelledby': 'lv-files-h', id: 'lv-files' },
         h('div', { className: 'lv-row lv-between' }, h('h2', { id: 'lv-files-h' }, 'Files'),
           h('label', { className: 'lv-btn lv-primary lv-file', 'aria-disabled': q?.full || undefined }, 'Upload video',
@@ -376,7 +400,8 @@ export const createLive = (React) => {
           L.action?.file.id === f.id ? h(MeasurePanel, { L, file: f }) : null)))
           : L.files.loaded ? h('p', { className: 'lv-muted' }, 'No files yet. Accepted: ' + LIMITS) : h('p', { className: 'lv-muted' }, 'Loading files.')),
       h('section', { className: 'lv-card', 'aria-labelledby': 'lv-jobs-h', id: 'lv-jobs' }, h('h2', { id: 'lv-jobs-h' }, 'Processing'),
-        ...Object.values(L.tracked).reverse().map((j) => h(JobCard, { key: j.kind + j.id, L, kind: j.kind, id: j.id })), h(Jobs, { L })));
+        ...Object.values(L.tracked).reverse().map((j) => h(JobCard, { key: j.kind + j.id, L, kind: j.kind, id: j.id })),
+        Object.keys(L.tracked).length ? null : h('p', { className: 'lv-muted' }, 'Measurements and room labs you start show their progress here.')));
   }
 
   return { useLive, Centre, Chat, Dot };

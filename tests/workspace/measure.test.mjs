@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { polyFit, chartGeom, fmtPm, knownSizeText, naturalPoint, experimentBody, jobView, jobsFromToolCalls, shareable, trajectoryScene } from '../../Build/web/src/workspace/measure.mjs';
+import { polyFit, chartGeom, niceTicks, fmtPm, knownSizeText, naturalPoint, experimentBody, jobView, jobsFromToolCalls, shareable, trajectoryScene } from '../../Build/web/src/workspace/measure.mjs';
 import { validateScene } from '../../Build/web/src/lab-editor/scene.mjs';
 
 const res = JSON.parse(readFileSync(new URL('../../evidence/N07/live-st03.json', import.meta.url))).result;
@@ -20,7 +20,18 @@ test('chart has every point, a curve and a closed band', () => {
   assert.equal(g.points.length, res.trajectory.t_s.length);
   assert.match(g.curve, /^M/); assert.match(g.band, /Z$/);
   for (const p of g.points) assert.ok(p.cx >= 0 && p.cx <= g.W && p.cy >= 0 && p.cy <= g.H);
+  assert.equal(g.xLabel, 'time (s)'); assert.equal(g.yLabel, 'y position (' + res.trajectory.unit + ')');
+  for (const p of g.points) assert.ok(p.cx >= g.box.L - 0.1 && p.cx <= g.box.R + 0.1 && p.cy >= g.box.T - 0.1 && p.cy <= g.box.B + 0.1);
+  const xs = g.xTicks.map((t) => t.x); for (let i = 1; i < xs.length; i += 1) assert.ok(xs[i] - xs[i - 1] >= 30, 'x tick labels do not overlap');
   assert.equal(chartGeom({}), null);
+});
+
+test('nice ticks are round, cover the range and label at the step precision', () => {
+  assert.deepEqual(niceTicks(0, 0.701, 5).labels, ['0.0', '0.2', '0.4', '0.6', '0.8']);
+  assert.deepEqual(niceTicks(-0.794, 0.00466, 4).labels, ['-0.8', '-0.6', '-0.4', '-0.2', '0.0', '0.2']);
+  const t = niceTicks(312.4, 811.9, 4); assert.equal(t.step, 200); assert.ok(t.values[0] <= 312.4 && t.values.at(-1) >= 811.9);
+  assert.ok(niceTicks(5, 5).values.length > 1);
+  assert.deepEqual(niceTicks(NaN, 1).values, []);
 });
 
 test('formatting and form helpers', () => {

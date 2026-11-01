@@ -10,11 +10,26 @@ import { createPhysics, loadRapier, movingStart, upQuat } from './physics.mjs';
 import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
 import { naturalPoint, trajectoryScene } from '../workspace/measure.mjs';
+import { robustBounds, fitDistance } from './frame.mjs';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981 };
 const LABELS = { ball: 'Ball', block: 'Block', ramp: 'Ramp', pendulum: 'Pendulum', spring: 'Spring' };
 const MAX_STEPS_PER_FRAME = 8;
+// N24: compact icon toolbar (inline 24px stroke paths, same style as shell/icons.mjs).
+const ICONS = {
+  ball: 'M12 4a8 8 0 1 0 0 16a8 8 0 1 0 0-16z', block: 'M5 5h14v14H5z', ramp: 'M3 19h18L3 7z',
+  pendulum: 'M4 4h16M12 4l4 11M16 15a2.5 2.5 0 1 0 0.01 0', spring: 'M12 2v3l-5 2 10 3-10 3 10 3-5 2v4',
+  play: 'M7 4l13 8-13 8z', pause: 'M8 5v14M16 5v14', reset: 'M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4',
+  traces: 'M4 4v16h16M8 15l3-4 3 2 5-6', download: 'M12 4v11M7 10l5 5 5-5M4 20h16', upload: 'M12 15V4M7 9l5-5 5 5M4 20h16',
+  panel: 'M4 5h16v14H4zM9 5v14', frame: 'M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5',
+};
+const Ico = ({ n }) => <svg className="le-ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d={ICONS[n]} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
+const isDark = () => typeof document !== 'undefined' && document.documentElement.dataset.tone === 'dark';
+function themeColor(name, fallback) {
+  const v = typeof document === 'undefined' ? '' : getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  try { return new THREE.Color(v || fallback); } catch { return new THREE.Color(fallback); }
+}
 
 function download(name, text) {
   const a = document.createElement('a');
@@ -100,7 +115,8 @@ function RoomTools({ id, room, onReload }) {
     </div>
     {note && <p role="status">{busy ? 'Working: ' : ''}{note}</p>}
     <div className="le-view" data-tool={tool ?? undefined}>
-      <img src={WS + '/rooms/' + id + '/views/' + view + '.png?v=' + bust} alt={'Room view ' + (view + 1) + (tool ? '. Click to ' + (tool === 'a4' ? 'mark the A4 sheet' : 'add an object') : '')} onClick={click} />
+      <img src={WS + '/rooms/' + id + '/views/' + view + '.png?v=' + bust} alt={'Room view ' + (view + 1) + (tool ? '. Click to ' + (tool === 'a4' ? 'mark the A4 sheet' : 'add an object') : '')} onClick={click}
+        onError={(e) => { e.currentTarget.style.display = 'none'; setNote('No view image for this room, so A4 and object clicks are unavailable here.'); }} onLoad={(e) => { e.currentTarget.style.display = ''; }} />
       {clicks.map((c, i) => <span key={i} className="le-mark" style={{ left: c.left + '%', top: c.top + '%' }} aria-hidden="true" />)}
     </div>
   </div>;
@@ -118,8 +134,21 @@ export default function LabEditor({ initialScene }) {
   const [message, setMessage] = useState('Add an object, then press Play. Everything here is SIMULATED.');
   const [plyName, setPlyName] = useState(null);
   const [src, setSrc] = useState(null); // N22 live source: { kind: 'room', id, room } | { kind: 'experiment', id }
+  const [side, setSide] = useState(true); // N24: inspector + scene JSON panel (collapsible)
+  const [tone, setTone] = useState('light');
   const sceneRef = useRef(scene);
   sceneRef.current = scene;
+
+  // N24: follow the site theme (light, dark, colour modes); collapse the side panel by default on narrow screens.
+  useEffect(() => {
+    if (window.matchMedia?.('(max-width: 900px)').matches) setSide(false);
+    const read = () => setTone((document.documentElement.dataset.theme || '') + (isDark() ? ':dark' : ''));
+    read();
+    const mo = new MutationObserver(read);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-tone'] });
+    return () => mo.disconnect();
+  }, []);
+  useEffect(() => { const a = api.current; if (a) a.three.background = themeColor('--r2s-bg', isDark() ? '#111113' : '#f3f4f6'); }, [tone]);
 
   useEffect(() => {
     const el = host.current;
@@ -127,7 +156,7 @@ export default function LabEditor({ initialScene }) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     el.appendChild(renderer.domElement);
     const three = new THREE.Scene();
-    three.background = new THREE.Color(0xf3f4f6);
+    three.background = themeColor('--r2s-bg', isDark() ? '#111113' : '#f3f4f6');
     three.add(new THREE.HemisphereLight(0xffffff, 0x888888, 2.2));
     const sun = new THREE.DirectionalLight(0xffffff, 1.5);
     sun.position.set(3, 6, 4);
@@ -229,9 +258,10 @@ export default function LabEditor({ initialScene }) {
     for (const c of [...a.objects.children]) { a.objects.remove(c); c.traverse((m) => { m.geometry?.dispose(); m.material?.dispose(); }); }
     for (const c of [...a.room.children]) if (c !== a.state.points) a.room.remove(c);
     if (scene.room.kind !== 'none') {
-      const grid = new THREE.GridHelper(10, 20, 0x9ca3af, 0xd1d5db);
+      const size = a.state.gridSize ?? 10, dark = isDark();
+      const grid = new THREE.GridHelper(size, 20, dark ? 0x52525b : 0x9ca3af, dark ? 0x2a2a2e : 0xd1d5db);
       grid.quaternion.fromArray(upQuat(scene.gravity));
-      grid.position.set(0, scene.room.floor_y, 0);
+      grid.position.set(a.state.gridAt?.[0] ?? 0, scene.room.floor_y, a.state.gridAt?.[2] ?? 0);
       a.room.add(grid);
     }
     if (a.state.points) a.state.points.visible = scene.room.kind === 'ply';
@@ -239,7 +269,28 @@ export default function LabEditor({ initialScene }) {
     const g = a.objects.children.find((c) => c.userData.id === selected);
     if (g) { a.gizmo.attach(g); a.gizmo.setMode(mode); }
     setJsonText(sceneJson(scene));
-  }, [scene, selected, mode, run]);
+  }, [scene, selected, mode, run, tone]);
+
+  // N24: fit the camera to the loaded room or track (robust bounding box, keeps the current viewing direction).
+  const frameTo = (positions) => {
+    const a = api.current, b = robustBounds(positions);
+    if (!a || !b) return null;
+    const c = new THREE.Vector3(...b.center), dir = a.camera.position.clone().sub(a.orbit.target);
+    if (dir.lengthSq() < 1e-9) dir.set(0.6, 0.45, 0.8);
+    const d = fitDistance(b.radius, a.camera.fov, a.camera.aspect);
+    a.camera.position.copy(c).add(dir.normalize().multiplyScalar(d));
+    a.camera.near = Math.max(1e-3, d / 200); a.camera.far = Math.max(500, d * 20);
+    a.camera.updateProjectionMatrix();
+    a.orbit.target.copy(c); a.orbit.update();
+    a.state.view = { center: b.center, radius: b.radius };
+    return b;
+  };
+  const reframe = () => {
+    const a = api.current, pos = a?.state.points?.visible ? a.state.points.geometry.attributes.position.array : null;
+    if (pos) { frameTo(pos); return; }
+    const pts = scene.objects.flatMap((o) => o.position);
+    frameTo(pts.length ? [...pts, 0, scene.room.floor_y ?? 0, 0] : [-1, 0, -1, 1, 1.5, 1]);
+  };
 
   const edit = (fn) => {
     try { setScene((s) => validateScene(fn(structuredClone(s)))); } catch (e) { setMessage(e.message); }
@@ -285,7 +336,10 @@ export default function LabEditor({ initialScene }) {
     const geo = new THREE.BufferGeometry();
     geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geo.setAttribute('color', new THREE.BufferAttribute(colors, 3, true));
-    a.state.points = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.02, vertexColors: true }));
+    const b = frameTo(positions);
+    // Point size and floor grid follow the room extent so any reconstruction scale fills the view.
+    a.state.points = new THREE.Points(geo, new THREE.PointsMaterial({ size: b ? Math.max(0.004, b.radius / 70) : 0.02, vertexColors: true }));
+    if (b) { a.state.gridSize = Math.max(4, Math.ceil(b.radius * 3)); a.state.gridAt = b.center; }
     a.room.add(a.state.points);
     return positions.length / 3;
   };
@@ -308,6 +362,7 @@ export default function LabEditor({ initialScene }) {
       const geo = new THREE.BufferGeometry().setFromPoints(t.track.map((q) => new THREE.Vector3(...q)));
       a.state.track = new THREE.Group().add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0x111827 })), new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.025, color: 0x4f46e5 })));
       a.three.add(a.state.track);
+      frameTo(t.track.flat());
       stop(); setSelected(null); setScene(validateScene(t.scene)); setSrc({ kind: 'experiment', id });
       setMessage('Dots and line: your measured track. ' + t.note);
     } catch (e) { setMessage('Experiment not loaded: ' + e.message); }
@@ -330,28 +385,29 @@ export default function LabEditor({ initialScene }) {
   const sel = scene.objects.find((o) => o.id === selected);
   const live = run === 'playing' || run === 'paused';
   const selTrace = live && sel?.sensor ? api.current?.state.sim?.trace(sel.id) : null;
-  return <section className="lab-editor" aria-label="Lab editor">
-    <div className="le-bar" role="toolbar" aria-label="Add objects">
-      {KINDS.map((k) => <button key={k} type="button" onClick={() => addObject(k)} disabled={live}>+ {LABELS[k]}</button>)}
+  const title = src?.kind === 'room' ? 'Your room lab' : src?.kind === 'experiment' ? 'Experiment replay' : 'Virtual lab';
+  return <section className="lab-editor" aria-label="Lab editor" data-side={side ? 'open' : 'closed'}>
+    <div className="le-top" role="toolbar" aria-label="Lab tools">
+      <button type="button" className="le-icon-btn" aria-pressed={side} aria-label={(side ? 'Hide' : 'Show') + ' inspector and scene JSON'} title="Inspector and scene JSON" onClick={() => setSide((v) => !v)}><Ico n="panel" /></button>
+      <strong className="le-title">{title}</strong>
+      <div className="le-group" role="group" aria-label="Add objects">
+        {KINDS.map((k) => <button key={k} type="button" title={'Add a ' + LABELS[k].toLowerCase()} aria-label={'Add ' + LABELS[k]} onClick={() => addObject(k)} disabled={live}><Ico n={k} /><span className="le-lbl">{LABELS[k]}</span></button>)}
+      </div>
+      <div className="le-group" role="group" aria-label="Simulation">
+        {run !== 'playing' ? <button type="button" className="le-primary" onClick={play} disabled={run === 'loading' || !scene.objects.length}><Ico n="play" /><span>{run === 'paused' ? 'Resume' : 'Play'}</span></button> : <button type="button" className="le-primary" onClick={pause}><Ico n="pause" /><span>Pause</span></button>}
+        <button type="button" onClick={stop} disabled={!live} title="Reset to the start"><Ico n="reset" /><span className="le-lbl">Reset</span></button>
+      </div>
+      <div className="le-group le-end" role="group" aria-label="View and files">
+        <button type="button" className="le-icon-btn" onClick={reframe} aria-label="Fit view to the room" title="Fit view to the room"><Ico n="frame" /></button>
+        <button type="button" className="le-icon-btn" onClick={exportTraces} disabled={!live} aria-label="Export traces" title="Export SIMULATED sensor traces"><Ico n="traces" /></button>
+        <button type="button" className="le-icon-btn" onClick={() => download('lab-scene.json', sceneJson(scene))} aria-label="Export scene" title="Export scene JSON"><Ico n="download" /></button>
+        <label className="le-file le-icon-btn" title="Import scene or room (.json, .ply)"><Ico n="upload" /><span className="le-sr">Import scene or room (.json, .ply)</span><input type="file" accept=".json,.ply" onChange={loadFile} /></label>
+      </div>
     </div>
-    <div className="le-stage">
-      <div ref={host} className="le-canvas" data-testid="lab-editor-canvas" />
-      <span className="le-chip">SIMULATED</span>
-      {src?.kind === 'experiment' && <span className="le-chip le-warn">Track MEASURED, ball what-if</span>}
-      {scene.room.kind === 'ply' && !scene.room.scale_verified && <span className="le-chip le-warn">Room scale unverified</span>}
-      <span className="le-time" aria-live="off">t = {time.toFixed(2)} s</span>
-    </div>
-    <div className="le-bar" role="toolbar" aria-label="Simulation">
-      {run !== 'playing' ? <button type="button" onClick={play} disabled={run === 'loading' || !scene.objects.length}>{run === 'paused' ? 'Resume' : 'Play'}</button> : <button type="button" onClick={pause}>Pause</button>}
-      <button type="button" onClick={stop} disabled={!live}>Reset</button>
-      <button type="button" onClick={exportTraces} disabled={!live}>Export traces</button>
-      <button type="button" onClick={() => download('lab-scene.json', sceneJson(scene))}>Export scene</button>
-      <label className="le-file">Import scene or room (.json, .ply)<input type="file" accept=".json,.ply" onChange={loadFile} /></label>
-    </div>
-    <p className="le-status" role="status">{message} Gravity [{scene.gravity.join(', ')}] m/s^2{plyName ? ', room ' + plyName : ''}.</p>
-    <div className="le-panels">
+    <div className="le-work">
+      {side && <aside className="le-side le-left" aria-label="Inspector">
       <div className="le-panel">
-        <h3>Selected</h3>
+        <h3>Selected object</h3>
         {!sel ? <p>Click an object to select it.</p> : <>
           <p><strong>{sel.id}</strong> ({LABELS[sel.kind]})</p>
           <div className="le-bar" role="group" aria-label="Transform mode">
@@ -364,14 +420,27 @@ export default function LabEditor({ initialScene }) {
           <button type="button" className="le-danger" disabled={live} onClick={() => { edit((s) => ({ ...s, objects: s.objects.filter((o) => o.id !== sel.id) })); setSelected(null); }}>Delete</button>
         </>}
       </div>
-      <div className="le-panel">
-        <h3>Scene JSON (lab-scene-v1)</h3>
-        <textarea aria-label="Scene JSON" value={jsonText} onChange={(e) => setJsonText(e.target.value)} spellCheck={false} rows={10} />
+      <details className="le-panel le-json">
+        <summary>Scene JSON (lab-scene-v1)</summary>
+        <textarea aria-label="Scene JSON" value={jsonText} onChange={(e) => setJsonText(e.target.value)} spellCheck={false} rows={12} />
         <button type="button" onClick={() => applyJson(jsonText)}>Apply JSON</button>
+      </details>
+      </aside>}
+      <div className="le-stage">
+        <div ref={host} className="le-canvas" data-testid="lab-editor-canvas" />
+        <div className="le-chips">
+          <span className="le-chip">SIMULATED</span>
+          {src?.kind === 'experiment' && <span className="le-chip le-warn">Track MEASURED, ball what-if</span>}
+          {scene.room.kind === 'ply' && !scene.room.scale_verified && <span className="le-chip le-warn">Room scale unverified</span>}
+        </div>
+        <span className="le-time" aria-live="off">t = {time.toFixed(2)} s</span>
+        <p className="le-status" role="status">{message} Gravity [{scene.gravity.join(', ')}] m/s^2{plyName ? ', room ' + plyName : ''}.</p>
       </div>
+      <aside className="le-side le-right" aria-label="Room tools and agent">
+        {src?.kind === 'room' && <RoomTools id={src.id} room={src.room} onReload={(note) => loadRoom(src.id, note)} />}
+        <AgentPanel scene={scene} load={!src && !/[?&](room|experiment)=/.test(window.location.search)} onScene={(s, msg) => { stop(); setSelected(null); setScene(s); setMessage(msg); }} />
+      </aside>
     </div>
-    {src?.kind === 'room' && <RoomTools id={src.id} room={src.room} onReload={(note) => loadRoom(src.id, note)} />}
-    <AgentPanel scene={scene} load={!src && !/[?&](room|experiment)=/.test(window.location.search)} onScene={(s, msg) => { stop(); setSelected(null); setScene(s); setMessage(msg); }} />
   </section>;
 }
 

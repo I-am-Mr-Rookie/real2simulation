@@ -30,8 +30,21 @@ export function polyFit(t, y, deg) {
 
 export const degreeOf = (axisFit) => (axisFit?.model === 'constant_acceleration' ? 2 : 1);
 
-// y(t) chart for one axis: track points, fitted curve and 1 sigma band, in a fixed SVG viewBox.
-export function chartGeom(result, axis = 'y', W = 320, H = 180, pad = 28) {
+// N24: about n round tick values (1, 2 or 5 x 10^k steps) covering [lo, hi]; label decimals follow the step.
+export function niceTicks(lo, hi, n = 5) {
+  if (!Number.isFinite(lo) || !Number.isFinite(hi)) return { step: 1, values: [], labels: [] };
+  if (hi < lo) [lo, hi] = [hi, lo];
+  if (hi === lo) { const d = Math.abs(lo) / 2 || 0.5; lo -= d; hi += d; }
+  const raw = (hi - lo) / Math.max(1, n), mag = 10 ** Math.floor(Math.log10(raw)), f = raw / mag;
+  const step = (f <= 1 ? 1 : f <= 2 ? 2 : f <= 5 ? 5 : 10) * mag;
+  const first = Math.floor(lo / step + 1e-9), last = Math.ceil(hi / step - 1e-9);
+  const values = Array.from({ length: last - first + 1 }, (_, i) => +((first + i) * step).toPrecision(12));
+  const dec = Math.max(0, -Math.floor(Math.log10(step) + 1e-9));
+  return { step, values, labels: values.map((v) => (Object.is(+v.toFixed(dec), -0) ? 0 : v).toFixed(dec)) };
+}
+
+// y(t) chart for one axis: track points, fitted curve and 1 sigma band, round-number axes with units, in a fixed SVG viewBox.
+export function chartGeom(result, axis = 'y', W = 360, H = 230, pad = 44) {
   const tr = result?.trajectory, t = tr?.t_s, v = tr?.[axis];
   if (!Array.isArray(t) || !Array.isArray(v) || t.length < 2) return null;
   const fit = polyFit(t, v, degreeOf(result?.fit?.[axis]));
@@ -39,10 +52,17 @@ export function chartGeom(result, axis = 'y', W = 320, H = 180, pad = 28) {
   const ts = Array.from({ length: N + 1 }, (_, i) => t0 + ((t1 - t0) * i) / N);
   const hi = fit ? ts.map((x) => fit.at(x) + fit.sd(x)) : [], lo = fit ? ts.map((x) => fit.at(x) - fit.sd(x)) : [];
   const vmin = Math.min(...v, ...lo), vmax = Math.max(...v, ...hi), span = vmax - vmin || 1;
-  const X = (x) => pad + ((x - t0) / (t1 - t0 || 1)) * (W - 2 * pad), Y = (u) => H - pad - ((u - vmin) / span) * (H - 2 * pad);
+  const xt = niceTicks(t0, t1, 5), yt = niceTicks(vmin, vmax, 4);
+  const xa = xt.values[0], xb = xt.values.at(-1), ya = yt.values[0], yb = yt.values.at(-1);
+  const L = pad + 10, R = W - 12, T = 12, B = H - pad + 6; // plot box; room on the left and bottom for labels
+  const X = (x) => L + ((x - xa) / (xb - xa || 1)) * (R - L), Y = (u) => B - ((u - ya) / (yb - ya || span)) * (B - T);
   const path = (xs, us) => xs.map((x, i) => (i ? 'L' : 'M') + X(x).toFixed(1) + ' ' + Y(us[i]).toFixed(1)).join(' ');
+  const unit = tr.unit || 'px';
   return {
-    W, H, pad, unit: tr.unit, axis,
+    W, H, pad, unit, axis, box: { L, R, T, B },
+    xLabel: 'time (s)', yLabel: axis + ' position (' + unit + ')',
+    xTicks: xt.values.map((x, i) => ({ x: +X(x).toFixed(1), label: xt.labels[i] })),
+    yTicks: yt.values.map((u, i) => ({ y: +Y(u).toFixed(1), label: yt.labels[i] })),
     points: t.map((x, i) => ({ cx: +X(x).toFixed(1), cy: +Y(v[i]).toFixed(1) })),
     curve: fit ? path(ts, ts.map(fit.at)) : null,
     band: fit ? path(ts, hi) + ' ' + path([...ts].reverse(), [...lo].reverse()).replace(/^M/, 'L') + ' Z' : null,

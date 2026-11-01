@@ -15,7 +15,7 @@ test('layout wires brand favicon/apple icons and A5 OG image through SiteFrame',
 
 test('header has logo mark, wordmark text, icon nav and S15ah theme toggle; footer copy verbatim', async () => {
   const frame = await src('app/SiteFrame.jsx'), toggle = await src('app/ThemeToggle.jsx');
-  for (const s of ['src="/brand/mark.svg"', 'src="/brand/mark-dark.svg"', 'brand-mark art-light', 'brand-mark art-dark', '>Real2Simulation</Link>', "icon(h, 'book'", "icon(h, 'flask'", '<ThemeToggle />', 'href="/sign-in"', 'Synthetic lab results are not calibrated measurements. Uploads are limited to approved licensed clips in the signed-in workspace.']) assert.ok(frame.includes(s), s);
+  for (const s of ['src="/brand/mark.svg"', 'src="/brand/mark-dark.svg"', 'brand-mark art-light', 'brand-mark art-dark', '>Real2Simulation</Link>', "icon(h, 'book'", "icon(h, 'flask'", '<ThemeToggle />', 'href="/sign-in"', 'Sign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty']) assert.ok(frame.includes(s), s);
   assert.match(toggle, /from '\.\.\/shell\/theme\.mjs'/);
   assert.match(toggle, /THEME_OPTIONS\.map\(\(t\) => <button key=\{t\.id\} type="button" data-theme-option=\{t\.id\}/);
   assert.match(frame, /<a className="nav-icon" href=\{REPO_URL\} target="_blank" rel="noopener noreferrer" aria-label="GitHub repository" title="GitHub repository">\{GITHUB_MARK\}<\/a>/);

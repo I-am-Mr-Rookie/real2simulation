@@ -564,8 +564,22 @@ body:has(.r2s-shell) .site-footer { display: none; }
 .lv-tag[data-tone="warn"] { color: var(--r2s-warn, #8a5a00); }
 .lv-tag[data-tone="ok"] { color: var(--r2s-ok, #1d6a3a); }
 .lv-chart { margin: 0; }
-.lv-chart svg { display: block; width: 100%; max-width: 32rem; height: auto; border: 1px solid var(--r2s-border, #c9c4b8); border-radius: var(--sh-radius, 6px); }
-.lv-chart text { font: 10px var(--r2s-font-mono, ui-monospace, monospace); fill: currentColor; opacity: .75; }
+.lv-chart svg { display: block; width: 100%; max-width: 34rem; height: auto; border: 1px solid var(--r2s-border, #c9c4b8); border-radius: var(--sh-radius, 6px); background: var(--r2s-surface, transparent); }
+.lv-chart text { font: 10px var(--r2s-font-mono, ui-monospace, monospace); fill: currentColor; font-variant-numeric: tabular-nums; }
+.lv-chart .lv-tick { opacity: .7; }
+.lv-chart .lv-axis-label { font: 600 10.5px var(--r2s-font-sans, system-ui, sans-serif); opacity: .9; }
+.lv-grid { stroke: var(--r2s-border, #e2e2e0); stroke-width: 1; }
+.lv-axis { fill: none; stroke: var(--r2s-border-strong, #85858d); stroke-width: 1; }
+.lv-projects { display: grid; gap: .6rem; margin-top: .75rem; justify-items: start; }
+.lv-plist { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; width: 100%; }
+.lv-pgroup { border: 1px solid var(--r2s-border, #e2e2e0); border-radius: 10px; padding: .6rem .75rem; background: var(--r2s-surface, transparent); }
+.lv-pgroup[data-sample] { border-style: dashed; }
+.lv-phead { gap: .4rem; flex-wrap: wrap; align-items: baseline; }
+.lv-phead .lv-tag { margin-left: 0; }
+.lv-pgroup .lv-jobs { list-style: none; display: grid; grid-template-columns: 1fr; gap: .3rem; margin: .45rem 0 0; padding: 0; }
+.lv-jobrow { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; min-width: 0; }
+.lv-jobname { flex: 1 1 12rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lv-jobrow .lv-tag { margin-left: 0; }
 .lv-band { fill: var(--r2s-accent, #4f46e5); opacity: .18; }
 .lv-curve { fill: none; stroke: var(--r2s-accent, #4f46e5); stroke-width: 1.8; }
 .lv-pt { fill: var(--sh-ink, #18181b); }
