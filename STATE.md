@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-01 23:36 Dhaka (controller)
+- DISPATCH FREEZE (Koushik): no new workers of any vendor; he needs his Claude quota for study. Running N28-orch273 and N29-orch274 may finish; controller only verifies and accepts them (tests, build, merge). No deploy or redispatch until Koushik lifts the freeze. Heartbeat prompt updated to match.
+
 ## 2026-11-01 23:32 Dhaka (controller)
 - Claude 429: N28-orch273 and N29-orch274 stopped about 22:02 Dhaka with "usage limit, try again at 11:30 PM" (partial edits kept in worktrees). Limit reset 23:30; both resumed in their threads with new 60-min timeboxes, due about 00:32 Dhaka Nov 2.
 
