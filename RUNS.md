@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 15:11 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 15:34 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **288 / 299** runs done · 2 in progress · 0 blocked · 0 waiting for Koushik · 0 open reviews
+Progress: **290 / 299** runs done · 0 in progress · 0 blocked · 1 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -18,18 +18,14 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CODEX-2**
 - [~] **S24c** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture room rebuild and interview (30 min) *(partial: resume it)*
+- [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort medium — Check playback and approval-gated public video link (30 min)
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
 
-## In progress
-
-- [~] **S22l** — Codex (native Claude) · Sonnet 5.5, effort medium — Gate D retest on the fixed build: 3 fresh flows with per-flow UTC timings, build SHA, run.json, alert/title read (30 min) *(in progress)*
-- [~] **S24i** — Codex (native Claude) · Opus 5.5, effort high — Cut video and align captions (30 min) *(in progress)*
-
 ## Waiting for Koushik
 
-Nothing right now.
+- [ ] **S23a** — Authorize frozen judging promotion (10 min)
 
 ## All runs by step
 
@@ -405,7 +401,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (12/13)</summary>
+<details><summary><b>S22</b> — End-to-end QA on the judging environment; Gate D (13/13)</summary>
 
 - [x] **S22a** — Codex (native Claude) · Opus 5.5, effort medium — Prepare approved judging-candidate QA checklist (30 min)
 - [x] **S22b** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture logged-out guest library walkthrough (30 min)
@@ -418,7 +414,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S22i** — Codex (native Claude) · Sonnet 5.5, effort medium — Recheck approved candidate after owner-lane fixes (30 min)
 - [x] **S22j** — Codex (native Claude) · Opus 5.5, effort high — Record final Gate D decision and freeze recommendation (30 min)
 - [x] **S22k** — Codex (native Claude) · Opus 5.5, effort medium — Revise Gate D decision per R-D (F1-F7): scoped deviations, receipts, disclosure list (30 min)
-- [~] **S22l** — Codex (native Claude) · Sonnet 5.5, effort medium — Gate D retest on the fixed build: 3 fresh flows with per-flow UTC timings, build SHA, run.json, alert/title read (30 min) *(in progress)*
+- [x] **S22l** — Codex (native Claude) · Sonnet 5.5, effort medium — Gate D retest on the fixed build: 3 fresh flows with per-flow UTC timings, build SHA, run.json, alert/title read (30 min)
 - [x] **R-D** — Codex · GPT-6.1 Sol, effort high — Cross-vendor review: Gate D protocol and Claude verdict evidence (15 min)
 
 </details>
@@ -431,7 +427,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>S24</b> — Three-minute demo video (11/14)</summary>
+<details><summary><b>S24</b> — Three-minute demo video (12/14)</summary>
 
 - [x] **S24a** — Codex (native Claude) · Opus 5.5, effort high — Write evidence-backed three-minute script (30 min)
 - [x] **S24b** — Codex (native Claude) · Opus 5.5, effort medium — Review script, captions and footage credits (30 min)
@@ -441,7 +437,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **S24f** — Codex (native Claude) · Sonnet 5.5, effort medium — Capture benchmark and Meta model evidence (30 min)
 - [x] **S24g** — Record optional voice-over part 1 (30 min)
 - [x] **S24h** — Record optional voice-over part 2 (30 min)
-- [~] **S24i** — Codex (native Claude) · Opus 5.5, effort high — Cut video and align captions (30 min) *(in progress)*
+- [x] **S24i** — Codex (native Claude) · Opus 5.5, effort high — Cut video and align captions (30 min)
 - [ ] **S24j** — Codex (native Claude) · Sonnet 5.5, effort medium — Check playback and approval-gated public video link (30 min)
 - [x] **S24k** — Codex (native Claude) · Sonnet 5.5, effort medium — Update 3-min script with stopwatch-vs-phone before/after (30 min)
 - [x] **S24m** — Codex (native Claude) · Sonnet 5.5, effort medium — Script beat 5b: drop the stopwatch half; show the system measuring fall time and drop height itself (Q22) (20 min)
