@@ -75,3 +75,7 @@ media/narration/**/*.flac
 /evidence/S13l/reconstruct/bundle/
 # Owner logo sketch photos (private originals; never commit or upload)
 /evidence/owner/logo-sketches-2026-10-31/
+media/edit/**/*.mp4
+media/edit/**/*.wav
+media/edit/**/*.m4a
+media/edit/**/*.mp3

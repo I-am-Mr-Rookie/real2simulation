@@ -1,0 +1,100 @@
+1
+00:00:01,600 --> 00:00:06,515
+Real2Simulation measures physics from real video.
+
+2
+00:00:06,915 --> 00:00:11,899
+And it tells you exactly what it could not measure.
+
+3
+00:00:13,199 --> 00:00:21,338
+Meta's SAM 3.1 segments and tracks the object in every frame on a Modal GPU.
+
+4
+00:00:22,638 --> 00:00:25,328
+MapAnything finds the floor.
+
+5
+00:00:25,728 --> 00:00:31,292
+When metric scale can't be sourced, the system abstains.
+
+6
+00:00:32,592 --> 00:00:39,910
+A deterministic fitter, not a language model, fits the fall and reports its uncertainty.
+
+7
+00:00:40,310 --> 00:00:51,763
+It's image-space only. The clip is probably slow motion, so this is not g in m/s².
+
+8
+00:00:53,063 --> 00:00:57,216
+We seal a prediction before seeing the rest of the clip.
+
+9
+00:00:57,616 --> 00:01:06,693
+Today it misses. The full tracking job ran out of GPU memory, and the ballistic fit has no floor.
+
+10
+00:01:07,093 --> 00:01:11,444
+The apple lands. The prediction keeps falling.
+
+11
+00:01:12,744 --> 00:01:20,450
+The system finds release and impact in the phone clip, with the scale you declare.
+
+12
+00:01:20,850 --> 00:01:29,784
+Fall time: 0.433 ± 0.027 s
+
+13
+00:01:30,184 --> 00:01:38,663
+Height: 0.923 ± 0.010 m
+
+14
+00:01:39,063 --> 00:01:47,070
+g: 9.84 ± 1.24 m/s²
+
+15
+00:01:47,470 --> 00:01:54,228
+Hero take: the track ends before impact, so lower bounds only.
+
+16
+00:01:54,628 --> 00:01:57,092
+Approximate, not calibrated.
+
+17
+00:01:58,392 --> 00:02:04,767
+Muse Spark interviews you about the setup, but every number it shows comes from a tool.
+
+18
+00:02:05,167 --> 00:02:14,520
+Our checker flagged zero invented numbers across thirty replayed turns, on recorded scenes, not validated setups.
+
+19
+00:02:15,820 --> 00:02:20,547
+The library holds simulated experiments, clearly labelled.
+
+20
+00:02:20,947 --> 00:02:27,377
+The Mystery-g card is practice at Earth g.
+
+21
+00:02:27,777 --> 00:02:34,585
+The lab draws a hidden g each session for a real blind test.
+
+22
+00:02:35,885 --> 00:02:39,166
+Modal bill so far: under a dollar.
+
+23
+00:02:39,566 --> 00:02:45,358
+Not proven: no calibrated metric source, so no physical-accuracy claim.
+
+24
+00:02:46,658 --> 00:02:52,148
+Every number you saw is a pointer into the repo's benchmark.
+
+25
+00:02:52,548 --> 00:02:53,576
+Try it.
+
