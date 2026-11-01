@@ -1,5 +1,13 @@
 # Real2Simulation — STATE
 
+## Controller — Nov 1 ~19:25 Dhaka: N11 merged (PARTIAL, infra done); Meta API blocked from Railway SG region -> N23
+
+N11: api image has ffprobe/node/modal; volume /data (R2S_DATA_DIR); Meta + Modal keys set by name; SAMPLE project seeding; DEV api cd0230fa,
+web 53b1b733, verify.py exit 0. Smoke: upload + quota + GPU dot + sample OK. FAIL: Meta Model API returns no models from Railway Singapore
+egress (works from Dhaka) -> hosted SAM and agent 502 on DEV; rooms list route missing (405). Merged as done-with-follow-up; N23 (Opus high)
+moves the api to a US region (or a Modal US proxy) and smokes both modes on DEV. Controller: next.config proxyClientMaxBodySize 201mb
+(Clerk proxy buffered 10 MB max; N22 finding). N13 now also depends on N23.
+
 ## Controller — Nov 1 ~19:05 Dhaka: N21 N14 N15 N16 accepted; N22 added
 
 - N21: R-N fixes (one GPU queue across reconstruct+track, ffprobe fail-closed 503, quota race in one transaction, signed number guard,

@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 01, 18:51 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 01, 19:18 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **305 / 318** runs done · 2 in progress · 0 blocked · 2 waiting for Koushik · 0 open reviews
+Progress: **306 / 319** runs done · 2 in progress · 0 blocked · 2 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,8 +24,8 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **N11** — Codex (native Claude) · Sonnet 5.5, effort high — DEV infra for live mode + sample project on every new account (60 min) *(in progress)*
 - [~] **N22** — Codex (native Claude) · Opus 5.5, effort high — Live UI wiring: Mode B start + result view, Mode A start/A4 click/open in lab, object click, share button (60 min) *(in progress)*
+- [~] **N23** — Codex (native Claude) · Opus 5.5, effort high — DEV: make Meta Model API reachable (api region or egress), rooms list route, redeploy, DEV smoke both modes (60 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -47,7 +47,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (15/22)</summary>
+<details><summary><b>N</b> —  (16/23)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -59,7 +59,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N08** — Codex (native Claude) · Opus 5.5, effort high — Mode A live pipeline: room video -> MapAnything on demand -> scaled room + floor/gravity (60 min)
 - [x] **N09** — Codex (native Claude) · Opus 5.5, effort high — Workspace UI: mode chooser, agent chat + voice, files panel, GPU status dot, contributor onboarding (60 min)
 - [x] **N10** — Codex (native Claude) · Opus 5.5, effort high — Lab editor: place, move, rotate, resize objects with live physics (60 min)
-- [~] **N11** — Codex (native Claude) · Sonnet 5.5, effort high — DEV infra for live mode + sample project on every new account (60 min) *(in progress)*
+- [x] **N11** — Codex (native Claude) · Sonnet 5.5, effort high — DEV infra for live mode + sample project on every new account (60 min)
 - [x] **N12** — Codex (native Claude) · Opus 5.5, effort high — Agent-run experiments in the lab + lab report (Muse Image illustration) (60 min)
 - [ ] **N13** — Codex (native Claude) · Sonnet 5.5, effort high — End-to-end QA on DEV: both modes, 3 fresh accounts (60 min)
 - [x] **N14** — Codex (native Claude) · Opus 5.5, effort medium — Stretch: click an object in the room -> SAM 3.1 cut-out -> SAM 3D Objects -> lab object (60 min)
@@ -71,6 +71,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N19** — Codex · GPT-6.1 Sol, effort high — Cross-vendor security/spend review of N03, N04, N05 (30 min)
 - [x] **N21** — Codex (native Claude) · Opus 5.5, effort high — Fix R-N security/spend findings + wave-2 integration gaps (30 min)
 - [~] **N22** — Codex (native Claude) · Opus 5.5, effort high — Live UI wiring: Mode B start + result view, Mode A start/A4 click/open in lab, object click, share button (60 min) *(in progress)*
+- [~] **N23** — Codex (native Claude) · Opus 5.5, effort high — DEV: make Meta Model API reachable (api region or egress), rooms list route, redeploy, DEV smoke both modes (60 min) *(in progress)*
 
 </details>
 
