@@ -1,0 +1,134 @@
+{
+ "start_utc": "2026-11-01T13:28:17.979Z",
+ "steps": [
+  {
+   "k": "signed_up",
+   "v": true,
+   "utc": "2026-11-01T13:28:25.119Z"
+  },
+  {
+   "k": "rooms_list_empty",
+   "v": {
+    "status": 200,
+    "body": {
+     "rooms": []
+    }
+   },
+   "utc": "2026-11-01T13:28:27.221Z"
+  },
+  {
+   "k": "uploaded",
+   "v": {
+    "name": "st03-n11-5s.mp4",
+    "size": 374617,
+    "dur": 5.005,
+    "quota": 1
+   },
+   "utc": "2026-11-01T13:28:30.440Z"
+  },
+  {
+   "k": "experiment_started",
+   "v": {
+    "status": 202,
+    "state": "running"
+   },
+   "utc": "2026-11-01T13:28:30.774Z"
+  },
+  {
+   "k": "experiment_done",
+   "v": {
+    "state": "done",
+    "err": null,
+    "fit": "ok",
+    "label": "scale unverified: no known size given, so results are in pixels; no metric value",
+    "quantity": {
+     "name": "vertical acceleration (g if only gravity acts)",
+     "value": 2348.284619250287,
+     "unit": "px/s^2",
+     "uncertainty": 105.67001058730291,
+     "label": "scale unverified: no known size given, so results are in pixels; no metric value"
+    },
+    "cost": 0.03,
+    "frames": 150
+   },
+   "utc": "2026-11-01T13:28:42.685Z"
+  },
+  {
+   "k": "agent_turn",
+   "v": "In one sentence, what do I need to film to measure g?\n\nThinking",
+   "utc": "2026-11-01T13:28:43.738Z"
+  },
+  {
+   "k": "uploaded",
+   "v": {
+    "name": "rm02-n23-6s.mp4",
+    "size": 2062548,
+    "dur": 6,
+    "quota": 2
+   },
+   "utc": "2026-11-01T13:28:48.165Z"
+  },
+  {
+   "k": "room_started",
+   "v": {
+    "status": 202,
+    "state": "queued"
+   },
+   "utc": "2026-11-01T13:28:48.488Z"
+  },
+  {
+   "k": "room_done",
+   "v": {
+    "job_id": "aec1650751c441bcbc7cef2b47e32fb4",
+    "state": "done",
+    "file_id": "bb33bab1cf9f48648858110c195c0016",
+    "project_id": null,
+    "created_at": "2026-11-01T13:28:47Z",
+    "updated_at": "2026-11-01T13:29:14Z",
+    "gpu_job": "c6de04dacbd44779914f421c2caf5f0c",
+    "frames": 8,
+    "timing_s": {
+     "client_round_trip_s": 24.549,
+     "container_boot_s": -510.895,
+     "cold_start_s": 0.63,
+     "model_load_s": 19.069,
+     "cold_start_to_model_ready_s": 19.698,
+     "inference_s": 1.563,
+     "function_s": 21.742,
+     "container_python_alive_s": 533.267
+    },
+    "estimated_usd": 0.33997513,
+    "scale": "scale unverified",
+    "gravity": "MODEL-ESTIMATED"
+   },
+   "utc": "2026-11-01T13:29:17.814Z"
+  },
+  {
+   "k": "room_result",
+   "v": {
+    "status": 200,
+    "scene": "lab-scene-v1",
+    "objects": 0,
+    "scale": {
+     "status": "scale unverified",
+     "metres_per_model_unit": 1,
+     "sd": null,
+     "evidence": "MapAnything nominal metric output; no reference object and no model scale uncertainty"
+    }
+   },
+   "utc": "2026-11-01T13:29:16.808Z"
+  },
+  {
+   "k": "rooms_list",
+   "v": {
+    "status": 200,
+    "n": 1,
+    "first": true
+   },
+   "utc": "2026-11-01T13:29:17.119Z"
+  }
+ ],
+ "fails": [],
+ "status": "ok",
+ "end_utc": "2026-11-01T13:29:19.928Z"
+}

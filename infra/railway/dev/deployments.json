@@ -18,8 +18,10 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "cd0230fa-f498-426d-a78a-35597ad703a7",
+      "deploymentId": "20fa6b1f-e9ee-4ab1-90ac-152e95775ce1",
       "previousDeploymentIds": [
+        "cd0230fa-f498-426d-a78a-35597ad703a7",
+        "6950a7b1-417c-4435-8e5a-a8ef3a1006e7",
         "81159cc9-10d6-4170-be2e-765ef4650e04",
         "88eb14d1-5be4-4d6b-a439-800293c2b703",
         "85c23646-2e35-4c25-af0d-cbe38a52c524",
@@ -29,23 +31,25 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "032922d351f9ee27155d6f16d775edbbbe5164a7",
-      "verifiedUtc": "2026-11-01T12:45Z",
+      "sourceRevision": "436d84be54dc7df194793e8d4d31d3bbaccd22de",
+      "verifiedUtc": "2026-11-01T13:33Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
         "REDIS_URL": "unchanged existing reference ${{Redis.REDIS_URL}}",
         "MODEL_API_KEY": "name only, from canonical .env via CLI stdin",
-        "MODEL_API_BASE_URL": "name only, from canonical .env via CLI stdin",
+        "MODEL_API_BASE_URL": "N23: Modal US proxy https://koushiksadhakjeet--r2s-meta-proxy-web.us-east.modal.run/v1 (Railway egress lists no Meta models in SG or US)",
         "MODAL_TOKEN_ID": "name only, from canonical .env via CLI stdin",
         "MODAL_TOKEN_SECRET": "name only, from canonical .env via CLI stdin",
-        "R2S_DATA_DIR": "/data"
+        "R2S_DATA_DIR": "/data",
+        "MODEL_PROXY_TOKEN": "N23 shared secret for Build/gpu/meta_proxy.py, generated into canonical .env, set via CLI stdin; value never printed"
       },
       "url": "https://api-dev-6091.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080,
-      "previousDeploymentId": "e32e910f-6596-4ce7-94da-cca664d8f149",
-      "redeployNote": "N11 live-product api: ffmpeg/ffprobe, modal==1.6.3, node, /data volume api-volume 053fb364-df41-4521-bc26-bc238439cbc7 (R2S_DATA_DIR=/data), SAMPLE project seeding"
+      "previousDeploymentId": "cd0230fa-f498-426d-a78a-35597ad703a7",
+      "redeployNote": "N23: GET /internal/workspace/rooms, Meta calls via Modal us-east proxy, S05 revisions.json staged for room jobs",
+      "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {
       "id": "5b5e6ebc-d4f1-46fb-b6de-6b7ff94b89a7",
@@ -56,6 +60,7 @@
     }
   },
   "limits": [
+    "N23 api 20fa6b1f = 436d84b in us-east4: Meta Model API reached only through Modal app r2s-meta-proxy (us-east); Postgres/Redis/bucket stay in SG (cross-region latency)",
     "N11 api cd0230fa and web 53b1b733 = 032922d: files persist on the /data volume; Modal/Meta tokens present by name only, not exercised by verify.py; uploads dir WORKSPACE_UPLOAD_DIR still /tmp for the legacy route",
     "S04m api 8bf100cc = 54d1575: workspace routers mounted (verify.py: health OK, /internal/workspace 401 without token); authenticated web->api private-network call NOT verified; uploads on ephemeral /tmp",
     "Dev only, not judging/production readiness",

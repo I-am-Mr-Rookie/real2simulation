@@ -5,6 +5,7 @@ const require = createRequire('C:/Users/HP/.cache/codex-runtimes/codex-primary-r
 const { chromium } = require('playwright-core');
 const base = process.env.BASE || 'https://web-dev-cd80.up.railway.app';
 const [ST03, RM02] = process.argv.slice(2);
+const AGENT_ONLY = !!process.env.AGENT_ONLY; // rerun only the agent turn (writes smoke-agent.json)
 const D = decodeURIComponent(new URL('.', import.meta.url).pathname.slice(1));
 const rec = { start_utc: new Date().toISOString(), steps: [], fails: [] };
 const step = (k, v = true) => { rec.steps.push({ k, v, utc: new Date().toISOString() }); console.log(k, JSON.stringify(v).slice(0, 300)); };
@@ -32,17 +33,20 @@ try {
   await p.getByRole('heading', { name: 'Choose how the agent runs' }).waitFor({ timeout: 60000 });
   await p.getByRole('button', { name: 'Continue' }).click(); await p.locator('.lv-gpu').waitFor({ timeout: 30000 });
   step('rooms_list_empty', await api('/rooms'));
+  if (!AGENT_ONLY) {
   // Mode B: trimmed ST03 -> hosted SAM 3.1 tracking -> fit
   const f = await upload(ST03);
   const st = await post('/experiments', { file_id: f.id, target_text: 'apple' });
   step('experiment_started', { status: st.status, state: st.body?.experiment?.status }); const eid = st.body?.experiment?.id; let e;
   for (let i = 0; i < 60; i++) { e = (await api('/experiments/' + eid)).body?.experiment; if (e && !['queued', 'running'].includes(e.status)) break; await p.waitForTimeout(5000); }
   step('experiment_done', { state: e?.status, err: e?.error, fit: e?.result?.status, label: e?.result?.label?.slice(0, 120), quantity: e?.result?.quantity, cost: e?.result?.cost_usd, frames: e?.result?.video_frames_processed });
+  }
   // Agent: one paid turn
   if (!(await p.locator('textarea#lv-draft').isVisible())) await p.getByRole('button', { name: 'Agent & tools' }).click();
   await p.locator('textarea#lv-draft').fill('In one sentence, what do I need to film to measure g?'); await p.getByRole('button', { name: 'Send' }).click();
-  await p.locator('.lv-msg[data-role=assistant], .lv-msg[data-role=error]').last().waitFor({ timeout: 120000 }); await p.waitForTimeout(800);
+  await p.waitForFunction(() => { const t = document.querySelector('.lv-msgs')?.innerText.trim() ?? ''; return t && !/Thinking$/.test(t) && !/\?$/.test(t); }, null, { timeout: 120000 }); await p.waitForTimeout(800);
   step('agent_turn', (await p.locator('.lv-msgs').innerText()).slice(0, 500)); await shot('1-experiment-and-agent');
+  if (AGENT_ONLY) throw 'done';
   // Mode A: trimmed RM02 -> Modal MapAnything room job
   const rf = await upload(RM02);
   const rs = await post('/rooms', { file_id: rf.id });
@@ -54,7 +58,7 @@ try {
   const rl = await api('/rooms'); step('rooms_list', { status: rl.status, n: rl.body?.rooms?.length, first: rl.body?.rooms?.[0]?.id === rid });
   await p.reload(); await p.locator('#lv-jobs').waitFor({ timeout: 30000 }).catch(() => {}); await p.waitForTimeout(2000); await shot('2-processing-card');
   rec.status = 'ok';
-} catch (e) { rec.status = 'error'; rec.error = String(e).replace(/\S+@\S+/g, '<email>').slice(0, 400); await shot('error').catch(() => {}); }
+} catch (e) { if (e === 'done') rec.status = 'ok'; else { rec.status = 'error'; rec.error = String(e).replace(/\S+@\S+/g, '<email>').slice(0, 400); await shot('error').catch(() => {}); } }
 rec.end_utc = new Date().toISOString();
-fs.writeFileSync(D + 'smoke.json', JSON.stringify(rec, null, 1).replace(/[\w.+-]+@example\.com/g, '<email>'));
+fs.writeFileSync(D + (AGENT_ONLY ? 'smoke-agent.json' : 'smoke.json'), JSON.stringify(rec, null, 1).replace(/[\w.+-]+@example\.com/g, '<email>'));
 await b.close();
