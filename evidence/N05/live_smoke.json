@@ -1,0 +1,116 @@
+[
+ {
+  "case": "normal",
+  "utc": "2026-11-01T11:12:25+00:00",
+  "model": "muse-spark-1.3",
+  "stopped": "ask_user",
+  "steps": 2,
+  "usage": {
+   "input_tokens": 3051,
+   "output_tokens": 933
+  },
+  "reply": "To measure g, start with a ball drop video? Which start do you prefer?",
+  "tools": [
+   "list_files",
+   "ask_user"
+  ],
+  "seconds": 9.3
+ },
+ {
+  "case": "off_topic",
+  "utc": "2026-11-01T11:12:28+00:00",
+  "model": "muse-spark-1.3",
+  "stopped": "final",
+  "steps": 1,
+  "usage": {
+   "input_tokens": 1464,
+   "output_tokens": 434
+  },
+  "reply": "I cannot help with stock market poetry, but I can help you upload lab videos, track motion, or run virtual lab experiments.",
+  "tools": [],
+  "seconds": 2.9
+ },
+ {
+  "case": "contributor",
+  "utc": "2026-11-01T11:12:35+00:00",
+  "model": "muse-spark-1.3-contributor",
+  "stopped": "final",
+  "steps": 2,
+  "usage": {
+   "input_tokens": 3023,
+   "output_tokens": 315
+  },
+  "reply": "File list is UNAVAILABLE right now with detail not connected yet.",
+  "tools": [
+   "list_files"
+  ],
+  "seconds": 7.3
+ },
+ {
+  "case": "transcribe",
+  "error": "HTTPStatusError",
+  "http": 400,
+  "body": "{\"sessionId\":\"voyager/transcribe/BCD8C9C928B34CC28C242A731E2BB870\",\"error\":{\"code\":null,\"param\":null,\"type\":\"invalid_request_error\",\"message\":\"Both a 'request' and an 'audio' part are required\"}}"
+ },
+ {
+  "case": "transcribe",
+  "utc": "2026-11-01T11:13:38+00:00",
+  "model": "muse-voice-transcribe-1.0",
+  "text": "Drop the ball from the table and measure gravity.",
+  "seconds": 3.35
+ },
+ {
+  "case": "normal",
+  "utc": "2026-11-01T11:17:44+00:00",
+  "model": "muse-spark-1.3",
+  "stopped": "ask_user",
+  "steps": 2,
+  "usage": {
+   "input_tokens": 3123,
+   "output_tokens": 1592
+  },
+  "reply": "To measure g we track a dropped ball video. How do you want to start?",
+  "tools": [
+   "list_files",
+   "ask_user"
+  ],
+  "seconds": 9.4
+ },
+ {
+  "case": "off_topic",
+  "utc": "2026-11-01T11:17:49+00:00",
+  "model": "muse-spark-1.3",
+  "stopped": "final",
+  "steps": 1,
+  "usage": {
+   "input_tokens": 1500,
+   "output_tokens": 796
+  },
+  "reply": "Sorry I cannot help with the stock market but I can help with lab tracking, simulations, fitting or reports.",
+  "tools": [],
+  "seconds": 4.6
+ },
+ {
+  "case": "contributor",
+  "utc": "2026-11-01T11:17:59+00:00",
+  "model": "muse-spark-1.3-contributor",
+  "stopped": "final",
+  "steps": 2,
+  "usage": {
+   "input_tokens": 3095,
+   "output_tokens": 707
+  },
+  "reply": "File list is UNAVAILABLE right now, not connected yet.",
+  "tools": [
+   "list_files"
+  ],
+  "seconds": 10.5
+ },
+ {
+  "case": "transcribe",
+  "utc": "2026-11-01T11:18:02+00:00",
+  "model": "muse-voice-transcribe-1.0",
+  "text": "Drop the ball from the table and measure gravity.",
+  "seconds": 3.35
+ }
+]

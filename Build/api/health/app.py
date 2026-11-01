@@ -8,6 +8,7 @@ from fastapi.responses import JSONResponse
 from Build.api.health.dependencies import DependencyHealth
 from Build.api.lab import create_router as lab_router
 from Build.api.storage import create_router as storage_router
+from Build.api.agent import create_router as agent_router
 from Build.api.workspace import analysis, jobs
 
 SERVICE = "api"
@@ -40,6 +41,7 @@ def create_app() -> FastAPI:
 
     app.include_router(lab_router())  # internal-token lab bridge; independent of Redis like liveness
     app.include_router(storage_router())  # N03 files/quotas/projects; SQLite + disk under R2S_DATA_DIR, no Redis
+    app.include_router(agent_router())  # N05 owner-gated agent turn + transcription; no Redis dependency
     # Internal owner-scoped routes (WORKSPACE_INTERNAL_TOKEN); analysis resolves scenes from the jobs store.
     try:
         store = jobs.default_store()
