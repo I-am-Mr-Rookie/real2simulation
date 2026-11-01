@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 05:05 Dhaka (controller)
+- Accepted N33 (lab kit: flywheel, Atwood, cart and track, launcher, collision balls, mass set, ruler/protractor/photogate probes; Delete/Backspace removes the selected object; undo/redo with Ctrl+Z, Ctrl+Shift+Z/Ctrl+Y and toolbar; agent can add and edit kit objects). Kit physics checked against textbook formulas within 1 to 5%. Paid: 2 Muse Spark turns, about $0.037. Known limits: Rapier cradle passes about 0.6 of impact speed (reported with a note); agent can stack new apparatus at x 0.
+- Main green: node 410/410, python 288, build ok. DEV deploy held until N41 (DB move, owns infra/railway/dev/ and fences Redis writes) finishes.
+
 ## 2026-11-02 04:45 Dhaka (controller)
 - Accepted N37 (Sol review of N35/N36, evidence only): P1 missing usage releases the whole Sol/agent reservation; P2 status/reaper race; P2 refusals, provider 400s and rejected tool attempts can trigger the Sol fallback. Fix row N40 (Sol high 60, after N31/N33 because of shared files).
 - Accepted N38 as PARTIAL (evidence only, no migration): api to SG Postgres 214 ms, Redis 227 ms median; Postgres has 0 tables; Redis has 228 durable keys, so a cold Redis would lose job data. Backup kept in .worktrees/N38-orch282/evidence/N38/private (do not delete). Redo as N41 (Sol high 60, dispatched N41-orch283, due 05:41 Dhaka) with a write fence and per-key checksum copy; SG kept for rollback.
