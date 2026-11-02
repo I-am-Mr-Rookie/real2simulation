@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 11:22 Dhaka: controller
+- Controller probe of agent effort levels (evidence/controller/agent-effort-*.json): highest is max on Spark 1.3, Muse Open and Sol; product sent none (Spark default high, Sol behaves like low).
+- Koushik: set effort explicitly (Spark high, Open high, Sol high, Sol xhigh after two number-guard blocks) and go N51. Dispatched N51-orch296 (Sol high 30, due 11:52), cap $1.50.
+- Extended N48 Owns to Build/web/src/workspace/live-view.mjs for the GPU countdown timer.
+
 ## 2026-11-02 11:00 Dhaka: controller
 - Koushik: go on N49 (semantic room rebuild). Dispatched N49-orch295 (Opus high 60, due 11:53), cap $3.
 - Koushik on the GPU dot: green whenever the GPU is up (working or idle) with a live mm:ss countdown to sleep; passed to N48.
