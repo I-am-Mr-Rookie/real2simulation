@@ -43,6 +43,8 @@ function themeColor(name, fallback) {
   try { return new THREE.Color(v || fallback); } catch { return new THREE.Color(fallback); }
 }
 
+// N44: walls the fit could not trust are named "not observed" instead of being counted (N43 RM02 partial view)
+const wallText = (sh) => { const n = sh.walls.filter((w) => w.status === 'FIT').length; return n + ' walls' + (n < sh.walls.length ? ' (' + (sh.walls.length - n) + ' not observed)' : ''); };
 function download(name, text) {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
@@ -180,7 +182,7 @@ function RoomTools({ id, room, onReload }) {
     <div className="le-bar" role="group" aria-label="Room tools">
       <button type="button" aria-pressed={tool === 'a4'} disabled={busy} onClick={() => pickTool('a4')}>Mark the A4 sheet</button>
       <button type="button" aria-pressed={tool === 'object'} disabled={busy} onClick={() => pickTool('object')}>Add a real object</button>
-      <button type="button" disabled={busy} onClick={() => { setNote('Finding walls, windows, doors and main furniture (hosted SAM 3.1, then Stable Fast 3D). This can take a few minutes.'); send('/shell', {}, (r) => 'Lab shell built: ' + r.shell.walls.filter((w) => w.status === 'FIT').length + ' walls, ' + r.shell.openings.length + ' openings, ' + r.shell.kept.length + ' furniture kept, ' + r.shell.dropped + ' detections dropped. Geometry MODEL-ESTIMATED, scale ' + r.shell.labels.scale + '.'); }}>Build lab shell</button>
+      <button type="button" disabled={busy} onClick={() => { setNote('Finding walls, windows, doors and main furniture (hosted SAM 3.1, then Stable Fast 3D). This can take a few minutes.'); send('/shell', {}, (r) => 'Lab shell built: ' + wallText(r.shell) + ', ' + r.shell.openings.length + ' openings, ' + r.shell.kept.length + ' furniture kept, ' + r.shell.dropped + ' detections dropped. Geometry MODEL-ESTIMATED, scale ' + r.shell.labels.scale + '.'); }}>Build lab shell</button>
       <label>View <select value={view} onChange={(e) => { setView(Number(e.target.value)); setClicks([]); }}>{Array.from({ length: room.views || 1 }, (_, i) => <option key={i} value={i}>{i + 1}</option>)}</select></label>
     </div>
     {note && <p role="status">{busy ? 'Working: ' : ''}{note}</p>}
@@ -468,7 +470,7 @@ export default function LabEditor({ initialScene }) {
       const next = validateScene({ ...r.scene, room: { ...r.scene.room, ...(collision && { collision: { ...collision, enabled: false } }) }, objects: keepAdded(sceneRef.current.objects, r.scene.objects, k) });
       const sh = r.room.shell;
       stop(); setSelected(null); setScene(next); setPlyName('room.ply'); setSrc({ kind: 'room', id, room: r.room }); setBackdrop(!sh);
-      setMessage(note ?? (sh ? 'Your room as a lab shell: floor, ' + sh.walls.filter((w) => w.status === 'FIT').length + ' walls, ' + sh.openings.length + ' openings, ' + sh.kept.length + ' furniture kept, ' + sh.dropped + ' detections dropped. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.'
+      setMessage(note ?? (sh ? 'Your room as a lab shell: floor, ' + wallText(sh) + ', ' + sh.openings.length + ' openings, ' + sh.kept.length + ' furniture kept, ' + sh.dropped + ' detections dropped. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.'
         : 'Your room: ' + n + ' points, ' + r.scene.objects.length + ' objects. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.'));
     } catch (e) { setMessage('Room not loaded: ' + e.message); }
   };

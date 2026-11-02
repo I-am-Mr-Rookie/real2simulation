@@ -48,3 +48,15 @@ test('ball rests on an SF3D mesh table top through the support slab; without it,
   assert.ok(drop({ ...table, shape: bare }) < 0.05, 'no slab: falls to the floor');
   assert.throws(() => validateScene({ ...shell, objects: [{ ...table, shape: { ...mesh, support: { plane: 0.3, outline: 99 } } }] }), /support/);
 });
+
+// N44 (N43 F1): the committed DEV RM02 scene; the ball dropped over the first SF3D table hit slanted trimesh triangles at
+// the flattened top edge, slid and rolled to the floor. With those left to the slab it rests on the top.
+test('N43 RM02 centre drop rests on the SF3D table top', async () => {
+  const fs = await import('node:fs');
+  const s = validateScene(JSON.parse(fs.readFileSync(new URL('../../evidence/N43/drop-scene.json', import.meta.url))));
+  const sim = createPhysics(R, { ...s, room: { kind: 'plane', floor_y: 0 } });
+  sim.step(4 * 120);
+  const p = sim.trace('ball-1').samples.at(-1).p;
+  sim.free();
+  assert.ok(Math.abs(p[1] - (0.41735 + 0.025)) < 0.005 && Math.hypot(p[0] - 0.0839, p[2] + 1.7662) < 0.01, 'rest ' + p);
+});

@@ -46,6 +46,30 @@ class RoomShell(unittest.TestCase):
         self.assertEqual(len(objs), len(fit) - 1 + 3)  # wall 0 split in 3 around the door
         self.assertTrue(all(o["fixed"] and o["kind"] == "block" and o["id"].startswith("wall-") for o in objs))
 
+    def test_dense_desk_row_is_not_a_wall_and_far_side_needs_points_inside(self):
+        # N44 (N43 F2): a dense desk-row face near the median used to win both halves; walls must bound the points,
+        # and a side whose plane has a camera or kept furniture beyond it is not observed
+        rng = np.random.default_rng(1)
+        row = np.column_stack([rng.normal(0.3, 0.01, 6000), rng.uniform(0, 2.0, 6000), rng.uniform(-1.4, 1.4, 6000)])
+        p = np.concatenate([box_room(0.0), row])
+        _, walls = rs.walls(p)
+        fit = {(w["axis"], w["side"]): w for w in walls if w["status"] == "FIT"}
+        self.assertAlmostEqual(fit[(0, -1)]["plane"], -2.0, delta=0.05)
+        self.assertAlmostEqual(fit[(0, 1)]["plane"], 2.0, delta=0.05)
+        _, walls = rs.walls(p[p[:, 0] < 0.5], inside=[(0.0, 0.0), (1.0, 0.5)])  # partial view: x > 0.5 unseen
+        side = next(w for w in walls if (w["axis"], w["side"]) == (0, 1))
+        self.assertEqual(side["status"], "not observed")
+        self.assertIn("beyond it", side["reason"])  # the desk row at x 0.3 is dense, but furniture sits at x 1.0
+
+    def test_openings_count_once_and_only_on_their_wall(self):
+        wall = {"span": [-2.0, 2.0], "height": 2.5}
+        self.assertTrue(rs.on_wall({"along": [1.5, 2.6], "y": [0.5, 1.5]}, wall))
+        self.assertFalse(rs.on_wall({"along": [2.2, 2.5], "y": [0.5, 1.5]}, wall))  # N43: [2.24, 2.48] off a 1.88-2.09 wall
+        seen = [{"wall": 0, "noun": "window", "view": v, "along": [0.1 * v, 1.0 + 0.1 * v], "y": [0.9, 1.8]} for v in range(4)]
+        merged = rs.merge_openings(seen + [{"wall": 1, "noun": "door", "view": 0, "along": [0.0, 0.9], "y": [0.0, 2.0]}])
+        self.assertEqual(len(merged), 2)
+        self.assertEqual((merged[0]["along"], merged[0]["views"]), ([0.0, 1.3], [0, 1, 2, 3]))
+
     def test_table_top_ignores_laptop(self):
         rng = np.random.default_rng(1)
         h = np.concatenate([rng.normal(0.72, 0.01, 5000), rng.uniform(0.73, 0.95, 400), rng.uniform(0.0, 0.7, 300)])

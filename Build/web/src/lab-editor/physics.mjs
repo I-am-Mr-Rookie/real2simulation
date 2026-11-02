@@ -112,10 +112,19 @@ export function roomProxy(positions, gravity = [0, -9.81, 0], floorY = 0, maxBox
 }
 
 // N31: SF3D mesh shape (unit box, scaled by size): fixed -> trimesh, movable -> convex hull. null = use the box.
+// N44: with a support slab, triangles touching the flattened top are left out: their slanted normals at the top edge
+// pushed a dropped ball sideways on contact and it rolled off (N43 RM02 table); the slab alone forms the top.
 export function meshCollider(R, o) {
   if (o.shape?.type !== 'mesh') return null;
   const v = new Float32Array(o.shape.vertices.map((x, i) => x * o.size[i % 3]));
-  return o.fixed ? R.ColliderDesc.trimesh(v, new Uint32Array(o.shape.indices)) : R.ColliderDesc.convexHull(v);
+  if (!o.fixed) return R.ColliderDesc.convexHull(v);
+  let idx = o.shape.indices;
+  if (o.shape.support) {
+    const y = o.shape.vertices, low = (i) => y[3 * i + 1] < 0.499;
+    idx = idx.filter((_, k) => { const t = k - (k % 3); return low(idx[t]) && low(idx[t + 1]) && low(idx[t + 2]); });
+    if (!idx.length) return null;
+  }
+  return R.ColliderDesc.trimesh(v, new Uint32Array(idx));
 }
 
 // N42: fixed support furniture (table, shelf): solid convex slab under the SF3D top outline, at the measured top. A thin

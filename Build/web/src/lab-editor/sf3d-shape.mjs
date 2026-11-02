@@ -32,16 +32,30 @@ export function loadShapeGlb(shape, body, id) {
   }, undefined, () => { body.userData.glbError = true; });
 }
 
-// Two-line caption drawn under the object (licence duty 3: next to the MODEL-GENERATED label).
+// Two-line caption drawn under the object (licence duty 3: next to the MODEL-GENERATED label). N44: fixed on-screen
+// size (CAPTION_PX tall, about 15 px text) and slid sideways to stay inside the canvas (N43: unreadable and clipped at
+// 375 px when the caption scaled with distance).
+export const CAPTION_PX = 44;
+const _v = new THREE.Vector3();
 export function captionSprite(lines) {
   const cv = document.createElement('canvas');
-  cv.width = 512; cv.height = 96;
+  cv.width = 400; cv.height = 88;
   const x = cv.getContext('2d');
-  x.fillStyle = 'rgba(17,24,39,0.8)'; x.fillRect(0, 0, 512, 96);
-  x.fillStyle = '#fff'; x.font = '28px system-ui, sans-serif'; x.textAlign = 'center';
-  lines.forEach((l, i) => x.fillText(l, 256, 38 + i * 36));
-  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), depthTest: false }));
-  s.scale.set(0.6, 0.1125, 1);
+  x.fillStyle = 'rgba(17,24,39,0.85)'; x.fillRect(0, 0, 400, 88);
+  x.fillStyle = '#fff'; x.font = '600 30px system-ui, sans-serif'; x.textAlign = 'center';
+  lines.forEach((l, i) => x.fillText(l, 200, 36 + i * 38, 388));
+  const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), depthTest: false, sizeAttenuation: false }));
+  s.scale.set(0.2, 0.044, 1);
+  s.frustumCulled = false;
+  s.onBeforeRender = (r, _scene, cam) => {
+    const el = r.domElement, p11 = cam.projectionMatrix.elements[5], p00 = cam.projectionMatrix.elements[0];
+    const h = (2 * CAPTION_PX) / ((el.clientHeight || 600) * p11), w = (h * cv.width) / cv.height, wN = w * p00;
+    const v = s.getWorldPosition(_v).project(cam);
+    s.scale.set(w, h, 1);
+    // slide so the caption stays inside the canvas, also when its anchor is just off screen (not when behind the camera)
+    s.center.x = v.z > 1 ? 0.5 : Math.min((v.x + 1) / wN, Math.max(1 - (1 - v.x) / wN, 0.5));
+    s.updateMatrixWorld();
+  };
   return s;
 }
 

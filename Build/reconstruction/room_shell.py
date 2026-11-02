@@ -21,6 +21,7 @@ MIN_SPAN = 0.25
 MAX_SF3D = 3  # SF3D GPU calls per shell (largest items first); the rest keep their measured box, with the reason
 WALL_T = 0.08
 MIN_SUPPORT = 0.04  # fraction of wall-band points within one cell of the plane
+OUTSIDE_MAX = 0.1  # N44: a wall bounds the room: at most this share of its side's points beyond it (doors, windows)
 MERGE_OVERLAP = 0.3  # N42: footprints overlapping this much (of the smaller) are parts of one item
 PARTS = ("table", "shelf")  # N42: merge groups that form one item when they overlap (desk + hutch, desk + cabinet)
 MAX_TABLE = 1.1  # N42: a "table"/"desk" top above this (m above the floor) is front-view clutter (N39 1.26 m "table")
@@ -141,9 +142,13 @@ def _axes(a):
     return np.array([np.cos(a), -np.sin(a)]), np.array([np.sin(a), np.cos(a)])  # local x, local z in (x, z)
 
 
-def walls(aligned, cell=0.05):
+def walls(aligned, inside=(), cell=0.05):
     """Room-frame points (metres, floor y = 0) -> (yaw, [wall]) with wall = {axis 0|1, side -1|1, plane, support,
-    p95_residual, span [lo, hi], height}; sides without enough support are reported as not observed."""
+    p95_residual, span [lo, hi], height}; sides without enough support are reported as not observed.
+    N44: the plane is the densest cell among those with at most OUTSIDE_MAX of the side's points beyond it (the plain
+    peak per half picked desk rows next to the median: RM02 and N06 "walls" 0.05 to 0.2 apart). inside = room-frame
+    (x, z) of the cameras and kept furniture centres; a wall with one of them beyond it is not observed (partial view of
+    a large room: RM02's nearest desk row looked like a wall in front of the camera)."""
     y = aligned[:, 1]
     top = np.percentile(y, 98)
     band = aligned[(y > 0.15 * top) & (y < 0.85 * top)]
@@ -166,7 +171,9 @@ def walls(aligned, cell=0.05):
                 out.append({"axis": axis, "side": side, "plane": None, "support": 0.0, "status": "not observed"})
                 continue
             counts, edges = np.histogram(half, bins=max(1, int(np.ptp(half) / cell)))
-            centre = (edges[np.argmax(counts)] + edges[np.argmax(counts) + 1]) / 2
+            beyond = np.cumsum(counts[::-1])[::-1] - counts if side > 0 else np.cumsum(counts) - counts
+            k = int(np.argmax(np.where(beyond <= OUTSIDE_MAX * len(half), counts, -1)))
+            centre = (edges[k] + edges[k + 1]) / 2
             near = np.abs(c - centre) <= cell
             plane = float(np.median(c[near]))
             near = np.abs(c - plane) <= cell
@@ -174,15 +181,18 @@ def walls(aligned, cell=0.05):
             if w["support"] < MIN_SUPPORT:
                 out.append({**w, "status": "not observed"})
                 continue
+            outside = [p for p in inside if side * (np.dot(p, ex if axis == 0 else ez) - plane) > cell]
+            if outside:
+                out.append({**w, "status": "not observed", "reason": f"{len(outside)} camera or furniture position(s) beyond it"})
+                continue
             o = uv[near, 1 - axis]
             out.append({**w, "status": "FIT", "p95_residual": round(float(np.percentile(np.abs(c[near] - plane), 95)), 4),
                         "span": [round(float(np.percentile(o, 2)), 4), round(float(np.percentile(o, 98)), 4)],
                         "height": round(float(top), 4)})
     fit = [w for w in out if w["status"] == "FIT"]
-    for w in fit:  # stretch each wall to the planes of the walls across its ends
+    for w in fit:  # stretch each wall to the planes of the FIT walls across its ends (N44: also when only one is FIT)
         ends = [x["plane"] for x in fit if x["axis"] != w["axis"]]
-        if len(ends) == 2:
-            w["span"] = sorted(ends)
+        w["span"] = sorted(ends) if len(ends) == 2 else [min([w["span"][0], *ends]), max([w["span"][1], *ends])]
     return float(yaw), out
 
 
@@ -204,8 +214,30 @@ def opening(npz, view, box, room, yaw, fit, noun, tol=0.2):
     i, near = best
     a, y = uv[near, 1 - fit[i]["axis"]], q[near, 1]
     lo = 0.0 if noun == "door" else max(0.0, float(np.percentile(y, 5)))
-    return {"wall": i, "noun": noun, "view": view, "along": [round(float(np.percentile(a, 5)), 4),
-            round(float(np.percentile(a, 95)), 4)], "y": [round(lo, 4), round(float(np.percentile(y, 95)), 4)]}
+    o = {"wall": i, "noun": noun, "view": view, "along": [round(float(np.percentile(a, 5)), 4),
+         round(float(np.percentile(a, 95)), 4)], "y": [round(lo, 4), round(float(np.percentile(y, 95)), 4)]}
+    return o if on_wall(o, fit[i]) else None
+
+
+def on_wall(o, wall, min_len=0.05):
+    """N44: an opening counts only when its rectangle overlaps its wall's (N43 RM02: 0 of 24 did)."""
+    return (min(o["along"][1], wall["span"][1]) - max(o["along"][0], wall["span"][0]) >= min_len
+            and o["y"][0] < wall["height"] and o["y"][1] > 0)
+
+
+def merge_openings(holes):
+    """N44: the same window seen in several views is one opening (N43: 24 reported for a few windows): overlapping
+    rectangles on one wall merge into their union, nouns and views kept."""
+    out = []
+    for h in sorted(holes, key=lambda h: (h["wall"], h["along"][0])):
+        m = out[-1] if out and out[-1]["wall"] == h["wall"] else None
+        if m and h["along"][0] <= m["along"][1] and h["y"][0] <= m["y"][1] and h["y"][1] >= m["y"][0]:
+            m["along"][1], m["y"] = max(m["along"][1], h["along"][1]), [min(m["y"][0], h["y"][0]), max(m["y"][1], h["y"][1])]
+            m["views"] = sorted({*m["views"], h["view"]})
+            m["noun"] = "door" if "door" in (m["noun"], h["noun"]) else m["noun"]
+        else:
+            out.append({**h, "along": list(h["along"]), "y": list(h["y"]), "views": [h["view"]]})
+    return out
 
 
 def pieces(span, height, holes):
@@ -265,10 +297,13 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
             for b in detect(png, noun, w, h):
                 found["features" if noun in FEATURES else "furniture"].append((view, noun, b))
     aligned, _, _, _ = live_room.analyse(npz)
-    yaw, all_walls = walls(aligned)
-    fit = [w for w in all_walls if w["status"] == "FIT"]
-    holes = [o for o in (opening(npz, v, b, room, yaw, fit, n) for v, n, b in found["features"]) if o]
     kept, dropped = furniture(npz, room, found["furniture"])
+    inside = [(c[0], c[2]) for c in room.get("camera_positions_m", [])] + [
+        (it["proxy"]["position"][0], it["proxy"]["position"][2]) for it in kept]
+    yaw, all_walls = walls(aligned, inside)
+    fit = [w for w in all_walls if w["status"] == "FIT"]
+    cand = [opening(npz, v, b, room, yaw, fit, n) for v, n, b in found["features"]]
+    holes = merge_openings([o for o in cand if o])
     out = {**scene, "objects": [o for o in scene.get("objects", []) if not str(o.get("id", "")).startswith("wall-")]}
     out["objects"] += wall_objects(yaw, fit, holes)
     glbs, kept_list = {}, []
@@ -294,7 +329,8 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
                           "reason": f"main furniture ({noun}), {len(it['views'])} view(s), box reaches the floor"})
     shell = {"schema": "n39-shell/1", "keyframes": frames, "sam_calls": calls, "sam_cost_usd": round(calls * object_lift.USD_PER_IMAGE, 4),
              "floor": room["floor"]["status"], "yaw_deg": round(float(np.degrees(yaw)), 2), "walls": all_walls,
-             "openings": holes, "kept": kept_list, "dropped": sum(dropped.values()), "dropped_reasons": dropped,
+             "openings": holes, "opening_detections_off_wall": sum(o is None for o in cand),
+             "kept": kept_list, "dropped": sum(dropped.values()), "dropped_reasons": dropped,
              "detections": {"furniture": len(found["furniture"]), "features": len(found["features"])},
              "labels": {"geometry": "MODEL-ESTIMATED", "scale": room["scale"]["status"],
                         "shape": "MODEL-GENERATED shape, Powered by Stability AI (mesh items only)",

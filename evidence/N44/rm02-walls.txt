@@ -1,0 +1,7 @@
+points 20000 y98 0.6582
+old [(1.8817, 'FIT'), (2.0891, 'FIT'), (-1.7972, 'FIT'), (-0.8325, 'FIT')]
+yaw 54.0 old yaw 54.0
+{'axis': 0, 'side': -1, 'plane': 2.2017, 'support': 0.0242, 'status': 'not observed'}
+{'axis': 0, 'side': 1, 'plane': 5.26, 'support': 0.0146, 'status': 'not observed'}
+{'axis': 1, 'side': -1, 'plane': -2.9692, 'support': 0.0232, 'status': 'not observed'}
+{'axis': 1, 'side': 1, 'plane': -1.1004, 'support': 0.0696, 'status': 'not observed', 'reason': '8 camera or furniture position(s) beyond it'}
