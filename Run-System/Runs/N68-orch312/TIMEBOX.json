@@ -1,9 +1,10 @@
 {
   "id": "N68-orch312",
-  "status": "PARTIAL",
-  "issued_at": "2026-11-02T18:45:18+00:00",
-  "deadline_at": "2026-11-02T19:15:18+00:00",
-  "implementation_cutoff_at": "2026-11-02T19:10:18+00:00",
-  "work_stopped_at": "2026-11-02T19:15:18+00:00",
-  "reported_at": "2026-11-02T19:15:27+00:00"
+  "status": "DONE",
+  "issued_at": "2026-11-02T19:18:52+00:00",
+  "deadline_at": "2026-11-02T19:48:52+00:00",
+  "implementation_cutoff_at": "2026-11-02T19:43:52+00:00",
+  "deadline_dhaka": "2026-11-03T01:48:52+06:00",
+  "work_stopped_at": "2026-11-02T19:23:55+00:00",
+  "reported_at": "2026-11-02T19:24:12+00:00"
 }
