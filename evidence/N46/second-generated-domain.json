@@ -1,0 +1,20 @@
+{
+  "request": {
+    "query": "mutation($input: ServiceDomainCreateInput!) { serviceDomainCreate(input: $input) { id domain } }",
+    "variables": {
+      "input": {
+        "serviceId": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
+        "environmentId": "c5823a28-5118-49d8-b4d6-9851fa8ccc45",
+        "targetPort": 8080
+      }
+    }
+  },
+  "data": {
+    "serviceDomainCreate": {
+      "id": "a3f47a99-f911-48f3-9499-7b2be3da6dd7",
+      "domain": "web-dev-3da8.up.railway.app"
+    }
+  },
+  "errors": [],
+  "source": "https://docs.railway.com/integrations/api/manage-domains"
+}

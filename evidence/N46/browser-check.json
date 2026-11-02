@@ -1,0 +1,61 @@
+{
+  "observed_utc": "2026-11-02T03:45:02.992Z",
+  "headed": true,
+  "email_delivery": "NOT_CHECKED: Clerk development test code, not Gmail",
+  "hosts": [
+    {
+      "host": "real2simulation.up.railway.app",
+      "checks": [
+        {
+          "route": "/lab",
+          "status": 200,
+          "rendered": true
+        },
+        {
+          "route": "/library",
+          "status": 200,
+          "rendered": true
+        },
+        {
+          "route": "/sign-in",
+          "status": 200,
+          "clerk_widget": true
+        },
+        {
+          "route": "/workspace",
+          "authenticated": true,
+          "private_api_status": 200,
+          "method": "Clerk development email-code fixture"
+        }
+      ],
+      "console_errors": []
+    },
+    {
+      "host": "real2simulation.rookiecoders.tech",
+      "checks": [
+        {
+          "route": "/lab",
+          "status": 200,
+          "rendered": true
+        },
+        {
+          "route": "/library",
+          "status": 200,
+          "rendered": true
+        },
+        {
+          "route": "/sign-in",
+          "status": 200,
+          "clerk_widget": true
+        },
+        {
+          "route": "/workspace",
+          "authenticated": true,
+          "private_api_status": 200,
+          "method": "Clerk development email-code fixture"
+        }
+      ],
+      "console_errors": []
+    }
+  ]
+}

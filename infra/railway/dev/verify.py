@@ -6,13 +6,15 @@ from urllib.error import HTTPError
 from urllib.request import urlopen
 
 revision = "300cd2096f9e32bcdf3433520b36b67f709df0d5"
-# N34 API source revision (web revision is recorded separately in deployments.json).
-revisions = {"api": "e5bcfcc5e4b3ea5199ed3a9a4fb7727398cce5e7", "worker": revision}
+# N44 controller deploy during N46 (web revision is recorded separately in deployments.json).
+revisions = {"api": "ccb8b5d5c66c925eea3578e4b0488adf27e5c822", "worker": revision}
 checks = []
 for service, host, paths in (
     ("api", "api-dev-6091.up.railway.app", ("/health/live", "/health/ready", "/api/version", "/internal/workspace/jobs/job_" + "0" * 32)),
     ("worker", "worker-dev-984d.up.railway.app", ("/health/live", "/health/ready", "/api/version")),
-    ("web", "web-dev-cd80.up.railway.app", ("/", "/library", "/sign-in", "/workspace/private-check")),
+    *(("web", host, ("/", "/lab", "/library", "/sign-in", "/workspace/private-check")) for host in (
+        "real2simulation.up.railway.app", "real2simulation.rookiecoders.tech",
+    )),
 ):
     for path in paths:
         url = f"https://{host}{path}"
@@ -49,6 +51,7 @@ for service, host, paths in (
                 record["auth_fallback"] = "unavailable" in body.lower()
                 expected_content = {
                     "/": "Real2Simulation",
+                    "/lab": "Test a motion model",
                     "/library": "Demo library",  # S04k snapshot-served cards replaced the empty state
                     "/sign-in": "Sign in to Real2Simulation",  # Clerk configured Oct29; was the unavailable fallback
                     "/workspace/private-check": "Private workspaces require sign-in",  # not-found.jsx since S15k

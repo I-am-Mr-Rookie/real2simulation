@@ -1,0 +1,19 @@
+[
+  {
+    "id": "d8f823d6290253fab25545ce67e05c29",
+    "name": "real2simulation.rookiecoders.tech",
+    "type": "CNAME",
+    "content": "47g8adl9.up.railway.app",
+    "proxiable": true,
+    "proxied": false,
+    "ttl": 1,
+    "settings": {
+      "flatten_cname": false
+    },
+    "meta": {},
+    "comment": null,
+    "tags": [],
+    "created_on": "2026-11-02T03:38:19.627636Z",
+    "modified_on": "2026-11-02T03:38:19.627636Z"
+  }
+]

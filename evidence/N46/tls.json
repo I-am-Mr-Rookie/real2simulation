@@ -1,0 +1,75 @@
+{
+  "observed_utc": "2026-11-02T03:45:55.579178+00:00",
+  "checks": [
+    {
+      "host": "real2simulation.up.railway.app",
+      "verified": true,
+      "protocol": "TLSv1.3",
+      "issuer": [
+        [
+          [
+            "countryName",
+            "US"
+          ]
+        ],
+        [
+          [
+            "organizationName",
+            "Let's Encrypt"
+          ]
+        ],
+        [
+          [
+            "commonName",
+            "YE2"
+          ]
+        ]
+      ],
+      "not_before": "Sep 27 03:01:43 2026 GMT",
+      "not_after": "Dec 26 03:01:42 2026 GMT",
+      "subject_alt_names": [
+        [
+          "DNS",
+          "*.up.railway.app"
+        ],
+        [
+          "DNS",
+          "up.railway.app"
+        ]
+      ]
+    },
+    {
+      "host": "real2simulation.rookiecoders.tech",
+      "verified": true,
+      "protocol": "TLSv1.3",
+      "issuer": [
+        [
+          [
+            "countryName",
+            "US"
+          ]
+        ],
+        [
+          [
+            "organizationName",
+            "Let's Encrypt"
+          ]
+        ],
+        [
+          [
+            "commonName",
+            "YE1"
+          ]
+        ]
+      ],
+      "not_before": "Nov  2 02:40:18 2026 GMT",
+      "not_after": "Jan 31 02:40:17 2027 GMT",
+      "subject_alt_names": [
+        [
+          "DNS",
+          "real2simulation.rookiecoders.tech"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "86ccfc8f1c5346a97d768ac80748dd9a",
+    "name": "_railway-verify.real2simulation.rookiecoders.tech",
+    "type": "TXT",
+    "content": "railway-verify=2cb266041531e724df4dd1bfec04de818931d0e8ab967de2de80ed2c60884d7a",
+    "proxiable": false,
+    "proxied": false,
+    "ttl": 1,
+    "settings": {},
+    "meta": {},
+    "comment": null,
+    "tags": [],
+    "created_on": "2026-11-02T03:38:21.191922Z",
+    "modified_on": "2026-11-02T03:38:21.191922Z"
+  }
+]

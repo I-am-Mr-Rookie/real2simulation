@@ -12,7 +12,8 @@
       "redeployNote": "controller: N42 support slab",
       "sourceRevision": "e5bcfcc5e4b3ea5199ed3a9a4fb7727398cce5e7",
       "verifiedUtc": "2026-11-02T00:31Z",
-      "url": "https://web-dev-cd80.up.railway.app",
+      "url": "https://real2simulation.up.railway.app",
+      "customDomain": "https://real2simulation.rookiecoders.tech",
       "providerStatus": "SUCCESS",
       "port": 8080
     },

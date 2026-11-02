@@ -1,0 +1,29 @@
+{
+  "customDomains": [
+    {
+      "domain": "real2simulation.rookiecoders.tech",
+      "id": "2956c363-c3fa-4b25-ab80-7dd80ee596ea",
+      "targetPort": 8080
+    }
+  ],
+  "environment": {
+    "id": "c5823a28-5118-49d8-b4d6-9851fa8ccc45",
+    "name": "dev"
+  },
+  "service": {
+    "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
+    "name": "web"
+  },
+  "serviceDomains": [
+    {
+      "domain": "real2simulation.up.railway.app",
+      "id": "8401e5d2-3205-4336-bb1a-78ef58e29b8c",
+      "targetPort": 8080
+    },
+    {
+      "domain": "web-dev-cd80.up.railway.app",
+      "id": "a3f47a99-f911-48f3-9499-7b2be3da6dd7",
+      "targetPort": 8080
+    }
+  ]
+}

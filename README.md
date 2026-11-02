@@ -7,7 +7,8 @@ Built solo by Koushik Sadhak Jeet (indie developer track) for the Meta Global AI
 - **Judging URL:** PENDING S23 (not yet deployed or approved).
 - **Frozen judging revision:** PENDING S23.
 - **Demo video:** PENDING.
-- Railway **dev** services (development only, not the judging build): web-dev-cd80.up.railway.app,
+- Railway **dev** services (development only, not the judging build): [real2simulation.up.railway.app](https://real2simulation.up.railway.app)
+  (also [real2simulation.rookiecoders.tech](https://real2simulation.rookiecoders.tech)),
   api-dev-6091.up.railway.app, worker-dev-984d.up.railway.app.
 
 ## Results (honest summary)

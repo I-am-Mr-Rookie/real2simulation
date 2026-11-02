@@ -1,6 +1,6 @@
 # Real2Simulation: 3-minute demo script, Nov 1 pivot (N17)
 
-Status: DRAFT for Koushik's voice-over. Matches DEV (https://web-dev-cd80.up.railway.app) as tested in N13 (2026-11-01 13:50 to 14:08 UTC). Spoken total about 2:22 (limit 2:50); the rest is screen time. Read lines: [READ-SHEET-NOV1.md](../narration/READ-SHEET-NOV1.md).
+Status: DRAFT for Koushik's voice-over. DEV: https://real2simulation.up.railway.app (also https://real2simulation.rookiecoders.tech; domains updated Nov 2 in N46). Script matches the build tested in N13 (2026-11-01 13:50 to 14:08 UTC). Spoken total about 2:22 (limit 2:50); the rest is screen time. Read lines: [READ-SHEET-NOV1.md](../narration/READ-SHEET-NOV1.md).
 Rules: numbers only from the cited files. [PENDING N24/N25/N26] = not yet shown on DEV; do not record that screen or take until it is fixed, or use the fallback shown. No em dashes. Honesty labels stay visible on screen.
 Evidence short names: N13 = evidence/N13/FINDINGS.md; N22 = Run-System/Runs/N22-orch265/REPORT.md; N23 = Run-System/Runs/N23-orch266/REPORT.md; PLAN = Run-System/PLAN-NOV1.md.
 

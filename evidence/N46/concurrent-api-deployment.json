@@ -1,0 +1,20 @@
+[
+  {
+    "canRedeploy": true,
+    "canRollback": true,
+    "createdAt": "2026-11-02T03:46:36.781Z",
+    "environmentId": "c5823a28-5118-49d8-b4d6-9851fa8ccc45",
+    "id": "20dfcd2d-322f-4b90-8f4c-2816ae9fd146",
+    "meta": {
+      "reason": "deploy"
+    },
+    "regions": [
+      "us-east4-eqdc4a"
+    ],
+    "serviceId": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
+    "snapshotId": "cf0e5700-b9fa-41b9-ab97-780b6ce5a2c5",
+    "status": "SUCCESS",
+    "updatedAt": "2026-11-02T03:47:19.255Z",
+    "url": null
+  }
+]

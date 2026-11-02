@@ -1,0 +1,34 @@
+{
+  "certificate": {
+    "errorMessage": null,
+    "retryable": null,
+    "status": "CERTIFICATE_STATUS_TYPE_VALID"
+  },
+  "dnsRecords": [
+    {
+      "currentValue": "47g8adl9.up.railway.app",
+      "fqdn": "real2simulation.rookiecoders.tech",
+      "hostLabel": "real2simulation",
+      "purpose": "DNS_RECORD_PURPOSE_TRAFFIC_ROUTE",
+      "recordType": "DNS_RECORD_TYPE_CNAME",
+      "requiredValue": "47g8adl9.up.railway.app",
+      "status": "DNS_RECORD_STATUS_PROPAGATED"
+    }
+  ],
+  "domain": {
+    "domain": "real2simulation.rookiecoders.tech",
+    "id": "2956c363-c3fa-4b25-ab80-7dd80ee596ea",
+    "kind": "custom",
+    "targetPort": 8080
+  },
+  "environment": {
+    "id": "c5823a28-5118-49d8-b4d6-9851fa8ccc45",
+    "name": "dev"
+  },
+  "railwayManaged": false,
+  "service": {
+    "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
+    "name": "web"
+  },
+  "verified": true
+}

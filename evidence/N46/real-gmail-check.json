@@ -1,0 +1,26 @@
+{
+  "observed_utc": "2026-11-02T03:58:03+00:00",
+  "account_id": "user_3LMwElfJcjPV6eL25A6uno1VW0f",
+  "account_created": false,
+  "browser": "Headed Codex in-app Chromium, Playwright with accessibility fallback",
+  "source": "Real verification messages read in the already signed-in Gmail account selected by Koushik",
+  "codes_or_email_addresses_saved": false,
+  "checks": [
+    {
+      "host": "real2simulation.up.railway.app",
+      "real_email_otp_requested": true,
+      "real_email_otp_received_in_gmail": true,
+      "real_email_otp_sign_in": true,
+      "private_workspace_connected": true,
+      "local_screenshot": "real-gmail-primary-workspace.png"
+    },
+    {
+      "host": "real2simulation.rookiecoders.tech",
+      "real_email_otp_requested": true,
+      "real_email_otp_received_in_gmail": true,
+      "real_email_otp_sign_in": true,
+      "private_workspace_connected": true,
+      "local_screenshot": "real-gmail-custom-workspace.png"
+    }
+  ]
+}

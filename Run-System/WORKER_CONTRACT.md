@@ -23,7 +23,7 @@ work_stopped_at, reported_at; check with `python Run-System/worker_timebox.py ch
   (UTC, model, units, cost) in your REPORT. No purchases, posts, submissions or account-setting changes.
 - UI text: no em dashes. Owner clips are private except OWN07 snippets; no real emails in screenshots.
 - Browser checks: Playwright Chromium headed (Clerk blocks headless), test accounts email+clerk_test@example.com, code 424242,
-  DEV https://web-dev-cd80.up.railway.app. Never Chrome.
+  DEV https://real2simulation.up.railway.app (also https://real2simulation.rookiecoders.tech). Never Chrome.
 - Checks: run the tests for what you touched, plus `npm run build` in Build/web if web changed. No deploy unless the task says.
 
 ## Finish
