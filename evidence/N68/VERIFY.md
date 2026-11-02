@@ -11,5 +11,6 @@
 - DEV `railway variables --kv` export went directly to gitignored `Build/web/.env.local`, never printed. Temporary file removed; local production listener stopped, both verified.
 - `git diff --check`: passed.
 - In-app browser connection and its single retry both returned `Browser is not available: iab`. Controller notified. No alternate browser used.
+- Controller requested waiting without an early-stop exception. Original deadline 2026-11-02T19:15:18+00:00 passed without browser attachment; terminal status PARTIAL.
 - Pending: actual in-app Reset interaction, sample replay/result summary checks at 375px and desktop, and screenshots under `evidence/N68/`. No current visual verification is claimed.
 - No private N06 room or owner clip accessed. No uploads, inference, paid jobs, deployments or account changes. Paid calls: 0.

@@ -1,4 +1,4 @@
-# N68-orch312: IN PROGRESS, waiting for browser attachment
+# N68-orch312: PARTIAL, browser unavailable at deadline
 - Branch `run/N68-orch312`, base `31c10cfa`.
 - Reset now restores a ready SIMULATED status through the existing shared handler.
 - Phone replay summary clears the floating rail with safe-area-aware bottom spacing; desktop unchanged.
@@ -11,5 +11,5 @@
 - Pending: 375px and desktop in-app interactions/screenshots using public/sample data only.
 - Railway-exported gitignored `.env.local` removed; local production server stopped and verified.
 - Paid calls: 0. Deploys: 0. No private room/clip opened.
-- Controller instructed no early stop; waiting for attachment or original deadline before terminal receipt.
+- Implementation committed as `259c493e`; waited until original 19:15:18 UTC deadline per controller. Browser was not attached; reissued timebox required for visual QA.
 - Skipped: human-browser verification and screenshots until browser is attached. Risk: phone visual layout not yet verified.
