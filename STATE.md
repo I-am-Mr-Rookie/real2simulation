@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+### 2026-11-03 01:16 Dhaka: N69 dispatched
+N69-orch313 (Sol high, 30 min): room artifacts now count toward the 1 GB per-user quota, and room jobs and rebuilds are refused when the user is over quota (gap reported by N63). Thread 01a19daf-ebdc-7532-800b-cc08f35eb1f8. N68 is still waiting for the in-app browser.
+
 ### 2026-11-03 01:05 Dhaka: N67 accepted, DEV api d53a0892
 N67-orch311 closed the N66 findings, each with a regression test (15 of 15 reverted fixes caught): rebuilds are now 3 per owner per Dhaka day (counter in rooms/<owner>/shell-rebuilds.json); the L4 start budget is 75 s and a confirmed-cancelled attempt is settled without the idle charge; a stale queued SF3D item never spawns; Modal call ids are saved and cancelled on restart or reap, with the reservation kept; the room settle is capped at its estimate; a failed rebuild gets its own reason; the negative test is fast. Controller cross-vendor review (Claude) of the spend diff: ok. Python 571 passed, Node ok, secret scan clean. DEV api deployed d53a0892, verify.py exit 0. No paid jobs. Not live-tested: cancellation on Modal itself.
 

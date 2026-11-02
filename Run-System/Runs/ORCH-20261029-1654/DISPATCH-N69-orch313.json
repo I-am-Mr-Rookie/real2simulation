@@ -1,0 +1,7 @@
+{
+ "id": "N69-orch313",
+ "model": "gpt-6.1-sol",
+ "effort": "high",
+ "minutes": 30,
+ "prompt": "Run N69-orch313. Read Run-System/WORKER_CONTRACT.md first and follow it. Model gpt-6.1-sol/high.\nTimebox: issued 2026-11-02T19:15:13+00:00; deadline 2026-11-02T19:45:13+00:00 (Dhaka 2026-11-03T01:45:13+06:00); cutoff 2026-11-02T19:40:13+00:00.\nCount room artifacts in the 1 GB per-user storage quota (gap reported by N63). Today only uploads count; files under R2S_DATA_DIR/rooms/<owner>/ (room.ply, mapanything.npz, objects/*.png and *.glb, scene and room JSON) are not counted. Smallest safe fix:\n(1) storage usage (the files store used by the workspace's \"X MB of 1.0 GB used\" and by upload enforcement) includes the byte size of the owner's rooms/<owner>/ tree;\n(2) starting a room job (POST /rooms) and a shell rebuild are refused with the existing quota error when the owner is already at or over 1 GB, before any paid work starts;\n(3) deleting a room, if a delete path exists, frees its bytes; if none exists, do not build one, and say so in the REPORT.\nAdd a shortcut comment that per-write size reservation is not done (a job may overshoot by one room). Tests: tests/api-storage and tests/reconstruction, with one test per rule. Run the Python suite for those folders on Python 3.12 with the repo-pinned deps. No paid jobs, no deploys.\n[@Browser](plugin://browser@openai-bundled)"
+}
