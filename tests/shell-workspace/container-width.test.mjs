@@ -3,11 +3,12 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 const read = file => readFileSync(new URL('../../Build/web/src/' + file, import.meta.url), 'utf8');
 
-test('header, main and footer share the page width, including the wide editor', () => {
+test('header, main and footer share the page width; the lab editor is full-window', () => {
   assert.match(read('app/styles.css'), /\.site-header, main, \.site-footer \{ width: var\(--site-width, min\(1120px, calc\(100% - 2\.5rem\)\)\)/);
   const editor = read('lab-editor/lab-editor.css');
-  assert.match(editor, /body:has\(\.lab-editor\) \{ --site-width: min\(1680px, calc\(100% - 48px\)\); \}/);
-  assert.match(editor, /body:has\(\.lab-editor\) \{ --site-width: calc\(100% - 24px\); \}/);
+  // N56 superseded N54's wide-editor width: the editor hides the site chrome and fills the window.
+  assert.match(editor, /body:has\(\.lab-editor\) \.site-header, body:has\(\.lab-editor\) \.site-footer/);
+  assert.match(editor, /position: fixed; inset: 0;/);
   assert.doesNotMatch(editor, /100vw|margin-left: 50%|translateX\(-50%\)/);
   const workspace = read('workspace/workspace.css');
   assert.match(workspace, /main:has\(\.r2s-shell\) \{ width: 100%/);
