@@ -1,0 +1,92 @@
+{
+  "picker": {
+    "desktop": {
+      "bars": [
+        "Intelligence high, relative",
+        "Speed low, relative",
+        "Cost high, relative"
+      ],
+      "dialog": {
+        "bottom": 634.234375,
+        "height": 284.90625,
+        "left": 354.1875,
+        "right": 844.1875,
+        "top": 349.328125,
+        "width": 490,
+        "x": 354.1875,
+        "y": 349.328125
+      },
+      "viewport": {
+        "height": 800,
+        "width": 1280
+      }
+    },
+    "mobile": {
+      "bars": [
+        "Intelligence high, relative",
+        "Speed low, relative",
+        "Cost high, relative"
+      ],
+      "dialog": {
+        "bottom": 800,
+        "height": 519.65625,
+        "left": 64,
+        "right": 348,
+        "top": 280.34375,
+        "width": 284,
+        "x": 64,
+        "y": 280.34375
+      },
+      "dialogClientWidth": 282,
+      "dialogScrollWidth": 282,
+      "viewport": {
+        "height": 812,
+        "width": 375
+      },
+      "wonder": {
+        "bottom": 537.09375,
+        "height": 59.546875,
+        "left": 73,
+        "right": 339,
+        "top": 477.546875,
+        "width": 266,
+        "x": 73,
+        "y": 477.546875
+      }
+    }
+  },
+  "limit_note": {
+    "desktop": {
+      "clientWidth": 295,
+      "rect": {
+        "bottom": 294.0625,
+        "height": 45.34375,
+        "left": 973,
+        "right": 1268,
+        "top": 248.71875,
+        "width": 295,
+        "x": 973,
+        "y": 248.71875
+      },
+      "scrollWidth": 295,
+      "text": "Wonder limit reached for today, using Muse Spark"
+    },
+    "mobile": {
+      "clientWidth": 320,
+      "rect": {
+        "bottom": 263.65625,
+        "height": 21.3125,
+        "left": 28,
+        "right": 348,
+        "top": 242.34375,
+        "width": 320,
+        "x": 28,
+        "y": 242.34375
+      },
+      "scrollWidth": 320,
+      "text": "Wonder limit reached for today, using Muse Spark"
+    }
+  },
+  "console_errors": 0,
+  "console_warnings": 0
+}

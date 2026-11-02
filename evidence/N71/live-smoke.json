@@ -1,0 +1,20 @@
+{
+  "calls": 1,
+  "usd_per_unit": "1E-8",
+  "ledger": [
+    {
+      "utc": "2026-11-02T20:03:24.951156+00:00",
+      "provider": "Meta Model API",
+      "label": "N71 smoke muse-wonder-1.0",
+      "reserved_units": 11072800,
+      "actual_units": 1536800
+    }
+  ],
+  "cost_usd": "0.01536800",
+  "model": "muse-wonder-1.0",
+  "stopped": "ask_user",
+  "usage": {
+    "input_tokens": 2392,
+    "output_tokens": 290
+  }
+}

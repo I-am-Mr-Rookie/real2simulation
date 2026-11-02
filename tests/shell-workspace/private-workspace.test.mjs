@@ -80,7 +80,7 @@ test('N28 F3 slow session: probe retries 401/5xx until live, so the first-run mo
   assert.equal(readAgentMode(s, 'dev-fixture-b'), null); // a second fresh account in the same browser still sees it
 });
 
-test('N36 tiers: Standard picks Muse Spark 1.3 or Muse Open per user; the fallback model is never a choice', () => {
+test('Standard picks Spark, Open or Wonder per user; the fallback model is never a choice', () => {
   const m = new Map(), s = { getItem: (k) => m.get(k) ?? null, setItem: (k, v) => m.set(k, v) };
   writeAgentMode(s, 'open', 'u1'); writeAgentMode(s, 'contributor', 'u2');
   assert.equal(readAgentMode(s, 'u1'), 'open'); assert.equal(readAgentMode(s, 'u2'), 'contributor');
@@ -89,6 +89,6 @@ test('N36 tiers: Standard picks Muse Spark 1.3 or Muse Open per user; the fallba
   assert.deepEqual(agentTier('standard'), { contributor: false, tier: 'spark' });
   assert.deepEqual(agentTier('contributor'), { contributor: true, tier: 'spark' });
   assert.deepEqual([modeLabel('open'), modeLabel('standard'), modeLabel('contributor')], ['Standard: Muse Open', 'Standard mode', 'Contributor mode']);
-  assert.deepEqual(STANDARD_MODELS.map((x) => x.id), ['standard', 'open']);
+  assert.deepEqual(STANDARD_MODELS.map((x) => x.id), ['standard', 'open', 'wonder']);
   assert.ok(!JSON.stringify(STANDARD_MODELS).match(/sol|gpt|fallback/i));
 });

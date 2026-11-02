@@ -143,7 +143,7 @@ export const createLive = (React, icon = () => null) => {
         if (r.ok) {
           const jobs = jobsFromToolCalls(r.body?.tool_calls);
           jobs.forEach((j) => track(j.kind, j.id));
-          push({ role: 'assistant', text: r.body?.reply || '', question: r.body?.question ?? null, model: r.body?.model, jobs, fallback: Boolean(r.body?.answered_by) });
+          push({ role: 'assistant', text: r.body?.reply || '', question: r.body?.question ?? null, model: r.body?.model, jobs, fallback: Boolean(r.body?.answered_by), notice: r.body?.notice });
         } else push({ role: 'error', text: errText(r, 'The agent did not answer') });
       } catch { push({ role: 'error', text: 'The agent did not answer (network).' }); }
       finally { setBusy(false); }
@@ -263,6 +263,7 @@ export const createLive = (React, icon = () => null) => {
         L.msgs.length ? null : h('li', { className: 'lv-muted lv-empty' }, 'Ask about a physics experiment, or start a new project. Physics questions only.'),
         ...L.msgs.map((m) => h('li', { key: m.id, className: 'lv-msg', 'data-role': m.role },
           m.question ? h(QuestionCard, { msg: m, onAnswer: L.answer }) : h('p', { role: m.role === 'error' ? 'alert' : undefined }, m.text),
+          m.notice ? h('small', { className: 'lv-muted lv-block', role: 'status' }, m.notice) : null,
           m.fallback ? h('small', { className: 'lv-muted lv-block' }, 'Answered by fallback model') : null,
           ...(m.jobs ?? []).map((j) => h(JobCard, { key: j.kind + j.id, L, kind: j.kind, id: j.id })),
           m.tips ? h('ul', { className: 'lv-tips' }, ...m.tips.map((t) => h('li', { key: t }, t))) : null)),
@@ -399,7 +400,7 @@ export const createLive = (React, icon = () => null) => {
 
   function ModelPicker({ L }) {
     const [open, setOpen] = useState(!!L.pickerOpen), [notice, setNotice] = useState(false); // pickerOpen: static screenshot fixture only
-    const curId = L.mode === 'contributor' || L.mode === 'open' ? L.mode : 'standard';
+    const curId = MODEL_CHOICES.some((m) => m.id === L.mode) ? L.mode : 'standard';
     const [hover, setHover] = useState(curId);
     const cur = MODEL_CHOICES.find((m) => m.id === curId), shown = MODEL_CHOICES.find((m) => m.id === hover) ?? cur;
     const choose = (id) => { L.setMode(id); setOpen(false); setNotice(false); };

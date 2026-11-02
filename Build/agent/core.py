@@ -19,9 +19,14 @@ from typing import Any, Callable, Mapping, Sequence
 MODEL, CONTRIBUTOR_MODEL, VOICE_MODEL = "muse-spark-1.3", "muse-spark-1.3-contributor", "muse-voice-transcribe-1.0"
 # N36: ids from the Baseten and Merge gateway GET /models (2026-11-01). Sol is never user-selectable: TIERS omits it.
 OPEN_MODEL, SOL_MODEL = "meta-models/muse-spark-open-1026", "gpt-6.1-sol"
-WONDER_MODEL = "muse-wonder-1.0"  # benchmark only; not exposed in TIERS
-TIERS = {"contributor": CONTRIBUTOR_MODEL, "spark": MODEL, "open": OPEN_MODEL}
+WONDER_MODEL = "muse-wonder-1.0"
+TIERS = {"contributor": CONTRIBUTOR_MODEL, "spark": MODEL, "open": OPEN_MODEL, "wonder": WONDER_MODEL}
 SOL_CAP_USD = 2  # Sol's own daily cap (provider key "Merge"), on top of the global daily cap
+WONDER_CAP_USD = 3
+WONDER_JUDGING_CAP_USD = 6
+WONDER_DAILY_TURNS = 10
+WONDER_JUDGING_DAILY_TURNS = 20
+WONDER_LIMIT_NOTE = "Wonder limit reached for today, using Muse Spark"
 MAX_STEPS, MAX_OUTPUT_TOKENS = 6, 4000  # 1200 truncated tool calls in N12 live runs
 CORRECTION = ("Check failed: your draft shows numbers that no tool output or user message contains. Rewrite it without"
               " any number you did not get from a tool, or call the tool that produces the number first"
@@ -37,7 +42,8 @@ PRICE_PER_TOKEN = {MODEL: (1.0e-6, 5.0e-6), CONTRIBUTOR_MODEL: (0.1e-6, 0.2e-6),
                    SOL_MODEL: (2.1e-6, 10.5e-6), WONDER_MODEL: (4e-6, 20e-6)}  # Sol includes the 5% Merge Pro gateway fee
 # model -> (ledger provider, key env, base-url env, own daily cap); every other model is the Meta Model API
 GATEWAYS = {SOL_MODEL: ("Merge", "MERGE_API_KEY", "MERGE_BASE_URL", SOL_CAP_USD),
-            OPEN_MODEL: ("Baseten", "BASETEN_API_KEY", "BASETEN_BASE_URL", None)}
+            OPEN_MODEL: ("Baseten", "BASETEN_API_KEY", "BASETEN_BASE_URL", None),
+            WONDER_MODEL: ("Meta Model API", "MODEL_API_KEY", "MODEL_API_BASE_URL", WONDER_CAP_USD)}
 REASONING_EFFORT = {MODEL: "high", CONTRIBUTOR_MODEL: "high", OPEN_MODEL: "high", SOL_MODEL: "high", WONDER_MODEL: "high"}
 FALLBACK_STOPS = {"unbacked_numbers": "number_guard", "no_tool_call": "no_usable_tool_call"}  # + "api_error"
 VOICE_USD_PER_S = 0.0001
@@ -233,20 +239,34 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
 
     N36: if the Meta model fails (API error or timeout, no usable tool call, number guard blocked twice), the
     hidden fallback SOL_MODEL answers this turn only, with the same prompt, tools and guard. Refusals are normal
-    replies; cap (CapExceeded), quota (QuotaLimited) and bad input never reach the fallback."""
+    replies; cap (CapExceeded), quota (QuotaLimited) and bad input never reach Sol. Wonder limits use Spark first."""
     if not isinstance(text, str) or not text.strip() or len(text) > MAX_TEXT:
         raise ValueError("text must be 1..4000 characters")
-    if tier not in ("spark", "open"):
-        raise ValueError("tier must be spark or open")
+    if tier not in ("spark", "open", "wonder"):
+        raise ValueError("tier must be spark, open or wonder")
     handlers = {**DEFAULT_HANDLERS, **(handlers or {})}
     model = TIERS["contributor" if contributor else tier]
+    notice = None
+    if model == WONDER_MODEL and not _claim_wonder_turn(owner):
+        model, notice = MODEL, WONDER_LIMIT_NOTE
     history = clean_history(history)
     items: list[Any] = [*history, {"role": "user", "content": text}]
     calls, usage = [], {"input_tokens": 0, "output_tokens": 0}
     sources = [text] + [h["content"] for h in history if h["role"] == "user"]
     loop = lambda m, its, effort=None: _loop(m, its, post, sources, calls, usage, owner, handlers, max_steps, effort)
+    from Build.guardrails.daily_cap import CapExceeded
     try:
-        result, error = loop(model, items), None
+        try:
+            result = loop(model, items)
+        except CapExceeded:
+            if model != WONDER_MODEL:
+                raise
+            model, notice = MODEL, WONDER_LIMIT_NOTE
+            items = _carry(items)
+            result = loop(model, items)
+        if notice:
+            result["notice"] = notice
+        error = None
         reason = FALLBACK_STOPS.get(result["stopped"])
     except (QuotaLimited, ModelInputError):
         raise
@@ -254,14 +274,14 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
         result, error, reason = None, exc, "api_error"
     if reason is None:
         return result
-    from Build.guardrails.daily_cap import CapExceeded
     try:
         sol = loop(SOL_MODEL, _carry(items), "xhigh" if reason == "number_guard" else None)
     except (ModelUnavailable, CapExceeded):  # Sol down or over its cap: the Meta outcome stands
         if error is not None:
             raise error from None
         return result
-    return {**sol, "model": model, "answered_by": SOL_MODEL, "fallback": reason}
+    return {**sol, "model": model, "answered_by": SOL_MODEL, "fallback": reason,
+            **({"notice": notice} if notice else {})}
 
 
 def _carry(items: list[Any]) -> list[Any]:
@@ -445,20 +465,49 @@ def _from_chat(reply: Mapping[str, Any]) -> dict[str, Any]:
     return {"output": out, "usage": {"input_tokens": u.get("prompt_tokens"), "output_tokens": u.get("completion_tokens")}}
 
 
+def wonder_limits(day):
+    from Build.guardrails import daily_cap as dc
+    return ((WONDER_JUDGING_DAILY_TURNS, WONDER_JUDGING_CAP_USD) if dc.JUDGING[0] <= day <= dc.JUDGING[1]
+            else (WONDER_DAILY_TURNS, WONDER_CAP_USD))
+
+
+def _claim_wonder_turn(owner: str) -> bool:
+    """Count admitted turns, not tool steps; persist and serialize across requests/processes."""
+    from Build.guardrails import daily_cap as dc
+    day = dc.dhaka_day()
+    limit, _ = wonder_limits(day)
+    con = dc._connect(dc.default_path())
+    try:
+        con.execute("CREATE TABLE IF NOT EXISTS wonder_turns (day TEXT NOT NULL, owner TEXT NOT NULL,"
+                    " turns INTEGER NOT NULL, PRIMARY KEY (day, owner))")
+        con.execute("BEGIN IMMEDIATE")
+        cur = con.execute("INSERT INTO wonder_turns VALUES (?, ?, 1) ON CONFLICT(day, owner) DO UPDATE"
+                          " SET turns = turns + 1 WHERE turns < ?", (day.isoformat(), owner, limit))
+        con.execute("COMMIT")
+        return cur.rowcount == 1
+    finally:
+        con.close()
+
+
 def _reserve(provider: str, usd: float, label: str, own_cap: float | None = None) -> str:
     """daily_cap.reserve, also for providers it does not list (Merge, Baseten): same ledger and global cap, plus an
-    optional per-provider daily cap, both checked in one BEGIN IMMEDIATE transaction. Settle with daily_cap.settle."""
+    optional provider cap (Wonder: model-only cap), checked atomically. Settle with daily_cap.settle."""
     from datetime import datetime, timezone
     from Build.guardrails import daily_cap as dc
-    if provider in dc.PROVIDERS and own_cap is None:
+    wonder = label.rsplit(" ", 1)[-1] == WONDER_MODEL  # benchmark labels prefix the same model id
+    if provider in dc.PROVIDERS and own_cap is None and not wonder:
         return dc.reserve(provider, usd, label)
     now = datetime.now(timezone.utc)
     day, amount = dc.dhaka_day(now), dc._units(usd)
+    own_label = WONDER_MODEL if wonder else None
+    if own_label:
+        _, own_cap = wonder_limits(day)
     con = dc._connect(dc.default_path())
     try:
         con.execute("BEGIN IMMEDIATE")
-        mine = con.execute("SELECT COALESCE(SUM(COALESCE(actual, reserved)), 0) FROM spend WHERE day = ? AND provider = ?",
-                           (day.isoformat(), provider)).fetchone()[0]
+        mine = con.execute("SELECT COALESCE(SUM(COALESCE(actual, reserved)), 0) FROM spend WHERE day = ? AND provider = ?"
+                           " AND (? IS NULL OR label = ? OR label LIKE ?)",
+                           (day.isoformat(), provider, own_label, own_label, f"% {own_label}")).fetchone()[0]
         if (dc._spent(con, day) + amount > int(dc.cap_for(day) / dc.UNIT)
                 or own_cap is not None and mine + amount > dc._units(own_cap)):
             con.execute("ROLLBACK")

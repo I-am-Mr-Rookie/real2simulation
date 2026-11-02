@@ -6,15 +6,15 @@ export const AGENT_MODE_KEY = 'r2s.agent.mode';
 // The old global key is ignored on purpose: it cannot be attributed to a user, so a new account in the same browser still sees the card.
 export const readAgentMode = (s, userKey) => {
   if (!userKey) return undefined;
-  try { const v = s?.getItem(AGENT_MODE_KEY + '.' + userKey); return v === 'standard' || v === 'open' || v === 'contributor' ? v : null; } catch { return null; }
+  try { const v = s?.getItem(AGENT_MODE_KEY + '.' + userKey); return v === 'standard' || v === 'open' || v === 'contributor' || v === 'wonder' ? v : null; } catch { return null; }
 };
 export const writeAgentMode = (s, mode, userKey) => { if (!userKey) return false; try { s?.setItem(AGENT_MODE_KEY + '.' + userKey, mode); return true; } catch { return false; } };
-// N36: stored mode 'standard' | 'open' | 'contributor'; 'open' is the Standard tier on Muse Open. The fallback model is never a choice.
-export const STANDARD_MODELS = Object.freeze([{ id: 'standard', label: 'Muse Spark 1.3' }, { id: 'open', label: 'Muse Open (hosted on Baseten)' }]);
-export const agentTier = (mode) => ({ contributor: mode === 'contributor', tier: mode === 'open' ? 'open' : 'spark' });
-export const modeLabel = (mode) => (mode === 'contributor' ? 'Contributor mode' : mode === 'open' ? 'Standard: Muse Open' : 'Standard mode');
+// Standard privacy choices; the hidden fallback model is never a choice.
+export const STANDARD_MODELS = Object.freeze([{ id: 'standard', label: 'Muse Spark 1.3' }, { id: 'open', label: 'Muse Open (hosted on Baseten)' }, { id: 'wonder', label: 'Muse Wonder' }]);
+export const agentTier = (mode) => ({ contributor: mode === 'contributor', tier: mode === 'open' || mode === 'wonder' ? mode : 'spark' });
+export const modeLabel = (mode) => (mode === 'contributor' ? 'Contributor mode' : mode === 'open' ? 'Standard: Muse Open' : mode === 'wonder' ? 'Standard: Muse Wonder' : 'Standard mode');
 export const AGENT_MODES = Object.freeze([
-  { id: 'standard', title: 'Standard', model: 'Muse Spark 1.3 or Muse Open, your pick',
+  { id: 'standard', title: 'Standard', model: 'Muse Spark, Muse Open or Muse Wonder, your pick',
     pros: ['Your prompts are not used to train Meta models', 'Same physics tools and answers'], cons: ['Costs more per message, so the daily budget runs out sooner'] },
   { id: 'contributor', title: 'Contributor', model: 'Muse Spark 1.3 contributor',
     pros: ['Much cheaper per message, so more turns fit in the daily budget', 'Same physics tools and answers'],
@@ -45,12 +45,14 @@ export const isDefaultTitle = (title) => /^(Room lab|New experiment|(Room|Experi
 
 // N55 model picker: relative bars only (1..3, no numbers: real cost and speed depend on the task). id = the saved agent mode.
 export const MODEL_CHOICES = Object.freeze([
-  { id: 'standard', name: 'Muse Spark 1.3', sub: 'Standard', tag: 'Recommended', bars: { Intelligence: 3, Speed: 2, Cost: 3 },
-    pro: 'Strongest answers; prompts are not used for training', con: 'Uses the daily budget fastest' },
-  { id: 'contributor', name: 'Muse Spark 1.3', sub: 'Contributor', tag: 'Cheapest', bars: { Intelligence: 3, Speed: 2, Cost: 1 },
+  { id: 'standard', name: 'Muse Spark 1.3', sub: 'Standard', tag: 'Recommended', bars: { Intelligence: 2, Speed: 2, Cost: 2 },
+    pro: 'Strong answers; prompts are not used for training', con: 'Costs more than Contributor mode' },
+  { id: 'contributor', name: 'Muse Spark 1.3', sub: 'Contributor', tag: 'Cheapest', bars: { Intelligence: 2, Speed: 2, Cost: 1 },
     pro: 'Same model at a much lower cost per message', con: 'Meta trains on your prompts' },
-  { id: 'open', name: 'Muse Open', sub: 'Hosted on Baseten', tag: 'Fastest', bars: { Intelligence: 2, Speed: 3, Cost: 2 },
+  { id: 'open', name: 'Muse Open', sub: 'Hosted on Baseten', tag: 'Fastest', bars: { Intelligence: 1, Speed: 3, Cost: 2 },
     pro: 'Quick replies', con: 'Smaller open model; weaker on hard questions' },
+  { id: 'wonder', name: 'Muse Wonder', sub: 'Standard', tag: 'Smartest', bars: { Intelligence: 3, Speed: 1, Cost: 3 },
+    pro: 'Highest intelligence; prompts are not used for training', con: 'Slower and costlier than Muse Spark' },
 ]);
 
 const UNITS = ['B', 'KB', 'MB', 'GB'];

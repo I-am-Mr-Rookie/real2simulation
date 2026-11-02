@@ -14,7 +14,7 @@ from Build.api.workspace.auth import error, require_owner
 class Turn(BaseModel):
     text: str = Field(min_length=1, max_length=core.MAX_TEXT)
     contributor: bool = False  # per-user mode, resolved by the BFF from the user's saved choice
-    tier: Literal["spark", "open"] = "spark"  # N36 Standard model: Muse Spark 1.3 or Muse Open; ignored for contributor
+    tier: Literal["spark", "open", "wonder"] = "spark"  # ignored for contributor
     history: list[dict[str, Any]] = Field(default_factory=list, max_length=core.MAX_HISTORY)
 
 

@@ -57,10 +57,12 @@ test('undated room rows use their update timestamp, not an artificial oldest dat
   assert.equal(groupStatus({ rooms: [room], experiments: [{ ...experiment, created: '2026-11-02T11:00:00Z' }] }).kind, 'experiment');
 });
 
-test('model picker: three tiers, bars only, no Sol, contributor warns about training', () => {
-  assert.deepEqual(MODEL_CHOICES.map((m) => [m.id, m.tag]), [['standard', 'Recommended'], ['contributor', 'Cheapest'], ['open', 'Fastest']]);
+test('model picker: four tiers, bars only, no Sol, contributor warns about training', () => {
+  assert.deepEqual(MODEL_CHOICES.map((m) => [m.id, m.tag]), [['standard', 'Recommended'], ['contributor', 'Cheapest'], ['open', 'Fastest'], ['wonder', 'Smartest']]);
   assert.ok(!JSON.stringify(MODEL_CHOICES).match(/sol|gpt|\$|\u2014/i));
   assert.match(MODEL_CHOICES[1].con, /trains on your prompts/);
   for (const m of MODEL_CHOICES) assert.deepEqual(Object.keys(m.bars), ['Intelligence', 'Speed', 'Cost']);
+  const [spark, , , wonder] = MODEL_CHOICES;
+  assert.ok(wonder.bars.Intelligence > spark.bars.Intelligence && wonder.bars.Speed < spark.bars.Speed && wonder.bars.Cost > spark.bars.Cost);
 });
 

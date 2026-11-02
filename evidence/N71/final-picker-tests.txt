@@ -1,0 +1,26 @@
+✔ home view: prompt, picker, mode cards, grid, empty projects tucked away, progress pop-up (24.3675ms)
+✔ rail: no "This project" menu; storage meter at the bottom (4.361ms)
+✔ Wonder picker renders Smartest and relative bars; saved choice reaches the API (12.1081ms)
+✔ Wonder limit notice is visible in the chat, not only hidden response metadata (1.8745ms)
+✔ probe: API JSON answer (even 404) is live; auth, 5xx, non-JSON and network failure are unavailable (1.4875ms)
+✔ probe hits the BFF path with same-origin credentials (0.2609ms)
+✔ routeAction: workflow events reach the controller, unknown fetch failures never fabricate data (1.4415ms)
+✔ routeAction: Q_* go to the interview reducer, I_MEASURE fails honestly without an instrument service (0.4922ms)
+✔ S15ba D7/D8: scene label only with a loaded scene; live title is "Private workspace" (8.1464ms)
+✔ heading: no fixture wording while checking or live (0.3631ms)
+✔ N28 F3 slow session: probe retries 401/5xx until live, so the first-run mode card is shown once (0.8384ms)
+✔ Standard picks Spark, Open or Wonder per user; the fallback model is never a choice (0.4601ms)
+✔ phone model dialog starts beyond the permanent rail, without changing desktop positioning (5.8109ms)
+✔ projects get content names, never timestamps (1.2886ms)
+✔ relative time (1.3362ms)
+✔ card status: newest job wins, live tracked state first, failure keeps its reason (22.5551ms)
+✔ undated room rows use their update timestamp, not an artificial oldest date (1.8054ms)
+✔ model picker: four tiers, bars only, no Sol, contributor warns about training (1.4369ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 319.4679
