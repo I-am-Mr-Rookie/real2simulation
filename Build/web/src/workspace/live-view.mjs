@@ -2,12 +2,15 @@
 // React is injected like workspace/react.mjs. Every number shown comes from an API response (quota, sizes, queue) or the browser upload progress.
 import { API_BASE } from './controller.mjs';
 import { AGENT_MODES, UPLOAD_QUESTION, LIMITS, TIPS, projectTitle, fmtBytes, quotaView, gpuDot, GPU_POLL_MS, shouldPoll, jobsState, apiErrorText,
-  historyOf, questionAnswer, recommendedIndex, readAgentMode, writeAgentMode, toWav16k, VOICE_MAX_S, STANDARD_MODELS, agentTier, modeLabel } from './live.mjs';
+  historyOf, questionAnswer, recommendedIndex, readAgentMode, writeAgentMode, toWav16k, VOICE_MAX_S, STANDARD_MODELS, agentTier, modeLabel,
+  MODEL_CHOICES, contentTitle, isDefaultTitle } from './live.mjs';
 import { chartGeom, fmtPm, SIZE_UNITS, naturalPoint, experimentBody, jobView, POLL_MS, jobsFromToolCalls, shareable, scaleTag, labelsOf } from './measure.mjs';
-import { groupJobs, jobName, shortWhen } from './projects.mjs';
+import { groupJobs, jobName, relTime, groupStatus } from './projects.mjs';
 
 const ACCEPT = 'video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm';
 const TRACK_KEY = 'r2s.tracked.jobs';
+const LIVE_JOBS_MS = 15_000; // N55: projects refresh themselves (replaces the Refresh button)
+const fileUrl = (f) => API_BASE + '/files/' + encodeURIComponent(f.id) + '/content';
 async function call(path, init = {}) {
   const res = await fetch(API_BASE + path, { credentials: 'same-origin', cache: 'no-store', ...init });
   const body = await res.json().catch(() => null);
@@ -28,7 +31,8 @@ function uploadXhr(file, projectId, onPct) {
   });
 }
 
-export const createLive = (React) => {
+// icon is injected by the shell (workspace must not import shell code); no icon = text only.
+export const createLive = (React, icon = () => null) => {
   const { createElement: h, useState, useEffect, useRef, useCallback } = React;
 
   function useLive(enabled, openAgent, userKey) {
@@ -67,6 +71,11 @@ export const createLive = (React) => {
       setJobs({ experiments, rooms, projects });
     }, []);
     useEffect(() => { if (enabled) { loadFiles(); loadJobs(); } }, [enabled, loadFiles, loadJobs]);
+    useEffect(() => {
+      if (!enabled) return undefined;
+      const t = setInterval(() => { if (shouldPoll(globalThis.document)) loadJobs(); }, LIVE_JOBS_MS);
+      return () => clearInterval(t);
+    }, [enabled, loadJobs]);
 
     // GPU dot: poll every 10 s only while the tab is visible; refresh at once when it becomes visible again.
     useEffect(() => {
@@ -162,7 +171,31 @@ export const createLive = (React) => {
       const r = await uploadXhr(file, selected?.body?.project?.id, (pct) => setUp((u) => (u ? { ...u, pct } : u)));
       setUp(r.ok ? null : { name: file.name, pct: 0, error: errText(r, 'Upload failed') });
       if (r.ok && r.body?.quota) setFiles((f) => ({ ...f, quota: r.body.quota }));
+      const p = selected?.body?.project; // N55: a mode-only name becomes the clip name ("Apple drop", "Classroom lab")
+      if (r.ok && p?.id && isDefaultTitle(p.title)) await renameProject(p.id, contentTitle(p.mode, file.name), true);
       loadFiles();
+      loadJobs();
+    };
+    const renameProject = async (id, title, quiet) => {
+      if (!title?.trim()) return;
+      const r = await call('/projects/' + encodeURIComponent(id), { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ title: title.trim() }) }).catch(() => null);
+      if (r?.ok && r.body?.project) setProject((cur) => (cur?.id === id ? r.body.project : cur));
+      else if (!quiet) setFiles((s) => ({ ...s, error: errText(r, 'Could not rename the project') }));
+      if (!quiet) loadJobs();
+    };
+    const deleteProject = async (g) => {
+      if (!globalThis.confirm?.('Delete project ' + g.name + '? Its files stay in Files.')) return;
+      const r = await call('/projects/' + encodeURIComponent(g.id), { method: 'DELETE' }).catch(() => null);
+      if (!r?.ok) setFiles((s) => ({ ...s, error: errText(r, 'Could not delete the project') }));
+      setProject((cur) => (cur?.id === g.id ? null : cur));
+      loadJobs(); loadFiles();
+    };
+    // N55 mode cards: the same first question, answered by the card the user picked.
+    const startProject = (mode) => {
+      projectRequest.current = null; setProject(null);
+      const msg = { id: Date.now() + Math.random(), role: 'assistant', text: UPLOAD_QUESTION.question, question: UPLOAD_QUESTION, local: true };
+      setMsgs((list) => [...list, msg]); openAgent?.();
+      return answer(msg, Math.max(0, UPLOAD_QUESTION.options.findIndex((o) => o.mode === mode)), '');
     };
     const remove = async (f) => {
       if (!globalThis.confirm?.('Delete ' + f.name + '? This cannot be undone.')) return;
@@ -195,7 +228,8 @@ export const createLive = (React) => {
     };
 
     return { mode, setMode, files, up, upload, remove, preview, setPreview, project, newProject, msgs, busy, draft, setDraft, send, answer,
-      gpu, jobs, loadJobs, voice, toggleVoice, tracked, track, action, setAction, measure, buildRoom, share };
+      gpu, jobs, loadJobs, voice, toggleVoice, tracked, track, action, setAction, measure, buildRoom, share,
+      openAgent, startProject, renameProject, deleteProject, dismissUp: () => setUp(null) };
   }
 
   function ModeScreen({ L, settings = false, onDone }) {
@@ -271,37 +305,6 @@ export const createLive = (React) => {
       h('span', { className: 'lv-dot', 'aria-hidden': true }), h('span', { className: 'lv-gpu-text' }, d.label, d.detail ? h('small', null, ' ' + d.detail) : null));
   }
 
-  // N24: projects (SAMPLE labelled) with their experiments and rooms under each; short readable names instead of raw ids.
-  function JobRow({ L, it, kind }) {
-    const st = String(it.status ?? it.state ?? 'unknown'), when = shortWhen(it.created ?? it.created_at);
-    return h('li', { className: 'lv-jobrow', title: it.id },
-      h('span', { className: 'lv-jobname' }, h('strong', null, jobName(it, kind)), it.sample ? h('span', { className: 'lv-tag', 'data-tone': 'warn', style: { marginLeft: 6 } }, 'SAMPLE') : null,
-        when ? h('small', { className: 'lv-muted' }, ' ' + when) : null),
-      h('span', { className: 'lv-tag', 'data-tone': st === 'done' ? 'ok' : st === 'failed' || st === 'error' ? 'warn' : undefined }, st),
-      kind === 'experiment' && it.id && !L.tracked['experiment:' + it.id] ? h('button', { type: 'button', className: 'lv-btn lv-sm', onClick: () => L.track('experiment', it.id) }, 'Open') : null,
-      kind === 'room' && it.id && st === 'done' ? h('a', { className: 'lv-btn lv-sm', href: '/lab?editor=1&room=' + encodeURIComponent(it.id) }, 'Open lab') : null,
-      Number.isFinite(it.progress) ? h('progress', { max: 1, value: it.progress, 'aria-label': 'Progress' }) : null);
-  }
-  function Projects({ L }) {
-    if (!L.jobs) return h('p', { className: 'lv-muted' }, 'Loading projects.');
-    const { experiments: e, rooms: r, projects: p } = L.jobs;
-    const err = [e, r, p].find((j) => j?.state === 'error');
-    const groups = groupJobs(p?.items ?? [], e?.items ?? [], r?.items ?? []);
-    return h('div', { className: 'lv-projects' },
-      err ? h('p', { className: 'ws-error', role: 'alert' }, err.message) : null,
-      groups.length ? h('ul', { className: 'lv-plist' }, ...groups.map((g) => h('li', { key: g.id ?? 'none', className: 'lv-pgroup', 'data-sample': g.sample || undefined },
-        h('div', { className: 'lv-row lv-phead' }, h('strong', null, g.name),
-          g.sample ? h('span', { className: 'lv-tag', 'data-tone': 'warn' }, 'SAMPLE') : null, g.sample ? h('span', { className: 'lv-tag' }, 'RECORDED') : null,
-          g.mode ? h('small', { className: 'lv-muted' }, g.mode === 'room' ? 'Room lab' : 'Experiment') : null),
-        g.experiments.length || g.rooms.length ? h('ul', { className: 'lv-jobs' },
-          ...g.rooms.slice(0, 20).map((it, i) => h(JobRow, { key: 'r' + (it.id ?? i), L, it, kind: 'room' })),
-          ...g.experiments.slice(0, 20).map((it, i) => h(JobRow, { key: 'e' + (it.id ?? i), L, it, kind: 'experiment' })))
-          : h('p', { className: 'lv-muted' }, 'No rooms or experiments yet.'))))
-        : h('p', { className: 'lv-muted' }, 'No projects yet.'),
-      h('button', { type: 'button', className: 'lv-btn lv-sm', onClick: L.loadJobs }, 'Refresh'));
-  }
-
-  // N22 Mode B: first frame still (a paused <video> seeked to 0, no server call), click the object or type its name, optional known size.
   function MeasurePanel({ L, file }) {
     const [f, setF] = useState({ point: null, name: '', size: '', unit: 'cm', what: '' });
     const [dims, setDims] = useState(null);
@@ -390,43 +393,231 @@ export const createLive = (React) => {
         ...(j.labels ?? []).map((t) => h('span', { key: t, className: 'lv-tag', 'data-tone': /unverified/.test(t) ? 'warn' : undefined }, t))) : null);
   }
 
-  function Centre({ L }) {
-    const [firstDone, setFirstDone] = useState(false);
-    const q = quotaView(L.files.quota);
-    if (L.mode === undefined) return h('div', { className: 'lv-wrap' }, h('p', { className: 'lv-muted', role: 'status' }, 'Loading your settings.'));
-    if (L.mode === null && !firstDone) return h('div', { className: 'lv-wrap' }, h(ModeScreen, { L, onDone: () => setFirstDone(true) }));
-    return h('div', { className: 'lv-wrap' },
-      h('section', { className: 'lv-card', 'aria-labelledby': 'lv-proj-h', id: 'lv-project' },
-        h('div', { className: 'lv-row lv-between' }, h('h2', { id: 'lv-proj-h' }, L.project ? L.project.title : 'Projects'),
-          h('button', { type: 'button', className: 'lv-btn lv-primary', onClick: L.newProject }, 'New project')),
-        L.project ? h('div', null, h('p', { className: 'lv-muted' }, (L.project.mode === 'room' ? 'Room video: virtual lab' : 'My experiment: measurement') + '. Accepted: ' + LIMITS),
-          h('ul', { className: 'lv-tips' }, ...TIPS[L.project.mode].map((t) => h('li', { key: t }, t))))
-          : h('p', { className: 'lv-muted' }, 'Start a new project and the agent asks what you are uploading, then shows filming tips.'),
-        h(Projects, { L })),
-      h('section', { className: 'lv-card', 'aria-labelledby': 'lv-files-h', id: 'lv-files' },
-        h('div', { className: 'lv-row lv-between' }, h('h2', { id: 'lv-files-h' }, 'Files'),
-          h('label', { className: 'lv-btn lv-primary lv-file', 'aria-disabled': q?.full || undefined }, 'Upload video',
-            h('input', { type: 'file', accept: ACCEPT, disabled: !!L.up && !L.up.error, onChange: (e) => { L.upload(e.target.files?.[0]); e.target.value = ''; } }))),
-        q ? h('div', { className: 'lv-quota' }, h('progress', { max: 100, value: q.pct, 'aria-label': 'Storage used' }), h('p', { className: 'lv-muted' }, q.text)) : null,
-        L.up ? h('div', { className: 'lv-up', role: 'status' }, L.up.error ? h('p', { className: 'ws-error', role: 'alert' }, L.up.name + ': ' + L.up.error)
-          : h(React.Fragment, null, h('span', null, 'Uploading ' + L.up.name + ' ' + L.up.pct + '%'), h('progress', { max: 100, value: L.up.pct, 'aria-label': 'Upload progress' }))) : null,
-        L.files.error ? h('p', { className: 'ws-error', role: 'alert' }, L.files.error) : null,
-        L.files.items.length ? h('ul', { className: 'lv-files' }, ...L.files.items.map((f) => h('li', { key: f.id },
-          h('div', { className: 'lv-row lv-between' },
-            h('span', { className: 'lv-fname' }, h('strong', null, f.name), h('small', { className: 'lv-muted' }, ' ' + fmtBytes(f.size) + (f.duration_s != null ? ', ' + Number(f.duration_s).toFixed(1) + ' s' : '') + (f.project_id ? '' : ', no project'))),
-            h('span', { className: 'lv-row' },
-              f.media_type?.startsWith('video/') ? h('button', { type: 'button', className: 'lv-btn', 'aria-expanded': L.preview === f.id, onClick: () => L.setPreview(L.preview === f.id ? null : f.id) }, 'Preview') : null,
-              f.media_type?.startsWith('video/') ? h('button', { type: 'button', className: 'lv-btn', 'aria-expanded': L.action?.file.id === f.id, onClick: () => L.setAction(L.action?.file.id === f.id ? null : { file: f }) }, 'Measure this experiment') : null,
-              f.media_type?.startsWith('video/') ? h('button', { type: 'button', className: 'lv-btn', onClick: () => L.buildRoom(f) }, 'Build my lab') : null,
-              h('a', { className: 'lv-btn', href: API_BASE + '/files/' + encodeURIComponent(f.id) + '/content', download: f.name }, 'Download'),
-              h('button', { type: 'button', className: 'lv-btn lv-danger', onClick: () => L.remove(f) }, 'Delete'))),
-          L.preview === f.id ? h('video', { className: 'lv-video', controls: true, preload: 'metadata', src: API_BASE + '/files/' + encodeURIComponent(f.id) + '/content' }) : null,
-          L.action?.file.id === f.id ? h(MeasurePanel, { L, file: f }) : null)))
-          : L.files.loaded ? h('p', { className: 'lv-muted' }, 'No files yet. Accepted: ' + LIMITS) : h('p', { className: 'lv-muted' }, 'Loading files.')),
-      h('section', { className: 'lv-card', 'aria-labelledby': 'lv-jobs-h', id: 'lv-jobs' }, h('h2', { id: 'lv-jobs-h' }, 'Processing'),
-        ...Object.values(L.tracked).reverse().map((j) => h(JobCard, { key: j.kind + j.id, L, kind: j.kind, id: j.id })),
-        Object.keys(L.tracked).length ? null : h('p', { className: 'lv-muted' }, 'Measurements and room labs you start show their progress here.')));
+  // N55: small icon-only menu; closes itself after an action.
+  const closeMenu = (e) => { const d = e.currentTarget.closest('details'); if (d) d.open = false; };
+  function Menu({ label, items }) {
+    return h('details', { className: 'lv-menu' },
+      h('summary', { className: 'lv-iconbtn', 'aria-label': label, title: label }, icon(h, 'more', 18)),
+      h('div', { className: 'lv-menu-pop', role: 'menu' }, ...items.filter(Boolean).map((it) => it.href
+        ? h('a', { key: it.label, role: 'menuitem', href: it.href, download: it.download, onClick: closeMenu }, it.label)
+        : h('button', { key: it.label, type: 'button', role: 'menuitem', 'data-danger': it.danger || undefined, onClick: (e) => { closeMenu(e); it.onClick(); } }, it.label))));
+  }
+  // Preview: saved lab snapshot (N56) if the project has one, else a frame of its video, else a type icon.
+  function Thumb({ f, snapshot, kind }) {
+    const [bad, setBad] = useState(false);
+    if (snapshot && !bad) return h('img', { className: 'lv-thumb', src: snapshot, alt: '', loading: 'lazy', onError: () => setBad(true) });
+    if (f?.media_type?.startsWith('video/')) return h('video', { className: 'lv-thumb', src: fileUrl(f) + '#t=0.5', preload: 'metadata', muted: true, playsInline: true, 'aria-hidden': true, tabIndex: -1 });
+    if (f?.media_type?.startsWith('image/')) return h('img', { className: 'lv-thumb', src: fileUrl(f), alt: '', loading: 'lazy' });
+    return h('span', { className: 'lv-thumb lv-thumb-empty', 'data-kind': kind, 'aria-hidden': true }, icon(h, kind === 'room' ? 'cube' : 'chart', 28));
+  }
+  function Ring({ value }) {
+    const c = 2 * Math.PI * 7, v = Number.isFinite(value) ? Math.min(1, Math.max(0, value)) : null;
+    return h('svg', { className: 'lv-ring', 'data-spin': v == null || undefined, viewBox: '0 0 18 18', width: 16, height: 16, 'aria-hidden': true },
+      h('circle', { cx: 9, cy: 9, r: 7, fill: 'none', strokeWidth: 2.5, className: 'lv-ring-bg' }),
+      h('circle', { cx: 9, cy: 9, r: 7, fill: 'none', strokeWidth: 2.5, strokeLinecap: 'round', strokeDasharray: c, strokeDashoffset: c * (1 - (v ?? 0.3)), transform: 'rotate(-90 9 9)' }));
   }
 
-  return { useLive, Centre, Chat, Dot };
+  function ModelPicker({ L }) {
+    const [open, setOpen] = useState(!!L.pickerOpen), [notice, setNotice] = useState(false); // pickerOpen: static screenshot fixture only
+    const curId = L.mode === 'contributor' || L.mode === 'open' ? L.mode : 'standard';
+    const [hover, setHover] = useState(curId);
+    const cur = MODEL_CHOICES.find((m) => m.id === curId), shown = MODEL_CHOICES.find((m) => m.id === hover) ?? cur;
+    const choose = (id) => { L.setMode(id); setOpen(false); setNotice(false); };
+    return h('div', { className: 'lv-picker', onKeyDown: (e) => { if (e.key === 'Escape' && open) { e.stopPropagation(); setOpen(false); } } },
+      h('button', { type: 'button', className: 'lv-pickbtn', 'aria-haspopup': 'dialog', 'aria-expanded': open, onClick: () => { setHover(curId); setNotice(false); setOpen(!open); } },
+        h('span', { className: 'lv-dotmodel', 'aria-hidden': true }), cur.name, h('small', null, cur.sub), icon(h, 'chev', 14)),
+      open ? h('div', { className: 'lv-pickpop', role: 'dialog', 'aria-label': 'Choose the agent model' },
+        notice ? h('div', { className: 'lv-notice', role: 'alertdialog', 'aria-labelledby': 'lv-contrib-h' },
+          h('strong', { id: 'lv-contrib-h' }, 'Contributor mode shares your prompts'),
+          h('ul', null, ...AGENT_MODES[1].cons.map((c) => h('li', { key: c }, c))),
+          h('div', { className: 'lv-row' }, h('button', { type: 'button', className: 'lv-btn lv-primary', onClick: () => choose('contributor') }, 'Use contributor'),
+            h('button', { type: 'button', className: 'lv-btn', onClick: () => setNotice(false) }, 'Keep my current model')))
+          : h(React.Fragment, null,
+            h('ul', { className: 'lv-picklist' }, ...MODEL_CHOICES.map((m) => h('li', { key: m.id },
+              h('button', { type: 'button', className: 'lv-pickrow', 'aria-pressed': m.id === curId, onMouseEnter: () => setHover(m.id), onFocus: () => setHover(m.id),
+                onClick: () => (m.id === 'contributor' && curId !== 'contributor' ? setNotice(true) : choose(m.id)) },
+                h('span', { className: 'lv-pickname' }, h('strong', null, m.name), h('small', null, m.sub)),
+                h('span', { className: 'lv-pill', 'data-tag': m.tag }, m.tag), m.id === curId ? icon(h, 'check', 16) : null)))),
+            h('div', { className: 'lv-pickside', 'aria-live': 'polite' },
+              h('strong', null, shown.name + ' ' + shown.sub),
+              ...Object.entries(shown.bars).map(([k, v]) => h('div', { key: k, className: 'lv-bar' }, h('span', null, k),
+                h('span', { className: 'lv-bar-track', role: 'img', 'aria-label': k + ' ' + ['', 'low', 'medium', 'high'][v] + ', relative' }, h('span', { style: { width: (v / 3) * 100 + '%' } })))),
+              h('p', { className: 'lv-pro' }, shown.pro), h('p', { className: 'lv-con' }, shown.con),
+              h('small', { className: 'lv-muted' }, 'Relative only: real speed and cost depend on the task.')))) : null);
+  }
+
+  function Home({ L }) {
+    const [file, setFile] = useState(null), [drag, setDrag] = useState(false);
+    const vs = L.voice.state, q = quotaView(L.files.quota);
+    const pickFile = (f) => { if (f) setFile(f); };
+    const submit = (e) => {
+      e.preventDefault();
+      if (file) { L.upload(file); setFile(null); }
+      if (L.draft.trim()) { L.openAgent?.(); L.send(L.draft); }
+    };
+    return h('section', { className: 'lv-home', 'aria-labelledby': 'lv-home-h', id: 'lv-home' },
+      h('h2', { id: 'lv-home-h', className: 'lv-hero' }, 'What do you want to simulate?'),
+      h('form', { className: 'lv-prompt', 'data-drag': drag || undefined, onSubmit: submit,
+        onDragOver: (e) => { e.preventDefault(); setDrag(true); }, onDragLeave: () => setDrag(false),
+        onDrop: (e) => { e.preventDefault(); setDrag(false); pickFile(e.dataTransfer?.files?.[0]); } },
+        h('label', { className: 'r2s-sr', htmlFor: 'lv-prompt-text' }, 'Describe what you want to simulate'),
+        h('textarea', { id: 'lv-prompt-text', rows: 3, maxLength: 4000, value: L.draft, placeholder: 'Describe an experiment or ask a physics question. Drop a video here to upload it.',
+          onChange: (e) => L.setDraft(e.target.value), onKeyDown: (e) => { if (e.key === 'Enter' && !e.shiftKey) submit(e); } }),
+        file || L.project ? h('div', { className: 'lv-chips' },
+          L.project ? h('span', { className: 'lv-chip2' }, icon(h, L.project.mode === 'room' ? 'cube' : 'chart', 14), L.project.title) : null,
+          file ? h('span', { className: 'lv-chip2' }, icon(h, 'film', 14), file.name, h('small', null, fmtBytes(file.size)),
+            h('button', { type: 'button', className: 'lv-x', 'aria-label': 'Remove ' + file.name, onClick: () => setFile(null) }, icon(h, 'close', 12))) : null) : null,
+        h('div', { className: 'lv-prompt-bar' },
+          h('label', { className: 'lv-iconbtn lv-file', title: 'Attach a video (' + LIMITS + ')', 'aria-disabled': q?.full || undefined },
+            icon(h, 'clip', 18), h('span', { className: 'r2s-sr' }, 'Attach a video'),
+            h('input', { type: 'file', accept: ACCEPT, disabled: q?.full || (!!L.up && !L.up.error), onChange: (e) => { pickFile(e.target.files?.[0]); e.target.value = ''; } })),
+          h(ModelPicker, { L }),
+          h('span', { className: 'lv-grow' }),
+          h('button', { type: 'button', className: 'lv-iconbtn', 'data-voice': vs, 'aria-pressed': vs === 'recording', disabled: vs === 'working', onClick: L.toggleVoice,
+            title: vs === 'recording' ? 'Stop recording' : vs === 'working' ? 'Transcribing' : 'Voice input, up to 60 s', 'aria-label': 'Voice input' }, icon(h, 'mic', 18)),
+          h('button', { type: 'submit', className: 'lv-send', 'aria-label': 'Send', title: 'Send', disabled: L.busy || (!file && !L.draft.trim()) }, icon(h, 'send', 18)))),
+      L.voice.error ? h('p', { className: 'ws-error', role: 'alert' }, L.voice.error) : null,
+      h('div', { className: 'lv-modecards' },
+        h('button', { type: 'button', className: 'lv-modecard', onClick: () => L.startProject('room') }, h('span', { className: 'lv-mc-icon' }, icon(h, 'cube', 20)),
+          h('span', null, h('strong', null, 'Turn your room into a lab'), h('small', null, 'Film a room; get an editable virtual lab with physics.'))),
+        h('button', { type: 'button', className: 'lv-modecard', onClick: () => L.startProject('experiment') }, h('span', { className: 'lv-mc-icon' }, icon(h, 'chart', 20)),
+          h('span', null, h('strong', null, 'Measure your experiment'), h('small', null, 'Film a motion; get a fit with uncertainty and a 3D replay.')))));
+  }
+
+  function ProjectCard({ L, g, small }) {
+    const st = g.status, kind = g.mode ?? (g.rooms.length ? 'room' : 'experiment');
+    const f = g.files.find((x) => x.media_type?.startsWith('video/')) ?? g.files[0];
+    const id = st.job?.id ?? st.job?.job_id;
+    const href = st.state === 'ready' && id ? '/lab?editor=1&' + (st.kind === 'room' ? 'room=' : 'experiment=') + encodeURIComponent(id) : null;
+    const open = () => {
+      if (st.kind === 'experiment' && id) { L.track('experiment', id); setTimeout(() => globalThis.document?.getElementById('lv-activity')?.scrollIntoView?.({ behavior: 'smooth' }), 50); }
+      else if (href) globalThis.location.assign(href);
+      else L.openAgent?.();
+    };
+    const when = relTime(g.created ?? st.job?.created ?? st.job?.created_at);
+    return h('li', { className: 'lv-pcard', 'data-small': small || undefined, 'data-state': st.state, 'data-sample': g.sample || undefined },
+      h('button', { type: 'button', className: 'lv-pcard-hit', onClick: open, 'aria-label': 'Open ' + g.name }),
+      small ? null : h('div', { className: 'lv-pcard-media' }, h(Thumb, { f, snapshot: g.snapshot, kind }),
+        g.sample ? h('span', { className: 'lv-badge' }, 'SAMPLE') : null),
+      h('div', { className: 'lv-pcard-body' },
+        h('span', { className: 'lv-type', title: kind === 'room' ? 'Room lab' : 'Experiment' }, icon(h, kind === 'room' ? 'cube' : 'chart', 16)),
+        h('div', { className: 'lv-pcard-text' },
+          h('strong', { className: 'lv-pname', title: g.name }, g.name),
+          h('span', { className: 'lv-pmeta' },
+            st.state === 'processing' ? h('span', { className: 'lv-st', 'data-st': 'processing' }, h(Ring, { value: st.progress }), st.step || 'Processing')
+              : st.state === 'ready' ? h('span', { className: 'lv-st', 'data-st': 'ready' }, 'Ready')
+              : st.state === 'failed' ? h('span', { className: 'lv-st', 'data-st': 'failed', title: String(st.reason) }, 'Failed: ' + st.reason)
+              : h('span', { className: 'lv-st' }, g.files.length ? g.files.length + (g.files.length === 1 ? ' file' : ' files') : 'Empty'),
+            when ? h('span', null, when) : null,
+            g.sample ? h('span', { className: 'lv-tagsm' }, 'RECORDED') : null)),
+        h(Menu, { label: 'Project actions for ' + g.name, items: [
+          { label: 'Open', onClick: open },
+          g.sample || !g.id ? null : { label: 'Rename', onClick: () => { const t = globalThis.prompt?.('Rename project', g.name); if (t) L.renameProject(g.id, t); } },
+          f ? { label: 'Download video', href: fileUrl(f), download: f.name } : null,
+          g.sample || !g.id ? null : { label: 'Delete', danger: true, onClick: () => L.deleteProject(g) }] })));
+  }
+
+  function ProjectsGrid({ L }) {
+    const [showEmpty, setShowEmpty] = useState(false);
+    if (!L.jobs) return h('section', { className: 'lv-projects', 'aria-busy': true }, h('h2', null, 'Projects'), h('p', { className: 'lv-muted', role: 'status' }, 'Loading projects.'));
+    const { experiments: e, rooms: r, projects: p } = L.jobs;
+    const err = [e, r, p].find((j) => j?.state === 'error');
+    const groups = groupJobs(p?.items ?? [], e?.items ?? [], r?.items ?? [])
+      .map((g) => ({ ...g, files: g.id ? L.files.items.filter((f) => f.project_id === g.id) : [], status: groupStatus(g, L.tracked) }));
+    const full = groups.filter((g) => g.sample || g.status.state !== 'empty' || g.files.length), empty = groups.filter((g) => !full.includes(g));
+    return h('section', { className: 'lv-projects', 'aria-labelledby': 'lv-proj-h', id: 'lv-project' },
+      h('div', { className: 'lv-head' }, h('h2', { id: 'lv-proj-h' }, 'Projects'),
+        empty.length ? h('button', { type: 'button', className: 'lv-link', 'aria-pressed': showEmpty, onClick: () => setShowEmpty(!showEmpty) },
+          (showEmpty ? 'Hide empty' : 'Show empty') + ' (' + empty.length + ')') : null),
+      err ? h('p', { className: 'ws-error', role: 'alert' }, err.message) : null,
+      h('ul', { className: 'lv-pgrid' },
+        h('li', { className: 'lv-pcard lv-new' }, h('button', { type: 'button', onClick: L.newProject }, icon(h, 'plus', 22), h('strong', null, 'New project'),
+          h('small', null, 'The agent asks what you are filming'))),
+        ...full.map((g) => h(ProjectCard, { key: g.id ?? 'none', L, g }))),
+      showEmpty && empty.length ? h('ul', { className: 'lv-pgrid lv-pgrid-small' }, ...empty.map((g) => h(ProjectCard, { key: g.id, L, g, small: true }))) : null);
+  }
+
+  // N55: Shopify-style progress pop-up for uploads and running jobs (the cards update live too).
+  function Progress({ L }) {
+    const [min, setMin] = useState(false);
+    const active = Object.values(L.tracked).filter((j) => !j.terminal);
+    if (!L.up && !active.length) return null;
+    const n = active.length + (L.up && !L.up.error ? 1 : 0);
+    return h('aside', { className: 'lv-toast', 'aria-label': 'Progress', 'data-min': min || undefined },
+      h('div', { className: 'lv-toast-head' }, h('strong', { role: 'status' }, n ? 'Processing ' + n + (n === 1 ? ' item' : ' items') : 'Upload stopped'),
+        h('button', { type: 'button', className: 'lv-iconbtn', 'aria-expanded': !min, 'aria-label': min ? 'Show progress' : 'Hide progress', onClick: () => setMin(!min) }, icon(h, 'chev', 16))),
+      min ? null : h('ul', null,
+        L.up ? h('li', { key: 'up' }, icon(h, 'upload', 16), h('span', { className: 'lv-toast-text' }, h('span', null, L.up.name),
+          L.up.error ? h('small', { className: 'ws-error', role: 'alert' }, L.up.error) : h('progress', { max: 100, value: L.up.pct, 'aria-label': 'Upload progress' })),
+          L.up.error ? h('button', { type: 'button', className: 'lv-iconbtn', 'aria-label': 'Dismiss', onClick: L.dismissUp }, icon(h, 'close', 14)) : h('small', null, L.up.pct + '%')) : null,
+        ...active.map((j) => h('li', { key: j.kind + j.id }, h(Ring, null), h('span', { className: 'lv-toast-text' },
+          h('span', null, j.kind === 'room' ? 'Room lab' : 'Measurement'), h('small', { className: 'lv-muted' }, j.step + (j.kind === 'room' ? '. ' + L.gpu.label : '')))))));
+  }
+
+  function Files({ L }) {
+    const q = quotaView(L.files.quota), sel = L.files.items.find((f) => f.id === L.preview);
+    const modeOf = (f) => L.jobs?.projects?.items?.find((p) => p.id === f.project_id)?.mode;
+    return h('section', { className: 'lv-filesview', 'aria-labelledby': 'lv-files-h', id: 'lv-files' },
+      h('div', { className: 'lv-head' }, h('h2', { id: 'lv-files-h' }, 'Files'),
+        h('label', { className: 'lv-btn lv-primary lv-file', 'aria-disabled': q?.full || undefined }, icon(h, 'upload', 16), 'Upload video',
+          h('input', { type: 'file', accept: ACCEPT, disabled: q?.full || (!!L.up && !L.up.error), onChange: (e) => { L.upload(e.target.files?.[0]); e.target.value = ''; } }))),
+      h('p', { className: 'lv-muted' }, 'Accepted: ' + LIMITS),
+      L.files.error ? h('p', { className: 'ws-error', role: 'alert' }, L.files.error) : null,
+      h('div', { className: 'lv-fgrid', 'data-preview': sel ? '' : undefined },
+        L.files.items.length ? h('ul', { className: 'lv-flist' }, ...L.files.items.map((f) => {
+          const video = f.media_type?.startsWith('video/'), room = modeOf(f) === 'room';
+          return h('li', { key: f.id, 'aria-current': L.preview === f.id || undefined },
+            h('div', { className: 'lv-frow' },
+              h('button', { type: 'button', className: 'lv-fthumb', 'aria-label': 'Preview ' + f.name, onClick: () => L.setPreview(L.preview === f.id ? null : f.id) }, h(Thumb, { f, kind: room ? 'room' : 'experiment' })),
+              h('span', { className: 'lv-fname' }, h('strong', { title: f.name }, f.name),
+                h('small', { className: 'lv-muted' }, fmtBytes(f.size) + (f.duration_s != null ? ', ' + Number(f.duration_s).toFixed(1) + ' s' : '') + (f.project_id ? '' : ', no project'))),
+              video ? h('button', { type: 'button', className: 'lv-btn lv-sm', 'aria-expanded': room ? undefined : L.action?.file.id === f.id,
+                onClick: () => (room ? L.buildRoom(f) : L.setAction(L.action?.file.id === f.id ? null : { file: f })) }, room ? 'Build my lab' : 'Measure') : null,
+              h(Menu, { label: 'File actions for ' + f.name, items: [
+                video ? { label: 'Preview', onClick: () => L.setPreview(f.id) } : null,
+                video && room ? { label: 'Measure this experiment', onClick: () => L.setAction({ file: f }) } : null,
+                video && !room ? { label: 'Build my lab', onClick: () => L.buildRoom(f) } : null,
+                { label: 'Download', href: fileUrl(f), download: f.name },
+                { label: 'Delete', danger: true, onClick: () => L.remove(f) }] })),
+            L.action?.file.id === f.id ? h(MeasurePanel, { L, file: f }) : null);
+        })) : h('div', { className: 'lv-empty-state' }, icon(h, 'film', 28), h('p', null, L.files.loaded ? 'No files yet. Upload a video or drop one on Home.' : 'Loading files.')),
+        sel ? h('aside', { className: 'lv-fpreview', 'aria-label': 'Preview' },
+          h('div', { className: 'lv-head' }, h('strong', { title: sel.name }, sel.name),
+            h('button', { type: 'button', className: 'lv-iconbtn', 'aria-label': 'Close preview', onClick: () => L.setPreview(null) }, icon(h, 'close', 16))),
+          sel.media_type?.startsWith('video/') ? h('video', { className: 'lv-video', controls: true, preload: 'metadata', src: fileUrl(sel) }) : h('img', { className: 'lv-video', src: fileUrl(sel), alt: sel.name }),
+          h('small', { className: 'lv-muted' }, fmtBytes(sel.size) + (sel.duration_s != null ? ', ' + Number(sel.duration_s).toFixed(1) + ' s' : '') + '. RECORDED, scale unverified until measured.')) : null));
+  }
+
+  // Storage meter for the bottom of the left rail.
+  function Meter({ L }) {
+    const q = quotaView(L.files.quota);
+    if (!q) return null;
+    const qq = L.files.quota;
+    return h('div', { className: 'lv-meter' },
+      h('div', { className: 'lv-row lv-between' }, h('strong', null, 'Storage'), h('a', { href: '#files' }, 'Files')),
+      h('progress', { max: 100, value: q.pct, 'aria-label': 'Storage used' }),
+      h('small', null, fmtBytes(qq.storage_bytes_used) + ' of ' + fmtBytes(qq.storage_bytes_limit) + ' used'),
+      h('small', null, qq.uploads_remaining_today + ' of ' + qq.uploads_daily_limit + ' uploads left today'));
+  }
+
+  function Centre({ L }) {
+    const [firstDone, setFirstDone] = useState(false);
+    const [view, setView] = useState(() => (globalThis.location?.hash === '#files' ? 'files' : 'home'));
+    useEffect(() => {
+      const f = () => setView(globalThis.location?.hash === '#files' ? 'files' : 'home');
+      f(); globalThis.addEventListener?.('hashchange', f);
+      return () => globalThis.removeEventListener?.('hashchange', f);
+    }, []);
+    if (L.mode === undefined) return h('div', { className: 'lv-wrap' }, h('p', { className: 'lv-muted', role: 'status' }, 'Loading your settings.'));
+    if (L.mode === null && !firstDone) return h('div', { className: 'lv-wrap' }, h(ModeScreen, { L, onDone: () => setFirstDone(true) }));
+    const tracked = Object.values(L.tracked);
+    return h('div', { className: 'lv-wrap', 'data-view': view },
+      view === 'files' ? h(Files, { L }) : h(React.Fragment, null, h(Home, { L }), h(ProjectsGrid, { L }),
+        tracked.length ? h('section', { className: 'lv-activity', 'aria-labelledby': 'lv-jobs-h', id: 'lv-activity' }, h('h2', { id: 'lv-jobs-h' }, 'Recent activity'),
+          h('div', { className: 'lv-actgrid' }, ...tracked.reverse().map((j) => h(JobCard, { key: j.kind + j.id, L, kind: j.kind, id: j.id })))) : null),
+      h(Progress, { L }));
+  }
+
+  return { useLive, Centre, Chat, Dot, Meter };
 };
+

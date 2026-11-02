@@ -33,7 +33,25 @@ export const TIPS = Object.freeze({
     'Use even light; avoid pointing at bright windows.', 'Lay an A4 sheet flat on the floor for scale; without it, scale is MODEL-ESTIMATED.',
     'Move the camera sideways, not only by turning on the spot.'],
 });
-export const projectTitle = (mode, now = new Date()) => (mode === 'room' ? 'Room ' : 'Experiment ') + now.toISOString().slice(0, 16).replace('T', ' ');
+// N55: content names, not timestamps. Mode only until a clip arrives; then the clip name ("apple_drop.mp4" -> "Apple drop").
+export const projectTitle = (mode) => (mode === 'room' ? 'Room lab' : 'New experiment');
+export function contentTitle(mode, fileName) {
+  const base = String(fileName ?? '').replace(/\.[a-z0-9]+$/i, '').replace(/[_\-.]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 60);
+  const name = /[a-z]{2}/i.test(base) ? base[0].toUpperCase() + base.slice(1).toLowerCase() : '';
+  if (mode === 'room') return name ? (/\blab$/i.test(name) ? name : name + ' lab') : 'Room lab';
+  return name || 'New experiment';
+}
+export const isDefaultTitle = (title) => /^(Room lab|New experiment|(Room|Experiment) \d{4}-\d\d-\d\d \d\d:\d\d)$/.test(String(title ?? ''));
+
+// N55 model picker: relative bars only (1..3, no numbers: real cost and speed depend on the task). id = the saved agent mode.
+export const MODEL_CHOICES = Object.freeze([
+  { id: 'standard', name: 'Muse Spark 1.3', sub: 'Standard', tag: 'Recommended', bars: { Intelligence: 3, Speed: 2, Cost: 3 },
+    pro: 'Strongest answers; prompts are not used for training', con: 'Uses the daily budget fastest' },
+  { id: 'contributor', name: 'Muse Spark 1.3', sub: 'Contributor', tag: 'Cheapest', bars: { Intelligence: 3, Speed: 2, Cost: 1 },
+    pro: 'Same model at a much lower cost per message', con: 'Meta trains on your prompts' },
+  { id: 'open', name: 'Muse Open', sub: 'Hosted on Baseten', tag: 'Fastest', bars: { Intelligence: 2, Speed: 3, Cost: 2 },
+    pro: 'Quick replies', con: 'Smaller open model; weaker on hard questions' },
+]);
 
 const UNITS = ['B', 'KB', 'MB', 'GB'];
 export function fmtBytes(n) {

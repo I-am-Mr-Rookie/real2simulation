@@ -119,6 +119,13 @@ class StorageTests(unittest.TestCase):
         self.assertEqual(len(got["files"]), 1)
         self.assertEqual(self.c.get(f"/internal/workspace/projects/{p['id']}", headers=B).status_code, 404)
         self.assertEqual(self.c.get("/internal/workspace/projects", headers=B).json()["projects"], [])
+        url = f"/internal/workspace/projects/{p['id']}"
+        self.assertEqual(self.c.patch(url, headers=B, json={"title": "x"}).status_code, 404)
+        self.assertEqual(self.c.patch(url, headers=A, json={"title": " "}).status_code, 422)
+        self.assertEqual(self.c.patch(url, headers=A, json={"title": " Classroom lab "}).json()["project"]["title"], "Classroom lab")
+        self.assertEqual(self.c.delete(url, headers=B).status_code, 404)
+        self.assertEqual(self.c.delete(url, headers=A).json(), {"deleted": p["id"]})
+        self.assertEqual(self.c.get(url, headers=A).status_code, 404)
 
     def test_room_project_survives_upload_job_and_lists_without_changing_null_rows(self):
         from Build.api.room import create_router

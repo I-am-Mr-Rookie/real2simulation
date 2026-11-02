@@ -236,4 +236,23 @@ def create_router(store=None, probe=video_seconds) -> APIRouter:
         files = [f for f in db().list(owner) if f["project_id"] == project_id]
         return {"project": db().project(owner, project_id), "files": files}
 
+    # N55: rename and delete. Delete keeps the files (they move to "no project"); file deletion stays explicit.
+    @router.patch("/projects/{project_id}")
+    def rename_project(project_id: str, payload: dict = Body(...), owner: str = Depends(require_owner)):
+        title = payload.get("title")
+        if not isinstance(title, str) or not 0 < len(title.strip()) <= 120:
+            raise error(422, "INVALID_INPUT", "title 1 to 120 characters")
+        db().project(owner, project_id)
+        with db().lock:
+            db().db.execute("UPDATE projects SET title=? WHERE id=? AND user=?", (title.strip(), project_id, owner))
+        return {"project": db().project(owner, project_id)}
+
+    @router.delete("/projects/{project_id}")
+    def delete_project(project_id: str, owner: str = Depends(require_owner)):
+        db().project(owner, project_id)
+        with db().lock:
+            db().db.execute("UPDATE files SET project_id=NULL WHERE project_id=? AND user=?", (project_id, owner))
+            db().db.execute("DELETE FROM projects WHERE id=? AND user=?", (project_id, owner))
+        return {"deleted": project_id}
+
     return router

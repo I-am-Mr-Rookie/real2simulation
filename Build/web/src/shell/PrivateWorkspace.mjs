@@ -17,7 +17,7 @@ import { icon } from './icons.mjs';
 import { createLive } from '../workspace/live-view.mjs';
 
 const Workspace = createWorkspace(React);
-const Live = createLive(React); // N09 live product: agent mode, projects, files, agent chat, GPU dot, job views
+const Live = createLive(React, icon); // N09 live product: agent mode, projects, files, agent chat, GPU dot, job views
 const adapter = createThreeViewer();
 // S13m: scene_id is the job id; the API serves the sha-verified RM04 bundle (or 503 -> viewer shows unavailable).
 export const loadScene = createArtifactLoader({
@@ -183,9 +183,9 @@ export default function PrivateWorkspace({ scene }) {
     navigated: () => { if (rail?.preview) send({ type: 'escape' }); else if (narrow() && rail?.open) toggleLeft(); } };
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
     renderShell(React.createElement, { title: workspaceHeading(api, scene), rail, right, tools, pending,
-      status: live ? React.createElement(Live.Dot, { L }) : null,
+      status: live ? React.createElement(Live.Dot, { L }) : null, foot: live ? React.createElement(Live.Meter, { L }) : null,
       agent: React.createElement(React.Fragment, null, live ? React.createElement(Live.Chat, { L }) : null, iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null) }, on, { rightToggle, rightHead },
-    live ? chip('Connected', LIVE_NOTICE, 'live') : React.createElement('p', { role: 'note' }, api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE),
+    live ? null : React.createElement('p', { role: 'note' }, api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE), // N55: no "Connected" chip
     live ? React.createElement(Live.Centre, { L }) : null,
     live ? renderWaiting(React.createElement, iv, openCard) : null,
     live || api === 'checking' ? null : React.createElement('p', { role: 'note' }, scene.notice),

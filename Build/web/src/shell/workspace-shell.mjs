@@ -14,9 +14,8 @@ export const NAV = Object.freeze([
   { id: 'lab', href: '/lab', label: 'Local simulation lab', icon: 'flask' },
 ]);
 export const SECTIONS = Object.freeze([
-  { id: 'viewport', href: '#ws-viewport', label: 'Scene viewport', icon: 'cube' },
-  { id: 'panel', href: '#ws-panel', label: 'Stage panel', icon: 'panel' },
-  { id: 'job', href: '#ws-job', label: 'Job status', icon: 'pulse' },
+  { id: 'home', href: '#home', label: 'Home', icon: 'grid' }, // N55: workspace views (hash), replacing the old single-clip jump links
+  { id: 'files', href: '#files', label: 'Files', icon: 'film' },
 ]);
 
 // Narrow screens always start with the drawer closed; wide screens restore the stored choice (default expanded).
@@ -26,7 +25,7 @@ export const initialLeft = (stored, narrow) => !narrow && stored !== 'collapsed'
 export const PANE_KEY = 'r2s.workspace.pane';
 export const PANES = Object.freeze([
   { id: 'navigate', label: 'Go to', icon: 'compass', items: NAV },
-  { id: 'project', label: 'This project', icon: 'list', items: SECTIONS },
+  { id: 'project', label: 'Workspace', icon: 'list', items: SECTIONS },
 ]);
 export const HOVER_OPEN_MS = 150;
 export const HOVER_CLOSE_MS = 250;
@@ -92,7 +91,8 @@ export function renderShell(h, v, on = {}, refs = {}, ...content) {
           onClick: () => on.rail?.({ type: 'iconClick', id: p.id }), onPointerEnter: (e) => on.hover?.(p.id, e), onPointerLeave: on.unhover }, icon(h, p.icon)))),
       ...PANES.map((p) => h('div', { key: p.id, id: 'r2s-pane-' + p.id, className: 'r2s-pane', role: 'region', 'aria-label': p.label, hidden: shown !== p.id,
         'data-mode': rail.preview === p.id ? 'temporary' : 'pinned', onPointerEnter: on.paneEnter, onPointerLeave: on.unhover },
-        navList(h, p.label, p.items, on.navigated)))),
+        navList(h, p.label, p.items, on.navigated))),
+      v.foot ? h('div', { className: 'r2s-foot' }, v.foot) : null), // N55: storage meter at the bottom of the rail
     h('div', { className: 'r2s-center' },
       h('header', { className: 'r2s-top' },
         h('button', { type: 'button', className: 'r2s-iconbtn', 'data-toggle': 'left', 'aria-controls': 'r2s-left', 'aria-expanded': left,

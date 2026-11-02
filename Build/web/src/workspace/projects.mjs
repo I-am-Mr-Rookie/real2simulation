@@ -20,12 +20,33 @@ export function jobName(item, kind) {
 }
 
 export const isSample = (p) => p?.sample === true || /^SAMPLE\b/.test(p?.title ?? '');
+
+// N55: "just now", "5 min ago", "3 h ago", "2 d ago", else the short date; '' when absent.
+export function relTime(iso, now = Date.now()) {
+  const t = new Date(iso ?? '').getTime();
+  if (!iso || Number.isNaN(t)) return '';
+  const s = Math.max(0, (now - t) / 1000);
+  return s < 60 ? 'just now' : s < 3600 ? Math.floor(s / 60) + ' min ago' : s < 86400 ? Math.floor(s / 3600) + ' h ago' : s < 7 * 86400 ? Math.floor(s / 86400) + ' d ago' : shortWhen(iso);
+}
+
+// N55 card status from the newest job of a group (tracked live view first): { state: 'empty'|'processing'|'ready'|'failed', progress, reason }.
+export function groupStatus(g, tracked = {}) {
+  const jobs = [...g.rooms.map((j) => ['room', j]), ...g.experiments.map((j) => ['experiment', j])]
+    .sort((a, b) => String(b[1].created ?? b[1].created_at ?? '').localeCompare(String(a[1].created ?? a[1].created_at ?? '')));
+  if (!jobs.length) return { state: 'empty' };
+  const [kind, j] = jobs[0], live = tracked[kind + ':' + (j.id ?? j.job_id)];
+  const st = String(live?.state ?? j.status ?? j.state ?? 'unknown');
+  if (st === 'done') return { state: 'ready', kind, job: j };
+  if (/^(failed|error)$/.test(st)) return { state: 'failed', kind, job: j, reason: live?.error || j.error?.message || j.error || j.reason || 'no reason given' };
+  return { state: 'processing', kind, job: j, progress: Number.isFinite(j.progress) ? j.progress : null, step: live?.step };
+}
 // Sample title without its "SAMPLE (RECORDED):" prefix (the card shows SAMPLE and RECORDED as tags instead).
 export const projectName = (p) => (isSample(p) ? String(p.title ?? '').replace(SAMPLE_PREFIX, '') || 'Sample project' : String(p?.title || 'Project ' + shortId(p?.id)));
 
 // Projects (newest first, SAMPLE last) with their experiments and rooms; jobs without a known project go to a last group.
 export function groupJobs(projects = [], experiments = [], rooms = []) {
-  const groups = projects.map((p) => ({ id: p.id, name: projectName(p), mode: p.mode, sample: isSample(p), created: p.created, experiments: [], rooms: [] }));
+  // N55: snapshot_url = optional saved lab snapshot (N56); the card falls back to a video frame.
+  const groups = projects.map((p) => ({ id: p.id, name: projectName(p), mode: p.mode, sample: isSample(p), created: p.created, snapshot: p.snapshot_url ?? null, experiments: [], rooms: [] }));
   const by = new Map(groups.map((g) => [g.id, g]));
   const other = { id: null, name: 'Not in a project', sample: false, experiments: [], rooms: [] };
   for (const e of experiments) (by.get(e.project_id) ?? other).experiments.push(e);

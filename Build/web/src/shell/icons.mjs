@@ -12,6 +12,10 @@ export const PATHS = Object.freeze({
   upload: 'M12 15V4M7 9l5-5 5 5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4', info: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18zM12 11v6M12 7.5h.01',
   play: 'M7 4l13 8-13 8z', chart: 'M4 4v16h16M8 15l3-4 3 2 5-6', check: 'M5 12l5 5 9-10', alert: 'M12 3l10 18H2zM12 10v5M12 18h.01',
   palette: 'M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-1.2-1-1.6-1-2.6 0-.9.7-1.6 1.6-1.6H17a4 4 0 0 0 4-4c0-4.6-4-8.2-9-8.2zM7.5 11h.01M10 7h.01M15 7.5h.01',
+  // N55 workspace home
+  plus: 'M12 5v14M5 12h14', more: 'M6 12h.01M12 12h.01M18 12h.01', chev: 'M6 9l6 6 6-6', send: 'M12 19V5M6 11l6-6 6 6',
+  mic: 'M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3',
+  clip: 'M20 11.5l-8.2 8.2a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.5a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8',
 });
 export const icon = (h, name, size = 18) => (PATHS[name] ? h('svg', { className: 'r2s-icon', viewBox: '0 0 24 24', width: size, height: size, 'aria-hidden': true, focusable: 'false' },
   h('path', { d: PATHS[name], fill: 'none', stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' })) : null);
