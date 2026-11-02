@@ -7,6 +7,15 @@ const read = (p) => readFileSync(new URL('../../Build/web/src/' + p, import.meta
 const editor = read('lab-editor/LabEditor.jsx');
 const css = read('lab-editor/lab-editor.css');
 
+test('editor and side panels share a bounded width-based height, except fullscreen', () => {
+  assert.match(css, /\.le-work \{ --le-stage-height: clamp\(420px, 38cqw, 640px\); container-type: inline-size/);
+  assert.match(css, /\.le-side \{[^}]*max-height: var\(--le-stage-height\)/);
+  assert.match(css, /\.le-stage \{[^}]*height: var\(--le-stage-height\)/);
+  assert.match(css, /--le-stage-height: clamp\(320px, 80cqw, 480px\)/);
+  assert.match(css, /\.le-stage:fullscreen \{ width: 100%; height: 100%; min-height: 0; \}/);
+  assert.doesNotMatch(css, /height: (?:calc\(100vh|58vh)/);
+});
+
 test('SF3D credit is one conditional viewport chip, never a per-object sprite', () => {
   const fixture = validateScene(JSON.parse(readFileSync(new URL('../../evidence/N50/two-sf3d-scene.json', import.meta.url))));
   assert.equal(fixture.objects.filter((o) => o.shape?.type === 'mesh').length, 2);

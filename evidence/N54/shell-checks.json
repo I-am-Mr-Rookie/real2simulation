@@ -1,0 +1,254 @@
+[
+  {
+    "kind": "actual component SSR fixture, not authenticated E2E; no screenshots",
+    "width": 375,
+    "header": {
+      "x": 0,
+      "width": 360,
+      "right": 360
+    },
+    "main": {
+      "x": 0,
+      "width": 360,
+      "right": 360
+    },
+    "footer": {
+      "x": 0,
+      "width": 0,
+      "right": 0
+    },
+    "footerDisplay": "none",
+    "viewport": 360
+  },
+  {
+    "kind": "actual component SSR fixture, not authenticated E2E; no screenshots",
+    "width": 1280,
+    "header": {
+      "x": 0,
+      "width": 1265,
+      "right": 1265
+    },
+    "main": {
+      "x": 0,
+      "width": 1265,
+      "right": 1265
+    },
+    "footer": {
+      "x": 0,
+      "width": 0,
+      "right": 0
+    },
+    "footerDisplay": "none",
+    "viewport": 1265
+  },
+  {
+    "kind": "actual component SSR fixture, not authenticated E2E; no screenshots",
+    "width": 1920,
+    "header": {
+      "x": 0,
+      "width": 1905,
+      "right": 1905
+    },
+    "main": {
+      "x": 0,
+      "width": 1905,
+      "right": 1905
+    },
+    "footer": {
+      "x": 0,
+      "width": 0,
+      "right": 0
+    },
+    "footerDisplay": "none",
+    "viewport": 1905
+  },
+  {
+    "kind": "actual component SSR fixture, not authenticated E2E; no screenshots",
+    "width": 2560,
+    "header": {
+      "x": 0,
+      "width": 2545,
+      "right": 2545
+    },
+    "main": {
+      "x": 0,
+      "width": 2545,
+      "right": 2545
+    },
+    "footer": {
+      "x": 0,
+      "width": 0,
+      "right": 0
+    },
+    "footerDisplay": "none",
+    "viewport": 2545
+  },
+  {
+    "kind": "live public DEV sign-in with proposed container CSS injected; not deployed",
+    "width": 375,
+    "before": {
+      "header": {
+        "x": 20,
+        "width": 320,
+        "right": 340
+      },
+      "main": {
+        "x": 20,
+        "width": 320,
+        "right": 340
+      },
+      "footer": {
+        "x": 20,
+        "width": 320,
+        "right": 340
+      },
+      "footerDisplay": "flex",
+      "viewport": 360
+    },
+    "proposed": {
+      "header": {
+        "x": 20,
+        "width": 320,
+        "right": 340
+      },
+      "main": {
+        "x": 20,
+        "width": 320,
+        "right": 340
+      },
+      "footer": {
+        "x": 20,
+        "width": 320,
+        "right": 340
+      },
+      "footerDisplay": "flex",
+      "viewport": 360
+    }
+  },
+  {
+    "kind": "live public DEV sign-in with proposed container CSS injected; not deployed",
+    "width": 1280,
+    "before": {
+      "header": {
+        "x": 72.5,
+        "width": 1120,
+        "right": 1192.5
+      },
+      "main": {
+        "x": 72.5,
+        "width": 1120,
+        "right": 1192.5
+      },
+      "footer": {
+        "x": 72.5,
+        "width": 1120,
+        "right": 1192.5
+      },
+      "footerDisplay": "flex",
+      "viewport": 1265
+    },
+    "proposed": {
+      "header": {
+        "x": 72.5,
+        "width": 1120,
+        "right": 1192.5
+      },
+      "main": {
+        "x": 72.5,
+        "width": 1120,
+        "right": 1192.5
+      },
+      "footer": {
+        "x": 72.5,
+        "width": 1120,
+        "right": 1192.5
+      },
+      "footerDisplay": "flex",
+      "viewport": 1265
+    }
+  },
+  {
+    "kind": "live public DEV sign-in with proposed container CSS injected; not deployed",
+    "width": 1920,
+    "before": {
+      "header": {
+        "x": 400,
+        "width": 1120,
+        "right": 1520
+      },
+      "main": {
+        "x": 400,
+        "width": 1120,
+        "right": 1520
+      },
+      "footer": {
+        "x": 400,
+        "width": 1120,
+        "right": 1520
+      },
+      "footerDisplay": "flex",
+      "viewport": 1920
+    },
+    "proposed": {
+      "header": {
+        "x": 400,
+        "width": 1120,
+        "right": 1520
+      },
+      "main": {
+        "x": 400,
+        "width": 1120,
+        "right": 1520
+      },
+      "footer": {
+        "x": 400,
+        "width": 1120,
+        "right": 1520
+      },
+      "footerDisplay": "flex",
+      "viewport": 1920
+    }
+  },
+  {
+    "kind": "live public DEV sign-in with proposed container CSS injected; not deployed",
+    "width": 2560,
+    "before": {
+      "header": {
+        "x": 720,
+        "width": 1120,
+        "right": 1840
+      },
+      "main": {
+        "x": 720,
+        "width": 1120,
+        "right": 1840
+      },
+      "footer": {
+        "x": 720,
+        "width": 1120,
+        "right": 1840
+      },
+      "footerDisplay": "flex",
+      "viewport": 2560
+    },
+    "proposed": {
+      "header": {
+        "x": 720,
+        "width": 1120,
+        "right": 1840
+      },
+      "main": {
+        "x": 720,
+        "width": 1120,
+        "right": 1840
+      },
+      "footer": {
+        "x": 720,
+        "width": 1120,
+        "right": 1840
+      },
+      "footerDisplay": "flex",
+      "viewport": 2560
+    }
+  }
+]

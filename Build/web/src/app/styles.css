@@ -82,7 +82,7 @@ code, kbd, samp, pre, .mono, data, time { font-family: var(--r2s-font-mono); fon
 :where([aria-busy="true"]) { cursor: progress; }
 .skip-link { position: absolute; left: 1rem; top: -6rem; padding: .6rem .9rem; background: var(--r2s-surface); color: var(--r2s-ink); border: 1px solid var(--r2s-ink); box-shadow: var(--r2s-shadow-sm); z-index: 10; }
 .skip-link:focus { top: .75rem; }
-.site-header, main, .site-footer { width: min(1120px, calc(100% - 2.5rem)); margin-inline: auto; }
+.site-header, main, .site-footer { width: var(--site-width, min(1120px, calc(100% - 2.5rem))); margin-inline: auto; }
 .site-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1.1rem; border-bottom: 1px solid var(--r2s-ink); }
 .site-header nav { display: flex; flex-wrap: wrap; align-items: center; gap: .25rem; }
 .site-header nav a { display: inline-flex; align-items: center; min-height: 2.75rem; color: var(--r2s-ink); text-decoration: none; font-weight: 500; font-size: .95rem; padding: .35rem .65rem; border: 1px solid transparent; border-radius: var(--r2s-radius); transition-property: border-color, background-color, color, box-shadow; transition-duration: .15s; transition-timing-function: ease-out; }

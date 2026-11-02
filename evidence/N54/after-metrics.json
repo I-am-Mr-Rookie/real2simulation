@@ -1,0 +1,1241 @@
+{
+  "base": "http://localhost:3054",
+  "headless": false,
+  "executable": "C:/Users/HP/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe",
+  "results": [
+    {
+      "route": "/",
+      "width": 375,
+      "height": 812,
+      "url": "http://localhost:3054/",
+      "header": {
+        "x": 20,
+        "right": 340,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 320,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 20,
+        "right": 340,
+        "y": 80.1875,
+        "bottom": 5187.421875,
+        "width": 320,
+        "height": 5107.234375
+      },
+      "footer": {
+        "x": 20,
+        "right": 340,
+        "y": 5187.421875,
+        "bottom": 5384.4375,
+        "width": 320,
+        "height": 197.015625
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    {
+      "route": "/",
+      "width": 1280,
+      "height": 720,
+      "url": "http://localhost:3054/",
+      "header": {
+        "x": 72.5,
+        "right": 1192.5,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 72.5,
+        "right": 1192.5,
+        "y": 80.1875,
+        "bottom": 2551.53125,
+        "width": 1120,
+        "height": 2471.34375
+      },
+      "footer": {
+        "x": 72.5,
+        "right": 1192.5,
+        "y": 2551.53125,
+        "bottom": 2703.515625,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1265,
+      "clientWidth": 1265
+    },
+    {
+      "route": "/",
+      "width": 1366,
+      "height": 768,
+      "url": "http://localhost:3054/",
+      "header": {
+        "x": 115.5,
+        "right": 1235.5,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 115.5,
+        "right": 1235.5,
+        "y": 80.1875,
+        "bottom": 2551.53125,
+        "width": 1120,
+        "height": 2471.34375
+      },
+      "footer": {
+        "x": 115.5,
+        "right": 1235.5,
+        "y": 2551.53125,
+        "bottom": 2703.515625,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1351,
+      "clientWidth": 1351
+    },
+    {
+      "route": "/",
+      "width": 1920,
+      "height": 1080,
+      "url": "http://localhost:3054/",
+      "header": {
+        "x": 392.5,
+        "right": 1512.5,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 392.5,
+        "right": 1512.5,
+        "y": 80.1875,
+        "bottom": 2551.53125,
+        "width": 1120,
+        "height": 2471.34375
+      },
+      "footer": {
+        "x": 392.5,
+        "right": 1512.5,
+        "y": 2551.53125,
+        "bottom": 2703.515625,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1905,
+      "clientWidth": 1905
+    },
+    {
+      "route": "/",
+      "width": 2560,
+      "height": 1440,
+      "url": "http://localhost:3054/",
+      "header": {
+        "x": 712.5,
+        "right": 1832.5,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 712.5,
+        "right": 1832.5,
+        "y": 80.1875,
+        "bottom": 2551.53125,
+        "width": 1120,
+        "height": 2471.34375
+      },
+      "footer": {
+        "x": 712.5,
+        "right": 1832.5,
+        "y": 2551.53125,
+        "bottom": 2703.515625,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 2545,
+      "clientWidth": 2545
+    },
+    {
+      "route": "/library",
+      "width": 375,
+      "height": 812,
+      "url": "http://localhost:3054/library",
+      "header": {
+        "x": 20,
+        "right": 340,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 320,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 20,
+        "right": 340,
+        "y": 80.1875,
+        "bottom": 2149.890625,
+        "width": 320,
+        "height": 2069.703125
+      },
+      "footer": {
+        "x": 20,
+        "right": 340,
+        "y": 2149.890625,
+        "bottom": 2346.90625,
+        "width": 320,
+        "height": 197.015625
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    {
+      "route": "/library",
+      "width": 1280,
+      "height": 720,
+      "url": "http://localhost:3054/library",
+      "header": {
+        "x": 72.5,
+        "right": 1192.5,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 72.5,
+        "right": 1192.5,
+        "y": 80.1875,
+        "bottom": 1194.34375,
+        "width": 1120,
+        "height": 1114.15625
+      },
+      "footer": {
+        "x": 72.5,
+        "right": 1192.5,
+        "y": 1194.34375,
+        "bottom": 1346.328125,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1265,
+      "clientWidth": 1265
+    },
+    {
+      "route": "/library",
+      "width": 1366,
+      "height": 768,
+      "url": "http://localhost:3054/library",
+      "header": {
+        "x": 115.5,
+        "right": 1235.5,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 115.5,
+        "right": 1235.5,
+        "y": 80.1875,
+        "bottom": 1194.34375,
+        "width": 1120,
+        "height": 1114.15625
+      },
+      "footer": {
+        "x": 115.5,
+        "right": 1235.5,
+        "y": 1194.34375,
+        "bottom": 1346.328125,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1351,
+      "clientWidth": 1351
+    },
+    {
+      "route": "/library",
+      "width": 1920,
+      "height": 1080,
+      "url": "http://localhost:3054/library",
+      "header": {
+        "x": 392.5,
+        "right": 1512.5,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 392.5,
+        "right": 1512.5,
+        "y": 80.1875,
+        "bottom": 1194.34375,
+        "width": 1120,
+        "height": 1114.15625
+      },
+      "footer": {
+        "x": 392.5,
+        "right": 1512.5,
+        "y": 1194.34375,
+        "bottom": 1346.328125,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1905,
+      "clientWidth": 1905
+    },
+    {
+      "route": "/library",
+      "width": 2560,
+      "height": 1440,
+      "url": "http://localhost:3054/library",
+      "header": {
+        "x": 720,
+        "right": 1840,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 720,
+        "right": 1840,
+        "y": 80.1875,
+        "bottom": 1194.34375,
+        "width": 1120,
+        "height": 1114.15625
+      },
+      "footer": {
+        "x": 720,
+        "right": 1840,
+        "y": 1194.34375,
+        "bottom": 1346.328125,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 2560,
+      "clientWidth": 2560
+    },
+    {
+      "route": "/lab",
+      "width": 375,
+      "height": 812,
+      "url": "http://localhost:3054/lab",
+      "header": {
+        "x": 20,
+        "right": 340,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 320,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 20,
+        "right": 340,
+        "y": 80.1875,
+        "bottom": 1392.578125,
+        "width": 320,
+        "height": 1312.390625
+      },
+      "footer": {
+        "x": 20,
+        "right": 340,
+        "y": 1392.578125,
+        "bottom": 1589.59375,
+        "width": 320,
+        "height": 197.015625
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    {
+      "route": "/lab",
+      "width": 1280,
+      "height": 720,
+      "url": "http://localhost:3054/lab",
+      "header": {
+        "x": 72.5,
+        "right": 1192.5,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 72.5,
+        "right": 1192.5,
+        "y": 80.1875,
+        "bottom": 878.671875,
+        "width": 1120,
+        "height": 798.484375
+      },
+      "footer": {
+        "x": 72.5,
+        "right": 1192.5,
+        "y": 878.671875,
+        "bottom": 1030.65625,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1265,
+      "clientWidth": 1265
+    },
+    {
+      "route": "/lab",
+      "width": 1366,
+      "height": 768,
+      "url": "http://localhost:3054/lab",
+      "header": {
+        "x": 115.5,
+        "right": 1235.5,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 115.5,
+        "right": 1235.5,
+        "y": 80.1875,
+        "bottom": 878.671875,
+        "width": 1120,
+        "height": 798.484375
+      },
+      "footer": {
+        "x": 115.5,
+        "right": 1235.5,
+        "y": 878.671875,
+        "bottom": 1030.65625,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1351,
+      "clientWidth": 1351
+    },
+    {
+      "route": "/lab",
+      "width": 1920,
+      "height": 1080,
+      "url": "http://localhost:3054/lab",
+      "header": {
+        "x": 400,
+        "right": 1520,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 400,
+        "right": 1520,
+        "y": 80.1875,
+        "bottom": 878.671875,
+        "width": 1120,
+        "height": 798.484375
+      },
+      "footer": {
+        "x": 400,
+        "right": 1520,
+        "y": 878.671875,
+        "bottom": 1030.65625,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1920,
+      "clientWidth": 1920
+    },
+    {
+      "route": "/lab",
+      "width": 2560,
+      "height": 1440,
+      "url": "http://localhost:3054/lab",
+      "header": {
+        "x": 720,
+        "right": 1840,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 720,
+        "right": 1840,
+        "y": 80.1875,
+        "bottom": 944.1875,
+        "width": 1120,
+        "height": 864
+      },
+      "footer": {
+        "x": 720,
+        "right": 1840,
+        "y": 944.1875,
+        "bottom": 1096.171875,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 2560,
+      "clientWidth": 2560
+    },
+    {
+      "route": "/lab?editor=1",
+      "width": 375,
+      "height": 812,
+      "url": "http://localhost:3054/lab?editor=1",
+      "header": {
+        "x": 12,
+        "right": 348,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 336,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 12,
+        "right": 348,
+        "y": 80.1875,
+        "bottom": 1022.296875,
+        "width": 336,
+        "height": 942.109375
+      },
+      "footer": {
+        "x": 12,
+        "right": 348,
+        "y": 1022.296875,
+        "bottom": 1219.3125,
+        "width": 336,
+        "height": 197.015625
+      },
+      "editor": {
+        "x": 12,
+        "right": 348,
+        "y": 92.1875,
+        "bottom": 986.296875,
+        "width": 336,
+        "height": 894.109375
+      },
+      "stage": {
+        "x": 12,
+        "right": 348,
+        "y": 296.1875,
+        "bottom": 616.1875,
+        "width": 336,
+        "height": 320
+      },
+      "left": null,
+      "right": {
+        "x": 12,
+        "right": 348,
+        "y": 624.1875,
+        "bottom": 974.296875,
+        "width": 336,
+        "height": 350.109375
+      },
+      "canvas": {
+        "x": 13,
+        "right": 347,
+        "y": 297.1875,
+        "bottom": 615.1875,
+        "width": 334,
+        "height": 318
+      },
+      "scrollWidth": 360,
+      "clientWidth": 360
+    },
+    {
+      "route": "/lab?editor=1",
+      "width": 1280,
+      "height": 720,
+      "url": "http://localhost:3054/lab?editor=1",
+      "header": {
+        "x": 24,
+        "right": 1241,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1217,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 24,
+        "right": 1241,
+        "y": 80.1875,
+        "bottom": 697.828125,
+        "width": 1217,
+        "height": 617.640625
+      },
+      "footer": {
+        "x": 24,
+        "right": 1241,
+        "y": 697.828125,
+        "bottom": 827.296875,
+        "width": 1217,
+        "height": 129.46875
+      },
+      "editor": {
+        "x": 24,
+        "right": 1241,
+        "y": 92.1875,
+        "bottom": 641.828125,
+        "width": 1217,
+        "height": 549.640625
+      },
+      "stage": {
+        "x": 302,
+        "right": 893,
+        "y": 163.375,
+        "bottom": 625.828125,
+        "width": 591,
+        "height": 462.453125
+      },
+      "left": {
+        "x": 24,
+        "right": 294,
+        "y": 163.375,
+        "bottom": 625.828125,
+        "width": 270,
+        "height": 462.453125
+      },
+      "right": {
+        "x": 901,
+        "right": 1241,
+        "y": 163.375,
+        "bottom": 625.828125,
+        "width": 340,
+        "height": 462.453125
+      },
+      "canvas": {
+        "x": 303,
+        "right": 892,
+        "y": 164.375,
+        "bottom": 624.828125,
+        "width": 589,
+        "height": 460.453125
+      },
+      "scrollWidth": 1265,
+      "clientWidth": 1265
+    },
+    {
+      "route": "/lab?editor=1",
+      "width": 1366,
+      "height": 768,
+      "url": "http://localhost:3054/lab?editor=1",
+      "header": {
+        "x": 24,
+        "right": 1327,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1303,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 24,
+        "right": 1327,
+        "y": 80.1875,
+        "bottom": 730.5,
+        "width": 1303,
+        "height": 650.3125
+      },
+      "footer": {
+        "x": 24,
+        "right": 1327,
+        "y": 730.5,
+        "bottom": 859.96875,
+        "width": 1303,
+        "height": 129.46875
+      },
+      "editor": {
+        "x": 24,
+        "right": 1327,
+        "y": 92.1875,
+        "bottom": 674.5,
+        "width": 1303,
+        "height": 582.3125
+      },
+      "stage": {
+        "x": 302,
+        "right": 979,
+        "y": 163.375,
+        "bottom": 658.5,
+        "width": 677,
+        "height": 495.125
+      },
+      "left": {
+        "x": 24,
+        "right": 294,
+        "y": 163.375,
+        "bottom": 658.5,
+        "width": 270,
+        "height": 495.125
+      },
+      "right": {
+        "x": 987,
+        "right": 1327,
+        "y": 163.375,
+        "bottom": 658.5,
+        "width": 340,
+        "height": 495.125
+      },
+      "canvas": {
+        "x": 303,
+        "right": 978,
+        "y": 164.375,
+        "bottom": 657.5,
+        "width": 675,
+        "height": 493.125
+      },
+      "scrollWidth": 1351,
+      "clientWidth": 1351
+    },
+    {
+      "route": "/lab?editor=1",
+      "width": 1920,
+      "height": 1080,
+      "url": "http://localhost:3054/lab?editor=1",
+      "header": {
+        "x": 120,
+        "right": 1800,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1680,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 120,
+        "right": 1800,
+        "y": 80.1875,
+        "bottom": 873.765625,
+        "width": 1680,
+        "height": 793.578125
+      },
+      "footer": {
+        "x": 120,
+        "right": 1800,
+        "y": 873.765625,
+        "bottom": 949.28125,
+        "width": 1680,
+        "height": 75.515625
+      },
+      "editor": {
+        "x": 120,
+        "right": 1800,
+        "y": 92.1875,
+        "bottom": 817.765625,
+        "width": 1680,
+        "height": 725.578125
+      },
+      "stage": {
+        "x": 398,
+        "right": 1452,
+        "y": 163.375,
+        "bottom": 801.765625,
+        "width": 1054,
+        "height": 638.390625
+      },
+      "left": {
+        "x": 120,
+        "right": 390,
+        "y": 163.375,
+        "bottom": 801.765625,
+        "width": 270,
+        "height": 638.390625
+      },
+      "right": {
+        "x": 1460,
+        "right": 1800,
+        "y": 163.375,
+        "bottom": 801.765625,
+        "width": 340,
+        "height": 638.390625
+      },
+      "canvas": {
+        "x": 399,
+        "right": 1451,
+        "y": 164.375,
+        "bottom": 800.765625,
+        "width": 1052,
+        "height": 636.390625
+      },
+      "scrollWidth": 1920,
+      "clientWidth": 1920
+    },
+    {
+      "route": "/lab?editor=1",
+      "width": 2560,
+      "height": 1440,
+      "url": "http://localhost:3054/lab?editor=1",
+      "header": {
+        "x": 440,
+        "right": 2120,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1680,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 440,
+        "right": 2120,
+        "y": 80.1875,
+        "bottom": 944.1875,
+        "width": 1680,
+        "height": 864
+      },
+      "footer": {
+        "x": 440,
+        "right": 2120,
+        "y": 944.1875,
+        "bottom": 1019.703125,
+        "width": 1680,
+        "height": 75.515625
+      },
+      "editor": {
+        "x": 440,
+        "right": 2120,
+        "y": 92.1875,
+        "bottom": 817.765625,
+        "width": 1680,
+        "height": 725.578125
+      },
+      "stage": {
+        "x": 718,
+        "right": 1772,
+        "y": 163.375,
+        "bottom": 801.765625,
+        "width": 1054,
+        "height": 638.390625
+      },
+      "left": {
+        "x": 440,
+        "right": 710,
+        "y": 163.375,
+        "bottom": 801.765625,
+        "width": 270,
+        "height": 638.390625
+      },
+      "right": {
+        "x": 1780,
+        "right": 2120,
+        "y": 163.375,
+        "bottom": 801.765625,
+        "width": 340,
+        "height": 638.390625
+      },
+      "canvas": {
+        "x": 719,
+        "right": 1771,
+        "y": 164.375,
+        "bottom": 800.765625,
+        "width": 1052,
+        "height": 636.390625
+      },
+      "scrollWidth": 2560,
+      "clientWidth": 2560
+    },
+    {
+      "route": "/sign-in",
+      "width": 375,
+      "height": 812,
+      "url": "http://localhost:3054/sign-in",
+      "header": {
+        "x": 20,
+        "right": 355,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 335,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 20,
+        "right": 355,
+        "y": 80.1875,
+        "bottom": 567.375,
+        "width": 335,
+        "height": 487.1875
+      },
+      "footer": {
+        "x": 20,
+        "right": 355,
+        "y": 567.375,
+        "bottom": 764.390625,
+        "width": 335,
+        "height": 197.015625
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 375,
+      "clientWidth": 375
+    },
+    {
+      "route": "/sign-in",
+      "width": 1280,
+      "height": 720,
+      "url": "http://localhost:3054/sign-in",
+      "header": {
+        "x": 80,
+        "right": 1200,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 80,
+        "right": 1200,
+        "y": 80.1875,
+        "bottom": 547.75,
+        "width": 1120,
+        "height": 467.5625
+      },
+      "footer": {
+        "x": 80,
+        "right": 1200,
+        "y": 547.75,
+        "bottom": 699.734375,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1280,
+      "clientWidth": 1280
+    },
+    {
+      "route": "/sign-in",
+      "width": 1366,
+      "height": 768,
+      "url": "http://localhost:3054/sign-in",
+      "header": {
+        "x": 123,
+        "right": 1243,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 123,
+        "right": 1243,
+        "y": 80.1875,
+        "bottom": 547.75,
+        "width": 1120,
+        "height": 467.5625
+      },
+      "footer": {
+        "x": 123,
+        "right": 1243,
+        "y": 547.75,
+        "bottom": 699.734375,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1366,
+      "clientWidth": 1366
+    },
+    {
+      "route": "/sign-in",
+      "width": 1920,
+      "height": 1080,
+      "url": "http://localhost:3054/sign-in",
+      "header": {
+        "x": 400,
+        "right": 1520,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 400,
+        "right": 1520,
+        "y": 80.1875,
+        "bottom": 728.1875,
+        "width": 1120,
+        "height": 648
+      },
+      "footer": {
+        "x": 400,
+        "right": 1520,
+        "y": 728.1875,
+        "bottom": 880.171875,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 1920,
+      "clientWidth": 1920
+    },
+    {
+      "route": "/sign-in",
+      "width": 2560,
+      "height": 1440,
+      "url": "http://localhost:3054/sign-in",
+      "header": {
+        "x": 720,
+        "right": 1840,
+        "y": 0,
+        "bottom": 80.1875,
+        "width": 1120,
+        "height": 80.1875
+      },
+      "main": {
+        "x": 720,
+        "right": 1840,
+        "y": 80.1875,
+        "bottom": 944.1875,
+        "width": 1120,
+        "height": 864
+      },
+      "footer": {
+        "x": 720,
+        "right": 1840,
+        "y": 944.1875,
+        "bottom": 1096.171875,
+        "width": 1120,
+        "height": 151.984375
+      },
+      "editor": null,
+      "stage": null,
+      "left": null,
+      "right": null,
+      "canvas": null,
+      "scrollWidth": 2560,
+      "clientWidth": 2560
+    },
+    {
+      "fullscreen": {
+        "header": {
+          "x": 24,
+          "right": 1342,
+          "y": 0,
+          "bottom": 80.1875,
+          "width": 1318,
+          "height": 80.1875
+        },
+        "main": {
+          "x": 24,
+          "right": 1342,
+          "y": 80.1875,
+          "bottom": 543.484375,
+          "width": 1318,
+          "height": 463.296875
+        },
+        "footer": {
+          "x": 24,
+          "right": 1342,
+          "y": 543.484375,
+          "bottom": 646.1875,
+          "width": 1318,
+          "height": 102.703125
+        },
+        "editor": {
+          "x": 24,
+          "right": 1342,
+          "y": 92.1875,
+          "bottom": 487.484375,
+          "width": 1318,
+          "height": 395.296875
+        },
+        "stage": {
+          "x": 0,
+          "right": 1366,
+          "y": 0,
+          "bottom": 768,
+          "width": 1366,
+          "height": 768
+        },
+        "left": {
+          "x": 24,
+          "right": 294,
+          "y": 163.375,
+          "bottom": 471.484375,
+          "width": 270,
+          "height": 308.109375
+        },
+        "right": {
+          "x": 302,
+          "right": 994,
+          "y": 163.375,
+          "bottom": 471.484375,
+          "width": 692,
+          "height": 308.109375
+        },
+        "canvas": {
+          "x": 1,
+          "right": 1365,
+          "y": 1,
+          "bottom": 767,
+          "width": 1364,
+          "height": 766
+        },
+        "scrollWidth": 1366,
+        "clientWidth": 1366
+      },
+      "height": 768
+    },
+    {
+      "fullscreenEditor": {
+        "header": {
+          "x": 24,
+          "right": 1342,
+          "y": 0,
+          "bottom": 80.1875,
+          "width": 1318,
+          "height": 80.1875
+        },
+        "main": {
+          "x": 24,
+          "right": 1342,
+          "y": 80.1875,
+          "bottom": 540.984375,
+          "width": 1318,
+          "height": 460.796875
+        },
+        "footer": {
+          "x": 24,
+          "right": 1342,
+          "y": 540.984375,
+          "bottom": 643.6875,
+          "width": 1318,
+          "height": 102.703125
+        },
+        "editor": {
+          "x": 0,
+          "right": 1366,
+          "y": 0,
+          "bottom": 768,
+          "width": 1366,
+          "height": 768
+        },
+        "stage": {
+          "x": 278,
+          "right": 1018,
+          "y": 71.1875,
+          "bottom": 752,
+          "width": 740,
+          "height": 680.8125
+        },
+        "left": {
+          "x": 0,
+          "right": 270,
+          "y": 71.1875,
+          "bottom": 752,
+          "width": 270,
+          "height": 680.8125
+        },
+        "right": {
+          "x": 1026,
+          "right": 1366,
+          "y": 71.1875,
+          "bottom": 752,
+          "width": 340,
+          "height": 680.8125
+        },
+        "canvas": {
+          "x": 279,
+          "right": 1017,
+          "y": 72.1875,
+          "bottom": 751,
+          "width": 738,
+          "height": 678.8125
+        },
+        "scrollWidth": 1366,
+        "clientWidth": 1366
+      }
+    }
+  ]
+}
