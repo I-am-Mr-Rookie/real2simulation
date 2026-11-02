@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 11:00 Dhaka: controller
+- Koushik: go on N49 (semantic room rebuild). Dispatched N49-orch295 (Opus high 60, due 11:53), cap $3.
+- Koushik on the GPU dot: green whenever the GPU is up (working or idle) with a live mm:ss countdown to sleep; passed to N48.
+- Koushik asked for the highest effort levels of the product agent models; product agent (Build/agent/core.py) sends no effort parameter, so defaults apply. Controller testing.
+
 ## 2026-11-02 10:50 Dhaka: controller (Koushik decision)
 - Koushik Nov 2 (replaces the per-object SF3D caption rule): show "MODEL-GENERATED shapes · Powered by Stability AI" once per lab view, not under each object; footer, README, NOTICE and licence copy unchanged. Also: wheel scroll must work outside the 3D canvas; Template trials button goes inside the toolbar ribbon. Dispatched N50-orch294 (Sol high 30, due 2026-11-02T11:12:04+06:00).
 - N49 room rebuild still awaiting Koushik's go.
