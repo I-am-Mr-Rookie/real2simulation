@@ -1,0 +1,28 @@
+- note: SYNTHETIC local QA. Actual workspace components and worktree API. Paid execution disabled. No private rooms.
+- region "Private workspace":
+  - complementary "Workspace sidebar":
+    - group "Sidebar panes":
+      - button "Go to":
+      - button "Workspace":
+  - button "Sidebar":
+  - heading "Private workspace" [level=1]
+  - status "GPU status unavailable":
+    - generic: GPU status unavailable
+  - button "Agent & tools":
+    - generic: Agent & tools
+  - region "Files":
+    - heading "Files" [level=2]
+    - text: Upload video
+    - button "Upload video"
+    - paragraph: "Accepted: mp4, mov or webm; up to 200 MB and 120 s."
+    - alert: Daily room limit reached (3 per day). Try again tomorrow.
+    - list:
+      - button "Preview SYNTHETIC-room.mp4"
+      - strong: SYNTHETIC-room.mp4
+      - generic: 2.2 KB, 2.0 s
+      - button "Build my lab" [active]
+      - generic "File actions for SYNTHETIC-room.mp4":
+  - status
+  - generic "Advanced single-clip tools"
+  - text: Empty · no scene
+- alert

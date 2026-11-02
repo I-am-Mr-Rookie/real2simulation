@@ -1,0 +1,36 @@
+{
+  "label": "SYNTHETIC",
+  "paid_execution": "disabled",
+  "events": [
+    {
+      "method": "POST",
+      "path": "/rooms",
+      "status": 202
+    },
+    {
+      "method": "POST",
+      "path": "/rooms",
+      "status": 202
+    },
+    {
+      "method": "POST",
+      "path": "/rooms",
+      "status": 202
+    },
+    {
+      "method": "POST",
+      "path": "/rooms",
+      "status": 429
+    },
+    {
+      "method": "POST",
+      "path": "/rooms",
+      "status": 429
+    }
+  ],
+  "counter": {
+    "day": "2026-11-03",
+    "count": 3
+  },
+  "job_count": 3
+}

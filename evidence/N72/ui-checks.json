@@ -1,0 +1,41 @@
+{
+  "label": "SYNTHETIC local QA",
+  "component": "Unchanged PrivateWorkspace + createLive Files components",
+  "transport": "Isolated local Next.js webpack dev fixture to worktree FastAPI, loopback only; no deployed auth changes",
+  "desktop": {
+    "alert": {
+      "bottom": 282.90625,
+      "left": 198.5,
+      "right": 811.96875,
+      "top": 255.71875
+    },
+    "documentWidth": 1425,
+    "message": "Daily room limit reached (3 per day). Try again tomorrow.",
+    "viewport": {
+      "height": 900,
+      "width": 1440
+    },
+    "visible": true
+  },
+  "mobile": {
+    "alert": {
+      "bottom": 374.375,
+      "left": 68,
+      "right": 344,
+      "top": 323.1875
+    },
+    "documentWidth": 360,
+    "message": "Daily room limit reached (3 per day). Try again tomorrow.",
+    "viewport": {
+      "height": 812,
+      "width": 375
+    },
+    "visible": true
+  },
+  "consoleErrors": [],
+  "notes": [
+    "Actual server admissions seeded: 3. Desktop fourth request and 375 px fifth request both refused.",
+    "Room run_job replaced by admission-only stub; reserve, enqueue and remote functions fail closed. No paid execution.",
+    "Pre-existing 375 px file metadata column collapses vertically. Alert wraps cleanly and remains fully visible."
+  ]
+}
