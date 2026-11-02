@@ -49,6 +49,8 @@ stated licence, YouTube downloads, NC, ND. Owner clips are private except approv
   (GPT-6.1 Sol) to Codex. On a 429/quota error: record once, no new worker of that vendor until its refresh time.
 - Codex quota rule (Koushik, Nov 2): if a Codex (GPT/Sol) worker fails to start or reports quota/usage exhausted, do not
   retry; tell Koushik at once (he applies a manual reset). Then resume on his word.
+- Worker report rule (Koushik, Nov 2): workers are pre-authorized to send their one completion line to the controller chat
+  (WORKER_CONTRACT.md Finish). Always send it; never skip it for lack of per-run approval.
 - Routing rule (Koushik, Nov 2): testing, debugging, fixing, QA and infra rows go to GPT-6.1 Sol (better and cheaper
   there); new builds and ambitious, reasoning-heavy features go to Claude.
 - Git: worktree .worktrees/<RID>, branch run/<RID>; controller rebases, checks Owns, runs tests/build, ff-merges,

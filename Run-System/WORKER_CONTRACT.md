@@ -32,3 +32,6 @@ work_stopped_at, reported_at; check with `python Run-System/worker_timebox.py ch
   paid calls, skipped, risks.
 - Silent chat. Send one message to the controller chat 01a1882d-3481-7ce3-8f88-45c942e341cd, exactly:
   `<RID> <DONE|PARTIAL|BLOCKED> - <absolute REPORT.md path>`. If messaging is unavailable, make that line your final answer.
+- Koushik's standing approval (Nov 2): this controller message is explicitly authorized for every worker run. Send it with
+  send_message_to_thread without asking; do not withhold it as "needs user approval". Only if the tool truly fails
+  (error, not policy doubt) fall back to the final-answer line. Reason: the message saves the controller discovery time.
