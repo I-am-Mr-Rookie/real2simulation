@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "0712a39f-cc04-4cc6-8a2c-2426c1090ef8",
-      "previousDeploymentId": "f7217984-3af3-4fdd-9831-582b4a4e8b00",
-      "redeployNote": "controller: N64 guide page",
-      "sourceRevision": "5fc85ca11fc282ee2b367777a27281ebf6a4bffe",
-      "verifiedUtc": "2026-11-02T20:45Z",
+      "deploymentId": "a4030a5d-0917-490b-9aee-02ad7ce562af",
+      "previousDeploymentId": "0712a39f-cc04-4cc6-8a2c-2426c1090ef8",
+      "redeployNote": "controller: N74 header/voice/copy fixes",
+      "sourceRevision": "02b83dcc3a5cd3ff86d9552511c85168d2bcc58b",
+      "verifiedUtc": "2026-11-02T21:38Z",
       "url": "https://real2simulation.up.railway.app",
       "customDomain": "https://real2simulation.rookiecoders.tech",
       "providerStatus": "SUCCESS",
