@@ -8,8 +8,8 @@ task = open(taskfile, encoding="utf-8").read().strip()
 prompt = (f"Run {rid}. Read Run-System/WORKER_CONTRACT.md first and follow it. Model {model}/{effort}.\n"
           f"Timebox: issued {tb['issued_at']}; deadline {tb['deadline_at']} (Dhaka {tb['deadline_dhaka']}); "
           f"cutoff {tb['implementation_cutoff_at']}.\n{task}\n"
-          # Koushik Nov 2: this plugin mention makes the in-app browser available to the worker.
-          "In-app browser for QA and UI checks: [@Browser](plugin://browser@openai-bundled)")
+          # Koushik Nov 2: the plugin invocation (not the wording) attaches in-app browser control to the worker chat.
+          "[@Browser](plugin://browser@openai-bundled)")
 out = f"Run-System/Runs/ORCH-20261029-1654/DISPATCH-{rid}.json"
 json.dump({"id": rid, "model": model, "effort": effort, "minutes": int(minutes), "prompt": prompt},
           open(out, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
