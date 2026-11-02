@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 04:10 Dhaka: N74 and N75 accepted; DEV api e1546d11, web a4030a5d
+- N74-orch319 DONE: 375 px header can wrap (no overflow), home copy now says imperfect scale is labelled with uncertainty, voice shows mic-request/recording/transcribing states, real-object note clears on toggle off. O1: no race found (sync localStorage write; lab reads per ask). 274 Node tests, build ok. Real Clerk signed-in header recheck on DEV still to do.
+- N75-orch320 DONE: classroom SAMPLE now seeds and backfills a shared RM02 pack (23 objects, 9 furniture, 4 SF3D meshes), no per-user inference; user edits preserved. 4 SF3D jobs ledgered, about $1.37 conservative estimate. Meshes are coarse, not photoreal. 614 Python tests pass.
+- Deployed: web a4030a5d (N74), api e1546d11 (N75); verify.py exit 0.
+
 ## 2026-11-03 03:50 Dhaka: N73 accepted; N74 and N75 dispatched
 - N73-orch318 DONE (QA only, ff-merged): Wonder picker and routing confirmed (1 Spark + 1 Wonder turn, about $0.02), Reset, replay nav, storage/room-limit copy, editor tools and /guide pass. Findings: F1 P2 classroom SAMPLE has 0 objects and no SF3D meshes; F2 P2 signed-in header overflows at 375 px; F3 home still says "we abstain"; F4 voice says Transcribing before mic; F5 real-object note stays after toggle off; O1 Wonder selection reverted once. Unverified: awake GPU countdown, true browser zoom, voice end to end.
 - N74-orch319 (Sol high, 30 min) fixes F2 to F5 and O1, sent to the N64 chat with a Sol model override. N75-orch320 (Sol high, 60 min) gives the SAMPLE room a one-time RM02 shell plus SF3D meshes (GPU up to $3, ledgered), sent to the N72 chat.
