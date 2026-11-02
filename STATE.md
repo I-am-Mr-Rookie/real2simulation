@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 14:10 Dhaka: controller
+- Koushik authorized N53-orch298 to run until 15:00 Dhaka (original deadline 14:43). Owner timebox extension: at acceptance, a deadline miss up to 15:00 is accepted as owner-approved, not a contract failure.
+
 ## 2026-11-02 13:45 Dhaka: controller
 - Koushik: "go N53" (Codex reset applied). Reissued N53-orch298 timebox (due 14:43) and resumed it in its own thread 01a19b19-5b22-76d2-b548-8eaf79302789; turn inProgress.
 
