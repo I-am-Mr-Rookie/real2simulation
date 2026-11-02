@@ -1,5 +1,14 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 20:55 Dhaka · Controller: N59 PARTIAL; spend review N62 dispatched
+- N59-orch304 returned PARTIAL (timing PASS). It worked in C:/Users/HP/.codex/worktrees/n59-orch304, branch run/N59-orch304, rebased onto main. Every changed file is within Owns.
+- Built: background Stable Fast 3D upgrades of the 4 largest kept objects after the room is ready, reserved on the canonical ledger first; the editor swaps meshes in live.
+- Live RM04 timings: room ready 379 s, all 4 meshes at 509 s. Room-ready target (about 270 s) NOT MET: the L4 start timed out, then fell back to A10G; SAM detection took 118 s.
+- Cost upper bound $2.46 (Modal $2.02, Meta SAM $0.44); all 182 ledger rows settled.
+- In-app browser unavailable again (N59 was dispatched before the new rule), so Playwright was used. Meshes look coarse.
+- Not merged yet: spend code needs a cross-vendor review. N62-orch307 (Claude Opus high, 30 min, read-only) dispatched, due 21:24 Dhaka.
+- N63 added (Sol high, 60 min): fix the latency, restart recovery and the N62 findings.
+
 ## 2026-11-02 21:00 Dhaka · Controller: N61 UI recheck accepted
 - N61-orch306's in-app-browser recheck on DEV (5ad1fa2f) is accepted at 97eb0e0a; timing receipt PASS. F01 to F04 confirmed at 1366 and 375 px using the fixture n43-mvym1kik+clerk_test@example.com, with no new findings. Screenshots stay local.
 - Test projects left in the fixture: 17f7acaa (N60) and c46d33ba (N61, snapshot-only).
