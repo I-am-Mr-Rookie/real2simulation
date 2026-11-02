@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 15:50 Dhaka: controller
+- Accepted N54 (Sol, timebox PASS): header/main/footer share a 1680 px cap with 24/12 px gutters; editor canvas height bounded 420 to 640 px desktop, 320 to 480 px mobile; fullscreen still fills. Two CSS files only. Exception: 26 public before/after JPGs (2.3 MB, public template pages only) committed despite the no-media rule; accepted as small public evidence. node 442 pass, build pass. DEV web e506f17a (bea88410), verify pass. No workers running; workspace and lab editor redesign waits for Koushik's approval.
+
 ## 2026-11-02 15:40 Dhaka: controller
 - Koushik (Nov 2): workspace home also gets a model picker button in the prompt box (like Base44): model options only, each with short pros and cons. No UI worker for the private workspace or lab editor until Koushik approves the designs; controller prepared lab-editor critique and Mobbin references for his decision.
 
