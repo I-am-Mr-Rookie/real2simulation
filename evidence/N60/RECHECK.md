@@ -1,88 +1,69 @@
-# N60: N58 DEV re-check
+# N60: actual in-app-browser DEV re-check
 
-QA report complete; verification is limited as stated below. No application code changed.
+This reissued UI-only pass supersedes the previous headed-Chromium report. No Chromium or application-code change in this pass. N61 owns the earlier F01 to F04; those are not re-reviewed or certified here.
 
-## Method and boundaries
+## Scope and evidence
 
-- DEV: https://real2simulation.up.railway.app, 2026-11-02. Deployment revisions in the dispatch were not independently attested.
-- Requested in-app browser failed once with the exact error `Browser is not available: iab`. Used the worker-contract fallback: headed Playwright Chromium, with incremental click/type/scroll/resize actions and visual screenshot inspection. This is **not** an in-app-browser verification.
-- Signed into the existing Clerk DEV fixture from N46, not Koushik's account. No private owner project, prohibited room, or N06 clip was opened. Account menu was inspected only; no settings or sign-out action used.
-- Checked 1366 x 900 and 375 x 850; additionally checked the Add menu at 375 x 667. Switched Light/Dark using the visible Colour theme control, not injected theme attributes.
-- Free actions only: existing sample/result reads, local simulation, synthetic trial and CPU fitting, one new test project, its rename and preview snapshot. No uploads, paid model calls, measurements/tracking jobs, room builds, object reconstruction, agent turns, microphone/transcription, deploy or purchases.
-- Screenshots remain local and uncommitted beside this file. The new test-only project `17f7acaaed9945aab6b782b3c93c91cc`, **N60 QA snapshot-only lab**, remains in the DEV fixture account. It was not deleted under the no-destructive-actions boundary.
+- Window: 2026-11-02 14:37:36 to 15:07:36 UTC; cutoff 15:02:36 UTC.
+- DEV: https://real2simulation.up.railway.app. Controller supplied web deployment 5ad1fa2f at main f7cf60ae; no independent deployment attestation.
+- Actual ChatGPT in-app browser, desktop 1366 x 900 and phone 375 x 850. Clicked controls, typed without sending, scrolled with wheel input, resized, switched Light/Dark, and inspected screenshots.
+- Signed into the existing N46 fixture n43-mvym1kik+clerk_test@example.com with its approved test code. No new account, owner session, private owner project, prohibited room or N06 clip used. Fixture clarification caused no delay.
+- Existing data only. Quota showed 0 of 20 uploads left; no upload attempted. Existing N60 snapshot-only project, classroom sample and ST03 result used. No new test project created in this pass.
+- Free synthetic trial, local physics and CPU fit only. No paid model, tracking/measurement job, room build, real-object operation, agent turn, microphone/transcription, sharing, account setting or deployment action.
+- Screenshots are local-only, uncommitted JPEGs named iab-*.jpg beside this report. Earlier PNGs are not evidence for this pass.
+- Theme restored to its original System choice; temporary viewport override reset. Local-only simulation changes were discarded by leaving the editor.
 
-## N58 fixes, one line each
+## N58 re-check, one row per fix
 
-`CONFIRMED` means the specified visible behavior was observed on DEV, not every backend/local-test claim in N58. An unperformed check is not honestly classifiable as NOT FIXED.
+CONFIRMED UI is scoped to the observed visible behavior, not all backend assertions in N58. PARTIAL does not mean a demonstrated regression.
 
-| N58 fix | DEV result and observed evidence |
+| N58 fix | Actual in-app-browser result |
 |---|---|
-| P2-01 | **CONFIRMED, visible path:** seeded RM04 classroom point cloud and real classroom view PNG render; image reports 518 x 294 and both picking controls become enabled after load. No missing-image error. Archive hash, legacy repair and missing-user-archive behavior were not tested on DEV. |
-| P2-02 | **CONFIRMED:** phone toolbar wraps inside the viewport; Add menu scrolls to Templates at both 375 x 850 and 375 x 667, Light and Dark. Template trials is reachable, not clipped by the tool container. |
-| P2-03 | **CONFIRMED:** new snapshot-only N60 project appears in the main grid, with its image and Saved lab status, without Show empty. Its Open action is separately broken, F02 below. |
-| P2-04 | **CONFIRMED:** raw collisions initially unchecked; hiding then showing the scan leaves collisions unchecked; enabling collisions leaves visibility checked. Restored collisions off. This checks controls/state, not physical collider accuracy. |
-| P2-05 | **CONFIRMED:** one unsubmitted A4 marker and pressed A4 tool survive Objects/Room switches and panel collapse/reopen. No second point, calibration or real-object step submitted. Different-room-ID reset was not tested. |
-| P2-06 | **CONFIRMED:** existing recorded apple slider seeks index 4 to 0.167 s; graph marker/time update while paused. A local simulated trace also seeks index 5 to 0.042 s and CPU Fit trace returns SIMULATED acceleration with +/- uncertainty and covariance/model caveats. Recorded fit shows 2330 +/- 110 px/s^2, 1 sigma, scale-unverified and playback-clock caveats. Phone value visibility remains poor, F03 below. |
-| P2-07 | **CONFIRMED:** one visible workspace header; its Colour theme and actual Clerk menu work, including visible Manage account/Sign out choices. Advanced single-clip tools starts folded and opens/closes while retaining the tools. No account action executed. |
-| P3-01 | **CONFIRMED:** editor uses the illustrated pendulum mark, not R2S text, in both Light and Dark. |
-| P3-02 | **CONFIRMED:** Rename opens inline input with Save/Cancel, blank Save keeps the input and Enter a project name error, Escape cancels without a dialog; N60 title saved and persisted across navigation. Backend-error retention was not deliberately fault-injected. |
-| P3-03 | **CONFIRMED, available safety paths:** saved snapshots take precedence over stored paths. No fabricated overlay was shown on another video. The sample's legacy relative path is hidden by its valid snapshot. ST03 has a stored frame track but its matching file has no project association, so its card has no preview at all, F04 below. A visible legacy-plot card and a rendered matching-source frame overlay were not available for full visual confirmation. |
-| P3-04 | **CONFIRMED, UI only:** editor Agent drawer exposes Voice; Add closes on Escape and outside-canvas click. Real recording, permissions, WAV/transcription and microphone release were not exercised because this run excludes those calls. |
-| P3-05 | **CONFIRMED:** at 375 px the prompt picker truncates, typed text remains in its card, and Send remains visible; no horizontal page overflow in checked Light/Dark workspace or measured replay. No typed prompt was sent. |
-| Snapshot deletion | **NOT VERIFIED:** human UI cannot establish removal of underlying image bytes/MIME sidecar. No deletion or remote filesystem inspection performed. N58's local assertion is not DEV evidence. |
+| P2-01 | **CONFIRMED UI:** classroom point cloud and classroom PNG load at both widths, image natural size 518 x 294. A4/object controls become available with the image. Scale unverified and MODEL-ESTIMATED gravity with +/- 0.3477 deg remain visible. Archive hash, legacy repair and missing-user-archive backend cases not exercised. |
+| P2-02 | **CONFIRMED UI:** phone toolbar wraps. Add sits above the room sheet and scrolls to Template trials; desktop and phone Dark screenshots show the bottom reached by wheel scrolling. No menu clipping like the original finding. |
+| P2-03 | **CONFIRMED UI:** pre-existing N60 QA snapshot-only lab appears in the main grid with its thumbnail and Saved lab status, without Show empty. Did not test its Open destination, which belongs to N61. |
+| P2-04 | **CONFIRMED UI:** loaded room raw collisions initially off. Hide/show scan does not enable collisions; enabling collisions leaves visibility on. Restored scan visible and collisions off. Checked phone and desktop controls; physical collider accuracy not tested. |
+| P2-05 | **CONFIRMED UI:** one unsubmitted A4 marker and pressed tool survive Objects/Room tab changes and panel collapse/reopen at phone width; repeated marker/tab retention on desktop. No second mark or calibration request submitted. No second room ID used. |
+| P2-06 | **CONFIRMED UI:** existing ST03 recorded trace seeks by keyboard to sample 4, 0.167 s. Local simulated ball trace seeks to sample 5, 0.042 s; paused Fit trace works. Existing result displays 2.71 +/- 0.42 m/s^2, 1 sigma, scale-assumed and playback-clock caveats at both widths. Local fit displays SIMULATED and its covariance/model caveat, not a calibrated gravity claim. |
+| P2-07 | **CONFIRMED UI:** single visible workspace header with palette and actual Clerk account menu. Menu shows fixture email, Manage account and Sign out; no account action taken. Advanced single-clip tools starts folded and opens/closes at both widths with stages intact. |
+| P3-01 | **CONFIRMED UI:** illustrated pendulum brand mark appears in the editor in Light and Dark, not R2S text. |
+| P3-02 | **CONFIRMED UI, read-only subset:** existing N60 test project's Rename opens inline with Save/Cancel. Blank Save retains input and Enter a project name error; Escape and Cancel dismiss correctly. Checked desktop and phone. No valid title change or deliberate backend error was submitted, so persisted-save/API-error retention is not newly certified. |
+| P3-03 | **PARTIAL:** normal ST03 card shows its frame-space track on the ST03 video at desktop/phone; saved N57/sample thumbnails take precedence. No fabricated overlay observed. Legacy plot-only and wrong-source fixtures were not manufactured or mutated; these branches are not fully certified. N61's separate F04 regression is not re-reviewed. |
+| P3-04 | **PARTIAL:** editor Agent exposes Voice. Add closes on Escape and outside click, including phone. Real recording, WAV/transcription, permission failure and mic release untested under the no-call/read-only scope. |
+| P3-05 | **CONFIRMED UI, prompt card:** typed phone prompt and truncated model pill stay inside the card; Send remains visible in Light/Dark, with no horizontal document overflow. The expanded model picker has a separate new defect, F06. |
 
-## New findings
+Snapshot disk deletion/MIME cleanup remains outside this read-only UI pass and unverified. No deletion performed.
 
-No P1 observed within these free paths. These are QA findings only, not implemented repairs.
+## New findings only, not N61 F01 to F04
 
-### F01, P2: classroom room card opens only the apple result
+No new P1 found in the exercised free paths.
 
-1. Sign into the DEV fixture and click **classroom room and falling apple**, shown with a Room lab icon and a classroom snapshot.
-2. The URL remains the workspace. Recent activity loads **SAMPLE (RECORDED): falling apple**, with only **3D replay, redo with changes**.
-3. That action opens the experiment replay, not the room. No room choice is offered on the card or its Open menu.
+### F06, P2: phone model picker is behind the permanent rail
 
-The sample room itself works when reached directly at `/lab?editor=1&room=e704985d4073435fb816941a6ab12e82`; that URL was obtained from the sample metadata loaded by the page, not from a private project. Ordinary card navigation does not expose it.
+1. At 375 px, close the expanded sidebar, then click the Muse Spark model pill in the workspace prompt.
+2. The model dialog opens across x=12 to x=348, but the permanent left rail covers its left portion up to about x=50.
+3. Model names, Standard/Contributor labels, Intelligence/Speed/Cost labels and leading pros/cons text are visibly cut off. Reproduced in Light and Dark. The page has no horizontal overflow, so a document-width check misses this.
+4. Desktop picker is readable. No model choice was changed.
 
-Likely files: `Build/web/src/workspace/projects.mjs:33` (`groupStatus`, newest-job selection) and `Build/web/src/workspace/live-view.mjs:474-482` (`ProjectCard` single Open destination). The sample room list row lacks a created/created_at timestamp, while its companion experiment has created, so the experiment wins the status selection.
+Likely file: Build/web/src/workspace/workspace.css:294,631,744. Mobile rail is z-index 31; fixed .lv-pickpop is z-index 30 and starts at .75rem instead of respecting the rail or rendering above it. ModelPicker is in Build/web/src/workspace/live-view.mjs:400.
 
-Local screenshot: `sample-card-opens-apple-not-room-1366-light.png`.
+Local screenshots: iab-model-picker-375-light.jpg, iab-model-picker-375-dark.jpg, iab-model-picker-1366-dark.jpg.
 
-### F02, P2: Saved lab cannot reopen its editor
+### F05, P3: replay summary promotes an assumed size to a known size
 
-1. Create an experiment project through the free mode card, rename it **N60 QA snapshot-only lab**.
-2. Visit `/lab?editor=1&project=17f7acaaed9945aab6b782b3c93c91cc`, run/pause a local simulated scene and wait for the preview save. Observed snapshot PUT returns 200.
-3. Return to workspace. The main-grid card correctly says **Saved lab** and shows a snapshot.
-4. Click the card (or its Open menu). It opens the generic agent drawer and stays in workspace; no editor opens. Reproduced at 375 and 1366 px.
+1. Open the existing Experiment: ST03-trim.mp4 result, then 3D replay, redo with changes.
+2. Workspace correctly labels scale assumed (user size): apple width assumed for QA 8 cm. Editor fit footer also correctly retains scale assumed (user size).
+3. The editor's large scene summary instead says Track MEASURED in metres from your known size. The input is an assumption, not a verified known size. This is contradictory provenance copy, not evidence that the numerical fitter is wrong.
+4. Seen at desktop; the same summary exists in the phone view, where the sheet can obscure it.
 
-Likely file: `Build/web/src/workspace/live-view.mjs:478-482`. The editor href requires ready status plus a job ID. Snapshot-only saved status has no job, so Open falls through to openAgent rather than a project editor route. This is distinct from N58's repaired visibility/status.
+Likely file: Build/web/src/workspace/measure.mjs:152,160. trajectoryScene chooses the stronger wording solely from trajectory.unit === m, without inspecting the scale provenance. Preserve the assumed-scale caveat in the summary.
 
-Local screenshots: `snapshot-only-card-375-dark.png`, `snapshot-only-open-opens-agent-375-dark.png`, `snapshot-only-open-opens-agent-1366-light.png`.
+Local screenshot: iab-measured-replay-1366-light.jpg, also iab-measured-replay-375-light.jpg for the narrower layout.
 
-### F03, P3: phone trace seeking hides the actual numerical reading
+## Numbers and limits
 
-1. Open the existing recorded apple replay and pause/seek the Recorded trace slider.
-2. At 375 px the time and graph marker update, but the value caption is entirely absent. At index 4 the DOM caption is **Tracked object reading (px): -49.500 at t = 0.17 s. MEASURED**, but its computed display is none and its box is zero-sized.
-3. Desktop also ellipsizes the caption, with no title exposing the full text. A first-time phone user cannot read the selected y value or its MEASURED label from the graph.
-
-Likely file: `Build/web/src/lab-editor/lab-editor.css:70,111`; phone media rule hides `.le-graph figcaption`. Keep a compact wrapping/stacked readout rather than removing it.
-
-Local screenshots: `recorded-seek-375-light.png`, `recorded-seek-1366.png`.
-
-### F04, P3: existing ready ST03 experiment has no video or track preview
-
-1. In the DEV fixture workspace, inspect **Experiment: ST03-trim.mp4**, marked Ready.
-2. Its card is just a generic graph icon, unlike the snapshot cards. There is no trajectory or video preview.
-3. The page's loaded metadata includes a frame-space track for file `42fcf3760e5742efa729285887bbbe13`. Its files response contains that exact video as ST03-trim.mp4, but with project_id null. The experiment references the same file ID.
-
-Likely file: `Build/web/src/workspace/live-view.mjs:519-520`. Project-card files are selected only by file.project_id, ignoring a room/experiment's file_id. This affects pre-existing/detached-source data; not a newly uploaded-video test. It must not be fixed by overlaying a path on an unrelated file.
-
-Local screenshot: `fresh-session-cards-1366-light.png`.
-
-## Numbers, text and remaining limits
-
-- Quota display was consistent with the loaded API: 20 used, 0 of 20 uploads remaining. No inference that the account was newly empty.
-- Synthetic template trial's actual reveal was 9.810 +/- 0.0000737 m/s^2, explicitly simulated, with 1 sigma and the independent position/time uncertainty model. These are app/fitter outputs, not physical accuracy claims.
-- No em dash found in checked workspace, room, replay or synthetic-trial visible text. No claim about unchecked pages or untriggered errors.
-- The long session saw one sample snapshot 500 and one older N57 snapshot 404. Both loaded normally at natural width 640 in a fresh signed-in session, with no failed responses there. Treat these as transient observations, not a reproducible ranked defect. No JavaScript page error was captured in the monitored session. Empty agent-report GETs returned 404; no report had been generated.
-- Room scale remains unverified and geometry/gravity remain MODEL-ESTIMATED. No known-size measurement, physical calibration, hosted-model readiness or paid end-to-end claim is made.
-- Backend deletion cleanup, the unavailable in-app browser, actual voice behavior and the P3-03 fixture permutations above remain unverified. No source tests/build were run because no application source changed.
+- Synthetic Free fall trial actually returned 9.810 +/- 0.0000737 m/s^2, labelled simulated, 1 sigma, with independent position/time uncertainty and not-calibrated caveats.
+- Local ball trace CPU summary actually returned 2.76 +/- 0.16 m/s^2, explicitly SIMULATED and a quadratic summary not necessarily gravity or a valid model for collisions/oscillation. This trace included floor interaction, so it is not a gravity-calibration result.
+- No em dash found in inspected workspace, room, recorded replay, synthetic trial or fit text. No claim about untriggered errors or unchecked pages.
+- On first opening an already completed experiment, Queued/Processing briefly appeared before Done. It did not persist on repeat; no new tracking action was invoked. Treat as an unranked status-copy observation, not proof of a new paid job.
+- No actual voice/transcription, destructive cleanup, physical calibration, provider-readiness or full backend regression verification. No code tests/build needed for report-only changes.
