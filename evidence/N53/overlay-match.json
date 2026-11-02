@@ -1,0 +1,10 @@
+{
+  "comparison": "UTF-8 source with CRLF normalized to LF",
+  "all_match": true,
+  "files": {
+    "Build/reconstruction/live_room.py": true,
+    "Build/reconstruction/room_shell.py": true,
+    "Build/reconstruction/_sam_mask_codec.py": true,
+    "Build/gpu/sf3d.py": true
+  }
+}

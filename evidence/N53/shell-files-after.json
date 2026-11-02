@@ -1,0 +1,18 @@
+{
+  "label": "MEASURED local production file path; cached public RM02; GPU and SAM network not run",
+  "codec": "fused canonical",
+  "finish_s": 1.3047714000567794,
+  "shell_including_save_s": 23.12861889996566,
+  "shell_stage_timing_s": {
+    "detection_s": 14.578,
+    "lift_s": 7.984,
+    "geometry_s": 0.532,
+    "shapes_s": 0.0,
+    "total_s": 23.094
+  },
+  "save_s": {
+    "scene.json": 0.003371099941432476,
+    "room.json": 0.0018758999649435282
+  },
+  "objects": 23
+}

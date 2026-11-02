@@ -132,6 +132,29 @@ def test_hosted_instance_mask_reaches_the_finished_shell_colour():
     assert chairs[0]["look"]["color"] == "#20bf40"
 
 
+def test_sf3d_timeout_keeps_boxes_and_skips_further_paid_shapes():
+    from Build.gpu.sf3d import GenerationTimeout
+    from tests.reconstruction.test_object_lift import room_npz
+    npz, hit = room_npz()
+    _, _, room, scene = rs.live_room.analyse(npz)
+    rows, cols = np.nonzero(hit)
+    box = [int(cols.min()), int(rows.min()), int(cols.max()), int(rows.max())]
+    calls = []
+
+    def generate(png):
+        calls.append(png)
+        raise GenerationTimeout("synthetic 90 s budget")
+
+    result, shell, glbs = rs.build(npz, room, scene,
+        lambda png, noun, w, h: [box] if noun in ("table", "chair") else [], generate)
+    assert len(calls) == 1 and not glbs
+    assert len(shell["kept"]) == 2 and all(k["shape"] == "box" for k in shell["kept"])
+    assert "earlier timeout" in shell["kept"][1]["fallback_reason"]
+    assert all(o["shape"]["type"] == "box" for o in result["objects"] if o["id"].startswith("room-object-"))
+    assert set(shell["timing_s"]) == {"detection_s", "lift_s", "geometry_s", "shapes_s", "total_s"}
+    assert all(t >= 0 for t in shell["timing_s"].values())
+
+
 def test_chair_front_faces_nearest_table_and_sofa_preserves_its_long_axis():
     items = [{"noun": "chair", "proxy": proxy()}, {"noun": "table", "proxy": proxy((2, 0.4, 0))},
              {"noun": "table", "proxy": proxy((-5, 0.4, 0))}, {"noun": "sofa", "proxy": proxy((0, 0.5, 2))}]

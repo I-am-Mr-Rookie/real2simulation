@@ -1,0 +1,20 @@
+........................................................................ [ 61%]
+.............................................                            [100%]
+============================== warnings summary ===============================
+..\..\..\..\..\AppData\Local\uv\cache\archive-v0\BsQFophWTBwsQmfo\Lib\site-packages\starlette\testclient.py:45
+  C:\Users\HP\AppData\Local\uv\cache\archive-v0\BsQFophWTBwsQmfo\Lib\site-packages\starlette\testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+tests/reconstruction/test_object_lift.py::ObjectLift::test_endpoint_appends_block_and_validates
+tests/reconstruction/test_object_lift.py::ObjectLift::test_lift_measures_visible_box
+tests/reconstruction/test_object_lift.py::ObjectLift::test_sf3d_failure_keeps_the_box_with_reason
+tests/reconstruction/test_room_shell.py::RoomShell::test_shell_endpoint_keeps_furniture_drops_rest
+tests/reconstruction/test_room_shell.py::RoomShell::test_shell_endpoint_keeps_furniture_drops_rest
+tests/reconstruction/test_room_shell.py::RoomShell::test_shell_endpoint_keeps_furniture_drops_rest
+tests/reconstruction/test_room_shell.py::RoomShell::test_shell_endpoint_keeps_furniture_drops_rest
+tests/reconstruction/test_semantic_shell.py::test_sf3d_timeout_keeps_boxes_and_skips_further_paid_shapes
+  C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N53-orch298\Build\reconstruction\object_lift.py:185: DeprecationWarning: 'mode' parameter is deprecated and will be removed in Pillow 13 (2026-10-15)
+    Image.fromarray(rgba, "RGBA").save(buf, "PNG")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+117 passed, 9 warnings in 23.74s

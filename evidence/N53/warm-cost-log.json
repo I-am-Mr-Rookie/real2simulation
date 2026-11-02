@@ -1,0 +1,50 @@
+{
+ "schema": "s06e-scene-log/1",
+ "app_id": "r2s-ondemand",
+ "gpu": "A10G",
+ "cpu_cores": 2,
+ "memory_gib": 16,
+ "timing_s": {
+  "client_round_trip_s": 26.46,
+  "container_boot_s": -512.655,
+  "cold_start_s": 1.187,
+  "model_load_s": 18.278,
+  "cold_start_to_model_ready_s": 19.465,
+  "inference_s": 2.918,
+  "function_s": 23.237,
+  "container_python_alive_s": 537.079
+ },
+ "gpu_seconds": {
+  "estimated": 1437.079,
+  "upper_bound": 926.46,
+  "billed": null
+ },
+ "cost": {
+  "rates_usd_per_s": {
+   "A10G": 0.000306,
+   "L4": 0.000222,
+   "CPU": 1.31e-05,
+   "Memory": 2.22e-06
+  },
+  "estimated": {
+   "total_usd": 0.52844267,
+   "by_resource_usd": {
+    "A10G": 0.43974616,
+    "CPU": 0.03765147,
+    "Memory": 0.05104504
+   }
+  },
+  "upper_bound": {
+   "total_usd": 0.34067777,
+   "by_resource_usd": {
+    "A10G": 0.28349668,
+    "CPU": 0.02427325,
+    "Memory": 0.03290785
+   }
+  },
+  "billed": {
+   "status": "unavailable",
+   "reason": "not yet reconciled (Modal hourly report lags)"
+  }
+ }
+}

@@ -1,0 +1,145 @@
+{
+  "label": "MEASURED one public RM02 backend job on DEV host, temporary new-code process; no deploy",
+  "worker_budget_usd": 5,
+  "visitor_ledger_untouched": true,
+  "browser_upload_s": null,
+  "input_duration_s": 6.0,
+  "input_bytes": 292379,
+  "initial_modal_stats": {
+    "r2s-ondemand": {
+      "runners": 0,
+      "backlog": 0
+    },
+    "r2s-sf3d": {
+      "runners": 0,
+      "backlog": 0
+    }
+  },
+  "wall_s": 271.5611487450078,
+  "status": {
+    "state": "done",
+    "updated_at": "2026-11-02T08:42:50Z",
+    "gpu_job": "e32c277fcd0a4b05a6d8d511bcbb4b6b",
+    "frames": 16,
+    "gpu_attempts": [
+      {
+        "gpu": "L4",
+        "reservation_id": "80b4cb5b73b1481e84b7880656032cdc",
+        "state": "failed",
+        "error": "RuntimeError: no GPU capacity/result within 90s on L4",
+        "cancellation_unconfirmed": false,
+        "estimated_usd": 0.28098891,
+        "wall_s": 90.376
+      },
+      {
+        "gpu": "A10G",
+        "reservation_id": "b447d8234ced47d8ad0581e34e7d577c",
+        "state": "done",
+        "estimated_usd": 0.34382976,
+        "wall_s": 35.04
+      }
+    ],
+    "timing_s": {
+      "client_round_trip_s": 35.031,
+      "container_boot_s": 3.109,
+      "cold_start_s": 7.078,
+      "model_load_s": 20.598,
+      "cold_start_to_model_ready_s": 27.677,
+      "inference_s": 3.261,
+      "function_s": 25.912,
+      "container_python_alive_s": 29.881
+    },
+    "gpu": "A10G",
+    "stage_timing_s": {
+      "sampling_s": 0.967,
+      "gpu_s": 125.479,
+      "finish_s": 0.499,
+      "shell_s": 144.616,
+      "total_s": 271.561
+    },
+    "peak_allocated_bytes": 8523223552,
+    "gpu_name": "NVIDIA A10",
+    "estimated_usd": 0.62481867,
+    "scale": "scale unverified",
+    "gravity": "MODEL-ESTIMATED",
+    "shell": "done"
+  },
+  "shell_timing_s": {
+    "detection_s": 50.198,
+    "lift_s": 3.959,
+    "geometry_s": 0.202,
+    "shapes_s": 90.253,
+    "total_s": 144.612
+  },
+  "sf3d_objects": [
+    {
+      "id": "room-object-1",
+      "shape": "box",
+      "sf3d": null,
+      "fallback_reason": "SF3D: GenerationTimeout: SF3D gave no result within 90s (startup/inference budget)"
+    },
+    {
+      "id": "room-object-2",
+      "shape": "box",
+      "sf3d": null,
+      "fallback_reason": "SF3D: RuntimeError: SF3D skipped after earlier timeout: SF3D gave no result within 90s (startup/inference budget)"
+    },
+    {
+      "id": "room-object-3",
+      "shape": "box",
+      "sf3d": null,
+      "fallback_reason": "SF3D: RuntimeError: SF3D skipped after earlier timeout: SF3D gave no result within 90s (startup/inference budget)"
+    },
+    {
+      "id": "room-object-4",
+      "shape": "box",
+      "sf3d": null,
+      "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+    },
+    {
+      "id": "room-object-5",
+      "shape": "box",
+      "sf3d": null,
+      "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+    },
+    {
+      "id": "room-object-6",
+      "shape": "box",
+      "sf3d": null,
+      "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+    },
+    {
+      "id": "room-object-7",
+      "shape": "box",
+      "sf3d": null,
+      "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+    },
+    {
+      "id": "room-object-8",
+      "shape": "box",
+      "sf3d": null,
+      "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+    },
+    {
+      "id": "room-object-9",
+      "shape": "box",
+      "sf3d": null,
+      "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+    },
+    {
+      "id": "room-object-10",
+      "shape": "box",
+      "sf3d": null,
+      "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+    }
+  ],
+  "estimated_usd": 1.12006113,
+  "ledger_rows": 179,
+  "deployed_source_unchanged": true,
+  "overlay_sha256": {
+    "Build/reconstruction/live_room.py": "f218afa03e8e9bf2bdeead18e3b07f981fbdd9fb5802ccafe41de1a0b7c0ebc9",
+    "Build/reconstruction/room_shell.py": "54a41e1be5efe3c37e2e29b003e0aeec73514319ac2510f2c1a62c2d78b00b1d",
+    "Build/reconstruction/_sam_mask_codec.py": "891b92215bf1b3a1e537f24be5b851e12f572e31b9d7ff3336bbbea20c0f6f55",
+    "Build/gpu/sf3d.py": "3692eccfd97d8edf3e457e5d8a587fd2bc61756775a4865262637d742dda9e6a"
+  }
+}

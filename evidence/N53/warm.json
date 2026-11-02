@@ -1,0 +1,145 @@
+{
+ "label": "MEASURED one public RM02 backend job on DEV host, temporary new-code process; no deploy",
+ "worker_budget_usd": 5,
+ "visitor_ledger_untouched": true,
+ "browser_upload_s": null,
+ "input_duration_s": 6.0,
+ "input_bytes": 292379,
+ "initial_modal_stats": {
+  "r2s-ondemand": {
+   "runners": 0,
+   "backlog": 1
+  },
+  "r2s-sf3d": {
+   "runners": 0,
+   "backlog": 0
+  }
+ },
+ "wall_s": 254.65544221922755,
+ "status": {
+  "state": "done",
+  "updated_at": "2026-11-02T08:51:09Z",
+  "gpu_job": "52af34a6687a4259b06a9811a1da3703",
+  "frames": 16,
+  "gpu_attempts": [
+   {
+    "gpu": "L4",
+    "reservation_id": "2c11f949eba644e3a94632ca5d8504e1",
+    "state": "failed",
+    "error": "RuntimeError: no GPU capacity/result within 90s on L4",
+    "cancellation_unconfirmed": false,
+    "estimated_usd": 0.28097226,
+    "wall_s": 90.341
+   },
+   {
+    "gpu": "A10G",
+    "reservation_id": "cfb5d50455c0446db18af2af326e9581",
+    "state": "done",
+    "estimated_usd": 0.34067777,
+    "wall_s": 26.462
+   }
+  ],
+  "timing_s": {
+   "client_round_trip_s": 26.46,
+   "container_boot_s": -512.655,
+   "cold_start_s": 1.187,
+   "model_load_s": 18.278,
+   "cold_start_to_model_ready_s": 19.465,
+   "inference_s": 2.918,
+   "function_s": 23.237,
+   "container_python_alive_s": 537.079
+  },
+  "gpu": "A10G",
+  "stage_timing_s": {
+   "sampling_s": 0.987,
+   "gpu_s": 116.841,
+   "finish_s": 0.494,
+   "shell_s": 136.333,
+   "total_s": 254.655
+  },
+  "peak_allocated_bytes": 8527275008,
+  "gpu_name": "NVIDIA A10",
+  "estimated_usd": 0.62165003,
+  "scale": "scale unverified",
+  "gravity": "MODEL-ESTIMATED",
+  "shell": "done"
+ },
+ "shell_timing_s": {
+  "detection_s": 41.904,
+  "lift_s": 3.967,
+  "geometry_s": 0.2,
+  "shapes_s": 90.256,
+  "total_s": 136.327
+ },
+ "sf3d_objects": [
+  {
+   "id": "room-object-1",
+   "shape": "box",
+   "sf3d": null,
+   "fallback_reason": "SF3D: GenerationTimeout: SF3D gave no result within 90s (startup/inference budget)"
+  },
+  {
+   "id": "room-object-2",
+   "shape": "box",
+   "sf3d": null,
+   "fallback_reason": "SF3D: RuntimeError: SF3D skipped after earlier timeout: SF3D gave no result within 90s (startup/inference budget)"
+  },
+  {
+   "id": "room-object-3",
+   "shape": "box",
+   "sf3d": null,
+   "fallback_reason": "SF3D: RuntimeError: SF3D skipped after earlier timeout: SF3D gave no result within 90s (startup/inference budget)"
+  },
+  {
+   "id": "room-object-4",
+   "shape": "box",
+   "sf3d": null,
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+  },
+  {
+   "id": "room-object-5",
+   "shape": "box",
+   "sf3d": null,
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+  },
+  {
+   "id": "room-object-6",
+   "shape": "box",
+   "sf3d": null,
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+  },
+  {
+   "id": "room-object-7",
+   "shape": "box",
+   "sf3d": null,
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+  },
+  {
+   "id": "room-object-8",
+   "shape": "box",
+   "sf3d": null,
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+  },
+  {
+   "id": "room-object-9",
+   "shape": "box",
+   "sf3d": null,
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+  },
+  {
+   "id": "room-object-10",
+   "shape": "box",
+   "sf3d": null,
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached"
+  }
+ ],
+ "estimated_usd": 1.11689456,
+ "ledger_rows": 179,
+ "deployed_source_unchanged": true,
+ "overlay_sha256": {
+  "Build/reconstruction/live_room.py": "f218afa03e8e9bf2bdeead18e3b07f981fbdd9fb5802ccafe41de1a0b7c0ebc9",
+  "Build/reconstruction/room_shell.py": "54a41e1be5efe3c37e2e29b003e0aeec73514319ac2510f2c1a62c2d78b00b1d",
+  "Build/reconstruction/_sam_mask_codec.py": "891b92215bf1b3a1e537f24be5b851e12f572e31b9d7ff3336bbbea20c0f6f55",
+  "Build/gpu/sf3d.py": "3692eccfd97d8edf3e457e5d8a587fd2bc61756775a4865262637d742dda9e6a"
+ }
+}

@@ -1,0 +1,86 @@
+{
+  "cold": {
+    "wall_s": 271.5611487450078,
+    "estimated_usd": "1.12006113",
+    "settled_rows": 179,
+    "per_provider": {
+      "Modal": 3,
+      "Meta Model API": 176
+    },
+    "events": {
+      "furniture_lift": {
+        "calls": 1,
+        "thread_duration_sum_s": 3.6997153060510755,
+        "first_to_last_span_s": 3.6997153060510755
+      },
+      "json_save": {
+        "calls": 12,
+        "thread_duration_sum_s": 0.0037009865045547485,
+        "first_to_last_span_s": 271.56090726703405
+      },
+      "mask_decode_validation": {
+        "calls": 176,
+        "thread_duration_sum_s": 7.597481177188456,
+        "first_to_last_span_s": 44.87098516896367
+      },
+      "sam_network": {
+        "calls": 176,
+        "thread_duration_sum_s": 187.4507900569588,
+        "first_to_last_span_s": 49.675029278732836
+      },
+      "sf3d": {
+        "calls": 1,
+        "thread_duration_sum_s": 90.23480778560042,
+        "first_to_last_span_s": 90.23480778560042
+      }
+    },
+    "physics": {
+      "tables": 5,
+      "isolated_passed": 5,
+      "full_scene_passed": 4
+    }
+  },
+  "warm": {
+    "wall_s": 254.65544221922755,
+    "estimated_usd": "1.11689456",
+    "settled_rows": 179,
+    "per_provider": {
+      "Modal": 3,
+      "Meta Model API": 176
+    },
+    "events": {
+      "furniture_lift": {
+        "calls": 1,
+        "thread_duration_sum_s": 3.6827113609761,
+        "first_to_last_span_s": 3.6827113609761
+      },
+      "json_save": {
+        "calls": 12,
+        "thread_duration_sum_s": 0.0033748475834727287,
+        "first_to_last_span_s": 254.65526152029634
+      },
+      "mask_decode_validation": {
+        "calls": 176,
+        "thread_duration_sum_s": 7.762015868909657,
+        "first_to_last_span_s": 37.27690403815359
+      },
+      "sam_network": {
+        "calls": 176,
+        "thread_duration_sum_s": 154.1743275569752,
+        "first_to_last_span_s": 41.35703230369836
+      },
+      "sf3d": {
+        "calls": 1,
+        "thread_duration_sum_s": 90.23946886509657,
+        "first_to_last_span_s": 90.23946886509657
+      }
+    },
+    "physics": {
+      "tables": 5,
+      "isolated_passed": 5,
+      "full_scene_passed": 4
+    }
+  },
+  "total_estimated_usd": "2.23695569",
+  "notes": "Event spans overlap; do not add them. JSON saves include status and scene/room writes."
+}

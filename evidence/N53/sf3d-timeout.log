@@ -1,0 +1,34 @@
+2026-11-02 10:36:43+06:00
+2026-11-02 10:36:43+06:00 ==========
+2026-11-02 10:36:43+06:00 == CUDA ==
+2026-11-02 10:36:43+06:00 ==========
+2026-11-02 10:36:43+06:00
+2026-11-02 10:36:43+06:00 CUDA Version 12.4.1
+2026-11-02 10:36:43+06:00
+2026-11-02 10:36:43+06:00 Container image Copyright (c) 2016-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+2026-11-02 10:36:43+06:00
+2026-11-02 10:36:43+06:00 This container image and its contents are governed by the NVIDIA Deep Learning Container License.
+2026-11-02 10:36:43+06:00 By pulling and using the container, you accept the terms and conditions of this license:
+2026-11-02 10:36:43+06:00 https://developer.nvidia.com/ngc/nvidia-deep-learning-container-license
+2026-11-02 10:36:43+06:00
+2026-11-02 10:36:43+06:00 A copy of this license is made available in this container at /NGC-DL-CONTAINER-LICENSE for your convenience.
+2026-11-02 10:36:43+06:00
+2026-11-02 10:40:37+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5 The cache for model files in Transformers v4.22.0 has been updated. Migrating your old cache. This is a one-time only operation. You can interrupt this and resume the migration later on by calling `transformers.utils.move_cache()`.
+2026-11-02 10:40:37+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5
+2026-11-02 10:40:37+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5
+2026-11-02 10:40:37+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5 0it [00:00, ?it/s]
+2026-11-02 10:40:37+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5
+2026-11-02 10:40:37+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5 0it [00:00, ?it/s]
+2026-11-02 10:41:36+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5 /usr/local/lib/python3.11/site-packages/timm/models/layers/__init__.py:49: FutureWarning: Importing from timm.models.layers is deprecated, please import via timm.layers
+2026-11-02 10:41:36+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5   warnings.warn(f"Importing from {__name__} is deprecated, please import via timm.layers", FutureWarning)
+2026-11-02 10:41:46+06:00 Task's current input(s) ["in-01M6D8Q4ZMM0D2HCWVVTT3SHKD:1793594201094-0"] cancelled because: Task's current input in-01M6D8Q4ZMM0D2HCWVVTT3SHKD:1793594201094-0 hit its timeout of 300s
+2026-11-02 10:41:46+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5 [modal-client] 2026-11-02T04:41:46+0000 Received a cancellation signal while processing input ('in-01M6D8Q4ZMM0D2HCWVVTT3SHKD:1793594201094-0',)
+2026-11-02 10:41:46+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5 WARNING:modal-client:Received a cancellation signal while processing input ('in-01M6D8Q4ZMM0D2HCWVVTT3SHKD:1793594201094-0',)
+2026-11-02 10:41:46+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5 [modal-client] 2026-11-02T04:41:46+0000 Successfully canceled input ('in-01M6D8Q4ZMM0D2HCWVVTT3SHKD:1793594201094-0',)
+2026-11-02 10:41:46+06:00 fc-01M6D8Q4ZDRJF73YQP2VF8QKA5 WARNING:modal-client:Successfully canceled input ('in-01M6D8Q4ZMM0D2HCWVVTT3SHKD:1793594201094-0',)
+2026-11-02 10:41:54+06:00 fc-01M6D90F4K18VS2G8MAESRF8DP /usr/local/lib/python3.11/site-packages/open_clip/factory.py:128: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+2026-11-02 10:41:54+06:00 fc-01M6D90F4K18VS2G8MAESRF8DP   checkpoint = torch.load(checkpoint_path, map_location=map_location)
+2026-11-02 10:41:57+06:00 fc-01M6D90F4K18VS2G8MAESRF8DP Triangle reduction: 0.16191709844559585
+2026-11-02 10:41:58+06:00 fc-01M6D90F4K18VS2G8MAESRF8DP After Remesh 874 1760
+2026-11-02 10:42:00+06:00 fc-01M6D90W95HRJ98YVM509F6F3M Triangle reduction: 0.12619888944977284
+2026-11-02 10:42:00+06:00 fc-01M6D90W95HRJ98YVM509F6F3M After Remesh 725 1442

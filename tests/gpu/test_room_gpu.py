@@ -33,6 +33,7 @@ def test_l4_default_and_actual_gpu_prices():
     assert cost(100, "L4", 2, 16)["total_usd"] == 0.028372
     assert cost(100, "A10G", 2, 16)["total_usd"] == 0.036772
     assert live_room.ESTIMATE_USD == cost(1440, "L4", 2, 16)["total_usd"]
+    assert live_room.ROOM_START_BUDGET_S == 90  # shorter wait, unchanged conservative reservation
 
 
 def test_fallback_uses_existing_deployed_function(monkeypatch):
@@ -60,6 +61,19 @@ def test_l4_budget_cancels_before_retry_choice(monkeypatch):
         live_room.modal_reconstruct([b"frame"])
     fn.spawn.return_value.cancel.assert_called_once_with(terminate_containers=True)
     assert live_room.retry_on_a10g(error.value)
+
+
+def test_unconfirmed_cancellation_never_admits_fallback(monkeypatch):
+    fn = Mock()
+    timeout = type("TimeoutError", (Exception,), {})
+    fn.spawn.return_value.get.side_effect = timeout("still queued")
+    fn.spawn.return_value.cancel.side_effect = OSError("synthetic disconnected")
+    monkeypatch.setitem(sys.modules, "modal", SimpleNamespace(
+        Function=SimpleNamespace(from_name=Mock(return_value=fn)), exception=SimpleNamespace(TimeoutError=timeout)))
+    with pytest.raises(live_room.CancellationUnconfirmed) as error:
+        live_room.modal_reconstruct([b"frame"])
+    assert not live_room.retry_on_a10g(error.value)
+    fn.with_options.assert_not_called()
 
 
 @pytest.mark.parametrize("builtin", [False, True])

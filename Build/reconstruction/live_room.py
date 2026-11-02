@@ -12,6 +12,7 @@ import os
 import subprocess
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import numpy as np
@@ -27,9 +28,9 @@ from Build.api import gpu as gpu_jobs  # noqa: E402
 from Build.guardrails import daily_cap  # noqa: E402
 
 APP, FALLBACK_GPU, CPU, MEM_GIB, IDLE_S = "r2s-ondemand", "A10G", 2, 16, 900  # ondemand.py + scene_job resources
-# get() timeout covers queue wait + cold start + inference (A10G room jobs measured 31 to 77 s end to end),
-# so 120 s would cancel healthy cold L4 starts; 240 s still keeps a capacity stall bounded.
-ROOM_START_BUDGET_S = 240
+# shortcut: get() also includes inference, use a scheduler start signal if healthy cold starts exceed 90 s.
+# N47 waited 240 s for L4; cancel after 90 s before the A10G retry.
+ROOM_START_BUDGET_S = 90
 FRAMES, FRAME_W, MAX_POINTS = 16, 512, 20000  # N49: 16 frames (was 8; N31 8 frames peaked 8.03 GB on A10G)
 A4_LONG_M, A4_SD_M = 0.297, 0.002  # ISO 216 A4 long edge 297 mm, +-2 mm tolerance
 # MapAnything output is nominally metric, so a real A4 edge rescales it by about 1. Outside 0.5 to 2 the clicks are not
@@ -39,17 +40,27 @@ CLICK_SD_PX = 2.0  # assumed 1-sigma click error per reference endpoint, on the 
 ESTIMATE_USD = cost(300 + 240 + IDLE_S, GPU, CPU, MEM_GIB)["total_usd"]  # timeout + startup + idle: worst case
 
 
+class CancellationUnconfirmed(RuntimeError):
+    """Do not retry or release conservative spend when remote cancellation could not be confirmed."""
+
+
 def sample_frames(video, duration_s, n=FRAMES):
-    """n evenly spaced PNG frames (bytes), width FRAME_W."""
-    out = []
-    for i in range(n):
+    """n evenly spaced PNG frames (bytes), width FRAME_W; at most two decodes at once."""
+    def frame(i):
         cmd = ["ffmpeg", "-v", "error", "-ss", f"{duration_s * (i + 0.5) / n:.3f}", "-i", str(video), "-frames:v", "1",
                "-vf", f"scale={FRAME_W}:-2", "-f", "image2pipe", "-c:v", "png", "-"]
         data = subprocess.run(cmd, capture_output=True, check=True, timeout=120).stdout
         if data[:8] != b"\x89PNG\r\n\x1a\n":
             raise ValueError(f"no frame at sample {i}")
-        out.append(data)
-    return out
+        return data
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        pending = [pool.submit(frame, i) for i in range(n)]
+        try:
+            return [f.result() for f in pending]  # preserve sample order even when seeks finish out of order
+        finally:
+            for f in pending:
+                f.cancel()  # a bad frame must not leave the remaining video decodes queued
 
 
 @functools.lru_cache(maxsize=2)  # N49: 1.2 s per 35 MB npz, called per detection by the shell (minutes per room)
@@ -208,7 +219,10 @@ def modal_reconstruct(frames, gpu=GPU):
     try:
         return call.get(timeout=ROOM_START_BUDGET_S if gpu == GPU else 300 + 240)
     except (TimeoutError, modal.exception.TimeoutError):
-        call.cancel(terminate_containers=True)  # cancel first, so the retry cannot overlap this input
+        try:
+            call.cancel(terminate_containers=True)  # cancel first, so the retry cannot overlap this input
+        except Exception as e:
+            raise CancellationUnconfirmed("GPU cancellation unconfirmed; full reservation retained") from e
         if gpu == GPU:
             raise RuntimeError(f"no GPU capacity/result within {ROOM_START_BUDGET_S}s on {gpu}") from None
         raise
@@ -227,9 +241,13 @@ def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruc
     after(job_dir) (N42): one automatic lab shell pass (its paid calls are ledgered inside); a failure keeps the room."""
     job_dir = Path(job_dir)
     attempts = []
+    started_at = time.monotonic()
+    stages = {}
     try:
         set_status(job_dir, state="sampling")
         frames = sample_frames(video, duration_s)
+        stages["sampling_s"] = round(time.monotonic() - started_at, 3)
+        stage_start = time.monotonic()
         for device in (GPU, FALLBACK_GPU):
             estimate = cost(300 + 240 + IDLE_S, device, CPU, MEM_GIB)["total_usd"]
             rid = daily_cap.reserve("Modal", estimate, f"N30 room {job_dir.name} {device}", path=cap_db)
@@ -246,6 +264,7 @@ def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruc
                 attempt["state"] = "done"
             except Exception as e:
                 attempt.update(state="failed", error=f"{type(e).__name__}: {e}"[:300])
+                attempt["cancellation_unconfirmed"] = isinstance(e, CancellationUnconfirmed)
                 if device != GPU or not retry_on_a10g(e):
                     raise
             finally:  # conservative: includes each GPU pool's own 15 minute idle window, also on failure
@@ -254,6 +273,8 @@ def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruc
                     if started:
                         actual = (log["cost"]["upper_bound"]["total_usd"] if log else
                                   cost(time.time() - call + IDLE_S, device, CPU, MEM_GIB)["total_usd"])
+                        if attempt.get("cancellation_unconfirmed"):
+                            actual = estimate
                     try:
                         daily_cap.settle(rid, actual, path=cap_db)
                     except ValueError:  # already settled by the reaper: never charge twice
@@ -266,10 +287,14 @@ def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruc
                         raise RuntimeError(gpu_jobs.REASON)
             if log:
                 break
+        stages["gpu_s"] = round(time.monotonic() - stage_start, 3)
+        stage_start = time.monotonic()
         (job_dir / "mapanything.npz").write_bytes(r["npz"])
         _write(job_dir / "cost-log.json", log)
         out = finish(job_dir, ref)
+        stages["finish_s"] = round(time.monotonic() - stage_start, 3)
         shell = {}
+        stage_start = time.monotonic()
         if after:
             set_status(job_dir, state="building lab shell")
             try:
@@ -277,7 +302,10 @@ def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruc
                 shell = {"shell": "done"}
             except Exception as e:  # noqa: BLE001  the room is still usable; the Build lab shell button retries
                 shell = {"shell": "failed", "shell_error": f"{type(e).__name__}: {e}"[:300]}
+        stages["shell_s"] = round(time.monotonic() - stage_start, 3)
+        stages["total_s"] = round(time.monotonic() - started_at, 3)
         set_status(job_dir, state="done", timing_s=log["timing_s"], gpu=log["gpu"],
+                   stage_timing_s=stages,
                    peak_allocated_bytes=r.get("peak_allocated_bytes"), gpu_name=r.get("gpu_name"),
                    estimated_usd=round(sum(a["estimated_usd"] for a in attempts), 8),
                    scale=out["room"]["scale"]["status"], gravity=out["room"]["gravity"]["status"], **shell)

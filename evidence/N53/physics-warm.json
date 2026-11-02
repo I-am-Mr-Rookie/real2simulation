@@ -1,0 +1,108 @@
+{
+  "label": "SIMULATED, scale unverified; full-scene failures remain findings",
+  "tables": 5,
+  "isolated_passed": 5,
+  "full_scene_passed": 4,
+  "drops": [
+    {
+      "table": "room-object-1",
+      "expected_y": 0.60575,
+      "full_scene": {
+        "position": [
+          0.10840000212192535,
+          0.6056817770004272,
+          -1.5580999851226807
+        ],
+        "rests_on_table": true
+      },
+      "isolated_table": {
+        "position": [
+          0.10840000212192535,
+          0.6056817770004272,
+          -1.5580999851226807
+        ],
+        "rests_on_table": true
+      }
+    },
+    {
+      "table": "room-object-4",
+      "expected_y": 0.6036,
+      "full_scene": {
+        "position": [
+          -0.6215000152587891,
+          0.6035317182540894,
+          -2.2053000926971436
+        ],
+        "rests_on_table": true
+      },
+      "isolated_table": {
+        "position": [
+          -0.6215000152587891,
+          0.6035317182540894,
+          -2.2053000926971436
+        ],
+        "rests_on_table": true
+      }
+    },
+    {
+      "table": "room-object-5",
+      "expected_y": 0.11085,
+      "full_scene": {
+        "position": [
+          0.027799999341368675,
+          0.35608136653900146,
+          -2.8459999561309814
+        ],
+        "rests_on_table": false
+      },
+      "isolated_table": {
+        "position": [
+          0.027799999341368675,
+          0.11078108847141266,
+          -2.8459999561309814
+        ],
+        "rests_on_table": true
+      }
+    },
+    {
+      "table": "room-object-8",
+      "expected_y": 0.34405,
+      "full_scene": {
+        "position": [
+          0.5803999900817871,
+          0.34398138523101807,
+          -3.56850004196167
+        ],
+        "rests_on_table": true
+      },
+      "isolated_table": {
+        "position": [
+          0.5803999900817871,
+          0.34398138523101807,
+          -3.56850004196167
+        ],
+        "rests_on_table": true
+      }
+    },
+    {
+      "table": "room-object-9",
+      "expected_y": 0.34925,
+      "full_scene": {
+        "position": [
+          0.6744999885559082,
+          0.3491813540458679,
+          -2.778899908065796
+        ],
+        "rests_on_table": true
+      },
+      "isolated_table": {
+        "position": [
+          0.6744999885559082,
+          0.3491813540458679,
+          -2.778899908065796
+        ],
+        "rests_on_table": true
+      }
+    }
+  ]
+}

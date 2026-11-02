@@ -1,0 +1,50 @@
+{
+  "label": "RECORDED public N47 RM02-trim DEV job; estimates are not provider bills",
+  "total_status_s": 667.0,
+  "status_timestamp_resolution_s": 1,
+  "frames": 8,
+  "upload_s": null,
+  "gpu_attempts": [
+    {
+      "gpu": "L4",
+      "wall_s": 240.25,
+      "estimated_usd": 0.32351039
+    },
+    {
+      "gpu": "A10G",
+      "wall_s": 28.934,
+      "estimated_usd": 0.34158578
+    }
+  ],
+  "successful_gpu_timing_s": {
+    "client_round_trip_s": 28.929,
+    "container_boot_s": 2.545,
+    "cold_start_s": 5.77,
+    "model_load_s": 19.424,
+    "cold_start_to_model_ready_s": 25.194,
+    "inference_s": 1.928,
+    "function_s": 22.388,
+    "container_python_alive_s": 25.612
+  },
+  "sam_calls": 72,
+  "sam_wall_s": 59.029688,
+  "sam_call_duration_sum_s": 57.688757,
+  "post_sam_to_first_sf3d_s": 17.276366,
+  "sf3d_calls": [
+    {
+      "wall_s": 305.260124,
+      "estimated_usd": 0.13431147
+    },
+    {
+      "wall_s": 13.373775,
+      "estimated_usd": 0.02697884
+    },
+    {
+      "wall_s": 2.075264,
+      "estimated_usd": 0.0228242
+    }
+  ],
+  "mask_decode_validation_s": null,
+  "lift_s": null,
+  "shell_save_s": null
+}

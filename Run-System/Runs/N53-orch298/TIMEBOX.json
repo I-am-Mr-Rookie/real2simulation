@@ -1,0 +1,11 @@
+{
+  "id": "N53-orch298",
+  "status": "DONE",
+  "issued_at": "2026-11-02T07:43:16+00:00",
+  "deadline_at": "2026-11-02T09:00:00+00:00",
+  "implementation_cutoff_at": "2026-11-02T08:55:00+00:00",
+  "original_deadline_at": "2026-11-02T08:43:16+00:00",
+  "owner_extension": "Direct user authorization: run until 3 p.m. Dhaka, Nov 2; worker cap $5/job, visitor pool separate",
+  "work_stopped_at": "2026-11-02T08:58:46+00:00",
+  "reported_at": "2026-11-02T08:58:46+00:00"
+}

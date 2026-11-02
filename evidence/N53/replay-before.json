@@ -1,0 +1,10 @@
+{
+  "label": "MEASURED local cached public RM02 replay; no GPU/SAM/SF3D calls",
+  "total_s": 42.958503500092775,
+  "decode_validation_thread_sum_s": 95.95729279983789,
+  "analyse_s": 1.2412898000329733,
+  "lift_s": 7.569794900016859,
+  "sam_calls_replayed": 176,
+  "objects": 23,
+  "scene_sha256": "4027d878accd3bd44e19ac2ac5172e9f9d0c5a5e87b0876cf1b0495c417652fd"
+}

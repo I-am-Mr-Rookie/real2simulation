@@ -7,7 +7,7 @@ from array import array
 from collections.abc import Sequence
 
 # https://github.com/meta-models/meta-sam/tree/9348a8a791d3e5b6417232227e32e10464cdf49f/python
-# Vendored codec, see _sam_mask_codec.LICENSE. Local type/error imports and error construction are adapted.
+# Vendored codec, see _sam_mask_codec.LICENSE. Local types/errors and fused canonical validation are adapted.
 from types import SimpleNamespace as SegmentationMask
 
 InvalidSegmentationMaskError = ValueError
@@ -216,7 +216,7 @@ class _RangeEncoder:
 
 
 class _RangeDecoder:
-    __slots__ = ("_code", "_input", "_low", "_position", "_range", "_scaled")
+    __slots__ = ("_code", "_input", "_low", "_position", "_range", "_scaled", "_canonical")
 
     def __init__(self, input_: bytes) -> None:
         if len(input_) < 4:
@@ -227,6 +227,7 @@ class _RangeDecoder:
         self._range = _MASK_32
         self._code = 0
         self._scaled = 0
+        self._canonical = bytearray()
         for _ in range(4):
             self._code = _u32((self._code << 8) | self._read())
 
@@ -250,6 +251,8 @@ class _RangeDecoder:
                 self._range = _u32(-self._low) & (_BOTTOM - 1)
             else:
                 break
+            # Encoder and decoder have identical low/range states for the decoded symbols.
+            self._canonical.append((self._low >> 24) & _MASK_8)
             self._code = _u32((self._code << 8) | self._read())
             self._low = _u32(self._low << 8)
             self._range = _u32(self._range << 8)
@@ -504,6 +507,8 @@ def _decode_raster(payload: str, width: int, height: int) -> bytes:
             padded[position] = bit
             output[y * width + x] = bit
             _update_counts(counts, offset, bit)
+    if bytes(decoder._canonical) + decoder._low.to_bytes(4, "big") != decoder._input:
+        raise _invalid("Mask payload is not canonical or has invalid finalization.")
     return bytes(output)
 
 
@@ -531,8 +536,6 @@ def decode_mask_to_raster(mask: SegmentationMask) -> bytes:
             coverage = _decode_lossless_raster(mask.payload, width, height)
             return bytes(value >= 129 for value in coverage)
         raster = _decode_raster(mask.payload, width, height)
-        if _encode_raster(raster, width, height) != mask.payload:
-            raise _invalid("Mask payload is not canonical or has invalid finalization.")
         return raster
     except InvalidSegmentationMaskError:
         raise

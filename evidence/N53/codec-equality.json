@@ -1,0 +1,8 @@
+{
+  "label": "MEASURED local serial decode plus strict validation; public RM02 cached replies",
+  "base": "b635d89e",
+  "mask_records": 426,
+  "identical": true,
+  "strict_s": 58.961473000003025,
+  "fused_s": 36.721145699964836
+}

@@ -123,6 +123,37 @@ class AnalyseTests(unittest.TestCase):
         self.assertEqual(len(frames), 3)
         self.assertTrue(all(f.startswith(b"\x89PNG") for f in frames))
 
+    def test_sampling_is_bounded_and_retains_timestamp_order(self):
+        import threading
+        from types import SimpleNamespace
+        lock = threading.Lock()
+        active = peak = 0
+
+        def decode(cmd, **kwargs):
+            nonlocal active, peak
+            with lock:
+                active += 1
+                peak = max(peak, active)
+            stamp = cmd[cmd.index("-ss") + 1]
+            time.sleep(0.02 if float(stamp) < 1 else 0.005)
+            with lock:
+                active -= 1
+            self.assertTrue(kwargs["check"])
+            self.assertEqual(kwargs["timeout"], 120)
+            return SimpleNamespace(stdout=b"\x89PNG\r\n\x1a\n" + stamp.encode())
+
+        with mock.patch.object(live_room.subprocess, "run", side_effect=decode):
+            frames = live_room.sample_frames("synthetic.mp4", 4, n=4)
+        self.assertEqual([frame[8:].decode() for frame in frames], ["0.500", "1.500", "2.500", "3.500"])
+        self.assertEqual(peak, 2)
+        self.assertEqual(active, 0)
+
+    def test_sampling_errors_still_propagate(self):
+        from types import SimpleNamespace
+        with mock.patch.object(live_room.subprocess, "run", return_value=SimpleNamespace(stdout=b"not PNG")):
+            with self.assertRaisesRegex(ValueError, "no frame"):
+                live_room.sample_frames("synthetic.mp4", 4, n=4)
+
 
 class JobTests(unittest.TestCase):
     def setUp(self):
@@ -150,6 +181,8 @@ class JobTests(unittest.TestCase):
         d, s = self.run_job(fake_remote)
         self.assertEqual(s["state"], "done", s)
         self.assertNotIn("shell", s)  # fake remote: no automatic paid shell pass
+        self.assertEqual(set(s["stage_timing_s"]), {"sampling_s", "gpu_s", "finish_s", "shell_s", "total_s"})
+        self.assertTrue(all(v >= 0 for v in s["stage_timing_s"].values()))
         self.assertEqual((s["scale"], s["gravity"]), ("scale unverified", "MODEL-ESTIMATED"))
         [(provider, reserved, actual)] = self.ledger()
         self.assertEqual(provider, "Modal")
@@ -344,6 +377,17 @@ class JobTests(unittest.TestCase):
         self.assertEqual((s["state"], s["code"]), ("failed", "DAILY_CAP"))
         self.assertEqual(remote.call_count, 1)
         self.assertEqual(len(self.ledger()), 1)
+        self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
+
+    def test_unconfirmed_cancel_does_not_retry_or_release_reserved_headroom(self):
+        remote = mock.Mock(side_effect=live_room.CancellationUnconfirmed("synthetic cancel failure"))
+        _, s = self.run_job(remote)
+        self.assertEqual(s["state"], "failed")
+        self.assertEqual(remote.call_count, 1)
+        [(provider, reserved, actual)] = self.ledger()
+        self.assertEqual(provider, "Modal")
+        self.assertEqual(actual, reserved)
+        self.assertTrue(s["gpu_attempts"][0]["cancellation_unconfirmed"])
         self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
 
 

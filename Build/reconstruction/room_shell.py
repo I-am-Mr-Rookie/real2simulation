@@ -6,6 +6,8 @@ Furniture = hosted SAM 3.1 noun prompts on a few keyframes -> N14 box proxy per 
 box extended down to the floor -> small items on top surfaces masked out -> SF3D shape via the N31 path (box fallback
 with reason). Everything else is dropped and counted. Geometry MODEL-ESTIMATED; scale from room.json.
 """
+import time
+
 import numpy as np
 
 from Build.reconstruction import live_room, object_lift
@@ -424,6 +426,8 @@ def wall_objects(yaw, fit, holes, colors=None):
 def build(npz, room, scene, detect, generate=None, glb_url=None):
     """npz bytes + room.json + scene.json -> (scene with shell objects, shell summary, {object id: glb bytes}).
     detect(png, noun, w, h) -> box sequences with optional .mask (or {box, mask}); generate(rgba png) -> SF3D dict or None."""
+    started = time.monotonic()
+    stages = {}
     views = live_room.load_views(npz)
     frames = keyframes(len(views))
     found = {"furniture": [], "features": [], "surfaces": []}
@@ -439,8 +443,12 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
         for (view, noun), boxes in zip(jobs, pool.map(call, jobs)):
             for b in boxes:
                 found["surfaces" if noun in SURFACES else "features" if noun in FEATURES else "furniture"].append((view, noun, b))
+    stages["detection_s"] = round(time.monotonic() - started, 3)
+    stage_start = time.monotonic()
     aligned, rgb, _, _ = live_room.analyse(npz)
     kept, dropped = furniture(npz, room, found["furniture"])
+    stages["lift_s"] = round(time.monotonic() - stage_start, 3)
+    stage_start = time.monotonic()
     face_furniture(kept, np.mean(aligned, axis=0))
     inside = [(c[0], c[2]) for c in room.get("camera_positions_m", [])]
     for it in kept:  # bound the whole oriented item, not just its centre (otherwise chairs protrude through EXTENT walls)
@@ -477,7 +485,10 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
     slab = floor_slab(yaw, shown, hex_color(np.concatenate(floor_rgb)) if floor_rgb else hex_color(rgb[np.abs(aligned[:, 1]) < 0.03]))
     out = {**scene, "objects": [o for o in scene.get("objects", []) if not str(o.get("id", "")).startswith("wall-")]}
     out["objects"] += wall_objects(yaw, shown, holes, colors) + ([slab] if slab else [])
+    stages["geometry_s"] = round(time.monotonic() - stage_start, 3)
+    stage_start = time.monotonic()
     glbs, kept_list = {}, []
+    sf3d_timeout = None
     for n_item, it in enumerate(kept):
         p, noun = it["proxy"], it["noun"]
         out, obj = object_lift.to_scene(out, p, category=noun)
@@ -488,11 +499,16 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
                 raise RuntimeError("SF3D not requested")
             if n_item >= MAX_SF3D:
                 raise RuntimeError(f"SF3D limit ({MAX_SF3D} per room) reached")
+            if sf3d_timeout:
+                raise RuntimeError(f"SF3D skipped after earlier timeout: {sf3d_timeout}")
             gen = generate(object_lift.crop_rgba(npz, it["view"], it["box"], p["mask"]))
             turns, verts, idx, support = object_lift.fit_mesh(gen["vertices"], gen["faces"], p, noun in TOP_SURFACE)
             glbs[obj["id"]] = gen["glb"]
             obj["shape"] = object_lift.mesh_shape(noun, glb_url(obj["id"]) if glb_url else "", turns, verts, idx, support)
         except Exception as e:  # noqa: BLE001  shape is optional: the box is the documented fallback
+            from Build.gpu.sf3d import GenerationTimeout
+            if isinstance(e, GenerationTimeout):
+                sf3d_timeout = str(e)[:200]
             obj["shape"] = {"type": "box", "fallback_reason": f"SF3D: {type(e).__name__}: {e}"[:300]}
         kept_list.append({"id": obj["id"], "category": noun, "views": it["views"], "merged": it.get("merged", []), "points": p["points"],
                           "size_m": obj["size"], "size_sd_m": p["size_sd"], "clutter_px_masked": p.get("clutter_px", 0),
@@ -501,7 +517,10 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
                           "reason": f"main furniture ({noun}), {len(it['views'])} view(s), box reaches the floor",
                           "mask_source": it["mask_source"],
                           "split": it.get("split"), "facing": "MODEL-ESTIMATED toward nearest table or room centre" if noun in ("chair", "sofa") else None})
+    stages["shapes_s"] = round(time.monotonic() - stage_start, 3)
+    stages["total_s"] = round(time.monotonic() - started, 3)
     shell = {"schema": "n39-shell/1", "keyframes": frames, "sam_calls": calls, "sam_cost_usd": round(calls * object_lift.USD_PER_IMAGE, 4),
+             "timing_s": stages,
              "floor": room["floor"]["status"], "yaw_deg": round(float(np.degrees(yaw)), 2), "walls": shown,
              "openings": holes, "opening_detections_off_wall": sum(o is None for o in cand),
              "kept": kept_list, "dropped": sum(dropped.values()), "dropped_reasons": dropped,
