@@ -15,6 +15,7 @@ import re
 import threading
 import time
 import uuid
+from contextlib import contextmanager
 
 from fastapi import APIRouter, Body, Depends
 from fastapi.responses import FileResponse
@@ -25,6 +26,27 @@ from Build.api.workspace.auth import error, require_owner
 from Build.reconstruction import live_room
 
 _ID = re.compile(r"[0-9a-f]{32}")
+ROOM_STARTS_PER_DAY = 3
+
+
+@contextmanager
+def _daily_room_limit(counter, day, limit, message, previous=()):
+    from Build.reconstruction.shape_upgrade import LOCK
+    # shortcut: process-local lock, use a shared lock before adding API worker processes.
+    with LOCK:
+        count = (json.loads(counter.read_text(encoding="utf-8")) if counter.exists() else
+                 {"day": day, "count": sum(c.get("count", 0) for c in previous if c.get("day") == day)})
+        used = count.get("count", 0) if count.get("day") == day else 0
+        if used >= limit:
+            raise error(429, "QUOTA_UPLOADS", message)
+        counter.parent.mkdir(parents=True, exist_ok=True)
+        next_count = {"day": day, "count": used + 1}
+        live_room._write(counter, next_count)
+        try:
+            yield next_count
+        except BaseException:
+            live_room._write(counter, count)
+            raise
 
 
 def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.modal_stats, shell=None) -> APIRouter:
@@ -65,15 +87,19 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
         project_id = payload.get("project_id") or rec["project_id"]
         if project_id is not None:
             db().project(owner, str(project_id))
+        reference = ref_of(payload)
         db().check_storage(owner)
-        job_id = uuid.uuid4().hex
-        d = db().root / "rooms" / owner / job_id
-        d.mkdir(parents=True)
-        live_room.set_status(d, job_id=job_id, state="queued", file_id=rec["id"], project_id=project_id,
-                             created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
-        threading.Thread(target=live_room.run_job, daemon=True,
-                         args=(d, db().path(owner, rec["id"]), rec["duration_s"], owner, ref_of(payload), remote, None,
-                               None, shell)).start()  # positional: tests stub run_job(*a)
+        counter = db().root / "rooms" / owner / "room-starts.json"
+        with _daily_room_limit(counter, db()._day(), ROOM_STARTS_PER_DAY,
+                              f"Daily room limit reached ({ROOM_STARTS_PER_DAY} per day). Try again tomorrow."):
+            job_id = uuid.uuid4().hex
+            d = counter.parent / job_id
+            d.mkdir(parents=True)
+            live_room.set_status(d, job_id=job_id, state="queued", file_id=rec["id"], project_id=project_id,
+                                 created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
+            threading.Thread(target=live_room.run_job, daemon=True,
+                             args=(d, db().path(owner, rec["id"]), rec["duration_s"], owner, reference, remote, None,
+                                   None, shell)).start()  # positional: tests stub run_job(*a)
         return {"job": read(d, "status.json")}
 
     @router.get("/rooms/{job_id}")

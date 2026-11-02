@@ -7,6 +7,8 @@ import subprocess
 import tempfile
 import time
 import unittest
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest import mock
 
@@ -531,6 +533,104 @@ class ApiTests(unittest.TestCase):
                 r = self.c.post("/internal/workspace/rooms", headers=A, json={"file_id": self.file["id"]})
                 self.assertEqual(r.status_code, 202, r.text)
                 thread.return_value.start.assert_called_once()
+                self.assertEqual(json.loads((base / "room-starts.json").read_text())["count"], 1)
+
+    def test_room_start_limit_three_then_refused_without_work_or_slot(self):
+        base = self.dir / "rooms" / "user_synthA"
+        url = "/internal/workspace/rooms"
+        with mock.patch("Build.api.room.threading.Thread") as thread, \
+                mock.patch.object(live_room.daily_cap, "reserve") as reserve, \
+                mock.patch.object(gpu, "enqueue") as enqueue:
+            for _ in range(3):
+                r = self.c.post(url, headers=A, json={"file_id": self.file["id"]})
+                self.assertEqual(r.status_code, 202, r.text)
+            for _ in range(2):
+                r = self.c.post(url, headers=A, json={"file_id": self.file["id"]})
+                self.assertEqual(r.status_code, 429, r.text)
+                self.assertEqual(r.json()["detail"]["message"],
+                                 "Daily room limit reached (3 per day). Try again tomorrow.")
+            self.assertEqual(thread.call_count, 3)
+            self.assertEqual(thread.return_value.start.call_count, 3)
+            self.assertEqual(len(list(base.glob("*/status.json"))), 3)
+            self.assertEqual(json.loads((base / "room-starts.json").read_text())["count"], 3)
+            reserve.assert_not_called()
+            enqueue.assert_not_called()
+
+    def test_room_start_limit_resets_at_midnight_dhaka_not_utc(self):
+        now = datetime(2026, 11, 2, 17, 59, 59, tzinfo=timezone.utc)
+        self.store.now = lambda: now
+        url = "/internal/workspace/rooms"
+        with mock.patch("Build.api.room.threading.Thread"):
+            for _ in range(3):
+                self.assertEqual(self.c.post(url, headers=A, json={"file_id": self.file["id"]}).status_code, 202)
+            self.assertEqual(self.c.post(url, headers=A, json={"file_id": self.file["id"]}).status_code, 429)
+            now += timedelta(seconds=1)  # 18:00 UTC is 00:00 the next Dhaka day.
+            self.assertEqual(self.c.post(url, headers=A, json={"file_id": self.file["id"]}).status_code, 202)
+        count = json.loads((self.dir / "rooms/user_synthA/room-starts.json").read_text())
+        self.assertEqual(count, {"day": "2026-11-03", "count": 1})
+
+    def test_room_start_limit_is_owner_isolated_and_independent_of_rebuilds(self):
+        base = self.dir / "rooms/user_synthA"
+        base.mkdir(parents=True)
+        rebuilds = {"day": self.store._day(), "count": 3}
+        live_room._write(base / "shell-rebuilds.json", rebuilds)
+        tmp = self.dir / "tmp/other"
+        tmp.write_bytes(b"synthetic")
+        other = self.store.add("user_synthB", "room.mp4", "video/mp4", tmp, 5.0)
+        url = "/internal/workspace/rooms"
+        with mock.patch("Build.api.room.threading.Thread"):
+            for _ in range(3):
+                self.assertEqual(self.c.post(url, headers=A, json={"file_id": self.file["id"]}).status_code, 202)
+            self.assertEqual(self.c.post(url, headers=A, json={"file_id": self.file["id"]}).status_code, 429)
+            self.assertEqual(self.c.post(url, headers=B, json={"file_id": other["id"]}).status_code, 202)
+        self.assertEqual(json.loads((base / "shell-rebuilds.json").read_text()), rebuilds)
+        self.assertEqual(json.loads((self.dir / "rooms/user_synthB/room-starts.json").read_text())["count"], 1)
+
+    def test_room_start_invalid_reference_and_failed_thread_do_not_use_slot(self):
+        url = "/internal/workspace/rooms"
+        counter = self.dir / "rooms/user_synthA/room-starts.json"
+        with mock.patch("Build.api.room.threading.Thread") as thread:
+            r = self.c.post(url, headers=A, json={"file_id": self.file["id"], "reference": "invalid"})
+            self.assertEqual(r.status_code, 422)
+            self.assertFalse(counter.exists())
+            thread.assert_not_called()
+            thread.return_value.start.side_effect = RuntimeError("synthetic admission failure")
+            with self.assertRaisesRegex(RuntimeError, "synthetic admission failure"):
+                self.c.post(url, headers=A, json={"file_id": self.file["id"]})
+            self.assertEqual(json.loads(counter.read_text())["count"], 0)
+            thread.return_value.start.side_effect = None
+            for _ in range(3):
+                self.assertEqual(self.c.post(url, headers=A, json={"file_id": self.file["id"]}).status_code, 202)
+            self.assertEqual(self.c.post(url, headers=A, json={"file_id": self.file["id"]}).status_code, 429)
+
+    def test_room_start_limit_survives_router_and_store_restart(self):
+        url = "/internal/workspace/rooms"
+        with mock.patch("Build.api.room.threading.Thread"):
+            for _ in range(3):
+                self.assertEqual(self.c.post(url, headers=A, json={"file_id": self.file["id"]}).status_code, 202)
+        store = Store(self.dir)
+        self.addCleanup(store.db.close)
+        app = FastAPI()
+        app.include_router(create_router(store, remote=fake_remote, stats=lambda: None))
+        with mock.patch("Build.api.room.threading.Thread") as thread:
+            r = TestClient(app).post(url, headers=A, json={"file_id": self.file["id"]})
+            self.assertEqual(r.status_code, 429, r.text)
+            thread.assert_not_called()
+
+    def test_concurrent_room_starts_admit_only_three(self):
+        clients = []
+        for _ in range(6):
+            store = Store(self.dir)  # independent connections isolate counter contention from SQLite connection sharing
+            self.addCleanup(store.db.close)
+            app = FastAPI()
+            app.include_router(create_router(store, remote=fake_remote, stats=lambda: None))
+            clients.append(TestClient(app))
+        def start(client):
+            return client.post("/internal/workspace/rooms", headers=A, json={"file_id": self.file["id"]}).status_code
+        with mock.patch.object(live_room, "run_job") as run, ThreadPoolExecutor(max_workers=6) as pool:
+            self.assertEqual(sorted(pool.map(start, clients)), [202, 202, 202, 429, 429, 429])
+        self.assertEqual(run.call_count, 3)
+        self.assertEqual(json.loads((self.dir / "rooms/user_synthA/room-starts.json").read_text())["count"], 3)
 
     def test_shell_rebuild_refuses_full_storage_before_paid_work(self):
         from Build.api.room import objects

@@ -16,7 +16,7 @@ import time
 from fastapi import APIRouter, Body, Depends
 from fastapi.responses import Response
 
-from Build.api.room import _ID
+from Build.api.room import _ID, _daily_room_limit
 from Build.api.storage.files import _default
 from Build.api.storage.sample import ensure_room_archive
 from Build.api.workspace.auth import error, require_owner
@@ -149,21 +149,12 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
     def build_shell(job_id: str, payload: dict = Body(default={}), owner: str = Depends(require_owner)):
         db().check_storage(owner)
         d = done_dir(owner, job_id)
-        from Build.reconstruction.shape_upgrade import LOCK
-        with LOCK:  # count attempts before any paid work, including failed rebuilds
-            day = db()._day()
-            counter = d.parent / "shell-rebuilds.json"
-            if counter.exists():
-                count = json.loads(counter.read_text(encoding="utf-8"))
-            else:  # preserve attempts made by the previous per-room counter on rollout
-                counts = (json.loads(f.read_text(encoding="utf-8")).get("shell_rebuilds", {})
-                          for f in d.parent.glob("*/status.json"))
-                count = {"day": day, "count": sum(c.get("count", 0) for c in counts if c.get("day") == day)}
-            used = count.get("count", 0) if count.get("day") == day else 0
-            if used >= MAX_REBUILDS:
-                raise error(429, "QUOTA_UPLOADS", f"Daily room rebuild limit reached: {MAX_REBUILDS} per user")
-            live_room._write(counter, {"day": day, "count": used + 1})
-            live_room.set_status(d, shell_rebuilds={"day": day, "count": used + 1})
+        # Preserve attempts made by the previous per-room counter on rollout.
+        counts = (json.loads(f.read_text(encoding="utf-8")).get("shell_rebuilds", {})
+                  for f in d.parent.glob("*/status.json"))
+        with _daily_room_limit(d.parent / "shell-rebuilds.json", db()._day(), MAX_REBUILDS,
+                               f"Daily room rebuild limit reached: {MAX_REBUILDS} per user", counts) as count:
+            live_room.set_status(d, shell_rebuilds=count)
         try:
             shell, scene = build_shell_files(d, detect, None if not payload.get("sf3d", True) or generate is sf3d.generate_remote else generate,
                                              defer=payload.get("sf3d", True))
