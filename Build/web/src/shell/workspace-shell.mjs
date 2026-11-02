@@ -100,7 +100,7 @@ export function renderShell(h, v, on = {}, refs = {}, ...content) {
           icon(h, 'rail')),
         h('h1', { title: typeof v.title === 'string' ? v.title : undefined }, v.title),
         v.status ?? null, // N09: GPU status dot (live only)
-        // S15an: the theme menu lives once, in the global header (app/ThemeToggle.jsx); none here.
+        v.controls ?? null,
         h('button', { type: 'button', ref: refs.rightToggle, className: 'r2s-iconbtn r2s-tools-btn', 'data-toggle': 'right', 'aria-controls': 'r2s-right', 'aria-expanded': right,
           'aria-keyshortcuts': 'Control+J', title: (right ? 'Close' : 'Open') + ' agent and tools (' + SHORTCUT_LABEL.right + ')', onClick: on.toggleRight },
           icon(h, 'side'), h('span', { className: 'r2s-label' }, 'Agent & tools'),

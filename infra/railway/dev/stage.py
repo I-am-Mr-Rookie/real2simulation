@@ -9,8 +9,7 @@ import sys
 root = Path(__file__).resolve().parents[3]
 service, destination = sys.argv[1:]
 SNAPSHOT = "Build/web/library-snapshot/guest.json"
-# S13m: RM04 display bundle = gitignored local bytes (never in Git); baked into the api context only when present and
-# sha-equal to the committed recorded manifest. Absent -> the API answers 503 DEPENDENCY_UNAVAILABLE.
+# Public recorded sample bytes stay local-only; an API image requires the complete hash-verified bundle.
 BUNDLE, BUNDLE_MANIFEST = "evidence/S13l/reconstruct/bundle/", "Build/pipeline/recorded/RM04-S13l-mapanything.json"
 # Same one-liner as Build/web/src/app/api/library/guest.mjs GUEST_SCRIPT (guest.py stays the only projection logic).
 GUEST = ('import base64,json,sys;from Build.library.guest import load_guest;m,o=load_guest();'
@@ -67,11 +66,13 @@ if service == "api" and BUNDLE_MANIFEST in files:
         common = subprocess.check_output(["git", "rev-parse", "--git-common-dir"], cwd=root, text=True).strip()
         bundle_root = (root / common).resolve().parent
     for name, entry in recorded.items():
-        if (bundle_root / BUNDLE / name).is_file():
-            content = (bundle_root / BUNDLE / name).read_bytes()
-            if hashlib.sha256(content).hexdigest() != entry["sha256"]:
-                raise ValueError("RM04 bundle sha256 does not match the recorded manifest")
-            bundle[BUNDLE + name] = content
+        source = bundle_root / BUNDLE / name
+        if not source.is_file():
+            raise FileNotFoundError(f"Required public RM04 sample asset missing: {name}")
+        content = source.read_bytes()
+        if hashlib.sha256(content).hexdigest() != entry["sha256"]:
+            raise ValueError("RM04 bundle sha256 does not match the recorded manifest")
+        bundle[BUNDLE + name] = content
 # Claim exclusively after validation: a competing creator must never be overwritten.
 target.mkdir(parents=True, exist_ok=False)
 manifest = {"service": service, "source_revision": revision, "files": {}}

@@ -20,6 +20,7 @@ from fastapi.responses import FileResponse
 
 from Build.api.workspace.auth import error, require_owner
 from Build.pipeline.uploads import sniff_ok
+from Build.api.storage.preview import project_previews
 
 MAX_FILE = 200 * 1024 * 1024
 MAX_USER = 1024 * 1024 * 1024
@@ -230,8 +231,9 @@ def create_router(store=None, probe=video_seconds) -> APIRouter:
 
     @router.get("/projects")
     def list_projects(owner: str = Depends(require_owner)):
+        previews = project_previews(db(), owner)
         rows = db().db.execute("SELECT * FROM projects WHERE user=? ORDER BY created DESC, id", (owner,))
-        return {"projects": [{**dict(r), "snapshot_url": _snapshot_url(r["id"], owner)} for r in rows]}
+        return {"projects": [{**dict(r), "snapshot_url": _snapshot_url(r["id"], owner), "track_preview": previews.get(r["id"])} for r in rows]}
 
     # N56: one small owner-scoped preview per project (the lab canvas), overwritten on each save or finished run.
     def _snapshot(owner, project_id):
@@ -286,6 +288,9 @@ def create_router(store=None, probe=video_seconds) -> APIRouter:
     def delete_project(project_id: str, owner: str = Depends(require_owner)):
         db().project(owner, project_id)
         with db().lock:
+            p = _snapshot(owner, project_id)
+            p.unlink(missing_ok=True)
+            p.with_suffix(".type").unlink(missing_ok=True)
             db().db.execute("UPDATE files SET project_id=NULL WHERE project_id=? AND user=?", (project_id, owner))
             db().db.execute("DELETE FROM projects WHERE id=? AND user=?", (project_id, owner))
         return {"deleted": project_id}

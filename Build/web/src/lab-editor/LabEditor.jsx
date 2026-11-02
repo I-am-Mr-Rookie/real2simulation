@@ -10,7 +10,7 @@ import { createPhysics, loadRapier, movingStart, upQuat, roomProxy, kitParts } f
 import { emptyHistory, record, undo, redo, removeObject, typing } from './history.mjs';
 import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
-import { naturalPoint, trajectoryScene } from '../workspace/measure.mjs';
+import { naturalPoint, trajectoryScene, fmtPm } from '../workspace/measure.mjs';
 import { robustBounds, fitDistance, FRAME_Q } from './frame.mjs';
 import { colliderGeometry, loadShapeGlb, SHAPE_LABEL } from './sf3d-shape.mjs';
 import { lookMesh } from './furniture-shape.mjs';
@@ -159,6 +159,8 @@ function RoomTools({ id, room, onReload }) {
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState('');
   const [bust, setBust] = useState(0);
+  const [imageReady, setImageReady] = useState(false);
+  useEffect(() => { setImageReady(false); }, [id, view, bust]);
   const pickTool = (t) => { setTool(tool === t ? null : t); setClicks([]); setNote(t === 'a4' ? 'Click both ends of the A4 sheet long edge (29.7 cm).' : 'Click a real object, for example a chair or table.'); };
   const send = async (path, body, done) => {
     setBusy(true);
@@ -181,15 +183,15 @@ function RoomTools({ id, room, onReload }) {
     <p>Geometry {room.labels?.geometry ?? 'MODEL-ESTIMATED'}. Scale <strong>{sc.status}</strong>{sc.sd != null ? ': ' + sc.metres_per_model_unit.toFixed(3) + ' +/- ' + sc.sd.toFixed(3) + ' m per unit' : ''}. Gravity {room.gravity?.status}{room.gravity?.uncertainty_deg != null ? ' +/- ' + room.gravity.uncertainty_deg + ' deg' : ''}.</p>
     {sc.reference_rejected && <p className="le-rejected" role="status">A4 scale not applied: {sc.reference_rejected.reason}</p>}
     <div className="le-bar" role="group" aria-label="Room tools">
-      <button type="button" aria-pressed={tool === 'a4'} disabled={busy} onClick={() => pickTool('a4')}>Mark the A4 sheet</button>
-      <button type="button" aria-pressed={tool === 'object'} disabled={busy} onClick={() => pickTool('object')}>Add a real object</button>
+      <button type="button" aria-pressed={tool === 'a4'} disabled={busy || !imageReady} onClick={() => pickTool('a4')}>Mark the A4 sheet</button>
+      <button type="button" aria-pressed={tool === 'object'} disabled={busy || !imageReady} onClick={() => pickTool('object')}>Add a real object</button>
       <button type="button" disabled={busy} onClick={() => { setNote('Finding walls, windows, doors and main furniture (hosted SAM 3.1, then Stable Fast 3D). This can take a few minutes.'); send('/shell', {}, (r) => 'Lab shell built: ' + wallText(r.shell) + ', ' + r.shell.openings.length + ' openings, ' + r.shell.kept.length + ' furniture kept, ' + r.shell.dropped + ' detections dropped. Geometry MODEL-ESTIMATED, scale ' + r.shell.labels.scale + '.'); }}>Build lab shell</button>
       <label>View <select value={view} onChange={(e) => { setView(Number(e.target.value)); setClicks([]); }}>{Array.from({ length: room.views || 1 }, (_, i) => <option key={i} value={i}>{i + 1}</option>)}</select></label>
     </div>
     {note && <p role="status">{busy ? 'Working: ' : ''}{note}</p>}
     <div className="le-view" data-tool={tool ?? undefined}>
       <img src={WS + '/rooms/' + id + '/views/' + view + '.png?v=' + bust} alt={'Room view ' + (view + 1) + (tool ? '. Click to ' + (tool === 'a4' ? 'mark the A4 sheet' : 'add an object') : '')} onClick={click}
-        onError={(e) => { e.currentTarget.style.display = 'none'; setNote('No view image for this room, so A4 and object clicks are unavailable here.'); }} onLoad={(e) => { e.currentTarget.style.display = ''; }} />
+        onError={(e) => { e.currentTarget.style.display = 'none'; setImageReady(false); setNote('No view image for this room, so A4 and object clicks are unavailable here.'); }} onLoad={(e) => { e.currentTarget.style.display = ''; setImageReady(true); }} />
       {clicks.map((c, i) => <span key={i} className="le-mark" style={{ left: c.left + '%', top: c.top + '%' }} aria-hidden="true" />)}
     </div>
   </div>;
@@ -216,9 +218,19 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const [hidden, setHidden] = useState([]);
   const [name, setName] = useState('');
   const [project, setProject] = useState(null);
+  const [sourceResult, setSourceResult] = useState(null);
+  const [traceFit, setTraceFit] = useState(null);
+  const [fitting, setFitting] = useState(false);
+  const [cursor, setCursor] = useState(null);
   const sceneRef = useRef(scene);
   sceneRef.current = scene;
   useEffect(() => { const p = new URLSearchParams(window.location.search).get('project'); if (p && LIVE_ID.test(p)) setProject(p); }, []);
+  useEffect(() => {
+    const outside = (e) => { if (!addMenu.current?.contains(e.target)) addMenu.current?.removeAttribute('open'); };
+    const escape = (e) => { if (e.key === 'Escape' && addMenu.current?.open) { addMenu.current.removeAttribute('open'); addMenu.current.querySelector('summary')?.focus(); } };
+    document.addEventListener('pointerdown', outside); document.addEventListener('keydown', escape);
+    return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape); };
+  }, []);
   // N56: small JPEG of the canvas for the N55 workspace card (owner-scoped PUT; no project, no snapshot).
   const snapshot = async () => {
     const a = api.current;
@@ -457,11 +469,11 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const stop = () => {
     const st = api.current?.state;
     if (st) { st.playing = false; st.sim?.free(); st.sim = null; }
-    setRun('stopped'); setTime(0);
+    setRun('stopped'); setTime(0); setCursor(null); setTraceFit(null);
   };
   const play = async () => {
     const st = api.current.state;
-    if (run === 'paused') { st.playing = true; setRun('playing'); return; }
+    if (run === 'paused') { st.playing = true; setRun('playing'); setCursor(null); return; }
     setRun('loading'); setMessage('Loading the physics engine...');
     try {
       const R = await loadRapier();
@@ -473,6 +485,17 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   };
   const pause = () => { api.current.state.playing = false; setRun('paused'); setMessage('Paused. Resume, reset, or export the SIMULATED sensor traces.'); snapshot(); };
   const traces = () => api.current?.state.sim?.traces() ?? [];
+  const fitTrace = async () => {
+    if (!graphTrace?.samples?.[0]?.p || fitting) return;
+    setFitting(true);
+    try {
+      const result = await getJson('/fit', { method: 'POST', body: JSON.stringify(fitterRequest(graphTrace)) });
+      const q = result.gravity;
+      setTraceFit(q ? { ...q, name: graphTrace.object_id + ': fitted vertical acceleration', label: 'SIMULATED', caveat: '1 sigma from the fitter covariance. A quadratic summary, not necessarily gravity or a valid model for collisions or oscillation.' } : null);
+      if (!q) setMessage('No acceleration fit is available for this trace.');
+    } catch (e) { setMessage('Trace not fitted: ' + e.message); }
+    finally { setFitting(false); }
+  };
   const exportTraces = () => {
     const t = traces();
     if (!t.length) { setMessage('Play the scene with at least one sensor first.'); return; }
@@ -508,7 +531,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       // N39: dense collision boxes are optional (off by default); the shell walls and furniture are the lab.
       const next = validateScene({ ...r.scene, room: { ...r.scene.room, ...(collision && { collision: { ...collision, enabled: false } }) }, objects: keepAdded(sceneRef.current.objects, r.scene.objects, k) });
       const sh = r.room.shell;
-      stop(); setSelected(null); setScene(next); setPlyName('room.ply'); setSrc({ kind: 'room', id, room: r.room }); setBackdrop(!sh);
+      stop(); setSourceResult(null); setSelected(null); setScene(next); setPlyName('room.ply'); setSrc({ kind: 'room', id, room: r.room }); setBackdrop(!sh);
       setMessage(note ?? (sh ? 'Your room as a lab shell: floor, ' + wallText(sh) + ', ' + sh.openings.length + ' openings, ' + sh.kept.length + ' furniture kept, ' + sh.dropped + ' detections dropped. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.'
         : 'Your room: ' + n + ' points, ' + r.scene.objects.length + ' objects. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.'));
     } catch (e) { setMessage('Room not loaded: ' + e.message); }
@@ -525,7 +548,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       a.state.track = new THREE.Group().add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0x111827 })), new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.025, color: 0x4f46e5 })));
       a.three.add(a.state.track);
       frameTo(t.track.flat());
-      stop(); setSelected(null); setScene(validateScene(t.scene)); setSrc({ kind: 'experiment', id });
+      stop(); setSourceResult(ex.result); setSelected(null); setScene(validateScene(t.scene)); setSrc({ kind: 'experiment', id });
       setMessage('Dots and line: your measured track. ' + t.note);
     } catch (e) { setMessage('Experiment not loaded: ' + e.message); }
   };
@@ -547,11 +570,15 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const sel = scene.objects.find((o) => o.id === selected);
   const live = run === 'playing' || run === 'paused';
   const selTrace = live && sel?.sensor ? api.current?.state.sim?.trace(sel.id) : null;
-  const graphTrace = selTrace ?? (live ? api.current?.state.sim?.traces()[0] : null);
+  const recordedTrace = sourceResult?.trajectory;
+  const graphTrace = selTrace ?? (live ? api.current?.state.sim?.traces()[0] : recordedTrace ? { object_id: 'Tracked object', label: 'MEASURED', units: { value: recordedTrace.unit }, samples: recordedTrace.t_s.map((t, i) => ({ t, value: recordedTrace.y[i] })) } : null);
+  const samples = graphTrace?.samples ?? [], seek = Math.min(cursor ?? samples.length - 1, samples.length - 1);
+  const fitResult = traceFit ?? (sourceResult?.quantity ? { ...sourceResult.quantity, label: (sourceResult.sample ? 'RECORDED sample / ' : '') + (sourceResult.track?.label ?? 'MEASURED'), caveat: sourceResult.quantity.label + '. 1 sigma uncertainty. ' + (sourceResult.clock ?? '') } : null);
   const title = src?.kind === 'room' ? 'Your room lab' : src?.kind === 'experiment' ? 'Experiment replay' : 'Virtual lab';
   // N56: one honesty chip; every label word and caveat stays in its expanded list (SF3D credit once, not per object).
   const scaleOpen = scene.room.kind === 'ply' && !scene.room.scale_verified;
   const labels = [['SIMULATED', 'Physics runs in your browser (Rapier). Not a measurement.'],
+    ...(sourceResult?.sample ? [['RECORDED sample', sourceResult.sample.label]] : []),
     ...(scene.objects.some((o) => o.shape?.type === 'mesh') ? [['MODEL-GENERATED shapes · Powered by Stability AI', 'Stable Fast 3D shapes; mass and friction MODEL-ESTIMATED.']] : []),
     ...(src?.kind === 'experiment' ? [['Track MEASURED, ball what-if', 'Dots and line are your tracked video; the ball is a what-if replay.']] : []),
     ...(scaleOpen ? [['Room scale unverified', 'Mark the A4 sheet in the Room tab to set metres.']] : []),
@@ -564,7 +591,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const openLeft = (t) => { setLeftTab(t); setSide(true); };
   return <section className="lab-editor" aria-label="Lab editor" data-side={side ? 'open' : 'closed'} data-sheet={agentOpen || sel ? 'open' : 'closed'}>
     <header className="le-top" role="toolbar" aria-label="Lab tools">
-      <a className="le-logo" href="/workspace" title="Back to workspace" aria-label="Back to workspace">R2S</a>
+      <a className="le-logo" href="/workspace" title="Back to workspace" aria-label="Back to workspace"><img className="art-light" src="/brand/mark.svg" width="32" height="32" alt="" /><img className="art-dark" src="/brand/mark-dark.svg" width="32" height="32" alt="" /></a>
       <input className="le-name" aria-label="Lab name" value={name || title} maxLength={120} onChange={(e) => setName(e.target.value)} onBlur={(e) => rename(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') e.currentTarget.blur(); }} />
       <div className="le-group" role="group" aria-label="Edit history">
         <button type="button" className="le-icon-btn" onClick={() => travel(undo, 'Undone')} disabled={!hist.current.past.length} aria-label="Undo" title="Undo (Ctrl+Z)"><Ico n="undo" /></button>
@@ -580,7 +607,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
         <button type="button" className="le-icon-btn" onClick={() => { download('lab-scene.json', sceneJson(scene)); snapshot(); }} aria-label="Export scene" title="Export scene JSON"><Ico n="download" /></button>
         <label className="le-file le-icon-btn" title="Import scene or room (.json, .ply)"><Ico n="upload" /><span className="le-sr">Import scene or room (.json, .ply)</span><input type="file" accept=".json,.ply" onChange={loadFile} /></label>
         <button type="button" className="le-icon-btn" aria-label="Fullscreen" title="Fullscreen" onClick={(e) => (document.fullscreenElement ? document.exitFullscreen() : e.currentTarget.closest('.lab-editor')?.requestFullscreen?.())}><Ico n="expand" /></button>
-        <button type="button" className="le-agent-btn" aria-pressed={agentOpen} onClick={() => setAgentOpen((v) => !v)}><Ico n="agent" /><span className="le-lbl">Agent</span></button>
+        <button type="button" className="le-agent-btn" aria-label="Agent" aria-pressed={agentOpen} onClick={() => setAgentOpen((v) => !v)}><Ico n="agent" /><span className="le-lbl">Agent</span></button>
       </div>
     </header>
     <div className="le-work">
@@ -588,12 +615,12 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
         <button type="button" className="le-icon-btn" aria-pressed={side && leftTab === 'objects'} aria-label="Objects" title="Objects" onClick={() => (side && leftTab === 'objects' ? setSide(false) : openLeft('objects'))}><Ico n="list" /></button>
         <button type="button" className="le-icon-btn" aria-pressed={side && leftTab === 'room'} aria-label="Room" title="Room" onClick={() => (side && leftTab === 'room' ? setSide(false) : openLeft('room'))}><Ico n="room" /></button>
       </nav>
-      {side && <aside className="le-side le-left" aria-label={leftTab === 'room' ? 'Room' : 'Objects'}>
+      <aside hidden={!side} className="le-side le-left" aria-label={leftTab === 'room' ? 'Room' : 'Objects'}>
         <div className="le-tabs" role="tablist" aria-label="Side panel">
           {[['objects', 'Objects'], ['room', 'Room']].map(([t, l]) => <button key={t} type="button" role="tab" aria-selected={leftTab === t} onClick={() => setLeftTab(t)}>{l}</button>)}
           <button type="button" className="le-mini" aria-label="Collapse side panel" title="Collapse" onClick={() => setSide(false)}><Ico n="panel" /></button>
         </div>
-        {leftTab === 'objects' ? <div className="le-panel">
+        <div hidden={leftTab !== 'objects'} className="le-panel">
           {!scene.objects.length && <p className="le-muted">No objects yet. Use Add above the canvas.</p>}
           <ul className="le-outline" aria-label="Scene objects">
             {scene.objects.map((o) => { const off = hidden.includes(o.id); return <li key={o.id} aria-current={o.id === selected ? 'true' : undefined} data-off={off || undefined}>
@@ -607,16 +634,17 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
             <textarea aria-label="Scene JSON" value={jsonText} onChange={(e) => setJsonText(e.target.value)} spellCheck={false} rows={12} />
             <button type="button" onClick={() => applyJson(jsonText)}>Apply JSON</button>
           </details>
-        </div> : <>
-          {src?.kind === 'room' ? <RoomTools id={src.id} room={src.room} onReload={(note) => loadRoom(src.id, note)} />
+        </div><div hidden={leftTab !== 'room'}>
+          {src?.kind === 'room' ? <RoomTools key={src.id} id={src.id} room={src.room} onReload={(note) => loadRoom(src.id, note)} />
             : <div className="le-panel"><h3>Room</h3><p className="le-muted">No room loaded. Open a room lab from your workspace, or import a .ply scan with the import button.</p></div>}
           {scene.room.collision && <div className="le-panel">
             <h3>Room collisions</h3>
-            <label><input type="checkbox" checked={backdrop} disabled={live} onChange={(e) => { setBackdrop(e.target.checked); edit((s) => ({ ...s, room: { ...s.room, collision: { ...s.room.collision, enabled: e.target.checked } } })); }} /> Show raw scan</label>
-            <p>Raw scan: the point cloud and {scene.room.collision.boxes.length} static collision boxes from it (MODEL-ESTIMATED). Off by default: the walls and furniture are the lab.</p>
+            <label><input type="checkbox" checked={backdrop} onChange={(e) => setBackdrop(e.target.checked)} /> Show raw scan</label>
+            <label><input type="checkbox" checked={scene.room.collision.enabled} disabled={live} onChange={(e) => edit((s) => ({ ...s, room: { ...s.room, collision: { ...s.room.collision, enabled: e.target.checked } } }))} /> Enable raw scan collisions</label>
+            <p>Show raw scan changes visibility only. Collisions use {scene.room.collision.boxes.length} static boxes (MODEL-ESTIMATED), off by default for loaded rooms. The walls and furniture keep their own colliders.</p>
           </div>}
-        </>}
-      </aside>}
+        </div>
+      </aside>
       <div className="le-stage">
         <div ref={host} className="le-canvas" data-testid="lab-editor-canvas" />
         <div className="le-float" role="toolbar" aria-label="Transform mode">
@@ -669,8 +697,11 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     <footer className="le-timeline" aria-label="Timeline">
       {playBtn}
       <button type="button" className="le-icon-btn" onClick={stop} disabled={!live} aria-label="Reset" title="Reset to the start"><Ico n="reset" /></button>
-      <span className="le-time" aria-live="off">t = {time.toFixed(2)} s</span>
-      <Graph trace={graphTrace} />
+      <span className="le-time" aria-live="off">t = {(samples[seek]?.t ?? time).toFixed(2)} s</span>
+      <label className="le-seek">Recorded trace<input type="range" aria-label="Seek recorded sensor trace" min="0" max={Math.max(0, samples.length - 1)} value={Math.max(0, seek)} disabled={run === 'playing' || samples.length < 2} onChange={(e) => setCursor(Number(e.target.value))} aria-valuetext={samples[seek] ? samples[seek].t.toFixed(3) + ' s' : 'No trace'} /></label>
+      <Graph trace={graphTrace} cursor={seek} />
+      <button type="button" onClick={fitTrace} disabled={run === 'playing' || fitting || !samples[0]?.p || samples.length < 4}>{fitting ? 'Fitting...' : 'Fit trace'}</button>
+      {fitResult && <section className="le-result" aria-label="Fit result"><strong>{fitResult.name}: {fitResult.uncertainty > 0 ? fmtPm(fitResult.value, fitResult.uncertainty) : fitResult.value + ' +/- ' + (fitResult.uncertainty ?? 'uncertainty unavailable')} {fitResult.unit}</strong><small>{fitResult.label}. {fitResult.caveat}</small></section>}
     </footer>
   </section>;
 }
@@ -684,7 +715,7 @@ function Num({ label, value, onCommit }) {
 }
 
 // N56 live graph of the SIMULATED sensor trace (selected object, else the first sensor); values straight from the engine.
-function Graph({ trace }) {
+function Graph({ trace, cursor }) {
   const all = trace?.samples ?? [];
   if (all.length < 2) return <p className="le-graph le-muted">Turn on Record trajectory sensor for an object, then Play to see a live graph.</p>;
   const step = Math.ceil(all.length / 300), s = all.filter((_, i) => i % step === 0 || i === all.length - 1);
@@ -692,7 +723,8 @@ function Graph({ trace }) {
   const lo = Math.min(...ys), span = Math.max(...ys) - lo || 1;
   const pts = s.map((x, i) => ((300 * (x.t - t0)) / (t1 - t0 || 1)).toFixed(1) + ',' + (56 - (52 * (ys[i] - lo)) / span).toFixed(1)).join(' ');
   const what = (probe ? 'reading' : 'y position') + ' (' + (probe ? trace.units.value : 'm') + ')';
-  return <figure className="le-graph"><svg viewBox="0 0 300 60" preserveAspectRatio="none" role="img" aria-label={trace.object_id + ' ' + what + ' over time, SIMULATED'}><polyline points={pts} /></svg>
-    <figcaption>{trace.object_id} {what}: {ys.at(-1).toFixed(3)} at t = {t1.toFixed(2)} s. SIMULATED</figcaption></figure>;
+  const current = all[Math.max(0, Math.min(cursor ?? all.length - 1, all.length - 1))], label = trace.label ?? 'SIMULATED';
+  return <figure className="le-graph"><svg viewBox="0 0 300 60" preserveAspectRatio="none" role="img" aria-label={trace.object_id + ' ' + what + ' over time, ' + label}><polyline points={pts} /><line x1={300 * (current.t - t0) / (t1 - t0 || 1)} x2={300 * (current.t - t0) / (t1 - t0 || 1)} y1="0" y2="60" stroke="currentColor" /></svg>
+    <figcaption>{trace.object_id} {what}: {(probe ? current.value : current.p[1]).toFixed(3)} at t = {current.t.toFixed(2)} s. {label}</figcaption></figure>;
 }
 

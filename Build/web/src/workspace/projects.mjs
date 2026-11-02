@@ -33,7 +33,7 @@ export function relTime(iso, now = Date.now()) {
 export function groupStatus(g, tracked = {}) {
   const jobs = [...g.rooms.map((j) => ['room', j]), ...g.experiments.map((j) => ['experiment', j])]
     .sort((a, b) => String(b[1].created ?? b[1].created_at ?? '').localeCompare(String(a[1].created ?? a[1].created_at ?? '')));
-  if (!jobs.length) return { state: 'empty' };
+  if (!jobs.length) return { state: g.snapshot ? 'saved' : 'empty' };
   const [kind, j] = jobs[0], live = tracked[kind + ':' + (j.id ?? j.job_id)];
   const st = String(live?.state ?? j.status ?? j.state ?? 'unknown');
   if (st === 'done') return { state: 'ready', kind, job: j };
@@ -46,7 +46,7 @@ export const projectName = (p) => (isSample(p) ? String(p.title ?? '').replace(S
 // Projects (newest first, SAMPLE last) with their experiments and rooms; jobs without a known project go to a last group.
 export function groupJobs(projects = [], experiments = [], rooms = []) {
   // N55: snapshot_url = optional saved lab snapshot (N56); the card falls back to a video frame.
-  const groups = projects.map((p) => ({ id: p.id, name: projectName(p), mode: p.mode, sample: isSample(p), created: p.created, snapshot: p.snapshot_url ?? null, experiments: [], rooms: [] }));
+  const groups = projects.map((p) => ({ id: p.id, name: projectName(p), mode: p.mode, sample: isSample(p), created: p.created, snapshot: p.snapshot_url ?? null, trackPreview: p.track_preview ?? null, experiments: [], rooms: [] }));
   const by = new Map(groups.map((g) => [g.id, g]));
   const other = { id: null, name: 'Not in a project', sample: false, experiments: [], rooms: [] };
   for (const e of experiments) (by.get(e.project_id) ?? other).experiments.push(e);

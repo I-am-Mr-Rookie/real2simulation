@@ -2,10 +2,11 @@
 // React is injected like workspace/react.mjs. Every number shown comes from an API response (quota, sizes, queue) or the browser upload progress.
 import { API_BASE } from './controller.mjs';
 import { AGENT_MODES, UPLOAD_QUESTION, LIMITS, TIPS, projectTitle, fmtBytes, quotaView, gpuDot, GPU_POLL_MS, shouldPoll, jobsState, apiErrorText,
-  historyOf, questionAnswer, recommendedIndex, readAgentMode, writeAgentMode, toWav16k, VOICE_MAX_S, STANDARD_MODELS, agentTier, modeLabel,
+  historyOf, questionAnswer, recommendedIndex, readAgentMode, writeAgentMode, STANDARD_MODELS, agentTier, modeLabel,
   MODEL_CHOICES, contentTitle, isDefaultTitle } from './live.mjs';
 import { chartGeom, fmtPm, SIZE_UNITS, naturalPoint, experimentBody, jobView, POLL_MS, jobsFromToolCalls, shareable, scaleTag, labelsOf } from './measure.mjs';
 import { groupJobs, jobName, relTime, groupStatus } from './projects.mjs';
+import { createUseVoice } from './voice.mjs';
 
 const ACCEPT = 'video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm';
 const TRACK_KEY = 'r2s.tracked.jobs';
@@ -34,6 +35,7 @@ function uploadXhr(file, projectId, onPct) {
 // icon is injected by the shell (workspace must not import shell code); no icon = text only.
 export const createLive = (React, icon = () => null) => {
   const { createElement: h, useState, useEffect, useRef, useCallback } = React;
+  const useVoice = createUseVoice(React);
 
   function useLive(enabled, openAgent, userKey) {
     const [mode, setModeState] = useState(undefined); // undefined = not read yet (SSR), null = first run
@@ -46,11 +48,10 @@ export const createLive = (React, icon = () => null) => {
     const [draft, setDraft] = useState('');
     const [gpu, setGpu] = useState({ tone: 'unknown', label: 'Checking GPU', detail: '' });
     const [jobs, setJobs] = useState(null);
-    const [voice, setVoice] = useState({ state: 'idle', error: null });
+    const { voice, toggleVoice } = useVoice((text) => setDraft((d) => (d ? d + ' ' : '') + text));
     const [preview, setPreview] = useState(null);
     const [tracked, setTracked] = useState({}); // N22: kind:id -> jobView, polled until terminal
     const [action, setAction] = useState(null); // { kind: 'measure', file } panel on a file
-    const rec = useRef(null);
     const msgsRef = useRef(msgs); msgsRef.current = msgs;
     const trackedRef = useRef(tracked); trackedRef.current = tracked;
     const push = (m) => setMsgs((list) => [...list, { id: Date.now() + Math.random(), ...m }]);
@@ -182,6 +183,7 @@ export const createLive = (React, icon = () => null) => {
       if (r?.ok && r.body?.project) setProject((cur) => (cur?.id === id ? r.body.project : cur));
       else if (!quiet) setFiles((s) => ({ ...s, error: errText(r, 'Could not rename the project') }));
       if (!quiet) loadJobs();
+      return r?.ok ? null : errText(r, 'Could not rename the project');
     };
     const deleteProject = async (g) => {
       if (!globalThis.confirm?.('Delete project ' + g.name + '? Its files stay in Files.')) return;
@@ -203,28 +205,6 @@ export const createLive = (React, icon = () => null) => {
       if (!r?.ok) setFiles((s) => ({ ...s, error: errText(r, 'Delete failed') }));
       if (preview === f.id) setPreview(null);
       loadFiles();
-    };
-
-    const toggleVoice = async () => {
-      if (voice.state === 'recording') { rec.current?.stop(); return; }
-      if (voice.state !== 'idle') return;
-      try {
-        const stream = await globalThis.navigator.mediaDevices.getUserMedia({ audio: true });
-        const mr = new MediaRecorder(stream), parts = [];
-        const limit = setTimeout(() => mr.state === 'recording' && mr.stop(), VOICE_MAX_S * 1000);
-        mr.ondataavailable = (e) => e.data.size && parts.push(e.data);
-        mr.onstop = async () => {
-          clearTimeout(limit); stream.getTracks().forEach((t) => t.stop());
-          setVoice({ state: 'working', error: null });
-          try {
-            const wav = await toWav16k(await new Blob(parts).arrayBuffer());
-            const r = await call('/agent/transcribe', { method: 'POST', headers: { 'content-type': 'audio/wav' }, body: wav });
-            if (r.ok && r.body?.text) { setDraft((d) => (d ? d + ' ' : '') + r.body.text); setVoice({ state: 'idle', error: null }); }
-            else setVoice({ state: 'idle', error: r.ok ? 'No speech heard.' : errText(r, 'Transcription failed') });
-          } catch { setVoice({ state: 'idle', error: 'Could not convert the recording.' }); }
-        };
-        rec.current = mr; mr.start(); setVoice({ state: 'recording', error: null });
-      } catch { setVoice({ state: 'idle', error: 'Microphone not available or permission denied.' }); }
     };
 
     return { mode, setMode, files, up, upload, remove, preview, setPreview, project, newProject, msgs, busy, draft, setDraft, send, answer,
@@ -425,7 +405,7 @@ export const createLive = (React, icon = () => null) => {
     const choose = (id) => { L.setMode(id); setOpen(false); setNotice(false); };
     return h('div', { className: 'lv-picker', onKeyDown: (e) => { if (e.key === 'Escape' && open) { e.stopPropagation(); setOpen(false); } } },
       h('button', { type: 'button', className: 'lv-pickbtn', 'aria-haspopup': 'dialog', 'aria-expanded': open, onClick: () => { setHover(curId); setNotice(false); setOpen(!open); } },
-        h('span', { className: 'lv-dotmodel', 'aria-hidden': true }), cur.name, h('small', null, cur.sub), icon(h, 'chev', 14)),
+        h('span', { className: 'lv-dotmodel', 'aria-hidden': true }), h('span', { className: 'lv-model-name' }, cur.name), h('small', null, cur.sub), icon(h, 'chev', 14)),
       open ? h('div', { className: 'lv-pickpop', role: 'dialog', 'aria-label': 'Choose the agent model' },
         notice ? h('div', { className: 'lv-notice', role: 'alertdialog', 'aria-labelledby': 'lv-contrib-h' },
           h('strong', { id: 'lv-contrib-h' }, 'Contributor mode shares your prompts'),
@@ -485,8 +465,15 @@ export const createLive = (React, icon = () => null) => {
   }
 
   function ProjectCard({ L, g, small }) {
+    const [renaming, setRenaming] = useState(false), [title, setTitle] = useState(g.name), [renameError, setRenameError] = useState(null);
+    const saveName = async () => {
+      if (!title.trim()) { setRenameError('Enter a project name.'); return; }
+      const error = await L.renameProject(g.id, title);
+      if (error) setRenameError(error); else { setRenaming(false); setRenameError(null); }
+    };
     const st = g.status, kind = g.mode ?? (g.rooms.length ? 'room' : 'experiment');
-    const f = g.files.find((x) => x.media_type?.startsWith('video/')) ?? g.files[0];
+    const pathPlot = !g.snapshot && g.trackPreview?.kind === 'plot';
+    const f = (st.kind === 'experiment' && g.files.find((x) => x.id === g.trackPreview?.file_id)) || g.files.find((x) => x.media_type?.startsWith('video/')) || g.files[0];
     const id = st.job?.id ?? st.job?.job_id;
     const href = st.state === 'ready' && id ? '/lab?editor=1&' + (st.kind === 'room' ? 'room=' : 'experiment=') + encodeURIComponent(id) : null;
     const open = () => {
@@ -497,22 +484,28 @@ export const createLive = (React, icon = () => null) => {
     const when = relTime(g.created ?? st.job?.created ?? st.job?.created_at);
     return h('li', { className: 'lv-pcard', 'data-small': small || undefined, 'data-state': st.state, 'data-sample': g.sample || undefined },
       h('button', { type: 'button', className: 'lv-pcard-hit', onClick: open, 'aria-label': 'Open ' + g.name }),
-      small ? null : h('div', { className: 'lv-pcard-media' }, h(Thumb, { f, snapshot: g.snapshot, kind }),
+      small ? null : h('div', { className: 'lv-pcard-media' }, pathPlot ? null : h(Thumb, { f, snapshot: g.snapshot, kind }),
+        !g.snapshot && (pathPlot || f?.media_type?.startsWith('video/') && f.id === g.trackPreview?.file_id) ? h('svg', { className: 'lv-track-preview', 'data-plot': pathPlot || undefined, viewBox: '0 0 ' + g.trackPreview.width + ' ' + g.trackPreview.height, preserveAspectRatio: pathPlot ? 'xMidYMid meet' : 'xMidYMid slice', role: 'img', 'aria-label': g.trackPreview.label },
+          h('polyline', { points: g.trackPreview.points.map((p) => p.join(',')).join(' '), fill: 'none', stroke: '#ffbe0b', strokeWidth: 3, vectorEffect: 'non-scaling-stroke' })) : null,
+        pathPlot ? h('small', { className: 'lv-path-label' }, g.trackPreview.label) : null,
         g.sample ? h('span', { className: 'lv-badge' }, 'SAMPLE') : null),
       h('div', { className: 'lv-pcard-body' },
         h('span', { className: 'lv-type', title: kind === 'room' ? 'Room lab' : 'Experiment' }, icon(h, kind === 'room' ? 'cube' : 'chart', 16)),
         h('div', { className: 'lv-pcard-text' },
-          h('strong', { className: 'lv-pname', title: g.name }, g.name),
+          renaming ? h('form', { className: 'lv-rename', onSubmit: (e) => { e.preventDefault(); saveName(); } },
+            h('input', { autoFocus: true, 'aria-label': 'Project name', value: title, maxLength: 120, onChange: (e) => setTitle(e.target.value), onKeyDown: (e) => { if (e.key === 'Escape') setRenaming(false); } }),
+            h('button', { type: 'submit' }, 'Save'), h('button', { type: 'button', onClick: () => setRenaming(false) }, 'Cancel'),
+            renameError ? h('small', { role: 'alert' }, renameError) : null) : h('strong', { className: 'lv-pname', title: g.name }, g.name),
           h('span', { className: 'lv-pmeta' },
             st.state === 'processing' ? h('span', { className: 'lv-st', 'data-st': 'processing' }, h(Ring, { value: st.progress }), st.step || 'Processing')
               : st.state === 'ready' ? h('span', { className: 'lv-st', 'data-st': 'ready' }, 'Ready')
               : st.state === 'failed' ? h('span', { className: 'lv-st', 'data-st': 'failed', title: String(st.reason) }, 'Failed: ' + st.reason)
-              : h('span', { className: 'lv-st' }, g.files.length ? g.files.length + (g.files.length === 1 ? ' file' : ' files') : 'Empty'),
+              : h('span', { className: 'lv-st' }, st.state === 'saved' ? 'Saved lab' : g.files.length ? g.files.length + (g.files.length === 1 ? ' file' : ' files') : 'Empty'),
             when ? h('span', null, when) : null,
             g.sample ? h('span', { className: 'lv-tagsm' }, 'RECORDED') : null)),
         h(Menu, { label: 'Project actions for ' + g.name, items: [
           { label: 'Open', onClick: open },
-          g.sample || !g.id ? null : { label: 'Rename', onClick: () => { const t = globalThis.prompt?.('Rename project', g.name); if (t) L.renameProject(g.id, t); } },
+          g.sample || !g.id ? null : { label: 'Rename', onClick: () => { setTitle(g.name); setRenameError(null); setRenaming(true); } },
           f ? { label: 'Download video', href: fileUrl(f), download: f.name } : null,
           g.sample || !g.id ? null : { label: 'Delete', danger: true, onClick: () => L.deleteProject(g) }] })));
   }

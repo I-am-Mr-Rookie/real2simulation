@@ -24,6 +24,31 @@ TITLE = "SAMPLE (RECORDED): classroom room and falling apple"
 _NOTE = "SAMPLE / RECORDED: stock Pexels clips analysed earlier; not your video and not a new measurement."
 
 
+def ensure_room_archive(d, bundle=None, manifest=None):
+    """Repair pre-N58 samples too; never substitute a public archive for a user's room."""
+    d = Path(d)
+    if (d / "mapanything.npz").is_file():
+        return
+    status = json.loads((d / "status.json").read_text(encoding="utf-8"))
+    if not status.get("sample"):
+        raise FileNotFoundError("room reconstruction archive is unavailable")
+    name = "RM04-mapanything.npz"
+    listed = json.loads(Path(manifest or MANIFEST).read_text(encoding="utf-8"))["files"]
+    data = (Path(bundle or BUNDLE) / name).read_bytes()
+    if hashlib.sha256(data).hexdigest() != listed[name]["sha256"]:
+        raise ValueError("public sample archive hash mismatch")
+    from Build.reconstruction import live_room
+    # Use the same gravity-aligned frame as A4 scaling and object lifting, not the old display-only PLY frame.
+    (d / "mapanything.npz").write_bytes(data)
+    try:
+        out = live_room.finish(d)
+        room = {**out["room"], "sample": True, "note": _NOTE}
+        (d / "room.json").write_text(json.dumps(room) + "\n", encoding="utf-8")
+    except Exception:
+        (d / "mapanything.npz").unlink(missing_ok=True)
+        raise
+
+
 def _room(root, owner, project_id, bundle, manifest):
     """Write a done room job from the recorded RM04 display bundle; None when the bytes are absent or not the recorded ones."""
     try:
@@ -53,6 +78,8 @@ def _room(root, owner, project_id, bundle, manifest):
                                        "sample": True, "scale": "scale unverified", "label": _NOTE,
                                        "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})):
         (d / name).write_text(json.dumps(obj, indent=1) + "\n", encoding="utf-8")
+    if "RM04-mapanything.npz" in listed:
+        ensure_room_archive(d, bundle, manifest)
     return d
 
 

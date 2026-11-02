@@ -9,6 +9,7 @@
  "modal_app_id": "ap-HyDn6NecaH49gRHPDZhiHh",
  "reconstruction_json_sha256": "8c892f8d2dd7e984871b0a33872f8ebb6c2ebac9eda59ac9e2cc9709dbe7c574",
  "files": {
+  "RM04-mapanything.npz": {"bytes": 9330251, "sha256": "1ff2069d346e751e608e0ea5034e278deed6e84d186a5475e5f56eacbb645d6f"},
   "scene.json": {"bytes": 3405, "sha256": "c8574afbce650762a65c79c690a8ea2b720d02527a424ad584552f71283abe76"},
   "points.ply": {"bytes": 752219, "sha256": "9f0c0bd9dd308549bbedc5e1702c0bdf16046123439129959e657e51d0e82385"},
   "points-mobile.ply": {"bytes": 188327, "sha256": "e4ce5b06f300e6a88e1f930aa10879b98b1f90922d7c288ebd92346fa2d5e432"}

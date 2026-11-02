@@ -12,6 +12,6 @@ test('header, main and footer share the page width; the lab editor is full-windo
   assert.doesNotMatch(editor, /100vw|margin-left: 50%/); // translateX(-50%) is now legit: it centres the floating toolbar
   const workspace = read('workspace/workspace.css');
   assert.match(workspace, /main:has\(\.r2s-shell\) \{ width: 100%/);
-  assert.match(workspace, /body:has\(\.r2s-shell\) \.site-header \{ width: 100%/);
+  assert.match(workspace, /body:has\(\.r2s-shell\) \.site-header \{ display: none/);
   assert.match(workspace, /body:has\(\.r2s-shell\) \.site-footer \{ display: none/);
 });

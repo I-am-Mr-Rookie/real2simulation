@@ -32,6 +32,7 @@ test('card status: newest job wins, live tracked state first, failure keeps its 
   assert.equal(groupStatus(g, { 'experiment:b': { state: 'failed', error: 'object lost' } }).reason, 'object lost');
   assert.equal(groupStatus(g, { 'experiment:b': { state: 'done' } }).state, 'ready');
   assert.equal(groupStatus({ rooms: [], experiments: [] }).state, 'empty');
+  assert.equal(groupStatus({ snapshot: '/snapshot', rooms: [], experiments: [] }).state, 'saved');
 });
 
 test('model picker: three tiers, bars only, no Sol, contributor warns about training', () => {

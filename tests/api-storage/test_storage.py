@@ -145,6 +145,21 @@ class StorageTests(unittest.TestCase):
         self.assertEqual((got.status_code, got.content, got.headers["content-type"]), (200, jpg, "image/jpeg"))
         self.assertEqual(self.c.get(url, headers=B).status_code, 404)
 
+    def test_delete_project_removes_snapshot_bytes_and_type_but_keeps_upload(self):
+        p = self.c.post("/internal/workspace/projects", headers=A, json={"mode": "room", "title": "Lab"}).json()["project"]
+        upload = self.up(project_id=p["id"]).json()["file"]
+        url = f"/internal/workspace/projects/{p['id']}"
+        self.assertEqual(self.c.put(url + "/snapshot", headers={**A, "content-type": "image/png"}, content=PNG).status_code, 200)
+        path = self.store.root / "snapshots" / "user_synthA" / p["id"]
+        self.assertTrue(path.is_file())
+        self.assertEqual(self.c.delete(url, headers=B).status_code, 404)
+        self.assertTrue(path.is_file())
+        self.assertEqual(self.c.delete(url, headers=A).status_code, 200)
+        self.assertFalse(path.exists())
+        self.assertFalse(path.with_suffix(".type").exists())
+        self.assertIsNone(self.c.get("/internal/workspace/files", headers=A).json()["files"][0]["project_id"])
+        self.assertTrue(self.store.path("user_synthA", upload["id"]).is_file())
+
     def test_room_project_survives_upload_job_and_lists_without_changing_null_rows(self):
         from Build.api.room import create_router
 

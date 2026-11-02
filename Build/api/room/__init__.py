@@ -85,6 +85,12 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
         d = job_dir(owner, job_id)
         if read(d, "status.json")["state"] != "done":
             raise error(409, "NOT_READY", "room job is not done")
+        if read(d, "status.json").get("sample"):
+            from Build.api.storage.sample import ensure_room_archive
+            try:
+                ensure_room_archive(d)
+            except (OSError, ValueError, KeyError):
+                raise error(503, "DEPENDENCY_UNAVAILABLE", "public sample archive is unavailable") from None
         return {"scene": read(d, "scene.json"), "room": read(d, "room.json")}
 
     @router.get("/rooms/{job_id}/room.ply")
@@ -100,7 +106,11 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
         if read(d, "status.json")["state"] != "done":
             raise error(409, "NOT_READY", "room job is not done")
         try:
+            from Build.api.storage.sample import ensure_room_archive
+            ensure_room_archive(d)
             out = live_room.finish(d, ref_of(payload))
+        except (OSError, KeyError):
+            raise error(503, "DEPENDENCY_UNAVAILABLE", "room reconstruction archive is unavailable") from None
         except (ValueError, TypeError) as e:
             raise error(422, "INVALID_REFERENCE", str(e)[:300]) from None
         live_room.set_status(d, scale=out["room"]["scale"]["status"])

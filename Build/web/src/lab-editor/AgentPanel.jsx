@@ -4,6 +4,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { validateScene, sceneJson } from './scene.mjs';
 import { readAgentMode, agentTier } from '../workspace/live.mjs';
+import { createUseVoice } from '../workspace/voice.mjs';
+const useVoice = createUseVoice({ useState, useRef, useEffect });
 
 const BASE = '/api/workspace/agent';
 export const EXAMPLES = ['Drop a 5 cm ball from 1.2 m and measure g', 'Pendulum, 0.8 m, find the period'];
@@ -20,6 +22,7 @@ async function call(path, init = {}) {
 export default function AgentPanel({ scene, onScene, load = true }) {
   const [text, setText] = useState(EXAMPLES[0]);
   const [busy, setBusy] = useState(false);
+  const { voice, toggleVoice } = useVoice((words) => setText((t) => (t ? t + ' ' : '') + words));
   const [log, setLog] = useState([]);
   const [history, setHistory] = useState([]);
   const [question, setQuestion] = useState(null);
@@ -71,7 +74,9 @@ export default function AgentPanel({ scene, onScene, load = true }) {
     <form onSubmit={(e) => { e.preventDefault(); ask(text); }} className="le-send">
       <input aria-label="Message to the agent" value={text} onChange={(e) => setText(e.target.value)} maxLength={4000} disabled={busy} />
       <button type="submit" disabled={busy || !text.trim()}>{busy ? 'Working...' : 'Ask'}</button>
+      <button type="button" aria-label="Voice input" aria-pressed={voice.state === 'recording'} disabled={busy || voice.state === 'working'} onClick={toggleVoice}>{voice.state === 'recording' ? 'Stop recording' : voice.state === 'working' ? 'Transcribing' : 'Voice'}</button>
     </form>
+    {voice.error && <p role="alert">{voice.error}</p>}
     {report && <details open><summary>Lab report (SIMULATED)</summary><pre className="le-report">{report}</pre></details>}
   </div>;
 }

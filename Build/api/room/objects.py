@@ -18,6 +18,7 @@ from fastapi.responses import Response
 
 from Build.api.room import _ID
 from Build.api.storage.files import _default
+from Build.api.storage.sample import ensure_room_archive
 from Build.api.workspace.auth import error, require_owner
 from Build.gpu import sf3d
 from Build.guardrails import daily_cap
@@ -52,6 +53,10 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
             raise error(404, "NOT_FOUND", "room job not found")
         if json.loads((d / "status.json").read_text(encoding="utf-8"))["state"] != "done":
             raise error(409, "NOT_READY", "room job is not done")
+        try:
+            ensure_room_archive(d)
+        except (OSError, ValueError, KeyError):
+            raise error(503, "DEPENDENCY_UNAVAILABLE", "room reconstruction archive is unavailable") from None
         return d
 
     @router.get("/rooms/{job_id}/views/{view}.png")

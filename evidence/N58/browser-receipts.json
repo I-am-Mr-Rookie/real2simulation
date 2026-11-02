@@ -1,0 +1,669 @@
+{
+  "headed": true,
+  "browser": "156.0.8078.4",
+  "scope": "local compiled app; public samples/templates; auth and paid paths untested",
+  "receipts": [
+    {
+      "name": "template-sensor-seek",
+      "utc": "2026-11-02T13:36:52.586Z",
+      "data": {
+        "value": "5",
+        "time": "0.042 s",
+        "graph": "ball-1 y position (m): 1.191 at t = 0.04 s. SIMULATED"
+      }
+    },
+    {
+      "name": "template-cpu-fit",
+      "utc": "2026-11-02T13:36:53.092Z",
+      "data": {
+        "text": "ball-1: fitted vertical acceleration: -9.80999271 +/- 0.00000076 m/s^2\nSIMULATED. 1 sigma from the fitter covariance. A quadratic summary, not necessarily gravity or a valid model for collisions or oscillation.",
+        "fitRequest": [
+          {
+            "path": "/fit",
+            "method": "POST",
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "name": "public-recorded-relative-path-preview",
+      "utc": "2026-11-02T13:36:55.810Z",
+      "data": {
+        "label": "MEASURED: relative tracked path (px), not aligned to video",
+        "overlayOnVideo": false
+      }
+    },
+    {
+      "name": "snapshot-only-card",
+      "utc": "2026-11-02T13:36:56.093Z",
+      "data": {
+        "text": "N58 template lab 1793626604853\nSaved lab\njust now",
+        "small": null,
+        "snapshot": "/api/workspace/projects/216ed5e04f4f407ab73f25361ff341c0/snapshot?v=1793626612494172700"
+      }
+    },
+    {
+      "name": "inline-rename",
+      "utc": "2026-11-02T13:36:57.175Z",
+      "data": {
+        "title": "N58 inline rename 216ed5",
+        "browserDialogs": []
+      }
+    },
+    {
+      "name": "workspace-1366-light",
+      "utc": "2026-11-02T13:36:57.771Z",
+      "data": {
+        "width": 1366,
+        "scrollWidth": 1351,
+        "header": "none",
+        "emDash": false,
+        "top": []
+      }
+    },
+    {
+      "name": "workspace-1366-dark",
+      "utc": "2026-11-02T13:36:58.982Z",
+      "data": {
+        "width": 1366,
+        "scrollWidth": 1351,
+        "header": "none",
+        "emDash": false,
+        "top": []
+      }
+    },
+    {
+      "name": "workspace-375-light",
+      "utc": "2026-11-02T13:37:00.447Z",
+      "data": {
+        "width": 375,
+        "scrollWidth": 360,
+        "header": "none",
+        "emDash": false,
+        "top": []
+      }
+    },
+    {
+      "name": "workspace-375-dark",
+      "utc": "2026-11-02T13:37:01.506Z",
+      "data": {
+        "width": 375,
+        "scrollWidth": 360,
+        "header": "none",
+        "emDash": false,
+        "top": []
+      }
+    },
+    {
+      "name": "room-view-and-tool-retention",
+      "utc": "2026-11-02T13:37:06.364Z",
+      "data": {
+        "view": {
+          "width": 518,
+          "height": 294
+        },
+        "a4": "true",
+        "marks": 1
+      }
+    },
+    {
+      "name": "raw-visibility-and-collisions-independent",
+      "utc": "2026-11-02T13:37:07.066Z",
+      "data": {
+        "visible": true,
+        "collisions": false
+      }
+    },
+    {
+      "name": "real-object-tool-available",
+      "utc": "2026-11-02T13:37:07.193Z",
+      "data": {
+        "armed": true,
+        "paidSegmentation": "NOT RUN"
+      }
+    },
+    {
+      "name": "room-editor-1366-light",
+      "utc": "2026-11-02T13:37:07.879Z",
+      "data": {
+        "width": 1366,
+        "scrollWidth": 1366,
+        "header": "none",
+        "emDash": false,
+        "top": [
+          {
+            "label": "Back to workspace",
+            "left": 10,
+            "right": 42,
+            "top": 8,
+            "bottom": 40
+          },
+          {
+            "label": "Undo",
+            "left": 322.078125,
+            "right": 358.078125,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Redo",
+            "left": 362.078125,
+            "right": 398.078125,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Play",
+            "left": 419.078125,
+            "right": 504.953125,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Reset to the start",
+            "left": 508.953125,
+            "right": 597.9375,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Fit view to the room",
+            "left": 1063.5625,
+            "right": 1099.5625,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Export traces",
+            "left": 1103.5625,
+            "right": 1139.5625,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Export scene",
+            "left": 1143.5625,
+            "right": 1179.5625,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Import scene or room (.json, .ply)",
+            "left": 1183.5625,
+            "right": 1219.5625,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Fullscreen",
+            "left": 1223.5625,
+            "right": 1259.5625,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Agent",
+            "left": 1263.5625,
+            "right": 1356,
+            "top": 6,
+            "bottom": 42
+          }
+        ],
+        "addMenu": {
+          "x": 398.5,
+          "y": 108,
+          "width": 460,
+          "height": 585
+        },
+        "escapeAndOutside": true
+      }
+    },
+    {
+      "name": "room-editor-1366-dark",
+      "utc": "2026-11-02T13:37:08.551Z",
+      "data": {
+        "width": 1366,
+        "scrollWidth": 1366,
+        "header": "none",
+        "emDash": false,
+        "top": [
+          {
+            "label": "Back to workspace",
+            "left": 10,
+            "right": 42,
+            "top": 8,
+            "bottom": 40
+          },
+          {
+            "label": "Undo",
+            "left": 322.078125,
+            "right": 358.078125,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Redo",
+            "left": 362.078125,
+            "right": 398.078125,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Play",
+            "left": 419.078125,
+            "right": 504.953125,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Reset to the start",
+            "left": 508.953125,
+            "right": 597.9375,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Fit view to the room",
+            "left": 1063.5625,
+            "right": 1099.5625,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Export traces",
+            "left": 1103.5625,
+            "right": 1139.5625,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Export scene",
+            "left": 1143.5625,
+            "right": 1179.5625,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Import scene or room (.json, .ply)",
+            "left": 1183.5625,
+            "right": 1219.5625,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Fullscreen",
+            "left": 1223.5625,
+            "right": 1259.5625,
+            "top": 6,
+            "bottom": 42
+          },
+          {
+            "label": "Agent",
+            "left": 1263.5625,
+            "right": 1356,
+            "top": 6,
+            "bottom": 42
+          }
+        ],
+        "addMenu": {
+          "x": 398.5,
+          "y": 108,
+          "width": 460,
+          "height": 585
+        },
+        "escapeAndOutside": true
+      }
+    },
+    {
+      "name": "room-editor-375-light",
+      "utc": "2026-11-02T13:37:09.601Z",
+      "data": {
+        "width": 375,
+        "scrollWidth": 375,
+        "header": "none",
+        "emDash": false,
+        "top": [
+          {
+            "label": "Back to workspace",
+            "left": 4,
+            "right": 36,
+            "top": 8,
+            "bottom": 40
+          },
+          {
+            "label": "Undo",
+            "left": 42,
+            "right": 82,
+            "top": 4,
+            "bottom": 44
+          },
+          {
+            "label": "Redo",
+            "left": 86,
+            "right": 126,
+            "top": 4,
+            "bottom": 44
+          },
+          {
+            "label": "Play",
+            "left": 132,
+            "right": 217.875,
+            "top": 4,
+            "bottom": 44
+          },
+          {
+            "label": "Reset to the start",
+            "left": 221.875,
+            "right": 261.875,
+            "top": 4,
+            "bottom": 44
+          },
+          {
+            "label": "Fit view to the room",
+            "left": 111,
+            "right": 151,
+            "top": 46,
+            "bottom": 86
+          },
+          {
+            "label": "Export traces",
+            "left": 155,
+            "right": 195,
+            "top": 46,
+            "bottom": 86
+          },
+          {
+            "label": "Export scene",
+            "left": 199,
+            "right": 239,
+            "top": 46,
+            "bottom": 86
+          },
+          {
+            "label": "Import scene or room (.json, .ply)",
+            "left": 243,
+            "right": 283,
+            "top": 46,
+            "bottom": 86
+          },
+          {
+            "label": "Fullscreen",
+            "left": 287,
+            "right": 327,
+            "top": 46,
+            "bottom": 86
+          },
+          {
+            "label": "Agent",
+            "left": 331,
+            "right": 371,
+            "top": 46,
+            "bottom": 86
+          }
+        ],
+        "addMenu": {
+          "x": 12,
+          "y": 154,
+          "width": 351,
+          "height": 650
+        },
+        "escapeAndOutside": true
+      }
+    },
+    {
+      "name": "room-editor-375-dark",
+      "utc": "2026-11-02T13:37:10.167Z",
+      "data": {
+        "width": 375,
+        "scrollWidth": 375,
+        "header": "none",
+        "emDash": false,
+        "top": [
+          {
+            "label": "Back to workspace",
+            "left": 4,
+            "right": 36,
+            "top": 8,
+            "bottom": 40
+          },
+          {
+            "label": "Undo",
+            "left": 42,
+            "right": 82,
+            "top": 4,
+            "bottom": 44
+          },
+          {
+            "label": "Redo",
+            "left": 86,
+            "right": 126,
+            "top": 4,
+            "bottom": 44
+          },
+          {
+            "label": "Play",
+            "left": 132,
+            "right": 217.875,
+            "top": 4,
+            "bottom": 44
+          },
+          {
+            "label": "Reset to the start",
+            "left": 221.875,
+            "right": 261.875,
+            "top": 4,
+            "bottom": 44
+          },
+          {
+            "label": "Fit view to the room",
+            "left": 111,
+            "right": 151,
+            "top": 46,
+            "bottom": 86
+          },
+          {
+            "label": "Export traces",
+            "left": 155,
+            "right": 195,
+            "top": 46,
+            "bottom": 86
+          },
+          {
+            "label": "Export scene",
+            "left": 199,
+            "right": 239,
+            "top": 46,
+            "bottom": 86
+          },
+          {
+            "label": "Import scene or room (.json, .ply)",
+            "left": 243,
+            "right": 283,
+            "top": 46,
+            "bottom": 86
+          },
+          {
+            "label": "Fullscreen",
+            "left": 287,
+            "right": 327,
+            "top": 46,
+            "bottom": 86
+          },
+          {
+            "label": "Agent",
+            "left": 331,
+            "right": 371,
+            "top": 46,
+            "bottom": 86
+          }
+        ],
+        "addMenu": {
+          "x": 12,
+          "y": 154,
+          "width": 351,
+          "height": 650
+        },
+        "escapeAndOutside": true
+      }
+    },
+    {
+      "name": "agent-voice-control",
+      "utc": "2026-11-02T13:37:10.428Z",
+      "data": {
+        "visible": true,
+        "realMicrophoneAndTranscription": "NOT RUN: no paid call"
+      }
+    },
+    {
+      "name": "public-recorded-experiment-fit-and-seek",
+      "utc": "2026-11-02T13:37:11.585Z",
+      "data": {
+        "text": "vertical acceleration (g if only gravity acts): 2330 +/- 110 px/s^2\nRECORDED sample / MEASURED: hosted SAM 3.1 box centres in image pixels. scale unverified: no known size given, so results are in pixels; no metric value. 1 sigma uncertainty. playback timestamps; capture clock unverified (slow motion would change every time-based value)",
+        "time": "0.167 s"
+      }
+    },
+    {
+      "name": "console-and-network",
+      "utc": "2026-11-02T13:37:11.593Z",
+      "data": {
+        "pageErrors": [],
+        "imageResponses": [
+          {
+            "path": "/rooms/0faca584c7b740a29f0ca5052e8f1c20/views/0.png",
+            "method": "GET",
+            "status": 200
+          }
+        ],
+        "paidCalls": 0
+      }
+    }
+  ],
+  "calls": [
+    {
+      "path": "/projects/216ed5e04f4f407ab73f25361ff341c0/snapshot",
+      "method": "PUT",
+      "status": 200
+    },
+    {
+      "path": "/fit",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/health",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/files",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/gpu/status",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/experiments",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/rooms",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects/216ed5e04f4f407ab73f25361ff341c0/snapshot",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects/4511161533a14b7283005f8f336611cc/snapshot",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects/17974b6055e44b5a806e7d230a69c477/snapshot",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects/3fdbfa07cfef44b2a477fa4fd4e6c2eb/snapshot",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects/09d6ff33a7b445eaa344d6426469eef3/snapshot",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects/3e736a37b1a948b6929833dc2d5cc60a/snapshot",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects/dcbce0e8b00946d19de52d85d558c0af/snapshot",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects/5294a3dfe52d4e2fbb289a832a1259d4/snapshot",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/projects/216ed5e04f4f407ab73f25361ff341c0",
+      "method": "PATCH",
+      "status": 200
+    },
+    {
+      "path": "/projects",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/experiments",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/rooms",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/rooms/0faca584c7b740a29f0ca5052e8f1c20/result",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/rooms/0faca584c7b740a29f0ca5052e8f1c20",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/rooms/0faca584c7b740a29f0ca5052e8f1c20/room.ply",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/rooms/0faca584c7b740a29f0ca5052e8f1c20/views/0.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/experiments/416b36b2dfd94fcf8fbe77134d3ed312",
+      "method": "GET",
+      "status": 200
+    }
+  ]
+}

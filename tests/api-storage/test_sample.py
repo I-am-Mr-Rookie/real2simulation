@@ -1,11 +1,13 @@
 """N11: SAMPLE project seeding. Offline; synthetic bytes stand in for the recorded RM04 bundle."""
 import hashlib
+import io
 import json
 import shutil
 import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
+import numpy as np
 
 from fastapi import FastAPI
 from fastapi.testclient import TestClient
@@ -28,6 +30,20 @@ class SampleTests(unittest.TestCase):
         (self.bundle / "scene.json").write_text(json.dumps({"camera_path": [{"pose": {"position_m": [0, 0, 0]}}]}))
         self.manifest = self.dir / "manifest.json"
         self.manifest.write_text(json.dumps({"files": {"points-mobile.ply": {"sha256": hashlib.sha256(PLY).hexdigest()}}}))
+        arrays = {}
+        rng = np.random.default_rng(42)
+        pts = rng.random((32, 32, 3))
+        for i in range(2):
+            arrays.update({f"view{i}_pts3d": pts[None], f"view{i}_conf": np.ones((1, 32, 32)),
+                           f"view{i}_mask": np.ones((1, 32, 32)), f"view{i}_camera_poses": np.eye(4)[None],
+                           f"view{i}_img_no_norm": np.full((1, 32, 32, 3), .5)})
+        buf = io.BytesIO()
+        np.savez(buf, **arrays)
+        self.archive = buf.getvalue()
+        (self.bundle / "RM04-mapanything.npz").write_bytes(self.archive)
+        manifest = json.loads(self.manifest.read_text())
+        manifest["files"]["RM04-mapanything.npz"] = {"sha256": hashlib.sha256(self.archive).hexdigest()}
+        self.manifest.write_text(json.dumps(manifest))
         self.store = storage.Store(self.dir / "data")
         app = FastAPI()
         app.include_router(create_router(self.store))
@@ -78,8 +94,37 @@ class SampleTests(unittest.TestCase):
         job = next((self.store.root / "rooms" / "user_synthA").iterdir()).name
         r = self.c.get(f"/internal/workspace/rooms/{job}/result", headers=A).json()
         self.assertEqual(r["room"]["labels"]["scale"], "scale unverified")
-        self.assertEqual(self.c.get(f"/internal/workspace/rooms/{job}/room.ply", headers=A).content, PLY)
+        self.assertTrue(self.c.get(f"/internal/workspace/rooms/{job}/room.ply", headers=A).content.startswith(b"ply\n"))
         self.assertEqual(self.c.get(f"/internal/workspace/rooms/{job}/result", headers=B).status_code, 404)
+
+    def test_sample_archive_views_old_sample_repair_and_no_substitution_for_user_room(self):
+        from Build.api.room.objects import create_router as object_router
+        self.c.app.include_router(object_router(self.store))
+        pid = self.projects()[0]["id"]
+        d = next((self.store.root / "rooms" / "user_synthA").iterdir())
+        url = f"/internal/workspace/rooms/{d.name}/views/0.png"
+        self.assertEqual((d / "mapanything.npz").read_bytes(), self.archive)
+        image = self.c.get(url, headers=A)
+        self.assertEqual((image.status_code, image.headers["content-type"]), (200, "image/png"))
+        self.assertTrue(image.content.startswith(b"\x89PNG"))
+        self.assertEqual(self.c.get(url, headers=B).status_code, 404)
+        (d / "mapanything.npz").unlink()
+        self.assertEqual(self.c.get(url, headers=A).status_code, 200)  # pre-N58 sample upgrades on demand
+        (d / "mapanything.npz").unlink()
+        status = json.loads((d / "status.json").read_text())
+        status["sample"] = False
+        (d / "status.json").write_text(json.dumps(status))
+        self.assertEqual(self.c.get(url, headers=A).status_code, 503)
+        self.assertFalse((d / "mapanything.npz").exists())
+
+    def test_sample_archive_rejects_bad_hash(self):
+        self.projects()
+        d = next((self.store.root / "rooms" / "user_synthA").iterdir())
+        (d / "mapanything.npz").unlink()
+        (self.bundle / "RM04-mapanything.npz").write_bytes(b"changed")
+        with self.assertRaisesRegex(ValueError, "hash mismatch"):
+            sample.ensure_room_archive(d)
+        self.assertFalse((d / "mapanything.npz").exists())
 
     def test_missing_or_altered_bundle_keeps_experiment_only(self):
         (self.bundle / "points-mobile.ply").write_bytes(PLY + b"x")

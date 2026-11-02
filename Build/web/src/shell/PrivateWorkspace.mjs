@@ -90,7 +90,7 @@ export function sessionNote(storage, phase) {
 // S15bg: fixture wording only once the probe reports the service unavailable; never while checking or live (the route announcer reads the h1).
 export const workspaceHeading = (api, scene) => api === 'live' ? 'Private workspace' : api === 'checking' ? 'Workspace' : scene.title;
 
-export default function PrivateWorkspace({ scene }) {
+export default function PrivateWorkspace({ scene, controls }) {
   const { useState, useEffect, useMemo, useRef } = React;
   const [api, setApi] = useState('checking');
   const [snap, setSnap] = useState(null);
@@ -164,6 +164,7 @@ export default function PrivateWorkspace({ scene }) {
   const openTool = (t) => {
     const el = globalThis.document?.getElementById(t.target);
     if (!el) return;
+    const legacy = el.closest?.('.ws-legacy'); if (legacy) legacy.open = true;
     if (narrow() && !el.closest?.('#r2s-right')) { opened.current = false; setRight(false); }
     el.scrollIntoView?.({ block: 'start', behavior: 'smooth' }); el.focus?.({ preventScroll: true });
   };
@@ -182,13 +183,14 @@ export default function PrivateWorkspace({ scene }) {
     close: () => { if (right) closeRight(); if (narrow() && rail?.open) toggleLeft(); },
     navigated: () => { if (rail?.preview) send({ type: 'escape' }); else if (narrow() && rail?.open) toggleLeft(); } };
   return React.createElement('section', { 'data-private-content': live ? 'live' : 'fixture', 'data-api': api, 'aria-label': 'Private workspace' },
-    renderShell(React.createElement, { title: workspaceHeading(api, scene), rail, right, tools, pending,
+    renderShell(React.createElement, { title: workspaceHeading(api, scene), rail, right, tools, pending, controls,
       status: live ? React.createElement(Live.Dot, { L }) : null, foot: live ? React.createElement(Live.Meter, { L }) : null,
       agent: React.createElement(React.Fragment, null, live ? React.createElement(Live.Chat, { L }) : null, iv ? renderQuestionCard(React.createElement, iv, onAction, { cardHead }) : null) }, on, { rightToggle, rightHead },
     live ? null : React.createElement('p', { role: 'note' }, api === 'checking' ? 'Checking the workspace service…' : UNAVAILABLE_NOTICE), // N55: no "Connected" chip
     live ? React.createElement(Live.Centre, { L }) : null,
     live ? renderWaiting(React.createElement, iv, openCard) : null,
     live || api === 'checking' ? null : React.createElement('p', { role: 'note' }, scene.notice),
+    React.createElement('details', { className: 'ws-legacy' }, React.createElement('summary', null, 'Advanced single-clip tools'),
     live && resetNote ? React.createElement('p', { role: 'note', className: 'ws-note', 'data-slot': 'session-reset' }, SESSION_RESET) : null,
     live && simulated ? React.createElement('p', { role: 'note', 'data-label': s.whatIfLabel ? 'what-if' : 'simulated' }, s.whatIfLabel
       ? s.whatIfLabel + '. Run and fit values come from the in-browser simulator on your described setup.' + (s.specLabel ? ' Spec: ' + s.specLabel + '.' : '')
@@ -198,6 +200,6 @@ export default function PrivateWorkspace({ scene }) {
     React.createElement(Workspace, { state: s.state, adapter, loadScene, audience: 'signed-in', onAction,
       run: live ? initialRun() : undefined, instruments: live ? local.instruments : undefined, // interview: rendered in the right panel (S15ac)
       fit: live ? s.fitInput ?? undefined : undefined, report: live && s.report ? s.report : undefined, provenance: live ? s.provenance ?? undefined : undefined,
-      whatIf: live ? s.whatIfLabel ?? undefined : undefined })));
+      whatIf: live ? s.whatIfLabel ?? undefined : undefined }))));
 }
 
