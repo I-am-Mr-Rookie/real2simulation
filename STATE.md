@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 18:45 Dhaka · controller: Codex quota hit on N58
+- N58-orch303 (Sol) stopped with "You've hit your usage limit. Try again at 6:43 PM." Per Koushik's Codex quota rule: no retry or resume; Koushik notified; waiting for his word. Partial work stays in .worktrees/N58-orch303. N59 (Sol) waits too.
+
 ## 2026-11-02 18:25 Dhaka · controller: accept N57, dispatch N58
 - N57-orch302 (Sol high) accepted at b862e8de (evidence only): no P1; 7 P2 and 5 P3 in evidence/N57/FINDINGS.md. Confirmed: RM02 view image HTTP 500 (A4/real object unusable on the sample), 375 px top bar and Add menu clipped, template snapshots hidden as Empty, raw-scan checkbox vs physics mismatch, Room tab state loss, no scrubber/result card, duplicate workspace chrome and old single-clip area, R2S text logo, prompt() rename, no tracked-path preview, no voice in agent drawer, narrow-screen overrun; snapshot not deleted with project (source). Refuted: two fullscreen buttons (one is Fit view). Rename PATCH 200; snapshot on ready card works.
 - N57 cost: one hosted SAM 3.1 measurement, USD 0.024. Secret and email scan of receipts clean.
