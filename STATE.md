@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 08:00 Dhaka (controller)
+- Queue drained after N42. Dispatched N43-orch288 (Sol high 60, QA only, due 2026-11-02T08:57:09+06:00): DEV end-to-end QA after the Nov 2 merges, Pexels clips only, $2 cap. Fix rows follow from its findings.
+
 ## 2026-11-02 06:35 Dhaka (controller)
 - Accepted N42 (Opus): SF3D furniture tops get a flattened support plane plus a thin convex slab, so a ball rests on the SF3D table mesh (8 of 9 grid drops held; one edge point outside the SF3D outline falls; box 9/9). A4 rescale now keeps the shell; the shell builds automatically after a room job (unit-tested, not live); desk + hutch parts merged; floor fit fixed (coffee table top 0.40 m, was 0.094; scale unverified). Live reused N39 job, $0.1802 SF3D.
 - Main green: node 417/417, python 388, build ok. DEV deployed from e5bcfcc5: api 60195792, web 5ef6d2eb; verify.py exit 0.
