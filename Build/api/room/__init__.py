@@ -7,6 +7,8 @@ GET /rooms/{id}/room.ply; POST /rooms/{id}/scale {reference} -> CPU-only rescale
 N42: with the real GPU remote, a finished job runs one automatic lab shell pass (objects.build_shell_files; state
 "building lab shell", then status shell done/failed); a rescale keeps and scales the shell (live_room.finish).
 Job files: R2S_DATA_DIR/rooms/<owner>/<job_id>/ (status.json, scene.json, room.json, room.ply, mapanything.npz).
+N59: done is usable before optional SF3D upgrades finish. Per-object states are in status.shape_upgrades and
+result.room.shell.kept[].upgrade; generated meshes keep measured-box physics.
 """
 import json
 import re
@@ -75,7 +77,11 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
 
     @router.get("/rooms/{job_id}")
     def status(job_id: str, owner: str = Depends(require_owner)):
-        s = read(job_dir(owner, job_id), "status.json")
+        d = job_dir(owner, job_id)
+        s = read(d, "status.json")
+        if s["state"] == "done" and (d / "room.json").exists():
+            s["shape_upgrades"] = [{"id": o["id"], **o["upgrade"]}
+                                   for o in read(d, "room.json").get("shell", {}).get("kept", []) if "upgrade" in o]
         if s["state"] in ("queued", "sampling", "reconstructing"):
             s["gpu"] = gpu.status(owner, stats())
         return {"job": s}
@@ -91,7 +97,9 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
                 ensure_room_archive(d)
             except (OSError, ValueError, KeyError):
                 raise error(503, "DEPENDENCY_UNAVAILABLE", "public sample archive is unavailable") from None
-        return {"scene": read(d, "scene.json"), "room": read(d, "room.json")}
+        from Build.reconstruction.shape_upgrade import LOCK
+        with LOCK:  # never report the final ready state with the preceding box-only scene
+            return {"scene": read(d, "scene.json"), "room": read(d, "room.json")}
 
     @router.get("/rooms/{job_id}/room.ply")
     def room_ply(job_id: str, owner: str = Depends(require_owner)):
@@ -108,7 +116,9 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
         try:
             from Build.api.storage.sample import ensure_room_archive
             ensure_room_archive(d)
-            out = live_room.finish(d, ref_of(payload))
+            from Build.reconstruction.shape_upgrade import LOCK
+            with LOCK:
+                out = live_room.finish(d, ref_of(payload))
         except (OSError, KeyError):
             raise error(503, "DEPENDENCY_UNAVAILABLE", "room reconstruction archive is unavailable") from None
         except (ValueError, TypeError) as e:

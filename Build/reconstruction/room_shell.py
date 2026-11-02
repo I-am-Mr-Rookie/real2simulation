@@ -22,7 +22,7 @@ KEYFRAMES = 16  # N49: all sampled room frames (live_room.FRAMES 16): with 3, th
 SAM_THREADS = 4  # N49: parallel hosted SAM calls (daily_cap reserves in BEGIN IMMEDIATE, so the cap holds)
 MIN_TOP = 0.05  # model metres; N06's coffee table top is about 0.1 above the fitted floor (scale unverified)
 MIN_SPAN = 0.25
-MAX_SF3D = 3  # SF3D GPU calls per shell (largest items first); the rest keep their measured box, with the reason
+MAX_SF3D = 4  # largest kept objects; the rest retain their parametric shape
 WALL_T = 0.08
 MIN_SUPPORT = 0.04  # fraction of wall-band points within one cell of the plane
 OUTSIDE_MAX = 0.1  # N44: a wall bounds the room: at most this share of its side's points beyond it (doors, windows)
@@ -423,7 +423,7 @@ def wall_objects(yaw, fit, holes, colors=None):
     return objs
 
 
-def build(npz, room, scene, detect, generate=None, glb_url=None):
+def build(npz, room, scene, detect, generate=None, glb_url=None, deferred=None):
     """npz bytes + room.json + scene.json -> (scene with shell objects, shell summary, {object id: glb bytes}).
     detect(png, noun, w, h) -> box sequences with optional .mask (or {box, mask}); generate(rgba png) -> SF3D dict or None."""
     started = time.monotonic()
@@ -489,12 +489,21 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
     stage_start = time.monotonic()
     glbs, kept_list = {}, []
     sf3d_timeout = None
+    largest = {id(it) for it in sorted(kept, key=lambda it: float(np.prod(it["proxy"]["size"])), reverse=True)[:MAX_SF3D]}
     for n_item, it in enumerate(kept):
         p, noun = it["proxy"], it["noun"]
         out, obj = object_lift.to_scene(out, p, category=noun)
         obj["look"] = {"category": noun, "color": hex_color(views[it["view"]]["rgb"][p["mask"].reshape(-1)])}  # N49
         gen = {}
+        upgrade = ({"state": "failed", "reason": f"SF3D skipped: outside the largest {MAX_SF3D} kept objects"}
+                   if deferred is not None else None)
         try:  # N31 path: SF3D shape fitted to the measured box; any failure keeps the box with the reason
+            if deferred is not None and id(it) in largest:
+                deferred.append({"id": obj["id"], "category": noun,
+                                 "png": object_lift.crop_rgba(npz, it["view"], it["box"], p["mask"]),
+                                 "proxy": {k: p[k] for k in ("rotation", "camera", "position")}})
+                upgrade = {"state": "pending"}
+                raise RuntimeError("background shape upgrade pending")
             if generate is None:
                 raise RuntimeError("SF3D not requested")
             if n_item >= MAX_SF3D:
@@ -510,9 +519,17 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
             if isinstance(e, GenerationTimeout):
                 sf3d_timeout = str(e)[:200]
             obj["shape"] = {"type": "box", "fallback_reason": f"SF3D: {type(e).__name__}: {e}"[:300]}
+            if upgrade and upgrade["state"] == "pending":
+                obj["shape"]["fallback_reason"] = "SF3D shape improvement pending"
+            if upgrade and upgrade["state"] == "failed":
+                if id(it) in largest:
+                    upgrade["reason"] = obj["shape"]["fallback_reason"]
+                else:
+                    obj["shape"]["fallback_reason"] = upgrade["reason"]
         kept_list.append({"id": obj["id"], "category": noun, "views": it["views"], "merged": it.get("merged", []), "points": p["points"],
                           "size_m": obj["size"], "size_sd_m": p["size_sd"], "clutter_px_masked": p.get("clutter_px", 0),
                           "shape": obj["shape"]["type"], "fallback_reason": obj["shape"].get("fallback_reason"),
+                          **({"upgrade": upgrade} if upgrade else {}),
                           "sf3d": {k: gen.get(k) for k in ("gpu", "wall_s", "inference_s", "estimated_usd")} if gen else None,
                           "reason": f"main furniture ({noun}), {len(it['views'])} view(s), box reaches the floor",
                           "mask_source": it["mask_source"],

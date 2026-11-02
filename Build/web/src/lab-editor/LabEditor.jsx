@@ -14,6 +14,7 @@ import { naturalPoint, trajectoryScene, fmtPm } from '../workspace/measure.mjs';
 import { robustBounds, fitDistance, FRAME_Q } from './frame.mjs';
 import { colliderGeometry, loadShapeGlb, SHAPE_LABEL } from './sf3d-shape.mjs';
 import { lookMesh } from './furniture-shape.mjs';
+import { mergeShapeUpdates } from './shape-upgrades.mjs';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981, flywheel: 0x8b5cf6, atwood: 0x0ea5e9,
@@ -210,6 +211,26 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const [plyName, setPlyName] = useState(null);
   const [backdrop, setBackdrop] = useState(true); // N39: room point cloud is an optional backdrop (off for shell rooms)
   const [src, setSrc] = useState(null); // N22 live source: { kind: 'room', id, room } | { kind: 'experiment', id }
+  const improving = src?.kind === 'room' ? (src.room.shell?.kept ?? []).filter((o) => o.upgrade?.state === 'pending').length : 0;
+  useEffect(() => {
+    if (src?.kind !== 'room' || !improving) return;
+    let cancelled = false, timer;
+    const poll = async () => {
+      try {
+        const r = await getJson('/rooms/' + src.id + '/result');
+        if (cancelled) return;
+        // A running simulation keeps its bodies and mesh until it is stopped.
+        if (run === 'stopped') {
+          const next = validateScene(r.scene);
+          setScene((s) => mergeShapeUpdates(s, next));
+          setSrc((s) => s?.id === src.id ? { ...s, room: r.room } : s);
+        }
+      } catch { /* optional improvement; keep the usable room and retry */ }
+      if (!cancelled) timer = setTimeout(poll, 5000);
+    };
+    timer = setTimeout(poll, 1000);
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [src?.id, src?.kind, improving, run]);
   const [side, setSide] = useState(true); // N24: inspector + scene JSON panel (collapsible)
   const [tone, setTone] = useState('light');
   // N56 full-window layout: left tab, agent drawer, view-only hidden objects, lab name, project for the preview snapshot.
@@ -666,7 +687,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
           <summary>{'SIMULATED' + (scaleOpen ? ' · scale unverified' : '') + (extra > 0 ? ' · +' + extra : '')}</summary>
           <ul>{labels.map(([l, why]) => <li key={l}><strong>{l}</strong> {why}</li>)}</ul>
         </details>
-        <p className="le-status" role="status">{message} Gravity [{scene.gravity.join(', ')}] m/s^2{plyName ? ', room ' + plyName : ''}.</p>
+        <p className="le-status" role="status">{improving > 0 && 'Improving ' + improving + ' objects... '}{message} Gravity [{scene.gravity.join(', ')}] m/s^2{plyName ? ', room ' + plyName : ''}.</p>
       </div>
       <aside className="le-side le-right" aria-label={agentOpen ? 'Agent' : 'Properties'}>
         <button type="button" className="le-sheet-close" onClick={() => { setAgentOpen(false); setSelected(null); }}>Close</button>
@@ -680,7 +701,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
               {sel.kind !== 'pendulum' && sel.kind !== 'spring' && <label className="le-check"><input type="checkbox" checked={sel.fixed} onChange={(e) => setObj((o) => ({ ...o, fixed: e.target.checked }))} /> Fixed in place</label>}
               <label className="le-check"><input type="checkbox" checked={sel.sensor} onChange={(e) => setObj((o) => ({ ...o, sensor: e.target.checked }))} /> Record trajectory sensor</label>
             </fieldset>
-            {sel.shape && <p className="le-muted">{sel.shape.type === 'mesh' ? SHAPE_LABEL + ' (Stable Fast 3D). Collider: ' + (sel.fixed ? 'mesh' : 'convex hull') + '. Mass and friction MODEL-ESTIMATED (' + sel.shape.category + ').' : 'Measured box shape. ' + sel.shape.fallback_reason}</p>}
+            {sel.shape && <p className="le-muted">{sel.shape.type === 'mesh' ? SHAPE_LABEL + ' (Stable Fast 3D). Collider: ' + (sel.shape.collider === 'box' ? 'measured box' : sel.fixed ? 'mesh' : 'convex hull') + '. Mass and friction MODEL-ESTIMATED (' + sel.shape.category + ').' : 'Measured box shape. ' + sel.shape.fallback_reason}</p>}
             {selTrace && <p>Sensor: {selTrace.samples.length} samples{selTrace.truncated ? ' (cap reached)' : ''}</p>}
             <button type="button" className="le-danger" disabled={live} onClick={removeSelected}>Delete</button>
           </> : <>

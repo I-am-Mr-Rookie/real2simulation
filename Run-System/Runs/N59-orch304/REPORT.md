@@ -1,0 +1,17 @@
+# N59-orch304: PARTIAL
+- Implemented post-ready, separate-thread upgrades of the largest 4 kept objects through the existing Modal SF3D function; 660 s cold-start budget, one attempt per object.
+- Canonical daily_cap reservations precede spawn and remain charged while the room is ready; lease reaping/late settlement cannot release or double-charge them. Failed calls retain the conservative bound.
+- API exposes pending/ready/failed reasons; editor polls, swaps ready meshes, updates failed-box reasons, and preserves local edits/deletions. Generated surfaces retain measured-box colliders and the single Stability AI credit.
+- Rebuilding the shell invalidates stale work and skips its remaining paid calls; rescale/result access is coordinated with upgrades; clicked-object saves preserve concurrent upgrades.
+- Checks: final Python GPU/reconstruction/guardrails suite 226 passed + 248 subtests. Node lab-editor suite 36 passed. npm run build passed.
+- Live public RM04: room ready 379.032 s, first mesh 485.391 s, all 4 meshes 509.274 s. No private room or N06 input accessed.
+- Latency acceptance NOT MET: 379 s exceeds about 270 s. Sampling 24.828 s, GPU 206.938 s (L4 timeout then A10G), SAM detection 117.890 s, lifting 25.407 s; shape preparation only 0.063 s.
+- SF3D A10G calls (upper estimated USD, not provider bills): object 1 0.37001482; object 2 0.33345477; object 3 0.33388522; object 5 0.33354836; total 1.37090317.
+- Total row upper estimate USD 2.46499061: Modal 2.02499061 (2 reconstruction attempts + 4 SF3D calls), Meta SAM 0.44000000 (176 images). All 182 canonical ledger rows settled; no outstanding row reservation.
+- Deployed SF3D's 900 s idle window. Live dot green/pool 1 at 14:23:38 UTC; red/pool 0 at 14:31:04 UTC. No Railway deploy.
+- IAB returned exactly `Browser is not available: iab`; headed Playwright fallback loaded actual generated GLBs, swapped 4 without reload, preserved edited mass, reopened the lab, and checked 390x844. No page errors.
+- Separate SIMULATED UI regression verified failure reasons, usable physics/reset and preserved edits with zero model calls. Existing unrelated fitter subprocess logs a skipped KeyError in the Node suite.
+- Evidence: evidence/N59/{live-result,room-ready,ui-summary,ui-failure-summary,idle-warm,idle-asleep}.json; runnable launch/live/status/UI scripts. Screenshots and generated GLBs remain local under evidence/N59/{ui,live-data}, not committed.
+- Skipped: Railway/authenticated end-to-end deployment, provider-bill reconciliation, paid retries and restart recovery. API restart mid-upgrade can leave pending states; spend remains conservatively reserved/reaped.
+- Risks: RM04 meshes are visibly coarse/blobby, not verified accurate furniture. Scale stays unverified. Controller cross-vendor spend review is required before merge.
+- Closeout: staged Owns/media-boundary audit passed; actual local credential-value scan found zero matches. No code changes after the 14:46:16 UTC cutoff.

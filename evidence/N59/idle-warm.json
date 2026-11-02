@@ -1,0 +1,14 @@
+{
+ "utc": "2026-11-02T14:23:38Z",
+ "sf3d": {
+  "runners": 1,
+  "backlog": 0
+ },
+ "gpu_dot": {
+  "state": "green",
+  "queue_length": 0,
+  "your_position": null,
+  "source": "modal+jobs",
+  "idle_seconds_remaining": 378
+ }
+}

@@ -1,0 +1,11 @@
+{
+  "label": "SIMULATED API-only regression check",
+  "checks": [
+    "failed reason replaces pending",
+    "room simulation remains usable",
+    "reset applies terminal update",
+    "mass edit preserved"
+  ],
+  "model_calls": 0,
+  "page_errors": []
+}

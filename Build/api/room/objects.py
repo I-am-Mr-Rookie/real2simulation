@@ -25,20 +25,24 @@ from Build.guardrails import daily_cap
 from Build.reconstruction import live_room, object_lift, room_shell
 
 
-def build_shell_files(d, detect=object_lift.sam_text, generate=sf3d.generate_remote):
+def build_shell_files(d, detect=object_lift.sam_text, generate=None, *, defer=True):
     """Room job folder -> lab shell written into scene.json + room.json "shell" (+ GLBs). N42: also run once
     automatically after a room job (Build/api/room run_job after=). Raises CapExceeded / RuntimeError / ValueError."""
     room = json.loads((d / "room.json").read_text(encoding="utf-8"))
     scene = json.loads((d / "scene.json").read_text(encoding="utf-8"))
     scene["objects"] = [o for o in scene.get("objects", []) if not str(o.get("id", "")).startswith(("wall-", "room-object-"))]
+    deferred = [] if defer and generate is None else None
     scene, shell, glbs = room_shell.build((d / "mapanything.npz").read_bytes(), room, scene, detect, generate,
-                                          lambda oid: f"/api/workspace/rooms/{d.name}/objects/{oid}.glb")
+                                          lambda oid: f"/api/workspace/rooms/{d.name}/objects/{oid}.glb", deferred)
     (d / "objects").mkdir(exist_ok=True)
     for oid, glb in glbs.items():
         (d / "objects" / f"{oid}.glb").write_bytes(glb)
     shell["created_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-    live_room._write(d / "scene.json", scene)
-    live_room._write(d / "room.json", {**room, "shell": shell})
+    from Build.reconstruction.shape_upgrade import LOCK, prepare
+    with LOCK:
+        prepare(d, deferred or [])  # invalidates an older in-flight shell, including when upgrades are disabled
+        live_room._write(d / "scene.json", scene)
+        live_room._write(d / "room.json", {**room, "shell": shell})
     return shell, scene
 
 
@@ -127,16 +131,25 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
                              "mass_friction": f"MODEL-ESTIMATED from category {category}",
                              "scale": room["scale"]["status"],
                              "caveat": "visible surface only; the hidden back is not observed, so depth size is a lower bound"}}
-        live_room._write(d / "scene.json", scene)
-        f = d / "objects.json"
-        live_room._write(f, [*(json.loads(f.read_text(encoding="utf-8")) if f.exists() else []), record])
+        from Build.reconstruction.shape_upgrade import LOCK
+        with LOCK:
+            # SF3D waited remotely: do not replace upgrades that arrived during that wait.
+            scene = json.loads((d / "scene.json").read_text(encoding="utf-8"))
+            scene["objects"].append(obj)
+            live_room._write(d / "scene.json", scene)
+            f = d / "objects.json"
+            live_room._write(f, [*(json.loads(f.read_text(encoding="utf-8")) if f.exists() else []), record])
         return {"object": record, "scene": scene}
 
     @router.post("/rooms/{job_id}/shell")
     def build_shell(job_id: str, payload: dict = Body(default={}), owner: str = Depends(require_owner)):
         d = done_dir(owner, job_id)
         try:
-            shell, scene = build_shell_files(d, detect, generate if payload.get("sf3d", True) else None)
+            shell, scene = build_shell_files(d, detect, None if not payload.get("sf3d", True) or generate is sf3d.generate_remote else generate,
+                                             defer=payload.get("sf3d", True))
+            if payload.get("sf3d", True) and generate is sf3d.generate_remote:
+                from Build.reconstruction.shape_upgrade import start
+                start(d, owner)
         except daily_cap.CapExceeded as e:
             raise error(429, "DAILY_CAP", str(e)[:300]) from None
         except (RuntimeError, ValueError, KeyError, OSError) as e:

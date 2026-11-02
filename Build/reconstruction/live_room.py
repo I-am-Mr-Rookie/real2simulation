@@ -309,6 +309,12 @@ def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruc
                    peak_allocated_bytes=r.get("peak_allocated_bytes"), gpu_name=r.get("gpu_name"),
                    estimated_usd=round(sum(a["estimated_usd"] for a in attempts), 8),
                    scale=out["room"]["scale"]["status"], gravity=out["room"]["gravity"]["status"], **shell)
+        if after and shell.get("shell") == "done":
+            from Build.reconstruction.shape_upgrade import start
+            try:
+                start(job_dir, owner, gpu_db=gpu_db, cap_db=cap_db)
+            except Exception as e:
+                set_status(job_dir, shape_upgrade_error=f"{type(e).__name__}: {e}"[:300])
     except daily_cap.CapExceeded as e:
         set_status(job_dir, state="failed", code="DAILY_CAP", error=str(e)[:300])
     except Exception as e:  # noqa: BLE001  the poller must see the failure, not a stuck job

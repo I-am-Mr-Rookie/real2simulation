@@ -153,6 +153,33 @@ class ObjectLift(unittest.TestCase):
         self.assertIn("no GPU capacity", shape["fallback_reason"])
         self.assertEqual(r.json()["object"]["labels"]["shape"], "box fallback")
 
+    def test_clicked_object_preserves_background_updates_during_generation(self):
+        import os
+        os.environ['WORKSPACE_INTERNAL_TOKEN'] = TOKEN
+        d = Store(self.tmp).root / 'rooms' / 'user_synthA' / ('c' * 32)
+        d.mkdir(parents=True)
+        (d / 'mapanything.npz').write_bytes(self.npz)
+        live_room.finish(d)
+        live_room.set_status(d, state='done')
+        scene = json.loads((d / 'scene.json').read_text())
+        scene['objects'] = [{'id': 'room-object-1', 'kind': 'block', 'shape': {'type': 'box', 'fallback_reason': 'pending'}}]
+        live_room._write(d / 'scene.json', scene)
+
+        def generate(png):
+            fresh = json.loads((d / 'scene.json').read_text())
+            fresh['objects'][0]['shape'] = {'type': 'box', 'fallback_reason': 'background changed while waiting'}
+            live_room._write(d / 'scene.json', fresh)
+            return fake_sf3d([])(png)
+
+        app = FastAPI()
+        app.include_router(create_router(Store(self.tmp), segment=lambda *a: (self.box, {}), generate=generate))
+        r = TestClient(app).post(f"/internal/workspace/rooms/{'c' * 32}/objects", headers=A,
+                                json={'view': 0, 'point': self.click})
+        self.assertEqual(r.status_code, 200, r.text)
+        objects = r.json()['scene']['objects']
+        self.assertEqual([o['id'] for o in objects], ['room-object-1', 'room-object-2'])
+        self.assertEqual(objects[0]['shape']['fallback_reason'], 'background changed while waiting')
+
 
 if __name__ == "__main__":
     unittest.main()

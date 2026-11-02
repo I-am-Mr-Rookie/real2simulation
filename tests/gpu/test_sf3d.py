@@ -60,7 +60,7 @@ class Sf3dClient(unittest.TestCase):
         self.assertTrue(call.cancelled)
         self.assertEqual(call.timeout, 90)
         spent = float(daily_cap.today(self.cap)["spent_usd"])  # unknown GPU: settled at the dearer A10G rate
-        self.assertAlmostEqual(spent, sf3d.cost(sf3d.IDLE_S, "A10G", sf3d.CPU, sf3d.MEM_GIB)["total_usd"], places=3)
+        self.assertEqual(spent, sf3d.ESTIMATE_USD)  # no result: keep the conservative cold-start upper bound
 
     def test_remote_function_timeout_also_cancels_and_settles(self):
         call = Call(exc=type("FunctionTimeoutError", (Exception,), {})("execution timeout"))
@@ -83,6 +83,42 @@ class Sf3dClient(unittest.TestCase):
             sf3d.generate_remote(b"png", cap_path=self.cap, fn=fn)
         self.assertEqual(fn.inputs, [])
         daily_cap.settle(rid, 0, path=self.cap)
+
+    def test_failed_call_settles_once_at_full_bound(self):
+        import sqlite3
+        fn = Fn(Call(exc=RuntimeError('synthetic remote failure')))
+        with self.assertRaisesRegex(RuntimeError, 'synthetic remote failure'):
+            sf3d.generate_remote(b'png', cap_path=self.cap, fn=fn)
+        with sqlite3.connect(self.cap) as con:
+            reserved, actual = con.execute('SELECT reserved,actual FROM spend').fetchone()
+        self.assertEqual(actual, reserved)
+
+    def test_invalid_budget_does_not_reserve_or_spawn(self):
+        fn = Fn(Call())
+        for budget in (0, -1, float('nan'), sf3d.BACKGROUND_BUDGET_S + 1):
+            with self.assertRaises(ValueError):
+                sf3d.generate_remote(b'png', cap_path=self.cap, fn=fn, timeout_s=budget)
+        self.assertFalse(fn.inputs)
+        self.assertFalse(self.cap.exists())
+
+    def test_slow_transport_cannot_settle_above_provider_lifetime_reservation(self):
+        fn = Fn(Call({'gpu_name': 'NVIDIA L4'}))
+        with patch.object(sf3d.time, 'monotonic', side_effect=[0, 0, 10000]):
+            r = sf3d.generate_remote(b'png', cap_path=self.cap, fn=fn)
+        self.assertEqual(r['wall_s'], 10000)
+        self.assertLessEqual(r['estimated_usd'], sf3d.ESTIMATE_USD)
+        self.assertEqual(r['estimated_usd'], sf3d.cost(sf3d.STARTUP_S + sf3d.TIMEOUT_S + sf3d.IDLE_S,
+                                                     'L4', sf3d.CPU, sf3d.MEM_GIB)['total_usd'])
+
+    def test_lookup_failure_never_spawns_and_settles_zero(self):
+        from types import SimpleNamespace
+        def lookup(*args):
+            raise RuntimeError('synthetic lookup failure')
+        with patch.object(sf3d, 'modal', SimpleNamespace(Function=SimpleNamespace(
+                from_name=lookup))):
+            with self.assertRaisesRegex(RuntimeError, 'synthetic lookup failure'):
+                sf3d.generate_remote(b'png', cap_path=self.cap)
+        self.assertEqual(daily_cap.today(self.cap)['spent_usd'], 0)
 
 
 if __name__ == "__main__":

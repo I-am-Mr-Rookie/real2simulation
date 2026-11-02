@@ -1,0 +1,25 @@
+{
+  "mode": "headed Playwright scripted fallback",
+  "iab_error": "Browser is not available: iab",
+  "source": "real paid RM04 output via local test-only BFF interception",
+  "pendingText": "Improving 4 objects... Your room as a lab shell: floor, 0 walls (4 not observed, placed at the scan edge), 0 openings, 7 furniture kept, 275 detections dropped. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply.",
+  "requested_glbs": [
+    "room-object-1.glb",
+    "room-object-2.glb",
+    "room-object-3.glb",
+    "room-object-5.glb"
+  ],
+  "upgraded": [
+    "room-object-1",
+    "room-object-2",
+    "room-object-3",
+    "room-object-5"
+  ],
+  "edited_mass_preserved": true,
+  "reopened": true,
+  "mobile_viewport": [
+    390,
+    844
+  ],
+  "page_errors": []
+}

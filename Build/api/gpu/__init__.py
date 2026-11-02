@@ -30,6 +30,7 @@ from Build.guardrails import daily_cap
 
 APP_NAME = "r2s-ondemand"
 FUNCTIONS = ("reconstruct", "track")  # Build/gpu/ondemand.py
+KINDS = (*FUNCTIONS, "sf3d")
 LEASE_S, BEAT_S = 90.0, 20.0
 IDLE_S = 900  # Build/gpu/ondemand.py scaledown_window
 REASON = "GPU job stopped responding"
@@ -67,7 +68,7 @@ def _now(now):
 
 def enqueue(owner, kind, path=None, now=None, reservation=None, cap_db=None):
     """reservation/cap_db: the daily_cap reservation id (and its db path, None = default) to settle if the job dies."""
-    if kind not in FUNCTIONS:
+    if kind not in KINDS:
         raise ValueError("unknown GPU job kind")
     jid = uuid.uuid4().hex
     con = _connect(path)
@@ -195,6 +196,8 @@ def modal_stats():
         for name in FUNCTIONS:
             s = modal.Function.from_name(APP_NAME, name).get_current_stats()
             runners, backlog = runners + s.num_total_runners, backlog + s.backlog
+        s = modal.Function.from_name("r2s-sf3d", "generate").get_current_stats()
+        runners, backlog = runners + s.num_total_runners, backlog + s.backlog
         return runners, backlog
     except Exception:  # missing client/token/deployment: fall back to the job table, labelled source="jobs"
         return None

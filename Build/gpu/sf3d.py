@@ -6,8 +6,8 @@ min_containers 0, max_containers 1, scale to zero after IDLE_S idle seconds).
 Gated weights come from HF with HF_TOKEN in the Modal secret SECRET (key name only).
 Deploy: uv run --python 3.12 --with modal==1.6.3 --env-file .env modal deploy Build/gpu/sf3d.py
 Callers use generate_remote(): one daily_cap reservation per job at the A10G worst case, settled with the
-Build/gpu/cost_log.py rate of the GPU that ran (call wall time + idle window). Not a provider bill.
-Not in the r2s-ondemand shared queue (Build/api/gpu FUNCTIONS): own pool, so the GPU status dot does not show it.
+Build/gpu/cost_log.py rate of the GPU that ran (bounded call wall time + idle window). Not a provider bill.
+Background room upgrades join the shared GPU job queue and status dot; the Modal function keeps its own pool.
 """
 import io
 import sys
@@ -20,13 +20,12 @@ from cost_log import cost  # noqa: E402
 APP, SECRET, CPU, MEM_GIB = "r2s-sf3d", "r2s-hf-sf3d", 2, 16
 GPUS = ["L4", "A10G"]  # Modal tries in order; the container reports which one ran
 REV = "ff21fc491b4dc5314bf6734c7c0dabd86b5f5bb2"  # Stability-AI/stable-fast-3d main, 2026-11-02
-# IDLE_S 60, not ondemand.py's 900: a click is a one-off job and 15 warm GPU minutes would cost more than the job itself
-# (about $0.20 to $0.33 per click). Controller/owner decision pending (N31 REPORT).
-TIMEOUT_S, STARTUP_S, IDLE_S = 300, 300, 60
+TIMEOUT_S, STARTUP_S, IDLE_S = 300, 300, 900
+BACKGROUND_BUDGET_S = TIMEOUT_S + STARTUP_S + 60
 # N53: optional shape must not hold the whole lab for the remote 300 s function timeout.
 CLIENT_BUDGET_S = 90
 VERTEX_COUNT = 1000  # SF3D triangle remesh target: about 2k triangles (lab "average detail", 1 to 3k)
-ESTIMATE_USD = cost(TIMEOUT_S + STARTUP_S + IDLE_S, "A10G", CPU, MEM_GIB)["total_usd"]  # worst case: dearer GPU
+ESTIMATE_USD = cost(BACKGROUND_BUDGET_S + IDLE_S + 60, "A10G", CPU, MEM_GIB)["total_usd"]
 LICENCE = {"model": "stabilityai/stable-fast-3d", "licence": "Stability AI Community License",
            "label": "MODEL-GENERATED shape", "credit": "Powered by Stability AI"}
 
@@ -90,16 +89,24 @@ def gpu_of(name):
     return "L4" if name and "L4" in name else "A10G"
 
 
-def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S):
+def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S, *, owner=None, gpu_path=None):
     """One SF3D job, reserved in daily_cap at the A10G worst case, settled at the rate of the GPU that ran (cost_log
     rates; A10G when unknown). Unconfirmed cancellation retains the full estimate.
     Returns the remote result plus gpu, wall_s, estimated_usd."""
     from Build.guardrails import daily_cap
+    from Build.api import gpu as jobs
+    if not 0 < timeout_s <= BACKGROUND_BUDGET_S:
+        raise ValueError("SF3D client budget must be positive and within the reserved background budget")
     rid = daily_cap.reserve("Modal", ESTIMATE_USD, "N31 sf3d", path=cap_path)
-    call, r, cancellation_unconfirmed = time.time(), {}, False
+    call, r, cancellation_unconfirmed, jid, spawned = time.monotonic(), {}, False, None, False
     try:  # failed or not, the GPU may have run: settle wall time + the idle window
+        if owner is not None:
+            jid = jobs.enqueue(owner, "sf3d", gpu_path, reservation=rid, cap_db=cap_path)
+            jobs.start(jid, gpu_path)
         if fn is None:
             fn = modal.Function.from_name(APP, "generate")
+        call = time.monotonic()
+        spawned = True  # spawn failure can be ambiguous: retain the upper bound
         handle = fn.spawn(rgba_png)
         try:
             r = handle.get(timeout=timeout_s)
@@ -113,9 +120,19 @@ def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S)
                 raise GenerationTimeout("SF3D cancellation unconfirmed; full reservation retained") from cancel_error
             raise GenerationTimeout(f"SF3D gave no result within {timeout_s}s (startup/inference budget)") from None
     finally:
-        wall = time.time() - call
-        usd = (ESTIMATE_USD if cancellation_unconfirmed else
-               cost(wall + IDLE_S, gpu_of(r.get("gpu_name")), CPU, MEM_GIB)["total_usd"])
-        daily_cap.settle(rid, usd, path=cap_path)
+        wall = time.monotonic() - call
+        # Provider startup and execution timeouts bound GPU life; network/queue waits are not additional GPU time.
+        billed_bound_s = min(wall, STARTUP_S + TIMEOUT_S) + IDLE_S
+        usd = (ESTIMATE_USD if cancellation_unconfirmed or (spawned and not r) else
+               cost(billed_bound_s, gpu_of(r.get("gpu_name")), CPU, MEM_GIB)["total_usd"] if spawned else 0)
+        try:
+            daily_cap.settle(rid, usd, path=cap_path)
+        except ValueError:
+            if not jid:
+                raise
+            raise RuntimeError(jobs.REASON) from None  # lease reaper settled it; never release or charge twice
+        finally:
+            if jid and not jobs.finish(jid, gpu_path):
+                raise RuntimeError(jobs.REASON)
     return {**r, "gpu": gpu_of(r.get("gpu_name")), "wall_s": round(wall, 3), "estimated_usd": usd}
 

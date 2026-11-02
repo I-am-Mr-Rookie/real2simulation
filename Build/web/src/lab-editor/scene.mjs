@@ -49,9 +49,10 @@ const GLB_URL = /^\/api\/workspace\/rooms\/[A-Za-z0-9_-]{1,64}\/objects\/room-ob
 // object's collider too. box = SF3D failed, the measured box stays and fallback_reason says why.
 function shapeOf(s, at) {
   if (!s || typeof s !== 'object' || Array.isArray(s)) bad(at + ' must be an object');
-  const keys = s.type === 'box' ? ['type', 'fallback_reason'] : s.type === 'mesh' ? ['type', 'label', 'credit', 'category', 'glb', 'quarter_turns', 'vertices', 'indices', 'support'] : bad(at + '.type must be mesh or box');
+  const keys = s.type === 'box' ? ['type', 'fallback_reason'] : s.type === 'mesh' ? ['type', 'label', 'credit', 'category', 'glb', 'quarter_turns', 'vertices', 'indices', 'support', 'collider'] : bad(at + '.type must be mesh or box');
   for (const k of Object.keys(s)) if (!keys.includes(k)) bad(at + ': unknown field ' + k);
   if (s.type === 'box') return { type: 'box', fallback_reason: typeof s.fallback_reason === 'string' ? s.fallback_reason.slice(0, 300) : bad(at + '.fallback_reason must be a string') };
+  if (s.collider !== undefined && s.collider !== 'box') bad(at + '.collider must be box');
   if (s.label !== 'MODEL-GENERATED shape' || s.credit !== 'Powered by Stability AI') bad(at + ' needs label MODEL-GENERATED shape and credit Powered by Stability AI');
   if (typeof s.glb !== 'string' || !GLB_URL.test(s.glb)) bad(at + '.glb must be a room object mesh URL');
   if (typeof s.category !== 'string' || !/^[a-z]{1,20}$/.test(s.category)) bad(at + '.category must be a lowercase word');
@@ -65,7 +66,7 @@ function shapeOf(s, at) {
   const sp = s.support;
   if (sp !== undefined && (!sp || typeof sp !== 'object' || Object.keys(sp).some((k) => k !== 'plane' && k !== 'outline')
     || !Number.isInteger(sp.outline) || sp.outline < 3 || sp.outline > n || !(sp.plane > -0.5 && sp.plane <= 0.5))) bad(at + '.support must be {plane in (-0.5, 0.5], outline 3..vertices}');
-  return { type: 'mesh', label: s.label, credit: s.credit, category: s.category, glb: s.glb, quarter_turns: s.quarter_turns, vertices: v.slice(), indices: f.slice(), ...(sp && { support: { plane: sp.plane, outline: sp.outline } }) };
+  return { type: 'mesh', label: s.label, credit: s.credit, category: s.category, glb: s.glb, quarter_turns: s.quarter_turns, vertices: v.slice(), indices: f.slice(), ...(s.collider && { collider: s.collider }), ...(sp && { support: { plane: sp.plane, outline: sp.outline } }) };
 }
 
 // N29: room.collision = static box proxy of the room point cloud (MODEL-ESTIMATED), built by physics.mjs roomProxy.

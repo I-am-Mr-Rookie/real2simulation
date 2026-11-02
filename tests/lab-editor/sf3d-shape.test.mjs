@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import R from '../../Build/web/node_modules/@dimforge/rapier3d-compat/dist/rapier.mjs';
 import { validateScene, parseScene, sceneJson } from '../../Build/web/src/lab-editor/scene.mjs';
 import { createPhysics } from '../../Build/web/src/lab-editor/physics.mjs';
+import { mergeShapeUpdates } from '../../Build/web/src/lab-editor/shape-upgrades.mjs';
 
 await R.init();
 // Unit-box pyramid (object_lift.fit_mesh output form): base y = -0.5, apex (0, 0.5, 0).
@@ -43,6 +44,32 @@ test('ball dropped near a corner bounces off the mesh, not the box', () => {
   assert.ok(Math.min(...box.map((p) => p[1])) > 0.99, 'box fallback stops the ball on the box top');
   assert.ok(hit[1] > 0.15 && hit[1] < 0.45, 'the mesh slope deflects the ball at y ' + hit[1]);
   assert.ok(Math.hypot(mesh.at(-1)[0], mesh.at(-1)[2]) > Math.hypot(0.4, 0.4) + 0.05, 'the slope sends the ball outward');
+});
+
+test('background mesh keeps the measured box collider and preserves editor changes', () => {
+  const current = validateScene(scene(null)), incoming = validateScene(scene(pyramid({ collider: 'box' })));
+  current.objects[0].position = [3, 4, 5];
+  current.objects[0].mass = 17;
+  const merged = mergeShapeUpdates(current, incoming);
+  assert.deepEqual(merged.objects[0].position, [3, 4, 5]);
+  assert.equal(merged.objects[0].mass, 17);
+  assert.equal(merged.objects[0].shape.collider, 'box');
+  assert.equal(mergeShapeUpdates(merged, incoming), merged);
+  const removed = { ...current, objects: current.objects.slice(1) };
+  assert.equal(mergeShapeUpdates(removed, incoming), removed);
+  const box = drop(scene(null)), improved = drop(incoming);
+  assert.deepEqual(improved, box, 'a generated surface never changes measured physics');
+});
+
+test('failed upgrade replaces the pending reason without changing the box or user edits', () => {
+  const pending = validateScene(scene({ type: 'box', fallback_reason: 'pending' }));
+  pending.objects[0].position = [3, 4, 5];
+  const failed = validateScene(scene({ type: 'box', fallback_reason: 'SF3D: cap denied' }));
+  const merged = mergeShapeUpdates(pending, failed);
+  assert.equal(merged.objects[0].shape.fallback_reason, 'SF3D: cap denied');
+  assert.deepEqual(merged.objects[0].position, [3, 4, 5]);
+  const ready = validateScene(scene(pyramid({ collider: 'box' })));
+  assert.equal(mergeShapeUpdates(ready, failed), ready, 'do not remove an already-loaded mesh');
 });
 
 test('movable mesh object gets a convex hull collider and falls to the floor', () => {

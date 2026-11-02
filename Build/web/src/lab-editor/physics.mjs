@@ -115,7 +115,7 @@ export function roomProxy(positions, gravity = [0, -9.81, 0], floorY = 0, maxBox
 // N44: with a support slab, triangles touching the flattened top are left out: their slanted normals at the top edge
 // pushed a dropped ball sideways on contact and it rolled off (N43 RM02 table); the slab alone forms the top.
 export function meshCollider(R, o) {
-  if (o.shape?.type !== 'mesh') return null;
+  if (o.shape?.type !== 'mesh' || o.shape.collider === 'box') return null;
   const v = new Float32Array(o.shape.vertices.map((x, i) => x * o.size[i % 3]));
   if (!o.fixed) return R.ColliderDesc.convexHull(v);
   let idx = o.shape.indices;
@@ -130,7 +130,7 @@ export function meshCollider(R, o) {
 // N42: fixed support furniture (table, shelf): solid convex slab under the SF3D top outline, at the measured top. A thin
 // trimesh top let a falling ball tunnel or roll off (N39); the slab is at most 3 cm (or the object height) thick.
 export function topCollider(R, o) {
-  const sp = o.shape?.type === 'mesh' && o.fixed && o.shape.support;
+  const sp = o.shape?.type === 'mesh' && o.shape.collider !== 'box' && o.fixed && o.shape.support;
   if (!sp) return null;
   const v = o.shape.vertices.slice(-3 * sp.outline), y0 = o.size[1] / 2, y1 = y0 - Math.min(0.03, o.size[1]), p = [];
   for (let k = 0; k < v.length; k += 3) p.push(v[k] * o.size[0], y0, v[k + 2] * o.size[2], v[k] * o.size[0], y1, v[k + 2] * o.size[2]);

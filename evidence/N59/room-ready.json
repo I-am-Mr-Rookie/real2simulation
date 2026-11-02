@@ -1,0 +1,55 @@
+{
+ "room_ready_s": 379.03083872795105,
+ "job": "C:\\Users\\HP\\.codex\\worktrees\\n59-orch304\\2026-10-26 - Meta Global AI Developer Hackathon\\evidence\\N59\\live-data\\rooms\\n59_public_rm04\\59595959595959595959595959595959",
+ "status": {
+  "job_id": "59595959595959595959595959595959",
+  "state": "done",
+  "sample": true,
+  "source": "RM04 Pexels classroom",
+  "updated_at": "2026-11-02T14:12:50Z",
+  "gpu_job": "52b0b61b88ac4dcb923059409ace44bb",
+  "frames": 16,
+  "gpu_attempts": [
+   {
+    "gpu": "L4",
+    "reservation_id": "3ede9498260640c1ba2bb8e6b7ec4124",
+    "state": "failed",
+    "error": "RuntimeError: no GPU capacity/result within 90s on L4",
+    "cancellation_unconfirmed": false,
+    "estimated_usd": 0.28295809,
+    "wall_s": 97.335
+   },
+   {
+    "gpu": "A10G",
+    "reservation_id": "6d34c34e96594bc0a17aa8295134c101",
+    "state": "done",
+    "estimated_usd": 0.37112935,
+    "wall_s": 109.285
+   }
+  ],
+  "timing_s": {
+   "client_round_trip_s": 109.272,
+   "container_boot_s": 63.093,
+   "cold_start_s": 67.317,
+   "model_load_s": 17.874,
+   "cold_start_to_model_ready_s": 85.191,
+   "inference_s": 3.317,
+   "function_s": 23.657,
+   "container_python_alive_s": 27.881
+  },
+  "gpu": "A10G",
+  "stage_timing_s": {
+   "sampling_s": 24.828,
+   "gpu_s": 206.938,
+   "finish_s": 3.203,
+   "shell_s": 144.063,
+   "total_s": 379.032
+  },
+  "peak_allocated_bytes": 8523223552,
+  "gpu_name": "NVIDIA A10",
+  "estimated_usd": 0.65408744,
+  "scale": "scale unverified",
+  "gravity": "MODEL-ESTIMATED",
+  "shell": "done"
+ }
+}

@@ -207,6 +207,32 @@ class JobTests(unittest.TestCase):
         self.assertEqual((s["state"], s["shell"]), ("done", "failed"))
         self.assertIn("ZeroDivisionError", s["shell_error"])
 
+    def test_room_returns_before_shape_upgrade_finishes(self):
+        import threading
+        from Build.reconstruction import shape_upgrade
+        entered, release, finished = threading.Event(), threading.Event(), threading.Event()
+        d = self.dir / 'async-job'
+        d.mkdir()
+
+        def slow_upgrade(*a, **kw):
+            entered.set()
+            release.wait(5)
+            finished.set()
+
+        def after(job):
+            live_room._write(job / 'shape-upgrades.json', {'batch': 'synthetic', 'inputs': []})
+
+        try:
+            with mock.patch.object(shape_upgrade, 'run', side_effect=slow_upgrade):
+                live_room.run_job(d, 'v.mp4', 5, 'owner', remote=fake_remote, gpu_db=self.gpu_db,
+                                  cap_db=self.cap_db, after=after)
+                self.assertTrue(entered.wait(2))
+                self.assertFalse(finished.is_set())
+                self.assertEqual(json.loads((d / 'status.json').read_text())['state'], 'done')
+        finally:
+            release.set()
+            self.assertTrue(finished.wait(2))
+
     def test_rescale_keeps_and_scales_the_shell(self):
         d = self.dir / "job"
         d.mkdir()
