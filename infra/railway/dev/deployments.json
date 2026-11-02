@@ -19,8 +19,9 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "05e95904-fde0-48e6-90af-45997896793f",
+      "deploymentId": "093b5ac4-ffee-4fcf-a6dd-3c67f7c45db2",
       "previousDeploymentIds": [
+        "05e95904-fde0-48e6-90af-45997896793f",
         "0d24d39f-bfe3-4a11-8970-b38b736817d6",
         "d53a0892-42b8-4713-9d62-529b49f3a8a5",
         "736f8bec-c974-49e8-b4ce-d25d4d30d1a1",
@@ -49,8 +50,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "6f314b9e30c4908f541419800293db1ad0108ea1",
-      "verifiedUtc": "2026-11-02T20:16Z",
+      "sourceRevision": "910af5aa6b4e6860aafbdc3a906d1bf3d3089ae4",
+      "verifiedUtc": "2026-11-02T20:38Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -66,7 +67,7 @@
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "5df506cd-affc-44c6-a83a-d527b46e6766",
-      "redeployNote": "controller: N70 + N71 Wonder Smartest with turn and spend limits",
+      "redeployNote": "controller: N72 three new rooms per day",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {

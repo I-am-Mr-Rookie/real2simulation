@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~03:10 Dhaka: N72 accepted and live; quota rule
+- N72-orch316 DONE: 3 new room builds per owner per Dhaka day (ROOM_STARTS_PER_DAY), counted in rooms/<owner>/room-starts.json with the shared N67 counter helper. The 4th start gets HTTP 429 "Daily room limit reached (3 per day). Try again tomorrow." before any job or reservation; a failed admission frees its slot. The rebuild counter is unchanged and separate. In-app browser check at 1440 and 375 px: PASS. Controller review: ok. Python 602 passed. Secret scan 0.
+- DEV api deployed 093b5ac4; verify.py ok.
+- Koushik (Nov 3): Codex resets 04:44 Dhaka, Claude 05:40. Do not pause any vendor in advance; if a worker stops on usage, resume it after the reset. Do not move Codex work to Claude (save Claude for the video and demo).
+
 ## 2026-11-03 ~02:30 Dhaka: N64 guide dispatched early; Koushik asleep
 - Koushik: launch the guide job now, so he can attach @Browser before sleeping. N64-orch317 dispatched (Claude Sonnet medium, 60 min) with DEV screenshots from the fixture and sample projects only. Gaps it finds go to its REPORT; it does not fix product code. Its screenshots may need a refresh if the UI changes before the freeze.
 - Koushik rule while asleep: new issues that need the browser go to existing workers that already have it (N72-orch316, N64-orch317), sent as a follow-up message in their own chat with a reissued timebox, not to new chats.
