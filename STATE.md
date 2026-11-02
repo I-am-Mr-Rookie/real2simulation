@@ -1,5 +1,14 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~02:18 Dhaka: N71 accepted and live on DEV
+- N71-orch315 DONE. Wonder is selectable as "Smartest" (tier "wonder", high effort) in the Gumloop-style picker, with relative bars only. Sol is still hidden.
+- Limits are named constants in Build/agent/core.py: 10 turns per user per day (20 Nov 5 to 8 Dhaka), counted per admitted turn in SQLite; Wonder-only cap $3/day ($6 Nov 5 to 8) on the Meta ledger, reserved before the call. When a limit is hit, the turn runs on Spark with the note "Wonder limit reached for today, using Muse Spark".
+- Controller cross-vendor spend review: ok (atomic turn claim; own cap and global cap checked in one transaction; Sol policy unchanged). Known limit: a turn admitted but then failed still uses a Wonder slot.
+- One live Wonder smoke: about $0.0154. In-app browser check on a local build at 1280 and 375 px: PASS.
+- Tests: Python 596 passed (with test_wonder.py), Node suites pass, web build ok. Secret scan 0.
+- DEV deployed: api 05e95904, web f7217984; verify.py exit 0. Not yet checked signed in on DEV (fold into the next Sol QA pass).
+- Note for the test command: collecting the whole tests/agent folder clashes with tests/pipeline/test_contracts.py (same file name); list the agent files one by one, now including test_wonder.py.
+
 ## 2026-11-03 ~02:00 Dhaka: Koushik approves the controller's limits
 - Wonder: per user 10 turns/day (20/day Nov 5 to 8 Dhaka); global $3/day ($6/day Nov 5 to 8); when a limit is hit, that turn runs on Spark standard with a note. Sent to N71 mid-run; the values live in named constants.
 - New: a per-user limit of 3 new room builds per Dhaka day (row N72), so one user can't use up the GPU cap (one room costs up to about $2.42).
