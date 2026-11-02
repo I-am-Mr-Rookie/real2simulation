@@ -22,7 +22,9 @@ Paid: 177 hosted `sam-3.1` image calls, estimated $0.4425 total (176 room noun c
 
 ## Private owner-room limitation
 
-The available headed Chromium context is signed out on DEV. The private room result route returns 401. No owner room data was fetched, no Build lab shell click was performed, and no new-code local rebuild of that exact room was possible. Walls, door, window, table, sofa and chair recognisability in that room are **not assessed**, not substituted with the older N06 room. Session-check receipts and a login-only screenshot stay under `test-data/private/N52/`, excluded from Git. No deploy was performed.
+**NOT RUN under the controller's approved five-minute fallback.** The available headed Chromium context is signed out on DEV and the private result route returns 401. The controller then approved the persistent in-app owner session. Bounded retries could not access it: `cua.createBrowserTab('iab', ...)` returned `Browser is not available: iab`, the browser inventory was empty, `open_in_codex` queued the tab on the hidden worker, and native Codex UI retries produced input-geometry errors. This is a worker access limitation, not evidence that the owner's persistent session is signed out.
+
+No owner room data was fetched, no Build lab shell click was performed, and no new-code local rebuild of that exact room was possible. Walls, door, window, table, sofa and chair recognisability are **not assessed**, not substituted with older N06. Session-check receipts and a login-only screenshot stay under `test-data/private/N52/`, excluded from Git. No deploy was performed.
 
 ## Checks and reproduction
 
