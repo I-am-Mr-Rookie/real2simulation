@@ -1,0 +1,12 @@
+# N78-orch323
+- Status: DONE. Fixed all three assigned N76 findings with CSS and copy only; no live-view markup or editor-logic change.
+- Files phone CSS: full-width filename/metadata above wrapping actions; desktop remains horizontal.
+- Lab CSS: provenance row below transform/Add toolbar, without clipping scale warning or +1.
+- Guide intro/alt: recorded classroom shell, walls/furniture/3D meshes, MODEL-ESTIMATED and scale unverified; no em dashes.
+- Checks: 210 existing-suite Node tests passed; production `npm run build` exit 0; diff check passed.
+- In-app local browser: Files at 320/375/1366, including long filename and room action; no horizontal overflow.
+- In-app local browser: badge/toolbar separate at 375 and eight widths across 1024-1920; 6 px gap, no summary clipping; 1280 side-open and phone expanded badge inspected.
+- See `evidence/N78/CHECK.md`, layout receipts and reproducible loopback fixture helpers. Screenshots are local-only in the documented visualization directory, not committed media.
+- Paid calls: 0. No new fits, tracking, GPU/room/shell jobs, deployment, push, owner-private data or account-setting changes.
+- Skipped: live DEV/auth and action-handler E2E; Files check uses actual components/compiled CSS with read-only synthetic SSR data; lab uses the actual Next build and isolated sample API.
+- Risk: sample mesh quality unchanged/outside scope. Existing guide screenshots were not edited (copy-only Owns).

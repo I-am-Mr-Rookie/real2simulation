@@ -41,6 +41,12 @@ test('Reset clears running or paused status as well as physics, time and trace s
   }
 });
 
+test('provenance has a separate row below the transform toolbar at desktop and phone widths', () => {
+  assert.match(css, /\.le-float \{[^}]*top: 10px/);
+  assert.match(css, /\.le-honesty \{[^}]*top: 62px;[^}]*max-width: min\(360px, calc\(100% - 20px\)\)/);
+  assert.equal([...css.matchAll(/\.le-honesty \{/g)].length, 1, 'no narrow override can shrink the badge again');
+});
+
 test('graph value, unit and honesty caption wrap on desktop and remain visible on phones', () => {
   const caption = css.match(/\.le-graph figcaption \{([^}]*white-space[^}]*)\}/)?.[1];
   assert.match(caption, /white-space: normal/);

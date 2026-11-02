@@ -1,0 +1,4 @@
+{
+  "files": "http://localhost:8078/files-fixture",
+  "lab": "http://localhost:8078/lab?editor=1&room=4aa526de3ca14e1f9f346e670c49f562"
+}

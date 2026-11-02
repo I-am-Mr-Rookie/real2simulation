@@ -25,3 +25,14 @@ test('no em dash, no price in guide copy; page wires data; nav links exist', () 
   assert.ok(frame.includes('href="/guide"'));
   assert.ok(frame.includes('<footer className="site-footer">') && /footer[\s\S]*\/guide/.test(frame));
 });
+
+test('room guide describes the recorded shell and keeps geometry and scale caveats', () => {
+  const room = GUIDE.find((s) => s.id === 'room');
+  for (const text of [room.text, room.images.find(([f]) => f === 'room-tab.webp')[1]]) {
+    assert.match(text, /recorded sample classroom/i);
+    assert.match(text, /shell with walls, furniture and 3D meshes/);
+    assert.match(text, /MODEL-ESTIMATED/);
+    assert.match(text, /scale (?:stays )?unverified/);
+    assert.doesNotMatch(text, /point cloud/);
+  }
+});

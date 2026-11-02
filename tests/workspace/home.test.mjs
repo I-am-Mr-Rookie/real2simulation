@@ -5,6 +5,14 @@ import { readFileSync } from 'node:fs';
 import { relTime, groupStatus, groupJobs } from '../../Build/web/src/workspace/projects.mjs';
 import { contentTitle, isDefaultTitle, projectTitle, MODEL_CHOICES } from '../../Build/web/src/workspace/live.mjs';
 
+test('phone Files rows reserve full width for name and metadata, with wrapping actions below', () => {
+  const css = readFileSync(new URL('../../Build/web/src/workspace/workspace.css', import.meta.url), 'utf8');
+  const phone = css.slice(css.lastIndexOf('@media (max-width: 760px)'));
+  assert.match(phone, /\.lv-frow \{[^}]*flex-wrap: wrap/);
+  assert.match(phone, /\.lv-fname \{[^}]*flex: 1 1 100%;[^}]*order: -1/);
+  assert.match(phone, /\.lv-fname strong \{[^}]*white-space: normal;[^}]*overflow-wrap: anywhere/);
+});
+
 test('phone model dialog starts beyond the permanent rail, without changing desktop positioning', () => {
   const css = readFileSync(new URL('../../Build/web/src/workspace/workspace.css', import.meta.url), 'utf8');
   const phone = css.slice(css.lastIndexOf('@media (max-width: 760px)'));
