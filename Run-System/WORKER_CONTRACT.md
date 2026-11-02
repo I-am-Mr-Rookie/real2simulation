@@ -29,7 +29,8 @@ work_stopped_at, reported_at; check with `python Run-System/worker_timebox.py ch
   reports "Browser is not available: iab" (try once more, no loop): send the controller one line
   "<RID> BROWSER NEEDED: <exact error>", finish the non-browser parts, then end your turn and wait. Only Koushik can attach
   the browser in some cases; he invokes the plugin in your chat and the controller reissues your timebox.
-  Never Chrome. Test accounts email+clerk_test@example.com, code 424242, DEV https://real2simulation.up.railway.app
+  Never Chrome. DEV fixture account n43-mvym1kik+clerk_test@example.com, code 424242 (new +clerk_test sign-ups hit Clerk
+  protect-check), DEV https://real2simulation.up.railway.app
   (also https://real2simulation.rookiecoders.tech). The in-app browser holds Koushik's signed-in accounts: do not open his
   private projects, the DEV room bd7162322f3c4c978383bf797aac2f6e or the N06 clip, and change no account settings.
 - Checks: run the tests for what you touched, plus `npm run build` in Build/web if web changed. No deploy unless the task says.
