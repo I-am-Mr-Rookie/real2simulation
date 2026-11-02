@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "e506f17a-1d78-4f19-bec4-2db769b4335a",
-      "previousDeploymentId": "577318c0-fb0e-4083-92a5-c37ffa662d0c",
-      "redeployNote": "controller: N54 layout widths and canvas height",
-      "sourceRevision": "bea88410375d1fe4847ce8a2210eb7d1fde16f5e",
-      "verifiedUtc": "2026-11-02T09:45Z",
+      "deploymentId": "6bccabd1-3191-4d04-8620-1f04e68f94d1",
+      "previousDeploymentId": "e506f17a-1d78-4f19-bec4-2db769b4335a",
+      "redeployNote": "controller: N55 workspace redesign",
+      "sourceRevision": "c9f9c147552f8d92b80899d1976047649b0bba28",
+      "verifiedUtc": "2026-11-02T10:50Z",
       "url": "https://real2simulation.up.railway.app",
       "customDomain": "https://real2simulation.rookiecoders.tech",
       "providerStatus": "SUCCESS",
@@ -19,8 +19,9 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "fc5ceafe-611d-491f-974a-1e44979f22f6",
+      "deploymentId": "030372b7-2501-48f9-a6f5-0752653e917f",
       "previousDeploymentIds": [
+        "fc5ceafe-611d-491f-974a-1e44979f22f6",
         "686c8ba5-b726-4d74-aafa-06d470f623ed",
         "d46ec212-86ec-449e-8bd6-bccc5f0e623a",
         "b977847c-e0f2-44bb-a17f-700312e5a95b",
@@ -41,8 +42,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "682e63565c85a9346ff82b9eea2bcadc09bea325",
-      "verifiedUtc": "2026-11-02T09:10Z",
+      "sourceRevision": "c9f9c147552f8d92b80899d1976047649b0bba28",
+      "verifiedUtc": "2026-11-02T10:50Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -58,7 +59,7 @@
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "5df506cd-affc-44c6-a83a-d527b46e6766",
-      "redeployNote": "controller: N53 room latency",
+      "redeployNote": "controller: N55 project rename/delete API",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {

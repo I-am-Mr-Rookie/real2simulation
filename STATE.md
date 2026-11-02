@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 16:52 Dhaka · controller: accept N55, dispatch N56
+- N55-orch300 (Opus high) accepted at f75f8bc5: prompt-first workspace home, Gumloop-style model picker (Recommended Spark standard, Cheapest Spark contributor, Fastest Muse Open; relative bars), project cards with previews and status, Files view, rail storage meter, progress pop-up; PATCH/DELETE /projects/{id}. Owns ok; node 448 pass, pytest 523 pass, build ok, secret scan clean (sk_test hit was a fixture filename). Screenshots are a local synthetic fixture; signed-in DEV check is left to N57.
+- Not done by N55: tracked-path overlay on experiment previews (needs frame-space points); site header still above the workspace bar.
+- Side commit c9f9c147 (worker report rule) landed on main from another chat; kept.
+- DEV: api 030372b7 and web 6bccabd1 at c9f9c147; verify.py exit 0.
+- Dispatched N56-orch301 (Opus high, 60 min, due 17:45 Dhaka; thread 01a19bdd-59cd-7700-85c0-b7dd1c39d971): full-window lab editor plus project snapshot API for workspace previews (Owns extended to Build/api/storage/, tests/api-storage/).
+
 ## 2026-11-02 16:20 Dhaka: controller
 - Koushik approved the UI redesign (Nov 2). Decisions: workspace home prompt-first (Base44) with projects grid (preview cards: lab snapshot for rooms, frame plus tracked path for experiments, fallback video frame); model picker in the prompt box styled after Gumloop: Recommended = Muse Spark 1.3 standard, Cheapest = Spark contributor, Fastest = Muse Open (Baseten), each with relative Intelligence/Speed/Cost bars and no numbers; Sol hidden fallback. Files on own view; storage meter in left rail; remove "This project" menu, Connected chip, duplicate header. Lab editor becomes a full-window app (Spline style: object list, properties panel, floating toolbar, bottom timeline with live graph and result card, Room tab, picture Add menu, templates folded in, better lighting/materials, one expandable honesty chip); agent panel references Base44 first. Demo projects per account: classroom lab and falling apple (OWN07 not added: no yes). Build: N55 workspace then N56 lab editor, Opus high 60 each, then Sol QA.
 - Dispatched N55-orch300 (Opus high 60): workspace redesign. Thread 01a19bc5-8a7c-7c83-a553-e03b9bd7b6ec.
