@@ -274,8 +274,8 @@ export const createLive = (React, icon = () => null) => {
         h('textarea', { id: 'lv-draft', rows: 2, maxLength: 4000, value: L.draft, placeholder: 'Message the agent', onChange: (e) => L.setDraft(e.target.value),
           onKeyDown: (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); L.send(L.draft); } } }),
         h('div', { className: 'lv-row' },
-          h('button', { type: 'button', className: 'lv-btn', 'data-voice': vs, 'aria-pressed': vs === 'recording', disabled: vs === 'working', onClick: L.toggleVoice,
-            title: 'Voice input, up to 60 s' }, vs === 'recording' ? 'Stop recording' : vs === 'working' ? 'Transcribing' : 'Voice'),
+          h('button', { type: 'button', className: 'lv-btn', 'data-voice': vs, 'aria-pressed': vs === 'recording', disabled: vs === 'working' || vs === 'requesting', onClick: L.toggleVoice,
+            title: 'Voice input, up to 60 s' }, vs === 'requesting' ? 'Waiting for microphone' : vs === 'recording' ? 'Stop recording' : vs === 'working' ? 'Transcribing' : 'Voice'),
           h('button', { type: 'submit', className: 'lv-btn lv-primary', disabled: L.busy || !L.draft.trim() }, 'Send')),
         L.voice.error ? h('p', { className: 'ws-error', role: 'alert' }, L.voice.error) : null));
   }
@@ -454,8 +454,8 @@ export const createLive = (React, icon = () => null) => {
             h('input', { type: 'file', accept: ACCEPT, disabled: q?.full || (!!L.up && !L.up.error), onChange: (e) => { pickFile(e.target.files?.[0]); e.target.value = ''; } })),
           h(ModelPicker, { L }),
           h('span', { className: 'lv-grow' }),
-          h('button', { type: 'button', className: 'lv-iconbtn', 'data-voice': vs, 'aria-pressed': vs === 'recording', disabled: vs === 'working', onClick: L.toggleVoice,
-            title: vs === 'recording' ? 'Stop recording' : vs === 'working' ? 'Transcribing' : 'Voice input, up to 60 s', 'aria-label': 'Voice input' }, icon(h, 'mic', 18)),
+          h('button', { type: 'button', className: 'lv-iconbtn', 'data-voice': vs, 'aria-pressed': vs === 'recording', disabled: vs === 'working' || vs === 'requesting', onClick: L.toggleVoice,
+            title: vs === 'requesting' ? 'Waiting for microphone' : vs === 'recording' ? 'Stop recording' : vs === 'working' ? 'Transcribing' : 'Voice input, up to 60 s', 'aria-label': vs === 'requesting' ? 'Waiting for microphone' : vs === 'working' ? 'Transcribing' : 'Voice input' }, icon(h, 'mic', 18)),
           h('button', { type: 'submit', className: 'lv-send', 'aria-label': 'Send', title: 'Send', disabled: L.busy || (!file && !L.draft.trim()) }, icon(h, 'send', 18)))),
       L.voice.error ? h('p', { className: 'ws-error', role: 'alert' }, L.voice.error) : null,
       h('div', { className: 'lv-modecards' },

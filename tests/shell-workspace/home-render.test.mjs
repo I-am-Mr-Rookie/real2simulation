@@ -56,3 +56,12 @@ test('Wonder limit notice is visible in the chat, not only hidden response metad
   assert.ok(html.includes('Ready for lab work.'));
 });
 
+test('microphone permission pending is named and disabled in both workspace voice controls', () => {
+  for (const View of [Live.Centre, Live.Chat]) {
+    const html = renderToStaticMarkup(h(View, { L: { ...L, voice: { state: 'requesting' } } }));
+    assert.match(html, /Waiting for microphone/);
+    assert.match(html, /data-voice="requesting"[^>]*disabled/);
+    assert.doesNotMatch(html, /Transcribing/);
+  }
+});
+

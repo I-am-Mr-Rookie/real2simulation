@@ -1,0 +1,41 @@
+[
+  {
+    "signed": false,
+    "honesty": "Imperfect inputs are welcome. Results show uncertainty and a \"scale unverified\" or \"scale assumed\" label when needed.",
+    "navRight": 285,
+    "sw": 305,
+    "w": 320
+  },
+  {
+    "signed": false,
+    "honesty": "Imperfect inputs are welcome. Results show uncertainty and a \"scale unverified\" or \"scale assumed\" label when needed.",
+    "navRight": 340,
+    "sw": 360,
+    "w": 375
+  },
+  {
+    "signed": false,
+    "honesty": "Imperfect inputs are welcome. Results show uncertainty and a \"scale unverified\" or \"scale assumed\" label when needed.",
+    "navRight": 1236,
+    "sw": 1351,
+    "w": 1366
+  },
+  {
+    "signed": "synthetic account; actual AccountNav and SiteFrame",
+    "navRight": 285,
+    "sw": 305,
+    "w": 320
+  },
+  {
+    "signed": "synthetic account; actual AccountNav and SiteFrame",
+    "navRight": 355,
+    "sw": 375,
+    "w": 375
+  },
+  {
+    "signed": "synthetic account; actual AccountNav and SiteFrame",
+    "navRight": 1243,
+    "sw": 1366,
+    "w": 1366
+  }
+]

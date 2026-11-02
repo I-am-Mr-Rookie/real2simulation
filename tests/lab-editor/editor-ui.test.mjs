@@ -7,6 +7,19 @@ const read = (p) => readFileSync(new URL('../../Build/web/src/' + p, import.meta
 const editor = read('lab-editor/LabEditor.jsx');
 const css = read('lab-editor/lab-editor.css');
 
+test('room tool toggles clear the instruction and pending clicks', () => {
+  const body = editor.match(/const pickTool = \(t\) => \{([^\n]+)\};/)?.[1];
+  assert.ok(body);
+  for (const tool of ['object', 'a4', null]) for (const target of ['object', 'a4']) {
+    let next, clicks, note;
+    new Function('tool', 't', 'setTool', 'setClicks', 'setNote', body)(tool, target,
+      (v) => { next = v; }, (v) => { clicks = v; }, (v) => { note = v; });
+    assert.equal(next, tool === target ? null : target);
+    assert.deepEqual(clicks, []);
+    assert.equal(Boolean(note), tool !== target);
+  }
+});
+
 test('Reset clears running or paused status as well as physics, time and trace selection', () => {
   const body = editor.match(/const stop = \(\) => \{([\s\S]*?)\n  \};/)?.[1];
   assert.ok(body);

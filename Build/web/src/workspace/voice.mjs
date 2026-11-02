@@ -10,7 +10,7 @@ export const createUseVoice = ({ useState, useRef, useEffect }) => function useV
   const toggleVoice = async () => {
     if (rec.current) { if (rec.current.state === 'recording') rec.current.stop(); return; }
     if (voice.state !== 'idle') return;
-    update({ state: 'working', error: null });
+    update({ state: 'requesting', error: null });
     let stream, limit;
     try {
       stream = await globalThis.navigator.mediaDevices.getUserMedia({ audio: true });

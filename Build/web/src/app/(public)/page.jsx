@@ -54,7 +54,7 @@ export default function Home() {
         <p>{f.line}</p>
       </li>)}
     </ul>
-    <p className="honesty-strip">{icon(h, 'alert', 18)}We abstain when scale is unverified.</p>
+    <p className="honesty-strip">{icon(h, 'alert', 18)}Imperfect inputs are welcome. Results show uncertainty and a "scale unverified" or "scale assumed" label when needed.</p>
     <Link className="mg-hook card" href="/lab">{icon(h, 'compass', 18)}<strong>Guess the Gravity</strong><span>Watch a drop. Guess g. Then see the reveal.</span></Link>
 
     <section className="show show-steps" aria-labelledby="how">

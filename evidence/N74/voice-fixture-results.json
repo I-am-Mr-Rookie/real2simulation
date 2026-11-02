@@ -1,0 +1,20 @@
+[
+  {
+    "control": 0,
+    "pending": true,
+    "falseTranscribing": false,
+    "denied": true
+  },
+  {
+    "control": 1,
+    "pending": true,
+    "falseTranscribing": false,
+    "denied": true
+  },
+  {
+    "control": 2,
+    "pending": true,
+    "falseTranscribing": false,
+    "denied": true
+  }
+]

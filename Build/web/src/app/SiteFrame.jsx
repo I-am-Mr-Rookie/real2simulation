@@ -9,7 +9,7 @@ import { REPO_URL, GITHUB_MARK } from './(public)/MarketingArt';
 // S15au: chrome-only overrides (styles.css is outside this run): larger mark, icon-only links, one-line workspace link on phones,
 // wordmark text back where it fits beside the signed-in nav (>=521px), tighter 40px targets at <=420px so 375px does not overflow.
 const FRAME_CSS = '.brand-mark{width:34px;height:34px}.site-header nav .nav-icon .r2s-icon{margin-right:0}'
-  + '@media (max-width:700px){.site-header nav a[href="/workspace"]{font-size:0;white-space:nowrap}.site-header nav a[href="/workspace"]::before{content:"Workspace" / "";font-size:.9rem}}'
+  + '@media (max-width:700px){.site-header .wordmark{flex-shrink:0}.site-header nav{flex:1;min-width:0;justify-content:flex-end}.site-header nav a[href="/workspace"]{font-size:0;white-space:nowrap}.site-header nav a[href="/workspace"]::before{content:"Workspace" / "";font-size:.9rem}}'
   + '@media (min-width:521px) and (max-width:700px){.wordmark{font-size:1rem;gap:.5rem}}'
   + '@media (max-width:420px){.site-header{gap:.5rem}.site-header nav{gap:0}.site-header nav a{min-width:2.5rem;padding-inline:.35rem}}';
 

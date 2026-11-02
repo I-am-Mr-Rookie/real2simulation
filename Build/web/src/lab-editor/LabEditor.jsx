@@ -162,7 +162,7 @@ function RoomTools({ id, room, onReload }) {
   const [bust, setBust] = useState(0);
   const [imageReady, setImageReady] = useState(false);
   useEffect(() => { setImageReady(false); }, [id, view, bust]);
-  const pickTool = (t) => { setTool(tool === t ? null : t); setClicks([]); setNote(t === 'a4' ? 'Click both ends of the A4 sheet long edge (29.7 cm).' : 'Click a real object, for example a chair or table.'); };
+  const pickTool = (t) => { setTool(tool === t ? null : t); setClicks([]); setNote(tool === t ? '' : t === 'a4' ? 'Click both ends of the A4 sheet long edge (29.7 cm).' : 'Click a real object, for example a chair or table.'); };
   const send = async (path, body, done) => {
     setBusy(true);
     try { const r = await getJson('/rooms/' + id + path, { method: 'POST', body: JSON.stringify(body) }); setTool(null); setClicks([]); setBust((b) => b + 1); await onReload(done(r)); setNote(''); }

@@ -1,0 +1,14 @@
+# N74 local verification
+- Browser: in-app ChatGPT only. Production build: npm run build, next start on localhost:3174.
+- Header root cause: flex nav kept its min-content width after Guide was added. min-width:0 allows existing flex-wrap to place controls on another row; brand stays fixed width. No clipping or overflow:hidden workaround.
+- Signed-out actual production home: at 320 / 375 / 1366, document scrollWidth 305 / 360 / 1351 and nav right 285 / 340 / 1236. Scrollbar consumes 15 px.
+- Signed-in isolated fixture: actual SiteFrame, actual AccountNav, mocked useAuth and 28 px UserButton. At 320 / 375 / 1366, document scrollWidth 305 / 375 / 1366; nav right 285 / 355 / 1243. Account control visible, mobile nav wraps.
+- Real local Clerk session was NOT tested: Clerk credentials absent. Fixture is not authentication or live-session evidence.
+- Home honesty strip visually inspected at 375 and 1366; new uncertainty and scale labels wrap and are readable.
+- Actual local lab editor: clicked Agent then Voice at 1366, observed Waiting for microphone, resized to 375 and scrolled drawer to see complete label. Never granted microphone permission; navigated away, no recording/transcription.
+- Isolated voice fixture: actual AgentPanel and workspace Home/Chat controls, deferred getUserMedia rejection. All three showed Waiting for microphone and no Transcribing while pending, returned to enabled Voice with permission-denied error after denial. Node test also verifies retry, recording, WAV/transcription transition and cleanup.
+- F5 Node regression executes actual pickTool body for both tools: turning off clears note and click buffer; switching shows the new instruction.
+- O1 source trace: ModelPicker choose calls L.setMode; live-view.mjs writes localStorage synchronously before setModeState. Both use readAgentMode/writeAgentMode key r2s.agent.mode.<userKey>. PrivateWorkspace passes scene.sceneId; session/route.js derives the same fixtureSceneId authenticated user key as server-access.js. AgentPanel reads fresh after session fetch on every ask, not at mount. No asynchronous save or different key found; no speculative routing patch, no paid turns.
+- Repro fixture: node evidence/N74/serve.cjs then open http://localhost:3175/?signed=1&header=1 for header only; omit &header=1 for voice controls. Explicit synthetic stubs, no real auth, mic or API.
+- Screenshots: C:/Users/HP/AppData/Local/Temp/N74-shots/ (home-320/375/1366, signed-fixture-320/375/1366, actual-voice-desktop, actual-voice-375, honesty-375, honesty-desktop PNGs). Kept local, not committed.
+- browser-results.json and voice-fixture-results.json contain observed dimensions and deferred-permission assertions. No emails, clips, uploads or private projects opened.

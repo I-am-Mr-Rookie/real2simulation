@@ -71,10 +71,10 @@ export default function AgentPanel({ scene, onScene, load = true }) {
       {EXAMPLES.map((x) => <button key={x} type="button" onClick={() => setText(x)} disabled={busy}>{x}</button>)}
       <button type="button" onClick={() => ask('Write the lab report.')} disabled={busy}>Write report</button>
     </div>
-    <form onSubmit={(e) => { e.preventDefault(); ask(text); }} className="le-send">
+    <form onSubmit={(e) => { e.preventDefault(); ask(text); }} className="le-send" style={{ flexWrap: 'wrap' }}>
       <input aria-label="Message to the agent" value={text} onChange={(e) => setText(e.target.value)} maxLength={4000} disabled={busy} />
       <button type="submit" disabled={busy || !text.trim()}>{busy ? 'Working...' : 'Ask'}</button>
-      <button type="button" aria-label="Voice input" aria-pressed={voice.state === 'recording'} disabled={busy || voice.state === 'working'} onClick={toggleVoice}>{voice.state === 'recording' ? 'Stop recording' : voice.state === 'working' ? 'Transcribing' : 'Voice'}</button>
+      <button type="button" aria-label={voice.state === 'requesting' ? 'Waiting for microphone' : 'Voice input'} aria-pressed={voice.state === 'recording'} disabled={busy || voice.state === 'working' || voice.state === 'requesting'} onClick={toggleVoice}>{voice.state === 'requesting' ? 'Waiting for microphone' : voice.state === 'recording' ? 'Stop recording' : voice.state === 'working' ? 'Transcribing' : 'Voice'}</button>
     </form>
     {voice.error && <p role="alert">{voice.error}</p>}
     {report && <details open><summary>Lab report (SIMULATED)</summary><pre className="le-report">{report}</pre></details>}

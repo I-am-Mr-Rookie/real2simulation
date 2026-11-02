@@ -6,6 +6,15 @@ import { readFile, access } from 'node:fs/promises';
 const src = (p) => readFile(new URL('../../Build/web/src/' + p, import.meta.url), 'utf8');
 const pub = (p) => access(new URL('../../Build/web/public' + p, import.meta.url));
 
+test('home accepts imperfect scale with explicit labels and uncertainty', async () => {
+  const page = await src('app/(public)/page.jsx');
+  assert.doesNotMatch(page, /We abstain when scale is unverified/);
+  assert.match(page, /scale unverified/);
+  assert.match(page, /scale assumed/);
+  assert.match(page, /uncertainty/);
+  assert.doesNotMatch(page, /\u2014/);
+});
+
 test('layout wires brand favicon/apple icons and A5 OG image through SiteFrame', async () => {
   const layout = await src('app/layout.jsx');
   assert.match(layout, /metadataBase: new URL\(process\.env\.RAILWAY_PUBLIC_DOMAIN/);
@@ -25,7 +34,7 @@ test('header has logo mark, wordmark text, icon nav and S15ah theme toggle; foot
 
 test('home keeps honesty labels and serves one picture per theme family with explicit size', async () => {
   const home = await src('app/(public)/page.jsx'), art = await src('app/(public)/MarketingArt.jsx');
-  for (const s of ['>RECORDED<', '>SIMULATED<', '>what-if<', 'Illustration only, not scene evidence.', 'We abstain when scale is unverified.', 'id="a1" width={1600} height={1000}']) assert.ok(home.includes(s), s);
+  for (const s of ['>RECORDED<', '>SIMULATED<', '>what-if<', 'Illustration only, not scene evidence.', 'Imperfect inputs are welcome.', 'id="a1" width={1600} height={1000}']) assert.ok(home.includes(s), s);
   for (const id of ['a1', 'a2', 'a3', 'a4']) for (const fam of ['light', 'dark']) for (const ext of ['png', 'webp']) await pub('/images/marketing/' + id + '-' + fam + '-line@1x.' + ext);
   assert.match(art, /type="image\/webp"/);
   assert.match(art, /width=\{width\} height=\{height\}/);
