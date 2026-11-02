@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 17:30 Dhaka · controller: accept N56, dispatch N57, queue N58/N59
+- N56-orch301 (Opus high) accepted at cd719a58: full-window lab editor (top bar, Objects/Room tabs, floating tools, picture Add menu with Templates, Properties, Agent drawer, timeline graph, one honesty chip, better lighting) and PUT/GET /projects/{id}/snapshot with snapshot_url in the projects list. One-line BFF PATCH export outside Owns accepted (rename could not reach the API before).
+- N56 broke N54's width test (editor is now full-window); controller updated the test (6a9990d9, 851e9d7a). node all pass, pytest 524 pass, build ok, secret scan clean.
+- DEV: api ab1c25bd, web fc17545e at 851e9d7a; verify exit 0.
+- Worker gaps are no longer left as notes: N57-orch302 (Sol high, due 18:30 Dhaka, thread 01a19bf6-6e1e-7af0-b316-c01351ed9940) checks each one on DEV; N58 (Sol) fixes all P1/P2 plus the known gaps; N59 (Sol) makes Stable Fast 3D async so furniture gets real meshes again (N53 made SF3D time out on cold start).
+- Controller note: the first N56 prompt was a script error message; resent the real prompt in the same thread (about 8 min lost).
+
 ## 2026-11-02 16:52 Dhaka · controller: accept N55, dispatch N56
 - N55-orch300 (Opus high) accepted at f75f8bc5: prompt-first workspace home, Gumloop-style model picker (Recommended Spark standard, Cheapest Spark contributor, Fastest Muse Open; relative bars), project cards with previews and status, Files view, rail storage meter, progress pop-up; PATCH/DELETE /projects/{id}. Owns ok; node 448 pass, pytest 523 pass, build ok, secret scan clean (sk_test hit was a fixture filename). Screenshots are a local synthetic fixture; signed-in DEV check is left to N57.
 - Not done by N55: tracked-path overlay on experiment previews (needs frame-space points); site header still above the workspace bar.
