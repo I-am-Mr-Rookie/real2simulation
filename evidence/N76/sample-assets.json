@@ -1,0 +1,22 @@
+[
+  {
+    "status": 200,
+    "path": "/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/room.ply"
+  },
+  {
+    "status": 200,
+    "path": "/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/objects/room-object-4.glb"
+  },
+  {
+    "status": 200,
+    "path": "/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/objects/room-object-7.glb"
+  },
+  {
+    "status": 200,
+    "path": "/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/objects/room-object-1.glb"
+  },
+  {
+    "status": 200,
+    "path": "/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/objects/room-object-2.glb"
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "width": 320,
+    "avatarRight": 284,
+    "innerWidth": 320,
+    "scrollWidth": 305,
+    "fixtureMenuReachable": true
+  },
+  {
+    "width": 375,
+    "avatarRight": 339,
+    "innerWidth": 375,
+    "scrollWidth": 360,
+    "fixtureMenuReachable": true
+  },
+  {
+    "width": 1366,
+    "avatarRight": 1234.5,
+    "innerWidth": 1366,
+    "scrollWidth": 1351,
+    "fixtureMenuReachable": true
+  }
+]

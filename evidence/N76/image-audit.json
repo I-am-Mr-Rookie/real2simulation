@@ -1,0 +1,50 @@
+[
+  {
+    "file": "Build/web/public/guide/what-it-is.webp",
+    "width": 1265,
+    "height": 712,
+    "before_sha256": "8394532c6ffdecbaccf100006d0b838267aaf7604ad72d4d135892f8e606e69d",
+    "after_sha256": "e70011104f102928df33d8e88512f19b12f758021e538fa2b738d7dda92e0cee",
+    "capture": "what-it-is.jpg"
+  },
+  {
+    "file": "Build/web/public/guide/room-tab.webp",
+    "width": 1280,
+    "height": 720,
+    "before_sha256": "ee1f5d200f98adb2fb75e42ab016d2d4c684c5c48b68bd3a04a238c3e61e3caa",
+    "after_sha256": "3517f68a55b1edc2aa0e8e55602a2b205bf6fdaf14430e8435ea383ffd893063",
+    "capture": "room-tab.jpg"
+  },
+  {
+    "file": "Build/web/public/guide/room-a4.webp",
+    "width": 1280,
+    "height": 720,
+    "before_sha256": "590b44868b5cb1bb1963938ad6d32abf18819d3b484f2acbb530b44144bf3a0c",
+    "after_sha256": "c66c46fccbe5def419d0b4239ba3046770b8573d850382c890162c23d9f4c91b",
+    "capture": "room-a4.jpg"
+  },
+  {
+    "file": "Build/web/public/guide/editor-add.webp",
+    "width": 1280,
+    "height": 720,
+    "before_sha256": "f783c0172bce5a383ad5689de9ce19bb13733e411f5a1587ee8622d6999f63e6",
+    "after_sha256": "8ab61e5d776c6fbcb6c66e3aae4793dde30734dfd5a78dbeda27427c869edb11",
+    "capture": "editor-add.jpg"
+  },
+  {
+    "file": "Build/web/public/guide/editor-play.webp",
+    "width": 1280,
+    "height": 720,
+    "before_sha256": "1c73474a0dadae17cd302c7f43c0283a389175cde747e3fb0756beda6a731250",
+    "after_sha256": "9c75d61ab65ffcb6a30aba8960743fd0fcc13d198d01149f18087bb868be9f60",
+    "capture": "editor-play.jpg"
+  },
+  {
+    "file": "Build/web/public/guide/experiment-replay.webp",
+    "width": 1280,
+    "height": 720,
+    "before_sha256": "15fc6300a15d673caf2d311adc248b13452e54f79646dff9fcb7069ca8f14ba8",
+    "after_sha256": "63a9d8b8133ddbb6a69879d5d1d2f78caf0b0da62bd47a5c5d83d8ecc74b20c9",
+    "capture": "experiment-replay-live.jpg"
+  }
+]

@@ -1,0 +1,12 @@
+# N76-orch321
+- Status: DONE, QA/image audit; anonymous sign-in form explicitly not reverified (signed-in redirect).
+- Refreshed 6 guide WebP screenshots: home/header, room tab, A4 helper, Add menu, simulated Play/trace, experiment replay.
+- All 16 assets audited; original filenames/dimensions preserved; other 10 remain byte-identical. See `evidence/N76/CHECK.md`.
+- CONFIRMED: N74 header at 320/375/1366, updated home honesty, Voice waiting state, real-object helper clears on toggle off.
+- CONFIRMED: N75 sample has 23-object shell and 4 HTTP-200 SF3D GLBs, SAMPLE/RECORDED/scale labels, one expanded Stability credit, Play/Reset.
+- Findings: P2 phone Files metadata cramped; existing coarse/fragmented SF3D quality; P3 honesty-badge overlap; P3 guide room copy/alt still says point cloud (text outside Owns).
+- Checks: guide Node tests 2/2 PASS; `npm run build` exit 0; 16 image dimensions/names PASS; `git diff --check` PASS; browser error query empty.
+- Paid calls: 0. No new measurement/fit/tracking, GPU/reconstruction job, deployment or push.
+- UI side effects: local filming-tips check created one empty fixture New experiment project, left intact. Simulated ball was browser-local and discarded; sample reloaded with 23 objects.
+- Skipped: anonymous sign-in form; microphone grant/recording; physical/calibrated quality acceptance; private owner rooms/clips.
+- Risk: audit completion is not all-green product acceptance. Files layout, mesh quality and copy/alt follow-up remain; declared deploy SHAs not independently verified.
