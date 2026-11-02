@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~01:50 Dhaka: N70 accepted (Wonder: ADD), N71 dispatched
+- N70-orch314 DONE. Muse Wonder at high effort: 11/11 valid tool calls, 0 number-guard blocks, 10/10 usable endings, p50 7.9 s. About $0.030 per turn (conservative estimate, not an invoice). Benchmark spend $0.394 under the $3 cap, all ledgered.
+- core.py now holds WONDER_MODEL, its price ($4 in, $20 out per 1M) and high effort. It is not yet in TIERS, so users can't pick it and DEV needs no redeploy. The controller's cross-vendor spend review passed. tests/agent: 195 passed. Secret scan 0. The N51 benchmark change sits outside Owns but is a refactor that keeps its defaults; accepted.
+- Wonder caps set by the controller: $3/day global on the Meta API ledger, $6/day Nov 5 to 8 Dhaka. Per user: 10 turns/day, 30/day Nov 5 to 8. When either limit is hit, the turn runs on Spark standard with a visible note.
+- N71-orch315 dispatched (Sol high, 60 min, due 02:49 Dhaka): Wonder in TIERS and the picker as "Smartest", the limits, the cap fallback, and an in-app browser check on a local build.
+
 ## 2026-11-03 ~02:00 Dhaka: N69 accepted
 - N69-orch313 DONE. DEV UI check run in the in-app browser as the fixture, at 1280x720 and 375x812: shows "26 MB of 1.0 GB used", 3% bar, text fits. The API total (27.7 MB: 1.3 MB of uploads plus 26.4 MB of room files) matches the UI.
 - Evidence-only follow-up merged (evidence/N69/); the code was already live on DEV api 0d24d39f, so no redeploy. Secret scan 0.
