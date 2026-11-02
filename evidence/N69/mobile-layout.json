@@ -1,0 +1,21 @@
+{
+  "font_px": "10.4px",
+  "quota_box": {
+    "height": 16.640625,
+    "width": 232,
+    "x": 64,
+    "y": 761.921875
+  },
+  "quota_container": {
+    "height": 99.53125,
+    "width": 256,
+    "x": 52,
+    "y": 712.46875
+  },
+  "quota_text": "26 MB of 1.0 GB used",
+  "viewport": {
+    "height": 812,
+    "width": 375
+  },
+  "visible_without_clipping": true
+}

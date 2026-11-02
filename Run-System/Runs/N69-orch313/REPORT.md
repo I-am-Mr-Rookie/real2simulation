@@ -9,9 +9,12 @@
 - Python 3.12.12 isolated venv; all 10 pinned dependencies match `Build/api/health/requirements{,-test}.txt`; pytest 9.2.0.
 - `.venv/Scripts/python.exe -m pytest tests/api-storage tests/reconstruction -q`: **104 passed, 6 subtests passed**, 11 dependency deprecation warnings, 111.91 seconds; no skips.
 - `git diff --check`: PASS. `worker_timebox.py check`: PASS.
-- Paid calls/jobs: none; cost $0. No deploy, push, GPU, provider request or private-owner media access.
+- Paid calls/jobs: none; cost $0. No deploy/push, uploads, room starts/rebuilds, agent messages or private-owner media access.
 - Browser follow-up (owner requested): in-app browser, local Swagger UI against this worktree's real routers; synthetic owner/token and 128-byte runtime-only cap, production cap unchanged.
 - Browser PASS: GET `/files` returned 128 used (16 upload + 112 room), 0 remaining; POST `/rooms` and POST `/rooms/{id}/shell` each visibly returned 413 `QUOTA_STORAGE`; no browser console warnings/errors.
 - Local JPEG evidence (not committed): `browser/quota-usage.jpg`, `browser/room-start-rejected.jpg`, `browser/shell-rebuild-rejected.jpg`. Local fixture server stopped and browser tab closed.
-- Not checked: signed-in workspace frontend/deployed E2E; DEV lacks this commit. No web build (backend-only change); new deletion API intentionally omitted.
+- DEV UI PASS (fresh timebox): normal fixture sign-in, in-app browser at desktop 1280x720 and mobile 375x812 CSS px; `26 MB of 1.0 GB used`, 3% bar, text fits both layouts; sidebar close/reopen works.
+- DEV API aggregate: 27,711,224 total bytes = 1,301,478 upload bytes + 26,409,746 room-tree bytes. UI formatting/arithmetic and DOM bounds self-check PASS. Upload allowance reset to 20 for the new Dhaka day; none consumed.
+- Sample-safe screenshots, aggregate JSON and detailed notes committed under `evidence/N69/`; no console errors, only existing Clerk DEV/Three.js deprecation warnings. No new bug or code change.
+- Not re-run: Python suite/web build for this evidence-only DEV follow-up. New deletion API intentionally omitted; no upload or paid-job smoke test.
 - Risk: quota is an on-demand tree scan, not a per-write reservation. An admitted job may overshoot by one room; concurrent admitted jobs may each overshoot. Shortcut documented in code.

@@ -1,0 +1,13 @@
+{
+  "source": "GET /api/workspace/files via signed-in fixture browser",
+  "file_count": 19,
+  "upload_bytes": 1301478,
+  "storage_bytes_used": 27711224,
+  "room_tree_bytes": 26409746,
+  "storage_bytes_limit": 1073741824,
+  "storage_bytes_remaining": 1046030600,
+  "uploads_today": 0,
+  "uploads_daily_limit": 20,
+  "uploads_remaining_today": 20,
+  "uploads_reset_at": "2026-11-03T18:00:00Z"
+}

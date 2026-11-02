@@ -1,0 +1,21 @@
+{
+  "progress_percent": "3",
+  "quota_box": {
+    "height": 16.640625,
+    "width": 179,
+    "x": 64,
+    "y": 669.921875
+  },
+  "quota_container": {
+    "height": 99.53125,
+    "width": 203,
+    "x": 52,
+    "y": 620.46875
+  },
+  "quota_text": "26 MB of 1.0 GB used",
+  "viewport": {
+    "height": 720,
+    "width": 1280
+  },
+  "visible_without_clipping": true
+}
