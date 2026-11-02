@@ -7,7 +7,7 @@ from urllib.request import urlopen
 
 revision = "300cd2096f9e32bcdf3433520b36b67f709df0d5"
 # N44 controller deploy during N46 (web revision is recorded separately in deployments.json).
-revisions = {"api": "9094b755c9f0e9f297c44b85a8a4c957693006c9", "worker": revision}
+revisions = {"api": "40e16fe37e67f8c8ffece81db0b55bf4e59b571b", "worker": revision}
 checks = []
 for service, host, paths in (
     ("api", "api-dev-6091.up.railway.app", ("/health/live", "/health/ready", "/api/version", "/internal/workspace/jobs/job_" + "0" * 32)),
