@@ -24,7 +24,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **N62** — Codex · Claude Opus 5.5, effort high — Cross-vendor spend review of N59 (read-only): ledger reserve-before-spend, cap under concurrency/rebuild/restart, no double charge or early release, cancel stops paid work, GPU-type cost bounds, per-user limits (30 min) *(in progress)*
+- [~] **N62** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor spend review of N59 (read-only): ledger reserve-before-spend, cap under concurrency/rebuild/restart, no double charge or early release, cancel stops paid work, GPU-type cost bounds, per-user limits (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -111,9 +111,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [~] **N59** — Codex · GPT-6.1 Sol, effort high — Async Stable Fast 3D after the room is ready: room returns fast with parametric shapes, then SF3D upgrades the biggest kept objects in the background (no 90 s cold-start timeout), ledgered under the daily cap (60 min) *(partial: resume it)*
 - [x] **N60** — Codex · GPT-6.1 Sol, effort high — Human-style DEV re-check of the N58 fixes in the in-app browser, plus new first-user findings (30 min)
 - [x] **N61** — Codex · GPT-6.1 Sol, effort high — Fix N60 F01 to F04: sample card opens room lab and experiment, Saved lab opens editor, phone graph readout, experiment preview from its own file_id (30 min)
-- [~] **N62** — Codex · Claude Opus 5.5, effort high — Cross-vendor spend review of N59 (read-only): ledger reserve-before-spend, cap under concurrency/rebuild/restart, no double charge or early release, cancel stops paid work, GPU-type cost bounds, per-user limits (30 min) *(in progress)*
+- [~] **N62** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor spend review of N59 (read-only): ledger reserve-before-spend, cap under concurrency/rebuild/restart, no double charge or early release, cancel stops paid work, GPU-type cost bounds, per-user limits (30 min) *(in progress)*
 - [ ] **N63** — Codex · GPT-6.1 Sol, effort high — Fix N59 gaps plus N62 findings: room-ready latency 379 s vs about 270 s (L4 start timeout then A10G fallback; SAM detection 118 s on 176 images), restart recovery of pending shape upgrades, and every N62 P0 to P2 finding; live RM04 rerun with timings and ledgered cost (60 min)
-- [ ] **N64** — Codex · Claude Sonnet 5.5, effort medium — Guide page (single run, LAST product row): public /guide with a simple beginner walkthrough of every feature (sign in, model picker, new project, room lab, phone experiment, lab editor, agent, files and quotas, GPU dot, demo library) with screenshots taken from DEV in the in-app browser using the test fixture and sample projects only; header and footer link (60 min)
+- [ ] **N64** — Codex (native Claude) · Sonnet 5.5, effort medium — Guide page (single run, LAST product row): public /guide with a simple beginner walkthrough of every feature (sign in, model picker, new project, room lab, phone experiment, lab editor, agent, files and quotas, GPU dot, demo library) with screenshots taken from DEV in the in-app browser using the test fixture and sample projects only; header and footer link (60 min)
 
 </details>
 
