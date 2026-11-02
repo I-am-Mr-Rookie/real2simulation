@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+### 2026-11-03 01:05 Dhaka: N67 accepted, DEV api d53a0892
+N67-orch311 closed the N66 findings, each with a regression test (15 of 15 reverted fixes caught): rebuilds are now 3 per owner per Dhaka day (counter in rooms/<owner>/shell-rebuilds.json); the L4 start budget is 75 s and a confirmed-cancelled attempt is settled without the idle charge; a stale queued SF3D item never spawns; Modal call ids are saved and cancelled on restart or reap, with the reservation kept; the room settle is capped at its estimate; a failed rebuild gets its own reason; the negative test is fast. Controller cross-vendor review (Claude) of the spend diff: ok. Python 571 passed, Node ok, secret scan clean. DEV api deployed d53a0892, verify.py exit 0. No paid jobs. Not live-tested: cancellation on Modal itself.
+
 ### 2026-11-03 00:46 Dhaka: N68 dispatched
 N68-orch312 (Sol high, 30 min) fixes the web gaps found by N63 and N65: the lab status text still says Running after Reset, and the phone's floating nav covers the workspace summary text. It runs in parallel with N67, with no file overlap. Thread 01a19d94-8888-7601-a67b-caa97f832ed9.
 
