@@ -1,0 +1,39 @@
+{
+  "width": 375,
+  "scroll": 375,
+  "clip": [
+    {
+      "text": "Experiment 10fd03 Nov 2, 04:31 UTC\ndone\nOpen",
+      "rect": {
+        "left": 94,
+        "right": 333
+      },
+      "childRight": 344.609375
+    },
+    {
+      "text": "Room 697968 Nov 2, 04:30 UTC\ndone\nOpen lab",
+      "rect": {
+        "left": 94,
+        "right": 333
+      },
+      "childRight": 333
+    },
+    {
+      "text": "Room 089354SAMPLE\ndone\nOpen lab",
+      "rect": {
+        "left": 94,
+        "right": 333
+      },
+      "childRight": 333
+    },
+    {
+      "text": "SAMPLE (RECORDED): falling appleSAMPLE Nov 2, 04:30 UTC\ndone\nOpen",
+      "rect": {
+        "left": 94,
+        "right": 333
+      },
+      "childRight": 536.578125
+    }
+  ],
+  "emDash": false
+}

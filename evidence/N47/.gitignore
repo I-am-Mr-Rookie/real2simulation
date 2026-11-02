@@ -1,0 +1,5 @@
+.auth-state
+.old-auth-state
+.browser-endpoint
+.test-login
+*.png

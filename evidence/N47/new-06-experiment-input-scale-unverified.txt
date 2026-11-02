@@ -1,0 +1,131 @@
+Skip to content
+Real2Simulation
+Demo library
+Local simulation lab
+Private workspace
+
+GO TO
+
+Private workspace
+Demo library
+Local simulation lab
+Private workspace
+GPU starting Your job: 1 of 2 in queue
+Agent & tools
+Connected
+Experiment 2026-11-02 04:31
+New project
+
+My experiment: measurement. Accepted: mp4, mov or webm; up to 200 MB and 120 s.
+
+Fix the phone on a stand or table; do not pan or zoom.
+Keep the whole motion in frame against a plain background.
+Use bright, even light; 60 fps if your phone offers it.
+Put an object of known size (A4 sheet or ruler) in the plane of the motion for scale.
+Record 5 to 30 s: a second or two still, then the motion.
+Room 2026-11-02 04:30
+Room lab
+Room 697968 Nov 2, 04:30 UTC
+reconstructing
+classroom room and falling apple
+SAMPLE
+RECORDED
+Room lab
+Room 089354SAMPLE
+done
+Open lab
+SAMPLE (RECORDED): falling appleSAMPLE Nov 2, 04:30 UTC
+done
+Open
+Refresh
+Files
+Upload video
+
+686 KB of 1.0 GB used. 18 of 20 uploads left today.
+
+ST03-trim.mp4 401 KB, 4.0 s
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+
+Step 1. Click the moving object on the first frame, or type its name.
+
+No point picked yet.
+
+Or its name
+Step 2. Known size (optional)
+What it is
+Value
+Unit
+mm
+cm
+m
+
+Without a known size the result stays in pixels, labelled scale unverified.
+
+Start measuring
+Cancel
+RM02-trim.mp4 286 KB, 6.0 s
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+Processing
+Room lab 697968
+Reconstructing on the GPU
+
+GPU starting. Your job: 1 of 2 in queue.
+
+Instruments off
+Upload
+Interview
+Run
+Fit
+Report
+
+No scene yet. The viewport appears when an upload produces a scene.
+
+Waiting for an upload
+
+No job yet
+
+Agent & tools
+Agent
+Standard mode
+
+What are you uploading? Room video
+
+Room video
+
+Filming tips for room video:
+
+Walk slowly around the room for 20 to 60 s, holding the phone steady.
+Keep the floor in view most of the time.
+Use even light; avoid pointing at bright windows.
+Lay an A4 sheet flat on the floor for scale; without it, scale is MODEL-ESTIMATED.
+Move the camera sideways, not only by turning on the spot.
+
+What are you uploading? My experiment
+
+My experiment
+
+Filming tips for my experiment:
+
+Fix the phone on a stand or table; do not pan or zoom.
+Keep the whole motion in frame against a plain background.
+Use bright, even light; 60 fps if your phone offers it.
+Put an object of known size (A4 sheet or ruler) in the plane of the motion for scale.
+Record 5 to 30 s: a second or two still, then the motion.
+Message the agent
+Voice
+Send
+TOOLS
+Agent
+Waiting for an upload
+Runs & history
+No job yet
+Report
+No report yet (needs a finished fit or clip result)

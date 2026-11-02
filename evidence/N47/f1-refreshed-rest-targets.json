@@ -1,0 +1,12 @@
+[
+  {
+    "table": "room-object-1",
+    "ball_id": "qa-room-object-1",
+    "expectedRestY": 0.64735
+  },
+  {
+    "table": "room-object-3",
+    "ball_id": "qa-room-object-3",
+    "expectedRestY": 0.6736
+  }
+]

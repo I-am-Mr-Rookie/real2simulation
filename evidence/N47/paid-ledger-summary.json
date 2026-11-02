@@ -1,0 +1,10 @@
+{
+  "rows": 156,
+  "estimatedUsd": 1.3806022,
+  "unsettled": 0,
+  "byProvider": {
+    "Meta Model API": 0.384,
+    "Modal": 0.98329044,
+    "Baseten": 0.01331176
+  }
+}

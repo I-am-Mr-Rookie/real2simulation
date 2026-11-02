@@ -1,0 +1,26 @@
+Skip to content
+Real2Simulation
+Private workspace
+
+Template trials
+
+Add
+Play
+Import scene or room (.json, .ply)
+SIMULATED
+Track MEASURED, ball what-if
+t = 0.00 s
+
+Dots and line: your measured track. Scale unverified: the track is in pixels, drawn as 1 px = 1 mm. The ball is SIMULATED (what-if): edit it and press Play. Gravity [0, -9.81, 0] m/s^2.
+
+Ask the agent
+
+Ask for an experiment, or to add, move, resize or remove objects.
+
+Drop a 5 cm ball from 1.2 m and measure g
+Pendulum, 0.8 m, find the period
+Write report
+Ask
+DEVELOPMENT BUILD
+Sign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.
+Powered by Stability AI

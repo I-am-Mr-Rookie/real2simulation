@@ -1,0 +1,66 @@
+Skip to content
+Real2Simulation
+Private workspace
+Private workspace
+GPU starting
+Agent & tools
+Connected
+Projects
+New project
+
+Start a new project and the agent asks what you are uploading, then shows filming tips.
+
+Experiment 2026-11-02 04:31
+Experiment
+Experiment 10fd03 Nov 2, 04:31 UTC
+done
+Open
+Room 2026-11-02 04:30
+Room lab
+Room 697968 Nov 2, 04:30 UTC
+done
+Open lab
+classroom room and falling apple
+SAMPLE
+RECORDED
+Room lab
+Room 089354SAMPLE
+done
+Open lab
+SAMPLE (RECORDED): falling appleSAMPLE Nov 2, 04:30 UTC
+done
+Open
+Refresh
+Files
+Upload video
+
+686 KB of 1.0 GB used. 18 of 20 uploads left today.
+
+ST03-trim.mp4 401 KB, 4.0 s
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+RM02-trim.mp4 286 KB, 6.0 s
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+Processing
+
+Measurements and room labs you start show their progress here.
+
+Instruments off
+Upload
+Interview
+Run
+Fit
+Report
+
+No scene yet. The viewport appears when an upload produces a scene.
+
+Waiting for an upload
+
+No job yet

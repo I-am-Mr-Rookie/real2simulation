@@ -1,0 +1,32 @@
+{
+  "created_object_id": "ball-1",
+  "before": [
+    "room-object-1",
+    "room-object-2",
+    "room-object-3",
+    "room-object-4",
+    "room-object-5",
+    "room-object-6",
+    "room-object-7",
+    "ball-1"
+  ],
+  "deleted": [
+    "room-object-1",
+    "room-object-2",
+    "room-object-3",
+    "room-object-4",
+    "room-object-5",
+    "room-object-6",
+    "room-object-7"
+  ],
+  "undone": [
+    "room-object-1",
+    "room-object-2",
+    "room-object-3",
+    "room-object-4",
+    "room-object-5",
+    "room-object-6",
+    "room-object-7",
+    "ball-1"
+  ]
+}

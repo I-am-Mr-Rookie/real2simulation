@@ -1,0 +1,17 @@
+# N47-orch292: DONE
+- DEV QA complete; application code unchanged, no deploy or push.
+- N43 F1/F2/F3/F4 FIXED; F5 STILL OPEN: readable-sized captions overlap at 375 px.
+- Original and regenerated RM02 SF3D table centre drops rest; four exported traces pass checks.
+- Rebuilt the old RM02 shell first: 0 walls (4 not observed), 0 openings; fresh live room agrees.
+- Saved Muse Open reaches the lab and the actual answering model is displayed.
+- New Room project id persists on upload and room job, verified after completion.
+- Both signed-in workflows completed: live room upload/lab/kit/delete/undo/agent experiment; hosted experiment tracking/uncertainty/replay/changed-gravity redo.
+- Headed Playwright Chromium, 1280 and 375 px; custom-domain sign-in, workspace, room API equality and lab spot-check pass.
+- Findings: P2 distorted SF3D furniture; P2 room latency with one SF3D timeout/box fallback; P3 overlapping captions. No P1 observed.
+- Evidence: evidence/N47/FINDINGS.md, results.json, runtime-ledger-window.json, screenshots.json; screenshots retained locally, not committed.
+- Checks: node evidence/N47/verify.mjs, 10/10 PASS; approved Pexels hashes match; staged diff/secret scan PASS.
+- Paid: 156 calls, $1.38060220 settled runtime estimates, below $1.50; all settled, includes failed SF3D. Provider invoices not verified.
+- No owner clips, real-email screenshots, purchases, production changes or existing-object deletion; transient recorder resets recovered without duplicate paid jobs.
+- Skipped: app tests/build (no app changes), physical calibration, new phone filming, every-item physics accuracy, quota/isolation stress and health-timeout diagnosis.
+- Risks: F5 still open; imperfect furniture geometry and capacity/timeout latency remain. See FINDINGS for exact repros and limits.
+- Branch: run/N47-orch292; only N47 evidence plus contract-required REPORT/TIMEBOX committed.

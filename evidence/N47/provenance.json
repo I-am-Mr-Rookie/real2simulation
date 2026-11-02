@@ -1,0 +1,23 @@
+{
+  "source": "Reused N13 approved Pexels derivatives, no owner media",
+  "clips": [
+    {
+      "id": "RM02",
+      "source_url": "https://www.pexels.com/video/tracking-shot-of-empty-classroom-6671552/",
+      "file": "RM02-trim.mp4",
+      "bytes": 292379,
+      "sha256": "67db4eb81b261576941b6d049204186f9195077a82f28a0c48cea35323b82509",
+      "observed_bytes": 292379,
+      "observed_sha256": "67db4eb81b261576941b6d049204186f9195077a82f28a0c48cea35323b82509"
+    },
+    {
+      "id": "ST03",
+      "source_url": "https://www.pexels.com/video/woman-dropping-apple-on-ground-12723966/",
+      "file": "ST03-trim.mp4",
+      "bytes": 410461,
+      "sha256": "84930440acb5a45e4ee424f818aa1aaa3ffac989cf743e1d7c16414a6409c97f",
+      "observed_bytes": 410461,
+      "observed_sha256": "84930440acb5a45e4ee424f818aa1aaa3ffac989cf743e1d7c16414a6409c97f"
+    }
+  ]
+}

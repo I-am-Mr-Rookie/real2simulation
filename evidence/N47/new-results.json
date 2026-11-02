@@ -1,0 +1,56 @@
+{
+  "start_utc": "2026-11-02T04:30:26.485Z",
+  "steps": [],
+  "responses": [
+    {
+      "utc": "2026-11-02T04:30:51.887Z",
+      "method": "POST",
+      "path": "/api/workspace/projects",
+      "status": 201,
+      "body": "{\"project\":{\"id\":\"23f65c8fe2a04434913f2311de7014ef\",\"user\":\"user_3LXIA6TC4IXO6sga3yOs7q2ET2I\",\"mode\":\"room\",\"title\":\"Room 2026-11-02 04:30\",\"created\":\"2026-11-02T04:30:51Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T04:30:53.473Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"c6db535cbf9d4baa822dc61453acee56\",\"project_id\":\"23f65c8fe2a04434913f2311de7014ef\",\"name\":\"RM02-trim.mp4\",\"media_type\":\"video/mp4\",\"size\":292379,\"duration_s\":6.0,\"created\":\"2026-11-02T04:30:52Z\"},\"quota\":{\"storage_bytes_used\":292379,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1073449445,\"uploads_today\":1,\"uploads_daily_limit\":20,\"uploads_remaining_today\":19,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T04:30:54.791Z",
+      "method": "POST",
+      "path": "/api/workspace/rooms",
+      "status": 202,
+      "body": "{\"job\":{\"job_id\":\"6979686e91dd4e47975bcbaa5afb4e14\",\"state\":\"queued\",\"file_id\":\"c6db535cbf9d4baa822dc61453acee56\",\"project_id\":\"23f65c8fe2a04434913f2311de7014ef\",\"created_at\":\"2026-11-02T04:30:54Z\",\"updated_at\":\"2026-11-02T04:30:54Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T04:31:04.615Z",
+      "method": "POST",
+      "path": "/api/workspace/projects",
+      "status": 201,
+      "body": "{\"project\":{\"id\":\"1f29362eb19046e3bdc815c272ca85c2\",\"user\":\"user_3LXIA6TC4IXO6sga3yOs7q2ET2I\",\"mode\":\"experiment\",\"title\":\"Experiment 2026-11-02 04:31\",\"created\":\"2026-11-02T04:31:03Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T04:31:06.252Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"13c4489c8bbc4d8c81b26acc244c1987\",\"project_id\":\"1f29362eb19046e3bdc815c272ca85c2\",\"name\":\"ST03-trim.mp4\",\"media_type\":\"video/mp4\",\"size\":410461,\"duration_s\":4.004,\"created\":\"2026-11-02T04:31:05Z\"},\"quota\":{\"storage_bytes_used\":702840,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1073038984,\"uploads_today\":2,\"uploads_daily_limit\":20,\"uploads_remaining_today\":18,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T04:31:17.847Z",
+      "method": "POST",
+      "path": "/api/workspace/experiments",
+      "status": 202,
+      "body": "{\"experiment\":{\"id\":\"10fd03100f29417291c939d49b6e7598\",\"project_id\":\"1f29362eb19046e3bdc815c272ca85c2\",\"file_id\":\"13c4489c8bbc4d8c81b26acc244c1987\",\"status\":\"running\",\"request\":{\"file_id\":\"13c4489c8bbc4d8c81b26acc244c1987\",\"target_text\":\"apple\",\"point\":null,\"known_size\":null},\"result\":null,\"error\":null,\"created\":\"2026-11-02T04:31:17Z\",\"updated\":\"2026-11-02T04:31:17Z\"}}",
+      "body_is_excerpt": false
+    }
+  ],
+  "gpu": [],
+  "errors": []
+}
