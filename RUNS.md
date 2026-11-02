@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 02, 11:57 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 02, 12:00 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **337 / 348** runs done · 2 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **338 / 348** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,7 +24,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **N51** — Codex · GPT-6.1 Sol, effort high — Agent effort: explicit per model (Spark, Open, Sol high; Sol xhigh after two number-guard blocks), benchmark high/xhigh/max on 10 lab requests, cap $1.50 (30 min) *(in progress)*
 - [~] **N52** — Codex · GPT-6.1 Sol, effort high — Room shell polish after N49: video colours, windows/doors on scan-edge walls, split over-merged desks/chairs, seat facing; rebuild Koushik room on DEV (private), cap $2.50 (60 min) *(in progress)*
 
 ## Waiting for Koushik
@@ -49,7 +48,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (47/52)</summary>
+<details><summary><b>N</b> —  (48/52)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -101,7 +100,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N48** — Codex · GPT-6.1 Sol, effort high — Koushik bugs: sign-in/up dark-mode colours, GPU status dot stuck on starting plus idle countdown, library drops unavailable entries and empty chips (60 min)
 - [x] **N49** — Codex (native Claude) · Opus 5.5, effort high — Semantic room rebuild: SAM 3.1 class masks lifted to 3D, solid walls/floor with door and window openings, recognisable furniture shapes, raw scan hidden, automatic after the room job (60 min)
 - [x] **N50** — Codex · GPT-6.1 Sol, effort high — Lab editor UI: Stability attribution once as a viewport chip (no per-object captions), page wheel-scroll outside the canvas, Template trials inside the toolbar (30 min)
-- [~] **N51** — Codex · GPT-6.1 Sol, effort high — Agent effort: explicit per model (Spark, Open, Sol high; Sol xhigh after two number-guard blocks), benchmark high/xhigh/max on 10 lab requests, cap $1.50 (30 min) *(in progress)*
+- [x] **N51** — Codex · GPT-6.1 Sol, effort high — Agent effort: explicit per model (Spark, Open, Sol high; Sol xhigh after two number-guard blocks), benchmark high/xhigh/max on 10 lab requests, cap $1.50 (30 min)
 - [~] **N52** — Codex · GPT-6.1 Sol, effort high — Room shell polish after N49: video colours, windows/doors on scan-edge walls, split over-merged desks/chairs, seat facing; rebuild Koushik room on DEV (private), cap $2.50 (60 min) *(in progress)*
 
 </details>

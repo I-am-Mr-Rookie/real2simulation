@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 12:10 Dhaka: controller
+- Accepted N51 after cross-vendor spend review (reservation still covers full max_output_tokens incl. reasoning; effort only adds a request field). Effort now explicit high for Spark, contributor, Muse Open and Sol; Sol xhigh after the number guard blocks twice. Benchmark 132 turns, $1.04: no level clearly better than high; all 12 off-topic refused without tools; no normal-request refusals. Agent pytest 161 passed. Deploying api.
+
 ## 2026-11-02 12:00 Dhaka: controller
 - Dispatched N52-orch297 (Sol high 60, due 12:57): room shell polish after N49 (colours, windows on scan-edge walls, split merged items, facing, rebuild Koushik's DEV room privately), cap $2.50.
 - New rule (Koushik, Nov 2): if a Codex worker fails to start or reports quota exhausted, do not retry; notify Koushik immediately (he applies a manual reset). Recorded in AGENTS.md and the heartbeat prompt.
