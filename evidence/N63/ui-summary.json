@@ -1,0 +1,18 @@
+{
+  "browser": "ChatGPT in-app browser",
+  "scope": "Local production-built application with read-only public RM04 BFF fixture, not authenticated hosted E2E",
+  "public_job": "63636363636363636363636363636363",
+  "checks": [
+    "Generated SF3D surfaces visible in the room canvas",
+    "Selected generated object labels MODEL-GENERATED shape and measured box collider",
+    "Real skipped object shows SF3D skipped: outside the largest 4 kept objects",
+    "Separate SIMULATED restart fixture shows SF3D interrupted (server restart)",
+    "SIMULATED restart fixture supports Play and Reset; t=0 and failure reason preserved"
+  ],
+  "console_errors": [],
+  "console_warning": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+  "unfixed_ui_finding": "After Reset, time/buttons reset correctly but status text still says Running",
+  "quality_caveat": "Coarse/blobby generated surfaces; 0 observed walls and 4 labelled extent walls; scale unverified",
+  "additional_model_calls": 0,
+  "screenshots_local_only": ["ui/room-mesh.jpg", "ui/room-skipped.jpg", "ui/room-interrupted.jpg"]
+}

@@ -1,0 +1,18 @@
+# N63-orch309: DONE
+- Fixed N62 P2-a/P3-d: 10 s SF3D polling, batch-change cancellation, best-effort cancellation on remote errors; ambiguous cancellation retains the entire estimate. Rebuild invalidates before hosted detection.
+- Fixed P2-b: status/result reads fail orphaned pending shapes with `SF3D interrupted (server restart)`; never resume or pay twice. Active/prepared local supervisors remain pending.
+- Fixed P2-c: persisted 20 rebuild attempts per room per Dhaka day, including failed attempts; old batch crop PNGs removed without touching GLBs or unrelated PNGs.
+- Room artifacts quota deferred: asynchronous reconstruction, crops and mesh writers need coordinated size reservation/enforcement and cleanup. Adding a display-only directory sum would not safely enforce 1 GB; uploads retain existing enforcement.
+- Fixed P3-e: failed reconstruction settlement bounded at min(wall, 540 s) + idle; IDLE_S remains 900 s everywhere.
+- Latency: SAM pool 4 to 8, all 16 frames and 176 noun-image calls retained; L4 attempt budget 90 to 45 s, confirmed cancel before A10G fallback.
+- ONE live public RM04 job, source SHA-256 verified; never accessed the private room or N06. Ready 244.146 s (target about 270), first mesh 340.157 s, fourth/final mesh 361.656 s; 4 ready, 3 explicit skipped-box reasons.
+- Observed stages: sampling 29.922 s; GPU 98.157 s (L4 53.480 s including cancel, A10G 44.469 s); SAM detection 76.610 s; lifting 35.203 s. Previous N59: ready 379.032 s, detection 117.890 s. Single-run comparison, not a cold-start guarantee.
+- Paid UTC 2026-11-02 15:23:48 to 15:29:20: 182 canonical ledger rows, all settled; upper bound $2.42457689 <= $3, not provider bills. No additional paid run after resume.
+- Reconstruction Modal upper USD: L4 0.27051534; A10G 0.34729192. SF3D A10G upper USD: 0.36621455, 0.33351652, 0.33387836, 0.33316020. Modal total 1.98457689; Meta SAM 176 images x $0.0025 = 0.44000000.
+- Checks: Python 3.12 / production-pinned NumPy 2.2.6, FastAPI 0.124.4, Pillow 11.3.0: tests/gpu + tests/reconstruction + tests/api-storage, 147 passed; tests-py312.txt. Earlier Python 3.14 pass: 145 before two extra regression checks.
+- npm run build passed (no web source change); local public preview self-check passed: 4 real GLBs/box colliders and isolated SIMULATED interrupted response, zero model calls.
+- Evidence: evidence/N63/{live-result,room-ready}.json (each reservation/cost/timestamp), launch.py, live.py, preview.py; media remains local/ignored under live-data and ui.
+- UI: IAB visual PASS on local production-built lab + public RM04 BFF fixture: generated meshes visible, MODEL-GENERATED/measured-box collider labels, real skipped-box reason, separate clearly SIMULATED restart reason. Play/Reset usable, t=0 and reason preserved; zero console errors (one existing Three shadow-map warning). Screenshots local ui/; ui-summary.json. No Chrome/Playwright fallback; not authenticated hosted E2E.
+- Minor UI finding left outside scope: after Reset the time/buttons reset correctly but status text still says Running; captured in the SIMULATED interruption screenshot.
+- Skipped: Railway/production/Modal deployments, authenticated hosted E2E, provider bill reconciliation, physical/calibrated validation and a second paid run.
+- Risks: RM04 furniture is coarse/blobby, 0 observed walls and 4 labelled extent walls; not accurate/calibrated furniture. MODEL-GENERATED, box-collider and scale unverified labels retained. Queue/supervisor/room throttle are single-process; replicas need shared coordination. Named-file/media/credential-value audits passed, 0 secret matches; code commit 79098785.
