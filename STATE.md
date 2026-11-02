@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 21:48 Dhaka: controller accepts N65; N63 stopped by Codex capacity error
+- N65-orch308 DONE, accepted (b171c383): F06 phone picker clears the left rail; F05 replay summary follows scale provenance (assumed size no longer called known). Tests: node suites + build pass; IAB QA at 375 and 1366 px, light and dark (evidence/N65/VERIFY.md). Temporary .env.local removed. DEV web 7aa42a4c at b171c383, verify.py exit 0. Gap: pre-existing phone floating nav partly covers the summary text (candidate QA/fix row).
+- N63-orch309 turn FAILED at about 21:39 Dhaka: "Selected model is at capacity". Per Codex rule, not retried; Koushik notified. Worktree keeps uncommitted edits (Build/gpu/sf3d.py, Build/reconstruction/*, Build/api/room/*, tests) and evidence/N63/live-result.json: one live RM04 job done (L4 no capacity in 45 s, est $0.27 settled; A10G fallback done est $0.35; all finished 362 s). No REPORT, no commit. Resume in its own thread on Koushik's word; spend review (N66, Claude Opus read-only) still due before acceptance.
+
 ## 2026-11-02 21:15 Dhaka · Controller: accept N59 + N62 + N60 recheck; DEV api c9a9e53f / web 31c98933; N63 and N65 running; N65 needs browser
 - N62-orch307 (Claude Opus, read-only spend review): ACCEPT WITH FIXES, no P0. Reserve-before-spend, cap serialization, and no double charge or early release all PASS. P1: the deployed r2s-sf3d (900 s idle) was ahead of main's IDLE_S of 60, so DEV under-recorded click cost; merging N59 closes this. P2: a rebuild doesn't cancel the in-flight SF3D call; a restart leaves upgrades pending forever; shell rebuilds are unthrottled per user and their artifacts sit outside the 1 GB quota. P3: a-e.
 - N59 accepted (DONE with known gaps) at a07b513c, N62 at e0868efa, N60's in-app-browser recheck at 882da5c5 (12 N58 fixes confirmed; new F05 P3, F06 P2). Tests 543 py + 458 node pass, build ok, secret scan clean, pushed.
