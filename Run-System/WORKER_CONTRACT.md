@@ -25,6 +25,7 @@ work_stopped_at, reported_at; check with `python Run-System/worker_timebox.py ch
 - Browser checks (Koushik, Nov 2): QA, verification and UI checks use the in-app ChatGPT browser (its own cursor), using the
   product like a person: click, scroll, type, resize, look for bugs, wrong numbers and awkward UX, not only scripted asserts.
   Playwright Chromium headed only for automated test scripts or if the in-app browser is truly unavailable (say so in REPORT).
+  If it reports "Browser is not available: iab", retry once using the [@Browser](plugin://browser@openai-bundled) mention that ends your prompt.
   Never Chrome. Test accounts email+clerk_test@example.com, code 424242, DEV https://real2simulation.up.railway.app
   (also https://real2simulation.rookiecoders.tech). The in-app browser holds Koushik's signed-in accounts: do not open his
   private projects, the DEV room bd7162322f3c4c978383bf797aac2f6e or the N06 clip, and change no account settings.

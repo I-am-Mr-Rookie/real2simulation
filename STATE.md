@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 19:20 Dhaka · Koushik: in-app browser fix for workers
+- Koushik: putting "[@Browser](plugin://browser@openai-bundled)" in the worker prompt makes the in-app browser available (fixes "Browser is not available: iab"). Run-System/dispatch.py now appends it to every worker prompt; WORKER_CONTRACT notes it. N58 left undisturbed per Koushik (it is working fine).
+
 ## 2026-11-02 19:02 Dhaka · Koushik: Codex back; in-app browser QA rule
 - Koushik: Codex five-hour quota reset. N58-orch303 resumed in its own thread with a new 60-minute window (due 20:01 Dhaka).
 - New standing rule (Koushik, Nov 2): QA, verification and UI checks by workers use the in-app ChatGPT browser with its own cursor, using the product like a person (finds more bugs, wrong numbers and awkward UX than scripts). Playwright Chromium only for automated test scripts or when the in-app browser is truly unavailable. Recorded in AGENTS.md and WORKER_CONTRACT.md. The earlier note that workers cannot use the in-app browser is obsolete (N57 used it).
