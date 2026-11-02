@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+### 2026-11-03 01:40 Dhaka: Koushik "go Wonder"; N70 dispatched
+Koushik approved adding Muse Wonder as a Smartest picker option. Controller design: per-user Wonder turn limit 10/day, raised to 30/day Nov 5 to 8 Dhaka for judging; Wonder spend goes on the Meta API ledger with its own global daily cap, kept separate from the $20/day GPU cap so agent chats cannot starve room builds; on hitting the cap it falls back to Spark standard with a note. N70-orch314 (Sol high, 30 min, cap $3) benchmarks Wonder on the N51 requests first, thread 01a19dc5-aec5-74d1-8f70-8b938ab5ab7b. N71 (picker build) runs only if the N70 verdict is ADD.
+
 ### 2026-11-03 02:00 Dhaka: N68 accepted, N69 merged, DEV web 9006ce9f, api 0d24d39f
 N68 DONE: after Reset the lab shows Ready and SIMULATED; on phones the summary text clears the floating nav. In-app browser QA passed at 375 px and on desktop once Koushik attached the browser. DEV web deployed 9006ce9f. N69 code merged (room artifacts count toward the 1 GB quota; room start and rebuild refused at the limit; no room delete endpoint exists, so room bytes cannot be freed yet). Python 575 passed, secret scan clean. DEV api deployed 0d24d39f, verify.py exit 0. Koushik attached the browser in N69 and asked it not to skip the UI check: N69 got a fresh 30-minute timebox for the DEV UI check; its row stays IN PROGRESS.
 
