@@ -236,7 +236,7 @@ def test_gateway_routing_and_ledger(env):
     assert got[0][2] == daily_cap._units(100 * 2.1e-6 + 10 * 10.5e-6) and got[1][2] == daily_cap._units(100 * 1.25e-6 + 10 * 4.25e-6)
 
 
-@pytest.mark.parametrize("model", [core.MODEL, core.CONTRIBUTOR_MODEL, core.OPEN_MODEL, core.SOL_MODEL])
+@pytest.mark.parametrize("model", [core.MODEL, core.CONTRIBUTOR_MODEL, core.OPEN_MODEL, core.SOL_MODEL, core.WONDER_MODEL])
 @pytest.mark.parametrize("effort", ["high", "xhigh", "max"])
 def test_reasoning_transport_reserves_full_output_budget(env, monkeypatch, model, effort):
     tmp_path, _ = env

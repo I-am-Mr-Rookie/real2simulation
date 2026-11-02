@@ -1,0 +1,10 @@
+python -m pytest tests/agent/test_core.py tests/agent/test_fallback.py -q
+127 passed, 1 unrelated anyio/pytest deprecation warning in 6.79s
+python evidence/N51/benchmark.py --self-check: PASS
+python evidence/N70/benchmark.py --self-check: PASS
+MAX GATE PASS: reliable high rejects max before live calls; JSONL unchanged
+SHARED LEDGER PASS: 26 settled calls, USD 0.39414403, all reservation IDs match
+PHYSICS PARITY PASS: scored lab_run calls use Rapier, matching N51
+EVIDENCE CONSISTENCY PASS: 12 attempts, 10 scored, token sums and reservations agree
+SECRET/VISIBLE-TEXT SCAN PASS: named source and N70 evidence, no secret values emitted
+git diff --check: PASS

@@ -1,0 +1,14 @@
+# N70-orch314 DONE
+- Verdict: ADD Wonder high as an optional model; no picker/UI change yet. evidence/N70/MEASUREMENTS.md has the comparison.
+- MEASURED: 11/11 schema-valid calls, zero number-guard blocks, 10/10 usable endings, p50 7.857 s.
+- Conservative scored USD/turn: $0.03029440; cache-adjusted Meta list-price estimate: $0.01882600 (not invoices).
+- Paid calls: 26 Meta Model API responses across 12 attempts; full-rate ledger $0.39414403, under $3; all 26 settled.
+- Usage: 67,721 input and 6,163 output tokens total, reasoning included; per-call UTC/model/units/cost in evidence/N70/calls.csv and turns.jsonl.
+- Two initial RK4 drop/pendulum attempts were superseded after adding the shared node_modules junction; corrected scored outputs use N51's Rapier engine. All costs retained.
+- Changed core Wonder constant/price/high-effort entry only; TIERS, routing, credentials and defaults unchanged.
+- Reused N51 harness through run-id/cap/cutoff constants, preserving its defaults; added N70 wrapper and evidence.
+- Checks: tests/agent/test_core.py and test_fallback.py: 127 passed, one unrelated anyio/pytest deprecation warning.
+- Checks: both benchmark self-checks, reliable-high/max admission gate, raw-token/summary consistency, canonical ledger ID/settlement match, Rapier parity, secret/visible-text scan and git diff --check passed.
+- Skipped max because high was reliable; no deployments, GPU, web build or browser QA (no web/UI changes).
+- Risk: single ordered sample per request; cache/provider load differ from N51; estimates are not invoices. Wonder costs more and harder-task benefit is unproven.
+- Cross-vendor spend review remains the controller's merge check. Runtime scratch and shared node_modules are not committed.

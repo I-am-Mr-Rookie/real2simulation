@@ -19,6 +19,7 @@ from typing import Any, Callable, Mapping, Sequence
 MODEL, CONTRIBUTOR_MODEL, VOICE_MODEL = "muse-spark-1.3", "muse-spark-1.3-contributor", "muse-voice-transcribe-1.0"
 # N36: ids from the Baseten and Merge gateway GET /models (2026-11-01). Sol is never user-selectable: TIERS omits it.
 OPEN_MODEL, SOL_MODEL = "meta-models/muse-spark-open-1026", "gpt-6.1-sol"
+WONDER_MODEL = "muse-wonder-1.0"  # benchmark only; not exposed in TIERS
 TIERS = {"contributor": CONTRIBUTOR_MODEL, "spark": MODEL, "open": OPEN_MODEL}
 SOL_CAP_USD = 2  # Sol's own daily cap (provider key "Merge"), on top of the global daily cap
 MAX_STEPS, MAX_OUTPUT_TOKENS = 6, 4000  # 1200 truncated tool calls in N12 live runs
@@ -31,12 +32,13 @@ MAX_TEXT, MAX_HISTORY = 4000, 20
 MAX_AUDIO_BYTES, MAX_AUDIO_S = 4_000_000, 60.0
 # USD per token (in, out) and per audio second: estimates from public listings, matched to N05 live usage; not billing.
 # Muse Open: Baseten GET /models "pricing" for meta-models/muse-spark-open-1026. Sol: see evidence/N36/PRICING.md.
+# Wonder: https://dev.meta.ai/docs/pricing-rate-limits ($4 input, $20 output per 1M; conservative, no cache discount).
 PRICE_PER_TOKEN = {MODEL: (1.0e-6, 5.0e-6), CONTRIBUTOR_MODEL: (0.1e-6, 0.2e-6), OPEN_MODEL: (1.25e-6, 4.25e-6),
-                   SOL_MODEL: (2.1e-6, 10.5e-6)}  # $2/$10 per 1M (OpenAI + Merge docs) + 5% Merge Pro gateway fee
+                   SOL_MODEL: (2.1e-6, 10.5e-6), WONDER_MODEL: (4e-6, 20e-6)}  # Sol includes the 5% Merge Pro gateway fee
 # model -> (ledger provider, key env, base-url env, own daily cap); every other model is the Meta Model API
 GATEWAYS = {SOL_MODEL: ("Merge", "MERGE_API_KEY", "MERGE_BASE_URL", SOL_CAP_USD),
             OPEN_MODEL: ("Baseten", "BASETEN_API_KEY", "BASETEN_BASE_URL", None)}
-REASONING_EFFORT = {MODEL: "high", CONTRIBUTOR_MODEL: "high", OPEN_MODEL: "high", SOL_MODEL: "high"}
+REASONING_EFFORT = {MODEL: "high", CONTRIBUTOR_MODEL: "high", OPEN_MODEL: "high", SOL_MODEL: "high", WONDER_MODEL: "high"}
 FALLBACK_STOPS = {"unbacked_numbers": "number_guard", "no_tool_call": "no_usable_tool_call"}  # + "api_error"
 VOICE_USD_PER_S = 0.0001
 INSTRUCTIONS = (

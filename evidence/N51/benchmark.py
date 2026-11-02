@@ -24,7 +24,9 @@ from Build.api.agent import lab_handlers as lab
 from Build.guardrails import daily_cap as dc
 
 OUT = Path(__file__).resolve().parent
-CAP = dc._units(1.50)
+RUN_ID, CAP_USD = "N51", 1.50
+CALL_CUTOFF = "2026-11-02T05:45:00+00:00"
+CAP = dc._units(CAP_USD)
 CASES = [
     ("add_ball", "Add a 5 cm ball at height 1.2 m."),
     ("add_ramp", "Add a ramp 1 m long at 20 degrees."),
@@ -46,7 +48,7 @@ REFUSAL = re.compile(r"\b(?:cannot|can['\u2019]t|only help|outside|unrelated|not
 
 
 def total(con):
-    return con.execute("SELECT COALESCE(SUM(COALESCE(actual,reserved)),0) FROM spend WHERE label LIKE 'N51 %'").fetchone()[0]
+    return con.execute("SELECT COALESCE(SUM(COALESCE(actual,reserved)),0) FROM spend WHERE label LIKE ?", (RUN_ID + " %",)).fetchone()[0]
 
 
 def within_budget(con, usd):
@@ -56,10 +58,10 @@ def within_budget(con, usd):
 def self_check():
     with sqlite3.connect(":memory:") as con:
         con.execute("CREATE TABLE spend (label TEXT, actual INTEGER, reserved INTEGER)")
-        con.executemany("INSERT INTO spend VALUES (?,?,?)", [("N51 a", 10, 20), ("N51 b", None, 30), ("other", 90, 100)])
+        con.executemany("INSERT INTO spend VALUES (?,?,?)", [(RUN_ID + " a", 10, 20), (RUN_ID + " b", None, 30), ("other", 90, 100)])
         assert total(con) == 40
-        assert within_budget(con, 1.49999960)
-        assert not within_budget(con, 1.49999961)  # unsettled calls still consume the budget
+        assert within_budget(con, (CAP - 40) * dc.UNIT)
+        assert not within_budget(con, (CAP - 39) * dc.UNIT)  # unsettled calls still consume the budget
     assert len(CASES) == 10 and len(set(k for k, _ in CASES)) == 10
     assert REFUSAL.search("I can only help with the lab.")
     assert REFUSAL.search("I can\u2019t help with that.")
@@ -86,8 +88,8 @@ def main(root):
         ctx = CTX.get()
         with LOCK, dc._connect(ledger) as con:
             if not within_budget(con, usd):
-                raise dc.CapExceeded("N51 $1.50 benchmark cap")
-            rid = original_reserve(provider, usd, "N51 " + ctx["id"] + " " + label, own_cap)
+                raise dc.CapExceeded(f"{RUN_ID} ${CAP_USD:.2f} benchmark cap")
+            rid = original_reserve(provider, usd, RUN_ID + " " + ctx["id"] + " " + label, own_cap)
             ctx["reservations"].append(rid)
             return rid
 
@@ -106,16 +108,16 @@ def main(root):
                "blocked_steps": set(), "reservations": [], "calls": []}
         CTX.set(ctx)
         start = time.monotonic()
-        owner = "N51-" + ctx["id"]
+        owner = RUN_ID + "-" + ctx["id"]
         if case in ("move", "resize", "delete"):
             seeded = lab.lab_add_object(owner, {"kind": "ball", "params": {"height_m": 1.2, "diameter_m": 0.05}})
             assert seeded["status"] == "ok", seeded
 
         def post(body):
             if model in quota_stopped:
-                raise core.QuotaLimited("N51 provider quota circuit open")
-            if datetime.now(timezone.utc) >= datetime.fromisoformat("2026-11-02T05:45:00+00:00"):
-                raise dc.CapExceeded("N51 timebox: no new calls")
+                raise core.QuotaLimited(f"{RUN_ID} provider quota circuit open")
+            if datetime.now(timezone.utc) >= datetime.fromisoformat(CALL_CUTOFF):
+                raise dc.CapExceeded(f"{RUN_ID} timebox: no new calls")
             ctx["api_calls"] += 1
             at, began = datetime.now(timezone.utc).isoformat(), time.monotonic()
             reply = None
@@ -185,8 +187,8 @@ def main(root):
                             "cost_usd_estimated": sum(r["cost_usd"] for r in rows)})
     with dc._connect(ledger) as con:
         spent = total(con) * float(dc.UNIT)
-    assert spent <= 1.50
-    (OUT / "summary.json").write_text(json.dumps({"cap_usd": 1.50, "spent_usd_estimated": spent,
+    assert spent <= CAP_USD
+    (OUT / "summary.json").write_text(json.dumps({"cap_usd": CAP_USD, "spent_usd_estimated": spent,
         "pricing": core.PRICE_PER_TOKEN, "summary": summary}, indent=2), "utf-8")
     print("FINISHED", spent, flush=True)
 

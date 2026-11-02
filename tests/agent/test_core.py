@@ -56,6 +56,17 @@ def test_tool_loop_feeds_wrapped_output_back_and_backs_numbers():
     assert names == set(core.TOOLS) and fake.requests[0]["model"] == "muse-spark-1.3"
 
 
+def test_wonder_benchmark_uses_meta_high_without_exposing_a_tier():
+    fake = Fake(call("list_files", {}), say("Ready for lab work."))
+    out = core._loop(core.WONDER_MODEL, [{"role": "user", "content": "List my files"}], fake,
+                     ["List my files"], [], {"input_tokens": 0, "output_tokens": 0}, "u1",
+                     {"list_files": lambda o, a: {"files": []}}, core.MAX_STEPS)
+    assert out["stopped"] == "final"
+    assert all(b["model"] == core.WONDER_MODEL and b["reasoning"] == {"effort": "high"} for b in fake.requests)
+    assert core.WONDER_MODEL not in core.TIERS.values() and core.WONDER_MODEL not in core.GATEWAYS
+    assert core.PRICE_PER_TOKEN[core.WONDER_MODEL] == (4e-6, 20e-6)
+
+
 def test_contributor_flag_selects_contributor_model():
     fake = Fake(say("Hello, I can help with your physics lab."))
     assert core.run_turn("hi", fake, contributor=True)["model"] == "muse-spark-1.3-contributor"
