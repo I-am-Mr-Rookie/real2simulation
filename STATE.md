@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 02:50 Dhaka: N73 QA re-check dispatched
+- N73-orch318 (GPT-6.1 Sol high, 60 min, due 03:47 Dhaka) sent as a follow-up to the N72 chat 01a19dda (browser attached), per Koushik's overnight rule. QA only on DEV main be52ddeb; at most 4 agent turns, no GPU. Findings become Sol fix rows.
+
 ## 2026-11-03 ~03:45 Dhaka: N64 guide accepted and live
 - N64-orch317 DONE: public /guide with 10 sections and 16 WebP screenshots from DEV (fixture and sample projects only; no email or private room visible, checked by the controller). "Guide" link in the header right after Demo library, and in the footer. The controller added one line: 3 new room builds a day.
 - Gaps it left out of the guide (not verified live): the green GPU countdown, Build lab shell / A4 / Add real object clicks, voice, Wonder and Open chat, the full "redo with changes" flow. It added one empty project to the fixture.
