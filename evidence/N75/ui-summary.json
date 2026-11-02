@@ -1,0 +1,26 @@
+{
+  "status": "PASS_WITH_QUALITY_CAVEATS",
+  "browser": "ChatGPT in-app browser",
+  "target": "fresh local Next production build through loopback GET-only fixture adapter",
+  "scope": "actual sample seed and room/storage API routes, isolated synthetic owner; not deployed Clerk/BFF authentication",
+  "viewport": [1280, 720],
+  "objects": 23,
+  "mesh_assets": {
+    "room-object-1": {"http_status": 200, "bytes": 221300},
+    "room-object-2": {"http_status": 200, "bytes": 218604},
+    "room-object-4": {"http_status": 200, "bytes": 258448},
+    "room-object-7": {"http_status": 200, "bytes": 167988}
+  },
+  "room_ply_status": 200,
+  "view_image_status": 200,
+  "sample_recorded_provenance_visible_in_room_panel": true,
+  "scale_unverified_visible": true,
+  "expanded_honesty_credit_occurrences": 1,
+  "credit": "MODEL-GENERATED shapes · Powered by Stability AI",
+  "physics": {"play": "Running. SIMULATED physics", "observed_time_s": 22.67, "reset": "Ready. Press Play to start again. Everything here is SIMULATED.", "reset_time_s": 0},
+  "console_errors_observed": [],
+  "broken_images_observed": [],
+  "quality_caveats": ["Four wall extents are inferred at scan edges, not observed wall planes", "SF3D shapes are visibly fragmented/coarse; not photorealistic or measured surfaces", "Scale and model shape uncertainty remain unverified"],
+  "screenshots_local_only": "C:/Users/HP/.codex/visualizations/2026/11/02/01a19dda-5200-73a2-8e88-b2ec3eaae909/N75/",
+  "screenshots": ["sample-room-provenance.jpg", "sample-shell-and-sf3d.jpg", "sample-reset.jpg"]
+}

@@ -1,0 +1,56 @@
+{
+  "row_cap_usd": 3,
+  "source_archive_sha256": "82e6cc99142b9791ad30c18ac2c92106a30a0082b61d6063aace74d31c986154",
+  "source": "public RM02; cached MapAnything/SAM, no new reconstruction or segmentation",
+  "cost_basis": "daily_cap conservative GPU wall-time plus idle estimates, not provider bill",
+  "model": "stabilityai/stable-fast-3d",
+  "units_per_job": "one RGBA crop -> one mesh",
+  "ledger_integer_unit_usd": "1E-8",
+  "jobs": [
+    {
+      "id": "20884a9d7d7648e3aff7051f6b701aa0",
+      "provider": "Modal",
+      "label": "N75 public RM02 N31 sf3d",
+      "reserved": 59570640,
+      "actual": 36677202,
+      "reserved_at": "2026-11-02T21:24:16.987565+00:00",
+      "settled_at": "2026-11-02T21:25:54.518647+00:00",
+      "reserved_usd": 0.5957064,
+      "settled_usd": 0.36677202
+    },
+    {
+      "id": "2f48cb00508f4c9cb2591a0217e92655",
+      "provider": "Modal",
+      "label": "N75 public RM02 N31 sf3d",
+      "reserved": 59570640,
+      "actual": 33349887,
+      "reserved_at": "2026-11-02T21:25:54.561821+00:00",
+      "settled_at": "2026-11-02T21:26:01.528561+00:00",
+      "reserved_usd": 0.5957064,
+      "settled_usd": 0.33349887
+    },
+    {
+      "id": "4acdd4c3c1cd43c59e9acdd1f952665c",
+      "provider": "Modal",
+      "label": "N75 public RM02 N31 sf3d",
+      "reserved": 59570640,
+      "actual": 33359080,
+      "reserved_at": "2026-11-02T21:26:01.573309+00:00",
+      "settled_at": "2026-11-02T21:26:08.797776+00:00",
+      "reserved_usd": 0.5957064,
+      "settled_usd": 0.3335908
+    },
+    {
+      "id": "92475f3ca62b455a8612be7af224e3d3",
+      "provider": "Modal",
+      "label": "N75 public RM02 N31 sf3d",
+      "reserved": 59570640,
+      "actual": 33310247,
+      "reserved_at": "2026-11-02T21:26:08.855634+00:00",
+      "settled_at": "2026-11-02T21:26:14.746945+00:00",
+      "reserved_usd": 0.5957064,
+      "settled_usd": 0.33310247
+    }
+  ],
+  "total_charged_or_reserved_usd": 1.36696416
+}

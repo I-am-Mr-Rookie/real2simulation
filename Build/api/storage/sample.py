@@ -1,7 +1,7 @@
 """N11: one labelled SAMPLE project per user, seeded on their first files/projects list.
 
-Recorded results only, from committed evidence: the RM04 room reconstruction (Pexels clip, display bytes baked into
-the api image by infra/railway/dev/stage.py) and the ST03 falling-apple experiment (evidence/N07). No video bytes.
+Recorded results only: a hash-verified public classroom bundle (baked into the API image by
+infra/railway/dev/stage.py) and the ST03 falling-apple experiment (evidence/N07). No per-user inference/video bytes.
 """
 import hashlib
 import json
@@ -24,19 +24,84 @@ TITLE = "SAMPLE (RECORDED): classroom room and falling apple"
 _NOTE = "SAMPLE / RECORDED: stock Pexels clips analysed earlier; not your video and not a new measurement."
 
 
+def _public_bytes(bundle, listed, name):
+    if not isinstance(name, str) or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]*", name):
+        raise ValueError("invalid public sample asset name")
+    data = (Path(bundle) / name).read_bytes()
+    if hashlib.sha256(data).hexdigest() != listed[name]["sha256"]:
+        raise ValueError("public sample archive hash mismatch")
+    return data
+
+
+def _ensure_shell(d, bundle, manifest):
+    """Copy the once-computed RM02 shell, never generate it on a user's request."""
+    from Build.reconstruction import live_room
+    from Build.reconstruction.shape_upgrade import LOCK
+    template, listed = manifest["sample_shell"], manifest["files"]
+    if template["schema"] != "sample-room-shell/1":
+        raise ValueError("unsupported public sample shell")
+    with LOCK:
+        room = json.loads((d / "room.json").read_text(encoding="utf-8"))
+        targets = {"mapanything.npz": template["archive"], "room.ply": template["point_cloud"]}
+        for oid, name in template["meshes"].items():
+            if not re.fullmatch(r"room-object-[0-9]+", oid):
+                raise ValueError("invalid public sample object id")
+            targets[f"objects/{oid}.glb"] = name
+        if room.get("sample_shell_sha256") == listed[template["scene"]]["sha256"]:
+            # A later user edit/deletion is intentional. Only restore missing binary assets, not scene objects.
+            for target, source in targets.items():
+                if not (d / target).is_file():
+                    (d / target).parent.mkdir(exist_ok=True)
+                    (d / target).write_bytes(_public_bytes(bundle, listed, source))
+            return
+        scene = json.loads((d / "scene.json").read_text(encoding="utf-8"))
+        if room.get("shell") or any(str(o.get("id", "")).startswith(("room-object-", "wall-")) for o in scene.get("objects", [])):
+            return  # preserve a shell the user explicitly built, including its active/finished upgrades
+        # Validate the entire shared pack before changing an old sample, including already-present archives.
+        new_scene = json.loads(_public_bytes(bundle, listed, template["scene"]))
+        new_room = json.loads(_public_bytes(bundle, listed, template["room"]))
+        if new_room["scale"]["status"] != "scale unverified" or new_scene["room"].get("scale_verified"):
+            raise ValueError("recorded sample scale must remain unverified")
+        for obj in new_scene["objects"]:
+            if obj.get("shape", {}).get("type") == "mesh":
+                if obj["id"] not in template["meshes"]:
+                    raise ValueError("public sample mesh is missing from the manifest")
+                obj["shape"]["glb"] = f"/api/workspace/rooms/{d.name}/objects/{obj['id']}.glb"
+        # Keep user-added objects/settings. Record the old metadata so the source/frame migration is recoverable.
+        existing_ids = {obj["id"] for obj in scene.get("objects", [])}
+        objects = [obj for obj in new_scene["objects"] if obj["id"] not in existing_ids] + scene.get("objects", [])
+        if len(objects) > 50:  # scene.mjs MAX_OBJECTS; never make an existing user's scene unloadable
+            return
+        contents = {target: _public_bytes(bundle, listed, source) for target, source in targets.items()}
+        for name, obj in (("sample-previous-room.json", room), ("sample-previous-scene.json", scene)):
+            if not (d / name).exists():
+                live_room._write(d / name, obj)
+        for target, data in contents.items():
+            (d / target).parent.mkdir(exist_ok=True)
+            (d / target).write_bytes(data)
+        live_room._write(d / "scene.json", {**new_scene, **scene, "room": new_scene["room"], "objects": objects})
+        live_room._write(d / "room.json", {**new_room, "sample": True, "note": _NOTE,
+                                          "labels": {**new_room.get("labels", {}), "input": "SAMPLE / RECORDED",
+                                                     "geometry": "SAMPLE / RECORDED, " + new_room.get("labels", {}).get("geometry", "MODEL-ESTIMATED")},
+                                          "sample_shell_sha256": listed[template["scene"]]["sha256"]})
+
+
 def ensure_room_archive(d, bundle=None, manifest=None):
     """Repair pre-N58 samples too; never substitute a public archive for a user's room."""
     d = Path(d)
-    if (d / "mapanything.npz").is_file():
-        return
     status = json.loads((d / "status.json").read_text(encoding="utf-8"))
     if not status.get("sample"):
+        if (d / "mapanything.npz").is_file():
+            return
         raise FileNotFoundError("room reconstruction archive is unavailable")
+    bundle = bundle or BUNDLE
+    manifest = json.loads(Path(manifest or MANIFEST).read_text(encoding="utf-8"))
+    if "sample_shell" in manifest:
+        _ensure_shell(d, bundle, manifest)
+    if (d / "mapanything.npz").is_file():
+        return
     name = "RM04-mapanything.npz"
-    listed = json.loads(Path(manifest or MANIFEST).read_text(encoding="utf-8"))["files"]
-    data = (Path(bundle or BUNDLE) / name).read_bytes()
-    if hashlib.sha256(data).hexdigest() != listed[name]["sha256"]:
-        raise ValueError("public sample archive hash mismatch")
+    data = _public_bytes(bundle, manifest["files"], name)
     from Build.reconstruction import live_room
     # Use the same gravity-aligned frame as A4 scaling and object lifting, not the old display-only PLY frame.
     (d / "mapanything.npz").write_bytes(data)
@@ -50,9 +115,10 @@ def ensure_room_archive(d, bundle=None, manifest=None):
 
 
 def _room(root, owner, project_id, bundle, manifest):
-    """Write a done room job from the recorded RM04 display bundle; None when the bytes are absent or not the recorded ones."""
+    """Seed legacy display metadata, then install the shared RM02 shell when available; no inference."""
     try:
-        listed = json.loads(Path(manifest).read_text(encoding="utf-8"))["files"]
+        recorded = json.loads(Path(manifest).read_text(encoding="utf-8"))
+        listed = recorded["files"]
         ply, scene = (Path(bundle) / n for n in ("points-mobile.ply", "scene.json"))
         data = ply.read_bytes()
         if hashlib.sha256(data).hexdigest() != listed["points-mobile.ply"]["sha256"]:
@@ -78,7 +144,7 @@ def _room(root, owner, project_id, bundle, manifest):
                                        "sample": True, "scale": "scale unverified", "label": _NOTE,
                                        "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})):
         (d / name).write_text(json.dumps(obj, indent=1) + "\n", encoding="utf-8")
-    if "RM04-mapanything.npz" in listed:
+    if "RM04-mapanything.npz" in listed or "sample_shell" in recorded:
         ensure_room_archive(d, bundle, manifest)
     return d
 
@@ -92,7 +158,17 @@ def seed(store, owner, bundle=None, manifest=None, experiment=None):
     with store.lock:
         db = store.db
         db.execute("CREATE TABLE IF NOT EXISTS samples (user TEXT PRIMARY KEY, project_id TEXT NOT NULL)")
-        if db.execute("SELECT 1 FROM samples WHERE user=?", (owner,)).fetchone():
+        previous = db.execute("SELECT project_id FROM samples WHERE user=?", (owner,)).fetchone()
+        if previous:
+            if db.execute("SELECT 1 FROM projects WHERE id=? AND user=?", (previous[0], owner)).fetchone():
+                found = False
+                for status_file in (store.root / "rooms" / owner).glob("*/status.json"):
+                    status = json.loads(status_file.read_text(encoding="utf-8"))
+                    if status.get("sample") and status.get("project_id") == previous[0]:
+                        found = True
+                        ensure_room_archive(status_file.parent, bundle, manifest)
+                if not found:  # old experiment-only seeds can recover once the shared bundle is available
+                    _room(store.root, owner, previous[0], bundle, manifest)
             return None
         db.execute("BEGIN")
         try:

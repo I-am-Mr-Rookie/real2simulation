@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "source": "public RM02 cached MapAnything/SAM + four N75 SF3D outputs",
+  "before_objects": 0,
+  "after_objects": 23,
+  "meshes": 4,
+  "furniture": 9,
+  "archive_sha256": "82e6cc99142b9791ad30c18ac2c92106a30a0082b61d6063aace74d31c986154",
+  "scale": {
+    "status": "scale unverified",
+    "metres_per_model_unit": 1.0,
+    "sd": null,
+    "evidence": "MapAnything nominal metric output; no reference object and no model scale uncertainty"
+  },
+  "labels": {
+    "input": "SAMPLE / RECORDED",
+    "geometry": "SAMPLE / RECORDED, MODEL-ESTIMATED (MapAnything)",
+    "scale": "scale unverified"
+  },
+  "idempotent": true,
+  "second_user_seeded": true,
+  "new_inference_calls": 0
+}

@@ -1,0 +1,50 @@
+{
+  "sample_shell": {
+    "schema": "sample-room-shell/1",
+    "source": "RM02, public Pexels classroom, N49 reconstruction/N52 SAM cache",
+    "archive": "RM02-mapanything.npz",
+    "point_cloud": "RM02-room.ply",
+    "scene": "RM02-sample-scene.json",
+    "room": "RM02-sample-room.json",
+    "meshes": {
+      "room-object-1": "RM02-room-object-1.glb",
+      "room-object-2": "RM02-room-object-2.glb",
+      "room-object-4": "RM02-room-object-4.glb",
+      "room-object-7": "RM02-room-object-7.glb"
+    }
+  },
+  "files": {
+    "RM02-mapanything.npz": {
+      "bytes": 35113963,
+      "sha256": "82e6cc99142b9791ad30c18ac2c92106a30a0082b61d6063aace74d31c986154"
+    },
+    "RM02-room.ply": {
+      "bytes": 740386,
+      "sha256": "8ae733dbbaadbcd47eaf50e33427100a7c9df127338a8d32c3a20062dac84b1b"
+    },
+    "RM02-room-object-1.glb": {
+      "bytes": 221300,
+      "sha256": "b2b39ae6f38b5257ac3dcfb0f0675e580be2e2caf8cf360b908de8869e2c116b"
+    },
+    "RM02-room-object-2.glb": {
+      "bytes": 218604,
+      "sha256": "4db8ee93a4da5ce15ffb9e03c3d852b6ae637db5b6acc95aa35c7395c15331e1"
+    },
+    "RM02-room-object-4.glb": {
+      "bytes": 258448,
+      "sha256": "477e14ac6f803cce698f922854237f78c393571d40d907e7162e96185ef21d15"
+    },
+    "RM02-room-object-7.glb": {
+      "bytes": 167988,
+      "sha256": "ced0c50365fa7012e36659fd4e9ae5596e5dab00a3cc94e05da188cd64fe7b4b"
+    },
+    "RM02-sample-scene.json": {
+      "bytes": 214158,
+      "sha256": "3a4c3e59709201cfb86427ddce43a8f9b68a6385b1a29e52df1cf8275912e1b7"
+    },
+    "RM02-sample-room.json": {
+      "bytes": 9319,
+      "sha256": "214a6b299ef0d4f5bc68d5113c264e334920ca28c74e0f5faa433a8c59cf6332"
+    }
+  }
+}

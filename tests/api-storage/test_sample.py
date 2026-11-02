@@ -61,6 +61,33 @@ class SampleTests(unittest.TestCase):
     def projects(self, h=A):
         return self.c.get("/internal/workspace/projects", headers=h).json()["projects"]
 
+    def shell_bundle(self):
+        """Synthetic stand-in for the once-generated, public hash-checked RM02 pack."""
+        manifest = json.loads(self.manifest.read_text())
+        template = {"schema": "sample-room-shell/1", "archive": "RM02-mapanything.npz",
+                    "point_cloud": "RM02-room.ply", "scene": "RM02-scene.json", "room": "RM02-room.json",
+                    "meshes": {"room-object-1": "RM02-room-object-1.glb"}}
+        block = {"kind": "block", "position": [0, 1, 0], "size": [1, 1, 1], "fixed": True}
+        scene = {"version": "lab-scene-v1", "label": "SIMULATED", "units": "m", "gravity": [0, -9.81, 0],
+                 "room": {"kind": "ply", "source": "room.ply", "floor_y": 0, "scale_verified": False},
+                 "objects": [{**block, "id": "floor-1"}, {**block, "id": "wall-1"},
+                             {**block, "id": "room-object-1", "shape": {"type": "mesh", "glb": "/stale/job.glb",
+                              "label": "MODEL-GENERATED shape", "credit": "Powered by Stability AI"}}]}
+        room_data = {"schema": "n08-room/1", "scale": {"status": "scale unverified", "sd": None},
+                     "labels": {"input": "RECORDED", "geometry": "MODEL-ESTIMATED", "scale": "scale unverified"},
+                     "shell": {"kept": [{"id": "room-object-1", "category": "chair", "shape": "mesh"}]}}
+        assets = {template["archive"]: self.archive, template["point_cloud"]: PLY,
+                  template["scene"]: json.dumps(scene).encode(), template["room"]: json.dumps(room_data).encode(),
+                  "RM02-room-object-1.glb": b"glTF synthetic unit-test fixture"}
+        for name, data in assets.items():
+            (self.bundle / name).write_bytes(data)
+            manifest["files"][name] = {"sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data)}
+        manifest["sample_shell"] = template
+        self.manifest.write_text(json.dumps(manifest))
+
+    def room_dir(self, owner="user_synthA"):
+        return next((self.store.root / "rooms" / owner).iterdir())
+
     def test_seeds_once_per_user_on_first_list(self):
         self.assertEqual(len(self.projects()), 1)
         self.assertEqual(len(self.projects()), 1)
@@ -126,10 +153,169 @@ class SampleTests(unittest.TestCase):
             sample.ensure_room_archive(d)
         self.assertFalse((d / "mapanything.npz").exists())
 
+    def test_new_samples_copy_shared_shell_meshes_without_inference(self):
+        from Build.api.room.objects import create_router as object_router
+        self.c.app.include_router(object_router(self.store))
+        self.shell_bundle()
+        with mock.patch("Build.api.room.objects.build_shell_files", side_effect=AssertionError("no inference")), \
+             mock.patch("Build.gpu.sf3d.generate_remote", side_effect=AssertionError("no GPU")):
+            self.projects()
+            self.projects(B)
+        for owner, headers in (("user_synthA", A), ("user_synthB", B)):
+            d = self.room_dir(owner)
+            result = self.c.get(f"/internal/workspace/rooms/{d.name}/result", headers=headers).json()
+            scene, record = result["scene"], result["room"]
+            self.assertEqual(len(scene["objects"]), 3)
+            self.assertTrue(record["sample"])
+            self.assertIn("SAMPLE / RECORDED", record["note"])
+            self.assertIn("SAMPLE / RECORDED", record["labels"]["geometry"])
+            self.assertEqual(record["scale"]["status"], "scale unverified")
+            mesh = scene["objects"][-1]["shape"]
+            self.assertEqual(mesh["label"], "MODEL-GENERATED shape")
+            self.assertEqual(mesh["credit"], "Powered by Stability AI")
+            self.assertEqual(mesh["glb"], f"/api/workspace/rooms/{d.name}/objects/room-object-1.glb")
+            url = f"/internal/workspace/rooms/{d.name}/objects/room-object-1.glb"
+            response = self.c.get(url, headers=headers)
+            self.assertEqual(response.status_code, 200)
+            self.assertEqual(response.headers["content-type"], "model/gltf-binary")
+            self.assertEqual(response.content, (self.bundle / "RM02-room-object-1.glb").read_bytes())
+            self.assertEqual(self.c.get(url, headers=B if headers == A else A).status_code, 404)
+
+    def test_existing_sample_list_backfills_once_and_preserves_later_edits(self):
+        self.projects()
+        d = self.room_dir()
+        old_scene = json.loads((d / "scene.json").read_text())
+        old_scene["gravity"] = [0, -4, 0]
+        old_scene["objects"] = [{"id": "ball-1", "kind": "ball", "position": [1, 2, 3]}]
+        (d / "scene.json").write_text(json.dumps(old_scene))
+        self.shell_bundle()
+        self.assertEqual(len(self.projects()), 1)  # existing samples-table row does not skip repair
+        scene = json.loads((d / "scene.json").read_text())
+        self.assertEqual(len(scene["objects"]), 4)
+        self.assertEqual(scene["gravity"], [0, -4, 0])
+        self.assertIn(old_scene["objects"][0], scene["objects"])
+        self.assertEqual(json.loads((d / "sample-previous-scene.json").read_text()), old_scene)
+        scene["objects"] = scene["objects"][1:]  # user deletes an installed wall/floor after the migration
+        (d / "scene.json").write_text(json.dumps(scene))
+        before = {p.name: p.read_bytes() for p in d.glob("*.json")}
+        self.projects()
+        self.c.get(f"/internal/workspace/rooms/{d.name}/result", headers=A)
+        self.assertEqual(before, {p.name: p.read_bytes() for p in d.glob("*.json")})
+        self.assertEqual(self.store.db.execute("SELECT COUNT(*) FROM projects").fetchone()[0], 1)
+
+    def test_pre_n58_result_path_repairs_missing_archive_and_shell(self):
+        self.projects()
+        d = self.room_dir()
+        (d / "mapanything.npz").unlink()
+        self.shell_bundle()
+        response = self.c.get(f"/internal/workspace/rooms/{d.name}/result", headers=A)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.json()["scene"]["objects"]), 3)
+        self.assertEqual((d / "mapanything.npz").read_bytes(), self.archive)
+
+    def test_repair_restores_missing_mesh_without_resurrecting_deleted_objects(self):
+        self.shell_bundle()
+        self.projects()
+        d = self.room_dir()
+        mesh = d / "objects/room-object-1.glb"
+        mesh.unlink()
+        scene = (d / "scene.json").read_bytes()
+        sample.ensure_room_archive(d)
+        self.assertTrue(mesh.is_file())
+        self.assertEqual((d / "scene.json").read_bytes(), scene)
+
+    def test_corrupt_shell_asset_does_not_partially_migrate_existing_sample(self):
+        self.projects()
+        d = self.room_dir()
+        self.shell_bundle()
+        (self.bundle / "RM02-room-object-1.glb").write_bytes(b"tampered")
+        before = {p.name: p.read_bytes() for p in d.iterdir() if p.is_file()}
+        with self.assertRaisesRegex(ValueError, "hash mismatch"):
+            sample.ensure_room_archive(d)
+        self.assertEqual(before, {p.name: p.read_bytes() for p in d.iterdir() if p.is_file()})
+
+    def test_shell_repair_never_changes_non_sample_room_even_with_existing_archive(self):
+        self.projects()
+        d = self.room_dir()
+        status = json.loads((d / "status.json").read_text())
+        status["sample"] = False
+        (d / "status.json").write_text(json.dumps(status))
+        self.shell_bundle()
+        before = {p.name: p.read_bytes() for p in d.iterdir() if p.is_file()}
+        self.projects()
+        sample.ensure_room_archive(d)
+        self.assertEqual(before, {p.name: p.read_bytes() for p in d.iterdir() if p.is_file()})
+
+    def test_public_bundle_rejects_traversal_and_leaves_sample_untouched(self):
+        self.projects()
+        d = self.room_dir()
+        self.shell_bundle()
+        manifest = json.loads(self.manifest.read_text())
+        manifest["sample_shell"]["archive"] = "../outside.npz"
+        self.manifest.write_text(json.dumps(manifest))
+        before = (d / "scene.json").read_bytes()
+        with self.assertRaisesRegex(ValueError, "asset name"):
+            sample.ensure_room_archive(d)
+        self.assertEqual(before, (d / "scene.json").read_bytes())
+
+    def test_custom_sample_shell_is_not_overwritten(self):
+        self.projects()
+        d = self.room_dir()
+        room_data = json.loads((d / "room.json").read_text())
+        room_data["shell"] = {"kept": [{"id": "room-object-1", "custom": True}]}
+        (d / "room.json").write_text(json.dumps(room_data))
+        self.shell_bundle()
+        before = (d / "room.json").read_bytes()
+        self.projects()
+        self.assertEqual(before, (d / "room.json").read_bytes())
+
+    def test_existing_clicked_object_mesh_is_not_overwritten_by_same_template_id(self):
+        self.projects()
+        d = self.room_dir()
+        scene = json.loads((d / "scene.json").read_text())
+        scene["objects"] = [{"id": "room-object-1", "shape": {"type": "mesh"}}]
+        (d / "scene.json").write_text(json.dumps(scene))
+        (d / "objects").mkdir()
+        glb = d / "objects/room-object-1.glb"
+        glb.write_bytes(b"user-created-mesh")
+        self.shell_bundle()
+        self.projects()
+        self.assertEqual(glb.read_bytes(), b"user-created-mesh")
+        self.assertEqual(json.loads((d / "scene.json").read_text()), scene)
+
+    def test_full_custom_scene_is_not_made_unloadable(self):
+        self.projects()
+        d = self.room_dir()
+        scene = json.loads((d / "scene.json").read_text())
+        scene["objects"] = [{"id": f"ball-{i}"} for i in range(50)]
+        (d / "scene.json").write_text(json.dumps(scene))
+        self.shell_bundle()
+        self.projects()
+        self.assertEqual(json.loads((d / "scene.json").read_text()), scene)
+
+    def test_deleted_sample_project_is_not_backfilled_or_resurrected(self):
+        pid = self.projects()[0]["id"]
+        d = self.room_dir()
+        self.assertEqual(self.c.delete(f"/internal/workspace/projects/{pid}", headers=A).status_code, 200)
+        before = (d / "room.json").read_bytes()
+        self.shell_bundle()
+        self.assertEqual(self.projects(), [])
+        self.assertEqual(before, (d / "room.json").read_bytes())
+
     def test_missing_or_altered_bundle_keeps_experiment_only(self):
         (self.bundle / "points-mobile.ply").write_bytes(PLY + b"x")
         self.assertEqual(len(self.projects()), 1)
         self.assertFalse((self.store.root / "rooms").exists())
+        self.assertEqual(self.store.db.execute("SELECT COUNT(*) FROM experiments").fetchone()[0], 1)
+
+    def test_old_experiment_only_sample_gains_room_when_bundle_becomes_available(self):
+        (self.bundle / "points-mobile.ply").write_bytes(b"unavailable")
+        self.projects()
+        self.assertFalse((self.store.root / "rooms").exists())
+        (self.bundle / "points-mobile.ply").write_bytes(PLY)
+        self.shell_bundle()
+        self.assertEqual(len(self.projects()), 1)
+        self.assertEqual(len(json.loads((self.room_dir() / "scene.json").read_text())["objects"]), 3)
         self.assertEqual(self.store.db.execute("SELECT COUNT(*) FROM experiments").fetchone()[0], 1)
 
     def test_failed_seed_rolls_back_and_list_still_works(self):
