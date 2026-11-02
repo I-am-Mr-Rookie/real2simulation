@@ -5,6 +5,7 @@ import time
 import uuid
 
 from Build.gpu import sf3d
+from Build.api import gpu as gpu_jobs
 from Build.reconstruction import live_room, object_lift
 
 LOCK = threading.RLock()
@@ -37,9 +38,13 @@ def fail_interrupted(d):
     work = _read(d, "shape-upgrades.json")
     if str(d) in _running or (work.get("process") == _PROCESS and not work.get("started_at")):
         return  # prepared/scheduled here, but the thread has not started yet
+    reason = "shell rebuild" if work.get("process") == _PROCESS else "server restart"
     for item in _read(d, "room.json").get("shell", {}).get("kept", []):
         if item.get("upgrade", {}).get("state") == "pending":
-            _update(d, work["batch"], item["id"], {"state": "failed", "reason": "SF3D interrupted (server restart)"})
+            for source in work.get("inputs", []):
+                if source["id"] == item["id"]:
+                    gpu_jobs.cancel_call(source.get("modal_call_id"))
+            _update(d, work["batch"], item["id"], {"state": "failed", "reason": f"SF3D interrupted ({reason})"})
 
 
 def _update(d, batch, oid, upgrade, shape=None, glb=None):
@@ -87,8 +92,16 @@ def run(d, owner, *, gpu_db=None, cap_db=None, generate=sf3d.generate_remote):
                     break  # do not pay for the remainder of a replaced shell
             started = time.time()
             try:
+                def spawned(call_id):
+                    with LOCK:
+                        current = _read(d, "shape-upgrades.json")
+                        if current["batch"] == work["batch"]:
+                            next(i for i in current["inputs"] if i["id"] == item["id"])["modal_call_id"] = call_id
+                            live_room._write(d / "shape-upgrades.json", current)
+
                 r = generate((d / "objects" / item["png"]).read_bytes(), cap_path=cap_db,
-                             timeout_s=sf3d.BACKGROUND_BUDGET_S, owner=owner, gpu_path=gpu_db, abort=changed)
+                             timeout_s=sf3d.BACKGROUND_BUDGET_S, owner=owner, gpu_path=gpu_db, abort=changed,
+                             on_spawn=spawned)
                 turns, verts, indices, _ = object_lift.fit_mesh(r["vertices"], r["faces"], item["proxy"])
                 shape = object_lift.mesh_shape(item["category"],
                         f"/api/workspace/rooms/{d.name}/objects/{item['id']}.glb", turns, verts, indices)

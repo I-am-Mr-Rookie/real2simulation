@@ -14,8 +14,8 @@ def read(d, name):
     return json.loads((d / name).read_text())
 
 
-def room(tmp_path, n=2):
-    d = tmp_path / ('a' * 32)
+def room(tmp_path, n=2, rid='a' * 32):
+    d = tmp_path / rid
     d.mkdir()
     (d / 'objects').mkdir()
     objects = [{'id': f'room-object-{i}', 'kind': 'block', 'size': [2, 1, 2], 'position': [0, .5, 0],
@@ -33,6 +33,7 @@ MESH = {'glb': b'glTF', 'vertices': [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]]
 
 
 class Fn:
+    object_id = 'fc-shape-test'
     def __init__(self, check=lambda: None):
         self.calls = 0
         self.check = check
@@ -53,6 +54,7 @@ def test_room_already_ready_reservation_held_until_async_result_and_gpu_activity
 
     def check():
         assert read(d, 'status.json')['state'] == 'done'
+        assert any(i.get('modal_call_id') == Fn.object_id for i in read(d, 'shape-upgrades.json')['inputs'])
         assert any(o['upgrade']['state'] == 'pending' for o in read(d, 'room.json')['shell']['kept'])
         with sqlite3.connect(cap) as con:
             assert con.execute('SELECT actual FROM spend ORDER BY rowid DESC LIMIT 1').fetchone() == (None,)
@@ -240,7 +242,7 @@ def test_dead_local_supervisor_fails_pending_but_running_supervisor_does_not(tmp
         upgrades._running.discard(str(d))
     with upgrades.LOCK:
         upgrades.fail_interrupted(d)
-    assert all(o['upgrade']['reason'] == 'SF3D interrupted (server restart)'
+    assert all(o['upgrade']['reason'] == 'SF3D interrupted (shell rebuild)'
                for o in read(d, 'room.json')['shell']['kept'])
 
 
@@ -269,7 +271,7 @@ def test_shell_rebuild_limit_counts_failures_and_resets_next_dhaka_day(tmp_path,
     parent = tmp_path / 'rooms/owner'
     parent.mkdir(parents=True)
     d = room(parent)
-    monkeypatch.setattr(objects, 'MAX_DAILY', 2)
+    monkeypatch.setattr(objects, 'MAX_REBUILDS', 2)
     monkeypatch.setattr(objects, 'ensure_room_archive', lambda d: None)
     monkeypatch.setenv('WORKSPACE_INTERNAL_TOKEN', 'test-only-token')
     app = FastAPI()
@@ -286,3 +288,87 @@ def test_shell_rebuild_limit_counts_failures_and_resets_next_dhaka_day(tmp_path,
         assert client.post(url, headers=headers).status_code == 502
         assert read(d, 'status.json')['shell_rebuilds']['count'] == 1
     store.db.close()
+
+
+@pytest.mark.parametrize('legacy', [False, True])
+def test_shell_rebuild_limit_is_three_per_owner_across_two_rooms(tmp_path, monkeypatch, legacy):
+    from fastapi import FastAPI
+    from fastapi.testclient import TestClient
+    from Build.api.room import objects
+    from Build.api.storage.files import Store
+    store = Store(tmp_path)
+    parent = tmp_path / 'rooms/owner'
+    parent.mkdir(parents=True)
+    first, second = room(parent), room(parent, rid='b' * 32)
+    if legacy:
+        for d, count in ((first, 2), (second, 1)):
+            live_room.set_status(d, shell_rebuilds={'day': store._day(), 'count': count})
+    other = tmp_path / 'rooms/other'
+    other.mkdir()
+    third = room(other)
+    monkeypatch.setattr(objects, 'ensure_room_archive', lambda d: None)
+    monkeypatch.setenv('WORKSPACE_INTERNAL_TOKEN', 'test-only-token')
+    app = FastAPI()
+    app.include_router(objects.create_router(store))
+    client = TestClient(app)
+    headers = {'x-workspace-token': 'test-only-token', 'x-workspace-owner': 'owner'}
+    with patch.object(objects, 'build_shell_files', side_effect=RuntimeError('synthetic failure')) as build:
+        for d in (() if legacy else (first, second, first)):
+            assert client.post(f'/internal/workspace/rooms/{d.name}/shell', headers=headers).status_code == 502
+        denied = client.post(f'/internal/workspace/rooms/{second.name}/shell', headers=headers)
+        assert denied.status_code == 429 and '3 per user' in denied.text
+        assert build.call_count == (0 if legacy else 3)
+        headers['x-workspace-owner'] = 'other'
+        assert client.post(f'/internal/workspace/rooms/{third.name}/shell', headers=headers).status_code == 502
+    store.db.close()
+
+
+@pytest.mark.parametrize('cancel_fails', [False, True])
+def test_restart_cancels_saved_shape_call_without_releasing_reservation(tmp_path, monkeypatch, cancel_fails):
+    import sys
+    from types import SimpleNamespace
+    from unittest.mock import Mock
+    d, cap = room(tmp_path, 1), tmp_path / 'cap.db'
+    rid = daily_cap.reserve('Modal', sf3d.ESTIMATE_USD, path=cap)
+    work = read(d, 'shape-upgrades.json')
+    work.update(process='dead-process', started_at=1)
+    work['inputs'][0]['modal_call_id'] = 'fc-orphan-shape'
+    live_room._write(d / 'shape-upgrades.json', work)
+    call = Mock()
+    if cancel_fails:
+        call.cancel.side_effect = OSError('offline')
+    lookup = Mock(return_value=call)
+    monkeypatch.setitem(sys.modules, 'modal', SimpleNamespace(FunctionCall=SimpleNamespace(from_id=lookup)))
+    with upgrades.LOCK:
+        upgrades.fail_interrupted(d)
+    lookup.assert_called_once_with('fc-orphan-shape')
+    call.cancel.assert_called_once_with(terminate_containers=True)
+    assert read(d, 'room.json')['shell']['kept'][0]['upgrade']['reason'] == 'SF3D interrupted (server restart)'
+    with sqlite3.connect(cap) as con:
+        assert con.execute('SELECT actual FROM spend WHERE id=?', (rid,)).fetchone() == (None,)
+    assert float(daily_cap.today(cap)['spent_usd']) == sf3d.ESTIMATE_USD
+
+
+def test_failed_rebuild_reports_shell_rebuild_not_server_restart(tmp_path):
+    from Build.api.room import objects
+    d = room(tmp_path, 1)
+    (d / 'mapanything.npz').write_bytes(b'offline fixture')
+    with patch.object(objects.room_shell, 'build', side_effect=RuntimeError('synthetic detection failure')):
+        with pytest.raises(RuntimeError, match='synthetic detection failure'):
+            objects.build_shell_files(d)
+    upgrades.run(d, 'owner')  # old supervisor's finally schedules the now-empty batch
+    with upgrades.LOCK:
+        upgrades.fail_interrupted(d)
+    assert read(d, 'room.json')['shell']['kept'][0]['upgrade']['reason'] == 'SF3D interrupted (shell rebuild)'
+
+
+def test_completed_shape_calls_are_not_cancelled_on_read(tmp_path):
+    d = room(tmp_path, 1)
+    work = read(d, 'shape-upgrades.json')
+    work.update(process='dead-process', started_at=1)
+    work['inputs'][0]['modal_call_id'] = 'fc-completed'
+    live_room._write(d / 'shape-upgrades.json', work)
+    upgrades._update(d, work['batch'], 'room-object-0', {'state': 'ready'})
+    with patch.object(gpu, 'cancel_call') as cancel, upgrades.LOCK:
+        upgrades.fail_interrupted(d)
+    cancel.assert_not_called()

@@ -10,6 +10,7 @@ from Build.guardrails import daily_cap
 
 
 class Call:
+    object_id = 'fc-sf3d-test'
     def __init__(self, result=None, exc=None):
         self.result, self.exc, self.cancelled = result, exc, False
 
@@ -108,7 +109,8 @@ class Sf3dClient(unittest.TestCase):
         call = Call()
         with patch.object(call, 'get', side_effect=TimeoutError()), patch.object(call, 'cancel') as cancel:
             with self.assertRaisesRegex(RuntimeError, 'shell rebuilt'):
-                sf3d.generate_remote(b'png', cap_path=self.cap, fn=Fn(call), abort=iter([False, True]).__next__)
+                sf3d.generate_remote(b'png', cap_path=self.cap, fn=Fn(call),
+                                     abort=iter([False, False, True]).__next__, timeout_s=1)
         cancel.assert_called_once_with(terminate_containers=True)
         self.assertEqual(float(daily_cap.today(self.cap)['spent_usd']), sf3d.ESTIMATE_USD)
 
@@ -116,8 +118,38 @@ class Sf3dClient(unittest.TestCase):
         call = Call()
         with patch.object(call, 'cancel', side_effect=OSError('disconnected')):
             with self.assertRaisesRegex(sf3d.GenerationTimeout, 'unconfirmed'):
-                sf3d.generate_remote(b'png', cap_path=self.cap, fn=Fn(call), abort=lambda: True)
+                sf3d.generate_remote(b'png', cap_path=self.cap, fn=Fn(call),
+                                     abort=iter([False, True]).__next__, timeout_s=1)
         self.assertEqual(float(daily_cap.today(self.cap)['spent_usd']), sf3d.ESTIMATE_USD)
+
+    def test_replaced_queued_batch_never_spawns_and_settles_zero(self):
+        from Build.api import gpu
+        fn = Fn(Call())
+        jobs = Path(self.tmp) / 'jobs.db'
+        stale = False
+        start = gpu.start
+        def queued(jid, path):
+            nonlocal stale
+            start(jid, path)
+            stale = True
+        with patch.object(gpu, 'start', side_effect=queued):
+            with self.assertRaisesRegex(RuntimeError, 'shell rebuilt'):
+                sf3d.generate_remote(b'png', cap_path=self.cap, fn=fn, owner='owner', gpu_path=jobs,
+                                     abort=lambda: stale, timeout_s=1)
+        self.assertFalse(fn.inputs)
+        self.assertEqual(daily_cap.today(self.cap)['spent_usd'], 0)
+        self.assertEqual(gpu.status('owner', None, jobs)['queue_length'], 0)
+
+    def test_spawn_id_persisted_before_wait(self):
+        import sqlite3
+        jobs = Path(self.tmp) / 'jobs.db'
+        call = Call({'gpu_name': 'NVIDIA L4'})
+        def get(timeout):
+            with sqlite3.connect(jobs) as con:
+                self.assertEqual(con.execute('SELECT modal_call_id FROM gpu_jobs').fetchone(), (call.object_id,))
+            return call.result
+        with patch.object(call, 'get', side_effect=get):
+            sf3d.generate_remote(b'png', cap_path=self.cap, fn=Fn(call), owner='owner', gpu_path=jobs)
 
     def test_invalid_budget_does_not_reserve_or_spawn(self):
         fn = Fn(Call())

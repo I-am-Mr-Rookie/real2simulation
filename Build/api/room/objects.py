@@ -17,12 +17,14 @@ from fastapi import APIRouter, Body, Depends
 from fastapi.responses import Response
 
 from Build.api.room import _ID
-from Build.api.storage.files import MAX_DAILY, _default
+from Build.api.storage.files import _default
 from Build.api.storage.sample import ensure_room_archive
 from Build.api.workspace.auth import error, require_owner
 from Build.gpu import sf3d
 from Build.guardrails import daily_cap
 from Build.reconstruction import live_room, object_lift, room_shell
+
+MAX_REBUILDS = 3
 
 
 def build_shell_files(d, detect=object_lift.sam_text, generate=None, *, defer=True):
@@ -149,10 +151,17 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
         from Build.reconstruction.shape_upgrade import LOCK
         with LOCK:  # count attempts before any paid work, including failed rebuilds
             day = db()._day()
-            count = json.loads((d / "status.json").read_text(encoding="utf-8")).get("shell_rebuilds", {})
+            counter = d.parent / "shell-rebuilds.json"
+            if counter.exists():
+                count = json.loads(counter.read_text(encoding="utf-8"))
+            else:  # preserve attempts made by the previous per-room counter on rollout
+                counts = (json.loads(f.read_text(encoding="utf-8")).get("shell_rebuilds", {})
+                          for f in d.parent.glob("*/status.json"))
+                count = {"day": day, "count": sum(c.get("count", 0) for c in counts if c.get("day") == day)}
             used = count.get("count", 0) if count.get("day") == day else 0
-            if used >= MAX_DAILY:
-                raise error(429, "QUOTA_UPLOADS", f"Daily room rebuild limit reached: {MAX_DAILY} per room")
+            if used >= MAX_REBUILDS:
+                raise error(429, "QUOTA_UPLOADS", f"Daily room rebuild limit reached: {MAX_REBUILDS} per user")
+            live_room._write(counter, {"day": day, "count": used + 1})
             live_room.set_status(d, shell_rebuilds={"day": day, "count": used + 1})
         try:
             shell, scene = build_shell_files(d, detect, None if not payload.get("sf3d", True) or generate is sf3d.generate_remote else generate,

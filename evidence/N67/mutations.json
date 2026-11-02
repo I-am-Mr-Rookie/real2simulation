@@ -1,0 +1,107 @@
+[
+  {
+    "finding": "P2-1 owner scope",
+    "test": "tests/reconstruction/test_shape_upgrade.py::test_shell_rebuild_limit_is_three_per_owner_across_two_rooms",
+    "mutation_detected": true,
+    "elapsed_s": 5.688,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n________ test_shell_rebuild_limit_is_three_per_owner_across_two_rooms _________\ntests\\reconstruction\\test_shape_upgrade.py:315: in test_shell_rebuild_limit_is_three_per_owner_across_two_rooms\n    assert denied.status_code == 429 and '3 per user' in denied.text\nE   assert (502 == 429)\nE    +  where 502 = <Response [502 Bad Gateway]>.status_code\n=========================== short test summary info ===========================\nFAILED tests/reconstruction/test_shape_upgrade.py::test_shell_rebuild_limit_is_three_per_owner_across_two_rooms\n1 failed, 1 warning in 3.88s\n"
+  },
+  {
+    "finding": "P2-1 limit three",
+    "test": "tests/reconstruction/test_shape_upgrade.py::test_shell_rebuild_limit_is_three_per_owner_across_two_rooms",
+    "mutation_detected": true,
+    "elapsed_s": 4.984,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n________ test_shell_rebuild_limit_is_three_per_owner_across_two_rooms _________\ntests\\reconstruction\\test_shape_upgrade.py:315: in test_shell_rebuild_limit_is_three_per_owner_across_two_rooms\n    assert denied.status_code == 429 and '3 per user' in denied.text\nE   assert (502 == 429)\nE    +  where 502 = <Response [502 Bad Gateway]>.status_code\n=========================== short test summary info ===========================\nFAILED tests/reconstruction/test_shape_upgrade.py::test_shell_rebuild_limit_is_three_per_owner_across_two_rooms\n1 failed, 1 warning in 2.96s\n"
+  },
+  {
+    "finding": "P2-2 cold start",
+    "test": "tests/gpu/test_room_gpu.py::test_healthy_l4_cold_start_has_time_to_finish",
+    "mutation_detected": true,
+    "elapsed_s": 4.625,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n________________ test_healthy_l4_cold_start_has_time_to_finish ________________\ntests\\gpu\\test_room_gpu.py:65: in test_healthy_l4_cold_start_has_time_to_finish\n    assert live_room.modal_reconstruct([b'frame']) == {'gpu': 'L4'}\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nBuild\\reconstruction\\live_room.py:231: in modal_reconstruct\n    raise error from None\nE   RuntimeError: no GPU capacity/result within 45s on L4\n=========================== short test summary info ===========================\nFAILED tests/gpu/test_room_gpu.py::test_healthy_l4_cold_start_has_time_to_finish\n1 failed in 2.61s\n"
+  },
+  {
+    "finding": "P2-2 confirmed settlement",
+    "test": "tests/reconstruction/test_live_room.py::JobTests::test_confirmed_room_cancel_settles_capped_wall_without_idle",
+    "mutation_detected": true,
+    "elapsed_s": 5.859,
+    "output": ".                                                                      [100%]\n================================== FAILURES ===================================\n_ JobTests.test_confirmed_room_cancel_settles_capped_wall_without_idle (elapsed=60) _\ntests\\reconstruction\\test_live_room.py:323: in test_confirmed_room_cancel_settles_capped_wall_without_idle\n    self.assertEqual(actual, round(expected * 1e8))\nE   AssertionError: 27237120 != 1702320\n_ JobTests.test_confirmed_room_cancel_settles_capped_wall_without_idle (elapsed=10000) _\ntests\\reconstruction\\test_live_room.py:323: in test_confirmed_room_cancel_settles_capped_wall_without_idle\n    self.assertEqual(actual, round(expected * 1e8))\nE   AssertionError: 40855680 != 15320880\n=========================== short test summary info ===========================\nSUBFAILED(elapsed=60) tests/reconstruction/test_live_room.py::JobTests::test_confirmed_room_cancel_settles_capped_wall_without_idle\nSUBFAILED(elapsed=10000) tests/reconstruction/test_live_room.py::JobTests::test_confirmed_room_cancel_settles_capped_wall_without_idle\n2 failed, 1 passed, 1 warning in 3.60s\n"
+  },
+  {
+    "finding": "P2-2 unconfirmed bound",
+    "test": "tests/reconstruction/test_live_room.py::JobTests::test_unconfirmed_cancel_does_not_retry_or_release_reserved_headroom",
+    "mutation_detected": true,
+    "elapsed_s": 6.188,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n_ JobTests.test_unconfirmed_cancel_does_not_retry_or_release_reserved_headroom _\ntests\\reconstruction\\test_live_room.py:472: in test_unconfirmed_cancel_does_not_retry_or_release_reserved_headroom\n    self.assertEqual(actual, reserved)\nE   AssertionError: 25534833 != 40855680\n=========================== short test summary info ===========================\nFAILED tests/reconstruction/test_live_room.py::JobTests::test_unconfirmed_cancel_does_not_retry_or_release_reserved_headroom\n1 failed, 1 warning in 3.59s\n"
+  },
+  {
+    "finding": "P2-3a pre-spawn abort",
+    "test": "tests/gpu/test_sf3d.py::Sf3dClient::test_replaced_queued_batch_never_spawns_and_settles_zero",
+    "mutation_detected": true,
+    "elapsed_s": 2.86,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n_____ Sf3dClient.test_replaced_queued_batch_never_spawns_and_settles_zero _____\ntests\\gpu\\test_sf3d.py:139: in test_replaced_queued_batch_never_spawns_and_settles_zero\n    self.assertFalse(fn.inputs)\nE   AssertionError: [b'png'] is not false\n=========================== short test summary info ===========================\nFAILED tests/gpu/test_sf3d.py::Sf3dClient::test_replaced_queued_batch_never_spawns_and_settles_zero\n1 failed in 1.41s\n"
+  },
+  {
+    "finding": "P2-3b SF3D id",
+    "test": "tests/gpu/test_sf3d.py::Sf3dClient::test_spawn_id_persisted_before_wait",
+    "mutation_detected": true,
+    "elapsed_s": 2.89,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n_______________ Sf3dClient.test_spawn_id_persisted_before_wait ________________\ntests\\gpu\\test_sf3d.py:152: in test_spawn_id_persisted_before_wait\n    sf3d.generate_remote(b'png', cap_path=self.cap, fn=Fn(call), owner='owner', gpu_path=jobs)\nBuild\\gpu\\sf3d.py:126: in generate_remote\n    r = handle.get(timeout=min(10, remaining))\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:1139: in __call__\n    return self._mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:1143: in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:1204: in _execute_mock_call\n    result = effect(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^\ntests\\gpu\\test_sf3d.py:149: in get\n    self.assertEqual(con.execute('SELECT modal_call_id FROM gpu_jobs').fetchone(), (call.object_id,))\nE   AssertionError: Tuples differ: (None,) != ('fc-sf3d-test',)\nE   \nE   First differing element 0:\nE   None\nE   'fc-sf3d-test'\nE   \nE   - (None,)\nE   + ('fc-sf3d-test',)\n=========================== short test summary info ===========================\nFAILED tests/gpu/test_sf3d.py::Sf3dClient::test_spawn_id_persisted_before_wait\n1 failed in 1.49s\n"
+  },
+  {
+    "finding": "P2-3b room id",
+    "test": "tests/gpu/test_room_gpu.py::test_room_spawn_id_persisted_before_wait",
+    "mutation_detected": true,
+    "elapsed_s": 2.438,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n__________________ test_room_spawn_id_persisted_before_wait ___________________\ntests\\gpu\\test_room_gpu.py:84: in test_room_spawn_id_persisted_before_wait\n    assert live_room.modal_reconstruct([b'frame'], job_id=jid, gpu_db=jobs) == {'gpu': 'L4'}\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nBuild\\reconstruction\\live_room.py:222: in modal_reconstruct\n    return call.get(timeout=ROOM_START_BUDGET_S if gpu == GPU else 300 + 240)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:1139: in __call__\n    return self._mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:1143: in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:1204: in _execute_mock_call\n    result = effect(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^\ntests\\gpu\\test_room_gpu.py:77: in get\n    assert con.execute('SELECT modal_call_id FROM gpu_jobs WHERE id=?', (jid,)).fetchone() == ('fc-room-test',)\nE   AssertionError: assert (None,) == ('fc-room-test',)\nE     \nE     At index 0 diff: None != 'fc-room-test'\nE     Use -v to get more diff\n=========================== short test summary info ===========================\nFAILED tests/gpu/test_room_gpu.py::test_room_spawn_id_persisted_before_wait\n1 failed in 1.45s\n"
+  },
+  {
+    "finding": "P2-3b shape id",
+    "test": "tests/reconstruction/test_shape_upgrade.py::test_room_already_ready_reservation_held_until_async_result_and_gpu_activity",
+    "mutation_detected": true,
+    "elapsed_s": 2.312,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n_ test_room_already_ready_reservation_held_until_async_result_and_gpu_activity _\ntests\\reconstruction\\test_shape_upgrade.py:66: in test_room_already_ready_reservation_held_until_async_result_and_gpu_activity\n    assert all(o['upgrade']['state'] == 'ready' for o in read(d, 'room.json')['shell']['kept'])\nE   assert False\nE    +  where False = all(<generator object test_room_already_ready_reservation_held_until_async_result_and_gpu_activity.<locals>.<genexpr> at 0x000002104C60E4D0>)\n=========================== short test summary info ===========================\nFAILED tests/reconstruction/test_shape_upgrade.py::test_room_already_ready_reservation_held_until_async_result_and_gpu_activity\n1 failed in 1.40s\n"
+  },
+  {
+    "finding": "P2-3b restart cancel",
+    "test": "tests/reconstruction/test_shape_upgrade.py::test_restart_cancels_saved_shape_call_without_releasing_reservation",
+    "mutation_detected": true,
+    "elapsed_s": 2.25,
+    "output": "FF                                                                       [100%]\n================================== FAILURES ===================================\n_ test_restart_cancels_saved_shape_call_without_releasing_reservation[False] __\ntests\\reconstruction\\test_shape_upgrade.py:340: in test_restart_cancels_saved_shape_call_without_releasing_reservation\n    lookup.assert_called_once_with('fc-orphan-shape')\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:960: in assert_called_once_with\n    raise AssertionError(msg)\nE   AssertionError: Expected 'mock' to be called once. Called 0 times.\n__ test_restart_cancels_saved_shape_call_without_releasing_reservation[True] __\ntests\\reconstruction\\test_shape_upgrade.py:340: in test_restart_cancels_saved_shape_call_without_releasing_reservation\n    lookup.assert_called_once_with('fc-orphan-shape')\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:960: in assert_called_once_with\n    raise AssertionError(msg)\nE   AssertionError: Expected 'mock' to be called once. Called 0 times.\n=========================== short test summary info ===========================\nFAILED tests/reconstruction/test_shape_upgrade.py::test_restart_cancels_saved_shape_call_without_releasing_reservation[False]\nFAILED tests/reconstruction/test_shape_upgrade.py::test_restart_cancels_saved_shape_call_without_releasing_reservation[True]\n2 failed in 1.34s\n"
+  },
+  {
+    "finding": "P2-3b reaper cancel",
+    "test": "tests/gpu/test_lease.py::test_reaper_cancels_saved_call_and_keeps_full_reservation",
+    "mutation_detected": true,
+    "elapsed_s": 3.172,
+    "output": "FFFF                                                                     [100%]\n================================== FAILURES ===================================\n____ test_reaper_cancels_saved_call_and_keeps_full_reservation[False-sf3d] ____\ntests\\gpu\\test_lease.py:46: in test_reaper_cancels_saved_call_and_keeps_full_reservation\n    lookup.assert_called_once_with('fc-orphan')\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:960: in assert_called_once_with\n    raise AssertionError(msg)\nE   AssertionError: Expected 'mock' to be called once. Called 0 times.\n_ test_reaper_cancels_saved_call_and_keeps_full_reservation[False-reconstruct] _\ntests\\gpu\\test_lease.py:46: in test_reaper_cancels_saved_call_and_keeps_full_reservation\n    lookup.assert_called_once_with('fc-orphan')\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:960: in assert_called_once_with\n    raise AssertionError(msg)\nE   AssertionError: Expected 'mock' to be called once. Called 0 times.\n____ test_reaper_cancels_saved_call_and_keeps_full_reservation[True-sf3d] _____\ntests\\gpu\\test_lease.py:46: in test_reaper_cancels_saved_call_and_keeps_full_reservation\n    lookup.assert_called_once_with('fc-orphan')\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:960: in assert_called_once_with\n    raise AssertionError(msg)\nE   AssertionError: Expected 'mock' to be called once. Called 0 times.\n_ test_reaper_cancels_saved_call_and_keeps_full_reservation[True-reconstruct] _\ntests\\gpu\\test_lease.py:46: in test_reaper_cancels_saved_call_and_keeps_full_reservation\n    lookup.assert_called_once_with('fc-orphan')\nC:\\Users\\HP\\AppData\\Roaming\\uv\\python\\cpython-3.12-windows-x86_64-none\\Lib\\unittest\\mock.py:960: in assert_called_once_with\n    raise AssertionError(msg)\nE   AssertionError: Expected 'mock' to be called once. Called 0 times.\n=========================== short test summary info ===========================\nFAILED tests/gpu/test_lease.py::test_reaper_cancels_saved_call_and_keeps_full_reservation[False-sf3d]\nFAILED tests/gpu/test_lease.py::test_reaper_cancels_saved_call_and_keeps_full_reservation[False-reconstruct]\nFAILED tests/gpu/test_lease.py::test_reaper_cancels_saved_call_and_keeps_full_reservation[True-sf3d]\nFAILED tests/gpu/test_lease.py::test_reaper_cancels_saved_call_and_keeps_full_reservation[True-reconstruct]\n4 failed in 2.21s\n"
+  },
+  {
+    "finding": "P3-1 successful cap",
+    "test": "tests/reconstruction/test_live_room.py::JobTests::test_successful_reconstruction_settlement_cannot_exceed_estimate",
+    "mutation_detected": true,
+    "elapsed_s": 4.234,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n__ JobTests.test_successful_reconstruction_settlement_cannot_exceed_estimate __\ntests\\reconstruction\\test_live_room.py:298: in test_successful_reconstruction_settlement_cannot_exceed_estimate\n    self.assertEqual(actual, reserved)\nE   AssertionError: 309254800 != 40855680\n=========================== short test summary info ===========================\nFAILED tests/reconstruction/test_live_room.py::JobTests::test_successful_reconstruction_settlement_cannot_exceed_estimate\n1 failed, 1 warning in 2.79s\n"
+  },
+  {
+    "finding": "P3-2 rebuild reason",
+    "test": "tests/reconstruction/test_shape_upgrade.py::test_failed_rebuild_reports_shell_rebuild_not_server_restart",
+    "mutation_detected": true,
+    "elapsed_s": 2.188,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n________ test_failed_rebuild_reports_shell_rebuild_not_server_restart _________\ntests\\reconstruction\\test_shape_upgrade.py:358: in test_failed_rebuild_reports_shell_rebuild_not_server_restart\n    assert read(d, 'room.json')['shell']['kept'][0]['upgrade']['reason'] == 'SF3D interrupted (shell rebuild)'\nE   AssertionError: assert 'SF3D interru...rver restart)' == 'SF3D interru...hell rebuild)'\nE     \nE     - SF3D interrupted (shell rebuild)\nE     + SF3D interrupted (server restart)\n=========================== short test summary info ===========================\nFAILED tests/reconstruction/test_shape_upgrade.py::test_failed_rebuild_reports_shell_rebuild_not_server_restart\n1 failed in 1.30s\n"
+  },
+  {
+    "finding": "P3-4 fast abort negative",
+    "test": "tests/gpu/test_sf3d.py::Sf3dClient::test_replaced_batch_cancels_inflight_call_and_retains_bound",
+    "mutation_detected": true,
+    "elapsed_s": 3.672,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n___ Sf3dClient.test_replaced_batch_cancels_inflight_call_and_retains_bound ____\nBuild.gpu.sf3d.GenerationTimeout: SF3D gave no result within 1s (startup/inference budget)\n\nDuring handling of the above exception, another exception occurred:\ntests\\gpu\\test_sf3d.py:111: in test_replaced_batch_cancels_inflight_call_and_retains_bound\n    with self.assertRaisesRegex(RuntimeError, 'shell rebuilt'):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError: \"shell rebuilt\" does not match \"SF3D gave no result within 1s (startup/inference budget)\"\n=========================== short test summary info ===========================\nFAILED tests/gpu/test_sf3d.py::Sf3dClient::test_replaced_batch_cancels_inflight_call_and_retains_bound\n1 failed in 2.43s\n"
+  },
+  {
+    "finding": "P2-1 preserve legacy attempts",
+    "test": "tests/reconstruction/test_shape_upgrade.py::test_shell_rebuild_limit_is_three_per_owner_across_two_rooms[True]",
+    "mutation_detected": true,
+    "elapsed_s": 2.485,
+    "output": "F                                                                        [100%]\n================================== FAILURES ===================================\n_____ test_shell_rebuild_limit_is_three_per_owner_across_two_rooms[True] ______\ntests\\reconstruction\\test_shape_upgrade.py:319: in test_shell_rebuild_limit_is_three_per_owner_across_two_rooms\n    assert denied.status_code == 429 and '3 per user' in denied.text\nE   assert (502 == 429)\nE    +  where 502 = <Response [502 Bad Gateway]>.status_code\n=========================== short test summary info ===========================\nFAILED tests/reconstruction/test_shape_upgrade.py::test_shell_rebuild_limit_is_three_per_owner_across_two_rooms[True]\n1 failed, 1 warning in 1.57s\n"
+  }
+]

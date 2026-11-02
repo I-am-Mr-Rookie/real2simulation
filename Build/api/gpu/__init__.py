@@ -34,7 +34,7 @@ KINDS = (*FUNCTIONS, "sf3d")
 LEASE_S, BEAT_S = 90.0, 20.0
 IDLE_S = 900  # Build/gpu/ondemand.py scaledown_window
 REASON = "GPU job stopped responding"
-_NEW_COLUMNS = ("heartbeat_at", "failed_reason", "reservation", "cap_db")  # added after the first release
+_NEW_COLUMNS = ("heartbeat_at", "failed_reason", "reservation", "cap_db", "modal_call_id")
 _beats = {}  # job id -> stop Event of this process's heartbeat thread
 
 
@@ -81,22 +81,43 @@ def enqueue(owner, kind, path=None, now=None, reservation=None, cap_db=None):
     return jid
 
 
+def record_call(jid, call_id, path=None):
+    con = _connect(path)
+    try:
+        if con.execute("UPDATE gpu_jobs SET modal_call_id = ? WHERE id = ? AND finished_at IS NULL",
+                       (call_id, jid)).rowcount != 1:
+            cancel_call(call_id)
+            raise JobStopped(REASON)
+    finally:
+        con.close()
+
+
+def cancel_call(call_id):
+    if call_id:
+        try:
+            import modal
+            modal.FunctionCall.from_id(call_id).cancel(terminate_containers=True)
+        except Exception:  # best effort only; never release the reservation on this evidence
+            pass
+
+
 def _reap(con, now):
-    """Fail unfinished jobs whose lease ran out. Returns [(reservation, cap_db, started)] to pass to _settle after commit."""
+    """Fail expired leases; pass reservations and call ids to _settle after commit."""
     t = now or datetime.now(timezone.utc)
     dead = []
-    for jid, started, rid, cap_db, beat in con.execute(
-            "SELECT id, started_at, reservation, cap_db, heartbeat_at FROM gpu_jobs WHERE finished_at IS NULL").fetchall():
+    for jid, started, rid, cap_db, beat, call_id in con.execute(
+            "SELECT id, started_at, reservation, cap_db, heartbeat_at, modal_call_id FROM gpu_jobs WHERE finished_at IS NULL").fetchall():
         if beat and (t - datetime.fromisoformat(beat)).total_seconds() <= LEASE_S:
             continue  # no heartbeat at all = row from before N35: expired
         if con.execute("UPDATE gpu_jobs SET finished_at = ?, failed_reason = ? WHERE id = ? AND finished_at IS NULL",
                        (_now(now), REASON, jid)).rowcount == 1:
-            dead.append((rid, cap_db, started is not None))
+            dead.append((rid, cap_db, started is not None, call_id))
     return dead
 
 
 def _settle(dead):
-    for rid, cap_db, started in dead:
+    for rid, cap_db, started, call_id in dead:
+        cancel_call(call_id)
         if not rid:
             continue
         try:

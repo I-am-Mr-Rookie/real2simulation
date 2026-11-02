@@ -283,6 +283,47 @@ class JobTests(unittest.TestCase):
         self.assertEqual(actual, reserved)
         self.assertEqual(s['state'], 'failed')
 
+    def test_successful_reconstruction_settlement_cannot_exceed_estimate(self):
+        from types import SimpleNamespace
+        elapsed = 0
+        def remote(frames):
+            nonlocal elapsed
+            elapsed = 10000
+            return fake_remote(frames)
+        clock = SimpleNamespace(time=lambda: elapsed, monotonic=time.monotonic, strftime=time.strftime, gmtime=time.gmtime)
+        with mock.patch.object(live_room, 'time', clock):
+            _, s = self.run_job(remote)
+        [(_, reserved, actual)] = self.ledger()
+        self.assertEqual(s['state'], 'done', s)
+        self.assertEqual(actual, reserved)
+
+    def test_confirmed_room_cancel_settles_capped_wall_without_idle(self):
+        from types import SimpleNamespace
+        for elapsed in (60, 10000):
+            with self.subTest(elapsed=elapsed):
+                clock = SimpleNamespace(time=lambda: 0, monotonic=time.monotonic,
+                                        strftime=time.strftime, gmtime=time.gmtime)
+                fn = mock.Mock()
+                fn.spawn.return_value.object_id = 'fc-room-cancel'
+                def timeout(**kwargs):
+                    clock.time = lambda: elapsed
+                    raise TimeoutError('synthetic timeout')
+                fn.spawn.return_value.get.side_effect = timeout
+                sdk = SimpleNamespace(Function=SimpleNamespace(from_name=mock.Mock(return_value=fn)),
+                                      exception=SimpleNamespace(TimeoutError=TimeoutError))
+                d = self.dir / f'cancel-{elapsed}'
+                d.mkdir()
+                cap, jobs = self.dir / f'cap-{elapsed}.db', self.dir / f'jobs-{elapsed}.db'
+                with mock.patch.dict('sys.modules', modal=sdk), mock.patch.object(live_room, 'time', clock), \
+                        mock.patch.object(live_room, 'retry_on_a10g', return_value=False):
+                    live_room.run_job(d, 'v.mp4', 5, 'owner', gpu_db=jobs, cap_db=cap)
+                with sqlite3.connect(cap) as con:
+                    reserved, actual = con.execute('SELECT reserved,actual FROM spend').fetchone()
+                expected = live_room.cost(min(elapsed, 540), 'L4', 2, 16)['total_usd']
+                self.assertEqual(actual, round(expected * 1e8))
+                self.assertLess(actual, reserved)
+                fn.spawn.return_value.cancel.assert_called_once_with(terminate_containers=True)
+
     def test_settlement_failure_still_finishes_queue_and_keeps_reserved_cost(self):
         with mock.patch.object(live_room.daily_cap, "settle", side_effect=sqlite3.OperationalError("synthetic locked")):
             _, s = self.run_job(fake_remote)
@@ -374,7 +415,7 @@ class JobTests(unittest.TestCase):
         self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
 
     def test_start_budget_cancels_l4_then_runs_a10g(self):
-        self.assertEqual(live_room.ROOM_START_BUDGET_S, 45)
+        self.assertEqual(live_room.ROOM_START_BUDGET_S, 75)
         self.check_start_budget_cancels_l4_then_runs_a10g(builtin=False)
 
     def test_builtin_timeout_cancels_l4_then_runs_a10g(self):
@@ -402,7 +443,8 @@ class JobTests(unittest.TestCase):
         fn.spawn.return_value.get.assert_called_once_with(timeout=live_room.ROOM_START_BUDGET_S)
         fallback.get.assert_called_once_with(timeout=540)
         self.assertEqual(len(self.ledger()), 2)
-        self.assertTrue(all(row[2] > 0 for row in self.ledger()))  # unknown start: conservative timeout upper bound
+        self.assertTrue(0 <= self.ledger()[0][2] < self.ledger()[0][1])  # confirmed termination has no idle charge
+        self.assertGreater(self.ledger()[1][2], 0)
         self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
 
     def test_daily_cap_denies_retry_and_frees_queue(self):

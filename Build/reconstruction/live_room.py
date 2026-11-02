@@ -28,9 +28,9 @@ from Build.api import gpu as gpu_jobs  # noqa: E402
 from Build.guardrails import daily_cap  # noqa: E402
 
 APP, FALLBACK_GPU, CPU, MEM_GIB, IDLE_S = "r2s-ondemand", "A10G", 2, 16, 900  # ondemand.py + scene_job resources
-# shortcut: get() also includes inference; use a scheduler start signal if healthy L4 starts exceed 45 s.
+# shortcut: get() includes inference; use a scheduler start signal if healthy L4 starts exceed 75 s.
 # N59 lost 90 s before a successful A10G fallback; bound the preferred-device attempt more tightly.
-ROOM_START_BUDGET_S = 45
+ROOM_START_BUDGET_S = 75
 FRAMES, FRAME_W, MAX_POINTS = 16, 512, 20000  # N49: 16 frames (was 8; N31 8 frames peaked 8.03 GB on A10G)
 A4_LONG_M, A4_SD_M = 0.297, 0.002  # ISO 216 A4 long edge 297 mm, +-2 mm tolerance
 # MapAnything output is nominally metric, so a real A4 edge rescales it by about 1. Outside 0.5 to 2 the clicks are not
@@ -210,21 +210,26 @@ def set_status(job_dir, **fields):
     _write(path, {**old, **fields, "updated_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
 
 
-def modal_reconstruct(frames, gpu=GPU):
+def modal_reconstruct(frames, gpu=GPU, *, job_id=None, gpu_db=None):
     import modal
     fn = modal.Function.from_name(APP, "reconstruct")
     if gpu != GPU:
         fn = fn.with_options(gpu=gpu)
     call = fn.spawn(frames)
     try:
+        if job_id:
+            gpu_jobs.record_call(job_id, call.object_id, gpu_db)
         return call.get(timeout=ROOM_START_BUDGET_S if gpu == GPU else 300 + 240)
-    except (TimeoutError, modal.exception.TimeoutError):
+    except (TimeoutError, modal.exception.TimeoutError) as timeout:
         try:
             call.cancel(terminate_containers=True)  # cancel first, so the retry cannot overlap this input
         except Exception as e:
             raise CancellationUnconfirmed("GPU cancellation unconfirmed; full reservation retained") from e
         if gpu == GPU:
-            raise RuntimeError(f"no GPU capacity/result within {ROOM_START_BUDGET_S}s on {gpu}") from None
+            error = RuntimeError(f"no GPU capacity/result within {ROOM_START_BUDGET_S}s on {gpu}")
+            error.cancellation_confirmed = True
+            raise error from None
+        timeout.cancellation_confirmed = True
         raise
 
 
@@ -259,20 +264,26 @@ def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruc
                 set_status(job_dir, state="reconstructing", gpu_job=jid, frames=len(frames))
                 gpu_jobs.start(jid, gpu_db)
                 started, call = True, time.time()
-                r = remote(frames) if device == GPU else remote(frames, gpu=device)
+                if remote is modal_reconstruct:
+                    r = remote(frames, gpu=device, job_id=jid, gpu_db=gpu_db)
+                else:
+                    r = remote(frames) if device == GPU else remote(frames, gpu=device)
                 log = scene_log(APP, call, time.time(), r, r.get("gpu", device), CPU, MEM_GIB, IDLE_S)
                 attempt["state"] = "done"
             except Exception as e:
                 attempt.update(state="failed", error=f"{type(e).__name__}: {e}"[:300])
                 attempt["cancellation_unconfirmed"] = isinstance(e, CancellationUnconfirmed)
+                attempt["cancellation_confirmed"] = getattr(e, "cancellation_confirmed", False)
                 if device != GPU or not retry_on_a10g(e):
                     raise
-            finally:  # conservative: includes each GPU pool's own 15 minute idle window, also on failure
+            finally:  # include idle unless container termination was confirmed
                 try:
                     actual = 0
                     if started:
-                        actual = (log["cost"]["upper_bound"]["total_usd"] if log else
-                                  cost(min(time.time() - call, 300 + 240) + IDLE_S, device, CPU, MEM_GIB)["total_usd"])
+                        actual = (min(log["cost"]["upper_bound"]["total_usd"], estimate) if log else
+                                  cost(min(time.time() - call, 300 + 240) +
+                                       (0 if attempt.get("cancellation_confirmed") else IDLE_S),
+                                       device, CPU, MEM_GIB)["total_usd"])
                         if attempt.get("cancellation_unconfirmed"):
                             actual = estimate
                     try:

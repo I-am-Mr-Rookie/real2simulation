@@ -33,7 +33,7 @@ def test_l4_default_and_actual_gpu_prices():
     assert cost(100, "L4", 2, 16)["total_usd"] == 0.028372
     assert cost(100, "A10G", 2, 16)["total_usd"] == 0.036772
     assert live_room.ESTIMATE_USD == cost(1440, "L4", 2, 16)["total_usd"]
-    assert live_room.ROOM_START_BUDGET_S == 45  # shorter wait, unchanged conservative reservation
+    assert live_room.ROOM_START_BUDGET_S == 75  # healthy L4 cold start, unchanged reservation
 
 
 def test_fallback_uses_existing_deployed_function(monkeypatch):
@@ -49,6 +49,39 @@ def test_fallback_uses_existing_deployed_function(monkeypatch):
     fn.with_options.return_value.spawn.assert_called_once_with([b"frame"])
     fn.with_options.return_value.spawn.return_value.get.assert_called_once_with(timeout=540)
     assert lookup.call_args.args == ("r2s-ondemand", "reconstruct")
+
+
+def test_healthy_l4_cold_start_has_time_to_finish(monkeypatch):
+    call = Mock()
+    def get(timeout):
+        if timeout < 60:
+            raise TimeoutError('healthy cold start needs 60s')
+        return {'gpu': 'L4'}
+    call.get.side_effect = get
+    fn = Mock()
+    fn.spawn.return_value = call
+    monkeypatch.setitem(sys.modules, 'modal', SimpleNamespace(
+        Function=SimpleNamespace(from_name=Mock(return_value=fn)), exception=SimpleNamespace(TimeoutError=TimeoutError)))
+    assert live_room.modal_reconstruct([b'frame']) == {'gpu': 'L4'}
+    call.cancel.assert_not_called()
+
+
+def test_room_spawn_id_persisted_before_wait(tmp_path, monkeypatch):
+    import sqlite3
+    from Build.api import gpu
+    jobs = tmp_path / 'jobs.db'
+    jid = gpu.enqueue('owner', 'reconstruct', jobs)
+    call = Mock(object_id='fc-room-test')
+    def get(timeout):
+        with sqlite3.connect(jobs) as con:
+            assert con.execute('SELECT modal_call_id FROM gpu_jobs WHERE id=?', (jid,)).fetchone() == ('fc-room-test',)
+        return {'gpu': 'L4'}
+    call.get.side_effect = get
+    fn = Mock()
+    fn.spawn.return_value = call
+    monkeypatch.setitem(sys.modules, 'modal', SimpleNamespace(
+        Function=SimpleNamespace(from_name=Mock(return_value=fn)), exception=SimpleNamespace(TimeoutError=TimeoutError)))
+    assert live_room.modal_reconstruct([b'frame'], job_id=jid, gpu_db=jobs) == {'gpu': 'L4'}
 
 
 def test_l4_budget_cancels_before_retry_choice(monkeypatch):

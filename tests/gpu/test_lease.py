@@ -26,6 +26,49 @@ def sec(n):
     return T + timedelta(seconds=n)
 
 
+@pytest.mark.parametrize('kind', ['sf3d', 'reconstruct'])
+@pytest.mark.parametrize('cancel_fails', [False, True])
+def test_reaper_cancels_saved_call_and_keeps_full_reservation(tmp_path, quiet, monkeypatch, kind, cancel_fails):
+    import sys
+    from types import SimpleNamespace
+    from unittest.mock import Mock
+    db, cap = tmp_path / 'jobs.db', tmp_path / 'cap.db'
+    rid = dc.reserve('Modal', 0.5, path=cap, now=T)
+    jid = gpu.enqueue('owner', kind, db, T, reservation=rid, cap_db=cap)
+    gpu.start(jid, db, now=T)
+    gpu.record_call(jid, 'fc-orphan', db)
+    call = Mock()
+    if cancel_fails:
+        call.cancel.side_effect = OSError('offline')
+    lookup = Mock(return_value=call)
+    monkeypatch.setitem(sys.modules, 'modal', SimpleNamespace(FunctionCall=SimpleNamespace(from_id=lookup)))
+    assert gpu.status('owner', None, db, now=sec(91))['queue_length'] == 0
+    lookup.assert_called_once_with('fc-orphan')
+    call.cancel.assert_called_once_with(terminate_containers=True)
+    with sqlite3.connect(cap) as con:
+        reserved, actual = con.execute('SELECT reserved,actual FROM spend').fetchone()
+    assert reserved == actual == 50_000_000
+    gpu.status('owner', None, db, now=sec(92))
+    assert lookup.call_count == 1
+
+
+def test_spawn_after_reap_is_cancelled_without_releasing_reservation(tmp_path, quiet, monkeypatch):
+    from unittest.mock import Mock
+    db, cap = tmp_path / 'jobs.db', tmp_path / 'cap.db'
+    rid = dc.reserve('Modal', 0.5, path=cap, now=T)
+    jid = gpu.enqueue('owner', 'sf3d', db, T, reservation=rid, cap_db=cap)
+    gpu.start(jid, db, now=T)
+    gpu.status('owner', None, db, now=sec(91))
+    cancel = Mock()
+    monkeypatch.setattr(gpu, 'cancel_call', cancel)
+    with pytest.raises(gpu.JobStopped, match=gpu.REASON):
+        gpu.record_call(jid, 'fc-too-late', db)
+    cancel.assert_called_once_with('fc-too-late')
+    with sqlite3.connect(cap) as con:
+        reserved, actual = con.execute('SELECT reserved,actual FROM spend').fetchone()
+    assert actual == reserved
+
+
 def test_killed_job_frees_queue_after_lease_and_never_runs_again(tmp_path, quiet):
     db = tmp_path / "j.db"
     a = gpu.enqueue("u1", "reconstruct", db, T)

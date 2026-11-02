@@ -89,7 +89,8 @@ def gpu_of(name):
     return "L4" if name and "L4" in name else "A10G"
 
 
-def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S, *, owner=None, gpu_path=None, abort=None):
+def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S, *, owner=None, gpu_path=None, abort=None,
+                    on_spawn=None):
     """One SF3D job, reserved in daily_cap at the A10G worst case, settled at the rate of the GPU that ran (cost_log
     rates; A10G when unknown). Unconfirmed cancellation retains the full estimate.
     Returns the remote result plus gpu, wall_s, estimated_usd."""
@@ -106,9 +107,15 @@ def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S,
         if fn is None:
             fn = modal.Function.from_name(APP, "generate")
         call = time.monotonic()
+        if abort and abort():
+            raise RuntimeError("SF3D cancelled (shell rebuilt)")
         spawned = True  # spawn failure can be ambiguous: retain the upper bound
         handle = fn.spawn(rgba_png)
         try:
+            if jid:
+                jobs.record_call(jid, handle.object_id, gpu_path)
+            if on_spawn:
+                on_spawn(handle.object_id)
             while True:
                 if abort and abort():
                     raise RuntimeError("SF3D cancelled (shell rebuilt)")
