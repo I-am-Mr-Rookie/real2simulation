@@ -19,8 +19,9 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "c9a9e53f-452d-4616-97cf-4cb9208e495e",
+      "deploymentId": "736f8bec-c974-49e8-b4ce-d25d4d30d1a1",
       "previousDeploymentIds": [
+        "c9a9e53f-452d-4616-97cf-4cb9208e495e",
         "d28f9eb9-acb7-4122-8e0e-3f95626c9839",
         "ab1c25bd-5752-4bff-a52f-26ed88b72b80",
         "030372b7-2501-48f9-a6f5-0752653e917f",
@@ -45,8 +46,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "e0868efabf954502e970a11c8a0173f76692e34a",
-      "verifiedUtc": "2026-11-02T15:09Z",
+      "sourceRevision": "df47d2de5acade687e274e51a310d01c4023f753",
+      "verifiedUtc": "2026-11-02T18:45Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -62,7 +63,7 @@
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "5df506cd-affc-44c6-a83a-d527b46e6766",
-      "redeployNote": "controller: N59 background SF3D upgrades",
+      "redeployNote": "controller: N63 SF3D cancellation, restart reporting, rebuild limits, L4 budget",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {

@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+### 2026-11-03 00:50 Dhaka: N63 accepted, DEV api 736f8bec, N67 dispatched
+N63-orch309 accepted (df47d2de): SF3D cancellation, restart reporting, rebuild limit, L4 budget and SAM pool latency fixes. Live public RM04: room ready 244 s (target about 270 s; was 379 s), meshes 362 s, upper bound $2.42457689. In-app browser visual check PASS on the local build. Controller checks: Owns ok; Python 554 passed; Node tests passed; no web change, so no build; secret scan clean; 0 npz/glb tracked. DEV api deployed 736f8bec, verify.py exit 0; web unchanged at 7aa42a4c. Worker gaps: room artifacts are not counted in the 1 GB quota; after Reset the status text still says Running; RM04 furniture is coarse. N67-orch311 (Sol high, 30 min) dispatched to fix the N66 findings, thread 01a19d91-0989-7212-b1e3-9772787ed87d.
+
 ### 2026-11-03 00:50 Dhaka: N66 accepted (ACCEPT WITH FIXES on N63)
 N66 review (evidence/N66/REVIEW.md): no P0 or P1; every paid path reserves before spending; the N62 fixes are present, each with a test that fails without it (7/7); live-result cost $2.42457689 recomputed and matches. Open: P2-1 rebuild limit is per room, so one user can drain the $10 day; P2-2 the 45 s L4 budget is about a healthy cold start, so the A10G fallback pays again (room $0.62 vs about $0.27); P2-3 a stale queued SF3D item can spawn after invalidation, and calls orphaned by a restart are not cancelled; plus P3-1, P3-2, P3-4. Merged to main as evidence only. Controller decision on the P2-2 trade-off: raise the budget to about 75 s and settle confirmed-cancelled attempts without the idle charge. Fix row N67 (Sol) added; it is dispatched after N63 is accepted.
 
