@@ -1,0 +1,365 @@
+{
+ "label": "N06_room.mp4 PRIVATE; numbers only; geometry MODEL-ESTIMATED, scale unverified",
+ "refit": {
+  "seconds": 0.5,
+  "floor_before": {
+   "status": "FIT",
+   "inliers": 2356.0,
+   "inlier_fraction": 0.039267,
+   "rms_residual": 0.011461,
+   "p95_abs_residual": 0.01941,
+   "normal_bootstrap_std_deg": 0.014628
+  },
+  "floor_after": {
+   "status": "FIT",
+   "inliers": 945.0,
+   "inlier_fraction": 0.01575,
+   "rms_residual": 0.008911,
+   "p95_abs_residual": 0.01681,
+   "normal_bootstrap_std_deg": 0.034377
+  },
+  "gravity_after": {
+   "status": "MODEL-ESTIMATED",
+   "method": "RANSAC floor plane normal (S05d)",
+   "uncertainty_deg": 0.0344,
+   "angle_to_camera_down_deg": 8.661
+  },
+  "objects_dropped": "21 scene objects dropped: the floor fit changed, rebuild the lab shell",
+  "camera_heights_m": [
+   1.205,
+   1.1,
+   1.28,
+   1.226,
+   1.242,
+   1.474,
+   1.248,
+   1.312
+  ]
+ },
+ "shell_seconds": 35.9,
+ "sam_cache_misses": 0,
+ "sf3d_calls": [
+  {
+   "utc": "2026-11-02T00:17:55Z",
+   "seconds": 8.0,
+   "gpu": "A10G",
+   "wall_s": 7.99,
+   "inference_s": 0.578,
+   "estimated_usd": 0.0250011
+  },
+  {
+   "utc": "2026-11-02T00:18:02Z",
+   "seconds": 6.4,
+   "gpu": "A10G",
+   "wall_s": 6.37,
+   "inference_s": 0.56,
+   "estimated_usd": 0.02440539
+  },
+  {
+   "utc": "2026-11-02T00:18:09Z",
+   "seconds": 6.8,
+   "gpu": "A10G",
+   "wall_s": 6.803,
+   "inference_s": 0.576,
+   "estimated_usd": 0.02456482
+  }
+ ],
+ "kept": [
+  {
+   "id": "room-object-1",
+   "category": "table",
+   "views": [
+    0,
+    0,
+    7,
+    7
+   ],
+   "merged": [
+    "desk",
+    "table",
+    "desk"
+   ],
+   "points": 75991,
+   "size_m": [
+    1.0292,
+    0.4045,
+    0.5358
+   ],
+   "size_sd_m": [
+    0.0391,
+    0.0283,
+    0.0302
+   ],
+   "clutter_px_masked": 2818,
+   "shape": "mesh",
+   "fallback_reason": null,
+   "reason": "main furniture (table), 4 view(s), box reaches the floor"
+  },
+  {
+   "id": "room-object-2",
+   "category": "sofa",
+   "views": [
+    7,
+    3
+   ],
+   "merged": [
+    "sofa"
+   ],
+   "points": 38559,
+   "size_m": [
+    1.5187,
+    0.6042,
+    1.6083
+   ],
+   "size_sd_m": [
+    0.0532,
+    0.0611,
+    0.029
+   ],
+   "clutter_px_masked": 0,
+   "shape": "mesh",
+   "fallback_reason": null,
+   "reason": "main furniture (sofa), 2 view(s), box reaches the floor"
+  },
+  {
+   "id": "room-object-3",
+   "category": "cabinet",
+   "views": [
+    1,
+    1,
+    1,
+    6,
+    6,
+    6,
+    6,
+    1,
+    1
+   ],
+   "merged": [
+    "chair",
+    "desk",
+    "desk",
+    "shelf",
+    "shelf",
+    "chair",
+    "shelf",
+    "shelf"
+   ],
+   "points": 15951,
+   "size_m": [
+    0.6219,
+    0.876,
+    0.644
+   ],
+   "size_sd_m": [
+    0.0474,
+    0.125,
+    0.0312
+   ],
+   "clutter_px_masked": 474,
+   "shape": "mesh",
+   "fallback_reason": null,
+   "reason": "main furniture (cabinet), 9 view(s), box reaches the floor"
+  },
+  {
+   "id": "room-object-4",
+   "category": "cabinet",
+   "views": [
+    4,
+    4,
+    4
+   ],
+   "merged": [
+    "shelf",
+    "shelf"
+   ],
+   "points": 15131,
+   "size_m": [
+    0.6313,
+    0.9885,
+    0.2338
+   ],
+   "size_sd_m": [
+    0.0305,
+    0.0253,
+    0.0102
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+   "reason": "main furniture (cabinet), 3 view(s), box reaches the floor"
+  },
+  {
+   "id": "room-object-5",
+   "category": "sofa",
+   "views": [
+    7,
+    0
+   ],
+   "merged": [
+    "sofa"
+   ],
+   "points": 12164,
+   "size_m": [
+    0.6015,
+    0.4387,
+    0.3966
+   ],
+   "size_sd_m": [
+    0.0265,
+    0.0568,
+    0.027
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+   "reason": "main furniture (sofa), 2 view(s), box reaches the floor"
+  },
+  {
+   "id": "room-object-6",
+   "category": "chair",
+   "views": [
+    7,
+    7
+   ],
+   "merged": [
+    "sofa"
+   ],
+   "points": 7064,
+   "size_m": [
+    0.4998,
+    0.4326,
+    0.2855
+   ],
+   "size_sd_m": [
+    0.0197,
+    0.0183,
+    0.0224
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+   "reason": "main furniture (chair), 2 view(s), box reaches the floor"
+  },
+  {
+   "id": "room-object-7",
+   "category": "chair",
+   "views": [
+    1
+   ],
+   "merged": [],
+   "points": 5503,
+   "size_m": [
+    0.3242,
+    0.5319,
+    0.2405
+   ],
+   "size_sd_m": [
+    0.0269,
+    0.0095,
+    0.0251
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+   "reason": "main furniture (chair), 1 view(s), box reaches the floor"
+  },
+  {
+   "id": "room-object-8",
+   "category": "chair",
+   "views": [
+    1
+   ],
+   "merged": [],
+   "points": 4606,
+   "size_m": [
+    0.5066,
+    0.407,
+    0.312
+   ],
+   "size_sd_m": [
+    0.0286,
+    0.0164,
+    0.0154
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+   "reason": "main furniture (chair), 1 view(s), box reaches the floor"
+  },
+  {
+   "id": "room-object-9",
+   "category": "shelf",
+   "views": [
+    6
+   ],
+   "merged": [],
+   "points": 2289,
+   "size_m": [
+    0.4031,
+    1.0749,
+    0.0774
+   ],
+   "size_sd_m": [
+    0.0124,
+    0.0035,
+    0.0044
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+   "reason": "main furniture (shelf), 1 view(s), box reaches the floor"
+  },
+  {
+   "id": "room-object-10",
+   "category": "table",
+   "views": [
+    0,
+    0
+   ],
+   "merged": [
+    "desk"
+   ],
+   "points": 958,
+   "size_m": [
+    0.405,
+    0.096,
+    0.1571
+   ],
+   "size_sd_m": [
+    0.0178,
+    0.0076,
+    0.0458
+   ],
+   "clutter_px_masked": 260,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D limit (3 per room) reached",
+   "reason": "main furniture (table), 2 view(s), box reaches the floor"
+  }
+ ],
+ "dropped": 22,
+ "dropped_reasons": {
+  "too small for main furniture": 3,
+  "table top above 1.1 m (front-view clutter, not a table)": 2,
+  "same item seen in another view (merged)": 12,
+  "part of a larger detected item (merged)": 5
+ },
+ "walls_fit": 4,
+ "openings": 2,
+ "supports": {
+  "room-object-1": {
+   "plane": 0.3567,
+   "outline": 25
+  },
+  "room-object-3": {
+   "plane": 0.3591,
+   "outline": 25
+  }
+ },
+ "finish_again": {
+  "objects_before": 14,
+  "objects_after": 14,
+  "shell_kept": true,
+  "rescaled_by": 1.0
+ }
+}

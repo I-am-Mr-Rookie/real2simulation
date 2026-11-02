@@ -59,8 +59,10 @@ def local_triplets(grids, rng):
             yield np.stack([g[i] for i in idx])
 
 
-def fit_floor(pts, down_prior, cam_centres, rng, samples):
-    """RANSAC plane constrained near camera-down and below every camera."""
+def fit_floor(pts, down_prior, cam_centres, rng, samples, min_support=MIN_SUPPORT, max_below=None):
+    """RANSAC plane constrained near camera-down and below every camera.
+    max_below (N42): reject planes with more than this fraction of points beyond the band under them (nothing is under
+    a floor); then a lower min_support finds a sparsely seen floor instead of a tilted furniture-top plane."""
     best = None
     for _ in range(ITERS):
         s = next(samples)
@@ -76,8 +78,10 @@ def fit_floor(pts, down_prior, cam_centres, rng, samples):
             continue                                 # every camera must be above plane
         cnt = int((np.abs((pts - s[0]) @ n) < INLIER_M).sum())
         low = float(np.min((s[0] - cam_centres) @ n))   # height below the closest camera
-        if cnt >= MIN_SUPPORT * len(pts) and (best is None or low > best[0] + INLIER_M
+        if cnt >= min_support * len(pts) and (best is None or low > best[0] + INLIER_M
                                               or (abs(low - best[0]) <= INLIER_M and cnt > best[1])):
+            if max_below is not None and ((pts - s[0]) @ n > INLIER_M).sum() > max_below * len(pts):
+                continue
             best = (low, cnt, n, s[0])
     if best is None:
         return None

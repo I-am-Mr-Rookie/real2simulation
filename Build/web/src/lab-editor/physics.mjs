@@ -118,6 +118,16 @@ export function meshCollider(R, o) {
   return o.fixed ? R.ColliderDesc.trimesh(v, new Uint32Array(o.shape.indices)) : R.ColliderDesc.convexHull(v);
 }
 
+// N42: fixed support furniture (table, shelf): solid convex slab under the SF3D top outline, at the measured top. A thin
+// trimesh top let a falling ball tunnel or roll off (N39); the slab is at most 3 cm (or the object height) thick.
+export function topCollider(R, o) {
+  const sp = o.shape?.type === 'mesh' && o.fixed && o.shape.support;
+  if (!sp) return null;
+  const v = o.shape.vertices.slice(-3 * sp.outline), y0 = o.size[1] / 2, y1 = y0 - Math.min(0.03, o.size[1]), p = [];
+  for (let k = 0; k < v.length; k += 3) p.push(v[k] * o.size[0], y0, v[k + 2] * o.size[2], v[k] * o.size[0], y1, v[k + 2] * o.size[2]);
+  return R.ColliderDesc.convexHull(new Float32Array(p));
+}
+
 export function createPhysics(R, sceneInput) {
   const scene = validateScene(sceneInput);
   const v3 = ([x, y, z]) => ({ x, y, z });
@@ -204,6 +214,8 @@ export function createPhysics(R, sceneInput) {
       .setTranslation(...start).setRotation(q4(jointed ? [0, 0, 0, 1] : o.rotation)).setLinvel(...vel).setCcdEnabled(true);
     const body = world.createRigidBody(desc);
     world.createCollider(shape, body);
+    const top = topCollider(R, o);
+    if (top) world.createCollider(top.setFriction(o.friction).setRestitution(o.restitution), body);
     if (jointed) {
       const anchor = world.createRigidBody(R.RigidBodyDesc.fixed().setTranslation(...o.position));
       const rel = start.map((v, i) => v - o.position[i]);

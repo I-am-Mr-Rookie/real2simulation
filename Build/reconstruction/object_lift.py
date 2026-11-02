@@ -165,11 +165,49 @@ def crop_rgba(npz, view, box, mask, pad=8):
     return buf.getvalue()
 
 
-def fit_mesh(vertices, faces, proxy):
+def _hull2(p):
+    """Indices of the 2D convex hull of p (n, 2), counter-clockwise (monotone chain)."""
+    o = sorted(range(len(p)), key=lambda i: (p[i][0], p[i][1]))
+    cross = lambda a, b, c: (p[b][0] - p[a][0]) * (p[c][1] - p[a][1]) - (p[b][1] - p[a][1]) * (p[c][0] - p[a][0])  # noqa: E731
+    out = []
+    for seq in (o, o[::-1]):
+        h = []
+        for i in seq:
+            while len(h) >= 2 and cross(h[-2], h[-1], i) <= 0:
+                h.pop()
+            h.append(i)
+        out += h[:-1]
+    return out
+
+
+def flatten_top(v, f, tol=0.1):
+    """N42: SF3D tops are lumpy and partial (N39: a ball rolled off the coffee-table mesh). Support plane = area-weighted
+    median height of the horizontal triangles in the upper half; vertices above it (clutter blobs) or within tol below go
+    onto it and y is re-normalised so the plane is the box top (the measured surface, clutter masked). SF3D tops of
+    tables seen from above cover only part of the footprint and a thin trimesh lets a falling ball tunnel, so the
+    mesh's plan-view convex outline is appended at the plane: physics.mjs topCollider makes it a solid slab.
+    Returns (vertices with the outline appended, plane, outline vertex count) or (v, None, 0)."""
+    a, b, c = v[f[:, 0]], v[f[:, 1]], v[f[:, 2]]
+    n = np.cross(b - a, c - a)
+    area, cy = np.linalg.norm(n, axis=1), (a[:, 1] + b[:, 1] + c[:, 1]) / 3
+    flat = (np.abs(n[:, 1]) > 0.7 * area) & (cy > 0) & (area > 0)  # within 45 deg of horizontal, either winding
+    if not flat.any():
+        return v, None, 0
+    o = np.argsort(cy[flat])
+    w = np.cumsum(area[flat][o])
+    plane = float(cy[flat][o][np.searchsorted(w, w[-1] / 2)])
+    y = np.where(v[:, 1] >= plane - tol, plane, v[:, 1])
+    h = _hull2(v[:, [0, 2]].tolist())
+    out = np.column_stack([v[:, 0], (y + 0.5) / (plane + 0.5) - 0.5, v[:, 2]])
+    return np.concatenate([out, np.column_stack([v[h, 0], np.full(len(h), 0.5), v[h, 2]])]), plane, len(h)
+
+
+def fit_mesh(vertices, faces, proxy, flat_top=False):
     """SF3D mesh (unit scale, glTF +Y up, front +Z) -> unit-box shape in the object's local frame.
 
     Turns the mesh by quarter turns about +Y so its front faces the camera, then the client and physics scale the
-    unit box [-0.5, 0.5]^3 to the measured size. Returns (quarter_turns, flat vertices, flat indices)."""
+    unit box [-0.5, 0.5]^3 to the measured size. Returns (quarter_turns, flat vertices, flat indices, support or None);
+    flat_top (tables, shelves): support = {plane, outline} from flatten_top."""
     v, f = np.asarray(vertices, float), np.asarray(faces, np.int64)
     if v.ndim != 2 or v.shape[1] != 3 or f.ndim != 2 or f.shape[1] != 3 or not len(f) or f.min() < 0 or f.max() >= len(v):
         raise ValueError("SF3D returned a malformed mesh")
@@ -187,15 +225,20 @@ def fit_mesh(vertices, faces, proxy):
     if np.any(hi - lo < 1e-6):
         raise ValueError("SF3D mesh is flat")
     unit = (v - (lo + hi) / 2) / (hi - lo)
-    return turns, [round(float(x), 4) for x in unit.ravel()], [int(i) for i in f.ravel()]
+    support = None
+    if flat_top:  # support furniture: tops must hold objects (N42)
+        unit, plane, n = flatten_top(unit, f)
+        support = {"plane": round(plane, 4), "outline": n} if n >= 3 else None
+    return turns, [round(float(x), 4) for x in unit.ravel()], [int(i) for i in f.ravel()], support
 
 
-def mesh_shape(category, glb_url, turns, vertices, indices):
+def mesh_shape(category, glb_url, turns, vertices, indices, support=None):
     """lab-scene-v1 shape of an SF3D object (Build/web/src/lab-editor/scene.mjs validates the same fields).
-    Collider (physics.mjs meshCollider): trimesh while the object is fixed, convex hull when movable."""
+    Collider (physics.mjs meshCollider): trimesh while the object is fixed, convex hull when movable; support (N42):
+    the last support.outline vertices are the top outline, a solid slab while fixed (physics.mjs topCollider)."""
     return {"type": "mesh", "label": "MODEL-GENERATED shape", "credit": "Powered by Stability AI", "category": category,
             "glb": glb_url, "quarter_turns": turns,
-            "vertices": vertices, "indices": indices}
+            "vertices": vertices, "indices": indices, **({"support": support} if support else {})}
 
 
 def to_scene(scene, proxy, shape=None, category="other"):

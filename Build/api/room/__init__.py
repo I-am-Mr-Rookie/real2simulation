@@ -4,6 +4,8 @@ GET /rooms -> {rooms: [status...]} owner's jobs newest first; POST /rooms {file_
 background thread runs Build/reconstruction/live_room.
 GET /rooms/{id} -> status (+ GPU dot/queue position while reconstructing); GET /rooms/{id}/result -> scene + room;
 GET /rooms/{id}/room.ply; POST /rooms/{id}/scale {reference} -> CPU-only rescale of the saved reconstruction.
+N42: with the real GPU remote, a finished job runs one automatic lab shell pass (objects.build_shell_files; state
+"building lab shell", then status shell done/failed); a rescale keeps and scales the shell (live_room.finish).
 Job files: R2S_DATA_DIR/rooms/<owner>/<job_id>/ (status.json, scene.json, room.json, room.ply, mapanything.npz).
 """
 import json
@@ -23,9 +25,11 @@ from Build.reconstruction import live_room
 _ID = re.compile(r"[0-9a-f]{32}")
 
 
-def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.modal_stats) -> APIRouter:
+def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.modal_stats, shell=None) -> APIRouter:
     db = (lambda: store) if store else _default
     router = APIRouter(prefix="/internal/workspace", dependencies=[Depends(require_owner)])
+    if shell is None and remote is live_room.modal_reconstruct:  # N42: auto lab shell; fake-remote tests stay offline
+        from Build.api.room.objects import build_shell_files as shell
 
     def job_dir(owner, job_id):
         d = db().root / "rooms" / owner / job_id
@@ -65,7 +69,8 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
         live_room.set_status(d, job_id=job_id, state="queued", file_id=rec["id"], project_id=project_id,
                              created_at=time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()))
         threading.Thread(target=live_room.run_job, daemon=True,
-                         args=(d, db().path(owner, rec["id"]), rec["duration_s"], owner, ref_of(payload), remote)).start()
+                         args=(d, db().path(owner, rec["id"]), rec["duration_s"], owner, ref_of(payload), remote, None,
+                               None, shell)).start()  # positional: tests stub run_job(*a)
         return {"job": read(d, "status.json")}
 
     @router.get("/rooms/{job_id}")

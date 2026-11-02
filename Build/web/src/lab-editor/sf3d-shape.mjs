@@ -23,6 +23,8 @@ export function loadShapeGlb(shape, body, id) {
     const fit = new THREE.Group();
     fit.scale.set(1 / size.x, 1 / size.y, 1 / size.z);
     fit.position.copy(c).multiply(fit.scale).negate();
+    const p = shape.support?.plane; // N42: the collider's flattened support plane is the box top; blobs above stick out
+    if (p != null) { fit.scale.y /= p + 0.5; fit.position.y = (fit.position.y + 0.5) / (p + 0.5) - 0.5; }
     fit.add(m);
     m.traverse((n) => { n.userData.id = id; });
     body.material.visible = false; // the collider placeholder stays for picking, hidden under the texture

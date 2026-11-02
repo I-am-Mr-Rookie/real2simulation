@@ -24,6 +24,23 @@ from Build.guardrails import daily_cap
 from Build.reconstruction import live_room, object_lift, room_shell
 
 
+def build_shell_files(d, detect=object_lift.sam_text, generate=sf3d.generate_remote):
+    """Room job folder -> lab shell written into scene.json + room.json "shell" (+ GLBs). N42: also run once
+    automatically after a room job (Build/api/room run_job after=). Raises CapExceeded / RuntimeError / ValueError."""
+    room = json.loads((d / "room.json").read_text(encoding="utf-8"))
+    scene = json.loads((d / "scene.json").read_text(encoding="utf-8"))
+    scene["objects"] = [o for o in scene.get("objects", []) if not str(o.get("id", "")).startswith(("wall-", "room-object-"))]
+    scene, shell, glbs = room_shell.build((d / "mapanything.npz").read_bytes(), room, scene, detect, generate,
+                                          lambda oid: f"/api/workspace/rooms/{d.name}/objects/{oid}.glb")
+    (d / "objects").mkdir(exist_ok=True)
+    for oid, glb in glbs.items():
+        (d / "objects" / f"{oid}.glb").write_bytes(glb)
+    shell["created_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+    live_room._write(d / "scene.json", scene)
+    live_room._write(d / "room.json", {**room, "shell": shell})
+    return shell, scene
+
+
 def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generate_remote,
                   detect=object_lift.sam_text) -> APIRouter:
     db = (lambda: store) if store else _default
@@ -84,11 +101,12 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
         gen = {}
         try:  # SF3D shape; any failure keeps the measured box and says why
             gen = generate(object_lift.crop_rgba(npz, view, box, proxy["mask"]))
-            turns, verts, idx = object_lift.fit_mesh(gen["vertices"], gen["faces"], proxy)
+            turns, verts, idx, support = object_lift.fit_mesh(gen["vertices"], gen["faces"], proxy,
+                                                              category in room_shell.TOP_SURFACE)
             (d / "objects").mkdir(exist_ok=True)
             (d / "objects" / f"{obj['id']}.glb").write_bytes(gen["glb"])
             obj["shape"] = object_lift.mesh_shape(category, f"/api/workspace/rooms/{job_id}/objects/{obj['id']}.glb",
-                                                  turns, verts, idx)
+                                                  turns, verts, idx, support)
         except daily_cap.CapExceeded as e:
             obj["shape"] = {"type": "box", "fallback_reason": f"SF3D skipped: daily GPU cap ({e})"[:300]}
         except Exception as e:  # noqa: BLE001  shape is optional: the box is the documented fallback
@@ -112,23 +130,12 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
     @router.post("/rooms/{job_id}/shell")
     def build_shell(job_id: str, payload: dict = Body(default={}), owner: str = Depends(require_owner)):
         d = done_dir(owner, job_id)
-        room = json.loads((d / "room.json").read_text(encoding="utf-8"))
-        scene = json.loads((d / "scene.json").read_text(encoding="utf-8"))
-        scene["objects"] = [o for o in scene.get("objects", []) if not str(o.get("id", "")).startswith(("wall-", "room-object-"))]
         try:
-            scene, shell, glbs = room_shell.build((d / "mapanything.npz").read_bytes(), room, scene, detect,
-                                                  generate if payload.get("sf3d", True) else None,
-                                                  lambda oid: f"/api/workspace/rooms/{job_id}/objects/{oid}.glb")
+            shell, scene = build_shell_files(d, detect, generate if payload.get("sf3d", True) else None)
         except daily_cap.CapExceeded as e:
             raise error(429, "DAILY_CAP", str(e)[:300]) from None
         except (RuntimeError, ValueError, KeyError, OSError) as e:
             raise error(502, "SHELL_FAILED", f"{type(e).__name__}: {e}"[:300]) from None
-        (d / "objects").mkdir(exist_ok=True)
-        for oid, glb in glbs.items():
-            (d / "objects" / f"{oid}.glb").write_bytes(glb)
-        shell["created_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-        live_room._write(d / "scene.json", scene)
-        live_room._write(d / "room.json", {**room, "shell": shell})
         return {"shell": shell, "scene": scene}
 
     return router

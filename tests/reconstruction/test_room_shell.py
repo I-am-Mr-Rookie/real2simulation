@@ -53,6 +53,43 @@ class RoomShell(unittest.TestCase):
         self.assertAlmostEqual(top, 0.735, delta=0.02)
         self.assertLess((h > top + w).sum(), 420)
 
+    def test_front_view_finds_desk_top_not_book_stack(self):
+        rng = np.random.default_rng(2)  # desk front face 0..0.75, thin visible desk top, dense book stack 1.0..1.26
+        h = np.concatenate([rng.uniform(0, 0.75, 3000), rng.normal(0.75, 0.005, 200), rng.normal(1.2, 0.01, 4000)])
+        flat = np.r_[np.zeros(3000, bool), np.ones(200, bool), np.zeros(4000, bool)]
+        self.assertGreater(rs.top_surface(h)[0], 1.1)  # N39 failure: the 1.26 m "table"
+        self.assertAlmostEqual(rs.top_surface(h, flat=flat)[0], 0.76, delta=0.03)
+
+    def test_desk_and_hutch_merge_into_one_box(self):
+        def det(view, noun, pos, size, n):
+            return {"noun": noun, "view": view, "proxy": {"position": pos, "size": size, "rotation": [0, 0, 0, 1], "points": n}}
+        desk = det(0, "desk", [0.0, 0.375, 0.0], [1.2, 0.75, 0.6], 900)
+        hutch = det(3, "shelf", [0.0, 0.6, -0.2], [1.1, 1.2, 0.3], 500)  # on the desk's back half, other noun group
+        frac, lo, hi = rs._footprint_overlap(desk["proxy"], hutch["proxy"])
+        self.assertGreater(frac, rs.MERGE_OVERLAP)
+        rs._grow(desk["proxy"], lo, hi)
+        self.assertEqual(desk["proxy"]["size"], [1.2, 0.75, 0.65])  # union: hutch sticks out 5 cm at the back
+        self.assertEqual(desk["proxy"]["position"], [0.0, 0.375, -0.025])
+        side = det(5, "table", [1.0, 0.375, 0.0], [1.2, 0.75, 0.6], 400)  # same desk, view shifted 1 m: half overlap
+        frac, lo, hi = rs._footprint_overlap(desk["proxy"], side["proxy"])
+        self.assertAlmostEqual(frac, 0.2 / 1.2, places=3)
+        self.assertEqual(rs._footprint_overlap(desk["proxy"], det(1, "chair", [3, 0.4, 3], [0.5, 0.8, 0.5], 99)["proxy"])[0], 0.0)
+
+    def test_flatten_top_holds_and_clamps_blobs(self):
+        from Build.reconstruction import object_lift
+        # unit box table: slab top at y 0.3 (tilted lumps +-0.05) over the front half only, a blob up to 0.5, legs
+        top = [[x, 0.3 + 0.05 * (x > 0), z] for x in (-0.5, 0.0, 0.5) for z in (-0.5, 0.0)]
+        blob = [[0.0, 0.5, -0.25], [0.1, 0.5, -0.25], [0.0, 0.5, -0.15]]
+        legs = [[-0.5, -0.5, -0.5], [0.5, -0.5, -0.5], [0.5, -0.5, 0.5], [-0.5, -0.5, 0.5]]
+        v = np.array(top + blob + legs, float)
+        f = np.array([[0, 1, 2], [1, 3, 2], [2, 3, 4], [3, 5, 4], [6, 7, 8], [0, 9, 10], [4, 11, 12]])
+        out, plane, n = object_lift.flatten_top(v, f)
+        self.assertTrue(0.3 <= plane <= 0.35)
+        self.assertEqual(out.shape, (len(v) + n, 3))
+        self.assertTrue(np.allclose(out[:6, 1], 0.5) and np.allclose(out[6:9, 1], 0.5))  # top + blob on the plane
+        self.assertTrue(np.allclose(out[-n:, 1], 0.5) and n == 4)  # plan outline = the 4 corners, at the top
+        self.assertTrue(np.allclose(out[9:13, 1], -0.5) and np.abs(out).max() <= 0.5 + 1e-9)
+
     def test_keyframes(self):
         self.assertEqual(rs.keyframes(8, 3), [0, 4, 7])
         self.assertEqual(rs.keyframes(8), list(range(8)))

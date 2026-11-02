@@ -27,3 +27,24 @@ test('wall stops a rolling ball; the door opening lets it through', () => {
   assert.ok(Math.max(...blocked.map((s) => s[0])) < 2.0, 'blocked max x ' + Math.max(...blocked.map((s) => s[0])));
   assert.ok(Math.max(...through.map((s) => s[0])) > 2.2, 'opening max x ' + Math.max(...through.map((s) => s[0])));
 });
+
+// N42: SF3D table whose own top covers only one corner (N39 coffee table: the ball fell off); support.outline = the
+// last 4 vertices (plan outline at the top) -> solid slab while fixed.
+test('ball rests on an SF3D mesh table top through the support slab; without it, it falls', () => {
+  const vertices = [-0.5, 0.5, -0.5, -0.3, 0.5, -0.5, -0.5, 0.5, -0.3, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5];
+  const mesh = { type: 'mesh', label: 'MODEL-GENERATED shape', credit: 'Powered by Stability AI', category: 'table', glb: '/api/workspace/rooms/' + 'c'.repeat(32) + '/objects/room-object-1.glb',
+    quarter_turns: 0, vertices, indices: [0, 1, 2, 0, 3, 4], support: { plane: 0.3, outline: 4 } };
+  const table = { ...wall('room-object-1', [0, 0.36, 0], [0.8, 0.72, 0.5]), mass: 25, shape: mesh };
+  const drop = (t) => {
+    const s = validateScene({ ...shell, objects: [t] });
+    const sim = createPhysics(R, { ...s, room: { kind: 'plane', floor_y: 0 }, objects: [...s.objects, { id: 'b', kind: 'ball', position: [0.2, 1.0, 0.1], size: [0.04, 0.04, 0.04], restitution: 0.3 }] });
+    sim.step(3 * 120);
+    const y = sim.trace('b').samples.at(-1).p[1];
+    sim.free();
+    return y;
+  };
+  assert.ok(Math.abs(drop(table) - 0.74) < 0.01, 'rest y ' + drop(table));
+  const { support, ...bare } = mesh;
+  assert.ok(drop({ ...table, shape: bare }) < 0.05, 'no slab: falls to the floor');
+  assert.throws(() => validateScene({ ...shell, objects: [{ ...table, shape: { ...mesh, support: { plane: 0.3, outline: 99 } } }] }), /support/);
+});

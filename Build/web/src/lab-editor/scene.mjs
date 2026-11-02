@@ -42,7 +42,7 @@ const GLB_URL = /^\/api\/workspace\/rooms\/[A-Za-z0-9_-]{1,64}\/objects\/room-ob
 // object's collider too. box = SF3D failed, the measured box stays and fallback_reason says why.
 function shapeOf(s, at) {
   if (!s || typeof s !== 'object' || Array.isArray(s)) bad(at + ' must be an object');
-  const keys = s.type === 'box' ? ['type', 'fallback_reason'] : s.type === 'mesh' ? ['type', 'label', 'credit', 'category', 'glb', 'quarter_turns', 'vertices', 'indices'] : bad(at + '.type must be mesh or box');
+  const keys = s.type === 'box' ? ['type', 'fallback_reason'] : s.type === 'mesh' ? ['type', 'label', 'credit', 'category', 'glb', 'quarter_turns', 'vertices', 'indices', 'support'] : bad(at + '.type must be mesh or box');
   for (const k of Object.keys(s)) if (!keys.includes(k)) bad(at + ': unknown field ' + k);
   if (s.type === 'box') return { type: 'box', fallback_reason: typeof s.fallback_reason === 'string' ? s.fallback_reason.slice(0, 300) : bad(at + '.fallback_reason must be a string') };
   if (s.label !== 'MODEL-GENERATED shape' || s.credit !== 'Powered by Stability AI') bad(at + ' needs label MODEL-GENERATED shape and credit Powered by Stability AI');
@@ -54,7 +54,11 @@ function shapeOf(s, at) {
   v.forEach((x, i) => num(x, at + '.vertices[' + i + ']', -0.5001, 0.5001));
   if (!Array.isArray(f) || f.length < 3 || f.length % 3 || f.length > 3 * MAX_MESH_TRIANGLES) bad(at + '.indices must be 1..' + MAX_MESH_TRIANGLES + ' triangles');
   f.forEach((x, i) => (Number.isInteger(x) && x >= 0 && x < n) || bad(at + '.indices[' + i + '] must be a vertex index'));
-  return { type: 'mesh', label: s.label, credit: s.credit, category: s.category, glb: s.glb, quarter_turns: s.quarter_turns, vertices: v.slice(), indices: f.slice() };
+  // N42: support = flattened top: plane = unit height before re-normalising (GLB fit), outline = last vertices (top slab).
+  const sp = s.support;
+  if (sp !== undefined && (!sp || typeof sp !== 'object' || Object.keys(sp).some((k) => k !== 'plane' && k !== 'outline')
+    || !Number.isInteger(sp.outline) || sp.outline < 3 || sp.outline > n || !(sp.plane > -0.5 && sp.plane <= 0.5))) bad(at + '.support must be {plane in (-0.5, 0.5], outline 3..vertices}');
+  return { type: 'mesh', label: s.label, credit: s.credit, category: s.category, glb: s.glb, quarter_turns: s.quarter_turns, vertices: v.slice(), indices: f.slice(), ...(sp && { support: { plane: sp.plane, outline: sp.outline } }) };
 }
 
 // N29: room.collision = static box proxy of the room point cloud (MODEL-ESTIMATED), built by physics.mjs roomProxy.

@@ -121,7 +121,9 @@ def analyse(npz, ref=None):
     down = sf.unit(np.mean([v["pose"][:3, 1] for v in views], 0))  # OpenCV: +y image-down, pose cam->world
     forward = sf.unit(np.mean([v["pose"][:3, 2] for v in views], 0))
     sub = pts[rng.choice(len(pts), min(len(pts), 60000), replace=False)]
-    floor = sf.fit_floor(sub, down, cams, rng, sf.local_triplets(grids, rng))
+    # N42: N06 room picked a plane 25 deg off camera-down with 10% of points under it (inliers 3.9%); a floor has
+    # nothing under it, so 1% support + at most 2% of points below finds the real, sparsely seen floor.
+    floor = sf.fit_floor(sub, down, cams, rng, sf.local_triplets(grids, rng), min_support=0.01, max_below=0.02)
     c = cams.mean(0)
     if floor:
         n = floor["normal_down"]
@@ -164,10 +166,25 @@ def _write(path, obj):
 
 
 def finish(job_dir, ref=None):
-    """CPU only: saved mapanything.npz -> room.ply, room.json, scene.json (rerun with a new reference = rescale)."""
+    """CPU only: saved mapanything.npz -> room.ply, room.json, scene.json (rerun with a new reference = rescale).
+    N42: a rescale keeps the scene objects (lab shell, clicked objects) scaled about the floor origin by new/old
+    metres per model unit; only when the floor fit is unchanged (same frame), else they are dropped with the reason."""
     from scene_job import write_ply
     job_dir = Path(job_dir)
+    old = {n: json.loads((job_dir / n).read_text(encoding="utf-8")) for n in ("room.json", "scene.json") if (job_dir / n).exists()}
     pts, rgb, room, scene = analyse((job_dir / "mapanything.npz").read_bytes(), ref)
+    objs = old.get("scene.json", {}).get("objects", [])
+    if objs and old.get("room.json", {}).get("floor") == room["floor"]:
+        f = room["scale"]["metres_per_model_unit"] / old["room.json"]["scale"]["metres_per_model_unit"]
+        scene["objects"] = [{**o, "position": [round(x * f, 4) for x in o["position"]],
+                             "size": [round(x * f, 4) for x in o["size"]]} for o in objs]
+        if "shell" in old["room.json"]:
+            sh = old["room.json"]["shell"]
+            room["shell"] = {**sh, "rescaled_by": round(f, 6), "labels": {**sh["labels"], "scale": room["scale"]["status"]},
+                             "kept": [{**k, "size_m": [round(x * f, 4) for x in k["size_m"]]} for k in sh["kept"]],
+                             "rescale_note": "wall and opening numbers are from before the rescale; multiply by rescaled_by"}
+    elif objs:
+        room["objects_dropped"] = f"{len(objs)} scene objects dropped: the floor fit changed, rebuild the lab shell"
     write_ply(job_dir / "room.ply", np.round(pts, 5), rgb)
     _write(job_dir / "room.json", room)
     _write(job_dir / "scene.json", scene)
@@ -203,8 +220,9 @@ def retry_on_a10g(error):
                                           "no gpu capacity", "no capacity", "insufficient gpu capacity")))
 
 
-def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruct, gpu_db=None, cap_db=None):
-    """Background job; each GPU attempt joins the shared queue with its own cap reservation."""
+def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruct, gpu_db=None, cap_db=None, after=None):
+    """Background job; each GPU attempt joins the shared queue with its own cap reservation.
+    after(job_dir) (N42): one automatic lab shell pass (its paid calls are ledgered inside); a failure keeps the room."""
     job_dir = Path(job_dir)
     attempts = []
     try:
@@ -248,10 +266,18 @@ def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruc
         (job_dir / "mapanything.npz").write_bytes(r["npz"])
         _write(job_dir / "cost-log.json", log)
         out = finish(job_dir, ref)
+        shell = {}
+        if after:
+            set_status(job_dir, state="building lab shell")
+            try:
+                after(job_dir)
+                shell = {"shell": "done"}
+            except Exception as e:  # noqa: BLE001  the room is still usable; the Build lab shell button retries
+                shell = {"shell": "failed", "shell_error": f"{type(e).__name__}: {e}"[:300]}
         set_status(job_dir, state="done", timing_s=log["timing_s"], gpu=log["gpu"],
                    peak_allocated_bytes=r.get("peak_allocated_bytes"), gpu_name=r.get("gpu_name"),
                    estimated_usd=round(sum(a["estimated_usd"] for a in attempts), 8),
-                   scale=out["room"]["scale"]["status"], gravity=out["room"]["gravity"]["status"])
+                   scale=out["room"]["scale"]["status"], gravity=out["room"]["gravity"]["status"], **shell)
     except daily_cap.CapExceeded as e:
         set_status(job_dir, state="failed", code="DAILY_CAP", error=str(e)[:300])
     except Exception as e:  # noqa: BLE001  the poller must see the failure, not a stuck job

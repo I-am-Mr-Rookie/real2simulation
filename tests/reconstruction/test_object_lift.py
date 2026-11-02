@@ -82,7 +82,7 @@ class ObjectLift(unittest.TestCase):
 
     def test_fit_mesh_faces_camera_in_unit_box(self):
         proxy = {"position": [0, 0.5, 3], "rotation": [0, 0, 0, 1], "camera": [0, 1.2, 0]}  # camera at -z of object
-        turns, v, idx = object_lift.fit_mesh(PYRAMID["vertices"], PYRAMID["faces"], proxy)
+        turns, v, idx, _ = object_lift.fit_mesh(PYRAMID["vertices"], PYRAMID["faces"], proxy)
         self.assertEqual(turns, 2)  # +Z front turned 180 deg to face the camera
         v = np.reshape(v, (-1, 3))
         np.testing.assert_allclose([v.min(0), v.max(0)], [[-0.5] * 3, [0.5] * 3])

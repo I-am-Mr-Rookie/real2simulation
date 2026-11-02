@@ -149,6 +149,7 @@ class JobTests(unittest.TestCase):
     def test_success_ledgers_queues_and_saves_scene(self):
         d, s = self.run_job(fake_remote)
         self.assertEqual(s["state"], "done", s)
+        self.assertNotIn("shell", s)  # fake remote: no automatic paid shell pass
         self.assertEqual((s["scale"], s["gravity"]), ("scale unverified", "MODEL-ESTIMATED"))
         [(provider, reserved, actual)] = self.ledger()
         self.assertEqual(provider, "Modal")
@@ -156,6 +157,49 @@ class JobTests(unittest.TestCase):
         self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
         self.assertTrue(lab_scene_ok(json.loads((d / "scene.json").read_text())))
         self.assertTrue((d / "room.ply").read_bytes().startswith(b"ply"))
+
+    def test_after_runs_once_and_its_failure_keeps_the_room(self):
+        seen = []
+        d = self.dir / "job"
+        d.mkdir()
+        live_room.run_job(d, "v.mp4", 5.0, "user_synthA", remote=fake_remote, gpu_db=self.gpu_db, cap_db=self.cap_db,
+                          after=lambda j: seen.append(json.loads((j / "status.json").read_text())["state"]))
+        s = json.loads((d / "status.json").read_text())
+        self.assertEqual((seen, s["state"], s["shell"]), (["building lab shell"], "done", "done"))
+        shutil.rmtree(d)
+        d.mkdir()
+        live_room.run_job(d, "v.mp4", 5.0, "user_synthA", remote=fake_remote, gpu_db=self.gpu_db, cap_db=self.cap_db,
+                          after=lambda j: 1 / 0)
+        s = json.loads((d / "status.json").read_text())
+        self.assertEqual((s["state"], s["shell"]), ("done", "failed"))
+        self.assertIn("ZeroDivisionError", s["shell_error"])
+
+    def test_rescale_keeps_and_scales_the_shell(self):
+        d = self.dir / "job"
+        d.mkdir()
+        (d / "mapanything.npz").write_bytes(synthetic_npz())
+        live_room.finish(d)
+        room = json.loads((d / "room.json").read_text())
+        room["scale"]["metres_per_model_unit"] = 2.0  # pretend the old scale was 2 m/unit: the new one (1.0) halves
+        room["shell"] = {"labels": {"scale": "MEASURED"}, "kept": [{"id": "room-object-1", "size_m": [1.0, 0.8, 0.6]}]}
+        (d / "room.json").write_text(json.dumps(room))
+        wall = {"id": "wall-1-1", "kind": "block", "position": [2.0, 1.0, 0.0], "size": [0.08, 2.0, 3.0],
+                "rotation": [0, 0, 0, 1], "fixed": True, "sensor": False, "mass": 100.0, "friction": 0.5}
+        scene = json.loads((d / "scene.json").read_text())
+        (d / "scene.json").write_text(json.dumps({**scene, "objects": [wall]}))
+        out = live_room.finish(d)
+        [w] = out["scene"]["objects"]
+        self.assertEqual((w["position"], w["size"]), ([1.0, 0.5, 0.0], [0.04, 1.0, 1.5]))
+        self.assertEqual(out["room"]["shell"]["rescaled_by"], 0.5)
+        self.assertEqual(out["room"]["shell"]["kept"][0]["size_m"], [0.5, 0.4, 0.3])
+        self.assertEqual(out["room"]["shell"]["labels"]["scale"], "scale unverified")
+        self.assertTrue(lab_scene_ok(out["scene"]))
+        room = json.loads((d / "room.json").read_text())
+        room["floor"]["inliers"] += 1  # a different floor fit = a different frame: drop, say why
+        (d / "room.json").write_text(json.dumps(room))
+        out = live_room.finish(d)
+        self.assertEqual(out["scene"]["objects"], [])
+        self.assertIn("rebuild the lab shell", out["room"]["objects_dropped"])
 
     def test_remote_failure_settles_and_frees_queue(self):
         def boom(frames):

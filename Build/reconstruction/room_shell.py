@@ -21,6 +21,9 @@ MIN_SPAN = 0.25
 MAX_SF3D = 3  # SF3D GPU calls per shell (largest items first); the rest keep their measured box, with the reason
 WALL_T = 0.08
 MIN_SUPPORT = 0.04  # fraction of wall-band points within one cell of the plane
+MERGE_OVERLAP = 0.3  # N42: footprints overlapping this much (of the smaller) are parts of one item
+PARTS = ("table", "shelf")  # N42: merge groups that form one item when they overlap (desk + hutch, desk + cabinet)
+MAX_TABLE = 1.1  # N42: a "table"/"desk" top above this (m above the floor) is front-view clutter (N39 1.26 m "table")
 
 
 def keyframes(n, k=KEYFRAMES):
@@ -28,19 +31,56 @@ def keyframes(n, k=KEYFRAMES):
     return sorted({int(round(i * (n - 1) / max(1, m - 1))) for i in range(m)})
 
 
-def top_surface(h, w=0.02):
+def top_surface(h, w=0.02, flat=None):
     """Top of the densest horizontal layer of an object's points (the table top under a laptop): p95 of the points
-    within 3 bins of the histogram peak. Returns (surface height, bin width); points above surface + w are clutter."""
+    within 3 bins of the histogram peak. Returns (surface height, bin width); points above surface + w are clutter.
+    flat (N42): mask of points on horizontal surfaces below the camera; the peak is taken among them when there are
+    enough, so a front view (desk face, book stacks, hutch) still finds the desk top instead of a 1.26 m "table"."""
     h = np.asarray(h, float)
-    counts, edges = np.histogram(h, bins=np.arange(h.min(), h.max() + 2 * w, w))
+    peak = h[flat] if flat is not None and np.count_nonzero(flat) >= 30 else h
+    counts, edges = np.histogram(peak, bins=np.arange(peak.min(), peak.max() + 2 * w, w))
     c = edges[int(np.argmax(counts))] + w / 2
     return float(np.percentile(h[np.abs(h - c) <= 3 * w], 95)), w
 
 
-def _heights(npz, view, mask, room):
+def _heights(npz, view, mask, room, camera_y=np.inf):
+    """Room-frame heights of the masked points + which lie on horizontal surfaces seen from above (N42: grid normals
+    within about 25 deg of vertical, below the camera)."""
     v = live_room.load_views(npz)[view]
     rot, origin = object_lift._room_frame(npz)
-    return ((v["pts_img"].reshape(-1, 3)[mask.reshape(-1)] - origin) @ rot.T * room["scale"]["metres_per_model_unit"])[:, 1]
+    p = (v["pts_img"] - origin) @ rot.T * room["scale"]["metres_per_model_unit"]
+    n = np.cross(*np.gradient(p, axis=(0, 1)))
+    m = mask.reshape(p.shape[:2])
+    h = p[m][:, 1]
+    flat = np.abs(n[m][:, 1]) > 0.9 * np.linalg.norm(n[m], axis=1)
+    return h, flat & (h < camera_y - 0.05)
+
+
+def _footprint_overlap(a, b):
+    """Fraction of the smaller footprint covered by the other, and the union rectangle in a's local x/z (lo, hi).
+    b's footprint is taken as its bounding rectangle in a's axes (yaw boxes)."""
+    ya, yb = (2 * np.arctan2(p["rotation"][1], p["rotation"][3]) for p in (a, b))
+    d = np.subtract(b["position"], a["position"])[[0, 2]]
+    corners = []
+    for su in (-0.5, 0.5):
+        for sw in (-0.5, 0.5):
+            u, w = su * b["size"][0], sw * b["size"][2]
+            x, z = d[0] + u * np.cos(yb) + w * np.sin(yb), d[1] - u * np.sin(yb) + w * np.cos(yb)
+            corners.append([x * np.cos(ya) - z * np.sin(ya), x * np.sin(ya) + z * np.cos(ya)])
+    blo, bhi = np.min(corners, 0), np.max(corners, 0)
+    ahi = np.array([a["size"][0], a["size"][2]]) / 2
+    inter = np.prod(np.clip(np.minimum(ahi, bhi) - np.maximum(-ahi, blo), 0, None))
+    small = min(np.prod(2 * ahi), b["size"][0] * b["size"][2])
+    return float(inter / small) if small > 0 else 0.0, np.minimum(-ahi, blo), np.maximum(ahi, bhi)
+
+
+def _grow(p, lo, hi):
+    """Box proxy p grown to the local x/z rectangle (lo, hi); height kept (support top of the best view)."""
+    yaw = 2 * np.arctan2(p["rotation"][1], p["rotation"][3])
+    cu, cw = (lo + hi) / 2
+    p["position"][0] = round(float(p["position"][0] + cu * np.cos(yaw) + cw * np.sin(yaw)), 4)
+    p["position"][2] = round(float(p["position"][2] - cu * np.sin(yaw) + cw * np.cos(yaw)), 4)
+    p["size"][0], p["size"][2] = round(float(hi[0] - lo[0]), 4), round(float(hi[1] - lo[1]), 4)
 
 
 def furniture(npz, room, detections):
@@ -58,12 +98,15 @@ def furniture(npz, room, detections):
             continue
         top = p["position"][1] + p["size"][1] / 2
         if noun in TOP_SURFACE and p["mask"].any():  # items on the top surface: out of the cut-out and the box
-            h = _heights(npz, view, p["mask"], room)
-            surface, w = top_surface(h)
+            h, flat = _heights(npz, view, p["mask"], room, p["camera"][1])
+            surface, w = top_surface(h, flat=flat)
             m = p["mask"].reshape(-1).copy()
             m[np.flatnonzero(m)[h > surface + w]] = False
             p["mask"], p["clutter_px"] = m.reshape(p["mask"].shape), int((h > surface + w).sum())
             top = min(top, surface)
+            if noun in ("table", "desk") and top > MAX_TABLE:
+                drop(f"table top above {MAX_TABLE} m (front-view clutter, not a table)")
+                continue
         if top < MIN_TOP or max(p["size"][0], p["size"][2]) < MIN_SPAN:
             drop("too small for main furniture")
             continue
@@ -73,13 +116,23 @@ def furniture(npz, room, detections):
     for it in sorted(items, key=lambda x: -x["proxy"]["points"]):
         p = it["proxy"]
         same = lambda k: FURNITURE[k["noun"]] == FURNITURE[it["noun"]]  # noqa: E731
+        # parts of one item: overlap with the kept item's first (ungrown) footprint, so merges do not snowball
+        part = lambda k: ((same(k) or {FURNITURE[k["noun"]], FURNITURE[it["noun"]]} <= set(PARTS))  # noqa: E731
+                          and _footprint_overlap(k["box0"], p)[0] > MERGE_OVERLAP)
         twin = next((k for k in kept if np.hypot(
             p["position"][0] - k["proxy"]["position"][0], p["position"][2] - k["proxy"]["position"][2])
-            < (0.5 if same(k) else 0.3) * max(p["size"][0], p["size"][2], k["proxy"]["size"][0], k["proxy"]["size"][2])), None)
+            < (0.5 if same(k) else 0.3) * max(p["size"][0], p["size"][2], k["proxy"]["size"][0], k["proxy"]["size"][2])
+            or part(k)), None)
         if twin:
+            # N42: parts of one item (desk + hutch, other views) become one box over the union footprint
+            if part(twin):  # a centre-distance twin with little overlap is a misaligned view: no growth
+                _, lo, hi = _footprint_overlap(twin["proxy"], p)
+                _grow(twin["proxy"], lo, hi)
             twin["views"].append(it["view"])
-            drop("same item seen in another view" if same(twin) else "overlaps a larger detected item")
+            twin.setdefault("merged", []).append(it["noun"])
+            drop("same item seen in another view (merged)" if same(twin) else "part of a larger detected item (merged)")
         else:
+            it["box0"] = {k: list(p[k]) for k in ("position", "size", "rotation")}
             kept.append(it)
     return kept, dropped
 
@@ -109,6 +162,9 @@ def walls(aligned, cell=0.05):
         med = np.median(c)
         for side in (-1, 1):
             half = c[(c - med) * side > 0]
+            if len(half) < 30:  # nothing on this side of the room (N42: exact synthetic floors left it empty)
+                out.append({"axis": axis, "side": side, "plane": None, "support": 0.0, "status": "not observed"})
+                continue
             counts, edges = np.histogram(half, bins=max(1, int(np.ptp(half) / cell)))
             centre = (edges[np.argmax(counts)] + edges[np.argmax(counts) + 1]) / 2
             near = np.abs(c - centre) <= cell
@@ -226,12 +282,12 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
             if n_item >= MAX_SF3D:
                 raise RuntimeError(f"SF3D limit ({MAX_SF3D} per room) reached")
             gen = generate(object_lift.crop_rgba(npz, it["view"], it["box"], p["mask"]))
-            turns, verts, idx = object_lift.fit_mesh(gen["vertices"], gen["faces"], p)
+            turns, verts, idx, support = object_lift.fit_mesh(gen["vertices"], gen["faces"], p, noun in TOP_SURFACE)
             glbs[obj["id"]] = gen["glb"]
-            obj["shape"] = object_lift.mesh_shape(noun, glb_url(obj["id"]) if glb_url else "", turns, verts, idx)
+            obj["shape"] = object_lift.mesh_shape(noun, glb_url(obj["id"]) if glb_url else "", turns, verts, idx, support)
         except Exception as e:  # noqa: BLE001  shape is optional: the box is the documented fallback
             obj["shape"] = {"type": "box", "fallback_reason": f"SF3D: {type(e).__name__}: {e}"[:300]}
-        kept_list.append({"id": obj["id"], "category": noun, "views": it["views"], "points": p["points"],
+        kept_list.append({"id": obj["id"], "category": noun, "views": it["views"], "merged": it.get("merged", []), "points": p["points"],
                           "size_m": obj["size"], "size_sd_m": p["size_sd"], "clutter_px_masked": p.get("clutter_px", 0),
                           "shape": obj["shape"]["type"], "fallback_reason": obj["shape"].get("fallback_reason"),
                           "sf3d": {k: gen.get(k) for k in ("gpu", "wall_s", "inference_s", "estimated_usd")} if gen else None,
