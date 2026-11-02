@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+### 2026-11-03 00:50 Dhaka: N66 accepted (ACCEPT WITH FIXES on N63)
+N66 review (evidence/N66/REVIEW.md): no P0 or P1; every paid path reserves before spending; the N62 fixes are present, each with a test that fails without it (7/7); live-result cost $2.42457689 recomputed and matches. Open: P2-1 rebuild limit is per room, so one user can drain the $10 day; P2-2 the 45 s L4 budget is about a healthy cold start, so the A10G fallback pays again (room $0.62 vs about $0.27); P2-3 a stale queued SF3D item can spawn after invalidation, and calls orphaned by a restart are not cancelled; plus P3-1, P3-2, P3-4. Merged to main as evidence only. Controller decision on the P2-2 trade-off: raise the budget to about 75 s and settle confirmed-cancelled attempts without the idle charge. Fix row N67 (Sol) added; it is dispatched after N63 is accepted.
+
 ### 2026-11-03 00:16 Dhaka: N63 waiting for the browser; N66 dispatched
 N63-orch309 committed 79098785 (147 tests pass; RM04 room ready 244 s, meshes 362 s, upper bound $2.4246; no second paid job). It reported BROWSER NEEDED for its visual check, and Koushik was told. While that waits, N66-orch310 (Claude Opus high, 30 min, read-only spend review of the N63 commit) was dispatched, thread 01a19d79-4a29-7a92-bf66-a0d2660dede1.
 
