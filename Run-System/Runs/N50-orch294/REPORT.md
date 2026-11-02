@@ -1,0 +1,15 @@
+# N50-orch294 DONE
+- Branch `run/N50-orch294`, base `f8dd38a1`; U1, U2 and U3 implemented. No deploy.
+- U1: removed floating caption sprites, one conditional viewport credit; selected mesh says `MODEL-GENERATED shape (Stable Fast 3D)`. Scene schema and website/licence credits untouched.
+- U2 root cause: `overscroll-behavior: contain` on `.le-side` trapped the whole left column even without overflow. Removed containment from side columns and conversation log; controls remain canvas-only.
+- U3: moved Template trials into right toolbar group with icon/label; removed toggle band, preserved compact main padding, removed inherited toolbar button margins so the mobile file icons stay together.
+- Regression: three new tests failed before and pass after. `node --test 'tests/lab-editor/*.test.mjs'`: 30/30 pass.
+- Requested combined suite executed. Initial parallel run: 150/152 pass (missing simulator junction, Windows CIM timeout). Simulator junction fixed locally; parallel retry had load-sensitive producer timeouts.
+- Serial combined suite (`--test-concurrency=1`): 152/153 pass. Sole remaining failure: unmodified Windows process-tree test, PowerShell `Get-CimInstance` exceeds its 10-second timeout. No infra timeout relaxed.
+- Existing agent-run test also prints `fitter skipped`, `KeyError: objects`; its test runner reports pass. Not claimed as verified fitting behavior.
+- Final `npm run build` PASS; source `git diff --check` PASS. Local raw logs (not committed): `evidence/N50/build.txt`, `editor-tests.txt`, `node-tests-serial.txt`, `ui-regressions.txt`.
+- Headed bundled Chromium: checked 1280/375, two synthetic SF3D-schema meshes, one/zero credit chip, selected label, Template trials switch, no mobile horizontal overflow; all right-group buttons share one mobile row.
+- Wheel: Selected object/Room/Scene JSON each scroll page; textarea and inspector scroll first then page at boundary; only canvas prevents wheel and zooms. Actual touch swipe over inspector scrolls page. Details in `evidence/N50/browser-results.md`.
+- Local screenshots (uncommitted, no media binaries): `C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/.worktrees/N50-orch294/evidence/N50/editor-1280.png` and `editor-375.png` beside it.
+- Paid calls 0; no private N06 frames, no generated GLB inference, no deploy. Synthetic fixture deliberately uses collider fallback. Local server stopped.
+- Risk: complete suite is not green because of the Windows lifecycle timeout; browser wheel transactions require a fresh gesture for edge chaining. No broader physics/auth/provider claims.

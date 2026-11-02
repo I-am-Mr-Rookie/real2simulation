@@ -12,7 +12,7 @@ import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
 import { naturalPoint, trajectoryScene } from '../workspace/measure.mjs';
 import { robustBounds, fitDistance, FRAME_Q } from './frame.mjs';
-import { colliderGeometry, loadShapeGlb, captionSprite, SHAPE_LABEL, SHAPE_CREDIT } from './sf3d-shape.mjs';
+import { colliderGeometry, loadShapeGlb, SHAPE_LABEL } from './sf3d-shape.mjs';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981, flywheel: 0x8b5cf6, atwood: 0x0ea5e9,
@@ -31,6 +31,7 @@ const ICONS = {
   play: 'M7 4l13 8-13 8z', pause: 'M8 5v14M16 5v14', reset: 'M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4',
   traces: 'M4 4v16h16M8 15l3-4 3 2 5-6', download: 'M12 4v11M7 10l5 5 5-5M4 20h16', upload: 'M12 15V4M7 9l5-5 5 5M4 20h16',
   panel: 'M4 5h16v14H4zM9 5v14', frame: 'M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5',
+  trials: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
   flywheel: 'M12 4a8 8 0 1 0 0 16a8 8 0 1 0 0-16zM12 11v2M20 12v9', atwood: 'M12 3a3 3 0 1 0 0 6a3 3 0 1 0 0-6zM9 6v10M15 6v6M7 16h4v4H7zM13 12h4v4h-4z',
   cart: 'M3 19L21 11M8 15l7-3-1-2-7 3z', launcher: 'M4 20h8M7 20l3-5M10 15l8-8M15 6h4v4', cradle: 'M3 4h18M6 4v11M10 4v11M14 4v11M18 4v11M6 15h12',
   mass: 'M8 9h8l2 11H6zM10 9V5h4v4', ruler: 'M3 9h18v6H3zM7 9v3M11 9v3M15 9v3M19 9v3', protractor: 'M3 17a9 9 0 0 1 18 0zM12 17l5-6',
@@ -72,12 +73,7 @@ function objectMesh(o) {
   body.scale.fromArray(o.kind === 'ball' || o.kind === 'pendulum' ? Array(3).fill(Math.max(...o.size)) : o.size);
   body.userData.id = o.id;
   g.add(body);
-  if (sf3d) {
-    loadShapeGlb(o.shape, body, o.id);
-    const cap = captionSprite([SHAPE_LABEL, SHAPE_CREDIT]);
-    cap.position.set(0, -o.size[1] / 2 - 0.08, 0);
-    g.add(cap);
-  }
+  if (sf3d) loadShapeGlb(o.shape, body, o.id);
   if (o.kind === 'pendulum' || o.kind === 'spring') {
     g.updateMatrixWorld();
     body.position.copy(g.worldToLocal(new THREE.Vector3(...movingStart(o))));
@@ -194,7 +190,7 @@ function RoomTools({ id, room, onReload }) {
   </div>;
 }
 
-export default function LabEditor({ initialScene }) {
+export default function LabEditor({ initialScene, onTemplateTrials }) {
   const host = useRef(null);
   const api = useRef(null);
   const [scene, setScene] = useState(() => validateScene(initialScene ?? defaultScene()));
@@ -530,6 +526,7 @@ export default function LabEditor({ initialScene }) {
         <button type="button" onClick={stop} disabled={!live} title="Reset to the start"><Ico n="reset" /><span className="le-lbl">Reset</span></button>
       </div>
       <div className="le-group le-end" role="group" aria-label="View and files">
+        {onTemplateTrials && <button type="button" onClick={onTemplateTrials} title="Open template trials"><Ico n="trials" />Template trials</button>}
         <button type="button" className="le-icon-btn" onClick={reframe} aria-label="Fit view to the room" title="Fit view to the room"><Ico n="frame" /></button>
         <button type="button" className="le-icon-btn" onClick={exportTraces} disabled={!live} aria-label="Export traces" title="Export SIMULATED sensor traces"><Ico n="traces" /></button>
         <button type="button" className="le-icon-btn" onClick={() => download('lab-scene.json', sceneJson(scene))} aria-label="Export scene" title="Export scene JSON"><Ico n="download" /></button>
@@ -548,7 +545,7 @@ export default function LabEditor({ initialScene }) {
           <label><input type="checkbox" checked={sel.sensor} disabled={live} onChange={(e) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === sel.id ? { ...o, sensor: e.target.checked } : o)) }))} /> Record trajectory sensor</label>
           {sel.kind !== 'pendulum' && sel.kind !== 'spring' && <label><input type="checkbox" checked={sel.fixed} disabled={live} onChange={(e) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === sel.id ? { ...o, fixed: e.target.checked } : o)) }))} /> Fixed in place</label>}
           <p>Size {sel.size.map((v) => v.toFixed(2)).join(' x ')} m, mass {sel.mass} kg</p>
-          {sel.shape && <p>{sel.shape.type === 'mesh' ? SHAPE_LABEL + ', ' + SHAPE_CREDIT + '. Collider: ' + (sel.fixed ? 'mesh' : 'convex hull') + '. Mass and friction MODEL-ESTIMATED (' + sel.shape.category + ').' : 'Measured box shape. ' + sel.shape.fallback_reason}</p>}
+          {sel.shape && <p>{sel.shape.type === 'mesh' ? SHAPE_LABEL + ' (Stable Fast 3D). Collider: ' + (sel.fixed ? 'mesh' : 'convex hull') + '. Mass and friction MODEL-ESTIMATED (' + sel.shape.category + ').' : 'Measured box shape. ' + sel.shape.fallback_reason}</p>}
           {selTrace && <p>Sensor: {selTrace.samples.length} samples{selTrace.truncated ? ' (cap reached)' : ''}</p>}
           <button type="button" className="le-danger" disabled={live} onClick={removeSelected}>Delete</button>
         </>}
@@ -569,6 +566,7 @@ export default function LabEditor({ initialScene }) {
         <div ref={host} className="le-canvas" data-testid="lab-editor-canvas" />
         <div className="le-chips">
           <span className="le-chip">SIMULATED</span>
+          {scene.objects.some((o) => o.shape?.type === 'mesh') && <span className="le-chip">MODEL-GENERATED shapes · Powered by Stability AI</span>}
           {src?.kind === 'experiment' && <span className="le-chip le-warn">Track MEASURED, ball what-if</span>}
           {scene.room.kind === 'ply' && !scene.room.scale_verified && <span className="le-chip le-warn">Room scale unverified</span>}
           {scene.room.collision?.enabled && <span className="le-chip le-warn">MODEL-ESTIMATED collision proxy</span>}

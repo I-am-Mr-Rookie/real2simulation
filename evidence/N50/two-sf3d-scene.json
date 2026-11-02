@@ -1,0 +1,30 @@
+{
+  "version": "lab-scene-v1",
+  "label": "SIMULATED",
+  "units": "m",
+  "gravity": [0, -9.81, 0],
+  "room": {
+    "kind": "ply", "floor_y": 0, "source": "N50 synthetic UI fixture, no recording", "scale_verified": false,
+    "collision": {"enabled": false, "label": "MODEL-ESTIMATED", "boxes": [[0, -0.05, 0, 2, 0.05, 2]]}
+  },
+  "objects": [
+    {
+      "id": "fixture-desk", "kind": "block", "position": [-0.6, 0.4, 0], "size": [0.8, 0.8, 0.8], "fixed": true,
+      "shape": {
+        "type": "mesh", "label": "MODEL-GENERATED shape", "credit": "Powered by Stability AI", "category": "desk",
+        "glb": "/api/workspace/rooms/abc123/objects/room-object-1.glb", "quarter_turns": 0,
+        "vertices": [-0.5,-0.5,-0.5, 0.5,-0.5,-0.5, 0.5,-0.5,0.5, -0.5,-0.5,0.5, 0,0.5,0],
+        "indices": [0,2,1, 0,3,2, 0,1,4, 1,2,4, 2,3,4, 3,0,4]
+      }
+    },
+    {
+      "id": "fixture-chair", "kind": "block", "position": [0.6, 0.4, 0], "size": [0.8, 0.8, 0.8], "fixed": true,
+      "shape": {
+        "type": "mesh", "label": "MODEL-GENERATED shape", "credit": "Powered by Stability AI", "category": "chair",
+        "glb": "/api/workspace/rooms/abc123/objects/room-object-2.glb", "quarter_turns": 1,
+        "vertices": [-0.5,-0.5,-0.5, 0.5,-0.5,-0.5, 0.5,-0.5,0.5, -0.5,-0.5,0.5, 0,0.5,0],
+        "indices": [0,2,1, 0,3,2, 0,1,4, 1,2,4, 2,3,4, 3,0,4]
+      }
+    }
+  ]
+}

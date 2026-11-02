@@ -12,11 +12,11 @@ export default function LabPage() {
   const [editor, setEditor] = useState(false);
   useEffect(() => { if (new URLSearchParams(window.location.search).has('editor')) setEditor(true); }, []);
   return <>
-    <p className={editor ? 'lab-toggle lab-toggle-editor' : 'lab-toggle'} style={{ maxWidth: editor ? 1680 : 1100, margin: '8px auto 0', padding: '0 16px', display: 'flex', justifyContent: 'flex-end' }}>
-      <button type="button" aria-pressed={editor} onClick={() => setEditor((v) => !v)} style={{ minHeight: 36, padding: '0 12px' }}>
-        {editor ? 'Template trials' : 'Open 3D lab editor'}
+    {!editor && <p className="lab-toggle" style={{ maxWidth: 1100, margin: '8px auto 0', padding: '0 16px', display: 'flex', justifyContent: 'flex-end' }}>
+      <button type="button" aria-pressed={editor} onClick={() => setEditor(true)} style={{ minHeight: 36, padding: '0 12px' }}>
+        Open 3D lab editor
       </button>
-    </p>
-    {editor ? <LabEditor /> : <LabClient />}
+    </p>}
+    {editor ? <LabEditor onTemplateTrials={() => setEditor(false)} /> : <LabClient />}
   </>;
 }
