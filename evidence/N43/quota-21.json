@@ -1,0 +1,4 @@
+{
+  "status": 429,
+  "body": "{\"detail\":{\"code\":\"QUOTA_UPLOADS\",\"message\":\"Daily upload limit reached: 20 uploads per day. It resets at 2026-11-02T18:00:00Z (midnight Dhaka time). Deleting a file frees storage but does not give back an upload.\",\"reason\":\"daily_upload_limit\",\"reset_at\":\"2026-11-02T18:00:00Z\",\"quota\":{\"storage_bytes_used\":1336692,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072405132,\"uploads_today\":20,\"uploads_daily_limit\":20,\"uploads_remaining_today\":0,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}}"
+}

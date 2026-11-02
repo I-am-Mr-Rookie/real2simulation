@@ -1,0 +1,18 @@
+# N43-orch288 REPORT: DONE (QA complete; acceptance has failures)
+- Worktree/branch: `.worktrees/N43-orch288`, `run/N43-orch288`; no application code changes, deploy, push, purchases, or owner clips.
+- Findings: C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/.worktrees/N43-orch288/evidence/N43/FINDINGS.md
+- Fresh Clerk test account; headed Playwright Chromium. Reused N13 harness patterns and approved RM02/ST03 derivatives.
+- Active DEV independently checked: API 60195792-fc94-4473-875b-6e63d5d26fbd, web 5ef6d2eb-185a-4e2b-bd26-115d465f0ce6, SUCCESS.
+- P1: centre-dropped ball rolls off first SF3D table to floor, 2/2 actual DEV Play runs; exported traces prove it.
+- P2: automatic RM02 shell reports 4 FIT walls/24 openings, but 0/7 furniture centres inside wall envelope and 0/24 openings intersect assigned wall rectangle.
+- P2: selecting Muse Open works in workspace but lab agent silently uses muse-spark-1.3; response/model and saved-mode receipts retained.
+- P2: New Room project remains empty; uploaded file and completed room have project_id null and appear Not in a project.
+- P3: MODEL-GENERATED shape / Stability captions unreadably small at 375 px, though desktop captions and footer credit exist.
+- Passed: signup choices/default, SAMPLE/RECORDED project, auto shell execution and three SF3D meshes, A4 wiring retains 13 objects/shell, all 20 kit menu entries + Play, Delete/Undo/Redo.
+- Passed: agent SIMULATED g/Atwood a with fitter uncertainty, workspace Spark/Open answers, off-topic refusal, Sol tier 422, Mode B assumed-size chart/band, preview/delete, 21st-upload 429, fresh 375 px no document overflow, sampled visible copy no em dashes.
+- GPU: red/yellow and own queue position verified; green not sampled. RM02 job 01:59:52Z to 02:07:34Z; failed L4 capacity wait then successful A10G.
+- Checks: `node evidence/N43/verify.mjs` PASS for receipts; table-rest acceptance explicitly FAIL. `git diff --check` PASS. No app tests/build, application unchanged.
+- Paid: seven agent turns + one 120-frame SAM tracking + room attempts + 72 SAM images + three SF3D jobs; estimated $1.05580886 / $2.00, UTC/units in evidence/N43/paid-ledger.json. No Sol inference. Do not duplicate runtime charges.
+- Screenshots: 33 PNGs retained in worktree only under no-media-binaries contract; committed screenshot SHA256 manifest and textual receipts. No source clips or authenticated state committed.
+- Skipped: green GPU capture, 15-minute idle shutdown, physical calibration, 1 GB exhaustion, forced fallback, isolation, independent accuracy benchmark of every apparatus. Read-only Railway SSH ledger audit exited 255; estimates are not invoices.
+- Risks: table-rest and shell geometry block a trustworthy Mode A demo; tier choice and project association are inconsistent. A4 clicks and 8 cm apple input were QA wiring assumptions, not measured reference sizes.

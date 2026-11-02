@@ -1,0 +1,124 @@
+Skip to content
+Real2Simulation
+Demo library
+Local simulation lab
+Private workspace
+
+GO TO
+
+Private workspace
+Demo library
+Local simulation lab
+Private workspace
+GPU starting 1 job in queue
+Agent & tools
+Connected
+Projects
+New project
+
+Start a new project and the agent asks what you are uploading, then shows filming tips.
+
+Experiment: ST03-trim.mp4
+Experiment
+Experiment 2cbda1 Nov 2, 02:06 UTC
+running
+Room 2026-11-02 01:59
+Room lab
+
+No rooms or experiments yet.
+
+classroom room and falling apple
+SAMPLE
+RECORDED
+Room lab
+Room e70498SAMPLE
+done
+Open lab
+SAMPLE (RECORDED): falling appleSAMPLE Nov 2, 01:59 UTC
+done
+Open
+Not in a project
+Room 82f05b Nov 2, 01:59 UTC
+building lab shell
+Refresh
+Files
+Upload video
+
+686 KB of 1.0 GB used. 18 of 20 uploads left today.
+
+ST03-trim.mp4 401 KB, 4.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+RM02-trim.mp4 286 KB, 6.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+Processing
+Measurement 2cbda1
+Done
+
+vertical acceleration (g if only gravity acts)
+2.71 +/- 0.42 m/s^2 1 sigma
+
+scale assumed (user size)
+playback clock
+free fall
+scale assumed (user size): apple width assumed for QA 8 cm
+playback timestamps; capture clock unverified (slow motion would change every time-based value)
+MEASURED: hosted SAM 3.1 box centres in image pixels
+-0.8
+-0.6
+-0.4
+-0.2
+0.0
+0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+time (s)
+y position (m)
+DOTS: MEASURED TRACK, 18 FRAMES. LINE: FITTED CURVE. BAND: 1 SIGMA OF THE FIT.
+3D replay, redo with changes
+Share as Guess the Gravity
+Instruments off
+Upload
+Interview
+Run
+Fit
+Report
+
+No scene yet. The viewport appears when an upload produces a scene.
+
+Waiting for an upload
+
+No job yet
+
+Agent & tools
+Agent
+Standard: Muse Open
+
+Why does a ball accelerate downward in a vacuum?
+
+In a vacuum there is no air drag, so the only force on the ball is downward gravity from Earth. That unbalanced force makes its downward velocity grow, which is downward acceleration.
+
+Explain how an Atwood machine changes acceleration when the hanging masses become equal. No calculations needed.
+
+In an Atwood machine acceleration comes from the weight difference between the two sides. As the hanging masses become closer, that net driving force gets smaller so acceleration gets smaller. When they are exactly equal the net force is zero, so acceleration goes to zero and the system stays at rest or moves at constant velocity.
+
+Message the agent
+Voice
+Send
+TOOLS
+Agent
+Waiting for an upload
+Runs & history
+No job yet
+Report
+No report yet (needs a finished fit or clip result)

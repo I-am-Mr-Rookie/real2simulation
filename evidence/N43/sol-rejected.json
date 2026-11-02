@@ -1,0 +1,4 @@
+{
+  "status": 422,
+  "body": "{\"detail\":[{\"type\":\"literal_error\",\"loc\":[\"body\",\"tier\"],\"msg\":\"Input should be 'spark' or 'open'\",\"input\":\"sol\",\"ctx\":{\"expected\":\"'spark' or 'open'\"}}]}"
+}

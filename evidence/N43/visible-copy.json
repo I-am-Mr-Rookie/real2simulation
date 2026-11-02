@@ -1,0 +1,17 @@
+[
+  {
+    "name": "workspace",
+    "emDashLines": [],
+    "footerCredit": false
+  },
+  {
+    "name": "lab",
+    "emDashLines": [],
+    "footerCredit": true
+  },
+  {
+    "name": "room",
+    "emDashLines": [],
+    "footerCredit": true
+  }
+]

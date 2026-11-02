@@ -1,0 +1,310 @@
+{
+  "start_utc": "2026-11-02T01:59:33.700Z",
+  "steps": [
+    {
+      "utc": "2026-11-02T01:59:33.712Z",
+      "name": "01-signup-tier-choice",
+      "ok": true,
+      "seconds": 0.003,
+      "detail": "Fresh signup shows Standard, Contributor, Spark, Muse Open; Standard default"
+    },
+    {
+      "utc": "2026-11-02T01:59:44.123Z",
+      "name": "03-sample-project-visible",
+      "ok": true,
+      "seconds": 0.003,
+      "detail": "Sample room and falling apple both visible, RECORDED"
+    },
+    {
+      "utc": "2026-11-02T02:06:41.981Z",
+      "name": "16-mode-b-fit-band",
+      "ok": true,
+      "seconds": 0.01,
+      "detail": {
+        "band": 1,
+        "curve": 1,
+        "pts": 18,
+        "text": "Measurement 2cbda1\nDone\n\nvertical acceleration (g if only gravity acts)\n2.71 +/- 0.42 m/s^2 1 sigma\n\nscale assumed (user size)\nplayback clock\nfree fall\nscale assumed (user size): apple width assumed for QA 8 cm\nplayback timestamps; capture clock unverified (slow motion would change every time-based value)\nMEASURED: hosted SAM 3.1 box centres in image pixels\n-0.8\n-0.6\n-0.4\n-0.2\n0.0\n0.2\n0.0\n0.2\n0.4\n0.6\n0.8\ntime (s)\ny position (m)\nDOTS: MEASURED TRACK, 18 FRAMES. LINE: FITTED CURVE. BAND: 1 SIGMA OF THE FIT.\n3D replay, redo with changes\nShare as Guess the Gravity"
+      }
+    }
+  ],
+  "responses": [
+    {
+      "utc": "2026-11-02T01:59:44.847Z",
+      "method": "POST",
+      "path": "/api/workspace/projects",
+      "status": 201,
+      "body": "{\"project\":{\"id\":\"f578dc3ba08f46c68bb9f1d6ef6cc6ac\",\"user\":\"user_3LWziQJxcsdCLbV2bCKATtu7KMg\",\"mode\":\"room\",\"title\":\"Room 2026-11-02 01:59\",\"created\":\"2026-11-02T01:59:44Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T01:59:46.660Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"82a4f2a2700b4cab95e9159ffc9161f3\",\"project_id\":null,\"name\":\"RM02-trim.mp4\",\"media_type\":\"video/mp4\",\"size\":292379,\"duration_s\":6.0,\"created\":\"2026-11-02T01:59:45Z\"},\"quota\":{\"storage_bytes_used\":292379,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1073449445,\"uploads_today\":1,\"uploads_daily_limit\":20,\"uploads_remaining_today\":19,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T01:59:53.486Z",
+      "method": "POST",
+      "path": "/api/workspace/rooms",
+      "status": 202,
+      "body": "{\"job\":{\"job_id\":\"82f05b85de1748b3bd91003122b8e70d\",\"state\":\"queued\",\"file_id\":\"82a4f2a2700b4cab95e9159ffc9161f3\",\"project_id\":null,\"created_at\":\"2026-11-02T01:59:52Z\",\"updated_at\":\"2026-11-02T01:59:52Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:04:54.923Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"42fcf3760e5742efa729285887bbbe13\",\"project_id\":null,\"name\":\"ST03-trim.mp4\",\"media_type\":\"video/mp4\",\"size\":410461,\"duration_s\":4.004,\"created\":\"2026-11-02T02:04:54Z\"},\"quota\":{\"storage_bytes_used\":702840,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1073038984,\"uploads_today\":2,\"uploads_daily_limit\":20,\"uploads_remaining_today\":18,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:06:10.010Z",
+      "method": "POST",
+      "path": "/api/workspace/experiments",
+      "status": 202,
+      "body": "{\"experiment\":{\"id\":\"2cbda1fbacce400bbe77cd3395156657\",\"project_id\":\"d32a8c7c10674e7ea9e1efae4be28058\",\"file_id\":\"42fcf3760e5742efa729285887bbbe13\",\"status\":\"running\",\"request\":{\"file_id\":\"42fcf3760e5742efa729285887bbbe13\",\"target_text\":\"apple\",\"point\":null,\"known_size\":\"apple width assumed for QA 8 cm\"},\"result\":null,\"error\":null,\"created\":\"2026-11-02T02:06:09Z\",\"updated\":\"2026-11-02T02:06:09Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:06:38.577Z",
+      "method": "POST",
+      "path": "/api/workspace/agent/turn",
+      "status": 200,
+      "body": "{\"model\":\"muse-spark-1.3\",\"reply\":\"In a vacuum there is no air drag, so the only force on the ball is downward gravity from Earth. That unbalanced force makes its downward velocity grow, which is downward acceleration.\",\"question\":null,\"tool_calls\":[],\"usage\":{\"input_tokens\":2449,\"output_tokens\":1039},\"steps\":1,\"stopped\":\"final\"}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:07:33.066Z",
+      "method": "POST",
+      "path": "/api/workspace/agent/turn",
+      "status": 200,
+      "body": "{\"model\":\"meta-models/muse-spark-open-1026\",\"reply\":\"In an Atwood machine acceleration comes from the weight difference between the two sides. As the hanging masses become closer, that net driving force gets smaller so acceleration gets smaller. When they are exactly equal the net force is zero, so acceleration goes to zero and the system stays at rest or moves at constant velocity.\",\"question\":null,\"tool_calls\":[],\"usage\":{\"input_tokens\":2597,\"output_tokens\":381},\"steps\":1,\"stopped\":\"final\"}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:07:51.566Z",
+      "method": "POST",
+      "path": "/api/workspace/agent/turn",
+      "status": 422,
+      "body": "{\"detail\":[{\"type\":\"literal_error\",\"loc\":[\"body\",\"tier\"],\"msg\":\"Input should be 'spark' or 'open'\",\"input\":\"sol\",\"ctx\":{\"expected\":\"'spark' or 'open'\"}}]}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:08:01.865Z",
+      "method": "POST",
+      "path": "/api/workspace/agent/turn",
+      "status": 200,
+      "body": "{\"model\":\"meta-models/muse-spark-open-1026\",\"reply\":\"I can't help with poems or restaurant recommendations, but I can help you set up and analyze physics experiments in the virtual lab.\",\"question\":null,\"tool_calls\":[],\"usage\":{\"input_tokens\":2681,\"output_tokens\":124},\"steps\":1,\"stopped\":\"final\"}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:18.656Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"633e65018a494b6ca207056416c9bb09\",\"project_id\":null,\"name\":\"n43-tiny-1.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:17Z\"},\"quota\":{\"storage_bytes_used\":738054,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1073003770,\"uploads_today\":3,\"uploads_daily_limit\":20,\"uploads_remaining_today\":17,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:20.579Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"b59adb1408b84f72942280459c2653e7\",\"project_id\":null,\"name\":\"n43-tiny-2.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:19Z\"},\"quota\":{\"storage_bytes_used\":773268,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072968556,\"uploads_today\":4,\"uploads_daily_limit\":20,\"uploads_remaining_today\":16,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:22.425Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"cf8ef1bb73a0417e8d985eebacdf1527\",\"project_id\":null,\"name\":\"n43-tiny-3.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:21Z\"},\"quota\":{\"storage_bytes_used\":808482,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072933342,\"uploads_today\":5,\"uploads_daily_limit\":20,\"uploads_remaining_today\":15,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:23.866Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"4407b391186d456299044244de21ba5d\",\"project_id\":null,\"name\":\"n43-tiny-4.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:23Z\"},\"quota\":{\"storage_bytes_used\":843696,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072898128,\"uploads_today\":6,\"uploads_daily_limit\":20,\"uploads_remaining_today\":14,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:25.251Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"01fce7fb68634874a8a262fcfa84c0f0\",\"project_id\":null,\"name\":\"n43-tiny-5.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:24Z\"},\"quota\":{\"storage_bytes_used\":878910,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072862914,\"uploads_today\":7,\"uploads_daily_limit\":20,\"uploads_remaining_today\":13,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:42.239Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"14938b3d0e7b4b17a678c83c84586e72\",\"project_id\":null,\"name\":\"n43-tiny-6.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:41Z\"},\"quota\":{\"storage_bytes_used\":914124,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072827700,\"uploads_today\":8,\"uploads_daily_limit\":20,\"uploads_remaining_today\":12,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:44.120Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"4f5e1bd9a7124dfbb28a98c402298276\",\"project_id\":null,\"name\":\"n43-tiny-7.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:43Z\"},\"quota\":{\"storage_bytes_used\":949338,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072792486,\"uploads_today\":9,\"uploads_daily_limit\":20,\"uploads_remaining_today\":11,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:45.523Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"dd6829f3adfb4272b5c81e5b71b1562a\",\"project_id\":null,\"name\":\"n43-tiny-8.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:44Z\"},\"quota\":{\"storage_bytes_used\":984552,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072757272,\"uploads_today\":10,\"uploads_daily_limit\":20,\"uploads_remaining_today\":10,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:46.904Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"e004e1cc77cf408b8217f19d6e8de3a0\",\"project_id\":null,\"name\":\"n43-tiny-9.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:46Z\"},\"quota\":{\"storage_bytes_used\":1019766,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072722058,\"uploads_today\":11,\"uploads_daily_limit\":20,\"uploads_remaining_today\":9,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:48.305Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"a840ea4a46be454197ccd819bf0d29a7\",\"project_id\":null,\"name\":\"n43-tiny-10.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:47Z\"},\"quota\":{\"storage_bytes_used\":1054980,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072686844,\"uploads_today\":12,\"uploads_daily_limit\":20,\"uploads_remaining_today\":8,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:10:49.717Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"37c56221d4c34f099651a773f7abdb6c\",\"project_id\":null,\"name\":\"n43-tiny-11.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:10:49Z\"},\"quota\":{\"storage_bytes_used\":1090194,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072651630,\"uploads_today\":13,\"uploads_daily_limit\":20,\"uploads_remaining_today\":7,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:11:13.984Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"9ad8b9b020a64bc2be5a235ac14827bd\",\"project_id\":null,\"name\":\"n43-tiny-12.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:11:13Z\"},\"quota\":{\"storage_bytes_used\":1125408,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072616416,\"uploads_today\":14,\"uploads_daily_limit\":20,\"uploads_remaining_today\":6,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:11:15.432Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"af1eeba48ac74301a73b63816929528d\",\"project_id\":null,\"name\":\"n43-tiny-13.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:11:14Z\"},\"quota\":{\"storage_bytes_used\":1160622,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072581202,\"uploads_today\":15,\"uploads_daily_limit\":20,\"uploads_remaining_today\":5,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:11:16.829Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"7eda7b00504a4df9bbf17c4510ce915a\",\"project_id\":null,\"name\":\"n43-tiny-14.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:11:16Z\"},\"quota\":{\"storage_bytes_used\":1195836,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072545988,\"uploads_today\":16,\"uploads_daily_limit\":20,\"uploads_remaining_today\":4,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:11:18.244Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"ea961ad9e1fb4760a14bed7d54ed5f4a\",\"project_id\":null,\"name\":\"n43-tiny-15.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:11:17Z\"},\"quota\":{\"storage_bytes_used\":1231050,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072510774,\"uploads_today\":17,\"uploads_daily_limit\":20,\"uploads_remaining_today\":3,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:11:19.683Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"81764db3f0fa4b4abd48d07d7bc07268\",\"project_id\":null,\"name\":\"n43-tiny-16.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:11:18Z\"},\"quota\":{\"storage_bytes_used\":1266264,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072475560,\"uploads_today\":18,\"uploads_daily_limit\":20,\"uploads_remaining_today\":2,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:11:21.045Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"ec5cba4aa7a944b6aed1b2b20dbe980d\",\"project_id\":null,\"name\":\"n43-tiny-17.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:11:20Z\"},\"quota\":{\"storage_bytes_used\":1301478,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072440346,\"uploads_today\":19,\"uploads_daily_limit\":20,\"uploads_remaining_today\":1,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:11:22.421Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 201,
+      "body": "{\"file\":{\"id\":\"09a6b9d92c074e558237312a9aed64af\",\"project_id\":null,\"name\":\"n43-tiny-18.mp4\",\"media_type\":\"video/mp4\",\"size\":35214,\"duration_s\":1.001,\"created\":\"2026-11-02T02:11:21Z\"},\"quota\":{\"storage_bytes_used\":1336692,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072405132,\"uploads_today\":20,\"uploads_daily_limit\":20,\"uploads_remaining_today\":0,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:11:26.853Z",
+      "method": "POST",
+      "path": "/api/workspace/files",
+      "status": 429,
+      "body": "{\"detail\":{\"code\":\"QUOTA_UPLOADS\",\"message\":\"Daily upload limit reached: 20 uploads per day. It resets at 2026-11-02T18:00:00Z (midnight Dhaka time). Deleting a file frees storage but does not give back an upload.\",\"reason\":\"daily_upload_limit\",\"reset_at\":\"2026-11-02T18:00:00Z\",\"quota\":{\"storage_bytes_used\":1336692,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072405132,\"uploads_today\":20,\"uploads_daily_limit\":20,\"uploads_remaining_today\":0,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}}",
+      "body_is_excerpt": false
+    },
+    {
+      "utc": "2026-11-02T02:11:41.735Z",
+      "method": "DELETE",
+      "path": "/api/workspace/files/09a6b9d92c074e558237312a9aed64af",
+      "status": 200,
+      "body": "{\"deleted\":\"09a6b9d92c074e558237312a9aed64af\",\"quota\":{\"storage_bytes_used\":1301478,\"storage_bytes_limit\":1073741824,\"storage_bytes_remaining\":1072440346,\"uploads_today\":20,\"uploads_daily_limit\":20,\"uploads_remaining_today\":0,\"uploads_reset_at\":\"2026-11-02T18:00:00Z\"}}",
+      "body_is_excerpt": false
+    }
+  ],
+  "gpu": [
+    {
+      "utc": "2026-11-02T01:59:36.507Z",
+      "value": {
+        "tone": "red",
+        "text": "GPU sleeping Queue empty"
+      }
+    },
+    {
+      "utc": "2026-11-02T02:00:02.905Z",
+      "value": {
+        "tone": "yellow",
+        "text": "GPU starting Your job: 1 of 1 in queue"
+      }
+    },
+    {
+      "utc": "2026-11-02T02:03:30.401Z",
+      "value": {
+        "tone": "unknown",
+        "text": "Checking GPU"
+      }
+    },
+    {
+      "utc": "2026-11-02T02:03:39.323Z",
+      "value": {
+        "tone": "yellow",
+        "text": "GPU starting Your job: 1 of 1 in queue"
+      }
+    },
+    {
+      "utc": "2026-11-02T02:04:52.898Z",
+      "value": {
+        "tone": "yellow",
+        "text": "GPU starting 1 job in queue"
+      }
+    },
+    {
+      "utc": "2026-11-02T02:12:30.799Z",
+      "value": {
+        "tone": "red",
+        "text": "GPU sleeping Queue empty"
+      }
+    }
+  ],
+  "errors": []
+}

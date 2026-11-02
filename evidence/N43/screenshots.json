@@ -1,0 +1,172 @@
+{
+  "location": "C:/Users/HP/Documents/Hackathon/2026-10-26 - Meta Global AI Developer Hackathon/.worktrees/N43-orch288/evidence/N43/",
+  "committed": false,
+  "reason": "WORKER_CONTRACT no media binaries",
+  "files": [
+    {
+      "name": "01-signup-tier-choice.png",
+      "bytes": 123894,
+      "sha256": "51f62ef549b8a600377d834be870db458f5e47619d794efcc3727e66ccdde5d0"
+    },
+    {
+      "name": "02-workspace-first.png",
+      "bytes": 117602,
+      "sha256": "deea95ca89af2cf8760c0b673d7e7acfe0ca29193ba393fc8d42421668a8d54e"
+    },
+    {
+      "name": "03-sample-project-visible.png",
+      "bytes": 117602,
+      "sha256": "deea95ca89af2cf8760c0b673d7e7acfe0ca29193ba393fc8d42421668a8d54e"
+    },
+    {
+      "name": "04-room-upload.png",
+      "bytes": 199479,
+      "sha256": "09337a5bf3c36cc1b8a789cf64554076522d5a1525ccc0af0419c89fdd14d1d9"
+    },
+    {
+      "name": "05-room-starting.png",
+      "bytes": 200077,
+      "sha256": "d00a058f375803aa125132ee0d7c0b8985a5eefec3aedfc0af06ca9fe15a6b6d"
+    },
+    {
+      "name": "07-room-current.png",
+      "bytes": 122852,
+      "sha256": "572c376a2c01048fe8d7959120c174ac30b795d155a5f17293a384bfc29f21e1"
+    },
+    {
+      "name": "08-lab-kit-menu.png",
+      "bytes": 120006,
+      "sha256": "01b5a6244176fd9977d3889214824afbf742666fcbc06671bda9fdf795a892e9"
+    },
+    {
+      "name": "09-kit-all-added.png",
+      "bytes": 119277,
+      "sha256": "01d44df2680f4d2b2f1b5db5b15f79656ce5901695119bc57a0547a06c21fa8a"
+    },
+    {
+      "name": "10-kit-play.png",
+      "bytes": 118704,
+      "sha256": "38b2879601d3d600d5884729c7e51864403539ea33392fe5667ec17ecd08d3d8"
+    },
+    {
+      "name": "11-delete-undo-redo.png",
+      "bytes": 103595,
+      "sha256": "1a57d610bba973031841d08bb657ddc239611896f37d2f4be6f5896e8719d4d8"
+    },
+    {
+      "name": "12-file-preview.png",
+      "bytes": 126845,
+      "sha256": "b6f6277568b4e6d783529f6ac944df0c26362f4e0ef83b01346da3be25ec26ff"
+    },
+    {
+      "name": "13-mode-b-known-size-input.png",
+      "bytes": 355501,
+      "sha256": "b26ad5daa78dae692a0b15e931316e98b7a99f465206756ceee3734777d56cf2"
+    },
+    {
+      "name": "14-agent-tier-options.png",
+      "bytes": 177890,
+      "sha256": "1a4ae53349fd0e1c68c3c0dc029d326a4df8374c1086d2fd42d2758e20e01b3d"
+    },
+    {
+      "name": "15-agent-atwood.png",
+      "bytes": 111325,
+      "sha256": "226a7d53b263970cc6f2b379f6f122b62af44e2f5af74e1100106a0947fe6c3e"
+    },
+    {
+      "name": "16-mode-b-fit-band.png",
+      "bytes": 162554,
+      "sha256": "92bd1c45fa0d81692d1c3d14b1681069556030b3f3164c4e9f7b58285ab651f2"
+    },
+    {
+      "name": "17-spark-answer.png",
+      "bytes": 162542,
+      "sha256": "5381bfb2305b887e4f3af5fe3161649e7f47ac10062f46034b7d000533c22fd1"
+    },
+    {
+      "name": "18-muse-open-answer.png",
+      "bytes": 184751,
+      "sha256": "01deb1ee6a85b81d56e30fd9de0640662256896b8dcab72605796badcfb80497"
+    },
+    {
+      "name": "19-off-topic-refusal.png",
+      "bytes": 185959,
+      "sha256": "926cfef930082718c1961464728586d2a9015b73deb8d55281d5428e6f1d50d9"
+    },
+    {
+      "name": "26-quota-at20.png",
+      "bytes": 143814,
+      "sha256": "ee8156afc9edcc228d24dd86f6f191486e11eedfa782a3cfc304bdb5d55f961a"
+    },
+    {
+      "name": "27-file-deleted.png",
+      "bytes": 144496,
+      "sha256": "cfb9c4e736e73b19833f6ac0572ba544600ef16e368f056838f1d3bbef19bb64"
+    },
+    {
+      "name": "28-mobile-workspace.png",
+      "bytes": 65486,
+      "sha256": "887e7e313987c97d05876401f369d45eab20b30fb5a7c268fbcd0ebf74a468bb"
+    },
+    {
+      "name": "29-mobile-lab.png",
+      "bytes": 76538,
+      "sha256": "8b4a0a0d06d952ab5ee6d8fa45030df50d2f67c4659e1e62fa330e3f190b0d5a"
+    },
+    {
+      "name": "30-lab-tier-ignored.png",
+      "bytes": 137662,
+      "sha256": "fc604cabf6485b4249faee46fb2e43577a2becc5868021fe0624af223e8cb7ae"
+    },
+    {
+      "name": "32-mobile-room.png",
+      "bytes": 189482,
+      "sha256": "b1860954c05b6583678507cc1934d03263b78cb5e7101c832918daf7bf41c342"
+    },
+    {
+      "name": "33-agent-g-result.png",
+      "bytes": 145813,
+      "sha256": "4cc1182506d58c219512ab894b7e5b127f53a751fea52e56f286ea1f441800be"
+    },
+    {
+      "name": "34-project-attachment.png",
+      "bytes": 132655,
+      "sha256": "f91593da404597e9e8413226389ab5faa5823cd9dd3052d4dd6d3b25021285fe"
+    },
+    {
+      "name": "room-20-auto-shell.png",
+      "bytes": 247364,
+      "sha256": "76f62e997db2a1fde52d05a9f8dbc43b03f468e04b8b2438516cf5116cd3e8d6"
+    },
+    {
+      "name": "room-21-table-drop-paused.png",
+      "bytes": 254195,
+      "sha256": "440c60ef1fa65f1aac79c790d690ed00f51ae9df0277e16365b1adf2315f61f8"
+    },
+    {
+      "name": "room-22-table-rest-failed.png",
+      "bytes": 254311,
+      "sha256": "e18835c7495a2708e4db9bdcd5f08ad56e1547d8befb288f5f03753466edeec0"
+    },
+    {
+      "name": "room-23-a4-wiring.png",
+      "bytes": 258599,
+      "sha256": "5086a52df89fae9c713d28f71a799ce795a5a72f208943d39c7d7e89d8f365a0"
+    },
+    {
+      "name": "room-24-a4-result.png",
+      "bytes": 277029,
+      "sha256": "71dd581f44020844443b167275df79723f34d136ee424c7bb63804a11ad30d17"
+    },
+    {
+      "name": "room-25-a4-applied-shell-kept.png",
+      "bytes": 251763,
+      "sha256": "2523080604015007e4e7661a034807da92fd63336553cfba0b7214415c751b97"
+    },
+    {
+      "name": "room-31-table-drop-3s.png",
+      "bytes": 245491,
+      "sha256": "ba811a4618f1b4bd111aefd8f611c9ac0cda1facfa1d8baa650ab638912fc4ab"
+    }
+  ]
+}

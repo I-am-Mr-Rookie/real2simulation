@@ -1,0 +1,27 @@
+[
+  {
+    "path": "/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "emDashText": [],
+    "wide": [
+      {
+        "tag": "SPAN",
+        "class": "lv-tag",
+        "right": 428.015625
+      },
+      {
+        "tag": "SMALL",
+        "class": "lv-muted",
+        "right": 532.984375
+      }
+    ]
+  },
+  {
+    "path": "/lab",
+    "scrollWidth": 360,
+    "clientWidth": 360,
+    "emDashText": [],
+    "footer": "DEVELOPMENT BUILD\nSign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.\nPowered by Stability AI"
+  }
+]

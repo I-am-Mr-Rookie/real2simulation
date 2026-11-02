@@ -1,0 +1,204 @@
+Skip to content
+Real2Simulation
+Demo library
+Local simulation lab
+Private workspace
+
+GO TO
+
+Private workspace
+Demo library
+Local simulation lab
+Private workspace
+GPU sleeping Queue empty
+Agent & tools
+Connected
+Projects
+New project
+
+Start a new project and the agent asks what you are uploading, then shows filming tips.
+
+Experiment: ST03-trim.mp4
+Experiment
+Experiment 2cbda1 Nov 2, 02:06 UTC
+done
+Room 2026-11-02 01:59
+Room lab
+
+No rooms or experiments yet.
+
+classroom room and falling apple
+SAMPLE
+RECORDED
+Room lab
+Room e70498SAMPLE
+done
+Open lab
+SAMPLE (RECORDED): falling appleSAMPLE Nov 2, 01:59 UTC
+done
+Open
+Not in a project
+Room 82f05b Nov 2, 01:59 UTC
+done
+Open lab
+Refresh
+Files
+Upload video
+
+1.2 MB of 1.0 GB used. 0 of 20 uploads left today.
+
+n43-tiny-17.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-16.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-15.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-14.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-13.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-12.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-11.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-10.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-9.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-8.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-7.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-6.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-5.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-4.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-3.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-2.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+n43-tiny-1.mp4 34 KB, 1.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+ST03-trim.mp4 401 KB, 4.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+RM02-trim.mp4 286 KB, 6.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+Processing
+Measurement 2cbda1
+Done
+
+vertical acceleration (g if only gravity acts)
+2.71 +/- 0.42 m/s^2 1 sigma
+
+scale assumed (user size)
+playback clock
+free fall
+scale assumed (user size): apple width assumed for QA 8 cm
+playback timestamps; capture clock unverified (slow motion would change every time-based value)
+MEASURED: hosted SAM 3.1 box centres in image pixels
+-0.8
+-0.6
+-0.4
+-0.2
+0.0
+0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+time (s)
+y position (m)
+DOTS: MEASURED TRACK, 18 FRAMES. LINE: FITTED CURVE. BAND: 1 SIGMA OF THE FIT.
+3D replay, redo with changes
+Share as Guess the Gravity
+Instruments off
+Upload
+Interview
+Run
+Fit
+Report
+
+No scene yet. The viewport appears when an upload produces a scene.
+
+Waiting for an upload
+
+No job yet

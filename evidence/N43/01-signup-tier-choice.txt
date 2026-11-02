@@ -1,0 +1,46 @@
+Skip to content
+Real2Simulation
+Demo library
+Local simulation lab
+Private workspace
+
+GO TO
+
+Private workspace
+Demo library
+Local simulation lab
+Private workspace
+GPU sleeping Queue empty
+Agent & tools
+Connected
+Choose how the agent runs
+
+You can change this later in the agent panel. Standard is the default.
+
+Standard
+Default
+Muse Spark 1.3 or Muse Open, your pick
+Your prompts are not used to train Meta models
+Same physics tools and answers
+Costs more per message, so the daily budget runs out sooner
+Contributor
+Muse Spark 1.3 contributor
+Much cheaper per message, so more turns fit in the daily budget
+Same physics tools and answers
+Meta may train on your prompts and the agent replies
+Do not type anything private
+Muse Spark 1.3
+Muse Open (hosted on Baseten)
+Continue
+Instruments off
+Upload
+Interview
+Run
+Fit
+Report
+
+No scene yet. The viewport appears when an upload produces a scene.
+
+Waiting for an upload
+
+No job yet

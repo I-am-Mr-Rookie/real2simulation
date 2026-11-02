@@ -1,0 +1,58 @@
+Skip to content
+Real2Simulation
+Demo library
+Local simulation lab
+Private workspace
+
+Template trials
+
+Your room lab
+Add
+Resume
+Reset
+Import scene or room (.json, .ply)
+Selected object
+
+Click an object to select it.
+
+Room
+ Room collisions
+
+204 static boxes from the room point cloud. MODEL-ESTIMATED collision proxy: surfaces stop objects in Play and in agent runs.
+
+ Point cloud backdrop
+Scene JSON (lab-scene-v1)
+Apply JSON
+SIMULATED
+Room scale unverified
+t = 14.44 s
+
+Paused. Resume, reset, or export the SIMULATED sensor traces. Gravity [0, -9.81, 0] m/s^2, room room.ply.
+
+Your room
+
+Geometry MODEL-ESTIMATED (MapAnything). Scale scale unverified. Gravity MODEL-ESTIMATED +/- 0.0277 deg.
+
+Mark the A4 sheet
+Add a real object
+Build lab shell
+View
+1
+2
+3
+4
+5
+6
+7
+8
+Ask the agent
+
+Ask for an experiment, or to add, move, resize or remove objects.
+
+Drop a 5 cm ball from 1.2 m and measure g
+Pendulum, 0.8 m, find the period
+Write report
+Ask
+DEVELOPMENT BUILD
+Sign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.
+Powered by Stability AI

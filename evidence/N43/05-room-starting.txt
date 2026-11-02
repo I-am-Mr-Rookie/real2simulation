@@ -1,0 +1,91 @@
+Skip to content
+Real2Simulation
+Demo library
+Local simulation lab
+Private workspace
+
+GO TO
+
+Private workspace
+Demo library
+Local simulation lab
+Private workspace
+GPU sleeping Queue empty
+Agent & tools
+Connected
+Room 2026-11-02 01:59
+New project
+
+Room video: virtual lab. Accepted: mp4, mov or webm; up to 200 MB and 120 s.
+
+Walk slowly around the room for 20 to 60 s, holding the phone steady.
+Keep the floor in view most of the time.
+Use even light; avoid pointing at bright windows.
+Lay an A4 sheet flat on the floor for scale; without it, scale is MODEL-ESTIMATED.
+Move the camera sideways, not only by turning on the spot.
+classroom room and falling apple
+SAMPLE
+RECORDED
+Room lab
+Room e70498SAMPLE
+done
+Open lab
+SAMPLE (RECORDED): falling appleSAMPLE Nov 2, 01:59 UTC
+done
+Open
+Refresh
+Files
+Upload video
+
+286 KB of 1.0 GB used. 19 of 20 uploads left today.
+
+RM02-trim.mp4 286 KB, 6.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+Processing
+Room lab 82f05b
+Sampling frames
+
+GPU sleeping. Queue empty.
+
+Instruments off
+Upload
+Interview
+Run
+Fit
+Report
+
+No scene yet. The viewport appears when an upload produces a scene.
+
+Waiting for an upload
+
+No job yet
+
+Agent & tools
+Agent
+Standard mode
+
+What are you uploading? Room video
+
+Room video
+
+Filming tips for room video:
+
+Walk slowly around the room for 20 to 60 s, holding the phone steady.
+Keep the floor in view most of the time.
+Use even light; avoid pointing at bright windows.
+Lay an A4 sheet flat on the floor for scale; without it, scale is MODEL-ESTIMATED.
+Move the camera sideways, not only by turning on the spot.
+Message the agent
+Voice
+Send
+TOOLS
+Agent
+Waiting for an upload
+Runs & history
+No job yet
+Report
+No report yet (needs a finished fit or clip result)

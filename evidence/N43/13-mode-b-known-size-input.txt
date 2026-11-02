@@ -1,0 +1,90 @@
+Skip to content
+Real2Simulation
+Demo library
+Local simulation lab
+Private workspace
+
+GO TO
+
+Private workspace
+Demo library
+Local simulation lab
+Private workspace
+GPU starting 1 job in queue
+Agent & tools
+Connected
+Projects
+New project
+
+Start a new project and the agent asks what you are uploading, then shows filming tips.
+
+Room 2026-11-02 01:59
+Room lab
+
+No rooms or experiments yet.
+
+classroom room and falling apple
+SAMPLE
+RECORDED
+Room lab
+Room e70498SAMPLE
+done
+Open lab
+SAMPLE (RECORDED): falling appleSAMPLE Nov 2, 01:59 UTC
+done
+Open
+Not in a project
+Room 82f05b Nov 2, 01:59 UTC
+building lab shell
+Refresh
+Files
+Upload video
+
+686 KB of 1.0 GB used. 18 of 20 uploads left today.
+
+ST03-trim.mp4 401 KB, 4.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+
+Step 1. Click the moving object on the first frame, or type its name.
+
+No point picked yet.
+
+Or its name
+Step 2. Known size (optional)
+What it is
+Value
+Unit
+mm
+cm
+m
+
+Without a known size the result stays in pixels, labelled scale unverified.
+
+Start measuring
+Cancel
+RM02-trim.mp4 286 KB, 6.0 s, no project
+Preview
+Measure this experiment
+Build my lab
+Download
+Delete
+Processing
+
+Measurements and room labs you start show their progress here.
+
+Instruments off
+Upload
+Interview
+Run
+Fit
+Report
+
+No scene yet. The viewport appears when an upload produces a scene.
+
+Waiting for an upload
+
+No job yet

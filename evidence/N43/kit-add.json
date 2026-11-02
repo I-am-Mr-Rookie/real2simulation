@@ -1,0 +1,82 @@
+[
+  {
+    "label": "Ball",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Block",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Ramp",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Pendulum",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Spring",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Flywheel",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Atwood machine",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Cart and track",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Projectile launcher",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Collision balls",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "10 g mass",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "20 g mass",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "50 g mass",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "100 g mass",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "200 g mass",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "500 g mass",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "1 kg mass",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Ruler",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Protractor",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  },
+  {
+    "label": "Photogate timer",
+    "status": "Add an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2."
+  }
+]

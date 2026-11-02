@@ -1,0 +1,680 @@
+{
+  "version": "lab-scene-v1",
+  "label": "SIMULATED",
+  "units": "m",
+  "gravity": [
+    0,
+    -9.81,
+    0
+  ],
+  "room": {
+    "kind": "plane",
+    "floor_y": 0
+  },
+  "objects": [
+    {
+      "id": "ball-1",
+      "kind": "ball",
+      "position": [
+        -1.2,
+        1.2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {}
+    },
+    {
+      "id": "block-1",
+      "kind": "block",
+      "position": [
+        -0.6,
+        1.2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.2,
+        0.2,
+        0.2
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {}
+    },
+    {
+      "id": "ramp-1",
+      "kind": "ramp",
+      "position": [
+        0,
+        0.35,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0.2588190450974359,
+        0.9659258262904308
+      ],
+      "size": [
+        1.2,
+        0.05,
+        0.4
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": false,
+      "params": {}
+    },
+    {
+      "id": "pendulum-1",
+      "kind": "pendulum",
+      "position": [
+        0.6,
+        1.2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": true,
+      "params": {
+        "length": 0.8,
+        "angle_deg": 30
+      }
+    },
+    {
+      "id": "spring-1",
+      "kind": "spring",
+      "position": [
+        1.2,
+        1.2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.15,
+        0.15,
+        0.15
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": true,
+      "params": {
+        "rest_length": 0.4,
+        "stiffness": 40,
+        "damping": 0.2,
+        "stretch": 0.15
+      }
+    },
+    {
+      "id": "flywheel-1",
+      "kind": "flywheel",
+      "position": [
+        -1.2,
+        1.2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.3,
+        0.3,
+        0.04
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": true,
+      "params": {
+        "radius": 0.15,
+        "inertia": 0,
+        "hang_mass": 0.05,
+        "hang_length": 0.4
+      }
+    },
+    {
+      "id": "atwood-1",
+      "kind": "atwood",
+      "position": [
+        -0.6,
+        1.6,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": true,
+      "params": {
+        "radius": 0.05,
+        "m1": 0.2,
+        "m2": 0.15,
+        "hang_length": 0.5
+      }
+    },
+    {
+      "id": "cart-1",
+      "kind": "cart",
+      "position": [
+        0,
+        0.4,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.1,
+        0.05,
+        0.08
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.01,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": true,
+      "params": {
+        "length": 1.5,
+        "angle_deg": 10
+      }
+    },
+    {
+      "id": "launcher-1",
+      "kind": "launcher",
+      "position": [
+        0.6,
+        0.1,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": true,
+      "params": {
+        "angle_deg": 45,
+        "speed": 3
+      }
+    },
+    {
+      "id": "cradle-1",
+      "kind": "cradle",
+      "position": [
+        1.2,
+        0.9,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0,
+      "restitution": 1,
+      "fixed": true,
+      "sensor": true,
+      "params": {
+        "count": 5,
+        "length": 0.5,
+        "angle_deg": 30
+      }
+    },
+    {
+      "id": "mass-1",
+      "kind": "mass",
+      "position": [
+        -1.2,
+        1,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.011487096712935343,
+        0.011487096712935343,
+        0.011487096712935343
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 0.01,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {
+        "grams": 10
+      }
+    },
+    {
+      "id": "mass-2",
+      "kind": "mass",
+      "position": [
+        -0.6,
+        1,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.014472834950805443,
+        0.014472834950805443,
+        0.014472834950805443
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 0.02,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {
+        "grams": 20
+      }
+    },
+    {
+      "id": "mass-3",
+      "kind": "mass",
+      "position": [
+        0,
+        1,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.019642659076268387,
+        0.019642659076268387,
+        0.019642659076268387
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 0.05,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {
+        "grams": 50
+      }
+    },
+    {
+      "id": "mass-4",
+      "kind": "mass",
+      "position": [
+        0.6,
+        1,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.024748199646099124,
+        0.024748199646099124,
+        0.024748199646099124
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 0.1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {
+        "grams": 100
+      }
+    },
+    {
+      "id": "mass-5",
+      "kind": "mass",
+      "position": [
+        1.2,
+        1,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.03118077768112114,
+        0.03118077768112114,
+        0.03118077768112114
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 0.2,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {
+        "grams": 200
+      }
+    },
+    {
+      "id": "mass-6",
+      "kind": "mass",
+      "position": [
+        -1.2,
+        1,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.042318826118382245,
+        0.042318826118382245,
+        0.042318826118382245
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 0.5,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {
+        "grams": 500
+      }
+    },
+    {
+      "id": "mass-7",
+      "kind": "mass",
+      "position": [
+        -0.6,
+        1,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.053318379833390744,
+        0.053318379833390744,
+        0.053318379833390744
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {
+        "grams": 1000
+      }
+    },
+    {
+      "id": "ruler-1",
+      "kind": "ruler",
+      "position": [
+        0,
+        0.5,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        1,
+        0.01,
+        0.03
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": true,
+      "params": {
+        "length": 1
+      }
+    },
+    {
+      "id": "protractor-1",
+      "kind": "protractor",
+      "position": [
+        0.6,
+        1.3,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.2,
+        0.1,
+        0.01
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": true,
+      "params": {}
+    },
+    {
+      "id": "photogate-1",
+      "kind": "photogate",
+      "position": [
+        1.2,
+        0.5,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.02,
+        0.15,
+        0.15
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": true,
+      "params": {}
+    }
+  ]
+}

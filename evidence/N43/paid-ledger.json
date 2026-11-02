@@ -1,0 +1,133 @@
+{
+  "basis": "API job estimates and aggregate token usage at Build/agent/core.py rates; not provider billing. Shell sub-call exact UTC timestamps unavailable: intervals enclose the calls. Do not insert duplicate rows into the runtime ledger.",
+  "cap_usd": 2,
+  "total_estimated_usd": 1.05580886,
+  "rows": [
+    {
+      "utc_interval": [
+        "2026-11-02T01:59:52Z",
+        "2026-11-02T02:03:54Z"
+      ],
+      "model": "MapAnything / L4",
+      "units": "failed capacity wait, 240.351 s + idle estimate",
+      "estimated_usd": 0.32353896
+    },
+    {
+      "utc_interval": [
+        "2026-11-02T02:03:54Z",
+        "2026-11-02T02:04:23Z"
+      ],
+      "model": "MapAnything / A10G",
+      "units": "29.513 s + idle estimate",
+      "estimated_usd": 0.34179889
+    },
+    {
+      "utc_interval": [
+        "2026-11-02T02:04:23Z",
+        "2026-11-02T02:07:34Z"
+      ],
+      "model": "sam-3.1 image",
+      "units": "72 image calls",
+      "estimated_usd": 0.18
+    },
+    {
+      "utc_interval": [
+        "2026-11-02T02:04:23Z",
+        "2026-11-02T02:07:34Z"
+      ],
+      "model": "Stable Fast 3D / A10G",
+      "units": "room-object-1, wall 88.635 s + idle estimate",
+      "estimated_usd": 0.05465605
+    },
+    {
+      "utc_interval": [
+        "2026-11-02T02:04:23Z",
+        "2026-11-02T02:07:34Z"
+      ],
+      "model": "Stable Fast 3D / A10G",
+      "units": "room-object-2, wall 2.213 s + idle estimate",
+      "estimated_usd": 0.02287688
+    },
+    {
+      "utc_interval": [
+        "2026-11-02T02:04:23Z",
+        "2026-11-02T02:07:34Z"
+      ],
+      "model": "Stable Fast 3D / A10G",
+      "units": "room-object-3, wall 2.342 s + idle estimate",
+      "estimated_usd": 0.02292433
+    },
+    {
+      "utc_interval": [
+        "2026-11-02T02:06:09Z",
+        "2026-11-02T02:06:19Z"
+      ],
+      "model": "sam-3.1 video",
+      "units": "120 frames",
+      "estimated_usd": 0.024
+    },
+    {
+      "receipt_utc": "2026-11-02T02:06:38.577Z",
+      "model": "muse-spark-1.3",
+      "units": {
+        "input_tokens": 2449,
+        "output_tokens": 1039
+      },
+      "estimated_usd": 0.007644
+    },
+    {
+      "receipt_utc": "2026-11-02T02:07:33.066Z",
+      "model": "meta-models/muse-spark-open-1026",
+      "units": {
+        "input_tokens": 2597,
+        "output_tokens": 381
+      },
+      "estimated_usd": 0.0048655
+    },
+    {
+      "receipt_utc": "2026-11-02T02:08:01.865Z",
+      "model": "meta-models/muse-spark-open-1026",
+      "units": {
+        "input_tokens": 2681,
+        "output_tokens": 124
+      },
+      "estimated_usd": 0.00387825
+    },
+    {
+      "receipt_utc": "2026-11-02T02:04:50.692Z",
+      "model": "muse-spark-1.3",
+      "units": {
+        "input_tokens": 8236,
+        "output_tokens": 2305
+      },
+      "estimated_usd": 0.019761
+    },
+    {
+      "receipt_utc": "2026-11-02T02:06:32.348Z",
+      "model": "muse-spark-1.3",
+      "units": {
+        "input_tokens": 8358,
+        "output_tokens": 1698
+      },
+      "estimated_usd": 0.016848
+    },
+    {
+      "receipt_utc": "2026-11-02T02:11:48.479Z",
+      "model": "muse-spark-1.3",
+      "units": {
+        "input_tokens": 2534,
+        "output_tokens": 706
+      },
+      "estimated_usd": 0.006064
+    },
+    {
+      "receipt_utc": "2026-11-02T02:14:26.062Z",
+      "model": "muse-spark-1.3",
+      "units": {
+        "input_tokens": 12198,
+        "output_tokens": 2951
+      },
+      "estimated_usd": 0.026953
+    }
+  ]
+}

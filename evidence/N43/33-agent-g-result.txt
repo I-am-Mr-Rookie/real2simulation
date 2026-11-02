@@ -1,0 +1,18 @@
+Ask the agent
+
+You: Set up an Atwood machine and measure a. Run it and report SIMULATED acceleration with uncertainty.
+
+Agent: SIMULATED acceleration is 1.961998 m/s^2 with uncertainty 0.0044 m/s^2 from lab_run. I used default masses since you gave no values. (tools: lab_add_object, lab_run)
+
+You: Explain how a pulley changes the direction of a force. No calculations needed.
+
+Agent: In the virtual lab a pulley guides the string so tension pulls along the string on each side. One side pulls down and the other side is redirected over the wheel to pull up, so the direction changes but the pull stays along the string.
+
+You: Drop a ball and measure g. Report the simulated fit and uncertainty.
+
+Agent: Used default ball drop setup since no size or height was given. SIMULATED g is 9.809989 m/s^2 with uncertainty 0.015 m/s^2 from lab_run. (tools: lab_add_object, lab_run)
+
+Drop a 5 cm ball from 1.2 m and measure g
+Pendulum, 0.8 m, find the period
+Write report
+Ask
