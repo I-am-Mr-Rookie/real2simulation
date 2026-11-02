@@ -22,6 +22,7 @@ export default function SiteFrame({ children, authAvailable = false }) {
       <Link className="wordmark" href="/"><img className="brand-mark art-light" src="/brand/mark.svg" width="34" height="34" alt="" /><img className="brand-mark art-dark" src="/brand/mark-dark.svg" width="34" height="34" alt="" />Real2Simulation</Link>
       <nav aria-label="Main navigation">
         <Link href="/library" title="Demo library">{icon(h, 'book', 16)}<span className="nav-label">Demo library</span></Link>
+        <Link href="/guide" title="Guide">{icon(h, 'compass', 16)}<span className="nav-label">Guide</span></Link>
         <Link href="/lab" title="Local simulation lab">{icon(h, 'flask', 16)}<span className="nav-label">Local simulation lab</span></Link>
         <a className="nav-icon" href={REPO_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub repository" title="GitHub repository">{GITHUB_MARK}</a>
         <ThemeToggle />
@@ -29,6 +30,6 @@ export default function SiteFrame({ children, authAvailable = false }) {
       </nav>
     </header>
     <main id="main">{children}</main>
-    <footer className="site-footer"><strong>Development build</strong><span>Sign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.</span><small>Powered by Stability AI</small></footer>
+    <footer className="site-footer"><strong>Development build</strong><span>Sign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.</span><Link href="/guide">Guide</Link><small>Powered by Stability AI</small></footer>
   </>;
 }
