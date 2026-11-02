@@ -17,8 +17,6 @@ CONTENT = {
     "/sign-in": "Sign in to Real2Simulation", "/workspace/private-check": "Private workspaces require sign-in",
 }
 fixtures = runpy.run_path(str(VERIFIER.with_name("test_verify.py")))
-# Existing shared fixtures still pin the superseded N23 API revision.
-fixtures["baseline"].__globals__["API_REVISION"] = "ccb8b5d5c66c925eea3578e4b0488adf27e5c822"
 
 
 def verify(broken=None):

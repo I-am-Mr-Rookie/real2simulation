@@ -11,7 +11,7 @@ from urllib.parse import urlsplit
 from unittest.mock import patch
 
 REVISION = "300cd2096f9e32bcdf3433520b36b67f709df0d5"
-API_REVISION = "db6060d2a994f8f1f36f2507a64b07ecdf7a0c72"
+API_REVISION = "ccb8b5d5c66c925eea3578e4b0488adf27e5c822"
 PATHS = ("/health/live", "/health/ready", "/api/version")
 ENDPOINTS = [(service, path) for service in ("api", "worker") for path in PATHS]
 INTERNAL = ("api", "/internal/workspace/jobs/job_" + "0" * 32)
@@ -42,11 +42,16 @@ def verify(responses):
 
     def transport(url, timeout):
         parsed = urlsplit(url)
-        service = parsed.hostname.split("-dev-")[0]
+        service = {
+            "api-dev-6091.up.railway.app": "api",
+            "worker-dev-984d.up.railway.app": "worker",
+            "real2simulation.up.railway.app": "web",
+            "real2simulation.rookiecoders.tech": "web",
+        }[parsed.hostname]
         if service == "web":
             status = 404 if parsed.path.startswith("/workspace/") else 200
             body = "Real2Simulation " + {
-                "/": "", "/library": "Demo library",
+                "/": "", "/lab": "Test a motion model", "/library": "Demo library",
                 "/sign-in": "Sign in to Real2Simulation",
                 "/workspace/private-check": "Private workspaces require sign-in",
             }[parsed.path]
@@ -85,7 +90,7 @@ class VerifyTests(unittest.TestCase):
     def test_baseline_including_statusless_version_and_worker_503(self):
         code, checks = verify(baseline())
         self.assertEqual(code, 0)
-        self.assertEqual(len(checks), 11)
+        self.assertEqual(len(checks), 17)
         self.assertTrue(all(c["pass"] for c in checks))
 
     def test_internal_workspace_route_must_reject_missing_token(self):
