@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 09:36 Dhaka: controller
+- Accepted N45-orch290 (F3 lab agent uses saved tier and shows answering model; F4 room uploads/jobs keep project id). Cross-vendor review of new /api/workspace/session route: returns only the verified caller's own key, 401 otherwise. OK.
+- Fixed lab template radio ellipse (Koushik screenshot): global input padding stretched appearance:none radios; lab.css now padding 0, border-box.
+- Koushik Nov 2: DEV domains real2simulation.up.railway.app + real2simulation.rookiecoders.tech (Cloudflare zone; CLI auth until 10:00, dashboard via GitHub login in in-app browser). Dispatched N46-orch291 (Sol high 60, due 10:36).
+- Koushik Nov 2 routing rule: test/debug/fix/QA/infra rows to GPT-6.1 Sol; new builds and ambitious features to Claude. Recorded in AGENTS.md.
+- N44-orch289 still running (due 09:44).
+
 ## 2026-11-02 08:45 Dhaka (controller)
 - Accepted N43 (Sol, QA only, evidence): DEV end-to-end QA, about $1.06. PASS: sign-up tiers, sample project, auto shell + 3 SF3D meshes, A4 keeps shell, all 20 kit items, agent g 9.810018 +/- 0.0074 and Atwood a 1.961998 +/- 0.0044 (SIMULATED), Delete/undo/redo, tiers in workspace, Sol rejected 422, Mode B band, files and 21st-upload 429, 375 px no overflow, no em dashes. FAIL: F1 P1 ball rolls off the SF3D table in the RM02 classroom (N42 fix held only on N06); F2 P2 RM02 walls enclose none of the furniture and openings miss their walls; F3 P2 lab agent ignores the saved Muse Open tier; F4 P2 room upload/job not attached to the chosen project; F5 P3 SF3D captions unreadable at 375 px.
 - Dispatched N44-orch289 (Opus high 60, F1 F2 F5, due 09:44) and N45-orch290 (Sol high 30, F3 F4, due 09:14).

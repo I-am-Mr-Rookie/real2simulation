@@ -24,7 +24,8 @@
 .template-choice span, .mystery-toggle span { display: grid; gap: .1rem; }
 .template-choice small, .mystery-toggle small { color: var(--lab-muted); font-size: .8rem; line-height: 1.3; }
 /* Styled radio/checkbox: no bare native controls. */
-.lab input[type="radio"], .lab input[type="checkbox"] { appearance: none; flex: none; width: 1.1rem; height: 1.1rem; margin: .2rem 0 0; border: 1.5px solid var(--lab-ink); background: var(--lab-surface); display: grid; place-content: center; cursor: inherit; }
+/* padding: 0 overrides the global input padding (.5rem .7rem) that stretched the radio into an ellipse. */
+.lab input[type="radio"], .lab input[type="checkbox"] { appearance: none; flex: none; box-sizing: border-box; width: 1.1rem; height: 1.1rem; padding: 0; margin: .2rem 0 0; border: 1.5px solid var(--lab-ink); background: var(--lab-surface); display: grid; place-content: center; cursor: inherit; }
 .lab input[type="radio"] { border-radius: 50%; }
 .lab input[type="checkbox"] { border-radius: 3px; }
 .lab input[type="radio"]::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; transform: scale(0); background: var(--lab-accent); }
