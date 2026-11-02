@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 06:35 Dhaka (controller)
+- Accepted N42 (Opus): SF3D furniture tops get a flattened support plane plus a thin convex slab, so a ball rests on the SF3D table mesh (8 of 9 grid drops held; one edge point outside the SF3D outline falls; box 9/9). A4 rescale now keeps the shell; the shell builds automatically after a room job (unit-tested, not live); desk + hutch parts merged; floor fit fixed (coffee table top 0.40 m, was 0.094; scale unverified). Live reused N39 job, $0.1802 SF3D.
+- Main green: node 417/417, python 388, build ok. DEV deployed from e5bcfcc5: api 60195792, web 5ef6d2eb; verify.py exit 0.
+- Nov 1 pivot queue: no dependency-ready worker rows left. Open for Koushik: remove SG Postgres/Redis (after his confirm), N06 extra clips, N18 voice-overs, N20 video, S23a at the Nov 4 10:00 freeze.
+
 ## 2026-11-02 06:10 Dhaka (controller, deploy)
 - Accepted N41 (Sol): DEV Postgres and Redis now in us-east4 (Postgres de49f552, Redis c5fb2c8e). All 228 Redis keys copied with per-key DUMP SHA256 match; write fence; final stop-to-success 138 s. Latency: Postgres 214 ms -> 0.26 ms, Redis 227 ms -> 0.24 ms. SG Postgres 33692dd8 and SG Redis eee6243b kept for rollback; they keep billing: remove after Koushik confirms (Owner question).
 - Accepted N32 (Sonnet): LICENSES/Stability-AI-Community-License.md, NOTICE (exact receipt text, test-checked), README credit, footer "Powered by Stability AI".
