@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 12:00 Dhaka: controller
+- Dispatched N52-orch297 (Sol high 60, due 12:57): room shell polish after N49 (colours, windows on scan-edge walls, split merged items, facing, rebuild Koushik's DEV room privately), cap $2.50.
+- New rule (Koushik, Nov 2): if a Codex worker fails to start or reports quota exhausted, do not retry; notify Koushik immediately (he applies a manual reset). Recorded in AGENTS.md and the heartbeat prompt.
+
 ## 2026-11-02 12:15 Dhaka: controller
 - Accepted N47 (DEV QA on new domain: N43 F1 to F4 FIXED, F5 caption overlap open; both modes end to end pass; P2 distorted SF3D furniture, P2 room latency with one SF3D timeout; $1.38 ledgered in its worktree).
 - Accepted N48 (Clerk colours follow all palettes, AA; GPU dot: finished jobs override stale Modal backlog, green with mm:ss idle countdown from last finished job; library lists only 3 available entries, zero chips hidden). N48 ran in C:/Users/HP/.codex/worktrees/n48-orch293.
