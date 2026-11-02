@@ -147,6 +147,7 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
 
     @router.post("/rooms/{job_id}/shell")
     def build_shell(job_id: str, payload: dict = Body(default={}), owner: str = Depends(require_owner)):
+        db().check_storage(owner)
         d = done_dir(owner, job_id)
         from Build.reconstruction.shape_upgrade import LOCK
         with LOCK:  # count attempts before any paid work, including failed rebuilds

@@ -89,6 +89,39 @@ class StorageTests(unittest.TestCase):
             self.assertFalse(self.store.path("user_synthA", first["id"]).exists())
             self.assertEqual(self.up().status_code, 201)
 
+    def test_quota_counts_owner_room_tree_and_tracks_removed_bytes(self):
+        self.assertEqual(self.up().status_code, 201)
+        room = Path(self.dir, "rooms", "user_synthA", "c" * 32)
+        artifacts = {"room.ply": b"ply", "mapanything.npz": b"archive", "scene.json": b"{}",
+                     "room.json": b"{}", "objects/crop.png": b"png", "objects/mesh.glb": b"glb"}
+        for name, data in artifacts.items():
+            path = room / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(data)
+        other = Path(self.dir, "rooms", "user_synthB", "other.ply")
+        other.parent.mkdir(parents=True)
+        other.write_bytes(b"other owner's room")
+        url = "/internal/workspace/files"
+        used = len(MP4) + sum(map(len, artifacts.values()))
+        q = self.c.get(url, headers=A).json()["quota"]
+        self.assertEqual(q["storage_bytes_used"], used)
+        self.assertEqual(q["storage_bytes_remaining"], storage.MAX_USER - used)
+        self.assertEqual(self.c.get(url, headers=B).json()["quota"]["storage_bytes_used"], other.stat().st_size)
+        (room / "room.ply").unlink()
+        self.assertEqual(self.c.get(url, headers=A).json()["quota"]["storage_bytes_used"], used - len(b"ply"))
+
+    def test_upload_quota_includes_room_artifacts(self):
+        room = Path(self.dir, "rooms", "user_synthA", "c" * 32)
+        room.mkdir(parents=True)
+        (room / "room.ply").write_bytes(b"room")
+        with mock.patch.object(storage, "MAX_USER", len(MP4) + len(b"room")):
+            self.assertEqual(self.up().status_code, 201)  # exactly at the combined limit
+            r = self.up()
+            self.assertEqual((r.status_code, r.json()["detail"]["code"]), (413, "QUOTA_STORAGE"))
+            self.assertEqual(r.json()["detail"]["quota"]["storage_bytes_used"], storage.MAX_USER)
+            self.assertEqual(len(self.store.list("user_synthA")), 1)
+            self.assertEqual(list(Path(self.dir, "tmp").iterdir()), [])
+
     def test_daily_upload_limit_dhaka_day(self):
         for _ in range(20):
             self.assertEqual(self.up(name="p.png", data=PNG).status_code, 201)

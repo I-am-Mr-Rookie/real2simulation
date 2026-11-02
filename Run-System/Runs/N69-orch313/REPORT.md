@@ -1,0 +1,14 @@
+# N69-orch313: DONE
+- Branch: `run/N69-orch313`; base `9edd5d2a`.
+- Owns: `Build/api/storage/files.py`, `Build/api/room/{__init__,objects}.py`, `tests/api-storage/test_storage.py`, `tests/reconstruction/test_live_room.py`, this run's receipt/report.
+- Storage quota now sums active upload metadata plus every file recursively under the owner's `rooms/<owner>/` tree, including nested PNG/GLB, PLY, NPZ and JSON artifacts.
+- Existing `/files` quota responses drive both workspace usage text and upload enforcement; no web change needed.
+- Room starts and shell rebuilds reject at/over the limit with existing HTTP 413 `QUOTA_STORAGE`, before job/thread creation, archive repair, rebuild counters or paid work.
+- No room-delete endpoint exists. None added. File/project deletion does not delete rooms; retained room artifacts remain counted. Removed artifact bytes disappear from the next quota read.
+- Added four regression tests: recursive owner-isolated accounting/removal, combined upload cap, room admission, shell admission. Admission tests cover exactly-full, over-full and one-byte remaining.
+- Python 3.12.12 isolated venv; all 10 pinned dependencies match `Build/api/health/requirements{,-test}.txt`; pytest 9.2.0.
+- `.venv/Scripts/python.exe -m pytest tests/api-storage tests/reconstruction -q`: **104 passed, 6 subtests passed**, 11 dependency deprecation warnings, 111.91 seconds; no skips.
+- `git diff --check`: PASS. `worker_timebox.py check`: PASS.
+- Paid calls/jobs: none; cost $0. No deploy, push, GPU, provider request or private-owner media access.
+- Skipped: browser QA and web build (backend-only change); new deletion API intentionally omitted.
+- Risk: quota is an on-demand tree scan, not a per-write reservation. An admitted job may overshoot by one room; concurrent admitted jobs may each overshoot. Shortcut documented in code.

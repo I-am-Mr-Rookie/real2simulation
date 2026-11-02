@@ -16,6 +16,7 @@ from fastapi.testclient import TestClient
 
 from Build.api import gpu
 from Build.api.room import create_router
+from Build.api.storage import files as storage
 from Build.api.storage.files import Store
 from Build.reconstruction import live_room
 
@@ -512,6 +513,49 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(out["room"]["scale"]["status"], "MEASURED")
         bad = self.c.post(f"{url}/{job}/scale", headers=A, json={"reference": {**A4_REF, "view": 9}})
         self.assertEqual(bad.status_code, 422)
+
+    def test_start_refuses_full_storage_before_starting_work(self):
+        base = self.dir / "rooms" / "user_synthA"
+        base.mkdir(parents=True)
+        (base / "existing.ply").write_bytes(b"room")
+        used = self.store.quota("user_synthA")["storage_bytes_used"]
+        with mock.patch("Build.api.room.threading.Thread") as thread:
+            for limit in (used, used - 1):
+                with self.subTest(limit=limit), mock.patch.object(storage, "MAX_USER", limit):
+                    r = self.c.post("/internal/workspace/rooms", headers=A, json={"file_id": self.file["id"]})
+                    self.assertEqual((r.status_code, r.json()["detail"]["code"]), (413, "QUOTA_STORAGE"))
+                    self.assertEqual(r.json()["detail"]["quota"]["storage_bytes_used"], used)
+                    thread.assert_not_called()
+                    self.assertEqual([p.name for p in base.iterdir()], ["existing.ply"])
+            with mock.patch.object(storage, "MAX_USER", used + 1):
+                r = self.c.post("/internal/workspace/rooms", headers=A, json={"file_id": self.file["id"]})
+                self.assertEqual(r.status_code, 202, r.text)
+                thread.return_value.start.assert_called_once()
+
+    def test_shell_rebuild_refuses_full_storage_before_paid_work(self):
+        from Build.api.room import objects
+        d = self.dir / "rooms" / "user_synthA" / ("c" * 32)
+        d.mkdir(parents=True)
+        (d / "mapanything.npz").write_bytes(b"synthetic archive")
+        live_room.set_status(d, state="done")
+        app = FastAPI()
+        app.include_router(objects.create_router(self.store))
+        c = TestClient(app)
+        used = self.store.quota("user_synthA")["storage_bytes_used"]
+        url = f"/internal/workspace/rooms/{d.name}/shell"
+        with mock.patch.object(objects, "build_shell_files", return_value=({}, {})) as build:
+            for limit in (used, used - 1):
+                with self.subTest(limit=limit), mock.patch.object(storage, "MAX_USER", limit):
+                    r = c.post(url, headers=A, json={"sf3d": False})
+                    self.assertEqual((r.status_code, r.json()["detail"]["code"]), (413, "QUOTA_STORAGE"))
+                    self.assertEqual(r.json()["detail"]["quota"]["storage_bytes_used"], used)
+                    build.assert_not_called()
+                    self.assertFalse((d.parent / "shell-rebuilds.json").exists())
+                    self.assertNotIn("shell_rebuilds", json.loads((d / "status.json").read_text()))
+            with mock.patch.object(storage, "MAX_USER", used + 1):
+                r = c.post(url, headers=A, json={"sf3d": False})
+                self.assertEqual(r.status_code, 200, r.text)
+                build.assert_called_once()
 
     def test_list_rooms_newest_first_and_isolated(self):
         url = "/internal/workspace/rooms"

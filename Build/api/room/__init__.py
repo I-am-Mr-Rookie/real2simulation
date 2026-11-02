@@ -65,6 +65,7 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
         project_id = payload.get("project_id") or rec["project_id"]
         if project_id is not None:
             db().project(owner, str(project_id))
+        db().check_storage(owner)
         job_id = uuid.uuid4().hex
         d = db().root / "rooms" / owner / job_id
         d.mkdir(parents=True)

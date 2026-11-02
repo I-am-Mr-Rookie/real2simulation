@@ -83,6 +83,12 @@ class Store:
     def quota(self, user):
         used = self.db.execute("SELECT COALESCE(SUM(size), 0) FROM files WHERE user=? AND deleted_at IS NULL",
                                (user,)).fetchone()[0]
+        for path in (self.root / "rooms" / user).rglob("*"):
+            try:
+                if path.is_file():
+                    used += path.stat().st_size
+            except FileNotFoundError:
+                pass  # a room artifact was replaced or removed during the scan
         today = self.db.execute("SELECT COUNT(*) FROM files WHERE user=? AND dhaka_day=?",
                                 (user, self._day())).fetchone()[0]
         midnight = datetime.combine(self.now().astimezone(DHAKA).date() + timedelta(days=1), datetime.min.time(), DHAKA)
@@ -90,6 +96,12 @@ class Store:
                 "storage_bytes_remaining": max(0, MAX_USER - used), "uploads_today": today,
                 "uploads_daily_limit": MAX_DAILY, "uploads_remaining_today": max(0, MAX_DAILY - today),
                 "uploads_reset_at": midnight.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")}
+
+    def check_storage(self, user):
+        # shortcut: no per-write size reservation; a job may overshoot by one room, add reservations for strict caps.
+        q = self.quota(user)
+        if q["storage_bytes_remaining"] <= 0:
+            raise error(413, "QUOTA_STORAGE", "storage limit reached (1 GB per user)", quota=q)
 
     def check_daily(self, user):
         q = self.quota(user)
