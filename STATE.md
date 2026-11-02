@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 19:02 Dhaka · Koushik: Codex back; in-app browser QA rule
+- Koushik: Codex five-hour quota reset. N58-orch303 resumed in its own thread with a new 60-minute window (due 20:01 Dhaka).
+- New standing rule (Koushik, Nov 2): QA, verification and UI checks by workers use the in-app ChatGPT browser with its own cursor, using the product like a person (finds more bugs, wrong numbers and awkward UX than scripts). Playwright Chromium only for automated test scripts or when the in-app browser is truly unavailable. Recorded in AGENTS.md and WORKER_CONTRACT.md. The earlier note that workers cannot use the in-app browser is obsolete (N57 used it).
+
 ## 2026-11-02 18:45 Dhaka · controller: Codex quota hit on N58
 - N58-orch303 (Sol) stopped with "You've hit your usage limit. Try again at 6:43 PM." Per Koushik's Codex quota rule: no retry or resume; Koushik notified; waiting for his word. Partial work stays in .worktrees/N58-orch303. N59 (Sol) waits too.
 
