@@ -1,0 +1,28 @@
+✔ N56 full-window app: site header and footer hidden, fixed grid of top bar, work area and timeline (2.4655ms)
+✔ SF3D credit is one conditional viewport chip, never a per-object sprite (4.7096ms)
+✔ outside-canvas panels allow native scroll chaining and controls target only the canvas (5.6883ms)
+✔ Template trials is a Templates section of the Add menu, not a separate toolbar button (1.6164ms)
+✔ proxy is a capped, valid MODEL-ESTIMATED box set (145.8691ms)
+✔ ball dropped above the table lands on it; without collisions it reaches the floor (292.1847ms)
+✔ the wall stops a rolling ball (155.1036ms)
+✔ validator rejects bad proxies (3.6278ms)
+✔ A4 rescale keeps user-added objects, positions scaled with the room (0.8062ms)
+✔ encodeWav writes a mono PCM16 16 kHz RIFF header and clamped samples (9.7829ms)
+✔ toWav16k downmixes through a mono 16 kHz OfflineAudioContext and caps at 60 s (4.7993ms)
+✔ gpuDot maps N04 status to red/yellow/green with queue position, unknown otherwise (4.9077ms)
+✔ GPU warm-idle countdown ticks in browser seconds between API polls, resets on new data, and stops at sleep (1.6547ms)
+✔ quotaView and fmtBytes use only API numbers (0.4908ms)
+✔ jobsState: 404 is not available yet, errors stay errors, lists pass through (0.5265ms)
+✔ agent mode (N26): undecided until the user is known, new user always unset, per user, bad values ignored (0.59ms)
+✔ apiErrorText shows the server message (detail.message) and the reset time in local time (N26) (155.7392ms)
+✔ upload question, tips and chat history (1.2574ms)
+✔ long ids become short readable names (82.7821ms)
+✔ jobs group under their project; SAMPLE last and labelled; unknown project last (7.8129ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1849.6479

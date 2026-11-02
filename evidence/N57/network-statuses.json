@@ -1,0 +1,146 @@
+[
+  {
+    "time": "2026-11-02T11:22:04.467Z",
+    "method": "PATCH",
+    "url": "https://real2simulation.up.railway.app/api/workspace/projects/1746a4f514ff4117bb854ea59ac442f6",
+    "status": 200
+  },
+  {
+    "time": "2026-11-02T11:24:04.944Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/files/dd6829f3adfb4272b5c81e5b71b1562a/content",
+    "status": 500
+  },
+  {
+    "time": "2026-11-02T11:24:04.947Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/files/4f5e1bd9a7124dfbb28a98c402298276/content",
+    "status": 404
+  },
+  {
+    "time": "2026-11-02T11:24:29.520Z",
+    "method": "POST",
+    "url": "https://real2simulation.up.railway.app/api/workspace/experiments",
+    "status": 202
+  },
+  {
+    "time": "2026-11-02T11:24:52.405Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/agent/lab/report",
+    "status": 404
+  },
+  {
+    "time": "2026-11-02T11:26:53.148Z",
+    "method": "PUT",
+    "url": "https://real2simulation.up.railway.app/api/workspace/projects/1746a4f514ff4117bb854ea59ac442f6/snapshot",
+    "status": 200
+  },
+  {
+    "time": "2026-11-02T11:27:42.640Z",
+    "method": "PUT",
+    "url": "https://real2simulation.up.railway.app/api/workspace/projects/1746a4f514ff4117bb854ea59ac442f6/snapshot",
+    "status": 200
+  },
+  {
+    "time": "2026-11-02T11:28:06.694Z",
+    "method": "POST",
+    "url": "https://real2simulation.up.railway.app/api/lab",
+    "status": 200
+  },
+  {
+    "time": "2026-11-02T11:28:07.397Z",
+    "method": "POST",
+    "url": "https://real2simulation.up.railway.app/api/lab",
+    "status": 200
+  },
+  {
+    "time": "2026-11-02T11:28:30.527Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png",
+    "status": 500
+  },
+  {
+    "time": "2026-11-02T11:28:46.002Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png",
+    "status": 500
+  },
+  {
+    "time": "2026-11-02T11:29:15.330Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png",
+    "status": 500
+  },
+  {
+    "time": "2026-11-02T11:29:16.416Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png",
+    "status": 500
+  },
+  {
+    "time": "2026-11-02T11:33:06.980Z",
+    "method": "PUT",
+    "url": "https://real2simulation.up.railway.app/api/workspace/projects/687ef375e7c54838b6de4b4d4433a06f/snapshot",
+    "status": 200
+  },
+  {
+    "time": "2026-11-02T11:34:03.560Z",
+    "method": "PUT",
+    "url": "https://real2simulation.up.railway.app/api/workspace/projects/687ef375e7c54838b6de4b4d4433a06f/snapshot",
+    "status": 200
+  },
+  {
+    "time": "2026-11-02T11:34:23.413Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png",
+    "status": 500
+  },
+  {
+    "time": "2026-11-02T11:35:49.711Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/agent/lab/report",
+    "status": 404
+  },
+  {
+    "time": "2026-11-02T11:35:51.225Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/agent/lab/report",
+    "status": 404
+  },
+  {
+    "time": "2026-11-02T11:35:53.547Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/room.ply",
+    "status": 401
+  },
+  {
+    "time": "2026-11-02T11:35:55.428Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/room.ply",
+    "status": 401
+  },
+  {
+    "time": "2026-11-02T11:41:32.981Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/files/ec5cba4aa7a944b6aed1b2b20dbe980d/content",
+    "status": 404
+  },
+  {
+    "time": "2026-11-02T11:41:32.984Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/files/ea961ad9e1fb4760a14bed7d54ed5f4a/content",
+    "status": 500
+  },
+  {
+    "time": "2026-11-02T11:45:01.754Z",
+    "method": "GET",
+    "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82",
+    "status": 401
+  },
+  {
+    "time": "2026-11-02T11:46:18.344Z",
+    "method": "PUT",
+    "url": "https://real2simulation.up.railway.app/api/workspace/projects/687ef375e7c54838b6de4b4d4433a06f/snapshot",
+    "status": 200
+  }
+]

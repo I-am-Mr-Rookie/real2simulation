@@ -1,0 +1,114 @@
+{
+  "version": "lab-scene-v1",
+  "label": "SIMULATED",
+  "units": "m",
+  "gravity": [
+    0,
+    -9.81,
+    0
+  ],
+  "room": {
+    "kind": "plane",
+    "floor_y": 0
+  },
+  "objects": [
+    {
+      "id": "atwood-1",
+      "kind": "atwood",
+      "position": [
+        0,
+        1.6,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": true,
+      "sensor": true,
+      "params": {
+        "radius": 0.05,
+        "m1": 0.1,
+        "m2": 0.15,
+        "hang_length": 1
+      }
+    },
+    {
+      "id": "ball-1",
+      "kind": "ball",
+      "position": [
+        0,
+        2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "size": [
+        0.05,
+        0.05,
+        0.05
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {}
+    },
+    {
+      "id": "ball-2",
+      "kind": "ball",
+      "position": [
+        0.4,
+        1.2,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        -0.539936967192831,
+        0.8417054540981707
+      ],
+      "size": [
+        0.2,
+        0.1,
+        0.1
+      ],
+      "velocity": [
+        0,
+        0,
+        0
+      ],
+      "mass": 1,
+      "friction": 0.5,
+      "restitution": 0.3,
+      "fixed": false,
+      "sensor": true,
+      "params": {}
+    }
+  ]
+}

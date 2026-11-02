@@ -1,0 +1,2639 @@
+[
+  {
+    "name": "auth",
+    "utc": "2026-11-02T11:15:07.217Z",
+    "url": "https://real2simulation.up.railway.app/workspace",
+    "data": {
+      "method": "existing DEV Clerk test email and 424242 code from evidence/N46/browser-check.cjs",
+      "signedIn": true,
+      "path": "/workspace"
+    }
+  },
+  {
+    "name": "new-account-blocked",
+    "utc": "2026-11-02T11:16:43.137Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "path": "/sign-up/protect-check",
+      "excerpt": "Verifying your request\n\nPlease wait while we verify your request.\n\nVerification didn't complete. Please try again.\n\nTry again",
+      "reason": "Clerk protect-check verification did not complete; not bypassed"
+    }
+  },
+  {
+    "name": "workspace-home",
+    "utc": "2026-11-02T11:16:55.396Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nPrivate workspace\n\nGO TO\n\nPrivate workspace\nDemo library\nLocal simulation lab\nStorage\nFiles\n1.2 MB of 1.0 GB used\n0 of 20 uploads left today\nPrivate workspace\nGPU sleeping Queue empty\nAgent & tools\nWhat do you want to simulate?\nDescribe what you want to simulate\nAttach a video\nMuse Spark 1.3\nStandard\nTurn your room into a lab\nFilm a room; get an editable virtual lab with physics.\nMeasure your experiment\nFilm a motion; get a fit with uncertainty and a 3D replay.\nProjects\nShow empty (1)\nNew project\nThe agent asks what you are filming\nExperiment: ST03-trim.mp4\nReady\n9 h ago\nSAMPLE\nclassroom room and falling apple\nReady\n9 h ago\nRECORDED\nNot in a project\nReady\n9 h ago\nInstruments off\nUpload\nInterview\nRun\nFit\nReport\n\nNo scene yet. The viewport appears when an upload produces a scene.\n\nWaiting for an upload\n\nNo job yet",
+      "viewport": {
+        "width": 1366,
+        "height": 900
+      },
+      "emDashes": false
+    }
+  },
+  {
+    "name": "model-picker",
+    "utc": "2026-11-02T11:17:24.111Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "text": "Muse Spark 1.3\nStandard\nRecommended\nMuse Spark 1.3\nContributor\nCheapest\nMuse Open\nHosted on Baseten\nFastest\nMuse Spark 1.3 Standard\nIntelligence\nSpeed\nCost\n\nStrongest answers; prompts are not used for training\n\nUses the daily budget fastest\n\nRelative only: real speed and cost depend on the task.",
+      "bars": [
+        "Intelligence high, relative",
+        "Speed medium, relative",
+        "Cost high, relative"
+      ],
+      "solShown": 0
+    }
+  },
+  {
+    "name": "contributor-consent",
+    "utc": "2026-11-02T11:17:24.205Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "text": "Contributor mode shares your prompts\nMeta may train on your prompts and the agent replies\nDo not type anything private\nUse contributor\nKeep my current model"
+    }
+  },
+  {
+    "name": "model-picker",
+    "utc": "2026-11-02T11:19:17.963Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "text": "Muse Spark 1.3\nStandard\nRecommended\nMuse Spark 1.3\nContributor\nCheapest\nMuse Open\nHosted on Baseten\nFastest\nMuse Spark 1.3 Standard\nIntelligence\nSpeed\nCost\n\nStrongest answers; prompts are not used for training\n\nUses the daily budget fastest\n\nRelative only: real speed and cost depend on the task.",
+      "bars": [
+        "Intelligence high, relative",
+        "Speed medium, relative",
+        "Cost high, relative"
+      ],
+      "solShown": 0
+    }
+  },
+  {
+    "name": "contributor-consent",
+    "utc": "2026-11-02T11:19:18.044Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "text": "Contributor mode shares your prompts\nMeta may train on your prompts and the agent replies\nDo not type anything private\nUse contributor\nKeep my current model"
+    }
+  },
+  {
+    "name": "room-first-question",
+    "utc": "2026-11-02T11:19:33.838Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nPrivate workspace\n\nGO TO\n\nPrivate workspace\nDemo library\nLocal simulation lab\nStorage\nFiles\n1.2 MB of 1.0 GB used\n0 of 20 uploads left today\nPrivate workspace\nGPU sleeping Queue empty\nAgent & tools\nWhat do you want to simulate?\nDescribe what you want to simulate\nAttach a video\nMuse Spark 1.3\nStandard\nTurn your room into a lab\nFilm a room; get an editable virtual lab with physics.\nMeasure your experiment\nFilm a motion; get a fit with uncertainty and a 3D replay.\nProjects\nShow empty (1)\nNew project\nThe agent asks what you are filming\nExperiment: ST03-trim.mp4\nReady\n9 h ago\nSAMPLE\nclassroom room and falling apple\nReady\n9 h ago\nRECORDED\nNot in a project\nReady\n9 h ago\nInstruments off\nUpload\nInterview\nRun\nFit\nReport\n\nNo scene yet. The viewport appears when an upload produces a scene.\n\nWaiting for an upload\n\nNo job yet\n\nAgent & tools\nAgent\nStandard mode\n\nWhat are you uploading? Room video\n\nRoom video\n\nMessage the agent\nVoice\nSend\nTOOLS\nAgent\nWaiting for an upload\nRuns & history\nNo job yet\nReport\nNo report yet (needs a finished fit or clip result)",
+      "posts": []
+    }
+  },
+  {
+    "name": "room-flow-settled",
+    "utc": "2026-11-02T11:19:42.155Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nPrivate workspace\n\nGO TO\n\nPrivate workspace\nDemo library\nLocal simulation lab\nStorage\nFiles\n1.2 MB of 1.0 GB used\n0 of 20 uploads left today\nPrivate workspace\nGPU sleeping Queue empty\nAgent & tools\nWhat do you want to simulate?\nDescribe what you want to simulate\nRoom lab\nAttach a video\nMuse Spark 1.3\nStandard\nTurn your room into a lab\nFilm a room; get an editable virtual lab with physics.\nMeasure your experiment\nFilm a motion; get a fit with uncertainty and a 3D replay.\nProjects\nShow empty (2)\nNew project\nThe agent asks what you are filming\nExperiment: ST03-trim.mp4\nReady\n9 h ago\nSAMPLE\nclassroom room and falling apple\nReady\n9 h ago\nRECORDED\nNot in a project\nReady\n9 h ago\nInstruments off\nUpload\nInterview\nRun\nFit\nReport\n\nNo scene yet. The viewport appears when an upload produces a scene.\n\nWaiting for an upload\n\nNo job yet\n\nAgent & tools\nAgent\nStandard mode\n\nWhat are you uploading? Room video\n\nRoom video\n\nFilming tips for room video:\n\nWalk slowly around the room for 20 to 60 s, holding the phone steady.\nKeep the floor in view most of the time.\nUse even light; avoid pointing at bright windows.\nLay an A4 sheet flat on the floor for scale; without it, scale is MODEL-ESTIMATED.\nMove the camera sideways, not only by turning on the spot.\nMessage the agent\nVoice\nSend\nTOOLS\nAgent\nWaiting for an upload\nRuns & history\nNo job yet\nReport\nNo report yet (needs a finished fit or clip result)",
+      "posts": [
+        {
+          "time": "2026-11-02T11:19:34.551Z",
+          "method": "POST",
+          "url": "https://real2simulation.up.railway.app/api/workspace/projects",
+          "status": 201
+        }
+      ]
+    }
+  },
+  {
+    "name": "experiment-first-question",
+    "utc": "2026-11-02T11:19:55.490Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nPrivate workspace\n\nGO TO\n\nPrivate workspace\nDemo library\nLocal simulation lab\nStorage\nFiles\n1.2 MB of 1.0 GB used\n0 of 20 uploads left today\nPrivate workspace\nGPU sleeping Queue empty\nAgent & tools\nWhat do you want to simulate?\nDescribe what you want to simulate\nNew experiment\nAttach a video\nMuse Spark 1.3\nStandard\nTurn your room into a lab\nFilm a room; get an editable virtual lab with physics.\nMeasure your experiment\nFilm a motion; get a fit with uncertainty and a 3D replay.\nProjects\nShow empty (3)\nNew project\nThe agent asks what you are filming\nExperiment: ST03-trim.mp4\nReady\n9 h ago\nSAMPLE\nclassroom room and falling apple\nReady\n9 h ago\nRECORDED\nNot in a project\nReady\n9 h ago\nInstruments off\nUpload\nInterview\nRun\nFit\nReport\n\nNo scene yet. The viewport appears when an upload produces a scene.\n\nWaiting for an upload\n\nNo job yet\n\nAgent & tools\nAgent\nStandard mode\n\nWhat are you uploading? Room video\n\nRoom video\n\nFilming tips for room video:\n\nWalk slowly around the room for 20 to 60 s, holding the phone steady.\nKeep the floor in view most of the time.\nUse even light; avoid pointing at bright windows.\nLay an A4 sheet flat on the floor for scale; without it, scale is MODEL-ESTIMATED.\nMove the camera sideways, not only by turning on the spot.\n\nWhat are you uploading? My experiment\n\nMy experiment\n\nFilming tips for my experiment:\n\nFix the phone on a stand or table; do not pan or zoom.\nKeep the whole motion in frame against a plain background.\nUse bright, even light; 60 fps if your phone offers it.\nPut an object of known size (A4 sheet or ruler) in the plane of the motion for scale.\nRecord 5 to 30 s: a second or two still, then the motion.\nMessage the agent\nVoice\nSend\nTOOLS\nAgent\nWaiting for an upload\nRuns & history\nNo job yet\nReport\nNo report yet (needs a finished fit or clip result)",
+      "posts": [
+        {
+          "time": "2026-11-02T11:19:34.551Z",
+          "method": "POST",
+          "url": "https://real2simulation.up.railway.app/api/workspace/projects",
+          "status": 201
+        },
+        {
+          "time": "2026-11-02T11:19:42.523Z",
+          "method": "POST",
+          "url": "https://real2simulation.up.railway.app/api/workspace/projects",
+          "status": 201
+        }
+      ]
+    }
+  },
+  {
+    "name": "project-previews",
+    "utc": "2026-11-02T11:20:04.728Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "cards": [
+        {
+          "text": "New project\nThe agent asks what you are filming",
+          "img": false,
+          "video": false,
+          "art": true
+        },
+        {
+          "text": "Experiment: ST03-trim.mp4\nReady\n9 h ago",
+          "menu": "Project actions for Experiment: ST03-trim.mp4",
+          "img": false,
+          "video": false,
+          "art": true
+        },
+        {
+          "text": "SAMPLE\nclassroom room and falling apple\nReady\n9 h ago\nRECORDED",
+          "menu": "Project actions for classroom room and falling apple",
+          "img": false,
+          "video": false,
+          "art": true
+        },
+        {
+          "text": "Not in a project\nReady\n9 h ago",
+          "menu": "Project actions for Not in a project",
+          "img": false,
+          "video": false,
+          "art": true
+        },
+        {
+          "text": "New experiment\nEmpty\njust now",
+          "menu": "Project actions for New experiment",
+          "img": false,
+          "video": false,
+          "art": true
+        },
+        {
+          "text": "Room lab\nEmpty\njust now",
+          "menu": "Project actions for Room lab",
+          "img": false,
+          "video": false,
+          "art": true
+        },
+        {
+          "text": "Room 2026-11-02 01:59\nEmpty\n9 h ago",
+          "menu": "Project actions for Room 2026-11-02 01:59",
+          "img": false,
+          "video": false,
+          "art": true
+        }
+      ]
+    }
+  },
+  {
+    "name": "project-menu",
+    "utc": "2026-11-02T11:20:18.776Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "text": "Room lab\nEmpty\njust now\nOpen\nRename\nDelete",
+      "links": []
+    }
+  },
+  {
+    "name": "rename-dialog",
+    "utc": "2026-11-02T11:22:04.187Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "dialog": null,
+      "menu": "Open, Rename, Delete; empty QA project has no Download"
+    }
+  },
+  {
+    "name": "rename-patch",
+    "utc": "2026-11-02T11:22:18.486Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files",
+    "data": {
+      "requests": [
+        {
+          "time": "2026-11-02T11:22:04.467Z",
+          "method": "PATCH",
+          "url": "https://real2simulation.up.railway.app/api/workspace/projects/1746a4f514ff4117bb854ea59ac442f6",
+          "status": 200
+        }
+      ],
+      "project": "N57 QA room"
+    }
+  },
+  {
+    "name": "files-limits-storage",
+    "utc": "2026-11-02T11:22:18.510Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files",
+    "data": {
+      "text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nPrivate workspace\n\nGO TO\n\nPrivate workspace\nDemo library\nLocal simulation lab\nStorage\nFiles\n1.2 MB of 1.0 GB used\n0 of 20 uploads left today\nPrivate workspace\nGPU sleeping Queue empty\nAgent & tools\nFiles\nUpload video\n\nAccepted: mp4, mov or webm; up to 200 MB and 120 s.\n\nn43-tiny-17.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-16.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-15.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-14.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-13.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-12.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-11.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-10.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-9.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-8.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-7.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-6.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-5.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-4.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-3.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-2.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-1.mp4\n34 KB, 1.0 s, no project\nMeasure\nST03-trim.mp4\n401 KB, 4.0 s, no project\nMeasure\nRM02-trim.mp4\n286 KB, 6.0 s, no project\nMeasure\nInstruments off\nUpload\nInterview\nRun\nFit\nReport\n\nNo scene yet. The viewport appears when an upload produces a scene.\n\nWaiting for an upload\n\nNo job yet",
+      "uploadDisabled": [
+        {
+          "accept": "video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm",
+          "disabled": true
+        }
+      ],
+      "storage": []
+    }
+  },
+  {
+    "name": "file-preview",
+    "utc": "2026-11-02T11:22:30.912Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files",
+    "data": {
+      "text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nPrivate workspace\n\nGO TO\n\nPrivate workspace\nDemo library\nLocal simulation lab\nStorage\nFiles\n1.2 MB of 1.0 GB used\n0 of 20 uploads left today\nPrivate workspace\nGPU sleeping Queue empty\nAgent & tools\nFiles\nUpload video\n\nAccepted: mp4, mov or webm; up to 200 MB and 120 s.\n\nn43-tiny-17.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-16.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-15.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-14.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-13.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-12.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-11.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-10.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-9.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-8.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-7.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-6.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-5.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-4.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-3.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-2.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-1.mp4\n34 KB, 1.0 s, no project\nMeasure\nST03-trim.mp4\n401 KB, 4.0 s, no project\nMeasure\nRM02-trim.mp4\n286 KB, 6.0 s, no project\nMeasure\nRM02-trim.mp4\n286 KB, 6.0 s. RECORDED, scale unverified until measured.\nInstruments off\nUpload\nInterview\nRun\nFit\nReport\n\nNo scene yet. The viewport appears when an upload produces a scene.\n\nWaiting for an upload\n\nNo job yet",
+      "video": {
+        "readyState": 0,
+        "duration": null,
+        "videoWidth": 0,
+        "videoHeight": 0,
+        "error": null
+      }
+    }
+  },
+  {
+    "name": "file-preview-loaded",
+    "utc": "2026-11-02T11:22:58.620Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files",
+    "data": {
+      "video": {
+        "readyState": 4,
+        "duration": 6,
+        "videoWidth": 1280,
+        "videoHeight": 720,
+        "error": null
+      }
+    }
+  },
+  {
+    "name": "workspace-responsive-matrix",
+    "utc": "2026-11-02T11:23:53.830Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": [
+      {
+        "surface": "workspace",
+        "width": 1366,
+        "height": 900,
+        "theme": "light",
+        "tone": "light",
+        "docWidth": 1351,
+        "docHeight": 1338,
+        "scrollY": 438,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": -438,
+          "w": 1351,
+          "h": 56,
+          "right": 1351,
+          "bottom": -382
+        },
+        "workspaceBar": {
+          "x": 52,
+          "y": 0,
+          "w": 1299,
+          "h": 60,
+          "right": 1351,
+          "bottom": 60
+        },
+        "legacy": {
+          "x": 52,
+          "y": 513,
+          "w": 1299,
+          "h": 387,
+          "right": 1351,
+          "bottom": 900
+        },
+        "lab": null,
+        "top": null,
+        "emDashes": 0
+      },
+      {
+        "surface": "workspace",
+        "width": 1920,
+        "height": 900,
+        "theme": "light",
+        "tone": "light",
+        "docWidth": 1905,
+        "docHeight": 1338,
+        "scrollY": 438,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": -438,
+          "w": 1905,
+          "h": 56,
+          "right": 1905,
+          "bottom": -382
+        },
+        "workspaceBar": {
+          "x": 52,
+          "y": 0,
+          "w": 1853,
+          "h": 60,
+          "right": 1905,
+          "bottom": 60
+        },
+        "legacy": {
+          "x": 52,
+          "y": 513,
+          "w": 1853,
+          "h": 387,
+          "right": 1905,
+          "bottom": 900
+        },
+        "lab": null,
+        "top": null,
+        "emDashes": 0
+      },
+      {
+        "surface": "workspace",
+        "width": 375,
+        "height": 900,
+        "theme": "light",
+        "tone": "light",
+        "docWidth": 380,
+        "docHeight": 2363,
+        "scrollY": 1463,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": -1463,
+          "w": 360,
+          "h": 53,
+          "right": 360,
+          "bottom": -1410
+        },
+        "workspaceBar": {
+          "x": 52,
+          "y": 0,
+          "w": 308,
+          "h": 81,
+          "right": 360,
+          "bottom": 81
+        },
+        "legacy": {
+          "x": 52,
+          "y": 313,
+          "w": 308,
+          "h": 587,
+          "right": 360,
+          "bottom": 900
+        },
+        "lab": null,
+        "top": null,
+        "emDashes": 0
+      },
+      {
+        "surface": "workspace",
+        "width": 1366,
+        "height": 900,
+        "theme": "dark",
+        "tone": "dark",
+        "docWidth": 1351,
+        "docHeight": 1338,
+        "scrollY": 438,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": -438,
+          "w": 1351,
+          "h": 56,
+          "right": 1351,
+          "bottom": -382
+        },
+        "workspaceBar": {
+          "x": 52,
+          "y": 0,
+          "w": 1299,
+          "h": 60,
+          "right": 1351,
+          "bottom": 60
+        },
+        "legacy": {
+          "x": 52,
+          "y": 513,
+          "w": 1299,
+          "h": 387,
+          "right": 1351,
+          "bottom": 900
+        },
+        "lab": null,
+        "top": null,
+        "emDashes": 0
+      },
+      {
+        "surface": "workspace",
+        "width": 1920,
+        "height": 900,
+        "theme": "dark",
+        "tone": "dark",
+        "docWidth": 1905,
+        "docHeight": 1338,
+        "scrollY": 438,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": -438,
+          "w": 1905,
+          "h": 56,
+          "right": 1905,
+          "bottom": -382
+        },
+        "workspaceBar": {
+          "x": 52,
+          "y": 0,
+          "w": 1853,
+          "h": 60,
+          "right": 1905,
+          "bottom": 60
+        },
+        "legacy": {
+          "x": 52,
+          "y": 513,
+          "w": 1853,
+          "h": 387,
+          "right": 1905,
+          "bottom": 900
+        },
+        "lab": null,
+        "top": null,
+        "emDashes": 0
+      },
+      {
+        "surface": "workspace",
+        "width": 375,
+        "height": 900,
+        "theme": "dark",
+        "tone": "dark",
+        "docWidth": 380,
+        "docHeight": 2363,
+        "scrollY": 1463,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": -1463,
+          "w": 360,
+          "h": 53,
+          "right": 360,
+          "bottom": -1410
+        },
+        "workspaceBar": {
+          "x": 52,
+          "y": 0,
+          "w": 308,
+          "h": 81,
+          "right": 360,
+          "bottom": 81
+        },
+        "legacy": {
+          "x": 52,
+          "y": 313,
+          "w": 308,
+          "h": 587,
+          "right": 360,
+          "bottom": 900
+        },
+        "lab": null,
+        "top": null,
+        "emDashes": 0
+      }
+    ]
+  },
+  {
+    "name": "paid-job-admission",
+    "utc": "2026-11-02T11:24:28.654Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files",
+    "data": {
+      "file": "ST03-trim.mp4",
+      "duration_s": 4.004,
+      "size": 410461,
+      "known_size": "not supplied, pixels only",
+      "model": "sam-3.1 hosted Meta Model API",
+      "source": "Build/measurement/hosted_sam.py USD_PER_FRAME=0.0002; live_experiment.py passes actual probed frame count; default 3600-frame reserve=$0.72 < $1; this 4.004s clip expected ~120 frames",
+      "paidJobsRequested": 1,
+      "noRetry": true
+    }
+  },
+  {
+    "name": "real-job-progress-files",
+    "utc": "2026-11-02T11:24:35.789Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files",
+    "data": {
+      "job": {
+        "status": 202,
+        "body": {
+          "experiment": {
+            "id": "0ac7c8592779473daa5e939057824940",
+            "project_id": "f09d091678f247bdbcd596c01d7c4907",
+            "file_id": "42fcf3760e5742efa729285887bbbe13",
+            "status": "running",
+            "request": {
+              "file_id": "42fcf3760e5742efa729285887bbbe13",
+              "target_text": "apple",
+              "point": null,
+              "known_size": null
+            },
+            "result": null,
+            "error": null,
+            "created": "2026-11-02T11:24:28Z",
+            "updated": "2026-11-02T11:24:28Z"
+          }
+        }
+      },
+      "text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nPrivate workspace\n\nGO TO\n\nPrivate workspace\nDemo library\nLocal simulation lab\nStorage\nFiles\n1.2 MB of 1.0 GB used\n0 of 20 uploads left today\nPrivate workspace\nGPU sleeping Queue empty\nAgent & tools\nFiles\nUpload video\n\nAccepted: mp4, mov or webm; up to 200 MB and 120 s.\n\nn43-tiny-17.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-16.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-15.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-14.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-13.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-12.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-11.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-10.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-9.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-8.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-7.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-6.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-5.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-4.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-3.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-2.mp4\n34 KB, 1.0 s, no project\nMeasure\nn43-tiny-1.mp4\n34 KB, 1.0 s, no project\nMeasure\nST03-trim.mp4\n401 KB, 4.0 s, no project\nMeasure\nRM02-trim.mp4\n286 KB, 6.0 s, no project\nMeasure\nProcessing 1 item\nMeasurement\nTracking with hosted SAM 3.1\nInstruments off\nUpload\nInterview\nRun\nFit\nReport\n\nNo scene yet. The viewport appears when an upload produces a scene.\n\nWaiting for an upload\n\nNo job yet",
+      "dialogs": 0,
+      "progress": 1
+    }
+  },
+  {
+    "name": "real-job-progress-home",
+    "utc": "2026-11-02T11:24:51.231Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nPrivate workspace\n\nGO TO\n\nPrivate workspace\nDemo library\nLocal simulation lab\nStorage\nFiles\n1.2 MB of 1.0 GB used\n0 of 20 uploads left today\nPrivate workspace\nGPU sleeping Queue empty\nAgent & tools\nWhat do you want to simulate?\nDescribe what you want to simulate\nAttach a video\nMuse Spark 1.3\nStandard\nTurn your room into a lab\nFilm a room; get an editable virtual lab with physics.\nMeasure your experiment\nFilm a motion; get a fit with uncertainty and a 3D replay.\nProjects\nShow empty (3)\nNew project\nThe agent asks what you are filming\nExperiment: ST03-trim.mp4\nReady\njust now\nExperiment: ST03-trim.mp4\nReady\n9 h ago\nSAMPLE\nclassroom room and falling apple\nReady\n9 h ago\nRECORDED\nNot in a project\nReady\n9 h ago\nRecent activity\nMeasurement 0ac7c8\nDone\n\nvertical acceleration (g if only gravity acts)\n2330 +/- 100 px/s^2 1 sigma\n\nscale unverified\nplayback clock\nfree fall\nscale unverified: no known size given, so results are in pixels; no metric value\nplayback timestamps; capture clock unverified (slow motion would change every time-based value)\nMEASURED: hosted SAM 3.1 box centres in image pixels\n-800\n-600\n-400\n-200\n0\n200\n0.0\n0.2\n0.4\n0.6\n0.8\ntime (s)\ny position (px)\nDOTS: MEASURED TRACK, 19 FRAMES. LINE: FITTED CURVE. BAND: 1 SIGMA OF THE FIT.\n3D replay, redo with changes\n\nGuess the Gravity needs a known size, so the value is in m/s^2.\n\nInstruments off\nUpload\nInterview\nRun\nFit\nReport\n\nNo scene yet. The viewport appears when an upload produces a scene.\n\nWaiting for an upload\n\nNo job yet",
+      "progress": [
+        {
+          "label": "Storage used",
+          "html": "<progress max=\"100\" value=\"0\" aria-label=\"Storage used\"></progress>"
+        }
+      ],
+      "popup": 0,
+      "gpu": {
+        "status": 200,
+        "body": {
+          "state": "red",
+          "queue_length": 0,
+          "your_position": null,
+          "source": "modal+jobs"
+        }
+      }
+    }
+  },
+  {
+    "name": "template-editor-initial",
+    "utc": "2026-11-02T11:24:52.292Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "text": "Skip to content\nR2S\nPlay\nReset\nImport scene or room (.json, .ply)\nAgent\nObjects\nRoom\n\nNo objects yet. Use Add above the canvas.\n\nScene JSON (lab-scene-v1)\nAdd\nSIMULATED\n\nAdd an object, then press Play. Everything here is SIMULATED. Gravity [0, -9.81, 0] m/s^2.\n\nScene\nGravity (m/s^2)\nx\ny\nz\n\nTime step 0.0083 s (fixed 120 Hz). 0 objects. Select an object in the canvas or the Objects list to edit it.\n\nPlay\nt = 0.00 s\n\nTurn on Record trajectory sensor for an object, then Play to see a live graph.",
+      "buttons": [
+        {
+          "text": "",
+          "aria": "Undo"
+        },
+        {
+          "text": "",
+          "aria": "Redo"
+        },
+        {
+          "text": "Play",
+          "aria": null
+        },
+        {
+          "text": "Reset",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": "Fit view to the room"
+        },
+        {
+          "text": "",
+          "aria": "Export traces"
+        },
+        {
+          "text": "",
+          "aria": "Export scene"
+        },
+        {
+          "text": "",
+          "aria": "Fullscreen"
+        },
+        {
+          "text": "Agent",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": "Objects"
+        },
+        {
+          "text": "",
+          "aria": "Room"
+        },
+        {
+          "text": "Objects",
+          "aria": null
+        },
+        {
+          "text": "Room",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": "Collapse side panel"
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": "Select"
+        },
+        {
+          "text": "",
+          "aria": "Move"
+        },
+        {
+          "text": "",
+          "aria": "Rotate"
+        },
+        {
+          "text": "",
+          "aria": "Resize"
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": null
+        },
+        {
+          "text": "Play",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": "Reset"
+        }
+      ]
+    }
+  },
+  {
+    "name": "lab-add-menu",
+    "utc": "2026-11-02T11:25:42.235Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "text": "BASICS\nBall\nBlock\nRamp\nPendulum\nSpring\nAPPARATUS\nFlywheel\nAtwood machine\nCart and track\nProjectile launcher\nCollision balls\nMASS SET\n10 g mass\n20 g mass\n50 g mass\n100 g mass\n200 g mass\n500 g mass\n1 kg mass\nPROBES\nRuler\nProtractor\nPhotogate timer\nTEMPLATES\nTemplate trials",
+      "icons": 21
+    }
+  },
+  {
+    "name": "lab-add-ball",
+    "utc": "2026-11-02T11:25:42.616Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "outline": "atwood-1\nAtwood machine\nball-1\nBall\nball-2\nBall",
+      "properties": "ball-2 Ball\nPosition (m)\nx\ny\nz\nSize (m)\nx\ny\nz\nPhysics\nMass (kg)\nFixed in place\nRecord trajectory sensor\nDelete",
+      "modeButtons": [
+        {
+          "label": "Select",
+          "pressed": "false"
+        },
+        {
+          "label": "Move",
+          "pressed": "true"
+        },
+        {
+          "label": "Rotate",
+          "pressed": "false"
+        },
+        {
+          "label": "Resize",
+          "pressed": "false"
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        },
+        {
+          "label": null,
+          "pressed": null
+        }
+      ]
+    }
+  },
+  {
+    "name": "lab-rotate-gizmo",
+    "utc": "2026-11-02T11:26:23.247Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "before": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "after": [
+        0,
+        0,
+        -0.539936967192831,
+        0.8417054540981707
+      ],
+      "pressed": "true"
+    }
+  },
+  {
+    "name": "lab-move-resize",
+    "utc": "2026-11-02T11:26:23.640Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "object": {
+        "id": "ball-2",
+        "kind": "ball",
+        "position": [
+          0.4,
+          1.2,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.539936967192831,
+          0.8417054540981707
+        ],
+        "size": [
+          0.2,
+          0.1,
+          0.1
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "mass": 1,
+        "friction": 0.5,
+        "restitution": 0.3,
+        "fixed": false,
+        "sensor": true,
+        "params": {}
+      }
+    }
+  },
+  {
+    "name": "lab-undo-redo",
+    "utc": "2026-11-02T11:26:23.905Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "undoneSize": [
+        0.1,
+        0.1,
+        0.1
+      ],
+      "redoneSize": [
+        0.2,
+        0.1,
+        0.1
+      ]
+    }
+  },
+  {
+    "name": "lab-play-pause-graph",
+    "utc": "2026-11-02T11:27:04.835Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "timeline": "Resume\nt = 2.73 s\nball-2 y position (m): 0.100 at t = 2.73 s. SIMULATED",
+      "graphs": [
+        {
+          "label": "ball-2 y position (m) over time, SIMULATED",
+          "pointCount": 165
+        }
+      ],
+      "scrubbers": 0,
+      "resultCards": 0,
+      "status": "Paused. Resume, reset, or export the SIMULATED sensor traces. Gravity [0, -9.81, 0] m/s^2."
+    }
+  },
+  {
+    "name": "pause-snapshot",
+    "utc": "2026-11-02T11:27:05.558Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "snapshotUrl": "/api/workspace/projects/1746a4f514ff4117bb854ea59ac442f6/snapshot?v=1793618812139188624",
+      "put": [
+        {
+          "time": "2026-11-02T11:26:53.148Z",
+          "method": "PUT",
+          "url": "https://real2simulation.up.railway.app/api/workspace/projects/1746a4f514ff4117bb854ea59ac442f6/snapshot",
+          "status": 200
+        }
+      ]
+    }
+  },
+  {
+    "name": "lab-reset",
+    "utc": "2026-11-02T11:27:05.758Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "timeline": "Play\nt = 0.00 s\n\nTurn on Record trajectory sensor for an object, then Play to see a live graph.",
+      "status": "Paused. Resume, reset, or export the SIMULATED sensor traces. Gravity [0, -9.81, 0] m/s^2."
+    }
+  },
+  {
+    "name": "lab-delete-undo",
+    "utc": "2026-11-02T11:27:05.989Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "afterDelete": [
+        "atwood-1",
+        "ball-1"
+      ],
+      "afterUndo": [
+        "atwood-1",
+        "ball-1",
+        "ball-2"
+      ]
+    }
+  },
+  {
+    "name": "lab-export-import",
+    "utc": "2026-11-02T11:27:42.223Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "download": "lab-scene.json",
+      "version": "lab-scene-v1",
+      "exportedIds": [
+        "atwood-1",
+        "ball-1",
+        "ball-2"
+      ],
+      "importedIds": [
+        "atwood-1",
+        "ball-1",
+        "ball-2"
+      ],
+      "status": "Scene loaded: 3 objects. Gravity [0, -9.81, 0] m/s^2."
+    }
+  },
+  {
+    "name": "lab-honesty",
+    "utc": "2026-11-02T11:27:42.352Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "expanded": "",
+      "text": "SIMULATED\nSIMULATED Physics runs in your browser (Rapier). Not a measurement."
+    }
+  },
+  {
+    "name": "lab-agent-drawer",
+    "utc": "2026-11-02T11:27:42.440Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "text": "Ask the agent\n\nAsk for an experiment, or to add, move, resize or remove objects.\n\nDrop a 5 cm ball from 1.2 m and measure g\nPendulum, 0.8 m, find the period\nWrite report\nAsk",
+      "voice": 0,
+      "suggestions": "Drop a 5 cm ball from 1.2 m and measure g\nPendulum, 0.8 m, find the period\nWrite report"
+    }
+  },
+  {
+    "name": "lab-agent-suggestion-selected",
+    "utc": "2026-11-02T11:27:42.504Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "input": "Drop a 5 cm ball from 1.2 m and measure g",
+      "sent": false,
+      "reason": "Only one paid room/measure job authorized; no additional paid agent turn sent"
+    }
+  },
+  {
+    "name": "lab-fullscreen",
+    "utc": "2026-11-02T11:27:42.838Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "actual": "lab-editor",
+      "fullscreenButtons": 1,
+      "fitViewButtons": 1
+    }
+  },
+  {
+    "name": "lab-import-settled",
+    "utc": "2026-11-02T11:27:50.657Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "ids": [
+        "atwood-1",
+        "ball-1",
+        "n57-imported-ball"
+      ],
+      "outline": "atwood-1\nAtwood machine\nball-1\nBall\nn57-imported-ball\nBall"
+    }
+  },
+  {
+    "name": "paid-job-result",
+    "utc": "2026-11-02T11:27:51.425Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "status": 200,
+      "experimentStatus": "done",
+      "error": null,
+      "result": {
+        "cost_usd": 0.024,
+        "video_frames_processed": 120,
+        "fit": {
+          "x": {
+            "model": "constant_acceleration",
+            "aic": [
+              14.216158354953688,
+              2.777447291476049
+            ],
+            "rmse_px": 0.918692313323781,
+            "n": 19,
+            "accel_px_s2": 44.80885122076051,
+            "accel_sigma_px_s2": 11.045870990673588
+          },
+          "y": {
+            "model": "constant_acceleration",
+            "aic": [
+              152.06525970715927,
+              87.81626542886633
+            ],
+            "rmse_px": 8.611164995531642,
+            "n": 19,
+            "accel_px_s2": -2331.0424081931556,
+            "accel_sigma_px_s2": 103.53609825678797
+          },
+          "model_selection": "AIC over degree 1 and 2 per axis (Build/fitter)"
+        }
+      }
+    }
+  },
+  {
+    "name": "synthetic-template-trial",
+    "utc": "2026-11-02T11:28:07.115Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nPrivate workspace\n\nOpen 3D lab editor\n\nSYNTHETIC LAB · MYSTERY-G\n\nTest a motion model\n\nExplore a deterministic, simulated trajectory before connecting a measured video.\n\nTemplate\nFree fall\nBallistic drop\nProjectile\nBallistic launch\nRamp\nSliding motion\nPendulum\nOscillation\nMystery-g mode\nHide the simulated gravity until reveal\nRun trial\nFit & reveal\n\nFitting the ballistic model…\n\nOBSERVED TRAJECTORY\n\nFree fall samples\nSIMULATED · M\n\nDownward vertical displacement from start (positive down), not distance along the ramp or pendulum arc. The chart uses all finite observations; the table is sampled.\n\nSIMULATED\ntime (s)\ndownward displacement (m)\nSampled observations\nTIME (S)\tDOWNWARD DISPLACEMENT (M)\n0.00\t0.000\n0.03\t0.003\n0.05\t0.013\n0.08\t0.030\n0.10\t0.053\n0.13\t0.083\n0.16\t0.119\n0.18\t0.162\n0.20\t0.196\nIn-browser trajectory\n\nSIMULATED · SYNTHETIC · RK4-ONLY. NO CONTACT RESPONSE OR FREE DRAG.\n\nCompute in browser\n\nNORMAL mode only. Compute to show the actual engine trace.\n\nLimits: synthetic authored instrument settings first-order independent timing/position uncertainty; no correlated clock-rate or scale uncertainty; not calibrated\n\nDEVELOPMENT BUILD\nSign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.\nPowered by Stability AI",
+      "requests": [
+        {
+          "time": "2026-11-02T11:28:06.694Z",
+          "method": "POST",
+          "url": "https://real2simulation.up.railway.app/api/lab",
+          "status": 200
+        }
+      ],
+      "paid": false
+    }
+  },
+  {
+    "name": "synthetic-trial-fit-settled",
+    "utc": "2026-11-02T11:28:16.234Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6",
+    "data": {
+      "text": "Skip to content\nReal2Simulation\nDemo library\nLocal simulation lab\nPrivate workspace\n\nOpen 3D lab editor\n\nSYNTHETIC LAB · MYSTERY-G\n\nTest a motion model\n\nExplore a deterministic, simulated trajectory before connecting a measured video.\n\nTemplate\nFree fall\nBallistic drop\nProjectile\nBallistic launch\nRamp\nSliding motion\nPendulum\nOscillation\nMystery-g mode\nHide the simulated gravity until reveal\nRun trial\nFit & reveal\n\nFit complete. This is simulated evidence, not a calibrated measurement.\n\nOBSERVED TRAJECTORY\n\nFree fall samples\nSIMULATED · M\n\nDownward vertical displacement from start (positive down), not distance along the ramp or pendulum arc. The chart uses all finite observations; the table is sampled.\n\nSIMULATED\ntime (s)\ndownward displacement (m)\nSampled observations\nTIME (S)\tDOWNWARD DISPLACEMENT (M)\n0.00\t0.000\n0.03\t0.003\n0.05\t0.013\n0.08\t0.030\n0.10\t0.053\n0.13\t0.083\n0.16\t0.119\n0.18\t0.162\n0.20\t0.196\n\nREVEAL\n\n9.810 ± 0.0000737 m/s^2\n\nGravity · source: simulated\n\nUncertainty is one standard uncertainty (1σ), not a 95% interval.\n\nUncertainty model: independent_position_time_first_order. independent observation errors first-order timing linearization at fitted velocity per-observation variance max(RSS/dof, position_sigma^2 + velocity^2*time_sigma^2) scale fixed no correlated clock-rate or scale uncertainty no calibration of declared standard uncertainties no errors-in-variables bias correction\n\nIn-browser trajectory\n\nSIMULATED · SYNTHETIC · RK4-ONLY. NO CONTACT RESPONSE OR FREE DRAG.\n\nCompute in browser\n\nNORMAL mode only. Compute to show the actual engine trace.\n\nLimits: synthetic authored instrument settings first-order independent timing/position uncertainty; no correlated clock-rate or scale uncertainty; not calibrated\n\nDEVELOPMENT BUILD\nSign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.\nPowered by Stability AI",
+      "emDashes": false
+    }
+  },
+  {
+    "name": "sample-room-open",
+    "utc": "2026-11-02T11:28:18.948Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "sample": {
+        "job_id": "e704985d4073435fb816941a6ab12e82",
+        "state": "done",
+        "file_id": null,
+        "project_id": "687ef375e7c54838b6de4b4d4433a06f",
+        "sample": true,
+        "scale": "scale unverified",
+        "label": "SAMPLE / RECORDED: stock Pexels clips analysed earlier; not your video and not a new measurement.",
+        "updated_at": "2026-11-02T01:59:01Z",
+        "id": "e704985d4073435fb816941a6ab12e82"
+      },
+      "initialText": "Skip to content\nR2S\nPlay\nReset\nImport scene or room (.json, .ply)\nAgent\nObjects\nRoom\n\nNo objects yet. Use Add above the canvas.\n\nScene JSON (lab-scene-v1)\nAdd\nSIMULATED · scale unverified\n\nYour room: 5000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply.\n\nScene\nGravity (m/s^2)\nx\ny\nz\n\nTime step 0.0083 s (fixed 120 Hz). 0 objects. Select an object in the canvas or the Objects list to edit it.\n\nPlay\nt = 0.00 s\n\nTurn on Record trajectory sensor for an object, then Play to see a live graph."
+    }
+  },
+  {
+    "name": "room-tools",
+    "utc": "2026-11-02T11:28:44.980Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "text": "Objects\nRoom\nYour room\n\nGeometry MODEL-ESTIMATED (MapAnything). Scale scale unverified. Gravity unverified.\n\nMark the A4 sheet\nAdd a real object\nBuild lab shell\nView \n1\n\nNo view image for this room, so A4 and object clicks are unavailable here.\n\nRoom collisions\n Show raw scan\n\nRaw scan: the point cloud and 63 static collision boxes from it (MODEL-ESTIMATED). Off by default: the walls and furniture are the lab.",
+      "views": [
+        {
+          "src": "/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png?v=0",
+          "naturalWidth": 0,
+          "naturalHeight": 0,
+          "display": "none"
+        }
+      ],
+      "showRawScan": 1
+    }
+  },
+  {
+    "name": "room-tool-state-before-tab",
+    "utc": "2026-11-02T11:28:45.087Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "pressed": "true",
+      "note": "Your room\n\nGeometry MODEL-ESTIMATED (MapAnything). Scale scale unverified. Gravity unverified.\n\nMark the A4 sheet\nAdd a real object\nBuild lab shell\nView \n1\n\nClick both ends of the A4 sheet long edge (29.7 cm).",
+      "clickMarkers": 0
+    }
+  },
+  {
+    "name": "room-tool-state-after-tab",
+    "utc": "2026-11-02T11:28:45.279Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "pressed": "false",
+      "text": "Your room\n\nGeometry MODEL-ESTIMATED (MapAnything). Scale scale unverified. Gravity unverified.\n\nMark the A4 sheet\nAdd a real object\nBuild lab shell\nView \n1",
+      "clickMarkers": 0
+    }
+  },
+  {
+    "name": "sample-room-view-response",
+    "utc": "2026-11-02T11:29:15.331Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "status": 500,
+      "body": "Internal Server Error"
+    }
+  },
+  {
+    "name": "room-raw-collisions-toggle",
+    "utc": "2026-11-02T11:29:16.562Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "initialChecked": true,
+      "initialEnabled": false,
+      "boxes": 63,
+      "offEnabled": false,
+      "onEnabled": true,
+      "firstBoxes": [
+        [
+          -2.1207,
+          0.3288,
+          -2.7612,
+          0.2239,
+          0.2239,
+          0.0746
+        ],
+        [
+          -1.0759,
+          0.2542,
+          -2.7612,
+          0.0746,
+          0.1493,
+          0.0746
+        ],
+        [
+          -0.6281,
+          0.1796,
+          -2.6865,
+          0.0746,
+          0.0746,
+          0.1493
+        ]
+      ]
+    }
+  },
+  {
+    "name": "room-collision-drop",
+    "utc": "2026-11-02T11:33:05.533Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "box": [
+        0.6405,
+        0.2542,
+        -2.7612,
+        1.0448,
+        0.1493,
+        0.0746
+      ],
+      "expectedSurfaceY": 0.32885,
+      "timeline": "Resume\nt = 2.12 s\nball-1 y position (m): 0.050 at t = 2.12 s. SIMULATED",
+      "status": "Paused. Resume, reset, or export the SIMULATED sensor traces. Gravity [0, -9.81, 0] m/s^2, room room.ply.",
+      "scale": "unverified",
+      "label": "SIMULATED"
+    }
+  },
+  {
+    "name": "room-collision-wall-result",
+    "utc": "2026-11-02T11:34:22.271Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "label": "SIMULATED",
+      "scale": "unverified",
+      "gravity": [
+        0,
+        0,
+        0
+      ],
+      "samples": 217,
+      "first": {
+        "t": 0,
+        "p": [
+          0.5659000277519226,
+          0.7766000032424927,
+          -3.4000000953674316
+        ]
+      },
+      "closestToWall": {
+        "t": 0.516666667,
+        "p": [
+          0.5659000277519226,
+          0.7766000032424927,
+          -2.8833413124084473
+        ]
+      },
+      "last": {
+        "t": 1.8,
+        "p": [
+          0.5659000277519226,
+          0.7766000032424927,
+          -3.2660012245178223
+        ]
+      },
+      "wallFrontFace": -2.8358,
+      "ballRadius": 0.05,
+      "bouncedBack": true,
+      "receipt": "room-collision-traces.json",
+      "note": "Earlier gravity drop started among overlapping wall boxes, so its final floor height was not a valid collision verdict."
+    }
+  },
+  {
+    "name": "room-tools-not-run",
+    "utc": "2026-11-02T11:34:22.656Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "a4": "NOT RUN end-to-end: sample view endpoint returns HTTP500, image naturalWidth=0; tool can be armed only",
+      "realObject": "NOT RUN end-to-end: missing sample view; additional paid call forbidden after one measurement",
+      "shell": "NOT RUN: additional hosted SAM/Stable Fast 3D paid operation outside one-job allowance",
+      "agent": "NOT RUN submitted execution: additional model call not sent; drawer and suggestion-fill tested"
+    }
+  },
+  {
+    "name": "lab-responsive-matrix",
+    "utc": "2026-11-02T11:35:56.143Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": [
+      {
+        "surface": "template-editor",
+        "width": 1366,
+        "height": 900,
+        "theme": "light",
+        "tone": "light",
+        "docWidth": 1366,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 900,
+          "right": 1366,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 49,
+          "right": 1366,
+          "bottom": 49
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 1366,
+        "topScrollWidth": 1366,
+        "offscreenButtons": [],
+        "unlabelledTopButtons": []
+      },
+      {
+        "surface": "template-editor",
+        "width": 1920,
+        "height": 900,
+        "theme": "light",
+        "tone": "light",
+        "docWidth": 1920,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 900,
+          "right": 1920,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 49,
+          "right": 1920,
+          "bottom": 49
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 1920,
+        "topScrollWidth": 1920,
+        "offscreenButtons": [],
+        "unlabelledTopButtons": []
+      },
+      {
+        "surface": "template-editor",
+        "width": 375,
+        "height": 900,
+        "theme": "light",
+        "tone": "light",
+        "docWidth": 375,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 900,
+          "right": 375,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 64,
+          "right": 375,
+          "bottom": 64
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 375,
+        "topScrollWidth": 532,
+        "offscreenButtons": [
+          {
+            "text": "",
+            "label": "Export scene",
+            "x": 356,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 396
+          },
+          {
+            "text": "",
+            "label": "Fullscreen",
+            "x": 444,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 484
+          },
+          {
+            "text": "",
+            "label": null,
+            "x": 488,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 528
+          }
+        ],
+        "unlabelledTopButtons": [
+          "",
+          "le-agent-btn"
+        ]
+      },
+      {
+        "surface": "template-editor",
+        "width": 1366,
+        "height": 900,
+        "theme": "dark",
+        "tone": "dark",
+        "docWidth": 1366,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 900,
+          "right": 1366,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 49,
+          "right": 1366,
+          "bottom": 49
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 1366,
+        "topScrollWidth": 1366,
+        "offscreenButtons": [],
+        "unlabelledTopButtons": []
+      },
+      {
+        "surface": "template-editor",
+        "width": 1920,
+        "height": 900,
+        "theme": "dark",
+        "tone": "dark",
+        "docWidth": 1920,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 900,
+          "right": 1920,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 49,
+          "right": 1920,
+          "bottom": 49
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 1920,
+        "topScrollWidth": 1920,
+        "offscreenButtons": [],
+        "unlabelledTopButtons": []
+      },
+      {
+        "surface": "template-editor",
+        "width": 375,
+        "height": 900,
+        "theme": "dark",
+        "tone": "dark",
+        "docWidth": 375,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 900,
+          "right": 375,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 64,
+          "right": 375,
+          "bottom": 64
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 375,
+        "topScrollWidth": 532,
+        "offscreenButtons": [
+          {
+            "text": "",
+            "label": "Export scene",
+            "x": 356,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 396
+          },
+          {
+            "text": "",
+            "label": "Fullscreen",
+            "x": 444,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 484
+          },
+          {
+            "text": "",
+            "label": null,
+            "x": 488,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 528
+          }
+        ],
+        "unlabelledTopButtons": [
+          "",
+          "le-agent-btn"
+        ]
+      },
+      {
+        "surface": "public-rm02-editor",
+        "width": 1366,
+        "height": 900,
+        "theme": "light",
+        "tone": "light",
+        "docWidth": 1366,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 900,
+          "right": 1366,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 49,
+          "right": 1366,
+          "bottom": 49
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 1366,
+        "topScrollWidth": 1366,
+        "offscreenButtons": [],
+        "unlabelledTopButtons": []
+      },
+      {
+        "surface": "public-rm02-editor",
+        "width": 1920,
+        "height": 900,
+        "theme": "light",
+        "tone": "light",
+        "docWidth": 1920,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 900,
+          "right": 1920,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 49,
+          "right": 1920,
+          "bottom": 49
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 1920,
+        "topScrollWidth": 1920,
+        "offscreenButtons": [],
+        "unlabelledTopButtons": []
+      },
+      {
+        "surface": "public-rm02-editor",
+        "width": 375,
+        "height": 900,
+        "theme": "light",
+        "tone": "light",
+        "docWidth": 375,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 900,
+          "right": 375,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 64,
+          "right": 375,
+          "bottom": 64
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 375,
+        "topScrollWidth": 532,
+        "offscreenButtons": [
+          {
+            "text": "",
+            "label": "Export scene",
+            "x": 356,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 396
+          },
+          {
+            "text": "",
+            "label": "Fullscreen",
+            "x": 444,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 484
+          },
+          {
+            "text": "",
+            "label": null,
+            "x": 488,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 528
+          }
+        ],
+        "unlabelledTopButtons": [
+          "",
+          "le-agent-btn"
+        ]
+      },
+      {
+        "surface": "public-rm02-editor",
+        "width": 1366,
+        "height": 900,
+        "theme": "dark",
+        "tone": "dark",
+        "docWidth": 1366,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 900,
+          "right": 1366,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 1366,
+          "h": 49,
+          "right": 1366,
+          "bottom": 49
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 1366,
+        "topScrollWidth": 1366,
+        "offscreenButtons": [],
+        "unlabelledTopButtons": []
+      },
+      {
+        "surface": "public-rm02-editor",
+        "width": 1920,
+        "height": 900,
+        "theme": "dark",
+        "tone": "dark",
+        "docWidth": 1920,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 900,
+          "right": 1920,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 1920,
+          "h": 49,
+          "right": 1920,
+          "bottom": 49
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 1920,
+        "topScrollWidth": 1920,
+        "offscreenButtons": [],
+        "unlabelledTopButtons": []
+      },
+      {
+        "surface": "public-rm02-editor",
+        "width": 375,
+        "height": 900,
+        "theme": "dark",
+        "tone": "dark",
+        "docWidth": 375,
+        "docHeight": 900,
+        "scrollY": 0,
+        "bodyOverflow": "hidden auto",
+        "siteHeader": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "right": 0,
+          "bottom": 0
+        },
+        "workspaceBar": null,
+        "legacy": null,
+        "lab": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 900,
+          "right": 375,
+          "bottom": 900
+        },
+        "top": {
+          "x": 0,
+          "y": 0,
+          "w": 375,
+          "h": 64,
+          "right": 375,
+          "bottom": 64
+        },
+        "emDashes": 0,
+        "siteHeaderDisplay": "none",
+        "siteFooterDisplay": "none",
+        "topClientWidth": 375,
+        "topScrollWidth": 532,
+        "offscreenButtons": [
+          {
+            "text": "",
+            "label": "Export scene",
+            "x": 356,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 396
+          },
+          {
+            "text": "",
+            "label": "Fullscreen",
+            "x": 444,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 484
+          },
+          {
+            "text": "",
+            "label": null,
+            "x": 488,
+            "y": 4,
+            "w": 40,
+            "h": 40,
+            "right": 528
+          }
+        ],
+        "unlabelledTopButtons": [
+          "",
+          "le-agent-btn"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "mobile-add-menu-clipping",
+    "utc": "2026-11-02T11:36:33.029Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "viewport": {
+        "width": 375,
+        "height": 900
+      },
+      "menu": {
+        "x": 96,
+        "y": 123,
+        "w": 345,
+        "h": 585,
+        "right": 441,
+        "bottom": 708
+      },
+      "stage": {
+        "x": 0,
+        "y": 64,
+        "w": 375,
+        "h": 765,
+        "right": 375,
+        "bottom": 829
+      },
+      "menuScrollHeight": 896,
+      "menuClientHeight": 583,
+      "menuOverflow": "auto",
+      "stageOverflow": "hidden",
+      "doc": 375
+    }
+  },
+  {
+    "name": "mobile-add-menu-scroll",
+    "utc": "2026-11-02T11:36:33.445Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "menuScroll": {
+        "top": 313,
+        "max": 313
+      },
+      "templatesVisible": true
+    }
+  },
+  {
+    "name": "mobile-toolbar-horizontal-scroll",
+    "utc": "2026-11-02T11:36:33.785Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "top": {
+        "left": 157,
+        "max": 157
+      },
+      "agent": {
+        "x": 330.875,
+        "y": 4,
+        "width": 40,
+        "height": 40
+      }
+    }
+  },
+  {
+    "name": "workspace-snapshot-card",
+    "utc": "2026-11-02T11:38:03.828Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "title": "N57 QA room",
+      "images": [],
+      "text": "N57 QA room\nEmpty\n18 min ago"
+    }
+  },
+  {
+    "name": "project-preview-path-gap",
+    "utc": "2026-11-02T11:38:03.888Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "cards": [
+        {
+          "text": "New project | The agent asks what you are filming",
+          "video": false,
+          "image": false,
+          "trackOverlay": false
+        },
+        {
+          "text": "Experiment: ST03-trim.mp4 | Ready | 13 min ago",
+          "video": false,
+          "image": false,
+          "trackOverlay": false
+        },
+        {
+          "text": "Experiment: ST03-trim.mp4 | Ready | 9 h ago",
+          "video": false,
+          "image": false,
+          "trackOverlay": false
+        },
+        {
+          "text": "SAMPLE | classroom room and falling apple | Ready | 9 h ago",
+          "video": false,
+          "image": true,
+          "trackOverlay": false
+        },
+        {
+          "text": "Not in a project | Ready | 9 h ago",
+          "video": false,
+          "image": false,
+          "trackOverlay": false
+        },
+        {
+          "text": "New experiment | Empty | 18 min ago",
+          "video": false,
+          "image": false,
+          "trackOverlay": false
+        },
+        {
+          "text": "N57 QA room | Empty | 18 min ago",
+          "video": false,
+          "image": false,
+          "trackOverlay": false
+        },
+        {
+          "text": "Room 2026-11-02 01:59 | Empty | 9 h ago",
+          "video": false,
+          "image": false,
+          "trackOverlay": false
+        }
+      ]
+    }
+  },
+  {
+    "name": "snapshot-only-card-hidden",
+    "utc": "2026-11-02T11:38:40.601Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "projectId": "1746a4f514ff4117bb854ea59ac442f6",
+      "snapshotUrl": "/api/workspace/projects/1746a4f514ff4117bb854ea59ac442f6/snapshot?v=1793618861611207207",
+      "cardSmall": "true",
+      "images": 0,
+      "cardText": "N57 QA room\nEmpty\n19 min ago",
+      "requiresShowEmpty": true
+    }
+  },
+  {
+    "name": "native-rename-prompt-proof",
+    "utc": "2026-11-02T11:38:40.770Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "dialog": {
+        "type": "prompt",
+        "message": "Rename project",
+        "default": "Experiment: ST03-trim.mp4"
+      }
+    }
+  },
+  {
+    "name": "measured-lab-result-gap",
+    "utc": "2026-11-02T11:39:23.392Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&experiment=0ac7c8592779473daa5e939057824940&project=f09d091678f247bdbcd596c01d7c4907",
+    "data": {
+      "text": "R2S\nPlay\nReset\nImport scene or room (.json, .ply)\nAgent\nObjects\nRoom\nball-1\nBall\nScene JSON (lab-scene-v1)\nAdd\nSIMULATED · +1\n\nDots and line: your measured track. Scale unverified: the track is in pixels, drawn as 1 px = 1 mm. The ball is SIMULATED (what-if): edit it and press Play. Gravity [0, -9.81, 0] m/s^2.\n\nScene\nGravity (m/s^2)\nx\ny\nz\n\nTime step 0.0083 s (fixed 120 Hz). 1 objects. Select an object in the canvas or the Objects list to edit it.\n\nPlay\nt = 0.00 s\n\nTurn on Record trajectory sensor for an object, then Play to see a live graph.",
+      "fittedBackend": {
+        "acceleration_px_s2": -2331.0424081931556,
+        "sigma_px_s2": 103.53609825678797
+      },
+      "timelineScrubbers": 0
+    }
+  },
+  {
+    "name": "ready-project-snapshot-card",
+    "utc": "2026-11-02T11:39:28.168Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "title": "N57 QA measured apple",
+      "images": [
+        {
+          "src": "/api/workspace/projects/f09d091678f247bdbcd596c01d7c4907/snapshot?v=1793619564988354658",
+          "complete": true,
+          "width": 640,
+          "height": 689
+        }
+      ],
+      "text": "N57 QA measured apple\nReady\n14 min ago",
+      "putRequests": [
+        {
+          "time": "2026-11-02T11:27:42.640Z",
+          "method": "PUT",
+          "url": "https://real2simulation.up.railway.app/api/workspace/projects/1746a4f514ff4117bb854ea59ac442f6/snapshot",
+          "status": 200
+        },
+        {
+          "time": "2026-11-02T11:33:06.980Z",
+          "method": "PUT",
+          "url": "https://real2simulation.up.railway.app/api/workspace/projects/687ef375e7c54838b6de4b4d4433a06f/snapshot",
+          "status": 200
+        },
+        {
+          "time": "2026-11-02T11:34:03.560Z",
+          "method": "PUT",
+          "url": "https://real2simulation.up.railway.app/api/workspace/projects/687ef375e7c54838b6de4b4d4433a06f/snapshot",
+          "status": 200
+        }
+      ]
+    }
+  },
+  {
+    "name": "file-download",
+    "utc": "2026-11-02T11:42:13.117Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files",
+    "data": {
+      "filename": "ST03-trim.mp4",
+      "downloadBytes": 410461,
+      "expectedBytes": 410461,
+      "rangeStatus": 206,
+      "rangeHeaders": {
+        "type": "video/mp4",
+        "range": "bytes 0-1023/410461",
+        "length": "1024"
+      }
+    }
+  },
+  {
+    "name": "home-drop",
+    "utc": "2026-11-02T11:42:16.593Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "chip": "n57-public-st03-drop.mp4\n401 KB",
+      "sendEnabled": true,
+      "pickerDisabled": true,
+      "uploadSent": false,
+      "reason": "Existing test account has 0 uploads left; tested attachment staging, not a quota bypass"
+    }
+  },
+  {
+    "name": "home-prompt-draft",
+    "utc": "2026-11-02T11:42:16.767Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "value": "N57 QA draft only. Do not submit.",
+      "sent": false
+    }
+  },
+  {
+    "name": "delete-confirm-cancel",
+    "utc": "2026-11-02T11:42:50.818Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "dialog": {
+        "type": "confirm",
+        "message": "Delete project N57 QA room? Its files stay in Files."
+      },
+      "projectAfterCancel": 200,
+      "deleteRequests": 0
+    }
+  },
+  {
+    "name": "gpu-live-observation",
+    "utc": "2026-11-02T11:42:51.258Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "response": {
+        "status": 200,
+        "body": {
+          "state": "red",
+          "queue_length": 0,
+          "your_position": null,
+          "source": "modal+jobs"
+        }
+      },
+      "ui": [
+        "GPU sleeping Queue empty"
+      ],
+      "notRun": "Yellow, green and sleep countdown not observed: hosted SAM job completed without waking Modal; no additional GPU job started solely to manufacture states"
+    }
+  },
+  {
+    "name": "in-app-browser-exploration",
+    "utc": "2026-11-02T11:44:15.180Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "requestedBy": "Koushik during N57",
+      "host": "https://real2simulation.up.railway.app",
+      "scope": "public synthetic lab and editor chrome only; owner workspace/projects not opened",
+      "browser": "ChatGPT in-app browser through cua_repl human-style AX clicks, key presses, scrolling and screenshot",
+      "trial": {
+        "template": "Projectile",
+        "run": "PASS",
+        "fitReveal": "PASS",
+        "computedTrace": "Computed 201 actual projectile trajectory points in this browser.",
+        "uncertaintyVisible": "9.810 ± 0.0000737 m/s^2; one standard uncertainty (1σ), not 95%"
+      },
+      "mobile": {
+        "widthRequested": 375,
+        "heightRequested": 900,
+        "observed": "right-hand Add tiles cut off at viewport edge; Agent appears as an unnamed checkbox/button in AX",
+        "escape": "Add remained expanded after Escape",
+        "outsideTap": "Add remained expanded after tapping blank canvas at x45,y300"
+      },
+      "viewportRestored": true,
+      "paid": false
+    }
+  },
+  {
+    "name": "console-network-summary",
+    "utc": "2026-11-02T11:44:15.182Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "pageErrors": [],
+      "consoleErrors": [
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 500 ()",
+          "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 ()",
+          "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 ()",
+          "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 500 ()",
+          "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 500 ()",
+          "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 500 ()",
+          "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 500 ()",
+          "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 500 ()",
+          "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 ()",
+          "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 ()",
+          "url": "https://real2simulation.up.railway.app/lab?editor=1&project=1746a4f514ff4117bb854ea59ac442f6"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 401 ()",
+          "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 401 ()",
+          "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 404 ()",
+          "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files"
+        },
+        {
+          "kind": "console",
+          "text": "Failed to load resource: the server responded with a status of 500 ()",
+          "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0#files"
+        }
+      ],
+      "failedApiRequests": [
+        {
+          "time": "2026-11-02T11:24:04.944Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/files/dd6829f3adfb4272b5c81e5b71b1562a/content",
+          "status": 500
+        },
+        {
+          "time": "2026-11-02T11:24:04.947Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/files/4f5e1bd9a7124dfbb28a98c402298276/content",
+          "status": 404
+        },
+        {
+          "time": "2026-11-02T11:24:52.405Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/agent/lab/report",
+          "status": 404
+        },
+        {
+          "time": "2026-11-02T11:28:30.527Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png",
+          "status": 500
+        },
+        {
+          "time": "2026-11-02T11:28:46.002Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png",
+          "status": 500
+        },
+        {
+          "time": "2026-11-02T11:29:15.330Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png",
+          "status": 500
+        },
+        {
+          "time": "2026-11-02T11:29:16.416Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png",
+          "status": 500
+        },
+        {
+          "time": "2026-11-02T11:34:23.413Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/views/0.png",
+          "status": 500
+        },
+        {
+          "time": "2026-11-02T11:35:49.711Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/agent/lab/report",
+          "status": 404
+        },
+        {
+          "time": "2026-11-02T11:35:51.225Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/agent/lab/report",
+          "status": 404
+        },
+        {
+          "time": "2026-11-02T11:35:53.547Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/room.ply",
+          "status": 401
+        },
+        {
+          "time": "2026-11-02T11:35:55.428Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/rooms/e704985d4073435fb816941a6ab12e82/room.ply",
+          "status": 401
+        },
+        {
+          "time": "2026-11-02T11:41:32.981Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/files/ec5cba4aa7a944b6aed1b2b20dbe980d/content",
+          "status": 404
+        },
+        {
+          "time": "2026-11-02T11:41:32.984Z",
+          "method": "GET",
+          "url": "https://real2simulation.up.railway.app/api/workspace/files/ea961ad9e1fb4760a14bed7d54ed5f4a/content",
+          "status": 500
+        }
+      ],
+      "note": "Some failures were deliberate read-only probes; natural RM02 image GET 500 also occurs immediately on entering the Room tab."
+    }
+  },
+  {
+    "name": "room-loaded-responsive-recheck",
+    "utc": "2026-11-02T11:45:05.874Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": [
+      {
+        "width": 1366,
+        "theme": "light",
+        "status": "Your room: 5000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply.",
+        "canvas": 1,
+        "honesty": "SIMULATED · scale unverified"
+      },
+      {
+        "width": 1920,
+        "theme": "light",
+        "status": "Your room: 5000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply.",
+        "canvas": 1,
+        "honesty": "SIMULATED · scale unverified"
+      },
+      {
+        "width": 375,
+        "theme": "light",
+        "status": "Your room: 5000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply.",
+        "canvas": 1,
+        "honesty": "SIMULATED · scale unverified"
+      },
+      {
+        "width": 1366,
+        "theme": "dark",
+        "status": "Your room: 5000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply.",
+        "canvas": 1,
+        "honesty": "SIMULATED · scale unverified"
+      },
+      {
+        "width": 1920,
+        "theme": "dark",
+        "status": "Your room: 5000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply.",
+        "canvas": 1,
+        "honesty": "SIMULATED · scale unverified"
+      },
+      {
+        "width": 375,
+        "theme": "dark",
+        "status": "Your room: 5000 points, 0 objects. Geometry MODEL-ESTIMATED; scale unverified. Gravity [0, -9.81, 0] m/s^2, room room.ply.",
+        "canvas": 1,
+        "honesty": "SIMULATED · scale unverified"
+      }
+    ]
+  },
+  {
+    "name": "room-transform-history-roundtrip",
+    "utc": "2026-11-02T11:46:18.255Z",
+    "url": "https://real2simulation.up.railway.app/lab?editor=1&room=e704985d4073435fb816941a6ab12e82",
+    "data": {
+      "beforeRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "rotated": {
+        "id": "block-1",
+        "kind": "block",
+        "position": [
+          0.25,
+          1.2,
+          0
+        ],
+        "rotation": [
+          0,
+          0,
+          -0.4714673613721636,
+          0.8818835111060699
+        ],
+        "size": [
+          0.2,
+          0.4,
+          0.2
+        ],
+        "velocity": [
+          0,
+          0,
+          0
+        ],
+        "mass": 1,
+        "friction": 0.5,
+        "restitution": 0.3,
+        "fixed": false,
+        "sensor": true,
+        "params": {}
+      },
+      "undoRotation": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "redoRotation": [
+        0,
+        0,
+        -0.4714673613721636,
+        0.8818835111060699
+      ],
+      "afterDeleteObjects": 0,
+      "afterUndoAndImport": [
+        "block-1"
+      ],
+      "exportFile": "lab-scene.json",
+      "exportBytes": 9090,
+      "status": "Scene loaded: 1 objects. Gravity [0, -9.81, 0] m/s^2, room room.ply."
+    }
+  },
+  {
+    "name": "fastest-selection",
+    "utc": "2026-11-02T11:47:21.387Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "picker": "Muse Open\nHosted on Baseten"
+    }
+  },
+  {
+    "name": "fastest-persisted",
+    "utc": "2026-11-02T11:47:22.137Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "picker": "Muse Open\nHosted on Baseten"
+    }
+  },
+  {
+    "name": "standard-restored",
+    "utc": "2026-11-02T11:47:22.273Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "picker": "Muse Spark 1.3\nStandard"
+    }
+  },
+  {
+    "name": "storage-meter-runtime",
+    "utc": "2026-11-02T11:47:22.512Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "count": 0,
+      "meter": "StorageFiles1.2 MB of 1.0 GB used0 of 20 uploads left today",
+      "progress": {
+        "value": 0,
+        "max": 100,
+        "label": "Storage used"
+      }
+    }
+  },
+  {
+    "name": "storage-meter-expanded",
+    "utc": "2026-11-02T11:47:59.435Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "visible": true,
+      "count": 1,
+      "text": "Storage\nFiles\n1.2 MB of 1.0 GB used\n0 of 20 uploads left today",
+      "box": {
+        "x": 64,
+        "y": 869.65625,
+        "width": 179,
+        "height": 74.53125
+      },
+      "progress": {
+        "value": 0,
+        "max": 100,
+        "label": "Storage used"
+      }
+    }
+  },
+  {
+    "name": "qa-tooling",
+    "utc": "2026-11-02T11:49:18.800Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "primary": {
+        "browser": "Playwright Chromium",
+        "executable": "C:/Users/HP/AppData/Local/ms-playwright/chromium-1248/chrome-win64/chrome.exe",
+        "headless": false,
+        "version": "156.0.8078.4"
+      },
+      "initialProbe": "Default Playwright MCP was backed by installed Chrome. Stopped using it before feature checks and switched to the explicit Playwright Chromium executable.",
+      "supplemental": "ChatGPT in-app browser exploratory pass added after Koushik requested it; public trial/editor chrome only",
+      "repoBase": "851e9d7a",
+      "deployments": "Controller-provided web fc17545e / API ab1c25bd, not independently attested from Railway control plane",
+      "mirror": "Not visited; no claim of equivalent domain/auth/CDN behavior"
+    }
+  },
+  {
+    "name": "end-state",
+    "utc": "2026-11-02T11:55:36.563Z",
+    "url": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+    "data": {
+      "model": "Muse Spark 1.3\nStandard",
+      "theme": "light",
+      "sidebarExpanded": false,
+      "paidJobState": "done",
+      "deleteSent": false
+    }
+  }
+]
