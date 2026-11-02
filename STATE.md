@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 15:40 Dhaka: controller
+- Koushik (Nov 2): workspace home also gets a model picker button in the prompt box (like Base44): model options only, each with short pros and cons. No UI worker for the private workspace or lab editor until Koushik approves the designs; controller prepared lab-editor critique and Mobbin references for his decision.
+
 ## 2026-11-02 15:10 Dhaka: controller
 - Accepted N53 (owner-extended to 15:00; checker cannot read extended receipts, manual acceptance). Room job 667 s (N47) -> 272 s cold / 255 s warm on DEV hardware. Fused mask validation into decode (426 masks identical), 2-worker frame sampling, L4 budget 240->90 s, SF3D client budget 600->90 s, stop SF3D after first timeout. Spend review by controller (Claude, cross-vendor): cancel-unconfirmed keeps full reservation and blocks retry; settle never exceeds reservation; PASS. Cost $2.24 (two public RM02 jobs, owner $5/job ceiling). Known trade-off: SF3D cold start now always times out, so furniture uses parametric shapes, no SF3D meshes; follow-up needed (async SF3D upgrade after the room is ready). Full-scene drop 4/5 (room-object-5 obstructed). py 523 passed. DEV api fc5ceafe (682e6356).
 - Dispatched N54-orch299 (Sol high 30): header/footer widen with content at zoom-out; lab 3D viewport no longer stretches to screen bottom. Thread 01a19b84-6ede-7523-9fed-cce2bc9cca71.
