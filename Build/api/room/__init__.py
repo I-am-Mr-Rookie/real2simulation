@@ -80,8 +80,11 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
         d = job_dir(owner, job_id)
         s = read(d, "status.json")
         if s["state"] == "done" and (d / "room.json").exists():
-            s["shape_upgrades"] = [{"id": o["id"], **o["upgrade"]}
-                                   for o in read(d, "room.json").get("shell", {}).get("kept", []) if "upgrade" in o]
+            from Build.reconstruction.shape_upgrade import LOCK, fail_interrupted
+            with LOCK:
+                fail_interrupted(d)
+                s["shape_upgrades"] = [{"id": o["id"], **o["upgrade"]}
+                                       for o in read(d, "room.json").get("shell", {}).get("kept", []) if "upgrade" in o]
         if s["state"] in ("queued", "sampling", "reconstructing"):
             s["gpu"] = gpu.status(owner, stats())
         return {"job": s}
@@ -97,8 +100,9 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
                 ensure_room_archive(d)
             except (OSError, ValueError, KeyError):
                 raise error(503, "DEPENDENCY_UNAVAILABLE", "public sample archive is unavailable") from None
-        from Build.reconstruction.shape_upgrade import LOCK
+        from Build.reconstruction.shape_upgrade import LOCK, fail_interrupted
         with LOCK:  # never report the final ready state with the preceding box-only scene
+            fail_interrupted(d)
             return {"scene": read(d, "scene.json"), "room": read(d, "room.json")}
 
     @router.get("/rooms/{job_id}/room.ply")

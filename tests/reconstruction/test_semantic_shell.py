@@ -132,6 +132,30 @@ def test_hosted_instance_mask_reaches_the_finished_shell_colour():
     assert chairs[0]["look"]["color"] == "#20bf40"
 
 
+def test_detection_pool_is_bounded_and_keeps_all_frames_and_prompts():
+    import threading
+    import time
+    from tests.reconstruction.test_object_lift import room_npz
+    npz, _ = room_npz()
+    _, _, room, scene = rs.live_room.analyse(npz)
+    lock = threading.Lock()
+    active = peak = calls = 0
+    def detect(*args):
+        nonlocal active, peak, calls
+        with lock:
+            active += 1
+            calls += 1
+            peak = max(peak, active)
+        time.sleep(.02)
+        with lock:
+            active -= 1
+        return []
+    rs.build(npz, room, scene, detect)
+    assert rs.SAM_THREADS == peak == 8
+    assert active == 0
+    assert calls == len(rs.keyframes(len(rs.live_room.load_views(npz)))) * (len(rs.FURNITURE) + len(rs.FEATURES) + len(rs.SURFACES))
+
+
 def test_sf3d_timeout_keeps_boxes_and_skips_further_paid_shapes():
     from Build.gpu.sf3d import GenerationTimeout
     from tests.reconstruction.test_object_lift import room_npz

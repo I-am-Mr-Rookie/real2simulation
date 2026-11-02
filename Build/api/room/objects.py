@@ -17,7 +17,7 @@ from fastapi import APIRouter, Body, Depends
 from fastapi.responses import Response
 
 from Build.api.room import _ID
-from Build.api.storage.files import _default
+from Build.api.storage.files import MAX_DAILY, _default
 from Build.api.storage.sample import ensure_room_archive
 from Build.api.workspace.auth import error, require_owner
 from Build.gpu import sf3d
@@ -28,8 +28,11 @@ from Build.reconstruction import live_room, object_lift, room_shell
 def build_shell_files(d, detect=object_lift.sam_text, generate=None, *, defer=True):
     """Room job folder -> lab shell written into scene.json + room.json "shell" (+ GLBs). N42: also run once
     automatically after a room job (Build/api/room run_job after=). Raises CapExceeded / RuntimeError / ValueError."""
-    room = json.loads((d / "room.json").read_text(encoding="utf-8"))
-    scene = json.loads((d / "scene.json").read_text(encoding="utf-8"))
+    from Build.reconstruction.shape_upgrade import LOCK, prepare
+    with LOCK:
+        prepare(d, [])  # cancel the replaced batch before the slow hosted detection pass
+        room = json.loads((d / "room.json").read_text(encoding="utf-8"))
+        scene = json.loads((d / "scene.json").read_text(encoding="utf-8"))
     scene["objects"] = [o for o in scene.get("objects", []) if not str(o.get("id", "")).startswith(("wall-", "room-object-"))]
     deferred = [] if defer and generate is None else None
     scene, shell, glbs = room_shell.build((d / "mapanything.npz").read_bytes(), room, scene, detect, generate,
@@ -38,7 +41,6 @@ def build_shell_files(d, detect=object_lift.sam_text, generate=None, *, defer=Tr
     for oid, glb in glbs.items():
         (d / "objects" / f"{oid}.glb").write_bytes(glb)
     shell["created_at"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-    from Build.reconstruction.shape_upgrade import LOCK, prepare
     with LOCK:
         prepare(d, deferred or [])  # invalidates an older in-flight shell, including when upgrades are disabled
         live_room._write(d / "scene.json", scene)
@@ -144,6 +146,14 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
     @router.post("/rooms/{job_id}/shell")
     def build_shell(job_id: str, payload: dict = Body(default={}), owner: str = Depends(require_owner)):
         d = done_dir(owner, job_id)
+        from Build.reconstruction.shape_upgrade import LOCK
+        with LOCK:  # count attempts before any paid work, including failed rebuilds
+            day = db()._day()
+            count = json.loads((d / "status.json").read_text(encoding="utf-8")).get("shell_rebuilds", {})
+            used = count.get("count", 0) if count.get("day") == day else 0
+            if used >= MAX_DAILY:
+                raise error(429, "QUOTA_UPLOADS", f"Daily room rebuild limit reached: {MAX_DAILY} per room")
+            live_room.set_status(d, shell_rebuilds={"day": day, "count": used + 1})
         try:
             shell, scene = build_shell_files(d, detect, None if not payload.get("sf3d", True) or generate is sf3d.generate_remote else generate,
                                              defer=payload.get("sf3d", True))

@@ -28,9 +28,9 @@ from Build.api import gpu as gpu_jobs  # noqa: E402
 from Build.guardrails import daily_cap  # noqa: E402
 
 APP, FALLBACK_GPU, CPU, MEM_GIB, IDLE_S = "r2s-ondemand", "A10G", 2, 16, 900  # ondemand.py + scene_job resources
-# shortcut: get() also includes inference, use a scheduler start signal if healthy cold starts exceed 90 s.
-# N47 waited 240 s for L4; cancel after 90 s before the A10G retry.
-ROOM_START_BUDGET_S = 90
+# shortcut: get() also includes inference; use a scheduler start signal if healthy L4 starts exceed 45 s.
+# N59 lost 90 s before a successful A10G fallback; bound the preferred-device attempt more tightly.
+ROOM_START_BUDGET_S = 45
 FRAMES, FRAME_W, MAX_POINTS = 16, 512, 20000  # N49: 16 frames (was 8; N31 8 frames peaked 8.03 GB on A10G)
 A4_LONG_M, A4_SD_M = 0.297, 0.002  # ISO 216 A4 long edge 297 mm, +-2 mm tolerance
 # MapAnything output is nominally metric, so a real A4 edge rescales it by about 1. Outside 0.5 to 2 the clicks are not
@@ -272,7 +272,7 @@ def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruc
                     actual = 0
                     if started:
                         actual = (log["cost"]["upper_bound"]["total_usd"] if log else
-                                  cost(time.time() - call + IDLE_S, device, CPU, MEM_GIB)["total_usd"])
+                                  cost(min(time.time() - call, 300 + 240) + IDLE_S, device, CPU, MEM_GIB)["total_usd"])
                         if attempt.get("cancellation_unconfirmed"):
                             actual = estimate
                     try:

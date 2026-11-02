@@ -89,7 +89,7 @@ def gpu_of(name):
     return "L4" if name and "L4" in name else "A10G"
 
 
-def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S, *, owner=None, gpu_path=None):
+def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S, *, owner=None, gpu_path=None, abort=None):
     """One SF3D job, reserved in daily_cap at the A10G worst case, settled at the rate of the GPU that ran (cost_log
     rates; A10G when unknown). Unconfirmed cancellation retains the full estimate.
     Returns the remote result plus gpu, wall_s, estimated_usd."""
@@ -109,16 +109,27 @@ def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S,
         spawned = True  # spawn failure can be ambiguous: retain the upper bound
         handle = fn.spawn(rgba_png)
         try:
-            r = handle.get(timeout=timeout_s)
+            while True:
+                if abort and abort():
+                    raise RuntimeError("SF3D cancelled (shell rebuilt)")
+                remaining = timeout_s - (time.monotonic() - call)
+                if remaining <= 0:
+                    raise GenerationTimeout(f"SF3D gave no result within {timeout_s}s (startup/inference budget)")
+                try:
+                    r = handle.get(timeout=min(10, remaining))
+                    break
+                except Exception as e:  # Modal's polling timeout is distinct from its execution timeout.
+                    if type(e).__name__ != "TimeoutError":
+                        raise
         except Exception as e:  # by name: tests run without modal installed
-            if type(e).__name__ not in ("TimeoutError", "FunctionTimeoutError"):
-                raise
             try:
                 handle.cancel(terminate_containers=True)
             except Exception as cancel_error:
                 cancellation_unconfirmed = True
                 raise GenerationTimeout("SF3D cancellation unconfirmed; full reservation retained") from cancel_error
-            raise GenerationTimeout(f"SF3D gave no result within {timeout_s}s (startup/inference budget)") from None
+            if type(e).__name__ == "FunctionTimeoutError":
+                raise GenerationTimeout("SF3D execution timed out") from e
+            raise
     finally:
         wall = time.monotonic() - call
         # Provider startup and execution timeouts bound GPU life; network/queue waits are not additional GPU time.

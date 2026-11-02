@@ -9,19 +9,37 @@ from Build.reconstruction import live_room, object_lift
 
 LOCK = threading.RLock()
 _running = set()
+_PROCESS = uuid.uuid4().hex
 
 
 def prepare(d, inputs):
+    previous = _read(d, "shape-upgrades.json") if (d / "shape-upgrades.json").exists() else {}
     batch = uuid.uuid4().hex
     for item in inputs:
         png = f"{batch}-{item['id']}.png"
         (d / "objects" / png).write_bytes(item.pop("png"))
         item["png"] = png
-    live_room._write(d / "shape-upgrades.json", {"batch": batch, "inputs": inputs})
+    live_room._write(d / "shape-upgrades.json", {"batch": batch, "inputs": inputs, "process": _PROCESS})
+    for item in previous.get("inputs", []):
+        png = d / "objects" / item["png"]
+        if png.name == item["png"] and png.suffix == ".png":
+            png.unlink(missing_ok=True)
 
 
 def _read(d, name):
     return json.loads((d / name).read_text(encoding="utf-8"))
+
+
+def fail_interrupted(d):
+    """Report orphaned upgrades without resuming (which could pay twice). Caller holds LOCK."""
+    if not (d / "shape-upgrades.json").exists():
+        return
+    work = _read(d, "shape-upgrades.json")
+    if str(d) in _running or (work.get("process") == _PROCESS and not work.get("started_at")):
+        return  # prepared/scheduled here, but the thread has not started yet
+    for item in _read(d, "room.json").get("shell", {}).get("kept", []):
+        if item.get("upgrade", {}).get("state") == "pending":
+            _update(d, work["batch"], item["id"], {"state": "failed", "reason": "SF3D interrupted (server restart)"})
 
 
 def _update(d, batch, oid, upgrade, shape=None, glb=None):
@@ -47,7 +65,7 @@ def _update(d, batch, oid, upgrade, shape=None, glb=None):
 
 def run(d, owner, *, gpu_db=None, cap_db=None, generate=sf3d.generate_remote):
     """One attempt per object, in a background thread AFTER status=done.
-    shortcut: in-process supervisor; restart loses polling, spend remains reserved until the GPU lease reaps.
+    shortcut: in-process supervisor; restart fails pending shapes, spend remains reserved until the GPU lease reaps.
     """
     with LOCK:
         if not (d / "shape-upgrades.json").exists() or str(d) in _running:
@@ -59,6 +77,10 @@ def run(d, owner, *, gpu_db=None, cap_db=None, generate=sf3d.generate_remote):
         live_room._write(d / "shape-upgrades.json", work)
         _running.add(str(d))
     try:
+        def changed():
+            with LOCK:
+                return _read(d, "shape-upgrades.json")["batch"] != work["batch"]
+
         for item in work["inputs"]:
             with LOCK:
                 if _read(d, "shape-upgrades.json")["batch"] != work["batch"]:
@@ -66,7 +88,7 @@ def run(d, owner, *, gpu_db=None, cap_db=None, generate=sf3d.generate_remote):
             started = time.time()
             try:
                 r = generate((d / "objects" / item["png"]).read_bytes(), cap_path=cap_db,
-                             timeout_s=sf3d.BACKGROUND_BUDGET_S, owner=owner, gpu_path=gpu_db)
+                             timeout_s=sf3d.BACKGROUND_BUDGET_S, owner=owner, gpu_path=gpu_db, abort=changed)
                 turns, verts, indices, _ = object_lift.fit_mesh(r["vertices"], r["faces"], item["proxy"])
                 shape = object_lift.mesh_shape(item["category"],
                         f"/api/workspace/rooms/{d.name}/objects/{item['id']}.glb", turns, verts, indices)

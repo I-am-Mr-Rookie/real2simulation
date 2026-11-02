@@ -1,5 +1,6 @@
 import json
 import sqlite3
+import pytest
 from functools import partial
 
 from Build.api import gpu
@@ -42,7 +43,7 @@ class Fn:
         return self
 
     def get(self, timeout):
-        assert timeout == sf3d.BACKGROUND_BUDGET_S
+        assert 0 < timeout <= 10
         self.check()
         return MESH
 
@@ -170,8 +171,10 @@ def test_rebuilding_a_shell_skips_old_remaining_calls_and_processes_new_batch(tm
     def generate(png, **kw):
         calls.append(png)
         if len(calls) == 1:
+            assert not kw['abort']()
             upgrades.prepare(d, [{'id': 'room-object-0', 'category': 'chair', 'png': b'new',
                                  'proxy': {'position': [0, 0, 0], 'rotation': [0, 0, 0, 1], 'camera': [0, 0, 3]}}])
+            assert kw['abort']()
         else:
             done.set()
         return MESH
@@ -185,3 +188,101 @@ def test_rebuilding_a_shell_skips_old_remaining_calls_and_processes_new_batch(tm
         time.sleep(.01)
     assert calls == [b'rgba', b'new']
     assert read(d, 'room.json')['shell']['kept'][0]['upgrade']['state'] == 'ready'
+
+
+@pytest.mark.parametrize('suffix', ['', '/result'])
+def test_restart_read_fails_pending_without_resuming(tmp_path, monkeypatch, suffix):
+    from types import SimpleNamespace
+    from fastapi import FastAPI
+    from fastapi.testclient import TestClient
+    from Build.api.room import create_router
+    parent = tmp_path / 'rooms/owner'
+    parent.mkdir(parents=True)
+    d = room(parent)
+    upgrades._update(d, read(d, 'shape-upgrades.json')['batch'], 'room-object-1', {'state': 'ready'})
+    monkeypatch.setattr(upgrades, '_PROCESS', 'new-process')
+    monkeypatch.setenv('WORKSPACE_INTERNAL_TOKEN', 'test-only-token')
+    app = FastAPI()
+    app.include_router(create_router(SimpleNamespace(root=tmp_path), remote=lambda *a: None))
+    with patch.object(upgrades, 'start') as start:
+        response = TestClient(app).get(f'/internal/workspace/rooms/{d.name}{suffix}',
+            headers={'x-workspace-token': 'test-only-token', 'x-workspace-owner': 'owner'})
+    assert response.status_code == 200
+    kept = read(d, 'room.json')['shell']['kept']
+    assert kept[0]['upgrade'] == {'state': 'failed', 'reason': 'SF3D interrupted (server restart)'}
+    assert kept[1]['upgrade']['state'] == 'ready'
+    assert read(d, 'scene.json')['objects'][0]['shape']['fallback_reason'] == kept[0]['upgrade']['reason']
+    start.assert_not_called()
+
+
+def test_prepare_removes_only_previous_batch_crops(tmp_path):
+    d = room(tmp_path)
+    old = [d / 'objects' / i['png'] for i in read(d, 'shape-upgrades.json')['inputs']]
+    (d / 'objects/unrelated.png').write_bytes(b'keep')
+    (d / 'objects/room-object-0.glb').write_bytes(b'keep')
+    upgrades.prepare(d, [{'id': 'new', 'png': b'new'}])
+    assert all(not p.exists() for p in old)
+    assert (d / 'objects/unrelated.png').read_bytes() == b'keep'
+    assert (d / 'objects/room-object-0.glb').read_bytes() == b'keep'
+    assert (d / 'objects' / read(d, 'shape-upgrades.json')['inputs'][0]['png']).read_bytes() == b'new'
+
+
+def test_dead_local_supervisor_fails_pending_but_running_supervisor_does_not(tmp_path):
+    d = room(tmp_path)
+    work = read(d, 'shape-upgrades.json')
+    live_room._write(d / 'shape-upgrades.json', {**work, 'started_at': 1})
+    upgrades._running.add(str(d))
+    try:
+        with upgrades.LOCK:
+            upgrades.fail_interrupted(d)
+        assert all(o['upgrade']['state'] == 'pending' for o in read(d, 'room.json')['shell']['kept'])
+    finally:
+        upgrades._running.discard(str(d))
+    with upgrades.LOCK:
+        upgrades.fail_interrupted(d)
+    assert all(o['upgrade']['reason'] == 'SF3D interrupted (server restart)'
+               for o in read(d, 'room.json')['shell']['kept'])
+
+
+def test_shell_rebuild_invalidates_before_detection(tmp_path):
+    from Build.api.room import objects
+    d = room(tmp_path)
+    (d / 'mapanything.npz').write_bytes(b'offline fixture')
+    previous = read(d, 'shape-upgrades.json')['batch']
+    def build(*args):
+        assert read(d, 'shape-upgrades.json')['batch'] != previous
+        assert not list((d / 'objects').glob('*.png'))
+        raise RuntimeError('stop before any model call')
+    with patch.object(objects.room_shell, 'build', side_effect=build):
+        with pytest.raises(RuntimeError, match='stop before any model call'):
+            objects.build_shell_files(d)
+
+
+def test_shell_rebuild_limit_counts_failures_and_resets_next_dhaka_day(tmp_path, monkeypatch):
+    from datetime import datetime, timedelta, timezone
+    from fastapi import FastAPI
+    from fastapi.testclient import TestClient
+    from Build.api.room import objects
+    from Build.api.storage.files import Store
+    now = datetime(2026, 11, 2, 17, tzinfo=timezone.utc)
+    store = Store(tmp_path, now=lambda: now)
+    parent = tmp_path / 'rooms/owner'
+    parent.mkdir(parents=True)
+    d = room(parent)
+    monkeypatch.setattr(objects, 'MAX_DAILY', 2)
+    monkeypatch.setattr(objects, 'ensure_room_archive', lambda d: None)
+    monkeypatch.setenv('WORKSPACE_INTERNAL_TOKEN', 'test-only-token')
+    app = FastAPI()
+    app.include_router(objects.create_router(store))
+    client = TestClient(app)
+    headers = {'x-workspace-token': 'test-only-token', 'x-workspace-owner': 'owner'}
+    url = f'/internal/workspace/rooms/{d.name}/shell'
+    with patch.object(objects, 'build_shell_files', side_effect=RuntimeError('synthetic failure')) as build:
+        assert client.post(url, headers=headers).status_code == 502
+        assert client.post(url, headers=headers).status_code == 502
+        assert client.post(url, headers=headers).status_code == 429
+        assert build.call_count == 2
+        now += timedelta(hours=1)  # midnight Dhaka
+        assert client.post(url, headers=headers).status_code == 502
+        assert read(d, 'status.json')['shell_rebuilds']['count'] == 1
+    store.db.close()

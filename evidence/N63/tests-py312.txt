@@ -1,0 +1,17 @@
+........................................................................ [ 48%]
+........................................................................ [ 97%]
+...                                                                      [100%]
+============================== warnings summary ===============================
+..\..\..\..\..\AppData\Local\uv\cache\archive-v0\eYdfHG3jexdSNvG6\Lib\site-packages\starlette\testclient.py:45
+  C:\Users\HP\AppData\Local\uv\cache\archive-v0\eYdfHG3jexdSNvG6\Lib\site-packages\starlette\testclient.py:45: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]
+
+tests/reconstruction/test_object_lift.py: 4 warnings
+tests/reconstruction/test_room_shell.py: 4 warnings
+tests/reconstruction/test_semantic_shell.py: 1 warning
+tests/reconstruction/test_shape_upgrade.py: 1 warning
+  C:\Users\HP\Documents\Hackathon\2026-10-26 - Meta Global AI Developer Hackathon\.worktrees\N63-orch309\Build\reconstruction\object_lift.py:185: DeprecationWarning: 'mode' parameter is deprecated and will be removed in Pillow 13 (2026-10-15)
+    Image.fromarray(rgba, "RGBA").save(buf, "PNG")
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+147 passed, 11 warnings in 29.92s

@@ -269,6 +269,20 @@ class JobTests(unittest.TestCase):
         self.assertIsNotNone(actual)
         self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
 
+    def test_failed_reconstruction_transport_wait_is_bounded_by_reservation(self):
+        from types import SimpleNamespace
+        elapsed = 0
+        def boom(frames):
+            nonlocal elapsed
+            elapsed = 10000
+            raise RuntimeError('synthetic long network wait')
+        clock = SimpleNamespace(time=lambda: elapsed, monotonic=time.monotonic, strftime=time.strftime, gmtime=time.gmtime)
+        with mock.patch.object(live_room, 'time', clock):
+            _, s = self.run_job(boom)
+        [(_, reserved, actual)] = self.ledger()
+        self.assertEqual(actual, reserved)
+        self.assertEqual(s['state'], 'failed')
+
     def test_settlement_failure_still_finishes_queue_and_keeps_reserved_cost(self):
         with mock.patch.object(live_room.daily_cap, "settle", side_effect=sqlite3.OperationalError("synthetic locked")):
             _, s = self.run_job(fake_remote)
@@ -360,6 +374,7 @@ class JobTests(unittest.TestCase):
         self.assertEqual(gpu.status("user_synthA", None, self.gpu_db)["queue_length"], 0)
 
     def test_start_budget_cancels_l4_then_runs_a10g(self):
+        self.assertEqual(live_room.ROOM_START_BUDGET_S, 45)
         self.check_start_budget_cancels_l4_then_runs_a10g(builtin=False)
 
     def test_builtin_timeout_cancels_l4_then_runs_a10g(self):

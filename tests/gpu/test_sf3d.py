@@ -55,10 +55,11 @@ class Sf3dClient(unittest.TestCase):
 
     def test_timeout_cancels_and_still_settles(self):
         call = Call(exc=TimeoutError())
-        with self.assertRaises(sf3d.GenerationTimeout):
-            sf3d.generate_remote(b"png", cap_path=self.cap, fn=Fn(call))
+        with patch.object(sf3d.time, 'monotonic', side_effect=[0, 0, 0, 90, 90]):
+            with self.assertRaises(sf3d.GenerationTimeout):
+                sf3d.generate_remote(b"png", cap_path=self.cap, fn=Fn(call))
         self.assertTrue(call.cancelled)
-        self.assertEqual(call.timeout, 90)
+        self.assertEqual(call.timeout, 10)
         spent = float(daily_cap.today(self.cap)["spent_usd"])  # unknown GPU: settled at the dearer A10G rate
         self.assertEqual(spent, sf3d.ESTIMATE_USD)  # no result: keep the conservative cold-start upper bound
 
@@ -70,7 +71,7 @@ class Sf3dClient(unittest.TestCase):
         self.assertGreater(daily_cap.today(self.cap)["spent_usd"], 0)
 
     def test_unconfirmed_cancellation_retains_full_reservation(self):
-        call = Call(exc=TimeoutError())
+        call = Call(exc=RuntimeError('synthetic disconnect'))
         with patch.object(call, "cancel", side_effect=OSError("synthetic disconnected")):
             with self.assertRaisesRegex(sf3d.GenerationTimeout, "unconfirmed"):
                 sf3d.generate_remote(b"png", cap_path=self.cap, fn=Fn(call))
@@ -92,6 +93,31 @@ class Sf3dClient(unittest.TestCase):
         with sqlite3.connect(self.cap) as con:
             reserved, actual = con.execute('SELECT reserved,actual FROM spend').fetchone()
         self.assertEqual(actual, reserved)
+        self.assertTrue(fn.call.cancelled)
+
+    def test_polling_timeout_can_still_return_a_result(self):
+        call = Call()
+        with patch.object(call, 'get', side_effect=[TimeoutError(), {'gpu_name': 'NVIDIA L4'}]) as get:
+            r = sf3d.generate_remote(b'png', cap_path=self.cap, fn=Fn(call))
+        self.assertEqual(r['gpu'], 'L4')
+        self.assertEqual(get.call_count, 2)
+        self.assertTrue(all(0 < c.kwargs['timeout'] <= 10 for c in get.call_args_list))
+        self.assertFalse(call.cancelled)
+
+    def test_replaced_batch_cancels_inflight_call_and_retains_bound(self):
+        call = Call()
+        with patch.object(call, 'get', side_effect=TimeoutError()), patch.object(call, 'cancel') as cancel:
+            with self.assertRaisesRegex(RuntimeError, 'shell rebuilt'):
+                sf3d.generate_remote(b'png', cap_path=self.cap, fn=Fn(call), abort=iter([False, True]).__next__)
+        cancel.assert_called_once_with(terminate_containers=True)
+        self.assertEqual(float(daily_cap.today(self.cap)['spent_usd']), sf3d.ESTIMATE_USD)
+
+    def test_replaced_batch_unconfirmed_cancel_retains_full_estimate(self):
+        call = Call()
+        with patch.object(call, 'cancel', side_effect=OSError('disconnected')):
+            with self.assertRaisesRegex(sf3d.GenerationTimeout, 'unconfirmed'):
+                sf3d.generate_remote(b'png', cap_path=self.cap, fn=Fn(call), abort=lambda: True)
+        self.assertEqual(float(daily_cap.today(self.cap)['spent_usd']), sf3d.ESTIMATE_USD)
 
     def test_invalid_budget_does_not_reserve_or_spawn(self):
         fn = Fn(Call())
@@ -103,7 +129,7 @@ class Sf3dClient(unittest.TestCase):
 
     def test_slow_transport_cannot_settle_above_provider_lifetime_reservation(self):
         fn = Fn(Call({'gpu_name': 'NVIDIA L4'}))
-        with patch.object(sf3d.time, 'monotonic', side_effect=[0, 0, 10000]):
+        with patch.object(sf3d.time, 'monotonic', side_effect=[0, 0, 0, 10000]):
             r = sf3d.generate_remote(b'png', cap_path=self.cap, fn=fn)
         self.assertEqual(r['wall_s'], 10000)
         self.assertLessEqual(r['estimated_usd'], sf3d.ESTIMATE_USD)
