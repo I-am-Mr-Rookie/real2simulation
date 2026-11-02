@@ -3,7 +3,7 @@ object -> gravity-aligned box proxy with measured size -> lab-scene-v1 "block" (
 
 SAM 3D Objects stays off (Build/gpu/sam3d_option.gate: no owner licence receipt, A10G 23 GB < 32 GB), so no mesh.
 The click view is the room job's own MapAnything view image (model grid pixels), so SAM pixels = point-map pixels.
-Masks are not decoded (same as hosted_sam): object points = SAM box x depth band around the clicked surface.
+Point-click objects use a box x depth band; noun-prompt shell objects additionally use the decoded SAM instance mask.
 Paid call: one sam-3.1 image call, reserved/settled on Build/guardrails/daily_cap.py ($2.50 per 1k images).
 N31: those object pixels also form the RGBA cut-out for Stable Fast 3D (Build/gpu/sf3d.py); its unit-scale mesh is
 turned to face the camera (quarter turns), fitted into the measured box and stored as the object's shape (physics too).
@@ -30,6 +30,15 @@ CATEGORIES = {"desk": (True, 30.0, 0.5), "table": (True, 25.0, 0.5), "chair": (T
 MAX_TRIANGLES = 6000  # SF3D remesh targets about 2k; scene JSON stays well under 512 KiB
 
 
+class SamBox(tuple):
+    """A backward-compatible box sequence with its live instance mask; JSON caches still store coordinates."""
+    def __new__(cls, box, mask, mask_error=None):
+        obj = super().__new__(cls, box)
+        obj.mask = mask
+        obj.mask_error = mask_error
+        return obj
+
+
 def view_png(npz, view):
     """The view's own RGB (img_no_norm, model grid) as PNG bytes, plus (width, height)."""
     from PIL import Image
@@ -51,10 +60,16 @@ def sam_box(png, point, width, height, cap_path=None, timeout=300):
 
 
 def sam_text(png, noun, width, height, cap_path=None, timeout=300):
-    """N39: one hosted sam-3.1 image call with a noun prompt -> every box found (x1, y1, x2, y2), maybe none."""
+    """One hosted SAM image noun prompt -> box sequences carrying a full-view binary .mask."""
     text = hosted_sam.output_text(_sam_image(png, noun, f"N39 sam-3.1 image text prompt {noun}", cap_path, timeout))
-    frames, _ = hosted_sam.parse(text if hosted_sam._FRAME.search(text) else "<0f>" + text)
-    return [b for f in frames.values() for b in f.values()]
+    mask_error = None
+    try:
+        instances = hosted_sam.image_instances(text, width, height)
+    except ValueError as e:
+        # Mask decoding is optional, not box validation: retain validated boxes with an explicit caveat.
+        instances = hosted_sam.image_instances(hosted_sam._MASK.sub("", text), width, height)
+        mask_error = f"SAM mask decode failed: {e}"[:200]
+    return [SamBox(d["box"], d["mask"], mask_error) for d in instances]
 
 
 def _sam_image(png, prompt, purpose, cap_path, timeout):
@@ -97,7 +112,7 @@ def _room_frame(npz):
     return got["rot"], got["origin"]
 
 
-def lift(npz, view, point, box, room):
+def lift(npz, view, point, box, room, instance_mask=None):
     """Object points -> gravity-aligned box proxy in the room frame. room = room.json (scale k and its sd)."""
     views = live_room.load_views(npz)
     if not (isinstance(view, int) and 0 <= view < len(views)):
@@ -112,7 +127,13 @@ def lift(npz, view, point, box, room):
     ok = v["mask"] & np.isfinite(cam).all(1) & (cam[:, 2] > 0)
     rr, cc = np.divmod(np.arange(h * w), w)
     fx = np.polyfit(cam[ok, 0] / cam[ok, 2], cc[ok], 1)[0]  # focal (px) from the point map: col = f x/z + cx
+    if instance_mask is not None:
+        if np.shape(instance_mask) != (h, w):
+            raise ValueError("SAM mask must match the point-map grid")
+        ok = ok & np.asarray(instance_mask, bool).reshape(-1)
     near = ok & (abs(rr - row) <= WINDOW) & (abs(cc - col) <= WINDOW)
+    if not near.any() and instance_mask is not None:
+        near = ok  # box centre may be background between chair legs
     if not near.any():
         raise ValueError("no reconstructed depth at the click")
     z0 = float(np.median(cam[near, 2]))

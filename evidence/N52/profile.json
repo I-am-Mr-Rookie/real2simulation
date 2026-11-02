@@ -1,0 +1,166 @@
+{
+ "note": "cProfile main thread only, not a production latency claim; SAM cache, zero paid calls",
+ "total_s": 147.141,
+ "top": [
+  {
+   "file": "_sam_mask_codec.py",
+   "line": 195,
+   "function": "encode",
+   "calls": 5618086,
+   "own_s": 19.748,
+   "cumulative_s": 185.087
+  },
+  {
+   "file": "_base.py",
+   "line": 612,
+   "function": "result_iterator",
+   "calls": 177,
+   "own_s": 0.06,
+   "cumulative_s": 176.215
+  },
+  {
+   "file": "rebuild.py",
+   "line": 1,
+   "function": "<module>",
+   "calls": 1,
+   "own_s": 0.0,
+   "cumulative_s": 147.164
+  },
+  {
+   "file": "~",
+   "line": 0,
+   "function": "<built-in method builtins.exec>",
+   "calls": 723,
+   "own_s": 0.057,
+   "cumulative_s": 147.164
+  },
+  {
+   "file": "rebuild.py",
+   "line": 18,
+   "function": "main",
+   "calls": 1,
+   "own_s": 0.008,
+   "cumulative_s": 144.911
+  },
+  {
+   "file": "room_shell.py",
+   "line": 422,
+   "function": "build",
+   "calls": 1,
+   "own_s": 0.276,
+   "cumulative_s": 144.747
+  },
+  {
+   "file": "_sam_mask_codec.py",
+   "line": 448,
+   "function": "_encode_raster",
+   "calls": 213,
+   "own_s": 2.037,
+   "cumulative_s": 136.716
+  },
+  {
+   "file": "_base.py",
+   "line": 314,
+   "function": "_result_or_cancel",
+   "calls": 176,
+   "own_s": 0.036,
+   "cumulative_s": 130.495
+  },
+  {
+   "file": "_base.py",
+   "line": 428,
+   "function": "result",
+   "calls": 176,
+   "own_s": 0.103,
+   "cumulative_s": 128.727
+  },
+  {
+   "file": "threading.py",
+   "line": 323,
+   "function": "wait",
+   "calls": 231,
+   "own_s": 0.112,
+   "cumulative_s": 128.139
+  },
+  {
+   "file": "~",
+   "line": 0,
+   "function": "<method 'acquire' of '_thread.lock' objects>",
+   "calls": 842,
+   "own_s": 0.062,
+   "cumulative_s": 127.493
+  },
+  {
+   "file": "_sam_mask_codec.py",
+   "line": 509,
+   "function": "decode_mask_to_raster",
+   "calls": 213,
+   "own_s": 1.897,
+   "cumulative_s": 127.348
+  },
+  {
+   "file": "threading.py",
+   "line": 1058,
+   "function": "_bootstrap_inner",
+   "calls": 4,
+   "own_s": 0.008,
+   "cumulative_s": 127.317
+  },
+  {
+   "file": "threading.py",
+   "line": 1155,
+   "function": "_wait_for_tstate_lock",
+   "calls": 4,
+   "own_s": 0.0,
+   "cumulative_s": 127.317
+  },
+  {
+   "file": "threading.py",
+   "line": 1117,
+   "function": "join",
+   "calls": 4,
+   "own_s": 0.0,
+   "cumulative_s": 127.317
+  },
+  {
+   "file": "threading.py",
+   "line": 1018,
+   "function": "_bootstrap",
+   "calls": 4,
+   "own_s": 0.0,
+   "cumulative_s": 127.317
+  },
+  {
+   "file": "thread.py",
+   "line": 220,
+   "function": "shutdown",
+   "calls": 1,
+   "own_s": 0.0,
+   "cumulative_s": 127.317
+  },
+  {
+   "file": "_base.py",
+   "line": 646,
+   "function": "__exit__",
+   "calls": 1,
+   "own_s": 0.0,
+   "cumulative_s": 127.317
+  },
+  {
+   "file": "threading.py",
+   "line": 1001,
+   "function": "run",
+   "calls": 4,
+   "own_s": 0.0,
+   "cumulative_s": 127.309
+  },
+  {
+   "file": "thread.py",
+   "line": 70,
+   "function": "_worker",
+   "calls": 4,
+   "own_s": 0.0,
+   "cumulative_s": 127.309
+  }
+ ]
+}

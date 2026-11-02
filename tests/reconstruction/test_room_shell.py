@@ -157,11 +157,11 @@ class RoomShell(unittest.TestCase):
             self.assertEqual(r.status_code, 200, r.text)
         shell = json.loads((d / "room.json").read_text())["shell"]
         scene = json.loads((d / "scene.json").read_text())
-        self.assertEqual(len(nouns), 2 * 2 * (len(rs.FURNITURE) + len(rs.FEATURES)))  # 2 views x nouns, twice
-        self.assertEqual([k["category"] for k in shell["kept"]], ["table"])
-        self.assertGreaterEqual(shell["dropped"], 3)  # chair twin x2 views, bed clutter, second table view
+        self.assertEqual(len(nouns), 2 * 2 * (len(rs.FURNITURE) + len(rs.FEATURES) + len(rs.SURFACES)))
+        self.assertEqual([k["category"] for k in shell["kept"]], ["table", "chair"])
+        self.assertGreaterEqual(shell["dropped"], 3)  # bed clutter, second table/chair views
         obj = [o for o in scene["objects"] if o["id"].startswith("room-object-")]
-        self.assertEqual(len(obj), 1)
+        self.assertEqual(len(obj), 2)
         self.assertEqual(obj[0]["shape"]["type"], "mesh")
         self.assertAlmostEqual(obj[0]["position"][1], obj[0]["size"][1] / 2, places=3)  # reaches the floor
         self.assertLess(obj[0]["size"][1], 0.32)

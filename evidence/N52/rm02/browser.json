@@ -1,0 +1,10 @@
+{
+ "browser": "151.0.7922.34",
+ "headless": false,
+ "renderOrigin": "http://localhost:3052",
+ "viewport": {
+  "width": 1280,
+  "height": 640
+ },
+ "errors": []
+}

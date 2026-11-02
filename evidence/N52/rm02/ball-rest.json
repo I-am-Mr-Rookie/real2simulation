@@ -1,0 +1,38 @@
+{
+ "label": "SIMULATED, room scale unverified",
+ "chairs": 4,
+ "tables": 5,
+ "openings": 3,
+ "drops": [
+  {
+   "table": "room-object-1",
+   "top_m": 0.9804,
+   "expected_rest_y_m": 1.0054,
+   "simulated_rest_y_m": 1.0053327083587646
+  },
+  {
+   "table": "room-object-2",
+   "top_m": 0.8512,
+   "expected_rest_y_m": 0.8762,
+   "simulated_rest_y_m": 0.8761317133903503
+  },
+  {
+   "table": "room-object-4",
+   "top_m": 1.0044,
+   "expected_rest_y_m": 1.0293999999999999,
+   "simulated_rest_y_m": 1.0293327569961548
+  },
+  {
+   "table": "room-object-7",
+   "top_m": 1.084,
+   "expected_rest_y_m": 1.109,
+   "simulated_rest_y_m": 1.108932614326477
+  },
+  {
+   "table": "room-object-9",
+   "top_m": 1.04615,
+   "expected_rest_y_m": 1.0711499999999998,
+   "simulated_rest_y_m": 1.0710827112197876
+  }
+ ]
+}

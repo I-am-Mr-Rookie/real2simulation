@@ -1,0 +1,615 @@
+{
+ "schema": "n39-shell/1",
+ "keyframes": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
+ ],
+ "sam_calls": 176,
+ "sam_cost_usd": 0.44,
+ "floor": "FIT",
+ "yaw_deg": 4.0,
+ "walls": [
+  {
+   "axis": 0,
+   "side": -1,
+   "plane": -1.9286,
+   "support": 0.0116,
+   "status": "EXTENT",
+   "height": 1.5212,
+   "reason": "low point support; placed at the scan edge, MODEL-ESTIMATED",
+   "span": [
+    -3.7469,
+    0.1206
+   ]
+  },
+  {
+   "axis": 0,
+   "side": 1,
+   "plane": 3.4866,
+   "support": 0.0182,
+   "status": "EXTENT",
+   "height": 1.5212,
+   "reason": "low point support; placed at the scan edge, MODEL-ESTIMATED",
+   "span": [
+    -3.7469,
+    0.1206
+   ]
+  },
+  {
+   "axis": 1,
+   "side": -1,
+   "plane": -3.7469,
+   "support": 0.0126,
+   "status": "EXTENT",
+   "height": 1.5212,
+   "reason": "low point support; placed at the scan edge, MODEL-ESTIMATED",
+   "span": [
+    -1.9286,
+    3.4866
+   ]
+  },
+  {
+   "axis": 1,
+   "side": 1,
+   "plane": 0.1206,
+   "support": 0.1232,
+   "status": "EXTENT",
+   "reason": "18 camera or furniture position(s) beyond it; placed at the scan edge, MODEL-ESTIMATED",
+   "height": 1.5212,
+   "span": [
+    -1.9286,
+    3.4866
+   ]
+  }
+ ],
+ "openings": [
+  {
+   "wall": 0,
+   "noun": "window",
+   "view": 9,
+   "placement": "MODEL-ESTIMATED projection onto nearest EXTENT wall",
+   "along": [
+    -3.0653,
+    -2.2536
+   ],
+   "y": [
+    0.8426,
+    1.5212
+   ],
+   "views": [
+    7,
+    9,
+    10,
+    11,
+    13,
+    14
+   ]
+  },
+  {
+   "wall": 2,
+   "noun": "window",
+   "view": 6,
+   "placement": "MODEL-ESTIMATED projection onto nearest EXTENT wall",
+   "along": [
+    -1.1821,
+    -0.4961
+   ],
+   "y": [
+    0.9271,
+    1.5212
+   ],
+   "views": [
+    4,
+    5,
+    6
+   ]
+  },
+  {
+   "wall": 2,
+   "noun": "window",
+   "view": 0,
+   "placement": "MODEL-ESTIMATED projection onto nearest EXTENT wall",
+   "along": [
+    0.2321,
+    2.865
+   ],
+   "y": [
+    0.9233,
+    1.5212
+   ],
+   "views": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    15
+   ]
+  }
+ ],
+ "opening_detections_off_wall": 7,
+ "kept": [
+  {
+   "id": "room-object-1",
+   "category": "table",
+   "views": [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5
+   ],
+   "merged": [
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk"
+   ],
+   "points": 27559,
+   "size_m": [
+    1.0295,
+    0.9804,
+    0.5553
+   ],
+   "size_sd_m": [
+    0.0336,
+    0.0255,
+    0.0397
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D not requested",
+   "sf3d": null,
+   "reason": "main furniture (table), 12 view(s), box reaches the floor",
+   "mask_source": "SAM instance mask",
+   "split": null,
+   "facing": null
+  },
+  {
+   "id": "room-object-2",
+   "category": "table",
+   "views": [
+    15,
+    15,
+    14,
+    14,
+    13,
+    13,
+    12,
+    12,
+    11,
+    11,
+    10,
+    10,
+    9,
+    9,
+    8,
+    8
+   ],
+   "merged": [
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk"
+   ],
+   "points": 21340,
+   "size_m": [
+    1.1794,
+    0.8512,
+    0.719
+   ],
+   "size_sd_m": [
+    0.0491,
+    0.0063,
+    0.0587
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D not requested",
+   "sf3d": null,
+   "reason": "main furniture (table), 16 view(s), box reaches the floor",
+   "mask_source": "SAM instance mask",
+   "split": null,
+   "facing": null
+  },
+  {
+   "id": "room-object-3",
+   "category": "chair",
+   "views": [
+    9,
+    10,
+    8,
+    7,
+    6,
+    5,
+    4,
+    14,
+    11,
+    12,
+    13,
+    15,
+    3,
+    2
+   ],
+   "merged": [
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair"
+   ],
+   "points": 9231,
+   "size_m": [
+    0.804,
+    0.9589,
+    0.5417
+   ],
+   "size_sd_m": [
+    0.0279,
+    0.0754,
+    0.0286
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D not requested",
+   "sf3d": null,
+   "reason": "main furniture (chair), 14 view(s), box reaches the floor",
+   "mask_source": "SAM instance mask",
+   "split": null,
+   "facing": "MODEL-ESTIMATED toward nearest table or room centre"
+  },
+  {
+   "id": "room-object-4",
+   "category": "table",
+   "views": [
+    7,
+    8,
+    7,
+    6,
+    6,
+    8,
+    10,
+    9,
+    9,
+    10,
+    11,
+    11,
+    5,
+    5,
+    12,
+    12,
+    15,
+    15,
+    14,
+    14,
+    13,
+    13,
+    4,
+    4
+   ],
+   "merged": [
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "desk",
+    "table",
+    "table",
+    "desk",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk"
+   ],
+   "points": 8565,
+   "size_m": [
+    0.9817,
+    1.0044,
+    0.692
+   ],
+   "size_sd_m": [
+    0.0148,
+    0.0569,
+    0.0512
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D not requested",
+   "sf3d": null,
+   "reason": "main furniture (table), 24 view(s), box reaches the floor",
+   "mask_source": "SAM instance mask",
+   "split": null,
+   "facing": null
+  },
+  {
+   "id": "room-object-5",
+   "category": "chair",
+   "views": [
+    0,
+    1,
+    2,
+    3
+   ],
+   "merged": [
+    "chair",
+    "chair",
+    "chair"
+   ],
+   "points": 6205,
+   "size_m": [
+    0.5333,
+    0.9831,
+    0.2862
+   ],
+   "size_sd_m": [
+    0.0208,
+    0.0084,
+    0.0132
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D not requested",
+   "sf3d": null,
+   "reason": "main furniture (chair), 4 view(s), box reaches the floor",
+   "mask_source": "SAM instance mask",
+   "split": null,
+   "facing": "MODEL-ESTIMATED toward nearest table or room centre"
+  },
+  {
+   "id": "room-object-6",
+   "category": "chair",
+   "views": [
+    6,
+    5,
+    4,
+    3,
+    2,
+    1,
+    0,
+    7,
+    8
+   ],
+   "merged": [
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair"
+   ],
+   "points": 4685,
+   "size_m": [
+    0.8071,
+    0.9228,
+    0.5944
+   ],
+   "size_sd_m": [
+    0.0419,
+    0.0145,
+    0.0258
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D not requested",
+   "sf3d": null,
+   "reason": "main furniture (chair), 9 view(s), box reaches the floor",
+   "mask_source": "SAM instance mask",
+   "split": null,
+   "facing": "MODEL-ESTIMATED toward nearest table or room centre"
+  },
+  {
+   "id": "room-object-7",
+   "category": "table",
+   "views": [
+    4,
+    4,
+    5,
+    6,
+    5,
+    6,
+    3,
+    1,
+    1,
+    3,
+    2,
+    2,
+    7,
+    7
+   ],
+   "merged": [
+    "desk",
+    "table",
+    "table",
+    "desk",
+    "desk",
+    "table",
+    "table",
+    "desk",
+    "desk",
+    "table",
+    "desk",
+    "table",
+    "desk"
+   ],
+   "points": 3923,
+   "size_m": [
+    1.0282,
+    1.084,
+    0.4935
+   ],
+   "size_sd_m": [
+    0.0356,
+    0.0066,
+    0.1225
+   ],
+   "clutter_px_masked": 2,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D not requested",
+   "sf3d": null,
+   "reason": "main furniture (table), 14 view(s), box reaches the floor",
+   "mask_source": "SAM instance mask",
+   "split": null,
+   "facing": null
+  },
+  {
+   "id": "room-object-8",
+   "category": "chair",
+   "views": [
+    0,
+    3,
+    4,
+    2,
+    1,
+    1,
+    2,
+    5
+   ],
+   "merged": [
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "chair"
+   ],
+   "points": 2691,
+   "size_m": [
+    0.8379,
+    1.0612,
+    0.5353
+   ],
+   "size_sd_m": [
+    0.0269,
+    0.0163,
+    0.0367
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D not requested",
+   "sf3d": null,
+   "reason": "main furniture (chair), 8 view(s), box reaches the floor",
+   "mask_source": "SAM instance mask",
+   "split": null,
+   "facing": "MODEL-ESTIMATED toward nearest table or room centre"
+  },
+  {
+   "id": "room-object-9",
+   "category": "table",
+   "views": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "merged": [
+    "desk",
+    "table",
+    "desk"
+   ],
+   "points": 1699,
+   "size_m": [
+    0.5265,
+    1.0461,
+    0.1848
+   ],
+   "size_sd_m": [
+    0.044,
+    0.013,
+    0.0127
+   ],
+   "clutter_px_masked": 0,
+   "shape": "box",
+   "fallback_reason": "SF3D: RuntimeError: SF3D not requested",
+   "sf3d": null,
+   "reason": "main furniture (table), 4 view(s), box reaches the floor",
+   "mask_source": "SAM instance mask",
+   "split": null,
+   "facing": null
+  }
+ ],
+ "dropped": 130,
+ "dropped_reasons": {
+  "table top above 1.1 m (front-view clutter, not a table)": 14,
+  "too small for main furniture": 17,
+  "no reconstructed points": 3,
+  "same item seen in another view (merged)": 96
+ },
+ "detections": {
+  "furniture": 137,
+  "features": 40
+ },
+ "labels": {
+  "geometry": "MODEL-ESTIMATED",
+  "scale": "scale unverified",
+  "shape": "MODEL-GENERATED shape, Powered by Stability AI (mesh items only)",
+  "note": "only floor, walls and main furniture; clutter dropped; dense collision boxes off by default"
+ }
+}

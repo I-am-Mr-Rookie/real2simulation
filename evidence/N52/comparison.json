@@ -1,0 +1,142 @@
+{
+ "source": "N49 public RM02 cached MapAnything, no new reconstruction",
+ "before": {
+  "chair": {
+   "count": 5,
+   "colours": [
+    "#6e7e75",
+    "#c1c2c3",
+    "#a4a19c",
+    "#46544c",
+    "#bfbdbc"
+   ],
+   "max_size_m": [
+    1.4835,
+    1.0269,
+    0.6592
+   ]
+  },
+  "table": {
+   "count": 7,
+   "colours": [
+    "#bcbbbc",
+    "#9aa0a2",
+    "#848b83",
+    "#53615e",
+    "#aca8a6",
+    "#85938d",
+    "#8fa0ac"
+   ],
+   "max_size_m": [
+    2.2454,
+    1.0948,
+    3.3315
+   ]
+  },
+  "floor": {
+   "count": 1,
+   "colours": [
+    "#96928b"
+   ],
+   "max_size_m": [
+    6.1203,
+    0.02,
+    4.7009
+   ]
+  },
+  "wall": {
+   "count": 4,
+   "colours": [
+    "#b7b4b0",
+    "#b0b0b0",
+    "#b0b0b0",
+    "#b0b0b0"
+   ],
+   "max_size_m": [
+    6.1203,
+    1.5212,
+    4.7009
+   ]
+  },
+  "window": {
+   "count": 0,
+   "colours": [],
+   "max_size_m": null
+  }
+ },
+ "after": {
+  "chair": {
+   "count": 4,
+   "colours": [
+    "#496358",
+    "#3a5549",
+    "#394a41",
+    "#3d534a"
+   ],
+   "max_size_m": [
+    0.8379,
+    1.0612,
+    0.5944
+   ]
+  },
+  "table": {
+   "count": 5,
+   "colours": [
+    "#959ba1",
+    "#cecdcd",
+    "#707679",
+    "#73797c",
+    "#8d99a1"
+   ],
+   "max_size_m": [
+    1.1794,
+    1.084,
+    0.719
+   ]
+  },
+  "floor": {
+   "count": 1,
+   "colours": [
+    "#9b9691"
+   ],
+   "max_size_m": [
+    5.4152,
+    0.02,
+    3.8675
+   ]
+  },
+  "wall": {
+   "count": 10,
+   "colours": [
+    "#b5b1ad",
+    "#b5b1ad",
+    "#b5b1ad",
+    "#cecdcc",
+    "#b5b2ae",
+    "#b5b2ae",
+    "#b5b2ae",
+    "#b5b2ae",
+    "#b5b2ae",
+    "#a5a19c"
+   ],
+   "max_size_m": [
+    5.4152,
+    1.5212,
+    3.8675
+   ]
+  },
+  "window": {
+   "count": 3,
+   "colours": [
+    "#b5b1ad",
+    "#b5b2ae",
+    "#b5b2ae"
+   ],
+   "max_size_m": [
+    2.6329,
+    0.6786,
+    0.8117
+   ]
+  }
+ }
+}

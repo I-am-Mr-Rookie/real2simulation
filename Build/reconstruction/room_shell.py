@@ -14,6 +14,7 @@ from Build.reconstruction import live_room, object_lift
 FURNITURE = {"table": "table", "desk": "table", "chair": "chair", "sofa": "sofa", "bed": "bed", "shelf": "shelf",
              "cabinet": "shelf"}
 FEATURES = ("window", "door")
+SURFACES = ("wall", "floor")
 TOP_SURFACE = ("table", "desk", "shelf", "cabinet")  # clutter on these is masked out before SF3D
 KEYFRAMES = 16  # N49: all sampled room frames (live_room.FRAMES 16): with 3, the N06 window and door were never in view
 SAM_THREADS = 4  # N49: parallel hosted SAM calls (daily_cap reserves in BEGIN IMMEDIATE, so the cap holds)
@@ -26,6 +27,8 @@ OUTSIDE_MAX = 0.1  # N44: a wall bounds the room: at most this share of its side
 MERGE_OVERLAP = 0.3  # N42: footprints overlapping this much (of the smaller) are parts of one item
 PARTS = ("table", "shelf")  # N42: merge groups that form one item when they overlap (desk + hutch, desk + cabinet)
 MAX_TABLE = 1.1  # N42: a "table"/"desk" top above this (m above the floor) is front-view clutter (N39 1.26 m "table")
+# MODEL-ESTIMATED size priors, not measured dimensions; long axis first (the proxy's PCA x axis).
+SIZE_PRIOR = {"chair": (0.8, 0.8), "table": (1.8, 1.1), "sofa": (3.0, 1.4), "bed": (2.5, 2.5), "shelf": (2.4, 1.2)}
 
 
 def keyframes(n, k=KEYFRAMES):
@@ -85,16 +88,72 @@ def _grow(p, lo, hi):
     p["size"][0], p["size"][2] = round(float(hi[0] - lo[0]), 4), round(float(hi[1] - lo[1]), 4)
 
 
+def split_item(npz, room, item):
+    """Partition oversized masked detections in their own axes. Empty cells are not invented furniture."""
+    p = item["proxy"]
+    span = np.array(p["size"])[[0, 2]]
+    limits = SIZE_PRIOR[FURNITURE[item["noun"]]]
+    counts = np.maximum(1, np.ceil(span / (np.array(limits) * 1.05)).astype(int))
+    if np.all(counts == 1):
+        return [item]
+    v = live_room.load_views(npz)[item["view"]]
+    rot, origin = object_lift._room_frame(npz)
+    idx = np.flatnonzero(p["mask"])
+    points = (v["pts_img"].reshape(-1, 3)[idx] - origin) @ rot.T * room["scale"]["metres_per_model_unit"]
+    yaw = 2 * np.arctan2(p["rotation"][1], p["rotation"][3])
+    ex, ez = _axes(yaw)
+    local = (points[:, [0, 2]] - np.array(p["position"])[[0, 2]]) @ np.column_stack([ex, ez])
+    bins = np.clip(np.floor((local / np.maximum(span, 1e-6) + 0.5) * counts).astype(int), 0, counts - 1)
+    out = []
+    for i in range(counts[0]):
+        for j in range(counts[1]):
+            selected = (bins == [i, j]).all(1)
+            if selected.sum() < 30:
+                continue
+            mask = np.zeros_like(p["mask"], bool)
+            mask.reshape(-1)[idx[selected]] = True
+            offset = ((np.array([i, j]) + 0.5) / counts - 0.5) * span
+            centre = np.array(p["position"])[[0, 2]] + offset[0] * ex + offset[1] * ez
+            size = span / counts
+            proxy = {**p, "mask": mask, "points": int(selected.sum()),
+                     "position": [round(float(centre[0]), 4), p["position"][1], round(float(centre[1]), 4)],
+                     "size": [round(float(size[0]), 4), p["size"][1], round(float(size[1]), 4)]}
+            out.append({**item, "proxy": proxy, "split": "MODEL-ESTIMATED size-prior partition of a SAM instance"})
+    return out or [{**item, "split": "MODEL-ESTIMATED oversized extent retained; too few points per size-prior cell"}]
+
+
+def face_furniture(items, centre):
+    """Parametric seat front is +Z: face the nearest table, or the room centre, not a fixed world axis."""
+    tables = [it["proxy"]["position"] for it in items if FURNITURE[it["noun"]] == "table"]
+    for it in items:
+        if it["noun"] not in ("chair", "sofa"):
+            continue
+        p = it["proxy"]
+        pos = np.array(p["position"])[[0, 2]]
+        target = min(tables, key=lambda t: np.linalg.norm(np.array(t)[[0, 2]] - pos)) if tables else centre
+        delta = np.array(target)[[0, 2]] - pos
+        if np.linalg.norm(delta) < 0.01:
+            continue
+        yaw = np.arctan2(delta[0], delta[1])
+        if it["noun"] == "sofa":  # preserve the measured long axis; only choose which side is the back
+            yaw = 2 * np.arctan2(p["rotation"][1], p["rotation"][3])
+            if np.dot([np.sin(yaw), np.cos(yaw)], delta) < 0:
+                yaw += np.pi
+        p["rotation"] = [0, round(float(np.sin(yaw / 2)), 6), 0, round(float(np.cos(yaw / 2)), 6)]
+
+
 def furniture(npz, room, detections):
     """detections: [(view, noun, box)] -> (kept [{noun, view, box, proxy, views}], dropped {reason: count})."""
     items, dropped = [], {}
 
     def drop(reason):
         dropped[reason] = dropped.get(reason, 0) + 1
-    for view, noun, box in detections:
+    for instance, (view, noun, detection) in enumerate(detections):
+        box = detection["box"] if isinstance(detection, dict) else detection
+        mask = detection.get("mask") if isinstance(detection, dict) else getattr(detection, "mask", None)
         point = [(box[1] + box[3]) / 2, (box[0] + box[2]) / 2]
         try:
-            p = object_lift.lift(npz, view, point, box, room)
+            p = object_lift.lift(npz, view, point, box, room, mask)
         except ValueError:
             drop("no reconstructed points")
             continue
@@ -113,7 +172,10 @@ def furniture(npz, room, detections):
             drop("too small for main furniture")
             continue
         p["position"][1], p["size"][1] = round(top / 2, 4), round(top, 4)  # measured box reaches the floor
-        items.append({"noun": noun, "view": view, "box": [int(x) for x in box], "proxy": p, "views": [view]})
+        items.extend(split_item(npz, room, {"noun": noun, "view": view, "box": [int(x) for x in box],
+                                          "proxy": p, "views": [view], "instance": instance,
+                                          "mask_source": "SAM instance mask" if mask is not None else
+                                          "box/depth fallback; " + (getattr(detection, "mask_error", None) or "SAM mask unavailable")}))
     kept = []
     for it in sorted(items, key=lambda x: -x["proxy"]["points"]):
         p = it["proxy"]
@@ -121,15 +183,22 @@ def furniture(npz, room, detections):
         # parts of one item: overlap with the kept item's first (ungrown) footprint, so merges do not snowball
         part = lambda k: ((same(k) or {FURNITURE[k["noun"]], FURNITURE[it["noun"]]} <= set(PARTS))  # noqa: E731
                           and _footprint_overlap(k["box0"], p)[0] > MERGE_OVERLAP)
-        twin = next((k for k in kept if np.hypot(
+        def compatible(k):
+            if k["view"] == it["view"] and (k["noun"] == it["noun"] or k["instance"] == it["instance"]):
+                return False  # different masks (or size-prior pieces) in one view are separate instances
+            if not same(k) and not part(k):
+                return False
+            return True
+        twin = next((k for k in kept if compatible(k) and (np.hypot(
             p["position"][0] - k["proxy"]["position"][0], p["position"][2] - k["proxy"]["position"][2])
             < (0.5 if same(k) else 0.3) * max(p["size"][0], p["size"][2], k["proxy"]["size"][0], k["proxy"]["size"][2])
-            or part(k)), None)
+            or part(k))), None)
         if twin:
             # N42: parts of one item (desk + hutch, other views) become one box over the union footprint
             if part(twin):  # a centre-distance twin with little overlap is a misaligned view: no growth
                 _, lo, hi = _footprint_overlap(twin["proxy"], p)
-                _grow(twin["proxy"], lo, hi)
+                if np.all(hi - lo <= np.array(SIZE_PRIOR[FURNITURE[twin["noun"]]]) * 1.05):
+                    _grow(twin["proxy"], lo, hi)
             twin["views"].append(it["view"])
             twin.setdefault("merged", []).append(it["noun"])
             drop("same item seen in another view (merged)" if same(twin) else "part of a larger detected item (merged)")
@@ -223,10 +292,12 @@ def extent_walls(aligned, out, inside=(), yaw=0.0, cell=0.05):
 
 def hex_color(rgb):
     """Mean colour of RGB rows (0..1 floats or 0..255 ints) as #rrggbb; grey when there are none."""
+    unit = np.issubdtype(np.asarray(rgb).dtype, np.floating)
     rgb = np.asarray(rgb, float).reshape(-1, 3)
+    rgb = rgb[np.isfinite(rgb).all(1)]
     if not len(rgb):
         return "#b0b0b0"
-    m = rgb.mean(0) * (255 if rgb.max() <= 1 else 1)
+    m = rgb.mean(0) * (255 if unit and rgb.max() <= 1 else 1)
     return "#" + "".join(f"{int(np.clip(x + 0.5, 0, 255)):02x}" for x in m)
 
 
@@ -245,25 +316,33 @@ def floor_slab(yaw, walls, color, t=0.02):
 
 
 def opening(npz, view, box, room, yaw, fit, noun, tol=0.2):
-    """SAM window/door box -> {wall index, along [lo, hi], y [lo, hi]} on the FIT wall holding most of its points."""
+    """Project a detected opening onto its nearest wall, including inferred scan-edge walls."""
+    mask = box.get("mask") if isinstance(box, dict) else getattr(box, "mask", None)
+    box = box["box"] if isinstance(box, dict) else box
     v = live_room.load_views(npz)[view]
     h, w = v["pts_img"].shape[:2]
     rr, cc = np.divmod(np.arange(h * w), w)
     sel = v["mask"] & (cc >= box[0]) & (cc <= box[2]) & (rr >= box[1]) & (rr <= box[3])
+    if mask is not None:
+        sel &= np.asarray(mask, bool).reshape(-1)
     rot, origin = object_lift._room_frame(npz)
     q = (v["pts_img"].reshape(-1, 3)[sel] - origin) @ rot.T * room["scale"]["metres_per_model_unit"]
     q = q[np.isfinite(q).all(1)]
+    if len(q) < 30 or not fit:
+        return None
     ex, ez = _axes(yaw)
     uv = np.column_stack([q[:, [0, 2]] @ ex, q[:, [0, 2]] @ ez])
-    best = max(((i, np.abs(uv[:, wl["axis"]] - wl["plane"]) <= tol) for i, wl in enumerate(fit)),
-               key=lambda t: t[1].sum(), default=(None, None))
-    if best[0] is None or best[1].sum() < 30:
-        return None
-    i, near = best
+    i = min(range(len(fit)), key=lambda i: float(np.median(np.abs(uv[:, fit[i]["axis"]] - fit[i]["plane"]))))
+    near = np.abs(uv[:, fit[i]["axis"]] - fit[i]["plane"]) <= tol
+    if near.sum() < 30:
+        near = np.ones(len(q), bool)  # EXTENT is a scan boundary, not an observed surface
     a, y = uv[near, 1 - fit[i]["axis"]], q[near, 1]
     lo = 0.0 if noun == "door" else max(0.0, float(np.percentile(y, 5)))
-    o = {"wall": i, "noun": noun, "view": view, "along": [round(float(np.percentile(a, 5)), 4),
-         round(float(np.percentile(a, 95)), 4)], "y": [round(lo, 4), round(float(np.percentile(y, 95)), 4)]}
+    o = {"wall": i, "noun": noun, "view": view,
+         "placement": "MODEL-ESTIMATED projection onto nearest " + fit[i].get("status", "FIT") + " wall",
+         "along": [round(max(fit[i]["span"][0], float(np.percentile(a, 5))), 4),
+                   round(min(fit[i]["span"][1], float(np.percentile(a, 95))), 4)],
+         "y": [round(lo, 4), round(min(fit[i]["height"], float(np.percentile(y, 95))), 4)]}
     return o if on_wall(o, fit[i]) else None
 
 
@@ -344,12 +423,12 @@ def wall_objects(yaw, fit, holes, colors=None):
 
 def build(npz, room, scene, detect, generate=None, glb_url=None):
     """npz bytes + room.json + scene.json -> (scene with shell objects, shell summary, {object id: glb bytes}).
-    detect(png, noun, w, h) -> [boxes] (one hosted SAM 3.1 image call); generate(rgba png) -> SF3D dict or None."""
+    detect(png, noun, w, h) -> box sequences with optional .mask (or {box, mask}); generate(rgba png) -> SF3D dict or None."""
     views = live_room.load_views(npz)
     frames = keyframes(len(views))
-    found = {"furniture": [], "features": []}
+    found = {"furniture": [], "features": [], "surfaces": []}
     pngs = {view: object_lift.view_png(npz, view) for view in frames}
-    jobs = [(view, noun) for view in frames for noun in [*FURNITURE, *FEATURES]]
+    jobs = [(view, noun) for view in frames for noun in [*FURNITURE, *FEATURES, *SURFACES]]
     calls = len(jobs)
     from concurrent.futures import ThreadPoolExecutor
 
@@ -359,21 +438,43 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
     with ThreadPoolExecutor(SAM_THREADS) as pool:  # map keeps job order, so results stay deterministic
         for (view, noun), boxes in zip(jobs, pool.map(call, jobs)):
             for b in boxes:
-                found["features" if noun in FEATURES else "furniture"].append((view, noun, b))
+                found["surfaces" if noun in SURFACES else "features" if noun in FEATURES else "furniture"].append((view, noun, b))
     aligned, rgb, _, _ = live_room.analyse(npz)
     kept, dropped = furniture(npz, room, found["furniture"])
-    inside = [(c[0], c[2]) for c in room.get("camera_positions_m", [])] + [
-        (it["proxy"]["position"][0], it["proxy"]["position"][2]) for it in kept]
+    face_furniture(kept, np.mean(aligned, axis=0))
+    inside = [(c[0], c[2]) for c in room.get("camera_positions_m", [])]
+    for it in kept:  # bound the whole oriented item, not just its centre (otherwise chairs protrude through EXTENT walls)
+        p = it["proxy"]
+        a = 2 * np.arctan2(p["rotation"][1], p["rotation"][3])
+        ux, uz = _axes(a)
+        inside.extend(np.array(p["position"])[[0, 2]] + sx * p["size"][0] * ux + sz * p["size"][2] * uz
+                      for sx in (-0.5, 0.5) for sz in (-0.5, 0.5))
     yaw, all_walls = walls(aligned, inside)
-    fit = [w for w in all_walls if w["status"] == "FIT"]
-    cand = [opening(npz, v, b, room, yaw, fit, n) for v, n, b in found["features"]]
+    shown = extent_walls(aligned, all_walls, inside, yaw)
+    cand = [opening(npz, v, b, room, yaw, shown, n) for v, n, b in found["features"]]
     holes = merge_openings([o for o in cand if o])
-    shown = extent_walls(aligned, all_walls, inside, yaw)  # FIT first: opening wall indices still match
     ex, ez = _axes(yaw)
     band = (aligned[:, 1] > 0.1) & (aligned[:, 1] < 0.9 * max(float(np.percentile(aligned[:, 1], 98)), 1e-6))
-    colors = [hex_color(rgb[band & (np.abs(aligned[:, [0, 2]] @ (ex if w["axis"] == 0 else ez) - w["plane"]) < 0.15)])
-              for w in shown]  # N49: mean video colour of the points on each wall
-    slab = floor_slab(yaw, shown, hex_color(rgb[np.abs(aligned[:, 1]) < 0.03]))
+    wall_rgb, floor_rgb = [[] for _ in shown], []
+    rot, origin = object_lift._room_frame(npz)
+    for view, noun, detection in found["surfaces"]:
+        mask = detection.get("mask") if isinstance(detection, dict) else getattr(detection, "mask", None)
+        if mask is None:
+            continue
+        mask = mask.reshape(-1)
+        if noun == "floor":
+            floor_rgb.append(views[view]["rgb"][mask])
+        elif shown:
+            mask = mask & views[view]["mask"]
+            q = (views[view]["pts_img"].reshape(-1, 3)[mask] - origin) @ rot.T * room["scale"]["metres_per_model_unit"]
+            uv = np.column_stack([q[:, [0, 2]] @ ex, q[:, [0, 2]] @ ez])
+            nearest = np.argmin(np.column_stack([abs(uv[:, w["axis"]] - w["plane"]) for w in shown]), axis=1)
+            for i in range(len(shown)):
+                wall_rgb[i].append(views[view]["rgb"][mask][nearest == i])
+    colors = [hex_color(np.concatenate(wall_rgb[i])) if wall_rgb[i] and sum(map(len, wall_rgb[i])) else
+              hex_color(rgb[band & (np.abs(aligned[:, [0, 2]] @ (ex if w["axis"] == 0 else ez) - w["plane"]) < 0.15)])
+              for i, w in enumerate(shown)]
+    slab = floor_slab(yaw, shown, hex_color(np.concatenate(floor_rgb)) if floor_rgb else hex_color(rgb[np.abs(aligned[:, 1]) < 0.03]))
     out = {**scene, "objects": [o for o in scene.get("objects", []) if not str(o.get("id", "")).startswith("wall-")]}
     out["objects"] += wall_objects(yaw, shown, holes, colors) + ([slab] if slab else [])
     glbs, kept_list = {}, []
@@ -397,7 +498,9 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
                           "size_m": obj["size"], "size_sd_m": p["size_sd"], "clutter_px_masked": p.get("clutter_px", 0),
                           "shape": obj["shape"]["type"], "fallback_reason": obj["shape"].get("fallback_reason"),
                           "sf3d": {k: gen.get(k) for k in ("gpu", "wall_s", "inference_s", "estimated_usd")} if gen else None,
-                          "reason": f"main furniture ({noun}), {len(it['views'])} view(s), box reaches the floor"})
+                          "reason": f"main furniture ({noun}), {len(it['views'])} view(s), box reaches the floor",
+                          "mask_source": it["mask_source"],
+                          "split": it.get("split"), "facing": "MODEL-ESTIMATED toward nearest table or room centre" if noun in ("chair", "sofa") else None})
     shell = {"schema": "n39-shell/1", "keyframes": frames, "sam_calls": calls, "sam_cost_usd": round(calls * object_lift.USD_PER_IMAGE, 4),
              "floor": room["floor"]["status"], "yaw_deg": round(float(np.degrees(yaw)), 2), "walls": shown,
              "openings": holes, "opening_detections_off_wall": sum(o is None for o in cand),

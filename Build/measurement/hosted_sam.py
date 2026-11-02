@@ -1,7 +1,8 @@
 """Hosted Meta SAM 3.1 tracker (Meta Model API /v1/files + /v1/responses).
 
 Network only in upload() and track(); parsing and selection are pure. Points are box centres in source
-pixels (x right, y down), not mask centroids, metric positions or centres of mass. Masks are not decoded.
+pixels (x right, y down), not mask centroids, metric positions or centres of mass. image_instances decodes image masks;
+the tracking parse/result API deliberately remains box-centre based.
 Missing object on a frame stays missing. Output plugs into the S07a record shape (tracking.TrainingTrack).
 Transport is stdlib urllib (no requests on the API image); every track() call reserves/settles the global daily cap.
 """
@@ -109,6 +110,42 @@ def parse(text):
             size = wh
             frames[k][int(oid)] = box
     return frames, size
+
+
+def image_instances(text, width, height):
+    """Image boxes plus their actual SAM masks, placed at the inclusive box origin, not (0, 0)."""
+    import numpy as np
+    from types import SimpleNamespace
+    from Build.reconstruction._sam_mask_codec import decode_mask_to_raster
+
+    text = text if _FRAME.search(text) else "<0f>" + text
+    frames, size = parse(text)
+    if size is not None and (size != (width, height) or set(frames) != {0}):
+        raise ValueError("SAM image dimensions/frame differ from the submitted view")
+    out = []
+    records = re.finditer(r"(\d+)<\|box;([^|]*)\|>(<\|mask;.*?\|>)?(?=,\d+<\|box;|\s*$)", text)
+    for record in records:
+        box = frames[0][int(record[1])]
+        x1, y1, x2, y2 = box
+        if any(int(v) != v for v in box) or not (0 <= x1 <= x2 < width and 0 <= y1 <= y2 < height):
+            raise ValueError("SAM box outside the submitted view")
+        mask = None
+        if record[3]:
+            fields = dict(kv.split("=", 1) for kv in record[3][7:-2].split(";"))
+            if "data" not in fields:
+                raise ValueError("SAM mask has no data")
+            mh, mw, payload = fields["data"].split(",", 2)
+            mh, mw = int(mh), int(mw)
+            if fields.get("x") != "0" or fields.get("y") != "0" or (mw, mh) != (x2 - x1 + 1, y2 - y1 + 1):
+                raise ValueError("SAM mask dimensions differ from its inclusive box")
+            raster = decode_mask_to_raster(SimpleNamespace(width=mw, height=mh, payload=payload,
+                                                         encoding="one_bit" if payload.startswith("!") else "lossless"))
+            mask = np.zeros((height, width), bool)
+            mask[int(y1):int(y2) + 1, int(x1):int(x2) + 1] = np.frombuffer(raster, np.uint8).reshape(mh, mw) > 0
+        out.append({"box": box, "mask": mask})
+    if len(out) != sum(len(f) for f in frames.values()):
+        raise ValueError("SAM image record could not be paired with its mask")
+    return out
 
 
 def _centre(box):

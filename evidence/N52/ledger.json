@@ -1,0 +1,2131 @@
+{
+ "label": "rate estimate, not provider invoice",
+ "calls": 177,
+ "total_estimated_usd": 0.4425,
+ "rows": [
+  {
+   "id": "6631d86e391b45d3998ceab67bf2bf6c",
+   "provider": "Meta Model API",
+   "label": "N52 mask diagnostic",
+   "reserved_at": "2026-11-02T06:00:41.164625+00:00",
+   "settled_at": "2026-11-02T06:00:43.606418+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "864e3b94799c47e88da36da9cecc6bfd",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:04:39.318023+00:00",
+   "settled_at": "2026-11-02T06:04:42.058616+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "5156fbcd82734b2cbabde028c8b72d97",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:04:39.320020+00:00",
+   "settled_at": "2026-11-02T06:04:42.145112+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "864efd0b635b4ec4ab1370528172deae",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:04:39.321021+00:00",
+   "settled_at": "2026-11-02T06:04:41.388916+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "6f2c48fd737243089f24222f10f4d3d2",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:04:39.340407+00:00",
+   "settled_at": "2026-11-02T06:04:41.674736+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "c01afe905c7341eaa25e0365a7393f4e",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:04:41.674736+00:00",
+   "settled_at": "2026-11-02T06:04:44.416581+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "7162d255869440179154a43330eff9b3",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:04:41.701119+00:00",
+   "settled_at": "2026-11-02T06:04:43.810182+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "8f0d8d1354e54ccc8657d960ec77444b",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:04:42.912001+00:00",
+   "settled_at": "2026-11-02T06:04:45.544229+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "b5ff6862fd5847f2885b6ffc427f4685",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:04:43.068966+00:00",
+   "settled_at": "2026-11-02T06:04:45.875837+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "23b47799d10b42468faf49417c7db630",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:04:43.830471+00:00",
+   "settled_at": "2026-11-02T06:04:44.735704+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "db41e6a5cc0c4beaaba7eec6a10a9024",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:04:44.443799+00:00",
+   "settled_at": "2026-11-02T06:04:46.222376+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "572b39a9013a45b48d58da7f44c44667",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:04:44.756236+00:00",
+   "settled_at": "2026-11-02T06:04:46.851208+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "6b04842c26f240a98b1cc70b204bf769",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:04:45.560747+00:00",
+   "settled_at": "2026-11-02T06:04:47.759143+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "f90d03b51fdc46f8999c97795a6cb55a",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:04:46.179012+00:00",
+   "settled_at": "2026-11-02T06:04:48.258443+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "839c780490ad4b60b3957b24bdbfc65e",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:04:46.767457+00:00",
+   "settled_at": "2026-11-02T06:04:48.860895+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "f551de9e212a4e7ebe49a9c280e8597c",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:04:47.466831+00:00",
+   "settled_at": "2026-11-02T06:04:49.332003+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d51e5bd97c0e451f9eeac7adfcd6370a",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:04:48.256457+00:00",
+   "settled_at": "2026-11-02T06:04:50.560732+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "a653770d79b248938607e15e8bee0784",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:04:48.779971+00:00",
+   "settled_at": "2026-11-02T06:04:50.981937+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "380253356d60417f8b78d7758eb0b9be",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:04:49.279201+00:00",
+   "settled_at": "2026-11-02T06:04:51.381974+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "0e5d7aa4cd1c407cb2ae7bdf7b7e100f",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:04:49.346566+00:00",
+   "settled_at": "2026-11-02T06:04:51.461083+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d0e4e63e7aeb4a56a1ba0e395ecd4e54",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:04:50.577345+00:00",
+   "settled_at": "2026-11-02T06:04:52.670679+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d7126f416da544179c4b396ce9c50a4c",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:04:50.995956+00:00",
+   "settled_at": "2026-11-02T06:04:52.922632+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "76b18e6a58de47c0b63e32dcefa2e2e5",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:04:51.399392+00:00",
+   "settled_at": "2026-11-02T06:04:53.281433+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "da0da628dc384b34b713e5109f3254a0",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:04:51.766368+00:00",
+   "settled_at": "2026-11-02T06:04:53.734146+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "dfddfd4944a94c38a5c2a7e62d8cc540",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:04:52.700135+00:00",
+   "settled_at": "2026-11-02T06:04:54.806778+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "c865f8bd041b4218857262ed9c3f1dee",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:04:52.986382+00:00",
+   "settled_at": "2026-11-02T06:04:54.554287+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "95b9ae4f7a0c47edbb171d0d09ddc452",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:04:54.945978+00:00",
+   "settled_at": "2026-11-02T06:04:57.918876+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "a5c758c95a754daca0a0db6468fcb0cc",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:04:56.075312+00:00",
+   "settled_at": "2026-11-02T06:04:58.625480+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "bf430b9ffca747799e73c0f70fc62423",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:04:56.099566+00:00",
+   "settled_at": "2026-11-02T06:04:58.065062+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "2f347fc64a4543e08d256d95258eee01",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:04:56.286834+00:00",
+   "settled_at": "2026-11-02T06:04:58.207023+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "9c5801d6087d413d9ba5f8669692cd20",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:04:57.935109+00:00",
+   "settled_at": "2026-11-02T06:04:59.905820+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "210d749aac174f4eb06451ec6f20e15d",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:04:58.078784+00:00",
+   "settled_at": "2026-11-02T06:05:00.312495+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "89753172875e4dbea0b64f9f336d4213",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:04:58.222893+00:00",
+   "settled_at": "2026-11-02T06:05:00.231242+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "012b04a46895400e855c15afe09da274",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:04:58.641510+00:00",
+   "settled_at": "2026-11-02T06:05:00.921612+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "cafe15cf60e54f61a8ecc9588dc4cc63",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:05:00.229247+00:00",
+   "settled_at": "2026-11-02T06:05:03.169253+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "1b7659358afc473cac7b17d63193e436",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:05:00.284776+00:00",
+   "settled_at": "2026-11-02T06:05:02.099819+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "626854fd733a4b23bdc82fecce5218a5",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:05:00.328362+00:00",
+   "settled_at": "2026-11-02T06:05:02.866711+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "21346b28ed3d45578beeed2fb217c1b1",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:05:01.521400+00:00",
+   "settled_at": "2026-11-02T06:05:03.580279+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ad2791e50a7f43178dc7b6c55c2d654e",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:05:02.516818+00:00",
+   "settled_at": "2026-11-02T06:05:04.588775+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "b2f5ccc81ceb4d77a81be4a9cfe8aacc",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:05:03.186916+00:00",
+   "settled_at": "2026-11-02T06:05:05.811102+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "1b931fd130ef4c709f5c02f99225bfbc",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:05:03.609003+00:00",
+   "settled_at": "2026-11-02T06:05:06.020800+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "3712433df25349328920c4562d7b0df9",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:05:04.261092+00:00",
+   "settled_at": "2026-11-02T06:05:06.198644+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "97faa07bf46d484d8f8d101b72c12711",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:05:04.605161+00:00",
+   "settled_at": "2026-11-02T06:05:06.605193+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "5e17ca0220de4504ad3a8c6759cfc55c",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:05:05.831194+00:00",
+   "settled_at": "2026-11-02T06:05:08.076239+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "add0553750da4192becdd7e119aec55f",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:05:06.049628+00:00",
+   "settled_at": "2026-11-02T06:05:08.371764+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "375151f0a61e4c66a968ee659a96b509",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:05:06.618050+00:00",
+   "settled_at": "2026-11-02T06:05:09.181061+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "00c57d36e569491a850b4b19e5a2b05b",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:05:06.768072+00:00",
+   "settled_at": "2026-11-02T06:05:09.134607+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "8313b78db4ba48cab6dae0dcd43b0349",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:05:08.110750+00:00",
+   "settled_at": "2026-11-02T06:05:10.979530+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "6b70da9a1f9940c4979a574a2891349a",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:05:08.729155+00:00",
+   "settled_at": "2026-11-02T06:05:10.725147+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d98f78d9a1884598a52e528773dd94f0",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:05:10.185998+00:00",
+   "settled_at": "2026-11-02T06:05:12.556603+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "609e0cf64b0d47169c09f4706d22c68e",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:05:10.299607+00:00",
+   "settled_at": "2026-11-02T06:05:12.487003+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "14394526c29048b198399f52380252cb",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:05:10.746789+00:00",
+   "settled_at": "2026-11-02T06:05:13.095376+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "20ffb6e53aed486392cea5110f76fe99",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:05:11.344515+00:00",
+   "settled_at": "2026-11-02T06:05:13.371885+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "2c7a5bf7f4f8430483860a5b24a3fb71",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:05:12.503181+00:00",
+   "settled_at": "2026-11-02T06:05:14.797498+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "5528e328b6944fc2a4b81acff108331a",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:05:12.570153+00:00",
+   "settled_at": "2026-11-02T06:05:14.504601+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "1020b78f023a49eea45b5e81fb6cf8c7",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:05:13.110080+00:00",
+   "settled_at": "2026-11-02T06:05:15.123141+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "16e75958f4064feb91a6651590458f1b",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:05:13.577169+00:00",
+   "settled_at": "2026-11-02T06:05:15.575722+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "b081d87598164bcf9ed6968d4d8076f7",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:05:14.520288+00:00",
+   "settled_at": "2026-11-02T06:05:16.683666+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "50de217bdbd348bc9fa6f2bf3161286a",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:05:14.811323+00:00",
+   "settled_at": "2026-11-02T06:05:17.144239+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "f395720164434d02ae85661e52f23565",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:05:15.508520+00:00",
+   "settled_at": "2026-11-02T06:05:17.524576+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "21b97fc6f13a487180a60119677475fa",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:05:16.086310+00:00",
+   "settled_at": "2026-11-02T06:05:17.933529+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "eaf21d7d31e34a4f86371567dee68a7e",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:05:17.210681+00:00",
+   "settled_at": "2026-11-02T06:05:18.311956+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "8da1b832a93e4185aa7ee807deebde02",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:05:17.525580+00:00",
+   "settled_at": "2026-11-02T06:05:19.409541+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "4b99dbb5bd1b4e6e8ebf3627e13a8db2",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:05:17.539032+00:00",
+   "settled_at": "2026-11-02T06:05:19.788877+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "157ab29775154f079632de462d59c50a",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:05:17.951932+00:00",
+   "settled_at": "2026-11-02T06:05:20.239822+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "20ae9bf309ed4e7aba058764002475cb",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:05:18.331162+00:00",
+   "settled_at": "2026-11-02T06:05:20.611673+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ac581e3d520a4dd287faac592108e6c3",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:05:19.425153+00:00",
+   "settled_at": "2026-11-02T06:05:21.389285+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ffc137998f714a19b5fb0ad19329799a",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:05:20.159423+00:00",
+   "settled_at": "2026-11-02T06:05:21.915629+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "37f9cb85ba9046aa8bcf8fee97dab23c",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:05:20.258731+00:00",
+   "settled_at": "2026-11-02T06:05:22.681254+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "75af851448434c229612871ae5face49",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:05:20.696808+00:00",
+   "settled_at": "2026-11-02T06:05:23.116977+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "6858b6968b64418599e52a47ee98f25b",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:05:21.746401+00:00",
+   "settled_at": "2026-11-02T06:05:23.783496+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "bffca67cffde4254b958cbc01f763289",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:05:22.335272+00:00",
+   "settled_at": "2026-11-02T06:05:24.093996+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "011368a936504485957b941b8e8889ef",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:05:23.418475+00:00",
+   "settled_at": "2026-11-02T06:05:25.711995+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "79d72d9c878d41768d4884ba0be82876",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:05:23.781470+00:00",
+   "settled_at": "2026-11-02T06:05:26.077360+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "0952677863974e3daa8596617e49f934",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:05:23.808239+00:00",
+   "settled_at": "2026-11-02T06:05:26.199771+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "15d9579c78794d41b7914648d71a211b",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:05:24.118635+00:00",
+   "settled_at": "2026-11-02T06:05:26.157189+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "4c2d1ae31bed4f189808e500a02e6b1b",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:05:25.729668+00:00",
+   "settled_at": "2026-11-02T06:05:27.743737+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d30d9ad994a24a2583d3d31f6be319f8",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:05:26.097904+00:00",
+   "settled_at": "2026-11-02T06:05:27.955882+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "2f5f64c56f224e3ba46003f74c52582b",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:05:26.172398+00:00",
+   "settled_at": "2026-11-02T06:05:28.287324+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "8e4176f250fe409685fab75af6668f9c",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:05:26.548501+00:00",
+   "settled_at": "2026-11-02T06:05:28.548812+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "20d489fc3c8c492eb9cbab3ce4df9c6c",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:05:29.536304+00:00",
+   "settled_at": "2026-11-02T06:05:32.004713+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "9232ce7a5c2f4535849dff2e5d9c05df",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:05:29.977196+00:00",
+   "settled_at": "2026-11-02T06:05:31.945140+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "fb6449eae15c4cad9cc9ef0e1e942057",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:05:30.046041+00:00",
+   "settled_at": "2026-11-02T06:05:32.224048+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "2cd07a02966d40238bef0bacaa72fd38",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:05:30.192244+00:00",
+   "settled_at": "2026-11-02T06:05:32.317488+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "4e93e6676e5a4784b0d1d06fed0c9aae",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:05:31.959640+00:00",
+   "settled_at": "2026-11-02T06:05:34.050876+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "9256dec7973a4861a3407fbc10c4db1d",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:05:32.254085+00:00",
+   "settled_at": "2026-11-02T06:05:34.590418+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "4a615e0bdf394a95ab10c07b3f0a44c1",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:05:32.263570+00:00",
+   "settled_at": "2026-11-02T06:05:34.797967+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d3c12d99c9854ebc996baddeb6069369",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:05:32.331516+00:00",
+   "settled_at": "2026-11-02T06:05:33.430228+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "003d3fe73a52474c9408ddbc346a7394",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:05:34.066726+00:00",
+   "settled_at": "2026-11-02T06:05:37.580466+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "1b9f25655723473db650d414c2db08a6",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:05:34.336994+00:00",
+   "settled_at": "2026-11-02T06:05:36.322573+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "65b23e923b774001a8d97b074b4c8f97",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:05:34.847396+00:00",
+   "settled_at": "2026-11-02T06:05:37.021793+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "33c2a3853e064fe4b7d8330c74bffd43",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:05:35.387042+00:00",
+   "settled_at": "2026-11-02T06:05:37.324678+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "9d59032e01614a379d00de007a658a5e",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:05:37.072111+00:00",
+   "settled_at": "2026-11-02T06:05:39.355879+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ccee2ec63c044b43bdd36dee6402eefd",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:05:38.440138+00:00",
+   "settled_at": "2026-11-02T06:05:40.477283+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "5b635e4aca0e48ddad133a9156819072",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:05:38.785104+00:00",
+   "settled_at": "2026-11-02T06:05:40.563769+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "91bb04672a644097bb2fcd12f6f1c7d3",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:05:38.824584+00:00",
+   "settled_at": "2026-11-02T06:05:40.817557+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "5af2a266069849b5b6624f65e12fc786",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:05:39.369149+00:00",
+   "settled_at": "2026-11-02T06:05:41.815099+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "482166c82b1244339aa000a0603ed292",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:05:40.492281+00:00",
+   "settled_at": "2026-11-02T06:05:42.517854+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "eaefd4d6394e44eb84fd258e50e61b8c",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:05:40.579947+00:00",
+   "settled_at": "2026-11-02T06:05:42.618795+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ea67f69b366749498e17ed83c9168b88",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:05:40.833679+00:00",
+   "settled_at": "2026-11-02T06:05:43.140389+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ef87e73211b74caa9b5680b1146e3972",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:05:42.494038+00:00",
+   "settled_at": "2026-11-02T06:05:44.683755+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "7ae16c985f414bfda6c7aa8b7d6dbb53",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:05:42.532438+00:00",
+   "settled_at": "2026-11-02T06:05:44.566481+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "0b9f5c0528334d478f0a6378fa44adcd",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:05:43.812669+00:00",
+   "settled_at": "2026-11-02T06:05:46.374492+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ff4aa08871fa4011af99974f07cd8428",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:05:44.128947+00:00",
+   "settled_at": "2026-11-02T06:05:46.067740+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "70982efb4ddf4516b75321c99bfb2a16",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:05:45.905400+00:00",
+   "settled_at": "2026-11-02T06:05:47.751986+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "69e0f2e4fb8740f7839bf17dc5fc8477",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:05:46.024060+00:00",
+   "settled_at": "2026-11-02T06:05:48.491071+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "5845b7f14b704f96a5f42c451e523c91",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:05:46.080246+00:00",
+   "settled_at": "2026-11-02T06:05:48.916323+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "5f5bd34b0c7643c4a70ef4584f101c75",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:05:46.652977+00:00",
+   "settled_at": "2026-11-02T06:05:48.589704+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "87a201719156437a9f4d768eb07769ed",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:05:47.770031+00:00",
+   "settled_at": "2026-11-02T06:05:49.821670+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "409d2afd4b9e43a6a46d6436aeeebb4b",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:05:48.504170+00:00",
+   "settled_at": "2026-11-02T06:05:50.758492+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "65fed9c6d23f4618a87a5e4b24e2c7c4",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:05:48.957127+00:00",
+   "settled_at": "2026-11-02T06:05:50.886720+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "0765c859e1a14ef2a67aa98010f9086b",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:05:48.959653+00:00",
+   "settled_at": "2026-11-02T06:05:50.934242+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "a60ba5b857f846bd90afb295adf8bc5d",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:05:49.842284+00:00",
+   "settled_at": "2026-11-02T06:05:51.917903+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "7be6ed3d81bc4d16810d06c611ae9fb6",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:05:51.887241+00:00",
+   "settled_at": "2026-11-02T06:05:54.404795+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "c69ef6e378dd48139fd0dfd6010496cd",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:05:51.918912+00:00",
+   "settled_at": "2026-11-02T06:05:54.540363+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "f9e2a00cf62e4b728b9fd6cade8e5b89",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:05:52.558928+00:00",
+   "settled_at": "2026-11-02T06:05:55.147634+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ffb38907d95141c8b3393e768f0e7398",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:05:52.956914+00:00",
+   "settled_at": "2026-11-02T06:05:54.875908+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d00ddcc91dbb4ebca17aea99e9d07e6d",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:05:54.418319+00:00",
+   "settled_at": "2026-11-02T06:05:56.889025+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "c399acf0b71b49658045153f3bf3f7f0",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:05:54.874908+00:00",
+   "settled_at": "2026-11-02T06:05:56.730091+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "e2fbf1fcbbfb4e76a9f7d8cc06ec9605",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:05:54.895194+00:00",
+   "settled_at": "2026-11-02T06:05:56.951310+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d639f218d2da4264b4eceec59d0d23a9",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:05:55.160581+00:00",
+   "settled_at": "2026-11-02T06:05:57.077854+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "59cbeea5ec56475d9ee19db83c7b3e9a",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:05:57.030977+00:00",
+   "settled_at": "2026-11-02T06:05:58.903183+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "eda194349c9d4e198eed3e7c68ab738f",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:05:57.040962+00:00",
+   "settled_at": "2026-11-02T06:05:59.656444+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "b4ebb723d910441b982ffc182746ab13",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:05:57.041965+00:00",
+   "settled_at": "2026-11-02T06:05:59.170600+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "8ca035ffe5c8431b896a1df0ec4cabf4",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:05:57.248318+00:00",
+   "settled_at": "2026-11-02T06:05:59.735057+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "30224e4b75f5432cbcb126731f0aef2e",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:05:59.146063+00:00",
+   "settled_at": "2026-11-02T06:06:01.229420+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "6ddb6ca5b2c14a7eb0b95d510b167310",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:06:00.488610+00:00",
+   "settled_at": "2026-11-02T06:06:02.668186+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "cd1190b37d3340aba3e252f3d8873c65",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:06:00.489615+00:00",
+   "settled_at": "2026-11-02T06:06:02.848508+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "4700afd315024c359e6a9a7e4d62cb31",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:06:00.837518+00:00",
+   "settled_at": "2026-11-02T06:06:02.750034+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "72ea6788ea154b55a7a01479d2b3065a",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:06:01.247183+00:00",
+   "settled_at": "2026-11-02T06:06:03.275561+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "86a84099b1b343cea94dd6d146a61352",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:06:02.678815+00:00",
+   "settled_at": "2026-11-02T06:06:04.625104+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "9594c79178c64a849083469548a16e45",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:06:02.764543+00:00",
+   "settled_at": "2026-11-02T06:06:03.835090+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "63b67d96fa374f19bdbc4f58c40542f6",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:06:02.862553+00:00",
+   "settled_at": "2026-11-02T06:06:05.020084+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "16dfa137fdc34eaa8d35e092d0d373cb",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:06:03.502746+00:00",
+   "settled_at": "2026-11-02T06:06:05.552887+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "82b3e84fa9b046f98c538ebe9f327a3d",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:06:04.627091+00:00",
+   "settled_at": "2026-11-02T06:06:06.783069+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d09366b965ac46cc9483bab6f9025d4e",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:06:04.639239+00:00",
+   "settled_at": "2026-11-02T06:06:06.645561+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "4d9fe0709eb84d919ca4496614b26d1c",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:06:05.262873+00:00",
+   "settled_at": "2026-11-02T06:06:07.127968+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "37701e02e1d3481c867f579674cb3cab",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:06:06.265896+00:00",
+   "settled_at": "2026-11-02T06:06:08.130272+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ed678847a50c49d593e89d8db4e9cffd",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:06:06.843263+00:00",
+   "settled_at": "2026-11-02T06:06:08.994299+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "f8abad3c975846509923534459e415bb",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:06:07.252185+00:00",
+   "settled_at": "2026-11-02T06:06:10.290065+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ed1c1799b6df40428f94d2879dec1f78",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:06:07.579039+00:00",
+   "settled_at": "2026-11-02T06:06:09.772438+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "e737689e18a24e74b4ac7d5f6c05acd4",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:06:08.143283+00:00",
+   "settled_at": "2026-11-02T06:06:10.187818+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "b75820a42b6f4a29bbb8acc29ded9d43",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:06:09.009456+00:00",
+   "settled_at": "2026-11-02T06:06:11.348576+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "aa485510b6f744f8977133c1421f1af1",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:06:10.012141+00:00",
+   "settled_at": "2026-11-02T06:06:11.925201+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d5ee7bf5b4cc4203a595ed2623cb1b5a",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:06:10.200940+00:00",
+   "settled_at": "2026-11-02T06:06:12.628703+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "43cdd02e3e9a42019d8300f3cfa40084",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:06:10.303831+00:00",
+   "settled_at": "2026-11-02T06:06:12.299753+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "2514555177c84996b747e392f0ac28e0",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:06:11.473018+00:00",
+   "settled_at": "2026-11-02T06:06:13.382332+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "abfd10fb8d9e4fa6ab21d8c2242973b4",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:06:12.021663+00:00",
+   "settled_at": "2026-11-02T06:06:14.323117+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "7d3c2bfb617f4ce1959cb9fd2f353314",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:06:12.734438+00:00",
+   "settled_at": "2026-11-02T06:06:15.461550+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "b1e81c8aa6114c4aab49e3cd71942116",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:06:13.195820+00:00",
+   "settled_at": "2026-11-02T06:06:15.503849+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "f46c36b753244bf1870ffd5de9ea0a36",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:06:13.503211+00:00",
+   "settled_at": "2026-11-02T06:06:15.404543+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "8da391d2d9674edf8da569b0d4d601f3",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:06:14.335639+00:00",
+   "settled_at": "2026-11-02T06:06:16.062557+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "9b1ed872361b459ea1e27ceb64954384",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:06:15.415928+00:00",
+   "settled_at": "2026-11-02T06:06:17.585412+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "b865d95444a84764980935fda1fe6f3b",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:06:15.476167+00:00",
+   "settled_at": "2026-11-02T06:06:17.979069+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "da3b1baa7d4e4771894d8779f2eff57a",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:06:15.516840+00:00",
+   "settled_at": "2026-11-02T06:06:17.625303+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "143ce83aa3c5444e9ffc644e70c1f1bd",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:06:16.196401+00:00",
+   "settled_at": "2026-11-02T06:06:18.251122+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "6abc5687974c48bb9a5f711a2c874b1f",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:06:17.602301+00:00",
+   "settled_at": "2026-11-02T06:06:19.425790+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "62ecc7fae66b43948f52dd7240deb355",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:06:17.699905+00:00",
+   "settled_at": "2026-11-02T06:06:20.148468+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "8aebc816fb2644a4a6515b287cacb312",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:06:18.200725+00:00",
+   "settled_at": "2026-11-02T06:06:20.743731+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "0fe8b88d95054089bbc6a23923aecaba",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:06:18.694966+00:00",
+   "settled_at": "2026-11-02T06:06:20.628947+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "631da48e60524e4585b90c1991f21cb6",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:06:19.870654+00:00",
+   "settled_at": "2026-11-02T06:06:21.708558+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "b9416b920b984802b60d26cc9dbfec0f",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:06:20.252592+00:00",
+   "settled_at": "2026-11-02T06:06:22.040699+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "642b0d5f5e584dec9714d50bca841fd3",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:06:20.650987+00:00",
+   "settled_at": "2026-11-02T06:06:22.636856+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "cdca4bff2a3e4c3c9ade695f97b9c7a9",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:06:20.755719+00:00",
+   "settled_at": "2026-11-02T06:06:22.618920+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "64771933ffb8482292e768536bb2e8dd",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:06:21.733632+00:00",
+   "settled_at": "2026-11-02T06:06:23.808430+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "ca00a27fede94b618ff375dd70f08b06",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:06:22.054328+00:00",
+   "settled_at": "2026-11-02T06:06:23.923957+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "c48c2d9294034adc810070c96811615c",
+   "provider": "Meta Model API",
+   "label": "N52 shell table",
+   "reserved_at": "2026-11-02T06:06:22.635853+00:00",
+   "settled_at": "2026-11-02T06:06:24.582063+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "4d06e5f0e91c4431bd5b5e3db63ca2f8",
+   "provider": "Meta Model API",
+   "label": "N52 shell desk",
+   "reserved_at": "2026-11-02T06:06:22.782760+00:00",
+   "settled_at": "2026-11-02T06:06:24.902556+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "9b406ae41e6f46249bb87a2bbb5bed90",
+   "provider": "Meta Model API",
+   "label": "N52 shell chair",
+   "reserved_at": "2026-11-02T06:06:23.923957+00:00",
+   "settled_at": "2026-11-02T06:06:26.537383+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "20a7e52d767740e5b4180501e62eb8c8",
+   "provider": "Meta Model API",
+   "label": "N52 shell sofa",
+   "reserved_at": "2026-11-02T06:06:24.028869+00:00",
+   "settled_at": "2026-11-02T06:06:26.641357+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "b31d3bf5c23245748b125a2a79ed3b8d",
+   "provider": "Meta Model API",
+   "label": "N52 shell bed",
+   "reserved_at": "2026-11-02T06:06:25.136565+00:00",
+   "settled_at": "2026-11-02T06:06:27.340204+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "de275c1331684999a90ae36c56c80df1",
+   "provider": "Meta Model API",
+   "label": "N52 shell shelf",
+   "reserved_at": "2026-11-02T06:06:25.552886+00:00",
+   "settled_at": "2026-11-02T06:06:27.382841+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "0687d7d419b446bea3c6c5ff697d24c5",
+   "provider": "Meta Model API",
+   "label": "N52 shell cabinet",
+   "reserved_at": "2026-11-02T06:06:26.627355+00:00",
+   "settled_at": "2026-11-02T06:06:28.297937+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "91781e8bbd3d4e0593854261613e28cd",
+   "provider": "Meta Model API",
+   "label": "N52 shell window",
+   "reserved_at": "2026-11-02T06:06:26.654368+00:00",
+   "settled_at": "2026-11-02T06:06:28.858542+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "d5a606a485c242258cda76baeeee249b",
+   "provider": "Meta Model API",
+   "label": "N52 shell door",
+   "reserved_at": "2026-11-02T06:06:27.356213+00:00",
+   "settled_at": "2026-11-02T06:06:29.231776+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "568e55b7cfa74ae89b3e5e48f584ab90",
+   "provider": "Meta Model API",
+   "label": "N52 shell wall",
+   "reserved_at": "2026-11-02T06:06:27.395178+00:00",
+   "settled_at": "2026-11-02T06:06:30.478510+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  },
+  {
+   "id": "5a21800bd5584f5aadebb9233661b801",
+   "provider": "Meta Model API",
+   "label": "N52 shell floor",
+   "reserved_at": "2026-11-02T06:06:28.314512+00:00",
+   "settled_at": "2026-11-02T06:06:30.989932+00:00",
+   "estimated_usd": 0.0025,
+   "model": "sam-3.1",
+   "units": {
+    "images": 1
+   }
+  }
+ ]
+}
