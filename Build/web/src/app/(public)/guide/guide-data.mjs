@@ -23,7 +23,7 @@ export const GUIDE = [
   { id: 'agent', title: '8. Ask the agent', text: 'Press Agent and tools. Type a physics question in Message the agent and press Send, or press Voice, speak (up to 60 s) and send. The agent answers physics questions only.',
     images: [['agent.webp', 'The Agent and tools panel with a message box, a Voice button and a Send button.']] },
   { id: 'files', title: '9. Files and limits', text: 'Open Files from the sidebar to upload and manage videos. Accepted: mp4, mov or webm, up to 200 MB and 120 s each.',
-    steps: ['Uploads: 20 a day and 1 GB of storage per user. The sidebar shows what is left.', 'GPU status dot: red means sleeping, yellow means starting, green means running. When green, it shows a countdown to sleep after the queue is empty.', 'Heavy jobs wake the GPU and wait in one queue.'],
+    steps: ['Uploads: 20 a day and 1 GB of storage per user. The sidebar shows what is left.', 'Room labs: up to 3 new room builds a day per user, plus 3 shell rebuilds.', 'GPU status dot: red means sleeping, yellow means starting, green means running. When green, it shows a countdown to sleep after the queue is empty.', 'Heavy jobs wake the GPU and wait in one queue.'],
     images: [['files.webp', 'The Files page header with the GPU sleeping status dot and an Upload video button.'], ['storage.webp', 'Sidebar storage meter showing 26 MB of 1.0 GB used and 20 of 20 uploads left today.']] },
   { id: 'library', title: '10. Demo library', text: 'The demo library is public and needs no account. It holds SIMULATED example trajectories and practice setups, never calibrated measurements. Press Play simulated replay on a card to watch it.',
     images: [['library.webp', 'The public demo library page listing simulated demos.']] },
