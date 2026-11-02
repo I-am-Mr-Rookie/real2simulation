@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~02:00 Dhaka: Koushik approves the controller's limits
+- Wonder: per user 10 turns/day (20/day Nov 5 to 8 Dhaka); global $3/day ($6/day Nov 5 to 8); when a limit is hit, that turn runs on Spark standard with a note. Sent to N71 mid-run; the values live in named constants.
+- New: a per-user limit of 3 new room builds per Dhaka day (row N72), so one user can't use up the GPU cap (one room costs up to about $2.42).
+- Koushik may change these on Nov 5 based on the credit left then. Ask him on Nov 5.
+
 ## 2026-11-03 ~01:55 Dhaka: Koushik on Wonder limits
 - Koushik: "$6 is enough as a limit". On Nov 5 to 8 Dhaka there is no per-user Wonder turn limit, only the global Wonder cap of $6/day. Other days: 10 turns per user per day and a $3/day global cap. The 30/day rule is dropped. Sent to N71-orch315 mid-run.
 
