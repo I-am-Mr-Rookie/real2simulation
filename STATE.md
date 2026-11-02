@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~03:45 Dhaka: N64 guide accepted and live
+- N64-orch317 DONE: public /guide with 10 sections and 16 WebP screenshots from DEV (fixture and sample projects only; no email or private room visible, checked by the controller). "Guide" link in the header right after Demo library, and in the footer. The controller added one line: 3 new room builds a day.
+- Gaps it left out of the guide (not verified live): the green GPU countdown, Build lab shell / A4 / Add real object clicks, voice, Wonder and Open chat, the full "redo with changes" flow. It added one empty project to the fixture.
+- Tests: guide 2/2, Node suites ok, web build ok. DEV web 0712a39f, verify ok.
+- Screenshots show the current DEV UI; retake them if the UI changes before the freeze.
+
 ## 2026-11-03 ~03:10 Dhaka: N72 accepted and live; quota rule
 - N72-orch316 DONE: 3 new room builds per owner per Dhaka day (ROOM_STARTS_PER_DAY), counted in rooms/<owner>/room-starts.json with the shared N67 counter helper. The 4th start gets HTTP 429 "Daily room limit reached (3 per day). Try again tomorrow." before any job or reservation; a failed admission frees its slot. The rebuild counter is unchanged and separate. In-app browser check at 1440 and 375 px: PASS. Controller review: ok. Python 602 passed. Secret scan 0.
 - DEV api deployed 093b5ac4; verify.py ok.
