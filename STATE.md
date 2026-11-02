@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 20:30 Dhaka · controller: accept N58, dispatch N59 and N60
+- N58-orch303 (Sol high) accepted at ad16f11e: all 12 N57 findings plus snapshot byte cleanup marked FIXED with receipts (evidence/N58/FIXES.md). RM02 sample room now serves its view image from the hash-checked public RM04 archive staged into the API image (local-only, never committed). One workspace header (palette and account moved in); legacy single-clip tools folded under "Advanced single-clip tools", not removed. Inline rename, pendulum logo, phone toolbar and Add menu, raw-scan view vs collisions split, Room tab state kept, recorded-trace scrubber plus CPU fit card, tracked-path previews only where frame pixels exist, agent voice button, Escape/outside close. Cost $0.
+- Checks: node 450 pass, pytest 530 pass (incl. N58 stage test), build ok, secret scan clean, no .npz tracked. DEV api d28f9eb9 and web c8acbeca at ad16f11e; verify exit 0. In-app browser worked for N58 on retry.
+- Not proven by N58: real microphone/transcription, paid segmentation/SF3D/shell, authenticated DEV end to end.
+- Dispatched N59-orch304 (Sol high 60, thread 01a19c87-579c-7970-8008-fe66d297abd6): async SF3D after room-ready, ledgered, budget $3.
+- Dispatched N60-orch305 (Sol high 30, thread 01a19c89-2069-79c1-a960-94c0c3031c45): human-style DEV re-check of the N58 fixes in the in-app browser (controller chat has no browser plugin attached).
+
 ## 2026-11-02 19:20 Dhaka · Koushik: in-app browser fix for workers
 - Koushik: putting "[@Browser](plugin://browser@openai-bundled)" in the worker prompt makes the in-app browser available (fixes "Browser is not available: iab"). Run-System/dispatch.py now appends it to every worker prompt; WORKER_CONTRACT notes it. N58 left undisturbed per Koushik (it is working fine).
 

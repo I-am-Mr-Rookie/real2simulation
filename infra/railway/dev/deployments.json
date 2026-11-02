@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "fc17545e-158f-4a97-b520-d8e617c52400",
-      "previousDeploymentId": "6bccabd1-3191-4d04-8620-1f04e68f94d1",
-      "redeployNote": "controller: N56 full-window lab editor",
-      "sourceRevision": "851e9d7a137cd70ad8c0e0c8835c1aeb7266644e",
-      "verifiedUtc": "2026-11-02T11:25Z",
+      "deploymentId": "c8acbeca-45e2-476b-9064-00a32e5c9946",
+      "previousDeploymentId": "fc17545e-158f-4a97-b520-d8e617c52400",
+      "redeployNote": "controller: N58 QA fixes",
+      "sourceRevision": "ad16f11ee799d83b6a61e6591a09bf6800f9bb1a",
+      "verifiedUtc": "2026-11-02T14:25Z",
       "url": "https://real2simulation.up.railway.app",
       "customDomain": "https://real2simulation.rookiecoders.tech",
       "providerStatus": "SUCCESS",
@@ -19,8 +19,9 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "ab1c25bd-5752-4bff-a52f-26ed88b72b80",
+      "deploymentId": "d28f9eb9-acb7-4122-8e0e-3f95626c9839",
       "previousDeploymentIds": [
+        "ab1c25bd-5752-4bff-a52f-26ed88b72b80",
         "030372b7-2501-48f9-a6f5-0752653e917f",
         "fc5ceafe-611d-491f-974a-1e44979f22f6",
         "686c8ba5-b726-4d74-aafa-06d470f623ed",
@@ -43,8 +44,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "851e9d7a137cd70ad8c0e0c8835c1aeb7266644e",
-      "verifiedUtc": "2026-11-02T11:25Z",
+      "sourceRevision": "ad16f11ee799d83b6a61e6591a09bf6800f9bb1a",
+      "verifiedUtc": "2026-11-02T14:25Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -60,7 +61,7 @@
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "5df506cd-affc-44c6-a83a-d527b46e6766",
-      "redeployNote": "controller: N56 project snapshot API",
+      "redeployNote": "controller: N58 QA fixes, RM04 sample archive",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {

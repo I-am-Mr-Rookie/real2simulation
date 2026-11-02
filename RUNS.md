@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 02, 19:05 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 02, 19:53 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **344 / 355** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **345 / 356** runs done · 2 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,7 +24,8 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **N58** — Codex · GPT-6.1 Sol, effort high — Fix every P1/P2 from evidence/N57/FINDINGS.md plus the known N55/N56 gaps: duplicate site header over the workspace, legacy single-clip view, rename via prompt(), pendulum logo not "R2S", duplicate fullscreen button, 375 px top bar overflow, timeline scrubber, result card with value and uncertainty, Room tab state, snapshot left after project delete, experiment preview tracked path (60 min) *(in progress)*
+- [~] **N59** — Codex · GPT-6.1 Sol, effort high — Async Stable Fast 3D after the room is ready: room returns fast with parametric shapes, then SF3D upgrades the biggest kept objects in the background (no 90 s cold-start timeout), ledgered under the daily cap (60 min) *(in progress)*
+- [~] **N60** — Codex · GPT-6.1 Sol, effort high — Human-style DEV re-check of the N58 fixes in the in-app browser, plus new first-user findings (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -48,7 +49,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (54/59)</summary>
+<details><summary><b>N</b> —  (55/60)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -107,8 +108,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N55** — Codex (native Claude) · Opus 5.5, effort high — Workspace redesign: prompt-first home with Gumloop-style model picker, projects grid with previews, processing on cards, Files view with storage meter, stale rail menu removed (60 min)
 - [x] **N56** — Codex (native Claude) · Opus 5.5, effort high — Lab editor as a full-window app: object list, properties panel, floating toolbar, bottom timeline with live graph and result card, Room tab, picture Add menu, templates folded in, lighting/materials, one honesty chip, Base44-style agent panel, saves a lab snapshot for workspace previews (60 min)
 - [x] **N57** — Codex · GPT-6.1 Sol, effort high — DEV QA of N55 and N56: every workspace and lab flow, light/dark, 1366/1920/375, findings with receipts (60 min)
-- [~] **N58** — Codex · GPT-6.1 Sol, effort high — Fix every P1/P2 from evidence/N57/FINDINGS.md plus the known N55/N56 gaps: duplicate site header over the workspace, legacy single-clip view, rename via prompt(), pendulum logo not "R2S", duplicate fullscreen button, 375 px top bar overflow, timeline scrubber, result card with value and uncertainty, Room tab state, snapshot left after project delete, experiment preview tracked path (60 min) *(in progress)*
-- [ ] **N59** — Codex · GPT-6.1 Sol, effort high — Async Stable Fast 3D after the room is ready: room returns fast with parametric shapes, then SF3D upgrades the biggest kept objects in the background (no 90 s cold-start timeout), ledgered under the daily cap (60 min)
+- [x] **N58** — Codex · GPT-6.1 Sol, effort high — Fix every P1/P2 from evidence/N57/FINDINGS.md plus the known N55/N56 gaps: duplicate site header over the workspace, legacy single-clip view, rename via prompt(), pendulum logo not "R2S", duplicate fullscreen button, 375 px top bar overflow, timeline scrubber, result card with value and uncertainty, Room tab state, snapshot left after project delete, experiment preview tracked path (60 min)
+- [~] **N59** — Codex · GPT-6.1 Sol, effort high — Async Stable Fast 3D after the room is ready: room returns fast with parametric shapes, then SF3D upgrades the biggest kept objects in the background (no 90 s cold-start timeout), ledgered under the daily cap (60 min) *(in progress)*
+- [~] **N60** — Codex · GPT-6.1 Sol, effort high — Human-style DEV re-check of the N58 fixes in the in-app browser, plus new first-user findings (30 min) *(in progress)*
 
 </details>
 
