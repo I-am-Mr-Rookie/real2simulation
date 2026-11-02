@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+### 2026-11-02 23:45 Dhaka: N63 autostarted
+Codex 5-hour quota reset at 23:43 (Koushik's scheduled restart). N63-orch309 got a fresh 60-minute timebox (deadline 00:44:58 Dhaka Nov 3) and was resumed in its own thread, continuing from its uncommitted edits and evidence/N63/live-result.json, no second paid job unless needed. QUEUE N63 back to IN PROGRESS. Heartbeat autostart clause removed.
+
 ## 2026-11-02 22:00 Dhaka: Koushik: autostart N63 at Codex quota reset
 - Koushik: Codex 5-hour quota resets 23:43 Dhaka; autostart N63 then. Heartbeat prompt updated: first wake at or after 23:43 Dhaka reissues N63-orch309 a 60-minute timebox and resumes it in its own thread. If it fails again, no retry; notify Koushik.
 
