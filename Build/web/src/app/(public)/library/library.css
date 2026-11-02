@@ -17,13 +17,8 @@
 .lib-card button{align-self:flex-start;min-height:44px;padding:0 1.1rem;margin-top:auto}
 .lib-replay{padding:1rem;border:1.5px dashed var(--r2s-border-strong);border-radius:var(--r2s-radius);background:var(--r2s-bg)}
 .lib-stage svg,.lib-stage canvas{display:block;width:100%;height:auto;max-height:70vh}
-.lib-unavailable{margin-top:2rem;border-top:1px solid var(--r2s-border-strong)}
-.lib-unavailable>summary{cursor:pointer;margin-bottom:0;padding-top:1.2rem;min-height:44px}
-.lib-unavailable ul{list-style:none;padding:0;margin:.75rem 0 0}
-.lib-unavailable li{display:grid;grid-template-columns:auto 1fr;gap:.2rem .75rem;align-items:baseline;padding:.75rem 0;border-bottom:1px solid var(--r2s-border);font-size:.9rem}
-.lib-unavailable li .state-tag{margin:0;grid-row:span 2}
 .lib-scope{margin-top:2rem;font-size:.8rem}
-@media (max-width:420px){.lib-card{padding:1rem}.lib-unavailable li{grid-template-columns:1fr}.lib-unavailable li .state-tag{grid-row:auto;justify-self:start}}
+@media (max-width:420px){.lib-card{padding:1rem}}
 /* L1: filter chips with counts, 16:9 thumbnail with chips bottom-left, B3 empty-filter state. Tokens only. */
 .lib-filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.5rem}
 .lib-chip{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:0 .9rem;border:1px solid var(--r2s-border-strong);border-radius:999px;background:var(--r2s-surface);color:var(--r2s-ink);font:700 .78rem/1 var(--r2s-font-mono);letter-spacing:.04em;box-shadow:none;cursor:pointer;transition:background-color .15s ease-out,border-color .15s ease-out}

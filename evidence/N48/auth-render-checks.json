@@ -1,0 +1,3408 @@
+{
+  "browser": "headed Playwright Chromium",
+  "server": "local next start; real DEV publishable key, synthetic noncredential secret; no authentication attempted",
+  "results": [
+    {
+      "name": "sign-in-paper-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.955705659035342,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.227297331025224,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.955705659035342,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.227297331025224,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.955705659035342,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.955705659035342,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.955705659035342,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.955705659035342,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.992194500835547,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.227297331025224,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.848004006989497,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.227297331025224,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.227297331025224,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.1768955857773005,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.227297331025224
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.227297331025224
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.744723081663269
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.744723081663269
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.744723081663269
+        }
+      ],
+      "cardFits": true,
+      "theme": "paper",
+      "cardBackground": "rgb(255, 252, 245)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-light-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 17.71676507806213,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.729820868495424,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 17.71676507806213,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.729820868495424,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.7738606518001525,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.729820868495424,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.7738606518001525,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.729820868495424,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.729820868495424,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.446298167860935,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        }
+      ],
+      "cardFits": true,
+      "theme": "light",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-dark-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.118381484528566,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 6.912758604004126,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.118381484528566,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 6.912758604004126,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 8.14703918666682,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 6.912758604004126,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 7.585940941314653,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 6.912758604004126,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 6.912758604004126,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 10.612883560521828,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        }
+      ],
+      "cardFits": true,
+      "theme": "dark",
+      "cardBackground": "rgb(24, 24, 27)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-midnight-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 14.835036541213181,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.217986975692993,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 14.835036541213181,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.217986975692993,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 14.835036541213181,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 14.835036541213181,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 14.835036541213181,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 14.835036541213181,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.97927349048453,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.217986975692993,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 10.506304381181584,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.217986975692993,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.217986975692993,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 12.148397910835623,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.217986975692993
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.217986975692993
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.391275197367205
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.391275197367205
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.391275197367205
+        }
+      ],
+      "cardFits": true,
+      "theme": "midnight",
+      "cardBackground": "rgb(17, 24, 49)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-graphite-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 12.619830283274922,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.033039973869389,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 12.619830283274922,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.033039973869389,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 12.619830283274922,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 12.619830283274922,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 12.619830283274922,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 12.619830283274922,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 7.604356720762666,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.033039973869389,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.975184684032009,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.033039973869389,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.033039973869389,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 8.582423366450131,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.033039973869389
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.033039973869389
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.629128511320443
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.629128511320443
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.629128511320443
+        }
+      ],
+      "cardFits": true,
+      "theme": "graphite",
+      "cardBackground": "rgb(38, 40, 44)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-contrast-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 21,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 15.133529408889883,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 21,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 15.133529408889883,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.224082071291024,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 15.133529408889883,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 9.224082071291024,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 15.133529408889883,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 15.133529408889883,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 9.15967672354614,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        }
+      ],
+      "cardFits": true,
+      "theme": "contrast",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-system-light-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 17.71676507806213,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.729820868495424,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 17.71676507806213,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.729820868495424,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.7738606518001525,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.729820868495424,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.7738606518001525,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.729820868495424,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.729820868495424,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.446298167860935,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        }
+      ],
+      "cardFits": true,
+      "theme": "light",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-system-dark-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.118381484528566,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 6.912758604004126,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.118381484528566,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 6.912758604004126,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 8.14703918666682,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 6.912758604004126,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 7.585940941314653,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 6.912758604004126,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 6.912758604004126,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 10.612883560521828,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        }
+      ],
+      "cardFits": true,
+      "theme": "dark",
+      "cardBackground": "rgb(24, 24, 27)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-system-contrast-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 21,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 15.133529408889883,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 21,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 15.133529408889883,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.224082071291024,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 15.133529408889883,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 9.224082071291024,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 15.133529408889883,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 15.133529408889883,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 9.15967672354614,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        }
+      ],
+      "cardFits": true,
+      "theme": "contrast",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-paper-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.955705659035342,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.227297331025224,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.955705659035342,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.227297331025224,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.955705659035342,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.955705659035342,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.992194500835547,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.227297331025224,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.848004006989497,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.227297331025224,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.227297331025224,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.1768955857773005,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.227297331025224
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.744723081663269
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.744723081663269
+        }
+      ],
+      "cardFits": true,
+      "theme": "paper",
+      "cardBackground": "rgb(255, 252, 245)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-light-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 17.71676507806213,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.729820868495424,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 17.71676507806213,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.729820868495424,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.7738606518001525,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.729820868495424,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.7738606518001525,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.729820868495424,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.729820868495424,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.446298167860935,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        }
+      ],
+      "cardFits": true,
+      "theme": "light",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-dark-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.118381484528566,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 6.912758604004126,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.118381484528566,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 6.912758604004126,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 8.14703918666682,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 6.912758604004126,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 7.585940941314653,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 6.912758604004126,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 6.912758604004126,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 10.612883560521828,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        }
+      ],
+      "cardFits": true,
+      "theme": "dark",
+      "cardBackground": "rgb(24, 24, 27)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-midnight-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 14.835036541213181,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.217986975692993,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 14.835036541213181,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.217986975692993,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 14.835036541213181,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 14.835036541213181,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.97927349048453,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.217986975692993,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 10.506304381181584,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.217986975692993,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.217986975692993,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 12.148397910835623,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.217986975692993
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.391275197367205
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.391275197367205
+        }
+      ],
+      "cardFits": true,
+      "theme": "midnight",
+      "cardBackground": "rgb(17, 24, 49)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-graphite-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 12.619830283274922,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.033039973869389,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 12.619830283274922,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.033039973869389,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 12.619830283274922,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 12.619830283274922,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 7.604356720762666,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.033039973869389,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.975184684032009,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.033039973869389,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.033039973869389,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 8.582423366450131,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.033039973869389
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.629128511320443
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.629128511320443
+        }
+      ],
+      "cardFits": true,
+      "theme": "graphite",
+      "cardBackground": "rgb(38, 40, 44)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-contrast-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 21,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 15.133529408889883,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 21,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 15.133529408889883,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.224082071291024,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 15.133529408889883,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 9.224082071291024,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 15.133529408889883,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 15.133529408889883,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 9.15967672354614,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        }
+      ],
+      "cardFits": true,
+      "theme": "contrast",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-system-light-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 17.71676507806213,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.729820868495424,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 17.71676507806213,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.729820868495424,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.7738606518001525,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.729820868495424,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.7738606518001525,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.729820868495424,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.729820868495424,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.446298167860935,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        }
+      ],
+      "cardFits": true,
+      "theme": "light",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-system-dark-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.118381484528566,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 6.912758604004126,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.118381484528566,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 6.912758604004126,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 8.14703918666682,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 6.912758604004126,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 7.585940941314653,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 6.912758604004126,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 6.912758604004126,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 10.612883560521828,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        }
+      ],
+      "cardFits": true,
+      "theme": "dark",
+      "cardBackground": "rgb(24, 24, 27)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-system-contrast-1280",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 21,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 15.133529408889883,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 21,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 15.133529408889883,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.224082071291024,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 15.133529408889883,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 9.224082071291024,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 15.133529408889883,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 15.133529408889883,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 9.15967672354614,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        }
+      ],
+      "cardFits": true,
+      "theme": "contrast",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-paper-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.955705659035342,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.227297331025224,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.955705659035342,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.227297331025224,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.955705659035342,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.955705659035342,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.955705659035342,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.955705659035342,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.992194500835547,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.227297331025224,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.848004006989497,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.227297331025224,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.227297331025224,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.1768955857773005,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.227297331025224
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.227297331025224
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.744723081663269
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.744723081663269
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.744723081663269
+        }
+      ],
+      "cardFits": true,
+      "theme": "paper",
+      "cardBackground": "rgb(255, 252, 245)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-light-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 17.71676507806213,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.729820868495424,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 17.71676507806213,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.729820868495424,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.7738606518001525,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.729820868495424,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.7738606518001525,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.729820868495424,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.729820868495424,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.446298167860935,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        }
+      ],
+      "cardFits": true,
+      "theme": "light",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-dark-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.118381484528566,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 6.912758604004126,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.118381484528566,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 6.912758604004126,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 8.14703918666682,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 6.912758604004126,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 7.585940941314653,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 6.912758604004126,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 6.912758604004126,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 10.612883560521828,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        }
+      ],
+      "cardFits": true,
+      "theme": "dark",
+      "cardBackground": "rgb(24, 24, 27)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-midnight-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 14.835036541213181,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.217986975692993,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 14.835036541213181,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.217986975692993,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 14.835036541213181,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 14.835036541213181,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 14.835036541213181,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 14.835036541213181,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.97927349048453,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.217986975692993,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 10.506304381181584,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.217986975692993,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.217986975692993,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 12.148397910835623,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.217986975692993
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.217986975692993
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.391275197367205
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.391275197367205
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.391275197367205
+        }
+      ],
+      "cardFits": true,
+      "theme": "midnight",
+      "cardBackground": "rgb(17, 24, 49)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-graphite-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 12.619830283274922,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.033039973869389,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 12.619830283274922,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.033039973869389,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 12.619830283274922,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 12.619830283274922,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 12.619830283274922,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 12.619830283274922,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 7.604356720762666,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.033039973869389,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.975184684032009,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.033039973869389,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.033039973869389,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 8.582423366450131,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.033039973869389
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.033039973869389
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.629128511320443
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.629128511320443
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.629128511320443
+        }
+      ],
+      "cardFits": true,
+      "theme": "graphite",
+      "cardBackground": "rgb(38, 40, 44)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-contrast-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 21,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 15.133529408889883,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 21,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 15.133529408889883,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.224082071291024,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 15.133529408889883,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 9.224082071291024,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 15.133529408889883,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 15.133529408889883,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 9.15967672354614,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        }
+      ],
+      "cardFits": true,
+      "theme": "contrast",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-system-light-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 17.71676507806213,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.729820868495424,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 17.71676507806213,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.729820868495424,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.7738606518001525,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.729820868495424,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.7738606518001525,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.729820868495424,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.729820868495424,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.446298167860935,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        }
+      ],
+      "cardFits": true,
+      "theme": "light",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-system-dark-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.118381484528566,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 6.912758604004126,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.118381484528566,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 6.912758604004126,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 8.14703918666682,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 6.912758604004126,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 7.585940941314653,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 6.912758604004126,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 6.912758604004126,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 10.612883560521828,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        }
+      ],
+      "cardFits": true,
+      "theme": "dark",
+      "cardBackground": "rgb(24, 24, 27)",
+      "failures": []
+    },
+    {
+      "name": "sign-in-system-contrast-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 21,
+          "text": "Sign in to Real2Simulation"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 15.133529408889883,
+          "text": "Welcome back! Please sign in to continue"
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 21,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 15.133529408889883,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Password"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.224082071291024,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 15.133529408889883,
+          "text": "Don’t have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 9.224082071291024,
+          "text": "Sign up"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 15.133529408889883,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 15.133529408889883,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 9.15967672354614,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        }
+      ],
+      "cardFits": true,
+      "theme": "contrast",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-paper-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.955705659035342,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.227297331025224,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.955705659035342,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.227297331025224,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.955705659035342,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.955705659035342,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.992194500835547,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.227297331025224,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.848004006989497,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.227297331025224,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.227297331025224,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.1768955857773005,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.227297331025224
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.744723081663269
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.744723081663269
+        }
+      ],
+      "cardFits": true,
+      "theme": "paper",
+      "cardBackground": "rgb(255, 252, 245)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-light-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 17.71676507806213,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.729820868495424,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 17.71676507806213,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.729820868495424,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.7738606518001525,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.729820868495424,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.7738606518001525,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.729820868495424,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.729820868495424,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.446298167860935,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        }
+      ],
+      "cardFits": true,
+      "theme": "light",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-dark-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.118381484528566,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 6.912758604004126,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.118381484528566,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 6.912758604004126,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 8.14703918666682,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 6.912758604004126,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 7.585940941314653,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 6.912758604004126,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 6.912758604004126,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 10.612883560521828,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        }
+      ],
+      "cardFits": true,
+      "theme": "dark",
+      "cardBackground": "rgb(24, 24, 27)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-midnight-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 14.835036541213181,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.217986975692993,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 14.835036541213181,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.217986975692993,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 14.835036541213181,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 14.835036541213181,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.97927349048453,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.217986975692993,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 10.506304381181584,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.217986975692993,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.217986975692993,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 12.148397910835623,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.217986975692993
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.391275197367205
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.391275197367205
+        }
+      ],
+      "cardFits": true,
+      "theme": "midnight",
+      "cardBackground": "rgb(17, 24, 49)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-graphite-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 12.619830283274922,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.033039973869389,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 12.619830283274922,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.033039973869389,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 12.619830283274922,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 12.619830283274922,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 7.604356720762666,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.033039973869389,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.975184684032009,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.033039973869389,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.033039973869389,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 8.582423366450131,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.033039973869389
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.629128511320443
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.629128511320443
+        }
+      ],
+      "cardFits": true,
+      "theme": "graphite",
+      "cardBackground": "rgb(38, 40, 44)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-contrast-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 21,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 15.133529408889883,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 21,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 15.133529408889883,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.224082071291024,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 15.133529408889883,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 9.224082071291024,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 15.133529408889883,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 15.133529408889883,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 9.15967672354614,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        }
+      ],
+      "cardFits": true,
+      "theme": "contrast",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-system-light-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 17.71676507806213,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 7.729820868495424,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 17.71676507806213,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 7.729820868495424,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 17.71676507806213,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 17.71676507806213,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 5.7738606518001525,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 7.729820868495424,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 5.7738606518001525,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 7.729820868495424,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 7.729820868495424,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 6.446298167860935,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 7.729820868495424
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.7061680546216347
+        }
+      ],
+      "cardFits": true,
+      "theme": "light",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-system-dark-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 16.118381484528566,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 6.912758604004126,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 16.118381484528566,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 6.912758604004126,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 16.118381484528566,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 16.118381484528566,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 8.14703918666682,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 6.912758604004126,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 7.585940941314653,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 6.912758604004126,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 6.912758604004126,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 10.612883560521828,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 6.912758604004126
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 3.6743222877478248
+        }
+      ],
+      "cardFits": true,
+      "theme": "dark",
+      "cardBackground": "rgb(24, 24, 27)",
+      "failures": []
+    },
+    {
+      "name": "sign-up-system-contrast-375",
+      "pairs": [
+        {
+          "element": "cl-headerTitle",
+          "contrast": 21,
+          "text": "Create your account"
+        },
+        {
+          "element": "cl-headerSubtitle",
+          "contrast": 15.133529408889883,
+          "text": "Welcome! Please fill in the details to get started."
+        },
+        {
+          "element": "cl-socialButtonsBlockButtonText",
+          "contrast": 21,
+          "text": "Continue with Google"
+        },
+        {
+          "element": "cl-dividerText",
+          "contrast": 15.133529408889883,
+          "text": "or"
+        },
+        {
+          "element": "cl-formFieldLabel",
+          "contrast": 21,
+          "text": "Email address"
+        },
+        {
+          "element": "cl-formFieldInput",
+          "contrast": 21,
+          "text": "(empty input)"
+        },
+        {
+          "element": "cl-formButtonPrimary",
+          "contrast": 9.224082071291024,
+          "text": "Continue"
+        },
+        {
+          "element": "cl-footerActionText",
+          "contrast": 15.133529408889883,
+          "text": "Already have an account?"
+        },
+        {
+          "element": "cl-footerActionLink",
+          "contrast": 9.224082071291024,
+          "text": "Sign in"
+        },
+        {
+          "element": "cl-internal-560t1i",
+          "contrast": 15.133529408889883,
+          "text": "Secured by"
+        },
+        {
+          "element": "cl-internal-1scxde7",
+          "contrast": 15.133529408889883,
+          "text": ""
+        },
+        {
+          "element": "cl-internal-x5mgv7",
+          "contrast": 9.15967672354614,
+          "text": "Development mode"
+        },
+        {
+          "element": "input placeholder",
+          "contrast": 15.133529408889883
+        }
+      ],
+      "controls": [
+        {
+          "element": "cl-socialButtonsBlockButton",
+          "width": 1,
+          "contrast": 21
+        },
+        {
+          "element": "cl-formFieldInput",
+          "width": 1,
+          "contrast": 21
+        }
+      ],
+      "cardFits": true,
+      "theme": "contrast",
+      "cardBackground": "rgb(255, 255, 255)",
+      "failures": []
+    }
+  ]
+}

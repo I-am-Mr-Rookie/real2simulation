@@ -6,7 +6,7 @@ import { mkdtempSync, writeFileSync } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { GUEST_SCRIPT, artifactResponse, manifestResponse } from '../../Build/web/src/app/api/library/guest.mjs';
+import { GUEST_SCRIPT, artifactResponse, manifestResponse, verifySnapshot } from '../../Build/web/src/app/api/library/guest.mjs';
 import { traceFromBody } from '../../Build/web/src/viewer/trajectory-replay.mjs';
 import { readFileSync } from 'node:fs';
 import { MYSTERY_COPY, TAG, creditLine, groupDemos } from '../../Build/web/src/app/(public)/library/library-copy.mjs';
@@ -21,20 +21,28 @@ const res = await manifestResponse(snap);
 const manifest = await res.json();
 const byId = Object.fromEntries(manifest.demos.map((d) => [d.id, d]));
 
-test('manifest labels: playable SIMULATED, unavailable with reason, mystery answer-free', () => {
+test('manifest labels: playable SIMULATED, no unavailable entries, mystery answer-free', () => {
   assert.equal(res.status, 200); assert.match(res.headers.get('etag'), /^"[a-f0-9]{64}"$/);
   for (const id of ['simulated-projectile-baseline-short', 'simulated-pendulum-short-small-angle']) {
     assert.equal(byId[id].label, 'SIMULATED'); assert.equal(byId[id].availability, 'playable');
   }
-  for (const d of manifest.demos.filter((d) => d.label === 'UNAVAILABLE')) {
-    assert.equal(d.artifact, null); assert.ok(d.reason.length > 0);
-  }
+  assert.ok(manifest.demos.length > 0);
+  assert.ok(manifest.demos.every((d) => d.availability !== 'unavailable' && d.label !== 'UNAVAILABLE'));
+  assert.ok(JSON.parse(raw).manifest.demos.some((d) => d.availability === 'unavailable')); // Internal audit catalogue stays intact.
   const m = byId['simulated-mystery-g'];
   assert.equal(m.availability, 'metadata-only'); assert.equal(m.challenge.answer_visibility, 'withheld-until-fit');
   assert.doesNotMatch(JSON.stringify(m), /"answer"|true_g/);
 });
 
-test('snapshot is exactly the load_guest projection: objects = manifest artifacts, no answers', () => {
+test('old staged snapshots cannot republish unavailable placeholders and get the public ETag', () => {
+  const old = JSON.parse(raw);
+  old.manifest.demos.push({ id: 'not-ready', label: 'UNAVAILABLE', availability: 'unavailable', artifact: null });
+  const projected = verifySnapshot(old);
+  assert.deepEqual(projected.manifest, manifest);
+  assert.equal(projected.etag, res.headers.get('etag'));
+});
+
+test('public snapshot projection: objects = manifest artifacts, no answers', () => {
   const { objects } = JSON.parse(raw);
   const refs = manifest.demos.filter((d) => d.artifact).map((d) => d.artifact.sha256);
   assert.deepEqual(Object.keys(objects).sort(), [...new Set(refs)].sort());
@@ -86,10 +94,10 @@ test('S04l copy: honest Mystery-g wording, visible labels and credits on real ma
   assert.match(MYSTERY_COPY, /not a blind test/); assert.match(MYSTERY_COPY, /hidden g/);
   const src = readFileSync(path.join(root, 'Build/web/src/app/(public)/library/LibraryClient.jsx'), 'utf8');
   assert.doesNotMatch(src + MYSTERY_COPY, /answer is withheld/i);
-  for (const l of ['SIMULATED', 'SCALE_UNVERIFIED', 'UNAVAILABLE']) assert.match(src + JSON.stringify(TAG), new RegExp(l));
-  const { ready, unavailable } = groupDemos(manifest.demos);
-  assert.equal(ready.length + unavailable.length, manifest.demos.length);
-  assert.ok(unavailable.every((d) => TAG[d.availability] === 'UNAVAILABLE' && d.reason));
+  for (const l of ['SIMULATED', 'SCALE_UNVERIFIED']) assert.match(src + JSON.stringify(TAG), new RegExp(l));
+  assert.doesNotMatch(src + JSON.stringify(TAG), /Not available yet|UNAVAILABLE|unavailable\.length/);
+  const ready = groupDemos([...manifest.demos, { availability: 'unavailable' }]);
+  assert.equal(ready.length, manifest.demos.length);
   for (const d of ready) { assert.match(TAG[d.availability], /^SIMULATED/); assert.match(creditLine(d), /^Credit: SIMULATED/); }
   assert.match(creditLine({ source: { kind: 'footage', creator: 'A', licence: 'CC BY' } }), /A · CC BY/);
   assert.match(creditLine({}), /no media/);

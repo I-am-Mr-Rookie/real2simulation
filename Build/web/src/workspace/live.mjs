@@ -51,11 +51,17 @@ export function quotaView(q) {
 
 // N04 GET /gpu/status -> dot. Anything unexpected is "unknown", never a guessed colour.
 const GPU_LABEL = { red: 'GPU sleeping', yellow: 'GPU starting', green: 'GPU running' };
-export function gpuDot(s) {
+export function gpuDot(s, elapsedSeconds = 0) {
   if (!s || !GPU_LABEL[s.state]) return { tone: 'unknown', label: 'GPU status unavailable', detail: '' };
   const n = Number(s.queue_length) || 0;
   const detail = s.your_position ? 'Your job: ' + s.your_position + ' of ' + n + ' in queue' : n ? n + (n === 1 ? ' job' : ' jobs') + ' in queue' : 'Queue empty';
-  // N26: green with an empty queue is the warm-idle window; the API sends no idle time, so no minutes are shown.
+  if (s.state === 'green' && Number.isFinite(s.idle_seconds_remaining) && s.idle_seconds_remaining >= 0) {
+    // An active job cannot sleep yet; the 15-minute idle window starts when it finishes.
+    const seconds = Math.max(0, Math.ceil(s.idle_seconds_remaining - (n ? 0 : Math.max(0, elapsedSeconds))));
+    const clock = Math.floor(seconds / 60) + ':' + String(seconds % 60).padStart(2, '0');
+    return { tone: 'green', label: 'GPU on, sleeps in ' + clock + (n ? ' after job' : ''),
+      detail: n ? detail : seconds ? (s.source === 'jobs' ? 'Estimated idle window' : 'Queue empty') : 'Waiting for GPU to sleep' };
+  }
   return { tone: s.state, label: s.state === 'green' && !n && !s.your_position ? 'GPU on, idle' : GPU_LABEL[s.state], detail };
 }
 export const GPU_POLL_MS = 10_000;

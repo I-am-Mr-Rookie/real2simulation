@@ -72,11 +72,19 @@ export const createLive = (React) => {
     useEffect(() => {
       if (!enabled) return undefined;
       const doc = globalThis.document;
-      const poll = async () => { if (!shouldPoll(doc)) return; try { const r = await call('/gpu/status'); setGpu(gpuDot(r.ok ? r.body : null)); } catch { setGpu(gpuDot(null)); } };
+      let snapshot = null, receivedAt = 0, stopped = false;
+      const tick = () => { if (shouldPoll(doc) && !stopped) setGpu(gpuDot(snapshot, (Date.now() - receivedAt) / 1000)); };
+      const poll = async () => {
+        if (!shouldPoll(doc)) return;
+        try { const r = await call('/gpu/status'); if (stopped) return; snapshot = r.ok ? r.body : null; }
+        catch { if (stopped) return; snapshot = null; }
+        receivedAt = Date.now(); tick();
+      };
       poll();
       const t = setInterval(poll, GPU_POLL_MS);
+      const clock = setInterval(tick, 1000); // Live countdown without multiplying Modal/API polls.
       doc?.addEventListener?.('visibilitychange', poll);
-      return () => { clearInterval(t); doc?.removeEventListener?.('visibilitychange', poll); };
+      return () => { stopped = true; clearInterval(t); clearInterval(clock); doc?.removeEventListener?.('visibilitychange', poll); };
     }, [enabled]);
 
     // N22: poll every tracked job that is not done or failed; stop polling when none is left.

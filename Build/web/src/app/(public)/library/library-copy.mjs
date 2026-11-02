@@ -1,6 +1,6 @@
 // Pure copy/grouping for /library; imported by LibraryClient.jsx and node tests.
-export const TAG = { playable: 'SIMULATED · playable', 'metadata-only': 'SIMULATED · practice setup', unavailable: 'UNAVAILABLE' };
-export const TONE = { playable: 'ok', 'metadata-only': 'warn', unavailable: 'danger' };
+export const TAG = { playable: 'SIMULATED · playable', 'metadata-only': 'SIMULATED · practice setup' };
+export const TONE = { playable: 'ok', 'metadata-only': 'warn' };
 export const MYSTERY_COPY = 'Mystery-g practice shape at Earth g. This is not a blind test. To play blind, open the lab: the server draws a hidden g for each session.';
 
 export function creditLine(entry) {
@@ -11,16 +11,17 @@ export function creditLine(entry) {
   return parts.length ? 'Credit: ' + parts.join(' · ') : 'Credit: source not recorded.';
 }
 
-const ORDER = { playable: 0, 'metadata-only': 1, unavailable: 2 };
-// L1 chips: the evidence labels always listed (zero counts are honest), plus any other manifest label verbatim.
+const ORDER = { playable: 0, 'metadata-only': 1 };
+// Keep the evidence-label order, but only offer filters with public entries.
 export const FILTER_LABELS = ['RECORDED', 'SIMULATED', 'what-if'];
 export function filterChips(demos) {
-  const labels = [...new Set([...FILTER_LABELS, ...demos.map((d) => d.label).filter(Boolean)])];
-  return [['All', demos.length], ...labels.map((l) => [l, demos.filter((d) => d.label === l).length])];
+  const ready = groupDemos(demos);
+  const labels = [...new Set([...FILTER_LABELS, ...ready.map((d) => d.label).filter(Boolean)])];
+  return [['All', ready.length], ...labels.map((l) => [l, ready.filter((d) => d.label === l).length])].filter(([, n]) => n > 0);
 }
 export const matchesFilter = (entry, filter) => filter === 'All' || entry.label === filter;
 
 export function groupDemos(demos) {
-  const sorted = [...demos].sort((a, b) => (ORDER[a.availability] ?? 3) - (ORDER[b.availability] ?? 3));
-  return { ready: sorted.filter((d) => d.availability !== 'unavailable'), unavailable: sorted.filter((d) => d.availability === 'unavailable') };
+  return demos.filter((d) => d.availability !== 'unavailable')
+    .sort((a, b) => (ORDER[a.availability] ?? 3) - (ORDER[b.availability] ?? 3));
 }

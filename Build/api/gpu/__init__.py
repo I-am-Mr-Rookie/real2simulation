@@ -13,6 +13,7 @@ daemon thread started by start() (every BEAT_S, stopped by finish()). Not refres
 = failed with REASON, queue moves on, and its daily_cap reservation (if enqueue got one) is settled once: at the
 reserved amount if the job had started (the GPU may have run: no free run), at 0 if it never started.
 """
+import math
 import os
 import sqlite3
 import threading
@@ -30,6 +31,7 @@ from Build.guardrails import daily_cap
 APP_NAME = "r2s-ondemand"
 FUNCTIONS = ("reconstruct", "track")  # Build/gpu/ondemand.py
 LEASE_S, BEAT_S = 90.0, 20.0
+IDLE_S = 900  # Build/gpu/ondemand.py scaledown_window
 REASON = "GPU job stopped responding"
 _NEW_COLUMNS = ("heartbeat_at", "failed_reason", "reservation", "cap_db")  # added after the first release
 _beats = {}  # job id -> stop Event of this process's heartbeat thread
@@ -76,16 +78,6 @@ def enqueue(owner, kind, path=None, now=None, reservation=None, cap_db=None):
     finally:
         con.close()
     return jid
-
-
-def _mark(column, jid, path, now):
-    con = _connect(path)
-    try:
-        if con.execute(f"UPDATE gpu_jobs SET {column} = ? WHERE id = ? AND {column} IS NULL",
-                       (_now(now), jid)).rowcount != 1:
-            raise ValueError(f"unknown job or {column} already set")
-    finally:
-        con.close()
 
 
 def _reap(con, now):
@@ -180,7 +172,14 @@ def finish(jid, path=None, now=None):
     stop = _beats.pop(jid, None)
     if stop:
         stop.set()
-    _mark("finished_at", jid, path, now)
+    con = _connect(path)
+    try:
+        # A late runner may finish after lease cleanup; do not mask its result or restart the idle clock.
+        if con.execute("UPDATE gpu_jobs SET finished_at = COALESCE(finished_at, ?) WHERE id = ?",
+                       (_now(now), jid)).rowcount != 1:
+            raise ValueError("unknown job")
+    finally:
+        con.close()
 
 
 def modal_stats():
@@ -202,6 +201,7 @@ def status(owner, stats, path=None, now=None):
         con.execute("BEGIN IMMEDIATE")
         dead = _reap(con, now)  # a dead job must not show as queue length
         active = con.execute("SELECT owner FROM gpu_jobs WHERE finished_at IS NULL ORDER BY queued_at, rowid").fetchall()
+        last_finished = con.execute("SELECT MAX(finished_at) FROM gpu_jobs WHERE started_at IS NOT NULL").fetchone()[0]
         con.execute("COMMIT")
     finally:
         con.close()
@@ -209,12 +209,21 @@ def status(owner, stats, path=None, now=None):
     owners = [o for (o,) in active]
     position = owners.index(owner) + 1 if owner in owners else None
     runners, backlog = stats if stats else (0, 0)
-    if runners == 0:
-        state = "yellow" if (backlog > 0 or owners) else "red"
-    else:  # max_containers=1 and one queue: nothing picked up yet means the container is still starting
-        state = "yellow" if backlog > 0 and backlog >= len(owners) else "green"
-    return {"state": state, "queue_length": max(len(owners), backlog), "your_position": position,
-            "source": "modal+jobs" if stats else "jobs"}
+    remaining = None
+    if not owners and last_finished:
+        elapsed = ((now or datetime.now(timezone.utc)) - datetime.fromisoformat(last_finished)).total_seconds()
+        remaining = max(0, min(IDLE_S, math.ceil(IDLE_S - elapsed)))
+    if owners:
+        # Modal counts booting containers as runners. Backlog only distinguishes startup for unfinished jobs.
+        state = "yellow" if not runners or backlog >= len(owners) else "green"
+    else:
+        # Completed jobs cannot reappear in the queue because Modal's counters lag (including cancelled attempts).
+        state = "green" if runners or (stats is None and remaining) else "red"
+    result = {"state": state, "queue_length": len(owners), "your_position": position,
+              "source": "modal+jobs" if stats is not None else "jobs"}
+    if state == "green" and (owners or remaining is not None):
+        result["idle_seconds_remaining"] = IDLE_S if owners else remaining
+    return result
 
 
 def create_router(path=None, stats=modal_stats) -> APIRouter:

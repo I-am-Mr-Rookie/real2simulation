@@ -58,11 +58,11 @@ export default function LibraryClient() {
   useEffect(() => {
     fetch('/api/library/manifest').then((r) => (r.ok ? r.json() : Promise.reject())).then(setManifest, () => setFailed(true));
   }, []);
-  if (failed) return <div className="state-card" role="alert"><span className="state-tag" data-tone="danger">UNAVAILABLE</span>
+  if (failed) return <div className="state-card" role="alert">
     <p>Library unavailable. No demo data was loaded. Try again later, or use the <a href="/lab">lab</a>.</p></div>;
   if (!manifest) return <p role="status" className="muted">Loading library…</p>;
   const demos = manifest.demos || [];
-  const { ready, unavailable } = groupDemos(demos.filter((d) => matchesFilter(d, filter)));
+  const ready = groupDemos(demos.filter((d) => matchesFilter(d, filter)));
   const playable = ready.filter((d) => d.availability === 'playable').length;
   return <>
     <div className="lib-filters" role="group" aria-label="Filter demos by label">
@@ -70,25 +70,16 @@ export default function LibraryClient() {
         onClick={() => setFilter(label)}>{label}<span className="mono">{count}</span></button>)}
     </div>
     <p className="lib-summary mono">
-      <span>{playable} playable</span><span>{ready.length - playable} practice setup</span><span>{unavailable.length} unavailable</span>
+      <span>{playable} playable</span><span>{ready.length - playable} practice setup</span>
     </p>
-    {!ready.length && !unavailable.length ? <div className="lib-empty" role="status">
+    {!ready.length ? <div className="lib-empty" role="status">
       <AppArt id="b3" width={960} height={540} />
       <p><strong>No clips match</strong></p>
       <button type="button" className="secondary" onClick={() => setFilter('All')}>Clear filters</button>
     </div> : <>
     <h2 className="lib-section">Ready to open</h2>
-    {ready.length ? <ul className="lib-grid">{ready.map((d) => <Card key={d.id} entry={d} open={open === d.id}
+    <ul className="lib-grid">{ready.map((d) => <Card key={d.id} entry={d} open={open === d.id}
       onOpen={() => setOpen(open === d.id ? null : d.id)} />)}</ul>
-      : <p className="state-card">No simulated entries are available right now. Nothing was substituted.</p>}
-    {unavailable.length > 0 && <details className="lib-unavailable" open={filter !== 'All' || undefined}>
-      <summary className="lib-section">Not available yet ({unavailable.length})</summary>
-      <p className="muted">Listed so you can see what is missing and why. None of these load data.</p>
-      <ul>{unavailable.map((d) => <li key={d.id} data-label={d.label} data-availability="unavailable">
-        <span className="state-tag" data-tone="danger">UNAVAILABLE</span>
-        <strong>{d.title}</strong><span className="muted">{d.reason}</span>
-      </li>)}</ul>
-    </details>}
     </>}
     <p className="muted lib-scope">Scope: {manifest.scope}</p>
   </>;

@@ -6,9 +6,11 @@ import { filterChips, matchesFilter } from '../../Build/web/src/app/(public)/lib
 // S15ao: library L1 / lab LB1 / icon-link polish (source-level; JSX compiled by next build).
 const src = (p) => readFile(new URL('../../Build/web/src/' + p, import.meta.url), 'utf8');
 
-test('library filter chips count manifest labels verbatim, keep zero-count evidence chips, and filter exactly', () => {
-  const demos = [{ label: 'SIMULATED' }, { label: 'SIMULATED' }, { label: 'UNAVAILABLE' }];
-  assert.deepEqual(filterChips(demos), [['All', 3], ['RECORDED', 0], ['SIMULATED', 2], ['what-if', 0], ['UNAVAILABLE', 1]]);
+test('library filters hide unavailable entries and zero-count chips, and filter exactly', () => {
+  const demos = [{ label: 'SIMULATED' }, { label: 'SIMULATED' }, { label: 'UNAVAILABLE', availability: 'unavailable' }];
+  assert.deepEqual(filterChips(demos), [['All', 2], ['SIMULATED', 2]]);
+  assert.deepEqual(filterChips([]), []);
+  assert.deepEqual(filterChips([{ label: 'RECORDED', availability: 'playable' }]), [['All', 1], ['RECORDED', 1]]);
   assert.equal(demos.filter((d) => matchesFilter(d, 'RECORDED')).length, 0);
   assert.equal(demos.filter((d) => matchesFilter(d, 'All')).length, 3);
 });

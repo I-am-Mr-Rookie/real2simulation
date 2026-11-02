@@ -31,11 +31,28 @@ test('gpuDot maps N04 status to red/yellow/green with queue position, unknown ot
   assert.deepEqual(gpuDot({ state: 'red', queue_length: 0, your_position: null }), { tone: 'red', label: 'GPU sleeping', detail: 'Queue empty' });
   assert.deepEqual(gpuDot({ state: 'yellow', queue_length: 3, your_position: 2 }), { tone: 'yellow', label: 'GPU starting', detail: 'Your job: 2 of 3 in queue' });
   assert.equal(gpuDot({ state: 'green', queue_length: 1, your_position: null }).detail, '1 job in queue');
-  // N26: warm-idle window (green, nothing queued): no minutes are claimed because the API sends none
+  // Without an API countdown, do not invent minutes.
   assert.deepEqual(gpuDot({ state: 'green', queue_length: 0, your_position: null }), { tone: 'green', label: 'GPU on, idle', detail: 'Queue empty' });
   assert.equal(gpuDot({ state: 'green', queue_length: 2, your_position: 1 }).label, 'GPU running');
   for (const bad of [null, {}, { state: 'blue' }, { status: 'error' }]) assert.equal(gpuDot(bad).tone, 'unknown');
   assert.equal(shouldPoll({ visibilityState: 'hidden' }), false); assert.equal(shouldPoll({ visibilityState: 'visible' }), true);
+});
+
+test('GPU warm-idle countdown ticks in browser seconds between API polls, resets on new data, and stops at sleep', () => {
+  const idle = { state: 'green', queue_length: 0, your_position: null, source: 'modal+jobs' };
+  for (const [seconds, clock] of [[900, '15:00'], [840, '14:00'], [61, '1:01'], [60, '1:00'], [1, '0:01']]) {
+    assert.deepEqual(gpuDot({ ...idle, idle_seconds_remaining: seconds }), {
+      tone: 'green', label: 'GPU on, sleeps in ' + clock, detail: 'Queue empty'
+    });
+  }
+  assert.equal(gpuDot({ ...idle, idle_seconds_remaining: 900 }, 28).label, 'GPU on, sleeps in 14:32');
+  assert.equal(gpuDot({ ...idle, idle_seconds_remaining: 900 }, 1).label, 'GPU on, sleeps in 14:59');
+  assert.equal(gpuDot({ ...idle, idle_seconds_remaining: 1 }, 99).label, 'GPU on, sleeps in 0:00');
+  assert.equal(gpuDot({ ...idle, idle_seconds_remaining: 0 }).detail, 'Waiting for GPU to sleep');
+  assert.match(gpuDot({ ...idle, source: 'jobs', idle_seconds_remaining: 900 }).detail, /Estimated/);
+  assert.equal(gpuDot({ ...idle, state: 'red', idle_seconds_remaining: 0 }).label, 'GPU sleeping');
+  assert.equal(gpuDot({ ...idle, queue_length: 1, idle_seconds_remaining: 900 }, 100).label, 'GPU on, sleeps in 15:00 after job');
+  for (const seconds of [null, -1, NaN, '900']) assert.equal(gpuDot({ ...idle, idle_seconds_remaining: seconds }).detail, 'Queue empty');
 });
 
 test('quotaView and fmtBytes use only API numbers', () => {

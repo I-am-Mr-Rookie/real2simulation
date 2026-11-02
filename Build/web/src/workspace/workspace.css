@@ -518,7 +518,7 @@ body:has(.r2s-shell) .site-footer { display: none; }
 .lv-job ul { margin: 0; padding-left: 1rem; }
 .lv-job li { overflow-wrap: anywhere; }
 .lv-sample-h { margin: 1rem 1rem 0; font-size: 1rem; color: var(--sh-muted, #5a554b); }
-.lv-gpu { display: inline-flex; align-items: center; gap: .4rem; margin-left: auto; font-size: .82rem; white-space: nowrap; }
+.lv-gpu { display: inline-flex; align-items: center; gap: .4rem; margin-left: auto; max-width: 100%; font-size: .82rem; font-variant-numeric: tabular-nums; }
 .lv-gpu small { color: var(--sh-muted, #5a554b); font-variant-numeric: tabular-nums; }
 .lv-dot { flex: none; width: .65rem; height: .65rem; border-radius: 50%; background: #8a8a8a; box-shadow: 0 0 0 2px var(--sh-surface, #fffcf5), 0 0 0 3px var(--r2s-border-strong, #85858d); }
 .lv-gpu[data-tone="red"] .lv-dot { background: #d33a2c; }

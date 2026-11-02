@@ -31,7 +31,9 @@ export function verifySnapshot(snap) {
     bytes.set(id, data);
   }
   for (const d of manifest.demos) if (d.artifact && !bytes.has(d.artifact.sha256)) fail('missing object');
-  return { manifest, objects: bytes, etag: `"${sha(JSON.stringify(manifest))}"` };
+  // Older immutable snapshots can still contain placeholders; never publish them.
+  const publicManifest = { ...manifest, demos: manifest.demos.filter((d) => d.availability !== 'unavailable') };
+  return { manifest: publicManifest, objects: bytes, etag: `"${sha(JSON.stringify(publicManifest))}"` };
 }
 
 async function readSnapshot(file) {

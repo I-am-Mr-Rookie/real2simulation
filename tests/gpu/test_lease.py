@@ -44,8 +44,7 @@ def test_killed_job_frees_queue_after_lease_and_never_runs_again(tmp_path, quiet
         gpu.heartbeat(a, db, now=sec(92))
     with pytest.raises(gpu.JobStopped):  # a cannot be started a second time
         gpu.start(a, db, now=sec(92), timeout=0)
-    with pytest.raises(ValueError):
-        gpu.finish(a, db)
+    gpu.finish(a, db)  # late runner cleanup is idempotent after lease expiry
     con = sqlite3.connect(db)
     assert con.execute("SELECT count(*) FROM gpu_jobs WHERE started_at IS NOT NULL AND finished_at IS NULL").fetchone()[0] == 1
     assert gpu.status("u1", None, db, now=sec(92))["queue_length"] == 2  # b running, c waiting

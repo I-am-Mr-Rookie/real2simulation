@@ -31,7 +31,7 @@ def test_status_states_and_positions(tmp_path):
     assert gpu.status("u2", (1, 0), db)["your_position"] is None
     assert gpu.status("u1", (1, 0), db)["your_position"] == 1
     assert gpu.status("u3", (1, 0), db)["state"] == "green"  # idle warm container before scale-down
-    assert gpu.status("u3", (0, 4), db)["queue_length"] == 4  # Modal backlog from other callers counts
+    assert gpu.status("u3", (0, 4), db)["queue_length"] == 1  # only the remaining shared-queue job counts
     assert gpu.status("u3", (1, 1), db)["state"] == "yellow"  # outside call waiting, none of ours running
 
 
