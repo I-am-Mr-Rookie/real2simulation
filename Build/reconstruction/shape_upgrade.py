@@ -86,33 +86,35 @@ def run(d, owner, *, gpu_db=None, cap_db=None, generate=sf3d.generate_remote):
             with LOCK:
                 return _read(d, "shape-upgrades.json")["batch"] != work["batch"]
 
-        for item in work["inputs"]:
-            with LOCK:
-                if _read(d, "shape-upgrades.json")["batch"] != work["batch"]:
-                    break  # do not pay for the remainder of a replaced shell
-            started = time.time()
-            try:
-                def spawned(call_id):
-                    with LOCK:
-                        current = _read(d, "shape-upgrades.json")
-                        if current["batch"] == work["batch"]:
-                            next(i for i in current["inputs"] if i["id"] == item["id"])["modal_call_id"] = call_id
-                            live_room._write(d / "shape-upgrades.json", current)
+        with sf3d.SerialBatch(cap_db) as idle_batch:
+            for item in work["inputs"]:
+                with LOCK:
+                    if _read(d, "shape-upgrades.json")["batch"] != work["batch"]:
+                        break  # do not pay for the remainder of a replaced shell
+                started = time.time()
+                try:
+                    def spawned(call_id):
+                        with LOCK:
+                            current = _read(d, "shape-upgrades.json")
+                            if current["batch"] == work["batch"]:
+                                next(i for i in current["inputs"] if i["id"] == item["id"])["modal_call_id"] = call_id
+                                live_room._write(d / "shape-upgrades.json", current)
 
-                r = generate((d / "objects" / item["png"]).read_bytes(), cap_path=cap_db,
-                             timeout_s=sf3d.BACKGROUND_BUDGET_S, owner=owner, gpu_path=gpu_db, abort=changed,
-                             on_spawn=spawned)
-                turns, verts, indices, _ = object_lift.fit_mesh(r["vertices"], r["faces"], item["proxy"])
-                shape = object_lift.mesh_shape(item["category"],
-                        f"/api/workspace/rooms/{d.name}/objects/{item['id']}.glb", turns, verts, indices)
-                shape["collider"] = "box"
-                receipt = {k: r.get(k) for k in ("gpu", "gpu_name", "wall_s", "model_load_s", "inference_s", "estimated_usd")}
-                _update(d, work["batch"], item["id"], {"state": "ready", "sf3d": receipt,
-                        "ready_at": time.time()}, shape, r["glb"])
-            except Exception as e:
-                _update(d, work["batch"], item["id"], {"state": "failed",
-                        "reason": f"SF3D: {type(e).__name__}: {e}"[:300], "finished_at": time.time(),
-                        "wall_s": round(time.time() - started, 3)})
+                    r = generate((d / "objects" / item["png"]).read_bytes(), cap_path=cap_db,
+                                 timeout_s=sf3d.BACKGROUND_BUDGET_S, owner=owner, gpu_path=gpu_db, abort=changed,
+                                 on_spawn=spawned, batch=idle_batch)
+                    turns, verts, indices, _ = object_lift.fit_mesh(r["vertices"], r["faces"], item["proxy"])
+                    shape = object_lift.mesh_shape(item["category"],
+                            f"/api/workspace/rooms/{d.name}/objects/{item['id']}.glb", turns, verts, indices)
+                    shape["collider"] = "box"
+                    receipt = {k: r.get(k) for k in ("gpu", "gpu_name", "wall_s", "model_load_s", "inference_s", "estimated_usd")}
+                    receipt["cost_basis"] = "Call wall time and inter-call gap; idle tail reserved separately per SF3D batch."
+                    _update(d, work["batch"], item["id"], {"state": "ready", "sf3d": receipt,
+                            "ready_at": time.time()}, shape, r["glb"])
+                except Exception as e:
+                    _update(d, work["batch"], item["id"], {"state": "failed",
+                            "reason": f"SF3D: {type(e).__name__}: {e}"[:300], "finished_at": time.time(),
+                            "wall_s": round(time.time() - started, 3)})
     finally:
         with LOCK:
             _running.discard(str(d))

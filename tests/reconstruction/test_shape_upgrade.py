@@ -1,6 +1,7 @@
 import json
 import sqlite3
 import pytest
+from contextlib import nullcontext
 from functools import partial
 
 from Build.api import gpu
@@ -50,7 +51,7 @@ class Fn:
 
 
 def test_room_already_ready_reservation_held_until_async_result_and_gpu_activity(tmp_path):
-    d, cap, jobs = room(tmp_path), tmp_path / 'cap.db', tmp_path / 'jobs.db'
+    d, cap, jobs = room(tmp_path, n=4), tmp_path / 'cap.db', tmp_path / 'jobs.db'
 
     def check():
         assert read(d, 'status.json')['state'] == 'done'
@@ -62,17 +63,19 @@ def test_room_already_ready_reservation_held_until_async_result_and_gpu_activity
 
     fn = Fn(check)
     upgrades.run(d, 'owner', cap_db=cap, gpu_db=jobs, generate=partial(sf3d.generate_remote, fn=fn))
-    assert fn.calls == 2
+    assert fn.calls == 4
     assert all(o['upgrade']['state'] == 'ready' for o in read(d, 'room.json')['shell']['kept'])
     for o in read(d, 'scene.json')['objects']:
         assert o['shape']['collider'] == 'box' and o['size'] == [2, 1, 2]
         assert (d / 'objects' / (o['id'] + '.glb')).read_bytes() == b'glTF'
     with sqlite3.connect(cap) as con:
         assert con.execute('SELECT COUNT(*) FROM spend WHERE actual IS NULL').fetchone() == (0,)
+        assert con.execute("SELECT COUNT(*) FROM spend WHERE label LIKE '%idle tail%'").fetchone() == (1,)
+        assert con.execute('SELECT COUNT(*) FROM spend WHERE actual > reserved').fetchone() == (0,)
     assert 0 < float(daily_cap.today(cap)['spent_usd']) < 2 * sf3d.ESTIMATE_USD
     assert gpu.status('owner', None, jobs)['idle_seconds_remaining'] == 900
     upgrades.run(d, 'owner', generate=partial(sf3d.generate_remote, fn=fn))
-    assert fn.calls == 2  # reopen never repeats a paid attempt
+    assert fn.calls == 4  # reopen never repeats a paid attempt
 
 
 def test_cap_denial_does_not_spawn_or_fail_ready_room(tmp_path):
@@ -85,7 +88,8 @@ def test_cap_denial_does_not_spawn_or_fail_ready_room(tmp_path):
     assert all(o['shape']['type'] == 'box' for o in read(d, 'scene.json')['objects'])
 
 
-def test_lease_reaper_retains_reservation_and_late_result_cannot_release_it(tmp_path):
+@pytest.mark.parametrize('batched', [False, True])
+def test_lease_reaper_retains_reservation_and_late_result_cannot_release_it(tmp_path, batched):
     from datetime import datetime, timedelta, timezone
     import pytest
     cap, jobs = tmp_path / 'cap.db', tmp_path / 'jobs.db'
@@ -93,12 +97,13 @@ def test_lease_reaper_retains_reservation_and_late_result_cannot_release_it(tmp_
     def reap():
         gpu.status('owner', (1, 0), jobs, now=datetime.now(timezone.utc) + timedelta(seconds=gpu.LEASE_S + 1))
 
-    with pytest.raises(RuntimeError, match=gpu.REASON):
+    with sf3d.SerialBatch(cap) if batched else nullcontext(None) as batch, pytest.raises(RuntimeError, match=gpu.REASON):
         sf3d.generate_remote(b'rgba', cap_path=cap, gpu_path=jobs, owner='owner', fn=Fn(reap),
-                             timeout_s=sf3d.BACKGROUND_BUDGET_S)
+                             timeout_s=sf3d.BACKGROUND_BUDGET_S, batch=batch)
     with sqlite3.connect(cap) as con:
-        reserved, actual = con.execute('SELECT reserved,actual FROM spend').fetchone()
-    assert actual == reserved
+        rows = con.execute('SELECT reserved,actual FROM spend').fetchall()
+    assert all(actual == reserved for reserved, actual in rows)
+    assert float(daily_cap.today(cap)['spent_usd']) == sf3d.ESTIMATE_USD
 
 
 def test_partial_failure_and_new_batch_cannot_receive_stale_mesh(tmp_path):

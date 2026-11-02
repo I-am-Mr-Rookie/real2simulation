@@ -1,0 +1,208 @@
+{
+  "schema": "N77-local-accounting-check/1",
+  "kind": "SYNTHETIC fake Modal calls, not a provider bill",
+  "python": "3.14.5",
+  "packages": {
+    "pytest": "9.2.0",
+    "fastapi": "0.124.4",
+    "numpy": "2.4.6"
+  },
+  "cases": {
+    "test_four_serial_calls_reserve_before_spawn_and_book_one_idle_tail": {
+      "pass": true,
+      "tail_count": 1,
+      "all_settlements_within_reservation": true,
+      "total_usd": "0.37397124",
+      "rows": [
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 3566884
+        },
+        {
+          "label": "SF3D serial batch idle tail",
+          "reserved_units": 33094800,
+          "actual_units": 33094800
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 257404
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 257404
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 220632
+        }
+      ]
+    },
+    "test_failure_mid_batch_still_books_one_tail_when_remaining_calls_continue": {
+      "pass": true,
+      "tail_count": 1,
+      "all_settlements_within_reservation": true,
+      "total_usd": "0.59571757",
+      "rows": [
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 306
+        },
+        {
+          "label": "SF3D serial batch idle tail",
+          "reserved_units": 33094800,
+          "actual_units": 33094800
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 26475840
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 811
+        }
+      ]
+    },
+    "test_two_concurrent_batches_each_keep_their_own_tail": {
+      "pass": true,
+      "tail_count": 2,
+      "all_settlements_within_reservation": true,
+      "total_usd": "0.66191709",
+      "rows": [
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 1209
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 900
+        },
+        {
+          "label": "SF3D serial batch idle tail",
+          "reserved_units": 33094800,
+          "actual_units": 33094800
+        },
+        {
+          "label": "SF3D serial batch idle tail",
+          "reserved_units": 33094800,
+          "actual_units": 33094800
+        }
+      ]
+    },
+    "test_batch_abort_unconfirmed_cancel_keeps_compute_plus_tail_bound": {
+      "pass": true,
+      "tail_count": 1,
+      "all_settlements_within_reservation": true,
+      "total_usd": "0.59570640",
+      "rows": [
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 26475840
+        },
+        {
+          "label": "SF3D serial batch idle tail",
+          "reserved_units": 33094800,
+          "actual_units": 33094800
+        }
+      ]
+    },
+    "test_short_gaps_are_charged_and_long_gaps_reserve_a_fresh_tail": {
+      "pass": true,
+      "tail_count": 2,
+      "all_settlements_within_reservation": true,
+      "total_usd": "0.66557320",
+      "rows": [
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 0
+        },
+        {
+          "label": "SF3D serial batch idle tail",
+          "reserved_units": 33094800,
+          "actual_units": 33094800
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 367720
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 0
+        },
+        {
+          "label": "SF3D serial batch idle tail",
+          "reserved_units": 33094800,
+          "actual_units": 33094800
+        }
+      ]
+    },
+    "test_batch_gap_plus_slow_transport_cannot_exceed_compute_reservation": {
+      "pass": true,
+      "tail_count": 2,
+      "all_settlements_within_reservation": true,
+      "total_usd": "0.92665440",
+      "rows": [
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 0
+        },
+        {
+          "label": "SF3D serial batch idle tail",
+          "reserved_units": 33094800,
+          "actual_units": 33094800
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 26475840
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 0
+        },
+        {
+          "label": "SF3D serial batch idle tail",
+          "reserved_units": 33094800,
+          "actual_units": 33094800
+        }
+      ]
+    },
+    "test_gap_is_always_worst_gpu_even_if_next_call_moves_to_l4": {
+      "pass": true,
+      "tail_count": 1,
+      "all_settlements_within_reservation": true,
+      "total_usd": "0.33462520",
+      "rows": [
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 0
+        },
+        {
+          "label": "SF3D serial batch idle tail",
+          "reserved_units": 33094800,
+          "actual_units": 33094800
+        },
+        {
+          "label": "N31 sf3d",
+          "reserved_units": 26475840,
+          "actual_units": 367720
+        }
+      ]
+    }
+  }
+}

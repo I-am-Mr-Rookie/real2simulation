@@ -6,7 +6,8 @@ min_containers 0, max_containers 1, scale to zero after IDLE_S idle seconds).
 Gated weights come from HF with HF_TOKEN in the Modal secret SECRET (key name only).
 Deploy: uv run --python 3.12 --with modal==1.6.3 --env-file .env modal deploy Build/gpu/sf3d.py
 Callers use generate_remote(): one daily_cap reservation per job at the A10G worst case, settled with the
-Build/gpu/cost_log.py rate of the GPU that ran (bounded call wall time + idle window). Not a provider bill.
+Build/gpu/cost_log.py rate of the GPU that ran. Serial room batches reserve one separate worst-GPU idle
+tail; standalone calls include their own tail. All costs are conservative estimates, not provider bills.
 Background room upgrades join the shared GPU job queue and status dot; the Modal function keeps its own pool.
 """
 import io
@@ -26,6 +27,8 @@ BACKGROUND_BUDGET_S = TIMEOUT_S + STARTUP_S + 60
 CLIENT_BUDGET_S = 90
 VERTEX_COUNT = 1000  # SF3D triangle remesh target: about 2k triangles (lab "average detail", 1 to 3k)
 ESTIMATE_USD = cost(BACKGROUND_BUDGET_S + IDLE_S + 60, "A10G", CPU, MEM_GIB)["total_usd"]
+RUN_ESTIMATE_USD = cost(BACKGROUND_BUDGET_S + 60, "A10G", CPU, MEM_GIB)["total_usd"]
+GAP_BUDGET_S = BACKGROUND_BUDGET_S + 60 - STARTUP_S - TIMEOUT_S
 LICENCE = {"model": "stabilityai/stable-fast-3d", "licence": "Stability AI Community License",
            "label": "MODEL-GENERATED shape", "credit": "Powered by Stability AI"}
 
@@ -89,17 +92,69 @@ def gpu_of(name):
     return "L4" if name and "L4" in name else "A10G"
 
 
+class SerialBatch:
+    """One SF3D function's serial calls: reserve the shared idle tail before spawning, even across crashes.
+
+    Each batch owns its own worst-GPU tail; never infer sharing with another batch/process. Inter-call gaps
+    use the next call's reservation slack; longer gaps close the tail and reserve a new one before spawning.
+    """
+    def __init__(self, cap_path=None):
+        from Build.guardrails import daily_cap
+        self.cap_path = Path(cap_path or daily_cap.default_path()).resolve()
+        self.reservation, self.last_finished, self.last_started = None, None, None
+        self.inflight, self.closed = False, False
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *exc):
+        self.closed = True
+        self._settle()
+
+    def _settle(self):
+        from Build.guardrails import daily_cap
+        if self.reservation is not None:
+            daily_cap.settle(self.reservation, cost(IDLE_S, "A10G", CPU, MEM_GIB)["total_usd"],
+                             path=self.cap_path)
+            self.reservation = None
+
+    def before_spawn(self):
+        from Build.guardrails import daily_cap
+        if self.closed or self.inflight:
+            raise ValueError("SF3D batch must be open and serial")
+        gap = max(0, time.monotonic() - self.last_finished) if self.last_finished is not None else 0
+        # A clipped round trip may already have consumed its idle tail while the result was in transit.
+        clipped = self.last_started is not None and self.last_finished - self.last_started > STARTUP_S + TIMEOUT_S
+        if gap > GAP_BUDGET_S or clipped:
+            self._settle()
+            gap = 0  # the previous full idle tail already covers this gap (up to scaledown)
+        if self.reservation is None:
+            self.reservation = daily_cap.reserve("Modal", cost(IDLE_S, "A10G", CPU, MEM_GIB)["total_usd"],
+                                                 "SF3D serial batch idle tail", path=self.cap_path)
+        self.inflight = True
+        self.last_started = time.monotonic()
+        return gap
+
+    def finished(self):
+        self.inflight = False
+        self.last_finished = time.monotonic()
+
+
 def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S, *, owner=None, gpu_path=None, abort=None,
-                    on_spawn=None):
+                    on_spawn=None, batch=None):
     """One SF3D job, reserved in daily_cap at the A10G worst case, settled at the rate of the GPU that ran (cost_log
-    rates; A10G when unknown). Unconfirmed cancellation retains the full estimate.
+    rates; A10G when unknown). With a SerialBatch the idle reservation is separate, including on failure.
+    Cancellation acknowledgements do not prove termination time, so failed calls retain their compute estimate.
     Returns the remote result plus gpu, wall_s, estimated_usd."""
     from Build.guardrails import daily_cap
     from Build.api import gpu as jobs
     if not 0 < timeout_s <= BACKGROUND_BUDGET_S:
         raise ValueError("SF3D client budget must be positive and within the reserved background budget")
-    rid = daily_cap.reserve("Modal", ESTIMATE_USD, "N31 sf3d", path=cap_path)
-    call, r, cancellation_unconfirmed, jid, spawned = time.monotonic(), {}, False, None, False
+    if batch is not None and batch.cap_path != Path(cap_path or daily_cap.default_path()).resolve():
+        raise ValueError("SF3D batch and call must use the same spend ledger")
+    estimate = RUN_ESTIMATE_USD if batch is not None else ESTIMATE_USD
+    rid = daily_cap.reserve("Modal", estimate, "N31 sf3d", path=cap_path)
+    call, r, cancellation_unconfirmed, jid, spawned, gap = time.monotonic(), {}, False, None, False, 0
     try:  # failed or not, the GPU may have run: settle wall time + the idle window
         if owner is not None:
             jid = jobs.enqueue(owner, "sf3d", gpu_path, reservation=rid, cap_db=cap_path)
@@ -109,6 +164,8 @@ def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S,
         call = time.monotonic()
         if abort and abort():
             raise RuntimeError("SF3D cancelled (shell rebuilt)")
+        if batch is not None:
+            gap = batch.before_spawn()  # after queue wait: a previous container may already have slept
         spawned = True  # spawn failure can be ambiguous: retain the upper bound
         handle = fn.spawn(rgba_png)
         try:
@@ -140,9 +197,14 @@ def generate_remote(rgba_png, cap_path=None, fn=None, timeout_s=CLIENT_BUDGET_S,
     finally:
         wall = time.monotonic() - call
         # Provider startup and execution timeouts bound GPU life; network/queue waits are not additional GPU time.
-        billed_bound_s = min(wall, STARTUP_S + TIMEOUT_S) + IDLE_S
-        usd = (ESTIMATE_USD if cancellation_unconfirmed or (spawned and not r) else
+        if batch is not None and spawned:
+            batch.finished()
+        billed_bound_s = min(wall, STARTUP_S + TIMEOUT_S) + (0 if batch is not None else IDLE_S)
+        usd = (estimate if cancellation_unconfirmed or (spawned and not r) else
                cost(billed_bound_s, gpu_of(r.get("gpu_name")), CPU, MEM_GIB)["total_usd"] if spawned else 0)
+        if batch is not None and spawned and r and not cancellation_unconfirmed:
+            # The gap belongs to the previous container, whose GPU may differ from this result's GPU.
+            usd = round(usd + cost(gap, "A10G", CPU, MEM_GIB)["total_usd"], 8)
         try:
             daily_cap.settle(rid, usd, path=cap_path)
         except ValueError:
