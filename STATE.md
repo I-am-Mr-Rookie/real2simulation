@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 09:50 Dhaka: controller
+- Accepted N44-orch289 (N43 F1, F2, F5). RM02 SF3D table drops held 9/9 and 7/9 (was 4/9); RM02 walls now all "not observed" (honest, no shell boundary); N06 3 FIT walls enclose furniture, 2 openings on their walls; captions fixed 44 px. $0. Open: SF3D non-uniform stretch on rotated meshes, no rolling resistance, saved DEV walls keep old numbers until Build lab shell is rerun.
+- Tests after merge: Node 424/424, Python 391, build OK. Web 45a4a951 deployed (8920271b) earlier; redeploying api and web with N44. deployments.json record deferred until N46 (owns it) merges.
+
 ## 2026-11-02 09:36 Dhaka: controller
 - Accepted N45-orch290 (F3 lab agent uses saved tier and shows answering model; F4 room uploads/jobs keep project id). Cross-vendor review of new /api/workspace/session route: returns only the verified caller's own key, 401 otherwise. OK.
 - Fixed lab template radio ellipse (Koushik screenshot): global input padding stretched appearance:none radios; lab.css now padding 0, border-box.
