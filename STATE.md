@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+### 2026-11-03 00:16 Dhaka: N63 waiting for the browser; N66 dispatched
+N63-orch309 committed 79098785 (147 tests pass; RM04 room ready 244 s, meshes 362 s, upper bound $2.4246; no second paid job). It reported BROWSER NEEDED for its visual check, and Koushik was told. While that waits, N66-orch310 (Claude Opus high, 30 min, read-only spend review of the N63 commit) was dispatched, thread 01a19d79-4a29-7a92-bf66-a0d2660dede1.
+
 ### 2026-11-02 23:45 Dhaka: N63 autostarted
 Codex 5-hour quota reset at 23:43 (Koushik's scheduled restart). N63-orch309 got a fresh 60-minute timebox (deadline 00:44:58 Dhaka Nov 3) and was resumed in its own thread, continuing from its uncommitted edits and evidence/N63/live-result.json, no second paid job unless needed. QUEUE N63 back to IN PROGRESS. Heartbeat autostart clause removed.
 
