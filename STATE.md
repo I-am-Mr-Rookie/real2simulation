@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 20:40 Dhaka · Controller: accept N61; DEV web 5ad1fa2f; in-app browser UI rechecks
+- N61-orch306 accepted at f7cf60ae: F01 to F04 fixed and 6 regression tests added. Timebox PASS; files stayed within Owns. 456 Node tests pass, build ok, secret scan clean. Pushed.
+- DEV web redeployed to Railway 5ad1fa2f (main f7cf60ae); verify.py exit 0. The duplicate upload dcc9e61b failed with no logs; superseded.
+- Koushik attached @Browser to N61 and N60 ("don't skip UI"), so both have a real in-app browser now. Both timeboxes reissued for 30 min to 21:07 Dhaka for UI-only rechecks, evidence and REPORT only: N61 rechecks F01 to F04; N60 rechecks the 12 N58 fixes plus a first-user pass.
+- N59-orch304 is still running.
+
 ## 2026-11-02 19:55 Dhaka · Controller: browser-unavailable rule
 - Koushik (Nov 2): in some cases only he can attach the in-app browser to a worker. Rule now in WORKER_CONTRACT.md and AGENTS.md: a worker that gets "Browser is not available: iab" (after one retry) sends "<RID> BROWSER NEEDED: <error>" to the controller, finishes non-browser parts and waits; the controller notifies Koushik at once, he invokes [@Browser] in that worker chat, the controller reissues the timebox. No Playwright fallback for human-style QA unless he says so.
 - N59-orch304 and N61-orch306 still running.
