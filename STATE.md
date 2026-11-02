@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 06:05 Dhaka: N78 accepted; DEV web 8c78becb
+- N78-orch323 DONE (CSS and copy only): phone Files rows put name and metadata on full-width lines above wrapping actions; lab provenance badge sits below the toolbar (checked 375 and 1024 to 1920); guide room copy/alt now describe the shell with walls, furniture and 3D meshes. 277 Node tests, build ok. Not rechecked on live DEV with auth yet.
+
 ## 2026-11-03 05:40 Dhaka: N76 and N77 accepted; DEV api c79ad979, web 281e96bc; N78 dispatched
 - Both resumed after the 04:44 Codex reset.
 - N76-orch321 DONE: on DEV, N74 header (320/375/1366), home copy, voice waiting state and real-object toggle CONFIRMED; N75 sample shows the 23-object shell, 4 SF3D meshes and one Stability credit, Play/Reset ok. 6 stale guide screenshots retaken (names/sizes kept). Open: phone Files metadata cramped (P2), honesty badge overlap at 1280 px (P3), guide room copy still says point cloud (P3), SF3D meshes coarse (known).
