@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 22:00 Dhaka: Koushik: autostart N63 at Codex quota reset
+- Koushik: Codex 5-hour quota resets 23:43 Dhaka; autostart N63 then. Heartbeat prompt updated: first wake at or after 23:43 Dhaka reissues N63-orch309 a 60-minute timebox and resumes it in its own thread. If it fails again, no retry; notify Koushik.
+
 ## 2026-11-02 21:48 Dhaka: controller accepts N65; N63 stopped by Codex capacity error
 - N65-orch308 DONE, accepted (b171c383): F06 phone picker clears the left rail; F05 replay summary follows scale provenance (assumed size no longer called known). Tests: node suites + build pass; IAB QA at 375 and 1366 px, light and dark (evidence/N65/VERIFY.md). Temporary .env.local removed. DEV web 7aa42a4c at b171c383, verify.py exit 0. Gap: pre-existing phone floating nav partly covers the summary text (candidate QA/fix row).
 - N63-orch309 turn FAILED at about 21:39 Dhaka: "Selected model is at capacity". Per Codex rule, not retried; Koushik notified. Worktree keeps uncommitted edits (Build/gpu/sf3d.py, Build/reconstruction/*, Build/api/room/*, tests) and evidence/N63/live-result.json: one live RM04 job done (L4 no capacity in 45 s, est $0.27 settled; A10G fallback done est $0.35; all finished 362 s). No REPORT, no commit. Resume in its own thread on Koushik's word; spend review (N66, Claude Opus read-only) still due before acceptance.
