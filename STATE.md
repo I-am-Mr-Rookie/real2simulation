@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 13:45 Dhaka: controller
+- Koushik: "go N53" (Codex reset applied). Reissued N53-orch298 timebox (due 14:43) and resumed it in its own thread 01a19b19-5b22-76d2-b548-8eaf79302789; turn inProgress.
+
 ## 2026-11-02 13:15 Dhaka: controller
 - Accepted N52 (Sol): SAM instance masks decoded at box origin; colours from masks (RM02 chairs green), windows on scan-edge walls, desks/chairs split by size priors, seat facing. RM02 screenshot checked: 5 desks, 4 green chairs, 3 window groups, walls and floor. Private owner-room rebuild NOT RUN (worker could not reach the signed-in browser). $0.44 hosted SAM, ledger in its worktree. Tests: py 485 pass + 1 order-dependent flake (test_reaped_started_attempt..., passes alone and with tests/reconstruction+gpu), node pass, build pass. DEV api 686c8ba5 (40e16fe3), verify pass.
 - Dispatched N53-orch298 (Sol high 60): room-job latency. Thread 01a19b19-5b22-76d2-b548-8eaf79302789 failed to start: Codex usage limit, "Try again at 1:16 PM". Per Koushik's rule: not retried; Koushik notified; waiting for his word.

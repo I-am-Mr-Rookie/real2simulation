@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 02, 13:13 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 02, 13:44 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **339 / 349** runs done · 0 in progress · 1 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **339 / 349** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -22,16 +22,16 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
 
+## In progress
+
+- [~] **N53** — Codex · GPT-6.1 Sol, effort high — Room-job latency: measure per stage, then cut (concurrent hosted SAM, numpy mask decode with equality test, L4 budget/A10G-first, SF3D timeout), target under 5 min warm, cap $1.50 (60 min) *(in progress)*
+
 ## Waiting for Koushik
 
 - [ ] **S23a** — Authorize frozen judging promotion (10 min)
 - [ ] **S26a** — Submit approved project on Cerebral Valley (30 min)
 - [ ] **N06** — Film new owner clips (room, pendulum, ramp, optional spin) (30 min)
 - [ ] **N18** — Record new voice-overs from the N17 read sheet (click to click) (30 min)
-
-## Blocked
-
-- [!] **N53** — Codex · GPT-6.1 Sol, effort high — Room-job latency: measure per stage, then cut (concurrent hosted SAM, numpy mask decode with equality test, L4 budget/A10G-first, SF3D timeout), target under 5 min warm, cap $1.50 (60 min) *(blocked: see STATE.md)*
 
 ## All runs by step
 
@@ -102,7 +102,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N50** — Codex · GPT-6.1 Sol, effort high — Lab editor UI: Stability attribution once as a viewport chip (no per-object captions), page wheel-scroll outside the canvas, Template trials inside the toolbar (30 min)
 - [x] **N51** — Codex · GPT-6.1 Sol, effort high — Agent effort: explicit per model (Spark, Open, Sol high; Sol xhigh after two number-guard blocks), benchmark high/xhigh/max on 10 lab requests, cap $1.50 (30 min)
 - [x] **N52** — Codex · GPT-6.1 Sol, effort high — Room shell polish after N49: video colours, windows/doors on scan-edge walls, split over-merged desks/chairs, seat facing; rebuild Koushik room on DEV (private), cap $2.50 (60 min)
-- [!] **N53** — Codex · GPT-6.1 Sol, effort high — Room-job latency: measure per stage, then cut (concurrent hosted SAM, numpy mask decode with equality test, L4 budget/A10G-first, SF3D timeout), target under 5 min warm, cap $1.50 (60 min) *(blocked: see STATE.md)*
+- [~] **N53** — Codex · GPT-6.1 Sol, effort high — Room-job latency: measure per stage, then cut (concurrent hosted SAM, numpy mask decode with equality test, L4 budget/A10G-first, SF3D timeout), target under 5 min warm, cap $1.50 (60 min) *(in progress)*
 
 </details>
 
