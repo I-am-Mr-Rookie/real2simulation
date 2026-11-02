@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 05:40 Dhaka: N76 and N77 accepted; DEV api c79ad979, web 281e96bc; N78 dispatched
+- Both resumed after the 04:44 Codex reset.
+- N76-orch321 DONE: on DEV, N74 header (320/375/1366), home copy, voice waiting state and real-object toggle CONFIRMED; N75 sample shows the 23-object shell, 4 SF3D meshes and one Stability credit, Play/Reset ok. 6 stale guide screenshots retaken (names/sizes kept). Open: phone Files metadata cramped (P2), honesty badge overlap at 1280 px (P3), guide room copy still says point cloud (P3), SF3D meshes coarse (known).
+- N77-orch322 DONE: SF3D serial batches reserve and settle ONE idle tail per batch (Build/gpu/sf3d.py SerialBatch, Build/reconstruction/shape_upgrade.py); failure keeps the full bound. Controller spend review: per-call settle <= reservation, tail reserved before first spawn and settled on exit; accepted. 626 Python tests pass. Effect: a 4-mesh room books about $0.6 less tail per extra mesh, so more rooms fit under the daily cap.
+- N78-orch323 (Sol, 30 min) fixes the N76 open items, in the N72 chat.
+
 ## 2026-11-03 04:22 Dhaka: Codex usage limit
 - N76-orch321 and N77-orch322 stopped on the Codex usage limit ("Try again at 4:44 AM"). Per Koushik's overnight rule: no retry before then; resume both in their own chats with fresh timeboxes after 04:44 Dhaka.
 
