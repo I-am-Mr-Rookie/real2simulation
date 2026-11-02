@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 03, 02:17 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 03, 02:24 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **357 / 368** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **357 / 368** runs done · 2 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -25,6 +25,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 ## In progress
 
 - [~] **N72** — Codex · GPT-6.1 Sol, effort high — Per-user limit of 3 new room builds per Dhaka day (POST /rooms), counted on the server like the shell-rebuild counter (rooms/<owner>/), refused with a clear 429-style error before any paid work; value in one named constant (30 min) *(in progress)*
+- [~] **N64** — Codex (native Claude) · Sonnet 5.5, effort medium — Guide page (single run, LAST product row): public /guide with a simple beginner walkthrough of every feature (sign in, model picker, new project, room lab, phone experiment, lab editor, agent, files and quotas, GPU dot, demo library) with screenshots taken from DEV in the in-app browser using the test fixture and sample projects only; header and footer link (60 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -121,7 +122,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N70** — Codex · GPT-6.1 Sol, effort high — Benchmark muse-wonder-1.0 as lab agent on the N51 10 requests (tool-call validity, number-guard blocks, latency, cost/turn) vs Spark, Open, Sol; cap $3 (30 min)
 - [x] **N71** — Codex · GPT-6.1 Sol, effort high — Add Muse Wonder to the model picker as Smartest (relative bars: slower, costlier); per-user Wonder turn limit 10/day, 20/day Nov 5 to 8 Dhaka; global Wonder daily spend cap on the Meta API ledger (not the GPU cap), on hit fall back to Spark standard with a visible note; Sol fallback unchanged; IAB check (30 min)
 - [~] **N72** — Codex · GPT-6.1 Sol, effort high — Per-user limit of 3 new room builds per Dhaka day (POST /rooms), counted on the server like the shell-rebuild counter (rooms/<owner>/), refused with a clear 429-style error before any paid work; value in one named constant (30 min) *(in progress)*
-- [ ] **N64** — Codex (native Claude) · Sonnet 5.5, effort medium — Guide page (single run, LAST product row): public /guide with a simple beginner walkthrough of every feature (sign in, model picker, new project, room lab, phone experiment, lab editor, agent, files and quotas, GPU dot, demo library) with screenshots taken from DEV in the in-app browser using the test fixture and sample projects only; header and footer link (60 min)
+- [~] **N64** — Codex (native Claude) · Sonnet 5.5, effort medium — Guide page (single run, LAST product row): public /guide with a simple beginner walkthrough of every feature (sign in, model picker, new project, room lab, phone experiment, lab editor, agent, files and quotas, GPU dot, demo library) with screenshots taken from DEV in the in-app browser using the test fixture and sample projects only; header and footer link (60 min) *(in progress)*
 
 </details>
 

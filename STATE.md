@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~02:30 Dhaka: N64 guide dispatched early; Koushik asleep
+- Koushik: launch the guide job now, so he can attach @Browser before sleeping. N64-orch317 dispatched (Claude Sonnet medium, 60 min) with DEV screenshots from the fixture and sample projects only. Gaps it finds go to its REPORT; it does not fix product code. Its screenshots may need a refresh if the UI changes before the freeze.
+- Koushik rule while asleep: new issues that need the browser go to existing workers that already have it (N72-orch316, N64-orch317), sent as a follow-up message in their own chat with a reissued timebox, not to new chats.
+- N72-orch316 timebox reissued to 02:52 Dhaka after @Browser.
+
 ## 2026-11-03 ~02:18 Dhaka: N71 accepted and live on DEV
 - N71-orch315 DONE. Wonder is selectable as "Smartest" (tier "wonder", high effort) in the Gumloop-style picker, with relative bars only. Sol is still hidden.
 - Limits are named constants in Build/agent/core.py: 10 turns per user per day (20 Nov 5 to 8 Dhaka), counted per admitted turn in SQLite; Wonder-only cap $3/day ($6 Nov 5 to 8) on the Meta ledger, reserved before the call. When a limit is hit, the turn runs on Spark with the note "Wonder limit reached for today, using Muse Spark".
