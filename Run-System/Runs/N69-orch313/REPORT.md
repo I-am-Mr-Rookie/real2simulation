@@ -10,5 +10,8 @@
 - `.venv/Scripts/python.exe -m pytest tests/api-storage tests/reconstruction -q`: **104 passed, 6 subtests passed**, 11 dependency deprecation warnings, 111.91 seconds; no skips.
 - `git diff --check`: PASS. `worker_timebox.py check`: PASS.
 - Paid calls/jobs: none; cost $0. No deploy, push, GPU, provider request or private-owner media access.
-- Skipped: browser QA and web build (backend-only change); new deletion API intentionally omitted.
+- Browser follow-up (owner requested): in-app browser, local Swagger UI against this worktree's real routers; synthetic owner/token and 128-byte runtime-only cap, production cap unchanged.
+- Browser PASS: GET `/files` returned 128 used (16 upload + 112 room), 0 remaining; POST `/rooms` and POST `/rooms/{id}/shell` each visibly returned 413 `QUOTA_STORAGE`; no browser console warnings/errors.
+- Local JPEG evidence (not committed): `browser/quota-usage.jpg`, `browser/room-start-rejected.jpg`, `browser/shell-rebuild-rejected.jpg`. Local fixture server stopped and browser tab closed.
+- Not checked: signed-in workspace frontend/deployed E2E; DEV lacks this commit. No web build (backend-only change); new deletion API intentionally omitted.
 - Risk: quota is an on-demand tree scan, not a per-write reservation. An admitted job may overshoot by one room; concurrent admitted jobs may each overshoot. Shortcut documented in code.
