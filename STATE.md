@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 04:22 Dhaka: Codex usage limit
+- N76-orch321 and N77-orch322 stopped on the Codex usage limit ("Try again at 4:44 AM"). Per Koushik's overnight rule: no retry before then; resume both in their own chats with fresh timeboxes after 04:44 Dhaka.
+
 ## 2026-11-03 04:15 Dhaka: N76 and N77 dispatched
 - N76-orch321 (Sol, 30 min) DEV check of N74/N75 plus stale guide screenshot retake, in the N72 chat. N77-orch322 (Sol, 30 min) SF3D one idle tail per serial batch so the daily cap is not eaten by bookkeeping, in the N64 chat; spend diff reviewed by the controller.
 
