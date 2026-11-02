@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 03:50 Dhaka: N73 accepted; N74 and N75 dispatched
+- N73-orch318 DONE (QA only, ff-merged): Wonder picker and routing confirmed (1 Spark + 1 Wonder turn, about $0.02), Reset, replay nav, storage/room-limit copy, editor tools and /guide pass. Findings: F1 P2 classroom SAMPLE has 0 objects and no SF3D meshes; F2 P2 signed-in header overflows at 375 px; F3 home still says "we abstain"; F4 voice says Transcribing before mic; F5 real-object note stays after toggle off; O1 Wonder selection reverted once. Unverified: awake GPU countdown, true browser zoom, voice end to end.
+- N74-orch319 (Sol high, 30 min) fixes F2 to F5 and O1, sent to the N64 chat with a Sol model override. N75-orch320 (Sol high, 60 min) gives the SAMPLE room a one-time RM02 shell plus SF3D meshes (GPU up to $3, ledgered), sent to the N72 chat.
+
 ## 2026-11-03 02:50 Dhaka: N73 QA re-check dispatched
 - N73-orch318 (GPT-6.1 Sol high, 60 min, due 03:47 Dhaka) sent as a follow-up to the N72 chat 01a19dda (browser attached), per Koushik's overnight rule. QA only on DEV main be52ddeb; at most 4 agent turns, no GPU. Findings become Sol fix rows.
 
