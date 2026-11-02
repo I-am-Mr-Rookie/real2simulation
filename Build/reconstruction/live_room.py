@@ -261,8 +261,9 @@ def run_job(job_dir, video, duration_s, owner, ref=None, remote=modal_reconstruc
                     attempt.update(estimated_usd=actual, wall_s=round(time.time() - call, 3))
                     set_status(job_dir, gpu_attempts=attempts)
                 finally:
-                    if jid:
-                        gpu_jobs.finish(jid, gpu_db)
+                    if jid and not gpu_jobs.finish(jid, gpu_db) and log:
+                        log = None  # reaped while running: result discarded, the job fails (N40)
+                        raise RuntimeError(gpu_jobs.REASON)
             if log:
                 break
         (job_dir / "mapanything.npz").write_bytes(r["npz"])

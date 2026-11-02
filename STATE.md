@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 12:15 Dhaka: controller
+- Accepted N47 (DEV QA on new domain: N43 F1 to F4 FIXED, F5 caption overlap open; both modes end to end pass; P2 distorted SF3D furniture, P2 room latency with one SF3D timeout; $1.38 ledgered in its worktree).
+- Accepted N48 (Clerk colours follow all palettes, AA; GPU dot: finished jobs override stale Modal backlog, green with mm:ss idle countdown from last finished job; library lists only 3 available entries, zero chips hidden). N48 ran in C:/Users/HP/.codex/worktrees/n48-orch293.
+- Accepted N50 (one Stability chip per view, wheel scroll root cause overscroll-behavior: contain on .le-side, Template trials in toolbar).
+- Accepted N49 (semantic room shell: 16 keyframes, hosted SAM class masks, colours from video, scan-edge walls, floor slab, parametric tables/chairs, raw scan toggle). RM02 screenshot: walls, floor, tables with legs and chairs recognisable; windows not (no FIT wall), one desk row over-merged into a giant table, chairs grey not green. $1.03 (L4 no capacity $0.33, A10G $0.35, 144 SAM $0.36) in its worktree ledger.
+- Controller fix (cross-vendor, spend): N48 made gpu.finish idempotent, which let a reaped room attempt deliver its result, breaking N40 test_reaped_started_attempt. finish now returns False when the reaper already closed the job; live_room fails that attempt. tests/gpu + tests/reconstruction 82 passed. Full suite before fix: Node 440/440, Python 485 + 1 (fixed), build OK.
+
 ## 2026-11-02 11:22 Dhaka: controller
 - Controller probe of agent effort levels (evidence/controller/agent-effort-*.json): highest is max on Spark 1.3, Muse Open and Sol; product sent none (Spark default high, Sol behaves like low).
 - Koushik: set effort explicitly (Spark high, Open high, Sol high, Sol xhigh after two number-guard blocks) and go N51. Dispatched N51-orch296 (Sol high 30, due 11:52), cap $1.50.

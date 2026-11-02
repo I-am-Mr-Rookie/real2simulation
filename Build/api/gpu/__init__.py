@@ -169,15 +169,20 @@ def start(jid, path=None, now=None, timeout=1800.0, poll=1.0):
 
 
 def finish(jid, path=None, now=None):
+    """Close the job; True if this call closed it, False if lease cleanup already had (the caller must not
+    deliver that attempt's result: N40, its reservation was settled once at reap time)."""
     stop = _beats.pop(jid, None)
     if stop:
         stop.set()
     con = _connect(path)
     try:
-        # A late runner may finish after lease cleanup; do not mask its result or restart the idle clock.
-        if con.execute("UPDATE gpu_jobs SET finished_at = COALESCE(finished_at, ?) WHERE id = ?",
-                       (_now(now), jid)).rowcount != 1:
+        # No raise on a late finish: it must not mask the runner's own error or restart the idle clock.
+        if con.execute("UPDATE gpu_jobs SET finished_at = ? WHERE id = ? AND finished_at IS NULL",
+                       (_now(now), jid)).rowcount == 1:
+            return True
+        if con.execute("SELECT 1 FROM gpu_jobs WHERE id = ?", (jid,)).fetchone() is None:
             raise ValueError("unknown job")
+        return False
     finally:
         con.close()
 
