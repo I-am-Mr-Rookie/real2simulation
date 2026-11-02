@@ -5,6 +5,7 @@
 Paid call: L4, then at most one A10G retry for OOM/no capacity, each reserved/settled in daily_cap and queued in the N04 GPU job
 table (status dot + queue position). Cost from Build/gpu/cost_log.py rates (estimate, not billed).
 """
+import functools
 import io
 import json
 import os
@@ -29,7 +30,7 @@ APP, FALLBACK_GPU, CPU, MEM_GIB, IDLE_S = "r2s-ondemand", "A10G", 2, 16, 900  # 
 # get() timeout covers queue wait + cold start + inference (A10G room jobs measured 31 to 77 s end to end),
 # so 120 s would cancel healthy cold L4 starts; 240 s still keeps a capacity stall bounded.
 ROOM_START_BUDGET_S = 240
-FRAMES, FRAME_W, MAX_POINTS = 8, 512, 20000
+FRAMES, FRAME_W, MAX_POINTS = 16, 512, 20000  # N49: 16 frames (was 8; N31 8 frames peaked 8.03 GB on A10G)
 A4_LONG_M, A4_SD_M = 0.297, 0.002  # ISO 216 A4 long edge 297 mm, +-2 mm tolerance
 # MapAnything output is nominally metric, so a real A4 edge rescales it by about 1. Outside 0.5 to 2 the clicks are not
 # on one A4 edge (a 210 mm short-edge click gives 1.41, still inside), so the clicked scale is rejected, not applied.
@@ -51,6 +52,7 @@ def sample_frames(video, duration_s, n=FRAMES):
     return out
 
 
+@functools.lru_cache(maxsize=2)  # N49: 1.2 s per 35 MB npz, called per detection by the shell (minutes per room)
 def load_views(npz):
     d = np.load(io.BytesIO(npz))
     n = len({k.split("_")[0] for k in d.files if k.startswith("view")})

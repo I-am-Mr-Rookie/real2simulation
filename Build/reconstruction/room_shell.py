@@ -15,7 +15,8 @@ FURNITURE = {"table": "table", "desk": "table", "chair": "chair", "sofa": "sofa"
              "cabinet": "shelf"}
 FEATURES = ("window", "door")
 TOP_SURFACE = ("table", "desk", "shelf", "cabinet")  # clutter on these is masked out before SF3D
-KEYFRAMES = 8  # all sampled room frames (8): with 3, the N06 window and door were never in view
+KEYFRAMES = 16  # N49: all sampled room frames (live_room.FRAMES 16): with 3, the N06 window and door were never in view
+SAM_THREADS = 4  # N49: parallel hosted SAM calls (daily_cap reserves in BEGIN IMMEDIATE, so the cap holds)
 MIN_TOP = 0.05  # model metres; N06's coffee table top is about 0.1 above the fitted floor (scale unverified)
 MIN_SPAN = 0.25
 MAX_SF3D = 3  # SF3D GPU calls per shell (largest items first); the rest keep their measured box, with the reason
@@ -196,6 +197,53 @@ def walls(aligned, inside=(), cell=0.05):
     return float(yaw), out
 
 
+def extent_walls(aligned, out, inside=(), yaw=0.0, cell=0.05):
+    """N49: a side with no trusted wall gets one at the scan edge (1st/99th percentile of the points on that axis,
+    pushed beyond every camera and kept furniture centre), status EXTENT, so the lab reads as a closed room.
+    Returns FIT walls first (opening indices stay valid), then EXTENT walls; every wall spans its cross walls."""
+    top = round(float(np.percentile(aligned[:, 1], 98)), 4)
+    ex, ez = _axes(yaw)
+    uv = np.column_stack([aligned[:, [0, 2]] @ ex, aligned[:, [0, 2]] @ ez])
+    ins = np.array([[np.dot(p, ex), np.dot(p, ez)] for p in inside], float).reshape(-1, 2)
+    fit, ext = [w for w in out if w["status"] == "FIT"], []
+    for w in out:
+        if w["status"] == "FIT":
+            continue
+        a, s = w["axis"], w["side"]
+        edge = s * float(np.percentile(uv[:, a], 99 if s > 0 else 1))
+        if len(ins):
+            edge = max(edge, float((ins[:, a] * s).max()) + cell)
+        ext.append({**w, "status": "EXTENT", "plane": round(s * edge, 4), "height": top,
+                    "reason": w.get("reason", "low point support") + "; placed at the scan edge, MODEL-ESTIMATED"})
+    walls = fit + ext  # walls() always reports 4 sides, so each wall now has both cross walls
+    for w in walls:
+        w["span"] = sorted(x["plane"] for x in walls if x["axis"] != w["axis"])
+    return walls
+
+
+def hex_color(rgb):
+    """Mean colour of RGB rows (0..1 floats or 0..255 ints) as #rrggbb; grey when there are none."""
+    rgb = np.asarray(rgb, float).reshape(-1, 3)
+    if not len(rgb):
+        return "#b0b0b0"
+    m = rgb.mean(0) * (255 if rgb.max() <= 1 else 1)
+    return "#" + "".join(f"{int(np.clip(x + 0.5, 0, 255)):02x}" for x in m)
+
+
+def floor_slab(yaw, walls, color, t=0.02):
+    """N49: solid floor panel inside the walls (top at y = 0, the fitted floor), same yaw as the walls."""
+    lim = {(w["axis"], w["side"]): w["plane"] for w in walls}
+    if len(lim) < 4:
+        return None
+    (u0, u1), (v0, v1) = sorted([lim[(0, -1)], lim[(0, 1)]]), sorted([lim[(1, -1)], lim[(1, 1)]])
+    ex, ez = _axes(yaw)
+    x, z = (u0 + u1) / 2 * ex + (v0 + v1) / 2 * ez
+    return {"id": "wall-floor", "kind": "block", "position": [round(float(x), 4), -t / 2, round(float(z), 4)],
+            "size": [round(max(u1 - u0, 0.05), 4), t, round(max(v1 - v0, 0.05), 4)],
+            "rotation": [0, round(float(np.sin(yaw / 2)), 6), 0, round(float(np.cos(yaw / 2)), 6)],
+            "fixed": True, "sensor": False, "mass": 100.0, "friction": 0.5, "look": {"category": "floor", "color": color}}
+
+
 def opening(npz, view, box, room, yaw, fit, noun, tol=0.2):
     """SAM window/door box -> {wall index, along [lo, hi], y [lo, hi]} on the FIT wall holding most of its points."""
     v = live_room.load_views(npz)[view]
@@ -266,7 +314,7 @@ def pieces(span, height, holes):
     return out
 
 
-def wall_objects(yaw, fit, holes):
+def wall_objects(yaw, fit, holes, colors=None):
     """FIT walls (with openings cut out) -> fixed lab-scene-v1 blocks just outside the fitted plane."""
     ex, ez = _axes(yaw)
     q = [0, round(float(np.sin(yaw / 2)), 6), 0, round(float(np.cos(yaw / 2)), 6)]
@@ -279,7 +327,18 @@ def wall_objects(yaw, fit, holes):
             size = [WALL_T, y1 - y0, a1 - a0] if w["axis"] == 0 else [a1 - a0, y1 - y0, WALL_T]
             objs.append({"id": f"wall-{i + 1}-{j + 1}", "kind": "block", "position": [round(float(x), 4),
                          round((y0 + y1) / 2, 4), round(float(z), 4)], "size": [round(max(s, 0.005), 4) for s in size],
-                         "rotation": q, "fixed": True, "sensor": False, "mass": 100.0, "friction": 0.5})
+                         "rotation": q, "fixed": True, "sensor": False, "mass": 100.0, "friction": 0.5,
+                         **({"look": {"category": "wall", "color": colors[i]}} if colors else {})})
+        for k, h in enumerate(hh for hh in holes if hh["wall"] == i):  # N49: door panel / window frame in the opening
+            n, a = w["plane"] + w["side"] * WALL_T / 2, (h["along"][0] + h["along"][1]) / 2
+            u, v = (n, a) if w["axis"] == 0 else (a, n)
+            x, z = u * ex + v * ez
+            d, noun = [WALL_T / 2, h["y"][1] - h["y"][0], h["along"][1] - h["along"][0]], h.get("noun", "window")
+            objs.append({"id": f"wall-{i + 1}-{noun}-{k + 1}", "kind": "block", "position": [round(float(x), 4),
+                         round((h["y"][0] + h["y"][1]) / 2, 4), round(float(z), 4)],
+                         "size": [round(max(s, 0.005), 4) for s in (d if w["axis"] == 0 else d[::-1])],
+                         "rotation": q, "fixed": True, "sensor": False, "mass": 20.0, "friction": 0.5,
+                         "look": {"category": noun, "color": colors[i] if colors else "#b0b0b0"}})
     return objs
 
 
@@ -289,14 +348,19 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
     views = live_room.load_views(npz)
     frames = keyframes(len(views))
     found = {"furniture": [], "features": []}
-    calls = 0
-    for view in frames:
-        png, w, h = object_lift.view_png(npz, view)
-        for noun in [*FURNITURE, *FEATURES]:
-            calls += 1
-            for b in detect(png, noun, w, h):
+    pngs = {view: object_lift.view_png(npz, view) for view in frames}
+    jobs = [(view, noun) for view in frames for noun in [*FURNITURE, *FEATURES]]
+    calls = len(jobs)
+    from concurrent.futures import ThreadPoolExecutor
+
+    def call(job):
+        png, w, h = pngs[job[0]]
+        return detect(png, job[1], w, h)
+    with ThreadPoolExecutor(SAM_THREADS) as pool:  # map keeps job order, so results stay deterministic
+        for (view, noun), boxes in zip(jobs, pool.map(call, jobs)):
+            for b in boxes:
                 found["features" if noun in FEATURES else "furniture"].append((view, noun, b))
-    aligned, _, _, _ = live_room.analyse(npz)
+    aligned, rgb, _, _ = live_room.analyse(npz)
     kept, dropped = furniture(npz, room, found["furniture"])
     inside = [(c[0], c[2]) for c in room.get("camera_positions_m", [])] + [
         (it["proxy"]["position"][0], it["proxy"]["position"][2]) for it in kept]
@@ -304,12 +368,19 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
     fit = [w for w in all_walls if w["status"] == "FIT"]
     cand = [opening(npz, v, b, room, yaw, fit, n) for v, n, b in found["features"]]
     holes = merge_openings([o for o in cand if o])
+    shown = extent_walls(aligned, all_walls, inside, yaw)  # FIT first: opening wall indices still match
+    ex, ez = _axes(yaw)
+    band = (aligned[:, 1] > 0.1) & (aligned[:, 1] < 0.9 * max(float(np.percentile(aligned[:, 1], 98)), 1e-6))
+    colors = [hex_color(rgb[band & (np.abs(aligned[:, [0, 2]] @ (ex if w["axis"] == 0 else ez) - w["plane"]) < 0.15)])
+              for w in shown]  # N49: mean video colour of the points on each wall
+    slab = floor_slab(yaw, shown, hex_color(rgb[np.abs(aligned[:, 1]) < 0.03]))
     out = {**scene, "objects": [o for o in scene.get("objects", []) if not str(o.get("id", "")).startswith("wall-")]}
-    out["objects"] += wall_objects(yaw, fit, holes)
+    out["objects"] += wall_objects(yaw, shown, holes, colors) + ([slab] if slab else [])
     glbs, kept_list = {}, []
     for n_item, it in enumerate(kept):
         p, noun = it["proxy"], it["noun"]
         out, obj = object_lift.to_scene(out, p, category=noun)
+        obj["look"] = {"category": noun, "color": hex_color(views[it["view"]]["rgb"][p["mask"].reshape(-1)])}  # N49
         gen = {}
         try:  # N31 path: SF3D shape fitted to the measured box; any failure keeps the box with the reason
             if generate is None:
@@ -328,7 +399,7 @@ def build(npz, room, scene, detect, generate=None, glb_url=None):
                           "sf3d": {k: gen.get(k) for k in ("gpu", "wall_s", "inference_s", "estimated_usd")} if gen else None,
                           "reason": f"main furniture ({noun}), {len(it['views'])} view(s), box reaches the floor"})
     shell = {"schema": "n39-shell/1", "keyframes": frames, "sam_calls": calls, "sam_cost_usd": round(calls * object_lift.USD_PER_IMAGE, 4),
-             "floor": room["floor"]["status"], "yaw_deg": round(float(np.degrees(yaw)), 2), "walls": all_walls,
+             "floor": room["floor"]["status"], "yaw_deg": round(float(np.degrees(yaw)), 2), "walls": shown,
              "openings": holes, "opening_detections_off_wall": sum(o is None for o in cand),
              "kept": kept_list, "dropped": sum(dropped.values()), "dropped_reasons": dropped,
              "detections": {"furniture": len(found["furniture"]), "features": len(found["features"])},

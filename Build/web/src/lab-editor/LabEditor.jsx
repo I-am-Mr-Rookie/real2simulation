@@ -13,6 +13,7 @@ import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
 import { naturalPoint, trajectoryScene } from '../workspace/measure.mjs';
 import { robustBounds, fitDistance, FRAME_Q } from './frame.mjs';
 import { colliderGeometry, loadShapeGlb, SHAPE_LABEL } from './sf3d-shape.mjs';
+import { lookMesh } from './furniture-shape.mjs';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981, flywheel: 0x8b5cf6, atwood: 0x0ea5e9,
@@ -45,7 +46,7 @@ function themeColor(name, fallback) {
 }
 
 // N44: walls the fit could not trust are named "not observed" instead of being counted (N43 RM02 partial view)
-const wallText = (sh) => { const n = sh.walls.filter((w) => w.status === 'FIT').length; return n + ' walls' + (n < sh.walls.length ? ' (' + (sh.walls.length - n) + ' not observed)' : ''); };
+const wallText = (sh) => { const n = sh.walls.filter((w) => w.status === 'FIT').length; return n + ' walls' + (n < sh.walls.length ? ' (' + (sh.walls.length - n) + ' not observed, placed at the scan edge)' : ''); };
 function download(name, text) {
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
@@ -68,6 +69,7 @@ function objectMesh(o) {
   const mat = new THREE.MeshStandardMaterial({ color: COLORS[o.kind], roughness: 0.6, ...(String(o.id).startsWith('wall-') && { transparent: true, opacity: 0.3 }) }); // N39: see through shell walls
   if (o.kind !== 'ball' && o.kind !== 'block' && o.kind !== 'ramp' && o.kind !== 'pendulum' && o.kind !== 'spring') return kitMesh(o, g, mat);
   const sf3d = o.shape?.type === 'mesh';
+  if (o.look && !sf3d) return lookMesh(o, g); // N49: room shell class shape (wall, door, table, chair...)
   const geo = sf3d ? colliderGeometry(o.shape) : o.kind === 'ball' || o.kind === 'pendulum' ? new THREE.SphereGeometry(0.5, 24, 16) : new THREE.BoxGeometry(1, 1, 1);
   const body = new THREE.Mesh(geo, mat);
   body.scale.fromArray(o.kind === 'ball' || o.kind === 'pendulum' ? Array(3).fill(Math.max(...o.size)) : o.size);
@@ -552,9 +554,8 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       </div>
       {scene.room.collision && <div className="le-panel">
         <h3>Room</h3>
-        <label><input type="checkbox" checked={scene.room.collision.enabled} disabled={live} onChange={(e) => edit((s) => ({ ...s, room: { ...s.room, collision: { ...s.room.collision, enabled: e.target.checked } } }))} /> Room collisions</label>
-        <p>{scene.room.collision.boxes.length} static boxes from the room point cloud. MODEL-ESTIMATED collision proxy: surfaces stop objects in Play and in agent runs.</p>
-        <label><input type="checkbox" checked={backdrop} onChange={(e) => setBackdrop(e.target.checked)} /> Point cloud backdrop</label>
+        <label><input type="checkbox" checked={backdrop} disabled={live} onChange={(e) => { setBackdrop(e.target.checked); edit((s) => ({ ...s, room: { ...s.room, collision: { ...s.room.collision, enabled: e.target.checked } } })); }} /> Show raw scan</label>
+        <p>Raw scan: the point cloud and {scene.room.collision.boxes.length} static collision boxes from it (MODEL-ESTIMATED). Off by default: the walls and furniture are the lab.</p>
       </div>}
       <details className="le-panel le-json">
         <summary>Scene JSON (lab-scene-v1)</summary>

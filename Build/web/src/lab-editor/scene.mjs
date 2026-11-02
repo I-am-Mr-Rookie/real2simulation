@@ -27,7 +27,14 @@ const RANGES = { angle_deg: [-179, 179], stiffness: [0.01, 1e5], damping: [0, 1e
 // Standard mass set (brass, 8400 kg/m^3): mass and cylinder size follow params.grams.
 export const MASS_SET = [10, 20, 50, 100, 200, 500, 1000];
 const massSize = (g) => { const d = Math.cbrt((4 * g / 1000) / (Math.PI * 8400)); return [d, d, d]; };
-const OBJECT_KEYS = new Set(['id', 'kind', 'position', 'rotation', 'size', 'velocity', 'mass', 'friction', 'restitution', 'fixed', 'sensor', 'params', 'shape']);
+const OBJECT_KEYS = new Set(['id', 'kind', 'position', 'rotation', 'size', 'velocity', 'mass', 'friction', 'restitution', 'fixed', 'sensor', 'params', 'shape', 'look']);
+// N49: block.look = { category, color } from the room shell: drawn as a simple class shape, physics stays the box.
+function lookOf(l, at) {
+  if (!l || typeof l !== 'object' || Array.isArray(l) || Object.keys(l).some((k) => k !== 'category' && k !== 'color')) bad(at + ' must be { category, color }');
+  if (typeof l.category !== 'string' || !/^[a-z]{1,20}$/.test(l.category)) bad(at + '.category must be a lowercase word');
+  if (typeof l.color !== 'string' || !/^#[0-9a-f]{6}$/.test(l.color)) bad(at + '.color must be #rrggbb');
+  return { category: l.category, color: l.color };
+}
 const SCENE_KEYS = new Set(['version', 'label', 'units', 'gravity', 'room', 'objects']);
 
 export class SceneError extends Error {}
@@ -141,6 +148,7 @@ export function validateScene(input) {
     if (o.kind === 'cradle') params.count = Math.round(params.count);
     const bool = (k, dflt) => (o[k] === undefined ? dflt : typeof o[k] === 'boolean' ? o[k] : bad(at + '.' + k + ' must be boolean'));
     if (o.shape !== undefined && o.kind !== 'block') bad(at + '.shape is only for blocks');
+    if (o.look !== undefined && o.kind !== 'block') bad(at + '.look is only for blocks');
     return {
       id: o.id, kind: o.kind,
       position: vec(o.position ?? [0, 1, 0], 3, at + '.position', -1000, 1000),
@@ -154,6 +162,7 @@ export function validateScene(input) {
       sensor: bool('sensor', o.kind !== 'ramp'),
       params,
       ...(o.shape !== undefined && { shape: shapeOf(o.shape, at + '.shape') }),
+      ...(o.look !== undefined && { look: lookOf(o.look, at + '.look') }),
     };
   });
   return { version: SCENE_VERSION, label: 'SIMULATED', units: 'm', gravity, room: outRoom, objects: out };

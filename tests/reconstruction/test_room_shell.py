@@ -43,7 +43,10 @@ class RoomShell(unittest.TestCase):
         yaw, walls = rs.walls(box_room(0.0))
         fit = [w for w in walls if w["status"] == "FIT"]
         objs = rs.wall_objects(yaw, fit, [{"wall": 0, **holes[0]}])
-        self.assertEqual(len(objs), len(fit) - 1 + 3)  # wall 0 split in 3 around the door
+        self.assertEqual(len(objs), len(fit) - 1 + 3 + 1)  # wall 0 split in 3 around the door, plus the N49 panel in it
+        panel = [o for o in objs if o.get("look", {}).get("category") == "window"]  # holes without a noun: window
+        self.assertEqual(len(panel), 1)
+        self.assertAlmostEqual(panel[0]["size"][1], 2.0)
         self.assertTrue(all(o["fixed"] and o["kind"] == "block" and o["id"].startswith("wall-") for o in objs))
 
     def test_dense_desk_row_is_not_a_wall_and_far_side_needs_points_inside(self):
@@ -167,3 +170,28 @@ class RoomShell(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class N49Shell(unittest.TestCase):
+    def test_open_side_gets_a_scan_edge_wall_beyond_the_cameras(self):
+        pts = box_room(0.0)
+        yaw, walls = rs.walls(pts)
+        shown = rs.extent_walls(pts, walls, [(0.0, 1.0)], yaw)
+        self.assertEqual([w["status"] for w in shown], ["FIT"] * 3 + ["EXTENT"])
+        ext = shown[-1]
+        self.assertEqual((ext["axis"], ext["side"]), (1, 1))
+        self.assertGreaterEqual(ext["plane"], 1.05)  # beyond the camera at z 1.0
+        self.assertIn("scan edge", ext["reason"])
+        self.assertTrue(all(len(w["span"]) == 2 and w["span"][0] < w["span"][1] for w in shown))
+        slab = rs.floor_slab(yaw, shown, "#806040")
+        self.assertAlmostEqual(slab["size"][0], 4.0, delta=0.1)
+        self.assertEqual(slab["look"], {"category": "floor", "color": "#806040"})
+        self.assertAlmostEqual(slab["position"][1] + slab["size"][1] / 2, 0.0)
+        objs = rs.wall_objects(yaw, shown, [], ["#ffffff"] * 4)
+        self.assertEqual(len(objs), 4)
+        self.assertTrue(all(o["look"]["category"] == "wall" for o in objs))
+
+    def test_hex_color(self):
+        self.assertEqual(rs.hex_color(np.array([[1.0, 0.5, 0.0], [1.0, 0.5, 0.0]])), "#ff8000")
+        self.assertEqual(rs.hex_color(np.array([[10, 20, 30]], np.uint8)), "#0a141e")
+        self.assertEqual(rs.hex_color(np.zeros((0, 3))), "#b0b0b0")
