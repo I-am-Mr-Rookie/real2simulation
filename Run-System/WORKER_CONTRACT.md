@@ -24,9 +24,11 @@ work_stopped_at, reported_at; check with `python Run-System/worker_timebox.py ch
 - UI text: no em dashes. Owner clips are private except OWN07 snippets; no real emails in screenshots.
 - Browser checks (Koushik, Nov 2): QA, verification and UI checks use the in-app ChatGPT browser (its own cursor), using the
   product like a person: click, scroll, type, resize, look for bugs, wrong numbers and awkward UX, not only scripted asserts.
-  Playwright Chromium headed only for automated test scripts or if the in-app browser is truly unavailable (say so in REPORT).
+  Playwright Chromium headed only for automated test scripts, or for human-style QA only if Koushik says so.
   Browser control is enabled by the [@Browser](plugin://browser@openai-bundled) plugin invocation in your dispatch prompt. If it
-  still reports "Browser is not available: iab", record the exact error in REPORT and fall back; do not loop.
+  reports "Browser is not available: iab" (try once more, no loop): send the controller one line
+  "<RID> BROWSER NEEDED: <exact error>", finish the non-browser parts, then end your turn and wait. Only Koushik can attach
+  the browser in some cases; he invokes the plugin in your chat and the controller reissues your timebox.
   Never Chrome. Test accounts email+clerk_test@example.com, code 424242, DEV https://real2simulation.up.railway.app
   (also https://real2simulation.rookiecoders.tech). The in-app browser holds Koushik's signed-in accounts: do not open his
   private projects, the DEV room bd7162322f3c4c978383bf797aac2f6e or the N06 clip, and change no account settings.

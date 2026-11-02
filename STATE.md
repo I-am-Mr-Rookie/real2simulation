@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 19:55 Dhaka · Controller: browser-unavailable rule
+- Koushik (Nov 2): in some cases only he can attach the in-app browser to a worker. Rule now in WORKER_CONTRACT.md and AGENTS.md: a worker that gets "Browser is not available: iab" (after one retry) sends "<RID> BROWSER NEEDED: <error>" to the controller, finishes non-browser parts and waits; the controller notifies Koushik at once, he invokes [@Browser] in that worker chat, the controller reissues the timebox. No Playwright fallback for human-style QA unless he says so.
+- N59-orch304 and N61-orch306 still running.
+
 ## 2026-11-02 20:45 Dhaka · controller: accept N60, dispatch N61
 - N60-orch305 (Sol high) accepted at cc8dfc1e (evidence only): all 12 N58 UI fixes CONFIRMED on DEV (visible paths); snapshot byte deletion not verifiable from the UI. New: F01 P2 classroom sample card opens the apple replay (room lab unreachable from the card); F02 P2 Saved lab Open goes to the agent drawer; F03 P3 phone graph readout hidden; F04 P3 ST03 experiment card has no preview (file_id ignored). Cost $0. Test project 17f7acaa left in the DEV fixture account.
 - In-app browser: N60 got "Browser is not available: iab" despite the @Browser invocation and fell back to headed Chromium; N58 got it on retry. Still unreliable for workers.

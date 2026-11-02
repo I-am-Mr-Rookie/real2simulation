@@ -40,6 +40,8 @@ stated licence, YouTube downloads, NC, ND. Owner clips are private except approv
   the signed-in Google accounts. No destructive or harmful actions, posts, submissions or purchases.
 - Windows: exact-target reversible changes; no recursive deletes; never Chrome. QA and UI verification use the in-app
   ChatGPT browser like a human user (Koushik, Nov 2); Playwright Chromium (headed) only for automated test scripts.
+  If a worker cannot get the in-app browser, it pauses and messages the controller; the controller notifies Koushik at once
+  (he attaches it by invoking the @Browser plugin in that worker chat), then reissues the worker's timebox.
 
 ## Run system (Nov 1, quota-lean)
 - Controller: chat 01a1882d-3481-7ce3-8f88-45c942e341cd. Workers are fresh desktop chats in project
