@@ -1,15 +1,15 @@
 # Runs checklist
 
-Updated Nov 03, 02:48 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 03, 02:49 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **359 / 369** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **359 / 369** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 1 open reviews
 
 ## Reviews for Koushik
 
-None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
+- [ ] Q24 (morning, 2 min; reply e.g. "Q24 1y 2y 3n"): 1) add a per-room Delete button in the workspace (default yes, Sol row). 2) delete the DEV fixture's test projects 17f7acaa, c46d33ba and the empty N64 one (default yes). 3) delete the old Singapore Railway Postgres 33692dd8 and Redis eee6243b, unused since the US move (default no until you say). 4) Wonder limits stay 10 turns/user/day and $3/day (20 and $6 on Nov 5 to 8) unless you change them on Nov 5. Owner-only, unchanged: S23a judging deploy at the Nov 4 freeze, N18 voice-overs.
 
 ## Ready now
 
