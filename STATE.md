@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 10:40 Dhaka: controller (Koushik feedback)
+- Koushik on DEV: sign-in/up unreadable in dark mode; GPU dot stuck on "starting, 1 job in queue" after the job finished, wants an idle countdown; delete unavailable library entries; what-if empty. Dispatched N48-orch293 (Sol high 60, due 11:36) for all three.
+- Koushik: the room lab (N06 and RM02) is a point cloud plus 219 voxel collision boxes; walls, doors, windows, tables, sofa and chairs are not visible as objects. Unacceptable for the demo; QA passed numeric criteria and never judged whether it looks like a room. Controller proposed a semantic room rebuild (N49, Opus high), awaiting Koushik's go and his point on model levels.
+
 ## 2026-11-02 10:30 Dhaka: controller
 - Accepted N46-orch291: DEV web now at https://real2simulation.up.railway.app (primary) and https://real2simulation.rookiecoders.tech (Cloudflare CNAME + _railway-verify TXT, DNS-only, cert VALID); old web-dev-cd80 host kept. Real Gmail OTP sign-in works on both new hosts. verify.py 17/17 exit 0. Exception accepted: infra/railway/dev/test_verify.py (stale fixtures) outside Owns, test-only. $0.
 - Dispatched N47-orch292 (Sol high 60, due 2026-11-02T11:27:40+06:00): DEV QA recheck of N43 F1 to F5 plus both modes, cap $1.50.
