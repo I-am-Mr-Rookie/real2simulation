@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 02, 07:58 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 02, 08:44 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **329 / 339** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **330 / 341** runs done · 2 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,7 +24,8 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **N43** — Codex · GPT-6.1 Sol, effort high — DEV end-to-end QA after the Nov 2 merges (room shell, SF3D, lab kit, tiers, Mode B, files, 375 px) (60 min) *(in progress)*
+- [~] **N44** — Codex (native Claude) · Opus 5.5, effort high — Room shell on a second room (N43 F1, F2, F5): ball rests on RM02 and N06 tables, walls enclose furniture or say not observed, openings on their walls, captions readable at 375 px (60 min) *(in progress)*
+- [~] **N45** — Codex · GPT-6.1 Sol, effort high — Workspace consistency (N43 F3, F4): lab agent uses the saved tier and shows the model; room uploads and jobs keep the chosen project (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -48,7 +49,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (39/43)</summary>
+<details><summary><b>N</b> —  (40/45)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -92,7 +93,9 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N40** — Codex · GPT-6.1 Sol, effort high — Fix N37 review findings: F1 missing usage keeps the reservation, F2 status/reaper race (BEGIN IMMEDIATE), F3 refusals never trigger Sol, F4 provider 400/413/422 never trigger Sol, F5 rejected tool attempts terminal; then pass the reservation from live_room to gpu_jobs.enqueue (60 min)
 - [x] **N41** — Codex · GPT-6.1 Sol, effort high — DEV Postgres and Redis to us-east4 with Redis preserved: new US services, short write fence, copy every key, verify counts and checksums, re-point api by variable reference, keep SG for rollback (60 min)
 - [x] **N42** — Codex (native Claude) · Opus 5.5, effort high — Room shell holds experiments: SF3D furniture tops hold objects (flattened support plane or compound collider), A4 rescale keeps the shell, shell auto-builds after a room job, desk parts merged, front-view clutter cut and floor fit fixed (60 min)
-- [~] **N43** — Codex · GPT-6.1 Sol, effort high — DEV end-to-end QA after the Nov 2 merges (room shell, SF3D, lab kit, tiers, Mode B, files, 375 px) (60 min) *(in progress)*
+- [x] **N43** — Codex · GPT-6.1 Sol, effort high — DEV end-to-end QA after the Nov 2 merges (room shell, SF3D, lab kit, tiers, Mode B, files, 375 px) (60 min)
+- [~] **N44** — Codex (native Claude) · Opus 5.5, effort high — Room shell on a second room (N43 F1, F2, F5): ball rests on RM02 and N06 tables, walls enclose furniture or say not observed, openings on their walls, captions readable at 375 px (60 min) *(in progress)*
+- [~] **N45** — Codex · GPT-6.1 Sol, effort high — Workspace consistency (N43 F3, F4): lab agent uses the saved tier and shows the model; room uploads and jobs keep the chosen project (30 min) *(in progress)*
 
 </details>
 

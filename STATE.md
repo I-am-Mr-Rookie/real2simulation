@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 08:45 Dhaka (controller)
+- Accepted N43 (Sol, QA only, evidence): DEV end-to-end QA, about $1.06. PASS: sign-up tiers, sample project, auto shell + 3 SF3D meshes, A4 keeps shell, all 20 kit items, agent g 9.810018 +/- 0.0074 and Atwood a 1.961998 +/- 0.0044 (SIMULATED), Delete/undo/redo, tiers in workspace, Sol rejected 422, Mode B band, files and 21st-upload 429, 375 px no overflow, no em dashes. FAIL: F1 P1 ball rolls off the SF3D table in the RM02 classroom (N42 fix held only on N06); F2 P2 RM02 walls enclose none of the furniture and openings miss their walls; F3 P2 lab agent ignores the saved Muse Open tier; F4 P2 room upload/job not attached to the chosen project; F5 P3 SF3D captions unreadable at 375 px.
+- Dispatched N44-orch289 (Opus high 60, F1 F2 F5, due 09:44) and N45-orch290 (Sol high 30, F3 F4, due 09:14).
+
 ## 2026-11-02 08:00 Dhaka (controller)
 - Queue drained after N42. Dispatched N43-orch288 (Sol high 60, QA only, due 2026-11-02T08:57:09+06:00): DEV end-to-end QA after the Nov 2 merges, Pexels clips only, $2 cap. Fix rows follow from its findings.
 
