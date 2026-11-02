@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 10:30 Dhaka: controller
+- Accepted N46-orch291: DEV web now at https://real2simulation.up.railway.app (primary) and https://real2simulation.rookiecoders.tech (Cloudflare CNAME + _railway-verify TXT, DNS-only, cert VALID); old web-dev-cd80 host kept. Real Gmail OTP sign-in works on both new hosts. verify.py 17/17 exit 0. Exception accepted: infra/railway/dev/test_verify.py (stale fixtures) outside Owns, test-only. $0.
+- Dispatched N47-orch292 (Sol high 60, due 2026-11-02T11:27:40+06:00): DEV QA recheck of N43 F1 to F5 plus both modes, cap $1.50.
+
 ## 2026-11-02 09:50 Dhaka: controller
 - Accepted N44-orch289 (N43 F1, F2, F5). RM02 SF3D table drops held 9/9 and 7/9 (was 4/9); RM02 walls now all "not observed" (honest, no shell boundary); N06 3 FIT walls enclose furniture, 2 openings on their walls; captions fixed 44 px. $0. Open: SF3D non-uniform stretch on rotated meshes, no rolling resistance, saved DEV walls keep old numbers until Build lab shell is rerun.
 - Tests after merge: Node 424/424, Python 391, build OK. Web 45a4a951 deployed (8920271b) earlier; redeploying api and web with N44. deployments.json record deferred until N46 (owns it) merges.
