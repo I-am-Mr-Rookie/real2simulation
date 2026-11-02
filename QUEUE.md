@@ -433,6 +433,7 @@ prerequisite. Lane/slot/ownership/approval checks still apply.
 | N76 | CODEX-1 | GPT-6.1 Sol / high | N | 30 | DEV check of N74 header/voice/copy and N75 sample room meshes, 375 px file list, retake stale /guide screenshots; sent to the N72 chat | N74, N75 | Build/web/public/guide/ images, evidence/N76/ | evidence/N76/CHECK.md; guide build and tests pass; no paid calls | DONE |
 | N77 | CODEX-1 | GPT-6.1 Sol / high | N | 30 | SF3D idle over-charge: one 900 s idle tail per serial batch, cap-safe (N62 P3-a, N66 P3-5); controller reviews spend diff; sent to the N64 chat | N75 | sf3d module, batch caller, tests, evidence/N77/ | 4-call batch books 1 tail; failure and concurrency stay conservative; settle <= reserve | DONE |
 | N78 | CODEX-1 | GPT-6.1 Sol / high | N | 30 | Fix N76 findings: phone Files row layout, lab honesty badge overlap at 1280 px, guide room copy/alt (point cloud -> room shell); sent to the N72 chat | N76 | workspace.css, live-view.mjs, lab-editor.css, guide copy, tests, evidence/N78/ | no cramped metadata at 320/375; no badge overlap 1024 to 1920 and 375; build and tests pass | IN PROGRESS |
+| N79 | CODEX-1 | GPT-6.1 Sol / high | N | 30 | Investigate whether a brand-new judge can sign up on DEV (N57 Clerk protect-check note); read-only on Clerk settings; sent to the N64 chat | N76 | evidence/N79/ | evidence/N79/SIGNUP.md with result, cause and smallest fix | IN PROGRESS |
 
 ## Step acceptance contracts (unchanged JSON)
 
