@@ -473,11 +473,18 @@ export const createLive = (React, icon = () => null) => {
     };
     const st = g.status, kind = g.mode ?? (g.rooms.length ? 'room' : 'experiment');
     const pathPlot = !g.snapshot && g.trackPreview?.kind === 'plot';
-    const f = (st.kind === 'experiment' && g.files.find((x) => x.id === g.trackPreview?.file_id)) || g.files.find((x) => x.media_type?.startsWith('video/')) || g.files[0];
-    const id = st.job?.id ?? st.job?.job_id;
-    const href = st.state === 'ready' && id ? '/lab?editor=1&' + (st.kind === 'room' ? 'room=' : 'experiment=') + encodeURIComponent(id) : null;
+    const sourceId = g.trackPreview?.file_id ?? st.job?.file_id;
+    const f = sourceId ? g.files.find((x) => x.id === sourceId) : g.files.find((x) => x.media_type?.startsWith('video/')) || g.files[0];
+    const room = groupStatus({ ...g, experiments: [] }, L.tracked);
+    const target = room.state === 'ready' ? room : st;
+    const experiment = target.kind === 'experiment' ? target : groupStatus({ ...g, rooms: [] }, L.tracked);
+    const experimentId = experiment.job?.id ?? experiment.job?.job_id;
+    const openExperiment = () => { L.track('experiment', experimentId); setTimeout(() => globalThis.document?.getElementById('lv-activity')?.scrollIntoView?.({ behavior: 'smooth' }), 50); };
+    const id = target.job?.id ?? target.job?.job_id;
+    const href = target.state === 'ready' && id ? '/lab?editor=1&' + (target.kind === 'room' ? 'room=' : 'experiment=') + encodeURIComponent(id)
+      : st.state === 'saved' && g.id ? '/lab?editor=1&project=' + encodeURIComponent(g.id) : null;
     const open = () => {
-      if (st.kind === 'experiment' && id) { L.track('experiment', id); setTimeout(() => globalThis.document?.getElementById('lv-activity')?.scrollIntoView?.({ behavior: 'smooth' }), 50); }
+      if (target.kind === 'experiment' && id) openExperiment();
       else if (href) globalThis.location.assign(href);
       else L.openAgent?.();
     };
@@ -505,6 +512,7 @@ export const createLive = (React, icon = () => null) => {
             g.sample ? h('span', { className: 'lv-tagsm' }, 'RECORDED') : null)),
         h(Menu, { label: 'Project actions for ' + g.name, items: [
           { label: 'Open', onClick: open },
+          target.kind === 'room' && experimentId ? { label: 'Open experiment', onClick: openExperiment } : null,
           g.sample || !g.id ? null : { label: 'Rename', onClick: () => { setTitle(g.name); setRenameError(null); setRenaming(true); } },
           f ? { label: 'Download video', href: fileUrl(f), download: f.name } : null,
           g.sample || !g.id ? null : { label: 'Delete', danger: true, onClick: () => L.deleteProject(g) }] })));
@@ -516,7 +524,10 @@ export const createLive = (React, icon = () => null) => {
     const { experiments: e, rooms: r, projects: p } = L.jobs;
     const err = [e, r, p].find((j) => j?.state === 'error');
     const groups = groupJobs(p?.items ?? [], e?.items ?? [], r?.items ?? [])
-      .map((g) => ({ ...g, files: g.id ? L.files.items.filter((f) => f.project_id === g.id) : [], status: groupStatus(g, L.tracked) }));
+      .map((g) => {
+        const sources = new Set([...g.rooms, ...g.experiments].map((j) => j.file_id).filter(Boolean));
+        return { ...g, files: L.files.items.filter((f) => (g.id && f.project_id === g.id) || sources.has(f.id)), status: groupStatus(g, L.tracked) };
+      });
     const full = groups.filter((g) => g.sample || g.status.state !== 'empty' || g.files.length), empty = groups.filter((g) => !full.includes(g));
     return h('section', { className: 'lv-projects', 'aria-labelledby': 'lv-proj-h', id: 'lv-project' },
       h('div', { className: 'lv-head' }, h('h2', { id: 'lv-proj-h' }, 'Projects'),

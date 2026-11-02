@@ -31,8 +31,9 @@ export function relTime(iso, now = Date.now()) {
 
 // N55 card status from the newest job of a group (tracked live view first): { state: 'empty'|'processing'|'ready'|'failed', progress, reason }.
 export function groupStatus(g, tracked = {}) {
+  const when = (j) => String(j.created || j.created_at || j.updated || j.updated_at || ''); // Legacy room rows only carry updated_at.
   const jobs = [...g.rooms.map((j) => ['room', j]), ...g.experiments.map((j) => ['experiment', j])]
-    .sort((a, b) => String(b[1].created ?? b[1].created_at ?? '').localeCompare(String(a[1].created ?? a[1].created_at ?? '')));
+    .sort((a, b) => when(b[1]).localeCompare(when(a[1])));
   if (!jobs.length) return { state: g.snapshot ? 'saved' : 'empty' };
   const [kind, j] = jobs[0], live = tracked[kind + ':' + (j.id ?? j.job_id)];
   const st = String(live?.state ?? j.status ?? j.state ?? 'unknown');

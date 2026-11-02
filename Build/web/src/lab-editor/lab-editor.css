@@ -67,7 +67,7 @@ main:has(.lab-editor) { padding: 0; }
 .le-graph { flex: 1; min-width: 0; margin: 0; display: flex; align-items: center; gap: 10px; font-size: 12px; }
 .le-graph svg { flex: 1; min-width: 80px; height: 44px; border: 1px solid var(--le-border); border-radius: 6px; background: var(--le-bg); }
 .le-graph polyline { fill: none; stroke: var(--le-accent); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-.le-graph figcaption { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45%; }
+.le-graph figcaption { white-space: normal; overflow-wrap: anywhere; max-width: 45%; margin: 0; padding: 0; border: 0; }
 .le-muted { color: var(--le-muted); }
 .le-props fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 6px; }
 .le-props legend { font-size: 12px; font-weight: 600; color: var(--le-muted); padding: 0 0 4px; }
@@ -108,7 +108,9 @@ main:has(.lab-editor) { padding: 0; }
   .lab-editor[data-side='open'] .le-left, .le-right { position: absolute; z-index: 30; left: 0; right: 0; top: auto; bottom: 0; width: auto; max-height: 55%; border: 0; border-top: 1px solid var(--le-border); border-radius: 14px 14px 0 0; box-shadow: 0 -8px 24px rgba(0, 0, 0, .18); }
   .lab-editor[data-sheet='closed'] .le-right { display: none; }
   .le-sheet-close { display: block; justify-self: end; min-height: 32px; padding: 0 10px; border: 1px solid var(--le-border); border-radius: 8px; background: var(--le-surface); color: var(--le-ink); }
-  .le-lbl, .le-name, .le-graph figcaption { display: none; }
+  .le-lbl, .le-name { display: none; }
+  .le-graph { flex-wrap: wrap; gap: 4px; }
+  .le-graph figcaption { flex-basis: 100%; max-width: none; font-size: 11px; line-height: 1.25; }
   .le-group { padding-left: 4px; border-left: 0; }
   .le-top { gap: 2px; padding: 4px; flex-wrap: wrap; }
   .le-top .le-end { flex-basis: 100%; justify-content: flex-end; margin-left: 0; }

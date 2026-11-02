@@ -7,6 +7,20 @@ const read = (p) => readFileSync(new URL('../../Build/web/src/' + p, import.meta
 const editor = read('lab-editor/LabEditor.jsx');
 const css = read('lab-editor/lab-editor.css');
 
+test('graph value, unit and honesty caption wrap on desktop and remain visible on phones', () => {
+  const caption = css.match(/\.le-graph figcaption \{([^}]*white-space[^}]*)\}/)?.[1];
+  assert.match(caption, /white-space: normal/);
+  assert.match(caption, /overflow-wrap: anywhere/);
+  for (const property of ['margin', 'padding', 'border']) assert.ok(caption.includes(property + ': 0;'), property);
+  assert.doesNotMatch(caption, /overflow: hidden|text-overflow: ellipsis/);
+  for (const rule of css.matchAll(/([^{}]+)\{([^{}]*display:\s*none[^{}]*)\}/g)) {
+    assert.doesNotMatch(rule[1], /\.le-graph figcaption/);
+  }
+  const phone = css.slice(css.indexOf('@media (max-width: 900px)'));
+  assert.match(phone, /\.le-graph \{[^}]*flex-wrap: wrap/);
+  assert.match(phone, /\.le-graph figcaption \{[^}]*flex-basis: 100%;[^}]*max-width: none/);
+});
+
 test('N56 full-window app: site header and footer hidden, fixed grid of top bar, work area and timeline', () => {
   assert.match(css, /body:has\(\.lab-editor\) \.site-header, body:has\(\.lab-editor\) \.site-footer/);
   assert.match(css, /\.lab-editor \{[^}]*position: fixed; inset: 0;[^}]*grid-template-rows: auto minmax\(0, 1fr\) auto/);

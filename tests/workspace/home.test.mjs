@@ -35,6 +35,15 @@ test('card status: newest job wins, live tracked state first, failure keeps its 
   assert.equal(groupStatus({ snapshot: '/snapshot', rooms: [], experiments: [] }).state, 'saved');
 });
 
+test('undated room rows use their update timestamp, not an artificial oldest date', () => {
+  const room = { id: 'room', status: 'done', updated_at: '2026-11-02T10:00:00Z' };
+  const experiment = { id: 'experiment', status: 'done', created: '2026-11-02T09:00:00Z' };
+  const g = { rooms: [room], experiments: [experiment] };
+  assert.equal(groupStatus(g).job, room);
+  assert.equal(groupStatus(g, { 'room:room': { state: 'failed', error: 'room unavailable' } }).reason, 'room unavailable');
+  assert.equal(groupStatus({ rooms: [room], experiments: [{ ...experiment, created: '2026-11-02T11:00:00Z' }] }).kind, 'experiment');
+});
+
 test('model picker: three tiers, bars only, no Sol, contributor warns about training', () => {
   assert.deepEqual(MODEL_CHOICES.map((m) => [m.id, m.tag]), [['standard', 'Recommended'], ['contributor', 'Cheapest'], ['open', 'Fastest']]);
   assert.ok(!JSON.stringify(MODEL_CHOICES).match(/sol|gpt|\$|\u2014/i));
