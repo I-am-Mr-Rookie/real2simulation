@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 10:50 Dhaka: controller (Koushik decision)
+- Koushik Nov 2 (replaces the per-object SF3D caption rule): show "MODEL-GENERATED shapes · Powered by Stability AI" once per lab view, not under each object; footer, README, NOTICE and licence copy unchanged. Also: wheel scroll must work outside the 3D canvas; Template trials button goes inside the toolbar ribbon. Dispatched N50-orch294 (Sol high 30, due 2026-11-02T11:12:04+06:00).
+- N49 room rebuild still awaiting Koushik's go.
+
 ## 2026-11-02 10:40 Dhaka: controller (Koushik feedback)
 - Koushik on DEV: sign-in/up unreadable in dark mode; GPU dot stuck on "starting, 1 job in queue" after the job finished, wants an idle countdown; delete unavailable library entries; what-if empty. Dispatched N48-orch293 (Sol high 60, due 11:36) for all three.
 - Koushik: the room lab (N06 and RM02) is a point cloud plus 219 voxel collision boxes; walls, doors, windows, tables, sofa and chairs are not visible as objects. Unacceptable for the demo; QA passed numeric criteria and never judged whether it looks like a room. Controller proposed a semantic room rebuild (N49, Opus high), awaiting Koushik's go and his point on model levels.
