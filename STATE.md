@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 04:15 Dhaka: N76 and N77 dispatched
+- N76-orch321 (Sol, 30 min) DEV check of N74/N75 plus stale guide screenshot retake, in the N72 chat. N77-orch322 (Sol, 30 min) SF3D one idle tail per serial batch so the daily cap is not eaten by bookkeeping, in the N64 chat; spend diff reviewed by the controller.
+
 ## 2026-11-03 04:10 Dhaka: N74 and N75 accepted; DEV api e1546d11, web a4030a5d
 - N74-orch319 DONE: 375 px header can wrap (no overflow), home copy now says imperfect scale is labelled with uncertainty, voice shows mic-request/recording/transcribing states, real-object note clears on toggle off. O1: no race found (sync localStorage write; lab reads per ask). 274 Node tests, build ok. Real Clerk signed-in header recheck on DEV still to do.
 - N75-orch320 DONE: classroom SAMPLE now seeds and backfills a shared RM02 pack (23 objects, 9 furniture, 4 SF3D meshes), no per-user inference; user edits preserved. 4 SF3D jobs ledgered, about $1.37 conservative estimate. Meshes are coarse, not photoreal. 614 Python tests pass.
