@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 18:25 Dhaka · controller: accept N57, dispatch N58
+- N57-orch302 (Sol high) accepted at b862e8de (evidence only): no P1; 7 P2 and 5 P3 in evidence/N57/FINDINGS.md. Confirmed: RM02 view image HTTP 500 (A4/real object unusable on the sample), 375 px top bar and Add menu clipped, template snapshots hidden as Empty, raw-scan checkbox vs physics mismatch, Room tab state loss, no scrubber/result card, duplicate workspace chrome and old single-clip area, R2S text logo, prompt() rename, no tracked-path preview, no voice in agent drawer, narrow-screen overrun; snapshot not deleted with project (source). Refuted: two fullscreen buttons (one is Fit view). Rename PATCH 200; snapshot on ready card works.
+- N57 cost: one hosted SAM 3.1 measurement, USD 0.024. Secret and email scan of receipts clean.
+- N57 limits: test account at 0/20 uploads today; new DEV sign-up blocked by Clerk protect-check; GPU yellow/green countdown and paid agent/real-object/shell paths NOT RUN.
+- Dispatched N58-orch303 (Sol high, 60 min, due about 19:25 Dhaka; thread 01a19c21-319f-7e33-82da-40cf54d2e410) to fix all 12 findings plus the snapshot cleanup, each marked FIXED or NOT FIXED with a reason.
+
 ## 2026-11-02 17:30 Dhaka · controller: accept N56, dispatch N57, queue N58/N59
 - N56-orch301 (Opus high) accepted at cd719a58: full-window lab editor (top bar, Objects/Room tabs, floating tools, picture Add menu with Templates, Properties, Agent drawer, timeline graph, one honesty chip, better lighting) and PUT/GET /projects/{id}/snapshot with snapshot_url in the projects list. One-line BFF PATCH export outside Owns accepted (rename could not reach the API before).
 - N56 broke N54's width test (editor is now full-window); controller updated the test (6a9990d9, 851e9d7a). node all pass, pytest 524 pass, build ok, secret scan clean.
