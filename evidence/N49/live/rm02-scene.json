@@ -1,0 +1,542 @@
+{
+ "version": "lab-scene-v1",
+ "label": "SIMULATED",
+ "units": "m",
+ "gravity": [
+  0,
+  -9.81,
+  0
+ ],
+ "room": {
+  "kind": "ply",
+  "floor_y": 0,
+  "source": "room.ply",
+  "scale_verified": false
+ },
+ "objects": [
+  {
+   "id": "wall-1-1",
+   "kind": "block",
+   "position": [
+    -2.1194,
+    0.7606,
+    -2.0871
+   ],
+   "size": [
+    0.08,
+    1.5212,
+    4.7009
+   ],
+   "rotation": [
+    0,
+    0.034899,
+    0,
+    0.999391
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 100.0,
+   "friction": 0.5,
+   "look": {
+    "category": "wall",
+    "color": "#b7b4b0"
+   }
+  },
+  {
+   "id": "wall-2-1",
+   "kind": "block",
+   "position": [
+    4.0658,
+    0.7606,
+    -2.5196
+   ],
+   "size": [
+    0.08,
+    1.5212,
+    4.7009
+   ],
+   "rotation": [
+    0,
+    0.034899,
+    0,
+    0.999391
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 100.0,
+   "friction": 0.5,
+   "look": {
+    "category": "wall",
+    "color": "#b0b0b0"
+   }
+  },
+  {
+   "id": "wall-3-1",
+   "kind": "block",
+   "position": [
+    0.8065,
+    0.7606,
+    -4.688
+   ],
+   "size": [
+    6.1203,
+    1.5212,
+    0.08
+   ],
+   "rotation": [
+    0,
+    0.034899,
+    0,
+    0.999391
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 100.0,
+   "friction": 0.5,
+   "look": {
+    "category": "wall",
+    "color": "#b0b0b0"
+   }
+  },
+  {
+   "id": "wall-4-1",
+   "kind": "block",
+   "position": [
+    1.14,
+    0.7606,
+    0.0813
+   ],
+   "size": [
+    6.1203,
+    1.5212,
+    0.08
+   ],
+   "rotation": [
+    0,
+    0.034899,
+    0,
+    0.999391
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 100.0,
+   "friction": 0.5,
+   "look": {
+    "category": "wall",
+    "color": "#b0b0b0"
+   }
+  },
+  {
+   "id": "wall-floor",
+   "kind": "block",
+   "position": [
+    0.9732,
+    -0.01,
+    -2.3034
+   ],
+   "size": [
+    6.1203,
+    0.02,
+    4.7009
+   ],
+   "rotation": [
+    0,
+    0.034899,
+    0,
+    0.999391
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 100.0,
+   "friction": 0.5,
+   "look": {
+    "category": "floor",
+    "color": "#96928b"
+   }
+  },
+  {
+   "id": "room-object-1",
+   "kind": "block",
+   "position": [
+    -0.9562,
+    0.4345,
+    -0.6786
+   ],
+   "size": [
+    1.0395,
+    0.869,
+    0.5627
+   ],
+   "rotation": [
+    0,
+    -0.15144,
+    0,
+    0.988466
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 25.0,
+   "friction": 0.5,
+   "look": {
+    "category": "table",
+    "color": "#bcbbbc"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-2",
+   "kind": "block",
+   "position": [
+    1.2882,
+    0.49,
+    -0.9962
+   ],
+   "size": [
+    1.3181,
+    0.9799,
+    0.7596
+   ],
+   "rotation": [
+    0,
+    -0.994451,
+    0,
+    0.105202
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 25.0,
+   "friction": 0.5,
+   "look": {
+    "category": "table",
+    "color": "#9aa0a2"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-3",
+   "kind": "block",
+   "position": [
+    -0.4557,
+    0.3082,
+    -2.4513
+   ],
+   "size": [
+    2.2454,
+    0.6164,
+    3.3315
+   ],
+   "rotation": [
+    0,
+    -0.333845,
+    0,
+    0.942628
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 25.0,
+   "friction": 0.5,
+   "look": {
+    "category": "table",
+    "color": "#848b83"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-4",
+   "kind": "block",
+   "position": [
+    0.0279,
+    0.4971,
+    -1.8126
+   ],
+   "size": [
+    0.9835,
+    0.9942,
+    0.6592
+   ],
+   "rotation": [
+    0,
+    0.314854,
+    0,
+    0.94914
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 6.0,
+   "friction": 0.5,
+   "look": {
+    "category": "chair",
+    "color": "#6e7e75"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-5",
+   "kind": "block",
+   "position": [
+    1.2896,
+    0.5474,
+    -2.2597
+   ],
+   "size": [
+    0.9138,
+    1.0948,
+    0.4941
+   ],
+   "rotation": [
+    0,
+    -0.995978,
+    0,
+    0.089601
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 25.0,
+   "friction": 0.5,
+   "look": {
+    "category": "table",
+    "color": "#53615e"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-6",
+   "kind": "block",
+   "position": [
+    1.5366,
+    0.0296,
+    -3.4907
+   ],
+   "size": [
+    1.7311,
+    0.0592,
+    1.0764
+   ],
+   "rotation": [
+    0,
+    -0.714529,
+    0,
+    0.699605
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 25.0,
+   "friction": 0.5,
+   "look": {
+    "category": "table",
+    "color": "#aca8a6"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-7",
+   "kind": "block",
+   "position": [
+    2.7599,
+    0.4145,
+    -2.8903
+   ],
+   "size": [
+    1.0788,
+    0.8291,
+    0.7854
+   ],
+   "rotation": [
+    0,
+    0.149781,
+    0,
+    0.988719
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 25.0,
+   "friction": 0.5,
+   "look": {
+    "category": "table",
+    "color": "#85938d"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-8",
+   "kind": "block",
+   "position": [
+    0.8306,
+    0.4864,
+    -0.9211
+   ],
+   "size": [
+    0.415,
+    0.9728,
+    0.161
+   ],
+   "rotation": [
+    0,
+    -0.842634,
+    0,
+    0.538486
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 6.0,
+   "friction": 0.5,
+   "look": {
+    "category": "chair",
+    "color": "#c1c2c3"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-9",
+   "kind": "block",
+   "position": [
+    1.5756,
+    0.3255,
+    -4.0461
+   ],
+   "size": [
+    1.4835,
+    0.6509,
+    0.2436
+   ],
+   "rotation": [
+    0,
+    0.180189,
+    0,
+    0.983632
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 6.0,
+   "friction": 0.5,
+   "look": {
+    "category": "chair",
+    "color": "#a4a19c"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-10",
+   "kind": "block",
+   "position": [
+    3.1074,
+    0.5134,
+    -3.0499
+   ],
+   "size": [
+    0.4876,
+    1.0269,
+    0.3134
+   ],
+   "rotation": [
+    0,
+    0.919823,
+    0,
+    0.392335
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 6.0,
+   "friction": 0.5,
+   "look": {
+    "category": "chair",
+    "color": "#46544c"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-11",
+   "kind": "block",
+   "position": [
+    2.3352,
+    0.5173,
+    -1.4657
+   ],
+   "size": [
+    0.3056,
+    1.0345,
+    0.1373
+   ],
+   "rotation": [
+    0,
+    -0.898742,
+    0,
+    0.438478
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 25.0,
+   "friction": 0.5,
+   "look": {
+    "category": "table",
+    "color": "#8fa0ac"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  },
+  {
+   "id": "room-object-12",
+   "kind": "block",
+   "position": [
+    3.8156,
+    0.4156,
+    -4.8082
+   ],
+   "size": [
+    0.3542,
+    0.8312,
+    0.1223
+   ],
+   "rotation": [
+    0,
+    0.98322,
+    0,
+    0.182424
+   ],
+   "fixed": true,
+   "sensor": false,
+   "mass": 6.0,
+   "friction": 0.5,
+   "look": {
+    "category": "chair",
+    "color": "#bfbdbc"
+   },
+   "shape": {
+    "type": "box",
+    "fallback_reason": "SF3D: RuntimeError: SF3D not requested"
+   }
+  }
+ ]
+}
