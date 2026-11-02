@@ -1,4 +1,4 @@
-# N65-orch308: DRAFT, browser verification pending
+# N65-orch308: DONE
 - Branch: `run/N65-orch308`; base `882da5c5`.
 - F06: mobile picker left inset now includes the permanent 3.25rem rail plus .75rem clearance; desktop rule unchanged.
 - F05: trajectory summary reuses `scaleTag(result)` and its existing quantity/result labels, preserving known-size MEASURED, assumed user size, and unverified scale wording.
@@ -8,8 +8,11 @@
 - After fixes: targeted run 16/16 pass; `node --test tests/workspace/*.test.mjs tests/lab-editor/*.test.mjs` 200/200 pass.
 - `npm run build` in `Build/web`: PASS; `git diff --check`: PASS.
 - Shared canonical node_modules junction used; no install or environment/credential copies.
-- Browser: two `cua.createBrowserTab("iab", "about:blank", {visible:true})` attempts returned `Browser is not available: iab`.
-- Controller notified immediately with BROWSER NEEDED; no substitute browser or fixture data mutation used.
-- Skipped: required 375px/desktop, Light/Dark in-app visual checks. Code/build success is not visual certification.
-- Paid calls: 0. Deploys: 0. Risk: actual clipping and scene-summary appearance await browser attachment and reissued timebox.
-- Controller instructed: commit draft, wait for browser attachment, then use a reissued 30-minute window and a local dev server. No terminal receipt filed.
+- Browser attachment restored; reissued window 15:19:53 to 15:49:53 UTC, cutoff 15:44:53 UTC.
+- Actual in-app browser checked local code at 375x850 and 1366x900, Light and Dark, as the existing DEV fixture; see `evidence/N65/VERIFY.md`.
+- F06: readable picker; phone dialog x=64..348 clears rail ending x=52. Desktop stays absolute and readable.
+- F05: existing ST03 replay summary retains `scale assumed (user size)` in both themes/widths; uncertainty/footer and SIMULATED caveats remain. No UI console errors in the QA tab.
+- Controller-approved ignored `.env.local` export used existing DEV auth/API; private API DNS replaced locally with its existing public DEV domain. Temporary file removed, local server stopped.
+- Original System theme restored; viewport override cleared. No new fixture/project, upload, fit, model choice, agent call or persisted experiment change.
+- Paid calls: 0. Deploys: 0. Screenshots local-only, no media binaries committed.
+- Skipped: live known/verified-size and pixel result fixtures; regression tests cover those branches. Risk: pre-existing phone floating-navigation overlap partly covers summary text, outside F05's provenance-copy scope.
