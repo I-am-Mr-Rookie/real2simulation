@@ -1,6 +1,6 @@
 # Runs checklist
 
-Updated Nov 03, 01:50 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 03, 01:55 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
@@ -24,7 +24,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **N71** — Codex · GPT-6.1 Sol, effort high — Add Muse Wonder to the model picker as Smartest (relative bars: slower, costlier); per-user Wonder turn limit 10/day, 30/day Nov 5 to 8 Dhaka; global Wonder daily spend cap on the Meta API ledger (not the GPU cap), on hit fall back to Spark standard with a visible note; Sol fallback unchanged; IAB check (30 min) *(in progress)*
+- [~] **N71** — Codex · GPT-6.1 Sol, effort high — Add Muse Wonder to the model picker as Smartest (relative bars: slower, costlier); per-user Wonder turn limit 10/day (none Nov 5 to 8 Dhaka; only the $6/day global cap); global Wonder daily spend cap on the Meta API ledger (not the GPU cap), on hit fall back to Spark standard with a visible note; Sol fallback unchanged; IAB check (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -119,7 +119,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N68** — Codex · GPT-6.1 Sol, effort high — Fix web gaps from N63/N65: lab status text still says Running after Reset; phone floating nav covers workspace summary text at 375 px; IAB check (30 min)
 - [x] **N69** — Codex · GPT-6.1 Sol, effort high — Count room artifacts (rooms/<owner>/) in the 1 GB per-user quota; refuse new room jobs and rebuilds at or over quota before paid work (N63 gap) (30 min)
 - [x] **N70** — Codex · GPT-6.1 Sol, effort high — Benchmark muse-wonder-1.0 as lab agent on the N51 10 requests (tool-call validity, number-guard blocks, latency, cost/turn) vs Spark, Open, Sol; cap $3 (30 min)
-- [~] **N71** — Codex · GPT-6.1 Sol, effort high — Add Muse Wonder to the model picker as Smartest (relative bars: slower, costlier); per-user Wonder turn limit 10/day, 30/day Nov 5 to 8 Dhaka; global Wonder daily spend cap on the Meta API ledger (not the GPU cap), on hit fall back to Spark standard with a visible note; Sol fallback unchanged; IAB check (30 min) *(in progress)*
+- [~] **N71** — Codex · GPT-6.1 Sol, effort high — Add Muse Wonder to the model picker as Smartest (relative bars: slower, costlier); per-user Wonder turn limit 10/day (none Nov 5 to 8 Dhaka; only the $6/day global cap); global Wonder daily spend cap on the Meta API ledger (not the GPU cap), on hit fall back to Spark standard with a visible note; Sol fallback unchanged; IAB check (30 min) *(in progress)*
 - [ ] **N64** — Codex (native Claude) · Sonnet 5.5, effort medium — Guide page (single run, LAST product row): public /guide with a simple beginner walkthrough of every feature (sign in, model picker, new project, room lab, phone experiment, lab editor, agent, files and quotas, GPU dot, demo library) with screenshots taken from DEV in the in-app browser using the test fixture and sample projects only; header and footer link (60 min)
 
 </details>

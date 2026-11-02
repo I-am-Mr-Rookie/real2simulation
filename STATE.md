@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~01:55 Dhaka: Koushik on Wonder limits
+- Koushik: "$6 is enough as a limit". On Nov 5 to 8 Dhaka there is no per-user Wonder turn limit, only the global Wonder cap of $6/day. Other days: 10 turns per user per day and a $3/day global cap. The 30/day rule is dropped. Sent to N71-orch315 mid-run.
+
 ## 2026-11-03 ~01:50 Dhaka: N70 accepted (Wonder: ADD), N71 dispatched
 - N70-orch314 DONE. Muse Wonder at high effort: 11/11 valid tool calls, 0 number-guard blocks, 10/10 usable endings, p50 7.9 s. About $0.030 per turn (conservative estimate, not an invoice). Benchmark spend $0.394 under the $3 cap, all ledgered.
 - core.py now holds WONDER_MODEL, its price ($4 in, $20 out per 1M) and high effort. It is not yet in TIERS, so users can't pick it and DEV needs no redeploy. The controller's cross-vendor spend review passed. tests/agent: 195 passed. Secret scan 0. The N51 benchmark change sits outside Owns but is a refactor that keeps its defaults; accepted.
