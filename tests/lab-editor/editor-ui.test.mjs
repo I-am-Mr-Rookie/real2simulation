@@ -7,6 +7,27 @@ const read = (p) => readFileSync(new URL('../../Build/web/src/' + p, import.meta
 const editor = read('lab-editor/LabEditor.jsx');
 const css = read('lab-editor/lab-editor.css');
 
+test('Reset clears running or paused status as well as physics, time and trace selection', () => {
+  const body = editor.match(/const stop = \(\) => \{([\s\S]*?)\n  \};/)?.[1];
+  assert.ok(body);
+  for (const message of ['Running. SIMULATED physics, gravity from the scene vector.', 'Paused. Resume, reset, or export the SIMULATED sensor traces.']) {
+    const state = { run: 'playing', time: 2, cursor: 1, traceFit: {}, message };
+    let freed = 0;
+    const api = { current: { state: { playing: true, sim: { free() { freed++; } } } } };
+    const keys = ['run', 'time', 'cursor', 'traceFit', 'message'];
+    const setters = keys.map((key) => (value) => { state[key] = value; });
+    new Function('api', 'setRun', 'setTime', 'setCursor', 'setTraceFit', 'setMessage', body)(api, ...setters);
+    assert.equal(state.run, 'stopped');
+    assert.equal(state.time, 0);
+    assert.equal(state.cursor, null);
+    assert.equal(state.traceFit, null);
+    assert.match(state.message, /Ready.*SIMULATED/);
+    assert.equal(api.current.state.playing, false);
+    assert.equal(api.current.state.sim, null);
+    assert.equal(freed, 1);
+  }
+});
+
 test('graph value, unit and honesty caption wrap on desktop and remain visible on phones', () => {
   const caption = css.match(/\.le-graph figcaption \{([^}]*white-space[^}]*)\}/)?.[1];
   assert.match(caption, /white-space: normal/);

@@ -491,6 +491,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     const st = api.current?.state;
     if (st) { st.playing = false; st.sim?.free(); st.sim = null; }
     setRun('stopped'); setTime(0); setCursor(null); setTraceFit(null);
+    setMessage('Ready. Press Play to start again. Everything here is SIMULATED.');
   };
   const play = async () => {
     const st = api.current.state;

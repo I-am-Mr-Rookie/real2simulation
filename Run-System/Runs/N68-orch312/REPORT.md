@@ -1,0 +1,15 @@
+# N68-orch312: IN PROGRESS, waiting for browser attachment
+- Branch `run/N68-orch312`, base `31c10cfa`.
+- Reset now restores a ready SIMULATED status through the existing shared handler.
+- Phone replay summary clears the floating rail with safe-area-aware bottom spacing; desktop unchanged.
+- `LabClient.jsx` inspected: its existing reset already handles idle/message/abort/version correctly.
+- Added executable Reset regression and phone layout regression; both failed before fixes.
+- Requested Node tests: 204/204 PASS. `npm run build`: PASS. `git diff --check`: PASS.
+- Local production `/lab` HTTP smoke: 200; not a human/browser verification.
+- Evidence: `evidence/N68/VERIFY.md`.
+- In-app browser unavailable twice: `Browser is not available: iab`; controller notified.
+- Pending: 375px and desktop in-app interactions/screenshots using public/sample data only.
+- Railway-exported gitignored `.env.local` removed; local production server stopped and verified.
+- Paid calls: 0. Deploys: 0. No private room/clip opened.
+- Controller instructed no early stop; waiting for attachment or original deadline before terminal receipt.
+- Skipped: human-browser verification and screenshots until browser is attached. Risk: phone visual layout not yet verified.
