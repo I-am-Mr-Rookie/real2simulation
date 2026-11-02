@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 16:20 Dhaka: controller
+- Koushik approved the UI redesign (Nov 2). Decisions: workspace home prompt-first (Base44) with projects grid (preview cards: lab snapshot for rooms, frame plus tracked path for experiments, fallback video frame); model picker in the prompt box styled after Gumloop: Recommended = Muse Spark 1.3 standard, Cheapest = Spark contributor, Fastest = Muse Open (Baseten), each with relative Intelligence/Speed/Cost bars and no numbers; Sol hidden fallback. Files on own view; storage meter in left rail; remove "This project" menu, Connected chip, duplicate header. Lab editor becomes a full-window app (Spline style: object list, properties panel, floating toolbar, bottom timeline with live graph and result card, Room tab, picture Add menu, templates folded in, better lighting/materials, one expandable honesty chip); agent panel references Base44 first. Demo projects per account: classroom lab and falling apple (OWN07 not added: no yes). Build: N55 workspace then N56 lab editor, Opus high 60 each, then Sol QA.
+- Dispatched N55-orch300 (Opus high 60): workspace redesign. Thread 01a19bc5-8a7c-7c83-a553-e03b9bd7b6ec.
+
 ## 2026-11-02 15:50 Dhaka: controller
 - Accepted N54 (Sol, timebox PASS): header/main/footer share a 1680 px cap with 24/12 px gutters; editor canvas height bounded 420 to 640 px desktop, 320 to 480 px mobile; fullscreen still fills. Two CSS files only. Exception: 26 public before/after JPGs (2.3 MB, public template pages only) committed despite the no-media rule; accepted as small public evidence. node 442 pass, build pass. DEV web e506f17a (bea88410), verify pass. No workers running; workspace and lab editor redesign waits for Koushik's approval.
 
