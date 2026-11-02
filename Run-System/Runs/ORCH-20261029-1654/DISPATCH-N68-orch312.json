@@ -1,0 +1,7 @@
+{
+ "id": "N68-orch312",
+ "model": "gpt-6.1-sol",
+ "effort": "high",
+ "minutes": 30,
+ "prompt": "Run N68-orch312. Read Run-System/WORKER_CONTRACT.md first and follow it. Model gpt-6.1-sol/high.\nTimebox: issued 2026-11-02T18:45:18+00:00; deadline 2026-11-02T19:15:18+00:00 (Dhaka 2026-11-03T01:15:18+06:00); cutoff 2026-11-02T19:10:18+00:00.\nTwo small web UI fixes found by N63 and N65. Fix both, then verify them like a human user in the in-app browser.\n(1) Lab editor: after Reset, the time and buttons reset correctly, but the status text still says \"Running\". After Reset it must show the idle or ready state; check Build/web/src/lab-editor/LabEditor.jsx and Build/web/src/lab/LabClient.jsx. Keep the SIMULATED and interruption reason labels as they are.\n(2) Phone (375 px): the floating navigation partly covers the replay or result summary text in the private workspace. Add enough bottom padding or safe-area space so no summary text sits under the floating nav, without changing desktop.\nAdd a small Node test per fix where the logic allows it (tests/lab-editor, tests/workspace). Run the Node tests and npm run build in Build/web. Check on a local production build with the in-app browser at 375 px and on desktop; save screenshots under evidence/N68/ using only public or sample data, never the private N06 room. For local web env, use the approved pattern: railway variables --kv into Build/web/.env.local (gitignored, never printed), and delete it afterwards. No deploys.\n[@Browser](plugin://browser@openai-bundled)"
+}

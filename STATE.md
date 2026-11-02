@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+### 2026-11-03 00:46 Dhaka: N68 dispatched
+N68-orch312 (Sol high, 30 min) fixes the web gaps found by N63 and N65: the lab status text still says Running after Reset, and the phone's floating nav covers the workspace summary text. It runs in parallel with N67, with no file overlap. Thread 01a19d94-8888-7601-a67b-caa97f832ed9.
+
 ### 2026-11-03 00:50 Dhaka: N63 accepted, DEV api 736f8bec, N67 dispatched
 N63-orch309 accepted (df47d2de): SF3D cancellation, restart reporting, rebuild limit, L4 budget and SAM pool latency fixes. Live public RM04: room ready 244 s (target about 270 s; was 379 s), meshes 362 s, upper bound $2.42457689. In-app browser visual check PASS on the local build. Controller checks: Owns ok; Python 554 passed; Node tests passed; no web change, so no build; secret scan clean; 0 npz/glb tracked. DEV api deployed 736f8bec, verify.py exit 0; web unchanged at 7aa42a4c. Worker gaps: room artifacts are not counted in the 1 GB quota; after Reset the status text still says Running; RM04 furniture is coarse. N67-orch311 (Sol high, 30 min) dispatched to fix the N66 findings, thread 01a19d91-0989-7212-b1e3-9772787ed87d.
 
