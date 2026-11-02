@@ -1,0 +1,18 @@
+# N51-orch296 DONE
+- Branch: run/N51-orch296; managed worktree outside canonical checkout; no deploy/push.
+- Explicit high: Muse Spark 1.3, contributor, Muse Open and Sol; Sol xhigh only after twice-blocked number guard.
+- Responses reasoning.effort and Baseten chat reasoning_effort are set; full max_output_tokens reservation is unchanged.
+- Checks: requested five pytest targets via uv/system Python 3.14: 141 passed, one dependency deprecation warning.
+- Checks: benchmark cap/refusal self-check, balanced 120 scored cases, off-topic no-tools assertions, git diff --check passed.
+- Real benchmark: 10 cases x 4 model variants x 3 efforts; real core loop, scene tools, node simulator and fitter; no fallback mixing.
+- 132 paid turns / 264 API calls, including 12 vague-case reruns after replacing a list_files stub with the real handler.
+- UTC call starts 2026-11-02T05:30:21 through 05:39:42; all per-call UTC/model/usage/ledger units in evidence/N51/turns.jsonl.
+- Total conservative estimated spend $1.03593911 <= $1.50; includes superseded attempts, reasoning output, and all ledger settlements.
+- Paid Spark: 65 API calls, $0.37398014; contributor: 65 calls, $0.02469274.
+- Paid Muse Open: 69 API calls, $0.30164423; Sol: 65 calls, $0.33562200. Prices are estimates, not invoices.
+- All scored calls schema-valid; all 12 off-topic cases refused without tools; no genuine normal-request refusals.
+- Four corrected guard blocks in scored turns; Sol xhigh resize and Sol max fit had empty final replies after successful tools.
+- Keep baseline high: no reliable quality win for another level; Open max looks cheaper/faster but ordered single sweep is cache/load-confounded.
+- Full metrics, medians and limitations: evidence/N51/MEASUREMENTS.md; machine summary: evidence/N51/summary.json.
+- Skipped: deploy, GPU, physical experiments, extra paid repeats, whole tests/agent directory (basename clash).
+- Risks: one observation per request/level, synthetic local scenes only, no invoice reconciliation; controller cross-vendor spend review pending.

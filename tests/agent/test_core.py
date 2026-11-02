@@ -30,6 +30,18 @@ class Fake:
         return self.replies.pop(0) if len(self.replies) > 1 else self.replies[0]
 
 
+@pytest.mark.parametrize("kwargs, model", [({}, core.MODEL), ({"contributor": True}, core.CONTRIBUTOR_MODEL),
+                                          ({"tier": "open"}, core.OPEN_MODEL)])
+def test_explicit_reasoning_effort_on_every_step(kwargs, model):
+    fake = Fake(call("list_files", {}), say("Ready for lab work."))
+    core.run_turn("List my files", fake, handlers={"list_files": lambda o, a: {"files": []}}, **kwargs)
+    assert len(fake.requests) == 2
+    for body in fake.requests:
+        assert body["model"] == model and body["reasoning"] == {"effort": "high"}
+        chat = core._to_chat(body)
+        assert chat["reasoning_effort"] == "high" and "reasoning" not in chat
+
+
 def test_tool_loop_feeds_wrapped_output_back_and_backs_numbers():
     fake = Fake(call("list_files", {}), say("Your clip f1 is 12.5 s long (RECORDED)."))
     seen = []

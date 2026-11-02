@@ -1,0 +1,359 @@
+{
+  "cap_usd": 1.5,
+  "spent_usd_estimated": 1.03593911,
+  "pricing": {
+    "muse-spark-1.3": [
+      1e-06,
+      5e-06
+    ],
+    "muse-spark-1.3-contributor": [
+      1e-07,
+      2e-07
+    ],
+    "meta-models/muse-spark-open-1026": [
+      1.25e-06,
+      4.25e-06
+    ],
+    "gpt-6.1-sol": [
+      2.1e-06,
+      1.05e-05
+    ]
+  },
+  "summary": [
+    {
+      "model": "muse-spark-1.3",
+      "effort": "high",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 9,
+        "ask_user": 1
+      },
+      "attempted_tools": 12,
+      "valid_tools": 12,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 1,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        10.431399799883366,
+        7.858888800023124,
+        20.34561640000902,
+        19.574371800059453,
+        15.524924200028181,
+        11.178373100003228,
+        9.900683199986815,
+        6.1837553000077605,
+        11.237259600078687,
+        2.809318699873984
+      ],
+      "cost_usd_estimated": 0.11744706
+    },
+    {
+      "model": "muse-spark-1.3",
+      "effort": "xhigh",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 9,
+        "ask_user": 1
+      },
+      "attempted_tools": 12,
+      "valid_tools": 12,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 1,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        8.404939699918032,
+        7.7549161000642926,
+        16.206835699966177,
+        16.8420428999234,
+        8.708954999921843,
+        11.858591800089926,
+        8.070692300098017,
+        8.360833399929106,
+        8.04145499994047,
+        3.215056700166315
+      ],
+      "cost_usd_estimated": 0.11800204
+    },
+    {
+      "model": "muse-spark-1.3",
+      "effort": "max",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 9,
+        "ask_user": 1
+      },
+      "attempted_tools": 11,
+      "valid_tools": 11,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 0,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        15.193156099878252,
+        12.396740699885413,
+        30.803648800123483,
+        27.54885370004922,
+        29.298292099963874,
+        14.366012600017712,
+        20.589208099991083,
+        7.636268900008872,
+        14.375487699871883,
+        7.411592100048438
+      ],
+      "cost_usd_estimated": 0.11777903
+    },
+    {
+      "model": "muse-spark-1.3-contributor",
+      "effort": "high",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 9,
+        "ask_user": 1
+      },
+      "attempted_tools": 11,
+      "valid_tools": 11,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 0,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        10.214484000112861,
+        9.45466240006499,
+        20.862257200060412,
+        19.130372100044042,
+        15.438497300026938,
+        9.981707699829713,
+        9.801423699827865,
+        8.346271099988371,
+        6.001092899823561,
+        3.7837827000766993
+      ],
+      "cost_usd_estimated": 0.0071666
+    },
+    {
+      "model": "muse-spark-1.3-contributor",
+      "effort": "xhigh",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 9,
+        "ask_user": 1
+      },
+      "attempted_tools": 11,
+      "valid_tools": 11,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 0,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        8.713621800066903,
+        10.192649899981916,
+        21.555488500045612,
+        18.56397319980897,
+        16.311349700205028,
+        11.764973900048062,
+        10.671983099775389,
+        6.806199599988759,
+        5.496831100201234,
+        3.660719799809158
+      ],
+      "cost_usd_estimated": 0.00751544
+    },
+    {
+      "model": "muse-spark-1.3-contributor",
+      "effort": "max",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 9,
+        "ask_user": 1
+      },
+      "attempted_tools": 11,
+      "valid_tools": 11,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 0,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        9.792638699989766,
+        9.542758399853483,
+        24.243203799938783,
+        27.236922700190917,
+        19.38196779997088,
+        13.197044499916956,
+        12.180962400045246,
+        9.793231999967247,
+        6.846358500188217,
+        3.4796350998803973
+      ],
+      "cost_usd_estimated": 0.0079418
+    },
+    {
+      "model": "meta-models/muse-spark-open-1026",
+      "effort": "high",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 10
+      },
+      "attempted_tools": 11,
+      "valid_tools": 11,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 0,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        5.223292300011963,
+        3.477216600207612,
+        11.87164909997955,
+        13.157478499924764,
+        7.224283799994737,
+        6.463894099928439,
+        4.939623799873516,
+        6.048016200074926,
+        4.343898399965838,
+        1.404158700024709
+      ],
+      "cost_usd_estimated": 0.09826306
+    },
+    {
+      "model": "meta-models/muse-spark-open-1026",
+      "effort": "xhigh",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 10
+      },
+      "attempted_tools": 11,
+      "valid_tools": 11,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 0,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        5.320699499920011,
+        3.1598128001205623,
+        11.501697700005025,
+        12.079840800026432,
+        3.848785199923441,
+        6.204624499892816,
+        4.784747099969536,
+        3.548503899946809,
+        3.424806199967861,
+        1.3011210998520255
+      ],
+      "cost_usd_estimated": 0.09043458
+    },
+    {
+      "model": "meta-models/muse-spark-open-1026",
+      "effort": "max",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 10
+      },
+      "attempted_tools": 11,
+      "valid_tools": 11,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 0,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        2.9884991000872105,
+        3.5027065998874605,
+        13.24260040000081,
+        10.725016299868003,
+        4.348448700038716,
+        3.5927853998728096,
+        5.166105999844149,
+        3.9994391999207437,
+        2.6788180998992175,
+        1.2121052001602948
+      ],
+      "cost_usd_estimated": 0.08898107
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "effort": "high",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 9,
+        "ask_user": 1
+      },
+      "attempted_tools": 11,
+      "valid_tools": 11,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 1,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        8.189902300015092,
+        8.082749700173736,
+        13.32402539998293,
+        13.181720199994743,
+        11.938816400012001,
+        8.14053069986403,
+        7.636489100055769,
+        7.094382500043139,
+        2.583781799999997,
+        6.898123299935833
+      ],
+      "cost_usd_estimated": 0.0931959
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "effort": "xhigh",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 8,
+        "no_tool_call": 1,
+        "ask_user": 1
+      },
+      "attempted_tools": 11,
+      "valid_tools": 11,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 1,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        7.646556399995461,
+        6.327531599905342,
+        14.41056829993613,
+        13.66779650002718,
+        21.641811900073662,
+        7.114650700008497,
+        9.383222999982536,
+        6.454990499885753,
+        2.3035516999661922,
+        7.2928232999984175
+      ],
+      "cost_usd_estimated": 0.10324230000000001
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "effort": "max",
+      "turns_completed": 10,
+      "terminal_stops": {
+        "final": 8,
+        "no_tool_call": 1,
+        "ask_user": 1
+      },
+      "attempted_tools": 11,
+      "valid_tools": 11,
+      "valid_tool_rate": 1.0,
+      "number_guard_blocks": 0,
+      "normal_refusals_heuristic": 0,
+      "off_topic_refused_heuristic": true,
+      "latency_s": [
+        33.544705600012094,
+        12.32776190014556,
+        22.71823429991491,
+        15.647186200134456,
+        15.88118560006842,
+        10.653306799940765,
+        9.192059099907055,
+        7.100108599988744,
+        9.272766500012949,
+        9.252630700124428
+      ],
+      "cost_usd_estimated": 0.1237404
+    }
+  ]
+}

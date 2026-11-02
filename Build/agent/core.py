@@ -36,6 +36,7 @@ PRICE_PER_TOKEN = {MODEL: (1.0e-6, 5.0e-6), CONTRIBUTOR_MODEL: (0.1e-6, 0.2e-6),
 # model -> (ledger provider, key env, base-url env, own daily cap); every other model is the Meta Model API
 GATEWAYS = {SOL_MODEL: ("Merge", "MERGE_API_KEY", "MERGE_BASE_URL", SOL_CAP_USD),
             OPEN_MODEL: ("Baseten", "BASETEN_API_KEY", "BASETEN_BASE_URL", None)}
+REASONING_EFFORT = {MODEL: "high", CONTRIBUTOR_MODEL: "high", OPEN_MODEL: "high", SOL_MODEL: "high"}
 FALLBACK_STOPS = {"unbacked_numbers": "number_guard", "no_tool_call": "no_usable_tool_call"}  # + "api_error"
 VOICE_USD_PER_S = 0.0001
 INSTRUCTIONS = (
@@ -241,7 +242,7 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
     items: list[Any] = [*history, {"role": "user", "content": text}]
     calls, usage = [], {"input_tokens": 0, "output_tokens": 0}
     sources = [text] + [h["content"] for h in history if h["role"] == "user"]
-    loop = lambda m, its: _loop(m, its, post, sources, calls, usage, owner, handlers, max_steps)
+    loop = lambda m, its, effort=None: _loop(m, its, post, sources, calls, usage, owner, handlers, max_steps, effort)
     try:
         result, error = loop(model, items), None
         reason = FALLBACK_STOPS.get(result["stopped"])
@@ -253,7 +254,7 @@ def run_turn(text: str, post: Callable[[dict[str, Any]], Mapping[str, Any]], *, 
         return result
     from Build.guardrails.daily_cap import CapExceeded
     try:
-        sol = loop(SOL_MODEL, _carry(items))
+        sol = loop(SOL_MODEL, _carry(items), "xhigh" if reason == "number_guard" else None)
     except (ModelUnavailable, CapExceeded):  # Sol down or over its cap: the Meta outcome stands
         if error is not None:
             raise error from None
@@ -274,12 +275,13 @@ def _carry(items: list[Any]) -> list[Any]:
     return keep
 
 
-def _loop(model, items, post, sources, calls, usage, owner, handlers, max_steps) -> dict[str, Any]:
+def _loop(model, items, post, sources, calls, usage, owner, handlers, max_steps, effort=None) -> dict[str, Any]:
     retried, bad_steps = False, 0
     result = {"model": model, "reply": "", "question": None, "tool_calls": calls, "usage": usage, "steps": 0}
     for step in range(1, max_steps + 1):
         body = post({"model": model, "instructions": INSTRUCTIONS, "input": items, "tools": TOOL_SPECS,
-                     "max_output_tokens": MAX_OUTPUT_TOKENS})
+                     "max_output_tokens": MAX_OUTPUT_TOKENS,
+                     "reasoning": {"effort": effort or REASONING_EFFORT[model]}})
         reported = body.get("usage")
         for k in usage:
             count = reported.get(k) if isinstance(reported, Mapping) else None
@@ -424,7 +426,8 @@ def _to_chat(body: Mapping[str, Any]) -> dict[str, Any]:
             msgs.append({"role": i["role"], "content": i["content"]})
     tools = [{"type": "function", "function": {k: t[k] for k in ("name", "description", "parameters")}}
              for t in body.get("tools") or ()]
-    return {"model": body["model"], "messages": msgs, "tools": tools, "max_tokens": body.get("max_output_tokens")}
+    return {"model": body["model"], "messages": msgs, "tools": tools, "max_tokens": body.get("max_output_tokens"),
+            "reasoning_effort": body.get("reasoning", {}).get("effort", REASONING_EFFORT[body["model"]])}
 
 
 def _from_chat(reply: Mapping[str, Any]) -> dict[str, Any]:
@@ -478,6 +481,7 @@ def http_post(body: dict[str, Any]) -> Mapping[str, Any]:
     if not os.environ.get(key_env):  # nothing can be sent or billed: fail without a cap row
         raise ModelUnavailable(f"{key_env} is not set")
     pin, pout = PRICE_PER_TOKEN.get(model, PRICE_PER_TOKEN[MODEL])
+    # Reasoning tokens bill as output too: reserve the entire output budget, not just visible text.
     cost = len(data) * pin + int(body.get("max_output_tokens") or MAX_OUTPUT_TOKENS) * pout  # tokens <= bytes
     rid = _reserve(provider, cost, str(model), own_cap)
     try:

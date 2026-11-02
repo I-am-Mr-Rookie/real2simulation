@@ -1,0 +1,3 @@
+PASS: 132 attempts, 120 balanced scored turns, 264 ledgered calls, cap, schema validity and refusals
+Scored guard blocks 4
+All-attempt guard blocks 6

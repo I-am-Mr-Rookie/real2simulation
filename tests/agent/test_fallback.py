@@ -55,6 +55,7 @@ def test_fallback_answers_only_the_failed_turn(meta, reason):
     assert out["answered_by"] == core.SOL_MODEL and out["fallback"] == reason and out["model"] == core.MODEL
     assert out["reply"] == SOL_OK["output"][0]["content"][0]["text"] and fake.models()[-1] == core.SOL_MODEL
     sol = fake.requests[-1]
+    assert sol["reasoning"] == {"effort": "xhigh" if reason == "number_guard" else "high"}
     assert sol["instructions"] == core.INSTRUCTIONS and sol["tools"] == core.TOOL_SPECS  # same prompt and tools
     assert all(i.get("type") != "message" and i.get("content") != core.CORRECTION for i in sol["input"])
     # next turn starts on the Meta model again
@@ -64,6 +65,15 @@ def test_fallback_answers_only_the_failed_turn(meta, reason):
 def test_fallback_keeps_the_number_guard():
     out = core.run_turn("what is g?", ByModel(meta=[say("g is 9.81.")], sol=[say("g is 9.7.")]))
     assert out["answered_by"] == core.SOL_MODEL and out["stopped"] == "unbacked_numbers" and "9.7" not in out["reply"]
+
+
+def test_number_guard_effort_persists_across_sol_tool_steps():
+    fake = ByModel(meta=[say("g is 9.81.")], sol=[call("list_files", {}), SOL_OK])
+    core.run_turn("Help with my lab", fake, handlers={"list_files": lambda o, a: {"files": []}})
+    assert [b["reasoning"]["effort"] for b in fake.requests] == ["high", "high", "xhigh", "xhigh"]
+    again = ByModel(meta=[say("")], sol=[SOL_OK])
+    core.run_turn("Help with my lab", again)
+    assert again.requests[-1]["reasoning"] == {"effort": "high"}
 
 
 def test_fallback_carries_tool_results_instead_of_rerunning_them():
@@ -224,6 +234,31 @@ def test_gateway_routing_and_ledger(env):
     got = rows(tmp_path)
     assert [r[0] for r in got] == ["Merge", "Baseten", "Meta Model API"]
     assert got[0][2] == daily_cap._units(100 * 2.1e-6 + 10 * 10.5e-6) and got[1][2] == daily_cap._units(100 * 1.25e-6 + 10 * 4.25e-6)
+
+
+@pytest.mark.parametrize("model", [core.MODEL, core.CONTRIBUTOR_MODEL, core.OPEN_MODEL, core.SOL_MODEL])
+@pytest.mark.parametrize("effort", ["high", "xhigh", "max"])
+def test_reasoning_transport_reserves_full_output_budget(env, monkeypatch, model, effort):
+    tmp_path, _ = env
+    body = {"model": model, "instructions": "x", "input": [], "tools": [],
+            "max_output_tokens": core.MAX_OUTPUT_TOKENS, "reasoning": {"effort": effort}}
+    def send(path, data, *args):
+        wire = json.loads(data)
+        if model == core.OPEN_MODEL:
+            assert path == "/chat/completions" and wire["reasoning_effort"] == effort and "reasoning" not in wire
+            return {"choices": [], "usage": {"prompt_tokens": 100, "completion_tokens": 3000,
+                                             "completion_tokens_details": {"reasoning_tokens": 2900}}}
+        assert path == "/responses" and wire["reasoning"] == {"effort": effort}
+        return {"output": [], "usage": {"input_tokens": 100, "output_tokens": 3000,
+                                        "output_tokens_details": {"reasoning_tokens": 2900}}}
+    monkeypatch.setattr(core, "_send", send)
+    core.http_post(body)
+    data = json.dumps(core._to_chat(body) if model == core.OPEN_MODEL else body).encode()
+    pin, pout = core.PRICE_PER_TOKEN[model]
+    with sqlite3.connect(tmp_path / "spend.sqlite3") as con:
+        reserved, actual = con.execute("SELECT reserved, actual FROM spend").fetchone()
+    assert reserved == daily_cap._units(len(data) * pin + core.MAX_OUTPUT_TOKENS * pout)
+    assert actual == daily_cap._units(100 * pin + 3000 * pout)
 
 
 @pytest.mark.parametrize("model", [core.MODEL, core.SOL_MODEL, core.OPEN_MODEL])
