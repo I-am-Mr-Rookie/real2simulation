@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 03, 05:27 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 03, 05:28 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **365 / 375** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 1 open reviews
+Progress: **365 / 376** runs done · 2 in progress · 0 blocked · 4 waiting for Koushik · 1 open reviews
 
 ## Reviews for Koushik
 
@@ -25,6 +25,7 @@ Progress: **365 / 375** runs done · 1 in progress · 0 blocked · 4 waiting for
 ## In progress
 
 - [~] **N79** — Codex · GPT-6.1 Sol, effort high — Investigate whether a brand-new judge can sign up on DEV (N57 Clerk protect-check note); read-only on Clerk settings; sent to the N64 chat (30 min) *(in progress)*
+- [~] **N80** — Codex · GPT-6.1 Sol, effort high — SF3D mesh quality: diagnose crops/mesh fit, fix root cause, regenerate the 4 public RM02 sample meshes (GPU up to $3, ledgered), rebuild the sample pack if better; sent to the N72 chat (60 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -48,7 +49,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (75/79)</summary>
+<details><summary><b>N</b> —  (75/80)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -129,6 +130,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N77** — Codex · GPT-6.1 Sol, effort high — SF3D idle over-charge: one 900 s idle tail per serial batch, cap-safe (N62 P3-a, N66 P3-5); controller reviews spend diff; sent to the N64 chat (30 min)
 - [x] **N78** — Codex · GPT-6.1 Sol, effort high — Fix N76 findings: phone Files row layout, lab honesty badge overlap at 1280 px, guide room copy/alt (point cloud -> room shell); sent to the N72 chat (30 min)
 - [~] **N79** — Codex · GPT-6.1 Sol, effort high — Investigate whether a brand-new judge can sign up on DEV (N57 Clerk protect-check note); read-only on Clerk settings; sent to the N64 chat (30 min) *(in progress)*
+- [~] **N80** — Codex · GPT-6.1 Sol, effort high — SF3D mesh quality: diagnose crops/mesh fit, fix root cause, regenerate the 4 public RM02 sample meshes (GPU up to $3, ledgered), rebuild the sample pack if better; sent to the N72 chat (60 min) *(in progress)*
 
 </details>
 
