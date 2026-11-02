@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "5ef6d2eb-185a-4e2b-bd26-115d465f0ce6",
-      "previousDeploymentId": "c7945d35-d483-4fc5-879d-d54b35729590",
-      "redeployNote": "controller: N42 support slab",
-      "sourceRevision": "e5bcfcc5e4b3ea5199ed3a9a4fb7727398cce5e7",
-      "verifiedUtc": "2026-11-02T00:31Z",
+      "deploymentId": "577318c0-fb0e-4083-92a5-c37ffa662d0c",
+      "previousDeploymentId": "5ef6d2eb-185a-4e2b-bd26-115d465f0ce6",
+      "redeployNote": "controller: N48 auth colours, GPU countdown, N50 editor UI",
+      "sourceRevision": "a2bab79bdae853d5d95a732025888b3119874f5e",
+      "verifiedUtc": "2026-11-02T06:00Z",
       "url": "https://real2simulation.up.railway.app",
       "customDomain": "https://real2simulation.rookiecoders.tech",
       "providerStatus": "SUCCESS",
@@ -19,8 +19,9 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "60195792-fc94-4473-875b-6e63d5d26fbd",
+      "deploymentId": "b977847c-e0f2-44bb-a17f-700312e5a95b",
       "previousDeploymentIds": [
+        "60195792-fc94-4473-875b-6e63d5d26fbd",
         "a7aa27f5-1dc9-4d52-86a0-e1b7e6c8891a",
         "2af55a1d-aa27-4917-930a-2e140ce0dc16",
         "e5f1df87-3181-4683-9cbb-d6c4deb009b1",
@@ -37,8 +38,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "e5bcfcc5e4b3ea5199ed3a9a4fb7727398cce5e7",
-      "verifiedUtc": "2026-11-02T00:31Z",
+      "sourceRevision": "a2bab79bdae853d5d95a732025888b3119874f5e",
+      "verifiedUtc": "2026-11-02T06:00Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -54,7 +55,7 @@
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "5df506cd-affc-44c6-a83a-d527b46e6766",
-      "redeployNote": "controller: N42 shell holds experiments",
+      "redeployNote": "controller: N47-N50 accepted, semantic room shell",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {
