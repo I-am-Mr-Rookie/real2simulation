@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 15:10 Dhaka: controller
+- Accepted N53 (owner-extended to 15:00; checker cannot read extended receipts, manual acceptance). Room job 667 s (N47) -> 272 s cold / 255 s warm on DEV hardware. Fused mask validation into decode (426 masks identical), 2-worker frame sampling, L4 budget 240->90 s, SF3D client budget 600->90 s, stop SF3D after first timeout. Spend review by controller (Claude, cross-vendor): cancel-unconfirmed keeps full reservation and blocks retry; settle never exceeds reservation; PASS. Cost $2.24 (two public RM02 jobs, owner $5/job ceiling). Known trade-off: SF3D cold start now always times out, so furniture uses parametric shapes, no SF3D meshes; follow-up needed (async SF3D upgrade after the room is ready). Full-scene drop 4/5 (room-object-5 obstructed). py 523 passed. DEV api fc5ceafe (682e6356).
+- Dispatched N54-orch299 (Sol high 30): header/footer widen with content at zoom-out; lab 3D viewport no longer stretches to screen bottom. Thread 01a19b84-6ede-7523-9fed-cce2bc9cca71.
+- Koushik (Nov 2): private workspace UI is not SaaS quality; projects need preview cards. Discuss design one-on-one before any worker (Mobbin references).
+
 ## 2026-11-02 14:10 Dhaka: controller
 - Koushik authorized N53-orch298 to run until 15:00 Dhaka (original deadline 14:43). Owner timebox extension: at acceptance, a deadline miss up to 15:00 is accepted as owner-approved, not a contract failure.
 

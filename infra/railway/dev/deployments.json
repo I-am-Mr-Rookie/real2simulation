@@ -19,8 +19,9 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "686c8ba5-b726-4d74-aafa-06d470f623ed",
+      "deploymentId": "fc5ceafe-611d-491f-974a-1e44979f22f6",
       "previousDeploymentIds": [
+        "686c8ba5-b726-4d74-aafa-06d470f623ed",
         "d46ec212-86ec-449e-8bd6-bccc5f0e623a",
         "b977847c-e0f2-44bb-a17f-700312e5a95b",
         "60195792-fc94-4473-875b-6e63d5d26fbd",
@@ -40,8 +41,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "40e16fe37e67f8c8ffece81db0b55bf4e59b571b",
-      "verifiedUtc": "2026-11-02T07:12Z",
+      "sourceRevision": "682e63565c85a9346ff82b9eea2bcadc09bea325",
+      "verifiedUtc": "2026-11-02T09:10Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -57,7 +58,7 @@
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "5df506cd-affc-44c6-a83a-d527b46e6766",
-      "redeployNote": "controller: N52 SAM instance-mask room shell",
+      "redeployNote": "controller: N53 room latency",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {
