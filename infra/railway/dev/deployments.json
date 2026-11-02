@@ -7,19 +7,20 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "1ff87810-a9a7-4527-9358-7a9b9482e66b",
-      "previousDeploymentId": "1efdd9cb-47d5-42a3-a4ed-4ff314885210",
-      "redeployNote": "controller: N36 tier UI + lab gap fix",
-      "sourceRevision": "a932d0f724ac55fdc3872abe179af595f8b1a858",
-      "verifiedUtc": "2026-11-01T21:00Z",
+      "deploymentId": "c7945d35-d483-4fc5-879d-d54b35729590",
+      "previousDeploymentId": "1ff87810-a9a7-4527-9358-7a9b9482e66b",
+      "redeployNote": "controller: N31 mesh, N33 kit/undo, N39 shell tool, N32 credit",
+      "sourceRevision": "0452909c1114fd2c1bdccd2c8194e48ca7942ff1",
+      "verifiedUtc": "2026-11-02T00:05Z",
       "url": "https://web-dev-cd80.up.railway.app",
       "providerStatus": "SUCCESS",
       "port": 8080
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "2af55a1d-aa27-4917-930a-2e140ce0dc16",
+      "deploymentId": "a7aa27f5-1dc9-4d52-86a0-e1b7e6c8891a",
       "previousDeploymentIds": [
+        "2af55a1d-aa27-4917-930a-2e140ce0dc16",
         "e5f1df87-3181-4683-9cbb-d6c4deb009b1",
         "e0619429-4553-4fde-b5a9-36b117cc134e",
         "20fa6b1f-e9ee-4ab1-90ac-152e95775ce1",
@@ -34,8 +35,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "a932d0f724ac55fdc3872abe179af595f8b1a858",
-      "verifiedUtc": "2026-11-01T23:30:33.027729+00:00",
+      "sourceRevision": "0452909c1114fd2c1bdccd2c8194e48ca7942ff1",
+      "verifiedUtc": "2026-11-02T00:05Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -51,7 +52,7 @@
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "5df506cd-affc-44c6-a83a-d527b46e6766",
-      "redeployNote": "N41: same known-good build; DATABASE_URL/REDIS_URL references point to preserved-data US services",
+      "redeployNote": "controller: N31 SF3D, N33 kit, N39 shell, N40 spend fixes (US DB after N41)",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {

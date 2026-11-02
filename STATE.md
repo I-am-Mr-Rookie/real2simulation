@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 06:10 Dhaka (controller, deploy)
+- Accepted N41 (Sol): DEV Postgres and Redis now in us-east4 (Postgres de49f552, Redis c5fb2c8e). All 228 Redis keys copied with per-key DUMP SHA256 match; write fence; final stop-to-success 138 s. Latency: Postgres 214 ms -> 0.26 ms, Redis 227 ms -> 0.24 ms. SG Postgres 33692dd8 and SG Redis eee6243b kept for rollback; they keep billing: remove after Koushik confirms (Owner question).
+- Accepted N32 (Sonnet): LICENSES/Stability-AI-Community-License.md, NOTICE (exact receipt text, test-checked), README credit, footer "Powered by Stability AI".
+- Accepted N39 (Opus): room -> simple lab shell (floor, 4 walls with 3 door and 1 window openings, 9 kept furniture items from 32 detections, 23 dropped with reasons; collision boxes and point cloud now optional). Live N06_room on A10G, spend $0.7195. Honest result: the ball lands on and rests on the measured box, but rolls off the lumpy SF3D table mesh. Fix row N42 (Opus high 60, dispatched N42-orch287, due 07:02 Dhaka): flat support on SF3D tops, shell kept on A4 rescale, shell auto-build after room job, merged desk parts, floor fit.
+- Main green: node 416/416, python 383, build ok. DEV deployed from 0452909c: api a7aa27f5, web c7945d35; verify.py exit 0; / and /lab?editor=1 200 with the Stability credit.
+
 ## 2026-11-02 06:10 Dhaka (controller)
 - Accepted N40 (Sol): N37 F1 to F5 fixed (missing or invalid usage keeps the reservation; status reaping under BEGIN IMMEDIATE; refusals, provider 400/413/422 and rejected tool attempts are terminal and never call Sol); live_room catches builtin and Modal TimeoutError, cancels the L4 input, then retries on A10G; each GPU attempt is queued with its reservation so a reaped job settles once. Controller (Claude) cross-vendor review of the core.py and gpu diff: correct. No paid calls. Python 372 passed.
 - Not covered: N31's two orphan L4 room inputs were not cancelled (future calls are protected).
