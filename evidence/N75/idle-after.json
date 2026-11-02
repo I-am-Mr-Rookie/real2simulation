@@ -1,0 +1,8 @@
+{
+  "utc": "2026-11-02T21:44:07.177192+00:00",
+  "operation": "read-only get_current_stats, no GPU call",
+  "sf3d": {
+    "runners": 0,
+    "backlog": 0
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "stage_source_revision": "0a88f6c8ba3e2e5e7d138f85a9df9b5d1cb2cc9c",
+  "stage_files": 210,
+  "verified_bundle_assets": 12,
+  "objects": 23,
+  "meshes": 4,
+  "canonical_paths_required_at_runtime": false,
+  "new_inference_calls": 0
+}

@@ -22,6 +22,8 @@
 - `check_real_bundle.py <canonical-bundle>`: actual old RM04 archive/empty SAMPLE migrates to 23 RM02 objects and 4 hash-matching meshes, remains idempotent, and seeds a second isolated user with zero inference calls (`real-bundle-check.json`).
 - In-app browser, actual local production build through the GET-only loopback fixture adapter: sample opens with 23 objects, floor/walls/windows/green chairs and four textured meshes; all GLB GETs, PLY and view PNG return 200; Room panel displays SAMPLE / RECORDED; expanded honesty shows **one** Stability credit; Play runs, Reset returns Ready/t=0; no console errors observed (`ui-summary.json`).
 - This fixture adapter uses real seed/storage/room routes but synthetic authentication. It blocks all browser writes/paid operations. It is **not** deployed Clerk/BFF end-to-end evidence. No DEV/judging deployment or push performed.
+- Existing API stager ran successfully from implementation commit `0a88f6c8`: 210 context files, all 12 bundle hashes verified. A seed inside that isolated staged context (no canonical runtime paths) produced 23 objects/4 meshes without inference (`stage-check.json`).
+- Read-only Modal stats at 2026-11-02T21:44:07Z: SF3D runners 0, backlog 0 (`idle-after.json`). Temporary local ports 3075/8075 and the QA-created browser tab were closed.
 
 ## Remaining caveats
 
