@@ -1,0 +1,250 @@
+[
+ {
+  "model": "muse-spark-1.3",
+  "effort": "none",
+  "status": 400,
+  "secs": 3.9,
+  "error": "{\"error\":{\"code\":null,\"message\":\"reasoning_effort 'none' is not supported for model 'muse-spark-1.3'. Supported values: [minimal, low, medium, high, xhigh, max]\",\"param\":\"reasoning.effort\",\"type\":\"invalid_request_error\"}"
+ },
+ {
+  "model": "muse-spark-1.3",
+  "effort": "minimal",
+  "status": 200,
+  "secs": 5.1,
+  "reasoning_tokens": 213,
+  "out_tokens": 225,
+  "in_tokens": 51,
+  "answer": "0.495",
+  "echoed_effort": "minimal"
+ },
+ {
+  "model": "muse-spark-1.3",
+  "effort": "low",
+  "status": 200,
+  "secs": 4.8,
+  "reasoning_tokens": 397,
+  "out_tokens": 409,
+  "in_tokens": 51,
+  "answer": "0.495",
+  "echoed_effort": "low"
+ },
+ {
+  "model": "muse-spark-1.3",
+  "effort": "medium",
+  "status": 200,
+  "secs": 5.3,
+  "reasoning_tokens": 568,
+  "out_tokens": 580,
+  "in_tokens": 51,
+  "answer": "0.495",
+  "echoed_effort": "medium"
+ },
+ {
+  "model": "muse-spark-1.3",
+  "effort": "high",
+  "status": 200,
+  "secs": 4.2,
+  "reasoning_tokens": 591,
+  "out_tokens": 603,
+  "in_tokens": 51,
+  "answer": "0.495",
+  "echoed_effort": "high"
+ },
+ {
+  "model": "muse-spark-1.3",
+  "effort": "xhigh",
+  "status": 200,
+  "secs": 3.6,
+  "reasoning_tokens": 612,
+  "out_tokens": 624,
+  "in_tokens": 51,
+  "answer": "0.495",
+  "echoed_effort": "xhigh"
+ },
+ {
+  "model": "muse-spark-1.3",
+  "effort": "max",
+  "status": 200,
+  "secs": 7.9,
+  "reasoning_tokens": 972,
+  "out_tokens": 984,
+  "in_tokens": 51,
+  "answer": "0.495",
+  "echoed_effort": "max"
+ },
+ {
+  "model": "muse-spark-1.3",
+  "effort": "bogus",
+  "status": 400,
+  "secs": 0.7,
+  "error": "{\"error\":{\"code\":null,\"message\":\"`reasoning.effort`: unknown variant `bogus`, expected one of `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max`\",\"param\":\"reasoning.effort\",\"type\":\"invalid_request_error\"}}"
+ },
+ {
+  "model": "meta-models/muse-spark-open-1026",
+  "effort": "none",
+  "status": 200,
+  "secs": 2.6,
+  "reasoning_tokens": 420,
+  "out_tokens": 433,
+  "in_tokens": 188,
+  "answer": "0.495",
+  "echoed_effort": null
+ },
+ {
+  "model": "meta-models/muse-spark-open-1026",
+  "effort": "minimal",
+  "status": 200,
+  "secs": 2.0,
+  "reasoning_tokens": 413,
+  "out_tokens": 426,
+  "in_tokens": 188,
+  "answer": "0.495",
+  "echoed_effort": null
+ },
+ {
+  "model": "meta-models/muse-spark-open-1026",
+  "effort": "low",
+  "status": 200,
+  "secs": 1.5,
+  "reasoning_tokens": 247,
+  "out_tokens": 260,
+  "in_tokens": 188,
+  "answer": "0.495",
+  "echoed_effort": null
+ },
+ {
+  "model": "meta-models/muse-spark-open-1026",
+  "effort": "medium",
+  "status": 200,
+  "secs": 1.5,
+  "reasoning_tokens": 259,
+  "out_tokens": 272,
+  "in_tokens": 188,
+  "answer": "0.495",
+  "echoed_effort": null
+ },
+ {
+  "model": "meta-models/muse-spark-open-1026",
+  "effort": "high",
+  "status": 200,
+  "secs": 3.0,
+  "reasoning_tokens": 682,
+  "out_tokens": 695,
+  "in_tokens": 188,
+  "answer": "0.495",
+  "echoed_effort": null
+ },
+ {
+  "model": "meta-models/muse-spark-open-1026",
+  "effort": "xhigh",
+  "status": 200,
+  "secs": 3.9,
+  "reasoning_tokens": 1166,
+  "out_tokens": 1179,
+  "in_tokens": 188,
+  "answer": "0.495",
+  "echoed_effort": null
+ },
+ {
+  "model": "meta-models/muse-spark-open-1026",
+  "effort": "max",
+  "status": 200,
+  "secs": 2.6,
+  "reasoning_tokens": 695,
+  "out_tokens": 708,
+  "in_tokens": 188,
+  "answer": "0.495",
+  "echoed_effort": null
+ },
+ {
+  "model": "meta-models/muse-spark-open-1026",
+  "effort": "bogus",
+  "status": 400,
+  "secs": 0.6,
+  "error": "{\n\t\"error\": {\n\t\t\"code\": \"400\",\n\t\t\"message\": \"Invalid request: [\\\"reasoning_effort (bogus): Input should be 'minimal', 'low', 'medium', 'high', 'xhigh', 'max' or 'none'\\\"]\",\n\t\t\"type\": \"Bad Request\"\n\t}\n}\n"
+ },
+ {
+  "model": "gpt-6.1-sol",
+  "effort": "none",
+  "status": 200,
+  "secs": 3.3,
+  "reasoning_tokens": 26,
+  "out_tokens": 35,
+  "in_tokens": 49,
+  "answer": "0.495",
+  "echoed_effort": "none"
+ },
+ {
+  "model": "gpt-6.1-sol",
+  "effort": "minimal",
+  "status": 200,
+  "secs": 3.5,
+  "reasoning_tokens": 26,
+  "out_tokens": 35,
+  "in_tokens": 49,
+  "answer": "0.495",
+  "echoed_effort": "minimal"
+ },
+ {
+  "model": "gpt-6.1-sol",
+  "effort": "low",
+  "status": 200,
+  "secs": 3.1,
+  "reasoning_tokens": 26,
+  "out_tokens": 35,
+  "in_tokens": 49,
+  "answer": "0.495",
+  "echoed_effort": "low"
+ },
+ {
+  "model": "gpt-6.1-sol",
+  "effort": "medium",
+  "status": 200,
+  "secs": 3.8,
+  "reasoning_tokens": 27,
+  "out_tokens": 36,
+  "in_tokens": 49,
+  "answer": "0.495",
+  "echoed_effort": "medium"
+ },
+ {
+  "model": "gpt-6.1-sol",
+  "effort": "high",
+  "status": 200,
+  "secs": 3.9,
+  "reasoning_tokens": 27,
+  "out_tokens": 36,
+  "in_tokens": 49,
+  "answer": "0.495",
+  "echoed_effort": "high"
+ },
+ {
+  "model": "gpt-6.1-sol",
+  "effort": "xhigh",
+  "status": 200,
+  "secs": 4.6,
+  "reasoning_tokens": 59,
+  "out_tokens": 68,
+  "in_tokens": 49,
+  "answer": "0.495",
+  "echoed_effort": "xhigh"
+ },
+ {
+  "model": "gpt-6.1-sol",
+  "effort": "max",
+  "status": 200,
+  "secs": 5.8,
+  "reasoning_tokens": 113,
+  "out_tokens": 122,
+  "in_tokens": 49,
+  "answer": "0.495",
+  "echoed_effort": "max"
+ },
+ {
+  "model": "gpt-6.1-sol",
+  "effort": "bogus",
+  "status": 400,
+  "secs": 0.3,
+  "error": "{\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Unsupported reasoning effort 'bogus'. Supported values are: none, minimal, low, medium, high, xhigh, max. The effort levels a specific model accepts are published as re"
+ }
+]

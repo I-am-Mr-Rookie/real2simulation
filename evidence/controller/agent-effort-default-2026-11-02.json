@@ -1,0 +1,35 @@
+[
+ {
+  "model": "muse-spark-1.3",
+  "effort": null,
+  "status": 200,
+  "secs": 5.6,
+  "reasoning_tokens": 940,
+  "out_tokens": 952,
+  "in_tokens": 51,
+  "answer": "0.495",
+  "echoed_effort": "high"
+ },
+ {
+  "model": "meta-models/muse-spark-open-1026",
+  "effort": null,
+  "status": 200,
+  "secs": 3.1,
+  "reasoning_tokens": 553,
+  "out_tokens": 566,
+  "in_tokens": 188,
+  "answer": "0.495",
+  "echoed_effort": null
+ },
+ {
+  "model": "gpt-6.1-sol",
+  "effort": null,
+  "status": 200,
+  "secs": 2.5,
+  "reasoning_tokens": 25,
+  "out_tokens": 34,
+  "in_tokens": 49,
+  "answer": "0.495",
+  "echoed_effort": null
+ }
+]
