@@ -66,6 +66,23 @@ test('redo scene validates and starts at the first track point', () => {
   assert.ok(t.scene.objects[0].velocity[1] < 0);
 });
 
+test('redo summary preserves known, assumed and unverified scale provenance', () => {
+  const metric = { ...res, quantity: undefined, trajectory: { ...res.trajectory, unit: 'm' } };
+  const known = trajectoryScene({ ...metric, quantity: { label: 'MEASURED (known size)' } });
+  assert.match(known.note, /Track MEASURED in metres from your known size/);
+  for (const provenance of [
+    { quantity: { label: 'scale assumed (user size)' }, label: 'scale assumed (user size): apple width 8 cm' },
+    { label: 'scale assumed (user size): apple width 8 cm' },
+  ]) {
+    const assumed = trajectoryScene({ ...metric, ...provenance });
+    assert.match(assumed.note, /Track in metres, scale assumed \(user size\)/);
+    assert.doesNotMatch(assumed.note, /MEASURED|known size/);
+    assert.match(assumed.note, /SIMULATED/);
+  }
+  assert.match(trajectoryScene(res).note, /Scale unverified: the track is in pixels, drawn as 1 px = 1 mm/);
+  assert.match(trajectoryScene(metric).note, /Track in metres, scale unverified/);
+});
+
 // N26: server curve + abstain + scale tag
 test('chart draws the server curve and band when the result carries one, a browser refit otherwise, dots only on abstain', () => {
   const t = [0, 0.1, 0.2, 0.3], tr = { unit: 'px', t_s: t, x: [0, 0, 0, 0], y: [0, -1, -4, -9] };

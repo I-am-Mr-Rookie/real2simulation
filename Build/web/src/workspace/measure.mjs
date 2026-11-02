@@ -157,6 +157,6 @@ export function trajectoryScene(result) {
   const ball = { id: 'ball-1', kind: 'ball', position: track[0], rotation: [0, 0, 0, 1], size: [0.05, 0.05, 0.05], velocity: [vel('x'), vel('y'), 0],
     mass: 1, friction: 0.5, restitution: 0.3, fixed: false, sensor: true, params: {} };
   return { scene: { version: 'lab-scene-v1', label: 'SIMULATED', units: 'm', gravity: [0, -9.81, 0], room: { kind: 'plane', floor_y: 0 }, objects: [ball] },
-    track, metric, note: metric ? 'Track MEASURED in metres from your known size. The ball is SIMULATED: edit it and press Play to redo with changes.'
+    track, metric, note: metric ? (scaleTag(result).text === 'MEASURED' ? 'Track MEASURED in metres from your known size.' : 'Track in metres, ' + scaleTag(result).text + '.') + ' The ball is SIMULATED: edit it and press Play to redo with changes.'
       : 'Scale unverified: the track is in pixels, drawn as 1 px = 1 mm. The ball is SIMULATED (what-if): edit it and press Play.' };
 }

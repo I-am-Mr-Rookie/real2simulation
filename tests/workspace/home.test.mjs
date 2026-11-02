@@ -1,8 +1,21 @@
 // N55: workspace home helpers (content names, relative time, card status, model picker rows).
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { relTime, groupStatus, groupJobs } from '../../Build/web/src/workspace/projects.mjs';
 import { contentTitle, isDefaultTitle, projectTitle, MODEL_CHOICES } from '../../Build/web/src/workspace/live.mjs';
+
+test('phone model dialog starts beyond the permanent rail, without changing desktop positioning', () => {
+  const css = readFileSync(new URL('../../Build/web/src/workspace/workspace.css', import.meta.url), 'utf8');
+  const phone = css.slice(css.lastIndexOf('@media (max-width: 760px)'));
+  const picker = phone.match(/\.lv-pickpop \{([^}]+)\}/)?.[1];
+  assert.ok(picker, 'phone picker rule');
+  assert.match(picker, /position: fixed;/);
+  assert.match(picker, /left: calc\(3\.25rem \+ \.75rem\);/);
+  assert.match(picker, /right: \.75rem;/);
+  assert.match(css, /\.r2s-rail \{[^}]*width: 3\.25rem;/);
+  assert.match(css, /\.lv-pickpop \{ position: absolute;[^}]*left: 0;/);
+});
 
 test('projects get content names, never timestamps', () => {
   assert.equal(projectTitle('room'), 'Room lab');

@@ -741,7 +741,7 @@ body:has(.r2s-shell) .site-footer { display: none; }
   .lv-pgrid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr)); }
   .lv-fgrid[data-preview] { grid-template-columns: 1fr; }
   .lv-fpreview { position: static; order: -1; }
-  .lv-pickpop { position: fixed; left: .75rem; right: .75rem; top: auto; bottom: .75rem; grid-template-columns: 1fr; }
+  .lv-pickpop { position: fixed; left: calc(3.25rem + .75rem); right: .75rem; top: auto; bottom: .75rem; grid-template-columns: 1fr; }
   .lv-pickbtn small { display: none; }
   .r2s-foot { position: fixed; width: min(16rem, calc(100vw - 4.5rem)); z-index: 31; }
   .r2s-shell:not([data-left="expanded"]) .r2s-foot { display: none; }

@@ -1,0 +1,15 @@
+# N65-orch308: DRAFT, browser verification pending
+- Branch: `run/N65-orch308`; base `882da5c5`.
+- F06: mobile picker left inset now includes the permanent 3.25rem rail plus .75rem clearance; desktop rule unchanged.
+- F05: trajectory summary reuses `scaleTag(result)` and its existing quantity/result labels, preserving known-size MEASURED, assumed user size, and unverified scale wording.
+- Numerical fitting, scene data and SIMULATED caveats unchanged; no new provenance field or dependency.
+- Added regressions in `tests/workspace/home.test.mjs` and `tests/workspace/measure.test.mjs`.
+- Before fixes: targeted run failed exactly these two new tests (14 pass, 2 fail), reproducing .75rem inset and incorrect known-size copy.
+- After fixes: targeted run 16/16 pass; `node --test tests/workspace/*.test.mjs tests/lab-editor/*.test.mjs` 200/200 pass.
+- `npm run build` in `Build/web`: PASS; `git diff --check`: PASS.
+- Shared canonical node_modules junction used; no install or environment/credential copies.
+- Browser: two `cua.createBrowserTab("iab", "about:blank", {visible:true})` attempts returned `Browser is not available: iab`.
+- Controller notified immediately with BROWSER NEEDED; no substitute browser or fixture data mutation used.
+- Skipped: required 375px/desktop, Light/Dark in-app visual checks. Code/build success is not visual certification.
+- Paid calls: 0. Deploys: 0. Risk: actual clipping and scene-summary appearance await browser attachment and reissued timebox.
+- Controller instructed: commit draft, wait for browser attachment, then use a reissued 30-minute window and a local dev server. No terminal receipt filed.
