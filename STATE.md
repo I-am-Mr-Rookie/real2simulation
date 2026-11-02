@@ -1,5 +1,12 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 21:15 Dhaka · Controller: accept N59 + N62 + N60 recheck; DEV api c9a9e53f / web 31c98933; N63 and N65 running; N65 needs browser
+- N62-orch307 (Claude Opus, read-only spend review): ACCEPT WITH FIXES, no P0. Reserve-before-spend, cap serialization, and no double charge or early release all PASS. P1: the deployed r2s-sf3d (900 s idle) was ahead of main's IDLE_S of 60, so DEV under-recorded click cost; merging N59 closes this. P2: a rebuild doesn't cancel the in-flight SF3D call; a restart leaves upgrades pending forever; shell rebuilds are unthrottled per user and their artifacts sit outside the 1 GB quota. P3: a-e.
+- N59 accepted (DONE with known gaps) at a07b513c, N62 at e0868efa, N60's in-app-browser recheck at 882da5c5 (12 N58 fixes confirmed; new F05 P3, F06 P2). Tests 543 py + 458 node pass, build ok, secret scan clean, pushed.
+- DEV redeployed: api c9a9e53f and web 31c98933 at e0868efa; verify.py exit 0. Main sf3d.py now matches the deployed 900 s idle, so the P1 is closed.
+- N63-orch309 dispatched (Sol high, 60 min, due about 22:10 Dhaka): N62 P2-a/b/c, P3-d/e, room-ready latency, one live RM04 job, budget $3. IDLE_S stays 900 per Koushik's 15-minute rule (P3-b).
+- N65-orch308 (Sol high): F05/F06 fixed at de03c263 on run/N65-orch308; 200 tests and build pass. Got BROWSER NEEDED (iab unavailable twice) and is waiting. Koushik notified to attach @Browser in that chat; the timebox gets reissued after.
+
 ## 2026-11-02 21:05 Dhaka · Koushik: guide page
 - Koushik (Nov 2) wants a public guide section: a simple beginner walkthrough of the features with screenshots from the product, done in one agent run. It runs after all QA and debugging, when only his demo video remains.
 - Added N64 (Claude Sonnet medium, 60 min) as the last product row: dispatch only when every other product/QA/fix row is DONE; latest dispatch Nov 4 07:00 Dhaka so it lands before the 10:00 freeze and ships in the judging deploy. Screenshots come from DEV in the in-app browser, using the test fixture and sample projects only. Recorded in PLAN-NOV1.
