@@ -9,8 +9,9 @@ Tests: 20 passed, 0 failed; evidence/N57/tests.txt. No build needed, no product 
 Paid: exactly one SAM 3.1 measurement, 120 frames, API-reported USD 0.024; no retry/Modal/shell/agent call. evidence/N57/PAID_CALLS.md.
 Privacy: forbidden private room and N06 not opened/captured/committed; mirror not visited; no credentials read or persisted.
 Skipped: successful upload (account quota zero; new signup protect-check failed), project-card download (no file-backed test project), live GPU yellow/green countdown.
-Skipped: paid real-object/shell/agent execution; A4 blocked by sample-view HTTP 500; permanent project deletion lacks action-time owner approval; DEV snapshot bytes not inspected.
+Skipped: paid real-object/shell/agent execution; A4 blocked by sample-view HTTP 500; DEV snapshot bytes not inspected.
 Risk: confirmed UI defects and HTTP errors remain unfixed; all NOT RUN checks are explicitly not PASS. No production/judging/physical calibration claim.
-Receipts: committed JSON/text; eight small JPGs local-only per contract. Keep this worktree for JPG access.
-Test effects: created two empty QA projects and one measured project; sample-card snapshot updated automatically. Existing projects/files not deleted; model Standard, theme Light, rail collapsed.
+Receipts: committed JSON/text; nine small JPGs local-only per contract. Keep this worktree for JPG access.
+Test effects: created two empty QA projects and one measured project; sample-card snapshot updated automatically. Pre-existing projects/files not deleted; model Standard, theme Light, rail collapsed.
 Outside evidence: required worker REPORT/TIMEBOX metadata only; shared node_modules junction for existing tests. No canonical controls changed.
+Post-run owner-approved follow-up, 12:58-13:01 UTC: deleted only N57 QA room (DELETE 200; project/snapshot URL 404); five other project IDs and 19 file IDs unchanged; zero extra spend. Original timebox preserved.

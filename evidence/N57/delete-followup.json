@@ -1,0 +1,111 @@
+{
+  "approval": "Koushik: Yes, delete only that test project",
+  "scope": "Only N57 QA room and its test snapshot; no other project/file changes; no paid calls",
+  "started_at": "2026-11-02T12:58:44.924Z",
+  "original_run_closed": true,
+  "project_id": "1746a4f514ff4117bb854ea59ac442f6",
+  "events": [],
+  "before": {
+    "project": {
+      "id": "1746a4f514ff4117bb854ea59ac442f6",
+      "title": "N57 QA room",
+      "mode": "room",
+      "files": 0
+    },
+    "snapshot_url": "/api/workspace/projects/1746a4f514ff4117bb854ea59ac442f6/snapshot?v=1793618861611207207",
+    "other_project_ids": [
+      "687ef375e7c54838b6de4b4d4433a06f",
+      "a6724140a6e547b0b01331602c81b32f",
+      "d32a8c7c10674e7ea9e1efae4be28058",
+      "f09d091678f247bdbcd596c01d7c4907",
+      "f578dc3ba08f46c68bb9f1d6ef6cc6ac"
+    ],
+    "file_ids": [
+      "01fce7fb68634874a8a262fcfa84c0f0",
+      "14938b3d0e7b4b17a678c83c84586e72",
+      "37c56221d4c34f099651a773f7abdb6c",
+      "42fcf3760e5742efa729285887bbbe13",
+      "4407b391186d456299044244de21ba5d",
+      "4f5e1bd9a7124dfbb28a98c402298276",
+      "633e65018a494b6ca207056416c9bb09",
+      "7eda7b00504a4df9bbf17c4510ce915a",
+      "81764db3f0fa4b4abd48d07d7bc07268",
+      "82a4f2a2700b4cab95e9159ffc9161f3",
+      "9ad8b9b020a64bc2be5a235ac14827bd",
+      "a840ea4a46be454197ccd819bf0d29a7",
+      "af1eeba48ac74301a73b63816929528d",
+      "b59adb1408b84f72942280459c2653e7",
+      "cf8ef1bb73a0417e8d985eebacdf1527",
+      "dd6829f3adfb4272b5c81e5b71b1562a",
+      "e004e1cc77cf408b8217f19d6e8de3a0",
+      "ea961ad9e1fb4760a14bed7d54ed5f4a",
+      "ec5cba4aa7a944b6aed1b2b20dbe980d"
+    ],
+    "snapshot": {
+      "status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 14479,
+      "sha256": "0aec3415db25f9b5cfb529621dda6a4b66f5d5bcf3ed23f204f464a781091c32"
+    }
+  },
+  "dialog": {
+    "type": "confirm",
+    "message": "Delete project N57 QA room? Its files stay in Files.",
+    "approved": true
+  },
+  "deleted_at": "2026-11-02T13:00:26.273Z",
+  "delete_response": {
+    "status": 200,
+    "body": {
+      "deleted": "1746a4f514ff4117bb854ea59ac442f6"
+    }
+  },
+  "after": {
+    "project_status": 404,
+    "project_body": {
+      "detail": {
+        "code": "NOT_FOUND",
+        "message": "project not found"
+      }
+    },
+    "target_in_list": false,
+    "snapshot_status": 404,
+    "snapshot_body": "{\"detail\":{\"code\":\"NOT_FOUND\",\"message\":\"project not found\"}}",
+    "other_project_ids": [
+      "687ef375e7c54838b6de4b4d4433a06f",
+      "a6724140a6e547b0b01331602c81b32f",
+      "d32a8c7c10674e7ea9e1efae4be28058",
+      "f09d091678f247bdbcd596c01d7c4907",
+      "f578dc3ba08f46c68bb9f1d6ef6cc6ac"
+    ],
+    "file_ids": [
+      "01fce7fb68634874a8a262fcfa84c0f0",
+      "14938b3d0e7b4b17a678c83c84586e72",
+      "37c56221d4c34f099651a773f7abdb6c",
+      "42fcf3760e5742efa729285887bbbe13",
+      "4407b391186d456299044244de21ba5d",
+      "4f5e1bd9a7124dfbb28a98c402298276",
+      "633e65018a494b6ca207056416c9bb09",
+      "7eda7b00504a4df9bbf17c4510ce915a",
+      "81764db3f0fa4b4abd48d07d7bc07268",
+      "82a4f2a2700b4cab95e9159ffc9161f3",
+      "9ad8b9b020a64bc2be5a235ac14827bd",
+      "a840ea4a46be454197ccd819bf0d29a7",
+      "af1eeba48ac74301a73b63816929528d",
+      "b59adb1408b84f72942280459c2653e7",
+      "cf8ef1bb73a0417e8d985eebacdf1527",
+      "dd6829f3adfb4272b5c81e5b71b1562a",
+      "e004e1cc77cf408b8217f19d6e8de3a0",
+      "ea961ad9e1fb4760a14bed7d54ed5f4a",
+      "ec5cba4aa7a944b6aed1b2b20dbe980d"
+    ]
+  },
+  "verification": {
+    "only_approved_target_deleted": true,
+    "file_ids_unchanged": true,
+    "snapshot_bytes_physically_erased": "NOT VERIFIED: GET 404 proves no access, not volume byte deletion",
+    "additional_paid_calls": 0
+  },
+  "finished_at": "2026-11-02T13:01:04.656Z",
+  "screenshot": "09-approved-delete.jpg"
+}

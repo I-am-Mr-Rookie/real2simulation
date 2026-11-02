@@ -12,7 +12,7 @@ QA complete, not a release approval. No P1 defect proved. P2/P3 findings below r
 - Forbidden private room and N06 clip were not opened, captured or committed. No deploy, product-code edit, account-setting change, or extra paid retry.
 - Main receipt store: [receipts.json](receipts.json). Each `R:` reference below identifies an exact receipt `name`. These contain actual DOM text, responses, timing and geometry, not staged states.
 - [network-statuses.json](network-statuses.json), [tests.txt](tests.txt), [template-export.json](template-export.json), [room-collision-traces.json](room-collision-traces.json).
-- Eight small JPGs are local-only under this worktree, per the worker contract's no-media-binaries commit rule. JSON/text receipts are committed. Retain this worktree to retain JPG receipts.
+- Nine small JPGs, including the later approved deletion, are local-only under this worktree, per the worker contract's no-media-binaries commit rule. JSON/text receipts are committed. Retain this worktree to retain JPG receipts.
 
 ## Ranked findings
 
@@ -133,7 +133,7 @@ PASS means observed behavior, not merely matching source. NOT RUN is not PASS. A
 | 2 | Project-card Download execution | NOT RUN | Available account's ready projects reference jobs whose source files have no project_id; their menus have no Download. No upload capacity to create a file-backed project |
 | 2 | File-menu Download and BFF range stream | PASS | `R:file-download`: 410461 bytes, HTTP 206 bytes 0-1023/410461 |
 | 2 | Delete confirmation and Cancel preserve project | PASS | `R:delete-confirm-cancel`; native confirm, GET remains 200, no DELETE sent |
-| 2 | Confirmed permanent deletion | NOT RUN | Waiting for Koushik's action-time approval for only the newly created QA project |
+| 2 | Confirmed permanent deletion | PASS | Later owner-approved follow-up: DELETE 200, project GET 404, absent from list; all other project/file IDs unchanged. [delete-followup.json](delete-followup.json) |
 | 3 | Files list, upload limits text, loaded preview | PASS | `R:files-limits-storage`, `R:file-preview-loaded`: 1280 x 720, duration 6 s, readyState 4 |
 | 3 | Rail storage meter | PASS | `R:storage-meter-expanded`; visible in expanded sidebar, 1.2 MB/1.0 GB and real quota |
 | 4 | Progress pop-up during a real measurement | PASS | `R:real-job-progress-files`, `R:real-job-progress-home`; POST 202, "Processing 1 item", hosted SAM tracking; [04-real-job-progress.jpg](04-real-job-progress.jpg) |
@@ -165,7 +165,8 @@ PASS means observed behavior, not merely matching source. NOT RUN is not PASS. A
 | 9 | Timeline scrubber and value/uncertainty result card | FAIL | P2-06 |
 | 9 | Voice in Agent drawer | FAIL | P3-04 |
 | 9 | Room tool state survives tabs | FAIL | P2-05; a real first-click state could not be tested without a view image |
-| 9 | Deleting project removes snapshot bytes | NOT RUN | DEV snapshot filesystem not inspected in this UI QA; source-only cleanup gap below, not a claim about observed disk contents |
+| 9 | Snapshot URL inaccessible after deletion | PASS | Later approved follow-up: existing JPEG GET 200 before delete, same URL GET 404 after. [delete-followup.json](delete-followup.json) |
+| 9 | Deleting project removes snapshot bytes | NOT RUN | DEV snapshot filesystem not inspected; GET 404 proves access denial, not physical erasure |
 | Both | Light/dark at 1366, 1920, 375 | PASS | 6 workspace + 12 editor layout observations. `R:room-loaded-responsive-recheck` additionally verifies actual RM02 data loaded in all 6 variants |
 | Both | No vertical scroll trap | PASS | Workspace reaches its bottom; Add menu reaches Templates; editor intentionally fixed, not a long document. Horizontal clipping defects remain |
 | Both | No visible em dashes in checked states | PASS | Matrix DOM text scans and tested trial/replay text. Untested model replies not covered |
@@ -174,11 +175,20 @@ PASS means observed behavior, not merely matching source. NOT RUN is not PASS. A
 
 ### Snapshot deletion: source evidence, not runtime disk proof
 
-`Build/api/storage/files.py:286-292` deletes the project row and clears file associations but never removes `_snapshot(owner, project_id)` (`files.py:237-238`). This is a concrete missing cleanup path in the checked-out implementation. A post-delete GET 404 would only prove access denial, not physical erasure. DEV disk retention therefore remains NOT RUN, even if a disposable-project delete is later authorized.
+`Build/api/storage/files.py:286-292` deletes the project row and clears file associations but never removes `_snapshot(owner, project_id)` (`files.py:237-238`). This is a concrete missing cleanup path in the original checked-out implementation. The later authorized deletion returned 404 for the old snapshot URL, which proves access denial, not physical erasure. DEV disk retention therefore remains NOT RUN. No claim is made that the original source still matches the later deployment's cleanup behavior.
 
 ## Spend and verification
 
 - Exactly one live measurement job, no retries: [PAID_CALLS.md](PAID_CALLS.md). API result reports **120 frames, USD 0.024**. Hosted SAM 3.1, no Modal job. No paid agent, real-object, shell or room build call.
 - Existing targeted tests: **20 passed, 0 failed**. These include GPU mapping/countdown and editor source contracts; passing those tests did not hide the browser defects above.
 - No build: no product source changed. No production/judging deploy, credentials, billing, private clip/room access, or public submission.
-- Test-created projects are named `N57 QA room`, `N57 QA measured apple`, plus the empty experiment created by the mode card. Automatic Pause/Export also updated the test account's seeded sample-card snapshot. Existing projects/files were not deleted; reconstruction/measurement source data was not edited. Model selection restored to Standard. Screenshots remain local-only.
+- Test-created projects were named `N57 QA room`, `N57 QA measured apple`, plus the empty experiment created by the mode card. The later owner-approved follow-up deleted only `N57 QA room`. Automatic Pause/Export also updated the test account's seeded sample-card snapshot. Pre-existing projects/files were not deleted; reconstruction/measurement source data was not edited. Model selection restored to Standard. Screenshots remain local-only.
+
+## Post-run owner-approved deletion
+
+- This bounded follow-up was requested after the original run closed and after its deadline. The original TIMEBOX.json is preserved, not rewritten to imply on-time follow-up work.
+- Koushik explicitly approved: "Yes, delete only that test project". Follow-up started 2026-11-02T12:58:44.924Z and finished 2026-11-02T13:01:04.656Z; authoritative timestamps are in [delete-followup.json](delete-followup.json).
+- Rechecked exact ID `1746a4f514ff4117bb854ea59ac442f6`, title `N57 QA room`, zero files, and the existing test JPEG before accepting the matching native confirmation.
+- DELETE returned HTTP 200 with that exact ID; project GET returned 404; project list no longer contained it. The snapshot URL changed from HTTP 200 to 404.
+- All five other project IDs and all 19 file IDs matched the immediate pre-delete baseline. No additional paid call, code change, deploy or wider cleanup.
+- Snapshot physical byte removal remains unverified. Receipt: [delete-followup.json](delete-followup.json); local screenshot [09-approved-delete.jpg](09-approved-delete.jpg).
