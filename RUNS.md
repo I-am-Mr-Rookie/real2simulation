@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 02, 20:54 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 02, 20:57 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **347 / 359** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **347 / 360** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -48,7 +48,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (57/63)</summary>
+<details><summary><b>N</b> —  (57/64)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -113,6 +113,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N61** — Codex · GPT-6.1 Sol, effort high — Fix N60 F01 to F04: sample card opens room lab and experiment, Saved lab opens editor, phone graph readout, experiment preview from its own file_id (30 min)
 - [~] **N62** — Codex · Claude Opus 5.5, effort high — Cross-vendor spend review of N59 (read-only): ledger reserve-before-spend, cap under concurrency/rebuild/restart, no double charge or early release, cancel stops paid work, GPU-type cost bounds, per-user limits (30 min) *(in progress)*
 - [ ] **N63** — Codex · GPT-6.1 Sol, effort high — Fix N59 gaps plus N62 findings: room-ready latency 379 s vs about 270 s (L4 start timeout then A10G fallback; SAM detection 118 s on 176 images), restart recovery of pending shape upgrades, and every N62 P0 to P2 finding; live RM04 rerun with timings and ledgered cost (60 min)
+- [ ] **N64** — Codex · Claude Sonnet 5.5, effort medium — Guide page (single run, LAST product row): public /guide with a simple beginner walkthrough of every feature (sign in, model picker, new project, room lab, phone experiment, lab editor, agent, files and quotas, GPU dot, demo library) with screenshots taken from DEV in the in-app browser using the test fixture and sample projects only; header and footer link (60 min)
 
 </details>
 

@@ -100,3 +100,8 @@ write it under "Reviews for Koushik" (STATE Owner questions -> RUNS.md) and keep
   are dropped. Physics equipment is not expected in home rooms: users add it with the editor or the agent from the standard lab kit
   (N33). N39 must not try to detect equipment in the clip; windows and doors are wall features.
 - Dispatch freeze lifted by Koushik ("Go", Nov 2). To save Koushik's Claude quota for study, infra rows N30, N34, N38 run on GPT-6.1 Sol.
+
+## Guide page (Koushik, Nov 2)
+- Add a public /guide: a simple beginner walkthrough of the features with screenshots from the product itself. One agent run (N64, Claude Sonnet medium, 60 min).
+- Timing: the LAST product row. Dispatch only after every other product, QA and fix row is DONE, so only the demo video (Koushik-only) remains. Hard latest dispatch Nov 4 07:00 Dhaka so it lands before the 10:00 freeze; then the judging deploy (S23a) includes it.
+- Screenshots: DEV in the in-app browser (Koushik attaches @Browser if needed), test fixture and sample projects only; never the private room or N06 clip.

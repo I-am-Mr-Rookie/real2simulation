@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-02 21:05 Dhaka · Koushik: guide page
+- Koushik (Nov 2) wants a public guide section: a simple beginner walkthrough of the features with screenshots from the product, done in one agent run. It runs after all QA and debugging, when only his demo video remains.
+- Added N64 (Claude Sonnet medium, 60 min) as the last product row: dispatch only when every other product/QA/fix row is DONE; latest dispatch Nov 4 07:00 Dhaka so it lands before the 10:00 freeze and ships in the judging deploy. Screenshots come from DEV in the in-app browser, using the test fixture and sample projects only. Recorded in PLAN-NOV1.
+
 ## 2026-11-02 20:55 Dhaka · Controller: N59 PARTIAL; spend review N62 dispatched
 - N59-orch304 returned PARTIAL (timing PASS). It worked in C:/Users/HP/.codex/worktrees/n59-orch304, branch run/N59-orch304, rebased onto main. Every changed file is within Owns.
 - Built: background Stable Fast 3D upgrades of the 4 largest kept objects after the room is ready, reserved on the canonical ledger first; the editor swaps meshes in live.
