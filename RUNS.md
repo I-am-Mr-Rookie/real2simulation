@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 02, 21:10 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 02, 21:45 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **349 / 361** runs done · 2 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **350 / 361** runs done · 0 in progress · 1 blocked · 4 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -22,17 +22,16 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
 
-## In progress
-
-- [~] **N63** — Codex · GPT-6.1 Sol, effort high — Fix N59 gaps plus N62 findings: room-ready latency 379 s vs about 270 s (L4 start timeout then A10G fallback; SAM detection 118 s on 176 images), restart recovery of pending shape upgrades, and every N62 P0 to P2 finding; live RM04 rerun with timings and ledgered cost (60 min) *(in progress)*
-- [~] **N65** — Codex · GPT-6.1 Sol, effort high — Fix N60 in-app-browser findings: F06 phone model picker hidden behind the left rail; F05 replay summary calls an assumed size a known size (30 min) *(in progress)*
-
 ## Waiting for Koushik
 
 - [ ] **S23a** — Authorize frozen judging promotion (10 min)
 - [ ] **S26a** — Submit approved project on Cerebral Valley (30 min)
 - [ ] **N06** — Film new owner clips (room, pendulum, ramp, optional spin) (30 min)
 - [ ] **N18** — Record new voice-overs from the N17 read sheet (click to click) (30 min)
+
+## Blocked
+
+- [!] **N63** — Codex · GPT-6.1 Sol, effort high — Fix N59 gaps plus N62 findings: room-ready latency 379 s vs about 270 s (L4 start timeout then A10G fallback; SAM detection 118 s on 176 images), restart recovery of pending shape upgrades, and every N62 P0 to P2 finding; live RM04 rerun with timings and ledgered cost (60 min) *(blocked: see STATE.md)*
 
 ## All runs by step
 
@@ -49,7 +48,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (59/65)</summary>
+<details><summary><b>N</b> —  (60/65)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -113,8 +112,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N60** — Codex · GPT-6.1 Sol, effort high — Human-style DEV re-check of the N58 fixes in the in-app browser, plus new first-user findings (30 min)
 - [x] **N61** — Codex · GPT-6.1 Sol, effort high — Fix N60 F01 to F04: sample card opens room lab and experiment, Saved lab opens editor, phone graph readout, experiment preview from its own file_id (30 min)
 - [x] **N62** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor spend review of N59 (read-only): ledger reserve-before-spend, cap under concurrency/rebuild/restart, no double charge or early release, cancel stops paid work, GPU-type cost bounds, per-user limits (30 min)
-- [~] **N63** — Codex · GPT-6.1 Sol, effort high — Fix N59 gaps plus N62 findings: room-ready latency 379 s vs about 270 s (L4 start timeout then A10G fallback; SAM detection 118 s on 176 images), restart recovery of pending shape upgrades, and every N62 P0 to P2 finding; live RM04 rerun with timings and ledgered cost (60 min) *(in progress)*
-- [~] **N65** — Codex · GPT-6.1 Sol, effort high — Fix N60 in-app-browser findings: F06 phone model picker hidden behind the left rail; F05 replay summary calls an assumed size a known size (30 min) *(in progress)*
+- [!] **N63** — Codex · GPT-6.1 Sol, effort high — Fix N59 gaps plus N62 findings: room-ready latency 379 s vs about 270 s (L4 start timeout then A10G fallback; SAM detection 118 s on 176 images), restart recovery of pending shape upgrades, and every N62 P0 to P2 finding; live RM04 rerun with timings and ledgered cost (60 min) *(blocked: see STATE.md)*
+- [x] **N65** — Codex · GPT-6.1 Sol, effort high — Fix N60 in-app-browser findings: F06 phone model picker hidden behind the left rail; F05 replay summary calls an assumed size a known size (30 min)
 - [ ] **N64** — Codex (native Claude) · Sonnet 5.5, effort medium — Guide page (single run, LAST product row): public /guide with a simple beginner walkthrough of every feature (sign in, model picker, new project, room lab, phone experiment, lab editor, agent, files and quotas, GPU dot, demo library) with screenshots taken from DEV in the in-app browser using the test fixture and sample projects only; header and footer link (60 min)
 
 </details>
