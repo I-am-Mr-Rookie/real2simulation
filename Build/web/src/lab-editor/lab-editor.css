@@ -1,43 +1,79 @@
-/* N24: lab editor as a workspace. Toolbar | (inspector) 3D stage (room tools + agent). Theme tokens from app/styles.css. */
-main:has(.lab-editor) { padding-top: 0.75rem; }
-body:has(.lab-editor) { --site-width: min(1680px, calc(100% - 48px)); }
+/* N56: lab editor as a full-window app. Top bar | rail + left panel | canvas (floating tools) | properties or agent | timeline. Theme tokens from app/styles.css. */
+body:has(.lab-editor) .site-header, body:has(.lab-editor) .site-footer, body:has(.lab-editor) .lab-toggle { display: none; }
+main:has(.lab-editor) { padding: 0; }
 .lab-editor { --le-bg: var(--r2s-bg, #f6f6f4); --le-surface: var(--r2s-surface, #fff); --le-ink: var(--r2s-ink, #18181b); --le-muted: var(--r2s-muted, #52525b);
   --le-border: var(--r2s-border, #e2e2e0); --le-strong: var(--r2s-border-strong, #85858d); --le-accent: var(--r2s-accent, #4f46e5); --le-accent-ink: var(--r2s-accent-ink, #fff);
-  display: grid; gap: 8px; width: 100%; padding: 8px 0 16px; box-sizing: border-box; color: var(--le-ink); }
-.le-top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; padding: 6px; border: 1px solid var(--le-border); border-radius: 12px; background: var(--le-surface); }
-.le-title { font-size: 15px; margin-right: 4px; white-space: nowrap; }
-.le-group { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; padding-left: 10px; border-left: 1px solid var(--le-border); }
+  position: fixed; inset: 0; z-index: 40; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; background: var(--le-bg); color: var(--le-ink); box-sizing: border-box; }
+.lab-editor [hidden] { display: none !important; }
+.lab-editor button, .lab-editor summary { box-shadow: none; }
+.le-graph figcaption { text-transform: none; letter-spacing: 0; font-family: inherit; }
+.le-top { display: flex; align-items: center; gap: 6px 10px; padding: 6px 10px; border-bottom: 1px solid var(--le-border); background: var(--le-surface); min-width: 0; }
+.le-logo { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 8px; background: var(--le-accent); color: var(--le-accent-ink); font: 700 12px/1 inherit; text-decoration: none; flex: none; }
+.le-name { min-width: 0; width: 22ch; height: 32px; padding: 0 8px; border: 1px solid transparent; border-radius: 6px; background: transparent; color: var(--le-ink); font: 600 15px/1 inherit; }
+.le-name:hover, .le-name:focus { border-color: var(--le-border); background: var(--le-bg); }
+.le-group { display: flex; align-items: center; gap: 4px; padding-left: 10px; border-left: 1px solid var(--le-border); }
 .le-end { margin-left: auto; }
-.le-top button, .le-file { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; min-width: 36px; padding: 0 10px; border: 1px solid transparent; border-radius: 8px;
+.le-top button, .le-file, .le-timeline button, .le-float button, .le-rail button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 36px; min-width: 36px; padding: 0 10px; border: 1px solid transparent; border-radius: 8px;
   background: transparent; color: var(--le-ink); font: 500 14px/1 inherit; font-family: inherit; cursor: pointer; transition: background-color .15s ease, transform .1s ease; box-sizing: border-box; box-shadow: none; margin: 0; }
-.le-top button:hover:not(:disabled), .le-file:hover { background: color-mix(in srgb, var(--le-ink) 7%, transparent); }
+.le-top button:hover:not(:disabled), .le-file:hover, .le-float button:hover:not(:disabled), .le-rail button:hover, .le-timeline button:hover:not(:disabled) { background: color-mix(in srgb, var(--le-ink) 7%, transparent); }
 .le-top button:active:not(:disabled) { transform: scale(.96); }
-.le-top button:disabled { opacity: .45; cursor: default; }
-.le-top button[aria-pressed='true'] { background: color-mix(in srgb, var(--le-accent) 14%, transparent); color: var(--le-accent); }
-.le-top .le-primary { background: var(--le-accent); color: var(--le-accent-ink); padding: 0 14px; }
-.le-top .le-primary:hover:not(:disabled) { background: color-mix(in srgb, var(--le-accent) 88%, #000); }
-.le-top .le-icon-btn { padding: 0; width: 36px; }
+.le-top button:disabled, .le-float button:disabled, .le-timeline button:disabled { opacity: .45; cursor: default; }
+.le-top button[aria-pressed='true'], .le-float button[aria-pressed='true'], .le-rail button[aria-pressed='true'] { background: color-mix(in srgb, var(--le-accent) 14%, transparent); color: var(--le-accent); }
+.lab-editor .le-primary { background: var(--le-accent); color: var(--le-accent-ink); padding: 0 14px; }
+.lab-editor .le-primary:hover:not(:disabled) { background: color-mix(in srgb, var(--le-accent) 88%, #000); }
+.le-icon-btn { padding: 0 !important; width: 36px; }
+.le-agent-btn { border-color: var(--le-border) !important; }
 .le-ico { flex: none; }
 .le-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .le-file { position: relative; }
 .le-file input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
-.le-file:focus-within, .le-top button:focus-visible { outline: 2px solid var(--r2s-focus, var(--le-accent)); outline-offset: 1px; }
-.le-work { --le-stage-height: clamp(420px, 38cqw, 640px); container-type: inline-size; display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 8px; min-height: 0; }
-.lab-editor[data-side='open'] .le-work { grid-template-columns: 270px minmax(0, 1fr) 340px; }
-/* Native scroll chaining: panels scroll first, then the page. Only the canvas owns zoom gestures. */
-.le-side { display: grid; gap: 8px; align-content: start; min-width: 0; max-height: var(--le-stage-height); overflow-y: auto; scrollbar-gutter: stable; }
-.le-stage { position: relative; height: var(--le-stage-height); min-height: 420px; border-radius: 12px; overflow: hidden; border: 1px solid var(--le-border); background: var(--le-bg); }
-.lab-editor:fullscreen { width: 100%; height: 100%; grid-template-rows: auto minmax(0, 1fr); }
-.lab-editor:fullscreen .le-work { --le-stage-height: 100%; }
-.lab-editor:fullscreen .le-stage, .le-stage:fullscreen { width: 100%; height: 100%; min-height: 0; }
+.le-file:focus-within, .lab-editor button:focus-visible { outline: 2px solid var(--r2s-focus, var(--le-accent)); outline-offset: 1px; }
+.le-work { display: grid; grid-template-columns: 48px minmax(0, 1fr) 320px; min-height: 0; }
+.lab-editor[data-side='open'] .le-work { grid-template-columns: 48px 260px minmax(0, 1fr) 320px; }
+.le-rail { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 0; border-right: 1px solid var(--le-border); background: var(--le-surface); }
+/* Native scroll chaining: panels scroll independently. Only the canvas owns zoom gestures. */
+.le-side { display: grid; gap: 8px; align-content: start; min-width: 0; min-height: 0; padding: 8px; overflow-y: auto; scrollbar-gutter: stable; background: var(--le-surface); }
+.le-left { border-right: 1px solid var(--le-border); }
+.le-right { border-left: 1px solid var(--le-border); }
+.le-sheet-close { display: none; }
+.le-tabs { display: flex; gap: 2px; align-items: center; border-bottom: 1px solid var(--le-border); }
+.le-tabs [role='tab'] { flex: 1; min-height: 34px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--le-muted); font: 600 13px/1 inherit; cursor: pointer; }
+.le-tabs [aria-selected='true'] { color: var(--le-ink); border-bottom-color: var(--le-accent); }
+.le-outline { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.le-outline li { display: flex; align-items: center; gap: 2px; border-radius: 6px; }
+.le-outline li[aria-current] { background: color-mix(in srgb, var(--le-accent) 12%, transparent); }
+.le-outline li[data-off] .le-row { opacity: .5; }
+.lab-editor .le-row { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 6px; border: 0; background: none; color: inherit; text-align: left; }
+.le-row span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.le-row small { margin-left: auto; color: var(--le-muted); white-space: nowrap; }
+.lab-editor .le-mini { min-height: 28px; min-width: 28px; padding: 0; display: inline-grid; place-items: center; border: 0; background: none; color: var(--le-muted); }
+.le-stage { position: relative; min-width: 0; min-height: 0; overflow: hidden; background: var(--le-bg); }
+.lab-editor:fullscreen { width: 100%; height: 100%; }
+.le-stage:fullscreen { width: 100%; height: 100%; min-height: 0; }
 .le-canvas, .le-canvas canvas { width: 100%; height: 100%; display: block; touch-action: none; }
-.le-chips { position: absolute; top: 10px; left: 10px; right: 110px; display: flex; flex-wrap: wrap; gap: 6px; pointer-events: none; }
-.le-chip { padding: 3px 8px; border-radius: 6px; background: #1e293b; color: #fff; font: 600 11.5px/1.3 var(--r2s-font-mono, ui-monospace, monospace); letter-spacing: .02em; }
-.le-warn { background: #b45309; }
+.le-float { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 2px; padding: 4px; border: 1px solid var(--le-border); border-radius: 12px; background: var(--le-surface); box-shadow: 0 4px 16px rgba(0, 0, 0, .12); z-index: 5; }
+.le-sep { width: 1px; height: 22px; margin: 0 4px; background: var(--le-border); }
+.le-honesty { position: absolute; top: 10px; left: 10px; max-width: min(360px, 40%); z-index: 4; font-size: 12px; }
+.le-honesty summary { list-style: none; cursor: pointer; padding: 4px 10px; border-radius: 999px; background: #1e293b; color: #fff; font: 600 11.5px/1.4 var(--r2s-font-mono, ui-monospace, monospace); letter-spacing: .02em; width: max-content; max-width: 100%; }
+.le-honesty summary::-webkit-details-marker { display: none; }
+.le-honesty ul { margin: 6px 0 0; padding: 8px 10px 8px 24px; border: 1px solid var(--le-border); border-radius: 10px; background: var(--le-surface); display: grid; gap: 4px; }
 .le-rejected { margin: 4px 0; padding: 6px 8px; border-left: 3px solid #b45309; font-size: 0.85em; }
-.le-time { position: absolute; top: 10px; right: 10px; font: 12px ui-monospace, monospace; font-variant-numeric: tabular-nums; background: color-mix(in srgb, var(--le-surface) 85%, transparent); color: var(--le-ink); padding: 3px 8px; border-radius: 6px; }
 .le-status { position: absolute; left: 10px; right: 10px; bottom: 10px; margin: 0; padding: 6px 10px; border-radius: 8px; font-size: 13px; line-height: 1.4; overflow-wrap: anywhere;
   background: color-mix(in srgb, var(--le-surface) 88%, transparent); color: var(--le-ink); backdrop-filter: blur(6px); max-height: 30%; overflow-y: auto; }
+.le-timeline { display: flex; align-items: center; gap: 8px; padding: 6px 10px; border-top: 1px solid var(--le-border); background: var(--le-surface); min-width: 0; }
+.le-time { font: 12px ui-monospace, monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.le-graph { flex: 1; min-width: 0; margin: 0; display: flex; align-items: center; gap: 10px; font-size: 12px; }
+.le-graph svg { flex: 1; min-width: 80px; height: 44px; border: 1px solid var(--le-border); border-radius: 6px; background: var(--le-bg); }
+.le-graph polyline { fill: none; stroke: var(--le-accent); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.le-graph figcaption { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45%; }
+.le-muted { color: var(--le-muted); }
+.le-props fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 6px; }
+.le-props legend { font-size: 12px; font-weight: 600; color: var(--le-muted); padding: 0 0 4px; }
+.le-xyz { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+.le-field { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--le-muted); }
+.le-field input { flex: 1; min-width: 0; width: 100%; height: 30px; padding: 0 6px; border: 1px solid var(--le-border); border-radius: 6px; background: var(--le-bg); color: var(--le-ink); font: 13px ui-monospace, monospace; }
+.le-check { display: flex; align-items: center; gap: 6px; }
+
 .le-panel { border: 1px solid var(--le-border); border-radius: 12px; padding: 12px; display: grid; gap: 8px; align-content: start; min-width: 0; background: var(--le-surface); font-size: 14px; }
 .le-panel h3 { margin: 0; font-size: 14px; }
 .le-panel p { margin: 0; }
@@ -51,7 +87,6 @@ body:has(.lab-editor) { --site-width: min(1680px, calc(100% - 48px)); }
 .le-send input { flex: 1; min-width: 0; min-height: 36px; padding: 0 10px; border: 1px solid var(--le-strong); border-radius: 8px; font: inherit; background: var(--le-bg); color: var(--le-ink); }
 .le-suggest button { border-radius: 999px; font-size: 13px; text-align: left; }
 .le-log { min-height: 120px; max-height: min(48vh, 420px); overflow-y: auto; font-size: 14px; line-height: 1.45; display: flex; flex-direction: column; gap: 8px; padding: 8px; border: 1px solid var(--le-border); border-radius: 8px; background: var(--le-bg); overflow-wrap: anywhere; }
-.le-log .le-muted { color: var(--le-muted); }
 .le-report { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 13px; max-height: 420px; overflow-y: auto; }
 .le-panel .le-danger { color: var(--r2s-danger, #b91c1c); }
 .le-room select { min-height: 36px; margin-left: 4px; font: inherit; background: var(--le-surface); color: var(--le-ink); border: 1px solid var(--le-strong); border-radius: 6px; }
@@ -60,35 +95,36 @@ body:has(.lab-editor) { --site-width: min(1680px, calc(100% - 48px)); }
 .le-view[data-tool] img { cursor: crosshair; outline: 2px solid var(--le-accent); }
 .le-mark { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 2px var(--le-accent); pointer-events: none; }
 @media (max-width: 1100px) {
-  .le-work { grid-template-columns: minmax(0, 1fr); }
-  .lab-editor[data-side='open'] .le-work { grid-template-columns: 240px minmax(0, 1fr); }
-  .le-right { grid-column: 1 / -1; max-height: none; overflow: visible; }
+  .le-work, .lab-editor[data-side='open'] .le-work { grid-template-columns: 48px minmax(0, 1fr) 300px; }
+  .lab-editor[data-side='open'] .le-left { position: absolute; z-index: 30; top: 0; bottom: 0; left: 48px; width: 260px; box-shadow: 0 8px 24px rgba(0, 0, 0, .18); }
+  .le-work { position: relative; }
 }
 @media (max-width: 900px) {
-  body:has(.lab-editor) { --site-width: calc(100% - 24px); }
-  .lab-editor { padding: 6px 0 12px; }
-  .le-work { --le-stage-height: clamp(320px, 80cqw, 480px); }
-  .lab-editor[data-side='open'] .le-work { grid-template-columns: minmax(0, 1fr); }
-  .le-left { order: 2; } .le-right { order: 3; } .le-side { max-height: none; overflow: visible; }
-  .le-stage { min-height: 320px; }
-  .le-lbl, .le-title { display: none; }
-  .le-group { padding-left: 4px; }
+  .le-work, .lab-editor[data-side='open'] .le-work { grid-template-columns: minmax(0, 1fr); }
+  .le-rail { position: absolute; z-index: 6; left: 8px; bottom: 56px; flex-direction: row; padding: 4px; border: 1px solid var(--le-border); border-radius: 10px; }
+  /* bottom sheets: left panel when open; right panel (properties or agent) when something is selected or the agent is open */
+  .lab-editor[data-side='open'] .le-left, .le-right { position: absolute; z-index: 30; left: 0; right: 0; top: auto; bottom: 0; width: auto; max-height: 55%; border: 0; border-top: 1px solid var(--le-border); border-radius: 14px 14px 0 0; box-shadow: 0 -8px 24px rgba(0, 0, 0, .18); }
+  .lab-editor[data-sheet='closed'] .le-right { display: none; }
+  .le-sheet-close { display: block; justify-self: end; min-height: 32px; padding: 0 10px; border: 1px solid var(--le-border); border-radius: 8px; background: var(--le-surface); color: var(--le-ink); }
+  .le-lbl, .le-name, .le-graph figcaption { display: none; }
+  .le-group { padding-left: 4px; border-left: 0; }
+  .le-top { gap: 2px; padding: 4px; overflow-x: auto; }
   .le-top button, .le-file { min-height: 40px; min-width: 40px; }
-  .le-top .le-icon-btn { width: 40px; }
-  .le-end { margin-left: 0; padding-left: 0; }
-  .le-group { border-left: 0; }
-  .le-status { font-size: 12px; max-height: 24%; }
+  .le-honesty { max-width: 60%; top: 62px; }
+  .le-status { font-size: 12px; max-height: 24%; bottom: 60px; }
 }
-@media (prefers-reduced-motion: reduce) { .le-top button { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .lab-editor button { transition: none; } }
 
-/* N33 compact Add menu */
+
+/* N33 Add menu, N56 picture tiles + Templates section */
 .lab-editor .le-add { position: relative; }
-.lab-editor .le-add > summary { list-style: none; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; padding: 6px 10px; border: 1px solid var(--r2s-line, #d1d5db); border-radius: 8px; background: var(--r2s-surface, #fff); }
+.lab-editor .le-add > summary { list-style: none; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; min-height: 36px; padding: 0 12px; border-radius: 8px; background: var(--le-accent); color: var(--le-accent-ink); font-weight: 600; }
 .lab-editor .le-add > summary::-webkit-details-marker { display: none; }
 .lab-editor .le-add > summary.le-off { opacity: 0.5; pointer-events: none; }
-.lab-editor .le-menu { position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; width: min(92vw, 420px); max-height: 70vh; overflow: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 10px; border: 1px solid var(--r2s-line, #d1d5db); border-radius: 10px; background: var(--r2s-surface, #fff); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); }
-.lab-editor .le-menu-g { display: flex; flex-direction: column; gap: 2px; }
-.lab-editor .le-menu-h { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; opacity: 0.7; padding: 2px 6px; }
-.lab-editor .le-menu button { display: flex; align-items: center; justify-content: flex-start; gap: 8px; text-align: left; padding: 6px; border: 0; border-radius: 6px; background: transparent; color: inherit; cursor: pointer; min-height: 32px; }
-.lab-editor .le-menu button:hover, .lab-editor .le-menu button:focus-visible { background: var(--r2s-hover, rgba(0, 0, 0, 0.06)); }
-@media (max-width: 480px) { .lab-editor .le-menu { grid-template-columns: 1fr; width: 80vw; } }
+.lab-editor .le-menu { position: absolute; z-index: 20; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); width: min(92vw, 460px); max-height: 65vh; overflow: auto; display: grid; gap: 10px; padding: 12px; border: 1px solid var(--le-border); border-radius: 12px; background: var(--le-surface); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2); }
+.lab-editor .le-menu-g { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 6px; }
+.lab-editor .le-menu-h { grid-column: 1 / -1; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--le-muted); padding: 2px 2px 0; }
+.lab-editor .le-menu button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 10px 4px; min-height: 72px; border: 1px solid var(--le-border); border-radius: 10px; background: var(--le-bg); color: inherit; font-size: 12px; text-align: center; cursor: pointer; }
+.lab-editor .le-menu button .le-ico { width: 26px; height: 26px; }
+.lab-editor .le-menu button:hover, .lab-editor .le-menu button:focus-visible { border-color: var(--le-accent); background: color-mix(in srgb, var(--le-accent) 8%, var(--le-bg)); }
+

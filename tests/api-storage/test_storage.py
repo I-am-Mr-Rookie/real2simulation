@@ -127,6 +127,24 @@ class StorageTests(unittest.TestCase):
         self.assertEqual(self.c.delete(url, headers=A).json(), {"deleted": p["id"]})
         self.assertEqual(self.c.get(url, headers=A).status_code, 404)
 
+    def test_project_snapshot_owner_scoped_typed_and_size_limited(self):
+        p = self.c.post("/internal/workspace/projects", headers=A, json={"mode": "room", "title": "Lab"}).json()["project"]
+        url = f"/internal/workspace/projects/{p['id']}/snapshot"
+        self.assertIsNone(self.c.get("/internal/workspace/projects", headers=A).json()["projects"][0]["snapshot_url"])
+        jpg = b"\xff\xd8\xff\xe0" + b"SYNTHETIC" * 10
+        put = lambda data, t="image/jpeg", h=A: self.c.put(url, headers={**h, "content-type": t}, content=data)
+        self.assertEqual(put(jpg, h=B).status_code, 404)  # not B's project
+        self.assertEqual(put(jpg, t="text/html").status_code, 415)
+        self.assertEqual(put(PNG, t="image/jpeg").status_code, 415)  # bytes must match the type
+        self.assertEqual(put(b"\xff\xd8\xff" + b"0" * (256 * 1024)).status_code, 413)
+        r = put(jpg)
+        self.assertEqual(r.status_code, 200, r.text)
+        self.assertTrue(r.json()["snapshot_url"].startswith(f"/api/workspace/projects/{p['id']}/snapshot?v="))
+        self.assertEqual(self.c.get("/internal/workspace/projects", headers=A).json()["projects"][0]["snapshot_url"], r.json()["snapshot_url"])
+        got = self.c.get(url, headers=A)
+        self.assertEqual((got.status_code, got.content, got.headers["content-type"]), (200, jpg, "image/jpeg"))
+        self.assertEqual(self.c.get(url, headers=B).status_code, 404)
+
     def test_room_project_survives_upload_job_and_lists_without_changing_null_rows(self):
         from Build.api.room import create_router
 

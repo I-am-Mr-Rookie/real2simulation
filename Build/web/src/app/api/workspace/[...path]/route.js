@@ -66,5 +66,6 @@ export const dynamic = 'force-dynamic';
 export const GET = proxy;
 export const POST = proxy;
 export const PUT = proxy;
+export const PATCH = proxy; // N55 project rename, N56 lab name
 export const DELETE = proxy;
 

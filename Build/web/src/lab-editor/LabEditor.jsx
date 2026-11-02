@@ -37,6 +37,9 @@ const ICONS = {
   cart: 'M3 19L21 11M8 15l7-3-1-2-7 3z', launcher: 'M4 20h8M7 20l3-5M10 15l8-8M15 6h4v4', cradle: 'M3 4h18M6 4v11M10 4v11M14 4v11M18 4v11M6 15h12',
   mass: 'M8 9h8l2 11H6zM10 9V5h4v4', ruler: 'M3 9h18v6H3zM7 9v3M11 9v3M15 9v3M19 9v3', protractor: 'M3 17a9 9 0 0 1 18 0zM12 17l5-6',
   photogate: 'M5 4v16M19 4v16M5 12h14', trash: 'M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13', add: 'M12 5v14M5 12h14', undo: 'M9 6l-5 5 5 5M4 11h11a5 5 0 0 1 0 10h-3', redo: 'M15 6l5 5-5 5M20 11H9a5 5 0 0 0 0 10h3',
+  select: 'M5 3l14 8-6 2-2 6z', translate: 'M12 3v18M3 12h18M12 3l-3 3M12 3l3 3M21 12l-3-3M21 12l-3 3', rotate: 'M20 12a8 8 0 1 1-3-6.2M20 4v4h-4', scale: 'M4 14v6h6M20 10V4h-6M4 20L20 4',
+  eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0.01 0', eyeoff: 'M3 3l18 18M10.6 6.1A10 10 0 0 1 12 6c6 0 10 6 10 6a17 17 0 0 1-3.2 3.7M6.6 6.6C3.8 8.3 2 12 2 12s4 7 10 7a9 9 0 0 0 4.4-1.1',
+  agent: 'M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z', expand: 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5', room: 'M3 11l9-7 9 7v9H3zM9 20v-6h6v6', list: 'M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01',
 };
 const Ico = ({ n }) => <svg className="le-ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d={ICONS[n]} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 const isDark = () => typeof document !== 'undefined' && document.documentElement.dataset.tone === 'dark';
@@ -207,8 +210,33 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const [src, setSrc] = useState(null); // N22 live source: { kind: 'room', id, room } | { kind: 'experiment', id }
   const [side, setSide] = useState(true); // N24: inspector + scene JSON panel (collapsible)
   const [tone, setTone] = useState('light');
+  // N56 full-window layout: left tab, agent drawer, view-only hidden objects, lab name, project for the preview snapshot.
+  const [leftTab, setLeftTab] = useState('objects');
+  const [agentOpen, setAgentOpen] = useState(false);
+  const [hidden, setHidden] = useState([]);
+  const [name, setName] = useState('');
+  const [project, setProject] = useState(null);
   const sceneRef = useRef(scene);
   sceneRef.current = scene;
+  useEffect(() => { const p = new URLSearchParams(window.location.search).get('project'); if (p && LIVE_ID.test(p)) setProject(p); }, []);
+  // N56: small JPEG of the canvas for the N55 workspace card (owner-scoped PUT; no project, no snapshot).
+  const snapshot = async () => {
+    const a = api.current;
+    if (!a || !project) return;
+    try {
+      a.renderer.render(a.three, a.camera); // same tick as the copy, so no preserveDrawingBuffer needed
+      const src = a.renderer.domElement, w = Math.min(640, src.width), c = document.createElement('canvas');
+      c.width = w; c.height = Math.round((src.height * w) / Math.max(1, src.width));
+      c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
+      const blob = await new Promise((ok) => c.toBlob(ok, 'image/jpeg', 0.75));
+      if (blob) await fetch(WS + '/projects/' + project + '/snapshot', { method: 'PUT', headers: { 'content-type': 'image/jpeg' }, body: blob });
+    } catch { /* preview only; the lab itself is unaffected */ }
+  };
+  const rename = async (title) => {
+    if (!project || !title.trim()) return;
+    try { await getJson('/projects/' + project, { method: 'PATCH', body: JSON.stringify({ title: title.trim().slice(0, 120) }) }); setMessage('Renamed to ' + title.trim() + '.'); }
+    catch (e) { setMessage('Not renamed: ' + e.message); }
+  };
 
   // N24: follow the site theme (light, dark, colour modes); collapse the side panel by default on narrow screens.
   useEffect(() => {
@@ -225,12 +253,15 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     const el = host.current;
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap; // N56: soft floor shadow
     el.appendChild(renderer.domElement);
     const three = new THREE.Scene();
     three.background = themeColor('--r2s-bg', isDark() ? '#111113' : '#f3f4f6');
-    three.add(new THREE.HemisphereLight(0xffffff, 0x888888, 2.2));
-    const sun = new THREE.DirectionalLight(0xffffff, 1.5);
+    three.add(new THREE.HemisphereLight(0xf8fafc, 0x6b7280, 1.9));
+    const sun = new THREE.DirectionalLight(0xffffff, 1.6);
     sun.position.set(3, 6, 4);
+    sun.castShadow = true; sun.shadow.mapSize.set(1024, 1024); sun.shadow.radius = 4; sun.shadow.bias = -0.0005;
+    Object.assign(sun.shadow.camera, { left: -6, right: 6, top: 6, bottom: -6, near: 0.5, far: 30 });
     three.add(sun);
     const camera = new THREE.PerspectiveCamera(50, 1, 0.01, 500);
     camera.position.set(2, 1.7, 2.6);
@@ -306,7 +337,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       renderer.render(three, camera);
     };
     state.frame = requestAnimationFrame(loop);
-    api.current = { three, room, objects, gizmo, state, camera, orbit };
+    api.current = { three, room, objects, gizmo, state, camera, orbit, renderer };
     return () => {
       cancelAnimationFrame(state.frame);
       ro.disconnect();
@@ -334,10 +365,14 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     for (const c of [...a.room.children]) if (c !== a.state.points) { a.room.remove(c); c.traverse((m) => { m.geometry?.dispose(); m.material?.dispose(); }); }
     if (scene.room.kind !== 'none') {
       const size = a.state.gridSize ?? 10, dark = isDark();
-      const grid = new THREE.GridHelper(size, 20, dark ? 0x52525b : 0x9ca3af, dark ? 0x2a2a2e : 0xd1d5db);
+      const grid = new THREE.GridHelper(size, 20, dark ? 0x3f3f46 : 0xc4c4c8, dark ? 0x26262a : 0xe4e4e7);
+      grid.material.transparent = true; grid.material.opacity = 0.7;
       grid.quaternion.fromArray(upQuat(scene.gravity));
       grid.position.set(a.state.gridAt?.[0] ?? 0, scene.room.floor_y, a.state.gridAt?.[2] ?? 0);
       a.room.add(grid);
+      const floor = new THREE.Mesh(new THREE.PlaneGeometry(size, size).rotateX(-Math.PI / 2), new THREE.ShadowMaterial({ opacity: dark ? 0.35 : 0.18 }));
+      floor.quaternion.copy(grid.quaternion); floor.position.copy(grid.position); floor.position.y += 0.001; floor.receiveShadow = true;
+      a.room.add(floor);
     }
     const proxy = scene.room.collision;
     if (proxy?.enabled) { // N29: show the MODEL-ESTIMATED collision boxes so contacts are visible
@@ -349,11 +384,16 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       }
     }
     if (a.state.points) a.state.points.visible = scene.room.kind === 'ply' && backdrop;
-    for (const o of scene.objects) a.objects.add(objectMesh(o));
+    for (const o of scene.objects) {
+      const m = objectMesh(o);
+      m.visible = !hidden.includes(o.id);
+      m.traverse((x) => { if (x.isMesh) { x.castShadow = true; if (x.material?.roughness != null) x.material.roughness = Math.max(x.material.roughness, 0.8); } });
+      a.objects.add(m);
+    }
     const g = a.objects.children.find((c) => c.userData.id === selected);
-    if (g) { a.gizmo.attach(g); a.gizmo.setMode(mode); }
+    if (g && mode !== 'select') { a.gizmo.attach(g); a.gizmo.setMode(mode); }
     setJsonText(sceneJson(scene));
-  }, [scene, selected, mode, run, tone, backdrop]);
+  }, [scene, selected, mode, run, tone, backdrop, hidden]);
 
   // N24: fit the camera to the loaded room or track (robust bounding box, keeps the current viewing direction).
   const frameTo = (positions) => {
@@ -431,7 +471,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       setRun('playing'); setMessage('Running. SIMULATED physics, gravity from the scene vector.');
     } catch (e) { setRun('stopped'); setMessage('Physics could not start: ' + e.message); }
   };
-  const pause = () => { api.current.state.playing = false; setRun('paused'); setMessage('Paused. Resume, reset, or export the SIMULATED sensor traces.'); };
+  const pause = () => { api.current.state.playing = false; setRun('paused'); setMessage('Paused. Resume, reset, or export the SIMULATED sensor traces.'); snapshot(); };
   const traces = () => api.current?.state.sim?.traces() ?? [];
   const exportTraces = () => {
     const t = traces();
@@ -459,6 +499,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const loadRoom = async (id, note) => {
     try {
       const r = await getJson('/rooms/' + id + '/result');
+      getJson('/rooms/' + id).then((s) => setProject((p) => p ?? s.project_id ?? s.job?.project_id ?? null)).catch(() => {});
       const res = await fetch(WS + '/rooms/' + id + '/room.ply', { cache: 'no-store' });
       if (!res.ok) throw new Error('room.ply HTTP ' + res.status);
       const { n, collision } = showPly(new Uint8Array(await res.arrayBuffer()), r.scene.gravity, r.scene.room?.floor_y ?? 0);
@@ -474,7 +515,9 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   };
   const loadExperiment = async (id) => {
     try {
-      const t = trajectoryScene((await getJson('/experiments/' + id)).experiment.result);
+      const ex = (await getJson('/experiments/' + id)).experiment;
+      setProject((p) => p ?? ex.project_id ?? null);
+      const t = trajectoryScene(ex.result);
       if (!t) throw new Error('this experiment has no finished track yet');
       const a = api.current;
       if (a.state.track) a.three.remove(a.state.track);
@@ -504,82 +547,152 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const sel = scene.objects.find((o) => o.id === selected);
   const live = run === 'playing' || run === 'paused';
   const selTrace = live && sel?.sensor ? api.current?.state.sim?.trace(sel.id) : null;
+  const graphTrace = selTrace ?? (live ? api.current?.state.sim?.traces()[0] : null);
   const title = src?.kind === 'room' ? 'Your room lab' : src?.kind === 'experiment' ? 'Experiment replay' : 'Virtual lab';
-  return <section className="lab-editor" aria-label="Lab editor" data-side={side ? 'open' : 'closed'}>
-    <div className="le-top" role="toolbar" aria-label="Lab tools">
-      <button type="button" className="le-icon-btn" aria-pressed={side} aria-label={(side ? 'Hide' : 'Show') + ' inspector and scene JSON'} title="Inspector and scene JSON" onClick={() => setSide((v) => !v)}><Ico n="panel" /></button>
-      <strong className="le-title">{title}</strong>
-      <details className="le-add" ref={addMenu}>
-        <summary className={live ? 'le-off' : ''} title="Add an object or probe" aria-label="Add an object or probe"><Ico n="add" /><span>Add</span></summary>
-        <div className="le-menu" role="menu" aria-label="Lab kit">
-          {MENU.map(([group, items]) => <div key={group} className="le-menu-g" role="group" aria-label={group}><span className="le-menu-h">{group}</span>
-            {items.map((it) => { const [k, g] = Array.isArray(it) ? it : [it]; const label = g ? (g >= 1000 ? g / 1000 + ' kg' : g + ' g') + ' mass' : LABELS[k];
-              return <button key={label} type="button" role="menuitem" disabled={live} onClick={() => { addObject(k, g); addMenu.current.open = false; }}><Ico n={k} /><span>{label}</span></button>; })}
-          </div>)}
-        </div>
-      </details>
+  // N56: one honesty chip; every label word and caveat stays in its expanded list (SF3D credit once, not per object).
+  const scaleOpen = scene.room.kind === 'ply' && !scene.room.scale_verified;
+  const labels = [['SIMULATED', 'Physics runs in your browser (Rapier). Not a measurement.'],
+    ...(scene.objects.some((o) => o.shape?.type === 'mesh') ? [['MODEL-GENERATED shapes · Powered by Stability AI', 'Stable Fast 3D shapes; mass and friction MODEL-ESTIMATED.']] : []),
+    ...(src?.kind === 'experiment' ? [['Track MEASURED, ball what-if', 'Dots and line are your tracked video; the ball is a what-if replay.']] : []),
+    ...(scaleOpen ? [['Room scale unverified', 'Mark the A4 sheet in the Room tab to set metres.']] : []),
+    ...(scene.room.collision?.enabled ? [['MODEL-ESTIMATED collision proxy', 'Static boxes fitted to the raw scan.']] : [])];
+  const extra = labels.length - 1 - (scaleOpen ? 1 : 0);
+  const setObj = (fn) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === selected ? fn(o) : o)) }));
+  const toggleHidden = (id) => setHidden((h) => (h.includes(id) ? h.filter((x) => x !== id) : [...h, id]));
+  const deleteId = (id) => { if (live) return; edit((s) => removeObject(s, id)); if (selected === id) setSelected(null); setMessage('Deleted ' + id + '. Ctrl+Z undoes it.'); };
+  const playBtn = run !== 'playing' ? <button type="button" className="le-primary" onClick={play} disabled={run === 'loading' || !scene.objects.length}><Ico n="play" /><span>{run === 'paused' ? 'Resume' : 'Play'}</span></button> : <button type="button" className="le-primary" onClick={pause}><Ico n="pause" /><span>Pause</span></button>;
+  const openLeft = (t) => { setLeftTab(t); setSide(true); };
+  return <section className="lab-editor" aria-label="Lab editor" data-side={side ? 'open' : 'closed'} data-sheet={agentOpen || sel ? 'open' : 'closed'}>
+    <header className="le-top" role="toolbar" aria-label="Lab tools">
+      <a className="le-logo" href="/workspace" title="Back to workspace" aria-label="Back to workspace">R2S</a>
+      <input className="le-name" aria-label="Lab name" value={name || title} maxLength={120} onChange={(e) => setName(e.target.value)} onBlur={(e) => rename(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') e.currentTarget.blur(); }} />
       <div className="le-group" role="group" aria-label="Edit history">
         <button type="button" className="le-icon-btn" onClick={() => travel(undo, 'Undone')} disabled={!hist.current.past.length} aria-label="Undo" title="Undo (Ctrl+Z)"><Ico n="undo" /></button>
         <button type="button" className="le-icon-btn" onClick={() => travel(redo, 'Redone')} disabled={!hist.current.future.length} aria-label="Redo" title="Redo (Ctrl+Shift+Z)"><Ico n="redo" /></button>
-        <button type="button" className="le-icon-btn" onClick={removeSelected} disabled={!sel || live} aria-label="Delete selected" title="Delete selected (Delete key)"><Ico n="trash" /></button>
       </div>
       <div className="le-group" role="group" aria-label="Simulation">
-        {run !== 'playing' ? <button type="button" className="le-primary" onClick={play} disabled={run === 'loading' || !scene.objects.length}><Ico n="play" /><span>{run === 'paused' ? 'Resume' : 'Play'}</span></button> : <button type="button" className="le-primary" onClick={pause}><Ico n="pause" /><span>Pause</span></button>}
+        {playBtn}
         <button type="button" onClick={stop} disabled={!live} title="Reset to the start"><Ico n="reset" /><span className="le-lbl">Reset</span></button>
       </div>
       <div className="le-group le-end" role="group" aria-label="View and files">
-        {onTemplateTrials && <button type="button" onClick={onTemplateTrials} title="Open template trials"><Ico n="trials" />Template trials</button>}
         <button type="button" className="le-icon-btn" onClick={reframe} aria-label="Fit view to the room" title="Fit view to the room"><Ico n="frame" /></button>
         <button type="button" className="le-icon-btn" onClick={exportTraces} disabled={!live} aria-label="Export traces" title="Export SIMULATED sensor traces"><Ico n="traces" /></button>
-        <button type="button" className="le-icon-btn" onClick={() => download('lab-scene.json', sceneJson(scene))} aria-label="Export scene" title="Export scene JSON"><Ico n="download" /></button>
+        <button type="button" className="le-icon-btn" onClick={() => { download('lab-scene.json', sceneJson(scene)); snapshot(); }} aria-label="Export scene" title="Export scene JSON"><Ico n="download" /></button>
         <label className="le-file le-icon-btn" title="Import scene or room (.json, .ply)"><Ico n="upload" /><span className="le-sr">Import scene or room (.json, .ply)</span><input type="file" accept=".json,.ply" onChange={loadFile} /></label>
+        <button type="button" className="le-icon-btn" aria-label="Fullscreen" title="Fullscreen" onClick={(e) => (document.fullscreenElement ? document.exitFullscreen() : e.currentTarget.closest('.lab-editor')?.requestFullscreen?.())}><Ico n="expand" /></button>
+        <button type="button" className="le-agent-btn" aria-pressed={agentOpen} onClick={() => setAgentOpen((v) => !v)}><Ico n="agent" /><span className="le-lbl">Agent</span></button>
       </div>
-    </div>
+    </header>
     <div className="le-work">
-      {side && <aside className="le-side le-left" aria-label="Inspector">
-      <div className="le-panel">
-        <h3>Selected object</h3>
-        {!sel ? <p>Click an object to select it.</p> : <>
-          <p><strong>{sel.id}</strong> ({LABELS[sel.kind]})</p>
-          <div className="le-bar" role="group" aria-label="Transform mode">
-            {[['translate', 'Move'], ['rotate', 'Rotate'], ['scale', 'Resize']].map(([m, l]) => <button key={m} type="button" aria-pressed={mode === m} onClick={() => setMode(m)} disabled={live}>{l}</button>)}
-          </div>
-          <label><input type="checkbox" checked={sel.sensor} disabled={live} onChange={(e) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === sel.id ? { ...o, sensor: e.target.checked } : o)) }))} /> Record trajectory sensor</label>
-          {sel.kind !== 'pendulum' && sel.kind !== 'spring' && <label><input type="checkbox" checked={sel.fixed} disabled={live} onChange={(e) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === sel.id ? { ...o, fixed: e.target.checked } : o)) }))} /> Fixed in place</label>}
-          <p>Size {sel.size.map((v) => v.toFixed(2)).join(' x ')} m, mass {sel.mass} kg</p>
-          {sel.shape && <p>{sel.shape.type === 'mesh' ? SHAPE_LABEL + ' (Stable Fast 3D). Collider: ' + (sel.fixed ? 'mesh' : 'convex hull') + '. Mass and friction MODEL-ESTIMATED (' + sel.shape.category + ').' : 'Measured box shape. ' + sel.shape.fallback_reason}</p>}
-          {selTrace && <p>Sensor: {selTrace.samples.length} samples{selTrace.truncated ? ' (cap reached)' : ''}</p>}
-          <button type="button" className="le-danger" disabled={live} onClick={removeSelected}>Delete</button>
+      <nav className="le-rail" aria-label="Side panel">
+        <button type="button" className="le-icon-btn" aria-pressed={side && leftTab === 'objects'} aria-label="Objects" title="Objects" onClick={() => (side && leftTab === 'objects' ? setSide(false) : openLeft('objects'))}><Ico n="list" /></button>
+        <button type="button" className="le-icon-btn" aria-pressed={side && leftTab === 'room'} aria-label="Room" title="Room" onClick={() => (side && leftTab === 'room' ? setSide(false) : openLeft('room'))}><Ico n="room" /></button>
+      </nav>
+      {side && <aside className="le-side le-left" aria-label={leftTab === 'room' ? 'Room' : 'Objects'}>
+        <div className="le-tabs" role="tablist" aria-label="Side panel">
+          {[['objects', 'Objects'], ['room', 'Room']].map(([t, l]) => <button key={t} type="button" role="tab" aria-selected={leftTab === t} onClick={() => setLeftTab(t)}>{l}</button>)}
+          <button type="button" className="le-mini" aria-label="Collapse side panel" title="Collapse" onClick={() => setSide(false)}><Ico n="panel" /></button>
+        </div>
+        {leftTab === 'objects' ? <div className="le-panel">
+          {!scene.objects.length && <p className="le-muted">No objects yet. Use Add above the canvas.</p>}
+          <ul className="le-outline" aria-label="Scene objects">
+            {scene.objects.map((o) => { const off = hidden.includes(o.id); return <li key={o.id} aria-current={o.id === selected ? 'true' : undefined} data-off={off || undefined}>
+              <button type="button" className="le-row" onClick={() => setSelected(o.id)}><Ico n={ICONS[o.kind] ? o.kind : 'block'} /><span>{o.id}</span><small>{LABELS[o.kind]}</small></button>
+              <button type="button" className="le-mini" aria-label={(off ? 'Show ' : 'Hide ') + o.id} title={off ? 'Show in view' : 'Hide in view (still simulated)'} onClick={() => toggleHidden(o.id)}><Ico n={off ? 'eyeoff' : 'eye'} /></button>
+              <button type="button" className="le-mini" aria-label={'Delete ' + o.id} title="Delete" disabled={live} onClick={() => deleteId(o.id)}><Ico n="trash" /></button>
+            </li>; })}
+          </ul>
+          <details className="le-json">
+            <summary>Scene JSON (lab-scene-v1)</summary>
+            <textarea aria-label="Scene JSON" value={jsonText} onChange={(e) => setJsonText(e.target.value)} spellCheck={false} rows={12} />
+            <button type="button" onClick={() => applyJson(jsonText)}>Apply JSON</button>
+          </details>
+        </div> : <>
+          {src?.kind === 'room' ? <RoomTools id={src.id} room={src.room} onReload={(note) => loadRoom(src.id, note)} />
+            : <div className="le-panel"><h3>Room</h3><p className="le-muted">No room loaded. Open a room lab from your workspace, or import a .ply scan with the import button.</p></div>}
+          {scene.room.collision && <div className="le-panel">
+            <h3>Room collisions</h3>
+            <label><input type="checkbox" checked={backdrop} disabled={live} onChange={(e) => { setBackdrop(e.target.checked); edit((s) => ({ ...s, room: { ...s.room, collision: { ...s.room.collision, enabled: e.target.checked } } })); }} /> Show raw scan</label>
+            <p>Raw scan: the point cloud and {scene.room.collision.boxes.length} static collision boxes from it (MODEL-ESTIMATED). Off by default: the walls and furniture are the lab.</p>
+          </div>}
         </>}
-      </div>
-      {scene.room.collision && <div className="le-panel">
-        <h3>Room</h3>
-        <label><input type="checkbox" checked={backdrop} disabled={live} onChange={(e) => { setBackdrop(e.target.checked); edit((s) => ({ ...s, room: { ...s.room, collision: { ...s.room.collision, enabled: e.target.checked } } })); }} /> Show raw scan</label>
-        <p>Raw scan: the point cloud and {scene.room.collision.boxes.length} static collision boxes from it (MODEL-ESTIMATED). Off by default: the walls and furniture are the lab.</p>
-      </div>}
-      <details className="le-panel le-json">
-        <summary>Scene JSON (lab-scene-v1)</summary>
-        <textarea aria-label="Scene JSON" value={jsonText} onChange={(e) => setJsonText(e.target.value)} spellCheck={false} rows={12} />
-        <button type="button" onClick={() => applyJson(jsonText)}>Apply JSON</button>
-      </details>
       </aside>}
       <div className="le-stage">
         <div ref={host} className="le-canvas" data-testid="lab-editor-canvas" />
-        <div className="le-chips">
-          <span className="le-chip">SIMULATED</span>
-          {scene.objects.some((o) => o.shape?.type === 'mesh') && <span className="le-chip">MODEL-GENERATED shapes · Powered by Stability AI</span>}
-          {src?.kind === 'experiment' && <span className="le-chip le-warn">Track MEASURED, ball what-if</span>}
-          {scene.room.kind === 'ply' && !scene.room.scale_verified && <span className="le-chip le-warn">Room scale unverified</span>}
-          {scene.room.collision?.enabled && <span className="le-chip le-warn">MODEL-ESTIMATED collision proxy</span>}
+        <div className="le-float" role="toolbar" aria-label="Transform mode">
+          {[['select', 'Select'], ['translate', 'Move'], ['rotate', 'Rotate'], ['scale', 'Resize']].map(([m, l]) => <button key={m} type="button" className="le-icon-btn" aria-pressed={mode === m} aria-label={l} title={l} onClick={() => setMode(m)} disabled={live}><Ico n={m} /></button>)}
+          <span className="le-sep" aria-hidden="true" />
+          <details className="le-add" ref={addMenu}>
+            <summary className={live ? 'le-off' : ''} title="Add an object or probe" aria-label="Add an object or probe"><Ico n="add" /><span>Add</span></summary>
+            <div className="le-menu" role="menu" aria-label="Lab kit">
+              {MENU.map(([group, items]) => <div key={group} className="le-menu-g" role="group" aria-label={group}><span className="le-menu-h">{group}</span>
+                {items.map((it) => { const [k, g] = Array.isArray(it) ? it : [it]; const label = g ? (g >= 1000 ? g / 1000 + ' kg' : g + ' g') + ' mass' : LABELS[k];
+                  return <button key={label} type="button" role="menuitem" disabled={live} onClick={() => { addObject(k, g); addMenu.current.open = false; }}><Ico n={k} /><span>{label}</span></button>; })}
+              </div>)}
+              {onTemplateTrials && <div className="le-menu-g" role="group" aria-label="Templates"><span className="le-menu-h">Templates</span>
+                <button type="button" role="menuitem" onClick={onTemplateTrials}><Ico n="trials" /><span>Template trials</span></button></div>}
+            </div>
+          </details>
         </div>
-        <span className="le-time" aria-live="off">t = {time.toFixed(2)} s</span>
+        <details className="le-honesty">
+          <summary>{'SIMULATED' + (scaleOpen ? ' · scale unverified' : '') + (extra > 0 ? ' · +' + extra : '')}</summary>
+          <ul>{labels.map(([l, why]) => <li key={l}><strong>{l}</strong> {why}</li>)}</ul>
+        </details>
         <p className="le-status" role="status">{message} Gravity [{scene.gravity.join(', ')}] m/s^2{plyName ? ', room ' + plyName : ''}.</p>
       </div>
-      <aside className="le-side le-right" aria-label="Room tools and agent">
-        {src?.kind === 'room' && <RoomTools id={src.id} room={src.room} onReload={(note) => loadRoom(src.id, note)} />}
-        <AgentPanel scene={scene} load={!src && !/[?&](room|experiment)=/.test(window.location.search)} onScene={(s, msg) => { stop(); setSelected(null); setScene(s); setMessage(msg); }} />
+      <aside className="le-side le-right" aria-label={agentOpen ? 'Agent' : 'Properties'}>
+        <button type="button" className="le-sheet-close" onClick={() => { setAgentOpen(false); setSelected(null); }}>Close</button>
+        <div className="le-panel le-props" hidden={agentOpen}>
+          {sel ? <>
+            <h3>{sel.id} <small className="le-muted">{LABELS[sel.kind]}</small></h3>
+            <fieldset disabled={live}><legend>Position (m)</legend><div className="le-xyz">{['x', 'y', 'z'].map((ax, i) => <Num key={ax} label={ax} value={sel.position[i]} onCommit={(v) => setObj((o) => ({ ...o, position: o.position.map((p, j) => (j === i ? v : p)) }))} />)}</div></fieldset>
+            <fieldset disabled={live}><legend>Size (m)</legend><div className="le-xyz">{['x', 'y', 'z'].map((ax, i) => <Num key={ax} label={ax} value={sel.size[i]} onCommit={(v) => setObj((o) => ({ ...o, size: o.size.map((p, j) => (j === i ? Math.min(50, Math.max(0.005, v)) : p)) }))} />)}</div></fieldset>
+            <fieldset disabled={live}><legend>Physics</legend>
+              <Num label="Mass (kg)" value={sel.mass} onCommit={(v) => setObj((o) => ({ ...o, mass: v }))} />
+              {sel.kind !== 'pendulum' && sel.kind !== 'spring' && <label className="le-check"><input type="checkbox" checked={sel.fixed} onChange={(e) => setObj((o) => ({ ...o, fixed: e.target.checked }))} /> Fixed in place</label>}
+              <label className="le-check"><input type="checkbox" checked={sel.sensor} onChange={(e) => setObj((o) => ({ ...o, sensor: e.target.checked }))} /> Record trajectory sensor</label>
+            </fieldset>
+            {sel.shape && <p className="le-muted">{sel.shape.type === 'mesh' ? SHAPE_LABEL + ' (Stable Fast 3D). Collider: ' + (sel.fixed ? 'mesh' : 'convex hull') + '. Mass and friction MODEL-ESTIMATED (' + sel.shape.category + ').' : 'Measured box shape. ' + sel.shape.fallback_reason}</p>}
+            {selTrace && <p>Sensor: {selTrace.samples.length} samples{selTrace.truncated ? ' (cap reached)' : ''}</p>}
+            <button type="button" className="le-danger" disabled={live} onClick={removeSelected}>Delete</button>
+          </> : <>
+            <h3>Scene</h3>
+            <fieldset disabled={live}><legend>Gravity (m/s^2)</legend><div className="le-xyz">{['x', 'y', 'z'].map((ax, i) => <Num key={ax} label={ax} value={scene.gravity[i]} onCommit={(v) => edit((s) => ({ ...s, gravity: s.gravity.map((g, j) => (j === i ? v : g)) }))} />)}</div></fieldset>
+            <p className="le-muted">Time step {(1 / 120).toFixed(4)} s (fixed 120 Hz). {scene.objects.length} objects. Select an object in the canvas or the Objects list to edit it.</p>
+          </>}
+        </div>
+        <div hidden={!agentOpen}>
+          <AgentPanel scene={scene} load={!src && !/[?&](room|experiment)=/.test(window.location.search)} onScene={(s, msg) => { stop(); setSelected(null); setScene(s); setMessage(msg); }} />
+        </div>
       </aside>
     </div>
+    <footer className="le-timeline" aria-label="Timeline">
+      {playBtn}
+      <button type="button" className="le-icon-btn" onClick={stop} disabled={!live} aria-label="Reset" title="Reset to the start"><Ico n="reset" /></button>
+      <span className="le-time" aria-live="off">t = {time.toFixed(2)} s</span>
+      <Graph trace={graphTrace} />
+    </footer>
   </section>;
+}
+
+// N56 compact numeric field: commits on blur or Enter so typing "0." is not rewritten mid-edit.
+function Num({ label, value, onCommit }) {
+  return <label className="le-field"><span>{label}</span>
+    <input type="number" step="0.01" key={value} defaultValue={+Number(value).toFixed(4)}
+      onBlur={(e) => { const v = Number(e.target.value); if (e.target.value !== '' && Number.isFinite(v) && v !== value) onCommit(v); }}
+      onKeyDown={(e) => { if (e.key === 'Enter') e.currentTarget.blur(); }} /></label>;
+}
+
+// N56 live graph of the SIMULATED sensor trace (selected object, else the first sensor); values straight from the engine.
+function Graph({ trace }) {
+  const all = trace?.samples ?? [];
+  if (all.length < 2) return <p className="le-graph le-muted">Turn on Record trajectory sensor for an object, then Play to see a live graph.</p>;
+  const step = Math.ceil(all.length / 300), s = all.filter((_, i) => i % step === 0 || i === all.length - 1);
+  const probe = s[0].value != null, ys = s.map((x) => (probe ? x.value : x.p[1])), t0 = s[0].t, t1 = s.at(-1).t;
+  const lo = Math.min(...ys), span = Math.max(...ys) - lo || 1;
+  const pts = s.map((x, i) => ((300 * (x.t - t0)) / (t1 - t0 || 1)).toFixed(1) + ',' + (56 - (52 * (ys[i] - lo)) / span).toFixed(1)).join(' ');
+  const what = (probe ? 'reading' : 'y position') + ' (' + (probe ? trace.units.value : 'm') + ')';
+  return <figure className="le-graph"><svg viewBox="0 0 300 60" preserveAspectRatio="none" role="img" aria-label={trace.object_id + ' ' + what + ' over time, SIMULATED'}><polyline points={pts} /></svg>
+    <figcaption>{trace.object_id} {what}: {ys.at(-1).toFixed(3)} at t = {t1.toFixed(2)} s. SIMULATED</figcaption></figure>;
 }
 

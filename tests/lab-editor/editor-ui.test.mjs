@@ -7,13 +7,13 @@ const read = (p) => readFileSync(new URL('../../Build/web/src/' + p, import.meta
 const editor = read('lab-editor/LabEditor.jsx');
 const css = read('lab-editor/lab-editor.css');
 
-test('editor and side panels share a bounded width-based height, except fullscreen', () => {
-  assert.match(css, /\.le-work \{ --le-stage-height: clamp\(420px, 38cqw, 640px\); container-type: inline-size/);
-  assert.match(css, /\.le-side \{[^}]*max-height: var\(--le-stage-height\)/);
-  assert.match(css, /\.le-stage \{[^}]*height: var\(--le-stage-height\)/);
-  assert.match(css, /--le-stage-height: clamp\(320px, 80cqw, 480px\)/);
+test('N56 full-window app: site header and footer hidden, fixed grid of top bar, work area and timeline', () => {
+  assert.match(css, /body:has\(\.lab-editor\) \.site-header, body:has\(\.lab-editor\) \.site-footer/);
+  assert.match(css, /\.lab-editor \{[^}]*position: fixed; inset: 0;[^}]*grid-template-rows: auto minmax\(0, 1fr\) auto/);
   assert.match(css, /\.le-stage:fullscreen \{ width: 100%; height: 100%; min-height: 0; \}/);
-  assert.doesNotMatch(css, /height: (?:calc\(100vh|58vh)/);
+  for (const x of ['className="le-top"', 'className="le-rail"', 'role="tablist"', 'className="le-float"', 'className="le-timeline"', 'className="le-honesty"', 'aria-label="Lab name"', 'aria-label="Fullscreen"']) assert.ok(editor.includes(x), x);
+  // agent panel stays mounted (hidden) so its thread and project scene load survive toggling
+  assert.match(editor, /<div hidden=\{!agentOpen\}>\s*<AgentPanel /);
 });
 
 test('SF3D credit is one conditional viewport chip, never a per-object sprite', () => {
@@ -21,8 +21,10 @@ test('SF3D credit is one conditional viewport chip, never a per-object sprite', 
   assert.equal(fixture.objects.filter((o) => o.shape?.type === 'mesh').length, 2);
   assert.doesNotMatch(read('lab-editor/sf3d-shape.mjs'), /Sprite|CanvasTexture|captionSprite/);
   assert.doesNotMatch(editor, /captionSprite/);
-  assert.match(editor, /scene\.objects\.some\(\(o\) => o\.shape\?\.type === 'mesh'\) && <span className="le-chip">MODEL-GENERATED shapes · Powered by Stability AI<\/span>/);
+  assert.match(editor, /scene\.objects\.some\(\(o\) => o\.shape\?\.type === 'mesh'\) \? \[\['MODEL-GENERATED shapes · Powered by Stability AI'/);
   assert.equal(editor.match(/MODEL-GENERATED shapes · Powered by Stability AI/g)?.length, 1);
+  for (const w of ['SIMULATED', 'Track MEASURED, ball what-if', 'Room scale unverified', 'MODEL-ESTIMATED collision proxy']) assert.ok(editor.includes("['" + w), w);
+  assert.doesNotMatch(editor, /className="le-chip/);
   assert.match(editor, /SHAPE_LABEL \+ ' \(Stable Fast 3D\)/);
 });
 
@@ -41,11 +43,11 @@ test('outside-canvas panels allow native scroll chaining and controls target onl
   }
 });
 
-test('Template trials is in the toolbar right group before view/files, not in an editor toggle band', () => {
+test('Template trials is a Templates section of the Add menu, not a separate toolbar button', () => {
   const page = read('app/(public)/lab/page.jsx');
   assert.match(page, /!editor && <p className="lab-toggle"/);
   assert.match(page, /<LabEditor onTemplateTrials=\{\(\) => setEditor\(false\)\} \/>/);
-  assert.match(css, /main:has\(\.lab-editor\) \{ padding-top: 0\.75rem; \}/);
-  assert.match(css, /\.le-top button, \.le-file \{[^}]*margin: 0;/);
-  assert.match(editor, /aria-label="View and files">\s*\{onTemplateTrials && <button[^>]*onClick=\{onTemplateTrials\}[^>]*><Ico n="trials" \/>Template trials<\/button>\}/);
+  assert.match(css, /\.le-top button, \.le-file[^{]*\{[^}]*margin: 0;/);
+  assert.match(editor, /aria-label="Templates"><span className="le-menu-h">Templates<\/span>\s*<button type="button" role="menuitem" onClick=\{onTemplateTrials\}>/);
+  assert.equal(editor.match(/onClick=\{onTemplateTrials\}/g)?.length, 1);
 });

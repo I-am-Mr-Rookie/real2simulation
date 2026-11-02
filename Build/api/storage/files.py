@@ -25,6 +25,8 @@ MAX_FILE = 200 * 1024 * 1024
 MAX_USER = 1024 * 1024 * 1024
 MAX_DAILY = 20
 MAX_SECONDS = 120.0
+MAX_SNAPSHOT = 256 * 1024  # N56: lab preview image for the workspace project card
+SNAPSHOT_TYPES = {"image/jpeg": b"\xff\xd8\xff", "image/png": b"\x89PNG\r\n\x1a\n", "image/webp": b"RIFF"}
 DHAKA = timezone(timedelta(hours=6))
 TYPES = {".mp4": "video/mp4", ".mov": "video/quicktime", ".webm": "video/webm", ".jpg": "image/jpeg",
          ".jpeg": "image/jpeg", ".png": "image/png"}
@@ -229,7 +231,40 @@ def create_router(store=None, probe=video_seconds) -> APIRouter:
     @router.get("/projects")
     def list_projects(owner: str = Depends(require_owner)):
         rows = db().db.execute("SELECT * FROM projects WHERE user=? ORDER BY created DESC, id", (owner,))
-        return {"projects": [dict(r) for r in rows]}
+        return {"projects": [{**dict(r), "snapshot_url": _snapshot_url(r["id"], owner)} for r in rows]}
+
+    # N56: one small owner-scoped preview per project (the lab canvas), overwritten on each save or finished run.
+    def _snapshot(owner, project_id):
+        return db().root / "snapshots" / owner / project_id
+
+    def _snapshot_url(project_id, owner):
+        p = _snapshot(owner, project_id)
+        return f"/api/workspace/projects/{project_id}/snapshot?v={p.stat().st_mtime_ns}" if p.is_file() else None
+
+    @router.put("/projects/{project_id}/snapshot")
+    async def put_snapshot(project_id: str, request: Request, owner: str = Depends(require_owner)):
+        db().project(owner, project_id)
+        media_type = (request.headers.get("content-type") or "").split(";")[0].strip().lower()
+        if media_type not in SNAPSHOT_TYPES:
+            raise error(415, "UNSUPPORTED_TYPE", "snapshot must be image/jpeg, image/png or image/webp")
+        data = await request.body()
+        if len(data) > MAX_SNAPSHOT:
+            raise error(413, "FILE_TOO_LARGE", "snapshot exceeds 256 KB")
+        if not data.startswith(SNAPSHOT_TYPES[media_type]) or (media_type == "image/webp" and data[8:12] != b"WEBP"):
+            raise error(415, "UNSUPPORTED_TYPE", "snapshot bytes do not match the declared image type")
+        p = _snapshot(owner, project_id)
+        p.parent.mkdir(parents=True, exist_ok=True)
+        (p.with_suffix(".type")).write_text(media_type)
+        p.write_bytes(data)
+        return {"snapshot_url": _snapshot_url(project_id, owner)}
+
+    @router.get("/projects/{project_id}/snapshot")
+    def get_snapshot(project_id: str, owner: str = Depends(require_owner)):
+        db().project(owner, project_id)
+        p = _snapshot(owner, project_id)
+        if not p.is_file():
+            raise error(404, "NOT_FOUND", "no snapshot")
+        return FileResponse(p, media_type=p.with_suffix(".type").read_text(), headers={"cache-control": "no-store"})
 
     @router.get("/projects/{project_id}")
     def get_project(project_id: str, owner: str = Depends(require_owner)):
