@@ -3,6 +3,7 @@
 // N12 "Ask the agent": syncs the editor scene with the project, sends a turn, applies agent edits live, shows the report.
 import { useEffect, useRef, useState } from 'react';
 import { validateScene, sceneJson } from './scene.mjs';
+import { readAgentMode, agentTier } from '../workspace/live.mjs';
 
 const BASE = '/api/workspace/agent';
 export const EXAMPLES = ['Drop a 5 cm ball from 1.2 m and measure g', 'Pendulum, 0.8 m, find the period'];
@@ -36,11 +37,16 @@ export default function AgentPanel({ scene, onScene, load = true }) {
     if (!msg.trim() || busy) return;
     setBusy(true); setQuestion(null); setLog((l) => [...l, { who: 'You', text: msg }]);
     try {
+      const session = await fetch('/api/workspace/session', { cache: 'no-store' });
+      if (!session.ok) throw new Error('Sign in required.');
+      const { userKey } = await session.json();
+      if (!userKey) throw new Error('Sign in required.');
+      const tier = agentTier(readAgentMode(globalThis.localStorage, userKey));
       await call('/lab/scene', { method: 'POST', body: sceneJson(scene) }); // the agent edits what the user sees
-      const t = await call('/turn', { method: 'POST', body: JSON.stringify({ text: CONTEXT + msg, history }) });
+      const t = await call('/turn', { method: 'POST', body: JSON.stringify({ text: CONTEXT + msg, history, ...tier }) });
       const names = (t.tool_calls ?? []).map((c) => c.name);
       setHistory((h) => [...h, { role: 'user', content: msg }, { role: 'assistant', content: t.reply }].slice(-20));
-      setLog((l) => [...l, { who: 'Agent', text: t.reply, tools: names }]);
+      setLog((l) => [...l, { who: 'Agent', text: t.reply, tools: names, model: t.model, fallback: Boolean(t.answered_by) }]);
       setQuestion(t.question);
       if (names.some((n) => n.startsWith('lab_'))) onScene(validateScene((await call('/lab/scene')).scene), 'Agent edits applied. SIMULATED.');
       if (names.includes('write_report')) setReport((await call('/lab/report')).markdown);
@@ -53,7 +59,7 @@ export default function AgentPanel({ scene, onScene, load = true }) {
     <h3>Ask the agent</h3>
     <div className="le-log" aria-live="polite" ref={logRef} tabIndex={0} aria-label="Conversation">
       {!log.length && <p className="le-muted">Ask for an experiment, or to add, move, resize or remove objects.</p>}
-      {log.map((m, i) => <p key={i}><strong>{m.who}:</strong> {m.text}{m.tools?.length ? <small> (tools: {m.tools.join(', ')})</small> : null}</p>)}
+      {log.map((m, i) => <p key={i}><strong>{m.who}:</strong> {m.text}{m.tools?.length ? <small> (tools: {m.tools.join(', ')})</small> : null}{m.model ? <small className="le-muted"> (Answered by {m.model}{m.fallback ? ', fallback model' : ''})</small> : null}</p>)}
     </div>
     {question && <div className="le-bar" role="group" aria-label="Agent question">
       {question.options.map((o) => <button key={o.label} type="button" onClick={() => ask(o.label)}>{o.label}{o.recommended ? ' (recommended)' : ''}</button>)}

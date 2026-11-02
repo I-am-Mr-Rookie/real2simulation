@@ -36,6 +36,7 @@ export const createLive = (React) => {
     const [files, setFiles] = useState({ items: [], quota: null, error: null, loaded: false });
     const [up, setUp] = useState(null);
     const [project, setProject] = useState(null);
+    const projectRequest = useRef(null);
     const [msgs, setMsgs] = useState([]);
     const [busy, setBusy] = useState(false);
     const [draft, setDraft] = useState('');
@@ -106,6 +107,7 @@ export const createLive = (React) => {
       const r = await call('/rooms', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ file_id: file.id, project_id: file.project_id || undefined }) }).catch(() => null);
       if (!r?.ok) { setFiles((s) => ({ ...s, error: errText(r, 'Could not start the room build') })); return; }
       track('room', r.body.job.job_id);
+      loadJobs();
     };
     // N16 share: POST returns { path }, DELETE revokes every active link of this experiment.
     const share = async (id, on) => {
@@ -129,14 +131,15 @@ export const createLive = (React) => {
       finally { setBusy(false); }
     };
 
-    const newProject = () => { setProject(null); push({ role: 'assistant', text: UPLOAD_QUESTION.question, question: UPLOAD_QUESTION, local: true }); openAgent?.(); };
+    const newProject = () => { projectRequest.current = null; setProject(null); push({ role: 'assistant', text: UPLOAD_QUESTION.question, question: UPLOAD_QUESTION, local: true }); openAgent?.(); };
 
     const answer = async (msg, picked, other) => {
       setMsgs((list) => list.map((m) => (m.id === msg.id ? { ...m, answered: questionAnswer(msg.question, picked, other) } : m)));
       if (!msg.local) return send(questionAnswer(msg.question, picked, other));
       const opt = UPLOAD_QUESTION.options[picked] ?? UPLOAD_QUESTION.options[0];
       push({ role: 'user', text: opt.label });
-      const r = await call('/projects', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ mode: opt.mode, title: projectTitle(opt.mode) }) }).catch(() => null);
+      projectRequest.current = call('/projects', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ mode: opt.mode, title: projectTitle(opt.mode) }) }).catch(() => null);
+      const r = await projectRequest.current;
       if (r?.ok) { setProject(r.body.project); push({ role: 'assistant', text: 'Filming tips for ' + opt.label.toLowerCase() + ':', tips: TIPS[opt.mode] }); }
       else push({ role: 'error', text: errText(r, 'Could not create the project') });
       if (other?.trim()) send(other);
@@ -145,7 +148,10 @@ export const createLive = (React) => {
     const upload = async (file) => {
       if (!file) return;
       setUp({ name: file.name, pct: 0, error: null });
-      const r = await uploadXhr(file, project?.id, (pct) => setUp((u) => (u ? { ...u, pct } : u)));
+      // A file picker can retain an older render's handler or finish while the project POST is still pending.
+      const request = projectRequest.current, selected = request ? await request : null;
+      if (request && (!selected?.ok || !selected.body?.project?.id)) { setUp({ name: file.name, pct: 0, error: 'Could not create the project. Try New project again.' }); return; }
+      const r = await uploadXhr(file, selected?.body?.project?.id, (pct) => setUp((u) => (u ? { ...u, pct } : u)));
       setUp(r.ok ? null : { name: file.name, pct: 0, error: errText(r, 'Upload failed') });
       if (r.ok && r.body?.quota) setFiles((f) => ({ ...f, quota: r.body.quota }));
       loadFiles();

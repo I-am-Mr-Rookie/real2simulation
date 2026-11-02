@@ -120,6 +120,31 @@ class StorageTests(unittest.TestCase):
         self.assertEqual(self.c.get(f"/internal/workspace/projects/{p['id']}", headers=B).status_code, 404)
         self.assertEqual(self.c.get("/internal/workspace/projects", headers=B).json()["projects"], [])
 
+    def test_room_project_survives_upload_job_and_lists_without_changing_null_rows(self):
+        from Build.api.room import create_router
+
+        self.c.app.include_router(create_router(self.store, remote=lambda *a: None))
+        legacy = self.up().json()["file"]
+        with mock.patch("Build.api.room.threading.Thread"):
+            legacy_room = self.c.post("/internal/workspace/rooms", headers=A,
+                                      json={"file_id": legacy["id"]}).json()["job"]["job_id"]
+        project = self.c.post("/internal/workspace/projects", headers=A,
+                              json={"mode": "room", "title": "My room"}).json()["project"]
+        uploaded = self.up(project_id=project["id"]).json()["file"]
+        self.assertEqual(uploaded["project_id"], project["id"])
+        with mock.patch("Build.api.room.threading.Thread"):
+            for payload in ({"file_id": uploaded["id"], "project_id": project["id"]},
+                            {"file_id": uploaded["id"]}):
+                r = self.c.post("/internal/workspace/rooms", headers=A, json=payload)
+                self.assertEqual(r.status_code, 202, r.text)
+                self.assertEqual(r.json()["job"]["project_id"], project["id"])
+        rooms = self.c.get("/internal/workspace/rooms", headers=A).json()["rooms"]
+        self.assertEqual([r["project_id"] for r in rooms if r["id"] != legacy_room], [project["id"]] * 2)
+        self.assertIsNone(next(r for r in rooms if r["id"] == legacy_room)["project_id"])
+        files = self.c.get(f"/internal/workspace/projects/{project['id']}", headers=A).json()["files"]
+        self.assertEqual([f["id"] for f in files], [uploaded["id"]])
+        self.assertIsNone(self.store.get("user_synthA", legacy["id"])["project_id"])
+
 
 @unittest.skipUnless(shutil.which("ffmpeg") and shutil.which("ffprobe"), "ffmpeg/ffprobe not installed")
 class FfprobeTests(unittest.TestCase):

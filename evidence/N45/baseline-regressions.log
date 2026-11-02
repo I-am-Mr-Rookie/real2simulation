@@ -1,0 +1,90 @@
+✖ F3: lab sends the current account saved tier/contributor and discloses the actual answering model (83.0983ms)
+✖ F3: failed identity lookup never sends a turn with another account mode (3.8368ms)
+✖ F4: a pending New Room project reaches upload and room creation, even through the previous render handler (12.9611ms)
+✖ F4: failed or malformed project creation does not silently upload outside the chosen project (2.2515ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 921.5654
+
+✖ failing tests:
+
+test at tests\workspace\consistency.test.mjs:48:1
+✖ F3: lab sends the current account saved tier/contributor and discloses the actual answering model (83.0983ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + undefined
+  - 'open'
+
+      at TestContext.<anonymous> (file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/.worktrees/N45-orch290/tests/workspace/consistency.test.mjs:64:12)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'open',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\consistency.test.mjs:74:1
+✖ F3: failed identity lookup never sends a turn with another account mode (3.8368ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+    [
+  +   '/api/workspace/agent/lab/scene'
+  -   '/api/workspace/session'
+    ]
+
+      at TestContext.<anonymous> (file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/.worktrees/N45-orch290/tests/workspace/consistency.test.mjs:79:10)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ '/api/workspace/agent/lab/scene' ],
+    expected: [ '/api/workspace/session' ],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\consistency.test.mjs:83:1
+✖ F4: a pending New Room project reaches upload and room creation, even through the previous render handler (12.9611ms)
+  AssertionError [ERR_ASSERTION]: wait for the chosen project before sending the file
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/.worktrees/N45-orch290/tests/workspace/consistency.test.mjs:107:35)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\workspace\consistency.test.mjs:118:1
+✖ F4: failed or malformed project creation does not silently upload outside the chosen project (2.2515ms)
+  AssertionError [ERR_ASSERTION]: must not upload after project failure
+      at new globalThis.XMLHttpRequest (file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/.worktrees/N45-orch290/tests/workspace/consistency.test.mjs:122:64)
+      at file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/.worktrees/N45-orch290/Build/web/src/workspace/live-view.mjs:21:15
+      at new Promise (<anonymous>)
+      at uploadXhr (file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/.worktrees/N45-orch290/Build/web/src/workspace/live-view.mjs:20:10)
+      at Object.upload (file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/.worktrees/N45-orch290/Build/web/src/workspace/live-view.mjs:148:23)
+      at TestContext.<anonymous> (file:///C:/Users/HP/Documents/Hackathon/2026-10-26%20-%20Meta%20Global%20AI%20Developer%20Hackathon/.worktrees/N45-orch290/tests/workspace/consistency.test.mjs:125:15)
+      at async Test.run (node:internal/test_runner/test:1332:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:911:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: undefined,
+    operator: 'fail',
+    diff: 'simple'
+  }

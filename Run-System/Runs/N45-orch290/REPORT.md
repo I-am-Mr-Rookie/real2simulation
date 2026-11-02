@@ -1,0 +1,16 @@
+# N45-orch290: DONE
+- Branch `run/N45-orch290`, dispatch base `addc05f2f954116e93b1307513f691e738682c20`; implementation stopped before cutoff.
+- F3: lab reads the saved per-account workspace mode through the same `readAgentMode`/`agentTier` helpers; sends tier + contributor, and quietly labels the actual answering model and fallback. Sol remains unselectable.
+- New no-store `/api/workspace/session` GET derives the workspace storage key from the verified Clerk session, not request input or other accounts' stored keys. Identity failure prevents inference.
+- F4: upload uses the selected project request instead of a render-captured project value; waits for project creation, and refuses failed/malformed creation instead of silently uploading unassigned. The resulting file project id already flows through room creation; refreshes project jobs after starting a room.
+- Existing unassigned files/rooms are untouched. Backend ownership/project validation was reused without application changes.
+- Regression coverage: actual JSX panel with mocked transports, deferred project POST/stale upload handler, malformed/failed creation, per-account tier isolation, hidden Sol, model/fallback label; API upload-to-room/list round trip and legacy null rows.
+- Node: `node --test 'tests/workspace/*.test.mjs' 'tests/web-workspace-api/*.test.mjs' 'tests/web-private/*.test.mjs' 'tests/lab-editor/*.test.mjs'`: 210 passed, exit 0.
+- Python: `uv run --no-project --python <installed Python 3.14> python -m pytest tests/api-storage tests/agent/test_core.py tests/agent/test_fallback.py tests/n21 -q`: 128 passed, exit 0; one existing AnyIO/pytest deprecation warning.
+- Unpinned uv selected Python 3.12 without pytest; reused installed Python 3.14, installed nothing.
+- `npm run build`: exit 0; production build includes the session route. `git diff --check`: passed.
+- Red-side check: `node --import ./evidence/N45/baseline.mjs --test tests/workspace/consistency.test.mjs` against the immutable dispatch base fails all four UI regressions as expected; fixed sources pass them.
+- Evidence: `evidence/N45/{node-tests.log,python-tests.log,build.log,baseline-regressions.log,baseline.mjs,secret-scan.json}`; generated log trailing whitespace normalized only.
+- Paid calls: 0. GPU/API inference: none. Deploy/push: none.
+- Skipped: live DEV check (not requested), project-selection persistence across page reloads, null-row migration (explicitly forbidden). Selection stays page-local as before.
+- Risk/check limitation: the pre-existing lab-editor Rapier test catches and logs `fitter skipped: KeyError: 'objects'` from its empty-scene fixture, so its fitter assertion did not execute despite the passing Node count. Left outside scope/Owns; not a new N45 failure.
