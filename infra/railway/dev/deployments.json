@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "7aa42a4c-c6f8-4f26-a82c-bbb9780dbe59",
-      "previousDeploymentId": "31c98933-3fc6-4865-9e32-6c0100645531",
-      "redeployNote": "controller: N65 picker inset + scale provenance",
-      "sourceRevision": "b171c383c607f731faf6418af69c64000fa93d39",
-      "verifiedUtc": "2026-11-02T15:46Z",
+      "deploymentId": "9006ce9f-2944-4339-a5f8-d137fcfb9e31",
+      "previousDeploymentId": "7aa42a4c-c6f8-4f26-a82c-bbb9780dbe59",
+      "redeployNote": "controller: N68 Reset status + phone summary inset",
+      "sourceRevision": "999af6ebfab844465d13be9bc637a8e2f28dc778",
+      "verifiedUtc": "2026-11-02T19:50Z",
       "url": "https://real2simulation.up.railway.app",
       "customDomain": "https://real2simulation.rookiecoders.tech",
       "providerStatus": "SUCCESS",
@@ -19,8 +19,9 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "d53a0892-42b8-4713-9d62-529b49f3a8a5",
+      "deploymentId": "0d24d39f-bfe3-4a11-8970-b38b736817d6",
       "previousDeploymentIds": [
+        "d53a0892-42b8-4713-9d62-529b49f3a8a5",
         "736f8bec-c974-49e8-b4ce-d25d4d30d1a1",
         "c9a9e53f-452d-4616-97cf-4cb9208e495e",
         "d28f9eb9-acb7-4122-8e0e-3f95626c9839",
@@ -47,8 +48,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "055dfbb7610eb34248534323649e7ccc99057a89",
-      "verifiedUtc": "2026-11-02T19:05Z",
+      "sourceRevision": "999af6ebfab844465d13be9bc637a8e2f28dc778",
+      "verifiedUtc": "2026-11-02T19:58Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -64,7 +65,7 @@
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "5df506cd-affc-44c6-a83a-d527b46e6766",
-      "redeployNote": "controller: N67 spend fixes (per-owner rebuild limit, 75 s L4 budget, call-id cancel)",
+      "redeployNote": "controller: N69 room artifacts in 1 GB quota",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {

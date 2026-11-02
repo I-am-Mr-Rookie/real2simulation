@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 03, 01:16 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 03, 01:29 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **353 / 365** runs done · 2 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **354 / 365** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,7 +24,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **N68** — Codex · GPT-6.1 Sol, effort high — Fix web gaps from N63/N65: lab status text still says Running after Reset; phone floating nav covers workspace summary text at 375 px; IAB check (30 min) *(in progress)*
 - [~] **N69** — Codex · GPT-6.1 Sol, effort high — Count room artifacts (rooms/<owner>/) in the 1 GB per-user quota; refuse new room jobs and rebuilds at or over quota before paid work (N63 gap) (30 min) *(in progress)*
 
 ## Waiting for Koushik
@@ -49,7 +48,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (63/69)</summary>
+<details><summary><b>N</b> —  (64/69)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -117,7 +116,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N65** — Codex · GPT-6.1 Sol, effort high — Fix N60 in-app-browser findings: F06 phone model picker hidden behind the left rail; F05 replay summary calls an assumed size a known size (30 min)
 - [x] **N66** — Codex (native Claude) · Opus 5.5, effort high — Cross-vendor spend review of N63 (read-only): N62 findings closed with tests, reserve-before-spend on every paid path incl. L4 timeout then A10G fallback, cap under concurrency/restart, conservative bounds, no orphaned Modal calls, live-result cost matches formulas (30 min)
 - [x] **N67** — Codex · GPT-6.1 Sol, effort high — Fix N66 spend findings on N63: P2-1 rebuild limit per owner (3/user/day) not per room; P2-2 raise ROOM_START_BUDGET_S to about 75 s so a healthy L4 cold start is not cancelled, and settle a confirmed-cancelled attempt without the 900 s idle; P2-3a abort check before SF3D spawn; P2-3b store Modal call id and best-effort cancel orphans on restart and reap; P3-1 cap room settle at its estimate; P3-2 correct rebuild-failure reason; P3-4 fast negative test. No paid live job (30 min)
-- [~] **N68** — Codex · GPT-6.1 Sol, effort high — Fix web gaps from N63/N65: lab status text still says Running after Reset; phone floating nav covers workspace summary text at 375 px; IAB check (30 min) *(in progress)*
+- [x] **N68** — Codex · GPT-6.1 Sol, effort high — Fix web gaps from N63/N65: lab status text still says Running after Reset; phone floating nav covers workspace summary text at 375 px; IAB check (30 min)
 - [~] **N69** — Codex · GPT-6.1 Sol, effort high — Count room artifacts (rooms/<owner>/) in the 1 GB per-user quota; refuse new room jobs and rebuilds at or over quota before paid work (N63 gap) (30 min) *(in progress)*
 - [ ] **N64** — Codex (native Claude) · Sonnet 5.5, effort medium — Guide page (single run, LAST product row): public /guide with a simple beginner walkthrough of every feature (sign in, model picker, new project, room lab, phone experiment, lab editor, agent, files and quotas, GPU dot, demo library) with screenshots taken from DEV in the in-app browser using the test fixture and sample projects only; header and footer link (60 min)
 
