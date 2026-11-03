@@ -2,6 +2,7 @@
 import hashlib
 import io
 import json
+import os
 import shutil
 import tempfile
 import unittest
@@ -87,6 +88,126 @@ class SampleTests(unittest.TestCase):
 
     def room_dir(self, owner="user_synthA"):
         return next((self.store.root / "rooms" / owner).iterdir())
+
+    def test_fresh_seed_excludes_all_public_pack_bytes_but_counts_metadata(self):
+        self.shell_bundle()
+        self.projects()
+        d = self.room_dir()
+        public = json.loads((d / "public.json").read_text())
+        self.assertEqual(set(public), {"room.ply", "mapanything.npz", "objects/room-object-1.glb"})
+        for name, entry in public.items():
+            path = d / name
+            self.assertEqual(entry, {"size": path.stat().st_size, "mtime_ns": path.stat().st_mtime_ns,
+                                     "sha256": hashlib.sha256(path.read_bytes()).hexdigest()})
+        # Quota uses only stat fingerprints, never reads/hashes public file contents.
+        with mock.patch.object(sample.hashlib, "sha256", side_effect=AssertionError("quota must not hash")):
+            quota = self.store.quota("user_synthA")
+        self.assertEqual(quota["storage_bytes_public"], sum(entry["size"] for entry in public.values()))
+        self.assertEqual(quota["storage_bytes_used"], sum(p.stat().st_size for p in d.rglob("*")
+                                                       if p.is_file() and p.relative_to(d).as_posix() not in public))
+        self.assertGreaterEqual(quota["storage_bytes_used"], (d / "scene.json").stat().st_size
+                                + (d / "public.json").stat().st_size)
+        response = self.c.get("/internal/workspace/files", headers=A)
+        self.assertEqual(response.json()["quota"]["storage_bytes_public"], quota["storage_bytes_public"])
+
+    def test_public_exemption_is_independent_of_sample_status_and_owner_isolated(self):
+        self.shell_bundle()
+        self.projects()
+        d = self.room_dir()
+        expected = self.store.quota("user_synthA")["storage_bytes_public"]
+        status = json.loads((d / "status.json").read_text())
+        status["sample"] = False
+        (d / "status.json").write_text(json.dumps(status))
+        self.assertEqual(self.store.quota("user_synthA")["storage_bytes_public"], expected)
+        self.assertEqual(self.store.quota("user_synthB")["storage_bytes_public"], 0)
+        (d / "public.json").unlink()
+        status["sample"] = True
+        (d / "status.json").write_text(json.dumps(status))
+        self.assertEqual(self.store.quota("user_synthA")["storage_bytes_public"], 0)
+
+    def test_initial_points_mobile_public_write_is_recorded_without_shell(self):
+        manifest = json.loads(self.manifest.read_text())
+        del manifest["files"]["RM04-mapanything.npz"]
+        self.manifest.write_text(json.dumps(manifest))
+        self.projects()
+        d = self.room_dir()
+        self.assertEqual(json.loads((d / "public.json").read_text())["room.ply"]["sha256"],
+                         manifest["files"]["points-mobile.ply"]["sha256"])
+        self.assertEqual(self.store.quota("user_synthA")["storage_bytes_public"], len(PLY))
+
+    def test_edited_replaced_and_new_sample_files_count_whole_size(self):
+        self.shell_bundle()
+        self.projects()
+        d = self.room_dir()
+        original = self.store.quota("user_synthA")
+        path = d / "room.ply"
+        old = path.stat()
+        # Same size, different bytes and mtime: no partial/delta charging.
+        path.write_bytes(b"x" * old.st_size)
+        os.utime(path, ns=(old.st_atime_ns, old.st_mtime_ns + 1_000_000_000))
+        quota = self.store.quota("user_synthA")
+        self.assertEqual(quota["storage_bytes_used"], original["storage_bytes_used"] + old.st_size)
+        replacement = d / "replacement.tmp"
+        replacement.write_bytes(b"user replacement")
+        replacement.replace(d / "objects/room-object-1.glb")
+        (d / "new.bin").write_bytes(b"user-created")
+        self.assertEqual(self.store.quota("user_synthA")["storage_bytes_used"],
+                         quota["storage_bytes_used"] + len(b"user replacement") + len(b"user-created"))
+        # A returning-user repair must not renew exemptions for user edits.
+        self.projects()
+        self.assertEqual(self.store.quota("user_synthA")["storage_bytes_used"],
+                         quota["storage_bytes_used"] + len(b"user replacement") + len(b"user-created"))
+
+    def test_backfill_hashes_old_rooms_once_and_keeps_changed_bytes_counted(self):
+        self.shell_bundle()
+        self.projects()
+        d = self.room_dir()
+        (d / "public.json").unlink()
+        (d / "objects/room-object-1.glb").write_bytes(b"user mesh")
+        (d / "new.bin").write_bytes(b"new user file")
+        self.projects()  # returning-user ensure_room_archive path
+        public = json.loads((d / "public.json").read_text())
+        self.assertEqual(set(public), {"room.ply", "mapanything.npz"})
+        self.assertEqual(self.store.quota("user_synthA")["storage_bytes_public"], len(PLY) + len(self.archive))
+        self.assertEqual(self.store.quota("user_synthA")["storage_bytes_used"],
+                         sum(p.stat().st_size for p in d.rglob("*") if p.is_file()
+                             and p.relative_to(d).as_posix() not in public))
+        before = (d / "public.json").read_bytes()
+        with mock.patch.object(sample.hashlib, "sha256", side_effect=AssertionError("backfill is one-time")):
+            self.projects()
+        self.assertEqual((d / "public.json").read_bytes(), before)
+
+    def test_forged_fingerprints_and_scene_entries_never_hide_user_bytes(self):
+        self.shell_bundle()
+        self.projects()
+        d = self.room_dir()
+        index = d / "public.json"
+        original = json.loads(index.read_text())
+        for field in ("size", "mtime_ns"):
+            with self.subTest(field=field):
+                public = json.loads(json.dumps(original))
+                public["room.ply"][field] += 1
+                for path in (d / "scene.json", index):
+                    stat = path.stat()
+                    public[path.name] = {"size": stat.st_size, "mtime_ns": stat.st_mtime_ns}
+                index.write_text(json.dumps(public))
+                quota = self.store.quota("user_synthA")
+                self.assertEqual(quota["storage_bytes_public"], len(self.archive)
+                                 + (d / "objects/room-object-1.glb").stat().st_size)
+                self.assertEqual(quota["storage_bytes_used"], sum((d / name).stat().st_size
+                                                               for name in ("room.ply", "scene.json", "room.json", "status.json", "public.json",
+                                                                            "sample-previous-scene.json", "sample-previous-room.json")))
+
+    def test_malformed_public_index_fails_closed(self):
+        self.shell_bundle()
+        self.projects()
+        d = self.room_dir()
+        for content in ("broken json", "[]", '{"room.ply": []}'):
+            with self.subTest(content=content):
+                (d / "public.json").write_text(content)
+                quota = self.store.quota("user_synthA")
+                self.assertEqual(quota["storage_bytes_public"], 0)
+                self.assertEqual(quota["storage_bytes_used"], sum(p.stat().st_size for p in d.rglob("*") if p.is_file()))
 
     def test_seeds_once_per_user_on_first_list(self):
         self.assertEqual(len(self.projects()), 1)

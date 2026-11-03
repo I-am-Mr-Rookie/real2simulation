@@ -1,0 +1,42 @@
+{
+  "scope": "offline actual hash-checked public bundle; disposable synthetic owner; no inference, browser or deployment",
+  "fresh": {
+    "storage_bytes_used": 494520,
+    "storage_bytes_public": 36720689,
+    "storage_bytes_limit": 1073741824,
+    "storage_bytes_remaining": 1073247304,
+    "uploads_today": 0,
+    "uploads_daily_limit": 20,
+    "uploads_remaining_today": 20,
+    "uploads_reset_at": "2026-11-03T18:00:00Z"
+  },
+  "edited": {
+    "storage_bytes_used": 494573,
+    "storage_bytes_public": 36499389,
+    "storage_bytes_limit": 1073741824,
+    "storage_bytes_remaining": 1073247251,
+    "uploads_today": 0,
+    "uploads_daily_limit": 20,
+    "uploads_remaining_today": 20,
+    "uploads_reset_at": "2026-11-03T18:00:00Z"
+  },
+  "backfilled": {
+    "storage_bytes_used": 494400,
+    "storage_bytes_public": 36499389,
+    "storage_bytes_limit": 1073741824,
+    "storage_bytes_remaining": 1073247424,
+    "uploads_today": 0,
+    "uploads_daily_limit": 20,
+    "uploads_remaining_today": 20,
+    "uploads_reset_at": "2026-11-03T18:00:00Z"
+  },
+  "public_files": [
+    "mapanything.npz",
+    "objects/room-object-1.glb",
+    "objects/room-object-2.glb",
+    "objects/room-object-4.glb",
+    "objects/room-object-7.glb",
+    "room.ply"
+  ],
+  "assertions": "PASS: all six published room binaries free; metadata, edited mesh and new file charged; one-time backfill preserves edited-file charge"
+}

@@ -33,6 +33,21 @@ def _public_bytes(bundle, listed, name):
     return data
 
 
+def _write_public(d, target, data, sha256):
+    """Install hash-checked pack bytes and server-owned quota provenance together."""
+    from Build.reconstruction.live_room import _write
+    from Build.reconstruction.shape_upgrade import LOCK
+    with LOCK:
+        index = d / "public.json"
+        public = json.loads(index.read_text(encoding="utf-8")) if index.exists() else {}
+        path = d / target
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(data)
+        stat = path.stat()
+        public[target] = {"size": stat.st_size, "mtime_ns": stat.st_mtime_ns, "sha256": sha256}
+        _write(index, public)
+
+
 def _ensure_shell(d, bundle, manifest):
     """Copy the once-computed RM02 shell, never generate it on a user's request."""
     from Build.reconstruction import live_room
@@ -51,8 +66,7 @@ def _ensure_shell(d, bundle, manifest):
             # A later user edit/deletion is intentional. Only restore missing binary assets, not scene objects.
             for target, source in targets.items():
                 if not (d / target).is_file():
-                    (d / target).parent.mkdir(exist_ok=True)
-                    (d / target).write_bytes(_public_bytes(bundle, listed, source))
+                    _write_public(d, target, _public_bytes(bundle, listed, source), listed[source]["sha256"])
             return
         scene = json.loads((d / "scene.json").read_text(encoding="utf-8"))
         if room.get("shell") or any(str(o.get("id", "")).startswith(("room-object-", "wall-")) for o in scene.get("objects", [])):
@@ -77,8 +91,7 @@ def _ensure_shell(d, bundle, manifest):
             if not (d / name).exists():
                 live_room._write(d / name, obj)
         for target, data in contents.items():
-            (d / target).parent.mkdir(exist_ok=True)
-            (d / target).write_bytes(data)
+            _write_public(d, target, data, listed[targets[target]]["sha256"])
         live_room._write(d / "scene.json", {**new_scene, **scene, "room": new_scene["room"], "objects": objects})
         live_room._write(d / "room.json", {**new_room, "sample": True, "note": _NOTE,
                                           "labels": {**new_room.get("labels", {}), "input": "SAMPLE / RECORDED",
@@ -96,22 +109,36 @@ def ensure_room_archive(d, bundle=None, manifest=None):
         raise FileNotFoundError("room reconstruction archive is unavailable")
     bundle = bundle or BUNDLE
     manifest = json.loads(Path(manifest or MANIFEST).read_text(encoding="utf-8"))
-    if "sample_shell" in manifest:
-        _ensure_shell(d, bundle, manifest)
-    if (d / "mapanything.npz").is_file():
-        return
-    name = "RM04-mapanything.npz"
-    data = _public_bytes(bundle, manifest["files"], name)
     from Build.reconstruction import live_room
-    # Use the same gravity-aligned frame as A4 scaling and object lifting, not the old display-only PLY frame.
-    (d / "mapanything.npz").write_bytes(data)
-    try:
-        out = live_room.finish(d)
-        room = {**out["room"], "sample": True, "note": _NOTE}
-        (d / "room.json").write_text(json.dumps(room) + "\n", encoding="utf-8")
-    except Exception:
-        (d / "mapanything.npz").unlink(missing_ok=True)
-        raise
+    from Build.reconstruction.shape_upgrade import LOCK
+    with LOCK:
+        backfill = not (d / "public.json").exists()
+        if "sample_shell" in manifest:
+            _ensure_shell(d, bundle, manifest)
+        if not (d / "mapanything.npz").is_file():
+            name = "RM04-mapanything.npz"
+            _write_public(d, "mapanything.npz", _public_bytes(bundle, manifest["files"], name),
+                          manifest["files"][name]["sha256"])
+            # Use the gravity-aligned frame shared by A4 scaling and object lifting.
+            try:
+                out = live_room.finish(d)
+                room = {**out["room"], "sample": True, "note": _NOTE}
+                (d / "room.json").write_text(json.dumps(room) + "\n", encoding="utf-8")
+            except Exception:
+                (d / "mapanything.npz").unlink(missing_ok=True)
+                raise
+        if backfill:
+            hashes = {entry["sha256"] for entry in manifest["files"].values()}
+            public = {}
+            for path in d.rglob("*"):
+                if not path.is_file() or path.name in ("scene.json", "public.json"):
+                    continue
+                stat = path.stat()
+                sha256 = hashlib.sha256(path.read_bytes()).hexdigest()
+                if sha256 in hashes:
+                    public[path.relative_to(d).as_posix()] = {
+                        "size": stat.st_size, "mtime_ns": stat.st_mtime_ns, "sha256": sha256}
+            live_room._write(d / "public.json", public)
 
 
 def _room(root, owner, project_id, bundle, manifest):
@@ -119,10 +146,8 @@ def _room(root, owner, project_id, bundle, manifest):
     try:
         recorded = json.loads(Path(manifest).read_text(encoding="utf-8"))
         listed = recorded["files"]
-        ply, scene = (Path(bundle) / n for n in ("points-mobile.ply", "scene.json"))
-        data = ply.read_bytes()
-        if hashlib.sha256(data).hexdigest() != listed["points-mobile.ply"]["sha256"]:
-            return None
+        scene = Path(bundle) / "scene.json"
+        data = _public_bytes(bundle, listed, "points-mobile.ply")
         poses = json.loads(scene.read_text(encoding="utf-8"))["camera_path"]
     except (OSError, KeyError, ValueError):
         return None
@@ -138,7 +163,7 @@ def _room(root, owner, project_id, bundle, manifest):
             "labels": labels, "camera_positions_m": [p["pose"]["position_m"] for p in poses], "note": _NOTE}
     scene = {"version": "lab-scene-v1", "label": "SIMULATED", "units": "m", "gravity": [0, -9.81, 0],
              "room": {"kind": "ply", "floor_y": 0, "source": "room.ply", "scale_verified": False}, "objects": []}
-    (d / "room.ply").write_bytes(data)
+    _write_public(d, "room.ply", data, listed["points-mobile.ply"]["sha256"])
     for name, obj in (("room.json", room), ("scene.json", scene),
                       ("status.json", {"job_id": job_id, "state": "done", "file_id": None, "project_id": project_id,
                                        "sample": True, "scale": "scale unverified", "label": _NOTE,

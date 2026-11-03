@@ -627,6 +627,7 @@ export const createLive = (React, icon = () => null) => {
       h('div', { className: 'lv-row lv-between' }, h('strong', null, 'Storage'), h('a', { href: '#files' }, 'Files')),
       h('progress', { max: 100, value: q.pct, 'aria-label': 'Storage used' }),
       h('small', null, fmtBytes(qq.storage_bytes_used) + ' of ' + fmtBytes(qq.storage_bytes_limit) + ' used'),
+      qq.storage_bytes_public > 0 ? h('small', { className: 'lv-muted' }, 'Public samples not counted') : null,
       h('small', null, qq.uploads_remaining_today + ' of ' + qq.uploads_daily_limit + ' uploads left today'));
   }
 

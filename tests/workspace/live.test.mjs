@@ -60,6 +60,8 @@ test('quotaView and fmtBytes use only API numbers', () => {
   assert.deepEqual(quotaView(q), { pct: 25, full: false, text: '256 MB of 1.0 GB used. 18 of 20 uploads left today.' });
   assert.equal(quotaView({ ...q, uploads_remaining_today: 0 }).full, true);
   assert.equal(quotaView(null), null);
+  assert.equal(quotaView({ ...q, storage_bytes_public: 123 }).text, quotaView(q).text + ' Public samples not counted');
+  assert.equal(quotaView({ ...q, storage_bytes_public: 0 }).text, quotaView(q).text);
   assert.equal(fmtBytes(0), '0 B'); assert.equal(fmtBytes(1536), '1.5 KB');
 });
 

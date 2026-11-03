@@ -66,7 +66,8 @@ export function quotaView(q) {
   if (!q || !(q.storage_bytes_limit > 0)) return null;
   const pct = Math.min(100, Math.round((q.storage_bytes_used / q.storage_bytes_limit) * 100));
   return { pct, full: q.storage_bytes_remaining <= 0 || q.uploads_remaining_today <= 0,
-    text: fmtBytes(q.storage_bytes_used) + ' of ' + fmtBytes(q.storage_bytes_limit) + ' used. ' + q.uploads_remaining_today + ' of ' + q.uploads_daily_limit + ' uploads left today.' };
+    text: fmtBytes(q.storage_bytes_used) + ' of ' + fmtBytes(q.storage_bytes_limit) + ' used. ' + q.uploads_remaining_today + ' of ' + q.uploads_daily_limit + ' uploads left today.'
+      + (q.storage_bytes_public > 0 ? ' Public samples not counted' : '') };
 }
 
 // N04 GET /gpu/status -> dot. Anything unexpected is "unknown", never a guessed colour.
