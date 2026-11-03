@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 21:36 Dhaka: Koushik: hand the "Answered by" fallback-label bug to the N86 worker that found it. Sent as N86-orch331 follow-up (Claude Opus 5.5 high, 30 min, due 22:06 Dhaka); node tests and build, no browser QA, no paid calls.
+
 ## 2026-11-03 ~21:45 Dhaka: N86 accepted after DEV browser QA; DEV web d506ae7e
 - N86 QA on DEV (in-app browser, fixture account, own "N86 QA lab"): Clean up sends in one click, objects land on the floor, "Tidied by agent · SIMULATED", one Undo = Before, Before/After both ways, another edit hides the toggle, 1366 and 375 px no overflow, no console errors, no em dashes. QA fix 05f2575e (CSS): Before/After button readable in dark, own row at 375 px.
 - Controller checks: rebase clean, scan 0, Node 267 pass, build pass. DEV web d506ae7e SUCCESS. Paid: 1 agent turn 15:27Z, Spark requested, fallback answered (cost in DEV ledger).

@@ -1,1 +1,11 @@
-{}
+{
+ "N86-orch331": {
+  "thread": "01a1a1e9-9312-7631-b36a-6e0f61335808",
+  "model": "anthropic/claude-opus-5-5",
+  "effort": "high",
+  "minutes": 30,
+  "due_dhaka": "2026-11-03T22:06:25+06:00",
+  "worktree": ".worktrees/N86-orch331",
+  "note": "answered-by fallback label fix"
+ }
+}
