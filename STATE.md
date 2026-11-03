@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~22:20 Dhaka: N87 accepted; DEV web 101e3299, api f59932da
+- N87-orch332 (Sol) merged d0eee09a: Clean up card, chip, hint and cleanup prompt sentence removed; lab_update_objects, one-step Undo and Before/After kept. Checks: rebase clean, scan 0, Node 266 pass, pytest agent 213 pass, build pass. Both deploys SUCCESS. $0.
+- Koushik question (open, discussion first): public/shared resources (sample room, future polished lab) must not count against the 1 GB quota; user-made versions or additions should. Today seed copies the sample bytes into rooms/<owner>/ and quota() sums that whole tree (about 35 MB per user).
+
 ## 2026-11-03 ~21:50 Dhaka: N86 follow-up accepted (DEV web 8a66f7e7); Koushik pulls Clean up; N87 dispatched
 - N86 follow-up 7fa2453b: lab "Answered by" names the model that replied (answered_by) with the fallback tag (matches workspace F3 test). Node 267 pass, build pass, scan 0. DEV web 8a66f7e7 SUCCESS.
 - Koushik on DEV (screenshots): LLM cleanup was no improvement and can break the lab; replies arrive all at once. Root causes: agent is blind (text box list, yaw only, SF3D fragments fit inside boxes); /turn has no streaming and the number guard checks the full reply, so only progress-step streaming is safe.
