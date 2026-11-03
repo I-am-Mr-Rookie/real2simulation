@@ -437,6 +437,7 @@ prerequisite. Lane/slot/ownership/approval checks still apply.
 | N80 | CODEX-1 | GPT-6.1 Sol / high | N | 60 | SF3D mesh quality: diagnose crops/mesh fit, fix root cause, regenerate the 4 public RM02 sample meshes (GPU up to $3, ledgered), rebuild the sample pack if better; sent to the N72 chat | N75, N77 | object_lift.py, shape_upgrade.py, room_shell.py crop code, sample pack, tests, evidence/N80/ | before/after renders; meshes recognisable or a clear reason why not | DONE |
 | N81 | CODEX-1 | GPT-6.1 Sol / high | N | 30 | SF3D meshes keep their aspect (uniform scale inside the proxy box, on its bottom) instead of per-axis stretch up to 18x (N80 audit); compare N75 vs N80 meshes locally, no GPU; sent to the N72 chat | N80 | lab-editor mesh renderer, object_lift.py mesh_shape/fit, tests, evidence/N81/ | uniform-scale tests; before/after screenshots; old scenes load | DONE |
 | N82 | CODEX-1 | GPT-6.1 Sol / high | N | 60 | Per-room Delete button (owner-only, 409 while a job runs, frees storage, sample pack safe) plus delete the DEV fixture's test projects (Q24); sent to the N72 chat | N81 | Build/api/room/, workspace room list UI, tests, evidence/N82/ | tests pass; button checked at 1366/375; fixture test projects removed or listed | DONE |
+| N83 | CODEX-1 | GPT-6.1 Sol / high | N | 30 | DEV QA recheck after N82/N81: room Delete UI, SAMPLE mesh shape, guide screenshots, GPU dot; sent to the N72 chat | N82 | evidence/N83/ | evidence/N83/QA.md pass/fail and fix rows | IN PROGRESS |
 
 ## Step acceptance contracts (unchanged JSON)
 

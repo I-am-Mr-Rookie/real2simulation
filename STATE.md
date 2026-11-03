@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 16:35 Dhaka: dispatched N83-orch328 (Sol high, 30 min, N72 chat): DEV QA recheck after N82/N81, due 17:05 Dhaka.
+
 ## 2026-11-03 ~16:50 Dhaka: N82 accepted and deployed
 - N82-orch327 (Sol) merged b38a821a: owner-only per-room Delete with confirmation; 409 while jobs run or for SAMPLE rooms; frees storage; shared pack and storage/sample.py untouched. DEV fixture cleanup done: 17f7acaa, 89f46b23 (N64), 3a0b6e11 (N76) deleted; c46d33ba already gone. Stopped once on "model at capacity" (03:16 UTC), resumed 10:10 UTC.
 - Controller checks: rebase clean, secret scan 0, Node 284 pass, Python 148 pass 1 skip, web build pass. DEV api 37966fe1, web 615dc524, verify.py exit 0. Cost $0.
