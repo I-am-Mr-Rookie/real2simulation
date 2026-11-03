@@ -1,0 +1,14 @@
+{
+  "id": "N79-orch324",
+  "issued_at": "2026-11-02T23:55:12+00:00",
+  "deadline_at": "2026-11-03T00:25:12+00:00",
+  "implementation_cutoff_at": "2026-11-03T00:20:12+00:00",
+  "deadline_dhaka": "2026-11-03T06:25:12+06:00",
+  "status": "PARTIAL",
+  "work_stopped_at": "2026-11-03T00:21:27+00:00",
+  "reported_at": "2026-11-03T00:21:27+00:00",
+  "controller_exception": {
+    "reason": "safety",
+    "approval_receipt": "Controller delegation from chat 01a1882d-3481-7ce3-8f88-45c942e341cd received Nov 3 around 00:21 UTC: Do not create the account. Leave the confirmation pending, write evidence/N79/SIGNUP.md ... commit, and send your completion line now. Final creation requires Koushik's direct action-time confirmation."
+  }
+}
