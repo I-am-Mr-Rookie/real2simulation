@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 20:57 Dhaka (approx): dispatched N86-orch331 (Claude Opus 5.5 high, 60 min) on a fresh timebox, thread 01a1a1e9-9312-7631-b36a-6e0f61335808, due 21:56 Dhaka. codex_app tools back.
+
 ## 2026-11-03 ~21:05 Dhaka: N85 accepted; DEV web 0e605002; N86 not dispatched (codex_app transport closed)
 - N85-orch330 (Claude Opus 5.5 high) merged 72c9be5d: full-height agent sidebar, empty-state cards that fill the composer (CARDS list for N86), step rows, composer with workspace ModelPicker, mic dictation with cancel/stop, report card, Fit view icon no longer duplicates Fullscreen. Outside Owns, tiny and reported: live-view.mjs exports ModelPicker, voice.mjs adds cancelVoice, consistency test uses the composer.
 - Controller checks: rebase clean, secret scan 0, Node 263 pass (lab-editor, workspace, shell-workspace, web-guide), web build pass. DEV web 0e605002 SUCCESS, verify.py exit 0. Cost $0. Unseen: 375 px and dark mode (Koushik reviews on DEV).
