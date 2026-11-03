@@ -47,6 +47,12 @@ test('provenance has a separate row below the transform toolbar at desktop and p
   assert.equal([...css.matchAll(/\.le-honesty \{/g)].length, 1, 'no narrow override can shrink the badge again');
 });
 
+test('N86 cleanup toggle sits below the SIMULATED badge and its unpressed button keeps readable ink', () => {
+  assert.match(css, /\.le-tidy \{[^}]*top: 94px;[^}]*max-width: calc\(100% - 20px\)[^}]*color: var\(--le-ink\)/);
+  assert.match(css, /\.le-tidy button \{[^}]*color: inherit/);
+  assert.match(css, /\.le-tidy button\[aria-pressed='true'\] \{[^}]*color: var\(--le-accent-ink\)/);
+});
+
 test('graph value, unit and honesty caption wrap on desktop and remain visible on phones', () => {
   const caption = css.match(/\.le-graph figcaption \{([^}]*white-space[^}]*)\}/)?.[1];
   assert.match(caption, /white-space: normal/);
