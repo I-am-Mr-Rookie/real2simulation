@@ -44,7 +44,7 @@ stated licence, YouTube downloads, NC, ND. Owner clips are private except approv
   (he attaches it by invoking the @Browser plugin in that worker chat), then reissues the worker's timebox.
 
 ## Run system (Nov 1, quota-lean)
-- Controller: chat 01a1882d-3481-7ce3-8f88-45c942e341cd. Workers are fresh desktop chats in project
+- Controller: chat 01a1a1ca-1652-7c50-9d2a-9c797e3be4c8. Workers are fresh desktop chats in project
   91e441f8-e40c-4ec4-bea2-de7fa1582d97, one row each, built with Run-System/dispatch.py; they follow
   [Run-System/WORKER_CONTRACT.md](Run-System/WORKER_CONTRACT.md) and do not read STATE/QUEUE/RUNS.
 - Windows of 30 minutes, or 60 for integration rows (Run-System/worker_timebox.py). Silent workers, one completion line.
