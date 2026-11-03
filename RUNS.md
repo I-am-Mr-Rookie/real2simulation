@@ -1,15 +1,15 @@
 # Runs checklist
 
-Updated Nov 03, 06:36 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 03, 06:47 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **367 / 377** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 1 open reviews
+Progress: **368 / 377** runs done · 0 in progress · 0 blocked · 4 waiting for Koushik · 1 open reviews
 
 ## Reviews for Koushik
 
-- [ ] Q24 (morning, 2 min; reply e.g. "Q24 1y 2y 3n"): 1) add a per-room Delete button in the workspace (default yes, Sol row). 2) delete the DEV fixture's test projects 17f7acaa, c46d33ba and the empty N64 one (default yes). 3) delete the old Singapore Railway Postgres 33692dd8 and Redis eee6243b, unused since the US move (default no until you say). 4) Wonder limits stay 10 turns/user/day and $3/day (20 and $6 on Nov 5 to 8) unless you change them on Nov 5. 5) judge sign-up (N79): a fresh DEV sign-up reached email verification with no bot-protection block; the browser tool needs your click to finish it. Easiest: in the N64 chat, confirm the pending test-account step, or sign up once yourself with a spare Google account (1 min). Owner-only, unchanged: S23a judging deploy at the Nov 4 freeze, N18 voice-overs.
+- [ ] Q24 (morning, 2 min; reply e.g. "Q24 1y 2y 3n"): 1) add a per-room Delete button in the workspace (default yes, Sol row). 2) delete the DEV fixture's test projects 17f7acaa, c46d33ba and the empty N64 one (default yes). 3) delete the old Singapore Railway Postgres 33692dd8 and Redis eee6243b, unused since the US move (default no until you say). 4) Wonder limits stay 10 turns/user/day and $3/day (20 and $6 on Nov 5 to 8) unless you change them on Nov 5. 5) judge sign-up (N79): a fresh DEV sign-up reached email verification with no bot-protection block; the browser tool needs your click to finish it. Easiest: in the N64 chat, confirm the pending test-account step, or sign up once yourself with a spare Google account (1 min). 6) sample room 3D meshes (N81): showing them at their true shape makes them thin flat slivers (the model output is flat because the stock clip only sees parts of those objects); today they are stretched into blobs. Default: keep today's look and leave branch run/N81-orch326 unmerged. Compare evidence/N81/n75-lab-before.jpg and n75-lab-after.jpg. Your own room clip with whole objects in view should give better meshes. Owner-only, unchanged: S23a judging deploy at the Nov 4 freeze, N18 voice-overs.
 
 ## Ready now
 
@@ -21,10 +21,6 @@ Progress: **367 / 377** runs done · 1 in progress · 0 blocked · 4 waiting for
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
-
-## In progress
-
-- [~] **N81** — Codex · GPT-6.1 Sol, effort high — SF3D meshes keep their aspect (uniform scale inside the proxy box, on its bottom) instead of per-axis stretch up to 18x (N80 audit); compare N75 vs N80 meshes locally, no GPU; sent to the N72 chat (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -48,7 +44,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (77/81)</summary>
+<details><summary><b>N</b> —  (78/81)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -130,7 +126,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N78** — Codex · GPT-6.1 Sol, effort high — Fix N76 findings: phone Files row layout, lab honesty badge overlap at 1280 px, guide room copy/alt (point cloud -> room shell); sent to the N72 chat (30 min)
 - [x] **N79** — Codex · GPT-6.1 Sol, effort high — Investigate whether a brand-new judge can sign up on DEV (N57 Clerk protect-check note); read-only on Clerk settings; sent to the N64 chat (30 min)
 - [x] **N80** — Codex · GPT-6.1 Sol, effort high — SF3D mesh quality: diagnose crops/mesh fit, fix root cause, regenerate the 4 public RM02 sample meshes (GPU up to $3, ledgered), rebuild the sample pack if better; sent to the N72 chat (60 min)
-- [~] **N81** — Codex · GPT-6.1 Sol, effort high — SF3D meshes keep their aspect (uniform scale inside the proxy box, on its bottom) instead of per-axis stretch up to 18x (N80 audit); compare N75 vs N80 meshes locally, no GPU; sent to the N72 chat (30 min) *(in progress)*
+- [x] **N81** — Codex · GPT-6.1 Sol, effort high — SF3D meshes keep their aspect (uniform scale inside the proxy box, on its bottom) instead of per-axis stretch up to 18x (N80 audit); compare N75 vs N80 meshes locally, no GPU; sent to the N72 chat (30 min)
 
 </details>
 
