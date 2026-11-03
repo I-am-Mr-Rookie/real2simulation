@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 03, 22:35 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 03, 22:47 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **375 / 384** runs done · 1 in progress · 0 blocked · 3 waiting for Koushik · 0 open reviews
+Progress: **376 / 384** runs done · 0 in progress · 0 blocked · 3 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -21,10 +21,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
-
-## In progress
-
-- [~] **N88** — Codex · GPT-6.1 Sol, effort high — Public resources never count against the 1 GB quota (option B: server-written public.json, size+mtime match); edits and new files count; meter line Public samples not counted (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -47,7 +43,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (85/88)</summary>
+<details><summary><b>N</b> —  (86/88)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -136,7 +132,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N85** — Codex · Claude Opus 5.5, effort high — Agent sidebar redesign (Mobbin refs Base44, Mural, MagicPath, Plane): full-height panel, empty-state cards that fill the composer, step rows, composer with model picker, mic dictation (cancel/stop) and send, report card, drop duplicate fullscreen icon; no browser QA (Koushik reviews) (60 min)
 - [x] **N86** — Codex · Claude Opus 5.5, effort high — "Clean up the lab" card (one click sends, Best with Muse Wonder), batch tool lab_update_objects, single Undo step, Before/After toggle, label Tidied by agent SIMULATED; no vision/benchmark (60 min)
 - [x] **N87** — Codex · GPT-6.1 Sol, effort high — Remove the Clean up the lab card and chip (Koushik: LLM cleanup no improvement); keep lab_update_objects, one-step Undo, Before/After (30 min)
-- [~] **N88** — Codex · GPT-6.1 Sol, effort high — Public resources never count against the 1 GB quota (option B: server-written public.json, size+mtime match); edits and new files count; meter line Public samples not counted (30 min) *(in progress)*
+- [x] **N88** — Codex · GPT-6.1 Sol, effort high — Public resources never count against the 1 GB quota (option B: server-written public.json, size+mtime match); edits and new files count; meter line Public samples not counted (30 min)
 
 </details>
 

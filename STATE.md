@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~23:00 Dhaka: N88 accepted; DEV web f5844c3d, api 46b4cde4
+- N88-orch333 (Sol) merged 460ce478: public pack writes go through one helper that records size, mtime_ns and manifest sha256 in server-owned public.json; quota skips only exact matches (fails closed), always counts scene.json/public.json, returns storage_bytes_public; returning users backfilled by hash once; meter line "Public samples not counted". Offline smoke on the real pack: 36.7 MB excluded, 0.49 MB metadata counted.
+- Controller checks: code review of quota(), rebase clean, scan 0, pytest storage/delete/fallback 170 pass 1 skip, Node 267 pass, build pass. Both deploys SUCCESS. $0. Not verified live: fixture account meter after backfill (Koushik reviews on DEV).
+
 - 22:34 Dhaka: Koushik chose option B: public pack files are free while byte-identical (server-written public.json with size and mtime_ns per room); edited, replaced or new files count. Option C (shared, not copied) after the hackathon. Dispatched N88-orch333 (GPT-6.1 Sol high, 30 min), thread 01a1a243-03ca-7373-9705-5a15cc99c42c, due 23:04 Dhaka.
 
 ## 2026-11-03 ~22:20 Dhaka: N87 accepted; DEV web 101e3299, api f59932da

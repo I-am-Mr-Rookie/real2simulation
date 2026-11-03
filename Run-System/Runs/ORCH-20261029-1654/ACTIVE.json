@@ -1,10 +1,1 @@
-{
- "N88-orch333": {
-  "thread": "01a1a243-03ca-7373-9705-5a15cc99c42c",
-  "model": "gpt-6.1-sol",
-  "effort": "high",
-  "minutes": 30,
-  "due_dhaka": "2026-11-03T23:04:22+06:00",
-  "worktree": ".worktrees/N88-orch333"
- }
-}
+{}

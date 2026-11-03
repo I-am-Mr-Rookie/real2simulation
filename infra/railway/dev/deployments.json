@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "101e3299-c559-4c29-93fc-70f418c6719e",
-      "previousDeploymentId": "8a66f7e7-e433-4d3e-809a-c82e8c68dca8",
-      "redeployNote": "controller: N87 remove Clean up card",
-      "sourceRevision": "d0eee09a1a361c265e71b34a61ddd34d963feb5b",
-      "verifiedUtc": "2026-11-03T16:20Z",
+      "deploymentId": "f5844c3d-52c7-460f-b69b-2215de378cb6",
+      "previousDeploymentId": "101e3299-c559-4c29-93fc-70f418c6719e",
+      "redeployNote": "controller: N88 public resources off quota",
+      "sourceRevision": "460ce4786ee9f2ad4c6593f8ae37b7abb49d5c4c",
+      "verifiedUtc": "2026-11-03T17:00Z",
       "url": "https://real2simulation.up.railway.app",
       "customDomain": "https://real2simulation.rookiecoders.tech",
       "providerStatus": "SUCCESS",
@@ -19,8 +19,9 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "f59932da-4354-4e1c-9ec2-0b2fccbbad21",
+      "deploymentId": "46b4cde4-5552-4695-b5c9-4552f68af057",
       "previousDeploymentIds": [
+        "f59932da-4354-4e1c-9ec2-0b2fccbbad21",
         "9b573b35-242e-4091-84c3-8ec019897844",
         "37966fe1-bea0-4353-8461-2b0f92ed6de2",
         "da3ad9e7-b4f0-4eb4-9c7b-083fe1a5d94e",
