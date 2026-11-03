@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 20:30 Dhaka: new controller chat 01a1a1ca-1652-7c50-9d2a-9c797e3be4c8 (old 01a1882d retired; AGENTS.md and WORKER_CONTRACT.md updated, f45fe397). Heartbeat real2sim-room-clip-watch repointed here, ACTIVE every 30 min. N86 task file ready (TASK-N86-orch331.md); dispatch after N85 merges. N85 completion line goes to the old chat; controller polls its thread.
+
 - 20:19 Dhaka: dispatched N85-orch330 (Claude Opus 5.5 high, 60 min), thread 01a1a1c7-0c01-7782-89df-437cb7ac76c7, due 21:19 Dhaka. Codex chat tools were missing from the controller session for about an hour (not the tool-mode setting; config back to Lean). N86 waits for N85 merge.
 
 ## 2026-11-03 ~19:00 Dhaka: agent sidebar redesign (N85) and lab cleanup (N86) approved
