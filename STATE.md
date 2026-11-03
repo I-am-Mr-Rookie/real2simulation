@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~22:10 Dhaka: N86 merged and on DEV; browser QA reopened
+- N86-orch331 (Claude Opus 5.5 high) merged 3ce0e7b6: lab_update_objects atomic batch (reuses lab_update_object per item, one validateScene and save), "Clean up the lab" card that sends with a "Best with Muse Wonder" hint, whole cleanup is one Undo step, Before/After toggle, label "Tidied by agent · SIMULATED".
+- Controller checks: rebase clean, Owns ok, secret scan 0, pytest tests/agent 213 pass (464 subtests), Node 266 pass, web build pass. DEV web 156de7b6, api 9b573b35, both SUCCESS. Cost $0 so far.
+- Koushik asked the worker for an in-app browser pass. Controller redirected it to DEV (no local Clerk key export), 30 min, one ledgered Clean up turn allowed. Row stays IN PROGRESS until that report.
+
 - 20:57 Dhaka (approx): dispatched N86-orch331 (Claude Opus 5.5 high, 60 min) on a fresh timebox, thread 01a1a1e9-9312-7631-b36a-6e0f61335808, due 21:56 Dhaka. codex_app tools back.
 
 ## 2026-11-03 ~21:05 Dhaka: N85 accepted; DEV web 0e605002; N86 not dispatched (codex_app transport closed)
