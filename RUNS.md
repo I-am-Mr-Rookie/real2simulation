@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 03, 08:51 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 03, 09:00 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **368 / 378** runs done · 1 in progress · 0 blocked · 4 waiting for Koushik · 0 open reviews
+Progress: **369 / 378** runs done · 1 in progress · 0 blocked · 3 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -30,7 +30,6 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 - [ ] **S23a** — Authorize frozen judging promotion (10 min)
 - [ ] **S26a** — Submit approved project on Cerebral Valley (30 min)
-- [ ] **N06** — Film new owner clips (room, pendulum, ramp, optional spin) (30 min)
 - [ ] **N18** — Record new voice-overs from the N17 read sheet (click to click) (30 min)
 
 ## All runs by step
@@ -48,14 +47,14 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (78/82)</summary>
+<details><summary><b>N</b> —  (79/82)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
 - [x] **N03** — Codex (native Claude) · Opus 5.5, effort medium — User storage, files API and quotas (60 min)
 - [x] **N04** — Codex (native Claude) · Opus 5.5, effort high — On-demand Modal GPU service, job queue, GPU status and daily spend cap (60 min)
 - [x] **N05** — Codex (native Claude) · Opus 5.5, effort high — Agent core: Muse Spark 1.3 tool agent, physics-only, contributor mode, voice transcription (60 min)
-- [ ] **N06** — Film new owner clips (room, pendulum, ramp, optional spin) (30 min)
+- [x] **N06** — Film new owner clips (room, pendulum, ramp, optional spin); Nov 3: room filmed, rest dropped, use sample clips (30 min)
 - [x] **N07** — Codex (native Claude) · Opus 5.5, effort high — Mode B live pipeline: upload -> hosted SAM track -> scale -> fit -> 3D replay (60 min)
 - [x] **N08** — Codex (native Claude) · Opus 5.5, effort high — Mode A live pipeline: room video -> MapAnything on demand -> scaled room + floor/gravity (60 min)
 - [x] **N09** — Codex (native Claude) · Opus 5.5, effort high — Workspace UI: mode chooser, agent chat + voice, files panel, GPU status dot, contributor onboarding (60 min)
