@@ -1,0 +1,13 @@
+# N83-orch328: DONE, QA findings
+- DEV in-app QA completed at verified 1366px and 375px, signed in as the designated fixture; no product code changes.
+- SAMPLE has no Delete; fixture-owned room has exact confirmation; Cancel preserves it after reload. No data deleted or created.
+- SAMPLE current SF3D proportions checked visually; one attribution line, no repeated labels. Existing uniform-fit/collider/delete regressions: 12 passed.
+- F1 P2: enabled Delete room label has 1.184:1 contrast in inherited dark theme; 44px controls otherwise work.
+- F2 P2: guide room-tab.webp and room-a4.webp still show pre-N81 inflated GLB proportions; no assets retaken.
+- Model-picker and Files/storage layouts reviewed against live controls still match; changing storage totals are snapshot data.
+- GPU red/sleeping matches rendered status response; no console errors captured, only Clerk development warnings; no visible DOM em dashes or horizontal overflow.
+- Output: evidence/N83/QA.md, console-check.json, screenshot-manifest.json; screenshots local-only, excluded from commit.
+- Paid calls: 0; cost $0. No deploy, push, purchases, private owner room/N06 access or account-setting changes.
+- Skipped: destructive confirm, paid jobs, forced warm GPU states and rerunning every guide replay/measurement image; no product build needed for QA-only files.
+- Risks: existing model geometry remains fragmentary; visual and unit proof do not establish physical calibration. Follow-up fixes F1/F2 remain open.
+- All run-created browser tabs closed; viewport overrides cleared; no helper services started.

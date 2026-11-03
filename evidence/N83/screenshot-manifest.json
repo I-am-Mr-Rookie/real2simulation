@@ -1,0 +1,68 @@
+{
+  "local_only": true,
+  "screenshots": [
+    {
+      "file": "delete-cancel-1366.jpg",
+      "width": 1351,
+      "height": 1380,
+      "bytes": 104403,
+      "sha256": "edd2fa6cd501feb13f753ef27576757a96446ffd99ea10ee3a6514e85bb294c7"
+    },
+    {
+      "file": "delete-cancel-375.jpg",
+      "width": 360,
+      "height": 780,
+      "bytes": 34004,
+      "sha256": "8f0d133b059d4951650605883f142cf2838e20f1f5ea9fe5639fee075c8030fb"
+    },
+    {
+      "file": "files-1366.jpg",
+      "width": 1351,
+      "height": 890,
+      "bytes": 83961,
+      "sha256": "cda8a408e206e8ef7a2b2cee2fb86829505e8c14be3cb67c552bef4a2ced5df9"
+    },
+    {
+      "file": "guide-room-1366.jpg",
+      "width": 1366,
+      "height": 720,
+      "bytes": 139841,
+      "sha256": "323b78882e28e36f8d374b493f65e40fcdd3dd7ed518cbdd8ce55a0d9b005be0"
+    },
+    {
+      "file": "guide-room-375.jpg",
+      "width": 375,
+      "height": 720,
+      "bytes": 90113,
+      "sha256": "f79854092904f24ed0ea92fcc577288aa495cda4d6a40a9d8270fd2980ba5b28"
+    },
+    {
+      "file": "sample-lab-1366.jpg",
+      "width": 1366,
+      "height": 900,
+      "bytes": 138171,
+      "sha256": "0f056b48403d7ab33b18f1aa515a5dacadc563d9c448a94559d4ada12a4da5a8"
+    },
+    {
+      "file": "sample-lab-375.jpg",
+      "width": 375,
+      "height": 812,
+      "bytes": 52238,
+      "sha256": "614c98b930f742c46a2ffb104708787d5beb429a240c5c25506fc883cf2ecacd"
+    },
+    {
+      "file": "sample-menu-1366.jpg",
+      "width": 1351,
+      "height": 1139,
+      "bytes": 99395,
+      "sha256": "122f8030d571cc14b0ee37513d6c5d88308c47d15b60eb17a2201fa45d451ffd"
+    },
+    {
+      "file": "sample-menu-375.jpg",
+      "width": 360,
+      "height": 780,
+      "bytes": 30799,
+      "sha256": "35175008083bbbad1278179ce9f27a04bb840a4395826a82ceb338e4a02b7c26"
+    }
+  ]
+}
