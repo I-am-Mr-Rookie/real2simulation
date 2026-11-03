@@ -61,6 +61,33 @@ def test_update_and_remove_by_id_or_kind():
     assert [o["id"] for o in h.load_scene("u1")["objects"]] == ["ball-1"]
 
 
+def test_update_objects_batch_is_atomic_and_matches_single_updates():
+    """N86: lab_update_objects applies each item exactly as lab_update_object would, all or nothing."""
+    for owner in ("solo", "batch"):
+        h.lab_add_object(owner, {"kind": "ball", "params": {"diameter_m": 0.05, "height_m": 1.2}})
+        h.lab_add_object(owner, {"kind": "block", "params": {"size_m": 0.2, "height_m": 0.5}})
+    items = [{"id": "ball-1", "params": {"dx_m": -0.3, "height_m": 0.025, "yaw_deg": 90}},
+             {"kind": "block", "params": {"height_m": 0.1, "yaw_deg": -15}}]
+    for item in items:
+        assert h.lab_update_object("solo", item)["status"] == "ok"
+    args, issues = core.validate_call("lab_update_objects", json.dumps({"updates": items}))
+    out = h.lab_update_objects("batch", args)
+    assert issues == [] and out["status"] == "ok" and out["label"] == "SIMULATED" and out["updated"] == 2
+    assert h.load_scene("batch")["objects"] == h.load_scene("solo")["objects"]
+    before = h.load_scene("batch")
+    for bad, why in (({"id": "ball-1", "params": {"speed": 3}}, "unknown"),  # python param check
+                     ({"id": "ball-1", "params": {"diameter_m": -1}}, "size"),  # editor validateScene
+                     ({"id": "spring", "params": {"x_m": 1}}, "objects in the scene")):
+        single = h.lab_update_object("batch", bad)["error"]["detail"]
+        err = h.lab_update_objects("batch", {"updates": [items[1], bad]})
+        assert err["status"] == "error" and why in single and why in err["error"]["detail"]
+        assert "nothing was changed" in err["error"]["detail"]
+        assert h.load_scene("batch") == before  # the valid first item was not applied either
+    assert h.lab_update_objects("batch", {"updates": []})["status"] == "error"
+    assert core.validate_call("lab_update_objects", json.dumps({"updates": [{"id": "ball-1"}]}))[1]  # params required
+    assert "lab_update_objects" in h.HANDLERS and "lab_update_objects" in {t["name"] for t in core.TOOL_SPECS}
+
+
 def test_report_has_sections_labels_and_no_em_dash():
     h.lab_add_object("u1", {"kind": "ball", "params": {"radius_m": 0.025, "height_m": 1.2}})
     h.lab_run("u1", {})

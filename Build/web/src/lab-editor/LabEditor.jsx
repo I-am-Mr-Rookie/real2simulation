@@ -7,7 +7,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { TransformControls } from 'three/examples/jsm/controls/TransformControls.js';
 import { defaultScene, makeObject, validateScene, parseScene, sceneJson, fitterRequest, keepAdded, MAX_OBJECTS, MASS_SET } from './scene.mjs';
 import { createPhysics, loadRapier, movingStart, upQuat, roomProxy, kitParts } from './physics.mjs';
-import { emptyHistory, record, undo, redo, removeObject, typing } from './history.mjs';
+import { emptyHistory, record, undo, redo, removeObject, typing, tidyView } from './history.mjs';
 import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
 import { naturalPoint, trajectoryScene, fmtPm } from '../workspace/measure.mjs';
@@ -462,6 +462,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   // N33 undo/redo: every scene change (toolbar, gizmo, inspector, keyboard, agent) is recorded unless it is an undo/redo.
   const hist = useRef(emptyHistory()), prevScene = useRef(scene), replaying = useRef(false), addMenu = useRef(null);
   const [, setHistTick] = useState(0);
+  const [tidy, setTidy] = useState(null); // N86: { before, after } scenes of the last agent cleanup
   useEffect(() => {
     if (prevScene.current === scene) return;
     if (!replaying.current) hist.current = record(hist.current, prevScene.current);
@@ -611,6 +612,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const deleteId = (id) => { if (live) return; edit((s) => removeObject(s, id)); if (selected === id) setSelected(null); setMessage('Deleted ' + id + '. Ctrl+Z undoes it.'); };
   const playBtn = run !== 'playing' ? <button type="button" className="le-primary" onClick={play} disabled={run === 'loading' || !scene.objects.length}><Ico n="play" /><span>{run === 'paused' ? 'Resume' : 'Play'}</span></button> : <button type="button" className="le-primary" onClick={pause}><Ico n="pause" /><span>Pause</span></button>;
   const openLeft = (t) => { setLeftTab(t); setSide(true); };
+  const tv = tidyView(hist.current, scene, tidy);
   return <section className="lab-editor" aria-label="Lab editor" data-side={side ? 'open' : 'closed'} data-sheet={agentOpen || sel ? 'open' : 'closed'}>
     <header className="le-top" role="toolbar" aria-label="Lab tools">
       <a className="le-logo" href="/workspace" title="Back to workspace" aria-label="Back to workspace"><img className="art-light" src="/brand/mark.svg" width="32" height="32" alt="" /><img className="art-dark" src="/brand/mark-dark.svg" width="32" height="32" alt="" /></a>
@@ -669,6 +671,11 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       </aside>
       <div className="le-stage">
         <div ref={host} className="le-canvas" data-testid="lab-editor-canvas" />
+        {tv && <div className="le-tidy" role="group" aria-label="Cleanup comparison">
+          <span>Tidied by agent · SIMULATED</span>
+          {[['before', 'Before', undo, 'Showing the lab before cleanup'], ['after', 'After', redo, 'Tidied by agent']].map(([v, l, fn, verb]) =>
+            <button key={v} type="button" aria-pressed={tv === v} onClick={() => tv !== v && travel(fn, verb)}>{l}</button>)}
+        </div>}
         <div className="le-float" role="toolbar" aria-label="Transform mode">
           {[['select', 'Select'], ['translate', 'Move'], ['rotate', 'Rotate'], ['scale', 'Resize']].map(([m, l]) => <button key={m} type="button" className="le-icon-btn" aria-pressed={mode === m} aria-label={l} title={l} onClick={() => setMode(m)} disabled={live}><Ico n={m} /></button>)}
           <span className="le-sep" aria-hidden="true" />
@@ -712,7 +719,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
           </>}
         </div>
         <div hidden={!agentOpen}>
-          <AgentPanel scene={scene} load={!src && !/[?&](room|experiment)=/.test(window.location.search)} onScene={(s, msg) => { stop(); setSelected(null); setScene(s); setMessage(msg); }} />
+          <AgentPanel scene={scene} load={!src && !/[?&](room|experiment)=/.test(window.location.search)} onScene={(s, msg, tidied) => { stop(); setSelected(null); if (tidied) setTidy({ before: prevScene.current, after: s }); setScene(s); setMessage(msg); }} />
         </div>
       </aside>
     </div>

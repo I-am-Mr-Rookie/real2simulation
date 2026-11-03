@@ -62,12 +62,19 @@ INSTRUCTIONS = (
     "up is +y, toward the viewer is +z; 'measure g' means add the object, then lab_run. Say each assumption in one "
     "short sentence of your answer, using the user's own numbers. Edit existing objects with lab_update_object and "
     "lab_remove_object (id or kind). Call ask_user only when the request is truly ambiguous and no default fits. "
+    "To clean up or tidy the lab, change only the listed objects and never add any: in one lab_update_objects call, "
+    "turn tables and walls to the nearest right angle with yaw_deg, set height_m to half an object's height so nothing "
+    "floats or sinks, and fix obvious size or orientation mismatches; remove broken or duplicate pieces with "
+    "lab_remove_object. "
     "Do not number list items. "
     "Keep replies short. Never use em dashes."
 )
 
 _ID = {"type": "string", "pattern": r"^[A-Za-z0-9_-]{1,64}$", "maxLength": 64}
 _NUMS = {"type": "array", "items": {"type": "number"}, "maxItems": 5000}
+_UPDATE = {"id": {"type": "string", "maxLength": 64}, "kind": {"type": "string", "maxLength": 32},
+           "params": {"type": "object", "maxProperties": 12,
+                      "propertyNames": {"pattern": r"^[a-z][a-z0-9_]{0,31}$"}, "additionalProperties": {"type": "number"}}}
 TOOLS: dict[str, tuple[str, dict[str, Any]]] = {
     "ask_user": ("Only for real ambiguity with no sensible default: ask one question with 2 to 4 options; the first "
                  "option is the recommended one (recommended=true, exactly one).", {
@@ -93,10 +100,12 @@ TOOLS: dict[str, tuple[str, dict[str, Any]]] = {
     "lab_update_object": ("Move, turn, resize or re-parameterise one lab object by id or by kind (when only one of "
                           "that kind exists). Params are SI numbers: absolute x_m, z_m, height_m, diameter_m, size_m, "
                           "mass_kg, length_m, angle_deg, and the kit params of lab_add_object; relative dx_m, dy_m, dz_m "
-                          "(left is negative dx_m); yaw_deg.", {
-        "id": {"type": "string", "maxLength": 64}, "kind": {"type": "string", "maxLength": 32},
-        "params": {"type": "object", "maxProperties": 12,
-                   "propertyNames": {"pattern": r"^[a-z][a-z0-9_]{0,31}$"}, "additionalProperties": {"type": "number"}}}),
+                          "(left is negative dx_m); yaw_deg.", _UPDATE),
+    "lab_update_objects": ("Update several lab objects at once, for example to clean up the lab. Each item takes the "
+                           "same id or kind and params as lab_update_object. All or nothing: one invalid item changes "
+                           "nothing.", {
+        "updates": {"type": "array", "minItems": 1, "maxItems": 50, "items": {
+            "type": "object", "additionalProperties": False, "required": ["params"], "properties": _UPDATE}}}),
     "lab_remove_object": ("Remove one lab object by id or by kind (when only one of that kind exists).", {
         "id": {"type": "string", "maxLength": 64}, "kind": {"type": "string", "maxLength": 32}}),
     "lab_run": ("Run the physics engine on the current virtual lab.", {}),
@@ -120,6 +129,7 @@ TOOLS: dict[str, tuple[str, dict[str, Any]]] = {
 REQUIRED = {"ask_user": ["question", "options"], "start_experiment_track": ["file_id", "target"],
             "start_room_build": ["file_id"], "lab_add_object": ["kind", "params"],
             "lab_update_object": ["params"],  # id or kind: N28 live run 2 sent {"kind": "ramp"} and was rejected
+            "lab_update_objects": ["updates"],
             "fit_equation": ["trajectory_id", "equation", "parameters", "initial_guess"]}
 
 

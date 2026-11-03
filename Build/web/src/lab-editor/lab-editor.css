@@ -107,6 +107,10 @@ main:has(.lab-editor) { padding: 0; }
 .la-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 4px; }
 .la-card { display: grid; justify-items: start; gap: 8px; min-height: 76px; padding: 10px; border: 1px solid var(--le-border); border-radius: 12px; background: var(--le-surface); text-align: left; font-weight: 500; }
 .la-card .la-ico { color: var(--le-accent); }
+.la-hint { font-size: 11.5px; font-weight: 400; color: var(--le-muted); }
+.le-tidy { position: absolute; top: 62px; right: 10px; z-index: 4; display: flex; align-items: center; gap: 4px; padding: 4px 4px 4px 10px; border: 1px solid var(--le-border); border-radius: 999px; background: var(--le-surface); font-size: 12px; box-shadow: 0 4px 16px rgba(0, 0, 0, .12); }
+.le-tidy button { min-height: 28px; padding: 0 10px; border: 0; border-radius: 999px; background: transparent; }
+.le-tidy button[aria-pressed='true'] { background: var(--le-accent); color: var(--le-accent-ink); }
 .la-user { align-self: flex-end; max-width: 85%; padding: 8px 12px; border-radius: 14px 14px 4px 14px; background: color-mix(in srgb, var(--le-accent) 14%, var(--le-surface)); white-space: pre-wrap; }
 .la-reply { display: grid; gap: 6px; }
 .la-error p { color: var(--r2s-danger, #b91c1c); }

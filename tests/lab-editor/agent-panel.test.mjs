@@ -3,7 +3,8 @@ import test, { after } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createRequire, registerHooks } from 'node:module';
-import { defaultScene } from '../../Build/web/src/lab-editor/scene.mjs';
+import { defaultScene, validateScene } from '../../Build/web/src/lab-editor/scene.mjs';
+import { emptyHistory, record, undo, redo, tidyView } from '../../Build/web/src/lab-editor/history.mjs';
 
 function harness() {
   const cells = []; let cursor = 0;
@@ -39,28 +40,75 @@ const loader = registerHooks({
     return { format: 'module', source, shortCircuit: true };
   },
 });
-const { default: AgentPanel, CARDS, stepName, sendsOn } = await import(panelUrl);
+const { default: AgentPanel, CARDS, CLEANUP, CONTEXT, cleanupText, stepName, sendsOn } = await import(panelUrl);
 loader.deregister();
 
 const props = { scene: defaultScene(), onScene() {}, load: false };
-function mount(fetchImpl) {
+function mount(fetchImpl, extra = {}) {
   const h = harness(); Object.assign(globalThis.__N85_REACT__, h.React);
   const calls = []; globalThis.fetch = async (url, init) => { calls.push(url); return fetchImpl(url, init); };
-  const all = () => nodes(h.render(AgentPanel, props));
+  const all = () => nodes(h.render(AgentPanel, { ...props, ...extra }));
   const btn = (label) => all().find((n) => n.type === 'button' && (n.props['aria-label'] === label || n.children.includes(label)));
   const box = () => all().find((n) => n.type === 'textarea');
   return { calls, all, btn, box };
 }
 const KEY = (key, shiftKey = false) => ({ key, shiftKey, isComposing: false, preventDefault() {} });
 
-test('empty state cards only fill the composer; nothing is sent', () => {
+test('empty state cards only fill the composer; nothing is sent (except the cleanup card)', () => {
   const p = mount(() => Response.json({}));
   assert.equal(p.box().props.value, '', 'composer starts empty, with a placeholder');
   assert.ok(p.box().props.placeholder);
   assert.match(strings({ children: p.all() }).join(''), /What should we test\?/);
-  assert.deepEqual(CARDS.map((c) => c.title), ['Measure g with a drop', 'Pendulum period', 'Add a ramp', 'Write report']);
-  for (const c of CARDS) { p.btn(c.title).props.onClick(); assert.equal(p.box().props.value, c.text); }
+  assert.deepEqual(CARDS.map((c) => c.title), ['Measure g with a drop', 'Pendulum period', 'Add a ramp', 'Write report', 'Clean up the lab']);
+  for (const c of CARDS.filter((c) => !c.send)) { p.btn(c.title).props.onClick(); assert.equal(p.box().props.value, c.text); }
   assert.deepEqual(p.calls, []);
+});
+
+test('N86 Clean up the lab sends the fixed instruction plus the object list at once and marks one tidied scene', async () => {
+  const yaw = Math.PI / 18; // 20 degrees
+  const scene = validateScene({ ...defaultScene(), objects: [{ id: 'table-1', kind: 'block', position: [0.123, 0.6, -1], size: [1.2, 0.7, 0.6], rotation: [0, Math.sin(yaw), 0, Math.cos(yaw)] }] });
+  const seen = []; let body;
+  globalThis.localStorage = { getItem: () => null, setItem() {} };
+  const p = mount((url, init) => {
+    if (url.endsWith('/turn')) body = JSON.parse(init.body);
+    return Response.json(url.endsWith('/session') ? { userKey: 'u' } : url.endsWith('/turn') ? { reply: 'Tidied.', model: 'm-1', tool_calls: [{ name: 'lab_update_objects' }] } : { scene: defaultScene() });
+  }, { scene, onScene: (s, msg, tidied) => seen.push([msg, tidied]) });
+  const card = CARDS.find((c) => c.id === 'cleanup');
+  assert.equal(card.text, CLEANUP); assert.match(strings({ children: p.all() }).join('|'), /Clean up the lab\|Best with Muse Wonder/);
+  p.box().props.onChange({ target: { value: 'my draft' } });
+  await p.btn('Clean up the lab').props.onClick();
+  assert.ok(body.text.startsWith(CONTEXT + CLEANUP), 'fixed instruction, no composer step');
+  assert.ok(body.text.includes('\ntable-1, block, 0.12 0.6 -1, 1.2 0.7 0.6, 20'), body.text);
+  assert.deepEqual(seen, [['Tidied by agent · SIMULATED. Undo or Before shows the old layout.', true]], 'one scene update for the whole cleanup');
+  const text = strings({ children: p.all() }).join('|');
+  assert.ok(text.includes('Updated objects') && !text.includes('table-1'), 'the log shows the card title, not the listing');
+  assert.equal(p.box().props.value, 'my draft', 'a typed draft survives the cleanup click');
+  assert.equal(body.history.length, 0);
+  delete globalThis.localStorage;
+});
+
+test('N86 cleanup listing stays under the turn text limit', () => {
+  const objects = Array.from({ length: 50 }, (_, i) => ({ id: 'block-' + i, kind: 'block', position: [i / 3, 0.5, -i / 7], size: [0.4, 0.4, 0.4] }));
+  const s = cleanupText(validateScene({ ...defaultScene(), objects }), 1200);
+  assert.ok(s.length < 1250 && /\n\(\d+ more not listed\)$/.test(s), s.slice(-60));
+  assert.ok((CONTEXT + cleanupText(validateScene({ ...defaultScene(), objects }))).length <= 4000, 'server MAX_TEXT');
+  assert.doesNotMatch(CLEANUP + s, /\u2014/);
+});
+
+test('N86 a cleanup is one Undo step; Before/After switches without losing either scene', () => {
+  const before = validateScene({ ...defaultScene(), objects: [{ id: 'a', kind: 'block', position: [0, 2, 0] }, { id: 'b', kind: 'ball', position: [1, -1, 0] }] });
+  const after = { ...before, objects: before.objects.map((o) => ({ ...o, position: [o.position[0], 0.1, 0] })) };
+  const tidy = { before, after };
+  const h = record(emptyHistory(), before); // the editor records one entry per scene change; the agent turn sets one scene
+  assert.equal(tidyView(h, after, tidy), 'after');
+  const u = undo(h, after);
+  assert.equal(u.scene, before, 'one Undo restores every object'); assert.equal(u.history.past.length, 0);
+  assert.equal(tidyView(u.history, u.scene, tidy), 'before');
+  const r = redo(u.history, u.scene);
+  assert.equal(r.scene, after); assert.equal(tidyView(r.history, r.scene, tidy), 'after');
+  const edited = { ...after };
+  assert.equal(tidyView(record(r.history, after), edited, tidy), null, 'toggle hides after any other edit');
+  assert.equal(tidyView(h, after, null), null);
 });
 
 test('Enter sends, Shift+Enter keeps a newline', async () => {

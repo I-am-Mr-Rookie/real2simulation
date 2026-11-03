@@ -367,15 +367,40 @@ def lab_add_object(owner: str, args: dict[str, Any]) -> dict[str, Any]:
     return {"status": "ok", "label": "SIMULATED", "object": added, "objects_in_scene": len(scene["objects"])}
 
 
+def _apply(scene: dict[str, Any], args: dict[str, Any]) -> tuple[dict[str, Any], str]:
+    """One lab_update_object item applied in memory: (new scene, updated id)."""
+    old = _find(scene, args.get("id") or args.get("kind"))
+    new = update_object(old, args.get("params") or {}, scene)
+    return {**scene, "objects": [new if o is old else o for o in scene["objects"]]}, old["id"]
+
+
 def lab_update_object(owner: str, args: dict[str, Any]) -> dict[str, Any]:
     try:
-        scene = load_scene(owner)
-        old = _find(scene, args.get("id") or args.get("kind"))
-        new = update_object(old, args.get("params") or {}, scene)
-        scene = save_scene(owner, {**scene, "objects": [new if o is old else o for o in scene["objects"]]})
+        scene, oid = _apply(load_scene(owner), args)
+        scene = save_scene(owner, scene)
     except (LabError, subprocess.TimeoutExpired) as exc:
         return _err(exc)
-    return {"status": "ok", "label": "SIMULATED", "object": next(o for o in scene["objects"] if o["id"] == old["id"])}
+    return {"status": "ok", "label": "SIMULATED", "object": next(o for o in scene["objects"] if o["id"] == oid)}
+
+
+def lab_update_objects(owner: str, args: dict[str, Any]) -> dict[str, Any]:
+    """N86 cleanup batch: each item is a lab_update_object call; atomic (one validate and save, or nothing)."""
+    updates = args.get("updates")
+    if not isinstance(updates, list) or not updates:
+        return _err(LabError("updates must list at least one object update"))
+    try:
+        scene, ids = load_scene(owner), []
+        for i, item in enumerate(updates):
+            try:
+                scene, oid = _apply(scene, item if isinstance(item, dict) else {})
+            except LabError as exc:
+                raise LabError(f"updates[{i}]: {exc}") from None
+            ids.append(oid)
+        scene = save_scene(owner, scene)
+    except (LabError, subprocess.TimeoutExpired) as exc:
+        return _err(LabError(f"nothing was changed; {exc}"))
+    return {"status": "ok", "label": "SIMULATED", "updated": len(ids),
+            "objects": [o for o in scene["objects"] if o["id"] in ids]}
 
 
 def lab_remove_object(owner: str, args: dict[str, Any]) -> dict[str, Any]:
@@ -422,7 +447,7 @@ def write_report(owner: str, args: dict[str, Any]) -> dict[str, Any]:
             "conclusion": rep["conclusion"], "illustration": bool(image)}
 
 
-HANDLERS = {"lab_add_object": lab_add_object, "lab_update_object": lab_update_object,
+HANDLERS = {"lab_add_object": lab_add_object, "lab_update_object": lab_update_object, "lab_update_objects": lab_update_objects,
             "lab_remove_object": lab_remove_object, "lab_run": lab_run, "write_report": write_report}
 
 
