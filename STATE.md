@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~16:50 Dhaka: N82 accepted and deployed
+- N82-orch327 (Sol) merged b38a821a: owner-only per-room Delete with confirmation; 409 while jobs run or for SAMPLE rooms; frees storage; shared pack and storage/sample.py untouched. DEV fixture cleanup done: 17f7acaa, 89f46b23 (N64), 3a0b6e11 (N76) deleted; c46d33ba already gone. Stopped once on "model at capacity" (03:16 UTC), resumed 10:10 UTC.
+- Controller checks: rebase clean, secret scan 0, Node 284 pass, Python 148 pass 1 skip, web build pass. DEV api 37966fe1, web 615dc524, verify.py exit 0. Cost $0.
+- Risk: delete admission lock is per process; fine while api runs one replica.
+
 ## 2026-11-03 Dhaka: N06 closed
 - Koushik: go with sample clips. N06 room clip already filmed; pendulum, ramp and spin clips dropped. Demo and guide use the existing sample clips.
 
