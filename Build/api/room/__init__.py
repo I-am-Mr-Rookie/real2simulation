@@ -4,6 +4,7 @@ GET /rooms -> {rooms: [status...]} owner's jobs newest first; POST /rooms {file_
 background thread runs Build/reconstruction/live_room.
 GET /rooms/{id} -> status (+ GPU dot/queue position while reconstructing); GET /rooms/{id}/result -> scene + room;
 GET /rooms/{id}/room.ply; POST /rooms/{id}/scale {reference} -> CPU-only rescale of the saved reconstruction.
+DELETE /rooms/{id} -> remove an owner's inactive, non-SAMPLE room, keeping its uploaded video.
 N42: with the real GPU remote, a finished job runs one automatic lab shell pass (objects.build_shell_files; state
 "building lab shell", then status shell done/failed); a rescale keeps and scales the shell (live_room.finish).
 Job files: R2S_DATA_DIR/rooms/<owner>/<job_id>/ (status.json, scene.json, room.json, room.ply, mapanything.npz).
@@ -27,6 +28,25 @@ from Build.reconstruction import live_room
 
 _ID = re.compile(r"[0-9a-f]{32}")
 ROOM_STARTS_PER_DAY = 3
+_active_rooms = set()
+
+
+@contextmanager
+def room_write(d):
+    from Build.reconstruction.shape_upgrade import LOCK
+    # shortcut: process-local mutation admission, replace with shared leases before using multiple API workers.
+    key = str(d.resolve())
+    with LOCK:
+        if not (d / "status.json").is_file():
+            raise error(404, "NOT_FOUND", "room job not found")
+        if key in _active_rooms:
+            raise error(409, "ROOM_BUSY", "This room is being updated. Try again when it finishes.")
+        _active_rooms.add(key)
+    try:
+        yield
+    finally:
+        with LOCK:
+            _active_rooms.discard(key)
 
 
 @contextmanager
@@ -57,12 +77,45 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
 
     def job_dir(owner, job_id):
         d = db().root / "rooms" / owner / job_id
-        if not _ID.fullmatch(job_id) or not (d / "status.json").exists():
+        if (not _ID.fullmatch(job_id) or d.resolve() != db().root.resolve() / "rooms" / owner / job_id
+                or not (d / "status.json").exists()):
             raise error(404, "NOT_FOUND", "room job not found")
         return d
 
     def read(d, name):
         return json.loads((d / name).read_text(encoding="utf-8"))
+
+    @router.delete("/rooms/{job_id}")
+    def delete_room(job_id: str, owner: str = Depends(require_owner)):
+        from Build.reconstruction.shape_upgrade import LOCK, _running, _PROCESS
+        with LOCK:
+            d = job_dir(owner, job_id)
+            status = read(d, "status.json")
+            if status.get("sample"):
+                raise error(409, "SAMPLE_ROOM", "Sample rooms can't be deleted")
+            room = read(d, "room.json") if (d / "room.json").is_file() else {}
+            pending = any(o.get("upgrade", {}).get("state") in ("pending", "queued", "running")
+                          for o in room.get("shell", {}).get("kept", []))
+            work = read(d, "shape-upgrades.json") if (d / "shape-upgrades.json").is_file() else {}
+            queued = work.get("inputs") and work.get("process") == _PROCESS and not work.get("started_at")
+            if (status.get("state") not in ("done", "failed", "cancelled") or pending or queued or
+                    str(d.resolve()) in _active_rooms or str(d) in _running):
+                raise error(409, "ROOM_BUSY", "This room has a queued or running job. Try again when it finishes.")
+            target = db().root.resolve() / "rooms" / owner / job_id
+            paths = sorted(d.rglob("*"), key=lambda p: len(p.parts), reverse=True)
+            # Validate every exact target before removing anything; never follow links into another room or shared pack.
+            if d.resolve() != target or any(p.is_symlink() or p.resolve() != target / p.relative_to(d) for p in paths):
+                raise error(409, "INVALID_STORAGE", "Room storage contains a linked path and cannot be deleted safely")
+            try:
+                for path in [p for p in paths if p != d / "status.json"] + [d / "status.json"]:
+                    if path.is_dir():
+                        path.rmdir()
+                    else:
+                        path.unlink()
+                d.rmdir()
+            except OSError:
+                raise error(503, "DELETE_FAILED", "Room could not be fully deleted. Try again.") from None
+        return {"deleted": job_id, "quota": db().quota(owner)}
 
     def ref_of(payload):
         ref = payload.get("reference")
@@ -146,15 +199,16 @@ def create_router(store=None, remote=live_room.modal_reconstruct, stats=gpu.moda
             raise error(409, "NOT_READY", "room job is not done")
         try:
             from Build.api.storage.sample import ensure_room_archive
-            ensure_room_archive(d)
             from Build.reconstruction.shape_upgrade import LOCK
-            with LOCK:
-                out = live_room.finish(d, ref_of(payload))
+            with room_write(d):
+                ensure_room_archive(d)
+                with LOCK:
+                    out = live_room.finish(d, ref_of(payload))
+                live_room.set_status(d, scale=out["room"]["scale"]["status"])
         except (OSError, KeyError):
             raise error(503, "DEPENDENCY_UNAVAILABLE", "room reconstruction archive is unavailable") from None
         except (ValueError, TypeError) as e:
             raise error(422, "INVALID_REFERENCE", str(e)[:300]) from None
-        live_room.set_status(d, scale=out["room"]["scale"]["status"])
         return out
 
     return router

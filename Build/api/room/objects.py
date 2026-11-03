@@ -16,7 +16,7 @@ import time
 from fastapi import APIRouter, Body, Depends
 from fastapi.responses import Response
 
-from Build.api.room import _ID, _daily_room_limit
+from Build.api.room import _ID, _daily_room_limit, room_write
 from Build.api.storage.files import _default
 from Build.api.storage.sample import ensure_room_archive
 from Build.api.workspace.auth import error, require_owner
@@ -85,6 +85,10 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
     @router.post("/rooms/{job_id}/objects")
     def add_object(job_id: str, payload: dict = Body(...), owner: str = Depends(require_owner)):
         d = done_dir(owner, job_id)
+        with room_write(d):
+            return lift_object(d, job_id, payload)
+
+    def lift_object(d, job_id, payload):
         view, point = payload.get("view"), payload.get("point")
         category = payload.get("category", "other")
         if category not in object_lift.CATEGORIES:
@@ -149,6 +153,10 @@ def create_router(store=None, segment=object_lift.sam_box, generate=sf3d.generat
     def build_shell(job_id: str, payload: dict = Body(default={}), owner: str = Depends(require_owner)):
         db().check_storage(owner)
         d = done_dir(owner, job_id)
+        with room_write(d):
+            return rebuild(d, owner, payload)
+
+    def rebuild(d, owner, payload):
         # Preserve attempts made by the previous per-room counter on rollout.
         counts = (json.loads(f.read_text(encoding="utf-8")).get("shell_rebuilds", {})
                   for f in d.parent.glob("*/status.json"))

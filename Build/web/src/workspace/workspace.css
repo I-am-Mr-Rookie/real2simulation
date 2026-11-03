@@ -673,6 +673,10 @@ body:has(.r2s-shell) .site-footer { display: none; }
 .lv-rename { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 4px; min-width: 0; }
 .lv-rename input { min-width: 0; width: 100%; box-sizing: border-box; }
 .lv-rename button { margin: 0; padding: 4px 8px; font: inherit; }
+.lv-room-delete { position: relative; z-index: 2; padding: .8rem; border-top: 1px solid var(--r2s-border, #c9c4b8); }
+.lv-room-delete p { margin: 0 0 .6rem; }
+.lv-room-delete button { min-height: 44px; padding: .4rem .7rem; }
+.lv-room-delete [data-danger] { color: var(--r2s-danger, #a3191b); }
 .lv-wrap > *, .lv-home > * { min-width: 0; max-width: 100%; box-sizing: border-box; }
 .ws-legacy { margin: 1rem; }
 .ws-legacy > summary { cursor: pointer; font-size: .85rem; color: var(--sh-muted); }

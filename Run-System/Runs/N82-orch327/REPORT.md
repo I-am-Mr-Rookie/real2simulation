@@ -1,0 +1,16 @@
+# N82-orch327: DONE
+- Implemented owner-only per-room DELETE and private-workspace menu/inline confirmation with exact requested warning; Cancel does not delete.
+- Active build/rebuild/object/rescale and pending/running SF3D work return 409; other owners receive 404.
+- Removes exact validated room artifacts, refreshes storage meter, retains original uploads/other rooms/counters; I/O failure reports 503.
+- Controller clarification applied: SAMPLE deletion hidden and API returns 409; shared pack intact; storage/sample.py unchanged.
+- Fresh resumed Python checks: 116 passed, 1 skipped, 6 subtests passed (room/reconstruction/storage suites).
+- Fresh resumed Node checks: 171 passed (workspace/storage suites); production web build PASS.
+- Actual workspace QA bundle, cleanup-script syntax, evidence JSON, staged Owns/credential-path audit and Git whitespace checks PASS.
+- Prior in-app browser: 1366px and 375px, Cancel/delete/busy/SAMPLE/storage checked; 44px mobile controls, no overflow/logs.
+- Browser scope: actual component/CSS plus real local APIs with synthetic owner; not Clerk-backed authenticated local E2E.
+- Prior DEV cleanup DONE: removed 17f7acaa, 89f46b23 (N64), 3a0b6e11 (N76); c46d33ba already absent; SAMPLE and four others retained.
+- Cleanup used controller-approved headed Playwright Chromium fallback after stuck in-app native confirm. No new DEV deletions on resumption.
+- Evidence, reproducible commands and full IDs: evidence/N82/VERIFY.md, browser-check.json, local-audit.json, dev-cleanup-summary.json.
+- Paid calls: 0; cost: $0. No deploy, push, purchases or account-setting changes. Original QA helpers/tabs closed.
+- Skipped: real symlink creation denied by Windows; separate mocked resolved-path escape test passed. JPEG QA captures kept local, not committed.
+- Risks: mutation admission is process-local; require shared leases before multi-worker API. DEV upload bytes not independently audited.

@@ -1,0 +1,40 @@
+{
+  "status": "DONE",
+  "deleted": [
+    "17f7acaaed9945aab6b782b3c93c91cc",
+    "3a0b6e11051c4ea59fe08034deab553b",
+    "89f46b23753945718843074eaf9004e4"
+  ],
+  "already_absent_prefix": "c46d33ba",
+  "kept_unchanged": [
+    {
+      "id": "f09d091678f247bdbcd596c01d7c4907",
+      "title": "N57 QA measured apple",
+      "created": "2026-11-02T11:24:28Z"
+    },
+    {
+      "id": "a6724140a6e547b0b01331602c81b32f",
+      "title": "New experiment",
+      "created": "2026-11-02T11:19:41Z"
+    },
+    {
+      "id": "d32a8c7c10674e7ea9e1efae4be28058",
+      "title": "Experiment: ST03-trim.mp4",
+      "created": "2026-11-02T02:06:09Z"
+    },
+    {
+      "id": "f578dc3ba08f46c68bb9f1d6ef6cc6ac",
+      "title": "Room 2026-11-02 01:59",
+      "created": "2026-11-02T01:59:44Z"
+    },
+    {
+      "id": "687ef375e7c54838b6de4b4d4433a06f",
+      "title": "SAMPLE (RECORDED): classroom room and falling apple",
+      "created": "2026-11-02T01:59:01Z"
+    }
+  ],
+  "before_projects": 8,
+  "after_projects": 5,
+  "scope": "fixture only, existing project Delete UI, headed Playwright Chromium; in-app native confirm blocked",
+  "private_owner_projects_opened": false
+}

@@ -97,6 +97,19 @@ class SampleTests(unittest.TestCase):
         self.assertEqual(len(self.projects(B)), 1)
         self.assertNotEqual(self.projects(B)[0]["id"], p["id"])
 
+    def test_sample_room_deletion_is_refused_and_shared_pack_stays_intact(self):
+        self.shell_bundle()
+        self.projects()
+        d = self.room_dir()
+        before = {p.name: p.read_bytes() for p in self.bundle.iterdir() if p.is_file()}
+        used = self.store.quota(A["x-workspace-owner"])["storage_bytes_used"]
+        response = self.c.delete("/internal/workspace/rooms/" + d.name, headers=A)
+        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.json()["detail"]["message"], "Sample rooms can't be deleted")
+        self.assertTrue((d / "status.json").is_file())
+        self.assertEqual({p.name: p.read_bytes() for p in self.bundle.iterdir() if p.is_file()}, before)
+        self.assertEqual(self.store.quota(A["x-workspace-owner"])["storage_bytes_used"], used)
+
     def test_files_list_seeds_too_and_unauthorised_does_not(self):
         self.assertEqual(self.c.get("/internal/workspace/files").status_code, 401)
         self.assertEqual(self.store.db.execute("SELECT COUNT(*) FROM projects").fetchone()[0], 0)

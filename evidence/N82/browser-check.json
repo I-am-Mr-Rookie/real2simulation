@@ -1,0 +1,31 @@
+{
+  "desktop": {
+    "clientWidth": 1351,
+    "focus": "Project actions for N82 desktop room",
+    "innerWidth": 1366,
+    "scrollWidth": 1351
+  },
+  "phone": {
+    "buttons": [
+      {
+        "height": 44,
+        "text": "Cancel",
+        "width": 73.109375
+      },
+      {
+        "height": 44,
+        "text": "Delete room",
+        "width": 114.46875
+      }
+    ],
+    "clientWidth": 360,
+    "innerWidth": 375,
+    "scrollWidth": 360
+  },
+  "cancelChecked": true,
+  "desktopDeleted": true,
+  "phoneDeleted": true,
+  "busyRefusedWithVisibleMessage": true,
+  "sampleMenu": "Open",
+  "logs": []
+}

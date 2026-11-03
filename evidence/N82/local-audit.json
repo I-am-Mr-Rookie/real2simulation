@@ -1,0 +1,104 @@
+{
+  "rooms_deleted": [
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+  ],
+  "rooms_kept": [
+    "cccccccccccccccccccccccccccccccc",
+    "dddddddddddddddddddddddddddddddd",
+    "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  ],
+  "uploaded_file_kept": true,
+  "receipts": [
+    {
+      "method": "DELETE",
+      "path": "/api/workspace/rooms/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": 200,
+      "body": {
+        "deleted": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "quota": {
+          "storage_bytes_used": 2360146,
+          "storage_bytes_limit": 1073741824,
+          "storage_bytes_remaining": 1071381678,
+          "uploads_today": 1,
+          "uploads_daily_limit": 20,
+          "uploads_remaining_today": 19,
+          "uploads_reset_at": "2026-11-03T18:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/workspace/rooms/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "status": 200,
+      "body": {
+        "deleted": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "quota": {
+          "storage_bytes_used": 1770117,
+          "storage_bytes_limit": 1073741824,
+          "storage_bytes_remaining": 1071971707,
+          "uploads_today": 1,
+          "uploads_daily_limit": 20,
+          "uploads_remaining_today": 19,
+          "uploads_reset_at": "2026-11-03T18:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/workspace/rooms/cccccccccccccccccccccccccccccccc",
+      "status": 409,
+      "body": {
+        "detail": {
+          "code": "ROOM_BUSY",
+          "message": "This room has a queued or running job. Try again when it finishes."
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/workspace/rooms/aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "status": 200,
+      "body": {
+        "deleted": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "quota": {
+          "storage_bytes_used": 2360146,
+          "storage_bytes_limit": 1073741824,
+          "storage_bytes_remaining": 1071381678,
+          "uploads_today": 1,
+          "uploads_daily_limit": 20,
+          "uploads_remaining_today": 19,
+          "uploads_reset_at": "2026-11-03T18:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/workspace/rooms/bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "status": 200,
+      "body": {
+        "deleted": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "quota": {
+          "storage_bytes_used": 1770117,
+          "storage_bytes_limit": 1073741824,
+          "storage_bytes_remaining": 1071971707,
+          "uploads_today": 1,
+          "uploads_daily_limit": 20,
+          "uploads_remaining_today": 19,
+          "uploads_reset_at": "2026-11-03T18:00:00Z"
+        }
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/workspace/rooms/cccccccccccccccccccccccccccccccc",
+      "status": 409,
+      "body": {
+        "detail": {
+          "code": "ROOM_BUSY",
+          "message": "This room has a queued or running job. Try again when it finishes."
+        }
+      }
+    }
+  ]
+}

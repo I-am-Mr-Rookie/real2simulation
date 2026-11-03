@@ -192,6 +192,13 @@ export const createLive = (React, icon = () => null) => {
       setProject((cur) => (cur?.id === g.id ? null : cur));
       loadJobs(); loadFiles();
     };
+    const deleteRoom = async (id) => {
+      const r = await call('/rooms/' + encodeURIComponent(id), { method: 'DELETE' }).catch(() => null);
+      if (!r?.ok) { setFiles((s) => ({ ...s, error: errText(r, 'Could not delete the room') })); return; }
+      setTracked((s) => { const next = { ...s }; delete next['room:' + id]; return next; });
+      setMsgs((list) => list.map((m) => ({ ...m, jobs: m.jobs?.filter((j) => j.kind !== 'room' || j.id !== id) })));
+      loadJobs(); loadFiles();
+    };
     // N55 mode cards: the same first question, answered by the card the user picked.
     const startProject = (mode) => {
       projectRequest.current = null; setProject(null);
@@ -209,7 +216,7 @@ export const createLive = (React, icon = () => null) => {
 
     return { mode, setMode, files, up, upload, remove, preview, setPreview, project, newProject, msgs, busy, draft, setDraft, send, answer,
       gpu, jobs, loadJobs, voice, toggleVoice, tracked, track, action, setAction, measure, buildRoom, share,
-      openAgent, startProject, renameProject, deleteProject, dismissUp: () => setUp(null) };
+      openAgent, startProject, renameProject, deleteProject, deleteRoom, dismissUp: () => setUp(null) };
   }
 
   function ModeScreen({ L, settings = false, onDone }) {
@@ -467,6 +474,11 @@ export const createLive = (React, icon = () => null) => {
 
   function ProjectCard({ L, g, small }) {
     const [renaming, setRenaming] = useState(false), [title, setTitle] = useState(g.name), [renameError, setRenameError] = useState(null);
+    const [roomDelete, setRoomDelete] = useState(null), [deletingRoom, setDeletingRoom] = useState(false);
+    const cancelRoomDelete = (e) => {
+      setRoomDelete(null);
+      e.currentTarget.closest('.lv-pcard')?.querySelector('.lv-menu > summary')?.focus();
+    };
     const saveName = async () => {
       if (!title.trim()) { setRenameError('Enter a project name.'); return; }
       const error = await L.renameProject(g.id, title);
@@ -516,7 +528,19 @@ export const createLive = (React, icon = () => null) => {
           target.kind === 'room' && experimentId ? { label: 'Open experiment', onClick: openExperiment } : null,
           g.sample || !g.id ? null : { label: 'Rename', onClick: () => { setTitle(g.name); setRenameError(null); setRenaming(true); } },
           f ? { label: 'Download video', href: fileUrl(f), download: f.name } : null,
-          g.sample || !g.id ? null : { label: 'Delete', danger: true, onClick: () => L.deleteProject(g) }] })));
+          g.sample || !g.id ? null : { label: 'Delete', danger: true, onClick: () => L.deleteProject(g) },
+          ...g.rooms.filter((r) => !r.sample).map((r) => ({ label: 'Delete room ' + (r.id ?? r.job_id).slice(0, 8), danger: true,
+            onClick: () => setRoomDelete(r.id ?? r.job_id) }))] })),
+      roomDelete ? h('div', { className: 'lv-room-delete', role: 'alertdialog', 'aria-label': 'Delete room ' + roomDelete.slice(0, 8),
+        'aria-describedby': 'room-delete-warning-' + roomDelete,
+        onKeyDown: (e) => { if (e.key === 'Escape' && !deletingRoom) cancelRoomDelete(e); } },
+        h('p', { id: 'room-delete-warning-' + roomDelete }, 'Delete this room? Its 3D files and lab edits are removed. This cannot be undone.'),
+        h('div', { className: 'lv-row' },
+          h('button', { type: 'button', autoFocus: true, disabled: deletingRoom, onClick: cancelRoomDelete }, 'Cancel'),
+          h('button', { type: 'button', 'data-danger': true, disabled: deletingRoom, onClick: async () => {
+            setDeletingRoom(true);
+            try { await L.deleteRoom(roomDelete); setRoomDelete(null); } finally { setDeletingRoom(false); }
+          } }, deletingRoom ? 'Deleting…' : 'Delete room'))) : null);
   }
 
   function ProjectsGrid({ L }) {
@@ -535,6 +559,7 @@ export const createLive = (React, icon = () => null) => {
         empty.length ? h('button', { type: 'button', className: 'lv-link', 'aria-pressed': showEmpty, onClick: () => setShowEmpty(!showEmpty) },
           (showEmpty ? 'Hide empty' : 'Show empty') + ' (' + empty.length + ')') : null),
       err ? h('p', { className: 'ws-error', role: 'alert' }, err.message) : null,
+      L.files.error ? h('p', { className: 'ws-error', role: 'alert' }, L.files.error) : null,
       h('ul', { className: 'lv-pgrid' },
         h('li', { className: 'lv-pcard lv-new' }, h('button', { type: 'button', onClick: L.newProject }, icon(h, 'plus', 22), h('strong', null, 'New project'),
           h('small', null, 'The agent asks what you are filming'))),

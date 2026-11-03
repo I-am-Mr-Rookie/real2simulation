@@ -1,0 +1,73 @@
+{
+  "origin": "https://real2simulation.up.railway.app",
+  "allowed": [
+    "17f7acaaed9945aab6b782b3c93c91cc",
+    "89f46b23753945718843074eaf9004e4",
+    "3a0b6e11051c4ea59fe08034deab553b"
+  ],
+  "deleted": [
+    "17f7acaaed9945aab6b782b3c93c91cc",
+    "89f46b23753945718843074eaf9004e4"
+  ],
+  "alreadyAbsent": [],
+  "dialogs": [
+    {
+      "type": "confirm",
+      "message": "Delete project N60 QA snapshot-only lab? Its files stay in Files.",
+      "approved": true
+    },
+    {
+      "type": "confirm",
+      "message": "Delete project New experiment? Its files stay in Files.",
+      "approved": true
+    }
+  ],
+  "unrequestedPrefixAbsent": true,
+  "codePreparedStatus": 200,
+  "before": [
+    {
+      "id": "3a0b6e11051c4ea59fe08034deab553b",
+      "title": "New experiment",
+      "created": "2026-11-02T22:51:54Z"
+    },
+    {
+      "id": "89f46b23753945718843074eaf9004e4",
+      "title": "New experiment",
+      "created": "2026-11-02T20:33:15Z"
+    },
+    {
+      "id": "17f7acaaed9945aab6b782b3c93c91cc",
+      "title": "N60 QA snapshot-only lab",
+      "created": "2026-11-02T14:04:24Z"
+    },
+    {
+      "id": "f09d091678f247bdbcd596c01d7c4907",
+      "title": "N57 QA measured apple",
+      "created": "2026-11-02T11:24:28Z"
+    },
+    {
+      "id": "a6724140a6e547b0b01331602c81b32f",
+      "title": "New experiment",
+      "created": "2026-11-02T11:19:41Z"
+    },
+    {
+      "id": "d32a8c7c10674e7ea9e1efae4be28058",
+      "title": "Experiment: ST03-trim.mp4",
+      "created": "2026-11-02T02:06:09Z"
+    },
+    {
+      "id": "f578dc3ba08f46c68bb9f1d6ef6cc6ac",
+      "title": "Room 2026-11-02 01:59",
+      "created": "2026-11-02T01:59:44Z"
+    },
+    {
+      "id": "687ef375e7c54838b6de4b4d4433a06f",
+      "title": "SAMPLE (RECORDED): classroom room and falling apple",
+      "created": "2026-11-02T01:59:01Z"
+    }
+  ],
+  "status": "PARTIAL",
+  "error": "locator.waitFor: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('li.lv-pcard').filter({ has: locator('strong.lv-pname').filter({ hasText: /^New experiment$/ }) }).first() to be visible\u001b[22m\n",
+  "lastUrl": "https://real2simulation.up.railway.app/workspace/dev-fixture-090f1876c9e73d9653bdda628493d2ba6f96a9585180b6d49a238152b81e9ec0",
+  "lastUi": "Skip to content\n\nGO TO\n\nPrivate workspace\nDemo library\nLocal simulation lab\nStorage\nFiles\n52 MB of 1.0 GB used\n20 of 20 uploads left today\nPrivate workspace\nGPU sleeping Queue empty\nAgent & tools\nWhat do you want to simulate?\nDescribe what you want to simulate\nAttach a video\nMuse Spark 1.3\nStandard\nTurn your room into a lab\nFilm a room; get an editable virtual lab with physics.\nMeasure your experiment\nFilm a motion; get a fit with uncertainty and a 3D replay.\nProjects\nShow empty (3)\nNew project\nThe agent asks what you are filming\nN57 QA measured apple\nReady\n15 h ago\nExperiment: ST03-trim.mp4\nReady\n1 d ago\nSAMPLE\nclassroom room and falling apple\nReady\n1 d ago\nRECORDED\nNot in a project\nReady\n1 d ago\nAdvanced single-clip tools"
+}
