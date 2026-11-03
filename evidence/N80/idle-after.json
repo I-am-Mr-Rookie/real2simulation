@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-11-03T00:26:16.626860+00:00",
+  "app": "r2s-sf3d",
+  "function": "generate",
+  "backlog": 0,
+  "num_total_runners": 0,
+  "num_running_inputs": 0,
+  "scope": "Global function snapshot, not a billing report; no generation call made",
+  "earlier_snapshot": {
+    "checked_at": "2026-11-03T00:22:27.737599+00:00",
+    "app": "r2s-sf3d",
+    "function": "generate",
+    "backlog": 0,
+    "num_total_runners": 1,
+    "num_running_inputs": 0,
+    "scope": "Global function snapshot, not a billing report; no generation call made"
+  }
+}

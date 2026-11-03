@@ -1,0 +1,75 @@
+{
+  "browser": "ChatGPT in-app browser",
+  "scope": "GET-only synthetic owner, local production build, final candidate",
+  "scene_objects": 23,
+  "mesh_glbs_http_200": 4,
+  "console_errors_captured": 0,
+  "comparison_loaded_glbs": 8,
+  "views": [
+    "angle",
+    "front",
+    "top"
+  ],
+  "api_requests": [
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/result",
+      "status": 200,
+      "bytes": 204802
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1",
+      "status": 200,
+      "bytes": 2062
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/room.ply",
+      "status": 200,
+      "bytes": 740386
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/objects/room-object-1.glb",
+      "status": 200,
+      "bytes": 186780
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/objects/room-object-2.glb",
+      "status": 200,
+      "bytes": 236584
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/objects/room-object-4.glb",
+      "status": 200,
+      "bytes": 171000
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/objects/room-object-7.glb",
+      "status": 200,
+      "bytes": 185152
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/views/0.png?v=0",
+      "status": 200,
+      "bytes": 112140
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/objects/room-object-1.glb",
+      "status": 200,
+      "bytes": 186780
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/objects/room-object-4.glb",
+      "status": 200,
+      "bytes": 171000
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/objects/room-object-2.glb",
+      "status": 200,
+      "bytes": 236584
+    },
+    {
+      "path": "/api/workspace/rooms/2c73832663ef4582ae3a56d101936de1/objects/room-object-7.glb",
+      "status": 200,
+      "bytes": 185152
+    }
+  ]
+}

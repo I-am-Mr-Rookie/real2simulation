@@ -1,0 +1,67 @@
+{
+  "row_cap_usd": 3,
+  "source_archive_sha256": "82e6cc99142b9791ad30c18ac2c92106a30a0082b61d6063aace74d31c986154",
+  "source": "public RM02; cached MapAnything/SAM, no new reconstruction or segmentation",
+  "cost_basis": "daily_cap conservative GPU wall-time plus idle estimates, not provider bill",
+  "model": "stabilityai/stable-fast-3d",
+  "units_per_job": "one RGBA crop -> one mesh",
+  "ledger_integer_unit_usd": "1E-8",
+  "jobs": [
+    {
+      "id": "3082b467b8074424b0145965facbd5f4",
+      "provider": "Modal",
+      "label": "N80 public RM02 N31 sf3d",
+      "reserved": 26475840,
+      "actual": 3735226,
+      "reserved_at": "2026-11-02T23:42:51.472147+00:00",
+      "settled_at": "2026-11-02T23:44:33.073267+00:00",
+      "reserved_usd": 0.2647584,
+      "settled_usd": 0.03735226
+    },
+    {
+      "id": "3213f240ef0c4d9c930a483b71aeda6f",
+      "provider": "Modal",
+      "label": "N80 public RM02 SF3D serial batch idle tail",
+      "reserved": 33094800,
+      "actual": 33094800,
+      "reserved_at": "2026-11-02T23:42:51.510717+00:00",
+      "settled_at": "2026-11-02T23:44:54.101095+00:00",
+      "reserved_usd": 0.330948,
+      "settled_usd": 0.330948
+    },
+    {
+      "id": "e121d9a2114d48858eac9b597a8ce86e",
+      "provider": "Modal",
+      "label": "N80 public RM02 N31 sf3d",
+      "reserved": 26475840,
+      "actual": 251667,
+      "reserved_at": "2026-11-02T23:44:33.118795+00:00",
+      "settled_at": "2026-11-02T23:44:39.919085+00:00",
+      "reserved_usd": 0.2647584,
+      "settled_usd": 0.00251667
+    },
+    {
+      "id": "6ec3440b9793413a8c1306173e90308b",
+      "provider": "Modal",
+      "label": "N80 public RM02 N31 sf3d",
+      "reserved": 26475840,
+      "actual": 272922,
+      "reserved_at": "2026-11-02T23:44:39.967199+00:00",
+      "settled_at": "2026-11-02T23:44:47.352037+00:00",
+      "reserved_usd": 0.2647584,
+      "settled_usd": 0.00272922
+    },
+    {
+      "id": "8c5e07e35c4c4bda9248123c540215bf",
+      "provider": "Modal",
+      "label": "N80 public RM02 N31 sf3d",
+      "reserved": 26475840,
+      "actual": 245343,
+      "reserved_at": "2026-11-02T23:44:47.407052+00:00",
+      "settled_at": "2026-11-02T23:44:54.023141+00:00",
+      "reserved_usd": 0.2647584,
+      "settled_usd": 0.00245343
+    }
+  ],
+  "total_charged_or_reserved_usd": 0.37599958
+}

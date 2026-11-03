@@ -169,21 +169,51 @@ def lift(npz, view, point, box, room, instance_mask=None):
             "rotation": [0, round(float(np.sin(yaw / 2)), 6), 0, round(float(np.cos(yaw / 2)), 6)],
             "points": len(q), "focal_px": round(float(fx), 2),
             "camera": [round(float(x), 4) for x in (v["pose"][:3, 3] - origin) @ rot.T * k],  # room frame
-            "mask": mask.reshape(h, w)}  # object pixels (box x depth band, floor dropped): the SF3D cut-out
+            "mask": mask.reshape(h, w)}  # depth-supported geometry pixels, not the full appearance silhouette
 
 
 def crop_rgba(npz, view, box, mask, pad=8):
-    """PNG of the view inside the SAM box (+pad), alpha = the object's pixels. Input for SF3D."""
+    """Centred square SF3D input, 85% foreground extent; preserve aspect and zero transparent RGB.
+
+    Use the segmentation mask, not the depth/collision mask: invalid depth is not missing object appearance.
+    Upsampling standardises the model input, not the amount of observed detail.
+    """
     from PIL import Image
     v = live_room.load_views(npz)[view]
-    h, w = mask.shape
+    mask = np.asarray(mask, bool)
+    h, w = v["pts_img"].shape[:2]
+    if mask.shape != (h, w) or len(box) != 4 or not np.isfinite(box).all():
+        raise ValueError("crop mask/box must match the view")
     x1, y1, x2, y2 = (int(round(b)) for b in box)
     x1, y1, x2, y2 = max(0, x1 - pad), max(0, y1 - pad), min(w, x2 + pad + 1), min(h, y2 + pad + 1)
+    mask = mask[y1:y2, x1:x2]
+    if not mask.any():
+        raise ValueError("empty object crop")
     rgb = np.clip(v["rgb"].reshape(h, w, 3) * 255 + 0.5, 0, 255).astype(np.uint8)
-    rgba = np.dstack([rgb, mask.astype(np.uint8) * 255])[y1:y2, x1:x2]
+    rgba = np.dstack([rgb[y1:y2, x1:x2], mask.astype(np.uint8) * 255])
+    rgba[~mask] = 0
+    ys, xs = np.nonzero(mask)
+    image = Image.fromarray(rgba, "RGBA").crop((xs.min(), ys.min(), xs.max() + 1, ys.max() + 1))
+    scale = 512 * 0.85 / max(image.size)
+    image = image.resize(tuple(max(1, round(s * scale)) for s in image.size), Image.Resampling.LANCZOS)
+    square = Image.new("RGBA", (512, 512))
+    square.paste(image, ((512 - image.width) // 2, (512 - image.height) // 2))
     buf = io.BytesIO()
-    Image.fromarray(rgba, "RGBA").save(buf, "PNG")
+    square.save(buf, "PNG")
     return buf.getvalue()
+
+
+def crop_score(mask):
+    """Balance visible detail against cut-edge pixels relative to object size.
+
+    A leg crossing the frame boundary is less truncated than a whole tabletop crossing it.
+    """
+    mask = np.asarray(mask, bool)
+    area = int(mask.sum())
+    if mask.ndim != 2 or not area:
+        return (float("-inf"), 0)
+    edge = int(mask[0].sum() + mask[-1].sum() + mask[:, 0].sum() + mask[:, -1].sum())
+    return (area / (1 + edge / np.sqrt(area)), area)
 
 
 def _hull2(p):

@@ -1,0 +1,5 @@
+{
+  "url": "http://localhost:8082/lab?editor=1&room=2c73832663ef4582ae3a56d101936de1",
+  "room": "2c73832663ef4582ae3a56d101936de1",
+  "scope": "isolated synthetic owner, actual sample seed/API routes, local Next build, GET-only adapter"
+}

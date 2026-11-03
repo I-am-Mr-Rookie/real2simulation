@@ -1,0 +1,78 @@
+[
+  {
+    "id": "room-object-1",
+    "size": [
+      464,
+      130
+    ],
+    "bbox": [
+      10,
+      19,
+      454,
+      130
+    ],
+    "alpha_nonzero": 27559,
+    "foreground_ratio": 0.9568965517241379,
+    "alpha_levels": [
+      0,
+      255
+    ]
+  },
+  {
+    "id": "room-object-2",
+    "size": [
+      518,
+      140
+    ],
+    "bbox": [
+      0,
+      34,
+      518,
+      140
+    ],
+    "alpha_nonzero": 21340,
+    "foreground_ratio": 1.0,
+    "alpha_levels": [
+      0,
+      255
+    ]
+  },
+  {
+    "id": "room-object-4",
+    "size": [
+      279,
+      195
+    ],
+    "bbox": [
+      9,
+      16,
+      270,
+      195
+    ],
+    "alpha_nonzero": 8565,
+    "foreground_ratio": 0.9354838709677419,
+    "alpha_levels": [
+      0,
+      255
+    ]
+  },
+  {
+    "id": "room-object-7",
+    "size": [
+      194,
+      211
+    ],
+    "bbox": [
+      8,
+      11,
+      186,
+      211
+    ],
+    "alpha_nonzero": 3921,
+    "foreground_ratio": 0.9478672985781991,
+    "alpha_levels": [
+      0,
+      255
+    ]
+  }
+]

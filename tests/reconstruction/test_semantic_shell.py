@@ -64,7 +64,7 @@ def test_opening_projects_to_extent_wall_and_clips_its_height():
 
 def proxy(position=(0, 0.45, 0), size=(0.6, 0.9, 0.6)):
     return {"position": list(position), "size": list(size), "rotation": [0, 0, 0, 1], "points": 900,
-            "mask": np.ones((30, 30), bool), "size_sd": [0.1] * 3}
+            "mask": np.ones((30, 30), bool), "size_sd": [0.1] * 3, "camera": [0, 1.5, 3]}
 
 
 def test_size_prior_splits_mask_without_inventing_empty_cells():

@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>N80 public RM02 crop comparison</title>
+<style>body{font:15px system-ui;background:#171d26;color:white;margin:20px}main{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}canvas{width:100%;height:auto;display:block}article{background:#293341;padding:8px;min-width:0}button{padding:10px;margin:8px}h1{font-size:22px}h2{font-size:16px;margin:5px}p{margin:5px}</style>
+<h1>Public RM02: before / after N80</h1><p>RECORDED input. MODEL-GENERATED shape. Scale unverified. Same renderer, camera and proxy size. Not a physical measurement.</p>
+<button id="angle">Angle view</button><button id="front">Front view</button><button id="top">Top view</button><p id="status">Loading 8 meshes...</p><main></main>
+<script type="importmap">{"imports":{"three":"/three/build/three.module.js","three/":"/three/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {loadShapeGlb} from '/sf3d-shape.mjs';
+const renderers=[];
+let loaded=0;
+for(const version of ['before','after']){
+ const data=await fetch(`/assets/${version}/RM02-sample-scene.json`).then(r=>r.json());
+ for(const id of [1,2,4,7]){
+  const obj=data.objects.find(o=>o.id===`room-object-${id}`);
+  const article=document.createElement('article');article.innerHTML=`<h2>${version.toUpperCase()} object ${id}</h2><p>Loading</p>`;document.querySelector('main').append(article);
+  const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setSize(340,260,false);renderer.setPixelRatio(1);renderer.setClearColor('#cad0d6');article.append(renderer.domElement);
+  const scene=new THREE.Scene();scene.add(new THREE.HemisphereLight(0xffffff,0x667788,2));const light=new THREE.DirectionalLight(0xffffff,3);light.position.set(2,4,3);scene.add(light);
+  const body=new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial({wireframe:true}));body.scale.fromArray(obj.size);scene.add(body);
+  const camera=new THREE.PerspectiveCamera(40,340/260,.01,100);camera.position.set(1.9,1.4,2.3);camera.lookAt(0,0,0);
+  loadShapeGlb({...obj.shape,glb:`/assets/${version}/RM02-room-object-${id}.glb`},body,obj.id);
+  let ready=false;function draw(){if(!ready&&(body.children.length||body.userData.glbError)){ready=true;loaded++;article.querySelector('p').textContent=body.userData.glbError?'ERROR':'Textured GLB loaded';document.querySelector('#status').textContent=`${loaded}/8 meshes finished`;}renderer.render(scene,camera);if(!ready)requestAnimationFrame(draw);}draw();renderers.push({camera,draw});
+ }
+}
+for(const [id,pos] of [['angle',[1.9,1.4,2.3]],['front',[0,.55,3]],['top',[0,3,.01]]])document.getElementById(id).onclick=()=>{for(const r of renderers){r.camera.position.fromArray(pos);r.camera.lookAt(0,0,0);r.draw();}};
+</script></html>

@@ -1,0 +1,99 @@
+{
+  "source": "public RM02 only",
+  "objects": 23,
+  "mesh_ids": [
+    "room-object-1",
+    "room-object-2",
+    "room-object-4",
+    "room-object-7"
+  ],
+  "geometry_unchanged": true,
+  "original_shared_pack_unchanged": true,
+  "candidate_hashes_valid": true,
+  "promoted": false,
+  "candidate_legacy_repair_idempotent": true,
+  "candidate_second_user_seeded_without_inference": true,
+  "paid_crop_calls": 8,
+  "idle_tail_reservations": 3,
+  "charged_or_reserved_usd": 1.0499443,
+  "cost_basis": "conservative ledger estimates, not provider bill",
+  "fit": [
+    {
+      "id": "room-object-1",
+      "raw_extent_after_yaw": [
+        0.9196342825889587,
+        0.26428021490573883,
+        0.6494695246219635
+      ],
+      "proxy_size": [
+        1.0295,
+        0.9804,
+        0.5553
+      ],
+      "axis_scale": [
+        1.119466748348862,
+        3.7096988147587235,
+        0.855005475927794
+      ],
+      "max_min_axis_scale_ratio": 4.338801234849648
+    },
+    {
+      "id": "room-object-2",
+      "raw_extent_after_yaw": [
+        0.9767059981822968,
+        0.24471290409564972,
+        0.031851187348365784
+      ],
+      "proxy_size": [
+        1.1794,
+        0.8512,
+        0.719
+      ],
+      "axis_scale": [
+        1.2075281632291885,
+        3.4783617281878016,
+        22.57372675423638
+      ],
+      "max_min_axis_scale_ratio": 18.69416171120134
+    },
+    {
+      "id": "room-object-4",
+      "raw_extent_after_yaw": [
+        0.9271193444728851,
+        0.6843797862529755,
+        0.18459388613700878
+      ],
+      "proxy_size": [
+        0.9817,
+        1.0044,
+        0.692
+      ],
+      "axis_scale": [
+        1.0588712293109868,
+        1.4676061744885194,
+        3.748769877927515
+      ],
+      "max_min_axis_scale_ratio": 3.5403453924863553
+    },
+    {
+      "id": "room-object-7",
+      "raw_extent_after_yaw": [
+        0.7094497382640839,
+        0.8457952439785004,
+        0.0779675617814065
+      ],
+      "proxy_size": [
+        1.0282,
+        1.084,
+        0.4935
+      ],
+      "axis_scale": [
+        1.449292239526157,
+        1.2816340689042167,
+        6.329555378217414
+      ],
+      "max_min_axis_scale_ratio": 4.938660364755375
+    }
+  ],
+  "limitation": "Client independently rescales each axis to the proxy box; Python-only uniform fitting would not repair visual aspect."
+}

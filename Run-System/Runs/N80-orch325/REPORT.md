@@ -1,0 +1,13 @@
+# N80-orch325 PARTIAL
+- Crop bugs fixed: separate SAM appearance from collision masks; balanced view quality; selected-camera fitting; centred 512 RGBA/85% crops; depth/material-supported enclosed tabletop-hole repair.
+- Physics geometry unchanged. Root visibility/occlusion and client per-axis stretching still prevent recognisable furniture; do not treat this as a successful mesh-quality fix.
+- Same public RM02 objects 1/2/4/7 only: 8 SF3D calls across 3 bounded ablations, exact unchanged crop/fit results reused.
+- Canonical ledger, generate_remote + SerialBatch: $1.04994430 conservative estimate including 3 idle tails, below $3; UTC/job receipt evidence/N80/spend.json. Not provider-billed cost.
+- Both Python 3.14 and production-pinned Python 3.12: 127 tests + 6 subtests passed. Web production build PASS.
+- Actual candidate hashes, 23 unchanged object transforms, four mesh IDs, legacy repair/idempotency/second-user seeding without inference PASS.
+- In-app browser: real renderer angle/front/top comparisons and final candidate in local production lab; no captured console errors.
+- Candidate not clearly better. Shared pack and N75/pipeline manifests unchanged; no sample.py change, deploy or push.
+- Evidence: evidence/N80/VERIFY.md, audit.json, compare-*.jpg, local-lab.jpg; local binary candidates remain ignored.
+- Named-file secret/path scan and diff checks PASS; temporary browser tabs and verified own loopback helpers closed.
+- Modal read-only snapshot 00:26:16 UTC: 0 runners, 0 running inputs, 0 backlog; scale-down observed.
+- Risk/follow-up: renderer aspect preservation is outside Owns; source lacks complete observations for 1/2. Scale remains unverified; no physical, billing or signed-in E2E claim.

@@ -3,7 +3,7 @@
 Floor = live_room's RANSAC plane (y = 0). Walls = Manhattan planes fitted to the MapAnything points (yaw search on the
 horizontal point histogram); hosted SAM 3.1 "window"/"door" boxes become openings cut into the wall they sit on.
 Furniture = hosted SAM 3.1 noun prompts on a few keyframes -> N14 box proxy per detection -> merged across views ->
-box extended down to the floor -> small items on top surfaces masked out -> SF3D shape via the N31 path (box fallback
+box extended down to the floor -> top clutter removed from geometry, SAM appearance kept separately -> SF3D (box fallback
 with reason). Everything else is dropped and counted. Geometry MODEL-ESTIMATED; scale from room.json.
 """
 import time
@@ -17,7 +17,7 @@ FURNITURE = {"table": "table", "desk": "table", "chair": "chair", "sofa": "sofa"
              "cabinet": "shelf"}
 FEATURES = ("window", "door")
 SURFACES = ("wall", "floor")
-TOP_SURFACE = ("table", "desk", "shelf", "cabinet")  # clutter on these is masked out before SF3D
+TOP_SURFACE = ("table", "desk", "shelf", "cabinet")  # geometry top fitting and optional mesh-top flattening
 KEYFRAMES = 16  # N49: all sampled room frames (live_room.FRAMES 16): with 3, the N06 window and door were never in view
 SAM_THREADS = 8  # bounded hosted SAM calls; keep all detection frames and reserve each image atomically
 MIN_TOP = 0.05  # model metres; N06's coffee table top is about 0.1 above the fitted floor (scale unverified)
@@ -174,10 +174,16 @@ def furniture(npz, room, detections):
             drop("too small for main furniture")
             continue
         p["position"][1], p["size"][1] = round(top / 2, 4), round(top, 4)  # measured box reaches the floor
-        items.extend(split_item(npz, room, {"noun": noun, "view": view, "box": [int(x) for x in box],
+        parts = split_item(npz, room, {"noun": noun, "view": view, "box": [int(x) for x in box],
                                           "proxy": p, "views": [view], "instance": instance,
                                           "mask_source": "SAM instance mask" if mask is not None else
-                                          "box/depth fallback; " + (getattr(detection, "mask_error", None) or "SAM mask unavailable")}))
+                                          "box/depth fallback; " + (getattr(detection, "mask_error", None) or "SAM mask unavailable")})
+        for item in parts:
+            # Geometry keeps its depth filtering; appearance keeps the whole SAM silhouette (including thin legs).
+            appearance = mask if mask is not None and not item.get("split") else item["proxy"]["mask"]
+            item["crop"] = {"view": view, "box": item["box"], "mask": np.asarray(appearance, bool).copy(),
+                            "camera": list(p["camera"])}
+        items.extend(parts)
     kept = []
     for it in sorted(items, key=lambda x: -x["proxy"]["points"]):
         p = it["proxy"]
@@ -196,6 +202,9 @@ def furniture(npz, room, detections):
             < (0.5 if same(k) else 0.3) * max(p["size"][0], p["size"][2], k["proxy"]["size"][0], k["proxy"]["size"][2])
             or part(k))), None)
         if twin:
+            if (same(twin) and not it.get("split") and not twin.get("split")
+                    and object_lift.crop_score(it["crop"]["mask"]) > object_lift.crop_score(twin["crop"]["mask"])):
+                twin["crop"] = it["crop"]
             # N42: parts of one item (desk + hutch, other views) become one box over the union footprint
             if part(twin):  # a centre-distance twin with little overlap is a misaligned view: no growth
                 _, lo, hi = _footprint_overlap(twin["proxy"], p)
@@ -212,6 +221,33 @@ def furniture(npz, room, detections):
 
 def _axes(a):
     return np.array([np.cos(a), -np.sin(a)]), np.array([np.sin(a), np.cos(a)])  # local x, local z in (x, z)
+
+
+def crop_mask(npz, item, room):
+    """Repair enclosed tabletop holes only where observed depth supports the same horizontal surface.
+
+    SAM excludes papers from tables; retaining those holes makes SF3D reconstruct a ring. No RGB is invented.
+    """
+    from PIL import Image, ImageDraw
+    crop, p = item["crop"], item["proxy"]
+    mask = crop["mask"]
+    if item["noun"] not in ("table", "desk") or item.get("split"):
+        return mask
+    # fromarray can be read-only; floodfill otherwise silently leaves every background pixel unchanged.
+    flooded = Image.fromarray(np.pad(np.asarray(mask, np.uint8), 1)).copy()
+    ImageDraw.floodfill(flooded, (0, 0), 2)
+    holes = np.asarray(flooded)[1:-1, 1:-1] == 0
+    if not holes.any():
+        return mask
+    h, flat = _heights(npz, crop["view"], holes, room, crop["camera"][1])
+    v = live_room.load_views(npz)[crop["view"]]
+    valid = v["mask"].reshape(mask.shape)[holes]
+    rgb = v["rgb"].reshape(*mask.shape, 3)
+    material = np.max(np.abs(rgb[holes] - np.median(rgb[mask], axis=0)), axis=1) <= 0.2
+    out = mask.copy()
+    # Same 3-bin (0.02 model-metre) surface band used by top_surface; never fill missing depth or open boundaries.
+    out[holes] = valid & flat & material & (np.abs(h - (p["position"][1] + p["size"][1] / 2)) <= 0.06)
+    return out
 
 
 def walls(aligned, inside=(), cell=0.05):
@@ -492,6 +528,8 @@ def build(npz, room, scene, detect, generate=None, glb_url=None, deferred=None):
     largest = {id(it) for it in sorted(kept, key=lambda it: float(np.prod(it["proxy"]["size"])), reverse=True)[:MAX_SF3D]}
     for n_item, it in enumerate(kept):
         p, noun = it["proxy"], it["noun"]
+        crop = it["crop"]
+        crop_proxy = {**p, "camera": crop["camera"]}
         out, obj = object_lift.to_scene(out, p, category=noun)
         obj["look"] = {"category": noun, "color": hex_color(views[it["view"]]["rgb"][p["mask"].reshape(-1)])}  # N49
         gen = {}
@@ -500,8 +538,8 @@ def build(npz, room, scene, detect, generate=None, glb_url=None, deferred=None):
         try:  # N31 path: SF3D shape fitted to the measured box; any failure keeps the box with the reason
             if deferred is not None and id(it) in largest:
                 deferred.append({"id": obj["id"], "category": noun,
-                                 "png": object_lift.crop_rgba(npz, it["view"], it["box"], p["mask"]),
-                                 "proxy": {k: p[k] for k in ("rotation", "camera", "position")}})
+                                 "png": object_lift.crop_rgba(npz, crop["view"], crop["box"], crop_mask(npz, it, room)),
+                                 "proxy": {k: crop_proxy[k] for k in ("rotation", "camera", "position")}})
                 upgrade = {"state": "pending"}
                 raise RuntimeError("background shape upgrade pending")
             if generate is None:
@@ -510,8 +548,8 @@ def build(npz, room, scene, detect, generate=None, glb_url=None, deferred=None):
                 raise RuntimeError(f"SF3D limit ({MAX_SF3D} per room) reached")
             if sf3d_timeout:
                 raise RuntimeError(f"SF3D skipped after earlier timeout: {sf3d_timeout}")
-            gen = generate(object_lift.crop_rgba(npz, it["view"], it["box"], p["mask"]))
-            turns, verts, idx, support = object_lift.fit_mesh(gen["vertices"], gen["faces"], p, noun in TOP_SURFACE)
+            gen = generate(object_lift.crop_rgba(npz, crop["view"], crop["box"], crop_mask(npz, it, room)))
+            turns, verts, idx, support = object_lift.fit_mesh(gen["vertices"], gen["faces"], crop_proxy, noun in TOP_SURFACE)
             glbs[obj["id"]] = gen["glb"]
             obj["shape"] = object_lift.mesh_shape(noun, glb_url(obj["id"]) if glb_url else "", turns, verts, idx, support)
         except Exception as e:  # noqa: BLE001  shape is optional: the box is the documented fallback

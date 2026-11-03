@@ -75,10 +75,40 @@ class ObjectLift(unittest.TestCase):
         _, obj = object_lift.to_scene(scene, proxy)
         self.assertEqual((obj["id"], obj["kind"], obj["fixed"]), ("room-object-1", "block", False))  # "other"
         self.assertTrue(object_lift.to_scene(scene, proxy, category="desk")[1]["fixed"])
-        self.assertEqual(proxy["mask"].sum(), proxy["points"])  # the SF3D cut-out = the measured object pixels
+        self.assertEqual(proxy["mask"].sum(), proxy["points"])  # depth-supported geometry, not a complete appearance mask
         png = object_lift.crop_rgba(self.npz, 0, self.box, proxy["mask"])
         from PIL import Image
         self.assertEqual(Image.open(io.BytesIO(png)).mode, "RGBA")
+
+    def test_crop_preserves_silhouette_aspect_and_padding(self):
+        from PIL import Image
+        mask = np.zeros((16, 32), bool)
+        mask[4:12, 4:28] = True
+        from unittest.mock import patch
+        view = {"pts_img": np.zeros((16, 32, 3)), "rgb": np.ones((512, 3))}
+        with patch.object(object_lift.live_room, "load_views", return_value=[view]):
+            im = Image.open(io.BytesIO(object_lift.crop_rgba(b"", 0, [0, 0, 31, 15], mask)))
+            rgba = np.asarray(im)
+            y, x = np.nonzero(rgba[:, :, 3] > 127)
+            self.assertEqual(im.size, (512, 512))
+            self.assertAlmostEqual((x.max()-x.min()+1)/(y.max()-y.min()+1), 3, delta=.03)
+            self.assertTrue(35 <= x.min() <= 40)
+            self.assertTrue((rgba[rgba[:, :, 3] == 0, :3] == 0).all())
+            with self.assertRaises(ValueError):
+                object_lift.crop_rgba(b"", 0, [0, 0, 31, 15], np.zeros_like(mask))
+            with self.assertRaises(ValueError):
+                object_lift.crop_rgba(b"", 0, [0, 0, 31, 15], mask[:2])
+
+    def test_crop_score_prefers_complete_then_detailed(self):
+        full = np.zeros((20, 20), bool)
+        full[3:17, 3:17] = True
+        clipped = np.ones_like(full)
+        small = np.zeros_like(full)
+        small[8:12, 8:12] = True
+        self.assertGreater(object_lift.crop_score(full), object_lift.crop_score(clipped))
+        self.assertGreater(object_lift.crop_score(full), object_lift.crop_score(small))
+        self.assertGreater(object_lift.crop_score(clipped), object_lift.crop_score(small))
+        self.assertLess(object_lift.crop_score(np.zeros_like(full)), object_lift.crop_score(small))
 
     def test_fit_mesh_faces_camera_in_unit_box(self):
         proxy = {"position": [0, 0.5, 3], "rotation": [0, 0, 0, 1], "camera": [0, 1.2, 0]}  # camera at -z of object

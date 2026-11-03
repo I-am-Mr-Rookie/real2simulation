@@ -22,6 +22,61 @@ def box_room(yaw_deg=30.0, n=4000, seed=0):
 
 
 class RoomShell(unittest.TestCase):
+    def test_crop_fills_only_enclosed_depth_supported_tabletop_holes(self):
+        from unittest.mock import patch
+        mask = np.zeros((6, 6), bool)
+        mask[1:5, 1:5] = True
+        mask[2:4, 2:4] = False
+        item = {"noun": "table", "crop": {"mask": mask, "view": 0, "camera": [0, 2, 3]},
+                "proxy": {"position": [0, .5, 0], "size": [1, 1, 1]}}
+        valid = np.ones_like(mask)
+        valid[3, 3] = False
+        with patch.object(rs, "_heights", return_value=(np.array([1, 1.5, 1, 1]), np.array([True, True, False, True]))), \
+             patch.object(rs.live_room, "load_views", return_value=[{"mask": valid.ravel(), "rgb": np.ones((36, 3))}]):
+            got = rs.crop_mask(b"", item, {})
+        self.assertTrue(got[2, 2])
+        self.assertFalse(got[2, 3])  # clutter above the top
+        self.assertFalse(got[3, 2])  # not horizontal
+        self.assertFalse(got[3, 3])  # depth missing
+        self.assertFalse(got[0].any())  # open background never filled
+        self.assertEqual(mask.sum(), 12)  # original SAM mask stays immutable
+        rgb = np.ones((6, 6, 3))
+        rgb[2, 2] = 0
+        with patch.object(rs, "_heights", return_value=(np.ones(4), np.ones(4, bool))), \
+             patch.object(rs.live_room, "load_views", return_value=[{"mask": valid.ravel(), "rgb": rgb.reshape(-1, 3)}]):
+            self.assertFalse(rs.crop_mask(b"", item, {})[2, 2])  # dark keyboard, not the white tabletop
+        item["noun"] = "chair"
+        self.assertIs(rs.crop_mask(b"", item, {}), mask)
+        item["noun"], item["split"] = "table", "partition"
+        self.assertIs(rs.crop_mask(b"", item, {}), mask)
+
+    def test_appearance_uses_sam_and_selected_camera_without_changing_proxy(self):
+        from copy import deepcopy
+        from unittest.mock import patch
+        small = np.zeros((20, 20), bool)
+        small[6:14, 6:14] = True
+        complete = np.zeros_like(small)
+        complete[3:17, 3:17] = True
+        depth = np.zeros_like(small)
+        depth[8:12, 8:12] = True
+        proxies = [{"position": [0, .5, 0], "size": [.7, 1, .6], "rotation": [0, 0, 0, 1],
+                    "camera": [v, 1, 3], "points": 100-v, "mask": depth.copy()} for v in range(2)]
+        detections = [(v, "chair", {"box": [0, 0, 19, 19], "mask": m}) for v, m in enumerate((small, complete))]
+        with patch.object(rs.object_lift, "lift", side_effect=deepcopy(proxies)), \
+             patch.object(rs, "split_item", side_effect=lambda npz, room, item: [item]):
+            kept, _ = rs.furniture(b"", {}, detections)
+        self.assertEqual(len(kept), 1)
+        self.assertEqual(kept[0]["view"], 0)
+        self.assertEqual(kept[0]["crop"]["view"], 1)
+        self.assertEqual(kept[0]["crop"]["camera"], [1, 1, 3])
+        np.testing.assert_array_equal(kept[0]["crop"]["mask"], complete)
+        np.testing.assert_array_equal(kept[0]["proxy"]["mask"], depth)
+        with patch.object(rs.object_lift, "lift", side_effect=deepcopy(proxies)), \
+             patch.object(rs, "split_item", side_effect=lambda npz, room, item: [{**item, "split": "partition"}]):
+            kept, _ = rs.furniture(b"", {}, detections)
+        np.testing.assert_array_equal(kept[0]["crop"]["mask"], depth)
+        self.assertEqual(kept[0]["crop"]["view"], 0)
+
     def test_walls_found_and_open_side_reported(self):
         yaw, walls = rs.walls(box_room())
         self.assertAlmostEqual(np.degrees(yaw), 30.0, delta=1.5)

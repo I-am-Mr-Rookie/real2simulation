@@ -1,0 +1,103 @@
+{
+  "batch": "a743ecf30f274083a006830a34cf9d31",
+  "inputs": [
+    {
+      "id": "room-object-1",
+      "category": "table",
+      "proxy": {
+        "rotation": [
+          0,
+          -0.00805,
+          0,
+          0.999968
+        ],
+        "camera": [
+          0.9363,
+          1.3645,
+          -0.0034
+        ],
+        "position": [
+          1.2174,
+          0.4902,
+          -0.8551
+        ]
+      },
+      "png": "a743ecf30f274083a006830a34cf9d31-room-object-1.png",
+      "modal_call_id": "fc-01M6FB7PEAYA09G85E2Z9PNRCN"
+    },
+    {
+      "id": "room-object-2",
+      "category": "table",
+      "proxy": {
+        "rotation": [
+          0,
+          -0.046726,
+          0,
+          0.998908
+        ],
+        "camera": [
+          -0.7698,
+          1.1774,
+          0.087
+        ],
+        "position": [
+          -0.9509,
+          0.4256,
+          -0.7462
+        ]
+      },
+      "png": "a743ecf30f274083a006830a34cf9d31-room-object-2.png",
+      "modal_call_id": "fc-01M6FBN8B0SWKKQRKFS8GE496B"
+    },
+    {
+      "id": "room-object-4",
+      "category": "table",
+      "proxy": {
+        "rotation": [
+          0,
+          -0.992473,
+          0,
+          0.12246
+        ],
+        "camera": [
+          -0.3279,
+          1.2213,
+          -0.0606
+        ],
+        "position": [
+          -0.2449,
+          0.5022,
+          -1.6004
+        ]
+      },
+      "png": "a743ecf30f274083a006830a34cf9d31-room-object-4.png",
+      "modal_call_id": "fc-01M6FBNFHK75Z4PY54PR4GA09F"
+    },
+    {
+      "id": "room-object-7",
+      "category": "table",
+      "proxy": {
+        "rotation": [
+          0,
+          -0.994833,
+          0,
+          0.101521
+        ],
+        "camera": [
+          0.546,
+          1.2958,
+          -0.0304
+        ],
+        "position": [
+          1.2485,
+          0.542,
+          -2.1999
+        ]
+      },
+      "png": "a743ecf30f274083a006830a34cf9d31-room-object-7.png",
+      "modal_call_id": "fc-01M6FBNPBBBVQM23FQ7KERVXC0"
+    }
+  ],
+  "process": "0dd776e4c4734319957ba4df3b5e2d18",
+  "started_at": 1793664390.4830282
+}
