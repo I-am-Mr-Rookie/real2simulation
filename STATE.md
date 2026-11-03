@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 Dhaka: N79 follow-up accepted
+- N79-orch324 confirmation follow-up merged (evidence only, 120da97c rebased): approved fresh test sign-up completed on DEV; new account reached the private workspace and onboarding. 0 paid calls, no settings change. Not tested: real email delivery, Google OAuth by agent (Koushik verified Google sign-up himself).
+
 ## 2026-11-03 ~09:00 Dhaka: Koushik confirms judge sign-up
 - Koushik signed up himself on real2simulation.rookiecoders.tech with a spare Google account; the private workspace opened. He also approved the N79 pending confirmation in the N64 chat. Judge sign-up item closed.
 - N82 scope: SAMPLE rooms are not deletable (no Delete button, API refuses); sample.py not added to Owns.
