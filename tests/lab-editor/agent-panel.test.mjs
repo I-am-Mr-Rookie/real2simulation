@@ -82,6 +82,7 @@ test('N86 Clean up the lab sends the fixed instruction plus the object list at o
   assert.deepEqual(seen, [['Tidied by agent · SIMULATED. Undo or Before shows the old layout.', true]], 'one scene update for the whole cleanup');
   const text = strings({ children: p.all() }).join('|');
   assert.ok(text.includes('Updated objects') && !text.includes('table-1'), 'the log shows the card title, not the listing');
+  assert.ok(text.includes('Answered by |m-1') && !text.includes('fallback model'), 'no fallback: the requested model answered');
   assert.equal(p.box().props.value, 'my draft', 'a typed draft survives the cleanup click');
   assert.equal(body.history.length, 0);
   delete globalThis.localStorage;
@@ -164,13 +165,14 @@ test('agent replies show readable steps, model line, fallback tag and a collapse
   assert.equal(stepName('lab_add_object'), 'Added object'); assert.equal(stepName('lab_run'), 'Ran simulation');
   assert.equal(stepName('fit_equation'), 'Fitted'); assert.equal(stepName('start_experiment_track'), 'Start experiment track');
   const p = mount((url) => Response.json(url.endsWith('/session') ? { userKey: 'u' } : url.endsWith('/turn')
-    ? { reply: 'Done.', model: 'm-1', answered_by: 'fallback', tool_calls: [{ name: 'lab_add_object' }, { name: 'write_report' }], question: { question: 'Next?', options: [{ label: 'Run it', recommended: true }, { label: 'Stop' }] } }
+    ? { reply: 'Done.', model: 'm-1', answered_by: 'fb-9', tool_calls: [{ name: 'lab_add_object' }, { name: 'write_report' }], question: { question: 'Next?', options: [{ label: 'Run it', recommended: true }, { label: 'Stop' }] } }
     : url.endsWith('/lab/report') ? { markdown: '# Report' } : { scene: defaultScene() }));
   globalThis.localStorage = { getItem: () => null, setItem() {} };
   p.box().props.onChange({ target: { value: 'Add a ball' } });
   await p.all().find((n) => n.type === 'form').props.onSubmit({ preventDefault() {} });
   const text = strings({ children: p.all() }).join('|');
-  for (const s of ['Added object', 'Wrote report', 'Answered by |m-1', 'fallback model', 'Recommended']) assert.ok(text.includes(s), s);
+  for (const s of ['Added object', 'Wrote report', 'Answered by |fb-9', 'fallback model', 'Recommended']) assert.ok(text.includes(s), s);
+  assert.ok(!text.includes('m-1'), 'a fallback reply never names the requested model as its author');
   assert.doesNotMatch(text, /tools:/);
   // the report card is its own component: render it right after the panel so its hook cell index is stable
   const card = () => { const el = p.all().find((n) => n.props?.md); assert.equal(el.props.md, '# Report'); return nodes(el.type(el.props)); };

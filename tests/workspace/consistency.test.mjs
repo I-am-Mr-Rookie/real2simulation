@@ -60,7 +60,8 @@ test('F3: lab sends the current account saved tier/contributor and discloses the
     globalThis.fetch = async (url, init) => {
       calls.push({ url, body: init.body && JSON.parse(init.body) });
       return Response.json(url.endsWith('/session') ? { userKey: 'own-workspace' } : url.endsWith('/turn')
-        ? { reply: 'Physics answer', model: 'actual-provider-model', answered_by: mode === 'open' ? 'fallback' : undefined, tool_calls: [] } : {});
+        // API shape (Build/agent/core.py): model = requested model; answered_by = the model that actually answered after a fallback.
+        ? { reply: 'Physics answer', ...(mode === 'open' ? { model: 'requested-model', answered_by: 'actual-provider-model' } : { model: 'actual-provider-model' }), tool_calls: [] } : {});
     };
     const props = { scene: defaultScene(), onScene() {}, load: false };
     const tree = h.render(AgentPanel, props);
@@ -71,7 +72,7 @@ test('F3: lab sends the current account saved tier/contributor and discloses the
     assert.deepEqual(turn.history, []);
     const answer = strings(h.render(AgentPanel, props)).join('');
     assert.match(answer, /Answered by actual-provider-model/);
-    if (mode === 'open') assert.match(answer, /fallback model/);
+    if (mode === 'open') { assert.match(answer, /fallback model/); assert.doesNotMatch(answer, /requested-model/); }
     assert.ok(!nodes(tree).some((n) => n.type === 'select'), 'Sol is not selectable');
   }
 });

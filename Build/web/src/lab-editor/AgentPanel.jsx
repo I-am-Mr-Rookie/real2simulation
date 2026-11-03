@@ -112,7 +112,8 @@ export default function AgentPanel({ scene, onScene, load = true }) {
       const t = await call('/turn', { method: 'POST', body: JSON.stringify({ text: CONTEXT + msg, history, ...tier }) });
       const names = (t.tool_calls ?? []).map((c) => c.name);
       setHistory((h) => [...h, { role: 'user', content: shown }, { role: 'assistant', content: t.reply }].slice(-20));
-      setLog((l) => [...l, { who: 'Agent', text: t.reply, tools: names, model: t.model, fallback: Boolean(t.answered_by) }]);
+      // Honesty: name the model that produced the reply; t.model is only the requested one when a fallback ran.
+      setLog((l) => [...l, { who: 'Agent', text: t.reply, tools: names, model: t.answered_by || t.model, fallback: Boolean(t.answered_by) }]);
       setQuestion(t.question);
       const tidied = card?.id === 'cleanup' || names.includes('lab_update_objects');
       if (names.some((n) => n.startsWith('lab_'))) onScene(validateScene((await call('/lab/scene')).scene), tidied ? 'Tidied by agent · SIMULATED. Undo or Before shows the old layout.' : 'Agent edits applied. SIMULATED.', tidied);
