@@ -1,1 +1,10 @@
-{}
+{
+ "N85-orch330": {
+  "thread": "01a1a1c7-0c01-7782-89df-437cb7ac76c7",
+  "model": "anthropic/claude-opus-5-5",
+  "effort": "high",
+  "minutes": 60,
+  "due_dhaka": "2026-11-03T21:18:56+06:00",
+  "worktree": ".worktrees/N85-orch330"
+ }
+}

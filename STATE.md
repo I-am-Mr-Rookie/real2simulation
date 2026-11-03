@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 20:19 Dhaka: dispatched N85-orch330 (Claude Opus 5.5 high, 60 min), thread 01a1a1c7-0c01-7782-89df-437cb7ac76c7, due 21:19 Dhaka. Codex chat tools were missing from the controller session for about an hour (not the tool-mode setting; config back to Lean). N86 waits for N85 merge.
+
 ## 2026-11-03 ~19:00 Dhaka: agent sidebar redesign (N85) and lab cleanup (N86) approved
 - Koushik picked Mobbin refs for the agent sidebar (Base44, Mural, MagicPath, Plane). Answers: suggestions just fill the composer; model picker inside the composer; add a mic icon with Codex-style dictation. Row N85 (Claude Opus 5.5 high, 60 min), no extra QA run; Koushik reviews on DEV.
 - Decision (Koushik, Nov 3): narrow "Clean up the lab" feature, row N86 (Claude Opus 5.5 high, 60 min), dispatched only after N85 merges (same files). Scope in PLAN-NOV1 "Agent sidebar and lab cleanup".

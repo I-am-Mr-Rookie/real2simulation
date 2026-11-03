@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 03, 19:50 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 03, 20:19 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **372 / 382** runs done · 0 in progress · 0 blocked · 3 waiting for Koushik · 0 open reviews
+Progress: **372 / 382** runs done · 1 in progress · 0 blocked · 3 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -21,6 +21,10 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 **CLAUDE**
 - Nothing ready yet: check dependencies and retry holds below.
+
+## In progress
+
+- [~] **N85** — Codex · Claude Opus 5.5, effort high — Agent sidebar redesign (Mobbin refs Base44, Mural, MagicPath, Plane): full-height panel, empty-state cards that fill the composer, step rows, composer with model picker, mic dictation (cancel/stop) and send, report card, drop duplicate fullscreen icon; no browser QA (Koushik reviews) (60 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -129,7 +133,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N82** — Codex · GPT-6.1 Sol, effort high — Per-room Delete button (owner-only, 409 while a job runs, frees storage, sample pack safe) plus delete the DEV fixture's test projects (Q24); sent to the N72 chat (60 min)
 - [x] **N83** — Codex · GPT-6.1 Sol, effort high — DEV QA recheck after N82/N81: room Delete UI, SAMPLE mesh shape, guide screenshots, GPU dot; sent to the N72 chat (30 min)
 - [x] **N84** — Codex · GPT-6.1 Sol, effort high — Fix N83 F1 (Delete room button contrast) and F2 (retake guide room-tab/room-a4 screenshots); sent to the N72 chat (30 min)
-- [ ] **N85** — Codex · Claude Opus 5.5, effort high — Agent sidebar redesign (Mobbin refs Base44, Mural, MagicPath, Plane): full-height panel, empty-state cards that fill the composer, step rows, composer with model picker, mic dictation (cancel/stop) and send, report card, drop duplicate fullscreen icon; no browser QA (Koushik reviews) (60 min)
+- [~] **N85** — Codex · Claude Opus 5.5, effort high — Agent sidebar redesign (Mobbin refs Base44, Mural, MagicPath, Plane): full-height panel, empty-state cards that fill the composer, step rows, composer with model picker, mic dictation (cancel/stop) and send, report card, drop duplicate fullscreen icon; no browser QA (Koushik reviews) (60 min) *(in progress)*
 - [ ] **N86** — Codex · Claude Opus 5.5, effort high — "Clean up the lab" card (one click sends, Best with Muse Wonder), batch tool lab_update_objects, single Undo step, Before/After toggle, label Tidied by agent SIMULATED; no vision/benchmark (60 min)
 
 </details>
