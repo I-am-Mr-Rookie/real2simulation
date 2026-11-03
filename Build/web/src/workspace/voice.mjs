@@ -3,7 +3,7 @@ import { toWav16k, VOICE_MAX_S } from './live.mjs';
 // Shared by the workspace prompt and the editor drawer. Transcription fills text, never sends a turn.
 export const createUseVoice = ({ useState, useRef, useEffect }) => function useVoice(onText) {
   const [voice, setVoice] = useState({ state: 'idle', error: null });
-  const rec = useRef(null), text = useRef(onText), alive = useRef(true);
+  const rec = useRef(null), text = useRef(onText), alive = useRef(true), drop = useRef(false);
   text.current = onText;
   useEffect(() => { alive.current = true; return () => { alive.current = false; if (rec.current?.state === 'recording') rec.current.stop(); }; }, []);
   const update = (v) => { if (alive.current) setVoice(v); };
@@ -21,6 +21,7 @@ export const createUseVoice = ({ useState, useRef, useEffect }) => function useV
       mr.onstop = async () => {
         clearTimeout(limit); stream.getTracks().forEach((t) => t.stop()); rec.current = null;
         if (!alive.current) return;
+        if (drop.current) { drop.current = false; update({ state: 'idle', error: null }); return; } // cancelled: no transcription call
         update({ state: 'working', error: null });
         try {
           const wav = await toWav16k(await new Blob(parts).arrayBuffer());
@@ -39,5 +40,6 @@ export const createUseVoice = ({ useState, useRef, useEffect }) => function useV
       update({ state: 'idle', error: 'Microphone not available or permission denied.' });
     }
   };
-  return { voice, toggleVoice };
+  const cancelVoice = () => { if (rec.current?.state === 'recording') { drop.current = true; rec.current.stop(); } };
+  return { voice, toggleVoice, cancelVoice };
 };

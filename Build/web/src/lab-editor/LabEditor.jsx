@@ -32,7 +32,7 @@ const ICONS = {
   pendulum: 'M4 4h16M12 4l4 11M16 15a2.5 2.5 0 1 0 0.01 0', spring: 'M12 2v3l-5 2 10 3-10 3 10 3-5 2v4',
   play: 'M7 4l13 8-13 8z', pause: 'M8 5v14M16 5v14', reset: 'M4 12a8 8 0 1 0 2.3-5.6M4 4v4h4',
   traces: 'M4 4v16h16M8 15l3-4 3 2 5-6', download: 'M12 4v11M7 10l5 5 5-5M4 20h16', upload: 'M12 15V4M7 9l5-5 5 5M4 20h16',
-  panel: 'M4 5h16v14H4zM9 5v14', frame: 'M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5',
+  panel: 'M4 5h16v14H4zM9 5v14', frame: 'M12 3v4M12 17v4M3 12h4M17 12h4M12 9a3 3 0 1 0 .01 0', // N85: target, so it no longer reads as a second fullscreen icon
   trials: 'M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z',
   flywheel: 'M12 4a8 8 0 1 0 0 16a8 8 0 1 0 0-16zM12 11v2M20 12v9', atwood: 'M12 3a3 3 0 1 0 0 6a3 3 0 1 0 0-6zM9 6v10M15 6v6M7 16h4v4H7zM13 12h4v4h-4z',
   cart: 'M3 19L21 11M8 15l7-3-1-2-7 3z', launcher: 'M4 20h8M7 20l3-5M10 15l8-8M15 6h4v4', cradle: 'M3 4h18M6 4v11M10 4v11M14 4v11M18 4v11M6 15h12',

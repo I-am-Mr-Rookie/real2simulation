@@ -648,6 +648,6 @@ export const createLive = (React, icon = () => null) => {
       h(Progress, { L }));
   }
 
-  return { useLive, Centre, Chat, Dot, Meter };
+  return { useLive, Centre, Chat, Dot, Meter, ModelPicker };
 };
 

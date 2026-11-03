@@ -44,6 +44,11 @@ const loader = registerHooks({
 });
 const { default: AgentPanel } = await import(panelUrl);
 loader.deregister();
+// N85: cards only fill the composer; the composer form sends.
+const sendReport = async (h, props) => {
+  nodes(h.render(AgentPanel, props)).find((n) => n.type === 'button' && n.children.includes('Write report')).props.onClick();
+  await nodes(h.render(AgentPanel, props)).find((n) => n.type === 'form').props.onSubmit({ preventDefault() {} });
+};
 
 test('F3: lab sends the current account saved tier/contributor and discloses the actual answering model', async () => {
   for (const [mode, tier, contributor] of [['open', 'open', false], ['standard', 'spark', false], ['contributor', 'spark', true], ['sol', 'spark', false], [null, 'spark', false]]) {
@@ -59,7 +64,7 @@ test('F3: lab sends the current account saved tier/contributor and discloses the
     };
     const props = { scene: defaultScene(), onScene() {}, load: false };
     const tree = h.render(AgentPanel, props);
-    await nodes(tree).find((n) => n.type === 'button' && n.children.includes('Write report')).props.onClick();
+    await sendReport(h, props);
     const turn = calls.find((c) => c.url.endsWith('/turn')).body;
     assert.equal(turn.tier, tier); assert.equal(turn.contributor, contributor);
     assert.match(turn.text, /^In the virtual lab editor \(SIMULATED\): /);
@@ -75,7 +80,7 @@ test('F3: failed identity lookup never sends a turn with another account mode', 
   const h = harness(); Object.assign(globalThis.__N45_REACT__, h.React);
   const calls = []; globalThis.fetch = async (url) => { calls.push(url); return Response.json({}, { status: 401 }); };
   const props = { scene: defaultScene(), onScene() {}, load: false };
-  await nodes(h.render(AgentPanel, props)).find((n) => n.type === 'button' && n.children.includes('Write report')).props.onClick();
+  await sendReport(h, props);
   assert.deepEqual(calls, ['/api/workspace/session']);
   assert.match(strings(h.render(AgentPanel, props)).join(''), /Sign in required/);
 });
