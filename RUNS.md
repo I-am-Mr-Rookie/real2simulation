@@ -1,11 +1,11 @@
 # Runs checklist
 
-Updated Nov 03, 16:35 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
+Updated Nov 03, 16:57 Dhaka from QUEUE.md by `Run-System/runs_view.py`. Agents regenerate this file; don't edit it by hand.
 
 **How to run one:** open the tool and model shown, then say `Complete run S05a` (or `Complete the next run`).
 All lanes run inside Codex; CLAUDE uses the existing native Claude route, not Claude Code (owner correction Oct29). Manual runs: no fixed agent cap; independent isolated shards only, serialized shared controls/heavy builds (PARALLELISM_POLICY.md).
 
-Progress: **370 / 379** runs done · 1 in progress · 0 blocked · 3 waiting for Koushik · 0 open reviews
+Progress: **371 / 380** runs done · 1 in progress · 0 blocked · 3 waiting for Koushik · 0 open reviews
 
 ## Reviews for Koushik
 
@@ -24,7 +24,7 @@ None open. Routine decisions proceed; necessary owner inputs come from STATE.md.
 
 ## In progress
 
-- [~] **N83** — Codex · GPT-6.1 Sol, effort high — DEV QA recheck after N82/N81: room Delete UI, SAMPLE mesh shape, guide screenshots, GPU dot; sent to the N72 chat (30 min) *(in progress)*
+- [~] **N84** — Codex · GPT-6.1 Sol, effort high — Fix N83 F1 (Delete room button contrast) and F2 (retake guide room-tab/room-a4 screenshots); sent to the N72 chat (30 min) *(in progress)*
 
 ## Waiting for Koushik
 
@@ -47,7 +47,7 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 
 </details>
 
-<details><summary><b>N</b> —  (80/83)</summary>
+<details><summary><b>N</b> —  (81/84)</summary>
 
 - [x] **N01** — Codex · Controller — Meta Model API probe + hosted SAM 3.1 video test (20 min)
 - [x] **N02** — Codex (native Claude) · Opus 5.5, effort high — Hosted SAM 3.1 tracker client + full ST03 track, fit and Gate RS rerun (60 min)
@@ -131,7 +131,8 @@ Legend: [x] done · [~] in progress or partial · [!] blocked · [ ] to do
 - [x] **N80** — Codex · GPT-6.1 Sol, effort high — SF3D mesh quality: diagnose crops/mesh fit, fix root cause, regenerate the 4 public RM02 sample meshes (GPU up to $3, ledgered), rebuild the sample pack if better; sent to the N72 chat (60 min)
 - [x] **N81** — Codex · GPT-6.1 Sol, effort high — SF3D meshes keep their aspect (uniform scale inside the proxy box, on its bottom) instead of per-axis stretch up to 18x (N80 audit); compare N75 vs N80 meshes locally, no GPU; sent to the N72 chat (30 min)
 - [x] **N82** — Codex · GPT-6.1 Sol, effort high — Per-room Delete button (owner-only, 409 while a job runs, frees storage, sample pack safe) plus delete the DEV fixture's test projects (Q24); sent to the N72 chat (60 min)
-- [~] **N83** — Codex · GPT-6.1 Sol, effort high — DEV QA recheck after N82/N81: room Delete UI, SAMPLE mesh shape, guide screenshots, GPU dot; sent to the N72 chat (30 min) *(in progress)*
+- [x] **N83** — Codex · GPT-6.1 Sol, effort high — DEV QA recheck after N82/N81: room Delete UI, SAMPLE mesh shape, guide screenshots, GPU dot; sent to the N72 chat (30 min)
+- [~] **N84** — Codex · GPT-6.1 Sol, effort high — Fix N83 F1 (Delete room button contrast) and F2 (retake guide room-tab/room-a4 screenshots); sent to the N72 chat (30 min) *(in progress)*
 
 </details>
 

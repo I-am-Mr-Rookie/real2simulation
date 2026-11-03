@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~17:05 Dhaka: N83 accepted; N84 dispatched
+- N83-orch328 (Sol QA, evidence only) merged 17b03664: SAMPLE has no Delete; own-room confirm and Cancel work; one Stability line; meshes at real shape; GPU dot correct; no console errors, no em dashes, no overflow at 1366/375. Findings: F1 Delete room button contrast 1.18:1 in dark theme; F2 guide room-tab/room-a4 images show pre-N81 meshes. $0.
+- Dispatched N84-orch329 (Sol high, 30 min, N72 chat) to fix F1 and F2.
+
 - 16:35 Dhaka: dispatched N83-orch328 (Sol high, 30 min, N72 chat): DEV QA recheck after N82/N81, due 17:05 Dhaka.
 
 ## 2026-11-03 ~16:50 Dhaka: N82 accepted and deployed
