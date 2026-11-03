@@ -1,0 +1,270 @@
+{
+  "preview": "Temporary browser-local stylesheet, not deployed",
+  "rule": ".lv-room-delete [data-danger] { color: var(--r2s-danger, #a3191b); background: var(--r2s-surface, #fff); border-color: currentColor; }",
+  "measurements": [
+    {
+      "buttons": [
+        {
+          "background": "rgb(255, 138, 76)",
+          "color": "rgb(26, 13, 5)",
+          "contrast": 8.14703918666682,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(24, 24, 27)",
+          "color": "rgb(248, 113, 113)",
+          "contrast": 6.404858202451587,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "dark",
+      "width": 1366
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(181, 61, 11)",
+          "color": "rgb(255, 255, 255)",
+          "contrast": 5.7738606518001525,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(185, 28, 28)",
+          "contrast": 6.4700447145121895,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "light",
+      "width": 1366
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(178, 58, 14)",
+          "color": "rgb(255, 255, 255)",
+          "contrast": 5.992194500835547,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(255, 252, 245)",
+          "color": "rgb(163, 25, 27)",
+          "contrast": 7.556519233710755,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "paper",
+      "width": 1366
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(125, 211, 252)",
+          "color": "rgb(6, 32, 51)",
+          "contrast": 9.97927349048453,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(17, 24, 49)",
+          "color": "rgb(252, 165, 165)",
+          "contrast": 9.2293254676007,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "midnight",
+      "width": 1366
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(240, 138, 93)",
+          "color": "rgb(31, 13, 4)",
+          "contrast": 7.604356720762666,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(38, 40, 44)",
+          "color": "rgb(255, 143, 143)",
+          "contrast": 6.73389296456696,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "graphite",
+      "width": 1366
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(138, 31, 0)",
+          "color": "rgb(255, 255, 255)",
+          "contrast": 9.224082071291024,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(139, 0, 0)",
+          "contrast": 10.010518239222488,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "contrast",
+      "width": 1366
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(255, 138, 76)",
+          "color": "rgb(26, 13, 5)",
+          "contrast": 8.14703918666682,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(24, 24, 27)",
+          "color": "rgb(248, 113, 113)",
+          "contrast": 6.404858202451587,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "dark",
+      "width": 375
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(181, 61, 11)",
+          "color": "rgb(255, 255, 255)",
+          "contrast": 5.7738606518001525,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(185, 28, 28)",
+          "contrast": 6.4700447145121895,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "light",
+      "width": 375
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(178, 58, 14)",
+          "color": "rgb(255, 255, 255)",
+          "contrast": 5.992194500835547,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(255, 252, 245)",
+          "color": "rgb(163, 25, 27)",
+          "contrast": 7.556519233710755,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "paper",
+      "width": 375
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(125, 211, 252)",
+          "color": "rgb(6, 32, 51)",
+          "contrast": 9.97927349048453,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(17, 24, 49)",
+          "color": "rgb(252, 165, 165)",
+          "contrast": 9.2293254676007,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "midnight",
+      "width": 375
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(240, 138, 93)",
+          "color": "rgb(31, 13, 4)",
+          "contrast": 7.604356720762666,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(38, 40, 44)",
+          "color": "rgb(255, 143, 143)",
+          "contrast": 6.73389296456696,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "graphite",
+      "width": 375
+    },
+    {
+      "buttons": [
+        {
+          "background": "rgb(138, 31, 0)",
+          "color": "rgb(255, 255, 255)",
+          "contrast": 9.224082071291024,
+          "disabled": false,
+          "height": 44,
+          "text": "Cancel"
+        },
+        {
+          "background": "rgb(255, 255, 255)",
+          "color": "rgb(139, 0, 0)",
+          "contrast": 10.010518239222488,
+          "disabled": false,
+          "height": 44,
+          "text": "Delete room"
+        }
+      ],
+      "theme": "contrast",
+      "width": 375
+    }
+  ]
+}

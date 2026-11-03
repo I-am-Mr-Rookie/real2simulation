@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { createLive } from '../../Build/web/src/workspace/live-view.mjs';
 
 const nodes = (n) => n && typeof n === 'object' ? [n, ...n.children.flatMap(nodes)] : [];
@@ -27,6 +28,8 @@ test('each own room gets a targeted confirmation; sample has no delete; Cancel n
   assert.deepEqual(actions().filter((a) => a.label.startsWith('Delete room')).map((a) => a.label), ['Delete room a', 'Delete room b']);
   actions().find((a) => a.label === 'Delete room a').onClick();
   let tree = render();
+  const css = readFileSync(new URL('../../Build/web/src/workspace/workspace.css', import.meta.url), 'utf8');
+  assert.match(css, /\.lv-room-delete \[data-danger\]\s*\{[^}]*color:\s*var\(--r2s-danger[^}]*background:\s*var\(--r2s-surface/);
   assert.match(text(tree.find((n) => n.props.role === 'alertdialog')), /Delete this room\? Its 3D files and lab edits are removed\. This cannot be undone\./);
   assert.deepEqual(deleted, []);
   let focused = 0;

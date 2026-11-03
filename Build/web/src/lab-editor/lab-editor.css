@@ -39,15 +39,17 @@ main:has(.lab-editor) { padding: 0; }
 .le-right { border-left: 1px solid var(--le-border); }
 .le-sheet-close { display: none; }
 .le-tabs { display: flex; gap: 2px; align-items: center; border-bottom: 1px solid var(--le-border); }
-.le-tabs [role='tab'] { flex: 1; min-height: 34px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--le-muted); font: 600 13px/1 inherit; cursor: pointer; }
+.le-tabs [role='tab'] { flex: 1; min-width: 0; margin: 0; min-height: 34px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--le-muted); font: 600 13px/1 inherit; cursor: pointer; }
+.le-tabs .le-mini { margin: 0; }
 .le-tabs [aria-selected='true'] { color: var(--le-ink); border-bottom-color: var(--le-accent); }
-.le-outline { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
-.le-outline li { display: flex; align-items: center; gap: 2px; border-radius: 6px; }
+.le-outline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; gap: 2px; }
+.le-outline li { display: flex; min-width: 0; align-items: center; gap: 2px; border-radius: 6px; }
 .le-outline li[aria-current] { background: color-mix(in srgb, var(--le-accent) 12%, transparent); }
 .le-outline li[data-off] .le-row { opacity: .5; }
-.lab-editor .le-row { flex: 1; min-width: 0; display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 6px; border: 0; background: none; color: inherit; text-align: left; }
-.le-row span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lab-editor .le-row { flex: 1; min-width: 0; margin: 0; display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 6px; border: 0; background: none; color: inherit; text-align: left; }
+.le-row span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .le-row small { margin-left: auto; color: var(--le-muted); white-space: nowrap; }
+.lab-editor .le-outline .le-mini { flex: 0 0 32px; min-width: 32px; min-height: 32px; margin: 0; }
 .lab-editor .le-mini { min-height: 28px; min-width: 28px; padding: 0; display: inline-grid; place-items: center; border: 0; background: none; color: var(--le-muted); }
 .le-stage { position: relative; min-width: 0; min-height: 0; overflow: hidden; background: var(--le-bg); }
 .lab-editor:fullscreen { width: 100%; height: 100%; }

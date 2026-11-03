@@ -1,0 +1,20 @@
+[
+  {
+    "file": "Build/web/public/guide/room-tab.webp",
+    "width": 1280,
+    "height": 720,
+    "format": "WEBP",
+    "before_sha256": "3517f68a55b1edc2aa0e8e55602a2b205bf6fdaf14430e8435ea383ffd893063",
+    "after_sha256": "71a54ad5696581f0ef1eb4cd861a1a6a9461b18c158b037817a948c3e86975d6",
+    "bytes": 84008
+  },
+  {
+    "file": "Build/web/public/guide/room-a4.webp",
+    "width": 1280,
+    "height": 720,
+    "format": "WEBP",
+    "before_sha256": "c66c46fccbe5def419d0b4239ba3046770b8573d850382c890162c23d9f4c91b",
+    "after_sha256": "a651a6cd2b0befdd77d794a79c0e0c674fee76399b921866c7e99a126b7795ad",
+    "bytes": 85614
+  }
+]

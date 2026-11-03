@@ -70,6 +70,18 @@ test('N56 full-window app: site header and footer hidden, fixed grid of top bar,
   assert.match(editor, /<div hidden=\{!agentOpen\}>\s*<AgentPanel /);
 });
 
+test('object rows shrink names, reserve scrollbar space and keep keyboard buttons at least 32px', () => {
+  assert.match(css, /\.le-outline \{[^}]*grid-template-columns: minmax\(0, 1fr\);[^}]*min-width: 0/);
+  assert.match(css, /\.le-outline li \{[^}]*min-width: 0/);
+  assert.match(css, /\.lab-editor \.le-row \{[^}]*min-width: 0; margin: 0/);
+  assert.match(css, /\.le-row span \{[^}]*min-width: 0;[^}]*text-overflow: ellipsis/);
+  assert.match(css, /\.lab-editor \.le-outline \.le-mini \{[^}]*flex: 0 0 32px; min-width: 32px; min-height: 32px; margin: 0/);
+  assert.match(css, /\.le-side \{[^}]*scrollbar-gutter: stable/);
+  assert.match(css, /\.le-tabs \[role='tab'\] \{[^}]*min-width: 0; margin: 0/);
+  assert.match(css, /\.le-tabs \.le-mini \{ margin: 0; \}/);
+  assert.match(editor, /<button type="button" className="le-mini" aria-label=\{\(off \? 'Show ' : 'Hide '\)/);
+});
+
 test('SF3D credit is one conditional viewport chip, never a per-object sprite', () => {
   const fixture = validateScene(JSON.parse(readFileSync(new URL('../../evidence/N50/two-sf3d-scene.json', import.meta.url))));
   assert.equal(fixture.objects.filter((o) => o.shape?.type === 'mesh').length, 2);

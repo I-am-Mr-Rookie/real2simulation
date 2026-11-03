@@ -1,0 +1,1750 @@
+{
+  "preview": "Temporary browser-local stylesheet, not deployed",
+  "rule": ".le-outline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; gap: 2px; }\r\n.le-outline li { display: flex; min-width: 0; align-items: center; gap: 2px; border-radius: 6px; }\r\n.lab-editor .le-row { flex: 1; min-width: 0; margin: 0; display: flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 6px; border: 0; background: none; color: inherit; text-align: left; }\r\n.le-row span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }\r\n.le-outline .le-mini { flex: 0 0 32px; min-width: 32px; min-height: 32px; margin: 0; }\r\n.le-tabs [role='tab'] { flex: 1; min-width: 0; margin: 0; min-height: 34px; border: 0; border-bottom: 2px solid transparent; background: none; color: var(--le-muted); font: 600 13px/1 inherit; cursor: pointer; }\r\n.le-tabs .le-mini { margin: 0; }\r",
+  "keyboard": {
+    "label": "Hide wall-1-1",
+    "tag": "BUTTON"
+  },
+  "measurements": [
+    {
+      "clientWidth": 244,
+      "ellipsis": "ellipsis",
+      "eyes": [
+        {
+          "height": 28,
+          "name": "Hide wall-1-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-2",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-3",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-window-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-2-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-2",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-3",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-4",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-5",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-window-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-window-2",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-4-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-floor",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-2",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-3",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-4",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-5",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-6",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-7",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-8",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-9",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        }
+      ],
+      "gutter": "stable",
+      "panelWidth": 260,
+      "phase": "before",
+      "right": 284,
+      "scrollWidth": 312,
+      "theme": "dark",
+      "width": 1366
+    },
+    {
+      "clientWidth": 360,
+      "ellipsis": "ellipsis",
+      "eyes": [
+        {
+          "height": 28,
+          "name": "Hide wall-1-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-2",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-3",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-window-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-2-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-2",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-3",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-4",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-5",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-window-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-window-2",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-4-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-floor",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-2",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-3",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-4",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-5",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-6",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-7",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-8",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-9",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        }
+      ],
+      "gutter": "stable",
+      "panelWidth": 375,
+      "phase": "before",
+      "right": 352,
+      "scrollWidth": 360,
+      "theme": "dark",
+      "width": 375
+    },
+    {
+      "clientWidth": 360,
+      "ellipsis": "ellipsis",
+      "eyes": [
+        {
+          "height": 32,
+          "name": "Hide wall-1-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-3",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-window-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-2-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-3",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-4",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-5",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-4-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-floor",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-3",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-4",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-5",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-6",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-7",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-8",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-9",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        }
+      ],
+      "gutter": "stable",
+      "panelWidth": 375,
+      "phase": "after-initial",
+      "right": 352,
+      "scrollWidth": 360,
+      "theme": "dark",
+      "width": 375
+    },
+    {
+      "clientWidth": 244,
+      "ellipsis": "ellipsis",
+      "eyes": [
+        {
+          "height": 32,
+          "name": "Hide wall-1-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-3",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-window-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-2-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-3",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-4",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-5",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-4-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-floor",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-3",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-4",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-5",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-6",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-7",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-8",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-9",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        }
+      ],
+      "gutter": "stable",
+      "panelWidth": 260,
+      "phase": "after-initial",
+      "right": 284,
+      "scrollWidth": 249,
+      "theme": "dark",
+      "width": 1366
+    },
+    {
+      "clientWidth": 244,
+      "ellipsis": "ellipsis",
+      "eyes": [
+        {
+          "height": 28,
+          "name": "Hide wall-1-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-2",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-3",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-window-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-2-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-2",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-3",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-4",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-5",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-window-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-window-2",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-4-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-floor",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-1",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-2",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-3",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-4",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-5",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-6",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-7",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-8",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-9",
+          "right": 297.84375,
+          "tabIndex": 0,
+          "width": 28
+        }
+      ],
+      "gutter": "stable",
+      "panelWidth": 260,
+      "phase": "before",
+      "right": 284,
+      "scrollWidth": 312,
+      "theme": "light",
+      "width": 1366
+    },
+    {
+      "clientWidth": 360,
+      "ellipsis": "ellipsis",
+      "eyes": [
+        {
+          "height": 28,
+          "name": "Hide wall-1-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-2",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-3",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-1-window-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-2-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-2",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-3",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-4",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-5",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-window-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-3-window-2",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-4-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide wall-floor",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-1",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-2",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-3",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-4",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-5",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-6",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-7",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-8",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        },
+        {
+          "height": 28,
+          "name": "Hide room-object-9",
+          "right": 293,
+          "tabIndex": 0,
+          "width": 28
+        }
+      ],
+      "gutter": "stable",
+      "panelWidth": 375,
+      "phase": "before",
+      "right": 352,
+      "scrollWidth": 360,
+      "theme": "light",
+      "width": 375
+    },
+    {
+      "clientWidth": 360,
+      "ellipsis": "ellipsis",
+      "eyes": [
+        {
+          "height": 32,
+          "name": "Hide wall-1-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-3",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-window-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-2-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-3",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-4",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-5",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-4-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-floor",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-3",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-4",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-5",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-6",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-7",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-8",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-9",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        }
+      ],
+      "gutter": "stable",
+      "panelWidth": 375,
+      "phase": "after",
+      "right": 352,
+      "scrollWidth": 360,
+      "theme": "light",
+      "width": 375
+    },
+    {
+      "clientWidth": 244,
+      "ellipsis": "ellipsis",
+      "eyes": [
+        {
+          "height": 32,
+          "name": "Hide wall-1-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-3",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-window-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-2-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-3",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-4",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-5",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-4-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-floor",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-3",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-4",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-5",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-6",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-7",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-8",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-9",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        }
+      ],
+      "gutter": "stable",
+      "panelWidth": 260,
+      "phase": "after",
+      "right": 284,
+      "scrollWidth": 244,
+      "theme": "light",
+      "width": 1366
+    },
+    {
+      "clientWidth": 244,
+      "ellipsis": "ellipsis",
+      "eyes": [
+        {
+          "height": 32,
+          "name": "Hide wall-1-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-3",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-window-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-2-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-3",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-4",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-5",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-4-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-floor",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-1",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-2",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-3",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-4",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-5",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-6",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-7",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-8",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-9",
+          "right": 237,
+          "tabIndex": 0,
+          "width": 32
+        }
+      ],
+      "gutter": "stable",
+      "panelWidth": 260,
+      "phase": "after",
+      "right": 284,
+      "scrollWidth": 244,
+      "theme": "dark",
+      "width": 1366
+    },
+    {
+      "clientWidth": 360,
+      "ellipsis": "ellipsis",
+      "eyes": [
+        {
+          "height": 32,
+          "name": "Hide wall-1-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-3",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-1-window-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-2-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-3",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-4",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-5",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-3-window-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-4-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide wall-floor",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-1",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-2",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-3",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-4",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-5",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-6",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-7",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-8",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        },
+        {
+          "height": 32,
+          "name": "Hide room-object-9",
+          "right": 305,
+          "tabIndex": 0,
+          "width": 32
+        }
+      ],
+      "gutter": "stable",
+      "panelWidth": 375,
+      "phase": "after",
+      "right": 352,
+      "scrollWidth": 360,
+      "theme": "dark",
+      "width": 375
+    }
+  ]
+}
