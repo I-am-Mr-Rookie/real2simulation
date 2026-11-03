@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 Dhaka: N06 closed
+- Koushik: go with sample clips. N06 room clip already filmed; pendulum, ramp and spin clips dropped. Demo and guide use the existing sample clips.
+
 ## 2026-11-03 Dhaka: N79 follow-up accepted
 - N79-orch324 confirmation follow-up merged (evidence only, 120da97c rebased): approved fresh test sign-up completed on DEV; new account reached the private workspace and onboarding. 0 paid calls, no settings change. Not tested: real email delivery, Google OAuth by agent (Koushik verified Google sign-up himself).
 
