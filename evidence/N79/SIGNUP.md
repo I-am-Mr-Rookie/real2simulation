@@ -2,13 +2,22 @@
 
 ## Result
 
-- Target: https://real2simulation.rookiecoders.tech, inspected in the ChatGPT in-app browser on 2026-11-02 UTC / Nov 3 Dhaka. This is DEV, not production acceptance.
+- **PASS for fresh synthetic-email DEV registration:** after Koushik's direct action-time approval, verification completed and the new account opened its private workspace on Nov 3 around **08:49 Dhaka / 02:49 UTC**. No Protect error was reproduced. Real judge email delivery, Google OAuth and production remain unverified.
+- Target: https://real2simulation.rookiecoders.tech, inspected in the ChatGPT in-app browser on Nov 2-3 UTC / Nov 3 Dhaka. This is DEV, not production acceptance.
 - Signed out the existing fixture after checking its identity. Did not open any project or clip.
 - Fresh address: `n79-20261102-2357+clerk_test@example.com`.
 - The ordinary email sign-up form accepted that address and reached `/sign-up/verify-email-address` at approximately 23:56 UTC. Visible heading: **Verify your email**. It requests the code, with Continue available.
-- No Protect challenge, CAPTCHA, allowlist error, redirect loop, domain error or other product blocker appeared before verification. This does not prove the whole sign-up succeeds.
-- Final verification is pending Koushik's direct in-chat action-time confirmation, requested before entering the test code. No code entered and no completed user account observed. A Clerk sign-up attempt exists; this is not the same as a user account. The controller subsequently instructed **Do not create the account**, preserve the pending confirmation and close out now; no final verification was attempted.
+- No Protect challenge, CAPTCHA, allowlist error, redirect loop, domain error or other product blocker appeared before verification or during the approved completion.
+- Initial closeout was PARTIAL: final verification awaited Koushik's direct action-time confirmation, and the controller instructed no account creation while that confirmation was pending. The later direct answer **Create the DEV test account** superseded that hold. The historical initial timebox is preserved, not rewritten as a passing run.
 - **Continue with Google** is offered on both sign-up and the separately visited `/sign-in` page. Google OAuth was not clicked or completed, so its end-to-end result remains unverified.
+
+## Approved completion follow-up
+
+- Fresh bounded follow-up: `CONFIRMATION_TIMEBOX.json`, issued **02:47:46 UTC**, deadline **03:17:46 UTC**, acknowledged by the controller. Koushik's exact test-account approval was received directly in this chat, not inferred from a controller relay.
+- The retained old tab handle returned `browser.user is unavailable`. A fresh tab in the same in-app browser worked. Submitted the **same approved synthetic email**, reached email verification again, then entered the documented development test code. No testing token or challenge bypass was used.
+- Browser redirected to `/workspace/dev-fixture-68b68242c0776fa5c2b7babe10ae9769a78adab5b406aa40b7cf453adfd97530`. Visible heading: **Private workspace**, with first-account **Choose how the agent runs** onboarding, Standard and Muse Spark selected by default.
+- Opened the account panel read-only and checked that its email exactly matched the approved N79 address, then closed the panel. This verifies that the workspace belongs to the newly verified account, not the old fixture. No project or clip was opened.
+- Onboarding Continue was not clicked; no mode or model setting changed, no prompt or upload sent. The new persistent test account remains available and the workspace tab was retained for handoff.
 
 ## Read-only dashboard evidence
 
@@ -56,13 +65,13 @@ Application Logs corroborated `sign_up.created` and `sign_up.email_address.creat
 
 **No code change or auth-policy change justified by this attempt.**
 
-1. Approve final creation of the named DEV test account, then enter its development code and verify redirect into the private workspace. Until then, fresh account creation is unverified.
+1. Completed after direct approval: the named DEV test account was created, its identity checked, and its private workspace opened. No signup fix is currently justified by this reproduction.
 2. Before declaring judge readiness, complete one consented new-user test with a real judge-like email or Google identity. A fixed-code synthetic address does not test email delivery, Google consent or a new browser/device.
 3. If `/sign-up/protect-check` fails again, record the exact UTC time and browser, then inspect matching Clerk `protect.sign_up.challenged`, `protect.challenge.failed`, `protect.sign_up.blocked` and legacy CAPTCHA events. Check ClerkJS/Protect requirements and blocked challenge assets. The current server-side rule responsible for N57 is not proved.
 4. Only if that evidence identifies a real integration defect, fix that defect or request Clerk support. Do not disable bot/Device Intelligence protection, broaden access, add an allowlist exception or use a Testing Token to claim real-judge readiness. Such policy changes require a separate owner decision and are outside this run.
 
 ## Local evidence and scope
 
-Screenshots are local-only, not committed: `C:/Users/HP/.codex/visualizations/2026/11/02/01a19def-4a05-7d30-b96f-91547ed6bf9c/N79/` contains `verify-email.png`, `verify-email-final.png`, `access-mode.png`, `protections.png`, `blocklist.png`, `google-offered.png`. No real email is shown in these captures. Dashboard overview/log screenshots containing personal data were not saved. Final browser observation still shows **Verify your email** with an empty code field. That tab was retained for handoff; the dashboard and separate sign-in inspection tabs were closed.
+Screenshots are local-only, not committed: `C:/Users/HP/.codex/visualizations/2026/11/02/01a19def-4a05-7d30-b96f-91547ed6bf9c/N79/` contains `verify-email.png`, `verify-email-final.png`, `access-mode.png`, `protections.png`, `blocklist.png`, `google-offered.png`, and successful follow-up `account-created-workspace.png`. No real email is shown in these captures. Dashboard overview/log screenshots containing personal data were not saved. The original `verify-email-final.png` records the initial paused state, not the final follow-up outcome. The dashboard and separate sign-in inspection tabs were closed.
 
 No paid inference, deployment, push, user deletion, auth setting/policy edit, CAPTCHA solving, Testing Token injection or private-project inspection. Real email delivery, new-user Google OAuth and production remain unverified.
