@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~09:00 Dhaka: Koushik confirms judge sign-up
+- Koushik signed up himself on real2simulation.rookiecoders.tech with a spare Google account; the private workspace opened. He also approved the N79 pending confirmation in the N64 chat. Judge sign-up item closed.
+- N82 scope: SAMPLE rooms are not deletable (no Delete button, API refuses); sample.py not added to Owns.
+
 ## 2026-11-03 Dhaka morning: Q24 answered; N81 merged; DEV web 47ad2f78; N82 dispatched
 - Koushik: per-room Delete yes; delete fixture test projects yes; keep Singapore Postgres/Redis; Wonder limits ok until Nov 5; sample meshes "after one is better" -> N81 uniform mesh scale merged (283 Node tests, build ok) and deployed (web 47ad2f78).
 - N82-orch327 (Sol, 60 min) builds the room Delete button and removes the fixture's test projects, in the N72 chat.
