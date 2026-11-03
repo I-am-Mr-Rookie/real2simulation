@@ -1,5 +1,11 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~21:50 Dhaka: N86 follow-up accepted (DEV web 8a66f7e7); Koushik pulls Clean up; N87 dispatched
+- N86 follow-up 7fa2453b: lab "Answered by" names the model that replied (answered_by) with the fallback tag (matches workspace F3 test). Node 267 pass, build pass, scan 0. DEV web 8a66f7e7 SUCCESS.
+- Koushik on DEV (screenshots): LLM cleanup was no improvement and can break the lab; replies arrive all at once. Root causes: agent is blind (text box list, yaw only, SF3D fragments fit inside boxes); /turn has no streaming and the number guard checks the full reply, so only progress-step streaming is safe.
+- Decision (Koushik): option 1 only, remove the Clean up card. N87-orch332 (GPT-6.1 Sol high, 30 min), thread 01a1a217-d65f-7573-b8bb-9d01a2acfc03, due 22:17 Dhaka. Keeps lab_update_objects, one-step Undo, Before/After.
+- Parked (Koushik's intent for a real tidy): delete the broken SF3D mesh fragments and align the tables; would need a code-computed tidy (snap to floor, square to walls, remove fragments). Progress streaming also parked.
+
 - 21:36 Dhaka: Koushik: hand the "Answered by" fallback-label bug to the N86 worker that found it. Sent as N86-orch331 follow-up (Claude Opus 5.5 high, 30 min, due 22:06 Dhaka); node tests and build, no browser QA, no paid calls.
 
 ## 2026-11-03 ~21:45 Dhaka: N86 accepted after DEV browser QA; DEV web d506ae7e

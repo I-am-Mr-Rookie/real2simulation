@@ -1,11 +1,10 @@
 {
- "N86-orch331": {
-  "thread": "01a1a1e9-9312-7631-b36a-6e0f61335808",
-  "model": "anthropic/claude-opus-5-5",
+ "N87-orch332": {
+  "thread": "01a1a217-d65f-7573-b8bb-9d01a2acfc03",
+  "model": "gpt-6.1-sol",
   "effort": "high",
   "minutes": 30,
-  "due_dhaka": "2026-11-03T22:06:25+06:00",
-  "worktree": ".worktrees/N86-orch331",
-  "note": "answered-by fallback label fix"
+  "due_dhaka": "2026-11-03T22:17:12+06:00",
+  "worktree": ".worktrees/N87-orch332"
  }
 }
