@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~21:45 Dhaka: N86 accepted after DEV browser QA; DEV web d506ae7e
+- N86 QA on DEV (in-app browser, fixture account, own "N86 QA lab"): Clean up sends in one click, objects land on the floor, "Tidied by agent · SIMULATED", one Undo = Before, Before/After both ways, another edit hides the toggle, 1366 and 375 px no overflow, no console errors, no em dashes. QA fix 05f2575e (CSS): Before/After button readable in dark, own row at 375 px.
+- Controller checks: rebase clean, scan 0, Node 267 pass, build pass. DEV web d506ae7e SUCCESS. Paid: 1 agent turn 15:27Z, Spark requested, fallback answered (cost in DEV ledger).
+- Open finding (from N85): "Answered by" shows the requested model, not the fallback that answered. Local QA had exported Clerk vars to a gitignored .env.local; worker deleted it (controller confirmed absent).
+
 ## 2026-11-03 ~22:10 Dhaka: N86 merged and on DEV; browser QA reopened
 - N86-orch331 (Claude Opus 5.5 high) merged 3ce0e7b6: lab_update_objects atomic batch (reuses lab_update_object per item, one validateScene and save), "Clean up the lab" card that sends with a "Best with Muse Wonder" hint, whole cleanup is one Undo step, Before/After toggle, label "Tidied by agent · SIMULATED".
 - Controller checks: rebase clean, Owns ok, secret scan 0, pytest tests/agent 213 pass (464 subtests), Node 266 pass, web build pass. DEV web 156de7b6, api 9b573b35, both SUCCESS. Cost $0 so far.
