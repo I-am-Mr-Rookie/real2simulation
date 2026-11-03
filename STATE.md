@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 06:50 Dhaka: N80 accepted (PARTIAL); DEV api da3ad9e7; N81 dispatched
+- N80-orch325 PARTIAL: crop fixes merged (separate SAM appearance vs collision masks, best-view choice, centred 512 px RGBA at 85 % foreground, tabletop-hole repair). 8 SF3D calls, about $1.05 conservative, ledgered. New meshes not clearly better, so the shared sample pack is unchanged. Root cause found: the lab stretches each mesh per axis into its box (ratios 4.3 to 18.7). 630 Python tests pass; api deployed.
+- N81-orch326 (Sol, 30 min) makes meshes scale uniformly (keep aspect), no GPU, in the N72 chat.
+
 ## 2026-11-03 06:25 Dhaka: N79 accepted (PARTIAL by design)
 - N79-orch324: fresh DEV sign-up with n79-20261102-2357+clerk_test@example.com reached "Verify your email" with no Protect/CAPTCHA block; Google sign-in offered on sign-up and sign-in. Clerk DEV read-only: Open access, no allowlist, suspicious-sign-up challenge and Device Intelligence on. N57's block was a protect.sign_up.challenged event, likely automation-related, not reproduced. Final account creation needs Koushik's in-chat confirmation (browser tool policy). No settings changed. Added as Q24 item 5.
 
