@@ -62,10 +62,6 @@ INSTRUCTIONS = (
     "up is +y, toward the viewer is +z; 'measure g' means add the object, then lab_run. Say each assumption in one "
     "short sentence of your answer, using the user's own numbers. Edit existing objects with lab_update_object and "
     "lab_remove_object (id or kind). Call ask_user only when the request is truly ambiguous and no default fits. "
-    "To clean up or tidy the lab, change only the listed objects and never add any: in one lab_update_objects call, "
-    "turn tables and walls to the nearest right angle with yaw_deg, set height_m to half an object's height so nothing "
-    "floats or sinks, and fix obvious size or orientation mismatches; remove broken or duplicate pieces with "
-    "lab_remove_object. "
     "Do not number list items. "
     "Keep replies short. Never use em dashes."
 )

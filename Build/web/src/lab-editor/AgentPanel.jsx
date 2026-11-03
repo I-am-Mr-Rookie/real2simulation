@@ -12,29 +12,15 @@ import { icon } from '../shell/icons.mjs';
 const useVoice = createUseVoice({ useState, useRef, useEffect });
 
 const BASE = '/api/workspace/agent';
-// N86: fixed cleanup instruction; its card sends at once instead of filling the composer.
-export const CLEANUP = 'Clean up the lab: align and straighten tables and walls, put objects on the floor, remove broken or duplicate pieces, fix obvious size or orientation mismatches. Never add objects.';
-// One data list: cards in the empty state, chips above the composer later. Clicking fills the composer (send: sends).
+// One data list: cards in the empty state, chips above the composer later. Clicking fills the composer.
 export const CARDS = [
   { id: 'drop', icon: 'drop', title: 'Measure g with a drop', text: 'Drop a 5 cm ball from 1.2 m and measure g' },
   { id: 'pendulum', icon: 'pendulum', title: 'Pendulum period', text: 'Pendulum, 0.8 m, find the period' },
   { id: 'ramp', icon: 'ramp', title: 'Add a ramp', text: 'Add a 30 degree ramp and roll a ball down it' },
   { id: 'report', icon: 'report', title: 'Write report', text: 'Write the lab report.' },
-  { id: 'cleanup', icon: 'cleanup', title: 'Clean up the lab', text: CLEANUP, send: true, hint: 'Best with Muse Wonder' },
 ];
 // The panel lives in the lab editor, so turns are framed as virtual-lab work (else the model looks for uploads).
 export const CONTEXT = 'In the virtual lab editor (SIMULATED): ';
-const r2 = (v) => +v.toFixed(2);
-const yawDeg = ([x, y, z, w]) => Math.round(Math.atan2(2 * (w * y + x * z), 1 - 2 * (x * x + y * y)) * 180 / Math.PI);
-// N86: the agent has no scene-read tool, so the cleanup turn lists the current objects (rounded) after the instruction.
-export function cleanupText(scene, budget = 3600) {
-  let s = CLEANUP + ' Floor at y ' + r2(scene.room?.floor_y ?? 0) + ' m. Objects (id, kind, centre x y z m, size x y z m, yaw deg):';
-  const rows = scene.objects.map((o) => '\n' + [o.id, [o.kind, o.look?.category ?? o.shape?.category].filter(Boolean).join(' '),
-    o.position.map(r2).join(' '), o.size.map(r2).join(' '), yawDeg(o.rotation)].join(', '));
-  let n = 0;
-  for (; n < rows.length && s.length + rows[n].length < budget; n++) s += rows[n];
-  return n < rows.length ? s + '\n(' + (rows.length - n) + ' more not listed)' : s;
-}
 const STEPS = { lab_add_object: 'Added object', lab_update_object: 'Updated object', lab_update_objects: 'Updated objects', lab_remove_object: 'Removed object', lab_run: 'Ran simulation',
   lab_report: 'Read report', write_report: 'Wrote report', fit: 'Fitted', fit_equation: 'Fitted', fit_motion: 'Fitted' };
 export const stepName = (n) => STEPS[n] ?? (n.charAt(0).toUpperCase() + n.slice(1)).replace(/_/g, ' ');
@@ -44,7 +30,6 @@ export const sendsOn = (e) => e.key === 'Enter' && !e.shiftKey && !e.isComposing
 const P = {
   drop: 'M12 3v12M7 10l5 5 5-5M5 21h14', pendulum: 'M4 3h16M12 3l5 12M17 15a2 2 0 1 0 .01 0', ramp: 'M3 20h18L3 8zM8 9a2 2 0 1 0 .01 0',
   report: 'M6 3h9l4 4v14H6zM14 3v5h5M9 13h7M9 17h5', mic: 'M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3',
-  cleanup: 'M4 6h10M4 12h10M4 18h6M15 17l2 2 4-4',
   send: 'M12 19V5M5 12l7-7 7 7', stop: 'M7 7h10v10H7z', x: 'M6 6l12 12M18 6L6 18', plus: 'M12 5v14M5 12h14', step: 'M5 12l4 4 10-10',
   download: 'M12 4v11M7 10l5 5 5-5M5 20h14', open: 'M4 9V4h5M20 15v5h-5M4 4l7 7M20 20l-7-7', agent: 'M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z',
 };
@@ -95,13 +80,10 @@ export default function AgentPanel({ scene, onScene, load = true }) {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fill = (t) => { setText(t); inputRef.current?.focus(); };
-  const pick = (c) => (c.send ? ask(cleanupText(scene), c) : fill(c.text));
   const newChat = () => { setLog([]); setHistory([]); setQuestion(null); };
-  // card: a sending card; its title stands for the long fixed message in the log and history, and any draft is kept.
-  const ask = async (msg, card) => {
+  const ask = async (msg) => {
     if (!msg.trim() || busy) return;
-    const shown = card?.title ?? msg;
-    setBusy(true); setQuestion(null); setLog((l) => [...l, { who: 'You', text: shown }]);
+    setBusy(true); setQuestion(null); setLog((l) => [...l, { who: 'You', text: msg }]);
     try {
       const session = await fetch('/api/workspace/session', { cache: 'no-store' });
       if (!session.ok) throw new Error('Sign in required.');
@@ -111,14 +93,14 @@ export default function AgentPanel({ scene, onScene, load = true }) {
       await call('/lab/scene', { method: 'POST', body: sceneJson(scene) }); // the agent edits what the user sees
       const t = await call('/turn', { method: 'POST', body: JSON.stringify({ text: CONTEXT + msg, history, ...tier }) });
       const names = (t.tool_calls ?? []).map((c) => c.name);
-      setHistory((h) => [...h, { role: 'user', content: shown }, { role: 'assistant', content: t.reply }].slice(-20));
+      setHistory((h) => [...h, { role: 'user', content: msg }, { role: 'assistant', content: t.reply }].slice(-20));
       // Honesty: name the model that produced the reply; t.model is only the requested one when a fallback ran.
       setLog((l) => [...l, { who: 'Agent', text: t.reply, tools: names, model: t.answered_by || t.model, fallback: Boolean(t.answered_by) }]);
       setQuestion(t.question);
-      const tidied = card?.id === 'cleanup' || names.includes('lab_update_objects');
+      const tidied = names.includes('lab_update_objects');
       if (names.some((n) => n.startsWith('lab_'))) onScene(validateScene((await call('/lab/scene')).scene), tidied ? 'Tidied by agent · SIMULATED. Undo or Before shows the old layout.' : 'Agent edits applied. SIMULATED.', tidied);
       if (names.includes('write_report')) setReport((await call('/lab/report')).markdown);
-      if (!card) setText('');
+      setText('');
     } catch (e) { setLog((l) => [...l, { who: 'Agent', text: 'Agent unavailable: ' + e.message, error: true }]); }
     setBusy(false);
   };
@@ -136,7 +118,7 @@ export default function AgentPanel({ scene, onScene, load = true }) {
         <h3>What should we test?</h3>
         <p className="le-muted">Ask for an experiment, or to add, move, resize or remove objects. Results are SIMULATED.</p>
         <div className="la-cards" role="group" aria-label="Suggestions">
-          {CARDS.map((c) => <button key={c.id} type="button" className="la-card" onClick={() => pick(c)} disabled={c.send && busy}><I n={c.icon} s={18} />{c.title}{c.hint ? <small className="la-hint">{c.hint}</small> : null}</button>)}
+          {CARDS.map((c) => <button key={c.id} type="button" className="la-card" onClick={() => fill(c.text)}><I n={c.icon} s={18} />{c.title}</button>)}
         </div>
       </div>}
       {log.map((m, i) => m.who === 'You'
@@ -154,7 +136,7 @@ export default function AgentPanel({ scene, onScene, load = true }) {
       {report && <Report md={report} />}
     </div>
     {log.length > 0 && <div className="la-chips" role="group" aria-label="Suggestions">
-      {CARDS.map((c) => <button key={c.id} type="button" onClick={() => pick(c)} disabled={c.send && busy} title={c.hint}>{c.title}</button>)}
+      {CARDS.map((c) => <button key={c.id} type="button" onClick={() => fill(c.text)}>{c.title}</button>)}
     </div>}
     <form className="la-composer" onSubmit={(e) => { e.preventDefault(); return ask(text); }}>
       {recording
