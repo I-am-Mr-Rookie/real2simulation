@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>N81 uniform SF3D fitting</title>
+<style>body{font:14px system-ui;background:#171d26;color:white;margin:16px}main{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}canvas{width:100%;height:auto;display:block}article{background:#293341;padding:6px;min-width:0}button{padding:8px;margin:6px}h1{font-size:20px}h2{font-size:14px;margin:4px}p{margin:4px}</style>
+<h1>N81: identical public RM02 meshes, before / uniform fit</h1><p>RECORDED input. MODEL-GENERATED shape. Scale unverified. Wire box = unchanged physics proxy. Same cameras. No new inference.</p>
+<button id="angle">Angle view</button><button id="front">Front view</button><button id="top">Top view</button><p id="status">Loading 16 meshes...</p><main></main>
+<script type="importmap">{"imports":{"three":"/three/build/three.module.js","three/":"/three/"}}</script>
+<script type="module">
+import * as THREE from 'three';
+import {loadShapeGlb as before} from '/before-shape.mjs';
+import {loadShapeGlb as after} from '/sf3d-shape.mjs';
+const renders=[];let loaded=0;
+const versions=[['n75','BEFORE',before],['n75','UNIFORM',after],['n80','BEFORE',before],['n80','UNIFORM',after]];
+const data={};for(const pack of ['n75','n80'])data[pack]=await fetch(`/assets/${pack}/RM02-sample-scene.json`).then(r=>r.json());
+for(const id of [1,2,4,7])for(const [pack,label,load]of versions){
+ const obj=data[pack].objects.find(o=>o.id===`room-object-${id}`);const card=document.createElement('article');card.innerHTML=`<h2>${pack.toUpperCase()} ${label} object ${id}</h2><p>Loading</p>`;document.querySelector('main').append(card);
+ const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setSize(300,205,false);renderer.setPixelRatio(1);renderer.setClearColor('#cad0d6');card.append(renderer.domElement);
+ const scene=new THREE.Scene();scene.add(new THREE.HemisphereLight(0xffffff,0x667788,2));const light=new THREE.DirectionalLight(0xffffff,3);light.position.set(2,4,3);scene.add(light);
+ const body=new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial({wireframe:true}));body.scale.fromArray(obj.size);scene.add(body);
+ scene.add(new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(...obj.size)),new THREE.LineBasicMaterial({color:0x778899,transparent:true,opacity:.4})));
+ const camera=new THREE.PerspectiveCamera(40,300/205,.01,100);camera.position.set(1.9,1.4,2.3);camera.lookAt(0,0,0);
+ load({...obj.shape,glb:`/assets/${pack}/RM02-room-object-${id}.glb`},body,obj.id);
+ let ready=false;function draw(){if(!ready&&(body.children.length||body.userData.glbError)){ready=true;loaded++;card.querySelector('p').textContent=body.userData.glbError?'ERROR':'Textured GLB loaded';document.querySelector('#status').textContent=`${loaded}/16 meshes finished`;}renderer.render(scene,camera);if(!ready)requestAnimationFrame(draw);}draw();renders.push({camera,draw});
+}
+for(const[id,p]of[['angle',[1.9,1.4,2.3]],['front',[0,.55,3]],['top',[0,3,.01]]])document.getElementById(id).onclick=()=>{for(const r of renders){r.camera.position.fromArray(p);r.camera.lookAt(0,0,0);r.draw();}};
+</script></html>

@@ -1,0 +1,43 @@
+{
+  "labErrors": [],
+  "labWarnings": [
+    {
+      "level": "warn",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+      "timestamp": "2026-11-03T00:36:48.164Z",
+      "url": "http://localhost:8083/_next/static/chunks/09e322ac-4358357b29b87eff.js"
+    },
+    {
+      "level": "warn",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+      "timestamp": "2026-11-03T00:39:18.883Z",
+      "url": "http://localhost:8084/_next/static/chunks/09e322ac-4358357b29b87eff.js"
+    },
+    {
+      "level": "warn",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+      "timestamp": "2026-11-03T00:41:23.524Z",
+      "url": "http://localhost:8085/_next/static/chunks/09e322ac-4358357b29b87eff.js"
+    },
+    {
+      "level": "warn",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+      "timestamp": "2026-11-03T00:41:45.651Z",
+      "url": "http://localhost:8086/_next/static/chunks/09e322ac-4358357b29b87eff.js"
+    },
+    {
+      "level": "warn",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+      "timestamp": "2026-11-03T00:43:19.457Z",
+      "url": "http://localhost:8086/_next/static/chunks/09e322ac-4358357b29b87eff.js"
+    },
+    {
+      "level": "warn",
+      "message": "THREE.WebGLShadowMap: PCFSoftShadowMap has been removed. Using PCFShadowMap instead.",
+      "timestamp": "2026-11-03T00:43:40.387Z",
+      "url": "http://localhost:8084/_next/static/chunks/09e322ac-4358357b29b87eff.js"
+    }
+  ],
+  "comparisonErrors": [],
+  "comparisonLoaded": "16/16 meshes finished"
+}
