@@ -1,5 +1,7 @@
 # Real2Simulation — STATE
 
+- 22:34 Dhaka: Koushik chose option B: public pack files are free while byte-identical (server-written public.json with size and mtime_ns per room); edited, replaced or new files count. Option C (shared, not copied) after the hackathon. Dispatched N88-orch333 (GPT-6.1 Sol high, 30 min), thread 01a1a243-03ca-7373-9705-5a15cc99c42c, due 23:04 Dhaka.
+
 ## 2026-11-03 ~22:20 Dhaka: N87 accepted; DEV web 101e3299, api f59932da
 - N87-orch332 (Sol) merged d0eee09a: Clean up card, chip, hint and cleanup prompt sentence removed; lab_update_objects, one-step Undo and Before/After kept. Checks: rebase clean, scan 0, Node 266 pass, pytest agent 213 pass, build pass. Both deploys SUCCESS. $0.
 - Koushik question (open, discussion first): public/shared resources (sample room, future polished lab) must not count against the 1 GB quota; user-made versions or additions should. Today seed copies the sample bytes into rooms/<owner>/ and quota() sums that whole tree (about 35 MB per user).
