@@ -1,9 +1,23 @@
-// N31: Stable Fast 3D object shape in the editor. The textured GLB is turned by quarter_turns and fitted into the unit
-// box, exactly like the collider vertices (scene.mjs shape.vertices), so the drawn mesh and the physics shape agree.
+// SF3D is an estimated visual inside the proxy. Physics keeps its existing collider independently.
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 export const SHAPE_LABEL = 'MODEL-GENERATED shape';
+
+export function fitShapeGlb(model, proxySize) {
+  const axes = ['x', 'y', 'z'];
+  if (!axes.every((a) => Number.isFinite(proxySize[a]) && proxySize[a] > 0)) throw new Error('Invalid proxy size');
+  model.updateMatrixWorld(true);
+  const box = new THREE.Box3().setFromObject(model), size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3());
+  const scale = Math.min(...axes.map((a) => size[a] > 0 ? proxySize[a] / size[a] : Infinity));
+  if (box.isEmpty() || !axes.every((a) => Number.isFinite(size[a])) || !Number.isFinite(scale) || scale <= 0) throw new Error('Invalid GLB bounds');
+  const fit = new THREE.Group();
+  // Cancel the parent's non-uniform proxy scale, leaving one uniform visual scale in room units.
+  fit.scale.set(scale / proxySize.x, scale / proxySize.y, scale / proxySize.z);
+  fit.position.set(-c.x * fit.scale.x, -0.5 - box.min.y * fit.scale.y, -c.z * fit.scale.z);
+  fit.add(model);
+  return fit;
+}
 
 // Untextured collider mesh: shown until the GLB loads, and if it fails.
 export function colliderGeometry(shape) {
@@ -18,14 +32,9 @@ export function loadShapeGlb(shape, body, id) {
   new GLTFLoader().load(shape.glb, (gltf) => {
     const m = gltf.scene;
     m.rotation.y = (shape.quarter_turns * Math.PI) / 2;
-    m.updateMatrixWorld(true);
-    const box = new THREE.Box3().setFromObject(m), size = box.getSize(new THREE.Vector3()), c = box.getCenter(new THREE.Vector3());
-    const fit = new THREE.Group();
-    fit.scale.set(1 / size.x, 1 / size.y, 1 / size.z);
-    fit.position.copy(c).multiply(fit.scale).negate();
-    const p = shape.support?.plane; // N42: the collider's flattened support plane is the box top; blobs above stick out
-    if (p != null) { fit.scale.y /= p + 0.5; fit.position.y = (fit.position.y + 0.5) / (p + 0.5) - 0.5; }
-    fit.add(m);
+    let fit;
+    try { fit = fitShapeGlb(m, body.scale); }
+    catch { body.userData.glbError = true; return; }
     m.traverse((n) => { n.userData.id = id; });
     body.material.visible = false; // the collider placeholder stays for picking, hidden under the texture
     body.add(fit);

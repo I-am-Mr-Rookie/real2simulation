@@ -1,0 +1,67 @@
+{
+  "scope": "public RM02 only; local loopback GET-only fixture, not authentication/deployment E2E",
+  "packs": {
+    "n75": {
+      "RM02-sample-scene.json": "3a4c3e59709201cfb86427ddce43a8f9b68a6385b1a29e52df1cf8275912e1b7",
+      "RM02-room-object-1.glb": "b2b39ae6f38b5257ac3dcfb0f0675e580be2e2caf8cf360b908de8869e2c116b",
+      "RM02-room-object-2.glb": "4db8ee93a4da5ce15ffb9e03c3d852b6ae637db5b6acc95aa35c7395c15331e1",
+      "RM02-room-object-4.glb": "477e14ac6f803cce698f922854237f78c393571d40d907e7162e96185ef21d15",
+      "RM02-room-object-7.glb": "ced0c50365fa7012e36659fd4e9ae5596e5dab00a3cc94e05da188cd64fe7b4b"
+    },
+    "n80": {
+      "RM02-sample-scene.json": "bdb7d7eafd8e8b6ed5bc2b875fcce2559d4f1cd7ef80f4ac59cfd48dfc327798",
+      "RM02-room-object-1.glb": "2d014ab9134ce5d38ef02222c6ccbe12d0fa80d424490e31bae5f1b4f2436e57",
+      "RM02-room-object-2.glb": "18874e136e0d9c77007b2f829d3abe43751c2d218bf81951ba6fe71043231693",
+      "RM02-room-object-4.glb": "ef52c99f3a947acf3d15a02ad1be9ec55b79f5c053e485181612f6e3dc24e74a",
+      "RM02-room-object-7.glb": "11ea6afe428f2243dd445b6f0a04f4a50c71d7a55a8efcbe30fb48bc143c3d1a"
+    }
+  },
+  "lab_gets": {
+    "8083": {
+      "pack": "n75",
+      "renderer": "before",
+      "glbs": {
+        "room-object-1.glb": 200,
+        "room-object-4.glb": 200,
+        "room-object-7.glb": 200,
+        "room-object-2.glb": 200
+      },
+      "all_api_gets_ok": true
+    },
+    "8084": {
+      "pack": "n75",
+      "renderer": "uniform",
+      "glbs": {
+        "room-object-7.glb": 200,
+        "room-object-4.glb": 200,
+        "room-object-1.glb": 200,
+        "room-object-2.glb": 200
+      },
+      "all_api_gets_ok": true
+    },
+    "8085": {
+      "pack": "n80",
+      "renderer": "before",
+      "glbs": {
+        "room-object-7.glb": 200,
+        "room-object-1.glb": 200,
+        "room-object-4.glb": 200,
+        "room-object-2.glb": 200
+      },
+      "all_api_gets_ok": true
+    },
+    "8086": {
+      "pack": "n80",
+      "renderer": "uniform",
+      "glbs": {
+        "room-object-2.glb": 200,
+        "room-object-1.glb": 200,
+        "room-object-7.glb": 200,
+        "room-object-4.glb": 200
+      },
+      "all_api_gets_ok": true
+    }
+  },
+  "paid_calls": 0,
+  "pack_promoted": false
+}
