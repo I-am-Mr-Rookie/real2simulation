@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~19:00 Dhaka: agent sidebar redesign (N85) and lab cleanup (N86) approved
+- Koushik picked Mobbin refs for the agent sidebar (Base44, Mural, MagicPath, Plane). Answers: suggestions just fill the composer; model picker inside the composer; add a mic icon with Codex-style dictation. Row N85 (Claude Opus 5.5 high, 60 min), no extra QA run; Koushik reviews on DEV.
+- Decision (Koushik, Nov 3): narrow "Clean up the lab" feature, row N86 (Claude Opus 5.5 high, 60 min), dispatched only after N85 merges (same files). Scope in PLAN-NOV1 "Agent sidebar and lab cleanup".
+
 ## 2026-11-03 ~18:15 Dhaka: N84 accepted and deployed
 - N84-orch329 (Sol) merged: Delete room button contrast fixed (min 6.4:1, all palettes); guide room-tab/room-a4 retaken with current SAMPLE meshes; lab editor Objects list no longer overflows (eye buttons 32 px, clear of scrollbar; Koushik screenshot bug). One extra 30-min window for a CSS specificity fix.
 - Controller checks: rebase clean, secret scan 0, Node 285 pass, web build pass. DEV web 911bccc3, verify.py exit 0. Cost $0.
