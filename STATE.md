@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-03 ~21:05 Dhaka: N85 accepted; DEV web 0e605002; N86 not dispatched (codex_app transport closed)
+- N85-orch330 (Claude Opus 5.5 high) merged 72c9be5d: full-height agent sidebar, empty-state cards that fill the composer (CARDS list for N86), step rows, composer with workspace ModelPicker, mic dictation with cancel/stop, report card, Fit view icon no longer duplicates Fullscreen. Outside Owns, tiny and reported: live-view.mjs exports ModelPicker, voice.mjs adds cancelVoice, consistency test uses the composer.
+- Controller checks: rebase clean, secret scan 0, Node 263 pass (lab-editor, workspace, shell-workspace, web-guide), web build pass. DEV web 0e605002 SUCCESS, verify.py exit 0. Cost $0. Unseen: 375 px and dark mode (Koushik reviews on DEV).
+- N86-orch331 timebox issued 21:50 due, but create_thread failed twice with "Transport closed"; not dispatched. Needs a fresh timebox once codex_app tools work.
+
 - 20:30 Dhaka: new controller chat 01a1a1ca-1652-7c50-9d2a-9c797e3be4c8 (old 01a1882d retired; AGENTS.md and WORKER_CONTRACT.md updated, f45fe397). Heartbeat real2sim-room-clip-watch repointed here, ACTIVE every 30 min. N86 task file ready (TASK-N86-orch331.md); dispatch after N85 merges. N85 completion line goes to the old chat; controller polls its thread.
 
 - 20:19 Dhaka: dispatched N85-orch330 (Claude Opus 5.5 high, 60 min), thread 01a1a1c7-0c01-7782-89df-437cb7ac76c7, due 21:19 Dhaka. Codex chat tools were missing from the controller session for about an hour (not the tool-mode setting; config back to Lean). N86 waits for N85 merge.
