@@ -16,6 +16,7 @@ import { colliderGeometry, loadShapeGlb, SHAPE_LABEL } from './sf3d-shape.mjs';
 import { lookMesh } from './furniture-shape.mjs';
 import { mergeShapeUpdates } from './shape-upgrades.mjs';
 import { TEMPLATES, templateScene, PHYSICS_LAB_CARDS, hasPhysicsStations } from './templates.mjs';
+import { LESSON, lessonVerdict, lessonReport } from './lesson.mjs';
 import featuredRun from '../app/(public)/home/featured-st03.json';
 import './lab-editor.css';
 
@@ -250,6 +251,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const [copying, setCopying] = useState(false);
   const [sourceResult, setSourceResult] = useState(null);
   const [traceFit, setTraceFit] = useState(null);
+  const [lesson, setLesson] = useState({}); // N89 guided question: { pred, a, b } fits recorded from traceFit
   const [cursor, setCursor] = useState(null);
   const sceneRef = useRef(scene);
   sceneRef.current = scene;
@@ -591,10 +593,10 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   // N89: the public featured run (stock clip ST03, hosted SAM 3.1 track) as a replay anyone can open. The track is drawn at
   // 1 px = 1 mm, so gravity starts at the fitted 2330 px/s^2 read as mm/s^2 and the SIMULATED ball follows the dots.
   const loadSample = () => {
-    const r = featuredRun.result, g = +(r.quantity.value / 1000).toFixed(3);
+    const r = featuredRun.result, g = +(r.quantity.value / 1000).toFixed(3), gx = +(r.fit.x.accel_px_s2 / 1000).toFixed(3);
     try {
       showTrack(r, 'st03-sample', 'Dots and line: the hosted SAM 3.1 track of a falling apple (stock clip, RECORDED), drawn at 1 px = 1 mm. Gravity starts at the fitted '
-        + g + ' (what-if, same scale), so the SIMULATED ball follows the dots. Set Gravity y to -9.81 and press Play to see Earth g at this scale.', [+(r.fit.x.accel_px_s2 / 1000).toFixed(3), -g, 0]);
+        + g + ' down and ' + gx + ' sideways (what-if, same scale), so the SIMULATED ball follows the dots. Set Gravity to 0, -9.81, 0 and press Play to see Earth g at this scale.', [gx, -g, 0]);
     } catch (e) { setMessage('Sample not loaded: ' + e.message); }
     let kept = null;
     try { kept = JSON.parse(sessionStorage.getItem(PENDING) || 'null'); if (kept?.id === 'sample:st03') { sessionStorage.removeItem(PENDING); setScene(validateScene(kept.scene)); setName(kept.name || ''); setMessage('Your edits are back, with the RECORDED dots. Press Make a copy to save them to your workspace.'); } } catch { /* storage blocked or stale edit: keep the fresh sample */ }
@@ -619,7 +621,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     try { if (kept?.id === id) s = validateScene(kept.scene); } catch { kept = null; }
     frameScene(s); setScene(s); setOrigin({ kind: 'template', id, title: t.title }); setName(kept?.name || t.title);
     setMessage(kept?.id === id ? 'Your edits are back. Press Make my copy to save them to your workspace.'
-      : t.title + ' template. ' + (id === 'physics-lab' ? 'Press Play: the graph follows ball-drop falling through photogate-1. After it lands, press Pause, then Fit trace for its acceleration. Click any apparatus to graph it instead. '
+      : t.title + ' template. ' + (id === 'physics-lab' ? 'Press Play: the graph follows ball-drop falling through photogate-1. After it lands, press Pause, then Fit trace for its acceleration. The Scene panel has a lesson: does a heavier ball fall faster? '
         : 'Press Add to place apparatus, then Play. ') + 'Make my copy saves your own version (uses your 1 GB storage). Everything here is SIMULATED.');
   };
   const loadSaved = async (id) => {
@@ -686,6 +688,26 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     ...(scene.room.collision?.enabled ? [['MODEL-ESTIMATED collision proxy', 'Static boxes fitted to the raw scan.']] : [])];
   const extra = labels.length - 1 - (scaleOpen ? 1 : 0);
   const setObj = (fn) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === selected ? fn(o) : o)) }));
+  const ballDrop = hasPhysicsStations(scene) ? scene.objects.find((o) => o.id === LESSON.object) : null;
+  const fitIsBall = !!traceFit && traceFit.name.startsWith(LESSON.object + ':');
+  const record = (k) => setLesson((l) => ({ ...l, [k]: { value: traceFit.value, uncertainty: traceFit.uncertainty, mass: ballDrop.mass } }));
+  const heavier = () => { stop(); edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === LESSON.object ? { ...o, mass: +(o.mass * LESSON.factor).toPrecision(3) } : o)) })); setMessage(LESSON.object + ' is now ' + LESSON.factor + ' times heavier. Press Play, Pause after it lands, then Fit trace.'); };
+  const verdict = lessonVerdict(lesson.a, lesson.b, lesson.pred);
+  const runLine = (r, n) => 'Run ' + n + ': ' + fmtPm(r.value, r.uncertainty) + ' m/s^2 at ' + r.mass + ' kg';
+  const lessonView = ballDrop && <section className="le-lesson" aria-label="Lesson">
+    <h3>Lesson: {LESSON.question}</h3>
+    <p className="le-muted">1. Predict first.</p>
+    <div className="le-lesson-choices">{LESSON.choices.map(([id, l]) => <button key={id} type="button" aria-pressed={lesson.pred === id} onClick={() => setLesson((s) => ({ ...s, pred: id }))}>{l}</button>)}</div>
+    <p className="le-muted">2. Press Play, Pause after {LESSON.object} lands, then Fit trace.</p>
+    {lesson.a ? <p>{runLine(lesson.a, 'A')}</p> : <button type="button" disabled={!fitIsBall} onClick={() => record('a')}>Record run A</button>}
+    {lesson.a && <><p className="le-muted">3. Change one thing: the mass. Then Play, Pause and Fit trace again.</p>
+      {ballDrop.mass === lesson.a.mass ? <button type="button" onClick={heavier}>Make {LESSON.object} {LESSON.factor} times heavier</button>
+        : lesson.b ? <p>{runLine(lesson.b, 'B')}</p> : <button type="button" disabled={!fitIsBall} onClick={() => record('b')}>Record run B</button>}</>}
+    {verdict && <><p><strong>{verdict.text}</strong>{verdict.matched != null && (verdict.matched ? ' Your prediction matched.' : ' Your prediction did not match.')}</p>
+      <p className="le-muted">{LESSON.caveat}</p>
+      <div className="le-lesson-choices"><button type="button" onClick={() => navigator.clipboard.writeText(lessonReport(lesson.pred, lesson.a, lesson.b, verdict)).then(() => setMessage('Lesson results copied for a worksheet.'), () => setMessage('The browser blocked copying.'))}>Copy results</button>
+        <button type="button" onClick={() => setLesson({})}>Start over</button></div></>}
+  </section>;
   const toggleHidden = (id) => setHidden((h) => (h.includes(id) ? h.filter((x) => x !== id) : [...h, id]));
   const deleteId = (id) => { if (live) return; edit((s) => removeObject(s, id)); if (selected === id) setSelected(null); setMessage('Deleted ' + id + '. Ctrl+Z undoes it.'); };
   const playBtn = run !== 'playing' ? <button type="button" className="le-primary" onClick={play} disabled={run === 'loading' || !scene.objects.length}><Ico n="play" /><span>{run === 'paused' ? 'Resume' : 'Play'}</span></button> : <button type="button" className="le-primary" onClick={pause}><Ico n="pause" /><span>Pause</span></button>;
@@ -796,6 +818,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
             {selTrace && <p>Sensor: {selTrace.samples.length} samples{selTrace.truncated ? ' (cap reached)' : ''}</p>}
             <button type="button" className="le-danger" disabled={live} onClick={removeSelected}>Delete</button>
           </> : <>
+            {lessonView}
             <h3>Scene</h3>
             <fieldset disabled={live}><legend>Gravity (m/s^2)</legend><div className="le-xyz">{['x', 'y', 'z'].map((ax, i) => <Num key={ax} label={ax} value={scene.gravity[i]} onCommit={(v) => edit((s) => ({ ...s, gravity: s.gravity.map((g, j) => (j === i ? v : g)) }))} />)}</div></fieldset>
             <p className="le-muted">Time step {(1 / 120).toFixed(4)} s (fixed 120 Hz). {scene.objects.length} objects. Select an object in the canvas or the Objects list to edit it.</p>
