@@ -1,0 +1,421 @@
+{
+  "utc": "2026-11-04T13:30:13.304Z",
+  "sent": "Measure the falling apple in my Apple drop sample video. The apple is about 7 cm wide.",
+  "status": 200,
+  "api_revision": "559cb623",
+  "where": "DEV api, fixture account, workspace agent",
+  "body": {
+    "model": "muse-spark-1.3",
+    "reply": "Measured vertical acceleration is 2.33 +/- 0.36 m/s2 with label scale assumed (user size).\n\nAssumption: your 7 cm width is the apple diameter.\n\nClock is playback timestamps and capture clock unverified so slow motion would change this value.",
+    "question": null,
+    "tool_calls": [
+      {
+        "name": "list_files",
+        "args": {},
+        "output": {
+          "status": "ok",
+          "files": [
+            {
+              "id": "527ada82a285441697522d49a0521bca",
+              "name": "Apple drop sample (Pexels).mp4",
+              "media_type": "video/mp4",
+              "duration_s": 2.6026,
+              "project_id": "3eb4d528e1ff49079f359d6a2e64dc42"
+            },
+            {
+              "id": "ec5cba4aa7a944b6aed1b2b20dbe980d",
+              "name": "n43-tiny-17.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "81764db3f0fa4b4abd48d07d7bc07268",
+              "name": "n43-tiny-16.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "ea961ad9e1fb4760a14bed7d54ed5f4a",
+              "name": "n43-tiny-15.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "7eda7b00504a4df9bbf17c4510ce915a",
+              "name": "n43-tiny-14.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "af1eeba48ac74301a73b63816929528d",
+              "name": "n43-tiny-13.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "9ad8b9b020a64bc2be5a235ac14827bd",
+              "name": "n43-tiny-12.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "37c56221d4c34f099651a773f7abdb6c",
+              "name": "n43-tiny-11.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "a840ea4a46be454197ccd819bf0d29a7",
+              "name": "n43-tiny-10.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "e004e1cc77cf408b8217f19d6e8de3a0",
+              "name": "n43-tiny-9.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "dd6829f3adfb4272b5c81e5b71b1562a",
+              "name": "n43-tiny-8.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "4f5e1bd9a7124dfbb28a98c402298276",
+              "name": "n43-tiny-7.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "14938b3d0e7b4b17a678c83c84586e72",
+              "name": "n43-tiny-6.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "01fce7fb68634874a8a262fcfa84c0f0",
+              "name": "n43-tiny-5.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "4407b391186d456299044244de21ba5d",
+              "name": "n43-tiny-4.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "cf8ef1bb73a0417e8d985eebacdf1527",
+              "name": "n43-tiny-3.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "b59adb1408b84f72942280459c2653e7",
+              "name": "n43-tiny-2.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "633e65018a494b6ca207056416c9bb09",
+              "name": "n43-tiny-1.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 1.001,
+              "project_id": null
+            },
+            {
+              "id": "42fcf3760e5742efa729285887bbbe13",
+              "name": "ST03-trim.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 4.004,
+              "project_id": null
+            },
+            {
+              "id": "82a4f2a2700b4cab95e9159ffc9161f3",
+              "name": "RM02-trim.mp4",
+              "media_type": "video/mp4",
+              "duration_s": 6.0,
+              "project_id": null
+            }
+          ]
+        }
+      },
+      {
+        "name": "start_experiment_track",
+        "args": {
+          "file_id": "527ada82a285441697522d49a0521bca",
+          "known_size": "apple diameter 7 cm",
+          "target": "falling apple"
+        },
+        "output": {
+          "status": "running",
+          "trajectory_id": "d03b688824e74029ba3fb9062efc0be5",
+          "project_id": "3eb4d528e1ff49079f359d6a2e64dc42",
+          "detail": "tracking runs in the background; call fit with this trajectory_id when it is done"
+        }
+      },
+      {
+        "name": "fit",
+        "args": {
+          "known_size": "apple diameter 7 cm",
+          "trajectory_id": "d03b688824e74029ba3fb9062efc0be5"
+        },
+        "output": {
+          "status": "running",
+          "trajectory_id": "d03b688824e74029ba3fb9062efc0be5",
+          "error": null,
+          "detail": "tracking has not finished, so there is nothing to fit yet"
+        }
+      },
+      {
+        "name": "fit",
+        "args": {
+          "known_size": "apple diameter 7 cm",
+          "trajectory_id": "d03b688824e74029ba3fb9062efc0be5"
+        },
+        "output": {
+          "status": "ok",
+          "label": "scale assumed (user size): apple diameter 7 cm",
+          "clock": "playback timestamps; capture clock unverified (slow motion would change every time-based value)",
+          "units": "m",
+          "scale": {
+            "status": "declared",
+            "object": "apple diameter 7 cm",
+            "length_m": 0.07,
+            "label": "scale assumed (user size)",
+            "reference_px": 70.0,
+            "metres_per_px": 0.001,
+            "relative_sigma": 0.14810503337216518,
+            "box_relative_sigma": 0.1092478874403078,
+            "size_relative_sigma": 0.1,
+            "size_sigma_basis": "default 10% because no tolerance was typed",
+            "method": "known size / median longest side of the tracked box (motion blur inflates boxes)"
+          },
+          "fit": {
+            "x": {
+              "model": "constant_acceleration",
+              "aic": [
+                6.0496790228857105,
+                -4.4761844181433155
+              ],
+              "rmse_px": 0.7590489099807403,
+              "n": 19,
+              "accel_px_s2": 35.26814975796756,
+              "accel_sigma_px_s2": 9.12640305536519
+            },
+            "y": {
+              "model": "constant_acceleration",
+              "aic": [
+                152.13897137851512,
+                88.22760242004861
+              ],
+              "rmse_px": 8.704884232902137,
+              "n": 19,
+              "accel_px_s2": -2334.9075511707288,
+              "accel_sigma_px_s2": 104.66292885101976
+            },
+            "model_selection": "AIC over degree 1 and 2 per axis (Build/fitter)"
+          },
+          "segment": {
+            "first_frame": 26,
+            "last_frame": 47,
+            "frames": 19,
+            "duration_s": 0.7007
+          },
+          "curve": {
+            "axis": "y",
+            "unit": "m",
+            "t_s": [
+              0.0,
+              0.014597916666666667,
+              0.029195833333333334,
+              0.04379375,
+              0.05839166666666667,
+              0.07298958333333333,
+              0.0875875,
+              0.10218541666666665,
+              0.11678333333333334,
+              0.13138125,
+              0.14597916666666666,
+              0.16057708333333334,
+              0.175175,
+              0.18977291666666665,
+              0.2043708333333333,
+              0.21896875000000002,
+              0.23356666666666667,
+              0.24816458333333333,
+              0.2627625,
+              0.27736041666666666,
+              0.2919583333333333,
+              0.30655625000000003,
+              0.3211541666666667,
+              0.33575208333333334,
+              0.35035,
+              0.36494791666666665,
+              0.3795458333333333,
+              0.39414375,
+              0.4087416666666666,
+              0.4233395833333333,
+              0.43793750000000004,
+              0.45253541666666663,
+              0.46713333333333334,
+              0.48173125,
+              0.49632916666666665,
+              0.5109270833333334,
+              0.525525,
+              0.5401229166666667,
+              0.5547208333333333,
+              0.56931875,
+              0.5839166666666666,
+              0.5985145833333333,
+              0.6131125000000001,
+              0.6277104166666666,
+              0.6423083333333334,
+              0.65690625,
+              0.6715041666666667,
+              0.6861020833333332,
+              0.7007
+            ],
+            "value": [
+              -0.001213747146776484,
+              -0.003410426890957768,
+              -0.006104673498671389,
+              -0.009296486969917346,
+              -0.012985867304695642,
+              -0.017172814503006274,
+              -0.02185732856484924,
+              -0.027039409490224542,
+              -0.032719057279132185,
+              -0.03889627193157218,
+              -0.04557105344754449,
+              -0.05274340182704915,
+              -0.06041331707008614,
+              -0.06858079917665547,
+              -0.07724584814675711,
+              -0.08640846398039113,
+              -0.09606864667755748,
+              -0.10622639623825614,
+              -0.11688171266248716,
+              -0.1280345959502505,
+              -0.13968504610154617,
+              -0.15183306311637423,
+              -0.16447864699473463,
+              -0.17762179773662728,
+              -0.19126251534205232,
+              -0.20540079981100967,
+              -0.22003665114349938,
+              -0.23517006933952148,
+              -0.2508010543990758,
+              -0.2669296063221625,
+              -0.28355572510878163,
+              -0.30067941075893295,
+              -0.3183006632726167,
+              -0.3364194826498328,
+              -0.35503586889058114,
+              -0.37414982199486196,
+              -0.39376134196267504,
+              -0.4138704287940204,
+              -0.4344770824888982,
+              -0.4555813030473083,
+              -0.47718309046925067,
+              -0.4992824447547254,
+              -0.5218793659037326,
+              -0.5449738539162718,
+              -0.5685659087923439,
+              -0.592655530531948,
+              -0.6172427191350844,
+              -0.642327474601753,
+              -0.6679097969319543
+            ],
+            "band_1sigma": [
+              0.005731251981507422,
+              0.005287016250793488,
+              0.004876785326821815,
+              0.004502376126018666,
+              0.0041657233639809475,
+              0.00386875228703796,
+              0.003613167980899848,
+              0.003400156523124007,
+              0.0032300264651219856,
+              0.0031018654781313627,
+              0.0030133223115227296,
+              0.0029606136061199866,
+              0.0029387846283010985,
+              0.002942156264501582,
+              0.002964828567487314,
+              0.003001117286991697,
+              0.003045855022817203,
+              0.003094549468177575,
+              0.003143428839561707,
+              0.0031894156236456166,
+              0.0032300644557112083,
+              0.003263489113756911,
+              0.003288293533911519,
+              0.0033035145705485928,
+              0.003308579902873701,
+              0.003303282269481826,
+              0.0032877703037810374,
+              0.0032625560296214856,
+              0.003228539096233997,
+              0.003187047683035405,
+              0.0031398952330512187,
+              0.003089450166407819,
+              0.0030387116701793577,
+              0.002991377698792025,
+              0.002951881164229909,
+              0.0029253586508609297,
+              0.002917508651243356,
+              0.0029343042269705483,
+              0.0029815600012593896,
+              0.003064415240967854,
+              0.0031868567561504873,
+              0.003351421025392269,
+              0.0035591576793696698,
+              0.0038098351770930144,
+              0.004102289148670066,
+              0.004434796041928395,
+              0.004805389037015645,
+              0.00521208262087395,
+              0.005653008966784841
+            ],
+            "label": "fitted curve and 1 sigma band from the fitter (residual noise; scale held fixed)"
+          },
+          "motion": "free_fall",
+          "quantity": {
+            "name": "vertical acceleration (g if only gravity acts)",
+            "value": 2.334907551170729,
+            "unit": "m/s^2",
+            "uncertainty": 0.36130314730106766,
+            "label": "scale assumed (user size)",
+            "uncertainty_note": "1 sigma: fitter residuals + tracked box size spread + typed size error"
+          },
+          "trajectory_id": "d03b688824e74029ba3fb9062efc0be5"
+        }
+      }
+    ],
+    "usage": {
+      "input_tokens": 22494,
+      "output_tokens": 1724
+    },
+    "steps": 5,
+    "stopped": "final"
+  }
+}

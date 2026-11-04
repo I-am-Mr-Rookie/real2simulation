@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import run from './featured-st03.json';
 import agentLog from './featured-agent.json';
+import measuredTurn from './featured-agent-measured.json';
 import { chartGeom, fmtPm, gravityCheck } from '../../../workspace/measure.mjs';
 import './featured.css';
 
@@ -59,8 +60,20 @@ export default function FeaturedRun() {
     </ol>
     <p className="fr-cta"><Link className="primary-link" href="/lab?editor=1&sample=st03">Replay this run in 3D and change gravity</Link></p>
     <div className="card fr-agent">
+      <span className="chip" data-tone="ok">MEASURED</span>
+      <h3>Muse runs the real pipeline from one sentence</h3>
+      <p>A recorded call to Meta {measuredTurn.model} on {measuredTurn.utc.slice(0, 10)} in a signed-in test workspace, on the 2.6 s crop of the clip above, unedited. Muse found the video, started hosted SAM 3.1 tracking with the size it was given, called fit too early, then fitted again once tracking finished.</p>
+      <dl>
+        <dt>You</dt><dd>{measuredTurn.sent}</dd>
+        <dt>Tools it called</dt><dd className="mono">{measuredTurn.tools.join(' → ')}</dd>
+        <dt>Muse</dt><dd>{measuredTurn.reply}</dd>
+        <dt>Fit</dt><dd>{fmtPm(measuredTurn.quantity.value, measuredTurn.quantity.uncertainty)} {measuredTurn.quantity.unit}, {measuredTurn.quantity.label}, {measuredTurn.frames} frames.</dd>
+      </dl>
+      <p>Far below 9.81 m/s^2: the stock clip plays in slow motion, or the apple is not 7 cm. The workspace prints this as a what-if instead of hiding it.</p>
+    </div>
+    <div className="card fr-agent">
       <span className="chip" data-tone="sim">SIMULATED</span>
-      <h3>Separately: Muse runs a lab for you</h3>
+      <h3>Muse also runs the virtual lab</h3>
       <p>A recorded call to Meta {turn.model} on {turn.utc.slice(0, 10)}, unedited, on a SIMULATED drop in the lab editor, not the apple clip above. The agent turns a sentence into lab actions and reads the numbers back from the physics engine, not from its own guess.</p>
       <dl>
         <dt>You</dt><dd>{turn.sent}</dd>

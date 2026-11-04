@@ -13,6 +13,11 @@ test('featured run is a verbatim copy of the N07 live ST03 result and renders', 
   const shown = await read('Build/web/src/app/(public)/home/featured-st03.json');
   assert.deepEqual(shown, await read('evidence/N07/live-st03.json'));
   assert.deepEqual(await read('Build/web/src/app/(public)/home/featured-agent.json'), await read('evidence/N28/run1-turns.json'));
+  // N89: the measured Muse card is a field-for-field projection of the recorded DEV turn
+  const ev = await read('evidence/N89/muse-measures-sample.json'), calls = ev.body.tool_calls, start = calls.find((c) => c.name === 'start_experiment_track');
+  assert.deepEqual(await read('Build/web/src/app/(public)/home/featured-agent-measured.json'), {
+    utc: ev.utc, model: ev.body.model, sent: ev.sent, tools: calls.map((c) => c.name), target: start.args.target,
+    known_size: start.args.known_size, quantity: calls.at(-1).output.quantity, frames: calls.at(-1).output.segment.frames, reply: ev.body.reply });
   const r = shown.result;
   assert.equal(r.fit.x.model, 'constant_acceleration'); // the card says acceleration wins on both axes
   assert.equal(r.fit.y.model, 'constant_acceleration');
