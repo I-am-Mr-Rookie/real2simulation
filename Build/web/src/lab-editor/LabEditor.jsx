@@ -603,7 +603,8 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     try { if (kept?.id === id) s = validateScene(kept.scene); } catch { kept = null; }
     frameScene(s); setScene(s); setOrigin({ kind: 'template', id, title: t.title }); setName(kept?.name || t.title);
     setMessage(kept?.id === id ? 'Your edits are back. Press Make my copy to save them to your workspace.'
-      : t.title + ' template. Edit freely and press Play; Make my copy saves your own version (uses your 1 GB storage). Everything here is SIMULATED.');
+      : t.title + ' template. ' + (id === 'physics-lab' ? 'Press Play: the graph follows ball-drop falling through photogate-1; press Fit trace for its acceleration, or click any apparatus to graph it. '
+        : 'Press Add to place apparatus, then Play. ') + 'Make my copy saves your own version (uses your 1 GB storage). Everything here is SIMULATED.');
   };
   const loadSaved = async (id) => {
     try {

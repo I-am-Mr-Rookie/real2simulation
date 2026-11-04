@@ -2,6 +2,13 @@
 export const TAG = { playable: 'SIMULATED · playable', 'metadata-only': 'SIMULATED · practice setup' };
 export const TONE = { playable: 'ok', 'metadata-only': 'warn' };
 export const MYSTERY_COPY = 'Mystery-g practice shape at Earth g. This is not a blind test. To play blind, open the lab: the server draws a hidden g for each session.';
+// N89: readable card titles; the manifest title stays the source of truth for everything else and is the fallback.
+const READABLE = {
+  'simulated-projectile-baseline-short': 'A ball thrown sideways off a ledge',
+  'simulated-pendulum-short-small-angle': 'A short pendulum on a small swing',
+  'simulated-mystery-g': 'Guess the Gravity: a practice drop',
+};
+export const cardTitle = (entry) => READABLE[entry.id] || entry.title;
 
 export function creditLine(entry) {
   const s = entry.source;

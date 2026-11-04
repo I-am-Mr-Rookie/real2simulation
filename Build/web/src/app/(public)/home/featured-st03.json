@@ -1,0 +1,160 @@
+{
+ "utc": "2026-11-01T11:51:37+00:00",
+ "seconds": 40.0,
+ "status": "done",
+ "error": null,
+ "polled_statuses": [
+  "done",
+  "running"
+ ],
+ "project_id_attached": true,
+ "result": {
+  "status": "ok",
+  "label": "scale unverified: no known size given, so results are in pixels; no metric value",
+  "clock": "playback timestamps; capture clock unverified (slow motion would change every time-based value)",
+  "units": "px",
+  "scale": {
+   "status": "abstain",
+   "label": "scale unverified: no known size given, so results are in pixels; no metric value"
+  },
+  "fit": {
+   "x": {
+    "model": "constant_acceleration",
+    "aic": [
+     15.171080973914433,
+     -3.340577851873414
+    ],
+    "rmse_px": 0.7820749646461832,
+    "n": 19,
+    "accel_px_s2": 52.43459477814954,
+    "accel_sigma_px_s2": 9.403256171005701
+   },
+   "y": {
+    "model": "constant_acceleration",
+    "aic": [
+     152.06430393704883,
+     88.54643148878009
+    ],
+    "rmse_px": 8.778227542724002,
+    "n": 19,
+    "accel_px_s2": -2329.5401160738215,
+    "accel_sigma_px_s2": 105.54477005788723
+   },
+   "model_selection": "AIC over degree 1 and 2 per axis (Build/fitter)"
+  },
+  "segment": {
+   "first_frame": 56,
+   "last_frame": 77,
+   "frames": 19,
+   "duration_s": 0.7007000000000001
+  },
+  "motion": "free_fall",
+  "quantity": {
+   "name": "vertical acceleration (g if only gravity acts)",
+   "value": 2329.5401160738215,
+   "unit": "px/s^2",
+   "uncertainty": 105.54477005788723,
+   "label": "scale unverified: no known size given, so results are in pixels; no metric value"
+  },
+  "trajectory": {
+   "axes": "x right, y up, origin at the first segment point",
+   "unit": "px",
+   "t_s": [
+    0.0,
+    0.033366999999999924,
+    0.06673400000000007,
+    0.10010000000000008,
+    0.16683399999999993,
+    0.20019999999999993,
+    0.23356700000000008,
+    0.2669339999999998,
+    0.3002999999999998,
+    0.3670340000000001,
+    0.4004000000000001,
+    0.4337669999999998,
+    0.46713399999999994,
+    0.5005,
+    0.5672339999999998,
+    0.6005999999999998,
+    0.633967,
+    0.6673340000000001,
+    0.7007000000000001
+   ],
+   "x": [
+    0.0,
+    -2.0,
+    -2.0,
+    -3.0,
+    -4.0,
+    -5.0,
+    -5.5,
+    -5.5,
+    -6.0,
+    -5.5,
+    -6.0,
+    -5.5,
+    -4.5,
+    -6.0,
+    -5.5,
+    -5.5,
+    -7.0,
+    -6.0,
+    -3.0
+   ],
+   "y": [
+    0.0,
+    -6.5,
+    -18.5,
+    -30.5,
+    -49.5,
+    -71.0,
+    -97.0,
+    -124.5,
+    -155.5,
+    -195.0,
+    -234.5,
+    -278.0,
+    -326.5,
+    -377.0,
+    -435.5,
+    -493.5,
+    -559.0,
+    -625.5,
+    -657.5
+   ],
+   "frame": [
+    56,
+    57,
+    58,
+    59,
+    61,
+    62,
+    63,
+    64,
+    65,
+    67,
+    68,
+    69,
+    70,
+    71,
+    73,
+    74,
+    75,
+    76,
+    77
+   ]
+  },
+  "track": {
+   "label": "MEASURED: hosted SAM 3.1 box centres in image pixels",
+   "object_id": 2,
+   "width": 720,
+   "height": 1366,
+   "missing": [],
+   "point_method": "box_centre",
+   "source": "hosted SAM 3.1 (Meta Model API)",
+   "tracked_frames": 543
+  },
+  "cost_usd": 0.1086,
+  "video_frames_processed": 543
+ }
+}

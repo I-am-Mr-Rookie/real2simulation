@@ -28,6 +28,10 @@ function physicsLab() {
       fixed('mass-table', [0.8, 0.4, 1.6], [1.6, 0.8, 0.7], 'table', WOOD),
       fixed('stool-1', [-3, 0.3, -2.3], [0.45, 0.6, 0.45], 'chair', '#44403c'),
       fixed('stool-2', [0, 0.3, -2.3], [0.45, 0.6, 0.45], 'chair', '#44403c'),
+      // Free fall first: the live graph shows the first sensor, so the first Play draws a clean drop curve.
+      { id: 'ball-drop', kind: 'ball', position: [-1, 2, -0.6], size: [0.06, 0.06, 0.06], mass: 0.05 },
+      { id: 'photogate-1', kind: 'photogate', position: [-1, 1, -0.6] },
+      { id: 'ruler-drop', kind: 'ruler', position: [-0.92, 1.01, -0.6], rotation: vertical, params: { length: 2 } },
       // Mechanics bench: simple pendulum with a protractor, and a spring with a hanging mass.
       { id: 'pendulum-1', kind: 'pendulum', position: [-3.7, 1.9, -3.2], size: [0.06, 0.06, 0.06], mass: 0.2, params: { length: 0.8, angle_deg: 20 } },
       { id: 'protractor-1', kind: 'protractor', position: [-3.7, 1.9, -3.12] },
@@ -38,12 +42,9 @@ function physicsLab() {
       { id: 'flywheel-1', kind: 'flywheel', position: [2.4, 1.75, -3.2], mass: 1, params: { radius: 0.15, inertia: 0, hang_mass: 0.05, hang_length: 0.4 } },
       { id: 'atwood-1', kind: 'atwood', position: [3.7, 1.95, -3.2], params: { radius: 0.05, m1: 0.2, m2: 0.15, hang_length: 0.5 } },
       { id: 'cradle-1', kind: 'cradle', position: [3.4, 1.55, -1.2], params: { count: 5, length: 0.5, angle_deg: 30 } },
-      // Floor stations: incline with a ball, free fall through a photogate, projectile launcher, sliding blocks.
+      // Floor stations: incline with a ball, projectile launcher, sliding blocks.
       { id: 'ramp-1', kind: 'ramp', position: [-3, 0.35, -0.6], friction: 0.3 },
       { id: 'ball-ramp', kind: 'ball', position: [-2.55, 0.72, -0.6], size: [0.08, 0.08, 0.08], mass: 0.1, friction: 0.4 },
-      { id: 'ball-drop', kind: 'ball', position: [-1, 2, -0.6], size: [0.06, 0.06, 0.06], mass: 0.05 },
-      { id: 'photogate-1', kind: 'photogate', position: [-1, 1, -0.6] },
-      { id: 'ruler-drop', kind: 'ruler', position: [-0.92, 1.01, -0.6], rotation: vertical, params: { length: 2 } },
       { id: 'launcher-1', kind: 'launcher', position: [1, 0.1, 0.6], mass: 0.05, params: { angle_deg: 45, speed: 4 } },
       { id: 'ruler-range', kind: 'ruler', position: [2, 0.01, 0.75], params: { length: 2 } },
       { id: 'block-a', kind: 'block', position: [-3, 0.1, 1.5], velocity: [1.5, 0, 0], mass: 1, friction: 0.2 },

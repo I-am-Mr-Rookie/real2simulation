@@ -117,7 +117,7 @@ test('outside-canvas panels allow native scroll chaining and controls target onl
 
 test('Template trials is a Templates section of the Add menu, not a separate toolbar button', () => {
   const page = read('app/(public)/lab/page.jsx');
-  assert.match(page, /!editor && <p className="lab-toggle"/);
+  assert.match(page, /!editor && <div className="lab-toggle"/);
   assert.match(page, /<LabEditor onTemplateTrials=\{\(\) => setEditor\(false\)\} \/>/);
   assert.match(css, /\.le-top button, \.le-file[^{]*\{[^}]*margin: 0;/);
   assert.match(editor, /aria-label="Templates"><span className="le-menu-h">Templates<\/span>\s*<button type="button" role="menuitem" onClick=\{onTemplateTrials\}>/);

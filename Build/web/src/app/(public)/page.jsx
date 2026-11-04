@@ -2,16 +2,17 @@ import { createElement as h } from 'react';
 import Link from 'next/link';
 import { icon } from '../../shell/icons.mjs';
 import MarketingArt, { REPO_URL, GITHUB_MARK } from './MarketingArt';
+import FeaturedRun from './home/FeaturedRun';
 import './home/home.css';
 
 const FEATURES = [
-  { id: 'a2', glyph: 'film', title: 'Film it', line: 'A licensed clip of a swing, drop or roll.', alt: 'A phone records a pendulum at three swing positions.' },
+  { id: 'a2', glyph: 'film', title: 'Film it', line: 'Your own phone clip. A simple drop works best today.', alt: 'A phone records a pendulum at three swing positions.' },
   { id: 'a3', glyph: 'chart', title: 'Measure it', line: 'Tracked points, error bars, a fitted model.', alt: 'Measurement points with uncertainty bars and a fitted curve under a magnifier.' },
   { id: 'a4', glyph: 'play', title: 'Remix it', line: 'Replay it in 3D, then ask what if.', alt: 'A simulated ball and its ghost position above a wireframe floor.' }
 ];
 
 const STEPS = [
-  ['film', 'Film', 'A drop, swing or roll.'],
+  ['film', 'Film', 'A ball drop is the best first clip.'],
   ['compass', 'Agent asks', 'It asks for what it cannot see.'],
   ['grid', 'Track', 'Points, frame by frame.'],
   ['chart', 'Fit', 'A model with error bars.'],
@@ -33,6 +34,7 @@ export default function Home() {
         <p className="kicker">REAL → SIMULATION</p>
         <h1 className="home-h1"><span>Film Physics</span><span>Simulate it in 3D</span></h1>
         <p className="hero-sub">{'Point your phone at a real experiment. Get a 3D replay, measurements with error bars, and a lab to ask "what if".'}</p>
+        <p className="trust-line">For physics students and teachers: turn a class demo into data you can check, then rerun it with different values.</p>
         <div className="actions">
           <Link className="primary-link" href="/library">{icon(h, 'book', 16)}Try the demo library</Link>
           <Link className="secondary-link" href="/lab?editor=1&template=physics-lab">{icon(h, 'flask', 16)}Open the physics lab</Link>
@@ -50,6 +52,7 @@ export default function Home() {
         <figcaption>Real output.<span>A classroom video (SAMPLE, RECORDED) turned into an editable physics lab. Geometry MODEL-ESTIMATED, scale unverified.</span></figcaption>
       </figure>
     </section>
+    <FeaturedRun />
     <ul className="features">
       {FEATURES.map((f) => <li key={f.id} className="feature card">
         <MarketingArt id={f.id} width={800} height={600} alt={f.alt} />

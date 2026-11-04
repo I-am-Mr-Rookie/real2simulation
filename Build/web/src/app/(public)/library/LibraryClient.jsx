@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { loadLibraryEntry } from '../../../../../library/loader.mjs';
 import { mountTrajectoryReplay } from '../../../viewer/trajectory-replay.mjs';
 import AppArt from '../../../lab/AppArt.jsx';
-import { MYSTERY_COPY, TAG, TONE, creditLine, filterChips, groupDemos, matchesFilter } from './library-copy.mjs';
+import { MYSTERY_COPY, TAG, TONE, cardTitle, creditLine, filterChips, groupDemos, matchesFilter } from './library-copy.mjs';
 
 function Replay({ entry }) {
   const host = useRef(null); const [state, setState] = useState('loading');
@@ -40,7 +40,7 @@ function Card({ entry, open, onOpen }) {
       </div>
     </div>
     <p className="lib-kicker mono">{entry.id}{licence ? ' · ' + licence : ''}</p>
-    <h3>{entry.title}</h3>
+    <h3>{cardTitle(entry)}</h3>
     {entry.challenge && <p className="lib-callout">{MYSTERY_COPY} <a href="/lab">Play blind in the lab →</a></p>}
     <p className="muted lib-meta">{creditLine(entry)}<br />Display only · not a measurement.</p>
     {entry.limitations?.length > 0 && <details className="lib-limits">
