@@ -44,6 +44,17 @@ Main a1258972 (pushed). Live: https://real2simulation.rookiecoders.tech (web 83d
 - Simulator tests: the 4 long-standing failures fixed without touching the engine. R14 pendulum controls now check the energy of the model the engine selected (R15 made amplitude <= 0.1 rad the S08 small-angle ODE on purpose); ramp and pendulum replay hashes regenerated with a note. tests/simulator 125/125, tests/lab 123/123 + pytest 20.
 - Paid: about 0.06 USD more hosted SAM and Muse (ledger). Modal: tiny CPU probes and two proxy deploys.
 
+## Round 4 (Nov 4, 20:29 to 21:40 Dhaka; judge on 20ce186c, fixes in 6ae7faae)
+- Judge round 4 (Claude Opus high, fresh context, signed out): 69.5 (Impact 6.0, Meta 8.0, Execution 7.0, Demo 7.0), up from 65.75. evidence/N89/JUDGE-REVIEW-4.md. Top fix: no real clip measured g near 9.81.
+- Pipeline bug found by running the owner phone clip OWN07 (book drop, Realme C53, 30 fps) through the live path: the automatic free-fall segment kept 2 landing frames, so the fit gave 6.73 +/- 0.86 m/s^2 with 28.7 px residuals (evidence/N89/live-own07-fullres-before-impact-fix.json). moving_segment now cuts up to 3 trailing steps slower than 90% of the fastest step (the landing). Rerun through the live path: 9.07 +/- 0.62 m/s^2, 3.2 px residuals, 1.2 sigma from Earth g (evidence/N89/live-own07-book-drop.json); a 540p copy gives 9.11 +/- 0.46 (live-own07-book-drop-540p.json). Test added. The ST03 recorded segment is unchanged.
+- Home: "A phone drop at home comes out near Earth g" MEASURED card (verbatim copy of the evidence, test-checked) with chart; ST03 card kept as the slow-motion counterexample. The owner clip itself is not published: the OWN07 receipt covers only demo-video snippets, so only the derived track is public (a test asserts no OWN07 video under public/).
+- New public replay /lab?editor=1&sample=own07: MEASURED dots in metres, SIMULATED ball at Earth g runs slightly ahead; set gravity to the fitted value to match (test: lands within 3 cm of the last dot at fitted g, more than 1.5 cm ahead at 9.81).
+- Lab right panel overflow at 1440 px fixed (panel grid minmax(0, 1fr); lesson select width 100%).
+- README: try-it step for the phone replay; About is a component, not a route.
+- Verified: node suites pass (workspace 172, simulator 125, lab 123, lab-editor 63, pwa 51, viewer 49, shell-workspace 39, web-private 32, others); pytest agent 214, api-storage 44, api-workspace 32, pipeline 69, fitter 89, lab 20; next build pass; secret scan clean. Deployed api e5183c1f and web 552c6974 from 6ae7faae, both SUCCESS, /api/version 6ae7faae. Live headed Playwright signed out at 320/375/768/1440: no overflow, no page errors, no em dashes, new replay and card render.
+- Paid: 3 hosted SAM runs on OWN07, about 0.05 USD (ledger).
+- Not fixed from round 4: Clerk development instance on the judging URL (a production instance needs DNS and OAuth changes; risk of breaking sign-in before the deadline), ST03 replay still a thin column, mass lesson 7-digit SIMULATED precision.
+
 ## Verified
 - Node suites lab-editor 59, workspace 172, web-private 30, web-guide 3, web-library 10, shell-workspace 39, viewer 49 pass; api-storage pytest 43 pass; next build pass. tests/lab + simulator: 4 failures pre-existing on c9c00135 (R14 pendulum controls, ramp/pendulum hash oracle), untouched.
 - Live headed Playwright on the custom domain: featured run renders, sample replay loads gravity -2.33, guest fit gives -9.8100 m/s^2 from 76 of 317 samples (first impact cut), no page errors. Screenshots in evidence/N89/shots/.
