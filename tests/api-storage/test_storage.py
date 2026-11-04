@@ -36,6 +36,14 @@ class StorageTests(unittest.TestCase):
     def up(self, headers=A, name="clip.mp4", data=MP4, **form):
         return self.c.post("/internal/workspace/files", headers=headers, files={"file": (name, data)}, data=form)
 
+    def test_concurrent_reads_from_threads(self):
+        # N89: concurrent reads from the threadpool once raised sqlite3.InterfaceError on a shared connection.
+        from concurrent.futures import ThreadPoolExecutor
+        f = self.up().json()["file"]
+        with ThreadPoolExecutor(16) as pool:
+            got = list(pool.map(lambda i: (self.store.get("user_synthA", f["id"]) or {}).get("id") if i % 2 else len(self.store.list("user_synthA")), range(400)))
+        self.assertEqual(set(got), {f["id"], 1})
+
     def test_auth_required(self):
         for h in ({}, {"x-workspace-token": "wrong", "x-workspace-owner": "user_synthA"}, {"x-workspace-token": TOKEN}):
             self.assertEqual(self.up(headers=h).status_code, 401)

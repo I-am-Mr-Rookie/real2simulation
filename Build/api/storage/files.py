@@ -75,9 +75,17 @@ class Store:
         (self.root / "tmp").mkdir(exist_ok=True)
         self.now = now or (lambda: datetime.now(timezone.utc))
         self.lock = threading.Lock()  # one writer at a time: quota check + insert must not interleave
-        self.db = sqlite3.connect(self.root / "r2s.sqlite3", check_same_thread=False, isolation_level=None)
-        self.db.row_factory = sqlite3.Row
+        self._path, self._local = self.root / "r2s.sqlite3", threading.local()
         self.db.executescript(_SCHEMA)
+
+    @property
+    def db(self):
+        # N89: one connection per thread; a shared one raised InterfaceError (HTTP 500) under concurrent requests.
+        con = getattr(self._local, "con", None)
+        if con is None:
+            con = self._local.con = sqlite3.connect(self._path, timeout=30, isolation_level=None)
+            con.row_factory = sqlite3.Row
+        return con
 
     def _day(self):
         return self.now().astimezone(DHAKA).date().isoformat()
