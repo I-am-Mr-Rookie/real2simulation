@@ -92,6 +92,8 @@ def moving_segment(frames):
 
     A single still step between moving ones is a repeated frame (e.g. 25p content in a 30p file), not a stop:
     it is bridged and the repeated frame is dropped so it cannot fake a pause in the fit.
+    Up to 3 trailing steps after the fastest one that are all clearly slower (< 90%) are the impact, not free
+    flight, and are cut: a falling object speeds up until it lands.
     """
     if len(frames) < 2:
         return frames
@@ -99,11 +101,13 @@ def moving_segment(frames):
     thr = max(1.5, 0.1 * max(steps))
     moving = [s > thr for s in steps]
     bridged = [m or (0 < i < len(steps) - 1 and moving[i - 1] and moving[i + 1]) for i, m in enumerate(moving)]
-    a = b = steps.index(max(steps))
+    a = b = top = steps.index(max(steps))
     while a > 0 and bridged[a - 1]:
         a -= 1
     while b + 1 < len(steps) and bridged[b + 1]:
         b += 1
+    if 0 < b - top <= 3 and all(steps[i] < 0.9 * steps[top] for i in range(top + 1, b + 1)):
+        b = top
     return [frames[a]] + [frames[i + 1] for i in range(a, b + 1) if moving[i]]
 
 

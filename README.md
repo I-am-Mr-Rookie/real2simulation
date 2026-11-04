@@ -16,7 +16,10 @@ Built solo by Koushik Sadhak Jeet (indie developer track) for the Meta Global AI
    photogate free fall, launcher, collision blocks and a mass set. Press **Play**. Everything is SIMULATED (Rapier physics in the browser).
 2. Press **Make my copy** (sign in with Google or email) to save your own version; edit, rename, **Save**, and copy it
    again as often as your 1 GB storage allows. A [blank lab](https://real2simulation.rookiecoders.tech/lab?editor=1&template=blank) is there too.
-3. In your workspace, the seeded SAMPLE project shows a real classroom video reconstructed into a lab and a real
+3. Open the [phone book drop replay](https://real2simulation.rookiecoders.tech/lab?editor=1&sample=own07): a book
+   filmed on a phone at 30 fps, tracked by hosted SAM 3.1 and fitted live, measures 9.07 +/- 0.62 m/s^2, 1.2 sigma from
+   Earth g (scale from a ruler-measured book width; [evidence](evidence/N89/live-own07-book-drop.json)). The clip itself is private; the track is public.
+4. In your workspace, the seeded SAMPLE project shows a real classroom video reconstructed into a lab and a real
    falling-apple clip tracked by SAM 3.1 and fitted with uncertainty. Upload your own clip to run the same pipeline live.
 
 ## Meta models used
@@ -54,7 +57,7 @@ Physical or calibrated accuracy is **not claimed** anywhere. One run per measure
 
 | Part | Where | Role |
 |---|---|---|
-| Web app | [Build/web](Build/web/) (Next.js 16, React 19, three.js, Clerk) | Viewer, virtual lab, library, private workspace, About page ([About.jsx](Build/web/src/about/About.jsx) renders generated [about.json](Build/web/src/about/about.json)). Hosted on Railway dev. |
+| Web app | [Build/web](Build/web/) (Next.js 16, React 19, three.js, Clerk) | Viewer, virtual lab, library, private workspace, About component ([About.jsx](Build/web/src/about/About.jsx) renders generated [about.json](Build/web/src/about/about.json); no public route). Hosted on Railway. |
 | API | [Build/api/health](Build/api/health/) (FastAPI) | Health/readiness probes over Postgres, Redis and S3-compatible storage; dev-only I/O guard. |
 | Worker | [Build/worker/health](Build/worker/health/) (FastAPI) | Worker health process; readiness stays 503 without a job heartbeat. |
 | GPU jobs | [Build/gpu](Build/gpu/), [Build/reconstruction](Build/reconstruction/), [Build/pipeline](Build/pipeline/) | Modal GPU jobs: SAM 3.1 segmentation/tracking and scene reconstruction, with per-job cost logs and ledgers. |

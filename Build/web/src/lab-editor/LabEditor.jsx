@@ -18,6 +18,7 @@ import { mergeShapeUpdates } from './shape-upgrades.mjs';
 import { TEMPLATES, templateScene, PHYSICS_LAB_CARDS, hasPhysicsStations } from './templates.mjs';
 import { LESSONS, lessonVerdict, lessonReport } from './lesson.mjs';
 import featuredRun from '../app/(public)/home/featured-st03.json';
+import phoneRun from '../app/(public)/home/featured-own07.json';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981, flywheel: 0x8b5cf6, atwood: 0x0ea5e9,
@@ -156,7 +157,7 @@ async function getJson(path, init) {
   return b;
 }
 const PENDING = 'r2s-template-edit'; // N89: template and sample edits survive the sign-in round trip of Make a copy
-const RECOVER = <> Open the <a href="/lab?editor=1&template=physics-lab">Physics lab</a>, a <a href="/lab?editor=1&template=blank">Blank lab</a> or the <a href="/lab?editor=1&sample=st03">ST03 apple replay</a>.</>;
+const RECOVER = <> Open the <a href="/lab?editor=1&template=physics-lab">Physics lab</a>, a <a href="/lab?editor=1&template=blank">Blank lab</a>, the <a href="/lab?editor=1&sample=own07">phone book drop</a> or the <a href="/lab?editor=1&sample=st03">ST03 apple replay</a>.</>;
 
 // "Mark the A4 sheet" (two clicks on its long edge) and "Add a real object" (one click) on a model view PNG.
 function RoomTools({ id, room, onReload }) {
@@ -399,7 +400,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     if (room && LIVE_ID.test(room)) loadRoom(room); else if (exp && LIVE_ID.test(exp)) loadExperiment(exp);
     else if (tpl) loadTemplate(tpl); else if (saved && LIVE_ID.test(saved)) loadSaved(saved);
     else if (saved) setMessage(<>That saved lab link is not valid.{RECOVER}</>);
-    else if (p.get('sample') === 'st03') loadSample();
+    else if (p.get('sample') === 'st03' || p.get('sample') === 'own07') loadSample(p.get('sample'));
     else if (p.get('sample')) setMessage(<>Unknown sample {p.get('sample').slice(0, 40)}.{RECOVER}</>);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -590,16 +591,23 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       showTrack(ex.result, id);
     } catch (e) { setMessage('Experiment not loaded: ' + e.message); }
   };
-  // N89: the public featured run (stock clip ST03, hosted SAM 3.1 track) as a replay anyone can open. The track is drawn at
-  // 1 px = 1 mm, so gravity starts at the fitted 2330 px/s^2 read as mm/s^2 and the SIMULATED ball follows the dots.
-  const loadSample = () => {
-    const r = featuredRun.result, g = +(r.quantity.value / 1000).toFixed(3), gx = +(r.fit.x.accel_px_s2 / 1000).toFixed(3);
+  // N89: the public featured runs as replays anyone can open. ST03 (stock clip) is drawn at 1 px = 1 mm, so gravity starts at
+  // the fitted 2330 px/s^2 read as mm/s^2 and the SIMULATED ball follows the dots. OWN07 (phone drop) is in metres, so the ball
+  // starts at Earth g and the gap to the MEASURED dots is the measurement.
+  const loadSample = (id) => {
     try {
-      showTrack(r, 'st03-sample', 'Dots and line: the hosted SAM 3.1 track of a falling apple (stock clip, RECORDED), drawn at 1 px = 1 mm. Gravity starts at the fitted '
-        + g + ' down and ' + gx + ' sideways (what-if, same scale), so the SIMULATED ball follows the dots. Set Gravity to 0, -9.81, 0 and press Play to see Earth g at this scale.', [gx, -g, 0]);
+      if (id === 'own07') {
+        const q = phoneRun.result.quantity;
+        showTrack(phoneRun.result, 'own07-sample', 'Dots and line: the hosted SAM 3.1 track of a book dropped on a phone video, MEASURED in metres from the ' + phoneRun.result.scale.object + ' (' + phoneRun.result.scale.label + '). The ball is SIMULATED at Earth g, 9.81, so it runs slightly ahead of the dots. The clip measured '
+          + fmtPm(q.value, q.uncertainty) + ' m/s^2. ' + gravityCheck(phoneRun.result).text + ' Press Play, then set Gravity y to -' + q.value.toFixed(2) + ' and Play again to compare.', [0, -9.81, 0]);
+      } else {
+        const r = featuredRun.result, g = +(r.quantity.value / 1000).toFixed(3), gx = +(r.fit.x.accel_px_s2 / 1000).toFixed(3);
+        showTrack(r, 'st03-sample', 'Dots and line: the hosted SAM 3.1 track of a falling apple (stock clip, RECORDED), drawn at 1 px = 1 mm. Gravity starts at the fitted '
+          + g + ' down and ' + gx + ' sideways (what-if, same scale), so the SIMULATED ball follows the dots. Set Gravity to 0, -9.81, 0 and press Play to see Earth g at this scale.', [gx, -g, 0]);
+      }
     } catch (e) { setMessage('Sample not loaded: ' + e.message); }
     let kept = null;
-    try { kept = JSON.parse(sessionStorage.getItem(PENDING) || 'null'); if (kept?.id === 'sample:st03') { sessionStorage.removeItem(PENDING); setScene(validateScene(kept.scene)); setName(kept.name || ''); setMessage('Your edits are back, with the RECORDED dots. Press Make a copy to save them to your workspace.'); } } catch { /* storage blocked or stale edit: keep the fresh sample */ }
+    try { kept = JSON.parse(sessionStorage.getItem(PENDING) || 'null'); if (kept?.id === 'sample:' + id) { sessionStorage.removeItem(PENDING); setScene(validateScene(kept.scene)); setName(kept.name || ''); setMessage('Your edits are back, with the tracked dots. Press Make a copy to save them to your workspace.'); } } catch { /* storage blocked or stale edit: keep the fresh sample */ }
   };
   // N89: frame a whole lab from the open front side, with the grid sized to the room.
   const frameScene = (s) => {
@@ -650,7 +658,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     } catch (e) {
       setCopying(false);
       if (e.status !== 401) { setMessage('Not copied: ' + e.message); return; }
-      const keep = origin?.kind === 'template' ? origin.id : src?.id === 'st03-sample' ? 'sample:st03' : null;
+      const keep = origin?.kind === 'template' ? origin.id : src?.id?.endsWith('-sample') ? 'sample:' + src.id.slice(0, -7) : null;
       if (keep) try { sessionStorage.setItem(PENDING, JSON.stringify({ id: keep, name, scene: s })); } catch { /* edits are lost, the template stays */ }
       window.location.assign('/sign-in?redirect_url=' + encodeURIComponent(window.location.pathname + window.location.search));
     }

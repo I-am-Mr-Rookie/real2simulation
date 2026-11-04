@@ -19,6 +19,13 @@
 .fr-steps .fr-value { color: inherit; }
 .fr-meta { font-size: .8rem !important; overflow-wrap: anywhere; }
 .fr-cta { margin: 1rem 0 0; }
+.fr-phone { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 1.25rem; align-items: start; margin: 1.5rem 0 0; padding: 1.1rem 1.25rem; }
+.fr-phone > div { display: grid; justify-items: start; gap: .5rem; min-width: 0; }
+.fr-phone h3 { margin: 0; font-size: 1.15rem; }
+.fr-phone p { margin: 0; color: var(--r2s-muted); font-size: .92rem; }
+.fr-phone .fr-value { color: inherit; font-size: 1.05rem; }
+.featured-run .fr-sub { margin: 2rem 0 .25rem; font-size: 1.1rem; }
+@media (max-width: 800px) { .fr-phone { grid-template-columns: minmax(0, 1fr); } }
 .fr-agent { display: grid; justify-items: start; gap: .5rem; margin: 1rem 0 0; padding: 1rem 1.1rem; }
 .fr-agent h3 { margin: 0; font-size: 1.05rem; }
 .fr-agent p { margin: 0; color: var(--r2s-muted); font-size: .92rem; }

@@ -29,6 +29,30 @@ test('featured run is a verbatim copy of the N07 live ST03 result and renders', 
   assert.match(jsx, /Roman Odintsov, Pexels License/);
 });
 
+test('featured phone drop is a verbatim copy of the N89 OWN07 live result, near Earth g, with no clip published', async () => {
+  const shown = await read('Build/web/src/app/(public)/home/featured-own07.json');
+  assert.deepEqual(shown, await read('evidence/N89/live-own07-book-drop.json'));
+  const r = shown.result;
+  assert.equal(r.units, 'm');
+  assert.equal(r.fit.y.model, 'constant_acceleration');
+  assert.match(gravityCheck(r).text, /^Consistent with Earth g/);
+  assert.ok(chartGeom(r).curve);
+  await assert.rejects(access(new URL('../../Build/web/public/samples/own07-book-drop.mp4', import.meta.url))); // owner clip stays private
+});
+
+test('public OWN07 replay: at the fitted g the SIMULATED ball lands on the last MEASURED dot, at 9.81 it runs ahead', async () => {
+  const r = (await read('Build/web/src/app/(public)/home/featured-own07.json')).result, tEnd = r.trajectory.t_s.at(-1);
+  const endY = async (g) => {
+    const t = trajectoryScene(r);
+    t.scene.gravity = [0, -g, 0];
+    const s = (await simulate(validateScene(t.scene), tEnd)).traces[0].samples;
+    return [s.reduce((b, x) => (Math.abs(x.t - tEnd) < Math.abs(b.t - tEnd) ? x : b)).p[1], t.track.at(-1)[1]];
+  };
+  const [fit, dot] = await endY(r.quantity.value), [earth] = await endY(9.81);
+  assert.ok(Math.abs(fit - dot) < 0.03, 'fitted g: ball ' + fit + ' vs dot ' + dot);
+  assert.ok(dot - earth > 0.015, 'Earth g: ball ' + earth + ' vs dot ' + dot);
+});
+
 test('public ST03 replay: at the fitted gravity (px read as mm) the SIMULATED ball lands on the last tracked dot', async () => {
   const r = (await read('Build/web/src/app/(public)/home/featured-st03.json')).result, t = trajectoryScene(r);
   t.scene.gravity = [0, -+(r.quantity.value / 1000).toFixed(3), 0]; // same as LabEditor loadSample

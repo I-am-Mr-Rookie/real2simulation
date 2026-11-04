@@ -84,6 +84,16 @@ def test_synthetic_drop_recovers_g_and_skips_rest_frames():
     assert r["quantity"]["value"] == pytest.approx(9.81, rel=1e-6)
 
 
+def test_impact_frames_after_the_fastest_step_are_cut():
+    """N89 OWN07: 2 slowing frames at the table pulled g from about 9.1 to 6.7; they are the landing, not flight."""
+    track = fall_track()
+    k, t, x, y, w, h = track["frames"][-1]
+    v = y - track["frames"][-2][3]
+    track["frames"] += [[k + 1, t + 1 / 30, x, y + 0.6 * v, w, h], [k + 2, t + 2 / 30, x, y + 0.9 * v, w, h]]
+    r = le.analyse(track, "ball diameter 5 cm")
+    assert r["segment"]["last_frame"] == k and r["quantity"]["value"] == pytest.approx(9.81, rel=1e-6)
+
+
 def test_no_scale_basis_abstains_on_metric_values():
     r = le.analyse(fall_track(), "no idea")
     assert r["units"] == "px" and r["scale"]["status"] == "abstain" and r["quantity"]["unit"] == "px/s^2"
