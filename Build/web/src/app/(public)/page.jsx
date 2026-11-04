@@ -61,9 +61,10 @@ export default function Home() {
       <ol className="fr-steps">
         <li className="card"><span className="chip" data-tone="sim">SIMULATED</span><h3>1. Predict, then test</h3><p>Open the <Link href="/lab?editor=1&template=physics-lab">physics lab</Link> and pick a lesson in the Scene panel: does a heavier ball fall faster, does twice the height take twice as long? Students predict, run two drops and compare them with uncertainty. No account needed.</p></li>
         <li className="card"><span className="chip" data-tone="ok">RECORDED</span><h3>2. Film a real drop</h3><p>Phone on a stand, ball in front of a plain wall, 5 to 30 s. Measure the ball diameter with a ruler.</p></li>
-        <li className="card"><span className="chip" data-tone="warn">scale assumed</span><h3>3. Measure it</h3><p>Upload after signing in. Meta SAM 3.1 tracks the ball (MEASURED track); type its diameter and the fitter returns g in m/s^2 with error bars, labelled scale assumed (user size).</p></li>
+        <li className="card"><span className="chip" data-tone="warn">scale assumed</span><h3>3. Measure it</h3><p>Upload after signing in, or ask Muse to measure it. Meta SAM 3.1 tracks the ball (MEASURED track); type its diameter and the fitter returns g in m/s^2 with error bars, labelled scale assumed (user size). No clip yet? The workspace has a sample apple drop.</p></li>
         <li className="card"><span className="chip" data-tone="warn">what-if</span><h3>4. Compare and redo</h3><p>Replay the clip in 3D, change gravity or height, and see where the simulation leaves the measured dots. Copy results gives a worksheet summary.</p></li>
       </ol>
+      <p className="show-line">Why predict first: students who only watch a physics demonstration understand the idea no better than students who never saw it, while students who predict the outcome first understand it significantly better (<a href="https://doi.org/10.1119/1.1707018">Crouch, Fagen, Callan and Mazur, American Journal of Physics 72, 835, 2004</a>). Every lesson here asks for a prediction before the run and scores it after.</p>
     </section>
     <ul className="features">
       {FEATURES.map((f) => <li key={f.id} className="feature card">

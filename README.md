@@ -98,6 +98,8 @@ account and stay within the guardrail caps.
 
 | Model | Route | Use | Evidence |
 |---|---|---|---|
+| `muse-spark-1.3` + hosted `sam-3.1` | Meta Model API | One sentence on DEV (Nov 4): Muse called list_files, start_experiment_track (hosted SAM 3.1 on the 2.6 s sample clip, user size 7 cm), fit too early, then fit again: 2.33 +/- 0.36 m/s^2, scale assumed (user size). HTTP 200, 22,494 input / 1,724 output tokens. Shown on the home page. | [muse-measures-sample.json](evidence/N89/muse-measures-sample.json) |
+| hosted `sam-3.1` | Meta Model API | Featured ST03 run (Nov 1): 543 frames tracked, 2330 +/- 110 px/s^2, cost derived from the per-frame price | [live-st03.json](evidence/N07/live-st03.json) |
 | `muse-wonder-1.0` | Meta Model API | Agent interview/spec calls (S14g); HTTP 200, tokens measured, billed USD null | [Build/agent/muse.py](Build/agent/muse.py), [S14g-fix3-ledger.jsonl](evidence/S14/S14g-fix3-ledger.jsonl) |
 | `meta-models/muse-spark-open-1026` (Muse Open) | Baseten | **One** sidebar call (S16e): HTTP 200, 1,176 tokens; dollar cost UNKNOWN | [S16e-orch108-live.json](evidence/S16/S16e-orch108-live.json), [S16h-CHECKPOINT.md](evidence/S16/S16h-CHECKPOINT.md) |
 | `facebook/sam3.1` | Modal GPU | Segmentation/tracking on licensed scenes | [raw-result.json](evidence/S13/S13h/live/segment/raw-result.json), [SAM licence](evidence/S05/upstream/sam_license.txt) |
