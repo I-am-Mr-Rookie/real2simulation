@@ -78,6 +78,13 @@ Main a1258972 (pushed). Live: https://real2simulation.rookiecoders.tech (web 83d
 - Low bias, partly explained: in 7 of 11 owner drops the last kept frame was already the landing (contact inside the final frame interval slows that step by under 15%, so the slowdown rule kept it). New check in Build/pipeline/live_experiment.py (drop_contact): drop the last frame when the parabola through the others misses it by over 3 residual sigmas (1 px floor), one frame only. Refit of the round 5 live SAM tracks from the local store, no new calls (evidence/N89/own-sweep-refit/summary.json): median 8.62 to 9.03, sd 0.72 to 0.56, range 7.56 to 9.22, 6 of 11 still more than 2 sigma low. OWN01 moved down (9.82 to 9.07) and OWN07 is unchanged, so the check does not pull toward 9.81. Home and README show the refit and say the first pass read 8.62.
 - Replay: at the auto-pause the camera zooms to the last dot and the ball (Reset restores the full view), so the 5.4 cm gap is visible on a 375 px phone; the MEASURED readout under the timeline uses the dots' lifted frame, so it agrees with the ball's y.
 - Verified: pytest pipeline 70, agent 214, api-workspace 32; node lab-editor + web-private + workspace 267; next build; local headed Playwright at 1440 and 375: 5.4 cm at 9.81, 0.4 cm at 9.07, no page errors. Secret scan clean.
+- Deployed web c11c685e and api 310018ea from ea258fba, both SUCCESS. Live Playwright signed out, 24 page checks at 320/375/768/1440: no overflow, no page errors, no em dashes.
+
+## Round 8 (Nov 4, 23:05 to 23:20 Dhaka; judge on 262b24cc, fixes in 5edfba11, 0970c9a2)
+- Judge round 8 (Claude Opus high, fresh context): 73.5, no change. evidence/N89/JUDGE-REVIEW-8.md. Its P2 "live API still round 5" was a timing race: the API deploy from ea258fba finished at about 23:06, after the judge read /api/version.
+- Agent fit tool now waits up to 90 s for a running track instead of answering "not finished" (the recorded Muse turn wasted one fit call on that); test added (tests/agent 215).
+- Home: the clip-to-clip spread (0.56) is added as a systematic term to the OWN07 result: 9.07 +/- 0.84, 0.9 sigma from 9.81. README video line says PENDING until the link exists.
+- Railway "Failed to create code snapshot" failed two API uploads of 5edfba11 (no build ran; the previous API kept serving); a third upload went through.
 
 ## Verified
 - Node suites lab-editor 59, workspace 172, web-private 30, web-guide 3, web-library 10, shell-workspace 39, viewer 49 pass; api-storage pytest 43 pass; next build pass. tests/lab + simulator: 4 failures pre-existing on c9c00135 (R14 pendulum controls, ramp/pendulum hash oracle), untouched.
