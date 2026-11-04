@@ -108,6 +108,20 @@ def test_run_uses_injected_tracker_and_checks_frame_count(monkeypatch):
         le.run("clip.mp4", "apple", tracker=lambda *a: tr)
 
 
+def test_frames_sam_omits_stay_aligned_and_are_missing():
+    """N89: SAM leaves out frames with no detection (object left the view); indices keep times aligned."""
+    tr = hosted_sam.result(json.loads(APPLE.read_text(encoding="utf-8")))
+    times = [k / 29.97 for k in range(tr["frame_count"])]
+    cut = {**tr, "frame_count": tr["frame_count"] - 3, "points": [p for p in tr["points"] if p[0] < len(times) - 3],
+           "video_frames_processed": len(times)}
+    rec = le.track_record(cut, times)
+    assert rec["missing"][-3:] == [len(times) - 3, len(times) - 2, len(times) - 1]
+    assert all(f[1] == times[f[0]] for f in rec["frames"])
+    assert le.analyse(rec)["segment"] == le.analyse(apple_track())["segment"]
+    with pytest.raises(ValueError, match="frames, the video has"):
+        le.track_record({**cut, "video_frames_processed": len(times) + 5}, times)
+
+
 def test_hosted_track_reserves_and_settles_daily_cap(monkeypatch, tmp_path):
     cap = tmp_path / "spend.sqlite3"
     resp = json.loads(APPLE.read_text(encoding="utf-8"))

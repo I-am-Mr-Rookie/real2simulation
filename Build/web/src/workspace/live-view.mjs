@@ -9,6 +9,7 @@ import { groupJobs, jobName, relTime, groupStatus } from './projects.mjs';
 import { createUseVoice } from './voice.mjs';
 
 const ACCEPT = 'video/mp4,video/quicktime,video/webm,.mp4,.mov,.webm';
+const SAMPLE_CLIP = '/samples/apple-drop-pexels.mp4', SAMPLE_NAME = 'Apple drop sample (Pexels).mp4'; // N89: ST03 cropped to the falling apple, 2.6 s
 const TRACK_KEY = 'r2s.tracked.jobs';
 const LIVE_JOBS_MS = 15_000; // N55: projects refresh themselves (replaces the Refresh button)
 const fileUrl = (f) => API_BASE + '/files/' + encodeURIComponent(f.id) + '/content';
@@ -176,6 +177,7 @@ export const createLive = (React, icon = () => null) => {
       if (r.ok && p?.id && isDefaultTitle(p.title)) await renameProject(p.id, contentTitle(p.mode, file.name), true);
       loadFiles();
       loadJobs();
+      return r.ok ? r.body?.file ?? null : null;
     };
     const renameProject = async (id, title, quiet) => {
       if (!title?.trim()) return;
@@ -300,7 +302,8 @@ export const createLive = (React, icon = () => null) => {
   }
 
   function MeasurePanel({ L, file }) {
-    const [f, setF] = useState({ point: null, name: '', size: '', unit: 'cm', what: '' });
+    // N89: the public sample clip arrives pre-filled; its apple size is a typical value, so the result is scale assumed.
+    const [f, setF] = useState(() => (file.name === SAMPLE_NAME ? { point: null, name: 'apple', size: '7', unit: 'cm', what: 'apple diameter (typical apple, assumed)' } : { point: null, name: '', size: '', unit: 'cm', what: '' }));
     const [dims, setDims] = useState(null);
     const [err, setErr] = useState(null);
     const [busy, setBusy] = useState(false);
@@ -442,9 +445,19 @@ export const createLive = (React, icon = () => null) => {
   }
 
   function Home({ L }) {
-    const [file, setFile] = useState(null), [drag, setDrag] = useState(false);
+    const [file, setFile] = useState(null), [drag, setDrag] = useState(false), [sample, setSample] = useState(null);
     const vs = L.voice.state, q = quotaView(L.files.quota);
     const pickFile = (f) => { if (f) setFile(f); };
+    // N89: no clip of your own? Upload a public 2.6 s Pexels apple drop through the normal path (counts as one upload), then open Measure.
+    const trySample = async () => {
+      setSample('Loading the sample clip');
+      const res = await fetch(SAMPLE_CLIP).catch(() => null);
+      if (!res?.ok) { setSample('The sample clip did not load. Try again.'); return; }
+      await L.startProject('experiment');
+      const f = await L.upload(new File([await res.blob()], SAMPLE_NAME, { type: 'video/mp4' }));
+      setSample(f ? null : 'The sample clip was not uploaded. See the message above.');
+      if (f) { globalThis.location.hash = '#files'; L.setAction({ file: f }); }
+    };
     const submit = (e) => {
       e.preventDefault();
       if (file) { L.upload(file); setFile(null); }
@@ -481,7 +494,10 @@ export const createLive = (React, icon = () => null) => {
         h('a', { className: 'lv-modecard', href: '/lab?editor=1&template=physics-lab' }, h('span', { className: 'lv-mc-icon' }, icon(h, 'flask', 20)),
           h('span', null, h('strong', null, 'Physics lab template'), h('small', null, 'No video needed: a furnished lab with 14 apparatus types, ready to run.'))),
         h('a', { className: 'lv-modecard', href: '/lab?editor=1&template=blank' }, h('span', { className: 'lv-mc-icon' }, icon(h, 'plus', 20)),
-          h('span', null, h('strong', null, 'Blank lab template'), h('small', null, 'No video needed: an empty grid floor to build on.')))));
+          h('span', null, h('strong', null, 'Blank lab template'), h('small', null, 'No video needed: an empty grid floor to build on.'))),
+        h('button', { type: 'button', className: 'lv-modecard', disabled: q?.full || sample === 'Loading the sample clip', onClick: trySample }, h('span', { className: 'lv-mc-icon' }, icon(h, 'film', 20)),
+          h('span', null, h('strong', null, 'No clip yet? Measure our sample'), h('small', null, 'A 2.6 s apple drop by Roman Odintsov (Pexels License). Meta SAM 3.1 tracks it live; uses one of your daily uploads.')))),
+      sample ? h('p', { className: 'lv-muted', role: 'status' }, sample) : null);
   }
 
   function ProjectCard({ L, g, small }) {

@@ -71,12 +71,20 @@ def run(path, target_text=None, point=None, known_size=None, tracker=hosted_trac
 
 
 def track_record(tr, times):
-    """hosted_sam.result -> stored track: frames [[k, t_s, x_px, y_px, box_w, box_h]] (image y down)."""
-    if tr["frame_count"] != len(times):
+    """hosted_sam.result -> stored track: frames [[k, t_s, x_px, y_px, box_w, box_h]] (image y down).
+
+    k are absolute decoded-frame indices, so frames SAM omits (nothing detected, e.g. the object left the view)
+    stay aligned with their timestamps and are listed as missing. A decoder disagreement (an index past the
+    video, or a billed frame count that differs from the probe) is refused.
+    """
+    seen = [p[0] for p in tr["points"]]
+    processed = tr.get("video_frames_processed")
+    if tr["frame_count"] > len(times) or max(seen + list(tr["missing"]), default=-1) >= len(times) or (processed and processed != len(times)):
         raise ValueError(f"tracker returned {tr['frame_count']} frames, the video has {len(times)}")
+    seen = set(seen)
     return {"label": TRACK_LABEL, "object_id": tr["object_id"], "width": tr["width"], "height": tr["height"],
             "frames": [[k, times[k], x, y, b[2] - b[0], b[3] - b[1]] for k, x, y, b in tr["points"]],
-            "missing": tr["missing"], "point_method": "box_centre"}
+            "missing": [k for k in range(len(times)) if k not in seen], "point_method": "box_centre"}
 
 
 def moving_segment(frames):
