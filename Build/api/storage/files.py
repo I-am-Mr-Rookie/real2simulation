@@ -316,7 +316,12 @@ def create_router(store=None, probe=video_seconds) -> APIRouter:
         if not isinstance(title, str) or not 0 < len(title.strip()) <= 120:
             raise error(422, "INVALID_INPUT", "title 1 to 120 characters")
         text = (db().lab_dir(owner, project_id) / "scene.json").read_text("utf-8")
-        return {"project": insert_project(owner, "room", title.strip(), text), "quota": db().quota(owner)}
+        project = insert_project(owner, "room", title.strip(), text)
+        src_snap, dst_snap = _snapshot(owner, project_id), _snapshot(owner, project["id"])
+        if src_snap.is_file():  # card preview only; snapshots are outside the storage quota like every other snapshot
+            shutil.copyfile(src_snap.with_suffix(".type"), dst_snap.with_suffix(".type"))
+            shutil.copyfile(src_snap, dst_snap)
+        return {"project": project, "quota": db().quota(owner)}
 
     @router.get("/projects")
     def list_projects(owner: str = Depends(require_owner)):

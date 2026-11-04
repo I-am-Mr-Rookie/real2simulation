@@ -98,6 +98,25 @@ export function fmtPm(value, u) {
   return f(value) + ' +/- ' + f(u);
 }
 
+// N89: free-fall sanity check against Earth g (9.81 m/s^2). With no scale it solves for the missing unknown (metres per
+// pixel); with a metric value it flags what would explain a large miss (slow motion or a wrong size). Always what-if.
+export const EARTH_G = 9.81;
+export function gravityCheck(result) {
+  const q = result?.quantity;
+  if (!q || !/^vertical acceleration/.test(q.name ?? '') || !(q.value > 0)) return null;
+  const rel = q.uncertainty > 0 ? q.uncertainty / q.value : 0;
+  if (q.unit === 'px/s^2') {
+    const mm = (EARTH_G / q.value) * 1000;
+    return { tone: 'warn', text: 'what-if: if this is a free fall at Earth g (9.81 m/s^2), 1 pixel is about ' + fmtPm(mm, mm * rel) + ' mm in the plane of the fall. Give one real size to measure g instead.' };
+  }
+  if (q.unit !== 'm/s^2') return null;
+  const z = q.uncertainty > 0 ? (q.value - EARTH_G) / q.uncertainty : Infinity;
+  if (Math.abs(z) <= 2) return { tone: 'ok', text: 'Consistent with Earth g (9.81 m/s^2): ' + Math.abs(z).toFixed(1) + ' sigma away.' };
+  const slow = q.value < EARTH_G, k = Math.sqrt(EARTH_G / q.value);
+  return { tone: 'warn', text: 'what-if: ' + (Number.isFinite(z) ? Math.abs(z).toFixed(1) + ' sigma' : 'far') + ' from Earth g (9.81 m/s^2). If this is a plain drop, either the clip plays about '
+    + (slow ? k : 1 / k).toFixed(2) + 'x ' + (slow ? 'slower' : 'faster') + ' than real time (' + (slow ? 'slow motion' : 'time-lapse') + '), or the size you gave is off by about ' + (EARTH_G / q.value).toFixed(2) + 'x.' };
+}
+
 // Known size from the form -> the N07 text field ("ball diameter 6.5 cm"); null when not given or not a positive number.
 export const SIZE_UNITS = ['mm', 'cm', 'm'];
 export function knownSizeText(value, unit, what) {

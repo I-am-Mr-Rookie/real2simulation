@@ -12,7 +12,7 @@ test('home copy is the owner-approved text', async () => {
   assert.ok((await src('MarketingArt.jsx')).includes("export const REPO_URL = 'https://github.com/I-am-Mr-Rookie/real2simulation';"), 'one shared repo constant');
   assert.ok(page.includes("import MarketingArt, { REPO_URL, GITHUB_MARK } from './MarketingArt';") && !page.includes('const REPO_URL'));
   assert.match(page, /href=\{REPO_URL\} target="_blank" rel="noopener noreferrer">\{GITHUB_MARK\}Explore the code on GitHub</);
-  for (const l of ['>RECORDED<', '>SIMULATED<', '>what-if<', 'Illustration only, not scene evidence.']) assert.ok(page.includes(l), l);
+  for (const l of ['>RECORDED<', '>SIMULATED<', '>what-if<', 'Real output.', 'Geometry MODEL-ESTIMATED, scale unverified.']) assert.ok(page.includes(l), l);
 });
 
 test('S15au showcase sections are full-width splits with captioned agent art', async () => {

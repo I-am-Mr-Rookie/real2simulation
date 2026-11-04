@@ -30,6 +30,6 @@ export default function SiteFrame({ children, authAvailable = false }) {
       </nav>
     </header>
     <main id="main">{children}</main>
-    <footer className="site-footer"><strong>Development build</strong><span>Sign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.</span><Link href="/guide">Guide</Link><small>Powered by Stability AI</small></footer>
+    <footer className="site-footer"><strong>Hackathon build</strong><span>Sign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.</span><Link href="/guide">Guide</Link><small>Powered by Stability AI</small></footer>
   </>;
 }

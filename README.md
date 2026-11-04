@@ -1,15 +1,35 @@
 # Real2Simulation
 
-Turn a short, licensed physics video into a reconstructed scene, a fitted motion model and a
-simulated prediction, then compare the prediction with held-out frames of the same clip.
-Built solo by Koushik Sadhak Jeet (indie developer track) for the Meta Global AI Developer Hackathon.
+Film a room or a physics experiment with your phone. Real2Simulation turns the room into an editable 3D lab with
+real physics, or tracks the moving object, fits a motion model with uncertainty and replays it in 3D so you can
+redo the experiment with changes. An agent asks for what it cannot see (a size, a frame rate) instead of guessing.
+Built solo by Koushik Sadhak Jeet (indie developer track) for the Meta Global AI Developer Hackathon, Oct 27 to Nov 4 2026.
 
-- **Judging URL:** PENDING S23 (not yet deployed or approved).
-- **Frozen judging revision:** PENDING S23.
+- **Live product:** [real2simulation.rookiecoders.tech](https://real2simulation.rookiecoders.tech)
+  (mirror: [real2simulation.up.railway.app](https://real2simulation.up.railway.app)).
 - **Demo video:** PENDING.
-- Railway **dev** services (development only, not the judging build): [real2simulation.up.railway.app](https://real2simulation.up.railway.app)
-  (also [real2simulation.rookiecoders.tech](https://real2simulation.rookiecoders.tech)),
-  api-dev-6091.up.railway.app, worker-dev-984d.up.railway.app.
+
+## Try it in 60 seconds (no video needed)
+
+1. Open the [physics lab template](https://real2simulation.rookiecoders.tech/lab?editor=1&template=physics-lab): a
+   furnished three-wall lab with a pendulum, spring, cart track, flywheel, Atwood machine, Newton cradle, incline,
+   photogate free fall, launcher, collision blocks and a mass set. Press **Play**. Everything is SIMULATED (Rapier physics in the browser).
+2. Press **Make my copy** (sign in with Google or email) to save your own version; edit, rename, **Save**, and copy it
+   again as often as your 1 GB storage allows. A [blank lab](https://real2simulation.rookiecoders.tech/lab?editor=1&template=blank) is there too.
+3. In your workspace, the seeded SAMPLE project shows a real classroom video reconstructed into a lab and a real
+   falling-apple clip tracked by SAM 3.1 and fitted with uncertainty. Upload your own clip to run the same pipeline live.
+
+## Meta models used
+
+| Model | Where it runs | What it does here |
+|---|---|---|
+| SAM 3.1 | Meta Model API | Tracks the moving object frame by frame; segments walls, doors, windows and furniture for the room lab shell. |
+| Muse Spark 1.3 | Meta Model API | The workspace and lab agent: asks the first question, calls tools (start tracking, fit, add/move objects, run the lab, write a report). |
+| Muse Wonder 1.0 | Meta Model API | Selectable deeper-reasoning agent, with per-user daily limits. |
+| Muse Spark Open | Baseten (partner inference) | Selectable open-weight agent model. |
+| Muse Voice Transcribe 1.0 | Meta Model API | Voice input for the agent. |
+
+MapAnything (on Modal GPU) lifts room frames to 3D; Stable Fast 3D (Stability AI) makes optional furniture meshes.
 
 ## Results (honest summary)
 

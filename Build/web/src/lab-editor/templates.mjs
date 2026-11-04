@@ -63,3 +63,12 @@ export function templateScene(id) {
   return t ? validateScene(t.scene()) : null;
 }
 
+// Agent suggestions that use the physics lab's own apparatus (shown while its stations are in the scene, copies included).
+export const PHYSICS_LAB_CARDS = [
+  { id: 'period', icon: 'pendulum', title: 'Pendulum period vs length', text: 'Run pendulum-1 at lengths 0.4, 0.6, 0.8 and 1.0 m, measure each period and fit period against length.' },
+  { id: 'gate', icon: 'drop', title: 'Free fall through the photogate', text: 'Run the lab and read photogate-1 for ball-drop. What g does the gate time give for the 1 m drop?' },
+  { id: 'atwood', icon: 'ramp', title: 'Atwood machine', text: 'Run atwood-1 with masses 0.2 and 0.15 kg, then 0.25 and 0.15 kg. Compare each acceleration with (m1 - m2) g / (m1 + m2).' },
+  { id: 'report', icon: 'report', title: 'Write report', text: 'Write the lab report.' },
+];
+export const hasPhysicsStations = (scene) => ['pendulum-1', 'photogate-1', 'atwood-1'].every((id) => scene.objects.some((o) => o.id === id));
+

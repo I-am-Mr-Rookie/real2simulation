@@ -4,7 +4,7 @@ import { API_BASE } from './controller.mjs';
 import { AGENT_MODES, UPLOAD_QUESTION, LIMITS, TIPS, projectTitle, fmtBytes, quotaView, gpuDot, GPU_POLL_MS, shouldPoll, jobsState, apiErrorText,
   historyOf, questionAnswer, recommendedIndex, readAgentMode, writeAgentMode, STANDARD_MODELS, agentTier, modeLabel,
   MODEL_CHOICES, contentTitle, isDefaultTitle } from './live.mjs';
-import { chartGeom, fmtPm, SIZE_UNITS, naturalPoint, experimentBody, jobView, POLL_MS, jobsFromToolCalls, shareable, scaleTag, labelsOf } from './measure.mjs';
+import { chartGeom, fmtPm, SIZE_UNITS, naturalPoint, experimentBody, jobView, POLL_MS, jobsFromToolCalls, shareable, scaleTag, labelsOf, gravityCheck } from './measure.mjs';
 import { groupJobs, jobName, relTime, groupStatus } from './projects.mjs';
 import { createUseVoice } from './voice.mjs';
 
@@ -358,12 +358,13 @@ export const createLive = (React, icon = () => null) => {
   }
 
   function Result({ L, id, result }) {
-    const q = result?.quantity, tag = scaleTag(result);
+    const q = result?.quantity, tag = scaleTag(result), gc = gravityCheck(result);
     return h('div', { className: 'lv-result' },
       q ? h('p', { className: 'lv-qty' }, h('span', { className: 'lv-muted lv-block' }, q.name), h('strong', null, fmtPm(q.value, q.uncertainty) + ' ' + q.unit), h('small', { className: 'lv-muted' }, ' 1 sigma'))
         : h('p', { role: 'status' }, 'No value reported. ' + (result?.reason ? 'No fit: ' + result.reason : result?.label || '')),
       h('div', { className: 'lv-row' }, h('span', { className: 'lv-tag', 'data-tone': tag.tone }, tag.text),
         h('span', { className: 'lv-tag', 'data-tone': 'warn' }, 'playback clock'), result?.motion ? h('span', { className: 'lv-tag' }, String(result.motion).replace(/_/g, ' ')) : null),
+      gc ? h('p', { className: 'lv-muted', 'data-tone': gc.tone }, gc.text) : null,
       h('ul', { className: 'lv-labels lv-muted' }, ...labelsOf(result).map((t) => h('li', { key: t }, t))),
       h(Chart, { result }),
       h('div', { className: 'lv-row' }, h('a', { className: 'lv-btn lv-primary', href: '/lab?editor=1&experiment=' + encodeURIComponent(id) }, '3D replay, redo with changes')),

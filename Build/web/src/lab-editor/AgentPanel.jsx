@@ -55,7 +55,7 @@ function Report({ md }) {
   </div>;
 }
 
-export default function AgentPanel({ scene, onScene, load = true }) {
+export default function AgentPanel({ scene, onScene, load = true, cards = CARDS }) {
   const R = ReactNS.createElement ? ReactNS : ReactNS.default;
   const live = useRef(null);
   live.current ??= createLive(R, icon); // the workspace N55 picker component, same saved setting
@@ -118,7 +118,7 @@ export default function AgentPanel({ scene, onScene, load = true }) {
         <h3>What should we test?</h3>
         <p className="le-muted">Ask for an experiment, or to add, move, resize or remove objects. Results are SIMULATED.</p>
         <div className="la-cards" role="group" aria-label="Suggestions">
-          {CARDS.map((c) => <button key={c.id} type="button" className="la-card" onClick={() => fill(c.text)}><I n={c.icon} s={18} />{c.title}</button>)}
+          {cards.map((c) => <button key={c.id} type="button" className="la-card" onClick={() => fill(c.text)}><I n={c.icon} s={18} />{c.title}</button>)}
         </div>
       </div>}
       {log.map((m, i) => m.who === 'You'
@@ -136,7 +136,7 @@ export default function AgentPanel({ scene, onScene, load = true }) {
       {report && <Report md={report} />}
     </div>
     {log.length > 0 && <div className="la-chips" role="group" aria-label="Suggestions">
-      {CARDS.map((c) => <button key={c.id} type="button" onClick={() => fill(c.text)}>{c.title}</button>)}
+      {cards.map((c) => <button key={c.id} type="button" onClick={() => fill(c.text)}>{c.title}</button>)}
     </div>}
     <form className="la-composer" onSubmit={(e) => { e.preventDefault(); return ask(text); }}>
       {recording

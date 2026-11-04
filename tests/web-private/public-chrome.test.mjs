@@ -34,7 +34,8 @@ test('header has logo mark, wordmark text, icon nav and S15ah theme toggle; foot
 
 test('home keeps honesty labels and serves one picture per theme family with explicit size', async () => {
   const home = await src('app/(public)/page.jsx'), art = await src('app/(public)/MarketingArt.jsx');
-  for (const s of ['>RECORDED<', '>SIMULATED<', '>what-if<', 'Illustration only, not scene evidence.', 'Imperfect inputs are welcome.', 'id="a1" width={1600} height={1000}']) assert.ok(home.includes(s), s);
+  // N89: the hero is a real product capture with its labels; the a1 illustration stays in the public set.
+  for (const s of ['>RECORDED<', '>SIMULATED<', '>what-if<', 'SAMPLE, RECORDED', 'Imperfect inputs are welcome.', 'src="/guide/room-tab.webp" width={1280} height={720}']) assert.ok(home.includes(s), s);
   for (const id of ['a1', 'a2', 'a3', 'a4']) for (const fam of ['light', 'dark']) for (const ext of ['png', 'webp']) await pub('/images/marketing/' + id + '-' + fam + '-line@1x.' + ext);
   assert.match(art, /type="image\/webp"/);
   assert.match(art, /width=\{width\} height=\{height\}/);

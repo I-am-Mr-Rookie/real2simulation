@@ -1,7 +1,7 @@
 // N89: the two starter labs validate, the physics lab is open at the front, and its apparatus behaves in the agent's Rapier world.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { TEMPLATES, templateScene } from '../../Build/web/src/lab-editor/templates.mjs';
+import { TEMPLATES, templateScene, hasPhysicsStations } from '../../Build/web/src/lab-editor/templates.mjs';
 import { MAX_OBJECTS, KINDS } from '../../Build/web/src/lab-editor/scene.mjs';
 import { simulate } from '../../Build/web/src/lab-editor/agent-run.mjs';
 
@@ -21,6 +21,7 @@ test('physics lab: three walls, open front, every apparatus kind, room left to a
   assert.deepEqual(new Set(s.objects.map((o) => o.kind)), new Set(KINDS));
   assert.ok(MAX_OBJECTS - s.objects.length >= 10);
   assert.ok(templateScene('physics-lab') !== s, 'each call returns a fresh scene');
+  assert.ok(hasPhysicsStations(s) && !hasPhysicsStations(templateScene('blank')), 'lab agent suggestions follow the stations');
 });
 
 test('physics lab runs: free fall time through the photogate and nothing sinks through floor or benches', async () => {

@@ -10,12 +10,12 @@ import { createPhysics, loadRapier, movingStart, upQuat, roomProxy, kitParts } f
 import { emptyHistory, record, undo, redo, removeObject, typing, tidyView } from './history.mjs';
 import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
-import { naturalPoint, trajectoryScene, fmtPm } from '../workspace/measure.mjs';
+import { naturalPoint, trajectoryScene, fmtPm, gravityCheck } from '../workspace/measure.mjs';
 import { robustBounds, fitDistance, FRAME_Q } from './frame.mjs';
 import { colliderGeometry, loadShapeGlb, SHAPE_LABEL } from './sf3d-shape.mjs';
 import { lookMesh } from './furniture-shape.mjs';
 import { mergeShapeUpdates } from './shape-upgrades.mjs';
-import { TEMPLATES, templateScene } from './templates.mjs';
+import { TEMPLATES, templateScene, PHYSICS_LAB_CARDS, hasPhysicsStations } from './templates.mjs';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981, flywheel: 0x8b5cf6, atwood: 0x0ea5e9,
@@ -783,7 +783,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
           </>}
         </div>
         <div hidden={!agentOpen}>
-          <AgentPanel scene={scene} load={!src && !/[?&](room|experiment|template|project)=/.test(window.location.search)} onScene={(s, msg, tidied) => { stop(); setSelected(null); if (tidied) setTidy({ before: prevScene.current, after: s }); setScene(s); setMessage(msg); }} />
+          <AgentPanel scene={scene} cards={hasPhysicsStations(scene) ? PHYSICS_LAB_CARDS : undefined} load={!src && !/[?&](room|experiment|template|project)=/.test(window.location.search)} onScene={(s, msg, tidied) => { stop(); setSelected(null); if (tidied) setTidy({ before: prevScene.current, after: s }); setScene(s); setMessage(msg); }} />
         </div>
       </aside>
     </div>
@@ -794,7 +794,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       <label className="le-seek">Recorded trace<input type="range" aria-label="Seek recorded sensor trace" min="0" max={Math.max(0, samples.length - 1)} value={Math.max(0, seek)} disabled={run === 'playing' || samples.length < 2} onChange={(e) => setCursor(Number(e.target.value))} aria-valuetext={samples[seek] ? samples[seek].t.toFixed(3) + ' s' : 'No trace'} /></label>
       <Graph trace={graphTrace} cursor={seek} />
       <button type="button" onClick={fitTrace} disabled={run === 'playing' || fitting || !samples[0]?.p || samples.length < 4}>{fitting ? 'Fitting...' : 'Fit trace'}</button>
-      {fitResult && <section className="le-result" aria-label="Fit result"><strong>{fitResult.name}: {fitResult.uncertainty > 0 ? fmtPm(fitResult.value, fitResult.uncertainty) : fitResult.value + ' +/- ' + (fitResult.uncertainty ?? 'uncertainty unavailable')} {fitResult.unit}</strong><small>{fitResult.label}. {fitResult.caveat}</small></section>}
+      {fitResult && <section className="le-result" aria-label="Fit result"><strong>{fitResult.name}: {fitResult.uncertainty > 0 ? fmtPm(fitResult.value, fitResult.uncertainty) : fitResult.value + ' +/- ' + (fitResult.uncertainty ?? 'uncertainty unavailable')} {fitResult.unit}</strong><small>{fitResult.label}. {fitResult.caveat}</small>{!traceFit && gravityCheck(sourceResult) && <small>{gravityCheck(sourceResult).text}</small>}</section>}
     </footer>
   </section>;
 }

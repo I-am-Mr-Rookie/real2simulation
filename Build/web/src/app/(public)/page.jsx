@@ -44,8 +44,10 @@ export default function Home() {
         <p className="trust-line">Every number shows where it came from: measured, simulated or what-if.</p>
       </div>
       <figure className="hero-art slab">
-        <MarketingArt id="a1" width={1600} height={1000} eager alt="A phone records a falling ball beside a scale; tracked positions continue into a wireframe replay." />
-        <figcaption>Observe. Model. Test.<span>Illustration only, not scene evidence.</span></figcaption>
+        {/* N89: real product output first, so the promise has visible proof. */}
+        <img src="/guide/room-tab.webp" width={1280} height={720} fetchPriority="high" style={{ width: '100%', height: 'auto', display: 'block' }}
+          alt="The lab editor showing a classroom reconstructed from a phone video: walls, windows, chairs and tables, with the source video frame in the side panel." />
+        <figcaption>Real output.<span>A classroom video (SAMPLE, RECORDED) turned into an editable physics lab. Geometry MODEL-ESTIMATED, scale unverified.</span></figcaption>
       </figure>
     </section>
     <ul className="features">
