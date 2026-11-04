@@ -26,6 +26,14 @@ Main a1258972 (pushed). Live: https://real2simulation.rookiecoders.tech (web 83d
 - Guided lesson (Build/web/src/lab-editor/lesson.mjs): "Does a heavier ball fall faster?" predict, fit run A, 10x mass, fit run B, verdict within 2 sigma, prediction scored, no-drag caveat, Copy results. Live run at 1440 and 375: both -9.8100163 +/- 0.0000022 m/s^2, "same", prediction matched.
 - Incident: commit 2afcf394 shadowed the imported history record() and crashed /lab?editor=1 for about 8 minutes on DEV (18:00 Dhaka); fixed in cded1744 with a guard test (no local const may shadow an import). All 9 public routes then loaded with no page errors.
 
+## After round 3 (main d2bd4bb8, e661d2c0, 8299cb0f; live web 672e034e, api a2b31a5c)
+- Second lesson: twice the height, does it take twice as long? Lesson picker and Copy results. Live at 1440 and 375: 0.625 +/- 0.008 s vs 0.883 +/- 0.008 s, ratio 1.413 +/- 0.023 vs sqrt(2) 1.414. Mass lesson unchanged.
+- Home: Use it in a class (lesson, film, measure, compare); honest labels list all five labels.
+- Public sample clip Build/web/public/samples/apple-drop-pexels.mp4 (ST03 crop 360x1116, 2.6 s, no face). Workspace card No clip yet? Measure our sample uploads it through the normal path (one daily upload) and opens Measure pre-filled (apple, 7 cm, assumed size).
+- Pipeline fix in Build/pipeline/live_experiment.py track_record: frames SAM omits stay aligned and marked missing instead of failing the run (tracker returned 75 frames, the video has 78). An index past the video or a billed frame count unlike the probe still fails. Test added.
+- Real hosted SAM run on the sample (local, ledgered in evidence/N89/ledger.jsonl, about 0.016 USD per call): free_fall 2.37 +/- 0.45 m/s^2, scale assumed (evidence/N89/live-apple-drop-sample.json). Low g expected: slow-motion stock clip and an assumed apple size; the gravity what-if explains it.
+- Live QA after deploy: both lessons at 1440 and 375, no page errors; bad links show recovery links; sample clip HTTP 200; /api/version serves 8299cb0f.
+
 ## Verified
 - Node suites lab-editor 59, workspace 172, web-private 30, web-guide 3, web-library 10, shell-workspace 39, viewer 49 pass; api-storage pytest 43 pass; next build pass. tests/lab + simulator: 4 failures pre-existing on c9c00135 (R14 pendulum controls, ramp/pendulum hash oracle), untouched.
 - Live headed Playwright on the custom domain: featured run renders, sample replay loads gravity -2.33, guest fit gives -9.8100 m/s^2 from 76 of 317 samples (first impact cut), no page errors. Screenshots in evidence/N89/shots/.

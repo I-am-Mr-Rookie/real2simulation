@@ -1,5 +1,9 @@
 # Real2Simulation — STATE
 
+## 2026-11-04 ~18:55 Dhaka: N89 round-3 fixes live; web 672e034e, api a2b31a5c (8299cb0f)
+- Judge round 3 (gpt-6-astra) 65.75. Shipped since: mobile Scene button, guest agent sign-in path, calibration copy, bad-link recovery, two guided lessons (mass, height), home Use it in a class, public sample clip + Measure our sample card, pipeline keeps frames SAM omits. Paid tonight: about 0.06 USD hosted SAM (evidence/N89/ledger.jsonl).
+- Koushik: next judge is a fresh sub-agent with no worker context, OpenAI 5.5 high effort, after the Codex reset 21:50 Dhaka; it reads JUDGE-REVIEW-ASTRA*.md and the repo.
+
 ## 2026-11-04 ~17:25 Dhaka: N89 (Koushik goal file) shipped; live web 83de884a (a1258972), api a419a664 (5411b730)
 - Koushik (Nov 4, before exams): full autonomy until 00:00; prod/judging deploy allowed after tests + DEV QA pass; templates public, sign-in only to copy; up to $50 extra paid usage; rebrand my call; no voiceover script or video (he sends the format later; video via ECC Lite after his voiceover); no Fast mode.
 - Shipped: blank and physics-lab templates, copy-a-lab within the 1 GB quota, public featured real run (SAM 3.1 + fit + recorded Muse turn), public ST03 3D replay, guest Fit trace, 3D-first /lab. Report: evidence/N89/REPORT.md. Judge 54.5 then 61.0 (before the last four fixes).
