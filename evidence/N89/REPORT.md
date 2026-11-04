@@ -85,6 +85,12 @@ Main a1258972 (pushed). Live: https://real2simulation.rookiecoders.tech (web 83d
 - Agent fit tool now waits up to 90 s for a running track instead of answering "not finished" (the recorded Muse turn wasted one fit call on that); test added (tests/agent 215).
 - Home: the clip-to-clip spread (0.56) is added as a systematic term to the OWN07 result: 9.07 +/- 0.84, 0.9 sigma from 9.81. README video line says PENDING until the link exists.
 - Railway "Failed to create code snapshot" failed two API uploads of 5edfba11 (no build ran; the previous API kept serving); a third upload went through.
+- API 3f027c1e from 0970c9a2 (includes 5edfba11) SUCCESS at about 23:21; /api/version on the API host reads 0970c9a2. Web 19dbdd69 from 0970c9a2 SUCCESS.
+
+## Round 9 and stop (Nov 4, 23:20 to 23:35 Dhaka; judge on c9a2d787)
+- Judge round 9 (Claude Opus high, fresh context): 73.5, no change. evidence/N89/JUDGE-REVIEW-9.md. Rounds 8 and 9 each gained under 1 point: plateau rule met, loop stopped.
+- Its P2: the round 8 spread term ("0.9 sigma") read as reassurance while the 11 drops are biased low as a group. Replaced: the home now states the mean of the 11 fits (8.75, 11% under 9.81, 6.2 standard errors below), names the suspects (box centre drift as the book tilts, perspective, rolling shutter), and says one agreeing clip does not remove the group bias. All numbers computed from the rows.
+- Left open (judge P2/P3, not fixed tonight): Clerk development instance on the judging URL (switching needs an end-to-end sign-up test); "scale assumed (user size)" label next to "ruler-measured"; Guess the Gravity card opens /lab; two Play buttons on the phone replay; home page about 13,300 px tall on phones; the demo video (owner records the voiceover).
 
 ## Verified
 - Node suites lab-editor 59, workspace 172, web-private 30, web-guide 3, web-library 10, shell-workspace 39, viewer 49 pass; api-storage pytest 43 pass; next build pass. tests/lab + simulator: 4 failures pre-existing on c9c00135 (R14 pendulum controls, ramp/pendulum hash oracle), untouched.
