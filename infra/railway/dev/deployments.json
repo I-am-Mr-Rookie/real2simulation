@@ -7,11 +7,11 @@
   "services": {
     "web": {
       "id": "49f2938d-1566-480d-94e3-c9f7fefe24c2",
-      "deploymentId": "f5844c3d-52c7-460f-b69b-2215de378cb6",
-      "previousDeploymentId": "101e3299-c559-4c29-93fc-70f418c6719e",
-      "redeployNote": "controller: N88 public resources off quota",
-      "sourceRevision": "460ce4786ee9f2ad4c6593f8ae37b7abb49d5c4c",
-      "verifiedUtc": "2026-11-03T17:00Z",
+      "deploymentId": "83de884a-6677-462f-b42f-fc2dc9fe3c90",
+      "previousDeploymentId": "f5844c3d-52c7-460f-b69b-2215de378cb6",
+      "redeployNote": "N89 templates, copy labs, featured real run, guest fit, ST03 replay",
+      "sourceRevision": "a1258972",
+      "verifiedUtc": "2026-11-04T11:20Z",
       "url": "https://real2simulation.up.railway.app",
       "customDomain": "https://real2simulation.rookiecoders.tech",
       "providerStatus": "SUCCESS",
@@ -19,8 +19,9 @@
     },
     "api": {
       "id": "9f3120ef-7b03-49f3-a549-c282ddb7a7b6",
-      "deploymentId": "46b4cde4-5552-4695-b5c9-4552f68af057",
+      "deploymentId": "a419a664-8f9d-4da4-b2f6-d5d7744b0bca",
       "previousDeploymentIds": [
+        "46b4cde4-5552-4695-b5c9-4552f68af057",
         "f59932da-4354-4e1c-9ec2-0b2fccbbad21",
         "9b573b35-242e-4091-84c3-8ec019897844",
         "37966fe1-bea0-4353-8461-2b0f92ed6de2",
@@ -57,8 +58,8 @@
         "d520a4f9-6a77-472b-8a97-12a745f6aca1",
         "8bf100cc-f7eb-41d1-ac2d-87d15763e6cd"
       ],
-      "sourceRevision": "b38a821a9c7f4330e6807ebb62df5435aaf8cc5f",
-      "verifiedUtc": "2026-11-03T10:34Z",
+      "sourceRevision": "5411b73059a615668ec38b28fa3e33064fb50c60",
+      "verifiedUtc": "2026-11-04T10:40Z",
       "variableNamesAdded": {
         "WORKSPACE_INTERNAL_TOKEN": "generated in-process (secrets.token_urlsafe(32)), piped via stdin; same value on web",
         "WORKSPACE_UPLOAD_DIR": "/tmp/r2s-uploads (ephemeral container disk)",
@@ -74,7 +75,7 @@
       "providerStatus": "SUCCESS",
       "port": 8080,
       "previousDeploymentId": "5df506cd-affc-44c6-a83a-d527b46e6766",
-      "redeployNote": "controller: N82 per-room delete",
+      "redeployNote": "N89 lab templates, saved labs, copy within quota",
       "region": "us-east4-eqdc4a (N23; was asia-southeast1-eqsg3a; api-volume migrated by Railway with it)"
     },
     "worker": {

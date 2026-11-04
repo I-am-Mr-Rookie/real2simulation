@@ -1,5 +1,10 @@
 # Real2Simulation — STATE
 
+## 2026-11-04 ~17:25 Dhaka: N89 (Koushik goal file) shipped; live web 83de884a (a1258972), api a419a664 (5411b730)
+- Koushik (Nov 4, before exams): full autonomy until 00:00; prod/judging deploy allowed after tests + DEV QA pass; templates public, sign-in only to copy; up to $50 extra paid usage; rebrand my call; no voiceover script or video (he sends the format later; video via ECC Lite after his voiceover); no Fast mode.
+- Shipped: blank and physics-lab templates, copy-a-lab within the 1 GB quota, public featured real run (SAM 3.1 + fit + recorded Muse turn), public ST03 3D replay, guest Fit trace, 3D-first /lab. Report: evidence/N89/REPORT.md. Judge 54.5 then 61.0 (before the last four fixes).
+- Judging deploy: no separate Railway environment (only dev exists); the custom domain serves the final revision. Paid spend tonight: $0 new. QA leftover: fixture "Blank lab" project.
+
 ## 2026-11-03 ~23:00 Dhaka: N88 accepted; DEV web f5844c3d, api 46b4cde4
 - N88-orch333 (Sol) merged 460ce478: public pack writes go through one helper that records size, mtime_ns and manifest sha256 in server-owned public.json; quota skips only exact matches (fails closed), always counts scene.json/public.json, returns storage_bytes_public; returning users backfilled by hash once; meter line "Public samples not counted". Offline smoke on the real pack: 36.7 MB excluded, 0.49 MB metadata counted.
 - Controller checks: code review of quota(), rebase clean, scan 0, pytest storage/delete/fallback 170 pass 1 skip, Node 267 pass, build pass. Both deploys SUCCESS. $0. Not verified live: fixture account meter after backfill (Koushik reviews on DEV).
