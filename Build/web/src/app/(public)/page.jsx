@@ -39,7 +39,7 @@ export default function Home() {
           <Link className="primary-link" href="/library">{icon(h, 'book', 16)}Try the demo library</Link>
           <Link className="secondary-link" href="/lab?editor=1&template=physics-lab">{icon(h, 'flask', 16)}Open the physics lab</Link>
         </div>
-        <p className="trust-line">No video needed: the demo library and the lab templates work without an upload.</p>
+        <p className="trust-line">No video needed: the physics lab has a short lesson (does a heavier ball fall faster?), and the demo library works without an upload.</p>
         <ul className="chip-row" aria-label="Every result carries one of these labels">
           <li className="chip" data-tone="ok">RECORDED</li><li className="chip" data-tone="sim">SIMULATED</li><li className="chip" data-tone="warn">what-if</li>
         </ul>
