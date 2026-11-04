@@ -44,7 +44,7 @@ export default function FeaturedRun() {
         <h3>3. The fitter picks a model</h3>
         <figure className="fr-chart"><Chart /><figcaption>Dots: tracked apple. Line: fitted curve. Band: 1 sigma.</figcaption></figure>
         <p className="fr-value"><strong>{fmtPm(q.value, q.uncertainty)} {q.unit.replace('^2', '²')}</strong> {q.name}, 1 sigma.</p>
-        <p className="fr-meta">{r.fit.model_selection}: constant acceleration beats constant velocity on both axes.</p>
+        <p className="fr-meta">{r.fit.model_selection.replace(/ \(.*\)$/, '')}: constant acceleration beats constant velocity on both axes.</p>
       </li>
       <li className="card">
         <span className="chip" data-tone="warn">what-if</span>
@@ -54,6 +54,7 @@ export default function FeaturedRun() {
         {check && <p>{check.text}</p>}
       </li>
     </ol>
+    <p className="fr-cta"><Link className="primary-link" href="/lab?editor=1&sample=st03">Replay this run in 3D and change gravity</Link></p>
     <p className="fr-cta"><Link href="/sign-up">Measure your own clip</Link> or <Link href="/lab?editor=1&template=physics-lab">drop a ball in the physics lab</Link>, no video needed.</p>
   </section>;
 }

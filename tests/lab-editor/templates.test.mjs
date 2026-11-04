@@ -4,6 +4,7 @@ import assert from 'node:assert/strict';
 import { TEMPLATES, templateScene, hasPhysicsStations } from '../../Build/web/src/lab-editor/templates.mjs';
 import { MAX_OBJECTS, KINDS } from '../../Build/web/src/lab-editor/scene.mjs';
 import { simulate } from '../../Build/web/src/lab-editor/agent-run.mjs';
+import { fitSimTrace } from '../../Build/web/src/workspace/measure.mjs';
 
 test('blank is an empty grid floor; unknown ids give null', () => {
   assert.deepEqual(TEMPLATES.map((t) => t.id), ['blank', 'physics-lab']);
@@ -30,4 +31,10 @@ test('physics lab runs: free fall time through the photogate and nothing sinks t
   assert.ok(Math.abs(gate - Math.sqrt(2 / 9.81)) < 0.01, 'ball dropped 1 m reaches the gate in ' + gate + ' s');
   for (const t of out.traces) for (const p of t.samples) assert.ok(p.p.every(Number.isFinite) && p.p[1] > 0, t.object_id);
   for (const t of out.traces.filter((x) => x.object_id.startsWith('mass-'))) assert.ok(t.samples.at(-1).p[1] > 0.8, t.object_id + ' stays on the table');
+  // Guest Fit trace: fitted only up to the first impact (the browser keeps recording the ball at rest), so it recovers scene g.
+  const drop = out.traces.find((t) => t.object_id === 'ball-drop').samples, end = drop.at(-1);
+  const rest = Array.from({ length: 40 }, (_, i) => ({ t: end.t + 0.02 * (i + 1), p: [end.p[0], 0.03, end.p[2]] }));
+  const q = fitSimTrace({ samples: [...drop, ...rest] });
+  assert.ok(q.n <= drop.length && q.n > drop.length - 3 && Math.abs(q.value + 9.81) < 0.2, 'fitted ' + q.value + ' from ' + q.n + '/' + q.total + ' samples');
+  assert.equal(fitSimTrace({ samples: drop.slice(0, 3) }), null);
 });

@@ -101,6 +101,22 @@ export function fmtPm(value, u) {
 // N89: free-fall sanity check against Earth g (9.81 m/s^2). With no scale it solves for the missing unknown (metres per
 // pixel); with a metric value it flags what would explain a large miss (slow motion or a wrong size). Always what-if.
 export const EARTH_G = 9.81;
+
+// N89: in-browser fit of a SIMULATED lab trace (no account needed). Fits y(t) only up to the first impact, found where the
+// vertical velocity jumps upward by more than 3 steps of free fall (a pendulum or a ramp never does). a = 2 b2, 1 sigma = 2 sd(b2).
+export function fitSimTrace(trace, gMag = EARTH_G) {
+  const all = (trace?.samples ?? []).filter((s) => Number.isFinite(s?.t) && Number.isFinite(s?.p?.[1]));
+  let n = all.length;
+  for (let i = 1; i + 1 < all.length; i += 1) {
+    const [a, b, c] = [all[i - 1], all[i], all[i + 1]];
+    const dv = (c.p[1] - b.p[1]) / (c.t - b.t) - (b.p[1] - a.p[1]) / (b.t - a.t);
+    if (dv > 3 * gMag * ((c.t - a.t) / 2)) { n = i; break; }
+  }
+  const s = all.slice(0, n), fit = polyFit(s.map((x) => x.t), s.map((x) => x.p[1]), 2);
+  if (!fit) return null;
+  return { value: 2 * fit.b[2], uncertainty: 2 * Math.sqrt(Math.max(0, fit.cov[2][2])), unit: 'm/s^2', n: s.length, total: all.length,
+    t1: s.at(-1).t };
+}
 export function gravityCheck(result) {
   const q = result?.quantity;
   if (!q || !/^vertical acceleration/.test(q.name ?? '') || !(q.value > 0)) return null;

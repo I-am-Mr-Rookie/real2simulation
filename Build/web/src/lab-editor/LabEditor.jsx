@@ -10,12 +10,13 @@ import { createPhysics, loadRapier, movingStart, upQuat, roomProxy, kitParts } f
 import { emptyHistory, record, undo, redo, removeObject, typing, tidyView } from './history.mjs';
 import AgentPanel from './AgentPanel.jsx';
 import { decodePlyXyzRgb } from '../viewer/scene-model.mjs';
-import { naturalPoint, trajectoryScene, fmtPm, gravityCheck } from '../workspace/measure.mjs';
+import { naturalPoint, trajectoryScene, fmtPm, gravityCheck, fitSimTrace } from '../workspace/measure.mjs';
 import { robustBounds, fitDistance, FRAME_Q } from './frame.mjs';
 import { colliderGeometry, loadShapeGlb, SHAPE_LABEL } from './sf3d-shape.mjs';
 import { lookMesh } from './furniture-shape.mjs';
 import { mergeShapeUpdates } from './shape-upgrades.mjs';
 import { TEMPLATES, templateScene, PHYSICS_LAB_CARDS, hasPhysicsStations } from './templates.mjs';
+import featuredRun from '../app/(public)/home/featured-st03.json';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981, flywheel: 0x8b5cf6, atwood: 0x0ea5e9,
@@ -247,7 +248,6 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const [copying, setCopying] = useState(false);
   const [sourceResult, setSourceResult] = useState(null);
   const [traceFit, setTraceFit] = useState(null);
-  const [fitting, setFitting] = useState(false);
   const [cursor, setCursor] = useState(null);
   const sceneRef = useRef(scene);
   sceneRef.current = scene;
@@ -394,6 +394,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     const p = new URLSearchParams(window.location.search), room = p.get('room'), exp = p.get('experiment'), tpl = p.get('template'), saved = p.get('project');
     if (room && LIVE_ID.test(room)) loadRoom(room); else if (exp && LIVE_ID.test(exp)) loadExperiment(exp);
     else if (tpl) loadTemplate(tpl); else if (saved && LIVE_ID.test(saved)) loadSaved(saved);
+    else if (p.get('sample') === 'st03') loadSample();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Rebuild room and object meshes from the scene JSON whenever it changes (not while a run is live).
@@ -516,16 +517,12 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   };
   const pause = () => { api.current.state.playing = false; setRun('paused'); setMessage('Paused. Resume, reset, or export the SIMULATED sensor traces.'); snapshot(); };
   const traces = () => api.current?.state.sim?.traces() ?? [];
-  const fitTrace = async () => {
-    if (!graphTrace?.samples?.[0]?.p || fitting) return;
-    setFitting(true);
-    try {
-      const result = await getJson('/fit', { method: 'POST', body: JSON.stringify(fitterRequest(graphTrace)) });
-      const q = result.gravity;
-      setTraceFit(q ? { ...q, name: graphTrace.object_id + ': fitted vertical acceleration', label: 'SIMULATED', caveat: '1 sigma from the fitter covariance. A quadratic summary, not necessarily gravity or a valid model for collisions or oscillation.' } : null);
-      if (!q) setMessage('No acceleration fit is available for this trace.');
-    } catch (e) { setMessage('Trace not fitted: ' + e.message); }
-    finally { setFitting(false); }
+  // N89: least squares in the browser, so visitors without an account can fit too; only samples before the first impact.
+  const fitTrace = () => {
+    if (!graphTrace?.samples?.[0]?.p) return;
+    const q = fitSimTrace(graphTrace, Math.hypot(...scene.gravity));
+    setTraceFit(q ? { ...q, name: graphTrace.object_id + ': fitted vertical acceleration', label: 'SIMULATED', caveat: 'Quadratic least-squares fit of ' + q.n + ' of ' + q.total + ' samples (up to t = ' + q.t1.toFixed(2) + ' s' + (q.n < q.total ? ', the first impact' : '') + '), 1 sigma from the fit covariance. Not a valid model for oscillation.' } : null);
+    if (!q) setMessage('Not enough samples to fit. Play a little longer, then Pause.');
   };
   const exportTraces = () => {
     const t = traces();
@@ -567,21 +564,34 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
         : 'Your room: ' + n + ' points, ' + r.scene.objects.length + ' objects. Geometry MODEL-ESTIMATED; ' + r.room.scale.status + '.'));
     } catch (e) { setMessage('Room not loaded: ' + e.message); }
   };
+  const showTrack = (result, id, note, gravity) => {
+    const t = trajectoryScene(result);
+    if (!t) throw new Error('this experiment has no finished track yet');
+    if (gravity) t.scene.gravity = gravity;
+    const a = api.current;
+    if (a.state.track) a.three.remove(a.state.track);
+    const geo = new THREE.BufferGeometry().setFromPoints(t.track.map((q) => new THREE.Vector3(...q)));
+    a.state.track = new THREE.Group().add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0x111827 })), new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.025, color: 0x4f46e5 })));
+    a.three.add(a.state.track);
+    frameTo(t.track.flat());
+    stop(); setSourceResult(result); setSelected(null); setScene(validateScene(t.scene)); setSrc({ kind: 'experiment', id });
+    setMessage(note ?? 'Dots and line: your measured track. ' + t.note);
+  };
   const loadExperiment = async (id) => {
     try {
       const ex = (await getJson('/experiments/' + id)).experiment;
       setProject((p) => p ?? ex.project_id ?? null);
-      const t = trajectoryScene(ex.result);
-      if (!t) throw new Error('this experiment has no finished track yet');
-      const a = api.current;
-      if (a.state.track) a.three.remove(a.state.track);
-      const geo = new THREE.BufferGeometry().setFromPoints(t.track.map((q) => new THREE.Vector3(...q)));
-      a.state.track = new THREE.Group().add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0x111827 })), new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.025, color: 0x4f46e5 })));
-      a.three.add(a.state.track);
-      frameTo(t.track.flat());
-      stop(); setSourceResult(ex.result); setSelected(null); setScene(validateScene(t.scene)); setSrc({ kind: 'experiment', id });
-      setMessage('Dots and line: your measured track. ' + t.note);
+      showTrack(ex.result, id);
     } catch (e) { setMessage('Experiment not loaded: ' + e.message); }
+  };
+  // N89: the public featured run (stock clip ST03, hosted SAM 3.1 track) as a replay anyone can open. The track is drawn at
+  // 1 px = 1 mm, so gravity starts at the fitted 2330 px/s^2 read as mm/s^2 and the SIMULATED ball follows the dots.
+  const loadSample = () => {
+    const r = featuredRun.result, g = +(r.quantity.value / 1000).toFixed(3);
+    try {
+      showTrack(r, 'st03-sample', 'Dots and line: the hosted SAM 3.1 track of a falling apple (stock clip, RECORDED), drawn at 1 px = 1 mm. Gravity starts at the fitted '
+        + g + ' (what-if, same scale), so the SIMULATED ball follows the dots. Set Gravity y to -9.81 and press Play to see Earth g at this scale.', [0, -g, 0]);
+    } catch (e) { setMessage('Sample not loaded: ' + e.message); }
   };
   // N89: frame a whole lab from the open front side, with the grid sized to the room.
   const frameScene = (s) => {
@@ -603,7 +613,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     try { if (kept?.id === id) s = validateScene(kept.scene); } catch { kept = null; }
     frameScene(s); setScene(s); setOrigin({ kind: 'template', id, title: t.title }); setName(kept?.name || t.title);
     setMessage(kept?.id === id ? 'Your edits are back. Press Make my copy to save them to your workspace.'
-      : t.title + ' template. ' + (id === 'physics-lab' ? 'Press Play: the graph follows ball-drop falling through photogate-1; press Fit trace for its acceleration, or click any apparatus to graph it. '
+      : t.title + ' template. ' + (id === 'physics-lab' ? 'Press Play: the graph follows ball-drop falling through photogate-1. After it lands, press Pause, then Fit trace for its acceleration. Click any apparatus to graph it instead. '
         : 'Press Add to place apparatus, then Play. ') + 'Make my copy saves your own version (uses your 1 GB storage). Everything here is SIMULATED.');
   };
   const loadSaved = async (id) => {
@@ -784,7 +794,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
           </>}
         </div>
         <div hidden={!agentOpen}>
-          <AgentPanel scene={scene} cards={hasPhysicsStations(scene) ? PHYSICS_LAB_CARDS : undefined} load={!src && !/[?&](room|experiment|template|project)=/.test(window.location.search)} onScene={(s, msg, tidied) => { stop(); setSelected(null); if (tidied) setTidy({ before: prevScene.current, after: s }); setScene(s); setMessage(msg); }} />
+          <AgentPanel scene={scene} cards={hasPhysicsStations(scene) ? PHYSICS_LAB_CARDS : undefined} load={!src && !/[?&](room|experiment|template|project|sample)=/.test(window.location.search)} onScene={(s, msg, tidied) => { stop(); setSelected(null); if (tidied) setTidy({ before: prevScene.current, after: s }); setScene(s); setMessage(msg); }} />
         </div>
       </aside>
     </div>
@@ -794,7 +804,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       <span className="le-time" aria-live="off">t = {(samples[seek]?.t ?? time).toFixed(2)} s</span>
       <label className="le-seek">Recorded trace<input type="range" aria-label="Seek recorded sensor trace" min="0" max={Math.max(0, samples.length - 1)} value={Math.max(0, seek)} disabled={run === 'playing' || samples.length < 2} onChange={(e) => setCursor(Number(e.target.value))} aria-valuetext={samples[seek] ? samples[seek].t.toFixed(3) + ' s' : 'No trace'} /></label>
       <Graph trace={graphTrace} cursor={seek} />
-      <button type="button" onClick={fitTrace} disabled={run === 'playing' || fitting || !samples[0]?.p || samples.length < 4}>{fitting ? 'Fitting...' : 'Fit trace'}</button>
+      <button type="button" onClick={fitTrace} disabled={run === 'playing' || !samples[0]?.p || samples.length < 4}>Fit trace</button>
       {fitResult && <section className="le-result" aria-label="Fit result"><strong>{fitResult.name}: {fitResult.uncertainty > 0 ? fmtPm(fitResult.value, fitResult.uncertainty) : fitResult.value + ' +/- ' + (fitResult.uncertainty ?? 'uncertainty unavailable')} {fitResult.unit}</strong><small>{fitResult.label}. {fitResult.caveat}</small>{!traceFit && gravityCheck(sourceResult) && <small>{gravityCheck(sourceResult).text}</small>}</section>}
     </footer>
   </section>;
