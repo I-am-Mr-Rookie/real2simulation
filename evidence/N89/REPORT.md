@@ -34,6 +34,16 @@ Main a1258972 (pushed). Live: https://real2simulation.rookiecoders.tech (web 83d
 - Real hosted SAM run on the sample (local, ledgered in evidence/N89/ledger.jsonl, about 0.016 USD per call): free_fall 2.37 +/- 0.45 m/s^2, scale assumed (evidence/N89/live-apple-drop-sample.json). Low g expected: slow-motion stock clip and an assumed apple size; the gravity what-if explains it.
 - Live QA after deploy: both lessons at 1440 and 375, no page errors; bad links show recovery links; sample clip HTTP 200; /api/version serves 8299cb0f.
 
+## Batch 5 (Nov 4, 19:00 to 19:40 Dhaka; main 7100d0a7 to the simulator-test commit)
+- Live outage found and fixed: the Modal Meta proxy (us-east) started getting an empty /v1/models from Meta, so every DEV hosted SAM 3.1 run failed with HTTP 404 on /responses (the first signed-in Measure our sample run failed this way). Probes: us-west, ap-south, ap-southeast saw all 9 models, eu-west 0. Proxy moved to ap-south and retries a 404 or an empty model list up to 4 times (unbilled); 20 of 20 later /models calls through the proxy saw 9 models. Build/gpu/meta_proxy.py.
+- Signed-in DEV QA (fixture, in-app browser): Measure our sample card uploaded the clip, Measure opened pre-filled, the run finished: 2.33 +/- 0.36 m/s^2, scale assumed (user size), what-if about 2.05x slow motion or a 4.2x size error. Muse agent answered with correct labels.
+- API 500 fixed: one shared sqlite connection across threadpool threads raised sqlite3.InterfaceError on concurrent file reads. Store.db is now one connection per thread (Build/api/storage/files.py); a regression test failed on the old code and passes now.
+- Agent: start_experiment_track and fit take the user's known_size (Muse had dropped 7 cm and left the result in pixels); prompt rounds a value to two significant figures of its uncertainty.
+- Recorded DEV turn (evidence/N89/muse-measures-sample.json): one sentence, Muse called list_files, start_experiment_track (hosted SAM 3.1, apple diameter 7 cm), fit too early, fit again: 2.33 +/- 0.36 m/s^2. Shown on the home page as a MEASURED card; a test checks the card is a projection of the evidence file. README Meta usage table has rows for it and the featured hosted SAM run.
+- Home: why predict first, citing Crouch, Fagen, Callan and Mazur, Am. J. Phys. 72, 835 (2004), doi 10.1119/1.1707018 (abstract checked on compadre.org).
+- Simulator tests: the 4 long-standing failures fixed without touching the engine. R14 pendulum controls now check the energy of the model the engine selected (R15 made amplitude <= 0.1 rad the S08 small-angle ODE on purpose); ramp and pendulum replay hashes regenerated with a note. tests/simulator 125/125, tests/lab 123/123 + pytest 20.
+- Paid: about 0.06 USD more hosted SAM and Muse (ledger). Modal: tiny CPU probes and two proxy deploys.
+
 ## Verified
 - Node suites lab-editor 59, workspace 172, web-private 30, web-guide 3, web-library 10, shell-workspace 39, viewer 49 pass; api-storage pytest 43 pass; next build pass. tests/lab + simulator: 4 failures pre-existing on c9c00135 (R14 pendulum controls, ramp/pendulum hash oracle), untouched.
 - Live headed Playwright on the custom domain: featured run renders, sample replay loads gravity -2.33, guest fit gives -9.8100 m/s^2 from 76 of 317 samples (first impact cut), no page errors. Screenshots in evidence/N89/shots/.

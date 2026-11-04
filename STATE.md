@@ -1,5 +1,8 @@
 # Real2Simulation — STATE
 
+## 2026-11-04 ~19:45 Dhaka: N89 batch 5 live (meta proxy egress fix, sqlite per-thread, Muse runs the real pipeline)
+- Meta proxy us-east egress lost the model list (all DEV SAM runs 404); moved to ap-south with retries. Muse now passes known_size; recorded DEV turn on the home page. Simulator suite green. Details: evidence/N89/REPORT.md Batch 5.
+
 ## 2026-11-04 ~18:55 Dhaka: N89 round-3 fixes live; web 672e034e, api a2b31a5c (8299cb0f)
 - Judge round 3 (gpt-6-astra) 65.75. Shipped since: mobile Scene button, guest agent sign-in path, calibration copy, bad-link recovery, two guided lessons (mass, height), home Use it in a class, public sample clip + Measure our sample card, pipeline keeps frames SAM omits. Paid tonight: about 0.06 USD hosted SAM (evidence/N89/ledger.jsonl).
 - Koushik: next judge is a fresh sub-agent with no worker context, OpenAI 5.5 high effort, after the Codex reset 21:50 Dhaka; it reads JUDGE-REVIEW-ASTRA*.md and the repo.
