@@ -74,7 +74,7 @@ export default function FeaturedRun() {
         <h3>One of them in detail (OWN07)</h3>
         <p className="fr-value"><strong>{fmtPm(pq.value, pq.uncertainty)} {pq.unit.replace('^2', '²')}</strong> {pq.name}, 1 sigma.</p>
         {pcheck && <p>{pcheck.text} It is one of the twelve above (their median is {median.toFixed(2)}); that one clip agreeing does not remove the group bias.</p>}
-        <p>A book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, run through the live pipeline on {phone.utc.slice(0, 10)}. Hosted SAM 3.1 tracked {p.track.tracked_frames} frames; the pipeline kept {p.segment.frames} frames of free fall ({p.segment.duration_s.toFixed(2)} s) and cut the landing frames. Scale: {p.scale.object}, measured with a ruler by the maker ({p.scale.label}). {p.clock[0].toUpperCase() + p.clock.slice(1)}.</p>
+        <p>A book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, run through the live pipeline on {phone.utc.slice(0, 10)}. Hosted SAM 3.1 tracked {p.track.tracked_frames} frames; the pipeline kept {p.segment.frames} frames of free fall ({p.segment.duration_s.toFixed(2)} s) and cut the landing frames. Scale: {p.scale.object}, measured with a ruler by the maker. The app cannot check a typed size, so it labels the result {p.scale.label}; the stated tolerance is inside the error bar. {p.clock[0].toUpperCase() + p.clock.slice(1)}.</p>
         <p className="fr-meta mono">Recorded cost {'$' + p.cost_usd} · {phone.seconds} s end to end · the video is a private owner clip, so only the tracked dots are public</p>
         <p><Link className="primary-link" href="/lab?editor=1&sample=own07">Replay this drop in 3D next to a SIMULATED ball at 9.81</Link></p>
       </div>

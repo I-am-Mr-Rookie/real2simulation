@@ -74,7 +74,7 @@ export default function Home() {
       </li>)}
     </ul>
     <p className="honesty-strip">{icon(h, 'alert', 18)}Imperfect inputs are welcome. Results show uncertainty and a "scale unverified" or "scale assumed" label when needed.</p>
-    <Link className="mg-hook card" href="/lab">{icon(h, 'compass', 18)}<strong>Guess the Gravity</strong><span>Watch a drop. Guess g. Then see the reveal.</span></Link>
+    <Link className="mg-hook card" href="/lab">{icon(h, 'compass', 18)}<strong>Guess the Gravity</strong><span>Mystery-g mode: a SIMULATED drop with g hidden. Guess, then reveal.</span></Link>
 
     <section className="show show-steps" aria-labelledby="how">
       <h2 id="how">How it works</h2>
