@@ -39,6 +39,16 @@ def test_list_start_and_fit_by_trajectory_id(store):
     assert not core.validate_call("start_experiment_track", {"file_id": "a" * 32, "target": "apple", "known_size": "apple diameter 7 cm"})[1]
 
 
+def test_meta_outage_reads_as_a_plain_retry_message(store, monkeypatch):
+    def down(*a):
+        raise RuntimeError("Meta Model API HTTP 404 on /responses")
+    monkeypatch.setattr(live_experiment, "run", down)
+    fid = handlers.list_files("alice", {})["files"][0]["id"]
+    tid = handlers.start_experiment_track("alice", {"file_id": fid, "target": "ball"})["trajectory_id"]
+    err = experiment.get(store, "alice", tid)["experiment"]["error"]
+    assert err["code"] == "TRACKER_UNAVAILABLE" and "(HTTP 404 on /responses)" in err["message"] and "Try Measure again" in err["message"]
+
+
 def test_fit_schema_accepts_trajectory_id_and_router_uses_real_handlers():
     args, issues = core.validate_call("fit", json.dumps({"trajectory_id": "abc123"}))
     assert not issues and args == {"trajectory_id": "abc123"}

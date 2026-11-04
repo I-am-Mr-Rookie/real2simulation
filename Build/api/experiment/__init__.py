@@ -80,6 +80,8 @@ def _job(store, owner, eid, req, run):
         _set(store, eid, "failed", err={"code": "UNPROCESSABLE", "message": str(exc)[:300]})
     except Exception as exc:  # tracker down; RuntimeError text is our own status-only message
         msg = str(exc)[:200] if isinstance(exc, RuntimeError) else type(exc).__name__
+        if msg.startswith("Meta Model API HTTP"):  # N89: say what happened and what to do, keep the status for support
+            msg = f"Meta's hosted SAM 3.1 could not be reached from our server ({msg[len('Meta Model API '):]}). Try Measure again in a minute."
         _set(store, eid, "failed", err={"code": "TRACKER_UNAVAILABLE", "message": msg})
 
 
