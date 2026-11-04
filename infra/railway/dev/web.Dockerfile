@@ -8,4 +8,6 @@ RUN npm install --no-audit --no-fund
 COPY Build /app/Build
 RUN npm run build
 ENV NODE_ENV=production
+ARG R2S_SOURCE_REVISION
+ENV RAILWAY_GIT_COMMIT_SHA=$R2S_SOURCE_REVISION
 CMD ["sh", "-c", "exec npm start -- --hostname 0.0.0.0 --port ${PORT:-8080}"]

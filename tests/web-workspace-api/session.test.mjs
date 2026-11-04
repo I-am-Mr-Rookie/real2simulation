@@ -31,7 +31,7 @@ test('F3 session key matches the workspace and changes with the verified account
 test('F3 session lookup fails closed when signed out, unconfigured, invalid, or Clerk fails', async () => {
   for (const overrides of [{ identity: null }, { identity: { isAuthenticated: false, userId: 'user_A' } }, { identity: { isAuthenticated: true, userId: '' } }, { available: false }, { error: true }]) {
     Object.assign(state, { available: true, identity: { isAuthenticated: true, userId: 'user_A' }, error: false }, overrides);
-    const r = await GET(); assert.equal(r.status, 401); assert.equal(r.headers.get('cache-control'), 'no-store');
-    assert.deepEqual(await r.json(), { error: { message: 'Sign in required.' } });
+    const r = await GET(); assert.equal(r.status, 200); assert.equal(r.headers.get('cache-control'), 'no-store');
+    assert.deepEqual(await r.json(), { userKey: null, error: { message: 'Sign in required.' } });
   }
 });

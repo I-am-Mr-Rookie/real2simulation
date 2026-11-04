@@ -76,7 +76,7 @@ export default function AgentPanel({ scene, onScene, load = true, cards = CARDS 
   useEffect(() => { const el = logRef.current; if (el) el.scrollTop = el.scrollHeight; }, [log, question, busy, report]);
   useEffect(() => { const el = inputRef.current; if (el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 160) + 'px'; } }, [text]);
   useEffect(() => {
-    fetch('/api/workspace/session', { cache: 'no-store' }).then((r) => { if (r.status === 401) setGuest(true); return r.ok ? r.json() : {}; }).then((b) => { if (b.userKey) { setUserKey(b.userKey); setModeState(readAgentMode(globalThis.localStorage, b.userKey)); } }).catch(() => {});
+    fetch('/api/workspace/session', { cache: 'no-store' }).then((r) => { if (r.status === 401) setGuest(true); return r.ok ? r.json() : {}; }).then((b) => { if (b.userKey) { setUserKey(b.userKey); setModeState(readAgentMode(globalThis.localStorage, b.userKey)); } else if (b.userKey === null) setGuest(true); }).catch(() => {});
     if (!load) return; // N22: a live room or experiment scene is open; do not replace it with the saved project scene
     call('/lab/scene').then((b) => b.scene.objects.length && onScene(validateScene(b.scene), 'Scene loaded from the project.')).catch(() => {});
     call('/lab/report').then((b) => setReport(b.markdown)).catch(() => {});
