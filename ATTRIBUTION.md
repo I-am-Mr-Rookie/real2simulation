@@ -49,7 +49,7 @@ never redistributed. Status key: **BLOCKED-for-public** = no public display unti
 | PJ03 | Ballistische Kurve | Rhetos; end card Mathe-AC Lernwerkstatt Aachen | https://commons.wikimedia.org/wiki/File:Ballistische_Kurve.webm | CC-BY-SA-4.0 | Local frame extraction, SAM 3.1 masks/tracks, derived plots; if shown, mark as adapted and share under CC BY-SA 4.0 | No. BLOCKED-for-public: embedded third-party end card (Mathe-AC Lernwerkstatt Aachen) licence not verified |
 
 Library (S18h): 2 real-clip descriptors (RM02, RM04; metadata only) and 13 project-authored **SIMULATED** entries (no footage).
-Demo script ([media/script/DEMO_SCRIPT_DRAFT.md](media/script/DEMO_SCRIPT_DRAFT.md)) references PD02, RM02 and ST03 only; Pexels
+The demo references PD02, RM02 and ST03 only; Pexels
 depicted-person limits apply to ST03 (woman) and PD02 (hall visitors).
 
 ### Unused clips (in clips.csv, not used or shown)

@@ -1,9 +1,4 @@
-# Local secrets
-.env
-.env.*
-!.env.example
-
-# Never stage credentials or private material
+# Secrets and credentials
 .env
 .env.*
 !.env.example
@@ -14,10 +9,76 @@
 credentials*.json
 service-account*.json
 secrets/
-test-data/private/
+*storage-state*.json
+*cookies*.json
+
+# Private or local-only material
+archive/
 uploads/
 user-uploads/
-archive/
+test-data/private/
+/Videos for Meta AI Hackathon/
+/evidence/owner/logo-sketches-2026-10-31/
+/evidence/S05/S05b/recovery8/attempt-*/local/
+/evidence/S13l/reconstruct/bundle/
+/Build Notes.pdf
+/Hackathon Credit Terms.pdf
+/Updated_Instructions_*.pdf
+/evidence/S13l/billing-*.raw
+/evidence/S13l/settlement/billing-read.*
+modal.fillout.com*.png
+/*.zip
+
+# Internal workflow and planning notes (kept locally, not published)
+/Run-System/
+/media/
+/demo-video/
+/Feedbacks/
+/scrollcraft/
+/data/
+/01 Research/
+/07 Project Reselection/
+/08 Real2Simulation/
+/AGENTS.md
+/CLAUDE.md
+/STATE.md
+/START.md
+/RUNS.md
+/QUEUE.md
+/ORCHESTRATOR.md
+/DECISIONS_LOG.md
+/OWNER_INSTRUCTIONS_*.md
+/prompt for *.md
+/tasks for the owner.md
+/GitHub Backup.md
+/Event Rules and Participant Guide.md
+/JUDGE_RUBRIC.md
+/API_BUDGET.md
+evidence/**/REPORT.md
+evidence/**/REVIEW.md
+evidence/**/REVIEW_PACKET.md
+evidence/**/FINDINGS.md
+evidence/**/PLAN.md
+evidence/**/RECHECK*.md
+evidence/**/HANDOFF*.md
+evidence/**/JUDGE-REVIEW*.md
+evidence/**/worker.json
+evidence/**/*prompt*
+/evidence/reviews/*
+!/evidence/reviews/R-RS/
+/evidence/reviews/R-RS/*
+!/evidence/reviews/R-RS/recheck3/
+/=
+/undefined/
+
+# Licensed input videos stay local (sources and licences are listed in clips.csv)
+test-data/public/**/*.mp4
+test-data/public/**/*.m4v
+test-data/public/**/*.webm
+test-data/public/**/*.mov
+test-data/public/**/*.mkv
+test-data/public/**/*.avi
+
 # Runtime and generated output
 node_modules/
 .venv/
@@ -28,54 +89,6 @@ dist/
 coverage/
 *.log
 .worktrees/
-Runs/*/scratch/
-Run-System/Runs/
-Run-System/__pycache__/
-Run-System/tests/__pycache__/
-
-# Owner/private/context-only material: never stage
-archive/
-.env
-Build Notes.pdf
-Hackathon Credit Terms.pdf
-modal.fillout.com*.png
-.worktrees/
-# Blank template is safe
-!.env.example
-
-# Licensed input videos stay local; original files are in the private backup release.
-# Keep source, clip manifests, attribution and other evidence browsable in normal Git.
-test-data/public/**/*.mp4
-test-data/public/**/*.m4v
-test-data/public/**/*.webm
-test-data/public/**/*.mov
-test-data/public/**/*.mkv
-test-data/public/**/*.avi
-/evidence/S05/S05b/recovery8/attempt-*/local/
-# S25c-recommended (controller, Oct31): local browser/tool scratch and the owner's private instruction PDF.
 .playwright-mcp/
 .tmp-*/
-Updated_Instructions_*.pdf
-*storage-state*.json
-*cookies*.json
-# Owner-recorded raw drop clips (Oct31, ~460 MB, faces in frames): local only, never commit.
-/Videos for Meta AI Hackathon/
-media/capture/**/*.mp4
-media/capture/**/*.webm
-
-# raw voice-over stays local
-media/narration/takes/
-media/narration/**/*.m4a
-media/narration/**/*.wav
-media/narration/**/*.mp3
-media/narration/**/*.aac
-media/narration/**/*.ogg
-media/narration/**/*.flac
-# S13l RM04 MapAnything bundle (scene.json, points.ply, points-mobile.ply): local only; shas in Build/pipeline/recorded/.
-/evidence/S13l/reconstruct/bundle/
-# Owner logo sketch photos (private originals; never commit or upload)
-/evidence/owner/logo-sketches-2026-10-31/
-media/edit/**/*.mp4
-media/edit/**/*.wav
-media/edit/**/*.m4a
-media/edit/**/*.mp3
+.cloudflare/

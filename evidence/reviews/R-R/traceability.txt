@@ -1,2 +1,0 @@
-Receipt/frame hash equality: 3/3; actual local NPZ matches: 3 /3
-Scale refs: 0 /3; no new physical evidence

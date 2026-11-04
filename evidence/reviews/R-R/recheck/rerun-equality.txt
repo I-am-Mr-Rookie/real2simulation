@@ -1,2 +1,0 @@
-Producer RESULT exact JSON equality: True (3/3)
-Gate R exact JSON equality: True; real verdict FAIL

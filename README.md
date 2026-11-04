@@ -63,7 +63,7 @@ Physical or calibrated accuracy is **not claimed** anywhere. One run per measure
 | Worker | [Build/worker/health](Build/worker/health/) (FastAPI) | Worker health process; readiness stays 503 without a job heartbeat. |
 | GPU jobs | [Build/gpu](Build/gpu/), [Build/reconstruction](Build/reconstruction/), [Build/pipeline](Build/pipeline/) | Modal GPU jobs: SAM 3.1 segmentation/tracking and scene reconstruction, with per-job cost logs and ledgers. |
 | Fitter / simulator / prediction | [Build/fitter](Build/fitter/), [Build/simulator](Build/simulator/) (Rapier), [Build/real2sim](Build/real2sim/), [Build/lab](Build/lab/) | Fit motion parameters, simulate, predict the held-out suffix. Numbers come only from fitter/simulator output. |
-| Guardrails | [Build/guardrails](Build/guardrails/) | Spend admission, reservations, settlement and failover; routine Meta stop and GPU caps (see [API_BUDGET.md](API_BUDGET.md)). |
+| Guardrails | [Build/guardrails](Build/guardrails/) | Spend admission, reservations, settlement and failover; routine Meta API stop and daily GPU caps. |
 | Library | [Build/library](Build/library/) | Static snapshot of licensed clips and simulated examples with credits ([credits.py](Build/library/credits.py)). |
 | Agent | [Build/agent](Build/agent/), [Build/sidebar-tools](Build/sidebar-tools/) | Muse-based interview/spec agent with traced tool numbers; sidebar library search. |
 | Benchmark | [Build/benchmark](Build/benchmark/) | Manifest, leakage check, About data generator. |
@@ -109,7 +109,7 @@ account and stay within the guardrail caps.
 | `facebook/sam3.1` | Modal GPU | Segmentation/tracking on licensed scenes | [raw-result.json](evidence/S13/S13h/live/segment/raw-result.json), [SAM licence](evidence/S05/upstream/sam_license.txt) |
 
 - **Open-weight bonus: NOT claimed.** The sidebar Meta Spark fallback is an explicit-config refusal, not a
-  working route (S16h).
+  working route.
 - Muse token dollar cost is UNAVAILABLE (tokens measured; pricing unverified). Hosted SAM 3.1 run costs shown in the app are derived from the per-frame price and frames processed, not a reconciled bill.
 
 ## Event work only
@@ -122,12 +122,7 @@ event work.
 
 - Footage and third-party libraries: [ATTRIBUTION.md](ATTRIBUTION.md); clip licence ledger: [clips.csv](clips.csv).
 - Only NASA public domain, Wikimedia Commons (CC BY / CC BY-SA / PD / CC0), Pexels and Pixabay clips are used.
-- Project source licence: [MIT](LICENSE) (owner choice, Q18). It covers this project's own code and docs only. Third-party footage ([clips.csv](clips.csv), [ATTRIBUTION.md](ATTRIBUTION.md)), model weights/APIs (Meta Muse, SAM 3.1, etc.) and dependencies keep their own licences/terms.
-
-## Development controls
-
-Run system and owner checklists: [START.md](START.md), [RUNS.md](RUNS.md), [QUEUE.md](QUEUE.md),
-[DECISIONS_LOG.md](DECISIONS_LOG.md), [JUDGE_RUBRIC.md](JUDGE_RUBRIC.md), [GitHub Backup.md](GitHub%20Backup.md).
+- Project source licence: [MIT](LICENSE). It covers this project's own code and docs only. Third-party footage ([clips.csv](clips.csv), [ATTRIBUTION.md](ATTRIBUTION.md)), model weights/APIs (Meta Muse, SAM 3.1, etc.) and dependencies keep their own licences/terms.
 
 ## Credits
 

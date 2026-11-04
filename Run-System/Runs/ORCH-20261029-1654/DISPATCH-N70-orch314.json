@@ -1,7 +1,0 @@
-{
- "id": "N70-orch314",
- "model": "gpt-6.1-sol",
- "effort": "high",
- "minutes": 30,
- "prompt": "Run N70-orch314. Read Run-System/WORKER_CONTRACT.md first and follow it. Model gpt-6.1-sol/high.\nTimebox: issued 2026-11-02T19:39:00+00:00; deadline 2026-11-02T20:09:00+00:00 (Dhaka 2026-11-03T02:09:00+06:00); cutoff 2026-11-02T20:04:00+00:00.\nBenchmark muse-wonder-1.0 as a lab-agent model before it goes into the picker (Koushik, Nov 3: \"go Wonder\"). Reuse evidence/N51/benchmark.py and PROTOCOL.md with the same 10 real lab requests, and run them on muse-wonder-1.0 through the existing Build/agent/core.py request path (Meta Model API /v1/responses). Try effort high, plus max only if high is unreliable. Add the model in the smallest way the benchmark needs (for example a REASONING_EFFORT entry), not yet in the picker or UI. For each request, measure: valid tool call yes/no, number-guard blocks, reply latency, input/output tokens and cost (Meta's list price, citing the source URL or the API usage fields; if no price is published, say so and use tokens). Compare in one table with the N51 numbers for muse-spark-1.3, Muse Open and Sol. Hard cap $3 total; ledger every call the way N51 did. Verdict in evidence/N70/MEASUREMENTS.md: ADD (tool-call validity at least Spark's, latency under about 60 s p50), ADD AS ESCALATION ONLY, or DO NOT ADD, plus the measured cost per turn. Tests: tests/agent/test_core.py and tests/agent/test_fallback.py. No deploys. Never print key values.\n[@Browser](plugin://browser@openai-bundled)"
-}
