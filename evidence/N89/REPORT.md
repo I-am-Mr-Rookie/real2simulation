@@ -64,6 +64,15 @@ Main a1258972 (pushed). Live: https://real2simulation.rookiecoders.tech (web 83d
 - Verified: pytest pipeline 69, agent 214, api-workspace 32; node web-private + lab-editor 95; next build; secret scan clean. Deployed api 3ed5ac8e and web 7b9ce46e from 6f6a5090, SUCCESS, /api/version 6f6a5090. Live Playwright signed out, 24 page checks at 320/375/768/1440: no overflow, no page errors, no em dashes; live replay auto-pause at 1440 and 375.
 - Paid: 24 hosted SAM runs (two sweeps), about 0.40 USD (ledger).
 
+## Round 6 (Nov 4, 22:12 to 22:50 Dhaka; judge on b60fdc6e, fixes in 02a939b9, 0290c5ca, 227ee876)
+- Judge round 6 (Claude Opus high, fresh context): 72.25, no change. evidence/N89/JUDGE-REVIEW-6.md. P1: the replay said the fitted g matched the dots worse than 9.81, because the floor sat right under the last dot so both balls were stopped when compared.
+- Replay: the lowest dot now sits 0.5 m above the floor and the auto-pause lands on the nearest physics step. Local check at 1440 and 375: 5.4 cm gap at 9.81, 0.4 cm at the fitted 9.07. Test asserts fitted g within 1 cm and 9.81 off by more than 3 times that and over 3 cm.
+- Phone framing leaves room below the track; status panel capped on phones; OWN07 is described as one of 12 with the sweep median; sweep chart text larger.
+- Meta proxy (Build/gpu/meta_proxy.py) moved from ap-south to us-west: ap-south dropped request bodies over about 300 KB with HTTP 408, which broke DEV phone uploads. After deploy: 9 models listed, 385 KB and 6.4 MB uploads return 200.
+- Recorded Muse turn on DEV (fixture account) on the 1080p OWN07 file: list_files, start_experiment_track, fit x3, result 9.06 +/- 0.63 (evidence/N89/muse-measures-book.json). The home agent card uses it.
+- /api/version on the product domain now returns the web and API revisions (it returned the HTML shell). Signed-out session lookup returns 200 with userKey null, so the public editor no longer logs a 401.
+- Verified: node web-workspace-api + lab-editor + workspace 243 pass; next build; secret scan clean. infra stage test: 1 pre-existing failure (API fixture lacks the RM04 sample asset), web staging unaffected.
+
 ## Verified
 - Node suites lab-editor 59, workspace 172, web-private 30, web-guide 3, web-library 10, shell-workspace 39, viewer 49 pass; api-storage pytest 43 pass; next build pass. tests/lab + simulator: 4 failures pre-existing on c9c00135 (R14 pendulum controls, ramp/pendulum hash oracle), untouched.
 - Live headed Playwright on the custom domain: featured run renders, sample replay loads gravity -2.33, guest fit gives -9.8100 m/s^2 from 76 of 317 samples (first impact cut), no page errors. Screenshots in evidence/N89/shots/.
