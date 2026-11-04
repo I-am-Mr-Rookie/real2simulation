@@ -1,12 +1,15 @@
 """N07 real agent tool handlers (owner, args) -> JSON: list_files, start_experiment_track, fit by trajectory id;
 N21 start_room_build -> the N08 POST /internal/workspace/rooms endpoint (same store, validation and GPU queue)."""
 import functools
+import time
 
 from fastapi import HTTPException
 
 from Build.agent import core
 from Build.api import experiment
 from Build.api.storage.files import _default as _store
+
+FIT_WAIT_S = 90  # N89: Muse called fit while tracking ran and got "not finished"; wait here instead of a wasted model step
 
 
 def _safe(fn):
@@ -31,13 +34,17 @@ def start_experiment_track(owner, args):
     e = experiment.start(_store(), owner, {"file_id": args["file_id"], "target_text": args["target"],
                                            "known_size": args.get("known_size")})["experiment"]
     return {"status": e["status"], "trajectory_id": e["id"], "project_id": e["project_id"],
-            "detail": "tracking runs in the background; call fit with this trajectory_id when it is done"}
+            "detail": "tracking runs in the background; call fit with this trajectory_id (fit waits up to 90 s for it)"}
 
 
 @_safe
 def fit(owner, args):
     if "trajectory_id" not in args:
         return core.DEFAULT_HANDLERS["fit"](owner, args)  # simulated lab arrays keep the N05 path
+    end = time.monotonic() + FIT_WAIT_S
+    while (experiment.get(_store(), owner, args["trajectory_id"])["experiment"]["status"] in ("queued", "running")
+           and time.monotonic() < end):
+        time.sleep(2)
     return experiment.refit(_store(), owner, args["trajectory_id"], args.get("known_size"))
 
 

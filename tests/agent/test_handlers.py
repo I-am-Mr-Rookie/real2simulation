@@ -39,6 +39,20 @@ def test_list_start_and_fit_by_trajectory_id(store):
     assert not core.validate_call("start_experiment_track", {"file_id": "a" * 32, "target": "apple", "known_size": "apple diameter 7 cm"})[1]
 
 
+def test_fit_waits_for_a_running_track(store, monkeypatch):
+    jobs = []
+    monkeypatch.setattr(experiment, "_submit", lambda fn, *a: jobs.append((fn, a)))
+    monkeypatch.setattr(handlers.time, "sleep", lambda s: [fn(*a) for fn, a in jobs])  # the track finishes while fit waits
+    fid = handlers.list_files("alice", {})["files"][0]["id"]
+    started = handlers.start_experiment_track("alice", {"file_id": fid, "target": "ball"})
+    assert started["status"] == "queued"
+    assert handlers.fit("alice", {"trajectory_id": started["trajectory_id"]})["motion"] == "free_fall"
+    monkeypatch.setattr(handlers, "FIT_WAIT_S", 0)
+    later = handlers.start_experiment_track("alice", {"file_id": fid, "target": "ball"})
+    jobs.clear()
+    assert "not finished" in handlers.fit("alice", {"trajectory_id": later["trajectory_id"]})["detail"]
+
+
 def test_meta_outage_reads_as_a_plain_retry_message(store, monkeypatch):
     def down(*a):
         raise RuntimeError("Meta Model API HTTP 404 on /responses")
