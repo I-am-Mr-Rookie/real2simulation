@@ -35,24 +35,26 @@
       "template": "ramp",
       "seed": 42,
       "replay": {
-        "replayHash": "fca3b964a0651bbc7ed03ec5956d52b13938117cbd0c7f01e0ee0098392eb4a4",
-        "traceHash": "ba310b63f72b639e44c698317aa865fe2beb540c163fda49f5a4452879dd0470",
+        "replayHash": "c9664eddc837cc53e51517daa48db6a8b824001e0bc18cf356807675cb83476d",
+        "traceHash": "8b0e6462a5d7f7d9e63845221b1a23781ca78aeed36c21478045ac0b5768f67c",
         "deterministic": true,
         "seedBound": true,
         "samples": 201,
-        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed",
+        "regenerated": "N89 2026-11-04: after the intentional R15 model correction (b37f7b8f: small-angle linearized pendulum, S08 ramp order); see Run-System/Runs/R15-numerics/REPORT.md"
       }
     },
     {
       "template": "pendulum",
       "seed": 42,
       "replay": {
-        "replayHash": "fd5195cc1223a35bb884b1196263e34a78a05c6c1139251c5df39267885c00ca",
-        "traceHash": "f60a8a6f873dd07ebf8f9e77eefc6865640d6030c91623623a7d9b053757f173",
+        "replayHash": "67bc4d41926679db06d83283870ba1a6634ca8a45ea40a7ce0df21399d7d5987",
+        "traceHash": "d796559a6165a33d4b547496645b7f27a4cc367220d74bd11c933f26d2f81c42",
         "deterministic": true,
         "seedBound": true,
         "samples": 1001,
-        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed"
+        "seedSemantics": "seed binds replay identity; deterministic noiseless physics does not randomize by seed",
+        "regenerated": "N89 2026-11-04: after the intentional R15 model correction (b37f7b8f: small-angle linearized pendulum, S08 ramp order); see Run-System/Runs/R15-numerics/REPORT.md"
       }
     }
   ]

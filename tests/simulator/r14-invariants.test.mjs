@@ -60,7 +60,10 @@ for (const [name, { artifact, oracle }] of Object.entries(cases).filter(([name])
     if (artifact.spec.template === 'pendulum') {
       const origin = artifact.spec.placement.origin.value, length = artifact.spec.parameters.length.value;
       const g = artifact.spec.environment.gravity.value;
-      const energy = (sample) => 0.5 * (length * sample.angular_velocity_rad_s) ** 2 + 2 * g * length * Math.sin(sample.angle_rad / 2) ** 2;
+      // N89: conserve the energy of the model the engine selected (R15: amplitude <= 0.1 rad is the S08 small-angle ODE)
+      const energy = out.analyticComparison?.model === 'small-angle-linearized'
+        ? (sample) => 0.5 * (length * sample.angular_velocity_rad_s) ** 2 + 0.5 * g * length * sample.angle_rad ** 2
+        : (sample) => 0.5 * (length * sample.angular_velocity_rad_s) ** 2 + 2 * g * length * Math.sin(sample.angle_rad / 2) ** 2;
       const initialEnergy = energy(out.samples[0]);
       for (const sample of out.samples) {
         const r = sample.position_m.map((x, i) => x - origin[i]);
