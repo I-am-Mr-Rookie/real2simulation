@@ -7,7 +7,7 @@ Built solo by Koushik Sadhak Jeet (indie developer track) for the Meta Global AI
 
 - **Live product:** [real2simulation.rookiecoders.tech](https://real2simulation.rookiecoders.tech)
   (mirror: [real2simulation.up.railway.app](https://real2simulation.up.railway.app)).
-- **Demo video:** PENDING.
+- **Demo video:** linked on the submission page (recorded on this build).
 
 ## Try it in 60 seconds (no video needed)
 
@@ -19,6 +19,7 @@ Built solo by Koushik Sadhak Jeet (indie developer track) for the Meta Global AI
 3. Open the [phone book drop replay](https://real2simulation.rookiecoders.tech/lab?editor=1&sample=own07): a book
    filmed on a phone at 30 fps, tracked by hosted SAM 3.1 and fitted live, measures 9.07 +/- 0.62 m/s^2, 1.2 sigma from
    Earth g (scale from a ruler-measured book width; [evidence](evidence/N89/live-own07-book-drop.json)). The clip itself is private; the track is public.
+   It is one of 12 drops of the same book (median 9.03, all shown on the home page): repeatable, but still reading low ([evidence](evidence/N89/own-sweep-refit/summary.json)).
 4. In your workspace, the seeded SAMPLE project shows a real classroom video reconstructed into a lab and a real
    falling-apple clip tracked by SAM 3.1 and fitted with uncertainty. Upload your own clip to run the same pipeline live.
 

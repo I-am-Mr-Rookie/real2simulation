@@ -42,7 +42,7 @@ test('featured phone drop is a verbatim copy of the N89 OWN07 live result, near 
 
 test('public OWN07 replay: at the fitted g the SIMULATED ball lands on the last MEASURED dot, at 9.81 it runs ahead', async () => {
   const sweep = await read('Build/web/src/app/(public)/home/featured-own-sweep.json');
-  assert.deepEqual(sweep, await read('evidence/N89/own-sweep/summary.json'));
+  assert.deepEqual(sweep, await read('evidence/N89/own-sweep-refit/summary.json'));
   assert.equal(sweep.rows.length, 12); // every owner clip, none dropped
   assert.deepEqual(sweep.rows.map((x) => x.clip), Array.from({ length: 12 }, (_, i) => 'OWN' + String(i + 1).padStart(2, '0')));
   const r = (await read('Build/web/src/app/(public)/home/featured-own07.json')).result, tEnd = r.trajectory.t_s.at(-1);

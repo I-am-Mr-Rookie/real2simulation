@@ -1,25 +1,27 @@
 {
  "target_text": "yellow book",
  "known_size": "book width 20.3 cm +/- 0.2 cm",
- "rule": "all 12 owner clips, one run each, none dropped",
+ "rule": "all 12 owner clips, none dropped; refit of the round 5 live SAM 3.1 tracks (no new calls) with the landing-frame check",
  "rows": [
   {
    "clip": "OWN01",
    "status": "done",
    "result_status": "ok",
    "motion": "free_fall",
-   "value": 9.818629338624682,
-   "sigma": 0.7092691582353285,
+   "value": 9.067362523998735,
+   "sigma": 0.6005037348264397,
    "unit": "m/s^2",
    "segment": {
     "first_frame": 47,
-    "last_frame": 58,
-    "frames": 12,
-    "duration_s": 0.36666699999999985
+    "last_frame": 57,
+    "frames": 11,
+    "duration_s": 0.333334
    },
-   "rmse_px_y": 8.90521341842115,
+   "rmse_px_y": 3.3945948427547235,
    "reason": null,
-   "cost_usd": 0.0178
+   "cost_usd": 0.0178,
+   "round5_value": 9.818629338624682,
+   "round5_last_frame": 58
   },
   {
    "clip": "OWN02",
@@ -37,15 +39,37 @@
    },
    "rmse_px_y": 3.8475499149697168,
    "reason": null,
-   "cost_usd": 0.0172
+   "cost_usd": 0.0172,
+   "round5_value": 8.717716183299638,
+   "round5_last_frame": 58
   },
   {
    "clip": "OWN03",
    "status": "done",
    "result_status": "ok",
    "motion": "free_fall",
-   "value": 8.166575637571318,
-   "sigma": 0.2872815754707238,
+   "value": 8.622215813003281,
+   "sigma": 0.2519972161777774,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 45,
+    "last_frame": 55,
+    "frames": 11,
+    "duration_s": 0.3333330000000001
+   },
+   "rmse_px_y": 4.239439120557527,
+   "reason": null,
+   "cost_usd": 0.0166,
+   "round5_value": 8.166575637571318,
+   "round5_last_frame": 56
+  },
+  {
+   "clip": "OWN04",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "free_fall",
+   "value": 9.188476315165737,
+   "sigma": 0.28809543575841406,
    "unit": "m/s^2",
    "segment": {
     "first_frame": 45,
@@ -53,45 +77,31 @@
     "frames": 12,
     "duration_s": 0.36666600000000016
    },
-   "rmse_px_y": 6.670745653402274,
+   "rmse_px_y": 3.9111405840415197,
    "reason": null,
-   "cost_usd": 0.0166
-  },
-  {
-   "clip": "OWN04",
-   "status": "done",
-   "result_status": "ok",
-   "motion": "free_fall",
-   "value": 8.932314587614222,
-   "sigma": 0.29956669505970823,
-   "unit": "m/s^2",
-   "segment": {
-    "first_frame": 45,
-    "last_frame": 57,
-    "frames": 13,
-    "duration_s": 0.40000000000000013
-   },
-   "rmse_px_y": 5.098346765276841,
-   "reason": null,
-   "cost_usd": 0.0166
+   "cost_usd": 0.0166,
+   "round5_value": 8.932314587614222,
+   "round5_last_frame": 57
   },
   {
    "clip": "OWN05",
    "status": "done",
    "result_status": "ok",
    "motion": "free_fall",
-   "value": 8.454990619615115,
-   "sigma": 0.5057912006171627,
+   "value": 9.223135111837689,
+   "sigma": 0.432314405110393,
    "unit": "m/s^2",
    "segment": {
     "first_frame": 44,
-    "last_frame": 56,
-    "frames": 13,
-    "duration_s": 0.40000000000000013
+    "last_frame": 55,
+    "frames": 12,
+    "duration_s": 0.3666670000000001
    },
-   "rmse_px_y": 10.486004252088607,
+   "rmse_px_y": 3.1675022865557954,
    "reason": null,
-   "cost_usd": 0.0172
+   "cost_usd": 0.0172,
+   "round5_value": 8.454990619615115,
+   "round5_last_frame": 56
   },
   {
    "clip": "OWN06",
@@ -109,7 +119,9 @@
    },
    "rmse_px_y": 4.228267005332036,
    "reason": null,
-   "cost_usd": 0.0172
+   "cost_usd": 0.0172,
+   "round5_value": 7.556244001035723,
+   "round5_last_frame": 53
   },
   {
    "clip": "OWN07",
@@ -127,7 +139,9 @@
    },
    "rmse_px_y": 3.152942748135777,
    "reason": null,
-   "cost_usd": 0.0166
+   "cost_usd": 0.0166,
+   "round5_value": 9.058391884691973,
+   "round5_last_frame": 57
   },
   {
    "clip": "OWN08",
@@ -145,61 +159,69 @@
    },
    "rmse_px_y": 2.468421950955317,
    "reason": null,
-   "cost_usd": 0.0154
+   "cost_usd": 0.0154,
+   "round5_value": 9.035123239496905,
+   "round5_last_frame": 46
   },
   {
    "clip": "OWN09",
    "status": "done",
    "result_status": "ok",
    "motion": "free_fall",
-   "value": 7.240134805647638,
-   "sigma": 0.6332635711851082,
+   "value": 7.780011909452062,
+   "sigma": 0.6278030216800667,
    "unit": "m/s^2",
    "segment": {
     "first_frame": 9,
-    "last_frame": 21,
-    "frames": 13,
-    "duration_s": 0.39999999999999997
+    "last_frame": 20,
+    "frames": 12,
+    "duration_s": 0.366666
    },
-   "rmse_px_y": 11.773952079867017,
+   "rmse_px_y": 8.313209020776506,
    "reason": null,
-   "cost_usd": 0.0118
+   "cost_usd": 0.0118,
+   "round5_value": 7.240134805647638,
+   "round5_last_frame": 21
   },
   {
    "clip": "OWN10",
    "status": "done",
    "result_status": "ok",
    "motion": "free_fall",
-   "value": 8.466080552230405,
-   "sigma": 0.5775604493458885,
+   "value": 8.928586704222896,
+   "sigma": 0.5953753514478861,
    "unit": "m/s^2",
    "segment": {
     "first_frame": 45,
-    "last_frame": 57,
-    "frames": 13,
-    "duration_s": 0.40000000000000013
+    "last_frame": 56,
+    "frames": 12,
+    "duration_s": 0.36666600000000016
    },
-   "rmse_px_y": 6.203708205015342,
+   "rmse_px_y": 3.375086356774789,
    "reason": null,
-   "cost_usd": 0.0172
+   "cost_usd": 0.0172,
+   "round5_value": 8.466080552230405,
+   "round5_last_frame": 57
   },
   {
    "clip": "OWN11",
    "status": "done",
    "result_status": "ok",
    "motion": "free_fall",
-   "value": 8.619334886213512,
-   "sigma": 0.5806998188064041,
+   "value": 9.033219855988063,
+   "sigma": 0.5929129377842273,
    "unit": "m/s^2",
    "segment": {
     "first_frame": 45,
-    "last_frame": 57,
-    "frames": 13,
-    "duration_s": 0.40000000000000013
+    "last_frame": 56,
+    "frames": 12,
+    "duration_s": 0.36666600000000016
    },
-   "rmse_px_y": 2.608595947380596,
+   "rmse_px_y": 1.1842211551948068,
    "reason": null,
-   "cost_usd": 0.0172
+   "cost_usd": 0.0172,
+   "round5_value": 8.619334886213512,
+   "round5_last_frame": 57
   },
   {
    "clip": "OWN12",

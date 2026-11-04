@@ -512,6 +512,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const stop = () => {
     const st = api.current?.state;
     if (st) { st.playing = false; st.sim?.free(); st.sim = null; }
+    if (st?.unzoom) { const f = st.unzoom; st.unzoom = null; f(); } // undo the auto-pause close-up
     setRun('stopped'); setTime(0); setCursor(null); setTraceFit(null);
     setMessage('Ready. Press Play to start again. ' + (src?.kind === 'experiment' ? 'The ball is SIMULATED; the dots stay RECORDED and MEASURED.' : 'Everything here is SIMULATED.'));
   };
@@ -587,11 +588,15 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     a.three.add(a.state.track);
     // every dot and the ball start, clear of the toolbar; one empty point below keeps the landing above the status text
     const ys = t.track.map((q) => q[1]), span = Math.max(...ys) - Math.min(...ys);
-    frameTo([...t.track.flat(), ...t.scene.objects[0].position, t.track.at(-1)[0], Math.min(...ys) - (innerWidth < 700 ? 1.2 : 0.6) * span, 0], 0, 1.3);
+    const frameAll = () => frameTo([...t.track.flat(), ...t.scene.objects[0].position, t.track.at(-1)[0], Math.min(...ys) - (innerWidth < 700 ? 1.2 : 0.6) * span, 0], 0, 1.3);
+    frameAll();
     const last = t.track.at(-1);
     a.state.trackEnd = result.trajectory.t_s.at(-1);
     a.state.onAutoPause = (poses) => {
       const y = poses['ball-1']?.p?.[1], cm = Number.isFinite(y) ? Math.abs(y - last[1]) * (t.metric ? 100 : 1000) : null;
+      // N89: zoom to the last dot and the ball so a few cm show on a phone; Reset (stop) restores the full view.
+      // extra room below keeps the ball above the status text on phones
+      if (cm != null && t.metric) { const pad = Math.max(0.1, Math.abs(y - last[1]) * 2); frameTo([...last, ...poses['ball-1'].p, last[0], Math.max(y, last[1]) + pad, 0, last[0], Math.min(y, last[1]) - (innerWidth < 700 ? 3 : 1) * pad, 0], 0, 1.3); a.state.unzoom = frameAll; }
       setRun('paused');
       setMessage('Paused at t = ' + a.state.trackEnd.toFixed(2) + ' s, the last tracked frame. ' + (cm == null ? '' : 'The SIMULATED ball is ' + cm.toFixed(1) + (t.metric ? ' cm ' : ' mm (1 px = 1 mm) ')
         + (y < last[1] ? 'below' : 'above') + ' the last dot at gravity ' + (-sceneRef.current.gravity[1]) + '. ') + 'Change Gravity y and press Reset, then Play, to compare; or Resume.');
@@ -697,7 +702,9 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const live = run === 'playing' || run === 'paused';
   const selTrace = live && sel?.sensor ? api.current?.state.sim?.trace(sel.id) : null;
   const recordedTrace = sourceResult?.trajectory;
-  const graphTrace = selTrace ?? (live ? api.current?.state.sim?.traces()[0] : recordedTrace ? { object_id: 'Tracked object', label: 'MEASURED', units: { value: recordedTrace.unit }, samples: recordedTrace.t_s.map((t, i) => ({ t, value: recordedTrace.y[i] })) } : null);
+  // N89: the dots' own lifted frame (height above the floor), so this reading and the SIMULATED ball's y agree.
+  const recordedTrack = recordedTrace && trajectoryScene(sourceResult)?.track;
+  const graphTrace = selTrace ?? (live ? api.current?.state.sim?.traces()[0] : recordedTrace ? { object_id: 'Tracked object', label: 'MEASURED', units: { value: recordedTrack ? 'm' : recordedTrace.unit }, samples: recordedTrace.t_s.map((t, i) => ({ t, value: recordedTrack ? recordedTrack[i][1] : recordedTrace.y[i] })) } : null);
   const samples = graphTrace?.samples ?? [], seek = Math.min(cursor ?? samples.length - 1, samples.length - 1);
   const fitResult = traceFit ?? (sourceResult?.quantity ? { ...sourceResult.quantity, label: (sourceResult.sample ? 'RECORDED sample / ' : '') + (sourceResult.track?.label ?? 'MEASURED'), caveat: sourceResult.quantity.label + '. 1 sigma uncertainty. ' + (sourceResult.clock ?? '') } : null);
   const title = src?.kind === 'room' ? 'Your room lab' : src?.kind === 'experiment' ? 'Experiment replay' : 'Virtual lab';

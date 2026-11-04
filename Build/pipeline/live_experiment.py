@@ -13,7 +13,7 @@ import statistics
 import subprocess
 
 from Build.api.workspace.analysis import user_scale
-from Build.fitter import FitError, jacobian_covariance, select_model
+from Build.fitter import FitError, fit_least_squares, jacobian_covariance, select_model
 from Build.measurement import hosted_sam
 
 TRACK_LABEL = "MEASURED: hosted SAM 3.1 box centres in image pixels"
@@ -117,6 +117,21 @@ def moving_segment(frames):
     return [frames[a]] + [frames[i + 1] for i in range(a, b + 1) if moving[i]]
 
 
+def drop_contact(seg):
+    """Drop the last frame when it is already the landing: contact falls inside the final frame interval, so that step
+    slows by less than the 15% rule catches, and the table edge cuts the box. Test: the parabola through the other
+    frames misses it by over 3 residual sigmas (N89 round 7: 7 of 11 owner drops). One frame only.
+    """
+    if len(seg) < MIN_POINTS + 2:
+        return seg
+    try:
+        fit = fit_least_squares([f[1] for f in seg[:-1]], [f[3] for f in seg[:-1]], 2)
+    except FitError:
+        return seg
+    s = max(1.0, math.sqrt(fit.rss / fit.dof))  # 1 px floor: a sub-pixel miss on a clean track is never a landing
+    return seg[:-1] if abs(seg[-1][3] - fit.predict([seg[-1][1]])[0]) > 3 * s else seg
+
+
 def _reversals(values, jitter):
     signs = [d > 0 for d in (b - a for a, b in zip(values, values[1:])) if abs(d) > jitter]
     return sum(a != b for a, b in zip(signs, signs[1:]))
@@ -188,7 +203,7 @@ def analyse(track, known_size=None, segment=None):
         label = f"{USER_SCALE}: {known_size.strip()[:80]}" if s["status"] == "declared" else s["label"]
     if len(frames) < MIN_POINTS:
         return _abstain(frames, label, f"only {len(frames)} tracked frames; need {MIN_POINTS}")
-    seg = [f for f in frames if segment[0] <= f[0] <= segment[1]] if segment else moving_segment(frames)
+    seg = [f for f in frames if segment[0] <= f[0] <= segment[1]] if segment else drop_contact(moving_segment(frames))
     if len(seg) < MIN_POINTS:
         return _abstain(frames, label, f"moving segment has {len(seg)} frames; need {MIN_POINTS}. The object barely"
                         " moved: click the falling object itself, or type its name")

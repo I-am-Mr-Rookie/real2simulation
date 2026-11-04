@@ -14,7 +14,7 @@ const r = run.result, q = r.quantity, g = chartGeom(r), check = gravityCheck(r);
 // evidence/N89/live-own07-book-drop.json, the live pipeline output after the impact-frame fix.
 const p = phone.result, pq = p.quantity, pg = chartGeom(p), pcheck = gravityCheck(p);
 // N89: all 12 owner phone drops through the same live pipeline, one run each, none dropped (verbatim copy of
-// evidence/N89/own-sweep/summary.json). Stats are computed here from those rows, never typed.
+// evidence/N89/own-sweep-refit/summary.json: the stored SAM tracks refit with the landing-frame check). Stats are computed here from those rows, never typed.
 const measured = sweep.rows.filter((x) => x.motion === 'free_fall' && x.unit === 'm/s^2');
 const vals = measured.map((x) => x.value).sort((a, b) => a - b), mid = vals.length >> 1;
 const median = vals.length % 2 ? vals[mid] : (vals[mid - 1] + vals[mid]) / 2;
@@ -61,7 +61,8 @@ export default function FeaturedRun() {
         <h3>Twelve phone drops, every result shown</h3>
         <p className="fr-value"><strong>{measured.length} of {sweep.rows.length}</strong> gave a free-fall fit: median {median.toFixed(2)} m/s², spread {sd.toFixed(2)} (1 sd), range {vals[0].toFixed(2)} to {vals.at(-1).toFixed(2)}.</p>
         <p>The same book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, each clip run once through the live pipeline (hosted SAM 3.1 plus the fitter) with the same prompt "{sweep.target_text}" and the ruler-measured {sweep.known_size}. None was left out.</p>
-        <p>Honest reading: the method is repeatable, but it reads low. {below} of {measured.length} results sit more than 2 sigma below 9.81, so the error bars miss a systematic error we have not yet explained. Treat a phone result as a classroom estimate, not a calibrated g.</p>
+        <p>A first pass read lower (median 8.62): in 7 of 11 clips the last kept frame was already the landing. The pipeline now drops that frame when the parabola through the others misses it by over 3 sigma; these rows are the same stored tracks refit with that check, no new model calls.</p>
+        <p>Honest reading: the method is repeatable, but it still reads low. {below} of {measured.length} results sit more than 2 sigma below 9.81, so the error bars miss a systematic error we have not yet explained. Treat a phone result as a classroom estimate, not a calibrated g.</p>
       </div>
       <figure className="fr-chart"><Sweep /><figcaption>Dot: fitted g. Bar: 1 sigma from the fitter and the scale. Line: Earth g.</figcaption></figure>
     </div>
@@ -70,7 +71,7 @@ export default function FeaturedRun() {
         <span className="chip" data-tone="ok">MEASURED</span>
         <h3>One of them in detail (OWN07)</h3>
         <p className="fr-value"><strong>{fmtPm(pq.value, pq.uncertainty)} {pq.unit.replace('^2', '²')}</strong> {pq.name}, 1 sigma.</p>
-        {pcheck && <p>{pcheck.text} It is one of the twelve above and reads higher than their median ({median.toFixed(2)}), so it is a worked example, not the typical result.</p>}
+        {pcheck && <p>{pcheck.text} It is one of the twelve above (their median is {median.toFixed(2)}).</p>}
         <p>A book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, run through the live pipeline on {phone.utc.slice(0, 10)}. Hosted SAM 3.1 tracked {p.track.tracked_frames} frames; the pipeline kept {p.segment.frames} frames of free fall ({p.segment.duration_s.toFixed(2)} s) and cut the landing frames. Scale: {p.scale.object}, measured with a ruler by the maker ({p.scale.label}). {p.clock[0].toUpperCase() + p.clock.slice(1)}.</p>
         <p className="fr-meta mono">Recorded cost {'$' + p.cost_usd} · {phone.seconds} s end to end · the video is a private owner clip, so only the tracked dots are public</p>
         <p><Link className="primary-link" href="/lab?editor=1&sample=own07">Replay this drop in 3D next to a SIMULATED ball at 9.81</Link></p>

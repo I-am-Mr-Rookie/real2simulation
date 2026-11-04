@@ -95,6 +95,17 @@ def test_impact_frames_after_the_fastest_step_are_cut():
     assert r["segment"]["last_frame"] == k and r["quantity"]["value"] == pytest.approx(9.81, rel=1e-6)
 
 
+def test_landing_frame_off_the_parabola_is_dropped():
+    """N89 round 7: a landing frame slowed by under 15% passes the slowdown rule but misses the parabola; it is dropped."""
+    track = fall_track()
+    k, t, x, y, w, h = track["frames"][-1]
+    v = y - track["frames"][-2][3]
+    track["frames"] += [[k + 1, t + 1 / 30, x, y + 0.9 * v, w, h]]
+    r = le.analyse(track, "ball diameter 5 cm")
+    assert r["segment"]["last_frame"] == k and r["quantity"]["value"] == pytest.approx(9.81, rel=1e-6)
+    assert le.drop_contact(le.moving_segment(fall_track()["frames"])) == le.moving_segment(fall_track()["frames"])
+
+
 def test_no_scale_basis_abstains_on_metric_values():
     r = le.analyse(fall_track(), "no idea")
     assert r["units"] == "px" and r["scale"]["status"] == "abstain" and r["quantity"]["unit"] == "px/s^2"
