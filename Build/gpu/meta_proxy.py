@@ -15,7 +15,8 @@ app = modal.App("r2s-meta-proxy")
 image = modal.Image.debian_slim(python_version="3.12").pip_install("fastapi[standard]==0.115.12")
 
 
-@app.function(image=image, region="us-east", cpu=0.25, memory=256, timeout=900, scaledown_window=300,
+# N89: us-east and eu-west egress started getting an empty /v1/models (404 on sam-3.1) on Nov 4; ap-south sees all 9.
+@app.function(image=image, region="ap-south", cpu=0.25, memory=256, timeout=900, scaledown_window=300,
               secrets=[modal.Secret.from_dict({"MODEL_PROXY_TOKEN": os.environ.get("MODEL_PROXY_TOKEN", "")})])
 @modal.concurrent(max_inputs=20)
 @modal.asgi_app()
@@ -46,7 +47,11 @@ def web():
         headers = {k: v for k, v in request.headers.items() if k in ("authorization", "content-type")}
         query = f"?{request.url.query}" if request.url.query else ""
         body = await request.body() if request.method == "POST" else None
-        status, data, ctype = await run_in_threadpool(send, request.method, f"{UPSTREAM}/v1/{path}{query}", body, headers)
+        # N89: some egress IPs see no models (404, unbilled); a retry usually leaves from another IP.
+        for _ in range(4):
+            status, data, ctype = await run_in_threadpool(send, request.method, f"{UPSTREAM}/v1/{path}{query}", body, headers)
+            if status != 404 and not (path == "models" and b'"data":[]' in data.replace(b" ", b"")):
+                break
         return Response(content=data, status_code=status, media_type=ctype)
 
     return api
