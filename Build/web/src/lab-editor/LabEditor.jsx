@@ -783,7 +783,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
           </>}
         </div>
         <div hidden={!agentOpen}>
-          <AgentPanel scene={scene} load={!src && !/[?&](room|experiment)=/.test(window.location.search)} onScene={(s, msg, tidied) => { stop(); setSelected(null); if (tidied) setTidy({ before: prevScene.current, after: s }); setScene(s); setMessage(msg); }} />
+          <AgentPanel scene={scene} load={!src && !/[?&](room|experiment|template|project)=/.test(window.location.search)} onScene={(s, msg, tidied) => { stop(); setSelected(null); if (tidied) setTidy({ before: prevScene.current, after: s }); setScene(s); setMessage(msg); }} />
         </div>
       </aside>
     </div>
