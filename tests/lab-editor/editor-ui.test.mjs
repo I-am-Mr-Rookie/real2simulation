@@ -7,6 +7,12 @@ const read = (p) => readFileSync(new URL('../../Build/web/src/' + p, import.meta
 const editor = read('lab-editor/LabEditor.jsx');
 const css = read('lab-editor/lab-editor.css');
 
+test('no local const shadows an imported name (N89: a lesson "record" broke undo history and the whole lab)', () => {
+  const imported = [...editor.matchAll(/^import \{([^}]+)\} from/gm)].flatMap((m) => m[1].split(',').map((s) => s.trim().split(/\s+as\s+/).pop()));
+  const shadowed = imported.filter((n) => n && new RegExp('\\bconst ' + n + ' =').test(editor));
+  assert.deepEqual(shadowed, []);
+});
+
 test('room tool toggles clear the instruction and pending clicks', () => {
   const body = editor.match(/const pickTool = \(t\) => \{([^\n]+)\};/)?.[1];
   assert.ok(body);

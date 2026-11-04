@@ -690,7 +690,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const setObj = (fn) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === selected ? fn(o) : o)) }));
   const ballDrop = hasPhysicsStations(scene) ? scene.objects.find((o) => o.id === LESSON.object) : null;
   const fitIsBall = !!traceFit && traceFit.name.startsWith(LESSON.object + ':');
-  const record = (k) => setLesson((l) => ({ ...l, [k]: { value: traceFit.value, uncertainty: traceFit.uncertainty, mass: ballDrop.mass } }));
+  const recordRun = (k) => setLesson((l) => ({ ...l, [k]: { value: traceFit.value, uncertainty: traceFit.uncertainty, mass: ballDrop.mass } }));
   const heavier = () => { stop(); edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === LESSON.object ? { ...o, mass: +(o.mass * LESSON.factor).toPrecision(3) } : o)) })); setMessage(LESSON.object + ' is now ' + LESSON.factor + ' times heavier. Press Play, Pause after it lands, then Fit trace.'); };
   const verdict = lessonVerdict(lesson.a, lesson.b, lesson.pred);
   const runLine = (r, n) => 'Run ' + n + ': ' + fmtPm(r.value, r.uncertainty) + ' m/s^2 at ' + r.mass + ' kg';
@@ -699,10 +699,10 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     <p className="le-muted">1. Predict first.</p>
     <div className="le-lesson-choices">{LESSON.choices.map(([id, l]) => <button key={id} type="button" aria-pressed={lesson.pred === id} onClick={() => setLesson((s) => ({ ...s, pred: id }))}>{l}</button>)}</div>
     <p className="le-muted">2. Press Play, Pause after {LESSON.object} lands, then Fit trace.</p>
-    {lesson.a ? <p>{runLine(lesson.a, 'A')}</p> : <button type="button" disabled={!fitIsBall} onClick={() => record('a')}>Record run A</button>}
+    {lesson.a ? <p>{runLine(lesson.a, 'A')}</p> : <button type="button" disabled={!fitIsBall} onClick={() => recordRun('a')}>Record run A</button>}
     {lesson.a && <><p className="le-muted">3. Change one thing: the mass. Then Play, Pause and Fit trace again.</p>
       {ballDrop.mass === lesson.a.mass ? <button type="button" onClick={heavier}>Make {LESSON.object} {LESSON.factor} times heavier</button>
-        : lesson.b ? <p>{runLine(lesson.b, 'B')}</p> : <button type="button" disabled={!fitIsBall} onClick={() => record('b')}>Record run B</button>}</>}
+        : lesson.b ? <p>{runLine(lesson.b, 'B')}</p> : <button type="button" disabled={!fitIsBall} onClick={() => recordRun('b')}>Record run B</button>}</>}
     {verdict && <><p><strong>{verdict.text}</strong>{verdict.matched != null && (verdict.matched ? ' Your prediction matched.' : ' Your prediction did not match.')}</p>
       <p className="le-muted">{LESSON.caveat}</p>
       <div className="le-lesson-choices"><button type="button" onClick={() => navigator.clipboard.writeText(lessonReport(lesson.pred, lesson.a, lesson.b, verdict)).then(() => setMessage('Lesson results copied for a worksheet.'), () => setMessage('The browser blocked copying.'))}>Copy results</button>
