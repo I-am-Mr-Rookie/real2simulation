@@ -15,8 +15,9 @@ app = modal.App("r2s-meta-proxy")
 image = modal.Image.debian_slim(python_version="3.12").pip_install("fastapi[standard]==0.115.12")
 
 
-# N89: us-east and eu-west egress started getting an empty /v1/models (404 on sam-3.1) on Nov 4; ap-south sees all 9.
-@app.function(image=image, region="ap-south", cpu=0.25, memory=256, timeout=900, scaledown_window=300,
+# N89: us-east and eu-west egress started getting an empty /v1/models (404 on sam-3.1) on Nov 4. ap-south saw all 9
+# models but dropped request bodies over about 300 KB from the us-east ingress (HTTP 408), so video uploads failed.
+@app.function(image=image, region="us-west", cpu=0.25, memory=256, timeout=900, scaledown_window=300,
               secrets=[modal.Secret.from_dict({"MODEL_PROXY_TOKEN": os.environ.get("MODEL_PROXY_TOKEN", "")})])
 @modal.concurrent(max_inputs=20)
 @modal.asgi_app()

@@ -111,14 +111,14 @@ export default function FeaturedRun() {
     <div className="card fr-agent">
       <span className="chip" data-tone="ok">MEASURED</span>
       <h3>Muse runs the real pipeline from one sentence</h3>
-      <p>A recorded call to Meta {measuredTurn.model} on {measuredTurn.utc.slice(0, 10)} in a signed-in test workspace, on the 2.6 s crop of the clip above, unedited. Muse found the video, started hosted SAM 3.1 tracking with the size it was given, called fit too early, then fitted again once tracking finished.</p>
+      <p>A recorded call to Meta {measuredTurn.model} on {measuredTurn.utc.slice(0, 10)} through the live API in a signed-in test workspace, on the full 1080p phone file of the OWN07 book drop above, unedited. Muse found the video, started hosted SAM 3.1 tracking with the ruler size, called fit while tracking was still running, then fitted again once it finished.</p>
       <dl>
         <dt>You</dt><dd>{measuredTurn.sent}</dd>
         <dt>Tools it called</dt><dd className="mono">{measuredTurn.tools.join(' → ')}</dd>
         <dt>Muse</dt><dd>{measuredTurn.reply}</dd>
         <dt>Fit</dt><dd>{fmtPm(measuredTurn.quantity.value, measuredTurn.quantity.uncertainty)} {measuredTurn.quantity.unit}, {measuredTurn.quantity.label}, {measuredTurn.frames} frames.</dd>
       </dl>
-      <p>Far below 9.81 m/s^2: the stock clip plays in slow motion, or the apple is not 7 cm. The workspace prints this as a what-if instead of hiding it.</p>
+      <p>It agrees with the direct pipeline run of the same clip above within its uncertainty: Muse reads the fitter's number and labels, it does not make one up.</p>
     </div>
     <div className="card fr-agent">
       <span className="chip" data-tone="sim">SIMULATED</span>

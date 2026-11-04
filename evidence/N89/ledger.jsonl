@@ -30,3 +30,4 @@
 {"utc": "2026-11-04T15:58:28.456973+00:00", "provider": "Meta Model API", "model": "sam-3.1", "label": "own-sweep sam-3.1 track 86 frames", "reserved_usd": 0.0172, "cost_usd": 0.0172}
 {"utc": "2026-11-04T15:58:39.270539+00:00", "provider": "Meta Model API", "model": "sam-3.1", "label": "own-sweep sam-3.1 track 86 frames", "reserved_usd": 0.0172, "cost_usd": 0.0172}
 {"utc": "2026-11-04T15:58:53.922920+00:00", "provider": "Meta Model API", "model": "sam-3.1", "label": "own-sweep sam-3.1 track 64 frames", "reserved_usd": 0.0128, "cost_usd": 0.0128}
+{"utc": "2026-11-04T16:38:09Z", "what": "DEV agent turns: muse-spark-1.3 + hosted sam-3.1 track of the OWN07 1080p clip (one failed on the proxy 408, one ok) + text tokens", "est_usd": 0.06}
