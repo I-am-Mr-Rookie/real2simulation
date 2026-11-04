@@ -7,7 +7,7 @@ Built solo by Koushik Sadhak Jeet (indie developer track) for the Meta Global AI
 
 - **Live product:** [real2simulation.rookiecoders.tech](https://real2simulation.rookiecoders.tech)
   (mirror: [real2simulation.up.railway.app](https://real2simulation.up.railway.app)).
-- **Demo video:** linked on the submission page (recorded on this build).
+- **Demo video:** PENDING (recorded on the final build; the link is added with the submission).
 
 ## Try it in 60 seconds (no video needed)
 

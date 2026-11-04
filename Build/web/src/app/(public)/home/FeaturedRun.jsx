@@ -20,6 +20,8 @@ const vals = measured.map((x) => x.value).sort((a, b) => a - b), mid = vals.leng
 const median = vals.length % 2 ? vals[mid] : (vals[mid - 1] + vals[mid]) / 2;
 const sd = Math.sqrt(vals.reduce((s, v, _, a) => s + (v - vals.reduce((x, y) => x + y, 0) / a.length) ** 2, 0) / (vals.length - 1));
 const below = measured.filter((x) => x.value + 2 * x.sigma < 9.81).length;
+// N89: the clip-to-clip spread as a systematic term on one phone result (the fitter bar alone misses the scatter).
+const sysU = Math.hypot(pq.uncertainty, sd), sysZ = Math.abs(pq.value - 9.81) / sysU;
 
 function Sweep() {
   const W = 400, row = 22, L = 58, R = W - 14, top = 18, H = top + sweep.rows.length * row + 26, lo = 6, hi = 11;
@@ -62,7 +64,7 @@ export default function FeaturedRun() {
         <p className="fr-value"><strong>{measured.length} of {sweep.rows.length}</strong> gave a free-fall fit: median {median.toFixed(2)} m/s², spread {sd.toFixed(2)} (1 sd), range {vals[0].toFixed(2)} to {vals.at(-1).toFixed(2)}.</p>
         <p>The same book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, each clip run once through the live pipeline (hosted SAM 3.1 plus the fitter) with the same prompt "{sweep.target_text}" and the ruler-measured {sweep.known_size}. None was left out.</p>
         <p>A first pass read lower (median 8.62): in 7 of 11 clips the last kept frame was already the landing. The pipeline now drops that frame when the parabola through the others misses it by over 3 sigma; these rows are the same stored tracks refit with that check, no new model calls.</p>
-        <p>Honest reading: the method is repeatable, but it still reads low. {below} of {measured.length} results sit more than 2 sigma below 9.81, so the error bars miss a systematic error we have not yet explained. Treat a phone result as a classroom estimate, not a calibrated g.</p>
+        <p>Honest reading: the method is repeatable, but it still reads low. {below} of {measured.length} results sit more than 2 sigma below 9.81, so the error bars miss a systematic error we have not yet explained. For a single phone result, add the clip-to-clip spread ({sd.toFixed(2)}) as a systematic term. Treat a phone result as a classroom estimate, not a calibrated g.</p>
       </div>
       <figure className="fr-chart"><Sweep /><figcaption>Dot: fitted g. Bar: 1 sigma from the fitter and the scale. Line: Earth g.</figcaption></figure>
     </div>
@@ -71,7 +73,7 @@ export default function FeaturedRun() {
         <span className="chip" data-tone="ok">MEASURED</span>
         <h3>One of them in detail (OWN07)</h3>
         <p className="fr-value"><strong>{fmtPm(pq.value, pq.uncertainty)} {pq.unit.replace('^2', '²')}</strong> {pq.name}, 1 sigma.</p>
-        {pcheck && <p>{pcheck.text} It is one of the twelve above (their median is {median.toFixed(2)}).</p>}
+        {pcheck && <p>{pcheck.text} It is one of the twelve above (their median is {median.toFixed(2)}). With the clip-to-clip spread added as a systematic term: {fmtPm(pq.value, sysU)} m/s², {sysZ.toFixed(1)} sigma from 9.81.</p>}
         <p>A book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, run through the live pipeline on {phone.utc.slice(0, 10)}. Hosted SAM 3.1 tracked {p.track.tracked_frames} frames; the pipeline kept {p.segment.frames} frames of free fall ({p.segment.duration_s.toFixed(2)} s) and cut the landing frames. Scale: {p.scale.object}, measured with a ruler by the maker ({p.scale.label}). {p.clock[0].toUpperCase() + p.clock.slice(1)}.</p>
         <p className="fr-meta mono">Recorded cost {'$' + p.cost_usd} · {phone.seconds} s end to end · the video is a private owner clip, so only the tracked dots are public</p>
         <p><Link className="primary-link" href="/lab?editor=1&sample=own07">Replay this drop in 3D next to a SIMULATED ball at 9.81</Link></p>
