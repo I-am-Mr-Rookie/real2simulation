@@ -12,6 +12,7 @@ const read = async (p) => JSON.parse(await readFile(new URL('../../' + p, import
 test('featured run is a verbatim copy of the N07 live ST03 result and renders', async () => {
   const shown = await read('Build/web/src/app/(public)/home/featured-st03.json');
   assert.deepEqual(shown, await read('evidence/N07/live-st03.json'));
+  assert.deepEqual(await read('Build/web/src/app/(public)/home/featured-agent.json'), await read('evidence/N28/run1-turns.json'));
   const r = shown.result;
   assert.equal(r.fit.x.model, 'constant_acceleration'); // the card says acceleration wins on both axes
   assert.equal(r.fit.y.model, 'constant_acceleration');

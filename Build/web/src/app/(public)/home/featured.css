@@ -19,5 +19,12 @@
 .fr-steps .fr-value { color: inherit; }
 .fr-meta { font-size: .8rem !important; overflow-wrap: anywhere; }
 .fr-cta { margin: 1rem 0 0; }
+.fr-agent { display: grid; justify-items: start; gap: .5rem; margin: 1rem 0 0; padding: 1rem 1.1rem; }
+.fr-agent h3 { margin: 0; font-size: 1.05rem; }
+.fr-agent p { margin: 0; color: var(--r2s-muted); font-size: .92rem; }
+.fr-agent dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .4rem 1rem; margin: .25rem 0 0; }
+.fr-agent dt { font-weight: 700; }
+.fr-agent dd { margin: 0; white-space: pre-line; overflow-wrap: anywhere; }
+@media (max-width: 600px) { .fr-agent dl { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 1100px) { .featured-run .fr-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 600px) { .featured-run .fr-steps { grid-template-columns: minmax(0, 1fr); } }

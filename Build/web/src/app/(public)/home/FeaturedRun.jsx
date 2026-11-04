@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import run from './featured-st03.json';
+import agentLog from './featured-agent.json';
 import { chartGeom, fmtPm, gravityCheck } from '../../../workspace/measure.mjs';
 import './featured.css';
 
 // N89: one real hosted-SAM run shown publicly. Every number is read from featured-st03.json, a verbatim copy of
 // evidence/N07/live-st03.json (equality checked in tests/web-private/featured-run.test.mjs); the chart reuses the workspace geometry.
 const r = run.result, q = r.quantity, g = chartGeom(r), check = gravityCheck(r);
+// N89: one recorded Muse Spark turn in the lab editor (evidence/N28/run1-turns.json, verbatim copy): request, tool calls, reply.
+const turn = agentLog.turns[0];
 
 function Chart() {
   const b = g.box;
@@ -54,6 +57,16 @@ export default function FeaturedRun() {
         {check && <p>{check.text}</p>}
       </li>
     </ol>
+    <div className="card fr-agent">
+      <span className="chip" data-tone="sim">SIMULATED</span>
+      <h3>5. Muse runs the lab for you</h3>
+      <p>A recorded call to Meta {turn.model} on {turn.utc.slice(0, 10)}, unedited. The agent turns a sentence into lab actions and reads the numbers back from the physics engine, not from its own guess.</p>
+      <dl>
+        <dt>You</dt><dd>{turn.sent}</dd>
+        <dt>Tools it called</dt><dd className="mono">{turn.tool_calls.map((c) => c.name).join(' → ')}</dd>
+        <dt>Muse</dt><dd>{turn.reply}</dd>
+      </dl>
+    </div>
     <p className="fr-cta"><Link className="primary-link" href="/lab?editor=1&sample=st03">Replay this run in 3D and change gravity</Link></p>
     <p className="fr-cta"><Link href="/sign-up">Measure your own clip</Link> or <Link href="/lab?editor=1&template=physics-lab">drop a ball in the physics lab</Link>, no video needed.</p>
   </section>;
