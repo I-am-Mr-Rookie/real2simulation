@@ -15,6 +15,7 @@ import { robustBounds, fitDistance, FRAME_Q } from './frame.mjs';
 import { colliderGeometry, loadShapeGlb, SHAPE_LABEL } from './sf3d-shape.mjs';
 import { lookMesh } from './furniture-shape.mjs';
 import { mergeShapeUpdates } from './shape-upgrades.mjs';
+import { TEMPLATES, templateScene } from './templates.mjs';
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981, flywheel: 0x8b5cf6, atwood: 0x0ea5e9,
@@ -41,6 +42,7 @@ const ICONS = {
   select: 'M5 3l14 8-6 2-2 6z', translate: 'M12 3v18M3 12h18M12 3l-3 3M12 3l3 3M21 12l-3-3M21 12l-3 3', rotate: 'M20 12a8 8 0 1 1-3-6.2M20 4v4h-4', scale: 'M4 14v6h6M20 10V4h-6M4 20L20 4',
   eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0.01 0', eyeoff: 'M3 3l18 18M10.6 6.1A10 10 0 0 1 12 6c6 0 10 6 10 6a17 17 0 0 1-3.2 3.7M6.6 6.6C3.8 8.3 2 12 2 12s4 7 10 7a9 9 0 0 0 4.4-1.1',
   agent: 'M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z', expand: 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5', room: 'M3 11l9-7 9 7v9H3zM9 20v-6h6v6', list: 'M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01',
+  save: 'M5 3h11l3 3v15H5zM8 3v5h7V3M8 21v-7h8v7', copy: 'M9 9h11v11H9zM5 15H4V4h11v1',
 };
 const Ico = ({ n }) => <svg className="le-ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d={ICONS[n]} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 const isDark = () => typeof document !== 'undefined' && document.documentElement.dataset.tone === 'dark';
@@ -148,9 +150,10 @@ const LIVE_ID = /^[A-Za-z0-9_-]{1,64}$/;
 async function getJson(path, init) {
   const r = await fetch(WS + path, { cache: 'no-store', ...init, headers: init?.body ? { 'content-type': 'application/json' } : undefined });
   const b = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(b?.error?.message ?? b?.detail?.error?.message ?? b?.detail?.message ?? 'HTTP ' + r.status);
+  if (!r.ok) throw Object.assign(new Error(b?.error?.message ?? b?.detail?.error?.message ?? b?.detail?.message ?? 'HTTP ' + r.status), { status: r.status });
   return b;
 }
+const PENDING = 'r2s-template-edit'; // N89: template edits survive the sign-in round trip of Make a copy
 
 // "Mark the A4 sheet" (two clicks on its long edge) and "Add a real object" (one click) on a model view PNG.
 function RoomTools({ id, room, onReload }) {
@@ -239,6 +242,9 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const [hidden, setHidden] = useState([]);
   const [name, setName] = useState('');
   const [project, setProject] = useState(null);
+  const [origin, setOrigin] = useState(null); // N89: { kind: 'template', id, title } | { kind: 'saved' }
+  const [savedJson, setSavedJson] = useState(null);
+  const [copying, setCopying] = useState(false);
   const [sourceResult, setSourceResult] = useState(null);
   const [traceFit, setTraceFit] = useState(null);
   const [fitting, setFitting] = useState(false);
@@ -253,16 +259,16 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape); };
   }, []);
   // N56: small JPEG of the canvas for the N55 workspace card (owner-scoped PUT; no project, no snapshot).
-  const snapshot = async () => {
+  const snapshot = async (id = project) => {
     const a = api.current;
-    if (!a || !project) return;
+    if (!a || !id) return;
     try {
       a.renderer.render(a.three, a.camera); // same tick as the copy, so no preserveDrawingBuffer needed
       const src = a.renderer.domElement, w = Math.min(640, src.width), c = document.createElement('canvas');
       c.width = w; c.height = Math.round((src.height * w) / Math.max(1, src.width));
       c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
       const blob = await new Promise((ok) => c.toBlob(ok, 'image/jpeg', 0.75));
-      if (blob) await fetch(WS + '/projects/' + project + '/snapshot', { method: 'PUT', headers: { 'content-type': 'image/jpeg' }, body: blob });
+      if (blob) await fetch(WS + '/projects/' + id + '/snapshot', { method: 'PUT', headers: { 'content-type': 'image/jpeg' }, body: blob });
     } catch { /* preview only; the lab itself is unaffected */ }
   };
   const rename = async (title) => {
@@ -385,8 +391,9 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   }, []);
 
   useEffect(() => {
-    const p = new URLSearchParams(window.location.search), room = p.get('room'), exp = p.get('experiment');
+    const p = new URLSearchParams(window.location.search), room = p.get('room'), exp = p.get('experiment'), tpl = p.get('template'), saved = p.get('project');
     if (room && LIVE_ID.test(room)) loadRoom(room); else if (exp && LIVE_ID.test(exp)) loadExperiment(exp);
+    else if (tpl) loadTemplate(tpl); else if (saved && LIVE_ID.test(saved)) loadSaved(saved);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Rebuild room and object meshes from the scene JSON whenever it changes (not while a run is live).
@@ -483,6 +490,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       if (typing(e.target)) return;
       const k = e.key.toLowerCase();
       if ((e.ctrlKey || e.metaKey) && (k === 'z' || k === 'y')) { e.preventDefault(); travel(k === 'y' || e.shiftKey ? redo : undo, k === 'y' || e.shiftKey ? 'Redone' : 'Undone'); }
+      else if ((e.ctrlKey || e.metaKey) && k === 's' && origin?.kind === 'saved') { e.preventDefault(); saveLab(); }
       else if (e.key === 'Delete' || e.key === 'Backspace') { if (selected) { e.preventDefault(); removeSelected(); } }
     };
     window.addEventListener('keydown', onKey);
@@ -575,6 +583,58 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       setMessage('Dots and line: your measured track. ' + t.note);
     } catch (e) { setMessage('Experiment not loaded: ' + e.message); }
   };
+  // N89: frame a whole lab from the open front side, with the grid sized to the room.
+  const frameScene = (s) => {
+    const a = api.current;
+    if (!a || !s.objects.length) return;
+    const lo = [0, 1, 2].map((i) => Math.min(...s.objects.map((o) => o.position[i] - o.size[i] / 2)));
+    const hi = [0, 1, 2].map((i) => Math.max(...s.objects.map((o) => o.position[i] + o.size[i] / 2)));
+    a.state.gridSize = Math.max(10, Math.ceil(Math.max(hi[0] - lo[0], hi[2] - lo[2])) + 2);
+    a.state.gridAt = [(lo[0] + hi[0]) / 2, 0, (lo[2] + hi[2]) / 2];
+    a.camera.position.copy(a.orbit.target).add(new THREE.Vector3(0.2, 0.5, 1));
+    frameTo([...lo, ...hi]);
+  };
+  const loadTemplate = (id) => {
+    const t = TEMPLATES.find((x) => x.id === id);
+    if (!t) { setMessage('Unknown template ' + id + '. Pick Blank lab or Physics lab from the workspace.'); return; }
+    let kept = null;
+    try { kept = JSON.parse(sessionStorage.getItem(PENDING) || 'null'); sessionStorage.removeItem(PENDING); } catch { /* storage blocked */ }
+    let s = templateScene(id);
+    try { if (kept?.id === id) s = validateScene(kept.scene); } catch { kept = null; }
+    frameScene(s); setScene(s); setOrigin({ kind: 'template', id, title: t.title }); setName(kept?.name || t.title);
+    setMessage(kept?.id === id ? 'Your edits are back. Press Make my copy to save them to your workspace.'
+      : t.title + ' template. Edit freely and press Play; Make my copy saves your own version (uses your 1 GB storage). Everything here is SIMULATED.');
+  };
+  const loadSaved = async (id) => {
+    try {
+      const [b, pj] = await Promise.all([getJson('/agent/lab/scene?project=' + id), getJson('/projects/' + id)]);
+      const s = validateScene(b.scene);
+      frameScene(s); setScene(s); setSavedJson(sceneJson(s)); setOrigin({ kind: 'saved' }); setName(pj.project.title);
+      setMessage('Your saved lab. Save keeps changes; Make a copy starts a new version. Everything here is SIMULATED.');
+    } catch (e) { setMessage(e.status === 401 ? 'Sign in to open your saved lab.' : 'Saved lab not loaded: ' + e.message); }
+  };
+  const saveLab = async () => {
+    if (origin?.kind !== 'saved' || !project) return;
+    const text = sceneJson(scene);
+    try { await getJson('/agent/lab/scene?project=' + project, { method: 'POST', body: text }); setSavedJson(text); setMessage('Saved to your workspace.'); snapshot(); }
+    catch (e) { setMessage('Not saved: ' + e.message); }
+  };
+  // Any open lab (template, saved, room, experiment) becomes a new saved lab owned by this user; a scan backdrop is not copied.
+  const copyLab = async () => {
+    const s = validateScene(scene), base = (name || title).trim() || 'My lab';
+    const copy = { ...s, room: s.room.kind === 'ply' ? { kind: 'plane', floor_y: s.room.floor_y ?? 0 } : s.room };
+    setCopying(true);
+    try {
+      const b = await getJson('/projects', { method: 'POST', body: JSON.stringify({ mode: 'room', title: (origin?.kind === 'template' ? base : base.slice(0, 115) + ' copy').slice(0, 120), scene: copy }) });
+      await snapshot(b.project.id);
+      window.location.assign('/lab?editor=1&project=' + b.project.id);
+    } catch (e) {
+      setCopying(false);
+      if (e.status !== 401) { setMessage('Not copied: ' + e.message); return; }
+      if (origin?.kind === 'template') try { sessionStorage.setItem(PENDING, JSON.stringify({ id: origin.id, name, scene: s })); } catch { /* edits are lost, the template stays */ }
+      window.location.assign('/sign-in?redirect_url=' + encodeURIComponent(window.location.pathname + window.location.search));
+    }
+  };
   const loadFile = async (e) => {
     const f = e.target.files?.[0];
     e.target.value = '';
@@ -624,6 +684,10 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       <div className="le-group" role="group" aria-label="Simulation">
         {playBtn}
         <button type="button" onClick={stop} disabled={!live} title="Reset to the start"><Ico n="reset" /><span className="le-lbl">Reset</span></button>
+      </div>
+      <div className="le-group" role="group" aria-label="Save">
+        {origin?.kind === 'saved' && <button type="button" onClick={saveLab} disabled={jsonText === savedJson} title="Save to your workspace (Ctrl+S)"><Ico n="save" /><span className="le-lbl">{jsonText === savedJson ? 'Saved' : 'Save'}</span></button>}
+        <button type="button" onClick={copyLab} disabled={copying || live} title="Save a copy of this lab to your workspace (uses your 1 GB storage)"><Ico n="copy" /><span className="le-lbl">{origin?.kind === 'template' ? 'Make my copy' : 'Make a copy'}</span></button>
       </div>
       <div className="le-group le-end" role="group" aria-label="View and files">
         <button type="button" className="le-icon-btn" onClick={reframe} aria-label="Fit view to the room" title="Fit view to the room"><Ico n="frame" /></button>

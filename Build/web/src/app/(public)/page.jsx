@@ -35,8 +35,9 @@ export default function Home() {
         <p className="hero-sub">{'Point your phone at a real experiment. Get a 3D replay, measurements with error bars, and a lab to ask "what if".'}</p>
         <div className="actions">
           <Link className="primary-link" href="/library">{icon(h, 'book', 16)}Try the demo library</Link>
-          <Link className="secondary-link" href="/lab">{icon(h, 'flask', 16)}Open the lab</Link>
+          <Link className="secondary-link" href="/lab?editor=1&template=physics-lab">{icon(h, 'flask', 16)}Open the physics lab</Link>
         </div>
+        <p className="trust-line">No video needed: the demo library and the lab templates work without an upload.</p>
         <ul className="chip-row" aria-label="Every result carries one of these labels">
           <li className="chip" data-tone="ok">RECORDED</li><li className="chip" data-tone="sim">SIMULATED</li><li className="chip" data-tone="warn">what-if</li>
         </ul>
@@ -88,11 +89,12 @@ export default function Home() {
     <section className="show show-split show-cta" aria-labelledby="cta">
       <div className="show-copy">
         <h2 id="cta">See it for yourself</h2>
-        <p className="show-line">Start with a demo clip, test a what-if in the lab, or read the code.</p>
+        <p className="show-line">Start with a demo clip, run the physics lab template, or read the code.</p>
       </div>
       <div className="actions">
         <Link className="primary-link" href="/library">{icon(h, 'book', 16)}Try the demo library</Link>
-        <Link className="secondary-link" href="/lab">{icon(h, 'flask', 16)}Open the lab</Link>
+        <Link className="secondary-link" href="/lab?editor=1&template=physics-lab">{icon(h, 'flask', 16)}Open the physics lab</Link>
+        <Link className="secondary-link" href="/lab?editor=1&template=blank">{icon(h, 'plus', 16)}Start a blank lab</Link>
         <Link className="secondary-link" href="/lab">{icon(h, 'compass', 16)}Guess the Gravity</Link>
         <a className="secondary-link gh-link" href={REPO_URL} target="_blank" rel="noopener noreferrer">{GITHUB_MARK}Explore the code on GitHub</a>
       </div>

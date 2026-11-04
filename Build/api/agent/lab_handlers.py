@@ -469,6 +469,14 @@ def create_router() -> APIRouter:
     def put_scene(scene: dict[str, Any] = Body(...), project: str = Query("lab"), owner: str = Depends(require_owner)):
         if len(json.dumps(scene)) > 512 * 1024:
             raise error(413, "TOO_LARGE", "scene JSON must be under 512 KiB")
+        if project != "lab":  # N89: a saved project lab must be the owner's project and fit the 1 GB quota
+            from Build.api.storage.files import _default
+            store = _default()
+            store.project(owner, project)
+            clean = guard(lambda: _node({"op": "validate", "scene": scene})["scene"])
+            with store.lock:
+                store.save_lab(owner, project, json.dumps(clean, indent=2))
+            return {"scene": clean, "quota": store.quota(owner)}
         return guard(lambda: {"scene": save_scene(owner, scene, project)})
 
     @router.get("/report")

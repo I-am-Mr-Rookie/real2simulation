@@ -14,6 +14,7 @@ import subprocess
 import threading
 import uuid
 from datetime import datetime, timedelta, timezone
+from hashlib import sha256  # owner-id hash for the lab folder only; quota never hashes file bytes
 from pathlib import Path
 
 from fastapi import APIRouter, Body, Depends, Request
@@ -106,6 +107,12 @@ class Store:
                         used += stat.st_size
             except FileNotFoundError:
                 pass  # a room artifact was replaced or removed during the scan
+        for path in self.lab_dir(user).rglob("*"):  # N89: saved lab scenes and lab copies count too
+            try:
+                if path.is_file():
+                    used += path.stat().st_size
+            except FileNotFoundError:
+                pass
         today = self.db.execute("SELECT COUNT(*) FROM files WHERE user=? AND dhaka_day=?",
                                 (user, self._day())).fetchone()[0]
         midnight = datetime.combine(self.now().astimezone(DHAKA).date() + timedelta(days=1), datetime.min.time(), DHAKA)
@@ -130,6 +137,25 @@ class Store:
 
     def path(self, user, file_id):
         return self.root / "files" / user / file_id
+
+    def lab_dir(self, user, project_id=None):
+        # Same layout as Build/api/agent/lab_handlers._dir: R2S_DATA_DIR/lab/<owner hash>/<project>.
+        d = self.root / "lab" / sha256(user.encode()).hexdigest()[:24]
+        return d / project_id if project_id else d
+
+    def has_lab(self, user, project_id):
+        return (self.lab_dir(user, project_id) / "scene.json").is_file()
+
+    def save_lab(self, user, project_id, text):
+        """N89: quota-checked write of a project's validated lab scene. Caller holds self.lock."""
+        f = self.lab_dir(user, project_id) / "scene.json"
+        q = self.quota(user)
+        if len(text.encode("utf-8")) - (f.stat().st_size if f.is_file() else 0) > q["storage_bytes_remaining"]:
+            raise error(413, "QUOTA_STORAGE", "storage limit reached (1 GB per user)", quota=q)
+        f.parent.mkdir(parents=True, exist_ok=True)
+        tmp = f.with_suffix(".tmp")
+        tmp.write_text(text, "utf-8")
+        os.replace(tmp, f)
 
     def project(self, user, project_id):
         row = self.db.execute("SELECT * FROM projects WHERE id=? AND user=?", (project_id, user)).fetchone()
@@ -189,6 +215,28 @@ _default = functools.cache(Store)
 def create_router(store=None, probe=video_seconds) -> APIRouter:
     db = (lambda: store) if store else _default  # lazy: app start and liveness never touch the disk
     router = APIRouter(prefix="/internal/workspace", dependencies=[Depends(require_owner)])
+
+    def lab_text(scene):
+        # N89: the editor's own validator (node bridge) cleans the scene before it is stored.
+        from Build.api.agent.lab_handlers import LabError, _node
+        if not isinstance(scene, dict) or len(json.dumps(scene)) > 512 * 1024:
+            raise error(422, "INVALID_INPUT", "scene must be a lab-scene-v1 object under 512 KiB")
+        try:
+            return json.dumps(_node({"op": "validate", "scene": scene})["scene"], indent=2)
+        except LabError as exc:
+            raise error(422, "LAB_INPUT", str(exc)) from None
+
+    def insert_project(owner, mode, title, scene_text=None):
+        row = (uuid.uuid4().hex, owner, mode, title, db().now().strftime("%Y-%m-%dT%H:%M:%SZ"))
+        with db().lock:
+            db().db.execute("INSERT INTO projects (id, user, mode, title, created) VALUES (?,?,?,?,?)", row)
+            if scene_text is not None:
+                try:
+                    db().save_lab(owner, row[0], scene_text)
+                except BaseException:
+                    db().db.execute("DELETE FROM projects WHERE id=? AND user=?", (row[0], owner))
+                    raise
+        return {**db().project(owner, row[0]), "lab": scene_text is not None}
 
     @router.post("/files", status_code=201)
     async def upload(request: Request, owner: str = Depends(require_owner)):
@@ -253,16 +301,29 @@ def create_router(store=None, probe=video_seconds) -> APIRouter:
         mode, title = payload.get("mode"), payload.get("title")
         if mode not in ("room", "experiment") or not isinstance(title, str) or not 0 < len(title.strip()) <= 120:
             raise error(422, "INVALID_INPUT", "mode must be room or experiment; title 1 to 120 characters")
-        row = (uuid.uuid4().hex, owner, mode, title.strip(), db().now().strftime("%Y-%m-%dT%H:%M:%SZ"))
-        with db().lock:
-            db().db.execute("INSERT INTO projects (id, user, mode, title, created) VALUES (?,?,?,?,?)", row)
-        return {"project": db().project(owner, row[0])}
+        # N89: an optional scene makes a saved lab (template copy or "Make a copy"); its bytes use the owner's quota.
+        if "scene" in payload and mode != "room":
+            raise error(422, "INVALID_INPUT", "only room projects can hold a lab scene")
+        text = lab_text(payload["scene"]) if "scene" in payload else None
+        return {"project": insert_project(owner, mode, title.strip(), text), "quota": db().quota(owner)}
+
+    @router.post("/projects/{project_id}/copy", status_code=201)
+    def copy_project(project_id: str, payload: dict = Body(default={}), owner: str = Depends(require_owner)):
+        src = db().project(owner, project_id)
+        if not db().has_lab(owner, project_id):
+            raise error(409, "NO_LAB", "only saved labs can be copied here; open the lab and use Make a copy")
+        title = payload.get("title") or src["title"][:115] + " copy"
+        if not isinstance(title, str) or not 0 < len(title.strip()) <= 120:
+            raise error(422, "INVALID_INPUT", "title 1 to 120 characters")
+        text = (db().lab_dir(owner, project_id) / "scene.json").read_text("utf-8")
+        return {"project": insert_project(owner, "room", title.strip(), text), "quota": db().quota(owner)}
 
     @router.get("/projects")
     def list_projects(owner: str = Depends(require_owner)):
         previews = project_previews(db(), owner)
         rows = db().db.execute("SELECT * FROM projects WHERE user=? ORDER BY created DESC, id", (owner,))
-        return {"projects": [{**dict(r), "snapshot_url": _snapshot_url(r["id"], owner), "track_preview": previews.get(r["id"])} for r in rows]}
+        return {"projects": [{**dict(r), "snapshot_url": _snapshot_url(r["id"], owner), "track_preview": previews.get(r["id"]),
+                              "lab": db().has_lab(owner, r["id"])} for r in rows]}
 
     # N56: one small owner-scoped preview per project (the lab canvas), overwritten on each save or finished run.
     def _snapshot(owner, project_id):
@@ -300,7 +361,7 @@ def create_router(store=None, probe=video_seconds) -> APIRouter:
     @router.get("/projects/{project_id}")
     def get_project(project_id: str, owner: str = Depends(require_owner)):
         files = [f for f in db().list(owner) if f["project_id"] == project_id]
-        return {"project": db().project(owner, project_id), "files": files}
+        return {"project": {**db().project(owner, project_id), "lab": db().has_lab(owner, project_id)}, "files": files}
 
     # N55: rename and delete. Delete keeps the files (they move to "no project"); file deletion stays explicit.
     @router.patch("/projects/{project_id}")
@@ -320,6 +381,7 @@ def create_router(store=None, probe=video_seconds) -> APIRouter:
             p = _snapshot(owner, project_id)
             p.unlink(missing_ok=True)
             p.with_suffix(".type").unlink(missing_ok=True)
+            shutil.rmtree(db().lab_dir(owner, project_id), ignore_errors=True)  # id checked above: this owner's project
             db().db.execute("UPDATE files SET project_id=NULL WHERE project_id=? AND user=?", (project_id, owner))
             db().db.execute("DELETE FROM projects WHERE id=? AND user=?", (project_id, owner))
         return {"deleted": project_id}

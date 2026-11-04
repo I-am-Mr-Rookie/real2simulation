@@ -192,6 +192,12 @@ export const createLive = (React, icon = () => null) => {
       setProject((cur) => (cur?.id === g.id ? null : cur));
       loadJobs(); loadFiles();
     };
+    // N89: server-side copy of a saved lab; the copy's bytes count against this user's 1 GB.
+    const copyProject = async (g) => {
+      const r = await call('/projects/' + encodeURIComponent(g.id) + '/copy', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' }).catch(() => null);
+      if (!r?.ok) setFiles((s) => ({ ...s, error: errText(r, 'Could not copy the lab') }));
+      loadJobs(); loadFiles();
+    };
     const deleteRoom = async (id) => {
       const r = await call('/rooms/' + encodeURIComponent(id), { method: 'DELETE' }).catch(() => null);
       if (!r?.ok) { setFiles((s) => ({ ...s, error: errText(r, 'Could not delete the room') })); return; }
@@ -216,7 +222,7 @@ export const createLive = (React, icon = () => null) => {
 
     return { mode, setMode, files, up, upload, remove, preview, setPreview, project, newProject, msgs, busy, draft, setDraft, send, answer,
       gpu, jobs, loadJobs, voice, toggleVoice, tracked, track, action, setAction, measure, buildRoom, share,
-      openAgent, startProject, renameProject, deleteProject, deleteRoom, dismissUp: () => setUp(null) };
+      openAgent, startProject, renameProject, deleteProject, copyProject, deleteRoom, dismissUp: () => setUp(null) };
   }
 
   function ModeScreen({ L, settings = false, onDone }) {
@@ -469,7 +475,12 @@ export const createLive = (React, icon = () => null) => {
         h('button', { type: 'button', className: 'lv-modecard', onClick: () => L.startProject('room') }, h('span', { className: 'lv-mc-icon' }, icon(h, 'cube', 20)),
           h('span', null, h('strong', null, 'Turn your room into a lab'), h('small', null, 'Film a room; get an editable virtual lab with physics.'))),
         h('button', { type: 'button', className: 'lv-modecard', onClick: () => L.startProject('experiment') }, h('span', { className: 'lv-mc-icon' }, icon(h, 'chart', 20)),
-          h('span', null, h('strong', null, 'Measure your experiment'), h('small', null, 'Film a motion; get a fit with uncertainty and a 3D replay.')))));
+          h('span', null, h('strong', null, 'Measure your experiment'), h('small', null, 'Film a motion; get a fit with uncertainty and a 3D replay.'))),
+        // N89: no video needed. Templates open read-only until Make my copy saves the user's own version.
+        h('a', { className: 'lv-modecard', href: '/lab?editor=1&template=physics-lab' }, h('span', { className: 'lv-mc-icon' }, icon(h, 'flask', 20)),
+          h('span', null, h('strong', null, 'Physics lab template'), h('small', null, 'No video needed: a furnished lab with 14 apparatus types, ready to run.'))),
+        h('a', { className: 'lv-modecard', href: '/lab?editor=1&template=blank' }, h('span', { className: 'lv-mc-icon' }, icon(h, 'plus', 20)),
+          h('span', null, h('strong', null, 'Blank lab template'), h('small', null, 'No video needed: an empty grid floor to build on.')))));
   }
 
   function ProjectCard({ L, g, small }) {
@@ -527,6 +538,7 @@ export const createLive = (React, icon = () => null) => {
           { label: 'Open', onClick: open },
           target.kind === 'room' && experimentId ? { label: 'Open experiment', onClick: openExperiment } : null,
           g.sample || !g.id ? null : { label: 'Rename', onClick: () => { setTitle(g.name); setRenameError(null); setRenaming(true); } },
+          g.lab && g.id ? { label: 'Make a copy', onClick: () => L.copyProject(g) } : null,
           f ? { label: 'Download video', href: fileUrl(f), download: f.name } : null,
           g.sample || !g.id ? null : { label: 'Delete', danger: true, onClick: () => L.deleteProject(g) },
           ...g.rooms.filter((r) => !r.sample).map((r) => ({ label: 'Delete room ' + (r.id ?? r.job_id).slice(0, 8), danger: true,

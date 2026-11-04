@@ -160,6 +160,40 @@ class StorageTests(unittest.TestCase):
         self.assertEqual(self.c.delete(url, headers=A).json(), {"deleted": p["id"]})
         self.assertEqual(self.c.get(url, headers=A).status_code, 404)
 
+    def test_template_copy_save_lab_and_copy_use_owner_quota(self):
+        """N89: a template copy is a saved lab project; copies count against the owner's 1 GB and delete frees it."""
+        scene = {"version": "lab-scene-v1", "room": {"kind": "plane", "floor_y": 0},
+                 "objects": [{"id": "wall-back", "kind": "block", "position": [0, 1.6, -6], "size": [12, 3.2, 0.15], "fixed": True,
+                              "look": {"category": "wall", "color": "#d6d3d1"}}, {"id": "ball-1", "kind": "ball", "position": [0, 1, 0]}]}
+        made = lambda body, h=A: self.c.post("/internal/workspace/projects", headers=h, json={"mode": "room", "title": "Physics lab", **body})
+        for bad in ({"scene": {"objects": [{"kind": "ufo"}]}}, {"scene": "x"}):
+            self.assertEqual(made(bad).status_code, 422)
+        self.assertEqual(self.c.post("/internal/workspace/projects", headers=A, json={"mode": "experiment", "title": "x", "scene": scene}).status_code, 422)
+        self.assertEqual(self.c.get("/internal/workspace/projects", headers=A).json()["projects"], [])  # refused = no row
+        r = made({"scene": scene})
+        self.assertEqual(r.status_code, 201, r.text)
+        p = r.json()["project"]
+        self.assertTrue(p["lab"])
+        saved = self.store.lab_dir("user_synthA", p["id"]) / "scene.json"
+        self.assertEqual(r.json()["quota"]["storage_bytes_used"], saved.stat().st_size)
+        self.assertEqual([x["lab"] for x in self.c.get("/internal/workspace/projects", headers=A).json()["projects"]], [True])
+        self.assertEqual(self.c.post(f"/internal/workspace/projects/{p['id']}/copy", headers=B).status_code, 404)
+        c = self.c.post(f"/internal/workspace/projects/{p['id']}/copy", headers=A)
+        self.assertEqual(c.status_code, 201, c.text)
+        self.assertEqual((c.json()["project"]["title"], c.json()["quota"]["storage_bytes_used"]), ("Physics lab copy", 2 * saved.stat().st_size))
+        self.assertEqual(self.c.get("/internal/workspace/projects", headers=B).json()["projects"], [])
+        self.assertEqual(self.store.quota("user_synthB")["storage_bytes_used"], 0)
+        plain = self.c.post("/internal/workspace/projects", headers=A, json={"mode": "room", "title": "No lab"}).json()["project"]
+        self.assertEqual(self.c.post(f"/internal/workspace/projects/{plain['id']}/copy", headers=A).status_code, 409)
+        with mock.patch.object(storage, "MAX_USER", 2 * saved.stat().st_size + 10):
+            self.assertEqual(made({"scene": scene}).status_code, 413)
+            self.assertEqual(self.c.post(f"/internal/workspace/projects/{p['id']}/copy", headers=A).status_code, 413)
+        self.assertEqual(len(self.c.get("/internal/workspace/projects", headers=A).json()["projects"]), 3)
+        self.assertEqual(self.c.delete(f"/internal/workspace/projects/{p['id']}", headers=A).status_code, 200)
+        self.assertFalse(saved.exists())
+        copy = self.store.lab_dir("user_synthA", c.json()["project"]["id"]) / "scene.json"
+        self.assertEqual(self.store.quota("user_synthA")["storage_bytes_used"], copy.stat().st_size)
+
     def test_project_snapshot_owner_scoped_typed_and_size_limited(self):
         p = self.c.post("/internal/workspace/projects", headers=A, json={"mode": "room", "title": "Lab"}).json()["project"]
         url = f"/internal/workspace/projects/{p['id']}/snapshot"
