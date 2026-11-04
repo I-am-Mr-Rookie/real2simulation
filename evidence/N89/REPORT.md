@@ -104,3 +104,9 @@ Main a1258972 (pushed). Live: https://real2simulation.rookiecoders.tech (web 83d
 - QA leftovers in the DEV fixture account: "Blank lab" (91883d5a...). Not deleted: UI deletion needs action-time confirmation.
 - Not checked: fresh judge sign-up end to end, paid inference, phone layout of the new sections, the agent panel for signed-out visitors.
 - Voiceover script and demo video: not started, by instruction.
+
+## N90 (Nov 5, Koushik follow-ups)
+- Home: scroll-craft engine (unchanged copy) mounted; hero pins and scrubs the real ST03 clip (MEASURED dots, fitted curve, all values from featured-st03.json); room flow reveal; ST03 steps pan rail; class steps light up; reduced motion and phones get flow layout. Less body text: stat strip from stored rows, long method text and the Muse reply behind details. Mobbin references: Spade, Linear, Height, Frontify.
+- Guide: templates and Make my copy, guest Fit trace, sample replays (Speed, auto-pause, gravity), Guess the Gravity with Mystery-g.
+- Footer: Meta AI credit first (Muse Spark/Wonder/Open, SAM 3.1, MapAnything), sponsors (Meta Model API, Baseten, Modal) and hosts (Meta, Cerebral Valley); Stability attribution kept.
+- Verified: node 280 + new N90 test pass; next build; secret scan clean. Web deployed from e16df838, SUCCESS, /api/version e16df838. Live Playwright signed out, 16 checks at 320/375/768/1440: no overflow, no page errors, no em dashes. API not redeployed (unchanged).
