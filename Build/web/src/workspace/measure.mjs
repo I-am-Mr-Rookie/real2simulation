@@ -185,7 +185,9 @@ export function trajectoryScene(result) {
   const tr = result?.trajectory;
   if (!tr || !Array.isArray(tr.t_s) || tr.t_s.length < 3) return null;
   const metric = tr.unit === 'm', s = metric ? 1 : 0.001;
-  const lift = -Math.min(...tr.y) * s + 0.05;
+  // N89: lowest dot 0.5 m above the floor, so the SIMULATED ball never lands before the last tracked time (at 5 cm a
+  // faster what-if ball bounced first and the replay compared the wrong positions).
+  const lift = -Math.min(...tr.y) * s + 0.5;
   const r4 = (v) => Math.max(-1e4, Math.min(1e4, +v.toFixed(4)));
   const track = tr.t_s.map((_, i) => [r4(tr.x[i] * s), r4(tr.y[i] * s + lift), 0]);
   // Start from the fitted curve at t = 0 (intercept and slope), not the noisy first dot, so the ball follows the whole fit.

@@ -208,7 +208,7 @@ main:has(.lab-editor) { padding: 0; }
   .le-top .le-end { flex-basis: 100%; justify-content: flex-end; margin-left: 0; }
   .le-top button, .le-file { min-height: 40px; min-width: 40px; }
   /* Keep the summary above the floating rail (56px inset + 46px height) and the phone safe area. */
-  .le-status { font-size: 12px; max-height: 24%; bottom: calc(112px + env(safe-area-inset-bottom)); }
+  .le-status { font-size: 12px; max-height: 18%; bottom: calc(112px + env(safe-area-inset-bottom)); }
 }
 @media (prefers-reduced-motion: reduce) { .lab-editor button { transition: none; } }
 

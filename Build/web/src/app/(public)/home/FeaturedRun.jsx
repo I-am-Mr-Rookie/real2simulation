@@ -22,7 +22,7 @@ const sd = Math.sqrt(vals.reduce((s, v, _, a) => s + (v - vals.reduce((x, y) => 
 const below = measured.filter((x) => x.value + 2 * x.sigma < 9.81).length;
 
 function Sweep() {
-  const W = 520, row = 22, L = 70, R = W - 16, top = 18, H = top + sweep.rows.length * row + 26, lo = 6, hi = 11;
+  const W = 400, row = 22, L = 58, R = W - 14, top = 18, H = top + sweep.rows.length * row + 26, lo = 6, hi = 11;
   const X = (v) => L + ((v - lo) / (hi - lo)) * (R - L);
   return <svg viewBox={'0 0 ' + W + ' ' + H} role="img" aria-label={'Fitted g with 1 sigma bars for ' + sweep.rows.length + ' phone drops, against Earth g 9.81'}>
     {[6, 7, 8, 9, 10, 11].map((v) => <g key={v}><line x1={X(v)} x2={X(v)} y1={top - 6} y2={H - 22} className="fr-grid" /><text x={X(v)} y={H - 8} textAnchor="middle">{v}</text></g>)}
@@ -70,7 +70,7 @@ export default function FeaturedRun() {
         <span className="chip" data-tone="ok">MEASURED</span>
         <h3>One of them in detail (OWN07)</h3>
         <p className="fr-value"><strong>{fmtPm(pq.value, pq.uncertainty)} {pq.unit.replace('^2', '²')}</strong> {pq.name}, 1 sigma.</p>
-        {pcheck && <p>{pcheck.text}</p>}
+        {pcheck && <p>{pcheck.text} It is one of the twelve above and reads higher than their median ({median.toFixed(2)}), so it is a worked example, not the typical result.</p>}
         <p>A book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, run through the live pipeline on {phone.utc.slice(0, 10)}. Hosted SAM 3.1 tracked {p.track.tracked_frames} frames; the pipeline kept {p.segment.frames} frames of free fall ({p.segment.duration_s.toFixed(2)} s) and cut the landing frames. Scale: {p.scale.object}, measured with a ruler by the maker ({p.scale.label}). {p.clock[0].toUpperCase() + p.clock.slice(1)}.</p>
         <p className="fr-meta mono">Recorded cost {'$' + p.cost_usd} · {phone.seconds} s end to end · the video is a private owner clip, so only the tracked dots are public</p>
         <p><Link className="primary-link" href="/lab?editor=1&sample=own07">Replay this drop in 3D next to a SIMULATED ball at 9.81</Link></p>

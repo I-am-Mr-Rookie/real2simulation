@@ -19,6 +19,8 @@ import { TEMPLATES, templateScene, PHYSICS_LAB_CARDS, hasPhysicsStations } from 
 import { LESSONS, lessonVerdict, lessonReport } from './lesson.mjs';
 import featuredRun from '../app/(public)/home/featured-st03.json';
 import phoneRun from '../app/(public)/home/featured-own07.json';
+import phoneSweep from '../app/(public)/home/featured-own-sweep.json';
+const sweepMedian = () => { const v = phoneSweep.rows.filter((x) => x.motion === 'free_fall').map((x) => x.value).sort((a, b) => a - b), k = v.length >> 1; return v.length % 2 ? v[k] : (v[k - 1] + v[k]) / 2; };
 import './lab-editor.css';
 
 const COLORS = { ball: 0xe4572e, block: 0x3b82f6, ramp: 0x9ca3af, pendulum: 0xf59e0b, spring: 0x10b981, flywheel: 0x8b5cf6, atwood: 0x0ea5e9,
@@ -354,7 +356,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       if (state.playing && state.sim) {
         state.acc += Math.min(0.1, (now - (state.last || now)) / 1000) * (state.speed ?? 1);
         let n = 0;
-        const hold = () => state.pauseAt != null && state.sim.time >= state.pauseAt - 1e-9;
+        const hold = () => state.pauseAt != null && state.sim.time >= state.pauseAt - 1 / 240; // nearest 1/120 s step, not one past it
         while (state.acc >= 1 / 120 && n < MAX_STEPS_PER_FRAME && !hold()) { state.sim.step(); state.acc -= 1 / 120; n += 1; }
         if (n === MAX_STEPS_PER_FRAME) state.acc = 0; // slow device: drop wall-clock sync, keep fixed physics steps
         const poses = state.sim.poses();
@@ -583,7 +585,9 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     const geo = new THREE.BufferGeometry().setFromPoints(t.track.map((q) => new THREE.Vector3(...q)));
     a.state.track = new THREE.Group().add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0x111827 })), new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.025, color: 0x4f46e5 })));
     a.three.add(a.state.track);
-    frameTo([...t.track.flat(), ...t.scene.objects[0].position], 0, 1.4); // every dot and the ball start, clear of the toolbar
+    // every dot and the ball start, clear of the toolbar; one empty point below keeps the landing above the status text
+    const ys = t.track.map((q) => q[1]), span = Math.max(...ys) - Math.min(...ys);
+    frameTo([...t.track.flat(), ...t.scene.objects[0].position, t.track.at(-1)[0], Math.min(...ys) - (innerWidth < 700 ? 1.2 : 0.6) * span, 0], 0, 1.3);
     const last = t.track.at(-1);
     a.state.trackEnd = result.trajectory.t_s.at(-1);
     a.state.onAutoPause = (poses) => {
@@ -608,9 +612,9 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const loadSample = (id) => {
     try {
       if (id === 'own07') {
-        const q = phoneRun.result.quantity;
+        const q = phoneRun.result.quantity, m = sweepMedian();
         showTrack(phoneRun.result, 'own07-sample', 'Dots and line: the hosted SAM 3.1 track of a book dropped on a phone video, MEASURED in metres from the ' + phoneRun.result.scale.object + ' (' + phoneRun.result.scale.label + '). The ball is SIMULATED at Earth g, 9.81, so it runs slightly ahead of the dots. The clip measured '
-          + fmtPm(q.value, q.uncertainty) + ' m/s^2. ' + gravityCheck(phoneRun.result).text + ' Press Play, then set Gravity y to -' + q.value.toFixed(2) + ' and Play again to compare.', [0, -9.81, 0]);
+          + fmtPm(q.value, q.uncertainty) + ' m/s^2, one of 12 drops of this book that read low (median ' + m.toFixed(2) + '), so treat it as one sample, not a calibrated g. Press Play (try Speed 0.25x); it pauses at the last tracked frame. Then set Gravity y to -' + q.value.toFixed(2) + ', Reset and Play to compare.', [0, -9.81, 0]);
       } else {
         const r = featuredRun.result, g = +(r.quantity.value / 1000).toFixed(3), gx = +(r.fit.x.accel_px_s2 / 1000).toFixed(3);
         showTrack(r, 'st03-sample', 'Dots and line: the hosted SAM 3.1 track of a falling apple (stock clip, RECORDED), drawn at 1 px = 1 mm. Gravity starts at the fitted '

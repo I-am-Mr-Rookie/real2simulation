@@ -53,8 +53,8 @@ test('public OWN07 replay: at the fitted g the SIMULATED ball lands on the last 
     return [s.reduce((b, x) => (Math.abs(x.t - tEnd) < Math.abs(b.t - tEnd) ? x : b)).p[1], t.track.at(-1)[1]];
   };
   const [fit, dot] = await endY(r.quantity.value), [earth] = await endY(9.81);
-  assert.ok(Math.abs(fit - dot) < 0.03, 'fitted g: ball ' + fit + ' vs dot ' + dot);
-  assert.ok(dot - earth > 0.015, 'Earth g: ball ' + earth + ' vs dot ' + dot);
+  assert.ok(Math.abs(fit - dot) < 0.01, 'fitted g: ball ' + fit + ' vs dot ' + dot);
+  assert.ok(dot - earth > 3 * Math.abs(fit - dot) && dot - earth > 0.03, 'Earth g must miss by more: ball ' + earth + ' vs dot ' + dot);
 });
 
 test('public ST03 replay: at the fitted gravity (px read as mm) the SIMULATED ball lands on the last tracked dot', async () => {

@@ -27,6 +27,7 @@
 .featured-run .fr-sub { margin: 2rem 0 .25rem; font-size: 1.1rem; }
 .fr-earth { stroke: var(--r2s-danger, #b91c1c); stroke-width: 1.5; stroke-dasharray: 4 3; }
 .fr-earth-t { fill: var(--r2s-danger, #b91c1c) !important; opacity: 1 !important; }
+.fr-sweep .fr-chart text { font-size: 13px; }
 .fr-miss { font-style: italic; }
 @media (max-width: 800px) { .fr-phone { grid-template-columns: minmax(0, 1fr); } }
 .fr-agent { display: grid; justify-items: start; gap: .5rem; margin: 1rem 0 0; padding: 1rem 1.1rem; }
