@@ -21,10 +21,12 @@ const STEPS = [
 ];
 
 const LABELS = [
-  ['ok', 'RECORDED', 'Read from the footage.'],
-  ['sim', 'SIMULATED', 'Produced by the fitted model.'],
+  ['ok', 'RECORDED', 'Stored footage or a stored run, shown as it was.'],
+  ['ok', 'MEASURED', 'Read from the footage, for example a tracked point.'],
+  ['sim', 'SIMULATED', 'Produced by the physics engine.'],
+  ['warn', 'MODEL-ESTIMATED', 'A model guess, for example room geometry or mass.'],
   ['warn', 'what-if', 'Your change, not the clip.'],
-  [null, 'scale unverified', 'No trusted ruler, so no metres.']
+  [null, 'scale unverified', 'No known size, so pixels, not metres.']
 ];
 
 export default function Home() {
@@ -53,6 +55,16 @@ export default function Home() {
       </figure>
     </section>
     <FeaturedRun />
+    <section className="show featured-run" aria-labelledby="class-use">
+      <h2 id="class-use">Use it in a class</h2>
+      <p className="show-line">One lesson period, one question, two kinds of evidence: a simulation and the students' own clip.</p>
+      <ol className="fr-steps">
+        <li className="card"><span className="chip" data-tone="sim">SIMULATED</span><h3>1. Predict, then test</h3><p>Open the <Link href="/lab?editor=1&template=physics-lab">physics lab</Link> and pick a lesson in the Scene panel: does a heavier ball fall faster, does twice the height take twice as long? Students predict, run two drops and compare them with uncertainty. No account needed.</p></li>
+        <li className="card"><span className="chip" data-tone="ok">RECORDED</span><h3>2. Film a real drop</h3><p>Phone on a stand, ball in front of a plain wall, 5 to 30 s. Measure the ball diameter with a ruler.</p></li>
+        <li className="card"><span className="chip" data-tone="warn">scale assumed</span><h3>3. Measure it</h3><p>Upload after signing in. Meta SAM 3.1 tracks the ball (MEASURED track); type its diameter and the fitter returns g in m/s^2 with error bars, labelled scale assumed (user size).</p></li>
+        <li className="card"><span className="chip" data-tone="warn">what-if</span><h3>4. Compare and redo</h3><p>Replay the clip in 3D, change gravity or height, and see where the simulation leaves the measured dots. Copy results gives a worksheet summary.</p></li>
+      </ol>
+    </section>
     <ul className="features">
       {FEATURES.map((f) => <li key={f.id} className="feature card">
         <MarketingArt id={f.id} width={800} height={600} alt={f.alt} />

@@ -1,7 +1,8 @@
 // N89: guided student questions in the physics lab: predict, measure, change one thing, measure again, compare with uncertainty.
 // Numbers come only from fitSimTrace (browser least squares on the SIMULATED sensor trace) and the scene itself.
+import { fmtPm as fmt } from '../workspace/measure.mjs';
+
 const DT = 1 / 120; // engine step: the first-impact time is known to one step
-const fmt = (v, s) => v.toFixed(4) + ' +/- ' + s.toPrecision(2);
 const height = (o, floor = 0) => o.position[1] - o.size[1] / 2 - floor;
 
 export const LESSONS = [
