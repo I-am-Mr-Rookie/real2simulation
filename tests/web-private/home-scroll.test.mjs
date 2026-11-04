@@ -31,3 +31,13 @@ test('home has no em dash and motion is guarded for reduced motion', async () =>
   assert.ok(!/(^|[^-])(top|left|width|height|margin)\s*:/.test(css.slice(css.indexOf('@keyframes'))), 'keyframes animate composited props only');
 });
 
+test('N90 scroll-craft: engine mounted on the home, hero clock reads stored evidence, Meta credit leads the footer', async () => {
+  const [page, mount, clock] = await Promise.all([src('page.jsx'), src('home/ScrollMount.jsx'), src('home/HeroClock.jsx')]);
+  assert.ok(mount.includes("'/scrollcraft/scrollcraft.js'") && mount.includes('ScrollCraft.mount('));
+  assert.match(page, /data-sc-act="pin"/);
+  assert.ok(clock.includes("import run from './featured-st03.json';"));
+  const frame = await readFile(new URL('../../Build/web/src/app/SiteFrame.jsx', import.meta.url), 'utf8');
+  assert.ok(frame.indexOf('Built on Meta AI') < frame.indexOf('Powered by Stability AI'), 'Meta credit first, Stability attribution kept');
+  for (const s of ['Baseten', 'Modal', 'Cerebral Valley', 'Meta Model API']) assert.ok(frame.includes(s), s);
+});
+

@@ -30,6 +30,9 @@ export default function SiteFrame({ children, authAvailable = false }) {
       </nav>
     </header>
     <main id="main">{children}</main>
-    <footer className="site-footer"><strong>Hackathon build</strong><span>Sign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.</span><Link href="/guide">Guide</Link><small>Powered by Stability AI</small></footer>
+    <footer className="site-footer"><strong>Hackathon build</strong><span>Sign in to upload your own videos. Every result is labelled MEASURED, MODEL-ESTIMATED or SIMULATED, with its uncertainty; template lab results are not calibrated measurements.</span><Link href="/guide">Guide</Link>
+      <div className="credits"><p className="meta-credit"><strong>Built on Meta AI</strong> Muse Spark, Muse Wonder and Muse Open run the agent. SAM 3.1 on the Meta Model API tracks the motion. MapAnything rebuilds rooms in 3D.</p>
+      <p className="sponsor-credit">Thanks to the Meta Model API, Baseten and Modal for compute, and to Meta and Cerebral Valley for hosting the hackathon.</p>
+      <small>3D object shapes: Powered by Stability AI</small></div></footer>
   </>;
 }

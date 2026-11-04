@@ -137,6 +137,11 @@ figcaption span { display: block; font: 400 .85rem/1.5 var(--r2s-font-sans); let
 .auth-frame { display: grid; gap: 1.5rem; justify-items: start; }
 .site-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; padding-block: 1.25rem 2rem; border-top: 1px solid var(--r2s-ink); color: var(--r2s-muted); font-size: .88rem; }
 .site-footer strong { font: 700 .75rem/1.6 var(--r2s-font-mono); letter-spacing: .06em; text-transform: uppercase; color: var(--r2s-ink); }
+.site-footer .credits { flex-basis: 100%; display: grid; gap: .35rem; padding-top: .75rem; border-top: 1px dashed var(--r2s-muted); }
+.site-footer .credits p { margin: 0; }
+.site-footer .meta-credit { color: var(--r2s-ink); font-size: 1rem; }
+.site-footer .meta-credit strong { margin-right: .5rem; }
+.site-footer .credits small { font-size: .75rem; }
 @media (max-width: 700px) {
   body { font-size: 16px; }
   .entry { grid-template-columns: 1fr; gap: 2rem; }

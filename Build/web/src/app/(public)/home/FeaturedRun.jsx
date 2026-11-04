@@ -29,10 +29,10 @@ function Sweep() {
   return <svg viewBox={'0 0 ' + W + ' ' + H} role="img" aria-label={'Fitted g with 1 sigma bars for ' + sweep.rows.length + ' phone drops, against Earth g 9.81'}>
     {[6, 7, 8, 9, 10, 11].map((v) => <g key={v}><line x1={X(v)} x2={X(v)} y1={top - 6} y2={H - 22} className="fr-grid" /><text x={X(v)} y={H - 8} textAnchor="middle">{v}</text></g>)}
     <line x1={X(9.81)} x2={X(9.81)} y1={top - 10} y2={H - 22} className="fr-earth" /><text x={X(9.81)} y={top - 10} textAnchor="middle" className="fr-earth-t">9.81</text>
-    {sweep.rows.map((x, i) => { const y = top + i * row + row / 2, ok = measured.includes(x);
+    <g data-sc-in data-sc-stagger="45">{sweep.rows.map((x, i) => { const y = top + i * row + row / 2, ok = measured.includes(x);
       return <g key={x.clip}><text x={L - 8} y={y + 3.5} textAnchor="end">{x.clip}</text>
         {ok ? <><line x1={X(x.value - x.sigma)} x2={X(x.value + x.sigma)} y1={y} y2={y} className="fr-curve" /><circle cx={X(x.value)} cy={y} r={3.2} className="fr-pt" /></>
-          : <text x={L + 4} y={y + 3.5} className="fr-miss">{x.status === 'failed' ? 'failed: ' + String(x.reason?.message ?? 'no track') : 'no g: ' + x.motion}</text>}</g>; })}
+          : <text x={L + 4} y={y + 3.5} className="fr-miss">{x.status === 'failed' ? 'failed: ' + String(x.reason?.message ?? 'no track') : 'no g: ' + x.motion}</text>}</g>; })}</g>
   </svg>;
 }
 // N89: one recorded Muse Spark turn in the lab editor (evidence/N28/run1-turns.json, verbatim copy): request, tool calls, reply.
@@ -46,7 +46,8 @@ function Chart({ g, what }) {
     <path d={'M' + b.L + ' ' + b.T + 'V' + b.B + 'H' + b.R} className="fr-axis" />
     {g.band && <path d={g.band} className="fr-band" />}
     {g.curve && <path d={g.curve} className="fr-curve" />}
-    {g.points.map((p, i) => <circle key={i} cx={p.cx} cy={p.cy} r={2.6} className="fr-pt" />)}
+    {/* N90: the dots plot themselves in time order as the chart enters */}
+    <g data-sc-in data-sc-stagger="28">{g.points.map((p, i) => <circle key={i} cx={p.cx} cy={p.cy} r={2.6} className="fr-pt" />)}</g>
     <text x={(b.L + b.R) / 2} y={g.H - 4} textAnchor="middle">{g.xLabel}</text>
     <text x={11} y={(b.T + b.B) / 2} textAnchor="middle" transform={'rotate(-90 11 ' + (b.T + b.B) / 2 + ')'}>{g.yLabel}</text>
   </svg>;
@@ -56,33 +57,51 @@ export default function FeaturedRun() {
   const n = r.trajectory.t_s.length;
   return <section className="show featured-run" aria-labelledby="real-run">
     <h2 id="real-run">Real runs, start to finish</h2>
-    <p className="show-line">Twelve phone clips and one stock clip went through the live pipeline. These are the stored outputs, not mock-ups.</p>
+    <p className="show-line">Stored outputs of the live pipeline, not mock-ups.</p>
+    {/* N90: stat strip (Mobbin ref: Spade). Every figure is computed above from the stored rows. */}
+    <ul className="fr-stats" data-sc-in data-sc-stagger="70">
+      <li className="card"><span className="mono">phone drops fitted</span><strong>{measured.length} of {sweep.rows.length}</strong></li>
+      <li className="card"><span className="mono">median g, MEASURED</span><strong>{median.toFixed(2)}</strong><small>m/s², scale assumed</small></li>
+      <li className="card"><span className="mono">reads low by</span><strong>{((1 - mean / 9.81) * 100).toFixed(0)}%</strong><small>{biasZ.toFixed(1)} standard errors</small></li>
+      <li className="card"><span className="mono">one hosted SAM 3.1 run</span><strong>{'$' + r.cost_usd}</strong></li>
+    </ul>
     <div className="card fr-phone fr-sweep">
       <div>
         <span className="chip" data-tone="ok">MEASURED</span>
         <h3>Twelve phone drops, every result shown</h3>
-        <p className="fr-value"><strong>{measured.length} of {sweep.rows.length}</strong> gave a free-fall fit: median {median.toFixed(2)} m/s², spread {sd.toFixed(2)} (1 sd), range {vals[0].toFixed(2)} to {vals.at(-1).toFixed(2)}.</p>
-        <p>The same book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, each clip run once through the live pipeline (hosted SAM 3.1 plus the fitter) with the same prompt "{sweep.target_text}" and the ruler-measured {sweep.known_size}. None was left out.</p>
-        <p>A first pass read lower (median 8.62): in 7 of 11 clips the last kept frame was already the landing. The pipeline now drops that frame when the parabola through the others misses it by over 3 sigma; these rows are the same stored tracks refit with that check, no new model calls.</p>
-        <p>Honest reading: the method is repeatable, but it reads low. The mean of the {measured.length} fits is {mean.toFixed(2)}, {((1 - mean / 9.81) * 100).toFixed(0)}% under 9.81 and {biasZ.toFixed(1)} standard errors below it, and {below} of {measured.length} sit more than 2 sigma low, so the error bars miss a systematic error we have not yet explained (suspects: box centre drift as the book tilts, perspective, rolling shutter). Treat a phone result as a classroom estimate, not a calibrated g.</p>
+        <p className="fr-value">Median {median.toFixed(2)} m/s², spread {sd.toFixed(2)}, range {vals[0].toFixed(2)} to {vals.at(-1).toFixed(2)}. Repeatable, but low: a classroom estimate, not a calibrated g.</p>
+        <details className="fr-more"><summary>How this was measured</summary>
+          <p>The same book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, each clip run once through the live pipeline (hosted SAM 3.1 plus the fitter) with the same prompt "{sweep.target_text}" and the ruler-measured {sweep.known_size}. None was left out.</p>
+          <p>A first pass read lower (median 8.62): in 7 of 11 clips the last kept frame was already the landing. The pipeline now drops that frame when the parabola through the others misses it by over 3 sigma; these rows are the same stored tracks refit with that check, no new model calls.</p>
+          <p>The mean of the {measured.length} fits is {mean.toFixed(2)}, {((1 - mean / 9.81) * 100).toFixed(0)}% under 9.81 and {biasZ.toFixed(1)} standard errors below it, and {below} of {measured.length} sit more than 2 sigma low, so the error bars miss a systematic error we have not yet explained (suspects: box centre drift as the book tilts, perspective, rolling shutter).</p>
+        </details>
       </div>
-      <figure className="fr-chart"><Sweep /><figcaption>Dot: fitted g. Bar: 1 sigma from the fitter and the scale. Line: Earth g.</figcaption></figure>
+      <figure className="fr-chart"><Sweep /><figcaption>Dot: fitted g. Bar: 1 sigma. Line: Earth g.</figcaption></figure>
     </div>
     <div className="card fr-phone">
       <div>
         <span className="chip" data-tone="ok">MEASURED</span>
         <h3>One of them in detail (OWN07)</h3>
-        <p className="fr-value"><strong>{fmtPm(pq.value, pq.uncertainty)} {pq.unit.replace('^2', '²')}</strong> {pq.name}, 1 sigma.</p>
-        {pcheck && <p>{pcheck.text} It is one of the twelve above (their median is {median.toFixed(2)}); that one clip agreeing does not remove the group bias.</p>}
-        <p>A book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, run through the live pipeline on {phone.utc.slice(0, 10)}. Hosted SAM 3.1 tracked {p.track.tracked_frames} frames; the pipeline kept {p.segment.frames} frames of free fall ({p.segment.duration_s.toFixed(2)} s) and cut the landing frames. Scale: {p.scale.object}, measured with a ruler by the maker. The app cannot check a typed size, so it labels the result {p.scale.label}; the stated tolerance is inside the error bar. {p.clock[0].toUpperCase() + p.clock.slice(1)}.</p>
-        <p className="fr-meta mono">Recorded cost {'$' + p.cost_usd} · {phone.seconds} s end to end · the video is a private owner clip, so only the tracked dots are public</p>
-        <p><Link className="primary-link" href="/lab?editor=1&sample=own07">Replay this drop in 3D next to a SIMULATED ball at 9.81</Link></p>
+        <p className="fr-value"><strong>{fmtPm(pq.value, pq.uncertainty)} {pq.unit.replace('^2', '²')}</strong> {pq.name}, 1 sigma, {p.scale.label}.</p>
+        <p><Link className="primary-link" href="/lab?editor=1&sample=own07">Replay it in 3D next to a SIMULATED ball at 9.81</Link></p>
+        <details className="fr-more"><summary>How this was measured</summary>
+          {pcheck && <p>{pcheck.text} It is one of the twelve above (their median is {median.toFixed(2)}); that one clip agreeing does not remove the group bias.</p>}
+          <p>Filmed on {phone.utc.slice(0, 10)}. Hosted SAM 3.1 tracked {p.track.tracked_frames} frames; the pipeline kept {p.segment.frames} frames of free fall ({p.segment.duration_s.toFixed(2)} s) and cut the landing frames. Scale: {p.scale.object}, measured with a ruler by the maker. The app cannot check a typed size, so it labels the result {p.scale.label}; the stated tolerance is inside the error bar. {p.clock[0].toUpperCase() + p.clock.slice(1)}.</p>
+          <p className="fr-meta mono">Recorded cost {'$' + p.cost_usd} · {phone.seconds} s end to end · the video is a private owner clip, so only the tracked dots are public</p>
+        </details>
       </div>
-      <figure className="fr-chart"><Chart g={pg} what="book" /><figcaption>Dots: tracked book (MEASURED). Line: fitted curve. Its 1 sigma band is thinner than the line here.</figcaption></figure>
+      <figure className="fr-chart"><Chart g={pg} what="book" /><figcaption>Dots: tracked book (MEASURED). Line: fitted curve.</figcaption></figure>
     </div>
+
+    {/* N90 scroll-craft: on desktop the pipeline is a rail that travels sideways while the stage holds (pan act). */}
+    <div className="fr-pan" data-sc-act="pan" data-sc-span="3" data-pin-min="861 700">
+    <div className="fr-pan-stage" data-sc-stage>
+    <div className="fr-rail" data-sc-pan="0.04">
+    <div className="fr-rail-head">
     <h3 className="fr-sub">A stock clip, and what the pipeline says when it cannot be right</h3>
     <p className="show-line">A public stock clip went through the same pipeline on {run.utc.slice(0, 10)}.</p>
-    <ol className="fr-steps">
+    </div>
+    <ol className="fr-steps" data-flow-stagger>
       <li className="card">
         <span className="chip" data-tone="ok">RECORDED</span>
         <h3>1. The clip</h3>
@@ -111,23 +130,26 @@ export default function FeaturedRun() {
       </li>
     </ol>
     <p className="fr-cta"><Link className="primary-link" href="/lab?editor=1&sample=st03">Replay this run in 3D and change gravity</Link></p>
+    </div>
+    </div>
+    </div>
     <div className="card fr-agent">
       <span className="chip" data-tone="ok">MEASURED</span>
       <h3>Muse runs the real pipeline from one sentence</h3>
-      <p>A recorded call to Meta {measuredTurn.model} on {measuredTurn.utc.slice(0, 10)} through the live API in a signed-in test workspace, on the full 1080p phone file of the OWN07 book drop above, unedited. Muse found the video, started hosted SAM 3.1 tracking with the ruler size, called fit while tracking was still running, then fitted again once it finished.</p>
-      <dl>
+      <p>One sentence to Meta {measuredTurn.model} on the OWN07 phone file, recorded {measuredTurn.utc.slice(0, 10)}, unedited.</p>
+      <dl data-sc-in data-sc-stagger="90">
         <dt>You</dt><dd>{measuredTurn.sent}</dd>
         <dt>Tools it called</dt><dd className="mono">{measuredTurn.tools.join(' → ')}</dd>
-        <dt>Muse</dt><dd>{measuredTurn.reply}</dd>
+        <dt>Muse</dt><dd><details className="fr-more"><summary>Read its full reply</summary><p>{measuredTurn.reply}</p></details></dd>
         <dt>Fit</dt><dd>{fmtPm(measuredTurn.quantity.value, measuredTurn.quantity.uncertainty)} {measuredTurn.quantity.unit}, {measuredTurn.quantity.label}, {measuredTurn.frames} frames.</dd>
       </dl>
-      <p>It agrees with the direct pipeline run of the same clip above within its uncertainty: Muse reads the fitter's number and labels, it does not make one up.</p>
+      <p>Matches the direct run within its uncertainty. Muse reads the fitter; it never makes numbers up.</p>
     </div>
     <div className="card fr-agent">
       <span className="chip" data-tone="sim">SIMULATED</span>
       <h3>Muse also runs the virtual lab</h3>
-      <p>A recorded call to Meta {turn.model} on {turn.utc.slice(0, 10)}, unedited, on a SIMULATED drop in the lab editor, not the apple clip above. The agent turns a sentence into lab actions and reads the numbers back from the physics engine, not from its own guess.</p>
-      <dl>
+      <p>A SIMULATED drop in the lab editor, recorded {turn.utc.slice(0, 10)}, unedited. Numbers come from the physics engine.</p>
+      <dl data-sc-in data-sc-stagger="90">
         <dt>You</dt><dd>{turn.sent}</dd>
         <dt>Tools it called</dt><dd className="mono">{turn.tool_calls.map((c) => c.name).join(' → ')}</dd>
         <dt>Muse</dt><dd>{turn.reply}</dd>

@@ -1,5 +1,6 @@
-/* S15aq home scroll motion. Resting layout is plain CSS; motion only exists inside the no-preference + scroll-timeline guard. */
-/* shortcut: no IntersectionObserver fallback, browsers without animation-timeline get the static page; add one if Safari/Firefox motion is wanted. */
+/* S15aq home motion, N90 scroll-craft. Resting layout is plain CSS. The engine (public/scrollcraft/scrollcraft.js, unchanged) adds
+   .sc-ready to <html>, .sc-stage / .sc-act--pinned to pinned acts and publishes --sc-p; only its device rules are reproduced below,
+   scoped to .home-motion, because its global reset would restyle the rest of the site. Without JavaScript nothing is hidden. */
 .home-h1 { max-width: none; font-size: clamp(1.6rem, 4.6vw, 3.6rem); }
 .home-h1 span { display: block; white-space: nowrap; }
 .trust-line { margin: .75rem 0 0; font-size: .9rem; color: var(--r2s-muted); }
@@ -7,7 +8,7 @@
 .mg-hook .r2s-icon { color: var(--r2s-accent); flex: none; }
 .mg-hook span { color: var(--r2s-muted); }
 .show { margin: 5rem 0 0; }
-.show-honest { overflow-x: clip; } /* side-slide rows must not widen the page before they enter */
+.show-honest { overflow-x: clip; }
 .show h2 { margin: 0 0 .5rem; font-size: clamp(1.4rem, 3vw, 2.1rem); }
 .show-line { margin: 0 0 1.5rem; color: var(--r2s-muted); }
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
@@ -26,44 +27,88 @@
 .show-cta { padding: 2.5rem 0 1rem; }
 .show-cta .actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .show-cta .actions > a { justify-content: center; min-height: 44px; }
+
+/* hero: copy and the clip-clock surface (HeroClock). Planes: RECORDED still (far), chart (mid), readout (near). */
+.hero-act { margin-top: -1rem; }
+.hero-stage { align-content: center; }
+@media (min-width: 861px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) { .hero-stage { min-height: 100svh; } } /* same size before the engine pins it: no layout jump */
+.hc { position: relative; margin: 0; height: min(70vh, 600px); min-height: 380px; --hp: 0; }
+.hc-photo { position: absolute; top: 0; right: 3%; height: 86%; aspect-ratio: 201 / 600; padding: 0; overflow: hidden; }
+.hc-frame { position: absolute; inset: 0; background: url(/featured/st03-frames.webp) 0 50% / 410% 100% no-repeat; opacity: 0; transition: opacity .18s ease-out; }
+.hc-frame.on { opacity: 1; }
+.hc-tag { position: absolute; right: .5rem; top: .5rem; }
+.hc-chart { position: absolute; left: 0; bottom: 15%; width: min(78%, 430px); padding: .5rem; }
+.hc-chart svg { display: block; width: 100%; height: auto; }
+.hc-chart text { font: 10px var(--r2s-font-mono); fill: currentColor; opacity: .8; }
+.hc-dot { fill: none; stroke: var(--r2s-border-strong); stroke-width: 1; transition: fill .12s, stroke .12s; }
+.hc-dot.on { fill: var(--r2s-ink); stroke: var(--r2s-ink); }
+.hc-ball { fill: var(--r2s-accent); fill-opacity: .35; stroke: var(--r2s-accent); stroke-width: 2; }
+.hc-read { position: absolute; left: 0; top: 3%; z-index: 2; display: grid; gap: .35rem; margin: 0; padding: .6rem .75rem; list-style: none; font: .78rem/1.4 var(--r2s-font-mono);
+  background: var(--r2s-surface); border: 1px solid var(--r2s-border-strong); border-radius: var(--r2s-radius); box-shadow: var(--r2s-shadow-sm); }
+.hc-read b { font-weight: 700; font-variant-numeric: tabular-nums; }
+.hc-warn { color: var(--r2s-warn); }
+.hc figcaption { position: absolute; left: 0; bottom: 0; width: 62%; margin: 0; padding: 0; border: 0; font: .85rem/1.45 var(--r2s-font-sans); letter-spacing: 0; text-transform: none; color: var(--r2s-muted); }
+.room-out .hero-art { transform: none; }
+.room-out figcaption { display: grid; gap: .2rem; margin-top: .6rem; font-weight: 700; }
+.room-out figcaption span { font-weight: 400; color: var(--r2s-muted); }
+.fall-calc { display: grid; gap: .5rem; margin: 1.25rem 0 0; padding: 1rem 1.1rem; }
+.fall-calc label { font-weight: 700; }
+.fall-calc input { width: 9rem; min-height: 44px; padding: 0 .7rem; font: inherit; color: inherit; background: var(--r2s-bg); border: 1.5px solid var(--r2s-border-strong); border-radius: var(--r2s-radius-sm); }
+.fall-calc output { color: var(--r2s-muted); font-size: .95rem; }
+.fall-calc output .chip { margin-right: .35rem; }
+
 @media (max-width: 900px) { .home-h1 { font-size: clamp(1.6rem, 8.4vw, 3.6rem); } .steps, .show-split { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 860px) {
+  /* phone composition: the surface sits under the copy, narrower still, chart overlapping its left edge, readout below */
+  .hc { height: auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 34%; grid-template-rows: auto auto; gap: .6rem 0; margin-top: 1.5rem; }
+  .hc-photo { position: relative; right: auto; grid-column: 2; grid-row: 1; height: auto; width: 100%; }
+  .hc-chart { position: relative; left: auto; bottom: auto; grid-column: 1 / 3; grid-row: 1; align-self: end; width: 78%; margin-bottom: 8%; z-index: 1; }
+  .hc-read { position: relative; grid-column: 1 / 3; grid-row: 2; }
+  .hc figcaption { position: static; grid-column: 1 / 3; width: auto; }
+}
 @media (max-width: 560px) { .agent-art, .label-list, .show-cta .actions { grid-template-columns: minmax(0, 1fr); } }
 
+/* ---- engine device rules (from scroll-craft engine/scrollcraft.css), scoped ---- */
+.home-motion .sc-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: clip; }
+.home-motion .hero-stage.sc-stage { padding-bottom: 3rem; }
+.home-motion .class-stage.sc-stage { display: grid; align-content: center; }
+.class-stage > .show-line:last-child { margin-top: 1.5rem; }
+.sc-ready .home-motion [data-sc-in], .sc-ready .home-motion [data-sc-stagger] > * { opacity: 0; transform: translate3d(0, 14px, 0); transition: opacity 620ms cubic-bezier(.23, 1, .32, 1), transform 620ms cubic-bezier(.23, 1, .32, 1); }
+.sc-ready .home-motion [data-sc-in].sc-in, .sc-ready .home-motion [data-sc-stagger] > .sc-in { opacity: 1; transform: none; }
+.sc-ready .home-motion [data-sc-stagger] { opacity: 1; transform: none; } /* the list itself stays put; its children arrive */
+.home-motion [data-sc-reveal], .home-motion [data-sc-parallax] { will-change: transform, clip-path; }
+/* pan rail: full-bleed stage so the engine's travel (rail width minus the viewport) lands the last item flush */
+.home-motion .fr-pan.sc-act--pinned { margin-top: 2rem; }
+.home-motion .fr-pan .sc-stage { width: 100vw; margin-left: calc(50% - 50vw); display: grid; align-content: center; }
+.home-motion .sc-act--pinned .fr-rail { display: flex; align-items: center; gap: 1.25rem; width: max-content; padding-inline: max(1.25rem, calc(50vw - 560px)); will-change: transform; }
+.home-motion .sc-act--pinned .fr-rail > ol { display: contents; }
+.home-motion .sc-act--pinned .fr-rail-head { width: 20rem; flex: none; }
+.home-motion .sc-act--pinned .fr-rail .fr-steps > li { width: clamp(19rem, 27vw, 24rem); flex: none; align-self: stretch; }
+.home-motion .sc-act--pinned .fr-rail .fr-cta { width: 18rem; flex: none; margin: 0; }
+/* class act: the four steps light in lesson order from --sc-p (dim, not hidden, so the stage is never empty) */
+.home-motion .sc-act--pinned .lit-steps > li { --lit: clamp(0, calc(var(--sc-p, 0) * 5.2 - var(--i) - .1), 1); opacity: calc(.55 + .45 * var(--lit)); }
+.home-motion .sc-act--pinned .lit-steps > li .chip { opacity: calc(.55 + .45 * var(--lit)); }
+
 @media (prefers-reduced-motion: no-preference) {
+  .home-motion .hc-photo { transform: translate3d(0, calc(var(--hp) * -3vh), 0) scale(calc(1.04 - var(--hp) * .07)); }
+  .home-motion .hc-chart { transform: translate3d(calc(var(--hp) * -1rem), calc(var(--hp) * -8vh), 0); }
+  .home-motion .hc-read { transform: translate3d(0, calc(var(--hp) * -5vh), 0); }
+  .home-motion .sc-act--pinned .lit-steps > li { translate: 0 calc((1 - var(--lit)) * .9rem); }
   @supports (animation-timeline: view()) {
-    /* every keyframe ends (or starts) at identity, so scroll 0 and in-view resting states are unchanged */
-    .home-motion .hero-copy { animation: hm-lift-slow linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
-    .home-motion .hero-art { animation: hm-lift-fast linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
-    .home-motion .honesty-strip { animation: hm-wipe linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
-    /* S15au: deal settles as each row fully enters, so a row resting mid-screen is never caught half-dealt */
-    .home-motion .step { animation: hm-deal linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
-    .home-motion .agent-art figure:first-child { animation: hm-plane-a linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
-    .home-motion .agent-art figure:last-child { animation: hm-plane-b linear both; animation-timeline: view(); animation-range: cover 0% cover 100%; }
-    .home-motion .label-row:nth-child(odd) { animation: hm-from-left linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
-    .home-motion .label-row:nth-child(even) { animation: hm-from-right linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
-    .home-motion .show-cta { animation: hm-grow linear both; animation-timeline: view(); animation-range: entry 0% entry 100%; }
     @media (min-width: 901px) {
-      /* signature: Measure and Remix swap places on an arc while the row leaves, then deck onto card one; reverses on scroll up */
+      /* signature from S15aq: Measure and Remix swap places on an arc while the row leaves, then deck onto card one; reverses on scroll up */
       .home-motion .feature:nth-child(1) { animation: hm-deck-1 linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
       .home-motion .feature:nth-child(2) { animation: hm-swap-2 linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
       .home-motion .feature:nth-child(3) { animation: hm-swap-3 linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
-      .home-motion .step:nth-child(3n+2) { animation-name: hm-deal-2; }
-      .home-motion .step:nth-child(3n) { animation-name: hm-deal-3; }
     }
   }
 }
-@keyframes hm-lift-slow { to { translate: 0 -6vh; opacity: .4; } }
-@keyframes hm-lift-fast { to { translate: 0 -16vh; scale: .96; } }
-@keyframes hm-wipe { from { clip-path: inset(0 100% 0 0 round var(--r2s-radius)); } to { clip-path: inset(0 0 0 0 round var(--r2s-radius)); } }
-@keyframes hm-deal { from { translate: 0 3rem; opacity: 0; } }
-/* desktop deck: cards 2 and 3 start stacked on card 1 and fan out to their columns */
-@keyframes hm-deal-2 { from { translate: calc(-100% - 1rem) .4rem; rotate: -3deg; } }
-@keyframes hm-deal-3 { from { translate: calc(-200% - 2rem) .8rem; rotate: 3deg; } }
-@keyframes hm-plane-a { from { translate: 0 2.5rem; } to { translate: 0 -2.5rem; } }
-@keyframes hm-plane-b { from { translate: 0 -1.5rem; } to { translate: 0 1.5rem; } }
-@keyframes hm-from-left { from { translate: -2.5rem 0; opacity: 0; } }
-@keyframes hm-from-right { from { translate: 2.5rem 0; opacity: 0; } }
-@keyframes hm-grow { from { scale: .92; opacity: 0; } }
+@media (max-width: 860px) { .home-motion .hc-photo, .home-motion .hc-chart, .home-motion .hc-read { transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .sc-ready .home-motion [data-sc-in], .sc-ready .home-motion [data-sc-stagger] > * { transform: none; transition-duration: 220ms; }
+  .home-motion [data-sc-parallax] { transform: none !important; }
+  .home-motion [data-sc-reveal] { clip-path: none !important; }
+}
 @keyframes hm-swap-2 { 50% { translate: calc(50% + .625rem) -2.5rem; } 70%, to { translate: calc(100% + 1.25rem) 0; } }
 @keyframes hm-swap-3 { 50% { translate: calc(-50% - .625rem) 2.5rem; } 70%, to { translate: calc(-100% - 1.25rem) 0; } }
 @keyframes hm-deck-1 { 0%, 60% { translate: 0 0; } to { translate: calc(100% + 1.25rem) 0; rotate: -4deg; } }
