@@ -79,8 +79,9 @@ TOOLS: dict[str, tuple[str, dict[str, Any]]] = {
             "type": "object", "additionalProperties": False, "required": ["label", "recommended"],
             "properties": {"label": {"type": "string", "maxLength": 60}, "recommended": {"type": "boolean"}}}}}),
     "list_files": ("List the user's uploaded files (ids, names, kinds).", {}),
-    "start_experiment_track": ("Track a named moving object in an uploaded experiment video.", {
-        "file_id": _ID, "target": {"type": "string", "maxLength": 80}}),
+    "start_experiment_track": ("Track a named moving object in an uploaded experiment video. Pass known_size when "
+                               "the user gives the object's size, for example 'apple diameter 7 cm'.", {
+        "file_id": _ID, "target": {"type": "string", "maxLength": 80}, "known_size": {"type": "string", "maxLength": 200}}),
     "start_room_build": ("Reconstruct an uploaded room video into a 3D virtual lab.", {"file_id": _ID}),
     "lab_add_object": ("Add an object to the virtual lab; params are SI numbers such as mass_kg, diameter_m (ball "
                        "size as people say it), height_m above the floor, x_m. Kit params: flywheel radius_m, mass_kg, "
@@ -105,9 +106,11 @@ TOOLS: dict[str, tuple[str, dict[str, Any]]] = {
     "lab_remove_object": ("Remove one lab object by id or by kind (when only one of that kind exists).", {
         "id": {"type": "string", "maxLength": 64}, "kind": {"type": "string", "maxLength": 32}}),
     "lab_run": ("Run the physics engine on the current virtual lab.", {}),
-    "fit": ("Re-fit a measured trajectory by trajectory_id (from start_experiment_track) with uncertainty; raw "
-            "trajectory arrays are only for simulated lab runs.", {
+    "fit": ("Re-fit a measured trajectory by trajectory_id (from start_experiment_track) with uncertainty, with an "
+            "optional known_size of the tracked object such as 'apple diameter 7 cm'; raw trajectory arrays are only "
+            "for simulated lab runs.", {
         "trajectory_id": _ID,
+        "known_size": {"type": "string", "maxLength": 200},
         "trajectory": {"type": "object", "additionalProperties": False,
                        "required": ["times", "positions", "time_sigma_s", "position_sigma_m"],
                        "properties": {"times": _NUMS, "positions": _NUMS, "time_sigma_s": {"type": "number"},

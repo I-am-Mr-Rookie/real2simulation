@@ -33,6 +33,10 @@ def test_list_start_and_fit_by_trajectory_id(store):
     assert out["motion"] == "free_fall" and out["units"] == "px" and "trajectory" not in out
     assert handlers.fit("bob", {"trajectory_id": started["trajectory_id"]})["error"]["code"] == "NOT_FOUND"
     assert handlers.start_experiment_track("alice", {"file_id": "0" * 32, "target": "ball"})["error"]["code"] == "NOT_FOUND"
+    # N89: the user's stated size reaches the scale step (Muse dropped "7 cm" before this argument existed)
+    sized = handlers.fit("alice", {"trajectory_id": started["trajectory_id"], "known_size": "ball diameter 5 cm"})
+    assert sized["units"] != "px", sized
+    assert not core.validate_call("start_experiment_track", {"file_id": "a" * 32, "target": "apple", "known_size": "apple diameter 7 cm"})[1]
 
 
 def test_fit_schema_accepts_trajectory_id_and_router_uses_real_handlers():

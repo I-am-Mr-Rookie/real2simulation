@@ -28,7 +28,8 @@ def list_files(owner, args):
 
 @_safe
 def start_experiment_track(owner, args):
-    e = experiment.start(_store(), owner, {"file_id": args["file_id"], "target_text": args["target"]})["experiment"]
+    e = experiment.start(_store(), owner, {"file_id": args["file_id"], "target_text": args["target"],
+                                           "known_size": args.get("known_size")})["experiment"]
     return {"status": e["status"], "trajectory_id": e["id"], "project_id": e["project_id"],
             "detail": "tracking runs in the background; call fit with this trajectory_id when it is done"}
 
@@ -37,7 +38,7 @@ def start_experiment_track(owner, args):
 def fit(owner, args):
     if "trajectory_id" not in args:
         return core.DEFAULT_HANDLERS["fit"](owner, args)  # simulated lab arrays keep the N05 path
-    return experiment.refit(_store(), owner, args["trajectory_id"])
+    return experiment.refit(_store(), owner, args["trajectory_id"], args.get("known_size"))
 
 
 @functools.cache
