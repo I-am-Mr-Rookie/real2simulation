@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import run from './featured-st03.json';
 import phone from './featured-own07.json';
+import sweep from './featured-own-sweep.json';
 import agentLog from './featured-agent.json';
 import measuredTurn from './featured-agent-measured.json';
 import { chartGeom, fmtPm, gravityCheck } from '../../../workspace/measure.mjs';
@@ -12,6 +13,26 @@ const r = run.result, q = r.quantity, g = chartGeom(r), check = gravityCheck(r);
 // N89: the owner's own phone drop (OWN07, private clip: only the derived track is public), verbatim copy of
 // evidence/N89/live-own07-book-drop.json, the live pipeline output after the impact-frame fix.
 const p = phone.result, pq = p.quantity, pg = chartGeom(p), pcheck = gravityCheck(p);
+// N89: all 12 owner phone drops through the same live pipeline, one run each, none dropped (verbatim copy of
+// evidence/N89/own-sweep/summary.json). Stats are computed here from those rows, never typed.
+const measured = sweep.rows.filter((x) => x.motion === 'free_fall' && x.unit === 'm/s^2');
+const vals = measured.map((x) => x.value).sort((a, b) => a - b), mid = vals.length >> 1;
+const median = vals.length % 2 ? vals[mid] : (vals[mid - 1] + vals[mid]) / 2;
+const sd = Math.sqrt(vals.reduce((s, v, _, a) => s + (v - vals.reduce((x, y) => x + y, 0) / a.length) ** 2, 0) / (vals.length - 1));
+const below = measured.filter((x) => x.value + 2 * x.sigma < 9.81).length;
+
+function Sweep() {
+  const W = 520, row = 22, L = 70, R = W - 16, top = 18, H = top + sweep.rows.length * row + 26, lo = 6, hi = 11;
+  const X = (v) => L + ((v - lo) / (hi - lo)) * (R - L);
+  return <svg viewBox={'0 0 ' + W + ' ' + H} role="img" aria-label={'Fitted g with 1 sigma bars for ' + sweep.rows.length + ' phone drops, against Earth g 9.81'}>
+    {[6, 7, 8, 9, 10, 11].map((v) => <g key={v}><line x1={X(v)} x2={X(v)} y1={top - 6} y2={H - 22} className="fr-grid" /><text x={X(v)} y={H - 8} textAnchor="middle">{v}</text></g>)}
+    <line x1={X(9.81)} x2={X(9.81)} y1={top - 10} y2={H - 22} className="fr-earth" /><text x={X(9.81)} y={top - 10} textAnchor="middle" className="fr-earth-t">9.81</text>
+    {sweep.rows.map((x, i) => { const y = top + i * row + row / 2, ok = measured.includes(x);
+      return <g key={x.clip}><text x={L - 8} y={y + 3.5} textAnchor="end">{x.clip}</text>
+        {ok ? <><line x1={X(x.value - x.sigma)} x2={X(x.value + x.sigma)} y1={y} y2={y} className="fr-curve" /><circle cx={X(x.value)} cy={y} r={3.2} className="fr-pt" /></>
+          : <text x={L + 4} y={y + 3.5} className="fr-miss">{x.status === 'failed' ? 'failed: ' + String(x.reason?.message ?? 'no track') : 'no g: ' + x.motion}</text>}</g>; })}
+  </svg>;
+}
 // N89: one recorded Muse Spark turn in the lab editor (evidence/N28/run1-turns.json, verbatim copy): request, tool calls, reply.
 const turn = agentLog.turns[0];
 
@@ -33,18 +54,28 @@ export default function FeaturedRun() {
   const n = r.trajectory.t_s.length;
   return <section className="show featured-run" aria-labelledby="real-run">
     <h2 id="real-run">Real runs, start to finish</h2>
-    <p className="show-line">Two clips went through the live pipeline. These are the stored outputs, not mock-ups.</p>
+    <p className="show-line">Twelve phone clips and one stock clip went through the live pipeline. These are the stored outputs, not mock-ups.</p>
+    <div className="card fr-phone fr-sweep">
+      <div>
+        <span className="chip" data-tone="ok">MEASURED</span>
+        <h3>Twelve phone drops, every result shown</h3>
+        <p className="fr-value"><strong>{measured.length} of {sweep.rows.length}</strong> gave a free-fall fit: median {median.toFixed(2)} m/s², spread {sd.toFixed(2)} (1 sd), range {vals[0].toFixed(2)} to {vals.at(-1).toFixed(2)}.</p>
+        <p>The same book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, each clip run once through the live pipeline (hosted SAM 3.1 plus the fitter) with the same prompt "{sweep.target_text}" and the ruler-measured {sweep.known_size}. None was left out.</p>
+        <p>Honest reading: the method is repeatable, but it reads low. {below} of {measured.length} results sit more than 2 sigma below 9.81, so the error bars miss a systematic error we have not yet explained. Treat a phone result as a classroom estimate, not a calibrated g.</p>
+      </div>
+      <figure className="fr-chart"><Sweep /><figcaption>Dot: fitted g. Bar: 1 sigma from the fitter and the scale. Line: Earth g.</figcaption></figure>
+    </div>
     <div className="card fr-phone">
       <div>
         <span className="chip" data-tone="ok">MEASURED</span>
-        <h3>A phone drop at home comes out near Earth g</h3>
+        <h3>One of them in detail (OWN07)</h3>
         <p className="fr-value"><strong>{fmtPm(pq.value, pq.uncertainty)} {pq.unit.replace('^2', '²')}</strong> {pq.name}, 1 sigma.</p>
         {pcheck && <p>{pcheck.text}</p>}
         <p>A book dropped onto a table, filmed by the maker on a Realme C53 phone at 30 fps, run through the live pipeline on {phone.utc.slice(0, 10)}. Hosted SAM 3.1 tracked {p.track.tracked_frames} frames; the pipeline kept {p.segment.frames} frames of free fall ({p.segment.duration_s.toFixed(2)} s) and cut the landing frames. Scale: {p.scale.object}, measured with a ruler by the maker ({p.scale.label}). {p.clock[0].toUpperCase() + p.clock.slice(1)}.</p>
         <p className="fr-meta mono">Recorded cost {'$' + p.cost_usd} · {phone.seconds} s end to end · the video is a private owner clip, so only the tracked dots are public</p>
         <p><Link className="primary-link" href="/lab?editor=1&sample=own07">Replay this drop in 3D next to a SIMULATED ball at 9.81</Link></p>
       </div>
-      <figure className="fr-chart"><Chart g={pg} what="book" /><figcaption>Dots: tracked book (MEASURED). Line: fitted curve. Band: 1 sigma.</figcaption></figure>
+      <figure className="fr-chart"><Chart g={pg} what="book" /><figcaption>Dots: tracked book (MEASURED). Line: fitted curve. Its 1 sigma band is thinner than the line here.</figcaption></figure>
     </div>
     <h3 className="fr-sub">A stock clip, and what the pipeline says when it cannot be right</h3>
     <p className="show-line">A public stock clip went through the same pipeline on {run.utc.slice(0, 10)}.</p>

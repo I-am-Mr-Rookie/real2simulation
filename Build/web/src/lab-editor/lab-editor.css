@@ -234,6 +234,8 @@ main:has(.lab-editor) { padding: 0; }
 .le-timeline > .le-graph { flex-basis: 200px; }
 .le-seek { display: grid; gap: 2px; font-size: 11px; flex: 1 1 120px; min-width: 0; }
 .le-seek input { width: 100%; margin: 0; }
+.le-speed { display: grid; gap: 2px; font-size: 11px; flex: 0 0 auto; }
+.le-speed select { height: 28px; font: 12px ui-monospace, monospace; }
 .le-result { display: grid; gap: 3px; flex: 1 1 100%; padding: 6px; border: 1px solid var(--le-border); border-radius: 6px; font-size: 12px; overflow-wrap: anywhere; }
 .le-result small { color: var(--le-muted); }
 

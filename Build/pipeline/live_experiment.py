@@ -92,8 +92,9 @@ def moving_segment(frames):
 
     A single still step between moving ones is a repeated frame (e.g. 25p content in a 30p file), not a stop:
     it is bridged and the repeated frame is dropped so it cannot fake a pause in the fit.
-    Up to 3 trailing steps after the fastest one that are all clearly slower (< 90%) are the impact, not free
-    flight, and are cut: a falling object speeds up until it lands.
+    A falling object only speeds up until it lands, so the run ends before the first moving step after the fastest
+    one that is over 15% slower than the step before it (the landing, a bounce or a slide on the table). N89: 0.85
+    gave the lowest fit residuals over all 12 owner phone drops (evidence/N89/own-sweep), not chosen by closeness to g.
     """
     if len(frames) < 2:
         return frames
@@ -106,8 +107,13 @@ def moving_segment(frames):
         a -= 1
     while b + 1 < len(steps) and bridged[b + 1]:
         b += 1
-    if 0 < b - top <= 3 and all(steps[i] < 0.9 * steps[top] for i in range(top + 1, b + 1)):
-        b = top
+    prev = steps[top]
+    for i in range(top + 1, b + 1):
+        if moving[i]:  # a bridged repeated frame is not a slowdown
+            if steps[i] < 0.85 * prev:
+                b = i - 1
+                break
+            prev = steps[i]
     return [frames[a]] + [frames[i + 1] for i in range(a, b + 1) if moving[i]]
 
 

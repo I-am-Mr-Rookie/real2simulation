@@ -1,0 +1,13 @@
+{
+ "clip": "OWN12",
+ "utc": "2026-11-04T15:58:59+00:00",
+ "seconds": 12.1,
+ "target_text": "yellow book",
+ "known_size": "book width 20.3 cm +/- 0.2 cm",
+ "status": "failed",
+ "error": {
+  "code": "UNPROCESSABLE",
+  "message": "sam-3.1 returned no objects"
+ },
+ "result": {}
+}

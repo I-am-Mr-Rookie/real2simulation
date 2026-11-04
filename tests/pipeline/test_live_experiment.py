@@ -34,7 +34,8 @@ def fall_track(g=9.81, mpp=0.001, n_rest=5, n_fall=20):
 def test_recorded_apple_segment_and_labels():
     track = apple_track()
     px = le.analyse(track)
-    assert px["segment"]["first_frame"] == 56 and px["segment"]["last_frame"] == 77
+    # N89: frame 77 moved 32 px after a 66 px step: the landing, so the free-fall segment ends at 76
+    assert px["segment"]["first_frame"] == 56 and px["segment"]["last_frame"] == 76
     assert px["motion"] in ("free_fall", "projectile") and px["units"] == "px"
     q = px["quantity"]
     assert q["unit"] == "px/s^2" and q["value"] > 0 and q["uncertainty"] > 0 and "scale unverified" in q["label"]

@@ -45,7 +45,7 @@ const ICONS = {
   select: 'M5 3l14 8-6 2-2 6z', translate: 'M12 3v18M3 12h18M12 3l-3 3M12 3l3 3M21 12l-3-3M21 12l-3 3', rotate: 'M20 12a8 8 0 1 1-3-6.2M20 4v4h-4', scale: 'M4 14v6h6M20 10V4h-6M4 20L20 4',
   eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0.01 0', eyeoff: 'M3 3l18 18M10.6 6.1A10 10 0 0 1 12 6c6 0 10 6 10 6a17 17 0 0 1-3.2 3.7M6.6 6.6C3.8 8.3 2 12 2 12s4 7 10 7a9 9 0 0 0 4.4-1.1',
   agent: 'M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z', expand: 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5', room: 'M3 11l9-7 9 7v9H3zM9 20v-6h6v6', list: 'M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01',
-  save: 'M5 3h11l3 3v15H5zM8 3v5h7V3M8 21v-7h8v7', copy: 'M9 9h11v11H9zM5 15H4V4h11v1', gravity: 'M12 3v12M7 10l5 5 5-5M5 20h14',
+  save: 'M5 3h11l3 3v15H5zM8 3v5h7V3M8 21v-7h8v7', copy: 'M9 9h11v11H9zM5 15H4V4h11v1', gravity: 'M8 7a4 4 0 1 0 8 0a4 4 0 1 0-8 0M12 13v8M8 17l4 4 4-4',
 };
 const Ico = ({ n }) => <svg className="le-ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d={ICONS[n]} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 const isDark = () => typeof document !== 'undefined' && document.documentElement.dataset.tone === 'dark';
@@ -213,6 +213,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const [mode, setMode] = useState('translate');
   const [run, setRun] = useState('stopped'); // stopped | loading | playing | paused
   const [time, setTime] = useState(0);
+  const [speed, setSpeed] = useState(1); // N89: slow motion for short real falls (0.37 s); physics time is unchanged
   const [jsonText, setJsonText] = useState('');
   const [message, setMessage] = useState('Add an object, then press Play. Everything here is SIMULATED.');
   const [plyName, setPlyName] = useState(null);
@@ -351,9 +352,10 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     const loop = (now) => {
       state.frame = requestAnimationFrame(loop);
       if (state.playing && state.sim) {
-        state.acc += Math.min(0.1, (now - (state.last || now)) / 1000);
+        state.acc += Math.min(0.1, (now - (state.last || now)) / 1000) * (state.speed ?? 1);
         let n = 0;
-        while (state.acc >= 1 / 120 && n < MAX_STEPS_PER_FRAME) { state.sim.step(); state.acc -= 1 / 120; n += 1; }
+        const hold = () => state.pauseAt != null && state.sim.time >= state.pauseAt - 1e-9;
+        while (state.acc >= 1 / 120 && n < MAX_STEPS_PER_FRAME && !hold()) { state.sim.step(); state.acc -= 1 / 120; n += 1; }
         if (n === MAX_STEPS_PER_FRAME) state.acc = 0; // slow device: drop wall-clock sync, keep fixed physics steps
         const poses = state.sim.poses();
         for (const g of objects.children) {
@@ -376,6 +378,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
           }
         }
         setTime(state.sim.time);
+        if (hold()) { state.pauseAt = null; state.playing = false; state.onAutoPause?.(poses); } // N89: replay stops at the last tracked frame
       }
       state.last = now;
       renderer.render(three, camera);
@@ -444,12 +447,12 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   }, [scene, selected, mode, run, tone, backdrop, hidden]);
 
   // N24: fit the camera to the loaded room or track (robust bounding box, keeps the current viewing direction).
-  const frameTo = (positions) => {
-    const a = api.current, b = robustBounds(positions, FRAME_Q);
+  const frameTo = (positions, q = FRAME_Q, margin = 1.05) => {
+    const a = api.current, b = robustBounds(positions, q);
     if (!a || !b) return null;
     const c = new THREE.Vector3(...b.center), dir = a.camera.position.clone().sub(a.orbit.target);
     if (dir.lengthSq() < 1e-9) dir.set(0.6, 0.45, 0.8);
-    const d = fitDistance(b.radius, a.camera.fov, a.camera.aspect);
+    const d = fitDistance(b.radius, a.camera.fov, a.camera.aspect, margin);
     a.camera.position.copy(c).add(dir.normalize().multiplyScalar(d));
     a.camera.near = Math.max(1e-3, d / 200); a.camera.far = Math.max(500, d * 20);
     a.camera.updateProjectionMatrix();
@@ -518,7 +521,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       const R = await loadRapier();
       api.current.gizmo.detach();
       st.sim = createPhysics(R, sceneRef.current);
-      st.acc = 0; st.playing = true;
+      st.acc = 0; st.playing = true; st.pauseAt = src?.kind === 'experiment' ? st.trackEnd ?? null : null;
       setRun('playing'); setMessage('Running. SIMULATED physics, gravity from the scene vector.');
     } catch (e) { setRun('stopped'); setMessage('Physics could not start: ' + e.message); }
   };
@@ -580,7 +583,15 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     const geo = new THREE.BufferGeometry().setFromPoints(t.track.map((q) => new THREE.Vector3(...q)));
     a.state.track = new THREE.Group().add(new THREE.Line(geo, new THREE.LineBasicMaterial({ color: 0x111827 })), new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.025, color: 0x4f46e5 })));
     a.three.add(a.state.track);
-    frameTo(t.track.flat());
+    frameTo([...t.track.flat(), ...t.scene.objects[0].position], 0, 1.4); // every dot and the ball start, clear of the toolbar
+    const last = t.track.at(-1);
+    a.state.trackEnd = result.trajectory.t_s.at(-1);
+    a.state.onAutoPause = (poses) => {
+      const y = poses['ball-1']?.p?.[1], cm = Number.isFinite(y) ? Math.abs(y - last[1]) * (t.metric ? 100 : 1000) : null;
+      setRun('paused');
+      setMessage('Paused at t = ' + a.state.trackEnd.toFixed(2) + ' s, the last tracked frame. ' + (cm == null ? '' : 'The SIMULATED ball is ' + cm.toFixed(1) + (t.metric ? ' cm ' : ' mm (1 px = 1 mm) ')
+        + (y < last[1] ? 'below' : 'above') + ' the last dot at gravity ' + (-sceneRef.current.gravity[1]) + '. ') + 'Change Gravity y and press Reset, then Play, to compare; or Resume.');
+    };
     stop(); setSourceResult(result); setSelected(null); setScene(validateScene(t.scene)); setSrc({ kind: 'experiment', id });
     setMessage(note ?? 'Dots and line: your measured track. ' + t.note);
   };
@@ -841,6 +852,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     <footer className="le-timeline" aria-label="Timeline">
       {playBtn}
       <button type="button" className="le-icon-btn" onClick={stop} disabled={!live} aria-label="Reset" title="Reset to the start"><Ico n="reset" /></button>
+      <label className="le-speed">Speed<select value={speed} aria-label="Playback speed" onChange={(e) => { const v = +e.target.value; setSpeed(v); if (api.current) api.current.state.speed = v; }}>{[1, 0.5, 0.25, 0.1].map((v) => <option key={v} value={v}>{v}x</option>)}</select></label>
       <span className="le-time" aria-live="off">t = {(samples[seek]?.t ?? time).toFixed(2)} s</span>
       <label className="le-seek">Recorded trace<input type="range" aria-label="Seek recorded sensor trace" min="0" max={Math.max(0, samples.length - 1)} value={Math.max(0, seek)} disabled={run === 'playing' || samples.length < 2} onChange={(e) => setCursor(Number(e.target.value))} aria-valuetext={samples[seek] ? samples[seek].t.toFixed(3) + ' s' : 'No trace'} /></label>
       <Graph trace={graphTrace} cursor={seek} />

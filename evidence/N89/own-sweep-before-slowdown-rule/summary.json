@@ -1,0 +1,223 @@
+{
+ "target_text": "yellow book",
+ "known_size": "book width 20.3 cm +/- 0.2 cm",
+ "rule": "all 12 owner clips, one run each, none dropped",
+ "rows": [
+  {
+   "clip": "OWN01",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "incline_or_curved",
+   "value": 1.9457456937580055,
+   "sigma": 0.46810558266138186,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 47,
+    "last_frame": 82,
+    "frames": 34,
+    "duration_s": 1.1666670000000001
+   },
+   "rmse_px_y": 152.71113936917428,
+   "reason": null,
+   "cost_usd": 0.0178
+  },
+  {
+   "clip": "OWN02",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "free_fall",
+   "value": 8.703186656327471,
+   "sigma": 0.4778921066845075,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 47,
+    "last_frame": 58,
+    "frames": 12,
+    "duration_s": 0.36666699999999985
+   },
+   "rmse_px_y": 3.8475499149697168,
+   "reason": null,
+   "cost_usd": 0.0172
+  },
+  {
+   "clip": "OWN03",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "incline_or_curved",
+   "value": 2.0200420072729925,
+   "sigma": 0.4533159441195137,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 45,
+    "last_frame": 76,
+    "frames": 32,
+    "duration_s": 1.033333
+   },
+   "rmse_px_y": 126.34744850833582,
+   "reason": null,
+   "cost_usd": 0.0166
+  },
+  {
+   "clip": "OWN04",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "incline_or_curved",
+   "value": 3.64090837482052,
+   "sigma": 1.1162863433260055,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 45,
+    "last_frame": 64,
+    "frames": 20,
+    "duration_s": 0.6333330000000001
+   },
+   "rmse_px_y": 121.52385258495644,
+   "reason": null,
+   "cost_usd": 0.0166
+  },
+  {
+   "clip": "OWN05",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "free_fall",
+   "value": 6.694160512644138,
+   "sigma": 0.8653085781783058,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 44,
+    "last_frame": 57,
+    "frames": 14,
+    "duration_s": 0.4333340000000001
+   },
+   "rmse_px_y": 31.030645588558958,
+   "reason": null,
+   "cost_usd": 0.0172
+  },
+  {
+   "clip": "OWN06",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "incline_or_curved",
+   "value": 2.9699080508870406,
+   "sigma": 0.7618288121234199,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 42,
+    "last_frame": 66,
+    "frames": 25,
+    "duration_s": 0.7999999999999998
+   },
+   "rmse_px_y": 95.3133209482339,
+   "reason": null,
+   "cost_usd": 0.0172
+  },
+  {
+   "clip": "OWN07",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "free_fall",
+   "value": 9.07091451927196,
+   "sigma": 0.6236079535920973,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 46,
+    "last_frame": 57,
+    "frames": 12,
+    "duration_s": 0.3666670000000001
+   },
+   "rmse_px_y": 3.1744296151739575,
+   "reason": null,
+   "cost_usd": 0.0166
+  },
+  {
+   "clip": "OWN08",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "incline_or_curved",
+   "value": 4.820198281049353,
+   "sigma": 0.7653758822470599,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 36,
+    "last_frame": 57,
+    "frames": 21,
+    "duration_s": 0.7
+   },
+   "rmse_px_y": 92.3575937396483,
+   "reason": null,
+   "cost_usd": 0.0154
+  },
+  {
+   "clip": "OWN09",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "free_fall",
+   "value": 7.250372198241682,
+   "sigma": 0.6326422331100445,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 9,
+    "last_frame": 21,
+    "frames": 13,
+    "duration_s": 0.39999999999999997
+   },
+   "rmse_px_y": 11.692315188520505,
+   "reason": null,
+   "cost_usd": 0.0118
+  },
+  {
+   "clip": "OWN10",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "free_fall",
+   "value": 8.466080552230405,
+   "sigma": 0.5791840863283614,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 45,
+    "last_frame": 57,
+    "frames": 13,
+    "duration_s": 0.40000000000000013
+   },
+   "rmse_px_y": 6.203708205015342,
+   "reason": null,
+   "cost_usd": 0.0172
+  },
+  {
+   "clip": "OWN11",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "free_fall",
+   "value": 8.562860173360447,
+   "sigma": 0.5644610611015044,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 45,
+    "last_frame": 57,
+    "frames": 13,
+    "duration_s": 0.40000000000000013
+   },
+   "rmse_px_y": 2.6465594438258,
+   "reason": null,
+   "cost_usd": 0.0172
+  },
+  {
+   "clip": "OWN12",
+   "status": "done",
+   "result_status": "ok",
+   "motion": "incline_or_curved",
+   "value": 1.940210070789788,
+   "sigma": 0.37538672359982994,
+   "unit": "m/s^2",
+   "segment": {
+    "first_frame": 44,
+    "last_frame": 63,
+    "frames": 20,
+    "duration_s": 0.6333339999999998
+   },
+   "rmse_px_y": 38.05310083722995,
+   "reason": null,
+   "cost_usd": 0.0128
+  }
+ ]
+}
