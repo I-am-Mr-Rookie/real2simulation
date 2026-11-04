@@ -68,6 +68,6 @@ export default function FeaturedRun() {
         <dt>Muse</dt><dd>{turn.reply}</dd>
       </dl>
     </div>
-    <p className="fr-cta"><Link href="/sign-up">Measure your own clip</Link> or <Link href="/lab?editor=1&template=physics-lab">try the physics lab lesson: does a heavier ball fall faster?</Link> No video needed.</p>
+    <p className="fr-cta"><Link href="/sign-up">Measure your own clip</Link> or <Link href="/lab?editor=1&template=physics-lab">try a physics lab lesson: does twice the height take twice as long?</Link> No video needed.</p>
   </section>;
 }

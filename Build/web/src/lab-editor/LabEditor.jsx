@@ -16,7 +16,7 @@ import { colliderGeometry, loadShapeGlb, SHAPE_LABEL } from './sf3d-shape.mjs';
 import { lookMesh } from './furniture-shape.mjs';
 import { mergeShapeUpdates } from './shape-upgrades.mjs';
 import { TEMPLATES, templateScene, PHYSICS_LAB_CARDS, hasPhysicsStations } from './templates.mjs';
-import { LESSON, lessonVerdict, lessonReport } from './lesson.mjs';
+import { LESSONS, lessonVerdict, lessonReport } from './lesson.mjs';
 import featuredRun from '../app/(public)/home/featured-st03.json';
 import './lab-editor.css';
 
@@ -621,7 +621,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     try { if (kept?.id === id) s = validateScene(kept.scene); } catch { kept = null; }
     frameScene(s); setScene(s); setOrigin({ kind: 'template', id, title: t.title }); setName(kept?.name || t.title);
     setMessage(kept?.id === id ? 'Your edits are back. Press Make my copy to save them to your workspace.'
-      : t.title + ' template. ' + (id === 'physics-lab' ? 'Press Play: the graph follows ball-drop falling through photogate-1. After it lands, press Pause, then Fit trace for its acceleration. The Scene panel has a lesson: does a heavier ball fall faster? '
+      : t.title + ' template. ' + (id === 'physics-lab' ? 'Press Play: the graph follows ball-drop falling through photogate-1. After it lands, press Pause, then Fit trace for its acceleration. The Scene panel has two short lessons (heavier ball, twice the height). '
         : 'Press Add to place apparatus, then Play. ') + 'Make my copy saves your own version (uses your 1 GB storage). Everything here is SIMULATED.');
   };
   const loadSaved = async (id) => {
@@ -688,25 +688,26 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     ...(scene.room.collision?.enabled ? [['MODEL-ESTIMATED collision proxy', 'Static boxes fitted to the raw scan.']] : [])];
   const extra = labels.length - 1 - (scaleOpen ? 1 : 0);
   const setObj = (fn) => edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === selected ? fn(o) : o)) }));
-  const ballDrop = hasPhysicsStations(scene) ? scene.objects.find((o) => o.id === LESSON.object) : null;
-  const fitIsBall = !!traceFit && traceFit.name.startsWith(LESSON.object + ':');
-  const recordRun = (k) => setLesson((l) => ({ ...l, [k]: { value: traceFit.value, uncertainty: traceFit.uncertainty, mass: ballDrop.mass } }));
-  const heavier = () => { stop(); edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === LESSON.object ? { ...o, mass: +(o.mass * LESSON.factor).toPrecision(3) } : o)) })); setMessage(LESSON.object + ' is now ' + LESSON.factor + ' times heavier. Press Play, Pause after it lands, then Fit trace.'); };
-  const verdict = lessonVerdict(lesson.a, lesson.b, lesson.pred);
-  const runLine = (r, n) => 'Run ' + n + ': ' + fmtPm(r.value, r.uncertainty) + ' m/s^2 at ' + r.mass + ' kg';
+  const L = LESSONS.find((x) => x.id === lesson.id) ?? LESSONS[0];
+  const ballDrop = hasPhysicsStations(scene) ? scene.objects.find((o) => o.id === L.object) : null;
+  const landed = !!traceFit && traceFit.name.startsWith(L.object + ':') && traceFit.n < traceFit.total; // run A/B need a fit cut at the first impact
+  const recordRun = (k) => setLesson((l) => ({ ...l, [k]: L.run(traceFit, ballDrop) }));
+  const changeOne = () => { stop(); edit((s) => ({ ...s, objects: s.objects.map((o) => (o.id === L.object ? L.change(o) : o)) })); setMessage(L.changeLabel + ': done. Press Play, Pause after it lands, then Fit trace.'); };
+  const verdict = lessonVerdict(L, lesson.a, lesson.b, lesson.pred);
   const lessonView = ballDrop && <section className="le-lesson" aria-label="Lesson">
-    <h3>Lesson: {LESSON.question}</h3>
+    <label className="le-lesson-pick"><span>Lesson</span><select value={L.id} onChange={(e) => setLesson({ id: e.target.value })}>{LESSONS.map((x) => <option key={x.id} value={x.id}>{x.question}</option>)}</select></label>
+    <h3>{L.question}</h3>
     <p className="le-muted">1. Predict first.</p>
-    <div className="le-lesson-choices">{LESSON.choices.map(([id, l]) => <button key={id} type="button" aria-pressed={lesson.pred === id} onClick={() => setLesson((s) => ({ ...s, pred: id }))}>{l}</button>)}</div>
-    <p className="le-muted">2. Press Play, Pause after {LESSON.object} lands, then Fit trace.</p>
-    {lesson.a ? <p>{runLine(lesson.a, 'A')}</p> : <button type="button" disabled={!fitIsBall} onClick={() => recordRun('a')}>Record run A</button>}
-    {lesson.a && <><p className="le-muted">3. Change one thing: the mass. Then Play, Pause and Fit trace again.</p>
-      {ballDrop.mass === lesson.a.mass ? <button type="button" onClick={heavier}>Make {LESSON.object} {LESSON.factor} times heavier</button>
-        : lesson.b ? <p>{runLine(lesson.b, 'B')}</p> : <button type="button" disabled={!fitIsBall} onClick={() => recordRun('b')}>Record run B</button>}</>}
+    <div className="le-lesson-choices">{L.choices.map(([id, l]) => <button key={id} type="button" aria-pressed={lesson.pred === id} onClick={() => setLesson((s) => ({ ...s, pred: id }))}>{l}</button>)}</div>
+    <p className="le-muted">2. Press Play, Pause after {L.object} lands, then Fit trace.</p>
+    {lesson.a ? <p>Run A: {L.line(lesson.a)}</p> : <button type="button" disabled={!landed} onClick={() => recordRun('a')}>Record run A</button>}
+    {lesson.a && <><p className="le-muted">3. Change one thing. Then Play, Pause after it lands, and Fit trace again.</p>
+      {!L.changed(ballDrop, lesson.a) ? <button type="button" onClick={changeOne}>{L.changeLabel}</button>
+        : lesson.b ? <p>Run B: {L.line(lesson.b)}</p> : <button type="button" disabled={!landed} onClick={() => recordRun('b')}>Record run B</button>}</>}
     {verdict && <><p><strong>{verdict.text}</strong>{verdict.matched != null && (verdict.matched ? ' Your prediction matched.' : ' Your prediction did not match.')}</p>
-      <p className="le-muted">{LESSON.caveat}</p>
-      <div className="le-lesson-choices"><button type="button" onClick={() => navigator.clipboard.writeText(lessonReport(lesson.pred, lesson.a, lesson.b, verdict)).then(() => setMessage('Lesson results copied for a worksheet.'), () => setMessage('The browser blocked copying.'))}>Copy results</button>
-        <button type="button" onClick={() => setLesson({})}>Start over</button></div></>}
+      <p className="le-muted">{L.caveat}</p>
+      <div className="le-lesson-choices"><button type="button" onClick={() => navigator.clipboard.writeText(lessonReport(L, lesson.pred, lesson.a, lesson.b, verdict)).then(() => setMessage('Lesson results copied for a worksheet.'), () => setMessage('The browser blocked copying.'))}>Copy results</button>
+        <button type="button" onClick={() => setLesson({ id: L.id })}>Start over</button></div></>}
   </section>;
   const toggleHidden = (id) => setHidden((h) => (h.includes(id) ? h.filter((x) => x !== id) : [...h, id]));
   const deleteId = (id) => { if (live) return; edit((s) => removeObject(s, id)); if (selected === id) setSelected(null); setMessage('Deleted ' + id + '. Ctrl+Z undoes it.'); };

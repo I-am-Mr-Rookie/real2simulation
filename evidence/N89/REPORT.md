@@ -12,6 +12,19 @@ Main a1258972 (pushed). Live: https://real2simulation.rookiecoders.tech (web 83d
 
 ## Judge (gpt-6-astra, strict, read-only)
 - Before: 54.5/100 (JUDGE-REVIEW-ASTRA.md). After first fixes: 61.0/100 (JUDGE-REVIEW-ASTRA-2.md). Fixes 1 to 4 of review 2 are now shipped too (guest fit, recorded Muse turn, drop lesson, ST03 replay); not re-scored.
+- Round 3: 65.75/100 (JUDGE-REVIEW-ASTRA-3.md: Impact 5.5, Meta 8, Execution 6.5, Demo 6.5).
+- Round 4 not yet scored: both the astra judge and a fallback judge hit the sub-agent usage limit at 18:05 Dhaka (reset 21:50). Re-judge after the reset.
+
+## Round 3 fixes (main b07d0b91, 2afcf394, cded1744, 17734e9b)
+- Phones: "Scene and gravity" toolbar button under 900 px opens Scene/Gravity with nothing selected (live checked at 320, 375, 768).
+- Guest Agent: 401 shows sign-in and sign-up links plus a link to the recorded agent run.
+- Calibration copy: scale is the size of the tracked object over its median tracked box (matches Build/pipeline/live_experiment.py), not an A4 sheet; guide says a pendulum gets a track but no fit.
+- Bad ?template= / ?sample= / ?project= links show recovery links (live checked).
+- Guest Make a copy keeps edits across sign-in for templates and the ST03 sample.
+- ST03 replay starts from the fitted intercepts and slopes of both axes, x acceleration in the gravity vector; test checks every timed point within 4 rmse.
+- Featured run: "pipeline code kept the 19 frames"; Muse example separated as a SIMULATED drop. README stale cost claim and em dashes fixed. Library: 15 s timeout, Retry, empty state.
+- Guided lesson (Build/web/src/lab-editor/lesson.mjs): "Does a heavier ball fall faster?" predict, fit run A, 10x mass, fit run B, verdict within 2 sigma, prediction scored, no-drag caveat, Copy results. Live run at 1440 and 375: both -9.8100163 +/- 0.0000022 m/s^2, "same", prediction matched.
+- Incident: commit 2afcf394 shadowed the imported history record() and crashed /lab?editor=1 for about 8 minutes on DEV (18:00 Dhaka); fixed in cded1744 with a guard test (no local const may shadow an import). All 9 public routes then loaded with no page errors.
 
 ## Verified
 - Node suites lab-editor 59, workspace 172, web-private 30, web-guide 3, web-library 10, shell-workspace 39, viewer 49 pass; api-storage pytest 43 pass; next build pass. tests/lab + simulator: 4 failures pre-existing on c9c00135 (R14 pendulum controls, ramp/pendulum hash oracle), untouched.
