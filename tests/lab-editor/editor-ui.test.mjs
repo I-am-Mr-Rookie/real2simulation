@@ -29,7 +29,7 @@ test('Reset clears running or paused status as well as physics, time and trace s
     const api = { current: { state: { playing: true, sim: { free() { freed++; } } } } };
     const keys = ['run', 'time', 'cursor', 'traceFit', 'message'];
     const setters = keys.map((key) => (value) => { state[key] = value; });
-    new Function('api', 'setRun', 'setTime', 'setCursor', 'setTraceFit', 'setMessage', body)(api, ...setters);
+    new Function('api', 'src', 'setRun', 'setTime', 'setCursor', 'setTraceFit', 'setMessage', body)(api, null, ...setters);
     assert.equal(state.run, 'stopped');
     assert.equal(state.time, 0);
     assert.equal(state.cursor, null);

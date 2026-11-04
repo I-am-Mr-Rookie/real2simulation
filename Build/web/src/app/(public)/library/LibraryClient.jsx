@@ -54,14 +54,17 @@ function Card({ entry, open, onOpen }) {
 
 export default function LibraryClient() {
   const [manifest, setManifest] = useState(null); const [failed, setFailed] = useState(false); const [open, setOpen] = useState(null);
-  const [filter, setFilter] = useState('All');
+  const [filter, setFilter] = useState('All'); const [tries, setTries] = useState(0);
   useEffect(() => {
-    fetch('/api/library/manifest').then((r) => (r.ok ? r.json() : Promise.reject())).then(setManifest, () => setFailed(true));
-  }, []);
+    setFailed(false);
+    fetch('/api/library/manifest', { signal: AbortSignal.timeout(15000) }).then((r) => (r.ok ? r.json() : Promise.reject())).then(setManifest, () => setFailed(true));
+  }, [tries]);
   if (failed) return <div className="state-card" role="alert">
-    <p>Library unavailable. No demo data was loaded. Try again later, or use the <a href="/lab">lab</a>.</p></div>;
+    <p>Library unavailable. No demo data was loaded. Retry, or open the <a href="/lab?editor=1&template=physics-lab">physics lab</a>.</p>
+    <button type="button" className="secondary" onClick={() => setTries((n) => n + 1)}>Retry</button></div>;
   if (!manifest) return <p role="status" className="muted">Loading library…</p>;
   const demos = manifest.demos || [];
+  if (!demos.length) return <div className="state-card" role="status"><p>The demo catalog is empty right now. Open the <a href="/lab?editor=1&template=physics-lab">physics lab</a> instead.</p></div>;
   const ready = groupDemos(demos.filter((d) => matchesFilter(d, filter)));
   const playable = ready.filter((d) => d.availability === 'playable').length;
   return <>
@@ -81,6 +84,6 @@ export default function LibraryClient() {
     <ul className="lib-grid">{ready.map((d) => <Card key={d.id} entry={d} open={open === d.id}
       onOpen={() => setOpen(open === d.id ? null : d.id)} />)}</ul>
     </>}
-    <p className="muted lib-scope">Scope: {manifest.scope}</p>
+    <p className="muted lib-scope">Catalog scope: {manifest.scope}</p>
   </>;
 }

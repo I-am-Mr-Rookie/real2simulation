@@ -24,6 +24,7 @@ main:has(.lab-editor) { padding: 0; }
 .lab-editor .le-primary:hover:not(:disabled) { background: color-mix(in srgb, var(--le-accent) 88%, #000); }
 .le-icon-btn { padding: 0 !important; width: 36px; }
 .le-agent-btn { border-color: var(--le-border) !important; }
+.le-scene-btn { display: none !important; } /* desktop always shows Scene in the right panel */
 .le-ico { flex: none; }
 .le-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .le-file { position: relative; }
@@ -188,6 +189,7 @@ main:has(.lab-editor) { padding: 0; }
   /* bottom sheets: left panel when open; right panel (properties or agent) when something is selected or the agent is open */
   .lab-editor[data-side='open'] .le-left, .le-right { position: absolute; z-index: 30; left: 0; right: 0; top: auto; bottom: 0; width: auto; max-height: 55%; border: 0; border-top: 1px solid var(--le-border); border-radius: 14px 14px 0 0; box-shadow: 0 -8px 24px rgba(0, 0, 0, .18); }
   .lab-editor[data-sheet='closed'] .le-right { display: none; }
+  .le-scene-btn { display: inline-flex !important; }
   .lab-editor[data-sheet='open'] .le-right:has(> div:not([hidden]) > .le-agent) { height: 72%; max-height: 72%; }
   .le-right:has(> div:not([hidden]) > .le-agent) .le-sheet-close { align-self: flex-end; margin: 6px 8px 0; }
   .le-sheet-close { display: block; justify-self: end; min-height: 32px; padding: 0 10px; border: 1px solid var(--le-border); border-radius: 8px; background: var(--le-surface); color: var(--le-ink); }

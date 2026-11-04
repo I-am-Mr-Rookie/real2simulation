@@ -33,20 +33,20 @@ MapAnything (on Modal GPU) lifts room frames to 3D; Stable Fast 3D (Stability AI
 
 ## Results (honest summary)
 
-All numbers live in [BENCHMARK.md](BENCHMARK.md); none are written here by hand. Every number there is a
+Benchmark numbers live in [BENCHMARK.md](BENCHMARK.md); none are written here by hand. The app shows per-run values read from stored run output. Every number there is a
 JSON pointer into sha256-pinned evidence, checked by `python Build/benchmark/manifest.py check`.
 
 | Class | What it covers |
 |---|---|
 | **Measured** | Real runs on licensed clips: image-space fit precision, floor-normal consistency, ST03 prefix-to-suffix prediction error (diagnostic only), GPU timings, Modal billed cost, Meta API tokens/latency. |
 | **Simulated** | Fitter/lab synthetic cases and the spend-cap regression (zero provider calls, not spend). Never mixed into measured rows. |
-| **UNAVAILABLE** | Any metre, m/s^2 or gravity error vs truth (no calibrated scale or capture clock); metric scene scale; bounce and pendulum prediction error; Gate RS median; Meta dollar cost. |
+| **UNAVAILABLE** | Any metre, m/s^2 or gravity error vs truth (no calibrated scale or capture clock); metric scene scale; bounce and pendulum prediction error; Gate RS median; Muse token dollar cost. |
 
 Gates, as recorded in BENCHMARK.md:
 
-- **Gate M: NOT_MET_INPUT_READINESS** — no calibrated scale or capture clock, so no metric claim.
-- **Gate RS: NOT_MET** — no category reaches 80% scored coverage.
-- **Gate A: MET_AMENDED_Q16** — labelled "scale unverified, not setup-validated"; never plain MET.
+- **Gate M: NOT_MET_INPUT_READINESS**: no calibrated scale or capture clock, so no metric claim.
+- **Gate RS: NOT_MET**: no category reaches 80% scored coverage.
+- **Gate A: MET_AMENDED_Q16**: labelled "scale unverified, not setup-validated"; never plain MET.
 
 Physical or calibrated accuracy is **not claimed** anywhere. One run per measurement; no variance claim.
 
@@ -104,7 +104,7 @@ account and stay within the guardrail caps.
 
 - **Open-weight bonus: NOT claimed.** The sidebar Meta Spark fallback is an explicit-config refusal, not a
   working route (S16h).
-- Meta dollar cost is UNAVAILABLE (tokens measured; pricing unverified).
+- Muse token dollar cost is UNAVAILABLE (tokens measured; pricing unverified). Hosted SAM 3.1 run costs shown in the app are derived from the per-frame price and frames processed, not a reconciled bill.
 
 ## Event work only
 

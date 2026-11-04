@@ -188,8 +188,10 @@ export function trajectoryScene(result) {
   const lift = -Math.min(...tr.y) * s + 0.05;
   const r4 = (v) => Math.max(-1e4, Math.min(1e4, +v.toFixed(4)));
   const track = tr.t_s.map((_, i) => [r4(tr.x[i] * s), r4(tr.y[i] * s + lift), 0]);
-  const vel = (axis) => { const f = polyFit(tr.t_s, tr[axis], degreeOf(result.fit?.[axis])); return f ? r4(f.b[1] * s) : 0; };
-  const ball = { id: 'ball-1', kind: 'ball', position: track[0], rotation: [0, 0, 0, 1], size: [0.05, 0.05, 0.05], velocity: [vel('x'), vel('y'), 0],
+  // Start from the fitted curve at t = 0 (intercept and slope), not the noisy first dot, so the ball follows the whole fit.
+  const fx = polyFit(tr.t_s, tr.x, degreeOf(result.fit?.x)), fy = polyFit(tr.t_s, tr.y, degreeOf(result.fit?.y));
+  const position = [fx ? r4(fx.b[0] * s) : track[0][0], fy ? r4(fy.b[0] * s + lift) : track[0][1], 0];
+  const ball = { id: 'ball-1', kind: 'ball', position, rotation: [0, 0, 0, 1], size: [0.05, 0.05, 0.05], velocity: [fx ? r4(fx.b[1] * s) : 0, fy ? r4(fy.b[1] * s) : 0, 0],
     mass: 1, friction: 0.5, restitution: 0.3, fixed: false, sensor: true, params: {} };
   return { scene: { version: 'lab-scene-v1', label: 'SIMULATED', units: 'm', gravity: [0, -9.81, 0], room: { kind: 'plane', floor_y: 0 }, objects: [ball] },
     track, metric, note: metric ? (scaleTag(result).text === 'MEASURED' ? 'Track MEASURED in metres from your known size.' : 'Track in metres, ' + scaleTag(result).text + '.') + ' The ball is SIMULATED: edit it and press Play to redo with changes.'

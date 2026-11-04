@@ -58,10 +58,13 @@ test('job cards, agent tool calls, share gate', () => {
   assert.equal(shareable(res), false); assert.equal(shareable({ quantity: { unit: 'm/s^2' } }), true);
 });
 
-test('redo scene validates and starts at the first track point', () => {
+test('redo scene validates and its ballistic path follows every timed track point', () => {
   const t = trajectoryScene(res);
   const s = validateScene(t.scene);
-  assert.equal(s.objects.length, 1); assert.deepEqual(s.objects[0].position, t.track[0]);
+  assert.equal(s.objects.length, 1);
+  const { position: p, velocity: v } = s.objects[0], a = [res.fit.x.accel_px_s2 / 1000, res.fit.y.accel_px_s2 / 1000];
+  const err = Math.max(...res.trajectory.t_s.map((tt, i) => Math.hypot(p[0] + v[0] * tt + a[0] * tt * tt / 2 - t.track[i][0], p[1] + v[1] * tt + a[1] * tt * tt / 2 - t.track[i][1])));
+  assert.ok(err < 4 * res.fit.y.rmse_px / 1000, err); // within the fit residuals (1 px = 1 mm), not just the first point
   assert.ok(Math.min(...t.track.map((p) => p[1])) > 0); assert.equal(t.metric, false); assert.match(t.note, /Scale unverified/);
   assert.ok(t.scene.objects[0].velocity[1] < 0);
 });

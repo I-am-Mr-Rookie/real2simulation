@@ -12,6 +12,8 @@ import { icon } from '../shell/icons.mjs';
 const useVoice = createUseVoice({ useState, useRef, useEffect });
 
 const BASE = '/api/workspace/agent';
+const here = () => encodeURIComponent(globalThis.location ? location.pathname + location.search : '/lab');
+const signUpHref = () => '/sign-up?redirect_url=' + here();
 // One data list: cards in the empty state, chips above the composer later. Clicking fills the composer.
 export const CARDS = [
   { id: 'drop', icon: 'drop', title: 'Measure g with a drop', text: 'Drop a 5 cm ball from 1.2 m and measure g' },
@@ -67,13 +69,14 @@ export default function AgentPanel({ scene, onScene, load = true, cards = CARDS 
   const [question, setQuestion] = useState(null);
   const [report, setReport] = useState(null);
   const [userKey, setUserKey] = useState(null);
+  const [guest, setGuest] = useState(false); // N89: signed out; the agent spends Meta API credit, so it needs a free account
   const [mode, setModeState] = useState(undefined);
   const logRef = useRef(null), inputRef = useRef(null);
   // N28: last answer always in view; rerun when the turn ends (busy false), after the scene/report reloads settle.
   useEffect(() => { const el = logRef.current; if (el) el.scrollTop = el.scrollHeight; }, [log, question, busy, report]);
   useEffect(() => { const el = inputRef.current; if (el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 160) + 'px'; } }, [text]);
   useEffect(() => {
-    fetch('/api/workspace/session', { cache: 'no-store' }).then((r) => (r.ok ? r.json() : {})).then((b) => { if (b.userKey) { setUserKey(b.userKey); setModeState(readAgentMode(globalThis.localStorage, b.userKey)); } }).catch(() => {});
+    fetch('/api/workspace/session', { cache: 'no-store' }).then((r) => { if (r.status === 401) setGuest(true); return r.ok ? r.json() : {}; }).then((b) => { if (b.userKey) { setUserKey(b.userKey); setModeState(readAgentMode(globalThis.localStorage, b.userKey)); } }).catch(() => {});
     if (!load) return; // N22: a live room or experiment scene is open; do not replace it with the saved project scene
     call('/lab/scene').then((b) => b.scene.objects.length && onScene(validateScene(b.scene), 'Scene loaded from the project.')).catch(() => {});
     call('/lab/report').then((b) => setReport(b.markdown)).catch(() => {});
@@ -101,7 +104,7 @@ export default function AgentPanel({ scene, onScene, load = true, cards = CARDS 
       if (names.some((n) => n.startsWith('lab_'))) onScene(validateScene((await call('/lab/scene')).scene), tidied ? 'Tidied by agent · SIMULATED. Undo or Before shows the old layout.' : 'Agent edits applied. SIMULATED.', tidied);
       if (names.includes('write_report')) setReport((await call('/lab/report')).markdown);
       setText('');
-    } catch (e) { setLog((l) => [...l, { who: 'Agent', text: 'Agent unavailable: ' + e.message, error: true }]); }
+    } catch (e) { setLog((l) => [...l, { who: 'Agent', text: 'Agent unavailable: ' + e.message, error: true, signin: /Sign in required/.test(e.message) }]); }
     setBusy(false);
   };
 
@@ -117,6 +120,7 @@ export default function AgentPanel({ scene, onScene, load = true, cards = CARDS 
       {!log.length && <div className="la-empty">
         <h3>What should we test?</h3>
         <p className="le-muted">Ask for an experiment, or to add, move, resize or remove objects. Results are SIMULATED.</p>
+        {guest && <p className="le-muted">The Muse agent runs on the Meta Model API, so it needs a free account: <a href={signUpHref()}>sign up in a minute</a>. Everything else in the lab works without one. <a href="/#real-run">See a recorded agent run</a>.</p>}
         <div className="la-cards" role="group" aria-label="Suggestions">
           {cards.map((c) => <button key={c.id} type="button" className="la-card" onClick={() => fill(c.text)}><I n={c.icon} s={18} />{c.title}</button>)}
         </div>
@@ -126,6 +130,7 @@ export default function AgentPanel({ scene, onScene, load = true, cards = CARDS 
         : <div key={i} className={m.error ? 'la-reply la-error' : 'la-reply'}>
           {m.tools?.length ? <ul className="la-steps" aria-label="Agent steps">{m.tools.map((n, j) => <li key={j}><I n="step" s={13} />{stepName(n)}</li>)}</ul> : null}
           <p><span className="le-sr">Agent: </span>{m.text}</p>
+          {m.signin && <p className="le-muted"><a href={signUpHref()}>Create a free account</a> or <a href={'/sign-in?redirect_url=' + here()}>sign in</a> to use the agent. To keep your edits, press Make my copy first.</p>}
           {m.model ? <small className="la-model">Answered by {m.model}{m.fallback ? <span className="la-tag">fallback model</span> : null}</small> : null}
         </div>)}
       {busy && <p className="la-working le-muted">Working...</p>}

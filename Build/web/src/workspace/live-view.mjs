@@ -317,11 +317,11 @@ export const createLive = (React, icon = () => null) => {
         f.point && dims ? h('span', { className: 'lv-mark', 'aria-hidden': true, style: { left: (100 * f.point.x) / dims.w + '%', top: (100 * f.point.y) / dims.h + '%' } }) : null),
       h('p', { className: 'lv-muted', role: 'status' }, f.point ? 'Picked pixel x ' + f.point.x + ', y ' + f.point.y + ' on the first frame.' : 'No point picked yet.'),
       h('label', { className: 'lv-field' }, 'Or its name', h('input', { value: f.name, maxLength: 80, placeholder: 'for example: apple', onChange: set('name') })),
-      h('fieldset', { className: 'lv-size' }, h('legend', null, h('strong', null, 'Step 2. '), 'Known size (optional)'),
+      h('fieldset', { className: 'lv-size' }, h('legend', null, h('strong', null, 'Step 2. '), 'Size of the moving object (optional)'),
         h('label', { className: 'lv-field' }, 'What it is', h('input', { value: f.what, maxLength: 120, placeholder: 'ball diameter', onChange: set('what') })),
         h('label', { className: 'lv-field lv-num' }, 'Value', h('input', { type: 'number', inputMode: 'decimal', min: 0, step: 'any', value: f.size, onChange: set('size') })),
         h('label', { className: 'lv-field lv-num' }, 'Unit', h('select', { value: f.unit, onChange: set('unit') }, ...SIZE_UNITS.map((u) => h('option', { key: u, value: u }, u)))),
-        h('p', { className: 'lv-muted' }, 'Without a known size the result stays in pixels, labelled scale unverified.')),
+        h('p', { className: 'lv-muted' }, 'Scale = this size over the tracked box size. Without it the result stays in pixels, labelled scale unverified.')),
       h('div', { className: 'lv-row' }, h('button', { type: 'submit', className: 'lv-btn lv-primary', disabled: busy || !ready }, busy ? 'Starting' : 'Start measuring'),
         h('button', { type: 'button', className: 'lv-btn', onClick: () => L.setAction(null) }, 'Cancel')),
       err ? h('p', { className: 'ws-error', role: 'alert' }, err) : null);

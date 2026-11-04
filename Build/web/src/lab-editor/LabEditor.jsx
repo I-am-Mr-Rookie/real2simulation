@@ -43,7 +43,7 @@ const ICONS = {
   select: 'M5 3l14 8-6 2-2 6z', translate: 'M12 3v18M3 12h18M12 3l-3 3M12 3l3 3M21 12l-3-3M21 12l-3 3', rotate: 'M20 12a8 8 0 1 1-3-6.2M20 4v4h-4', scale: 'M4 14v6h6M20 10V4h-6M4 20L20 4',
   eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0.01 0', eyeoff: 'M3 3l18 18M10.6 6.1A10 10 0 0 1 12 6c6 0 10 6 10 6a17 17 0 0 1-3.2 3.7M6.6 6.6C3.8 8.3 2 12 2 12s4 7 10 7a9 9 0 0 0 4.4-1.1',
   agent: 'M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z', expand: 'M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5', room: 'M3 11l9-7 9 7v9H3zM9 20v-6h6v6', list: 'M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01',
-  save: 'M5 3h11l3 3v15H5zM8 3v5h7V3M8 21v-7h8v7', copy: 'M9 9h11v11H9zM5 15H4V4h11v1',
+  save: 'M5 3h11l3 3v15H5zM8 3v5h7V3M8 21v-7h8v7', copy: 'M9 9h11v11H9zM5 15H4V4h11v1', gravity: 'M12 3v12M7 10l5 5 5-5M5 20h14',
 };
 const Ico = ({ n }) => <svg className="le-ico" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d={ICONS[n]} fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" /></svg>;
 const isDark = () => typeof document !== 'undefined' && document.documentElement.dataset.tone === 'dark';
@@ -154,7 +154,8 @@ async function getJson(path, init) {
   if (!r.ok) throw Object.assign(new Error(b?.error?.message ?? b?.detail?.error?.message ?? b?.detail?.message ?? 'HTTP ' + r.status), { status: r.status });
   return b;
 }
-const PENDING = 'r2s-template-edit'; // N89: template edits survive the sign-in round trip of Make a copy
+const PENDING = 'r2s-template-edit'; // N89: template and sample edits survive the sign-in round trip of Make a copy
+const RECOVER = <> Open the <a href="/lab?editor=1&template=physics-lab">Physics lab</a>, a <a href="/lab?editor=1&template=blank">Blank lab</a> or the <a href="/lab?editor=1&sample=st03">ST03 apple replay</a>.</>;
 
 // "Mark the A4 sheet" (two clicks on its long edge) and "Add a real object" (one click) on a model view PNG.
 function RoomTools({ id, room, onReload }) {
@@ -240,6 +241,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   // N56 full-window layout: left tab, agent drawer, view-only hidden objects, lab name, project for the preview snapshot.
   const [leftTab, setLeftTab] = useState('objects');
   const [agentOpen, setAgentOpen] = useState(false);
+  const [sceneOpen, setSceneOpen] = useState(false); // N89: phones hide the right panel; this opens Scene (gravity) without a selection
   const [hidden, setHidden] = useState([]);
   const [name, setName] = useState('');
   const [project, setProject] = useState(null);
@@ -394,7 +396,9 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     const p = new URLSearchParams(window.location.search), room = p.get('room'), exp = p.get('experiment'), tpl = p.get('template'), saved = p.get('project');
     if (room && LIVE_ID.test(room)) loadRoom(room); else if (exp && LIVE_ID.test(exp)) loadExperiment(exp);
     else if (tpl) loadTemplate(tpl); else if (saved && LIVE_ID.test(saved)) loadSaved(saved);
+    else if (saved) setMessage(<>That saved lab link is not valid.{RECOVER}</>);
     else if (p.get('sample') === 'st03') loadSample();
+    else if (p.get('sample')) setMessage(<>Unknown sample {p.get('sample').slice(0, 40)}.{RECOVER}</>);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Rebuild room and object meshes from the scene JSON whenever it changes (not while a run is live).
@@ -501,7 +505,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     const st = api.current?.state;
     if (st) { st.playing = false; st.sim?.free(); st.sim = null; }
     setRun('stopped'); setTime(0); setCursor(null); setTraceFit(null);
-    setMessage('Ready. Press Play to start again. Everything here is SIMULATED.');
+    setMessage('Ready. Press Play to start again. ' + (src?.kind === 'experiment' ? 'The ball is SIMULATED; the dots stay RECORDED and MEASURED.' : 'Everything here is SIMULATED.'));
   };
   const play = async () => {
     const st = api.current.state;
@@ -590,8 +594,10 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     const r = featuredRun.result, g = +(r.quantity.value / 1000).toFixed(3);
     try {
       showTrack(r, 'st03-sample', 'Dots and line: the hosted SAM 3.1 track of a falling apple (stock clip, RECORDED), drawn at 1 px = 1 mm. Gravity starts at the fitted '
-        + g + ' (what-if, same scale), so the SIMULATED ball follows the dots. Set Gravity y to -9.81 and press Play to see Earth g at this scale.', [0, -g, 0]);
+        + g + ' (what-if, same scale), so the SIMULATED ball follows the dots. Set Gravity y to -9.81 and press Play to see Earth g at this scale.', [+(r.fit.x.accel_px_s2 / 1000).toFixed(3), -g, 0]);
     } catch (e) { setMessage('Sample not loaded: ' + e.message); }
+    let kept = null;
+    try { kept = JSON.parse(sessionStorage.getItem(PENDING) || 'null'); if (kept?.id === 'sample:st03') { sessionStorage.removeItem(PENDING); setScene(validateScene(kept.scene)); setName(kept.name || ''); setMessage('Your edits are back, with the RECORDED dots. Press Make a copy to save them to your workspace.'); } } catch { /* storage blocked or stale edit: keep the fresh sample */ }
   };
   // N89: frame a whole lab from the open front side, with the grid sized to the room.
   const frameScene = (s) => {
@@ -606,7 +612,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   };
   const loadTemplate = (id) => {
     const t = TEMPLATES.find((x) => x.id === id);
-    if (!t) { setMessage('Unknown template ' + id + '. Pick Blank lab or Physics lab from the workspace.'); return; }
+    if (!t) { setMessage(<>Unknown template {id.slice(0, 40)}.{RECOVER}</>); return; }
     let kept = null;
     try { kept = JSON.parse(sessionStorage.getItem(PENDING) || 'null'); sessionStorage.removeItem(PENDING); } catch { /* storage blocked */ }
     let s = templateScene(id);
@@ -622,7 +628,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
       const s = validateScene(b.scene);
       frameScene(s); setScene(s); setSavedJson(sceneJson(s)); setOrigin({ kind: 'saved' }); setName(pj.project.title);
       setMessage('Your saved lab. Save keeps changes; Make a copy starts a new version. Everything here is SIMULATED.');
-    } catch (e) { setMessage(e.status === 401 ? 'Sign in to open your saved lab.' : 'Saved lab not loaded: ' + e.message); }
+    } catch (e) { setMessage(<>{e.status === 401 ? 'Sign in to open your saved lab.' : 'Saved lab not loaded: ' + e.message}{RECOVER}</>); }
   };
   const saveLab = async () => {
     if (origin?.kind !== 'saved' || !project) return;
@@ -642,7 +648,8 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
     } catch (e) {
       setCopying(false);
       if (e.status !== 401) { setMessage('Not copied: ' + e.message); return; }
-      if (origin?.kind === 'template') try { sessionStorage.setItem(PENDING, JSON.stringify({ id: origin.id, name, scene: s })); } catch { /* edits are lost, the template stays */ }
+      const keep = origin?.kind === 'template' ? origin.id : src?.id === 'st03-sample' ? 'sample:st03' : null;
+      if (keep) try { sessionStorage.setItem(PENDING, JSON.stringify({ id: keep, name, scene: s })); } catch { /* edits are lost, the template stays */ }
       window.location.assign('/sign-in?redirect_url=' + encodeURIComponent(window.location.pathname + window.location.search));
     }
   };
@@ -684,7 +691,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
   const playBtn = run !== 'playing' ? <button type="button" className="le-primary" onClick={play} disabled={run === 'loading' || !scene.objects.length}><Ico n="play" /><span>{run === 'paused' ? 'Resume' : 'Play'}</span></button> : <button type="button" className="le-primary" onClick={pause}><Ico n="pause" /><span>Pause</span></button>;
   const openLeft = (t) => { setLeftTab(t); setSide(true); };
   const tv = tidyView(hist.current, scene, tidy);
-  return <section className="lab-editor" aria-label="Lab editor" data-side={side ? 'open' : 'closed'} data-sheet={agentOpen || sel ? 'open' : 'closed'}>
+  return <section className="lab-editor" aria-label="Lab editor" data-side={side ? 'open' : 'closed'} data-sheet={agentOpen || sel || sceneOpen ? 'open' : 'closed'}>
     <header className="le-top" role="toolbar" aria-label="Lab tools">
       <a className="le-logo" href="/workspace" title="Back to workspace" aria-label="Back to workspace"><img className="art-light" src="/brand/mark.svg" width="32" height="32" alt="" /><img className="art-dark" src="/brand/mark-dark.svg" width="32" height="32" alt="" /></a>
       <input className="le-name" aria-label="Lab name" value={name || title} maxLength={120} onChange={(e) => setName(e.target.value)} onBlur={(e) => rename(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') e.currentTarget.blur(); }} />
@@ -706,6 +713,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
         <button type="button" className="le-icon-btn" onClick={() => { download('lab-scene.json', sceneJson(scene)); snapshot(); }} aria-label="Export scene" title="Export scene JSON"><Ico n="download" /></button>
         <label className="le-file le-icon-btn" title="Import scene or room (.json, .ply)"><Ico n="upload" /><span className="le-sr">Import scene or room (.json, .ply)</span><input type="file" accept=".json,.ply" onChange={loadFile} /></label>
         <button type="button" className="le-icon-btn" aria-label="Fullscreen" title="Fullscreen" onClick={(e) => (document.fullscreenElement ? document.exitFullscreen() : e.currentTarget.closest('.lab-editor')?.requestFullscreen?.())}><Ico n="expand" /></button>
+        <button type="button" className="le-icon-btn le-scene-btn" aria-label="Scene and gravity" title="Scene and gravity" aria-pressed={sceneOpen && !agentOpen && !sel} onClick={() => { setAgentOpen(false); setSelected(null); setSceneOpen((v) => !v); }}><Ico n="gravity" /></button>
         <button type="button" className="le-agent-btn" aria-label="Agent" aria-pressed={agentOpen} onClick={() => setAgentOpen((v) => !v)}><Ico n="agent" /><span className="le-lbl">Agent</span></button>
       </div>
     </header>
@@ -773,7 +781,7 @@ export default function LabEditor({ initialScene, onTemplateTrials }) {
         <p className="le-status" role="status">{improving > 0 && 'Improving ' + improving + ' objects... '}{message} Gravity [{scene.gravity.join(', ')}] m/s^2{plyName ? ', room ' + plyName : ''}.</p>
       </div>
       <aside className="le-side le-right" aria-label={agentOpen ? 'Agent' : 'Properties'}>
-        <button type="button" className="le-sheet-close" onClick={() => { setAgentOpen(false); setSelected(null); }}>Close</button>
+        <button type="button" className="le-sheet-close" onClick={() => { setAgentOpen(false); setSelected(null); setSceneOpen(false); }}>Close</button>
         <div className="le-panel le-props" hidden={agentOpen}>
           {sel ? <>
             <h3>{sel.id} <small className="le-muted">{LABELS[sel.kind]}</small></h3>

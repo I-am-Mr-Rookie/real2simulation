@@ -39,7 +39,7 @@ export default function FeaturedRun() {
       <li className="card">
         <span className="chip" data-tone="ok">MEASURED</span>
         <h3>2. Meta SAM 3.1 tracks it</h3>
-        <p>Hosted SAM 3.1 on the Meta Model API followed the apple through all {r.track.tracked_frames} frames. The agent kept the {n} frames of free fall ({r.segment.duration_s.toFixed(2)} s).</p>
+        <p>Hosted SAM 3.1 on the Meta Model API followed the apple through all {r.track.tracked_frames} frames. The pipeline code kept the {n} frames of free fall ({r.segment.duration_s.toFixed(2)} s).</p>
         <p className="fr-meta mono">{r.track.label}<br />Recorded cost {'$' + r.cost_usd} · {run.seconds} s end to end</p>
       </li>
       <li className="card">
@@ -57,17 +57,17 @@ export default function FeaturedRun() {
         {check && <p>{check.text}</p>}
       </li>
     </ol>
+    <p className="fr-cta"><Link className="primary-link" href="/lab?editor=1&sample=st03">Replay this run in 3D and change gravity</Link></p>
     <div className="card fr-agent">
       <span className="chip" data-tone="sim">SIMULATED</span>
-      <h3>5. Muse runs the lab for you</h3>
-      <p>A recorded call to Meta {turn.model} on {turn.utc.slice(0, 10)}, unedited. The agent turns a sentence into lab actions and reads the numbers back from the physics engine, not from its own guess.</p>
+      <h3>Separately: Muse runs a lab for you</h3>
+      <p>A recorded call to Meta {turn.model} on {turn.utc.slice(0, 10)}, unedited, on a SIMULATED drop in the lab editor, not the apple clip above. The agent turns a sentence into lab actions and reads the numbers back from the physics engine, not from its own guess.</p>
       <dl>
         <dt>You</dt><dd>{turn.sent}</dd>
         <dt>Tools it called</dt><dd className="mono">{turn.tool_calls.map((c) => c.name).join(' → ')}</dd>
         <dt>Muse</dt><dd>{turn.reply}</dd>
       </dl>
     </div>
-    <p className="fr-cta"><Link className="primary-link" href="/lab?editor=1&sample=st03">Replay this run in 3D and change gravity</Link></p>
     <p className="fr-cta"><Link href="/sign-up">Measure your own clip</Link> or <Link href="/lab?editor=1&template=physics-lab">drop a ball in the physics lab</Link>, no video needed.</p>
   </section>;
 }

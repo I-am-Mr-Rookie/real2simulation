@@ -27,7 +27,7 @@ export const UPLOAD_QUESTION = Object.freeze({ question: 'What are you uploading
 export const LIMITS = 'mp4, mov or webm; up to 200 MB and 120 s.';
 export const TIPS = Object.freeze({
   experiment: ['Fix the phone on a stand or table; do not pan or zoom.', 'Keep the whole motion in frame against a plain background.',
-    'Use bright, even light; 60 fps if your phone offers it.', 'Put an object of known size (A4 sheet or ruler) in the plane of the motion for scale.',
+    'Use bright, even light; 60 fps if your phone offers it.', 'Know the size of the moving object (for example ball diameter 6.5 cm); its size in the video sets the scale.',
     'Record 5 to 30 s: a second or two still, then the motion.'],
   room: ['Walk slowly around the room for 20 to 60 s, holding the phone steady.', 'Keep the floor in view most of the time.',
     'Use even light; avoid pointing at bright windows.', 'Lay an A4 sheet flat on the floor for scale; without it, scale is MODEL-ESTIMATED.',
